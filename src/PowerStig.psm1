@@ -1,4 +1,5 @@
-# // Copyright (c) Microsoft Corporation. All rights reserved.// Licensed under the MIT license.
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
 
 using module .\Class\StigData.psm1
 using module .\Class\Technology.psm1
