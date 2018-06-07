@@ -1,0 +1,23 @@
+<!--
+The organizational settings file is used to define the local organizations  
+preferred setting within an allowed range of the STIG.
+
+Each setting in this file is linked by STIG ID and the valid range is in an 
+associated comment.
+-->
+<OrganizationalSettings Version="1.6">
+  <!--Add Fully qualified Domain Name.-->
+  <Domain Name=" " />
+  <!-- Ensure 'V-17425.a' -ge '16384'-->
+  <OrganizationalSetting id="V-17425.a" Value="16384" />
+  <!-- Ensure 'V-17425.b' -ge '16384'-->
+  <OrganizationalSetting id="V-17425.b" Value="16384" />
+  <!-- Ensure 'V-17435.a' -ge '16384'-->
+  <OrganizationalSetting id="V-17435.a" Value="16384" />
+  <!-- Ensure 'V-17435.b' -ge '16384'-->
+  <OrganizationalSetting id="V-17435.b" Value="16384" />
+  <!-- Ensure 'V-17445.a' -ge '16384'-->
+  <OrganizationalSetting id="V-17445.a" Value="16384" />
+  <!-- Ensure 'V-17445.b' -ge '16384'-->
+  <OrganizationalSetting id="V-17445.b" Value="16384" />
+</OrganizationalSettings>
