@@ -25,3 +25,33 @@ Describe 'Common Tests - XML Validation' {
         }
     }
 }
+
+Describe 'Common Tests - STIG Data Requirements' {
+    Context 'Converted STIGs' {
+        $stigDataFolder = "$moduleRoot\StigData"
+        $convertedStigs = Get-ChildItem -Path $stigDataFolder -File | Where-Object {$_.Name -notmatch "\.org\.default\.xml?"}
+        $orgSettings = Get-ChildItem -Path $stigDataFolder -File | Where-Object {$_.Name -match "\.org\.default\.xml?"}
+        $orgSettings = $orgSettings.BaseName.ToLower()
+        $convertedStigs = $convertedStigs.BaseName.ToLower()
+
+        foreach ($stig in $convertedStigs)
+        {
+            It "$stig should have paired org settings file" {
+                $testResult = $true
+
+                if ($orgSettings.Contains(($stig + ".org.default"))) 
+                {
+                    continue 
+                }
+                else 
+                {
+                    $testResult = $false
+
+                    Write-Warning -Message "$stig does not have an Org Setting xml. Run 'ConvertTo-DscStigXml' for $stig with the 'CreateOrgSettingsFile' Switch "
+                }
+                
+                $testResult | Should Be $true
+            }
+        }
+    }
+}

@@ -1,18 +1,11 @@
+$script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', ''
+
 #region HEADER
 # Integration Test Template Version: 1.1.1
 [String] $script:moduleRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'DSCResource.Tests'))) -or `
-     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'DSCResource.Tests\TestHelper.psm1'))) )
-{
-    & git @('clone','https://github.com/PowerShell/DscResource.Tests.git',(Join-Path -Path $script:moduleRoot -ChildPath '\DSCResource.Tests\'))
-}
 
 Import-Module (Join-Path -Path $script:moduleRoot -ChildPath 'Tests\helper.psm1' ) -Force
-Import-Module (Join-Path -Path $script:moduleRoot -ChildPath 'DSCResource.Tests\TestHelper.psm1') -Force
-# $TestEnvironment = Initialize-TestEnvironment `
-#     -DSCModuleName $script:DSCModuleName `
-#     -DSCResourceName $script:DSCCompositeResourceName `
-#     -TestType Integration
+Import-Module (Join-Path -Path $script:moduleRoot -ChildPath "$($script:ModuleName).psd1")
 #endregion
 
 Describe "$ModuleName module" {
@@ -29,7 +22,7 @@ Describe "$ModuleName module" {
             }
         }
 
-        It "Should not have more commands than are tested" {
+    It "Should not have more commands than are tested" {
             $compare = Compare-Object -ReferenceObject $commands -DifferenceObject $exportedCommands
             $compare.Count | Should Be 0
         }
