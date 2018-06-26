@@ -429,7 +429,7 @@ Class StigData
         # The path needs to take into account the version folder that changes with each release
         $rootPath = (Resolve-Path -Path $PSScriptRoot\..).Path
 
-        return (Get-ChildItem -Path $rootPath -Filter 'StigData' -Directory -Recurse).FullName
+        return (Get-ChildItem -Path $rootPath -Filter 'StigData' -Directory).FullName
     }
 
     <#
