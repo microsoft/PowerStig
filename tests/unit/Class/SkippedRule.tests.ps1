@@ -1,4 +1,4 @@
-using module .\..\..\..\src\Class\SkippedRule.psm1
+using module .\..\..\..\Class\SkippedRule.psm1
 
 [string[]] $SkippedRuleArray =
 @(

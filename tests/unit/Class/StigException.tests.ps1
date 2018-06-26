@@ -1,5 +1,5 @@
-using module .\..\..\..\src\Class\StigException.psm1
-using module .\..\..\..\src\Class\StigProperty.psm1
+using module .\..\..\..\Class\StigException.psm1
+using module .\..\..\..\Class\StigProperty.psm1
 
 $StigException1StigRuleId = 'V-26606'
 $StigException1StigProperty1 = [StigProperty]::new('ServiceState', 'Running')

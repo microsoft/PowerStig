@@ -1,4 +1,4 @@
-using module .\..\..\..\src\Class\OrganizationalSetting.psm1
+using module .\..\..\..\Class\OrganizationalSetting.psm1
 
 [xml] $OrgSettingXml =
 @"

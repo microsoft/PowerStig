@@ -1,4 +1,4 @@
-using module .\..\..\..\src\Class\StigProperty.psm1
+using module .\..\..\..\Class\StigProperty.psm1
 
 $StigPropertyTest =
 @{

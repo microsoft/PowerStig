@@ -1,8 +1,11 @@
-[string] $sut = $MyInvocation.MyCommand.Path -replace '\\tests\\','\src\' `
--replace '\.tests\.ps1','.ps1' `
--replace '\\unit\\','\'
+$script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests',''
 
-Import-Module $sut
+#region HEADER
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot) )
+$modulePath = "$($script:moduleRoot)\Common\$ModuleName"
+Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Force
+Import-Module $modulePath -Force
+#endregion
 
 Describe "Function Get-StigList" {
 

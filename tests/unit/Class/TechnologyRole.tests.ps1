@@ -1,6 +1,6 @@
-using module .\..\..\..\src\Class\Technology.psm1
-using module .\..\..\..\src\Class\TechnologyVersion.psm1
-using module .\..\..\..\src\Class\technologyRole.psm1
+using module .\..\..\..\Class\Technology.psm1
+using module .\..\..\..\Class\TechnologyVersion.psm1
+using module .\..\..\..\Class\technologyRole.psm1
 
 $technologyRole1 = 'DNS'
 $technologyRole2 = 'ADDomain'

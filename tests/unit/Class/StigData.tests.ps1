@@ -1,12 +1,12 @@
-using module .\..\..\..\src\Class\StigData.psm1
-using module .\..\..\..\src\Class\StigException.psm1
-using module .\..\..\..\src\Class\StigProperty.psm1
-using module .\..\..\..\src\Class\SkippedRuleType.psm1
-using module .\..\..\..\src\Class\SkippedRule.psm1
-using module .\..\..\..\src\Class\OrganizationalSetting.psm1
-using module .\..\..\..\src\Class\Technology.psm1
-using module .\..\..\..\src\Class\TechnologyRole.psm1
-using module .\..\..\..\src\Class\TechnologyVersion.psm1
+using module .\..\..\..\Class\StigData.psm1
+using module .\..\..\..\Class\StigException.psm1
+using module .\..\..\..\Class\StigProperty.psm1
+using module .\..\..\..\Class\SkippedRuleType.psm1
+using module .\..\..\..\Class\SkippedRule.psm1
+using module .\..\..\..\Class\OrganizationalSetting.psm1
+using module .\..\..\..\Class\Technology.psm1
+using module .\..\..\..\Class\TechnologyRole.psm1
+using module .\..\..\..\Class\TechnologyVersion.psm1
 
 Import-Module "$PSScriptRoot\..\..\helper.psm1" -Force
 $SchemaFile = (Resolve-Path -Path "$SrcRootDir\StigData\Schema\PowerStig.xsd").Path
