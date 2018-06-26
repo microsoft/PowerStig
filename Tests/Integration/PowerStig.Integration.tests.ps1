@@ -1,4 +1,4 @@
-$script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', ''
+$script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.Integration\.tests\.ps1', ''
 
 #region HEADER
 # Integration Test Template Version: 1.1.1

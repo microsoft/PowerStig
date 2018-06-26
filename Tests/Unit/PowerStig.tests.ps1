@@ -1,4 +1,4 @@
-﻿
+
 $script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', ''
 
 #region HEADER
@@ -10,7 +10,6 @@ Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Forc
 
 Describe 'Project' {
 
-    #$Manifest = Import-PowerShellDataFile -Path $script:moduleManifestPath
     It 'Contains a readme' {
         Test-Path "$($script:moduleRoot)\README.md" | Should Be True
     }
@@ -18,7 +17,7 @@ Describe 'Project' {
     Context "$Name manifest properties" {
 
         It 'Should contains a valid module manifest.' {
-            {$script:manifest = Test-ModuleManifest -Path $script:modulePath} | Should Not Throw
+            {$script:manifest = Test-ModuleManifest -Path $script:moduleManifestPath} | Should Not Throw
         }
         It 'Should have a GUID in the manifest' {
             $script:manifest.GUID | Should Match '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'

@@ -8,8 +8,15 @@ using module .\..\..\..\Class\Technology.psm1
 using module .\..\..\..\Class\TechnologyRole.psm1
 using module .\..\..\..\Class\TechnologyVersion.psm1
 
-Import-Module "$PSScriptRoot\..\..\helper.psm1" -Force
-$SchemaFile = (Resolve-Path -Path "$SrcRootDir\StigData\Schema\PowerStig.xsd").Path
+$script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests',''
+
+#region HEADER
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot) )
+$modulePath = "$($script:moduleRoot)\Class\$ModuleName"
+Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Force
+#endregion
+
+$SchemaFile = Join-Path -Path $moduleRoot -ChildPath "\StigData\Schema\PowerStig.xsd"
 
 #region StigData1 Test Data
 [hashtable] $orgSettingHashtable =
