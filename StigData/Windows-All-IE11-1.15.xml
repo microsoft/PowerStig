@@ -29,7 +29,7 @@ If the value for "SecureProtocols" is not REG_DWORD = "2560", this is a finding.
     <Rule id="V-46477" severity="low" conversionstatus="pass" title="DTBI018-IE11-Publishers Certificate Revocation" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing Criteria</Key>
+      <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <rawString>If the system is on the SIPRNet, this requirement is NA.
