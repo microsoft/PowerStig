@@ -39,17 +39,16 @@ Describe 'Common Tests - STIG Data Requirements' {
             It "$stig should have paired org settings file" {
                 $testResult = $true
 
-                if ($orgSettings.Contains(($stig + ".org.default"))) 
+                if ($orgSettings.Contains(($stig + ".org.default")))
                 {
-                    continue 
+                    continue
                 }
-                else 
+                else
                 {
                     $testResult = $false
 
                     Write-Warning -Message "$stig does not have an Org Setting xml. Run 'ConvertTo-DscStigXml' for $stig with the 'CreateOrgSettingsFile' Switch "
                 }
-                
                 $testResult | Should Be $true
             }
         }

@@ -14,19 +14,29 @@
 .NOTES
     This enum requires PowerShell v5 or above.
 #>
-Enum StigRuleType {
+Enum StigRuleType
+{
     AccountPolicyRule
     AuditPolicyRule
     DnsServerRootHintRule
     DnsServerSettingRule
+    DocumentRule
+    GroupRule
+    IisLoggingRule
     PermissionRule
+    ManualRule
+    MimeTypeRule
+    PermissionRule
+    ProcessMitigationRule
     RegistryRule
     SecurityOptionRule
     ServiceRule
     SkipRule
     SqlScriptQueryRule
     UserRightRule
+    WebAppPoolRule
+    WebConfigurationPropertyRule
     WindowsFeatureRule
     WinEventLogRule
-    WmiRuleClass
+    WmiRule
 }

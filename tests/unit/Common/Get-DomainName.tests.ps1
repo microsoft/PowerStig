@@ -15,19 +15,19 @@ Describe 'Get-DomainName' {
             Mock -CommandName Get-DomainFQDN -MockWith {return 'Contoso.com'}
             Get-DomainName -DomainName $null | Should Be 'Contoso.com'
         }
-    
+
         It 'Should return the FQDN by default.' {
             Get-DomainName -DomainName 'Contoso.com' | Should Be 'Contoso.com'
         }
-    
+
         It 'Should return the FQDN name of the FQDN that is provided.' {
             Get-DomainName -DomainName 'Contoso.com' -Format 'FQDN' | Should Be 'Contoso.com'
         }
-    
+
         It 'Should return the netbios name of the FQDN that is provided.' {
             Get-DomainName -DomainName 'Contoso.com' -Format 'NetbiosName' | Should Be 'Contoso'
         }
-    
+
         It 'Should return the distinguished name of the FQDN that is provided.' {
             Get-DomainName -DomainName 'Contoso.com' -Format 'DistinguishedName' | Should Be 'DC=Contoso,DC=com'
         }
@@ -39,19 +39,19 @@ Describe 'Get-DomainName' {
             Mock -CommandName Get-ForestFQDN -MockWith {'forest.root'}
             Get-DomainName -ForestName $null | Should Be 'forest.root'
         }
-    
+
         It 'Should return the FQDN by default.' {
             Get-DomainName -ForestName 'Contoso.com' | Should Be 'Contoso.com'
         }
-    
+
         It 'Should return the FQDN name of the FQDN that is provided.' {
             Get-DomainName -ForestName 'Contoso.com' -Format 'FQDN' | Should Be 'Contoso.com'
         }
-    
+
         It 'Should return the netbios name of the FQDN that is provided.' {
             Get-DomainName -ForestName 'Contoso.com' -Format 'NetbiosName' | Should Be 'Contoso'
         }
-    
+
         It 'Should return the distinguished name of the FQDN that is provided.' {
             Get-DomainName -ForestName 'Contoso.com' -Format 'DistinguishedName' | Should Be 'DC=Contoso,DC=com'
         }

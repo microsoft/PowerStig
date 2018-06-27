@@ -37,8 +37,8 @@
 #>
 Function Get-DomainName 
 {
-    [outputtype([string])]
-    [cmdletbinding()]
+    [CmdletBinding()]
+    [OutputType([string])]
     param
     (
         [Parameter(Mandatory = $true, ParameterSetName = 'DomainName')]
@@ -116,7 +116,8 @@ Function Get-DomainName
 #>
 Function Get-DomainFQDN
 {
-    [outputtype([string])]
+    [CmdletBinding()]
+    [OutputType([string])]
     param 
     ( )
 
@@ -129,7 +130,8 @@ Function Get-DomainFQDN
 #>
 Function Get-ForestFQDN
 {
-    [outputtype([string])]
+    [CmdletBinding()]
+    [OutputType([string])]
     param 
     ( )
 
@@ -139,7 +141,8 @@ Function Get-ForestFQDN
 
 Function Get-NetbiosName
 {
-    [outputtype([string])]
+    [CmdletBinding()]
+    [OutputType([string])]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -160,7 +163,8 @@ Function Get-NetbiosName
 
 Function Get-DistinguishedName
 {
-    [outputtype([string])]
+    [CmdletBinding()]
+    [OutputType([string])]
     param
     (
         [parameter()]
@@ -174,7 +178,8 @@ Function Get-DistinguishedName
 
 Function Format-DistinguishedName
 {
-    [outputtype([string])]
+    [CmdletBinding()]
+    [OutputType([string])]
     param
     (
         [parameter()]
@@ -202,7 +207,8 @@ Function Format-DistinguishedName
 
 Function Get-DomainParts
 {
-    [outputtype([string[]])]
+    [CmdletBinding()]
+    [OutputType([string[]])]
     param
     (
         [parameter(Mandatory = $true)]

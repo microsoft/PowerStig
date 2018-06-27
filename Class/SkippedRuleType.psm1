@@ -107,7 +107,6 @@ Class SkippedRuleType
             {
                 throw("$($skip) is not a valid StigRuleType.")
             }
-            
         }
 
         return $skips

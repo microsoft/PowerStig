@@ -1,106 +1,30 @@
-####################################    Common test Helpers    ####################################
 <#
     .SYNOPSIS
-        Retrieves the parse errors for the given file.
+        Used to validate an xml file against a specified schema
 
-    .PARAMETER FilePath
-        The path to the file to get parse errors for.
+    .PARAMETER XmlFile
+        Path and file name of the XML file to be validated
+
+    .PARAMETER Xml
+        An already loaded System.Xml.XmlDocument
+
+    .PARAMETER SchemaFile
+        Path of XML schema used to validate the XML document
+
+    .PARAMETER ValidationEventHandler
+        Script block that is run when an error occurs while validating XML
+
+    .EXAMPLE
+        Test-XML -XmlFile C:\source\test.xml -SchemaFile C:\Source\test.xsd
+
+    .EXAMPLE
+        $xmlobject = Get-StigData -OsVersion 2012R2 -OsRole MemberServer
+        Test-XML -Xml $xmlobject -SchemaFile C:\Source\test.xsd
 #>
-function Get-FileParseErrors
-{
-    [OutputType([System.Management.Automation.Language.ParseError[]])]
-    [CmdletBinding()]
-    param
-    (
-        [Parameter(ValueFromPipeline = $true, Mandatory = $true)]
-        [String]
-        $FilePath
-    )
-
-    $parseErrors = $null
-
-    $null = [System.Management.Automation.Language.Parser]::ParseFile(
-            $FilePath,
-            [ref] $null,
-            [ref] $parseErrors
-    )
-    return $parseErrors
-}
-
-<#
-    .SYNOPSIS
-        Retrieves all text files under the given root file path.
-
-    .PARAMETER Root
-        The root file path under which to retrieve all text files.
-
-    .NOTES
-        Retrieves all files with the '.gitignore', '.gitattributes', '.ps1', '.psm1', '.psd1',
-        '.json', '.xml', '.cmd', or '.mof' file extensions.
-#>
-function Get-TextFilesList
-{
-    [OutputType([System.IO.FileInfo[]])]
-    [CmdletBinding()]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [String]
-        $FilePath
-    )
-
-    $textFileExtensions = @('.gitignore', '.gitattributes', '.ps1', '.psm1', '.psd1', '.json',
-    '.xml', '.cmd', '.mof')
-
-    return Get-ChildItem -Path $FilePath -File -Recurse | Where-Object { $textFileExtensions `
-    -contains $_.Extension }
-}
-function Test-FileInUnicode
+function Test-Xml
 {
     [OutputType([Boolean])]
     [CmdletBinding()]
-    param
-    (
-        [Parameter(ValueFromPipeline = $true, Mandatory = $true)]
-        [System.IO.FileInfo]
-        $FileInfo
-    )
-
-    $filePath = $FileInfo.FullName
-
-    $fileBytes = [System.IO.File]::ReadAllBytes($filePath)
-
-    $zeroBytes = @( $fileBytes -eq 0 )
-
-    return ($zeroBytes.Length -ne 0)
-}
-
-####################################    Common test Helpers    #####################################
-<#
-    .SYNOPSIS
-    Used to validate an xml file against a specified schema
-
-    .PARAMETER XmlFile
-    Path and file name of the XML file to be validated
-
-    .PARAMETER Xml
-    An already loaded System.Xml.XmlDocument
-
-    .PARAMETER SchemaFile
-    Path of XML schema used to validate the XML document
-
-    .PARAMETER ValidationEventHandler
-    Script block that is run when an error occurs while validating XML
-
-    .EXAMPLE
-    Test-XML -XmlFile C:\source\test.xml -SchemaFile C:\Source\test.xsd
-
-    .EXAMPLE
-    $xmlobject = Get-StigData -OsVersion 2012R2 -OsRole MemberServer
-    Test-XML -Xml $xmlobject -SchemaFile C:\Source\test.xsd
-#>
-Function Test-Xml
-{
     param
     (
         [Parameter(ValueFromPipeline = $true, Mandatory = $true, ParameterSetName = 'File')]
@@ -139,7 +63,8 @@ Function Test-Xml
 
 function Get-StigDataRootPath
 {
-    [cmdletbinding()]
+    [OutputType([String])]
+    [CmdletBinding()]
     param()
 
     return "$((Get-Module -Name PowerStig -ListAvailable).ModuleBase)\StigData"
@@ -147,19 +72,19 @@ function Get-StigDataRootPath
 
 <#
     .SYNOPSIS
-    Returns a list of stigs for a given resource. This is used in integration testign by looping
-    through every valide STIG found in the StigData directory.
+        Returns a list of stigs for a given resource. This is used in integration testign by looping
+        through every valide STIG found in the StigData directory.
 
     .PARAMETER CompositeResourceName
-    The resource to filter the results
+        The resource to filter the results
 
     .PARAMETER Filter
-    Parameter description
+        Parameter description
 #>
 function Get-StigVersionTable
 {
-    [outputtype([psobject])]
-    [cmdletbinding()]
+    [OutputType([PSOject])]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -190,15 +115,15 @@ function Get-StigVersionTable
 
 <#
     .SYNOPSIS
-    Using an AST, it returns the name of a configuration in the composite resource schema file.
+        Using an AST, it returns the name of a configuration in the composite resource schema file.
 
     .PARAMETER FilePath
-    The full path to the resource schema module file
+        The full path to the resource schema module file
 #>
 function Get-ConfigurationName
 {
-    [cmdletbinding()]
-    [outputtype([string[]])]
+    [OutputType([String[]])]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -219,15 +144,15 @@ function Get-ConfigurationName
 
 <#
     .SYNOPSIS
-    Returns the list of StigVersion nunmbers that are defined in the ValidateSet parameter attribute
+        Returns the list of StigVersion nunmbers that are defined in the ValidateSet parameter attribute
 
     .PARAMETER FilePath
-    THe full path to the resource to read from
+        THe full path to the resource to read from
 #>
 function Get-StigVersionParameterValidateSet
 {
-    [outputtype([string[]])]
-    [cmdletbinding()]
+    [OutputType([String[]])]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -263,7 +188,8 @@ function Get-StigVersionParameterValidateSet
 #>
 function Get-ValidStigVersionNumbers
 {
-    [cmdletbinding()]
+    [OutputType([String[]])]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]

@@ -350,7 +350,7 @@ Class StigData
         {
             foreach ($ruleType in $this.SkippedRuleTypes)
             {
-                #Collects the Id's of the rules of the RuleType
+                # Collects the Id's of the rules of the RuleType
                 $ruleToOverride = $this.StigXml.DISASTIG.$($RuleType.StigRuleType).rule.id
 
                 # If an Id is not found we can continue, but notify the user.

@@ -16,7 +16,7 @@ SQL = Server2012
 
 $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet
 
-$InvalidName = 'Cheeseburger'
+$InvalidName = 'groundChuck'
 
 Describe "TechnologyVersion Class" {
 

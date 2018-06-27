@@ -97,7 +97,7 @@ Class SkippedRule
     static [SkippedRule[]] ConvertFrom ([string[]] $SkippedRules)
     {
         [System.Collections.ArrayList] $skips = @()
-        
+
         foreach ($skip in $SkippedRules)
         {
             $rule = [SkippedRule]::new($skip.Trim())
