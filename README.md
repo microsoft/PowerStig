@@ -19,3 +19,17 @@ provided by the bot. You will only need to do this once across all repos using o
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
 contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+
+## Versions
+
+### Unreleased
+
+### 1.0.0.0
+
+STIGs Added:
+
+* Windows Server 2012R2 MS STIG V2R12
+* Windows Server 2012R2 DC STIG V2R12
+* Windows Server DNS V1R9
+* Windows AD Domain V2R9
+* IE11 V1R15
