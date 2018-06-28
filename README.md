@@ -27,3 +27,11 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ### 1.0.0.1
 
 * Modified Windows-All-IE11-1.15.xml
+
+Added the following STIGs:
+
+* Windows Server 2012R2 MS STIG V2R12
+* Windows Server 2012R2 DC STIG V2R12
+* Windows Server DNS V1R9
+* Windows AD Domain V2R9
+* IE11 V1R15

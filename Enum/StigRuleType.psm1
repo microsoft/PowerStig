@@ -23,7 +23,6 @@ Enum StigRuleType
     DocumentRule
     GroupRule
     IisLoggingRule
-    PermissionRule
     ManualRule
     MimeTypeRule
     PermissionRule
