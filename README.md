@@ -26,7 +26,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ### 1.0.0.0
 
-STIGs Added:
+Added the following STIGs:
 
 * Windows Server 2012R2 MS STIG V2R12
 * Windows Server 2012R2 DC STIG V2R12
