@@ -24,9 +24,9 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ### Unreleased
 
-### 1.0.0.1
-
 * Modified Windows-All-IE11-1.15.xml
+
+### 1.0.0.0
 
 Added the following STIGs:
 
