@@ -25,6 +25,7 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 ### Unreleased
 
 * Modified Windows-All-IE11-1.15.xml
+    * Changed registry key in rule V-46477 from 'Software Publishing Criteria' to 'Software Publishing'
 
 ### 1.0.0.0
 
