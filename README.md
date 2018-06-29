@@ -24,6 +24,10 @@ contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additio
 
 ### Unreleased
 
+Added the following STIGS:
+
+* IIS 8.5 Server STIG V1R3
+
 ### 1.0.0.0
 
 Added the following STIGs:
