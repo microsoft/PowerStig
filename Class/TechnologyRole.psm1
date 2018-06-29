@@ -39,7 +39,7 @@ Class TechnologyRole
         The available roles for each version of technology currently in PowerStig
     #>
     static $ValidateSet = @"
-2012R2 = DNS, DC, MS, IISSite
+2012R2 = DNS, DC, MS, IISSite, IISServer
 All = ADDomain, ADForest, FW, IE11
 Server2012 = Instance, Database
 "@

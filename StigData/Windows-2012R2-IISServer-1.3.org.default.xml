@@ -1,0 +1,11 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings version="1.3">
+  <!-- Ensure [TimeSpan]'V-76727.b' -le [TimeSpan]'00:20:00'-->
+  <OrganizationalSetting id="V-76727.b" value="LOCAL_STIG_SETTING_HERE" />
+</OrganizationalSettings>
