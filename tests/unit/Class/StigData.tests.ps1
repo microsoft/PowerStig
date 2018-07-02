@@ -1,18 +1,18 @@
-using module .\..\..\..\Class\StigData.psm1
-using module .\..\..\..\Class\StigException.psm1
-using module .\..\..\..\Class\StigProperty.psm1
-using module .\..\..\..\Class\SkippedRuleType.psm1
-using module .\..\..\..\Class\SkippedRule.psm1
-using module .\..\..\..\Class\OrganizationalSetting.psm1
-using module .\..\..\..\Class\Technology.psm1
-using module .\..\..\..\Class\TechnologyRole.psm1
-using module .\..\..\..\Class\TechnologyVersion.psm1
+using module .\..\..\..\Public\Class\StigData.psm1
+using module .\..\..\..\Public\Class\StigException.psm1
+using module .\..\..\..\Public\Class\StigProperty.psm1
+using module .\..\..\..\Public\Class\SkippedRuleType.psm1
+using module .\..\..\..\Public\Class\SkippedRule.psm1
+using module .\..\..\..\Public\Class\OrganizationalSetting.psm1
+using module .\..\..\..\Public\Class\Technology.psm1
+using module .\..\..\..\Public\Class\TechnologyRole.psm1
+using module .\..\..\..\Public\Class\TechnologyVersion.psm1
 
 $script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests',''
 
 #region HEADER
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot) )
-$modulePath = "$($script:moduleRoot)\Class\$ModuleName"
+$modulePath = "$($script:moduleRoot)\Public\Class\$ModuleName"
 Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Force
 #endregion
 
@@ -35,16 +35,15 @@ $SchemaFile = Join-Path -Path $moduleRoot -ChildPath "\StigData\Schema\PowerStig
 
 $orgSettings = [OrganizationalSetting]::ConvertFrom($orgSettingHashtable)
 
-$technologyName                  = 'Windows';
-$technologyVersionName           = '2012R2';
-$technologyRoleName              = 'DC';
+$technologyName        = 'Windows';
+$technologyVersionName = '2012R2';
+$technologyRoleName    = 'DC';
 
-$technology = [Technology]::new($technologyName)
+$technology        = [Technology]::new($technologyName)
 $technologyVersion = [TechnologyVersion]::new($technologyVersionName, $technology)
-$technologyRole = [TechnologyRole]::new($technologyRoleName, $technologyVersion)
+$technologyRole    = [TechnologyRole]::new($technologyRoleName, $technologyVersion)
 
 $stigVersion = [StigData]::GetHighestStigVersion($technology, $technologyRole, $technologyVersion)
-
 
 [hashtable] $stigExceptionHashtable =
 @{

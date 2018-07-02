@@ -2,7 +2,7 @@ $script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.tests',''
 
 #region HEADER
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot) )
-$modulePath = "$($script:moduleRoot)\Common\$ModuleName"
+$modulePath = "$($script:moduleRoot)\Public\Common\$ModuleName"
 Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Force
 Import-Module $modulePath -Force
 #endregion

@@ -1,5 +1,5 @@
-using module .\..\..\..\Class\SkippedRuleType.psm1
-using module .\..\..\..\Enum\StigRuleType.psm1
+using module .\..\..\..\Public\Class\SkippedRuleType.psm1
+using module .\..\..\..\Public\Enum\StigRuleType.psm1
 
 [string[]] $SkippedRuleTypeArray =
 @(

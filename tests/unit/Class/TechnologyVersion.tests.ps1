@@ -1,6 +1,6 @@
-using module .\..\..\..\Class\Technology.psm1
-using module .\..\..\..\Class\TechnologyVersion.psm1
-using module .\..\..\..\Class\TechnologyRole.psm1
+using module .\..\..\..\Public\Class\Technology.psm1
+using module .\..\..\..\Public\Class\TechnologyVersion.psm1
+using module .\..\..\..\Public\Class\TechnologyRole.psm1
 
 $TechnologyVersion1 = 'All'
 $TechnologyVersion2 = '2012R2'

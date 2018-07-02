@@ -1,4 +1,4 @@
-using module .\..\..\..\Class\Technology.psm1
+using module .\..\..\..\Public\Class\Technology.psm1
 
 $testValidateSet = @('Windows','SQL')
 
