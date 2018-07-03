@@ -1,10 +1,13 @@
-$script:ModuleName = $MyInvocation.MyCommand.Name -replace '\.Integration\.tests\.ps1', ''
-
 #region HEADER
-# Integration Test Template Version: 1.1.1
-[String] $script:moduleRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-
-Import-Module (Join-Path -Path $script:moduleRoot -ChildPath 'Tests\helper.psm1' ) -Force
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$script:moduleName = $MyInvocation.MyCommand.Name -replace '\.Integration\.tests\.ps1', ''
+$script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
+if ((-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
+     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))))
+{
+    & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
+}
+Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
 Import-Module (Join-Path -Path $script:moduleRoot -ChildPath "$($script:ModuleName).psd1")
 #endregion
 
