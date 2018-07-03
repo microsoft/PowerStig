@@ -482,7 +482,7 @@ Subkey: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 Value Name: DefaultPassword</fixtext><fix id="F-43226r1_fix" /><check system="C-45835r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_7_STIG.xml" /><check-content>Analyze the system using the Security Configuration and Analysis snap-in. 
 Expand the Security Configuration and Analysis tree view. 
 Navigate to Local Policies -&gt; Security Options.
-	
+
 If the value for "MSS: (AutoAdminLogon) Enable Automatic Logon (not recommended)" is not set to "Disabled", this is a finding.
 
 The policy referenced configures the following registry value:
@@ -809,7 +809,7 @@ If the value for "Store password using reversible encryption" is not disabled, t
 Registry Hive:  HKEY_LOCAL_MACHINE
 Subkey:  \SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer\
 
-Value Name:	NoDriveTypeAutorun
+Value Name: NoDriveTypeAutorun
 Type:  REG_DWORD
 Value:  0x000000ff (255)
 
@@ -1042,7 +1042,7 @@ Navigate to Local Policies &gt;&gt; Security Options.
 If the value for "Network security: Force logoff when logon hours expire" is not set to "Enabled", this is a finding.</check-content></check></Rule></Group><Group id="V-3381"><title>LDAP Client Signing</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-25106r1_rule" severity="medium" weight="10.0"><version>3.075</version><title>The system is not configured to recommended LDAP client signing requirements.</title><description>&lt;VulnDiscussion&gt;This setting controls the signing requirements for LDAP clients.  This setting should be set to Negotiate signing or Require signing depending on the environment and type of LDAP server in use.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;HK&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 7</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 7</dc:subject><dc:identifier>1712</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-143r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options -&gt; “Network security: LDAP client signing requirements” to “Negotiate signing” at a minimum.</fixtext><fix id="F-143r1_fix" /><check system="C-14464r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_7_STIG.xml" /><check-content>Analyze the system using the Security Configuration and Analysis snap-in.
 Expand the Security Configuration and Analysis tree view.
 Navigate to Local Policies -&gt; Security Options.
-	
+
 If the value for “Network security: LDAP client signing requirements” is not set to at least “Negotiate signing”, then this is a finding.
 
 The policy referenced configures the following registry value:
@@ -1116,7 +1116,7 @@ Subkey:  \Software\Policies\Microsoft\Windows NT\Terminal Services\
 Value Name:  MinEncryptionLevel
 
 Type:  REG_DWORD
-Value:  3	
+Value:  3
 </check-content></check></Rule></Group><Group id="V-3455"><title>TS/RDS - Do Not Use Temp Folders</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-25266r2_rule" severity="medium" weight="10.0"><version>5.044</version><title>Remote Desktop Services must be configured to use session-specific temporary folders.</title><description>&lt;VulnDiscussion&gt;If a communal temporary folder is used for remote desktop sessions, it might be possible for users to access other users' temporary folders. If this setting is enabled, only one temporary folder is used for all remote desktop sessions. Per session temporary folders must be established.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;HK&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 7</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 7</dc:subject><dc:identifier>1712</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-22934r1_fix">Configure the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Remote Desktop Services -&gt; Remote Desktop Session Host -&gt; Temporary Folders “Do not use temporary folders per session” to “Disabled”.</fixtext><fix id="F-22934r1_fix" /><check system="C-51717r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_7_STIG.xml" /><check-content>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive:  HKEY_LOCAL_MACHINE
@@ -2563,7 +2563,7 @@ Subkey:  \Software\Policies\Microsoft\Windows\GameUX\
 Value Name:  GameUpdateOptions
 
 Type:  REG_DWORD
-Value:  0	
+Value:  0
 </check-content></check></Rule></Group><Group id="V-21975"><title>Prevent Joining Homegroup</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-25301r1_rule" severity="medium" weight="10.0"><version>5.282</version><title>Prevent the system from joining a homegroup.</title><description>&lt;VulnDiscussion&gt;This setting will prevent a system from being joined to a homegroup.  Homegroups are a method of sharing data and printers on a home network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 7</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 7</dc:subject><dc:identifier>1712</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000381</ident><fixtext fixref="F-22967r1_fix">Configure the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; HomeGroup -&gt; “Prevent the computer from joining a homegroup” to “Enabled”.</fixtext><fix id="F-22967r1_fix" /><check system="C-26861r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_7_STIG.xml" /><check-content>If the following registry value doesn’t exist or is not configured as specified, this is a finding:
 
 Registry Hive:  HKEY_LOCAL_MACHINE
@@ -2572,7 +2572,7 @@ Subkey:  \Software\Policies\Microsoft\Windows\Homegroup\
 Value Name:  DisableHomeGroup
 
 Type:  REG_DWORD
-Value:  1	
+Value:  1
 </check-content></check></Rule></Group><Group id="V-21978"><title>Windows Anytime Upgrade</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-25304r1_rule" severity="low" weight="10.0"><version>5.284</version><title>Windows Anytime Upgrade is not disabled.</title><description>&lt;VulnDiscussion&gt;This setting will prevent Windows Anytime Upgrade from running.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 7</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 7</dc:subject><dc:identifier>1712</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000381</ident><fixtext fixref="F-22970r1_fix">Configure the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Anytime Upgrade -&gt; “Prevent Windows Anytime Upgrade from running” to “Enabled”.</fixtext><fix id="F-22970r1_fix" /><check system="C-26863r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_7_STIG.xml" /><check-content>If the following registry value doesn’t exist or is not configured as specified, this is a finding:
 
 Registry Hive:  HKEY_LOCAL_MACHINE
@@ -2667,7 +2667,7 @@ Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: LegalNoticeCaption
 
 Value Type: REG_SZ
-Value: See message title above	
+Value: See message title above
 </check-content></check></Rule></Group><Group id="V-26469"><title>Access Credential Manager as a trusted caller</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-35924r2_rule" severity="medium" weight="10.0"><version>WINUR-000001</version><title>Unauthorized accounts must not have the Access Credential Manager as a trusted caller user right.</title><description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Access Credential Manager as a trusted caller" user right may be able to retrieve the credentials of other accounts from Credential Manager.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 7</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 7</dc:subject><dc:identifier>1712</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002235</ident><fixtext fixref="F-65553r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Access Credential Manager as a trusted caller" to be defined but containing no entries (blank).</fixtext><fix id="F-65553r2_fix" /><check system="C-60821r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_7_STIG.xml" /><check-content>Analyze the system using the Security Configuration and Analysis snap-in.
