@@ -4,7 +4,8 @@
 
 version: 1.0.{build}.0
 install:
-    - git clone https://github.com/PowerShell/DscResource.Tests
+    - git clone https://github.com/PowerShell/DscResource.Tests    
+    - git clone https://github.com/Microsoft/PowerStig.Tests
     - ps: Write-Verbose -Message "PowerShell version $($PSVersionTable.PSVersion)" -Verbose
     - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
     - ps: Invoke-AppveyorInstallTask

@@ -1,25 +1,29 @@
-
 #region HEADER
-$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot) )
-Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Force
-
-$StigFileList = Get-ChildItem -Path "$($script:moduleRoot)\StigData" -Exclude "Schema"
-$SchemaFile = "$($script:moduleRoot)\StigData\Schema\PowerStig.xsd"
-#endregion
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
+if ((-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
+     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))))
+{
+    & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
+}
+Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
+$stigDataFolder = Join-Path -Path $script:moduleRoot -ChildPath "StigData"
+$stigFileList = Get-ChildItem -Path "$stigDataFolder\Processed"
+$schemaFile = "$stigDataFolder\Schema\PowerStig.xsd"
+#region HEADER
 
 Describe 'Common Tests - XML Validation' {
 
-    foreach ($StigDataFolder in $StigFileList)
+    foreach ($stigFile in $stigFileList)
     {
-        $StigDataName = $StigDataFolder.name
+        $StigDataName = $stigFile.name
 
         Context $StigDataName {
 
-            $StigDataXml = Get-ChildItem -Path $StigDataFolder.FullName -Exclude *.org.xml, *org.default.xml
+            $StigDataXml = Get-ChildItem -Path $stigFile.FullName -Exclude *.org.xml, *org.default.xml
             foreach ($StigDataXmlFile in $StigDataXml)
             {
                 It "Should be a valid xml file" {
-                    {Test-Xml -XmlFile $StigDataXmlFile.FullName -SchemaFile $SchemaFile} | Should Not Throw
+                    {Test-Xml -XmlFile $StigDataXmlFile.FullName -SchemaFile $schemaFile} | Should Not Throw
                 }
             }
         }
@@ -28,7 +32,7 @@ Describe 'Common Tests - XML Validation' {
 
 Describe 'Common Tests - STIG Data Requirements' {
     Context 'Converted STIGs' {
-        $stigDataFolder = "$moduleRoot\StigData"
+        $stigDataFolder = "$stigDataFolder\Processed"
         $convertedStigs = Get-ChildItem -Path $stigDataFolder -File | Where-Object {$_.Name -notmatch "\.org\.default\.xml?"}
         $orgSettings = Get-ChildItem -Path $stigDataFolder -File | Where-Object {$_.Name -match "\.org\.default\.xml?"}
         $orgSettings = $orgSettings.BaseName.ToLower()
