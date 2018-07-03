@@ -15,33 +15,6 @@ if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'Powe
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
 #endregion
 #region Tests
-Describe "UserRightNameToConstant Data Section" {
-    
-    [string] $dataSectionName = 'UserRightNameToConstant'
-
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable $dataSectionName ).Name | Should Be $dataSectionName
-	}
-
-    <# 
-    TO DO - Add rules 
-    #>
-}
-
-
-Describe "auditPolicySubcategories Data Section" {
-    
-    [string] $dataSectionName = 'auditPolicySubcategories'
-
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
-
-    <# 
-    TO DO - Add rules 
-    #>
-}
-
 Describe "RegularExpression Data Section" {
     
     [string] $dataSectionName = 'RegularExpression'

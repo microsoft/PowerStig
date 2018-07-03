@@ -2,30 +2,30 @@
 # Licensed under the MIT License.
 
 #region Header
-using module .\..\public\Class\StigClass.psm1
-using module .\common\accountPolicyRule.psm1
-using module .\common\auditPolicyRule.psm1
-using module .\common\documentRule.psm1
-using module .\common\groupRule.psm1
-using module .\common\manualRule.psm1
-using module .\common\permissionRule.psm1
-using module .\common\registryRule.psm1
-using module .\common\securityOptionRule.psm1
-using module .\common\serviceRule.psm1
-using module .\common\windowsFeatureRule.psm1
-using module .\common\userRightsAssignmentRule.psm1
-using module .\common\wmiRule.psm1
-using module .\common\processMitigationRule.psm1
-using module .\dns_server\dnsServerSettingRule.psm1
-using module .\dns_server\dnsWinEventLogRule.psm1
-using module .\dns_server\dnsServerRootHintRule.psm1
-using module .\iis\MimeTypeRule.psm1
-using module .\iis\IisLoggingRule.psm1
-using module .\iis\WebAppPoolRule.psm1
-using module .\iis\WebConfigurationPropertyRule.psm1
-using module .\sql\sqlScriptQueryRule.psm1
-using module .\..\public\common\enum.psm1
-. $PSScriptRoot\..\public\common\data.ps1
+using module .\..\Public\Class\Common.Enum.psm1
+using module .\..\Public\Data\Convert.Main.psm1
+using module .\..\Public\Class\Convert.Stig.psm1
+using module .\Class\accountPolicyRule.psm1
+using module .\Class\auditPolicyRule.psm1
+using module .\Class\documentRule.psm1
+using module .\Class\groupRule.psm1
+using module .\Class\manualRule.psm1
+using module .\Class\permissionRule.psm1
+using module .\Class\registryRule.psm1
+using module .\Class\securityOptionRule.psm1
+using module .\Class\serviceRule.psm1
+using module .\Class\windowsFeatureRule.psm1
+using module .\Class\userRightsAssignmentRule.psm1
+using module .\Class\wmiRule.psm1
+using module .\Class\processMitigationRule.psm1
+using module .\Class\dnsServerSettingRule.psm1
+using module .\Class\dnsWinEventLogRule.psm1
+using module .\Class\dnsServerRootHintRule.psm1
+using module .\Class\MimeTypeRule.psm1
+using module .\Class\IisLoggingRule.psm1
+using module .\Class\WebAppPoolRule.psm1
+using module .\Class\WebConfigurationPropertyRule.psm1
+using module .\Class\sqlScriptQueryRule.psm1
 #endregion Header
 
 #region Main Functions

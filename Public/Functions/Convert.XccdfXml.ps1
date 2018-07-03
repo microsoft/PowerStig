@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 #region Header
-using module ..\..\private\Main.psm1
+using module ..\..\Private\Main.psm1
 #endregion
 #region Main Function
 <#
@@ -43,8 +43,6 @@ using module ..\..\private\Main.psm1
     http://iase.disa.mil/stigs/Lists/stigs-masterlist/AllItems.aspx
 
 #>
-
-
 function ConvertFrom-StigXccdf
 {
     [CmdletBinding()]
@@ -80,7 +78,6 @@ function ConvertFrom-StigXccdf
 
     return Get-StigRules @stigRuleParams
 }
-
 
 <#
     .SYNOPSIS
