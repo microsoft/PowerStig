@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ViewDefinitions>
+	<View>
+	  <Name>STIG.AuditPolicy</Name>
+    <ViewSelectedBy>
+      <TypeName>AuditPolicy</TypeName>
+    </ViewSelectedBy>
+    <ListControl>
+      <ListEntries>
+        <ListEntry>
+          <ListItems>
+            <ListItem>
+              <PropertyName>id</PropertyName>
+            </ListItem>
+            <ListItem>
+              <PropertyName>title</PropertyName>
+            </ListItem>
+            <ListItem>
+              <PropertyName>severity</PropertyName>
+            </ListItem>
+            <ListItem>
+              <PropertyName>subcategory</PropertyName>
+            </ListItem>
+	          <ListItem>
+              <PropertyName>auditFlag</PropertyName>
+            </ListItem>
+	          <ListItem>
+              <PropertyName>status</PropertyName>
+            </ListItem>
+          </ListItems>
+        </ListEntry>
+      </ListEntries>
+    </ListControl>
+    </View>
+  </ViewDefinitions>
+</Configuration>

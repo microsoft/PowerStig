@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="DISASTIG">
+    <xs:complexType>
+      <xs:all>
+        <xs:element name="AuditPolicyRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="AuditFlag" type="xs:string" />
+                    <xs:element name="Ensure" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="Subcategory" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="DocumentRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ManualRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PermissionRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="AccessControlEntry" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="Path" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RegistryRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="Ensure" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="Key" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="ValueData" type="xs:string" />
+                    <xs:element name="ValueName" type="xs:string" />
+                    <xs:element name="ValueType" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="SecurityPolicyRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="policyString" type="xs:string" />
+                    <xs:element name="policyType" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="securitySetting" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ServiceRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="Ensure" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="ServiceName" type="xs:string" />
+                    <xs:element name="ServiceState" type="xs:string" />
+                    <xs:element name="StartupType" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="UserRightRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="Constant" type="xs:string" />
+                    <xs:element name="DisplayName" type="xs:string" />
+                    <xs:element name="Identity" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="WmiRule" minOccurs="0">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Rule" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:all>
+                    <xs:element name="Class" type="xs:string" />
+                    <xs:element name="IsNullOrEmpty" type="xs:string" />
+                    <xs:element name="Operator" type="xs:string" />
+                    <xs:element name="OrganizationValueRequired" type="xs:string" />
+                    <xs:element name="OrganizationValueTestString" type="xs:string" />
+                    <xs:element name="Property" type="xs:string" />
+                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="StigValue" type="xs:string" />
+                  </xs:all>
+                  <xs:attribute name="Id" type="xs:string" use="required" />
+                  <xs:attribute name="severity" type="xs:string" use="required" />
+                  <xs:attribute name="status" type="xs:string" use="required" />
+                  <xs:attribute name="title" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:all>
+      <xs:attribute name="Id" type="xs:string" use="required" />
+      <xs:attribute name="version" type="xs:decimal" use="required" />
+      <xs:attribute name="created" type="xs:string" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OrganizationalSettings">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" name="OrganizationalSetting">
+          <xs:complexType>
+            <xs:attribute name="id" type="xs:string" use="required" />
+            <xs:attribute name="Value" type="xs:string" use="required" />
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="Version" type="xs:decimal" use="required" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

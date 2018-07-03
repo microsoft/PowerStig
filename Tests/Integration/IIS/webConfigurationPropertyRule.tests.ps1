@@ -1,0 +1,72 @@
+#region Header
+using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
+. $PSScriptRoot\..\..\helper.ps1
+#endregion Header
+#region Test Setup
+$stigRulesToTest = @(
+    @{
+        ConfigSection = '/system.webServer/security/requestFiltering'
+        Key           = 'allowHighBitCharacters'
+        Value         = 'false'
+        CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+        Open the IIS 8.5 Manager.
+        
+        Click on the site name.
+        
+        Double-click the "Request Filtering" icon.
+        
+        Click Edit Feature Settings in the "Actions" pane.
+        
+        If the "Allow high-bit characters" check box is checked, this is a finding.'
+    }
+    @{
+        ConfigSection = '/system.webServer/security/requestFiltering'
+        Key           = 'allowDoubleEscaping'
+        Value         = 'false'
+        CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+        Open the IIS 8.5 Manager.
+        
+        Click on the site name.
+        
+        Double-click the "Request Filtering" icon.
+        
+        Click Edit Feature Settings in the "Actions" pane.
+        
+        If the "Allow double escaping" check box is checked, this is a finding.'
+    }
+)
+#endregion Test Setup
+#region Tests
+Describe "WebConfigurationProperty Rule Conversion" {
+
+    foreach ( $stig in $stigRulesToTest )
+    {
+        [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'IIS'
+        $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+        $StigRule.Save( $TestFile )
+        $rule = ConvertFrom-StigXccdf -Path $TestFile
+
+        It "Should return an WebConfigurationPropertyRule Object" {
+            $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
+        }
+
+        It "Should return ConfigSection '$($stig.ConfigSection)'" {
+            $rule.ConfigSection | Should Be $stig.ConfigSection
+        }
+
+        It "Should return Key '$($stig.Key)'" {
+            $rule.Key | Should Be $stig.Key
+        }
+
+        It "Should return Value '$($stig.Value)'" {
+            $rule.Value | Should Be $stig.Value
+        }
+
+        It 'Should Set the status to pass' {
+            $rule.ConversionStatus | Should Be 'pass'
+        }
+    }
+}
+#endregion Tests

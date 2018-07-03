@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="SecurityBaseline">
+        <xs:complexType>
+            <xs:all>
+                <xs:element name="Registry" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="key" type="xs:string" />
+                            <xs:element name="valueData" type="xs:string" />
+                            <xs:element name="valueName" type="xs:string" />
+                            <xs:element name="valueType" type="xs:string" />
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="AuditPolicy" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="AuditFlag" type="xs:string" />
+                            <xs:element name="Ensure" type="xs:string" />
+                            <xs:element name="Subcategory" type="xs:string" />
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="SecurityPolicy" minOccurs="0" maxOccurs="1">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="policyString" type="xs:string" />
+                            <xs:element name="policyType" type="xs:string" />
+                            <xs:element name="securitySetting" type="xs:string" />
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="UserRight" >
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element name="Constant" type="xs:string" />
+                            <xs:element name="DisplayName" type="xs:string" />
+                            <xs:element name="Identity" type="xs:string" />
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:all>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
