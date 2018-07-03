@@ -1,8 +1,6 @@
+#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
-#region Header
-using module ..\..\public\Class\StigClass.psm1
 #endregion
 #region Support Functions
 <#

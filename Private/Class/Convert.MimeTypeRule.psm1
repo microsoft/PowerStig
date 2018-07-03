@@ -1,9 +1,10 @@
+#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
-#region Header
-using module ..\..\public\Class\MimeTypeRuleClass.psm1
-using module ..\..\public\common\enum.psm1
+using module .\..\..\Public\Class\Common.Enum.psm1
+using module .\..\..\Public\Data\Convert.Data.psm1
+# Class module
+using module .\..\..\Public\Class\Convert.MimeTypeRule.psm1
 #endregion
 #region Main Functions
 <#

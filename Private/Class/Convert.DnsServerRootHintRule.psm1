@@ -1,8 +1,10 @@
+#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
-#region Header
-using module ..\..\public\Class\DnsServerRootHintRuleClass.psm1
+using module .\..\..\Public\Class\Common.Enum.psm1
+using module .\..\..\Public\Data\Convert.Data.psm1
+# Class module
+using module .\..\..\Public\Class\Convert.DnsServerRootHintRule.psm1
 #endregion header
 #region Main Functions
 <#

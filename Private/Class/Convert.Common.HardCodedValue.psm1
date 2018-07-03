@@ -1,6 +1,7 @@
+#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
+#endregion
 #region Data
 # These are the registry strings that are not able to be automatically extracted from the xccdf.
 $LegalNoticeText = "You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.

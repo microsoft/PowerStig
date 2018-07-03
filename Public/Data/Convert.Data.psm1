@@ -1,4 +1,5 @@
-﻿. $PSScriptRoot\Convert.Data.AuditPolicyRule.ps1
+﻿. $PSScriptRoot\Convert.Data.AccountPolicyRule.ps1
+. $PSScriptRoot\Convert.Data.AuditPolicyRule.ps1
 . $PSScriptRoot\Convert.Data.Common.ps1
 . $PSScriptRoot\Convert.Data.DnsServerSettingRule.ps1
 . $PSScriptRoot\Convert.Data.PermissionRule.ps1
