@@ -10,7 +10,7 @@ if ((-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'Power
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
 Import-Module $modulePath -Force
 #endregion
-
+#region Test Setup
 [xml] $OrgSettingXml =
 @"
 <OrganizationalSettings version="2.9">
@@ -40,7 +40,8 @@ Import-Module $modulePath -Force
     "V-26580"  = "196608";
     "V-26581"  = "32768"
 }
-
+#endregion
+#region Tests
 Describe "Function Get-OrgSettingsObject" {
 
     It "Should be able to convert an Xml document to a OrganizationalSetting array" {
@@ -131,3 +132,4 @@ Describe "Function Get-OrgSettingsObject" {
         $OrgSetting.Value | Should Be "32768"
     }
 }
+#endregion

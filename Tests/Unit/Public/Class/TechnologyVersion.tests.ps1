@@ -2,17 +2,22 @@ using module .\..\..\..\..\Public\Class\Technology.psm1
 using module .\..\..\..\..\Public\Class\TechnologyVersion.psm1
 using module .\..\..\..\..\Public\Class\TechnologyRole.psm1
 #region HEADER
+# Convert Public Class Header V1
+using module ..\..\..\..\Public\Common\enum.psm1
+. $PSScriptRoot\..\..\..\..\Public\Common\data.ps1
+$ruleClassName = ($MyInvocation.MyCommand.Name -Split '\.')[0]
+
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
-$script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.ps1'
+$script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.psm1'
 $script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
-if ((-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
-     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))))
+if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
+     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))) )
 {
     & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
 }
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
 #endregion
-
+#region Test Setup
 $TechnologyVersion1 = 'All'
 $TechnologyVersion2 = '2012R2'
 $TechnologyVersion3 = 'Server2012'
@@ -28,7 +33,8 @@ SQL = Server2012
 $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet
 
 $InvalidName = 'groundChuck'
-
+#endregion
+#region Class Tests
 Describe "TechnologyVersion Class" {
 
     Context "Constructor" {
@@ -90,3 +96,4 @@ Describe "TechnologyVersion Class" {
         }
     }
 }
+#endregion

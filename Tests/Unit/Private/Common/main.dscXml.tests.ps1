@@ -1,10 +1,3 @@
-# # Build the path to the system under test
-# [string] $sut = $MyInvocation.MyCommand.Path -replace '\\tests\\','\src\' `
-#                                              -replace '\.tests','' `
-#                                              -replace '\\unit\\','\'
-# # load the system under test
-# . $sut
-
 #region HEADER
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
 $script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.ps1'
@@ -57,7 +50,7 @@ Describe "Get-CompositeTargetFolder" {
     foreach ($title in $titleList.GetEnumerator())
     {
         It "Should return '$($title.value)' from '$($title.key)' " {
-            $BaseXccdfContent -f $title.key,'','','' | Out-File $TestFile
+            $BaseXccdfContent -f $title.key,'','','','' | Out-File $TestFile
             Get-CompositeTargetFolder -Path $TestFile | Should Be $title.Value
         }
     }

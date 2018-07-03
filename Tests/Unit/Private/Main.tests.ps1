@@ -1,5 +1,5 @@
 #region HEADER
-$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 $script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.psm1'
 $script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
 if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
@@ -11,15 +11,7 @@ Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -P
 Import-Module $modulePath -Force
 #endregion
 #region Test Setup
-$StigGroups = '<?xml version="1.0" encoding="utf-8"?>
-<Group id="V-1000">
-<title>Rule Title</title>
-    <Rule id="SV-1000r2_rule" severity="high" weight="10.0">
-    <check>
-    <check-content>{0}</check-content>
-    </check>
-    </Rule>
-</Group>'
+
 #endregion
 #region Tests
 Describe "Get-StigRules" {
@@ -33,4 +25,3 @@ Describe "Get-StigRules" {
     }
 }
 #endregion
-

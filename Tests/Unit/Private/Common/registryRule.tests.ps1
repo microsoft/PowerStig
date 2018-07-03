@@ -50,7 +50,7 @@ Describe "Get-RegistryKey" {
         It 'Should return the correct path' {
             $correctPath = Get-RegistryKey -CheckContent $checkContent
             $correctPath | Should Be "$hive$path"
-            Assert-VerifiableMocks
+            Assert-VerifiableMock
         }
     }
 
@@ -67,7 +67,7 @@ Describe "Get-RegistryKey" {
 
         It 'Should return the correct HKCU path' {
             Get-RegistryKey -CheckContent $checkContent | Should Be $fullPath
-            Assert-VerifiableMocks
+            Assert-VerifiableMock
         }
         Mock Get-SingleLineRegistryPath {return "HKLM\Path\To\Value"} -ModuleName RegistryRuleClass -Verifiable
         $fullPath = "HKLM\Path\To\Value"
@@ -166,7 +166,7 @@ Describe "Get-RegistryValueType" {
 
         It "Should call Get-RegistryValueTypeFromWindowsStig when a Windows STIG is given" {
             Get-RegistryValueType -CheckContent "Type: REG_SZ" | Out-Null
-            Assert-VerifiableMocks
+            Assert-VerifiableMock
         }
 
         foreach ( $item in $registryTypes.GetEnumerator() )
@@ -201,7 +201,7 @@ Describe "Get-RegistryValueType" {
 
         It "Should call Get-RegistryValueTypeFromSingleLineStig when an Office STIG is given" {
             Get-RegistryValueType -CheckContent "Type: REG_SZ" | Out-Null
-            Assert-VerifiableMocks
+            Assert-VerifiableMock
         }
 
     }
@@ -274,7 +274,7 @@ Describe "Get-RegistryValueData" {
         Mock Get-RegistryValueDataFromWindowsStig {return ""} -ModuleName RegistryRuleClass -Verifiable
         It 'Should call the Windows code path when not an office registry format' {
             Get-RegistryValueData -CheckContent "Value: 1"
-            Assert-VerifiableMocks
+            Assert-VerifiableMock
         }
     }
 
@@ -283,7 +283,7 @@ Describe "Get-RegistryValueData" {
         Mock Get-RegistryValueDataFromSingleStig -ModuleName RegistryRuleClass -Verifiable
         It 'Should call the Office code path with an office registry format' {
             Get-RegistryValueData -CheckContent "Criteria: 1"
-            Assert-VerifiableMocks
+            Assert-VerifiableMock
         }
     }
 }

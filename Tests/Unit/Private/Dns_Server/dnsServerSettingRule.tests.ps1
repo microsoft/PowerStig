@@ -11,6 +11,8 @@ Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -P
 Import-Module $modulePath -Force
 #endregion
 #region Test Setup
+. $PSScriptRoot\..\..\..\..\Public\Common\data.ps1
+
 $checkContent = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
 Press Windows Key + R, execute dnsmgmt.msc.

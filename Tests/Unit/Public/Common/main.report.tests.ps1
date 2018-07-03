@@ -1,11 +1,18 @@
-# Build the path to the system under test
-[string] $sut = $MyInvocation.MyCommand.Path -replace '\\tests\\','\src\' `
-                                             -replace '\.tests','' `
-                                             -replace '\\unit\\','\'
-# load the system under test
-. $sut
+#region HEADER
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
+$script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.ps1'
+$script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
+if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
+     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))) )
+{
+    & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
+}
+Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
+Import-Module $modulePath
+#endregion
+
 # Import the base benchmark xml string data.
-$BaseFileContent = Get-Content -Path "$PSScriptRoot\..\..\..\sampleXccdf.xml.txt" -Encoding UTF8
+$BaseFileContent = Get-Content -Path "$moduleRoot\Tests\Data\sampleXccdf.xml.txt" -Encoding UTF8
 
 function ConvertFrom-StigXccdf {}
 function Get-RuleTypeList {}
@@ -30,7 +37,7 @@ Describe "Get-ConversionReport" {
     Mock -CommandName Get-RuleTypeList -MockWith {@('DocumentRule', 'RegistryRule')} 
 
     $TestFile = "TestDrive:\TextData.xml"
-    $BaseFileContent -f $title, '', '', '' | Out-File -FilePath $TestFile
+    $BaseFileContent -f $title, '', '', '', '' | Out-File -FilePath $TestFile
 
     It 'Should return an array' {
         $ConversionReportType = (Get-ConversionReport -Path $TestFile).GetType().BaseType.Name 

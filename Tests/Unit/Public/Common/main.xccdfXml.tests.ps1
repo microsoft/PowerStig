@@ -12,16 +12,21 @@
     any need to dot source all the files in all of the tests, we can simply redefine the function 
     here as a stub, so that Pester can mock it and we can verify code flow.
 #>
+#region HEADER
+$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
+$script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.ps1'
+$script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
+if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
+     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))) )
+{
+    & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
+}
+Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
+Import-Module $modulePath
+#endregion
 
-# Build the path to the system under test
-[string] $sut = $MyInvocation.MyCommand.Path -replace '\\tests\\','\src\' `
-                                             -replace '\.tests','' `
-                                             -replace '\\unit\\','\'
-# load the system under test
-. $sut
 # Import the base benchmark xml string data.
-$BaseFileContent = Get-Content -Path "$PSScriptRoot\..\..\..\data\sampleXccdf.xml.txt" -Encoding UTF8
-
+$baseFileContent = Get-Content -Path "$moduleRoot\Tests\Data\sampleXccdf.xml.txt" -Encoding UTF8
 $dcGroupCheck = @"
 This applies to domain controllers. A separate version applies to other systems.
 
@@ -59,9 +64,9 @@ Type:  REG_DWORD
 Value:  0x00000000 (0)
 "@
 
-$dcGroupContent  = (Get-Content -Path "$PSScriptRoot\..\..\..\data\samplegroup.xml.txt" -Encoding UTF8) -f "V-1","","","","", $dcGroupCheck
-$msGroupContent  = (Get-Content -Path "$PSScriptRoot\..\..\..\data\samplegroup.xml.txt" -Encoding UTF8) -f "V-2", "", "", "", "", $msGroupCheck
-$allGroupContent = (Get-Content -Path "$PSScriptRoot\..\..\..\data\samplegroup.xml.txt" -Encoding UTF8) -f "V-3", "", "", "", "", $allGroupCheck
+$dcGroupContent  = (Get-Content -Path "$moduleRoot\Tests\Data\samplegroup.xml.txt" -Encoding UTF8) -f "V-1","","","","", $dcGroupCheck
+$msGroupContent  = (Get-Content -Path "$moduleRoot\Tests\Data\samplegroup.xml.txt" -Encoding UTF8) -f "V-2", "", "", "", "", $msGroupCheck
+$allGroupContent = (Get-Content -Path "$moduleRoot\Tests\Data\samplegroup.xml.txt" -Encoding UTF8) -f "V-3", "", "", "", "", $allGroupCheck
 
 # Stub the functions so they can be mocked without linking the files in multiple locations.
 function Get-StigXccdfBenchmarkContent {}
@@ -74,7 +79,7 @@ Describe "ConvertFrom-StigXccdf" {
 
 Describe "Split-StigXccdf" {
     $TestFile = "$TestDrive\TextData.xml"
-    $BaseFileContent -f "", "", "", ($dcGroupContent + $msGroupContent + $allGroupContent), "Windows_Server_2016_STIG" | Out-File -FilePath $TestFile
+    $baseFileContent -f "", "", "", ($dcGroupContent + $msGroupContent + $allGroupContent), "Windows_Server_2016_STIG" | Out-File -FilePath $TestFile
     
     Split-StigXccdf -Path $TestFile -Destination $TestDrive
     

@@ -1,7 +1,7 @@
 The Sample xccdf base content is designed to be reusable across all unit and integration tests using 
-PowerShell composite formatting. 
+PowerShell composite formatting.
 
-Index 
+Index
 
 0 - The STIG Title
 1 - release-info
@@ -9,18 +9,16 @@ Index
 3 - groups
 4 - id - an element of the Benchmark node
 
-
 # How to use the content in your tests that use the benchmark element.
 
   # Import the base benchmark xml string data.
     $BaseXccdfContent = Get-Content -Path "$PSScriptRoot\..\..\..\sampleXccdf.xml.txt"
-  
+
   # Create a test drive File
     $TestFile = "TestDrive:\TextData.xml"
 
   # Inject the data you need for your tests using the index above 
     $BaseXccdfContent -f $title.key,'','','' | Out-File $TestFile
-
 
 # How to use the content in your tests that use the group elements.
 

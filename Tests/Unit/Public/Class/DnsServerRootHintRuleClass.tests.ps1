@@ -1,4 +1,10 @@
+using module ..\..\..\..\Public\Class\DnsServerRootHintRuleClass.psm1
 #region HEADER
+# Convert Public Class Header V1
+using module ..\..\..\..\Public\Common\enum.psm1
+. $PSScriptRoot\..\..\..\..\Public\Common\data.ps1
+$ruleClassName = ($MyInvocation.MyCommand.Name -Split '\.')[0]
+
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
 $script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.psm1'
 $script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
@@ -8,19 +14,7 @@ if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'Powe
     & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
 }
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
-Import-Module $modulePath -Force
 #endregion
-#region Test Setup
-
-
-#region  Header
-#using module ..\..\..\..\public\class\DnsServerRootHintRuleClass.psm1
-
-Add-Type -TypeDefinition  (Get-Content -path $modulePath)
-
-$ruleClassName = ($MyInvocation.MyCommand.Name -Split '\.')[0]
-#endregion Header
-
 #region Test Setup
 $rule = [DnsServerRootHintRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
 
