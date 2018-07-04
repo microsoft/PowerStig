@@ -33,12 +33,19 @@ $fixText = "Create a trace that meets all auditing requirements.
 The script provided in the supplemental file, Trace.sql, can be used to do this; edit it as necessary to capture any additional, locally defined events."
 #endregion
 #region Tests
-Describe "ConvertTo-SqlScriptQueryRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -FixText $fixText -ReturnGroupOnly
-    $rule = ConvertTo-SqlScriptQueryRule -StigRule $stigRule
+try
+{
+    Describe "ConvertTo-SqlScriptQueryRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -FixText $fixText -ReturnGroupOnly
+        $rule = ConvertTo-SqlScriptQueryRule -StigRule $stigRule
 
-    It "Should return an SqlScriptQueryRule object" {
-        $rule.GetType() | Should Be 'SqlScriptQueryRule'
+        It "Should return an SqlScriptQueryRule object" {
+            $rule.GetType() | Should Be 'SqlScriptQueryRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion Function Tests

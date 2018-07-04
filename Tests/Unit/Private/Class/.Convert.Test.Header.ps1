@@ -11,3 +11,13 @@ if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'Powe
 
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
 Import-Module $modulePath -Force
+
+Import-Module $PSScriptRoot\..\..\..\..\Public\Data\Convert.Data.psm1
+
+<#
+    Several classes check for duplicate rules against a global variable stigSettings.
+    During unit testing, this variable is not created, so it needs to be created before
+    the unit tests can run successfully.
+#>
+
+[System.Collections.ArrayList] $Global:stigSettings = @()

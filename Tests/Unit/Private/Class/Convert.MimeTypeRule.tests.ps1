@@ -19,13 +19,19 @@ From the list of extensions under "Application", verify MIME types for OS shell 
 If any OS shell MIME types are configured, this is a finding.'
 #endregion
 #region Tests
+try
+{
+    Describe "ConvertTo-MimeTypeRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-MimeTypeRule -StigRule $stigRule
 
-Describe "ConvertTo-MimeTypeRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-MimeTypeRule -StigRule $stigRule
-
-    It "Should return an MimeTypeRule object" {
-        $rule.GetType() | Should Be 'MimeTypeRule'
+        It "Should return an MimeTypeRule object" {
+            $rule.GetType() | Should Be 'MimeTypeRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion Function Tests

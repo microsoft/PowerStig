@@ -15,12 +15,19 @@ Scroll down to the "Process Model" section and verify the value for "Ping Enable
 If the value for "Ping Enabled" is not set to "True", this is a finding.'
 #endregion
 #region Tests
-Describe "ConvertTo-WebAppPoolRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-WebAppPoolRule -StigRule $stigRule
+try
+{
+    Describe "ConvertTo-WebAppPoolRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-WebAppPoolRule -StigRule $stigRule
 
-    It "Should return an WebAppPoolRule object" {
-        $rule.GetType() | Should Be 'WebAppPoolRule'
+        It "Should return an WebAppPoolRule object" {
+            $rule.GetType() | Should Be 'WebAppPoolRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

@@ -4,7 +4,7 @@
 using module .\..\..\Public\Class\Common.Enum.psm1
 using module .\..\..\Public\Data\Convert.Data.psm1
 # Class module
-using module .\..\..\Public\Class\Convert.WebConfigurationProperty.psm1
+using module .\..\..\Public\Class\Convert.WebConfigurationPropertyRule.psm1
 #endregion
 #region Main Functions
 <#

@@ -15,13 +15,20 @@ ON
 NOTSET'
 #endregion
 #region Tests
-Describe "ConvertTo-ProcessMitigationRule" {
+try
+{
+    Describe "ConvertTo-ProcessMitigationRule" {
 
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-ProcessMitigationRule -StigRule $stigRule
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-ProcessMitigationRule -StigRule $stigRule
 
-    It "Should return a ProcessMitigationRule object" {
-        $rule.GetType() | Should Be 'ProcessMitigationRule'
+        It "Should return a ProcessMitigationRule object" {
+            $rule.GetType() | Should Be 'ProcessMitigationRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

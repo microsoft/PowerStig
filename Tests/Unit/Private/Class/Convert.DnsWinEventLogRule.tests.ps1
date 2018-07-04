@@ -38,16 +38,23 @@ Confirm the "Enable logging" check box is selected.
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.'
 #endregion
 #region Tests
-Describe "ConvertTo-DnsWinEventLogRule" {
-    <#
-        This function can't really be unit tested, since the call cannot be mocked by pester, so
-        the only thing we can really do at this point is to verify that it returns the correct object.
-    #>
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-WinEventLogRule -StigRule $stigRule
+try 
+{
+    Describe "ConvertTo-DnsWinEventLogRule" {
+        <#
+            This function can't really be unit tested, since the call cannot be mocked by pester, so
+            the only thing we can really do at this point is to verify that it returns the correct object.
+        #>
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-WinEventLogRule -StigRule $stigRule
 
-    It "Should return an WinEventLogRule object" {
-        $rule.GetType() | Should Be 'WinEventLogRule'
+        It "Should return an WinEventLogRule object" {
+            $rule.GetType() | Should Be 'WinEventLogRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion Tests

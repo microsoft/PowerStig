@@ -4,8 +4,8 @@
 using module .\Common.Enum.psm1
 using module .\..\Data\Convert.Data.psm1
 # Additional required modules
-using module .\..\Private\Class\Convert.Common.HardCodedValue.psm1
-using module .\..\Private\Class\Convert.Common.RangeConversion.psm1
+using module .\..\..\Private\Class\Convert.Common.HardCodedValue.psm1
+using module .\..\..\Private\Class\Convert.Common.RangeConversion.psm1
 using assembly System.Web
 #endregion
 #region Class Definition

@@ -27,12 +27,19 @@ Verify the "cookieless" is set to "UseURI".
 If the "cookieless" is not set to "UseURI", this is a finding.'
 #endregion
 #region Tests
-Describe "ConvertTo-WebConfigurationPropertyRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-WebConfigurationPropertyRule -StigRule $stigRule
+try
+{
+    Describe "ConvertTo-WebConfigurationPropertyRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-WebConfigurationPropertyRule -StigRule $stigRule
 
-    It "Should return an WebConfigurationPropertyRule object" {
-        $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
+        It "Should return an WebConfigurationPropertyRule object" {
+            $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

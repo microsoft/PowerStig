@@ -12,16 +12,23 @@ Some hardware vendors create a small FAT partition to store troubleshooting and 
 must be documented with the ISSO.'
 #endregion
 #region Tests
-Describe "ConvertTo-WmiRule" {
-    <#
+try
+{
+    Describe "ConvertTo-WmiRule" {
+        <#
         This function can't really be unit tested, since the call cannot be mocked by pester, so
         the only thing we can really do at this point is to verify that it returns the correct object.
     #>
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-WmiRule -StigRule $stigRule
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-WmiRule -StigRule $stigRule
 
-    It "Should return an WmiRule object" {
-        $rule.GetType() | Should Be 'WmiRule'
+        It "Should return an WmiRule object" {
+            $rule.GetType() | Should Be 'WmiRule'
+        }
     }
 }
-#########################################      Tests       #########################################
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
+}
+#endregion

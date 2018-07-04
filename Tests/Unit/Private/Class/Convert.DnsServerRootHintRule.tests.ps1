@@ -17,12 +17,19 @@ Verify the "Root Hints" is either empty or only has entries for internal zones u
 If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name servers:" are external to the local network, this is a finding.'
 #endregion
 #region Tests
-Describe "ConvertTo-DnsServerRootHintRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-DnsServerRootHintRule -StigRule $stigRule
+try 
+{
+    Describe "ConvertTo-DnsServerRootHintRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-DnsServerRootHintRule -StigRule $stigRule
 
-    It "Should return an DnsServerRootHintRule object" {
-        $rule.GetType() | Should Be 'DnsServerRootHintRule'
+        It "Should return an DnsServerRootHintRule object" {
+            $rule.GetType() | Should Be 'DnsServerRootHintRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion Function Tests

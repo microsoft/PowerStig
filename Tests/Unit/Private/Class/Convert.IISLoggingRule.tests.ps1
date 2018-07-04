@@ -19,13 +19,19 @@ Verify a schedule is configured to rollover log files on a regular basis.
 Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.'
 #endregion
 #region Tests
+try
+{
+    Describe "ConvertTo-IisLoggingRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-IisLoggingRule -StigRule $stigRule
 
-Describe "ConvertTo-IisLoggingRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-IisLoggingRule -StigRule $stigRule
-
-    It "Should return an IisLoggingRule object" {
-        $rule.GetType() | Should Be 'IisLoggingRule'
+        It "Should return an IisLoggingRule object" {
+            $rule.GetType() | Should Be 'IisLoggingRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion Function Tests

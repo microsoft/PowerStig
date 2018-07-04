@@ -13,17 +13,24 @@ Compare the AuditPol settings with the following.  If the system does not audit 
 Account Management -&gt; Computer Account Management - Success'
 #endregion
 #region Tests
-Describe "ConvertTo-AuditPolicyRule" {
+try
+{
+    Describe "ConvertTo-AuditPolicyRule" {
 
-    <#
-        This function can't really be unit tested, since the call cannot be mocked by pester, so
-        the only thing we can really do at this point is to verify that it returns the correct object.
-    #>
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-AuditPolicyRule -StigRule $stigRule
+        <#
+            This function can't really be unit tested, since the call cannot be mocked by pester, so
+            the only thing we can really do at this point is to verify that it returns the correct object.
+        #>
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-AuditPolicyRule -StigRule $stigRule
 
-    It "Should return an AuditPolicyRule object" {
-        $rule.GetType() | Should Be 'AuditPolicyRule'
+        It "Should return an AuditPolicyRule object" {
+            $rule.GetType() | Should Be 'AuditPolicyRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

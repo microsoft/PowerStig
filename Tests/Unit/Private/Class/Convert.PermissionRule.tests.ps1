@@ -44,116 +44,123 @@ Successfully processed 1 files; Failed processing 0 files'
 '@
 #endregion
 #region Tests
-Describe "ConvertTo-PermissionRule" {
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-PermissionRule -StigRule $stigRule
+try
+{
+    Describe "ConvertTo-PermissionRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-PermissionRule -StigRule $stigRule
 
-    It "Should return an PermissionRule object" {
-        $rule.GetType() | Should Be 'PermissionRule'
+        It "Should return an PermissionRule object" {
+            $rule.GetType() | Should Be 'PermissionRule'
+        }
+    }
+    Describe "Private Permission Rule" {
+
+        [string] $functionName = 'Get-PermissionTargetPath'
+        Context $functionName {
+
+            # get path that pertain to C:\ tests
+            $stringsToTestcDrive  = @("system drive's root directory","system drive's root directory "," system drive's root directory")
+            $testTargetPathcDrive = '%SystemDrive%\'
+
+            foreach ( $string in $stringsToTestcDrive )
+            {
+                It "Should return $testTargetPathcDrive from $string" {
+                    Get-PermissionTargetPath -StigString $string | Should Be $testTargetPathcDrive
+                }
+            }
+
+            # get path for permissions that pertain to eventvwr.exe tests
+            $stringsToTesteventvwr = @('eventvwr.exe',' eventvwr.exe','eventvwr.exe ',
+                ' The event viewer is eventvwr.exe '
+            )
+            $testTargetPathEventvwr = '%windir%\SYSTEM32\eventvwr.exe'
+            foreach ( $string in $stringsToTestEventvwr )
+            {
+                It "Should return $testTargetPathEventvwr from $string" {
+                    Get-PermissionTargetPath -StigString $string | Should Be $testTargetPathEventvwr
+                }
+            }
+
+            # get path for permissions that pertain to event logs tests
+            $stringsToTestEventLogDirectory = @( '%SystemRoot%\SYSTEM32\WINEVT\LOGS ', '  %SystemRoot%\SYSTEM32\WINEVT\LOGS ',
+                '  %SystemRoot%\SYSTEM32\WINEVT\LOGS','%SystemRoot%\SYSTEM32\WINEVT\LOGS  ',
+                'The eventlog directory is %SystemRoot%\SYSTEM32\WINEVT\LOGS period. ')
+            $eventLogFiles = @('Security.evtx','Application.evtx','System.evtx')
+            $testTargetPathEventLogDirectory = '%windir%\SYSTEM32\WINEVT\LOGS'
+
+            foreach ( $string in $stringsToTestEventLogDirectory )
+            {
+                foreach ( $eventLogFile in $eventLogFiles )
+                {
+                    $testString = $string + "(" + $eventLogFile + ")"
+                    $testTargetPathEventLogDirectoryResult = "$($testTargetPathEventLogDirectory.trim())\$($eventLogFile.Trim())"
+
+                    It "Should return $testTargetPathEventLogDirectoryResult from $string" {
+
+                        Get-PermissionTargetPath -StigString $testString | Should Be $testTargetPathEventLogDirectoryResult
+                    }
+                }
+            }
+        }
+
+        [string] $functionName = 'ConvertTo-AccessControlEntry'
+        Context $functionName {
+
+            # test scenario for same FileSystemRights for multiple Principals
+            $multiplePrincipalString = 'Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read & Execute'
+
+            It "Should return a principal count of 4" {
+
+                $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
+                $result.Principal.count | Should Be 4
+            }
+
+            It "Should have matching Values" {
+
+                $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
+
+                foreach ( $entry in $result )
+                {
+                    $i = 0
+                    while ( $i -lt $result.count)
+                    {
+                        $entry.'FileSystemRights' | Should Be $result[$i].'FileSystemRights'
+                        $i++
+
+                    }
+                }
+            }
+
+            # test scenario for different FileSystemRights for each principal
+            $differentPermissions = "
+            Users - Read & execute - This folder, subfolders and files
+            Users - Create folders / append data - This folder and subfolders
+            "
+            It "Should assign different permissions" {
+
+                $result = ConvertTo-AccessControlEntry -StigString $differentPermissions
+
+                {$result[0].FileSystemRights -ne $result[1].FileSystemRights} | Should Be $true
+            }
+
+            # test scenario for same Inheritance for multiple Principals
+            It "Should have matching Inheritance values" {
+
+                $inheritanceValue = "This folder and subfolders"
+
+                $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -InheritenceInput $inheritanceValue
+
+                foreach ( $entry in $result )
+                {
+                    $entry.Inheritance | Should Be $script:inheritenceConstant.$inheritanceValue
+                }
+            }
+        }
     }
 }
-Describe "Private Permission Rule" {
-
-    [string] $functionName = 'Get-PermissionTargetPath'
-    Context $functionName {
-
-        # get path that pertain to C:\ tests
-        $stringsToTestcDrive  = @("system drive's root directory","system drive's root directory "," system drive's root directory")
-        $testTargetPathcDrive = '%SystemDrive%\'
-
-        foreach ( $string in $stringsToTestcDrive )
-        {
-            It "Should return $testTargetPathcDrive from $string" {
-                Get-PermissionTargetPath -StigString $string | Should Be $testTargetPathcDrive
-            }
-        }
-
-        # get path for permissions that pertain to eventvwr.exe tests
-        $stringsToTesteventvwr = @('eventvwr.exe',' eventvwr.exe','eventvwr.exe ',
-            ' The event viewer is eventvwr.exe '
-        )
-        $testTargetPathEventvwr = '%windir%\SYSTEM32\eventvwr.exe'
-        foreach ( $string in $stringsToTestEventvwr )
-        {
-            It "Should return $testTargetPathEventvwr from $string" {
-                Get-PermissionTargetPath -StigString $string | Should Be $testTargetPathEventvwr
-            }
-        }
-
-        # get path for permissions that pertain to event logs tests
-        $stringsToTestEventLogDirectory = @( '%SystemRoot%\SYSTEM32\WINEVT\LOGS ', '  %SystemRoot%\SYSTEM32\WINEVT\LOGS ',
-            '  %SystemRoot%\SYSTEM32\WINEVT\LOGS','%SystemRoot%\SYSTEM32\WINEVT\LOGS  ',
-            'The eventlog directory is %SystemRoot%\SYSTEM32\WINEVT\LOGS period. ')
-        $eventLogFiles = @('Security.evtx','Application.evtx','System.evtx')
-        $testTargetPathEventLogDirectory = '%windir%\SYSTEM32\WINEVT\LOGS'
-
-        foreach ( $string in $stringsToTestEventLogDirectory )
-        {
-            foreach ( $eventLogFile in $eventLogFiles )
-            {
-                $testString = $string + "(" + $eventLogFile + ")"
-                $testTargetPathEventLogDirectoryResult = "$($testTargetPathEventLogDirectory.trim())\$($eventLogFile.Trim())"
-
-                It "Should return $testTargetPathEventLogDirectoryResult from $string" {
-
-                    Get-PermissionTargetPath -StigString $testString | Should Be $testTargetPathEventLogDirectoryResult
-                }
-            }
-        }
-    }
-
-    [string] $functionName = 'ConvertTo-AccessControlEntry'
-    Context $functionName {
-
-        # test scenario for same FileSystemRights for multiple Principals
-        $multiplePrincipalString = 'Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read & Execute'
-
-        It "Should return a principal count of 4" {
-
-            $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
-            $result.Principal.count | Should Be 4
-        }
-
-        It "Should have matching Values" {
-
-            $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
-
-            foreach ( $entry in $result )
-            {
-                $i = 0
-                while ( $i -lt $result.count)
-                {
-                    $entry.'FileSystemRights' | Should Be $result[$i].'FileSystemRights'
-                    $i++
-
-                }
-            }
-        }
-
-        # test scenario for different FileSystemRights for each principal
-		$differentPermissions = "
-        Users - Read & execute - This folder, subfolders and files
-        Users - Create folders / append data - This folder and subfolders
-        "
-        It "Should assign different permissions" {
-
-            $result = ConvertTo-AccessControlEntry -StigString $differentPermissions
-
-            {$result[0].FileSystemRights -ne $result[1].FileSystemRights} | Should Be $true
-        }
-
-        # test scenario for same Inheritance for multiple Principals
-        It "Should have matching Inheritance values" {
-
-            $inheritanceValue = "This folder and subfolders"
-
-            $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -InheritenceInput $inheritanceValue
-
-            foreach ( $entry in $result )
-            {
-                $entry.Inheritance | Should Be $script:inheritenceConstant.$inheritanceValue
-            }
-        }
-    }
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

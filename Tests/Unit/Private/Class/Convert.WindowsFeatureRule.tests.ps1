@@ -17,14 +17,20 @@ Select "Turn Windows features on or off".
 If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.'
 #endregion
 #region Tests
+try
+{
+    Describe "ConvertTo-WindowsFeatureRule" {
 
-Describe "ConvertTo-WindowsFeatureRule" {
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-WindowsFeatureRule -StigRule $stigRule
 
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-WindowsFeatureRule -StigRule $stigRule
-
-    It "Should return an WindowsFeatureRule object" {
-        $rule.GetType() | Should Be 'WindowsFeatureRule'
+        It "Should return an WindowsFeatureRule object" {
+            $rule.GetType() | Should Be 'WindowsFeatureRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

@@ -10,13 +10,20 @@ Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Set
 If the value for "Network security: Force logoff when logon hours expire" is not set to "Enabled", this is a finding.'
 #endregion
 #region Tests
-Describe "ConvertTo-SecurityOptionRule" {
+try
+{
+    Describe "ConvertTo-SecurityOptionRule" {
 
-    $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-    $rule = ConvertTo-SecurityOptionRule -StigRule $stigRule
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = ConvertTo-SecurityOptionRule -StigRule $stigRule
 
-    It "Should return a SecurityOptionRule object" {
-        $rule.GetType() | Should Be 'SecurityOptionRule'
+        It "Should return a SecurityOptionRule object" {
+            $rule.GetType() | Should Be 'SecurityOptionRule'
+        }
     }
+}
+catch
+{
+    Remove-Variable STIGSettings -Scope Global
 }
 #endregion

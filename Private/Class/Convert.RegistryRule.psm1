@@ -4,7 +4,7 @@
 using module .\..\..\Public\Class\Common.Enum.psm1
 using module .\..\..\Public\Data\Convert.Data.psm1
 # Class module
-using module .\..\..\ublic\Class\Convert.RegistryRule.psm1
+using module .\..\..\Public\Class\Convert.RegistryRule.psm1
 #endregion Header
 #region Main Functions
 <#

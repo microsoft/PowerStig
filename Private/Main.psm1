@@ -63,7 +63,7 @@ function Get-StigRules
 
     begin
     {
-        [System.Collections.ArrayList] $Global:stigsettings = @()
+        [System.Collections.ArrayList] $Global:stigSettings = @()
         [int] $stigGroupCount = $StigGroups.Count
         [int] $stigProcessedCounter = 1
     }
