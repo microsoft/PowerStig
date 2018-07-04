@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 #region Header
-using module .\..\..\public\data\data.xml.psm1
+using module .\..\..\Public\Data\Convert.Data.psm1
 #endregion
 #region Data
 $organizationalSettingRootComment = @'

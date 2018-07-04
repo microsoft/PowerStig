@@ -7,16 +7,16 @@
     indicating that the enumerations can't be found, if you try to load the classes before the
     enumerations.
 #>
-Import-Module $PSScriptRoot\private\Main.psm1
+Import-Module $PSScriptRoot\Private\Main.psm1
 
-. $PSScriptRoot\public\common\main.dscXml.ps1
-. $PSScriptRoot\public\common\main.report.ps1
-. $PSScriptRoot\public\common\main.xccdfXml.ps1
+. $PSScriptRoot\Public\Functions\Convert.PowerStigXml.ps1
+. $PSScriptRoot\Public\Functions\Convert.Report.ps1
+. $PSScriptRoot\Public\Functions\Convert.XccdfXml.ps1
 #endregion
 # Region Private
-. $PSScriptRoot\private\common\main.dscXml.ps1
-. $PSScriptRoot\private\common\main.report.ps1
-. $PSScriptRoot\private\common\main.xccdfXml.ps1
+. $PSScriptRoot\Private\Functions\Convert.PowerStigXml.ps1
+. $PSScriptRoot\Private\Functions\Convert.Report.ps1
+. $PSScriptRoot\Private\Functions\Convert.XccdfXml.ps1
 #endregion
 Export-ModuleMember -Function @(
     'ConvertFrom-StigXccdf',

@@ -1,7 +1,6 @@
 #region Header
-using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
-. $PSScriptRoot\..\..\helper.ps1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 #region Test Setup
 $checkContent = 'Verify the permissions on Event Viewer only allow TrustedInstaller permissions to change or
 modify.  If any groups or accounts other than TrustedInstaller have Full control or Modify, this

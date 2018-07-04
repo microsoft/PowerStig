@@ -1,8 +1,6 @@
-# Use this script to verify PowerStigConvert code updates do not impact functional integrity
-
 #region Header
-using module ..\..\release\PowerStigConvert\PowerStigConvert.psd1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 
 $filePath = "$PSScriptRoot\xccdf"
 

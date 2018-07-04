@@ -1,11 +1,7 @@
 #region Header
-using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
-. $PSScriptRoot\..\..\helper.ps1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 #region Test Setup
-#endregion Test Setup
-#region Tests
-
 $rulesToTest = @(
     @{
         displayName  = 'Act as part of the operating system'
@@ -19,7 +15,7 @@ $rulesToTest = @(
         If any accounts or groups (to include administrators), are granted the "{0}" user right, this is a finding.'
     }
     @{
-        displayName = 'Take ownership of files or other objects'
+        displayName  = 'Take ownership of files or other objects'
         constant     = 'SeTakeOwnershipPrivilege'
         Identity     = 'Administrators'
         CheckContent = 'Verify the effective setting in Local Group Policy Editor.
@@ -32,7 +28,7 @@ $rulesToTest = @(
         Administrators'
     }
     @{
-        displayName = 'Deny access to this computer from the network'
+        displayName  = 'Deny access to this computer from the network'
         constant     = 'SeDenyNetworkLogonRight'
         Identity     = 'Enterprise Admins,Domain Admins,Local account,Guests'
         CheckContent = 'Verify the effective setting in Local Group Policy Editor.
@@ -56,6 +52,8 @@ $rulesToTest = @(
         Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.'
     }
 )
+#endregion
+#region Tests
 Describe "User Rights Assignment Conversion" {
 
     foreach ( $testRule in $rulesToTest )

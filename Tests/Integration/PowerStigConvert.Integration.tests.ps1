@@ -1,9 +1,6 @@
-# Build the path to the system under test
-$releaseDir = (Resolve-Path -Path $PSScriptRoot\..\..\release).Path
-
-$ModuleName = $MyInvocation.MyCommand -replace '\.tests\.ps1'
-
-$ManifestPath = ( Get-ChildItem -Path $releaseDir -Filter "*$ModuleName.psd1" -Recurse ).FullName
+#region Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 
 # Import the base benchmark xml string data.
 $BaseFileContent = Get-Content -Path "$PSScriptRoot\..\sampleXccdf.xml.txt" -Encoding UTF8

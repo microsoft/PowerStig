@@ -1,7 +1,6 @@
 #region Header
-using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
-. $PSScriptRoot\..\..\helper.ps1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 #region Test Setup
 $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 

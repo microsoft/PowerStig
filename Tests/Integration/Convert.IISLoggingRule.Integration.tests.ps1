@@ -1,9 +1,7 @@
 #region Header
-using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
-. $PSScriptRoot\..\..\helper.ps1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 #region Test Setup
-
 $stigRulesToTest = @(
     @{
         LogCustomFieldEntry = @(

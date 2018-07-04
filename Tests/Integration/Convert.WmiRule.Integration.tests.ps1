@@ -1,7 +1,6 @@
 #region Header
-using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
-. $PSScriptRoot\..\..\helper.ps1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 #region Test Setup
 $checkContent = 'Open the Computer Management Console.
 Expand the "Storage" object in the Tree window.

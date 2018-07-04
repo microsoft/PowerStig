@@ -1,10 +1,9 @@
 #region Header
-using module ..\..\..\release\PowerStigConvert\PowerStigConvert.psd1
-. $PSScriptRoot\..\..\helper.ps1
-#endregion Header
+. $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
+#endregion
 #regionTest Setup
 $checkContent = 'Verify servers are located in controlled access areas that are accessible only to authorized personnel.  If systems are not adequately protected, this is a finding.'
-#endregion Test Setup
+#endregion
 #region Tests
 Describe "Manual Check Conversion" {
     [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
