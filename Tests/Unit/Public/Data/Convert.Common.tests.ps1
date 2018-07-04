@@ -19,9 +19,9 @@ Describe "RegularExpression Data Section" {
     
     [string] $dataSectionName = 'RegularExpression'
 
-	It "Should have a data section called $dataSectionName" {
-	    ( get-variable $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "Should have a data section called $dataSectionName" {
+        ( get-variable $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     Context 'Hex Code' {
 
@@ -122,11 +122,11 @@ Describe "rangeMatch Data Section" {
     
     [string] $dataSectionName = 'rangeMatch'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
-	<# 
+    <# 
     TO DO - Add rules 
     #>
 }
@@ -135,9 +135,9 @@ Describe "errorMessage Data Section" {
     
     [string] $dataSectionName = 'errorMessage'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 
@@ -148,9 +148,9 @@ Describe "ADAuditPath Data Section" {
     
     [string] $dataSectionName = 'ADAuditPath'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 

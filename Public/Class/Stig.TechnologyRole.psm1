@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-using module .\TechnologyVersion.psm1
+using module .\Stig.TechnologyVersion.psm1
 
 <#
 .SYNOPSIS

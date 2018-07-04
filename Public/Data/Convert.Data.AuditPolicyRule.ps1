@@ -1,4 +1,4 @@
-﻿
+
 # This is used to centralize the regEx patterns
 data auditPolicySubcategories
 {

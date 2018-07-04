@@ -61,7 +61,7 @@ Class SkippedRuleType
     .RETURN
         SkippedRuleType
     #>
-    SkippedRuleType([StigRuleType] $StigRuleType)
+    SkippedRuleType([RuleType] $StigRuleType)
     {
         $this.StigRuleType = $StigRuleType
     }

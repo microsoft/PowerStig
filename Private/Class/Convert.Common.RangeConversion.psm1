@@ -265,7 +265,7 @@ function Test-StringIsNegativeOr
 function Test-StringIsPositiveOr
 {
     [CmdletBinding()]
-	[OutputType([bool])]
+    [OutputType([bool])]
     param
     (
         [parameter(Mandatory = $true)]

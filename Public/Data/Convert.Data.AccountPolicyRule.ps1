@@ -1,4 +1,4 @@
-﻿
+
 # Account policy name fixes
 data PolicyNameFixes
 {

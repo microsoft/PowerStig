@@ -19,9 +19,9 @@ Describe "auditPolicySubcategories Data Section" {
     
     [string] $dataSectionName = 'auditPolicySubcategories'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 

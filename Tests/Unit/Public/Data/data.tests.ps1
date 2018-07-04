@@ -1,4 +1,4 @@
-﻿#region HEADER
+#region HEADER
 # Convert Public Class Header V1
 using module ..\..\..\..\Public\Common\enum.psm1
 . $PSScriptRoot\..\..\..\..\Public\Common\data.ps1
@@ -19,9 +19,9 @@ Describe "UserRightNameToConstant Data Section" {
     
     [string] $dataSectionName = 'UserRightNameToConstant'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 
@@ -32,9 +32,9 @@ Describe "auditPolicySubcategories Data Section" {
     
     [string] $dataSectionName = 'auditPolicySubcategories'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 
@@ -45,9 +45,9 @@ Describe "RegularExpression Data Section" {
     
     [string] $dataSectionName = 'RegularExpression'
 
-	It "Should have a data section called $dataSectionName" {
-	    ( get-variable $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "Should have a data section called $dataSectionName" {
+        ( get-variable $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     Context 'Hex Code' {
 
@@ -148,11 +148,11 @@ Describe "rangeMatch Data Section" {
     
     [string] $dataSectionName = 'rangeMatch'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
-	<# 
+    <# 
     TO DO - Add rules 
     #>
 }
@@ -161,9 +161,9 @@ Describe "errorMessage Data Section" {
     
     [string] $dataSectionName = 'errorMessage'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 
@@ -174,9 +174,9 @@ Describe "ADAuditPath Data Section" {
     
     [string] $dataSectionName = 'ADAuditPath'
 
-	It "should have a data section called $dataSectionName" {
-	    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-	}
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
 
     <# 
     TO DO - Add rules 

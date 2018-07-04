@@ -1,4 +1,4 @@
-﻿
+
 # This is used to validate strings and return the internal windows constant
 data UserRightNameToConstant
 {

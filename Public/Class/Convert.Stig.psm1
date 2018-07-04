@@ -183,12 +183,12 @@ Class STIG : ICloneable
     #region     #######################   Hard coded Methods    ####################################
     [Boolean] IsHardCoded ()
     {
-       	return Test-ValueDataIsHardCoded -StigId $this.id
+        return Test-ValueDataIsHardCoded -StigId $this.id
     }
 
     [String] GetHardCodedString ()
     {
-       	return Get-HardCodedString -StigId $this.id
+        return Get-HardCodedString -StigId $this.id
     }
 
     [Boolean] IsHardCodedOrganizationValueTestString ()

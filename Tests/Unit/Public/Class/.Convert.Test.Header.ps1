@@ -1,4 +1,4 @@
-﻿# Convert Public Class Header V1
+# Convert Public Class Header V1
 using module ..\..\..\..\Public\Class\Common.Enum.psm1
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
 $script:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', '.psm1'

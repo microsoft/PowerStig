@@ -1,4 +1,4 @@
-﻿#region Convert Public Class Header V1
+#region Convert Public Class Header V1
 . $PSScriptRoot\.Convert.Test.Header.ps1
 #endregion
 #region Tests

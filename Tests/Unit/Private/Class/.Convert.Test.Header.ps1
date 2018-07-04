@@ -1,4 +1,4 @@
-﻿# Convert Class Private functions Header V1
+# Convert Class Private functions Header V1
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
 $script:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', '.psm1'
 $script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"

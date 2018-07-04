@@ -1,2 +1,2 @@
-﻿# samplegroup.xml
+# samplegroup.xml
 

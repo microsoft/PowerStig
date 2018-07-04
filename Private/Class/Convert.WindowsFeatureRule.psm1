@@ -14,8 +14,8 @@ using module .\..\..\Public\Class\Convert.WindowsFeatureRule.psm1
 #>
 function ConvertTo-WindowsFeatureRule
 {
-	[CmdletBinding()]
-	[OutputType( [WindowsFeatureRule] )]
+    [CmdletBinding()]
+    [OutputType( [WindowsFeatureRule] )]
     Param
     (
         [parameter(Mandatory = $true)]

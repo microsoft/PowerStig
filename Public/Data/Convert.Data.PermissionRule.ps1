@@ -1,4 +1,4 @@
-﻿data fileRightsConstant
+data fileRightsConstant
 {
     ConvertFrom-StringData -StringData @'
         Full Control                        = FullControl
