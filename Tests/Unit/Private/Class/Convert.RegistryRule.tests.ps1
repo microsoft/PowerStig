@@ -538,17 +538,12 @@ try
         "System\Path\Two`n"+
         "Software\Path\Three`n`n"+
         "Legitimate applications may add entries to this registry value."
+
         $MultiValueRegistryStringData = Get-MultiValueRegistryStringData -CheckStrings $checkStrings
 
         It "Should return a string of semicolon delimited values." {
             ($MultiValueRegistryStringData -split ";")[0] | Should Be "System\Path\One"
-        }
-
-        It "Should return a string of semicolon delimited values." {
             ($MultiValueRegistryStringData -split ";")[1] | Should Be "System\Path\Two"
-        }
-
-        It "Should return a string of semicolon delimited values." {
             ($MultiValueRegistryStringData -split ";")[2] | Should Be "Software\Path\Three"
         }
     }
