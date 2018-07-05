@@ -92,7 +92,15 @@ Class OrganizationalSetting
     #>
     static [Hashtable] PropertyMap ()
     {
-        return Import-PowerShellDataFile -Path $PSScriptRoot\..\Common\OrganizationalSettingsPropertyMap.psd1
+        try 
+        {
+            $path = (Resolve-Path -Path "$PSScriptRoot\..\Data\Stig.Data.OrganizationalSettingsPropertyMap.psd1").Path
+        }
+        catch
+        {
+            throw "Cannot resolve Stig.Data.OrganizationalSettingsPropertyMap.psd1"
+        }
+        return Import-PowerShellDataFile -Path $path
     }
 
     <#
