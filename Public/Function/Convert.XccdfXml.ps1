@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 #region Header
-using module ..\..\Private\Main.psm1
+using module .\..\..\Private\Main.psm1
 #endregion
 #region Main Function
 <#

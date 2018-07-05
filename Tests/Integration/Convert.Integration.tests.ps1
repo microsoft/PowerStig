@@ -3,7 +3,7 @@
 #endregion
 
 # Import the base benchmark xml string data.
-$BaseFileContent = Get-Content -Path "$PSScriptRoot\..\sampleXccdf.xml.txt" -Encoding UTF8
+$BaseFileContent = Get-Content -Path "$PSScriptRoot\..\Data\sampleXccdf.xml.txt" -Encoding UTF8
 $baseGroup = '
     <Group id="V-1">
     <title>Rule Title</title>
@@ -23,7 +23,7 @@ $baseGroup = '
 Describe "PowerStigConvert Module" {
 
     It "Should Import successfully" { 
-        { Import-Module $ManifestPath } | Should Not Throw
+        { Import-Module $modulePath } | Should Not Throw
     }
 }
 
@@ -65,7 +65,7 @@ Describe 'ConvertFrom-StigXccdf' {
 
         $TestFile = "TestDrive:\TextData.xml"
         
-        $BaseFileContent -f 'Windows Server','','',$testGroup | Out-File $TestFile
+        $BaseFileContent -f 'Windows Server','','',$testGroup,'' | Out-File $TestFile
         $StigXccdf = ConvertFrom-StigXccdf -Path $TestFile
 
         It 'Should not throw an error' {
@@ -81,7 +81,7 @@ Describe 'ConvertFrom-StigXccdf' {
 
         $title = "Windows Server 2012 / 2012 R2 Member Server Security Technical Implementation Guide"
         $TestFile = "TestDrive:\TextData.xml"
-        $BaseFileContent -f $title,'','',$baseGroup | Out-File -FilePath $TestFile
+        $BaseFileContent -f $title,'','',$baseGroup,'' | Out-File -FilePath $TestFile
         It "Should call Get-StigRules with 'Windows' in the title" {
             ConvertFrom-StigXccdf -Path $TestFile 
         }
@@ -92,14 +92,14 @@ Describe 'ConvertFrom-StigXccdf' {
 Describe 'ConvertTo-DscStigXml' {
         
     $TestFile = "TestDrive:\TextData.xml"
-    $BaseFileContent -f '','','',$testGroup | Out-File $TestFile
+    $BaseFileContent -f '','','',$testGroup,'' | Out-File $TestFile
 
 }
 
 Describe 'Get-ConversionReport' {
         
     $TestFile = "TestDrive:\TextData.xml"
-    $BaseFileContent -f '','','',$testGroup | Out-File $TestFile
+    $BaseFileContent -f '','','',$testGroup,'' | Out-File $TestFile
 
 
 }
