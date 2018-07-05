@@ -13,8 +13,7 @@ using module .\..\..\..\..\Public\Class\Stig.TechnologyVersion.psm1
 #region Test Setup
 $schemaFile = Join-Path -Path $moduleRoot -ChildPath "\StigData\Schema\PowerStig.xsd"
 
-[hashtable] $orgSettingHashtable =
-@{
+[hashtable] $orgSettingHashtable = @{
 "V-1114"="xGuest";
 "V-1115"="xAdministrator";
 "V-3472.a"="NT5DS";
@@ -39,8 +38,7 @@ $technologyRole    = [TechnologyRole]::new($technologyRoleName, $technologyVersi
 
 $stigVersion = [StigData]::GetHighestStigVersion($technology, $technologyRole, $technologyVersion)
 
-[hashtable] $stigExceptionHashtable =
-@{
+[hashtable] $stigExceptionHashtable = @{
     "V-26606" = @{'ServiceState' = 'Running';
                 'StartupType'= 'Automatic'};
     "V-15683" = @{'ValueData' = '1'};
@@ -49,15 +47,13 @@ $stigVersion = [StigData]::GetHighestStigVersion($technology, $technologyRole, $
 
 $stigExceptions = [StigException]::ConvertFrom($stigExceptionHashtable)
 
-[string[]] $skippedRuleTypeArray =
-@(
+[string[]] $skippedRuleTypeArray = @(
 "AccountPolicyRule"
 )
 
 $skippedRuleTypes = [SkippedRuleType]::ConvertFrom($skippedRuleTypeArray)
 
-[string[]] $skippedRuleArray =
-@(
+[string[]] $skippedRuleArray = @(
 "V-1114",
 "V-1115",
 "V-3472.a",
@@ -72,7 +68,7 @@ $skippedRuleTypes = [SkippedRuleType]::ConvertFrom($skippedRuleTypeArray)
 
 $skippedRules = [SkippedRule]::ConvertFrom($skippedRuleArray)
 #endregion StigData1 Test Data
-
+#region Tests
 Describe "StigData Class" {
 
     Context "Constructor" {
@@ -294,3 +290,4 @@ Describe "StigData Class" {
         }
     }
 }
+#endregion
