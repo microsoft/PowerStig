@@ -1,32 +1,18 @@
-using module .\..\..\..\..\Public\Class\StigData.psm1
-using module .\..\..\..\..\Public\Class\StigException.psm1
-using module .\..\..\..\..\Public\Class\StigProperty.psm1
-using module .\..\..\..\..\Public\Class\SkippedRuleType.psm1
-using module .\..\..\..\..\Public\Class\SkippedRule.psm1
-using module .\..\..\..\..\Public\Class\OrganizationalSetting.psm1
-using module .\..\..\..\..\Public\Class\Technology.psm1
-using module .\..\..\..\..\Public\Class\TechnologyRole.psm1
-using module .\..\..\..\..\Public\Class\TechnologyVersion.psm1
-#region HEADER
-# Convert Public Class Header V1
-using module ..\..\..\..\Public\Common\enum.psm1
-. $PSScriptRoot\..\..\..\..\Public\Common\data.ps1
-$ruleClassName = ($MyInvocation.MyCommand.Name -Split '\.')[0]
-
-$script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
-$script:moduleName = $MyInvocation.MyCommand.Name -replace '\.tests\.ps1', '.psm1'
-$script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
-if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
-     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))) )
-{
-    & git @('clone','https://github.com/Microsoft/PowerStig.Tests',(Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))
-}
-Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
+using module .\..\..\..\..\Public\Class\Stig.StigData.psm1
+using module .\..\..\..\..\Public\Class\Stig.StigException.psm1
+using module .\..\..\..\..\Public\Class\Stig.StigProperty.psm1
+using module .\..\..\..\..\Public\Class\Stig.SkippedRuleType.psm1
+using module .\..\..\..\..\Public\Class\Stig.SkippedRule.psm1
+using module .\..\..\..\..\Public\Class\Stig.OrganizationalSetting.psm1
+using module .\..\..\..\..\Public\Class\Stig.Technology.psm1
+using module .\..\..\..\..\Public\Class\Stig.TechnologyRole.psm1
+using module .\..\..\..\..\Public\Class\Stig.TechnologyVersion.psm1
+#region Header
+. $PSScriptRoot\.Stig.Test.Header.ps1
 #endregion
+#region Test Setup
+$schemaFile = Join-Path -Path $moduleRoot -ChildPath "\StigData\Schema\PowerStig.xsd"
 
-$SchemaFile = Join-Path -Path $moduleRoot -ChildPath "\StigData\Schema\PowerStig.xsd"
-
-#region StigData1 Test Data
 [hashtable] $orgSettingHashtable =
 @{
 "V-1114"="xGuest";
@@ -249,7 +235,7 @@ Describe "StigData Class" {
         It "MergeOrganizationalSettings: Should pass schema testing after organizational settings have been merged" {
             $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $null, $null, $null)
 
-            { Test-Xml -Xml $stigData.StigXml -SchemaFile $SchemaFile } | Should Not Throw
+            { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
         }
 
         It "MergeStigExceptions: Should merge the supplied stig exceptions when StigExceptions is not Null" {
@@ -274,7 +260,7 @@ Describe "StigData Class" {
         It "MergeStigExceptions: Should pass schema testing after stig exceptions have been merged" {
             $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
 
-            { Test-Xml -Xml $stigData.StigXml -SchemaFile $SchemaFile } | Should Not Throw
+            { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
         }
 
         It "ProcessSkippedRuleTypes: Should process the supplied skipped rule types when SkippedRuleTypes is not Null" {
@@ -298,13 +284,13 @@ Describe "StigData Class" {
         It "MergeSkippedRules: Should pass schema testing after skipped rules have been merged" {
             $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
 
-            { Test-Xml -Xml $stigData.StigXml -SchemaFile $SchemaFile } | Should Not Throw
+            { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
         }
 
         It "Should pass schema testing after with values passed in to all parameters" {
             $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
 
-            { Test-Xml -Xml $stigData.StigXml -SchemaFile $SchemaFile } | Should Not Throw
+            { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
         }
     }
 }
