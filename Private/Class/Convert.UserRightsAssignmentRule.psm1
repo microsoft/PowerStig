@@ -5,6 +5,7 @@ using module .\..\..\Public\Class\Common.Enum.psm1
 using module .\..\..\Public\Data\Convert.Data.psm1
 # Class module
 using module .\..\..\Public\Class\Convert.UserRightsAssignmentRule.psm1
+using module .\Convert.Common.HelperFunctions.psm1
 #endregion
 #region Main Functions
 <#

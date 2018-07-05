@@ -1,8 +1,9 @@
 #region Header
+using module .\..\..\PowerStigConvert.psm1
 . $PSScriptRoot\.Convert.Integration.Tests.Header.ps1
 #endregion
-
-$filePath = "$PSScriptRoot\xccdf"
+#region Test Setup
+$filePath = "$PSScriptRoot\..\..\StigData\Archive"
 
 # Building the baseline rule set values
 $stigs = @{
@@ -346,13 +347,15 @@ $stigs = @{
         WmiRule                      = $null
     }
 }
-
+#endregion
+#region Tests
 # Verify conversion report rule set values are equal to baseline values
 Describe 'STIG Conversion' {
 
     foreach ($file in $stigs.keys)
     {
-        $conversionReport = Get-ConversionReport -Path "$filePath\$file"
+        $path = (Get-ChildItem -Path $filePath -Filter $file -Recurse).FullName
+        $conversionReport = Get-ConversionReport -Path $path
         $ruleConversion = $stigs.item($file)
 
         Context "$file" {
@@ -368,3 +371,4 @@ Describe 'STIG Conversion' {
         }
     }
 }
+#endregion
