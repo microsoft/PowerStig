@@ -27,26 +27,26 @@ Import-Module $modulePath -Force
 #region Tests
 Describe 'Get-OrganizationValueTestString' {
 
-    Mock Test-StringIsPositiveOr -ModuleName rangeConversion
-    Mock Test-StringIsLessThan  -ModuleName rangeConversion
-    Mock Test-StringIsLessThanOrEqual  -ModuleName rangeConversion
-    Mock Test-StringIsLessThanButNot  -ModuleName rangeConversion
-    Mock Test-StringIsLessThanOrEqualButNot  -ModuleName rangeConversion
-    Mock Test-StringIsGreaterThan -ModuleName rangeConversion
-    Mock Test-StringIsGreaterThanOrEqual  -ModuleName rangeConversion
-    Mock Test-StringIsGreaterThanButNot  -ModuleName rangeConversion
-    Mock Test-StringIsGreaterThanOrEqualButNot -ModuleName rangeConversion
-    Mock ConvertTo-OrTestString -ModuleName rangeConversion
-    Mock ConvertTo-TestString -ModuleName rangeConversion
+    Mock Test-StringIsPositiveOr -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsLessThan  -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsLessThanOrEqual  -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsLessThanButNot  -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsLessThanOrEqualButNot  -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsGreaterThan -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsGreaterThanOrEqual  -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsGreaterThanButNot  -ModuleName Convert.Common.RangeConversion
+    Mock Test-StringIsGreaterThanOrEqualButNot -ModuleName Convert.Common.RangeConversion
+    Mock ConvertTo-OrTestString -ModuleName Convert.Common.RangeConversion
+    Mock ConvertTo-TestString -ModuleName Convert.Common.RangeConversion
 
     It 'Should exist' {
         Get-Command -Name Get-OrganizationValueTestString | Should Not BeNullOrEmpty
     }
 
     Context 'NegativeOr' {
-        Mock Test-StringIsNegativeOr -MockWith { return $true  } -ModuleName rangeConversion
-        Mock Test-StringIsPositiveOr -MockWith { return $false } -ModuleName rangeConversion
-        Mock ConvertTo-OrTestString  { return 'ConvertedString' } -ModuleName rangeConversion -ParameterFilter {$String -eq "";
+        Mock Test-StringIsNegativeOr -MockWith { return $true  } -ModuleName Convert.Common.RangeConversion
+        Mock Test-StringIsPositiveOr -MockWith { return $false } -ModuleName Convert.Common.RangeConversion
+        Mock ConvertTo-OrTestString  { return 'ConvertedString' } -ModuleName Convert.Common.RangeConversion -ParameterFilter {$String -eq "";
             $Operator -eq 'Equal'}
         It 'Should return the correct string' {
             Get-OrganizationValueTestString -String "1 or 2 = a Finding" | Should Be "ConvertedString"
