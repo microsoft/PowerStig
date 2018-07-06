@@ -1,22 +1,22 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-using module .\Stig.Technology.psm1
+using module .\Common.Enum.psm1
 
 <#
-.SYNOPSIS
-    This class describes a TechnologyVersion
+    .SYNOPSIS
+        This class describes a TechnologyVersion
 
-.DESCRIPTION
-    The TechnologyVersion class describes a TechnologyVersion, the definition of the specific version of the application or portion of an application that
-    the Stig applies to. The TechnologyVersion is one of a few Technology focused classes that work together to form a complete
-    description of the Stig required by the user or application creating the StigData instance.
+    .DESCRIPTION
+        The TechnologyVersion class describes a TechnologyVersion, the definition of the specific version of the application or portion of an application that
+        the Stig applies to. The TechnologyVersion is one of a few Technology focused classes that work together to form a complete
+        description of the Stig required by the user or application creating the StigData instance.
 
-.EXAMPLE
-    $technologyVersion = [TechnologyVersion]::new([string] $Name, [Technology] $Technology)
+    .EXAMPLE
+        $technologyVersion = [TechnologyVersion]::new([string] $Name, [Technology] $Technology)
 
-.NOTES
-    This class requires PowerShell v5 or above.
+    .NOTES
+        This class requires PowerShell v5 or above.
 #>
 
 Class TechnologyVersion 
@@ -82,7 +82,6 @@ SQL = Server2012
     TechnologyVersion ([string] $Name, [Technology] $Technology) 
     {
         $this.Name = $Name
-        $Technology.Validate()
         $this.Technology = $Technology
         if (!($this.Validate())) 
         {
@@ -105,7 +104,7 @@ SQL = Server2012
     #>
     [bool] Validate () 
     {
-        $versions = [TechnologyVersion]::Available($this.Technology.Name)
+        $versions = [TechnologyVersion]::Available($this.Technology)
 
         if ($versions -contains $this.Name) 
         {
@@ -133,13 +132,14 @@ SQL = Server2012
     .RETURN
         string[]
     #>
-    static [string[]] Available ([string] $Technology) 
+    static [string[]] Available ([Technology] $Technology) 
     {
         $versions = ConvertFrom-StringData -StringData $([TechnologyVersion]::ValidateSet)
-
-        if ($versions.$Technology) 
+        $technologyString = $Technology.ToString()
+        
+        if ($versions.$technologyString) 
         {
-            return $versions.$Technology.Split(',').Trim()
+            return $versions.$technologyString.Split(',').Trim()
         }
         else 
         {

@@ -732,7 +732,7 @@ function Test-RegistryValueDataIsInteger
 function Get-NumberFromString
 {
     [CmdletBinding()]
-    [OutputType([string])]
+    [OutputType([int])]
     Param
     (
         [parameter(Mandatory = $true)]

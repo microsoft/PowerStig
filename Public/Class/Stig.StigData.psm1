@@ -5,25 +5,25 @@ using module .\Stig.StigException.psm1
 using module .\Stig.SkippedRuleType.psm1
 using module .\Stig.SkippedRule.psm1
 using module .\Stig.OrganizationalSetting.psm1
-using module .\Stig.Technology.psm1
+using module .\Common.Enum.psm1
 using module .\Stig.TechnologyRole.psm1
 using module .\Stig.TechnologyVersion.psm1
 
 <#
-.SYNOPSIS
-    This class describes a StigData
+    .SYNOPSIS
+        This class describes a StigData
 
-.DESCRIPTION
-    The StigData class describes a StigData, the collection of all Stig rules for a given technology that need to be implemented
-    in order to enforce the security posture those rules define. StigData takes in instances of many other classes that describe
-    the given technology and the implementing organizations specific settings, exceptions, and rules to skip. Upon creation of a
-    StigData instance, the resulting Xml is immediately available for those preconditions.
+    .DESCRIPTION
+        The StigData class describes a StigData, the collection of all Stig rules for a given technology that need to be implemented
+        in order to enforce the security posture those rules define. StigData takes in instances of many other classes that describe
+        the given technology and the implementing organizations specific settings, exceptions, and rules to skip. Upon creation of a
+        StigData instance, the resulting Xml is immediately available for those preconditions.
 
-.EXAMPLE
-    $stigData = [StigData]::new([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
+    .EXAMPLE
+        $stigData = [StigData]::new([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
 
-.NOTES
-    This class requires PowerShell v5 or above.
+    .NOTES
+        This class requires PowerShell v5 or above.
 #>
 
 Class StigData
@@ -145,7 +145,7 @@ Class StigData
     #>
     StigData([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
     {
-        if (!($Technology) -or !($TechnologyRole) -or !($TechnologyVersion)) {
+        if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion)) {
             throw("Technology, TechnologyVersion, and TechnologyRole must be provided.")
         }
 
@@ -187,7 +187,7 @@ Class StigData
     #>
     [void] SetStigPath ()
     {
-        $path = "$([StigData]::GetRootPath())\$($this.Technology.Name)-$($this.TechnologyVersion.Name)-$($this.TechnologyRole.Name)-$($this.StigVersion).xml"
+        $path = "$([StigData]::GetRootPath())\$($this.Technology.ToString())-$($this.TechnologyVersion.Name)-$($this.TechnologyRole.Name)-$($this.StigVersion).xml"
 
         if (Test-Path -Path $path)
         {

@@ -1,12 +1,13 @@
-using module .\..\..\..\..\Public\Class\Stig.StigData.psm1
+using module .\..\..\..\..\Public\Class\Common.Enum.psm1
 using module .\..\..\..\..\Public\Class\Stig.StigException.psm1
 using module .\..\..\..\..\Public\Class\Stig.StigProperty.psm1
 using module .\..\..\..\..\Public\Class\Stig.SkippedRuleType.psm1
 using module .\..\..\..\..\Public\Class\Stig.SkippedRule.psm1
 using module .\..\..\..\..\Public\Class\Stig.OrganizationalSetting.psm1
-using module .\..\..\..\..\Public\Class\Stig.Technology.psm1
 using module .\..\..\..\..\Public\Class\Stig.TechnologyRole.psm1
 using module .\..\..\..\..\Public\Class\Stig.TechnologyVersion.psm1
+using module .\..\..\..\..\Public\Class\Stig.StigData.psm1
+
 #region Header
 . $PSScriptRoot\.Stig.Test.Header.ps1
 #endregion
@@ -28,11 +29,10 @@ $schemaFile = Join-Path -Path $moduleRoot -ChildPath "\StigData\Schema\PowerStig
 
 $orgSettings = [OrganizationalSetting]::ConvertFrom($orgSettingHashtable)
 
-$technologyName        = 'Windows';
 $technologyVersionName = '2012R2';
 $technologyRoleName    = 'DC';
 
-$technology        = [Technology]::new($technologyName)
+$technology        = [Technology]::Windows
 $technologyVersion = [TechnologyVersion]::new($technologyVersionName, $technology)
 $technologyRole    = [TechnologyRole]::new($technologyRoleName, $technologyVersion)
 
@@ -141,57 +141,27 @@ Describe "StigData Class" {
             { [StigData]::new($stigVersion, $orgSettings, $technology, $null, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
             | Should Throw
         }
-
-        It "Should throw an exception because no Stig exists in PowerStig for the Technology, TechnologyVersion, and TechnologyRole that were provided" {
-            $technology = New-Object -TypeName Technology
-            $technology.Name = "Cheeseburger"
-
-            { [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
-            | Should Throw
-        }
     }
 
     Context "Instance Methods" {
         It "SetStigPath: Should be able to determine the StigPath for the provided valid set of Technology, TechnologyVersion, TechnologyRole, and StigVersion" {
-            $stigData = New-Object -TypeName StigData
-            $stigData.StigVersion = $stigVersion
-            $stigData.Technology = $technology
-            $stigData.TechnologyVersion = $technologyVersion
-            $stigData.TechnologyRole = $technologyRole
-
+            $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
             $stigData.SetStigPath()
-            $stigData.StigPath | Should Be "$([StigData]::GetRootPath())\$($technology.Name)-$($technologyVersion.Name)-$($technologyRole.Name)-$($stigVersion).xml"
-        }
-
-        It "SetStigPath: Should throw an exception if it is unable to find a matching Stig for the provided Technology, TechnologyVersion, TechnologyRole, and StigVersion" {
-            $stigData = New-Object -TypeName StigData
-            $stigData.StigVersion = $stigVersion
-            $technology = New-Object -TypeName Technology
-            $technology.Name = "Cheeseburger"
-            $stigData.Technology = $technology
-            $stigData.TechnologyVersion = $technologyVersion
-            $stigData.TechnologyRole = $technologyRole
-
-            { $stigData.SetStigPath() } | Should Throw
+            $stigData.StigPath | Should Be "$([StigData]::GetRootPath())\$($technology.ToString())-$($technologyVersion.Name)-$($technologyRole.Name)-$($stigVersion).xml"
         }
 
         It "ProcessStigData: Should load the Stig Xml document from the filesystem into the StigXml property" {
-            $stigData = New-Object -TypeName StigData
-            $stigData.StigVersion = $stigVersion
-            $stigData.Technology = $technology
-            $stigData.TechnologyVersion = $technologyVersion
-            $stigData.TechnologyRole = $technologyRole
-
-            $stigData.SetStigPath()
-            $stigData.StigXml | Should Be $null
-
-            $stigData.ProcessStigData()
+            $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
             $stigData.StigXml | Should Not Be $null
+        }
+
+        It "SetStigPath: Should throw an exception if it is unable to find a matching Stig for the provided Technology, TechnologyVersion, TechnologyRole, and StigVersion" {
+            { [StigData]::new('111.222', $orgSettings, $technology, $technologyRole, $technologyVersion, 
+                                          $stigExceptions, $skippedRuleTypes, $skippedRules) } | Should Throw
         }
 
         It "MergeOrganizationalSettings: Should merge the default organizational settings into instance OrganizationalSettings when no OrganizationalSettings is provided for a Stig that requires them" {
             $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-
             $stigData.OrganizationalSettings | Should Not Be $null
             $stigData.OrganizationalSettings.Length | Should BeGreaterThan 0
         }
