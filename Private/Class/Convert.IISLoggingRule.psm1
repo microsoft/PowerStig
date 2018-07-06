@@ -45,7 +45,7 @@ function ConvertTo-IisLoggingRule
 
     if ($iisLoggingRule.conversionstatus -eq 'pass')
     {
-        if ( $iisLoggingRule.IsDuplicateRule( $Global:STIGSettings ))
+        if ( $iisLoggingRule.IsDuplicateRule( $global:stigSettings ))
         {
             $iisLoggingRule.SetDuplicateTitle()
         }

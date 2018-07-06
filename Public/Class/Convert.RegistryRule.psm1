@@ -186,7 +186,7 @@ function Get-RegistryKey
 function Get-RegistryHiveFromWindowsStig
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -752,7 +752,6 @@ function Get-NumberFromString
     }
 }
 
-
 <#
     .SYNOPSIS
         Determines if a STIG check has a range of valid options.
@@ -983,7 +982,7 @@ function ConvertTo-ValidDword
 function Test-MultipleRegistryEntries
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     Param
     (
         [parameter(Mandatory = $true)]

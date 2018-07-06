@@ -179,7 +179,7 @@ function Get-Ensure
 function Test-MultipleMimeTypeRule
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     Param
     (
         [Parameter(Mandatory = $true)]
@@ -187,7 +187,7 @@ function Test-MultipleMimeTypeRule
         $CheckContent
     )
 
-    $mimeTypes = $CheckContent | Where-Object -FilterScript {$_.startswith('.')}
+    $mimeTypes = $CheckContent | Where-Object -FilterScript {$PSItem.startswith('.')}
 
     if ($mimeTypes.Count -gt 1)
     {
@@ -225,7 +225,7 @@ function Split-MultipleMimeTypeRule
 
     $mimeTypes  = $mimeTypeMatches.matches.groups.value
 
-    $baseCheckContent = $CheckContent| Where-Object -Filterscript {$_ -notin $mimeTypes}
+    $baseCheckContent = $CheckContent| Where-Object -Filterscript {$PSItem -notin $mimeTypes}
 
     foreach($mimeType in $mimeTypes)
     {

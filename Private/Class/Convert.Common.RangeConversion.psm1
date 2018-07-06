@@ -179,7 +179,7 @@ function ConvertTo-TestString
 
 <#
     .SYNOPSIS
-        Converts a *Rule to a hashtable so it can be splatted to other functions
+        Converts a Rule to a hashtable so it can be splatted to other functions
 
     .PARAMETER InputObject
         The object being converted
@@ -198,7 +198,6 @@ function ConvertTo-HashTable
     )
 
     $hashTable = @{
-
         Id       = $InputObject.id
         Severity = $InputObject.Severity
         Title    = $InputObject.title
@@ -510,6 +509,19 @@ function Test-StringIsGreaterThanOrEqualButNot
 }
 #endregion
 #region Less Than
+<#
+ .SYNOPSIS
+    Converts English textual representation of numeric ranges into PowerShell equivalent
+    comparison statements.
+
+ .PARAMETER string
+    The String to test.
+
+ .EXAMPLE
+    This example returns $true
+
+    Test-StringIsLessThan -String 'is less than "14"'
+#>
 function Test-StringIsLessThan
 {
     [CmdletBinding()]
@@ -521,7 +533,7 @@ function Test-StringIsLessThan
         $String
     )
 
-    if ($string -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
+    if ($String -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
     {
         $true
     }
@@ -531,6 +543,19 @@ function Test-StringIsLessThan
     }
 }
 
+<#
+ .SYNOPSIS
+    Converts English textual representation of numeric ranges into PowerShell equivalent
+    comparison statements.
+
+ .PARAMETER string
+    The String to test.
+
+ .EXAMPLE
+    This example returns $true
+
+    Test-StringIsLessThanOrEqual -String '"4" logons or less'
+#>
 function Test-StringIsLessThanOrEqual
 {
     [CmdletBinding()]
@@ -542,7 +567,7 @@ function Test-StringIsLessThanOrEqual
         $String
     )
     # Turn 0x00000384 (900) (or less) into '-le 900'
-    if ($string -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
+    if ($String -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
     {
         $true
     }

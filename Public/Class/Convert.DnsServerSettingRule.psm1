@@ -50,7 +50,7 @@ Class DnsServerSettingRule : STIG
 function Get-DnsServerSettingProperty
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true)]
@@ -84,7 +84,7 @@ function Get-DnsServerSettingProperty
 function Get-DnsServerSettingPropertyValue
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true)]

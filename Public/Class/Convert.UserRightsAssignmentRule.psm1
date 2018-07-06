@@ -56,7 +56,7 @@ Class UserRightRule : STIG
             {
                 $this.SetOrganizationValueRequired()
                 $HyperVIdentity = $thisIdentity -join "," -replace "{Hyper-V}", "NT Virtual Machine\\Virtual Machines"
-                $NoHyperVIdentity = $thisIdentity.Where( {$_ -ne "{Hyper-V}"}) -join ","
+                $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
             }
         }
@@ -278,7 +278,7 @@ function Test-SetForceFlag
 function Test-MultipleUserRightsAssignment
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     param
     (
         [parameter(Mandatory = $true)]

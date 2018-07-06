@@ -106,7 +106,7 @@ function Get-AccountPolicyName
 
 <#
     .SYNOPSIS
-        Short description
+        Parses Check-Content element to retrieve the Account Policy value.
 #>
 function Get-AccountPolicyValue
 {

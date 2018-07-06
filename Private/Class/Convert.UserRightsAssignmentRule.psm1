@@ -67,12 +67,12 @@ function New-UserRightRule
     $userRightRule.SetForce()
     $userRightRule.SetStigRuleResource()
 
-    if ( $userRightRule.IsDuplicateRule( $Global:STIGSettings ) )
+    if ( $userRightRule.IsDuplicateRule( $global:stigSettings ) )
     {
         $userRightRule.SetDuplicateTitle()
     }
 
-    if ( Test-ExistingRule -RuleCollection $Global:STIGSettings -NewRule $userRightRule )
+    if ( Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $userRightRule )
     {
         $newId = Get-AvailableId -Id $userRightRule.Id
         $userRightRule.set_id( $newId )

@@ -18,7 +18,7 @@ Describe "Get-RuleTypeList" {
         Get-Command Get-RuleTypeList | Should Not BeNullOrEmpty
     }
 
-    $Global:stigSettings = @(
+    $global:stigSettings = @(
         @{
             id       = 'V-1000'
             RuleType = 'RegistryRule'
@@ -34,7 +34,7 @@ Describe "Get-RuleTypeList" {
     )
 
     It "Should return alphabetical list of STIG Types " {
-        #(Get-RuleTypeList -StigSettings $Global:stigSettings)[0] | Should Be "AuditPolicyRule"
-        #(Get-RuleTypeList -StigSettings $Global:stigSettings)[1] | Should Be "RegistryRule"
+        #(Get-RuleTypeList -StigSettings $global:stigSettings)[0] | Should Be "AuditPolicyRule"
+        #(Get-RuleTypeList -StigSettings $global:stigSettings)[1] | Should Be "RegistryRule"
     }
 }

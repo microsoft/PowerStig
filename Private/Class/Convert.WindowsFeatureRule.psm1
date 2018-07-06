@@ -15,7 +15,7 @@ using module .\..\..\Public\Class\Convert.WindowsFeatureRule.psm1
 function ConvertTo-WindowsFeatureRule
 {
     [CmdletBinding()]
-    [OutputType( [WindowsFeatureRule] )]
+    [OutputType([WindowsFeatureRule])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -55,7 +55,7 @@ function ConvertTo-WindowsFeatureRule
                 $newRule = $tempRule.Clone()
                 $newRule.FeatureName = $windowsFeatureName
                 $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
-                [void] $global:stigsettings.Add($newRule)
+                [void] $global:stigSettings.Add($newRule)
             }
             $byte++
         }
@@ -63,7 +63,7 @@ function ConvertTo-WindowsFeatureRule
 
     if ($windowsFeatureRule.conversionstatus -eq 'pass')
     {
-        if ( $windowsFeatureRule.IsDuplicateRule( $global:STIGSettings ))
+        if ( $windowsFeatureRule.IsDuplicateRule( $global:stigSettings ))
         {
             $windowsFeatureRule.SetDuplicateTitle()
         }

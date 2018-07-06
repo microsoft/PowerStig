@@ -88,7 +88,7 @@ Class ServiceRule : STIG
 function Get-ServiceName
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true )]
@@ -174,7 +174,7 @@ function Get-ServiceName
 function Get-ServiceState
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true )]
@@ -213,7 +213,7 @@ function Get-ServiceState
 function Get-ServiceStartupType
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true )]

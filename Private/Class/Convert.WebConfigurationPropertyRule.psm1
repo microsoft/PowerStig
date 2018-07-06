@@ -50,17 +50,15 @@ function ConvertTo-WebConfigurationPropertyRule
         $webConfigurationPropertyRules += ( New-WebConfigurationPropertyRule -StigRule $StigRule )
     }
     return $webConfigurationPropertyRules
-
 }
 #endregion
 #region Support Functions
 <#
-.SYNOPSIS
-    Creates a new WebConfigurationPropertyRule
+    .SYNOPSIS
+        Creates a new WebConfigurationPropertyRule
 
-.PARAMETER StigRule
+    .PARAMETER StigRule
         The xml Stig rule from the XCCDF.
-
 #>
 function New-WebConfigurationPropertyRule
 {
@@ -88,7 +86,7 @@ function New-WebConfigurationPropertyRule
 
     if ($webConfigurationProperty.conversionstatus -eq 'pass')
     {
-        if ( $webConfigurationProperty.IsDuplicateRule( $Global:STIGSettings ))
+        if ( $webConfigurationProperty.IsDuplicateRule( $global:stigSettings ))
         {
             $webConfigurationProperty.SetDuplicateTitle()
         }
@@ -97,6 +95,5 @@ function New-WebConfigurationPropertyRule
     $webConfigurationProperty.SetStigRuleResource()
 
     return $webConfigurationProperty
-
 }
 #endregion

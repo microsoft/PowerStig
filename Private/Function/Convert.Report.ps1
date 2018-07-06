@@ -16,8 +16,8 @@ function Get-RuleTypeList
         $StigSettings
     )
 
-    $Global:StigSettings |
-        ForEach-Object {$_.GetType().ToString()} |
+    $global:stigSettings |
+        ForEach-Object {$PSItem.GetType().ToString()} |
             Select-Object -Unique |
                 Sort-Object
 }

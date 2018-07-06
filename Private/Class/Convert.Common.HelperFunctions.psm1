@@ -18,7 +18,7 @@ function Get-AvailableId
         $Id
     )
 
-    $usedID = $Global:StigSettings | Where-Object -FilterScript { $PSItem.Id -match $ID } |
+    $usedID = $global:stigSettings | Where-Object -FilterScript { $PSItem.Id -match $ID } |
             Sort-Object -Property Id
 
     if ( $null -eq $usedID )

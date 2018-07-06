@@ -105,7 +105,7 @@ function Get-SecurityOptionName
 function Get-SecurityOptionValue
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter(Mandatory = $true)]

@@ -121,7 +121,7 @@ function New-RegistryRule
 
     $registryRule.SetStigRuleResource()
 
-    # First check if there are rules that require hard coded organization value test strings
+    #First check if there are rules that require hard coded organization value test strings
     if ($registryRule.IsHardCodedOrganizationValueTestString())
     {
         $OrganizationValueTestString = $registryRule.GetHardCodedOrganizationValueTestString()

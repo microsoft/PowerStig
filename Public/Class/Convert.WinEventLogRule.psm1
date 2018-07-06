@@ -46,7 +46,7 @@ Class WinEventLogRule : STIG
 function Get-DnsServerWinEventLogName
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true)]

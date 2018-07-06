@@ -6,42 +6,41 @@ using module .\..\..\Private\Main.psm1
 #endregion
 #region Main Function
 <#
- .SYNOPSIS
-    Identifies the type of STIG that has been input and selects the proper private function to
-    further convert the STIG strings into usable objects.
+    .SYNOPSIS
+        Identifies the type of STIG that has been input and selects the proper private function to
+        further convert the STIG strings into usable objects.
 
- .DESCRIPTION
-    This function enables the core translation of the raw xccdf file by reading the benchmark
-    title property to determine where to send the data for processing.
+    .DESCRIPTION
+        This function enables the core translation of the raw xccdf file by reading the benchmark
+        title property to determine where to send the data for processing.
 
-    When a ruleset match is found, the xccdf data is sent to private functions that are
-    dedicated to processing individual STIG setting types, such as registry settings or
-    security policy.
+        When a ruleset match is found, the xccdf data is sent to private functions that are
+        dedicated to processing individual STIG setting types, such as registry settings or
+        security policy.
 
-    If the function is unable to find a rule set match, an error is returned.
+        If the function is unable to find a rule set match, an error is returned.
 
- .PARAMETER Path
-    The path to the xccdf file to be processed.
+    .PARAMETER Path
+        The path to the xccdf file to be processed.
 
- .PARAMETER IncludeRawString
-    This will add the 'Check-Content' from the xcccdf to the output for any additional validation
-    or spot checking that may be needed.
+    .PARAMETER IncludeRawString
+        This will add the 'Check-Content' from the xcccdf to the output for any additional validation
+        or spot checking that may be needed.
 
- .EXAMPLE
-    ConvertFrom-StigXccdf -Path C:\Stig\U_Windows_2012_and_2012_R2_MS_STIG_V2R8_Manual-xccdf.xml
+    .EXAMPLE
+        ConvertFrom-StigXccdf -Path C:\Stig\U_Windows_2012_and_2012_R2_MS_STIG_V2R8_Manual-xccdf.xml
 
-  .OUTPUTS
-    Custom objects are created from the STIG base class that are provided in the module
+    .OUTPUTS
+        Custom objects are created from the STIG base class that are provided in the module
 
- .NOTES
-    This is an ongoing project that should be retested with each iteration of the STIG. This is
-    due to the non-standard way, the content is published. Each version of the STIG may require
-    a rule to be updated to account for a new string format. All the formatting rules are heavily
-    tested, so making changes is a simple task.
+    .NOTES
+        This is an ongoing project that should be retested with each iteration of the STIG. This is
+        due to the non-standard way, the content is published. Each version of the STIG may require
+        a rule to be updated to account for a new string format. All the formatting rules are heavily
+        tested, so making changes is a simple task.
 
- .LINK
-    http://iase.disa.mil/stigs/Lists/stigs-masterlist/AllItems.aspx
-
+    .LINK
+        http://iase.disa.mil/stigs/Lists/stigs-masterlist/AllItems.aspx
 #>
 function ConvertFrom-StigXccdf
 {
@@ -76,7 +75,7 @@ function ConvertFrom-StigXccdf
         return
     }
 
-    return Get-StigRules @stigRuleParams
+    return Get-StigRuleList @stigRuleParams
 }
 
 <#
@@ -102,6 +101,7 @@ function ConvertFrom-StigXccdf
 function Split-StigXccdf
 {
     [CmdletBinding()]
+    [OutputType([object])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -115,11 +115,11 @@ function Split-StigXccdf
 
     Begin
     {
-        $CurrentVerbosePreference = $Global:VerbosePreference
+        $CurrentVerbosePreference = $global:VerbosePreference
 
         if ($PSBoundParameters.ContainsKey('Verbose'))
         {
-            $Global:VerbosePreference = 'Continue'
+            $global:VerbosePreference = 'Continue'
         }
     }
     Process
@@ -156,7 +156,7 @@ function Split-StigXccdf
     }
     End
     {
-        $Global:VerbosePreference = $CurrentVerbosePreference
+        $global:VerbosePreference = $CurrentVerbosePreference
     }
 }
 #endregion
