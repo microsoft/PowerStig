@@ -98,25 +98,25 @@ function Get-ServiceName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ( $CheckContent -match $Script:RegularExpression.McAfee )
+    if ( $CheckContent -match $script:regularExpression.McAfee )
     {
         $serviceName = 'McAfee'
     }
-    elseif ( $CheckContent -match $Script:RegularExpression.SmartCardRemovalPolicy )
+    elseif ( $CheckContent -match $script:regularExpression.SmartCardRemovalPolicy )
     {
         $serviceName = 'SCPolicySvc'
     }
-    elseif ( $CheckContent -match $Script:RegularExpression.SecondaryLogon )
+    elseif ( $CheckContent -match $script:regularExpression.SecondaryLogon )
     {
         $serviceName = 'seclogon'
     }
-    elseif ( $CheckContent -match $Script:RegularExpression.followingservices )
+    elseif ( $CheckContent -match $script:regularExpression.followingservices )
     {
-        $regexMatch = $CheckContent | Select-String $Script:RegularExpression.dash
+        $regexMatch = $CheckContent | Select-String $script:regularExpression.dash
         $svcArray = @()
         foreach ($match in $regexMatch)
         {
-            $svc = $match -replace $Script:RegularExpression.dash, ''
+            $svc = $match -replace $script:regularExpression.dash, ''
             if ( $svc.Contains('(') )
             {
                 $svc = $svc.ToString().Substring(0, $svc.IndexOf('(') - 1)
@@ -131,7 +131,7 @@ function Get-ServiceName
     }
     else
     {
-        $regexMatch = $CheckContent | Select-String $Script:RegularExpression.textBetweenParentheses
+        $regexMatch = $CheckContent | Select-String $script:regularExpression.textBetweenParentheses
 
         if ( -not [string]::IsNullOrEmpty( $regexMatch ) )
         {

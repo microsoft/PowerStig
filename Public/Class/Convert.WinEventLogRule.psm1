@@ -56,7 +56,7 @@ function Get-DnsServerWinEventLogName
     # There is only one scenario to handle but we will use a switch to easily add additional scenarios
     switch ( $stigString )
     {
-        { $StigString -match $script:RegularExpression.WinEventLogPath }
+        { $StigString -match $script:regularExpression.WinEventLogPath }
         {
             $dnsServerWinEventLogName = 'Microsoft-Windows-DnsServer/Analytical'
 

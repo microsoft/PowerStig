@@ -11,8 +11,6 @@ if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'Powe
 
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
 
-Get-Module -Name $moduleName -All
-
 Import-Module $modulePath -Force
 
 Import-Module $PSScriptRoot\..\..\..\..\Public\Data\Convert.Data.psm1
