@@ -14,7 +14,7 @@ using module .\..\..\Public\Class\Convert.ServiceRule.psm1
 function ConvertTo-ServiceRule
 {
     [CmdletBinding()]
-    [OutputType( [ServiceRule] )]
+    [OutputType([ServiceRule])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -54,7 +54,7 @@ function ConvertTo-ServiceRule
                 $newRule = $tempRule.Clone()
                 $newRule.ServiceName = $serviceName
                 $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
-                [void] $Global:stigsettings.Add($newRule)
+                [void] $global:stigSettings.Add($newRule)
             }
             $byte++
         }

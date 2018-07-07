@@ -56,7 +56,7 @@ Class UserRightRule : STIG
             {
                 $this.SetOrganizationValueRequired()
                 $HyperVIdentity = $thisIdentity -join "," -replace "{Hyper-V}", "NT Virtual Machine\\Virtual Machines"
-                $NoHyperVIdentity = $thisIdentity.Where( {$_ -ne "{Hyper-V}"}) -join ","
+                $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
             }
         }
@@ -113,10 +113,10 @@ function Get-UserRightDisplayName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    Write-Verbose "match = $($Script:RegularExpression.textBetweenQuotes)"
+    Write-Verbose "match = $($script:regularExpression.textBetweenQuotes)"
     # Use a regular expression to pull the user right string from between the quotes
     $userRightDisplayNameSearch = ( $CheckContent |
-            Select-String -Pattern $($Script:RegularExpression).textBetweenQuotes -AllMatches )
+            Select-String -Pattern $($script:regularExpression).textBetweenQuotes -AllMatches )
 
     [string[]] $userRightDisplayName = $userRightDisplayNameSearch.matches.Groups.Value |
         Where-Object { $script:UserRightNameToConstant.Keys -contains $PSItem }
@@ -278,7 +278,7 @@ function Test-SetForceFlag
 function Test-MultipleUserRightsAssignment
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     param
     (
         [parameter(Mandatory = $true)]

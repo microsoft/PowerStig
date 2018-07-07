@@ -15,7 +15,7 @@ using module .\..\..\Public\Class\Convert.WinEventLogRule.psm1
 function ConvertTo-WinEventLogRule
 {
     [CmdletBinding()]
-    [OutputType( [WinEventLogRule] )]
+    [OutputType([WinEventLogRule])]
     param
     (
         [parameter(Mandatory = $true)]
@@ -32,12 +32,12 @@ function ConvertTo-WinEventLogRule
     $dnsWinEventLogRule.SetWinEventLogIsEnabled()
 
     # If a duplicate is found ' Duplicate' is appended to the title
-    if ( $dnsWinEventLogRule.IsDuplicateRule( $Global:STIGSettings ) )
+    if ( $dnsWinEventLogRule.IsDuplicateRule( $global:stigSettings ) )
     {
         $dnsWinEventLogRule.SetDuplicateTitle()
     }
 
-    if ( $dnsWinEventLogRule.IsExistingRule( $Global:STIGSettings ) )
+    if ( $dnsWinEventLogRule.IsExistingRule( $global:stigSettings ) )
     {
         $newId = Get-AvailableId -Id $StigRule.id
         $dnsWinEventLogRule.set_id( $newId )

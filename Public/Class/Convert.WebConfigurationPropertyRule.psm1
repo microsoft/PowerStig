@@ -78,13 +78,13 @@ Class WebConfigurationPropertyRule : STIG
 #endregion
 #region Method Function
 <#
-.SYNOPSIS
-    Returns the ConfigSection property for the STIG rule.
+    .SYNOPSIS
+        Returns the ConfigSection property for the STIG rule.
 
-.Parameter CheckContent
-    An array of the raw string data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw string data taken from the STIG setting.
 #>
-Function Get-ConfigSection
+function Get-ConfigSection
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -180,11 +180,11 @@ Function Get-ConfigSection
 }
 
 <#
-.SYNOPSIS
-    Returns the key and value properties for the STIG rule.
+    .SYNOPSIS
+        Returns the key and value properties for the STIG rule.
 
-.Parameter CheckContent
-    An array of the raw string data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw string data taken from the STIG setting.
 #>
 function Get-KeyValuePair
 {
@@ -327,16 +327,16 @@ function Get-KeyValuePair
 }
 
 <#
-.SYNOPSIS
-    Tests to see if the stig rule needs to be split into multiples.
+    .SYNOPSIS
+        Tests to see if the stig rule needs to be split into multiples.
 
-.Parameter CheckContent
-    An array of the raw string data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw string data taken from the STIG setting.
 #>
 function Test-MultipleWebConfigurationPropertyRule
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     Param
     (
         [Parameter(Mandatory = $true)]
@@ -393,11 +393,11 @@ function Test-MultipleWebConfigurationPropertyRule
 }
 
 <#
-.SYNOPSIS
-    Splits a STIG setting into multiple rules when necessary.
+    .SYNOPSIS
+        Splits a STIG setting into multiple rules when necessary.
 
-.Parameter CheckContent
-    An array of the raw string data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw string data taken from the STIG setting.
 #>
 function Split-MultipleWebConfigurationPropertyRule
 {
@@ -500,12 +500,12 @@ function Split-MultipleWebConfigurationPropertyRule
 }
 
 <#
-.SYNOPSIS
-    Takes the key property from a WebConfigurationPropertyRule to determine the Organizational value.
-    Tests the string to return.
+    .SYNOPSIS
+        Takes the key property from a WebConfigurationPropertyRule to determine the Organizational value.
+        Tests the string to return.
 
-.PARAMETER Key
-    Key property from the WebConfigurationPropertyRule.
+    .PARAMETER Key
+        Key property from the WebConfigurationPropertyRule.
 #>
 function Get-OrganizationValueTestString
 {

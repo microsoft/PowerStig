@@ -50,7 +50,7 @@ Class DnsServerSettingRule : STIG
 function Get-DnsServerSettingProperty
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true)]
@@ -61,10 +61,10 @@ function Get-DnsServerSettingProperty
     # There is only have one scenario to handle but we will use a switch to easily add additional scenarios
     switch ( $CheckContent )
     {
-        { $CheckContent -match $Script:RegularExpression.textBetweenTheTab }
+        { $CheckContent -match $script:regularExpression.textBetweenTheTab }
         {
-            $patternMatch = $CheckContent | Select-String -Pattern $Script:RegularExpression.textBetweenTheTab
-            $dnsServerPropertyName = ($patternMatch.Matches.groups[-1].Value -replace $Script:RegularExpression.nonLetters).Trim()
+            $patternMatch = $CheckContent | Select-String -Pattern $script:regularExpression.textBetweenTheTab
+            $dnsServerPropertyName = ($patternMatch.Matches.groups[-1].Value -replace $script:regularExpression.nonLetters).Trim()
             $dnsServerPropertyName = $Script:DnsServerSetting[$dnsServerPropertyName]
 
             break
@@ -84,7 +84,7 @@ function Get-DnsServerSettingProperty
 function Get-DnsServerSettingPropertyValue
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter( Mandatory = $true)]
@@ -98,7 +98,7 @@ function Get-DnsServerSettingPropertyValue
 
     switch ( $CheckContent )
     {
-        { $CheckContent -match $Script:RegularExpression.allEvents}
+        { $CheckContent -match $script:regularExpression.allEvents}
         {
             # 4 equals all events
             $dnsServerSettingPropertyValue = 4

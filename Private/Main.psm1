@@ -31,10 +31,10 @@ using module .\Class\Convert.WmiRule.psm1
 
 <#
     .SYNOPSIS
-        Get-StigRules determines what type of STIG setting is being processed and sends it to a
+        Get-StigRuleList determines what type of STIG setting is being processed and sends it to a
         specalized function for additional processing.
     .DESCRIPTION
-        Get-StigRules pre-sorts the STIG rules that is recieves and tries to determine what type
+        Get-StigRuleList pre-sorts the STIG rules that is recieves and tries to determine what type
         of object it should create. For example if the check content has the string HKEY, it assumes
         that the setting is a registry object and sends the check to the registry sub functions to
         further break down the string into a registry object.
@@ -45,7 +45,7 @@ using module .\Class\Convert.WmiRule.psm1
     .NOTES
         General notes
 #>
-function Get-StigRules
+function Get-StigRuleList
 {
     [CmdletBinding()]
     [OutputType([System.Object[]])]
@@ -62,7 +62,7 @@ function Get-StigRules
 
     begin
     {
-        [System.Collections.ArrayList] $Global:stigSettings = @()
+        [System.Collections.ArrayList] $global:stigSettings = @()
         [int] $stigGroupCount = $StigGroups.Count
         [int] $stigProcessedCounter = 1
     }
@@ -71,7 +71,7 @@ function Get-StigRules
         foreach ( $stigRule in $StigGroups )
         {
             # Global added so that the stig rule can be referenced later
-            $Global:stigRuleGlobal = $stigRule
+            $global:stigRuleGlobal = $stigRule
             $informationParameters = @{
                 MessageData       = "INFO: [$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
                 InformationAction = 'Continue'
@@ -87,11 +87,11 @@ function Get-StigRules
                 {
                     if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
                     {
-                        [void] $Global:StigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
+                        [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
                     }
                     else
                     {
-                        [void] $Global:stigsettings.Add( $rule )
+                        [void] $global:stigSettings.Add( $rule )
                     }
                 }
                 # Increment the counter to update the console output
@@ -101,7 +101,7 @@ function Get-StigRules
     }
     end
     {
-        $Global:stigsettings
+        $global:stigSettings
     }
 }
 #endregion

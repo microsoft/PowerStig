@@ -14,14 +14,14 @@ Import-Module $modulePath -Force
 
 #endregion
 #region Tests
-Describe "Get-StigRules" {
+Describe "Get-StigRuleList" {
 
     <#
         Set all of the test function to false to be inherited into each context and then set
         the required test function to true in each context.
     #>
-    It "Verifies the function 'Get-StigRules' exists" {
-        Get-Command -Name Get-StigRules | Should Not BeNullOrEmpty
+    It "Verifies the function 'Get-StigRuleList' exists" {
+        Get-Command -Name Get-StigRuleList | Should Not BeNullOrEmpty
     }
 }
 #endregion

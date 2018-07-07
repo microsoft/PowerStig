@@ -14,7 +14,6 @@ using module .\..\..\Public\Class\Convert.MimeTypeRule.psm1
     .PARAMETER StigRule
         The xml Stig rule from the XCCDF.
 #>
-
 function ConvertTo-MimeTypeRule
 {
     [CmdletBinding()]
@@ -54,14 +53,12 @@ function ConvertTo-MimeTypeRule
 #endregion
 #region Support Functions
 <#
-.SYNOPSIS
-    Creates a new MimeTypeRule
+    .SYNOPSIS
+        Creates a new MimeTypeRule
 
-.PARAMETER StigRule
+    .PARAMETER StigRule
         The xml Stig rule from the XCCDF.
-
 #>
-
 function New-MimeTypeRule
 {
     [CmdletBinding()]
@@ -85,7 +82,7 @@ function New-MimeTypeRule
 
     if ($mimeTypeRule.conversionstatus -eq 'pass')
     {
-        if ( $mimeTypeRule.IsDuplicateRule( $Global:STIGSettings ))
+        if ( $mimeTypeRule.IsDuplicateRule( $global:stigSettings ))
         {
             $mimeTypeRule.SetDuplicateTitle()
         }

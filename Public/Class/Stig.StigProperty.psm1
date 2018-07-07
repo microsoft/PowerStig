@@ -2,19 +2,19 @@
 # Licensed under the MIT License.
 
 <#
-.SYNOPSIS
-    This class describes a StigProperty
+    .SYNOPSIS
+        This class describes a StigProperty
 
-.DESCRIPTION
-    The StigProperty class describes a StigProperty, the abstracted key/value pair definition of any property within a Stig rule. A collection of StigProperty
-    instances combine to for a complete description of a Stig rule. StigException instances are made up of a collection of StigProperty in order to
-    override the existing values of those properties.
+    .DESCRIPTION
+        The StigProperty class describes a StigProperty, the abstracted key/value pair definition of any property within a Stig rule. A collection of StigProperty
+        instances combine to for a complete description of a Stig rule. StigException instances are made up of a collection of StigProperty in order to
+        override the existing values of those properties.
 
-.EXAMPLE
-    $stigProperty = [StigProperty]::new([string] $Name, [string] $Value)
+    .EXAMPLE
+        $stigProperty = [StigProperty]::new([string] $Name, [string] $Value)
 
-.NOTES
-    This class requires PowerShell v5 or above.
+    .NOTES
+        This class requires PowerShell v5 or above.
 #>
 
 Class StigProperty

@@ -5,7 +5,6 @@
 data RegularExpression
 {
     ConvertFrom-StringData -stringdata @'
-
         # General matches
 
         dash = -

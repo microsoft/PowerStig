@@ -23,7 +23,7 @@ try
         Context "Dns Stig Rules regex tests" {
     
             $text = 'the          forwarders     tab.'
-            $result = $text -match $script:RegularExpression.textBetweenTheTab
+            $result = $text -match $script:regularExpression.textBetweenTheTab
             It "Should match text inside of the words 'the' and 'tab'" {
                 $result | Should be $true
             }
@@ -32,12 +32,12 @@ try
             }
     
             [string]$text = ' âForwardersâ'
-            $result = $text -match $script:RegularExpression.nonLetters
+            $result = $text -match $script:regularExpression.nonLetters
             It "Should match any non letter characters" {
                 $result | Should Be $true
             }
             It "Should remove the non word characters" {
-                $result = $text -replace $script:RegularExpression.nonLetters
+                $result = $text -replace $script:regularExpression.nonLetters
                 $result.Trim() | Should Be 'Forwarders'
             }
         }

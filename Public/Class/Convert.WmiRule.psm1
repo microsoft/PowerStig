@@ -20,7 +20,5 @@ Class WmiRule : STIG
     {
         $this.InvokeClass( $StigRule )
     }
-
-    # Methods
 }
 #endregion

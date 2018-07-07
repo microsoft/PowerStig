@@ -6,23 +6,20 @@ using module .\..\Data\Convert.Data.psm1
 #endregion
 #region Main Function
 <#
- .SYNOPSIS
-    This function generates a new xml file based on the convert objects from ConvertFrom-StigXccdf.
+    .SYNOPSIS
+        This function generates a new xml file based on the convert objects from ConvertFrom-StigXccdf.
 
- .PARAMETER Path
-    The full path to the xccdf to convert.
+    .PARAMETER Path
+        The full path to the xccdf to convert.
 
- .PARAMETER Destination
-    The full path to save the converted xml to.
+    .PARAMETER Destination
+        The full path to save the converted xml to.
 
- .PARAMETER CreateOrgSettingsFile
-    Creates the orginazational settings files associated with the version of the STIG.
+    .PARAMETER CreateOrgSettingsFile
+        Creates the orginazational settings files associated with the version of the STIG.
 
- .PARAMETER IncludeRawString
-    Adds the check-content elemet content to the converted object.
-
- .NOTES
-    General Notes
+    .PARAMETER IncludeRawString
+        Adds the check-content elemet content to the converted object.
 #>
 function ConvertTo-DscStigXml
 {
@@ -48,11 +45,11 @@ function ConvertTo-DscStigXml
     )
     Begin
     {
-        $CurrentVerbosePreference = $Global:VerbosePreference
+        $CurrentVerbosePreference = $global:VerbosePreference
 
         if ($PSBoundParameters.ContainsKey('Verbose'))
         {
-            $Global:VerbosePreference = 'Continue'
+            $global:VerbosePreference = 'Continue'
         }
     }
     Process
@@ -231,22 +228,19 @@ function ConvertTo-DscStigXml
     }
     End
     {
-        $Global:VerbosePreference = $CurrentVerbosePreference
+        $global:VerbosePreference = $CurrentVerbosePreference
     }
 }
 
 <#
- .SYNOPSIS
-    Compares the converted xml files from ConvertFrom-StigXccdf.
+    .SYNOPSIS
+        Compares the converted xml files from ConvertFrom-StigXccdf.
 
- .PARAMETER OldStigPath
-    The full path to the previous DscXml file to convert.
+    .PARAMETER OldStigPath
+        The full path to the previous DscXml file to convert.
 
- .PARAMETER NewStigPath
-    The full path to the current DscXml file to convert.
-
- .NOTES
-    General Notes
+    .PARAMETER NewStigPath
+        The full path to the current DscXml file to convert.
 #>
 function Compare-DscStigXml
 {
@@ -268,11 +262,11 @@ function Compare-DscStigXml
     )
     Begin
     {
-        $CurrentVerbosePreference = $Global:VerbosePreference
+        $CurrentVerbosePreference = $global:VerbosePreference
 
         if ($PSBoundParameters.ContainsKey('Verbose'))
         {
-            $Global:VerbosePreference = 'Continue'
+            $global:VerbosePreference = 'Continue'
         }
     }
     Process
@@ -350,7 +344,7 @@ function Compare-DscStigXml
     }
     End
     {
-        $Global:VerbosePreference = $CurrentVerbosePreference
+        $global:VerbosePreference = $CurrentVerbosePreference
     }
 }
 #endregion

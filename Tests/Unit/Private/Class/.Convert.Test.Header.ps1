@@ -1,7 +1,7 @@
 # Convert Class Private functions Header V1
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot)))
-$script:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', '.psm1'
-$script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName"
+$script:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', ''
+$script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$($script:moduleName).psm1"
 
 if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests'))) -or `
     (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'PowerStig.Tests\TestHelper.psm1'))) )
@@ -10,6 +10,7 @@ if ( (-not (Test-Path -Path (Join-Path -Path $script:moduleRoot -ChildPath 'Powe
 }
 
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath (Join-Path -Path 'PowerStig.Tests' -ChildPath 'TestHelper.psm1')) -Force
+
 Import-Module $modulePath -Force
 
 Import-Module $PSScriptRoot\..\..\..\..\Public\Data\Convert.Data.psm1
@@ -20,4 +21,4 @@ Import-Module $PSScriptRoot\..\..\..\..\Public\Data\Convert.Data.psm1
     the unit tests can run successfully.
 #>
 
-[System.Collections.ArrayList] $Global:stigSettings = @()
+[System.Collections.ArrayList] $global:stigSettings = @()

@@ -14,7 +14,7 @@ using module .\..\..\Public\Class\Convert.DnsServerRootHintRule.psm1
 function ConvertTo-DnsServerRootHintRule
 {
     [CmdletBinding()]
-    [OutputType( [DnsServerRootHintRule] )]
+    [OutputType([DnsServerRootHintRule])]
     Param
     (
         [parameter(Mandatory = $true)]

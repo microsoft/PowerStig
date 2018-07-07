@@ -4,19 +4,19 @@
 using module .\..\Class\Common.Enum.psm1
 
 <#
-.SYNOPSIS
-    This class describes a SkippedRuleType
+    .SYNOPSIS
+        This class describes a SkippedRuleType
 
-.DESCRIPTION
-    The SkippedRuleType class describes a SkippedRuleType, the collection of Stig rule ids of a specific Stig rule type that should be excluded
-    from the Stigs that need to be processed. The SkippedRuleType class instance will move all of the Stig rules under that type into a
-    SkippedRule section of the StigData output Xml so that it is documented as having been skipped.
+    .DESCRIPTION
+        The SkippedRuleType class describes a SkippedRuleType, the collection of Stig rule ids of a specific Stig rule type that should be excluded
+        from the Stigs that need to be processed. The SkippedRuleType class instance will move all of the Stig rules under that type into a
+        SkippedRule section of the StigData output Xml so that it is documented as having been skipped.
 
-.EXAMPLE
-    $skippedRuleType = [SkippedRuleType]::new('AccountPolicyRule')
+    .EXAMPLE
+        $skippedRuleType = [SkippedRuleType]::new('AccountPolicyRule')
 
-.NOTES
-    This class requires PowerShell v5 or above.
+    .NOTES
+        This class requires PowerShell v5 or above.
 #>
 
 Class SkippedRuleType

@@ -4,17 +4,17 @@
 using module .\Stig.StigProperty.psm1
 
 <#
-.SYNOPSIS
-    This class describes a StigException
+    .SYNOPSIS
+        This class describes a StigException
 
-.DESCRIPTION
-    The StigException class describes a StigException, the collection of StigProperty to override on a specific Stig rule.
+    .DESCRIPTION
+        The StigException class describes a StigException, the collection of StigProperty to override on a specific Stig rule.
 
-.EXAMPLE
-    $stigException = [StigException]::new([string] $StigRuleId, [StigProperty[]] $Properties)
+    .EXAMPLE
+        $stigException = [StigException]::new([string] $StigRuleId, [StigProperty[]] $Properties)
 
-.NOTES
-    This class requires PowerShell v5 or above.
+    .NOTES
+        This class requires PowerShell v5 or above.
 #>
 
 Class StigException

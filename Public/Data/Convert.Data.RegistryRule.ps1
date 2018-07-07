@@ -19,7 +19,6 @@ data dscRegistryValueType
 data registryRegularExpression
 {
     ConvertFrom-StringData -stringdata @'
-
         # the registry hive is not provided in a consistant format, so the search pattern needs
         # to account for optional character ranges
         registryHive = (Registry)?\\s?Hive\\s?:\\s*?(HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)

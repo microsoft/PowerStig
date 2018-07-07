@@ -64,16 +64,16 @@ Class SqlScriptQueryRule : STIG
 #endregion
 #region Method Functions
 <#
-.SYNOPSIS Get-DbExistGetScript
-    Returns the query that checks to see if a DB exists.
+    .SYNOPSIS Get-DbExistGetScript
+        Returns the query that checks to see if a DB exists.
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the GetScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the GetScript block
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-DbExistGetScript
 {
@@ -93,16 +93,16 @@ function Get-DbExistGetScript
 }
 
 <#
-.SYNOPSIS Get-TraceGetScript
-    Returns a query that gets Trace ID's
+    .SYNOPSIS Get-TraceGetScript
+        Returns a query that gets Trace ID's
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the GetScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the GetScript block
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-TraceGetScript
 {
@@ -124,16 +124,16 @@ function Get-TraceGetScript
 }
 
 <#
-.SYNOPSIS Get-PermissionGetScript
-    Returns a query that will get a list of users who have access to a certain SQL Permission
+    .SYNOPSIS Get-PermissionGetScript
+        Returns a query that will get a list of users who have access to a certain SQL Permission
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the GetScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the GetScript block
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-PermissionGetScript
 {
@@ -160,16 +160,16 @@ function Get-PermissionGetScript
 }
 
 <#
-.SYNOPSIS Get-DbExistTestScript
-    Returns the query that checks to see if a DB exists.
+    .SYNOPSIS Get-DbExistTestScript
+        Returns the query that checks to see if a DB exists.
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the TestScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the TestScript block
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-DbExistTestScript
 {
@@ -189,16 +189,16 @@ function Get-DbExistTestScript
 }
 
 <#
-.SYNOPSIS Get-TraceTestScript
-    Returns a query and sub query that gets Trace ID's and Event ID's that should be tracked
+    .SYNOPSIS Get-TraceTestScript
+        Returns a query and sub query that gets Trace ID's and Event ID's that should be tracked
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the TestScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the TestScript block
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-TraceTestScript
 {
@@ -220,16 +220,16 @@ function Get-TraceTestScript
 }
 
 <#
-.SYNOPSIS Get-PermissionTestScript
-    Returns a query that will get a list of users who have access to a certain SQL Permission
+    .SYNOPSIS Get-PermissionTestScript
+        Returns a query that will get a list of users who have access to a certain SQL Permission
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the TestScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the TestScript block
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-PermissionTestScript
 {
@@ -256,19 +256,19 @@ function Get-PermissionTestScript
 }
 
 <#
-.SYNOPSIS Get-DbExistSetScript
-    Returns a SQL Statement that removes a DB
+    .SYNOPSIS Get-DbExistSetScript
+        Returns a SQL Statement that removes a DB
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the SetScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the SetScript block
 
-.PARAMETER FixText
-    String that was obtained from the 'Fix' element of the base STIG Rule
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the event Ids that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the event Ids that will be returned
 #>
 function Get-DbExistSetScript {
     [CmdletBinding()]
@@ -297,19 +297,19 @@ function Get-DbExistSetScript {
 }
 
 <#
-.SYNOPSIS Get-TraceSetScript
-    Returns a SQL Statement that removes a DB
+    .SYNOPSIS Get-TraceSetScript
+        Returns a SQL Statement that removes a DB
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the SetScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the SetScript block
 
-.PARAMETER FixText
-    String that was obtained from the 'Fix' element of the base STIG Rule
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
 
-.PARAMETER CheckContent
-    Arbitrary in this function but is needed in Get-TraceSetScript
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
 #>
 function Get-TraceSetScript
 {
@@ -334,19 +334,19 @@ function Get-TraceSetScript
 }
 
 <#
-.SYNOPSIS Get-PermissionSetScript
-    Returns an SQL Statemnt that will remove a user with unauthorized access
+    .SYNOPSIS Get-PermissionSetScript
+        Returns an SQL Statemnt that will remove a user with unauthorized access
 
-.DESCRIPTION
-    The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-    The SQL STIG contains queries that will be placed in each of those blocks.
-    This functions returns the query that will be used in the SetScript block
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the SetScript block
 
-.PARAMETER FixText
-    String that was obtained from the 'Fix' element of the base STIG Rule
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
 
-.PARAMETER CheckContent
-    Arbitrary in this function but is needed in Get-TraceSetScript
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
 #>
 function Get-PermissionSetScript
 {
@@ -385,17 +385,17 @@ function Get-PermissionSetScript
 }
 
 <#
-.SYNOPSIS Get-Query
-    Returns all Queries found withing the 'CheckContent'
+    .SYNOPSIS Get-Query
+        Returns all Queries found withing the 'CheckContent'
 
-.DESCRIPTION
-    This function parses the 'CheckContent' to find all queies and extract them
-    Not all queries may be used by later functions and will be separated then.
-    Some functions require variations of the queries returned thus the reason for
-    returning all queries found
+    .DESCRIPTION
+        This function parses the 'CheckContent' to find all queies and extract them
+        Not all queries may be used by later functions and will be separated then.
+        Some functions require variations of the queries returned thus the reason for
+        returning all queries found
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
 function Get-Query
 {
@@ -445,11 +445,11 @@ function Get-Query
 }
 
 <#
-.SYNOPSIS Get-TraceIdQuery
-    Returns a query that is used to obtain Trace ID's
+    .SYNOPSIS Get-TraceIdQuery
+        Returns a query that is used to obtain Trace ID's
 
-.PARAMETER Query
-    An array of queries.
+    .PARAMETER Query
+        An array of queries.
 #>
 function Get-TraceIdQuery
 {
@@ -468,11 +468,11 @@ function Get-TraceIdQuery
 }
 
 <#
-.SYNOPSIS Get-EventIdQuery
-    Returns a query that is used to obtain Event ID's
+    .SYNOPSIS Get-EventIdQuery
+        Returns a query that is used to obtain Event ID's
 
-.PARAMETER Query
-    An array of queries.
+    .PARAMETER Query
+        An array of queries.
 #>
 function Get-EventIdQuery
 {
@@ -496,11 +496,11 @@ function Get-EventIdQuery
 }
 
 <#
-.SYNOPSIS Get-EventIdData
-    Returns the Event ID's that are chacked against
+    .SYNOPSIS Get-EventIdData
+        Returns the Event ID's that are checked against
 
-.PARAMETER CheckContent
-    This is the 'CheckContent' derived from the STIG raw string and holds the Data that will be returned
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the Data that will be returned
 #>
 function Get-EventIdData
 {

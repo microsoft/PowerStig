@@ -38,7 +38,7 @@ function ConvertTo-SqlScriptRule
 
     $sqlScriptRule.SetSetScript( $ruleType, $fixText )
 
-    if ( $sqlScriptRule.IsDuplicateRule( $Global:STIGSettings ) )
+    if ( $sqlScriptRule.IsDuplicateRule( $global:stigSettings ) )
     {
         $sqlScriptRule.SetDuplicateTitle()
     }

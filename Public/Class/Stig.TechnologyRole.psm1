@@ -4,19 +4,19 @@
 using module .\Stig.TechnologyVersion.psm1
 
 <#
-.SYNOPSIS
-    This class describes a TechnologyRole
+    .SYNOPSIS
+        This class describes a TechnologyRole
 
-.DESCRIPTION
-    The TechnologyRole class describes a TechnologyRole, the definition of the specific application or portion of an application that
-    the Stig applies to. The TechnologyRole is one of a few Technology focused classes that work together to form a complete
-    description of the Stig required by the user or application creating the StigData instance.
+    .DESCRIPTION
+        The TechnologyRole class describes a TechnologyRole, the definition of the specific application or portion of an application that
+        the Stig applies to. The TechnologyRole is one of a few Technology focused classes that work together to form a complete
+        description of the Stig required by the user or application creating the StigData instance.
 
-.EXAMPLE
-    $technologyRole = [TechnologyRole]::new([string] $Name, [TechnologyVersion] $TechnologyVersion)
+    .EXAMPLE
+        $technologyRole = [TechnologyRole]::new([string] $Name, [TechnologyVersion] $TechnologyVersion)
 
-.NOTES
-    This class requires PowerShell v5 or above.
+    .NOTES
+        This class requires PowerShell v5 or above.
 #>
 
 Class TechnologyRole 

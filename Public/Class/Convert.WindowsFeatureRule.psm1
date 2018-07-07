@@ -79,38 +79,38 @@ function Get-WindowsFeatureName
     {
         switch ($CheckContent)
         {
-            { $PSItem -match $script:RegularExpression.FeatureNameEquals }
+            { $PSItem -match $script:regularExpression.FeatureNameEquals }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:RegularExpression.FeatureNameEquals
+                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameEquals
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
             }
-            { $PSItem -match $script:RegularExpression.FeatureNameSpaceColon }
+            { $PSItem -match $script:regularExpression.FeatureNameSpaceColon }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:RegularExpression.FeatureNameSpaceColon -AllMatches
+                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameSpaceColon -AllMatches
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
             }
-            { $PSItem -match $script:RegularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
+            { $PSItem -match $script:regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:RegularExpression.IfTheApplicationExists
-                $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern $script:RegularExpression.textBetweenQuotes).Matches.Value -replace '"').Trim()
+                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.IfTheApplicationExists
+                $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern $script:regularExpression.textBetweenQuotes).Matches.Value -replace '"').Trim()
             }
             { $PSItem -match 'telnet' }
             {
                 $windowsFeatureName += 'TelnetClient'
             }
-            { $PSItem -match $script:RegularExpression.WebDavPublishingFeature }
+            { $PSItem -match $script:regularExpression.WebDavPublishingFeature }
             {
                 $windowsFeatureName += 'Web-DAV-Publishing'
             }
-            { $PSItem -match $script:RegularExpression.SimpleTCP }
+            { $PSItem -match $script:regularExpression.SimpleTCP }
             {
                 $windowsFeatureName += 'SimpleTCP'
             }
-            { $PSItem -match $script:RegularExpression.IISHostableWebCore }
+            { $PSItem -match $script:regularExpression.IISHostableWebCore }
             {
                 $windowsFeatureName += 'IIS-HostableWebCore'
             }
-            { $PSItem -match $script:RegularExpression.IISWebserver }
+            { $PSItem -match $script:regularExpression.IISWebserver }
             {
                 $windowsFeatureName += 'IIS-WebServer'
             }

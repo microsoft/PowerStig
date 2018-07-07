@@ -51,7 +51,7 @@ function ConvertTo-ProcessMitigationRule
                 $newRule = $tempRule.Clone()
                 $newRule.mitigationTarget = $mitigationTarget
                 $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
-                [void] $global:stigsettings.Add($newRule)
+                [void] $global:stigSettings.Add($newRule)
             }
             $byte++
         }
@@ -59,7 +59,7 @@ function ConvertTo-ProcessMitigationRule
 
     if ($processMitigationRule.conversionstatus -eq 'pass')
     {
-        if ( $processMitigationRule.IsDuplicateRule( $global:STIGSettings ))
+        if ( $processMitigationRule.IsDuplicateRule( $global:stigSettings ))
         {
             $processMitigationRule.SetDuplicateTitle()
         }

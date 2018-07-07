@@ -14,7 +14,7 @@ using module .\..\..\public\Class\Convert.DnsServerSettingRule.psm1
 function ConvertTo-DnsServerSettingRule
 {
     [CmdletBinding()]
-    [OutputType( [DnsServerSettingRule] )]
+    [OutputType([DnsServerSettingRule])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -32,12 +32,12 @@ function ConvertTo-DnsServerSettingRule
 
     $dnsServerSettingRule.SetStigRuleResource()
 
-    if ( $dnsServerSettingRule.IsDuplicateRule( $Global:STIGSettings ) )
+    if ( $dnsServerSettingRule.IsDuplicateRule( $global:stigSettings ) )
     {
         $dnsServerSettingRule.SetDuplicateTitle()
     }
 
-    if ( $dnsServerSettingRule.IsExistingRule( $Global:STIGSettings ) )
+    if ( $dnsServerSettingRule.IsExistingRule( $global:stigSettings ) )
     {
         $newId = Get-AvailableId -Id $dnsServerSettingRule.Id
         $dnsServerSettingRule.set_id( $newId )

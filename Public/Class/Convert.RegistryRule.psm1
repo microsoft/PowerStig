@@ -186,7 +186,7 @@ function Get-RegistryKey
 function Get-RegistryHiveFromWindowsStig
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -732,7 +732,7 @@ function Test-RegistryValueDataIsInteger
 function Get-NumberFromString
 {
     [CmdletBinding()]
-    [OutputType([string])]
+    [OutputType([int])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -751,7 +751,6 @@ function Get-NumberFromString
         throw "Did not find an integer in $ValueDataString."
     }
 }
-
 
 <#
     .SYNOPSIS
@@ -983,7 +982,7 @@ function ConvertTo-ValidDword
 function Test-MultipleRegistryEntries
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     Param
     (
         [parameter(Mandatory = $true)]

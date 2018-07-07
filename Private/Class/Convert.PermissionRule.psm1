@@ -56,6 +56,13 @@ function ConvertTo-PermissionRule
 }
 #endregion
 #region Support Functions
+<#
+    .SYNOPSIS
+        Creates a new PermissionRule
+
+    .PARAMETER StigRule
+        The xml Stig rule from the XCCDF.
+#>
 function New-PermissionRule
 {
     [CmdletBinding()]
@@ -78,7 +85,7 @@ function New-PermissionRule
 
     $permissionRule.SetAccessControlEntry()
 
-    if ( $permissionRule.IsDuplicateRule( $Global:STIGSettings ) )
+    if ( $permissionRule.IsDuplicateRule( $global:stigSettings ) )
     {
         $permissionRule.SetDuplicateTitle()
     }

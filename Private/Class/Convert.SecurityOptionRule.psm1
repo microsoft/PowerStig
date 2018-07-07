@@ -9,7 +9,7 @@ using module .\..\..\Public\Class\Convert.SecurityOptionRule.psm1
 #region Main Functions
 <#
     .SYNOPSIS
-        ConvertTo-SecurityOptionRule
+        Accepts the raw stig string data and converts it to a SecurityOptionRule object.
 #>
 function ConvertTo-SecurityOptionRule
 {
@@ -51,7 +51,7 @@ function ConvertTo-SecurityOptionRule
 function Test-ValueOtherThan
 {
     [CmdletBinding()]
-    [OutputType( [bool] )]
+    [OutputType([bool])]
     Param
     (
         [parameter(Mandatory = $true)]

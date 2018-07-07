@@ -1,4 +1,4 @@
-using module .\..\..\..\..\Public\Class\Stig.Technology.psm1
+using module .\..\..\..\..\Public\Class\Common.Enum.psm1
 using module .\..\..\..\..\Public\Class\Stig.TechnologyVersion.psm1
 using module .\..\..\..\..\Public\Class\Stig.TechnologyRole.psm1
 #region Header
@@ -9,8 +9,8 @@ $technologyRole1 = 'DNS'
 $technologyRole2 = 'ADDomain'
 $technologyRole3 = 'Instance'
 
-$Technology1 = [Technology]::new('Windows')
-$Technology2 = [Technology]::new('SQL')
+$Technology1 = [Technology]::Windows
+$Technology2 = [Technology]::SQL
 
 $technologyVersion1 = [TechnologyVersion]::new('2012R2', $Technology1)
 $technologyVersion2 = [TechnologyVersion]::new('All', $Technology1)

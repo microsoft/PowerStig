@@ -180,7 +180,7 @@ Class STIG : ICloneable
     {
         return Test-ExistingRule -RuleCollection $RuleCollection $this
     }
-    #region     #######################   Hard coded Methods    ####################################
+    #region Hard coded Methods
     [Boolean] IsHardCoded ()
     {
         return Test-ValueDataIsHardCoded -StigId $this.id
@@ -210,9 +210,6 @@ Class STIG : ICloneable
 
     .PARAMETER CheckContent
         The check-content xml element from the stig rule
-
-    .NOTES
-        General notes
 #>
 function Get-RuleTypeMatchList
 {
@@ -486,6 +483,8 @@ function Get-RuleTypeMatchList
 #>
 function Get-StigRuleResource
 {
+    [CmdletBinding()]
+    [OutputType([String])]
     param
     (
         [parameter(Mandatory = $true)]
@@ -528,7 +527,10 @@ function Get-StigRuleResource
     .EXAMPLE
         Get-IISLoggingRuleDscResource -StigTitle "IIS 8.5 Server Security Technical Implementation Guide"
 #>
-function Get-IISLoggingRuleDscResource {
+function Get-IISLoggingRuleDscResource 
+{
+    [CmdletBinding()]
+    [OutputType([String])]
     param
     (
         [parameter(Mandatory = $true)]
@@ -537,7 +539,8 @@ function Get-IISLoggingRuleDscResource {
         $StigTitle
     )
 
-    if ($StigTitle -match "Server") {
+    if ($StigTitle -match "Server")
+    {
         return "xIISLogging"
     }
 
@@ -552,10 +555,12 @@ function Get-IISLoggingRuleDscResource {
         Path value for the permission rule
 
     .EXAMPLE
-    Get-PermissionRuleDscResource -Path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\"
+        Get-PermissionRuleDscResource -Path "HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\"
 #>
 function Get-PermissionRuleDscResource
 {
+    [CmdletBinding()]
+    [OutputType([String])]
     param
     (
         [parameter(Mandatory = $true)]
@@ -589,8 +594,8 @@ function Get-PermissionRuleDscResource
 #>
 function Test-HtmlEncoding
 {
-    [outputtype([Boolean])]
-    [cmdletbinding()]
+    [CmdletBinding()]
+    [OutputType([Boolean])]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -617,8 +622,8 @@ function Test-HtmlEncoding
 #>
 function ConvertFrom-HtmlEncoding
 {
-    [outputtype([String])]
-    [cmdletbinding()]
+    [OutputType([String])]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -646,7 +651,7 @@ function ConvertFrom-HtmlEncoding
 function Test-DuplicateRule
 {
     [CmdletBinding()]
-    [OutputType( [Boolean] )]
+    [OutputType([Boolean])]
     param
     (
         [parameter( Mandatory = $true )]
@@ -689,7 +694,7 @@ function Test-DuplicateRule
 
 <#
     .SYNOPSIS
-        Looks in $Global:STIGSettings for existing rules
+        Looks in $global:stigSettings for existing rules
 
     .NOTES
         Some rules in the STIG enforce multiple settings. This funciton will test for
@@ -710,7 +715,7 @@ function Test-ExistingRule
         $NewRule
     )
 
-    $IdExist = $RuleCollection | Where-Object {$_.Id -eq $NewRule.Id}
+    $IdExist = $RuleCollection | Where-Object {$PSItem.Id -eq $NewRule.Id}
 
     return $IdExist.id -eq $NewRule.id
 }

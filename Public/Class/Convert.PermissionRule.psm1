@@ -340,7 +340,6 @@ function Get-PermissionAccessControlEntry
         {
             return ConvertTo-AccessControlEntry -StigString $StigString
         }
-
     }
 }
 
@@ -351,7 +350,6 @@ function Get-PermissionAccessControlEntry
         handle scenarios where a target has multiple principals assigned permissions
         to it.
 #>
-
 function ConvertTo-AccessControlEntryGrouped
 {
     [CmdletBinding()]
@@ -372,11 +370,11 @@ function ConvertTo-AccessControlEntryGrouped
     foreach ($entry in $accessControlEntryType)
     {
         $Type = ($entry.ToString() -Split "-")[1].Trim()
-        $PrincipalObject = $accessControlEntryPrincipal | Where-Object {$_.LineNumber -gt $entry.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
+        $PrincipalObject = $accessControlEntryPrincipal | Where-Object {$PSItem.LineNumber -gt $entry.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
         $Principal = ($PrincipalObject.ToString() -split '-')[1].Trim()
-        $RightsObject = $accessControlEntryAccess | Where-Object {$_.LineNumber -gt $entry.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
+        $RightsObject = $accessControlEntryAccess | Where-Object {$PSItem.LineNumber -gt $entry.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
         $Rights = ($RightsObject.ToString() -split "-")[1].Trim()
-        $InheritanceObject = $accessControlEntryApplies | Where-Object {$_.LineNumber -gt $RightsObject.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
+        $InheritanceObject = $accessControlEntryApplies | Where-Object {$PSItem.LineNumber -gt $RightsObject.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
         if($InheritanceObject)
         {
             $Inheritance = ($InheritanceObject.ToString() -split "-")[1].Trim()
@@ -388,7 +386,7 @@ function ConvertTo-AccessControlEntryGrouped
 
         if ($Rights -eq "Special")
         {
-            $specialPermissions = $accessControlEntrySpecial | Where-Object {$_.LineNumber -gt $RightsObject.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
+            $specialPermissions = $accessControlEntrySpecial | Where-Object {$PSItem.LineNumber -gt $RightsObject.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
             if ($specialPermissions.ToString().Contains(':'))
             {
                 $Rights = ($specialPermissions -split ':')[1].Trim()
@@ -470,8 +468,10 @@ function ConvertTo-AccessControlEntry
     {
         if ( $entry -notmatch 'Type|Inherited|Columns|Principal|Applies' )
         {
-            # Access control entries are commonly formated like so: 'Princiapl - FileSystemRights - Inheritance
-            # we will split on a regex pattern the represents space dash space ( - )
+            <# 
+                Access control entries are commonly formated like so: 'Princiapl - FileSystemRights - Inheritance
+                we will split on a regex pattern the represents space dash space ( - )
+            #>
             $principals, $fileSystemRights, [string]$inheritance = $entry -split $script:RegularExpression.spaceDashSpace
 
             if ( $fileSystemRights -match $Script:RegularExpression.textBetweenParentheses )
@@ -487,9 +487,9 @@ function ConvertTo-AccessControlEntry
                 break
             }
             <#
-            There is an edge case in V-26070 where the inheritance is specified in the rule outside of the common format
-            V-26070 states the inheritance is to be applied to all the prinicpals.  So if an inheritance is passed in from the Inheritance
-            parameter we applied to all the prinicipals.  If not we parse the rawString to extract the inheritance.
+                There is an edge case in V-26070 where the inheritance is specified in the rule outside of the common format
+                V-26070 states the inheritance is to be applied to all the prinicpals.  So if an inheritance is passed in from the Inheritance
+                parameter we applied to all the prinicipals.  If not we parse the rawString to extract the inheritance.
             #>
             if ( $InheritenceInput )
             {

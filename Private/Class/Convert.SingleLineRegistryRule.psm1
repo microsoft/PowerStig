@@ -7,14 +7,11 @@ using module .\..\..\Public\Data\Convert.Data.psm1
 #endregion
 #region Main Functions
 <#
- .SYNOPSIS
-    Looks in the Check-Content element to see if it matches registry string.
+    .SYNOPSIS
+        Looks in the Check-Content element to see if it matches registry string.
 
- .PARAMETER CheckStrings
-    Check-Content element
-
- .NOTES
-    General notes
+    .PARAMETER CheckStrings
+        Check-Content element
 #>
 function Test-SingleLineRegistryRule
 {
@@ -41,10 +38,10 @@ function Test-SingleLineRegistryRule
 #endregion
 #region Registry Path
 <#
- .SYNOPSIS
+    .SYNOPSIS
     Extract the registry path from an office STIG string.
 
- .Parameter CheckContent
+    .Parameter CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-SingleLineRegistryPath
@@ -106,11 +103,11 @@ function Get-SingleLineRegistryPath
 #endregion
 #region Registry Type
 <#
- .SYNOPSIS
-    Extract the registry value type from an Office STIG string.
+    .SYNOPSIS
+        Extract the registry value type from an Office STIG string.
 
- .Parameter CheckContent
-    An array of the raw sting data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueTypeFromSingleLineStig
 {
@@ -185,11 +182,11 @@ function Get-RegistryValueTypeFromSingleLineStig
 #endregion
 #region Registry Name
 <#
- .SYNOPSIS
-    Extract the registry value type from a string.
+    .SYNOPSIS
+        Extract the registry value type from a string.
 
- .Parameter CheckContent
-    An array of the raw sting data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueNameFromSingleLineStig
 {
@@ -238,13 +235,13 @@ function Get-RegistryValueNameFromSingleLineStig
 #endregion
 #region Registry Data
 <#
- .SYNOPSIS
-    Looks for multiple patterns in the value string to extract out the value to return or determine
-    if additional processing is required. For example if an allowable range detected, additional
-    functions need to be called to convert the text into powershell operators.
+    .SYNOPSIS
+        Looks for multiple patterns in the value string to extract out the value to return or determine
+        if additional processing is required. For example if an allowable range detected, additional
+        functions need to be called to convert the text into powershell operators.
 
- .Parameter CheckContent
-    An array of the raw sting data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueDataFromSingleStig
 {
@@ -304,14 +301,14 @@ function Get-RegistryValueDataFromSingleStig
 #endregion
 #region Ancillary functions
 <#
- .SYNOPSIS
-    Get the registry value string from the Office STIG format.
+    .SYNOPSIS
+        Get the registry value string from the Office STIG format.
 
- .Parameter CheckContent
-    An array of the raw sting data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw sting data taken from the STIG setting.
 
- .Parameter Trim
-    Trims the leading a trailing parts of the string that are not registry specific
+    .Parameter Trim
+        Trims the leading a trailing parts of the string that are not registry specific
 #>
 function Get-RegistryValueStringFromSingleLineStig
 {
@@ -364,11 +361,11 @@ function Get-RegistryValueStringFromSingleLineStig
 }
 
 <#
- .SYNOPSIS
-    Checks the registry string format to determine if it is in the Office STIG format.
+    .SYNOPSIS
+        Checks the registry string format to determine if it is in the Office STIG format.
 
- .Parameter CheckContent
-    An array of the raw sting data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw sting data taken from the STIG setting.
 #>
 function Test-SingleLineStigFormat
 {

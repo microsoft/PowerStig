@@ -56,11 +56,11 @@ Class WebAppPoolRule : STIG
 #endregion
 #region Method Functions
 <#
-.SYNOPSIS
-    Returns the key and value properties for the STIG rule.
+    .SYNOPSIS
+        Returns the key and value properties for the STIG rule.
 
-.Parameter CheckContent
-    An array of the raw string data taken from the STIG setting.
+    .Parameter CheckContent
+        An array of the raw string data taken from the STIG setting.
 #>
 function Get-KeyValuePair
 {
@@ -119,12 +119,12 @@ function Get-KeyValuePair
 }
 
 <#
-.SYNOPSIS
-    Takes the key property from a WebAppPoolrule to determine the Organizational value
-    test string to return.
+    .SYNOPSIS
+        Takes the key property from a WebAppPoolrule to determine the Organizational value
+        test string to return.
 
-.PARAMETER Key
-    Key property from the WebAppPoolrule.
+    .PARAMETER Key
+        Key property from the WebAppPoolrule.
 #>
 function Get-OrganizationValueTestString
 {

@@ -353,16 +353,7 @@ Describe 'Get-NumberFromString' {
     foreach ( $registry in $registriesToTest )
     {
         $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-        if ( Test-RegistryValueDataIsInteger -ValueDataString ($registryData) )
-        {
-            $result = $true
-        }
-        else 
-        {
-            $result = $false   
-        }
-        
-        if($result)
+        if( Test-RegistryValueDataIsInteger -ValueDataString ($registryData) )
         {
             if ($registry.OrganizationValueRequired -eq 'False')
             {
@@ -374,9 +365,8 @@ Describe 'Get-NumberFromString' {
         }
         else
         {
-            It "Should return error" {
-                
-                {Get-NumberFromString -ValueDataString ($registryData)} | Should throw 
+            It "Should throw if a number is not found" {
+                {Get-NumberFromString -ValueDataString ($registryData)} | Should throw "Did not find an integer in $registryData."
             }
         }
     }

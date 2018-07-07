@@ -13,6 +13,7 @@ using module .\..\..\Public\Class\Convert.GroupRule.psm1
 #>
 function ConvertTo-GroupRule
 {
+    [CmdletBinding()]
     [OutputType([GroupRule])]
     Param
     (
@@ -28,7 +29,7 @@ function ConvertTo-GroupRule
 
     if ($groupRule.conversionstatus -eq 'pass')
     {
-        if ( $groupRule.IsDuplicateRule( $global:STIGSettings ))
+        if ( $groupRule.IsDuplicateRule( $global:stigSettings ))
         {
             $groupRule.SetDuplicateTitle()
         }

@@ -162,7 +162,7 @@ function Get-LogFlag
         {
             [string] $logFlagLine = $cleanCheckContent | Select-String -Pattern $script:webRegularExpression.standardFields -AllMatches
             $logFlagString = $logFlagLine | Select-String -Pattern $script:webRegularExpression.standardFieldEntries -AllMatches
-            $logFlagValue = Get-LogFlagValue -LogFlags ( $logFlagString.Matches.Groups.Where{$_.name -eq 1}.value )
+            $logFlagValue = Get-LogFlagValue -LogFlags ( $logFlagString.Matches.Groups.Where{$PSItem.name -eq 1}.value )
         }
     }
 
@@ -293,6 +293,6 @@ function Get-LogFlagValue
         $logFlagReturn += $script:logflagsConstant.($flag.trim())
     }
 
-    return $logFlagReturn.where{ -not [string]::IsNullOrEmpty($_) } -join ','
+    return $logFlagReturn.where{ -not [string]::IsNullOrEmpty($PSItem) } -join ','
 }
 #endregion

@@ -79,3 +79,13 @@ Enum RuleType
     WinEventLogRule
     WmiRule
 }
+
+<#
+    .SYNOPSIS
+        This enum describes the list of supported technologies 
+#>
+enum Technology
+{
+    Windows
+    SQL
+}

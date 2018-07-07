@@ -38,7 +38,7 @@ function ConvertTo-WebAppPoolRule
 
     if ($webAppPool.conversionstatus -eq 'pass')
     {
-        if ( $webAppPool.IsDuplicateRule( $Global:STIGSettings ))
+        if ( $webAppPool.IsDuplicateRule( $global:stigSettings ))
         {
             $webAppPool.SetDuplicateTitle()
         }

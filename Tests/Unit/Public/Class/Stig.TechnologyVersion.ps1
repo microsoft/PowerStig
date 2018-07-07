@@ -1,4 +1,4 @@
-using module .\..\..\..\..\Public\Class\Stig.Technology.psm1
+using module .\..\..\..\..\Public\Class\Common.Enum.psm1
 using module .\..\..\..\..\Public\Class\Stig.TechnologyVersion.psm1
 using module .\..\..\..\..\Public\Class\Stig.TechnologyRole.psm1
 #region Header
@@ -9,8 +9,8 @@ $TechnologyVersion1 = 'All'
 $TechnologyVersion2 = '2012R2'
 $TechnologyVersion3 = 'Server2012'
 
-$Technology1 = [Technology]::new('Windows')
-$Technology2 = [Technology]::new('SQL')
+$Technology1 = [Technology]::Windows
+$Technology2 = [Technology]::SQL
 
 $TestValidateSet = @"
 Windows = All, 2012R2
@@ -73,7 +73,7 @@ Describe "TechnologyVersion Class" {
 
     Context "Static Methods" {
         It "Available: Should be able to return available roles. Valid TechnologyVersion parameter." {
-            $ValidVersion = $Technology1.Name
+            $ValidVersion = $Technology1.ToString()
             [TechnologyVersion]::Available($ValidVersion) | Should Be $TestValidSetData.$ValidVersion.Split(',').Trim()
         }
 

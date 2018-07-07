@@ -16,16 +16,16 @@ Import-Module $modulePath -Force
 Describe 'Get-AvailableId' {
     # Since this function uses a global variable, we need to make sure we don't step on anything. 
     $resetglobalSettings = $false
-    if ( $Global:StigSettings )
+    if ( $global:stigSettings )
     {
-        [System.Collections.ArrayList] $globalSettings = $Global:StigSettings
+        [System.Collections.ArrayList] $globalSettings = $global:stigSettings
         $resetglobalSettings = $true
     }
 
     try 
     {
         It 'Should add the next available letter to an Id' {
-            $Global:StigSettings = @(@{Id = 'V-1000'})
+            $global:stigSettings = @(@{Id = 'V-1000'})
             Get-AvailableId -Id 'V-1000' | Should Be 'V-1000.a'
         }
     }
@@ -33,7 +33,7 @@ Describe 'Get-AvailableId' {
     {
         if ( $resetglobalSettings )
         {
-            $Global:StigSettings = $globalSettings
+            $global:stigSettings = $globalSettings
         }
     }
 }
