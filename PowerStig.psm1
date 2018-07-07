@@ -2,7 +2,6 @@
 # Licensed under the MIT License.
 
 using module .\Public\Class\Stig.StigData.psm1
-using module .\Public\Class\Stig.Technology.psm1
 using module .\Public\Class\Stig.TechnologyRole.psm1
 using module .\Public\Class\Stig.TechnologyVersion.psm1
 using module .\Public\Class\Stig.StigException.psm1
