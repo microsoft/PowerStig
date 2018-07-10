@@ -151,7 +151,7 @@ Class STIG : ICloneable
         return (
             $CheckContent -split '\n' |
                 Select-String -Pattern "\w" |
-                ForEach-Object { $PSitem.ToString().Trim() }
+                    ForEach-Object { $PSitem.ToString().Trim() }
         )
     }
 

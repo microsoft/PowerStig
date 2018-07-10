@@ -61,13 +61,13 @@ Class PermissionRule : STIG
 
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        $permissionPaths = Get-PermissionTargetPath -StigString [STIG]::SplitChecContent( $CheckContent ) 
+        $permissionPaths = Get-PermissionTargetPath -StigString ([STIG]::SplitCheckContent( $CheckContent ) )
         return ( Test-MultiplePermissionRule -PermissionPath $permissionPaths )
     }
 
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultiplePermissionRule -CheckContent [STIG]::SplitChecContent( $CheckContent ) )
+        return ( Split-MultiplePermissionRule -CheckContent ([STIG]::SplitCheckContent( $CheckContent ) ) )
     }
 }
 #endregion

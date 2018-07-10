@@ -8,7 +8,7 @@
 function Get-PermissionTargetPath
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [Parameter(Mandatory = $true)]
