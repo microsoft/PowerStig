@@ -6,6 +6,8 @@ using module .\..\Convert.Stig\Convert.Stig.psm1
 #endregion
 #region Class
 
+# This file is not currently in use, but is provided as part of the standard module structure.
+
 #endregion
 #region Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))

@@ -11,7 +11,7 @@ function Get-PermissionTargetPath
     [OutputType( [string] )]
     Param
     (
-        [parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $StigString
@@ -210,7 +210,7 @@ function Get-PermissionTargetPath
 function Get-PermissionAccessControlEntry
 {
     [CmdletBinding()]
-    [OutputType( [string] )]
+    [OutputType([string])]
     Param
     (
         [Parameter(Mandatory = $true)]
@@ -224,9 +224,9 @@ function Get-PermissionAccessControlEntry
         { $StigString -match $script:RegularExpression.permissionRegistryWinlogon }
         {
             <#
-            Permission rule that pertains to HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
-            This rule has an edge case which specifies the same inheritence to all the principals
-            and is not in the same format as the other rules.
+                Permission rule that pertains to HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
+                This rule has an edge case which specifies the same inheritence to all the principals
+                and is not in the same format as the other rules.
             #>
             return ConvertTo-AccessControlEntry -StigString $StigString -InheritenceInput 'This key and subkeys'
         }
@@ -236,7 +236,7 @@ function Get-PermissionAccessControlEntry
             return ConvertTo-AccessControlEntryIF -StigString $StigString
         }
 
-        { $StigString -join " " -match $script:RegularExpression.TypePrincipalAccess}
+        { $StigString -join " " -match $script:RegularExpression.TypePrincipalAccess }
         {
             return ConvertTo-AccessControlEntryGrouped -StigString $StigString
         }
@@ -249,7 +249,7 @@ function Get-PermissionAccessControlEntry
 
         { $StigString -match $script:RegularExpression.inetpub }
         {
-            # in IIS Server Stig rule V-76745 says creator/owner should have special permissions to subkeys so we ignore it. All rules that are properly documented are converted
+            # In IIS Server Stig rule V-76745 says creator/owner should have special permissions to subkeys so we ignore it. All rules that are properly documented are converted
             $inetpubFolderStigString = @()
             foreach ($line in $stigString)
             {
@@ -279,71 +279,91 @@ function Get-PermissionAccessControlEntry
 function ConvertTo-AccessControlEntryGrouped
 {
     [CmdletBinding()]
-    [OutputType( [hashtable] )]
+    [OutputType([hashtable])]
     param
     (
-        [psobject] $StigString,
-
-        [string] $InheritenceInput
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $StigString
     )
 
     $accessControlEntryPrincipal = $StigString | Select-String -Pattern "Principal\s*-"
-    $accessControlEntryType = $StigString | Select-String -Pattern "Type\s*-"
-    $accessControlEntryAccess = $StigString | Select-String -Pattern "Access\s*-"
-    $accessControlEntryApplies = $StigString | Select-String -Pattern "Applies To\s*-"
-    $accessControlEntrySpecial = $StigString | Select-String -Pattern "\(Access - Special\s*"
+    $accessControlEntryType      = $StigString | Select-String -Pattern "Type\s*-"
+    $accessControlEntryAccess    = $StigString | Select-String -Pattern "Access\s*-"
+    $accessControlEntryApplies   = $StigString | Select-String -Pattern "Applies To\s*-"
+    $accessControlEntrySpecial   = $StigString | Select-String -Pattern "\(Access - Special\s*"
 
     foreach ($entry in $accessControlEntryType)
     {
-        $Type = ($entry.ToString() -Split "-")[1].Trim()
-        $PrincipalObject = $accessControlEntryPrincipal | Where-Object {$PSItem.LineNumber -gt $entry.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
-        $Principal = ($PrincipalObject.ToString() -split '-')[1].Trim()
-        $RightsObject = $accessControlEntryAccess | Where-Object {$PSItem.LineNumber -gt $entry.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
-        $Rights = ($RightsObject.ToString() -split "-")[1].Trim()
-        $InheritanceObject = $accessControlEntryApplies | Where-Object {$PSItem.LineNumber -gt $RightsObject.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
-        if($InheritanceObject)
+        $type = ($entry.ToString() -Split "-")[1].Trim()
+
+        $principalObject = $accessControlEntryPrincipal |
+            Where-Object {$PSItem.LineNumber -gt $entry.LineNumber} |
+                Sort-Object -Property LineNumber |Select-Object -First 1
+
+        $principal = ($principalObject.ToString() -split '-')[1].Trim()
+
+        $rightsObject = $accessControlEntryAccess |
+            Where-Object {$PSItem.LineNumber -gt $entry.LineNumber} |
+                Sort-Object -Property LineNumber | Select-Object -First 1
+
+        $rights = ($RightsObject.ToString() -split "-")[1].Trim()
+
+        $inheritanceObject = $accessControlEntryApplies |
+            Where-Object {$PSItem.LineNumber -gt $RightsObject.LineNumber} |
+                Sort-Object -Property LineNumber | Select-Object -First 1
+
+        if ($inheritanceObject)
         {
-            $Inheritance = ($InheritanceObject.ToString() -split "-")[1].Trim()
+            $inheritance = ($InheritanceObject.ToString() -split "-")[1].Trim()
         }
         else
         {
             $inheritance = ""
         }
 
-        if ($Rights -eq "Special")
+        if ($rights -eq "Special")
         {
-            $specialPermissions = $accessControlEntrySpecial | Where-Object {$PSItem.LineNumber -gt $RightsObject.LineNumber} | Sort-Object -Property LineNumber | Select-Object -First 1
+            $specialPermissions = $accessControlEntrySpecial |
+                Where-Object {$PSItem.LineNumber -gt $rightsObject.LineNumber} |
+                    Sort-Object -Property LineNumber | Select-Object -First 1
+
             if ($specialPermissions.ToString().Contains(':'))
             {
-                $Rights = ($specialPermissions -split ':')[1].Trim()
+                $rights = ($specialPermissions -split ':')[1].Trim()
             }
             else
             {
-                $Rights = ($specialPermissions -split '=')[1].Trim()
+                $rights = ($specialPermissions -split '=')[1].Trim()
             }
-            $Rights = $Rights.Substring(0,$Rights.Length -1)
+
+            $rights = $rights.Substring(0,$rights.Length -1)
         }
 
         $accessControlEntries += [pscustomobject[]]@{
-            Principal        = $Principal
-            ForcePrincipal   = Get-ForcePrincipal($StigString)
-            Rights           = Convert-RightsConstant -RightsString $Rights
-            Inheritance      = $script:inheritenceConstant[[string]$Inheritance.trim()]
-            Type             = $Type
+            Principal          = $principal
+            ForcePrincipal     = Get-ForcePrincipal -StigString $StigString
+            Rights             = Convert-RightsConstant -RightsString $rights
+            Inheritance        = $script:inheritenceConstant[[string]$inheritance.trim()]
+            Type               = $type
         }
     }
     return $accessControlEntries
 }
 
+<#
+    .SYNOPSIS
+        Converts permission rules entries that have an inheritence mapping
+#>
 function ConvertTo-AccessControlEntryIF
 {
     [CmdletBinding()]
-    [OutputType( [hashtable] )]
+    [OutputType([hashtable])]
     param
     (
-        [psobject] $StigString,
-
-        [string] $InheritenceInput
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $StigString
     )
 
     $accessControlEntryMatches = $StigString | Select-String -Pattern $script:RegularExpression.InheritancePermissionMap
@@ -358,7 +378,9 @@ function ConvertTo-AccessControlEntryIF
             $perm[0] = $perm[0] -replace '\(','\(' -replace '\)','\)'
             $entry = $entry -replace $perm[0].Trim(), $perm[1].Trim()
         }
+
         $principal, [string]$inheritance, $fileSystemRights = $entry -split $script:RegularExpression.spaceDashSpace
+
         if (-not $script:inheritenceConstant[[string]$inheritance.trim()])
         {
             $inheritance = ""
@@ -367,25 +389,36 @@ function ConvertTo-AccessControlEntryIF
         {
             $inheritance = $script:inheritenceConstant[[string]$inheritance.trim()]
         }
+
         $accessControlEntries += [pscustomobject[]]@{
-            Principal        = $principal.trim()
-            ForcePrincipal   = Get-ForcePrincipal($StigString)
-            Rights           = Convert-RightsConstant -RightsString $fileSystemRights
-            Inheritance      = $inheritance
+            Principal      = $principal.trim()
+            ForcePrincipal = Get-ForcePrincipal -StigString $StigString
+            Rights         = Convert-RightsConstant -RightsString $fileSystemRights
+            Inheritance    = $inheritance
         }
     }
+
     return $accessControlEntries
 }
 
+<#
+    .SYNOPSIS
+        Converts the raw text from the STIG rule hastable with
+        the following keys: Princiapl,FileSystemRights, and Inheritance.
+#>
 function ConvertTo-AccessControlEntry
 {
     [CmdletBinding()]
-    [OutputType( [hashtable] )]
+    [OutputType([hashtable])]
     param
     (
-        [psobject] $StigString,
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $StigString,
 
-        [string] $InheritenceInput
+        [Parameter()]
+        [string]
+        $InheritenceInput
     )
 
     $accessControlEntryMatches = $StigString | Select-String -Pattern $script:RegularExpression.spaceDashSpace
@@ -445,10 +478,12 @@ function ConvertTo-AccessControlEntry
 function Convert-RightsConstant
 {
     [CmdletBinding()]
-    [OutputType( [array] )]
+    [OutputType([array])]
     param
     (
-        [string] $RightsString
+        [Parameter(Mandatory = $true)]
+        [string]
+        $RightsString
     )
 
     foreach ( $string in $RightsString )
@@ -494,10 +529,10 @@ function Convert-RightsConstant
 
 <#
     .SYNOPSIS
-    Checks if the permission rule target has multiple paths
+        Checks if the permission rule target has multiple paths
 
     .PARAMETER PermissionPath
-    Permission rule target path
+        Permission rule target path
 #>
 function Test-MultiplePermissionRule
 {
@@ -505,22 +540,25 @@ function Test-MultiplePermissionRule
     [OutputType([bool])]
     param
     (
-        [string] $PermissionPath
+        [Parameter(Mandatory = $true)]
+        [string]
+        $PermissionPath
     )
 
     if ( $PermissionPath -match ';')
     {
         return $true
     }
+
     return $false
 }
 
 <#
     .SYNOPSIS
-    Returns an array of permission rule target paths
+        Returns an array of permission rule target paths
 
     .PARAMETER PermissionPath
-    Permission rule target path
+        Permission rule target path
 #>
 function Split-MultiplePermissionRule
 {
@@ -574,6 +612,7 @@ function Split-MultiplePermissionRule
         {
             $result += Join-CheckContent -Body ($CheckContent -replace $target)
         }
+
         return $result
     }
 
@@ -585,6 +624,10 @@ function Split-MultiplePermissionRule
     return $result
 }
 
+<#
+    .SYNOPSIS
+        Retrieves the Force Principal attribute
+#>
 function Get-ForcePrincipal
 {
     [CmdletBinding()]
@@ -598,6 +641,10 @@ function Get-ForcePrincipal
     return $false
 }
 
+<#
+    .SYNOPSIS
+        Converts a string array into a multi-line string object
+#>
 function Join-CheckContent
 {
     [CmdletBinding()]

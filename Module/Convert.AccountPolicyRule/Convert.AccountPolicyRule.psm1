@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
