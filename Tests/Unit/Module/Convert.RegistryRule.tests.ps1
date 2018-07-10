@@ -446,9 +446,9 @@ try
             $checkContent = "Registry Hive: $hive" +
             "Registry Path:  $path"
 
-            Mock Test-SingleLineRegistryRule {return $false} -ModuleName Convert.RegistryRule -Verifiable
-            Mock Get-RegistryHiveFromWindowsStig {return "HKEY_LOCAL_MACHINE"} -ModuleName Convert.RegistryRule
-            Mock Get-RegistryPathFromWindowsStig {return "\Path\To\Value"} -ModuleName Convert.RegistryRule
+            Mock Test-SingleLineRegistryRule {return $false}  -Verifiable
+            Mock Get-RegistryHiveFromWindowsStig {return "HKEY_LOCAL_MACHINE"} 
+            Mock Get-RegistryPathFromWindowsStig {return "\Path\To\Value"} 
 
             It 'Should return the correct path' {
                 $correctPath = Get-RegistryKey -CheckContent $checkContent
@@ -459,7 +459,7 @@ try
 
         Context 'Office STIG' {
             
-            Mock Test-SingleLineRegistryRule {return $true} -ModuleName Convert.RegistryRule -Verifiable
+            Mock Test-SingleLineRegistryRule {return $true}  -Verifiable
 
             It 'Should return the correct HKCU path' {
                 $fullPath = "HKCU\Path\To\Value"
@@ -467,7 +467,7 @@ try
                     "$fullPath",
                     "",
                     "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.")
-                Mock Get-SingleLineRegistryPath {return $fullPath} -ModuleName Convert.RegistryRule -Verifiable
+                Mock Get-SingleLineRegistryPath {return $fullPath}  -Verifiable
                 Get-RegistryKey -CheckContent $checkContent | Should Be $fullPath
                 Assert-VerifiableMock
             }
@@ -478,7 +478,7 @@ try
                     "$fullPath",
                     "",
                     "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.")
-                Mock Get-SingleLineRegistryPath {return $fullPath} -ModuleName Convert.RegistryRule -Verifiable
+                Mock Get-SingleLineRegistryPath {return $fullPath}  -Verifiable
                 Get-RegistryKey -CheckContent $checkContent | Should Be $fullPath
             }
         }
@@ -563,8 +563,8 @@ try
         }
 
         Context 'Windows STIG' {
-            Mock Test-SingleLineStigFormat {return $false} -ModuleName Convert.RegistryRule
-            Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_SZ'} -ModuleName Convert.RegistryRule -Verifiable
+            Mock Test-SingleLineStigFormat {return $false} 
+            Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_SZ'}  -Verifiable
 
             It "Should call Get-RegistryValueTypeFromWindowsStig when a Windows STIG is given" {
                 Get-RegistryValueType -CheckContent "Type: REG_SZ" | Out-Null
@@ -577,12 +577,12 @@ try
                 [string] $registryTypeForDSC = $item.Value
 
                 It "Should accept '$registryTypeFromSTIG' and return '$registryTypeForDSC'" {
-                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_SZ'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -eq 'Type: REG_SZ'}
-                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_BINARY'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_BINARY'}
-                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_DWORD'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_DWORD'}
-                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_QWORD'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_QWORD'}
-                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_MULTI_SZ'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
-                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_EXPAND_SZ'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
+                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_SZ'}  -ParameterFilter {$CheckContent -eq 'Type: REG_SZ'}
+                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_BINARY'}  -ParameterFilter {$CheckContent -match 'REG_BINARY'}
+                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_DWORD'}  -ParameterFilter {$CheckContent -match 'REG_DWORD'}
+                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_QWORD'}  -ParameterFilter {$CheckContent -match 'REG_QWORD'}
+                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_MULTI_SZ'}  -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
+                    Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_EXPAND_SZ'}  -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
 
                     $RegistryValueType = Get-RegistryValueType -CheckContent "Type: $($item.Key)"
                     $RegistryValueType | Should Be $registryTypeForDSC
@@ -590,7 +590,7 @@ try
             }
 
             It "Should return 'null' with invalid registry type" {
-                Mock Get-RegistryValueTypeFromWindowsStig {return 'Invalid'} -ModuleName Convert.RegistryRule
+                Mock Get-RegistryValueTypeFromWindowsStig {return 'Invalid'} 
                 Get-RegistryValueType -CheckContent 'Mocked data' | Should Be $null
             }
 
@@ -600,8 +600,8 @@ try
             function Get-RegistryValueTypeFromSingleLineStig
             {
             }
-            Mock Test-SingleLineStigFormat {return $true} -ModuleName Convert.RegistryRule
-            Mock Get-RegistryValueTypeFromSingleLineStig {return 'REG_SZ'} -ModuleName Convert.RegistryRule -Verifiable
+            Mock Test-SingleLineStigFormat {return $true} 
+            Mock Get-RegistryValueTypeFromSingleLineStig {return 'REG_SZ'}  -Verifiable
 
             It "Should call Get-RegistryValueTypeFromSingleLineStig when an Office STIG is given" {
                 Get-RegistryValueType -CheckContent "Type: REG_SZ" | Out-Null
@@ -628,22 +628,22 @@ try
 
         Context 'Windows STIG' {
 
-            Mock Test-SingleLineStigFormat {return $false} -ModuleName Convert.RegistryRule
+            Mock Test-SingleLineStigFormat {return $false} 
 
             It "Should return ValueName" {
-                Mock Get-RegistryValueNameFromWindowsStig {return 'ValueName'} -ModuleName Convert.RegistryRule
+                Mock Get-RegistryValueNameFromWindowsStig {return 'ValueName'} 
                 $RegistryValueName = Get-RegistryValueName -CheckContent "Name: $valueName"
                 $RegistryValueName | Should Be 'ValueName'
             }
         }
 
         Context 'Office STIG' {
-            Mock Test-SingleLineStigFormat {return $true} -ModuleName Convert.RegistryRule
+            Mock Test-SingleLineStigFormat {return $true} 
 
             $checkContent = "Criteria: If the value $valueName is REG_Type = 2, this is not a finding."
 
             It "Should return ValueName" {
-                Mock Get-RegistryValueNameFromSingleLineStig {return 'ValueName' } -ModuleName Convert.RegistryRule
+                Mock Get-RegistryValueNameFromSingleLineStig {return 'ValueName' } 
                 $RegistryValueName = Get-RegistryValueName -CheckContent $checkContent
                 $RegistryValueName | Should Be $valueName
             }
@@ -674,8 +674,8 @@ try
 
         Context 'Windows STIG' {
 
-            Mock Test-SingleLineStigFormat {return $false} -ModuleName Convert.RegistryRule
-            Mock Get-RegistryValueDataFromWindowsStig {return ""} -ModuleName Convert.RegistryRule -Verifiable
+            Mock Test-SingleLineStigFormat {return $false} 
+            Mock Get-RegistryValueDataFromWindowsStig {return ""}  -Verifiable
             It 'Should call the Windows code path when not an office registry format' {
                 Get-RegistryValueData -CheckContent "Value: 1"
                 Assert-VerifiableMock
@@ -683,8 +683,8 @@ try
         }
 
         Context 'Office STIG' {
-            Mock Test-SingleLineStigFormat {return $true} -ModuleName Convert.RegistryRule
-            Mock Get-RegistryValueDataFromSingleStig -ModuleName Convert.RegistryRule -Verifiable
+            Mock Test-SingleLineStigFormat {return $true} 
+            Mock Get-RegistryValueDataFromSingleStig  -Verifiable
             It 'Should call the Office code path with an office registry format' {
                 Get-RegistryValueData -CheckContent "Criteria: 1"
                 Assert-VerifiableMock
@@ -773,9 +773,9 @@ try
 
         Context 'Valid Dword' {
 
-            Mock Test-IsValidDword {return $false} -ModuleName Convert.RegistryRule
-            Mock ConvertTo-ValidDword {return '1'} -ModuleName Convert.RegistryRule -ParameterFilter {$valueData -match 'Enable'}
-            Mock ConvertTo-ValidDword {return '0'} -ModuleName Convert.RegistryRule -ParameterFilter {$valueData -match 'Disable'}
+            Mock Test-IsValidDword {return $false} 
+            Mock ConvertTo-ValidDword {return '1'}  -ParameterFilter {$valueData -match 'Enable'}
+            Mock ConvertTo-ValidDword {return '0'}  -ParameterFilter {$valueData -match 'Disable'}
 
             It "Should Convert Enable into 1 with Type Dword" {
                 Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Enabled" | Should Be "1"
@@ -788,7 +788,7 @@ try
 
         Context 'Invalid Dword' {
 
-            Mock Test-IsValidDword {return $true} -ModuleName Convert.RegistryRule
+            Mock Test-IsValidDword {return $true} 
 
             It "Should return Enable when not a Dword" {
                 Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Enabled" | Should Be "Enabled"
@@ -1224,12 +1224,12 @@ try
         foreach ( $registryType in $registryTypes )
         {
             $checkContent = "Criteria: If the value ""1001"" is $registryType = 3"
-            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_SZ = 3'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_SZ'}
-            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_BINARY = 3'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_BINARY'}
-            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_QWORD = 3'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_QWORD'}
-            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_MULTI_SZ = 3'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
-            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is DWORD = 3'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_DWORD'}
-            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_EXPAND_SZ = 3'} -ModuleName Convert.RegistryRule -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
+            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_SZ = 3'}  -ParameterFilter {$CheckContent -match 'REG_SZ'}
+            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_BINARY = 3'}  -ParameterFilter {$CheckContent -match 'REG_BINARY'}
+            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_QWORD = 3'}  -ParameterFilter {$CheckContent -match 'REG_QWORD'}
+            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_MULTI_SZ = 3'}  -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
+            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is DWORD = 3'}  -ParameterFilter {$CheckContent -match 'REG_DWORD'}
+            Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_EXPAND_SZ = 3'}  -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
 
             It "Should return '$registryType' from '$checkContent'" {
 

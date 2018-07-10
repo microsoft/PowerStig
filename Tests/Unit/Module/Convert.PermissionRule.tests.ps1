@@ -27,7 +27,7 @@ try
                     Inheritance = ""
                 }
             )
-            CheckContent       = 'Verify the permissions on the Security event log (Security.evtx).  Standard user accounts or groups must not have access.  The default permissions listed below satisfy this requirement:
+            CheckContent = 'Verify the permissions on the Security event log (Security.evtx).  Standard user accounts or groups must not have access.  The default permissions listed below satisfy this requirement:
 
         Eventlog - Full Control
         SYSTEM - Full Control
