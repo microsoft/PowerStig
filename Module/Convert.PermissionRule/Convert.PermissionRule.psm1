@@ -24,11 +24,11 @@ Class PermissionRule : STIG
 
         if ( -not $this.SetStatus( $thisPath ) )
         {
-            $this.set_Path($thisPath)
+            $this.set_Path( $thisPath )
         }
     }
 
-    [void] SetForce ()
+    [void] SetForce ( )
     {
         # For now we're setting a default value. Later there could be additional logic here
         $this.set_Force($true)
@@ -40,34 +40,34 @@ Class PermissionRule : STIG
 
         if ( -not $this.SetStatus( $thisAccessControlEntry ) )
         {
-            foreach( $Principal in $thisAccessControlEntry.Principal )
+            foreach( $principal in $thisAccessControlEntry.Principal )
             {
-                $this.SetStatus( $Principal )
+                $this.SetStatus( $principal )
             }
 
-            foreach ( $Rights in $thisAccessControlEntry.Rights )
+            foreach ( $rights in $thisAccessControlEntry.Rights )
             {
-                if ( $Rights -eq 'blank' )
+                if ( $rights -eq 'blank' )
                 {
                     $this.SetStatus( "", $true )
                     continue
                 }
-                $this.SetStatus( $Rights )
+                $this.SetStatus( $rights )
             }
 
             $this.set_AccessControlEntry( $thisAccessControlEntry )
         }
     }
 
-    static [bool] HasMultipleRules ( [string] $StigString )
+    static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        $permissionPaths = Get-PermissionTargetPath -StigString ($StigString -split '\n')
+        $permissionPaths = Get-PermissionTargetPath -StigString [STIG]::SplitChecContent( $CheckContent ) 
         return ( Test-MultiplePermissionRule -PermissionPath $permissionPaths )
     }
 
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultiplePermissionRule -CheckContent ($CheckContent -split '\n') )
+        return ( Split-MultiplePermissionRule -CheckContent [STIG]::SplitChecContent( $CheckContent ) )
     }
 }
 #endregion
