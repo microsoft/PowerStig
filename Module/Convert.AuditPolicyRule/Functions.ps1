@@ -4,7 +4,7 @@
 <#
     .SYNOPSIS
         Processes the raw STIG string that has been identifed as an Audit Poilcy configuration. Since
-        the auditpolicy is an easire patteren match
+        the auditpolicy is an easier pattern match
 #>
 function ConvertTo-AuditPolicyRule
 {

@@ -18,21 +18,21 @@ function Get-AvailableId
         $Id
     )
 
-    $usedID = $global:stigSettings | Where-Object -FilterScript { $PSItem.Id -match $ID } |
+    $usedId = $global:stigSettings | Where-Object -FilterScript { $PSItem.Id -match $ID } |
             Sort-Object -Property Id
 
-    if ( $null -eq $usedID )
+    if ( $null -eq $usedId )
     {
-        return $id
+        return $Id
     }
     else
     {
         $startInt = 96
         # 97 is ascii the char 'a' lets start with 96 so the second rule with the same id get appended with a letter
 
-        $appendLetterInt = $startInt + $usedID.count
+        $appendLetterInt = $startInt + $usedId.count
 
-        return "$ID.$([char]$appendLetterInt)"
+        return "$Id.$([char]$appendLetterInt)"
     }
 }
 #endregion
