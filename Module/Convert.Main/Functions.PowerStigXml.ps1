@@ -21,7 +21,7 @@
     .PARAMETER IncludeRawString
         Adds the check-content elemet content to the converted object.
 #>
-function ConvertTo-DscStigXml
+function ConvertTo-PowerStigXml
 {
     [CmdletBinding()]
     [OutputType([xml])]
@@ -237,12 +237,12 @@ function ConvertTo-DscStigXml
         Compares the converted xml files from ConvertFrom-StigXccdf.
 
     .PARAMETER OldStigPath
-        The full path to the previous DscXml file to convert.
+        The full path to the previous PowerStigXml file to convert.
 
     .PARAMETER NewStigPath
-        The full path to the current DscXml file to convert.
+        The full path to the current PowerStigXml file to convert.
 #>
-function Compare-DscStigXml
+function Compare-PowerStigXml
 {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -372,9 +372,6 @@ $organizationalSettingRootComment = @'
 
     .PARAMETER Destination
         The path to store the output file.
-
-    .NOTES
-    General notes
 #>
 function New-OrganizationalSettingsXmlFile
 {
