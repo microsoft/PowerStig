@@ -39,10 +39,10 @@ function Test-SingleLineRegistryRule
 #region Registry Path
 <#
     .SYNOPSIS
-    Extract the registry path from an office STIG string.
+        Extract the registry path from an office STIG string.
 
     .Parameter CheckContent
-    An array of the raw string data taken from the STIG setting.
+        An array of the raw string data taken from the STIG setting.
 #>
 function Get-SingleLineRegistryPath
 {
@@ -55,7 +55,7 @@ function Get-SingleLineRegistryPath
         $CheckContent
     )
 
-    $fullRegistryPath = $CheckContent | Select-String -Pattern "((HKLM|HKCU|HKEY_LOCAL_MACHINE).*)"
+    $fullRegistryPath = $CheckContent | Select-String -Pattern "((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)"
 
     if (-not $fullRegistryPath)
     {

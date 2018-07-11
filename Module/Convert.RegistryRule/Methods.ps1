@@ -24,7 +24,7 @@ function Get-RegistryKey
     $result = @()
     if (Test-SingleLineRegistryRule -CheckContent $CheckContent)
     {
-        Get-SingleLineRegistryPath -CheckContent $CheckContent
+        $result = Get-SingleLineRegistryPath -CheckContent $CheckContent
     }
     else
     {
