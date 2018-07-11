@@ -381,17 +381,15 @@ Successfully processed 1 files; Failed processing 0 files
         [string] $functionName = 'ConvertTo-AccessControlEntry'
         Context $functionName {
 
-            # test scenario for same FileSystemRights for multiple Principals
+            # Test scenario for same FileSystemRights for multiple Principals
             $multiplePrincipalString = 'Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read & Execute'
 
             It "Should return a principal count of 4" {
-
                 $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
                 $result.Principal.count | Should Be 4
             }
 
             It "Should have matching Values" {
-
                 $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
 
                 foreach ( $entry in $result )
@@ -406,25 +404,20 @@ Successfully processed 1 files; Failed processing 0 files
                 }
             }
 
-            # test scenario for different FileSystemRights for each principal
+            # Test scenario for different FileSystemRights for each principal
             $differentPermissions = "
             Users - Read & execute - This folder, subfolders and files
             Users - Create folders / append data - This folder and subfolders
             "
             It "Should assign different permissions" {
-
                 $result = ConvertTo-AccessControlEntry -StigString $differentPermissions
-
                 {$result[0].FileSystemRights -ne $result[1].FileSystemRights} | Should Be $true
             }
 
-            # test scenario for same Inheritance for multiple Principals
+            # Test scenario for same Inheritance for multiple Principals
             It "Should have matching Inheritance values" {
-
                 $inheritanceValue = "This folder and subfolders"
-
                 $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -InheritenceInput $inheritanceValue
-
                 foreach ( $entry in $result )
                 {
                     $entry.Inheritance | Should Be $script:inheritenceConstant.$inheritanceValue
@@ -441,10 +434,6 @@ Successfully processed 1 files; Failed processing 0 files
         It "Should have a data section called $dataSectionName" {
             ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
         }
-    
-        <# 
-        TO DO - Add rules 
-        #>
     }
     
     Describe "registryRightsConstant Data Section" {
