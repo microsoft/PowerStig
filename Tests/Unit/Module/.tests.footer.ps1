@@ -1,8 +1,10 @@
 
-<#
-    Always unload the module once the tests complete or fail 
-    $script:moduleNamecomes from the .test.Header.ps1 file 
-    and is derived from the file name
-#>
-Remove-Module $script:moduleName
-Remove-Variable STIGSettings -Scope Global
+if ((Get-PSCallStack)[1].Command -notmatch 'Stig\.')
+{
+    # Cleanup convert module tests
+    Remove-Variable STIGSettings -Scope Global
+}
+else
+{
+    # Cleanup Stig module tests
+}
