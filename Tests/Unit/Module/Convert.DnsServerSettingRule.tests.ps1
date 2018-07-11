@@ -96,18 +96,20 @@ try
         # Regular expression tests
         Context "Dns Stig Rules regex tests" {
     
-            $text = 'the          forwarders     tab.'
-            $result = $text -match $script:regularExpression.textBetweenTheTab
+            [string] $text = 'the          forwarders     tab.'
+            $result = ($text | 
+                Select-String $script:regularExpression.textBetweenTheTab -AllMatches |
+                    Select-Object Matches).Matches.Groups[1]
             It "Should match text inside of the words 'the' and 'tab'" {
-                $result | Should be $true
+                $result.Success | Should be $true
             }
             It "Should return text between the words 'the' and 'tab'" {
-                $($Matches.1).Trim() | Should Be 'forwarders'
+                $result.Value.trim() | Should Be 'forwarders'
             }
-    
-            [string]$text = ' âForwardersâ'
-            $result = $text -match $script:regularExpression.nonLetters
+
+            [string] $text = ' âForwardersâ'
             It "Should match any non letter characters" {
+                $result = $text -match $script:regularExpression.nonLetters
                 $result | Should Be $true
             }
             It "Should remove the non word characters" {
