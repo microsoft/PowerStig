@@ -4,8 +4,9 @@ using module .\..\..\..\Module\Stig.OrganizationalSetting\Stig.OrganizationalSet
 #endregion
 try
 {
-    #region Test Setup
-    [xml] $OrgSettingXml = @"
+    InModuleScope -ModuleName $script:moduleName {
+        #region Test Setup
+        [xml] $OrgSettingXml = @"
 <OrganizationalSettings version="2.9">
 <OrganizationalSetting id="V-1114" value="xGuest" />
 <OrganizationalSetting id="V-1115" value="xAdministrator" />
@@ -20,67 +21,68 @@ try
 </OrganizationalSettings>
 "@
 
-    [hashtable] $OrgSettingHashtable = @{
-        "V-1114"   = "xGuest";
-        "V-1115"   = "xAdministrator";
-        "V-3472.a" = "NT5DS";
-        "V-4108"   = "90";
-        "V-4113"   = "300000";
-        "V-8322.b" = "NT5DS";
-        "V-26482"  = "Administrators";
-        "V-26579"  = "32768";
-        "V-26580"  = "196608";
-        "V-26581"  = "32768"
-    }
-    #endregion
-    #region Class Tests
-    Describe "OrganizationalSetting Class" {
-
-        Context "Constructor" {
-
-            It "Should create an OrganizationalSetting class instance using OrgSettingHashtable data" {
-                foreach ($hash in $OrgSettingHashtable.GetEnumerator())
-                {
-                    $newOrgSetting = [OrganizationalSetting]::new($hash.Key, $hash.Value)
-                    $newOrgSetting.StigRuleId | Should Be $hash.Key
-                    $newOrgSetting.Value | Should Be $hash.Value
-                }
-            }
+        [hashtable] $OrgSettingHashtable = @{
+            "V-1114"   = "xGuest";
+            "V-1115"   = "xAdministrator";
+            "V-3472.a" = "NT5DS";
+            "V-4108"   = "90";
+            "V-4113"   = "300000";
+            "V-8322.b" = "NT5DS";
+            "V-26482"  = "Administrators";
+            "V-26579"  = "32768";
+            "V-26580"  = "196608";
+            "V-26581"  = "32768"
         }
+        #endregion
+        #region Class Tests
+        Describe "OrganizationalSetting Class" {
 
-        Context "Static Methods" {
-            It "ConvertFrom: Should be able to convert an Xml document to a OrganizationalSetting array" {
-                $orgSettingArray = [OrganizationalSetting]::ConvertFrom($OrgSettingXml)
+            Context "Constructor" {
 
-                foreach ($node in $OrgSettingXml.OrganizationalSettings.ChildNodes)
-                {
-                    $orgSetting = $orgSettingArray.Where( {$_.StigRuleId -eq $node.id})
-                    $orgSetting.StigRuleId | Should Be $node.id
-                    $orgSetting.Value | Should Be $node.value
+                It "Should create an OrganizationalSetting class instance using OrgSettingHashtable data" {
+                    foreach ($hash in $OrgSettingHashtable.GetEnumerator())
+                    {
+                        $newOrgSetting = [OrganizationalSetting]::new($hash.Key, $hash.Value)
+                        $newOrgSetting.StigRuleId | Should Be $hash.Key
+                        $newOrgSetting.Value | Should Be $hash.Value
+                    }
                 }
             }
 
-            It "ConvertFrom: Should be able to convert a Hashtable to a OrganizationalSetting array" {
-                $orgSettingArray = [OrganizationalSetting]::ConvertFrom($OrgSettingHashtable)
+            Context "Static Methods" {
+                It "ConvertFrom: Should be able to convert an Xml document to a OrganizationalSetting array" {
+                    $orgSettingArray = [OrganizationalSetting]::ConvertFrom($OrgSettingXml)
 
-                foreach ($hash in $OrgSettingHashtable.GetEnumerator())
-                {
-                    $orgSetting = $orgSettingArray.Where( {$_.StigRuleId -eq $hash.Key})
-                    $orgSetting.StigRuleId | Should Be $hash.Key
-                    $orgSetting.Value | Should Be $hash.Value
+                    foreach ($node in $OrgSettingXml.OrganizationalSettings.ChildNodes)
+                    {
+                        $orgSetting = $orgSettingArray.Where( {$_.StigRuleId -eq $node.id})
+                        $orgSetting.StigRuleId | Should Be $node.id
+                        $orgSetting.Value | Should Be $node.value
+                    }
+                }
+
+                It "ConvertFrom: Should be able to convert a Hashtable to a OrganizationalSetting array" {
+                    $orgSettingArray = [OrganizationalSetting]::ConvertFrom($OrgSettingHashtable)
+
+                    foreach ($hash in $OrgSettingHashtable.GetEnumerator())
+                    {
+                        $orgSetting = $orgSettingArray.Where( {$_.StigRuleId -eq $hash.Key})
+                        $orgSetting.StigRuleId | Should Be $hash.Key
+                        $orgSetting.Value | Should Be $hash.Value
+                    }
                 }
             }
         }
-    }
-    #endregion
-    #region Method Tests
-    Describe 'Get-PropertyMap' {
-        
-        It 'Should return the local $PropertyMap variable hashtable' {
-            (Get-PropertyMap).GetType() | Should Be 'hashtable'
+        #endregion
+        #region Method Tests
+        Describe 'Get-PropertyMap' {
+
+            It 'Should return the local $PropertyMap variable hashtable' {
+                (Get-PropertyMap).GetType() | Should Be 'hashtable'
+            }
         }
+        #endregion
     }
-    #endregion
 }
 finally
 {
