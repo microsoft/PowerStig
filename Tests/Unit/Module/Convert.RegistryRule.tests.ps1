@@ -196,238 +196,237 @@ try
         }
         #endregion
         #region Method Tests
+        Describe 'Get-RegistryKey' {
 
-            Describe 'Get-RegistryKey' {
+            foreach ( $registry in $registriesToTest )
+            {
+                $expectedPaths = $registry.Path | Sort-Object -Descending
+                $registryKey = Get-RegistryKey -CheckContent ($registry.CheckContent -split '\n').Trim()
 
-                foreach ( $registry in $registriesToTest )
+                foreach ($expectedPath in $expectedPaths)
                 {
-                    $expectedPaths = $registry.Path | Sort-Object -Descending
-                    $registryKey = Get-RegistryKey -CheckContent ($registry.CheckContent -split '\n').Trim()
+                    It "Should return '$($registry.Hive + $expectedPath)'" {
+                        $result = $registryKey | Where-Object -FilterScript { $PSItem -like "*$expectedPath" }
+                        $result | Should Be ($registry.Hive + $expectedPath)
+                    }
+                }
 
-                    foreach ($expectedPath in $expectedPaths)
+            }
+        }
+
+        Describe 'Get-RegistryValueType' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                It "Should return '$($registry.ValueType)'" {
+                    $registryKey = Get-RegistryValueType -CheckContent ($registry.CheckContent -split '\n')
+                    $registryKey | Should Be ($registry.ValueType)
+                }
+            }
+        }
+
+        Describe 'Get-RegistryValueName' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                It "Should return '$($registry.ValueName)'" {
+                    $registryKey = Get-RegistryValueName -CheckContent ($registry.CheckContent -split '\n')
+                    $registryKey | Should Be ($registry.ValueName)
+                }
+            }
+        }
+
+        Describe 'Get-RegistryValueData' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                if ($registry.OrganizationValueRequired -eq 'False')
+                {
+                    It "Should return '$($registry.ValueData)'" {
+                        $registryKey = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                        $result = $registryKey -match "$($registry.ValueData)|Blank" -or $registryKey -eq $registry.ValueData
+                        $result | Should Be $true
+                    }
+                }
+            }
+        }
+
+        Describe 'Get-RegistryHiveFromWindowsStig' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                It "Should return '$($registry.Hive)'" {
+                    $registryKey = Get-RegistryHiveFromWindowsStig -CheckContent ($registry.CheckContent -split '\n')
+                    $registryKey | Should Be ($registry.Hive)
+                }
+            }
+        }
+
+        Describe 'Get-RegistryPathFromWindowsStig' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                It "Should return '$($registry.Path)'" {
+                    $registryKey = Get-RegistryPathFromWindowsStig -CheckContent ($registry.CheckContent -split '\n').Trim()
+                    foreach ( $key in $registryKey )
                     {
-                        It "Should return '$($registry.Hive + $expectedPath)'" {
-                            $result = $registryKey | Where-Object -FilterScript { $PSItem -like "*$expectedPath" }
-                            $result | Should Be ($registry.Hive + $expectedPath)
-                        }
+                        $key -in $registry.Path | Should Be $true
                     }
-
                 }
             }
+        }
 
-            Describe 'Get-RegistryValueType' {
+        Describe 'Test-RegistryValueDataContainsRange' {
 
-                foreach ( $registry in $registriesToTest )
+            foreach ( $registry in $registriesToTest )
+            {
+                It "Should return '$($registry.OrganizationValueRequired)'" {
+                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                    $registryKey = Test-RegistryValueDataContainsRange -ValueDataString ($registryData)
+                    $registryKey | Should Be ($registry.OrganizationValueRequired)
+                }
+            }
+        }
+
+        Describe 'Test-RegistryValueDataIsBlank' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                if ($registryData -eq '(Blank)')
                 {
-                    It "Should return '$($registry.ValueType)'" {
-                        $registryKey = Get-RegistryValueType -CheckContent ($registry.CheckContent -split '\n')
-                        $registryKey | Should Be ($registry.ValueType)
-                    }
+                    $result = $true
                 }
-            }
-
-            Describe 'Get-RegistryValueName' {
-
-                foreach ( $registry in $registriesToTest )
+                else
                 {
-                    It "Should return '$($registry.ValueName)'" {
-                        $registryKey = Get-RegistryValueName -CheckContent ($registry.CheckContent -split '\n')
-                        $registryKey | Should Be ($registry.ValueName)
-                    }
+                    $result = $false
+                }
+
+                It "Should return '$($result)'" {
+                    $registryKey = Test-RegistryValueDataIsBlank -ValueDataString ($registryData)
+                    $registryKey | Should Be ($result)
                 }
             }
+        }
 
-            Describe 'Get-RegistryValueData' {
+        Describe 'Test-IsValidDword' {
 
-                foreach ( $registry in $registriesToTest )
+            foreach ( $registry in $registriesToTest )
+            {
+                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                try
+                {
+                    [void] [System.Convert]::ToInt32( $registryData )
+                    $result = $true
+                }
+                catch
+                {
+                    $result = $false
+                }
+
+                It "Should return '$($result)'" {
+                    $registryKey = Test-IsValidDword -ValueData ($registryData)
+                    $registryKey | Should Be ($result)
+                }
+            }
+        }
+
+        Describe 'Test-RegistryValueDataIsInteger' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                if ( $registryData -Match '\b([0-9]{1,})\b' )
+                {
+                    $result = $true
+                }
+                else
+                {
+                    $result = $false
+                }
+
+                It "Should return '$($result)'" {
+                    $registryKey = Test-RegistryValueDataIsInteger -ValueDataString ($registryData)
+                    $registryKey | Should Be ($result)
+                }
+            }
+        }
+
+        Describe 'Get-NumberFromString' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                if ( Test-RegistryValueDataIsInteger -ValueDataString ($registryData) )
                 {
                     if ($registry.OrganizationValueRequired -eq 'False')
                     {
                         It "Should return '$($registry.ValueData)'" {
-                            $registryKey = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                            $result = $registryKey -match "$($registry.ValueData)|Blank" -or $registryKey -eq $registry.ValueData
-                            $result | Should Be $true
-                        }
-                    }
-                }
-            }
-
-            Describe 'Get-RegistryHiveFromWindowsStig' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    It "Should return '$($registry.Hive)'" {
-                        $registryKey = Get-RegistryHiveFromWindowsStig -CheckContent ($registry.CheckContent -split '\n')
-                        $registryKey | Should Be ($registry.Hive)
-                    }
-                }
-            }
-
-            Describe 'Get-RegistryPathFromWindowsStig' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    It "Should return '$($registry.Path)'" {
-                        $registryKey = Get-RegistryPathFromWindowsStig -CheckContent ($registry.CheckContent -split '\n').Trim()
-                        foreach ( $key in $registryKey )
-                        {
-                            $key -in $registry.Path | Should Be $true
-                        }
-                    }
-                }
-            }
-
-            Describe 'Test-RegistryValueDataContainsRange' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    It "Should return '$($registry.OrganizationValueRequired)'" {
-                        $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                        $registryKey = Test-RegistryValueDataContainsRange -ValueDataString ($registryData)
-                        $registryKey | Should Be ($registry.OrganizationValueRequired)
-                    }
-                }
-            }
-
-            Describe 'Test-RegistryValueDataIsBlank' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                    if ($registryData -eq '(Blank)')
-                    {
-                        $result = $true
-                    }
-                    else
-                    {
-                        $result = $false
-                    }
-
-                    It "Should return '$($result)'" {
-                        $registryKey = Test-RegistryValueDataIsBlank -ValueDataString ($registryData)
-                        $registryKey | Should Be ($result)
-                    }
-                }
-            }
-
-            Describe 'Test-IsValidDword' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                    try
-                    {
-                        [void] [System.Convert]::ToInt32( $registryData )
-                        $result = $true
-                    }
-                    catch
-                    {
-                        $result = $false
-                    }
-
-                    It "Should return '$($result)'" {
-                        $registryKey = Test-IsValidDword -ValueData ($registryData)
-                        $registryKey | Should Be ($result)
-                    }
-                }
-            }
-
-            Describe 'Test-RegistryValueDataIsInteger' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                    if ( $registryData -Match '\b([0-9]{1,})\b' )
-                    {
-                        $result = $true
-                    }
-                    else
-                    {
-                        $result = $false
-                    }
-
-                    It "Should return '$($result)'" {
-                        $registryKey = Test-RegistryValueDataIsInteger -ValueDataString ($registryData)
-                        $registryKey | Should Be ($result)
-                    }
-                }
-            }
-
-            Describe 'Get-NumberFromString' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                    if ( Test-RegistryValueDataIsInteger -ValueDataString ($registryData) )
-                    {
-                        if ($registry.OrganizationValueRequired -eq 'False')
-                        {
-                            It "Should return '$($registry.ValueData)'" {
-                                $registryKey = Get-NumberFromString -ValueDataString ($registryData)
-                                $registryKey | Should Be ($registry.ValueData)
-                            }
-                        }
-                    }
-                    else
-                    {
-                        It "Should throw if a number is not found" {
-                            {Get-NumberFromString -ValueDataString ($registryData)} | Should throw "Did not find an integer in $registryData."
-                        }
-                    }
-                }
-            }
-
-            Describe 'Test-RegistryValueDataIsHexCode' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                    if ( $registryData -Match '\b(0x[A-Fa-f0-9]{8}){1}\b' )
-                    {
-                        $result = $true
-                    }
-                    else
-                    {
-                        $result = $false
-                    }
-
-                    It "Should return '$($result)'" {
-                        $registryKey = Test-RegistryValueDataIsHexCode -ValueDataString ($registryData)
-                        $registryKey | Should Be ($result)
-                    }
-                }
-            }
-
-            Describe 'Get-IntegerFromHex' {
-
-                foreach ( $registry in $registriesToTest )
-                {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                    if ( Test-RegistryValueDataIsHexCode -ValueDataString ($registryData) )
-                    {
-                        $result = $true
-                    }
-                    else
-                    {
-                        $result = $false
-                    }
-
-                    if ($result)
-                    {
-                        It "Should return '$($registry.ValueData)'" {
-                            $registryKey = Get-IntegerFromHex -ValueDataString ($registryData)
+                            $registryKey = Get-NumberFromString -ValueDataString ($registryData)
                             $registryKey | Should Be ($registry.ValueData)
                         }
                     }
-                    else
-                    {
-                        It "Should return an error" {
-                            {Get-IntegerFromHex -ValueDataString ($registryData)} | Should throw
-                        }
+                }
+                else
+                {
+                    It "Should throw if a number is not found" {
+                        {Get-NumberFromString -ValueDataString ($registryData)} | Should Throw
                     }
                 }
             }
-            #endregion
+        }
+
+        Describe 'Test-RegistryValueDataIsHexCode' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                if ( $registryData -Match '\b(0x[A-Fa-f0-9]{8}){1}\b' )
+                {
+                    $result = $true
+                }
+                else
+                {
+                    $result = $false
+                }
+
+                It "Should return '$($result)'" {
+                    $registryKey = Test-RegistryValueDataIsHexCode -ValueDataString ($registryData)
+                    $registryKey | Should Be ($result)
+                }
+            }
+        }
+
+        Describe 'Get-IntegerFromHex' {
+
+            foreach ( $registry in $registriesToTest )
+            {
+                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                if ( Test-RegistryValueDataIsHexCode -ValueDataString ($registryData) )
+                {
+                    $result = $true
+                }
+                else
+                {
+                    $result = $false
+                }
+
+                if ($result)
+                {
+                    It "Should return '$($registry.ValueData)'" {
+                        $registryKey = Get-IntegerFromHex -ValueDataString ($registryData)
+                        $registryKey | Should Be ($registry.ValueData)
+                    }
+                }
+                else
+                {
+                    It "Should return an error" {
+                        {Get-IntegerFromHex -ValueDataString ($registryData)} | Should throw
+                    }
+                }
+            }
+        }
+        #endregion
         #region Function Tests
         Describe 'ConvertTo-RegistryRule' {
 
@@ -1012,7 +1011,7 @@ try
                     System\CurrentControlSet\Control\Terminal Server\DefaultUserConfiguration
                     System\CurrentControlSet\Services\Eventlog
                     System\CurrentControlSet\Services\Sysmonlog
-        #>
+            #>
 
             Context 'Multi String Value' {
 
