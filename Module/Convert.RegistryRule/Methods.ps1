@@ -615,7 +615,7 @@ function Get-NumberFromString
     }
     else
     {
-        return $string
+        return $string.Matches[0].Value
     }
 }
 
