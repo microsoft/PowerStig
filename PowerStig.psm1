@@ -9,11 +9,10 @@ using module .\Module\Stig.StigException\Stig.StigException.psm1
 using module .\Module\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 
-Write-Verbose "$(Get-Module 'STIG.*')"
 # load the public functions
 Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig.Main" -Filter '*.ps1' ) )
 {
-    Write-Verbose "Loading $($supportFile.FullName)" -Verbose
+    Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 

@@ -1,6 +1,7 @@
 #region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+#endregion
 #region Enum
 <#
     STIGS have an associated severity that determines the impact of the findhing if it
@@ -83,7 +84,7 @@ Enum RuleType
 
 <#
     .SYNOPSIS
-        This enum describes the list of supported technologies 
+        This enum describes the list of supported technologies
 #>
 enum Technology
 {
