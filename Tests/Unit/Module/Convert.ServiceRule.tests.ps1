@@ -132,8 +132,8 @@ try
             foreach ( $service in $servicesToTest )
             {
                 It "Should return '$($service.ServiceName)'" {
-                    $serviceName = Get-ServiceName -CheckContent ($service.CheckContent -split '\n')
-                    $serviceName | Should Be $service.ServiceName
+                    $checkContent = Split-TestStrings -CheckContent $service.CheckContent
+                    Get-ServiceName -CheckContent $checkContent | Should Be $service.ServiceName
                 }
             }
         }
@@ -143,8 +143,8 @@ try
             foreach ( $service in $servicesToTest )
             {
                 It "Should return '$($service.ServiceState)' from '$($service.ServiceName)'" {
-                    $serviceState = Get-ServiceState -CheckContent ($service.CheckContent -split '\n')
-                    $serviceState | Should Be $service.ServiceState
+                    $checkContent = Split-TestStrings -CheckContent $service.CheckContent
+                    Get-ServiceState -CheckContent $checkContent | Should Be $service.ServiceState
                 }
             }
         }
@@ -154,8 +154,8 @@ try
             foreach ( $service in $servicesToTest )
             {
                 It "Should return '$($service.StartupType)' from '$($service.ServiceName)'" {
-                    $StartupType = Get-ServiceStartupType -CheckContent ($service.CheckContent -split '\n')
-                    $StartupType | Should Be $service.StartupType
+                    $checkContent = Split-TestStrings -CheckContent $service.CheckContent
+                    Get-ServiceStartupType -CheckContent $checkContent | Should Be $service.StartupType
                 }
             }
         }
