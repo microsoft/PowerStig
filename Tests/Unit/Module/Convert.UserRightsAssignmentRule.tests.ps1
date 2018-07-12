@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $stringsToTest = @(
+        $rulesToTest = @(
             @{
                 DisplayName  = 'Deny access to this computer from the network'
                 Constant     = 'SeDenyNetworkLogonRight'
@@ -250,47 +250,47 @@ try
         #region Method Tests
         Describe 'Get-UserRightDisplayName' {
 
-            foreach ( $string in $stringsToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return $($string.DisplayName)" {
-                    $checkContent = Split-TestStrings -CheckContent $string.CheckContent
+                It "Should return $($rule.DisplayName)" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $result = Get-UserRightDisplayName -CheckContent $checkContent
-                    $result | Should Be $string.DisplayName
+                    $result | Should Be $rule.DisplayName
                 }
             }
         }
 
         Describe 'Get-UserRightConstant' {
 
-            foreach ( $string in $stringsToTest.GetEnumerator() )
+            foreach ( $rule in $rulesToTest.GetEnumerator() )
             {
-                It "Should return $($string.Constant) from $($string.DisplayName)" {
-                    $result = Get-UserRightConstant -UserRightDisplayName $string.DisplayName
-                    $result | Should Be $string.Constant
+                It "Should return $($rule.Constant) from $($rule.DisplayName)" {
+                    $result = Get-UserRightConstant -UserRightDisplayName $rule.DisplayName
+                    $result | Should Be $rule.Constant
                 }
             }
         }
 
         Describe 'Get-UserRightIdentity' {
 
-            foreach ( $string in $stringsToTest.GetEnumerator() )
+            foreach ( $rule in $rulesToTest.GetEnumerator() )
             {
-                It "Should return $($string.Identity)" {
-                    $checkContent = Split-TestStrings -CheckContent $string.CheckContent
+                It "Should return $($rule.Identity)" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $result = Get-UserRightIdentity -CheckContent $checkContent
-                    $result | Should Be $string.Identity
+                    $result | Should Be $rule.Identity
                 }
             }
         }
 
         Describe 'Test-SetForceFlag' {
 
-            foreach ( $string in $stringsToTest.GetEnumerator() )
+            foreach ( $rule in $rulesToTest.GetEnumerator() )
             {
-                It "Should return $($string.ForceFlag)" {
-                    $checkContent = Split-TestStrings -CheckContent $string.CheckContent
+                It "Should return $($rule.ForceFlag)" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $result = Test-SetForceFlag -CheckContent $checkContent
-                    $result | Should Be $string.ForceFlag
+                    $result | Should Be $rule.ForceFlag
                 }
             }
         }
@@ -314,12 +314,12 @@ try
 
             Guests Group'
 
+            $checkContent = Split-TestStrings -CheckContent $checkContent
             It "Should return $true if multiple policies settings are found" {
-                $results = Test-MultipleUserRightsAssignment -CheckContent ($checkContent -split '\n')
-                $results | Should Be $true
+                Test-MultipleUserRightsAssignment -CheckContent $checkContent | Should Be $true
             }
             It "Should return $false if multiple policies settings are not found" {
-                $results = Test-MultipleUserRightsAssignment -CheckContent ($checkContent -split '\n')[0..7]
+                $results = Test-MultipleUserRightsAssignment -CheckContent $checkContent[0..3]
                 $results | Should Be $false
             }
         }
@@ -345,7 +345,8 @@ try
             {1}'
 
             $composedContent = $checkContent -f $firstUserRightsAssignment, $secondUserRightsAssignment
-            $results = Split-MultipleUserRightsAssignment -CheckContent ($composedContent -split '\n')
+            $checkContent = Split-TestStrings -CheckContent $composedContent
+            $results = Split-MultipleUserRightsAssignment -CheckContent $checkContent
 
             Context 'First User Right' {
 
@@ -375,7 +376,7 @@ try
                 This function can't really be unit tested, since the call cannot be mocked by pester, so
                 the only thing we can really do at this point is to verify that it returns the correct object.
             #>
-            $stigRule = Get-TestStigRule -CheckContent $stringsToTest[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-UserRightRule -StigRule $stigRule
 
             It "Should return an UserRightRule object" {

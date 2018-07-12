@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $webAppPoolrule = @(
+        $rulesToTest = @(
             @{
                 Key           = 'rapidFailProtection'
                 Value         = '$true'
@@ -89,11 +89,12 @@ try
         }
         #endregion
         #region Method Tests
-        foreach ( $rule in $webAppPoolrule )
+        foreach ( $rule in $rulesToTest )
         {
             Describe 'Get-KeyValuePair' {
                 It "Should return $($rule.Key) and $($rule.Value)" {
-                    $KeyValuePair = Get-KeyValuePair -CheckContent ($rule.CheckContent -split '\n')
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $KeyValuePair = Get-KeyValuePair -CheckContent $checkContent
                     $KeyValuePair.Key | Should Be $rule.Key
                     $KeyValuePair.Value | Should Be $rule.Value
                 }
@@ -109,7 +110,7 @@ try
         #endregion
         #region Function Tests
         Describe "ConvertTo-WebAppPoolRule" {
-            $stigRule = Get-TestStigRule -CheckContent $webAppPoolrule[1].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
             $rule = ConvertTo-WebAppPoolRule -StigRule $stigRule
 
             It "Should return an WebAppPoolRule object" {

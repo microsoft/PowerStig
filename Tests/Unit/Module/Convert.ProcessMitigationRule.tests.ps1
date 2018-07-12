@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $mitigationsRulesToTest = @(
+        $rulesToTest = @(
             @{
                 MitigationTarget = 'System'
                 Enable           = 'TerminateOnError'
@@ -136,10 +136,11 @@ try
         #endregion
         #region Method Tests
         Describe 'Get-MitigationTargetName' {
-            foreach ( $rule in $mitigationsRulesToTest )
+            foreach ( $rule in $rulesToTest )
             {
                 It "Should be a MitigationTarget of '$($rule.MitigationTarget)'" {
-                    $result = Get-MitigationTargetName -CheckContent $($rule.CheckContent -split '\n')
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $result = Get-MitigationTargetName -CheckContent $checkContent
                     $result | Should Be $rule.MitigationTarget
                 }
             }
@@ -148,9 +149,10 @@ try
         Describe 'Get-MitigationPolicyToEnable' {
             Mock -CommandName Test-PoliciesToEnable -MockWith {$true}
 
-            foreach ( $rule in $mitigationsRulesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $result = Get-MitigationPolicyToEnable -CheckContent $($rule.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $result = Get-MitigationPolicyToEnable -CheckContent $checkContent
                 It "Should have Enable equal to: '$($rule.Enable)'" {
 
                     $result | Should Be $rule.Enable
@@ -161,7 +163,7 @@ try
         #region Function Tests
         Describe "ConvertTo-ProcessMitigationRule" {
 
-            $stigRule = Get-TestStigRule -CheckContent $mitigationsRulesToTest[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-ProcessMitigationRule -StigRule $stigRule
 
             It "Should return a ProcessMitigationRule object" {

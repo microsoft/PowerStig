@@ -208,10 +208,7 @@ try
                     $setScript = $sqlScriptQueryRule.$($ruleType).SetScript
 
                     It "Should return a $($ruleType) SetScript" {
-                        $checkContent = ($sqlScriptQueryRule.$($ruleType).CheckContent -split '\n' |
-                                Select-String -Pattern "\w" |
-                                ForEach-Object { $PSitem.ToString().Trim() })
-
+                        $checkContent = Split-TestStrings -CheckContent $sqlScriptQueryRule.$($ruleType).CheckContent
                         $result = & Get-$($ruleType)SetScript -FixText $fixText -CheckContent $checkContent
                         $result | Should be $setScript
                     }

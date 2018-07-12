@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $EventsToTest = @(
+        $rulesToTest = @(
             @{
                 LogName  = 'Microsoft-Windows-DnsServer/Analytical'
                 IsEnabled = 'True'
@@ -94,11 +94,11 @@ try
         #region Method Tests
         Describe 'Get-DnsServerWinEventLogName' {
 
-            foreach ( $winEvent in $EventsToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($winEvent.LogName)'" {
-                    $LogName = Get-DnsServerWinEventLogName -StigString ($winEvent.CheckContent -split '\n')
-                    $LogName | Should Be $winEvent.LogName
+                It "Should return '$($rule.LogName)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-DnsServerWinEventLogName -StigString $checkContent | Should Be $rule.LogName
                 }
             }
         }
@@ -109,7 +109,7 @@ try
                 This function can't really be unit tested, since the call cannot be mocked by pester, so
                 the only thing we can really do at this point is to verify that it returns the correct object.
             #>
-            $stigRule = Get-TestStigRule -CheckContent $EventsToTest[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-WinEventLogRule -StigRule $stigRule
 
             It "Should return an WinEventLogRule object" {

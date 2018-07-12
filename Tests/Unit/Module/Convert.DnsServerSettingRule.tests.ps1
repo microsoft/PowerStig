@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $dnsSettingsToTest = @(
+        $rulesToTest = @(
             @{
                 PropertyName  = 'EventLogLevel'
                 PropertyValue = '4'
@@ -71,22 +71,22 @@ try
         #region Method Tests
         Describe 'Get-DnsServerSettingProperty' {
 
-            foreach ( $dnsSetting in $dnsSettingsToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($dnsSetting.PropertyName)'" {
-                    $checkContent = Split-TestStrings -CheckContent $dnsSetting.CheckContent
-                    Get-DnsServerSettingProperty -CheckContent $checkContent | Should Be $dnsSetting.PropertyName
+                It "Should return '$($rule.PropertyName)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-DnsServerSettingProperty -CheckContent $checkContent | Should Be $rule.PropertyName
                 }
             }
         }
 
         Describe 'Get-DnsServerSettingPropertyValue' {
 
-            foreach ( $dnsSetting in $dnsSettingsToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($dnsSetting.PropertyValue)'" {
-                    $checkContent = Split-TestStrings -CheckContent $dnsSetting.CheckContent
-                    Get-DnsServerSettingPropertyValue -CheckContent $checkContent | Should Be $dnsSetting.PropertyValue
+                It "Should return '$($rule.PropertyValue)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-DnsServerSettingPropertyValue -CheckContent $checkContent | Should Be $rule.PropertyValue
                 }
             }
         }
@@ -122,7 +122,7 @@ try
 
         Describe "ConvertTo-DnsServerSettingRule" {
 
-            $stigRule = Get-TestStigRule -CheckContent $dnsSettingsToTest.checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest.checkContent -ReturnGroupOnly
             $rule = ConvertTo-DnsServerSettingRule -StigRule $stigRule
 
             It "Should return an DnsServerSettingRule object" {

@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $iisLoggingRules = @(
+        $rulesToTest = @(
             @{
                 LogFlags     = 'Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer'
                 LogFormat    = $null
@@ -188,33 +188,30 @@ try
         }
         #endregion
         #region Method Tests
-        foreach ( $iisLoggingRule in $iisLoggingRules )
+        foreach ( $rule in $rulesToTest )
         {
+            $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
             Describe 'Get-LogFlag' {
-                It "Should return $($iisLoggingRule.LogFlags)" {
-                    $logFlag = Get-LogFlag -CheckContent ($iisLoggingRule.CheckContent -split '\n')
-                    $logFlag | Should Be $iisLoggingRule.LogFlags
+                It "Should return $($rule.LogFlags)" {
+                    Get-LogFlag -CheckContent $checkContent | Should Be $rule.LogFlags
                 }
             }
 
             Describe 'Get-LogFormat' {
-                It "Should return $($iisLoggingRule.LogFormat)" {
-                    $logFormat = Get-LogFormat -CheckContent ($iisLoggingRule.CheckContent -split '\n')
-                    $logFormat | Should Be $iisLoggingRule.LogFormat
+                It "Should return $($rule.LogFormat)" {
+                    Get-LogFormat -CheckContent $checkContent | Should Be $rule.LogFormat
                 }
             }
 
             Describe 'Get-LogPeriod' {
-                It "Should return $($iisLoggingRule.LogPeriod)" {
-                    $logPeriod = Get-LogPeriod -CheckContent ($iisLoggingRule.CheckContent -split '\n')
-                    $logPeriod | Should Be $iisLoggingRule.LogPeriod
+                It "Should return $($rule.LogPeriod)" {
+                    Get-LogPeriod -CheckContent $checkContent | Should Be $rule.LogPeriod
                 }
             }
 
             Describe 'Get-LogTargetW3C' {
-                It "Should return $($iisLoggingRule.LogTargetW3C)" {
-                    $logTargetW3C = Get-LogTargetW3C -CheckContent ($iisLoggingRule.CheckContent -split '\n')
-                    $logTargetW3C | Should Be $iisLoggingRule.LogTargetW3C
+                It "Should return $($rule.LogTargetW3C)" {
+                    Get-LogTargetW3C -CheckContent $checkContent | Should Be $rule.LogTargetW3C
                 }
             }
         }
@@ -223,7 +220,8 @@ try
         {
             Describe 'Get-LogCustomFieldEntry' {
                 It "Should return expected LogCustomFieldEntry object" {
-                    $logCustomFieldEntry = Get-LogCustomFieldEntry -CheckContent ($entry.CheckContent -split '\n')
+                    $checkContent = Split-TestStrings -CheckContent $entry.CheckContent
+                    $logCustomFieldEntry = Get-LogCustomFieldEntry -CheckContent $checkContent
                     $compare = Compare-Object -ReferenceObject $logCustomFieldEntry -DifferenceObject $entry.LogCustomFieldEntry
                     $compare.Count | Should Be 0
                 }
@@ -232,7 +230,7 @@ try
         #endregion
         #region Function Tests
         Describe "ConvertTo-IisLoggingRule" {
-            $stigRule = Get-TestStigRule -CheckContent $iisLoggingRules[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-IisLoggingRule -StigRule $stigRule
 
             It "Should return an IisLoggingRule object" {

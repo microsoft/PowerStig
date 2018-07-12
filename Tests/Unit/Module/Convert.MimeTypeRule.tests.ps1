@@ -104,9 +104,9 @@ try
         #endregion
         #region Method Tests
         Describe 'Get-Extension'{
-            It "Should return $($mimeTypeRule.Extension)"{
-                $Extension = Get-Extension -CheckContent ($mimeTypeRule.CheckContent -split '\n').trim()
-                $Extension | Should Be $mimeTypeRule.Extension
+            It "Should return $($mimeTypeRule.Extension)" {
+                $checkContent = Split-TestStrings -CheckContent $mimeTypeRule.CheckContent
+                Get-Extension -CheckContent $checkContent | Should Be $mimeTypeRule.Extension
             }
         }
 
@@ -121,22 +121,23 @@ try
         }
 
         Describe 'Get-Ensure'{
-            It "Should return $($mimeTypeRule.Ensure)"{
-                $ensure = Get-Ensure -CheckContent ($mimeTypeRule.CheckContent -split '\n')
-                $ensure | Should Be $mimeTypeRule.Ensure
+            It "Should return $($mimeTypeRule.Ensure)" {
+                $checkContent = Split-TestStrings -CheckContent $mimeTypeRule.CheckContent
+                Get-Ensure -CheckContent $checkContent | Should Be $mimeTypeRule.Ensure
             }
         }
 
         Describe 'Test-MultipleMimeTypeRule'{
             It "Should return $true"{
-                $multipleRule = Test-MultipleMimeTypeRule -CheckContent ($multipleMimeTypeRule.CheckContent -split '\n').trim()
-                $multipleRule | Should Be $true
+                $checkContent = Split-TestStrings -CheckContent $multipleMimeTypeRule.CheckContent
+                Test-MultipleMimeTypeRule -CheckContent $checkContent | Should Be $true
             }
         }
 
         Describe 'Split-MultipleMimeTypeRule'{
-            It "Should return $($multipleMimeTypeRule.RuleCount) rules"{
-                $multipleRule = Split-MultipleMimeTypeRule -CheckContent ($multipleMimeTypeRule.CheckContent -split '\n').trim()
+            It "Should return $($multipleMimeTypeRule.RuleCount) rules" {
+                $checkContent = Split-TestStrings -CheckContent $multipleMimeTypeRule.CheckContent
+                $multipleRule = Split-MultipleMimeTypeRule -CheckContent $checkContent
                 $multipleRule.count | Should Be $multipleMimeTypeRule.RuleCount
             }
         }

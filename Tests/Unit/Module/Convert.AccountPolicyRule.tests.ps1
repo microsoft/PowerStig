@@ -50,7 +50,7 @@ try
         }
         #endregion
         #region Method Tests
-        $accountPolicyRulesToTest = @(
+        $rulesToTest = @(
             @{
                 PolicyName   = 'Account lockout duration'
                 PolicyValue  = '15'
@@ -88,22 +88,22 @@ try
 
         Describe 'Get-AccountPolicyName' {
 
-            foreach ($rule in $accountPolicyRulesToTest)
+            foreach ($rule in $rulesToTest)
             {
                 It "Should return '$($rule.PolicyName)'" {
-                    $result = Get-AccountPolicyName -CheckContent ($rule.CheckContent -split '\n')
-                    $result | Should Be $rule.PolicyName
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-AccountPolicyName -CheckContent $checkContent | Should Be $rule.PolicyName
                 }
             }
         }
 
         Describe 'Get-AccountPolicyValue' {
 
-            foreach ($rule in $accountPolicyRulesToTest)
+            foreach ($rule in $rulesToTest)
             {
                 It "Should return '$($rule.PolicyValue)'" {
-                    $result = Get-AccountPolicyValue -CheckContent ($rule.CheckContent -split '\n')
-                    $result | Should Be $rule.PolicyValue
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-AccountPolicyValue -CheckContent $checkContent | Should Be $rule.PolicyValue
                 }
             }
         }
@@ -125,7 +125,7 @@ try
                 foreach ($string in $strings)
                 {
                     It "Should return true from '$string'" {
-                        $checkContent = ($baseString -f $string) -split '\n'
+                        $checkContent = Split-TestStrings -CheckContent ($baseString -f $string)
                         Test-SecurityPolicyContainsRange -CheckContent $checkContent| Should Be $true
                     }
                 }
@@ -142,7 +142,7 @@ try
                 foreach ($string in $strings)
                 {
                     It "Should return false from '$string'" {
-                        $checkContent = ($baseString -f $string) -split '\n'
+                        $checkContent = Split-TestStrings -CheckContent ($baseString -f $string)
                         Test-SecurityPolicyContainsRange -CheckContent $checkContent | Should Be $false
                     }
                 }

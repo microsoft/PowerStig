@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $groupRulesToTest = @(
+        $rulesToTest = @(
             @{
                 GroupName    = 'Backup Operators'
                 CheckContent = 'Run "Computer Management".
@@ -96,22 +96,24 @@ try
         #region Method Tests
         Describe 'Get-GroupDetail' {
             Context 'Test correct GroupName is returned' {
-                foreach ( $rule in $groupRulesToTest )
+                foreach ( $rule in $rulesToTest )
                 {
-                    It "Should be a GroupName of  '$($rule.GroupName)'" {
-                        $result = Get-GroupDetail -CheckContent $rule.CheckContent.Trim()
+                    It "Should be a GroupName of '$($rule.GroupName)'" {
+                        $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                        $result = Get-GroupDetail -CheckContent $checkContent
                         $result.GroupName | Should Be $rule.GroupName
                     }
                 }
             }
 
             Context 'Test correct Members is returned' {
-                foreach ( $rule in $groupRulesToTest )
+                foreach ( $rule in $rulesToTest )
                 {
                     if ($rule.Members)
                     {
                         It "Should be Members '$($rule.Members)'" {
-                            $result = Get-GroupDetail -CheckContent $rule.CheckContent.Trim()
+                            $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                            $result = Get-GroupDetail -CheckContent $checkContent
                             $result.Members | Should Be $rule.Members
                         }
                     }
@@ -125,7 +127,7 @@ try
             This function can't really be unit tested, since the call cannot be mocked by pester, so
             the only thing we can really do at this point is to verify that it returns the correct object.
         #>
-            $stigRule = Get-TestStigRule -CheckContent $groupRulesToTest[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-GroupRule -StigRule $stigRule
 
             It "Should return an GroupRule object" {

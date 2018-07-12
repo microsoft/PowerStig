@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $registriesToTest = @(
+        $rulesToTest = @(
             @{
                 Hive                        = 'HKEY_LOCAL_MACHINE'
                 Path                        = '\Software\Policies\Microsoft\WindowsMediaPlayer'
@@ -198,16 +198,17 @@ try
         #region Method Tests
         Describe 'Get-RegistryKey' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $expectedPaths = $registry.Path | Sort-Object -Descending
-                $registryKey = Get-RegistryKey -CheckContent ($registry.CheckContent -split '\n').Trim()
+                $expectedPaths = $rule.Path | Sort-Object -Descending
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryKey = Get-RegistryKey -CheckContent $checkContent
 
                 foreach ($expectedPath in $expectedPaths)
                 {
-                    It "Should return '$($registry.Hive + $expectedPath)'" {
+                    It "Should return '$($rule.Hive + $expectedPath)'" {
                         $result = $registryKey | Where-Object -FilterScript { $PSItem -like "*$expectedPath" }
-                        $result | Should Be ($registry.Hive + $expectedPath)
+                        $result | Should Be ($rule.Hive + $expectedPath)
                     }
                 }
 
@@ -216,35 +217,38 @@ try
 
         Describe 'Get-RegistryValueType' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($registry.ValueType)'" {
-                    $registryKey = Get-RegistryValueType -CheckContent ($registry.CheckContent -split '\n')
-                    $registryKey | Should Be ($registry.ValueType)
+                It "Should return '$($rule.ValueType)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $registryKey = Get-RegistryValueType -CheckContent $checkContent
+                    $registryKey | Should Be ($rule.ValueType)
                 }
             }
         }
 
         Describe 'Get-RegistryValueName' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($registry.ValueName)'" {
-                    $registryKey = Get-RegistryValueName -CheckContent ($registry.CheckContent -split '\n')
-                    $registryKey | Should Be ($registry.ValueName)
+                It "Should return '$($rule.ValueName)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $registryKey = Get-RegistryValueName -CheckContent $checkContent
+                    $registryKey | Should Be ($rule.ValueName)
                 }
             }
         }
 
         Describe 'Get-RegistryValueData' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                if ($registry.OrganizationValueRequired -eq 'False')
+                if ($rule.OrganizationValueRequired -eq 'False')
                 {
-                    It "Should return '$($registry.ValueData)'" {
-                        $registryKey = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
-                        $result = $registryKey -match "$($registry.ValueData)|Blank" -or $registryKey -eq $registry.ValueData
+                    It "Should return '$($rule.ValueData)'" {
+                        $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                        $registryKey = Get-RegistryValueData -CheckContent $checkContent
+                        $result = $registryKey -match "$($rule.ValueData)|Blank" -or $registryKey -eq $rule.ValueData
                         $result | Should Be $true
                     }
                 }
@@ -253,24 +257,26 @@ try
 
         Describe 'Get-RegistryHiveFromWindowsStig' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($registry.Hive)'" {
-                    $registryKey = Get-RegistryHiveFromWindowsStig -CheckContent ($registry.CheckContent -split '\n')
-                    $registryKey | Should Be ($registry.Hive)
+                It "Should return '$($rule.Hive)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $registryKey = Get-RegistryHiveFromWindowsStig -CheckContent $checkContent
+                    $registryKey | Should Be ($rule.Hive)
                 }
             }
         }
 
         Describe 'Get-RegistryPathFromWindowsStig' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($registry.Path)'" {
-                    $registryKey = Get-RegistryPathFromWindowsStig -CheckContent ($registry.CheckContent -split '\n').Trim()
+                It "Should return '$($rule.Path)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $registryKey = Get-RegistryPathFromWindowsStig -CheckContent $checkContent
                     foreach ( $key in $registryKey )
                     {
-                        $key -in $registry.Path | Should Be $true
+                        $key -in $rule.Path | Should Be $true
                     }
                 }
             }
@@ -278,21 +284,23 @@ try
 
         Describe 'Test-RegistryValueDataContainsRange' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($registry.OrganizationValueRequired)'" {
-                    $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                It "Should return '$($rule.OrganizationValueRequired)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $registryData = Get-RegistryValueData -CheckContent $checkContent
                     $registryKey = Test-RegistryValueDataContainsRange -ValueDataString ($registryData)
-                    $registryKey | Should Be ($registry.OrganizationValueRequired)
+                    $registryKey | Should Be ($rule.OrganizationValueRequired)
                 }
             }
         }
 
         Describe 'Test-RegistryValueDataIsBlank' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryData = Get-RegistryValueData -CheckContent $checkContent
                 if ($registryData -eq '(Blank)')
                 {
                     $result = $true
@@ -311,9 +319,10 @@ try
 
         Describe 'Test-IsValidDword' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryData = Get-RegistryValueData -CheckContent $checkContent
                 try
                 {
                     [void] [System.Convert]::ToInt32( $registryData )
@@ -333,9 +342,10 @@ try
 
         Describe 'Test-RegistryValueDataIsInteger' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryData = Get-RegistryValueData -CheckContent $checkContent
                 if ( $registryData -Match '\b([0-9]{1,})\b' )
                 {
                     $result = $true
@@ -354,16 +364,17 @@ try
 
         Describe 'Get-NumberFromString' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryData = Get-RegistryValueData -CheckContent $checkContent
                 if ( Test-RegistryValueDataIsInteger -ValueDataString ($registryData) )
                 {
-                    if ($registry.OrganizationValueRequired -eq 'False')
+                    if ($rule.OrganizationValueRequired -eq 'False')
                     {
-                        It "Should return '$($registry.ValueData)'" {
+                        It "Should return '$($rule.ValueData)'" {
                             $registryKey = Get-NumberFromString -ValueDataString ($registryData)
-                            $registryKey | Should Be ($registry.ValueData)
+                            $registryKey | Should Be ($rule.ValueData)
                         }
                     }
                 }
@@ -378,9 +389,10 @@ try
 
         Describe 'Test-RegistryValueDataIsHexCode' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryData = Get-RegistryValueData -CheckContent $checkContent
                 if ( $registryData -Match '\b(0x[A-Fa-f0-9]{8}){1}\b' )
                 {
                     $result = $true
@@ -399,9 +411,10 @@ try
 
         Describe 'Get-IntegerFromHex' {
 
-            foreach ( $registry in $registriesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                $registryData = Get-RegistryValueData -CheckContent ($registry.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                $registryData = Get-RegistryValueData -CheckContent $checkContent
                 if ( Test-RegistryValueDataIsHexCode -ValueDataString ($registryData) )
                 {
                     $result = $true
@@ -413,9 +426,9 @@ try
 
                 if ($result)
                 {
-                    It "Should return '$($registry.ValueData)'" {
+                    It "Should return '$($rule.ValueData)'" {
                         $registryKey = Get-IntegerFromHex -ValueDataString ($registryData)
-                        $registryKey | Should Be ($registry.ValueData)
+                        $registryKey | Should Be ($rule.ValueData)
                     }
                 }
                 else
@@ -430,7 +443,7 @@ try
         #region Function Tests
         Describe 'ConvertTo-RegistryRule' {
 
-            $stigRule = Get-TestStigRule -CheckContent $registriesToTest[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-RegistryRule -StigRule $stigRule
 
             It "Should return an RegistryRule object" {
@@ -452,7 +465,8 @@ try
                 Mock Get-RegistryPathFromWindowsStig {return $path}
 
                 It 'Should return the correct path' {
-                    $correctPath = Get-RegistryKey -CheckContent ($checkContent -split "\n")
+                    $checkContent = Split-TestStrings -CheckContent $checkContent
+                    $correctPath = Get-RegistryKey -CheckContent $checkContent
                     $correctPath | Should Be "$hive$path"
                     Assert-VerifiableMock
                 }
@@ -1089,13 +1103,15 @@ try
             foreach ($checkContent in @($multipleRegistryHiveString, $multipleRegistryPathString, $multipleRegistryValueString))
             {
                 It "Should return $true when multiple registry settings are found" {
-                    $hasMultipleEntries = Test-MultipleRegistryEntries -CheckContent ($checkContent -split "\n")
+                    $checkContent = Split-TestStrings -CheckContent $checkContent
+                    $hasMultipleEntries = Test-MultipleRegistryEntries -CheckContent $checkContent
                     $hasMultipleEntries | Should Be $true
                 }
             }
 
             It "Should return $false when multiple registry settings are not found" {
-                $hasMultipleEntries = Test-MultipleRegistryEntries -CheckContent ($singleRegistryString -split "\n")
+                $checkContent = Split-TestStrings -CheckContent $singleRegistryString
+                $hasMultipleEntries = Test-MultipleRegistryEntries -CheckContent $checkContent
                 $hasMultipleEntries | Should Be $false
             }
         }
@@ -1103,7 +1119,8 @@ try
         Describe 'Split-MultipleRegistryEntries' {
 
             Context 'Multiple Hives' {
-                $registryEntries = Split-MultipleRegistryEntries -CheckContent ($multipleRegistryHiveString -split "\n")
+                $checkContent = Split-TestStrings -CheckContent $multipleRegistryHiveString
+                $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
                 It "Should not return the second registry entry in the first object" {
                     $registryEntries[0] -notmatch '\\Path\\ToTheSecondValue\\To\\Set\\' | Should Be $true
@@ -1121,7 +1138,8 @@ try
             }
 
             Context 'Multiple Paths' {
-                $registryEntries = Split-MultipleRegistryEntries -CheckContent ( $multipleRegistryPathString -split "\n")
+                $checkContent = Split-TestStrings -CheckContent $multipleRegistryPathString
+                $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
                 It "Should not return the second registry entry in the first object, but have the same Hive" {
                     $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
@@ -1141,7 +1159,8 @@ try
             }
 
             Context 'Multiple Values' {
-                $registryEntries = Split-MultipleRegistryEntries -CheckContent ( $multipleRegistryValueString -split "\n")
+                $checkContent = Split-TestStrings -CheckContent $multipleRegistryValueString
+                $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
                 It "Should not return the second registry entry in the first object, but have the same hive and path" {
                     $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
@@ -1272,9 +1291,10 @@ try
             $checkContent = "
     HKCU\Path\to\value
 
-    $registryValueString" -Split "\n"
+    $registryValueString"
 
             It "Should return the correct full string" {
+                $checkContent = Split-TestStrings -CheckContent $checkContent
                 $fullString = Get-RegistryValueStringFromSingleLineStig -CheckContent $checkContent
                 $fullString | Should Be $registryValueString
             }

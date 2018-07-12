@@ -8,13 +8,13 @@ try
         #region Test Setup
         $checkContentBase = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
-    Use the AuditPol tool to review the current Audit Policy configuration:
-    -Open a Command Prompt with elevated privileges ("Run as Administrator").
-    -Enter "AuditPol /get /category:*".
+        Use the AuditPol tool to review the current Audit Policy configuration:
+        -Open a Command Prompt with elevated privileges ("Run as Administrator").
+        -Enter "AuditPol /get /category:*".
 
-    Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
+        Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
 
-    {0}'
+        {0}'
         $rule = [AuditPolicyRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
         #endregion
         #region Class Tests
@@ -64,12 +64,12 @@ try
         $string = 'Account Management -> Computer Account Management - Success'
 
         Describe 'Get-AuditPolicySettings' {
-    
+
             Context 'Data format "->"' {
-    
-                $checkContent = ($checkContentBase -f $string) -split '\n'
+
+                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
                 $settings = Get-AuditPolicySettings -CheckContent $checkContent
-    
+
                 It 'Should return the Category in the first index' {
                     $settings[0] | Should Match '(\s)*Account Management(\s)*'
                 }
@@ -80,13 +80,13 @@ try
                     $settings[2] | Should Match '(\s)*Success(\s)*'
                 }
             }
-    
+
             Context 'Data format ">>"' {
-    
+
                 $string = 'Account Management >> Computer Account Management - Success'
-                $checkContent = ($checkContentBase -f $string) -split '\n'
+                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
                 $settings = Get-AuditPolicySettings -CheckContent $checkContent
-    
+
                 It 'Should return the Category in the first index' {
                     $settings[0] | Should Match '(\s)*Account Management(\s)*'
                 }
@@ -98,20 +98,20 @@ try
                 }
             }
         }
-    
+
         Describe 'Get-AuditPolicySubCategory' {
-    
+
             #Mock -CommandName Get-AuditPolicySettings -MockWith { @('Category ', ' Subcategory ', ' Flag') }
-            $checkContent = ($checkContentBase -f $string) -split '\n'
+            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
             It 'Should return the second string in quotes' {
                 Get-AuditPolicySubCategory -CheckContent $checkContent | Should Be 'Computer Account Management'
             }
         }
-    
+
         Describe 'Get-AuditPolicyFlag' {
-    
+
             #Mock -CommandName Get-AuditPolicySettings -MockWith { @('Category ', ' Subcategory ', ' Flag') }
-            $checkContent = ($checkContentBase -f $string) -split '\n'
+            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
             It 'Should return the audit policy flag' {
                 Get-AuditPolicyFlag -CheckContent $checkContent | Should Be 'Success'
             }
@@ -123,9 +123,9 @@ try
     Use the AuditPol tool to review the current Audit Policy configuration:
     -Open a Command Prompt with elevated privileges ("Run as Administrator").
     -Enter "AuditPol /get /category:*".
-    
+
     Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
-    
+
     Account Management -&gt; Computer Account Management - Success'
 
         Describe "ConvertTo-AuditPolicyRule" {
@@ -143,7 +143,7 @@ try
         #endregion
         #region Data Tests
         Describe "Audit Policy Data Variables" {
-    
+
             [string[]] $dataSectionNameList = @(
                 'auditPolicySubcategories',
                 'auditPolicyFlags',
@@ -160,7 +160,7 @@ try
         #endregion
     }
 }
-finally 
+finally
 {
     . $PSScriptRoot\.tests.footer.ps1
 }

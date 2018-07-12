@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $webConfigurationPropertyRule = @(
+        $rulesToTest = @(
             @{
                 ConfigSection = '/system.webServer/directoryBrowse'
                 Key           = 'enabled'
@@ -122,18 +122,19 @@ try
         }
         #endregion
         #region Method Tests
-        foreach ( $rule in $webConfigurationPropertyRule )
+        foreach ( $rule in $rulesToTest )
         {
             Describe 'Get-ConfigSection' {
                 It "Should return $($rule.ConfigSection)" {
-                    $ConfigSection = Get-ConfigSection -CheckContent ($rule.CheckContent -split '\n')
-                    $ConfigSection | Should Be $rule.ConfigSection
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-ConfigSection -CheckContent $checkContent | Should Be $rule.ConfigSection
                 }
             }
 
             Describe 'Get-KeyValuePair' {
                 It "Should return $($rule.Key) and $($rule.Value)" {
-                    $KeyValuePair = Get-KeyValuePair -CheckContent ($rule.CheckContent -split '\n')
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $KeyValuePair = Get-KeyValuePair -CheckContent $checkContent
                     $KeyValuePair.Key | Should Be $rule.Key
                     $KeyValuePair.Value | Should Be $rule.Value
                 }
@@ -141,23 +142,26 @@ try
         }
 
         Describe 'Test-MultipleWebConfigurationPropertyRule' {
-            foreach ( $rule in $webConfigurationPropertyRule )
+            foreach ( $rule in $rulesToTest )
             {
                 It "Should return $false" {
-                    $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent ($rule.CheckContent -split '\n')
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
                     $multipleRule | Should Be $false
                 }
             }
 
             It "Should return $true" {
-                $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent ($splitwebConfigurationPropertyRule.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
+                $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
                 $multipleRule | Should Be $true
             }
         }
 
         Describe 'Split-MultipleWebConfigurationPropertyRule' {
             It "Should return two rules" {
-                $multipleRule = Split-MultipleWebConfigurationPropertyRule -CheckContent ($splitwebConfigurationPropertyRule.CheckContent -split '\n')
+                $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
+                $multipleRule = Split-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
                 $multipleRule.count | Should Be 2
             }
         }
@@ -171,7 +175,7 @@ try
         #endregion
         #region Function Tests
         Describe "ConvertTo-WebConfigurationPropertyRule" {
-            $stigRule = Get-TestStigRule -CheckContent $webConfigurationPropertyRule[1].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
             $rule = ConvertTo-WebConfigurationPropertyRule -StigRule $stigRule
 
             It "Should return an WebConfigurationPropertyRule object" {

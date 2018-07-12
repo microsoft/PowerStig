@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $permissionRulesToTest = @(
+        $rulesToTest = @(
             @{
                 Path               = '%windir%\SYSTEM32\WINEVT\LOGS\Security.evtx'
                 AccessControlEntry = @(
@@ -225,22 +225,23 @@ try
         #region Method Tests
         Describe 'Get-PermissionTargetPath' {
 
-            foreach ( $permission in $permissionRulesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($permission.Path)'" {
-                    $Path = Get-PermissionTargetPath -StigString ($permission.CheckContent -split '\n').Trim()
-                    $Path | Should Be $Permission.Path
+                It "Should return '$($rule.Path)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    Get-PermissionTargetPath -StigString $checkContent | Should Be $rule.Path
                 }
             }
         }
 
         Describe 'Get-PermissionAccessControlEntry' {
 
-            foreach ( $permission in $permissionRulesToTest )
+            foreach ( $rule in $rulesToTest )
             {
-                It "Should return expected AccessControlEntry object for target '$($permission.Path)'" {
-                    $accessControlEntry = Get-PermissionAccessControlEntry -StigString ($permission.CheckContent -split '\n')
-                    $compare = Compare-Object -ReferenceObject $accessControlEntry -DifferenceObject $permission.AccessControlEntry
+                It "Should return expected AccessControlEntry object for target '$($rule.Path)'" {
+                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+                    $accessControlEntry = Get-PermissionAccessControlEntry -StigString $checkContent
+                    $compare = Compare-Object -ReferenceObject $accessControlEntry -DifferenceObject $rule.AccessControlEntry
                     $compare.Count | Should Be 0
                 }
             }
@@ -254,7 +255,8 @@ try
         }
 
         Describe 'Split-MultiplePermissionRule' {
-            $paths = Split-MultiplePermissionRule -CheckContent ($multiplePaths.CheckContent -split '\n').Trim()
+            $checkContent = Split-TestStrings -CheckContent $multiplePaths.CheckContent
+            $paths = Split-MultiplePermissionRule -CheckContent $checkContent
 
             It "Should return multiple paths" {
                 $paths.Count | Should Be 2
