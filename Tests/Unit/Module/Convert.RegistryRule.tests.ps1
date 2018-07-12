@@ -832,7 +832,7 @@ try
             }
         }
 
-        Describe 'Integer tasks' {
+        Describe 'Integer Tasks' {
 
             $testValues = [ordered] @{
 

@@ -103,35 +103,38 @@ try
                 It "Should return the Stig Technology Role" {
                     $stigData.TechnologyRole.Name | Should Be $technologyRole.Name
                 }
-                # $stigExceptions = $stigData.StigExceptions
-                # foreach ($hash in $stigExceptionHashtable.GetEnumerator())
-                # {
-                #     $stigException = $stigExceptions.Where({$_.StigRuleId -eq $hash.Key})
-                #     $stigException.StigRuleId | Should Be $hash.Key
+                It "Should return a list of Stig Exceptions" {
+                    $stigExceptions = $stigData.StigExceptions
+                    foreach ($hash in $stigExceptionHashtable.GetEnumerator())
+                    {
+                        $stigException = $stigExceptions.Where({$_.StigRuleId -eq $hash.Key})
+                        $stigException.StigRuleId | Should Be $hash.Key
 
-                #     foreach ($property in $hash.Value.GetEnumerator())
-                #     {
-                #         $stigProperty = $stigException.Properties.Where({$_.Name -eq $property.Key})
-                #         $stigProperty.Name | Should Be $property.Key
-                #         $stigProperty.Value | Should Be $property.Value
-                #     }
-                # }
-                It "Should not have commented out tests" {
-                    $false | Should Be $true
+                        foreach ($property in $hash.Value.GetEnumerator())
+                        {
+                            $stigProperty = $stigException.Properties.Where({$_.Name -eq $property.Key})
+                            $stigProperty.Name | Should Be $property.Key
+                            $stigProperty.Value | Should Be $property.Value
+                        }
+                    }
                 }
-                # $skippedRuleTypes = $stigData.SkippedRuleTypes
-                # foreach ($type in $skippedRuleTypeArray)
-                # {
-                #     $skippedRuleType = $skippedRuleTypes.Where( {$_.StigRuleType.ToString() -eq $type})
-                #     $skippedRuleType.StigRuleType | Should Be $type
-                # }
+                It "Should return a list of skipped rule types" {
+                    $skippedRuleTypes = $stigData.SkippedRuleTypes
+                    foreach ($type in $skippedRuleTypeArray)
+                    {
+                        $skippedRuleType = $skippedRuleTypes.Where( {$_.StigRuleType.ToString() -eq $type})
+                        $skippedRuleType.StigRuleType | Should Be $type
+                    }
+                }
+                It "Should return a list of skipped rules" {
+                    $skippedRules = $stigData.SkippedRules
+                    foreach ($rule in $skippedRuleArray)
+                    {
+                        $skippedRule = $skippedRules.Where( {$_.StigRuleId -eq $rule})
+                        $skippedRule.StigRuleId | Should Be $rule
+                    }
+                }
 
-                # $skippedRules = $stigData.SkippedRules
-                # foreach ($rule in $skippedRuleArray)
-                # {
-                #     $skippedRule = $skippedRules.Where( {$_.StigRuleId -eq $rule})
-                #     $skippedRule.StigRuleId | Should Be $rule
-                # }
                 It "Should create an StigData class with the highest available version because no StigVersion was provided" {
                     $stigData = [StigData]::new($null, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
                     $stigData.StigVersion | Should Not Be $null
