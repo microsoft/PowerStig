@@ -607,15 +607,15 @@ function Get-NumberFromString
         $ValueDataString
     )
 
-    $ValueDataString -Match $script:regularExpression.leadingIntegerUnbound | Out-Null
-
-    try
+    $string = Select-String -InputObject $ValueDataString `
+                            -Pattern $script:regularExpression.leadingIntegerUnbound
+    if($null -eq $string)
     {
-        $matches[0]
+        throw
     }
-    catch
+    else
     {
-        throw "Did not find an integer in $ValueDataString."
+        return $string
     }
 }
 
