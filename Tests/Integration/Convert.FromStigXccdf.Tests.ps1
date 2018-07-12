@@ -7,7 +7,7 @@ try
     $filePath = "$PSScriptRoot\..\..\StigData\Archive"
 
     # Building the baseline rule set values
-    $stigs = @{
+    $stigs = [ordered]@{
         'U_Windows_2012_and_2012_R2_MS_STIG_V2R9_Manual-xccdf.xml'    = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 34
