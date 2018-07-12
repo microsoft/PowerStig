@@ -365,7 +365,7 @@ try
                 {
                     $keyValue = $ruleConversion.$key
 
-                    It "$key should return $keyValue rules" {
+                    It "Should return $keyValue rules from $key" {
                         ($conversionReport | Where-Object {$_.type -eq $key}).conversionpass | Should be $keyValue
                     }
                 }
