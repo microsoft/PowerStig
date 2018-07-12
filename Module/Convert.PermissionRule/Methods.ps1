@@ -427,7 +427,7 @@ function ConvertTo-AccessControlEntry
     {
         if ( $entry -notmatch 'Type|Inherited|Columns|Principal|Applies' )
         {
-            <# 
+            <#
                 Access control entries are commonly formated like so: 'Princiapl - FileSystemRights - Inheritance
                 we will split on a regex pattern the represents space dash space ( - )
             #>
@@ -541,6 +541,8 @@ function Test-MultiplePermissionRule
     param
     (
         [Parameter(Mandatory = $true)]
+        [AllowNull()]
+        [AllowEmptyString()]
         [string]
         $PermissionPath
     )
