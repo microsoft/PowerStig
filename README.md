@@ -39,7 +39,7 @@ Update-Module -Name PowerStig
 You are more than welcome to contribute to the development of PowerStig.
 There are several different ways you can help.
 You can create new convert modules, add test automation, improve documentation, fix existing issues, or open new ones.
-See our [contributing guide](https://github.com/Microsoft/PowerStig/blob/master/CONTRIBUTING.md) for more info on how to become a DSC Resource Kit contributor.
+See our [contributing guide](CONTRIBUTING.md) for more info on how to become a DSC Resource Kit contributor.
 
 ## Versions
 
