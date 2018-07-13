@@ -33,19 +33,19 @@ Submitting an issue to PowerStig is easy!
 Here are the steps:
 
 1. Find the correct repository to submit your issue to.
-2. Make sure the issue is not open already.
-3. Open a new issue.
-4. Fill in the issue title.
-5. Fill in the issue description.
-6. Submit the issue.
+1. Make sure the issue is not open already.
+1. Open a new issue.
+1. Fill in the issue title.
+1. Fill in the issue description.
+1. Submit the issue.
 
 ### Find the Correct Repository
 
 | Issue Topic | Where to Submit |
 |-------------|-----------------|
-| <ul><li> PowerStig overall </li><li> Issues that span multiple PowerStig projects or repos </li><li> PowerStig processes </li></ul> | PowerStig (this repository) |
-| <ul><li> Common tests </li><li> Schemas </li></ul> | [PowerStig.Tests](https://github.com/Microsoft/PowerStig.Tests)
-| <ul><li> Bugs, feature requests, enhancements to a specific module | The repository of the module |
+| PowerStig overall, Issues that span multiple PowerStig projects or repos, PowerStig processes | PowerStig (this repository) |
+| Common tests, Schemas | [PowerStig.Tests](https://github.com/Microsoft/PowerStig.Tests)
+| Bugs, feature requests, enhancements to a specific module | The repository of the module |
 
 ### Open an Issue
 
@@ -110,9 +110,9 @@ Here's the general process of fixing an issue in PowerStig:
 
 ### Pick an Issue
 
-Issues that are currently up-for-grabs are tagged with the ```help wanted``` label.
+Issues that are currently up-for-grabs are tagged with the ```help wantedlabel.
 
-If you find an issue that you want to work on, but it does not have the ```help wanted``` label, make sure to read through the issue and ask if you can start working on it.
+If you find an issue that you want to work on, but it does not have the ```help wantedlabel, make sure to read through the issue and ask if you can start working on it.
 
 ### Fork a Respository
 
@@ -304,7 +304,8 @@ If this is not happening for your module, you will need to clone [DSCResource.Te
 Then simply run `Invoke-Pester` from the root folder.
 
 Like this:
-```
+
+```cmd
 cd C:\MyPath\ResourceModuleFolder
 git clone https://github.com/PowerShell/DscResource.Tests
 Invoke-Pester
