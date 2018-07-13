@@ -3,6 +3,14 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 using module .\..\Convert.Stig\Convert.Stig.psm1
+
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
+Foreach ($supportFile in $supportFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 #endregion
 #region Class
 Class PermissionRule : STIG
@@ -70,12 +78,4 @@ Class PermissionRule : STIG
         return ( Split-MultiplePermissionRule -CheckContent ([STIG]::SplitCheckContent( $CheckContent ) ) )
     }
 }
-#endregion
-#region Footer
-Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
-Export-ModuleMember -Function '*' -Variable '*'
 #endregion
