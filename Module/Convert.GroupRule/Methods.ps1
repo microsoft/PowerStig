@@ -3,7 +3,8 @@
 #region Method Functions
 <#
     .SYNOPSIS
-        Retrieves the Group Details (GroupName and MembersToExclude) from the STIG rule check-content
+        Retrieves the Group Details (GroupName and MembersToExclude) from the
+        STIG rule check-content
     .PARAMETER CheckContent
         Specifies the check-content element in the xccdf
 #>
@@ -19,8 +20,7 @@ function Get-GroupDetail
         $CheckContent
     )
 
-    $srcRoot = Split-Path -Path $PSScriptRoot | Split-Path
-    $templateFile = Join-Path -Path $srcRoot -ChildPath 'templates\groupRuleTemplate.txt'
+    $templateFile = "$PSScriptRoot\Template.GroupDetail.txt"
     $result = $CheckContent | ConvertFrom-String -TemplateFile $templateFile
 
     return $result

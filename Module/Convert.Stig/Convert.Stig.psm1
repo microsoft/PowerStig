@@ -2,6 +2,14 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
+
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
+Foreach ($supportFile in $supportFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 #endregion
 #region Class Definition
 Class STIG : ICloneable
@@ -197,12 +205,4 @@ Class STIG : ICloneable
     }
     #endregion
 }
-#endregion
-#region Footer
-Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
-Export-ModuleMember -Function '*' -Variable '*'
 #endregion
