@@ -146,11 +146,15 @@ function Split-StigXccdf
         }
 
         #region save the split stig file
-        $Destination = $Destination.TrimEnd("\")
-        $FilePathRoot = "$($msStig.Benchmark.id)_{0}.xml"
+        $Destination = Resolve-Path -Path $Destination.TrimEnd("\")
+        $fileName = $Path | Split-Path -Leaf
 
-        $msStig.Save("$Destination\$FilePathRoot" -f "MS")
-        $dcStig.Save("$Destination\$FilePathRoot" -f "DC")
+        $fileNameLeaf = ($fileName | Select-String -Pattern '(?<=2016_).*$').Matches.Groups[-1].Value.Trim()
+        $fileNameParent = ($fileName | Select-String -Pattern '.*(?=STIG)').Matches.Groups[-1].Value.Trim()
+        $fileNameRoot = "$fileNameParent{0}_$fileNameLeaf"
+
+        $msStig.Save("$Destination\$fileNameRoot" -f "MS")
+        $dcStig.Save("$Destination\$fileNameRoot" -f "DC")
         #endregion
     }
     End
