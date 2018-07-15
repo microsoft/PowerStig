@@ -24,7 +24,7 @@ Copyright = '(c) 2017 Adam Haynes. All rights reserved.'
 Description = 'Module for managing the DISA STIGs'
 
 # Minimum version of the Windows PowerShell engine required by this module
-PowerShellVersion = '5.0'
+PowerShellVersion = '5.1'
 
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
 CLRVersion = '4.0'
