@@ -47,7 +47,7 @@ See our [contributing guide](CONTRIBUTING.md) for more info on how to become a D
 ### Unreleased
 
 * Modified Split-StigXccdf function
-    * Output filenames are now consistent with ConvertTo-PowerStigXml
+  * Output filenames are now consistent with ConvertTo-PowerStigXml
 
 ### 1.0.0.0
 
