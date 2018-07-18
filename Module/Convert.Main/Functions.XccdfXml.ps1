@@ -97,7 +97,7 @@ function ConvertFrom-StigXccdf
 function Split-StigXccdf
 {
     [CmdletBinding()]
-    [OutputType([object])]
+    [OutputType([null])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -159,10 +159,10 @@ function Split-StigXccdf
             $Destination = $Destination.TrimEnd("\")
         }
 
-        $FilePathRoot = Split-Path -Path $Path -Leaf
+        $FilePath = "$Destination\$(Split-Path -Path $Path -Leaf)"
 
-        $msStig.Save(("$Destination\$FilePathRoot" -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
-        $dcStig.Save(("$Destination\$FilePathRoot" -replace '2016_STIG', '2016_DC_SPLIT_STIG'))
+        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
+        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_SPLIT_STIG'))
     }
     End
     {
