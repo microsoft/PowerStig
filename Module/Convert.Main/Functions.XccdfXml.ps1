@@ -97,7 +97,6 @@ function ConvertFrom-StigXccdf
 function Split-StigXccdf
 {
     [CmdletBinding()]
-    [OutputType([null])]
     Param
     (
         [parameter(Mandatory = $true)]
