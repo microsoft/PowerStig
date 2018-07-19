@@ -3,18 +3,18 @@ using module .\..\..\..\Module\Common\Common.psm1
 . $PSScriptRoot\.tests.Header.ps1
 #endregion
 #region Enum Tests
-<# 
+<#
     a list of enums in the script that is used in a "burn down" manner. When an enum is processed
-    it is removed from the list, The last test will be to verify that all of the enums have 
+    it is removed from the list, The last test will be to verify that all of the enums have
     been tested
 #>
 $enumDiscovered = New-Object System.Collections.ArrayList
-# select each line that starts with enum to count the number of enum's in the file 
+# select each line that starts with enum to count the number of enum's in the file
 
 $enumListString = ( Get-Content $modulePath | Select-String "^Enum " )
 # add each enum that is found to the array
 $enumListString | Foreach-Object { $enumDiscovered.add( ( $_ -split " " )[1].ToString().ToLower() ) | Out-Null }
-# get a count to to use in a final test to validate enum test coverage 
+# get a count to to use in a final test to validate enum test coverage
 [int] $enumTestCount = $enumDiscovered.Count
 
 $enumTests = @{
@@ -40,7 +40,7 @@ foreach( $enum in $enumTests.GetEnumerator() )
         #[process].GetEnumValues()
         $EnumValues = [enum]::GetValues($enum.Key)
 
-        foreach ( $value in $EnumValues ) 
+        foreach ( $value in $EnumValues )
         {
             It "$value should exist" {
                 $value | should match $enum.Value
@@ -62,7 +62,7 @@ Describe 'Enum coverage' {
 #endregion Tests
 #region Data Tests
 Describe "RegularExpression Data Section" {
-    
+
     [string] $dataSectionName = 'RegularExpression'
 
     It "Should have a data section called $dataSectionName" {
@@ -72,11 +72,11 @@ Describe "RegularExpression Data Section" {
     Context 'Hex Code' {
 
         It 'Should match a hexcode' {
-            '0X00000000' -Match $RegularExpression.hexCode | Should Be $true  
+            '0X00000000' -Match $RegularExpression.hexCode | Should Be $true
         }
 
         It 'Should NOT match nonhexcode' {
-            '0X000000000' -Match $RegularExpression.hexCode | Should Be $false  
+            '0X000000000' -Match $RegularExpression.hexCode | Should Be $false
         }
     }
 
@@ -96,12 +96,12 @@ Describe "RegularExpression Data Section" {
     }
 
     Context "Blank String" {
-        
+
         It "Should match '(Blank)' literal string" {
             "(Blank)" -Match $RegularExpression.blankString | Should Be $true
         }
     }
-    
+
     Context 'Enabled or Disabled String' {
 
         foreach ( $flag in ('Enabled','enabled','Disabled','disabled') )
@@ -120,7 +120,7 @@ Describe "RegularExpression Data Section" {
                 $flag -Match $RegularExpression.AuditFlag | Should Be $true
             }
         }
-        
+
         $audiPolicyStringFormats = @(
             'Catagory -> Sub Category - Flag',
             'Catagory >> Sub Category - Flag'
@@ -152,60 +152,60 @@ Describe "RegularExpression Data Section" {
             $text = 'InsideOfParenthese'
             $unneededText = 'Unneeded text'
 
-            $result = ( "$unneededText (" + $text + ") $unneededText" | 
+            $result = ( "$unneededText (" + $text + ") $unneededText" |
                 Select-String $RegularExpression.textBetweenParentheses ).matches.groups[-1].Value
 
             $result | Should Be $text
         }
     }
 
-    <# 
-    TO DO - Add rules 
+    <#
+    TO DO - Add rules
     #>
 }
 
 Describe "rangeMatch Data Section" {
-    
+
     [string] $dataSectionName = 'rangeMatch'
 
     It "should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
-    <# 
-    TO DO - Add rules 
+    <#
+    TO DO - Add rules
     #>
 }
 
 Describe "errorMessage Data Section" {
-    
+
     [string] $dataSectionName = 'errorMessage'
 
     It "should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
-    <# 
-    TO DO - Add rules 
+    <#
+    TO DO - Add rules
     #>
 }
 
 Describe "ADAuditPath Data Section" {
-    
+
     [string] $dataSectionName = 'ADAuditPath'
 
     It "should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
-    <# 
-    TO DO - Add rules 
+    <#
+    TO DO - Add rules
     #>
 }
 #endregion Tests
 #region Helper Tests
 Describe 'Get-AvailableId' {
-    # Since this function uses a global variable, we need to make sure we don't step on anything. 
+    # Since this function uses a global variable, we need to make sure we don't step on anything.
     $resetglobalSettings = $false
     if ( $global:stigSettings )
     {
@@ -213,7 +213,7 @@ Describe 'Get-AvailableId' {
         $resetglobalSettings = $true
     }
 
-    try 
+    try
     {
         It 'Should add the next available letter to an Id' {
             $global:stigSettings = @(@{Id = 'V-1000'})
@@ -667,17 +667,36 @@ Describe 'ConvertTo-MultipleValue' {
 #endregion
 #region Security Policy
 Describe 'Get-SecurityPolicyString' {
-    $checkContent = 'Verify the effective setting in Local Group Policy Editor.
-    Run "gpedit.msc".
+    $checkStrings = @(
+        @{
+            checkContent = 'Verify the effective setting in Local Group Policy Editor.
+            Run "gpedit.msc".
 
-    Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
+            Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
 
-    If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
-    $match = '"Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
-    It 'Should return the second string in quotes' {
+            If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
+            match = '"Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
+        },
+        @{
+            checkContent = 'Verify the effective setting in Local Group Policy Editor.
 
-        $checkContent = (Split-TestStrings -CheckContent  $checkContent)
-        Get-SecurityPolicyString -CheckContent $checkContent | Should Be $match
+            Run "gpedit.msc".
+
+            Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+
+            If the value for the "Maximum password age" is greater than "60" days, this is a finding.
+
+            If the value is set to "0" (never expires), this is a finding.'
+            match = '"Maximum password age" is greater than "60" days, this is a finding. or is set to "0" (never expires), this is a finding.'
+        }
+    )
+
+    foreach($checkString in $checkStrings)
+    {
+        It 'Should return the second string in quotes' {
+            $checkContent = (Split-TestStrings -CheckContent $checkString.checkContent)
+            Get-SecurityPolicyString -CheckContent $checkContent | Should Be $checkString.match
+        }
     }
 }
 Describe 'Test-SecurityPolicyContainsRange' {
