@@ -521,6 +521,24 @@ function Split-BenchmarkId
         '(_+)Security_Technical_Implementation_Guide_NewBenchmark',
         '(_+)Security_Technical_Implementation_Guide'
     )
+    $sqlServerVariations = @(
+        'Microsoft_SQL_Server'
+    )
+    $sqlServerInstanceVariations = @(
+        'Database_Instance'
+    )
+    $windowsVariations = @(
+        'Microsoft_Windows',
+        'Windows_Server',
+        'Windows'
+    )
+    $dnsServerVariations = @(
+        'Server_Domain_Name_System',
+        'Domain_Name_System'
+    )
+    $activeDirectoryVariations = @(
+        'Active_Directory'
+    )
 
     $Id = $Id -replace ($idVariations -join '|'), ''
 
@@ -528,14 +546,7 @@ function Split-BenchmarkId
     {
         {$PSItem -match "SQL_Server"}
         {
-            $sqlServerVariations = @(
-                'Microsoft_SQL_Server'
-            )
             $returnId = $Id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-
-            $sqlServerInstanceVariations = @(
-                'Database_Instance'
-            )
             $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), 'Instance'
             continue
         }
@@ -546,40 +557,23 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Domain_Name_System"}
         {
-            $windowsVariations = @(
-                'Microsoft_Windows',
-                'Windows'
-            )
-            $dnsServerVariations = @(
-                'Server_Domain_Name_System',
-                'Domain_Name_System'
-            )
             $returnId = $Id -replace ($dnsServerVariations -join '|'), 'DNS'
             $returnId = $returnId -replace ($windowsVariations -join '|'), 'Windows'
             continue
         }
         {$PSItem -match "Windows"}
         {
-            $windowsVariations = @(
-                'Windows'
-            )
             $returnId = $Id -replace ($windowsVariations -join '|'), 'Windows'
-
             continue
         }
         {$PSItem -match "Active_Directory"}
         {
-            $activeDirectoryVariations = @(
-                'Active_Directory'
-            )
             $returnId = $Id -replace ($activeDirectoryVariations -join '|'), 'Windows_All'
-
             continue
         }
         {$PSItem -match "IE_"}
         {
             $returnId = "Windows_All_" + -join ($Id -split '_')
-
             continue
         }
         default
