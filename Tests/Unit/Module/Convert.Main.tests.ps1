@@ -136,6 +136,18 @@ try
                         'Technology' = 'Windows'
                         'TechnologyVersion' = '2012'
                         'TechnologyRole' = 'MS'
+                    },
+                    @{
+                        'id' = 'Windows_Server_2016_DC_STIG'
+                        'Technology' = 'Windows'
+                        'TechnologyVersion' = '2016'
+                        'TechnologyRole' = 'DC'
+                    },
+                    @{
+                        'id' = 'Windows_Server_2016_MS_STIG'
+                        'Technology' = 'Windows'
+                        'TechnologyVersion' = '2016'
+                        'TechnologyRole' = 'MS'
                     }
                 )
                 'Active_Directory' = @(
