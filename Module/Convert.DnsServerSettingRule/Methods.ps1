@@ -3,7 +3,7 @@
 #region Method Functions
 <#
     .SYNOPSIS
-        Retreives the DNS server property setting
+        Retrieves the DNS server property setting
 #>
 function Get-DnsServerSettingProperty
 {
@@ -16,7 +16,7 @@ function Get-DnsServerSettingProperty
         $CheckContent
     )
 
-    # There is only have one scenario to handle but we will use a switch to easily add additional scenarios
+    # There is only one scenario to handle but we will use a switch to easily add additional scenarios
     switch ( $CheckContent )
     {
         { $CheckContent -match $script:regularExpression.textBetweenTheTab }
