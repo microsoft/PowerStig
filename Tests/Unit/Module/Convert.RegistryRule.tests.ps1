@@ -145,6 +145,29 @@ try
 
                                             Type:  REG_DWORD
                                             Value:  0x00001000 (4096)'
+            },
+            @{
+                Hive                      = 'HKEY_CURRENT_USER'
+                Path                      = '\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments\'
+                OrganizationValueRequired = 'False'
+                ValueName                 = 'SaveZoneInformation'
+                ValueData                 = '2'
+                ValueType                 = 'Dword'
+                CheckContent              = 'The default behavior is for Windows to mark file attachments with their zone information.
+
+                If the registry Value Name below does not exist, this is not a finding.
+
+                If it exists and is configured with a value of "2", this is not a finding.
+
+                If it exists and is configured with a value of "1", this is a finding.
+
+                Registry Hive: HKEY_CURRENT_USER
+                Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments\
+
+                Value Name: SaveZoneInformation
+
+                Value Type: REG_DWORD
+                Value: 0x00000002 (2) (or if the Value Name does not exist)'
             }
         )
         $rule = [RegistryRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
@@ -284,9 +307,47 @@ try
 
         Describe 'Test-RegistryValueDataContainsRange' {
 
+            Context 'Matches' {
+                $rangeStrings = @(
+                    'Value: 1 or 2 = a Finding',
+                    'Value:  3 (or less)',
+                    'Value: 300000 (or less)',
+                    'Value: 30 (or less, but not 0)',
+                    'Value: 0x000dbba0 (900000) or less but not 0',
+                    'Value: Possible values are NoSync,NTP,NT5DS, AllSync'
+                )
+
+                foreach ($string in $rangeStrings)
+                {
+                    It "Should return true when given '$string'" {
+                        $containsRange = Test-RegistryValueDataContainsRange -ValueDataString $string
+                        $containsRange | Should Be $true
+                    }
+                }
+            }
+
+            Context 'Non Matches' {
+                $rangeStrings = @(
+                    'Value: (Blank)',
+                    'Value: Enabled',
+                    'Value: Disabled',
+                    'Value: 0x0000000a (10)',
+                    'Value: 10',
+                    'Value: 0x00000002 (2) (or if the Value Name does not exist)'
+                )
+
+                foreach ($string in $rangeStrings)
+                {
+                    It "Should return false when given '$string'" {
+                        $containsRange = Test-RegistryValueDataContainsRange -ValueDataString $string
+                        $containsRange | Should Be $false
+                    }
+                }
+            }
+
             foreach ( $rule in $rulesToTest )
             {
-                It "Should return '$($rule.OrganizationValueRequired)'" {
+                It "Should return the correct Org Setting required flag" {
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $registryData = Get-RegistryValueData -CheckContent $checkContent
                     $registryKey = Test-RegistryValueDataContainsRange -ValueDataString ($registryData)
@@ -888,46 +949,6 @@ try
                 {
                     It "Should return '$($string.value)' from '$($string.key)'" {
                         Get-NumberFromString -ValueDataString $string.Key | Should Be $String.Value
-                    }
-                }
-            }
-        }
-
-        Describe 'Test-RegistryValueDataContainsRange' {
-
-            Context 'Matches' {
-                $rangeStrings = @(
-                    'Value: 1 or 2 = a Finding',
-                    'Value:  3 (or less)',
-                    'Value: 300000 (or less)',
-                    'Value: 30 (or less, but not 0)',
-                    'Value: 0x000dbba0 (900000) or less but not 0',
-                    'Value: Possible values are NoSync,NTP,NT5DS, AllSync'
-                )
-
-                foreach ($string in $rangeStrings)
-                {
-                    It "Should return true when given '$string'" {
-                        $containsRange = Test-RegistryValueDataContainsRange -ValueDataString $string
-                        $containsRange | Should Be $true
-                    }
-                }
-            }
-
-            Context 'Non Matches' {
-                $rangeStrings = @(
-                    'Value: (Blank)',
-                    'Value: Enabled',
-                    'Value: Disabled',
-                    'Value: 0x0000000a (10)',
-                    'Value: 10'
-                )
-
-                foreach ($string in $rangeStrings)
-                {
-                    It "Should return false when given '$string'" {
-                        $containsRange = Test-RegistryValueDataContainsRange -ValueDataString $string
-                        $containsRange | Should Be $false
                     }
                 }
             }
