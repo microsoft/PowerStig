@@ -25,7 +25,7 @@ function Get-PermissionTargetPath
         # get path for permissions that pertains to event logs
         { $stigString -match $script:RegularExpression.WinEvtDirectory }
         {
-            $parentheseMatch = $StigString | Select-String -Pattern $script:eventLogRegularExpression.name
+            $parentheseMatch = $StigString | Select-String -Pattern $script:RegularExpression.textBetweenParentheses
 
             if ( $StigString -match $script:RegularExpression.dnsServerLog )
             {

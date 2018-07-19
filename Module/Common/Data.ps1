@@ -197,17 +197,3 @@ data webRegularExpression
         inetpub                 = inetpub
 '@
 }
-
-data eventLogRegularExpression
-{
-    <#
-        The name entry was added to support event log name extraction from the
-        different formats found in different Window Server STIGs. For example in
-        the 2012 Stig, (Application.evtx) was used, in 2016 “Application.evtx”
-        is used, so name now extracts the log name from the extension and the
-        preceding word.
-    #>
-    ConvertFrom-StringData -stringdata @'
-        name = \\w+\\.evtx
-'@
-}
