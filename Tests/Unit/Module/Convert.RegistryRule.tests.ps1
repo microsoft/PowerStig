@@ -148,7 +148,7 @@ try
             },
             @{
                 Hive                      = 'HKEY_CURRENT_USER'
-                Path                      = '\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments\'
+                Path                      = '\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments'
                 OrganizationValueRequired = 'False'
                 ValueName                 = 'SaveZoneInformation'
                 ValueData                 = '2'
