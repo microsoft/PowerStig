@@ -6,11 +6,11 @@
 <#
     .SYNOPSIS
         This function is a selection function that looks at text containing conditional language and
-        try's to identify the correct specialized function to set it to for conversion. The conversion
+        tries to identify the correct specialized function to set it to for conversion. The conversion
         functions called by this function do the English to PowerShell conversion.
 
     .Parameter String
-        The STIG text the contains conditional text to try and convert to a PowerShell expression.
+        The STIG text contains conditional text to try and convert to a PowerShell expression.
 
     .Notes
         General Notes
@@ -210,22 +210,23 @@ function ConvertTo-HashTable
 <#
     .SYNOPSIS
         Checks if a string is asking for a negative or evaluation. Applies a reagular expression against
-        the string to look for a known pattern asking for a value to not be equal to one of 2 vaules.
+        the string to look for a known pattern asking for a value to not be equal to one of 2 values.
 
     .PARAMETER String
         The string data to evaluate.
 
     .EXAMPLE
-        This exnaple returns a $true
+        This example returns $true
 
         Test-StringIsNegativeOr -String "1 or 2 = a Finding"
 
     .EXAMPLE
-        This exnaple returns a $false
+        This example returns $false
 
         Test-StringIsNegativeOr -String "1 or 2 = is not a Finding"
+        
     .NOTES
-        Tests if the string such as '1 or 2 = a Finding' is a negative or test.
+        Tests if a string such as '1 or 2 = a Finding' is a negative or test.
 #>
 function Test-StringIsNegativeOr
 {
@@ -273,7 +274,7 @@ function Test-StringIsPositiveOr
     )
 
     <#
-        Optional characters was seperated from the rest of the RegEx becase it is a repeating
+        Optional characters were seperated from the rest of the RegEx because it is a repeating
         pattern. If new characters are discovered in the future, they can be added here and in
         the tests.
     #>
