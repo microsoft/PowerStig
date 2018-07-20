@@ -66,7 +66,7 @@ Describe "RegularExpression Data Section" {
     [string] $dataSectionName = 'RegularExpression'
 
     It "Should have a data section called $dataSectionName" {
-        ( get-variable $dataSectionName ).Name | Should Be $dataSectionName
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
     Context 'Hex Code' {
@@ -201,6 +201,31 @@ Describe "ADAuditPath Data Section" {
     <#
     TO DO - Add rules
     #>
+}
+
+Describe "eventLogRegularExpression Data Section" {
+
+    [string] $dataSectionName = 'eventLogRegularExpression'
+    It "should have a data section called $dataSectionName" {
+        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+    }
+
+    $namesToTest = @(
+        '(Application.evtx)',
+        '"Application.evtx"',
+        '''(System.evtx)''',
+        '''("System.evtx")'''
+    )
+    Context 'Name' {
+
+        foreach($name in $namesToTest)
+        {
+            It "Should match $name" {
+                $name -Match $eventLogRegularExpression.name | Should Be $true
+            }
+        }
+
+    }
 }
 #endregion Tests
 #region Helper Tests
