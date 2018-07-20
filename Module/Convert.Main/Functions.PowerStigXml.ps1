@@ -1,9 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
-#region Header
-
-#endregion
 #region Main Function
 <#
     .SYNOPSIS
@@ -58,7 +54,7 @@ function ConvertTo-PowerStigXml
 
         # Get the raw xccdf xml to pull additional details from the root node.
         [xml] $xccdfXml = Get-Content -Path $Path -Encoding UTF8
-        [version] $stigVersionNumber = Get-StigVersionNumber -stigDetails $xccdfXml
+        [version] $stigVersionNumber = Get-StigVersionNumber -StigDetails $xccdfXml
 
         $ruleTypeList = Get-RuleTypeList -StigSettings $convertedStigObjects
 
@@ -199,31 +195,28 @@ function ConvertTo-PowerStigXml
             }
         }
 
-        $OutPath = Get-OutputFileRoot -Path $Path -Destination $Destination
-        $convertStigPath = "$OutPath.xml"
-        $OrgSettingsPath = "$OutPath.org.xml"
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfXml -Destination $Destination
 
         try
         {
-            $xmlDocument.save( $convertStigPath )
+            $xmlDocument.save( $fileList.Settings.FullName )
+            Write-Output "Converted Output: $($fileList.Settings.FullName)"
         }
         catch [System.Exception]
         {
             Write-Error -Message $error[0]
         }
 
-        Write-Output "Converted Output: $convertStigPath"
-
         if ($CreateOrgSettingsFile)
         {
             $OrganizationalSettingsXmlFileParameters = @{
                 'convertedStigObjects' = $convertedStigObjects
                 'StigVersionNumber'    = $stigVersionNumber
-                'Destination'          = $OrgSettingsPath
+                'Destination'          = $fileList.OrgSettings.FullName
             }
             New-OrganizationalSettingsXmlFile @OrganizationalSettingsXmlFileParameters
 
-            Write-Output "Org Settings Output: $OrgSettingsPath"
+            Write-Output "Org Settings Output: $($fileList.OrgSettings.FullName)"
         }
     }
     End
@@ -448,14 +441,154 @@ function Get-StigVersionNumber
     (
         [parameter(Mandatory = $true)]
         [xml]
-        $stigDetails
+        $StigDetails
     )
 
     # Extract the revision number from the xccdf
-    $revision = ( $stigDetails.Benchmark.'plain-text'.'#text' `
+    $revision = ( $StigDetails.Benchmark.'plain-text'.'#text' `
             -split "(Release:)(.*?)(Benchmark)" )[2].trim()
 
-    "$($stigDetails.Benchmark.version).$revision"
+    "$($StigDetails.Benchmark.version).$revision"
+}
+
+<#
+    .SYNOPSIS
+        Creates the file name to create from the xccdf content
+
+    .PARAMETER StigDetails
+        A reference to the in memory xml document.
+
+    .NOTES
+        This function should only be called from the public ConvertTo-DscStigXml function.
+#>
+function Get-PowerStigFileList
+{
+    [CmdletBinding()]
+    [OutputType([Hashtable[]])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [xml]
+        $StigDetails,
+
+        [parameter()]
+        [string]
+        $Destination
+    )
+
+    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id
+
+    $fileNameBase = "$($Id.Technology)-$($id.TechnologyVersion)-$($id.TechnologyRole)"
+    $fileNameBase = $fileNameBase + "-$(Get-StigVersionNumber -StigDetails $StigDetails)"
+
+    if ($Destination)
+    {
+        $Destination = Resolve-Path -Path $Destination
+    }
+    else
+    {
+        $Destination = "$(Split-Path -Path (Split-Path -Path $PSScriptRoot))\StigData\Processed"
+    }
+
+    Write-Verbose "[$($MyInvocation.MyCommand.Name)] Destination: $Destination"
+
+    return @{
+        Settings    = [System.IO.FileInfo]::new("$Destination\$fileNameBase.xml")
+        OrgSettings = [System.IO.FileInfo]::new("$Destination\$fileNameBase.org.default.xml")
+    }
+}
+
+<#
+    .SYNOPSIS
+        Splits the Xccdf benchmark ID into an object.
+    .PARAMETER Id
+        The Id field from the Xccdf benchmark.
+#>
+function Split-BenchmarkId
+{
+    [CmdletBinding()]
+    [OutputType([Hashtable[]])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [string]
+        $Id
+    )
+
+    # Different STIG's present the Id field in a different format.
+    $idVariations = @(
+        '(_+)STIG',
+        '(_+)Security_Technical_Implementation_Guide_NewBenchmark',
+        '(_+)Security_Technical_Implementation_Guide'
+    )
+    $sqlServerVariations = @(
+        'Microsoft_SQL_Server'
+    )
+    $sqlServerInstanceVariations = @(
+        'Database_Instance'
+    )
+    $windowsVariations = @(
+        'Microsoft_Windows',
+        'Windows_Server',
+        'Windows'
+    )
+    $dnsServerVariations = @(
+        'Server_Domain_Name_System',
+        'Domain_Name_System'
+    )
+    $activeDirectoryVariations = @(
+        'Active_Directory'
+    )
+
+    $Id = $Id -replace ($idVariations -join '|'), ''
+
+    switch ($Id)
+    {
+        {$PSItem -match "SQL_Server"}
+        {
+            $returnId = $Id -replace ($sqlServerVariations -join '|'), 'SqlServer'
+            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), 'Instance'
+            continue
+        }
+        {$PSItem -match "_Firewall"}
+        {
+            $returnId = $Id -replace 'Firewall', 'All_FW'
+            continue
+        }
+        {$PSItem -match "Domain_Name_System"}
+        {
+            $returnId = $Id -replace ($dnsServerVariations -join '|'), 'DNS'
+            $returnId = $returnId -replace ($windowsVariations -join '|'), 'Windows'
+            continue
+        }
+        {$PSItem -match "Windows"}
+        {
+            $returnId = $Id -replace ($windowsVariations -join '|'), 'Windows'
+            continue
+        }
+        {$PSItem -match "Active_Directory"}
+        {
+            $returnId = $Id -replace ($activeDirectoryVariations -join '|'), 'Windows_All'
+            continue
+        }
+        {$PSItem -match "IE_"}
+        {
+            $returnId = "Windows_All_" + -join ($Id -split '_')
+            continue
+        }
+        default
+        {
+            $returnId = $Id
+        }
+    }
+
+    $returnId = $returnId -Split '_'
+
+    return @{
+        'Technology'        = $returnId[0]
+        'TechnologyVersion' = $returnId[1]
+        'TechnologyRole'    = $returnId[2]
+    }
 }
 
 <#
@@ -481,98 +614,5 @@ function Get-StigObjectsWithOrgSettings
 
     $ConvertedStigObjects |
         Where-Object { $PSitem.OrganizationValueRequired -eq $true}
-}
-
-<#
-    .SYNOPSIS
-        Gets the target folder name in the composite based on the xccdf title.
-
-    .PARAMETER Path
-        A reference to the xccdf that was converted.
-
-    .NOTES
-        This function should only be called from the public ConvertTo-DscStigXml function.
-#>
-function Get-CompositeTargetFolder
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [parameter(Mandatory = $true)]
-        [string]
-        $Path
-    )
-
-    [xml] $xccdf = Get-Content -Path $path -Encoding UTF8
-
-    Switch ($xccdf.Benchmark.title)
-    {
-        {$PSItem -match '(?=.*Windows)(?=.*Domain(\s*)Controller)'}
-        {return 'WindowsServerDC'}
-        {$PSItem -match '(?=.*Windows)(?=.*Member(\s*)Server)'}
-        {return 'WindowsServerMS'}
-    }
-
-}
-
-<#
-    .SYNOPSIS
-        Filters the lsit of STIG objects and returns anything that requires an organizational desicion.
-
-    .PARAMETER Path
-        A reference to the object that contains the converted stig data.
-
-    .PARAMETER Destination
-        A reference to the object that contains the converted stig data.
-
-    .NOTES
-        This function should only be called from the public ConvertTo-DscStigXml function.
-#>
-function Get-OutputFileRoot
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [parameter(Mandatory = $true)]
-        [string]
-        $Path,
-
-        [parameter()]
-        [string]
-        $Destination
-    )
-
-    $outFileNameRoot = ( Split-Path $Path -Leaf ) -replace '_Manual-xccdf.xml', ''
-
-    $CompositeStigDscIsFound = Get-Module -ListAvailable CompositeStigDsc -Verbose:$false
-
-    if ($CompositeStigDscIsFound -and -not $Destination)
-    {
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Adding file to Composite Resource"
-        $CompositeTargetFolder = Get-CompositeTargetFolder -Path $Path
-        $OutPath = "$($CompositeStigDscIsFound.ModuleBase)\DscResources\$CompositeTargetFolder\stigData"
-    }
-    elseif ($Destination)
-    {
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Adding file to $Destination"
-        $OutPath = $Destination
-    }
-    else
-    {
-        $sourceFilePath = ( Split-Path $Path -Parent )
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Adding file to local directory $sourceFilePath"
-        $OutPath = "$sourceFilePath"
-    }
-
-    if (Test-Path $OutPath)
-    {
-        "$OutPath\$outFileNameRoot"
-    }
-    else
-    {
-        throw "$OutPath was not found"
-    }
 }
 #endregion

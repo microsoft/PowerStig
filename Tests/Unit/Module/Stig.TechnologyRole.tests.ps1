@@ -20,7 +20,7 @@ try
         $technologyVersion3 = [TechnologyVersion]::new('Server2012', $Technology2)
 
         $TestValidateSet = @"
-2012R2 = DNS, DC, MS, IISSite
+2012R2 = DNS, DC, MS, IISSite, IISServer
 All = ADDomain, ADForest, FW, IE11
 Server2012 = Instance, Database
 "@

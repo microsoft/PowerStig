@@ -656,7 +656,8 @@ function Test-RegistryValueDataContainsRange
     )
 
     # Is in a word boundary since it is a common pattern
-    if ( $ValueDataString -match $script:registryRegularExpression.registryValueRange )
+    if ( $ValueDataString -match $script:registryRegularExpression.registryValueRange -and
+         $ValueDataString -notmatch 'does not exist' )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true

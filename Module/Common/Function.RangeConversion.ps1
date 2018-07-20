@@ -740,7 +740,10 @@ function Get-SecurityPolicyString
     $stringMatch = 'If the (value for (the)?)?|(value\s)'
     $result = ( $CheckContent | Select-String -Pattern $stringMatch ) -replace $stringMatch, ''
     # 'V-63427' (Win10) returns multiple matches. This is ensure the only the correct one is returned.
-    $result | Where-Object -FilterScript {$PSItem -notmatch 'site is using a password filter'}
+    $result = $result | Where-Object -FilterScript {$PSItem -notmatch 'site is using a password filter'}
+    # V-73317 (WinSvr 2016) returns multiple matches, but we want both joined to calculate the range.
+    $result = ($result -join " or ").Trim()
+    return $result
 }
 
 <#
