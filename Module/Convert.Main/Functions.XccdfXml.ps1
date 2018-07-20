@@ -1,8 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
-#region Header
-#endregion
 #region Main Function
 <#
     .SYNOPSIS
@@ -100,7 +97,6 @@ function ConvertFrom-StigXccdf
 function Split-StigXccdf
 {
     [CmdletBinding()]
-    [OutputType([object])]
     Param
     (
         [parameter(Mandatory = $true)]
@@ -127,31 +123,45 @@ function Split-StigXccdf
         [xml] $msStig = Get-Content -Path $Path
         [xml] $dcStig = $msStig.Clone()
 
+        # Update the benchmark ID to reflect the STIG content
+        $dcStig.Benchmark.id = $msStig.Benchmark.id -replace '_STIG', '_DC_STIG'
+        $msStig.Benchmark.id = $msStig.Benchmark.id -replace '_STIG', '_MS_STIG'
+
         # Remove DC only settings from the MS xml
+        Write-Information -MessageData "Removing Domain Controller settings from Member Server STIG"
         foreach ($group in $msStig.Benchmark.Group)
         {
             if ($group.Rule.check.'check-content' -match "This applies to domain controllers")
             {
-                $msStig.Benchmark.RemoveChild($group)
+                [void] $msStig.Benchmark.RemoveChild($group)
+                Write-Information -MessageData "Removing $($group.id)"
             }
         }
 
         # Remove DC only setting from the MS xml
+        Write-Information -MessageData "Removing Member Server settings from Domain Controller STIG"
         foreach ($group in $dcStig.Benchmark.Group)
         {
             if ($group.Rule.check.'check-content' -match "This applies to member servers")
             {
-                $dcStig.Benchmark.RemoveChild($group)
+                [void] $dcStig.Benchmark.RemoveChild($group)
+                Write-Information -MessageData "Removing $($group.id)"
             }
         }
 
-        #region save the split stig file
-        $Destination = $Destination.TrimEnd("\")
-        $FilePathRoot = "$($msStig.Benchmark.id)_{0}.xml"
+        if ([string]::IsNullOrEmpty($Destination))
+        {
+            $Destination = Split-Path -Path $Path -Parent
+        }
+        else
+        {
+            $Destination = $Destination.TrimEnd("\")
+        }
 
-        $msStig.Save("$Destination\$FilePathRoot" -f "MS")
-        $dcStig.Save("$Destination\$FilePathRoot" -f "DC")
-        #endregion
+        $FilePath = "$Destination\$(Split-Path -Path $Path -Leaf)"
+
+        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
+        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_SPLIT_STIG'))
     }
     End
     {

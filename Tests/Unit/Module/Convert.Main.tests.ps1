@@ -15,11 +15,42 @@ try
 
         #endregion
         #region Function Tests
+        Describe 'Split-StigXccdf' {
+
+            $sampleXccdfFileName = 'U_Windows_Server_2016{0}_STIG_V1R1_Manual-xccdf.xml'
+            $sampleXccdfId = 'Windows_Server_2016{0}_STIG'
+            $sampleXccdfPath = "$TestDrive\$sampleXccdfFileName" -f ''
+            (Get-TestStigRule -XccdfId ($sampleXccdfId -f '')).Save($sampleXccdfPath)
+            Split-StigXccdf -Path $sampleXccdfPath
+
+            Context 'Member Server' {
+                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_MS_SPLIT'
+                It 'Should create an MS STIG file' {
+                    Test-Path -Path $sampleXccdfSplitPath | Should Be $true
+                }
+
+                It 'Should have MS in the benchmark ID' {
+                    [xml] $sampleXccdfSplitContent = Get-Content $sampleXccdfSplitPath -Encoding UTF8 -Raw
+                    $sampleXccdfSplitContent.Benchmark.id | Should Be ($sampleXccdfId -f '_MS')
+                }
+            }
+
+            Context 'Domain Controller' {
+                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_DC_SPLIT'
+                It 'Should create an DC STIG file' {
+                    Test-Path -Path $sampleXccdfSplitPath | Should Be $true
+                }
+                It 'Should have DC in the benchmark ID' {
+                    [xml] $sampleXccdfSplitContent = Get-Content $sampleXccdfSplitPath -Encoding UTF8 -Raw
+                    $sampleXccdfSplitContent.Benchmark.id | Should Be ($sampleXccdfId -f '_DC')
+                }
+            }
+        }
         Describe "Get-StigVersionNumber" {
             $majorVersionNumber = '1'
             $minorVersionNumber = '5'
             $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
-                                            -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901"
+                -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901"
 
             It "Should extract the version number from the xccdf" {
                 Get-StigVersionNumber -StigDetails $sampleXccdf |
@@ -31,8 +62,8 @@ try
             $majorVersionNumber = '1'
             $minorVersionNumber = '5'
             $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
-                                            -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901" `
-                                            -XccdfId "Windows_2012_DC_STIG"
+                -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901" `
+                -XccdfId "Windows_2012_DC_STIG"
             $expectedName = "Windows-2012-DC-$majorVersionNumber.$minorVersionNumber.xml"
             Context 'No Destination supplied' {
 
@@ -104,6 +135,18 @@ try
                         'id' = 'Windows_2012_MS_STIG'
                         'Technology' = 'Windows'
                         'TechnologyVersion' = '2012'
+                        'TechnologyRole' = 'MS'
+                    },
+                    @{
+                        'id' = 'Windows_Server_2016_DC_STIG'
+                        'Technology' = 'Windows'
+                        'TechnologyVersion' = '2016'
+                        'TechnologyRole' = 'DC'
+                    },
+                    @{
+                        'id' = 'Windows_Server_2016_MS_STIG'
+                        'Technology' = 'Windows'
+                        'TechnologyVersion' = '2016'
                         'TechnologyRole' = 'MS'
                     }
                 )
