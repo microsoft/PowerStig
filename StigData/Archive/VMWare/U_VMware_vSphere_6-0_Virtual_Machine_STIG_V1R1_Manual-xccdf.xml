@@ -1,0 +1,1428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?>
+<Benchmark xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" id="VMware_vSphere_Virtual_Machine_6.0_STIG" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" xmlns="http://checklists.nist.gov/xccdf/1.1">
+  <status date="2015-12-09">accepted</status>
+  <title>VMware vSphere Virtual Machine Version 6 Security Technical Implementation Guide</title>
+  <description>The VMware vSphere Virtual Machine Version 6 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
+  <notice id="terms-of-use" xml:lang="en">
+  </notice>
+  <reference href="http://iase.disa.mil">
+    <dc:publisher>DISA</dc:publisher>
+    <dc:source>STIG.DOD.MIL</dc:source>
+  </reference>
+  <plain-text id="release-info">Release: 1 Benchmark Date: 21 Dec 2015</plain-text>
+  <version>1</version>
+  <Profile id="MAC-1_Classified">
+    <title>I - Mission Critical Classified</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-1_Public">
+    <title>I - Mission Critical Public</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-1_Sensitive">
+    <title>I - Mission Critical Sensitive</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-2_Classified">
+    <title>II - Mission Support Classified</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-2_Public">
+    <title>II - Mission Support Public</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-2_Sensitive">
+    <title>II - Mission Support Sensitive</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-3_Classified">
+    <title>III - Administrative Classified</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-3_Public">
+    <title>III - Administrative Public</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Profile id="MAC-3_Sensitive">
+    <title>III - Administrative Sensitive</title>
+    <description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description>
+    <select idref="V-63151" selected="true" />
+    <select idref="V-64041" selected="true" />
+    <select idref="V-64043" selected="true" />
+    <select idref="V-64045" selected="true" />
+    <select idref="V-64047" selected="true" />
+    <select idref="V-64049" selected="true" />
+    <select idref="V-64051" selected="true" />
+    <select idref="V-64053" selected="true" />
+    <select idref="V-64055" selected="true" />
+    <select idref="V-64057" selected="true" />
+    <select idref="V-64059" selected="true" />
+    <select idref="V-64061" selected="true" />
+    <select idref="V-64063" selected="true" />
+    <select idref="V-64065" selected="true" />
+    <select idref="V-64067" selected="true" />
+    <select idref="V-64069" selected="true" />
+    <select idref="V-64071" selected="true" />
+    <select idref="V-64073" selected="true" />
+    <select idref="V-64075" selected="true" />
+    <select idref="V-64077" selected="true" />
+    <select idref="V-64079" selected="true" />
+    <select idref="V-64081" selected="true" />
+    <select idref="V-64083" selected="true" />
+    <select idref="V-64085" selected="true" />
+    <select idref="V-64087" selected="true" />
+    <select idref="V-64089" selected="true" />
+    <select idref="V-64091" selected="true" />
+    <select idref="V-64093" selected="true" />
+    <select idref="V-64095" selected="true" />
+    <select idref="V-64097" selected="true" />
+    <select idref="V-64099" selected="true" />
+    <select idref="V-64101" selected="true" />
+    <select idref="V-64103" selected="true" />
+    <select idref="V-64105" selected="true" />
+    <select idref="V-64107" selected="true" />
+    <select idref="V-64109" selected="true" />
+    <select idref="V-64111" selected="true" />
+    <select idref="V-64113" selected="true" />
+    <select idref="V-64115" selected="true" />
+    <select idref="V-64117" selected="true" />
+    <select idref="V-64119" selected="true" />
+    <select idref="V-64121" selected="true" />
+    <select idref="V-64123" selected="true" />
+  </Profile>
+  <Group id="V-63151">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-77641r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000001</version>
+      <title>The system must explicitly disable copy operations.</title>
+      <description>&lt;VulnDiscussion&gt;Copy and paste operations are disabled by default; however, by explicitly disabling this feature it will enable audit controls to check that this setting is correct. Copy, paste, drag and drop, or GUI copy/paste operations between the guest OS and the remote console could provide the means for an attacker to compromise the VM.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69069r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.Find the isolation.tools.copy.disable value and set it to true. If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note: The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.copy.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.copy.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69069r1_fix" />
+      <check system="C-63903r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt;  Configuration Parameters.  Find the isolation.tools.copy.disable value and verify it is set to true.Note: The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.copy.disableIf the virtual machine advanced setting isolation.tools.copy.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64041">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78531r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000002</version>
+      <title>The system must explicitly disable drag and drop operations.</title>
+      <description>&lt;VulnDiscussion&gt;Copy and paste operations are disabled by default; however, by explicitly disabling this feature it will enable audit controls to check that this setting is correct. Copy, paste, drag and drop, or GUI copy/paste operations between the guest OS and the remote console could provide the means for an attacker to compromise the VM.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69969r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.dnd.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.dnd.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.dnd.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69969r1_fix" />
+      <check system="C-64791r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.dnd.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.dnd.disableIf the virtual machine advanced setting isolation.tools.dnd.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64043">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78533r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000003</version>
+      <title>The system must explicitly disable any GUI functionality for copy/paste operations.</title>
+      <description>&lt;VulnDiscussion&gt;Copy and paste operations are disabled by default; however, by explicitly disabling this feature it will enable audit controls to check that this setting is correct. Copy, paste, drag and drop, or GUI copy/paste operations between the guest OS and the remote console could provide the means for an attacker to compromise the VM.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69971r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.setGUIOptions.enable value and set it to false.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.setGUIOptions.enable -Value falseIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.setGUIOptions.enable | Set-AdvancedSetting -Value false</fixtext>
+      <fix id="F-69971r1_fix" />
+      <check system="C-64793r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.setGUIOptions.enable value and verify it is set to false.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.setGUIOptions.enableIf the virtual machine advanced setting isolation.tools.setGUIOptions.enable does not exist or is not set to false, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64045">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78535r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000004</version>
+      <title>The system must explicitly disable paste operations.</title>
+      <description>&lt;VulnDiscussion&gt;Copy and paste operations are disabled by default; however, by explicitly disabling this feature it will enable audit controls to check that this setting is correct. Copy, paste, drag and drop, or GUI copy/paste operations between the guest OS and the remote console could provide the means for an attacker to compromise the VM.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69973r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.paste.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.paste.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.paste.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69973r1_fix" />
+      <check system="C-64795r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.paste.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.paste.disableIf the virtual machine advanced setting isolation.tools.paste.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64047">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78537r1_rule" severity="high" weight="10.0">
+      <version>VMCH-06-000005</version>
+      <title>The system must disable virtual disk shrinking.</title>
+      <description>&lt;VulnDiscussion&gt;Shrinking a virtual disk reclaims unused space in it. If there is empty space in the disk, this process reduces the amount of space the virtual disk occupies on the host drive. Normal users and processes-that is, users and processes without root or administrator privileges-within virtual machines have the capability to invoke this procedure. However, if this is done repeatedly, the virtual disk can become unavailable while this shrinking is being performed, effectively causing a denial-of-service. In most datacenter environments, disk shrinking is not done, so this feature must be disabled. Repeated disk shrinking can make a virtual disk unavailable. The capability to shrink is available to non-administrative users operating within the VMs guest OS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69975r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.diskShrink.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.diskShrink.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.diskShrink.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69975r1_fix" />
+      <check system="C-64797r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.diskShrink.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.diskShrink.disableIf the virtual machine advanced setting isolation.tools.diskShrink.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64049">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78539r1_rule" severity="high" weight="10.0">
+      <version>VMCH-06-000006</version>
+      <title>The system must disable virtual disk erasure.</title>
+      <description>&lt;VulnDiscussion&gt;Shrinking and wiping (erasing) a virtual disk reclaims unused space in it. If there is empty space in the disk, this process reduces the amount of space the virtual disk occupies on the host drive. Normal users and processes - that is, users and processes without root or administrator privileges - within virtual machines have the capability to invoke this procedure. However, if this is done repeatedly, the virtual disk can become unavailable while this shrinking is being performed, effectively causing a denial-of-service. In most datacenter environments, disk shrinking is not done, so this feature must be disabled. Repeated disk shrinking can make a virtual disk unavailable. The capability to wipe (erase) is available to non-administrative users operating within the VMs guest OS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69977r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.diskWiper.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.diskWiper.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.diskWiper.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69977r1_fix" />
+      <check system="C-64799r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.diskWiper.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.diskWiper.disableIf the virtual machine advanced setting isolation.tools.diskWiper.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64051">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78541r1_rule" severity="high" weight="10.0">
+      <version>VMCH-06-000007</version>
+      <title>The system must not use independent, non-persistent disks.</title>
+      <description>&lt;VulnDiscussion&gt;The security issue with nonpersistent disk mode is that successful attackers, with a simple shutdown or reboot, might undo or remove any traces that they were ever on the machine. To safeguard against this risk, production virtual machines should be set to use persistent disk mode; additionally, make sure that activity within the VM is logged remotely on a separate server, such as a syslog server or equivalent Windows-based event collector. Without a persistent record of activity on a VM, administrators might never know whether they have been attacked or hacked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69979r1_fix">The target VM must be powered off prior to changing the hard disk mode.From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Select the target hard disk and change the mode to persistent or uncheck Independent.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-HardDisk | Set-HardDisk -Persistence IndependentPersistentorGet-VM "VM Name" | Get-HardDisk | Set-HardDisk -Persistence Persistent</fixtext>
+      <fix id="F-69979r1_fix" />
+      <check system="C-64801r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Review the attached hard disks and verify they are not configured as independent nonpersistent disks.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-HardDisk | Select Parent, Name, Filename, DiskType, Persistence | FT -AutoSizeIf the virtual machine has attached disks that are in independent nonpersistent mode, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64053">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78543r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000008</version>
+      <title>The system must disable HGFS file transfers.</title>
+      <description>&lt;VulnDiscussion&gt;Setting isolation.tools.hgfsServerSet.disable to true disables registration of the guest's HGFS server with the host. APIs that use HGFS to transfer files to and from the guest operating system, such as some VIX commands, will not function. An attacker could potentially use this to transfer files inside the guest OS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69981r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.hgfsServerSet.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.hgfsServerSet.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.hgfsServerSet.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69981r1_fix" />
+      <check system="C-64803r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.hgfsServerSet.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.hgfsServerSet.disableIf the virtual machine advanced setting isolation.tools.hgfsServerSet.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64055">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78545r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000009</version>
+      <title>The unexposed feature keyword isolation.tools.ghi.autologon.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69983r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.autologon.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.ghi.autologon.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.autologon.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69983r1_fix" />
+      <check system="C-64805r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.autologon.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.autologon.disableIf the virtual machine advanced setting isolation.tools.ghi.autologon.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64057">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78547r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000010</version>
+      <title>The unexposed feature keyword isolation.bios.bbs.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69985r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.bios.bbs.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.bios.bbs.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.bios.bbs.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69985r1_fix" />
+      <check system="C-64807r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.bios.bbs.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.bios.bbs.disableIf the virtual machine advanced setting isolation.bios.bbs.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64059">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78549r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000011</version>
+      <title>The unexposed feature keyword isolation.tools.getCreds.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69987r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.getCreds.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.getCreds.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.getCreds.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69987r1_fix" />
+      <check system="C-64809r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.getCreds.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.getCreds.disableIf the virtual machine advanced setting isolation.tools.getCreds.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64061">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78551r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000012</version>
+      <title>The unexposed feature keyword isolation.tools.ghi.launchmenu.change must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69989r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.launchmenu.change value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.ghi.launchmenu.change -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.launchmenu.change | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69989r1_fix" />
+      <check system="C-64811r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.launchmenu.change value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.launchmenu.changeIf the virtual machine advanced setting isolation.tools.ghi.launchmenu.change does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64063">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78553r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000013</version>
+      <title>The unexposed feature keyword isolation.tools.memSchedFakeSampleStats.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69991r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.memSchedFakeSampleStats.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.memSchedFakeSampleStats.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.memSchedFakeSampleStats.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69991r1_fix" />
+      <check system="C-64813r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.memSchedFakeSampleStats.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.memSchedFakeSampleStats.disableIf the virtual machine advanced setting isolation.tools.memSchedFakeSampleStats.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64065">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78555r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000014</version>
+      <title>The unexposed feature keyword isolation.tools.ghi.protocolhandler.info.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69993r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.protocolhandler.info.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.ghi.protocolhandler.info.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.protocolhandler.info.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69993r1_fix" />
+      <check system="C-64815r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.protocolhandler.info.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.protocolhandler.info.disableIf the virtual machine advanced setting isolation.tools.ghi.protocolhandler.info.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64067">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78557r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000015</version>
+      <title>The unexposed feature keyword isolation.ghi.host.shellAction.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69995r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.ghi.host.shellAction.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.ghi.host.shellAction.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.ghi.host.shellAction.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69995r1_fix" />
+      <check system="C-64817r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.ghi.host.shellAction.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.ghi.host.shellAction.disableIf the virtual machine advanced setting isolation.ghi.host.shellAction.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64069">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78559r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000016</version>
+      <title>The unexposed feature keyword isolation.tools.dispTopoRequest.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69997r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.dispTopoRequest.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.dispTopoRequest.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.dispTopoRequest.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69997r1_fix" />
+      <check system="C-64819r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.dispTopoRequest.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.dispTopoRequest.disableIf the virtual machine advanced setting isolation.tools.dispTopoRequest.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64071">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78561r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000017</version>
+      <title>The unexposed feature keyword isolation.tools.trashFolderState.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-69999r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.trashFolderState.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.trashFolderState.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.trashFolderState.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-69999r1_fix" />
+      <check system="C-64821r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.trashFolderState.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.trashFolderState.disableIf the virtual machine advanced setting isolation.tools.trashFolderState.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64073">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78563r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000018</version>
+      <title>The unexposed feature keyword isolation.tools.ghi.trayicon.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70001r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.trayicon.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.ghi.trayicon.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.trayicon.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70001r1_fix" />
+      <check system="C-64823r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.ghi.trayicon.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.ghi.trayicon.disableIf the virtual machine advanced setting isolation.tools.ghi.trayicon.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64075">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78565r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000019</version>
+      <title>The unexposed feature keyword isolation.tools.unity.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70003r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.unity.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70003r1_fix" />
+      <check system="C-64825r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.disableIf the virtual machine advanced setting isolation.tools.unity.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64077">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78567r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000020</version>
+      <title>The unexposed feature keyword isolation.tools.unityInterlockOperation.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70005r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unityInterlockOperation.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.unityInterlockOperation.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unityInterlockOperation.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70005r1_fix" />
+      <check system="C-64827r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unityInterlockOperation.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unityInterlockOperation.disableIf the virtual machine advanced setting isolation.tools.unityInterlockOperation.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64079">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78569r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000021</version>
+      <title>The unexposed feature keyword isolation.tools.unity.push.update.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70007r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.push.update.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.unity.push.update.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.push.update.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70007r1_fix" />
+      <check system="C-64829r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.push.update.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.push.update.disableIf the virtual machine advanced setting isolation.tools.unity.push.update.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64081">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78571r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000022</version>
+      <title>The unexposed feature keyword isolation.tools.unity.taskbar.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70009r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.taskbar.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.unity.taskbar.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.taskbar.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70009r1_fix" />
+      <check system="C-64831r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.taskbar.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.taskbar.disableIf the virtual machine advanced setting isolation.tools.unity.taskbar.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64083">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78573r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000023</version>
+      <title>The unexposed feature keyword isolation.tools.unityActive.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70011r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unityActive.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.unityActive.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unityActive.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70011r1_fix" />
+      <check system="C-64833r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unityActive.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unityActive.disableIf the virtual machine advanced setting isolation.tools.unityActive.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64085">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78575r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000024</version>
+      <title>The unexposed feature keyword isolation.tools.unity.windowContents.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70013r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.windowContents.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.unity.windowContents.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.windowContents.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70013r1_fix" />
+      <check system="C-64835r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.unity.windowContents.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.unity.windowContents.disableIf the virtual machine advanced setting isolation.tools.unity.windowContents.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64087">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78577r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000025</version>
+      <title>The unexposed feature keyword isolation.tools.vmxDnDVersionGet.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70015r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.vmxDnDVersionGet.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.vmxDnDVersionGet.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.vmxDnDVersionGet.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70015r1_fix" />
+      <check system="C-64837r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.vmxDnDVersionGet.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.vmxDnDVersionGet.disableIf the virtual machine advanced setting isolation.tools.vmxDnDVersionGet.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64089">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78579r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000026</version>
+      <title>The unexposed feature keyword isolation.tools.guestDnDVersionSet.disable must be set.</title>
+      <description>&lt;VulnDiscussion&gt;Some virtual machine advanced settings parameters do not apply on vSphere because VMware virtual machines work on both vSphere and hosted virtualization platforms such as Workstation and Fusion. Explicitly disabling these features reduces the potential for vulnerabilities because it reduces the number of ways in which a guest can affect the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70017r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.guestDnDVersionSet.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.guestDnDVersionSet.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.guestDnDVersionSet.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70017r1_fix" />
+      <check system="C-64839r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.guestDnDVersionSet.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.guestDnDVersionSet.disableIf the virtual machine advanced setting isolation.tools.guestDnDVersionSet.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64091">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78581r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000027</version>
+      <title>The system must disable VIX messages from the VM.</title>
+      <description>&lt;VulnDiscussion&gt;The VIX API is a library for writing scripts and programs to manipulate virtual machines. If you do not make use of custom VIX programming in your environment, then you should consider disabling certain features to reduce the potential for vulnerabilities. The ability to send messages from the VM to the host is one of these features. Note that disabling this feature does NOT adversely affect the functioning of VIX operations that originate outside the guest, so certain VMware and 3rd party solutions that rely upon this capability should continue to work. This is a deprecated interface.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70019r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.vixMessage.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.vixMessage.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.vixMessage.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70019r1_fix" />
+      <check system="C-64841r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.vixMessage.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.vixMessage.disableIf the virtual machine advanced setting isolation.tools.vixMessage.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64093">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78583r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000028</version>
+      <title>The system must disconnect unauthorized floppy devices.</title>
+      <description>&lt;VulnDiscussion&gt;Ensure that no device is connected to a virtual machine if it is not required. For example, floppy, serial and parallel ports are rarely used for virtual machines in a datacenter environment, and CD/DVD drives are usually connected only temporarily during software installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70021r1_fix">The VM must be powered off in order to remove a floppy drive.From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Select the floppy drive and click remove then OK.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-FloppyDrive | Remove-FloppyDrive</fixtext>
+      <fix id="F-70021r1_fix" />
+      <check system="C-64843r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Review the VMs hardware and verify no floppy devices exist.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM | Get-FloppyDrive | Select Parent, Name, ConnectionStateIf a virtual machine has a floppy drive present, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64095">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78585r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000029</version>
+      <title>The system must disconnect unauthorized CD/DVD devices.</title>
+      <description>&lt;VulnDiscussion&gt;Ensure that no device is connected to a virtual machine if it is not required. For example, floppy, serial and parallel ports are rarely used for virtual machines in a datacenter environment, and CD/DVD drives are usually connected only temporarily during software installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70023r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Select the CD/DVD drive and uncheck "Connected" and "Connect at power on" and remove any attached ISOs.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-CDDrive | Set-CDDrive -NoMedia</fixtext>
+      <fix id="F-70023r1_fix" />
+      <check system="C-64845r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Review the VMs hardware and verify no CD/DVD drives are connected.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM | Get-CDDrive | Where {$_.extensiondata.connectable.connected -eq $true} | Select Parent,NameIf a virtual machine has a CD/DVD drive connected other than temporarily, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64097">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78587r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000030</version>
+      <title>The system must disconnect unauthorized parallel devices.</title>
+      <description>&lt;VulnDiscussion&gt;Ensure that no device is connected to a virtual machine if it is not required. For example, floppy, serial and parallel ports are rarely used for virtual machines in a datacenter environment, and CD/DVD drives are usually connected only temporarily during software installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70025r1_fix">The VM must be powered off in order to remove a parallel device.From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Select the parallel device and click remove then OK.</fixtext>
+      <fix id="F-70025r1_fix" />
+      <check system="C-64847r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Review the VMs hardware and verify no parallel devices exist.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM | Where {$_.ExtensionData.Config.Hardware.Device.DeviceInfo.Label -match "parallel"}If a virtual machine has a parallel device present, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64099">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78589r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000031</version>
+      <title>The system must disconnect unauthorized serial devices.</title>
+      <description>&lt;VulnDiscussion&gt;Ensure that no device is connected to a virtual machine if it is not required. For example, floppy, serial and parallel ports are rarely used for virtual machines in a datacenter environment, and CD/DVD drives are usually connected only temporarily during software installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70027r1_fix">The VM must be powered off in order to remove a serial device.From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Select the serial device and click remove then OK.</fixtext>
+      <fix id="F-70027r1_fix" />
+      <check system="C-64849r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Review the VMs hardware and verify no serial devices exist.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM | Where {$_.ExtensionData.Config.Hardware.Device.DeviceInfo.Label -match "serial"}If a virtual machine has a serial device present, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64101">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78591r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000032</version>
+      <title>The system must disconnect unauthorized USB devices.</title>
+      <description>&lt;VulnDiscussion&gt;Ensure that no device is connected to a virtual machine if it is not required. For example, floppy, serial and parallel ports are rarely used for virtual machines in a datacenter environment, and CD/DVD drives are usually connected only temporarily during software installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70029r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Select the USB controller and click remove then OK.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-USBDevice | Remove-USBDeviceNote:  This will not remove the USB controller just any connected devices.</fixtext>
+      <fix id="F-70029r1_fix" />
+      <check system="C-64851r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings.  Review the VMs hardware and verify no USB devices exist.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following commands:Get-VM | Where {$_.ExtensionData.Config.Hardware.Device.DeviceInfo.Label -match "usb"}Get-VM | Get-UsbDeviceIf a virtual machine has any USB devices or USB controllers present, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64103">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78593r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000033</version>
+      <title>The system must limit sharing of console connections.</title>
+      <description>&lt;VulnDiscussion&gt;By default, remote console sessions can be connected to by more than one user at a time.  When multiple sessions are activated, each terminal window gets a notification about the new session. If an administrator in the VM logs in using a VMware remote console during their session, a non-administrator in the VM might connect to the console and observe the administrator's actions.  Also, this could result in an administrator losing console access to a virtual machine. For example, if a jump box is being used for an open console session and the admin loses connection to that box, then the console session remains open. Allowing two console sessions permits debugging via a shared session.  For highest security, only one remote console session at a time should be allowed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70031r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the RemoteDisplay.maxConnections value and set it to 1.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name RemoteDisplay.maxConnections -Value 1If the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name RemoteDisplay.maxConnections | Set-AdvancedSetting -Value 1</fixtext>
+      <fix id="F-70031r1_fix" />
+      <check system="C-64853r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the RemoteDisplay.maxConnections value and verify it is set to 1.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name RemoteDisplay.maxConnectionsIf the virtual machine advanced setting RemoteDisplay.maxConnections does not exist or is not set to 1, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64105">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78595r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000034</version>
+      <title>The system must disable console access through the VNC protocol.</title>
+      <description>&lt;VulnDiscussion&gt;The VM console enables you to connect to the console of a virtual machine, in effect seeing what a monitor on a physical server would show. This console is also available via the Virtual Network Computing (VNC) protocol and should be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70033r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the RemoteDisplay.vnc.enabled value and set it to false.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name RemoteDisplay.vnc.enabled -Value falseIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name RemoteDisplay.vnc.enabled | Set-AdvancedSetting -Value false</fixtext>
+      <fix id="F-70033r1_fix" />
+      <check system="C-64855r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the RemoteDisplay.vnc.enabled value and verify it is set to false.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name RemoteDisplay.vnc.enabledIf the virtual machine advanced setting RemoteDisplay.vnc.enabled does not exist or is not set to false, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64107">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78597r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000035</version>
+      <title>The system must disable tools auto install.</title>
+      <description>&lt;VulnDiscussion&gt;Tools auto install can initiate an automatic reboot, disabling this option will prevent tools from being installed automatically and prevent automatic machine reboots.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70035r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.autoInstall.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.tools.autoInstall.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.autoInstall.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70035r1_fix" />
+      <check system="C-64857r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.tools.autoInstall.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.tools.autoInstall.disableIf the virtual machine advanced setting isolation.tools.autoInstall.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64109">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78599r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000036</version>
+      <title>The system must limit informational messages from the VM to the VMX file.</title>
+      <description>&lt;VulnDiscussion&gt;The configuration file containing these name-value pairs is limited to a size of 1MB. If not limited, VMware tools in the guest OS are capable of sending a large and continuous data stream to the host. This 1MB capacity should be sufficient for most cases, but this value can change if necessary. The value can be increased if large amounts of custom information are being stored in the configuration file. The default limit is 1MB.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70037r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the tools.setinfo.sizeLimit value and set it to 1048576.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name tools.setinfo.sizeLimit -Value 1048576If the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name tools.setinfo.sizeLimit | Set-AdvancedSetting -Value 1048576</fixtext>
+      <fix id="F-70037r1_fix" />
+      <check system="C-64859r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the tools.setinfo.sizeLimit value and verify it is set to 1048576.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name tools.setinfo.sizeLimitIf the virtual machine advanced setting tools.setinfo.sizeLimit does not exist or is not set to 1048576, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64111">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78601r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000037</version>
+      <title>The system must prevent unauthorized removal, connection and modification of devices.</title>
+      <description>&lt;VulnDiscussion&gt;In a virtual machine, users and processes without root or administrator privileges can connect or disconnect devices, such as network adaptors and CD-ROM drives, and can modify device settings. Use the virtual machine settings editor or configuration editor to remove unneeded or unused hardware devices. If you want to use the device again, you can prevent a user or running process in the virtual machine from connecting, disconnecting, or modifying a device from within the guest operating system. By default, a rogue user with nonadministrator privileges in a virtual machine can: 1. Connect a disconnected CD-ROM drive and access sensitive information on the media left in the drive2. Disconnect a network adaptor to isolate the virtual machine from its network, which is a denial of service3. Modify settings on a device&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70039r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.device.connectable.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.device.connectable.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.device.connectable.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70039r1_fix" />
+      <check system="C-64861r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.device.connectable.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.device.connectable.disableIf the virtual machine advanced setting isolation.device.connectable.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64113">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78603r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000038</version>
+      <title>The system must prevent unauthorized removal, connection and modification of devices.</title>
+      <description>&lt;VulnDiscussion&gt;In a virtual machine, users and processes without root or administrator privileges can connect or disconnect devices, such as network adaptors and CD-ROM drives, and can modify device settings. Use the virtual machine settings editor or configuration editor to remove unneeded or unused hardware devices. If you want to use the device again, you can prevent a user or running process in the virtual machine from connecting, disconnecting, or modifying a device from within the guest operating system. By default, a rogue user with nonadministrator privileges in a virtual machine can: 1. Connect a disconnected CD-ROM drive and access sensitive information on the media left in the drive2. Disconnect a network adaptor to isolate the virtual machine from its network, which is a denial of service3. Modify settings on a device&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70041r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.device.edit.disable value and set it to true.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name isolation.device.edit.disable -Value trueIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.device.edit.disable | Set-AdvancedSetting -Value true</fixtext>
+      <fix id="F-70041r1_fix" />
+      <check system="C-64863r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the isolation.device.edit.disable value and verify it is set to true.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name isolation.device.edit.disableIf the virtual machine advanced setting isolation.device.edit.disable does not exist or is not set to true, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64115">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78605r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000039</version>
+      <title>The system must not send host information to guests.</title>
+      <description>&lt;VulnDiscussion&gt;If enabled, a VM can obtain detailed information about the physical host. The default value for the parameter is FALSE. This setting should not be TRUE unless a particular VM requires this information for performance monitoring. An adversary potentially can use this information to inform further attacks on the host.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70043r1_fix">From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the tools.guestlib.enableHostInfo value and set it to false.  If the setting does not exist click "Add Row" to add the setting to the virtual machine.Note:  The VM must be powered off to configure the advanced settings through the vSphere Client so it is recommended to configure these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:If the setting does not exist run:Get-VM "VM Name" | New-AdvancedSetting -Name tools.guestlib.enableHostInfo -Value falseIf the setting exists run:Get-VM "VM Name" | Get-AdvancedSetting -Name tools.guestlib.enableHostInfo | Set-AdvancedSetting -Value false</fixtext>
+      <fix id="F-70043r1_fix" />
+      <check system="C-64865r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Find the tools.guestlib.enableHostInfo value and verify it is set to false.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name tools.guestlib.enableHostInfoIf the virtual machine advanced setting tools.guestlib.enableHostInfo does not exist or is not set to false, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64117">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78607r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000040</version>
+      <title>The system must disable shared salt values.</title>
+      <description>&lt;VulnDiscussion&gt;When salting is enabled (Mem.ShareForceSalting=1 or 2) in order to share a page between two virtual machines both salt and the content of the page must be same. A salt value is a configurable VMX option for each virtual machine. You can manually specify the salt values in the virtual machine's VMX file with the new VMX option sched.mem.pshare.salt. If this option is not present in the virtual machine's VMX file, then the value of vc.uuid VMX option is taken as the default value. Since the vc.uuid is unique to each virtual machine, by default TPS happens only among the pages belonging to a particular virtual machine (Intra-VM).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70045r1_fix">From a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name sched.mem.pshare.salt | Remove-AdvancedSetting</fixtext>
+      <fix id="F-70045r1_fix" />
+      <check system="C-64867r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Verify the sched.mem.pshare.salt setting does not exist.Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name sched.mem.pshare.saltIf the virtual machine advanced setting sched.mem.pshare.salt exists, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64119">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78609r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000041</version>
+      <title>The system must control access to VMs through the dvfilter network APIs.</title>
+      <description>&lt;VulnDiscussion&gt;An attacker might compromise a VM by making use the dvFilter API. Configure only those VMs that need this access to use the API.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70047r1_fix">From a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name ethernetX.filterY.name | Remove-AdvancedSettingNote:  Change the X and Y values to match the specific setting in your environment.</fixtext>
+      <fix id="F-70047r1_fix" />
+      <check system="C-64869r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>From the vSphere Client select the Virtual Machine right click and go to Edit Settings &gt;&gt; VM Options Tab &gt;&gt; Advanced &gt;&gt; Configuration Parameters.  Look for settings with the format ethernet*.filter*.name. Note:  The VM must be powered off to view the advanced settings through the vSphere Client so it is recommended to view these settings with PowerCLI as it can be done while the VM is powered on.orFrom a PowerCLI command prompt while connected to the ESXi host or vCenter server run the following command:Get-VM "VM Name" | Get-AdvancedSetting -Name "ethernet*.filter*.name*"If the virtual machine advanced setting ethernet*.filter*.name exists and dvfilters are not in use, this is a finding.If the virtual machine advanced setting ethernet*.filter*.name exists and the value is not valid, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64121">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78611r1_rule" severity="low" weight="10.0">
+      <version>VMCH-06-000043</version>
+      <title>The system must use templates to deploy VMs whenever possible.</title>
+      <description>&lt;VulnDiscussion&gt;By capturing a hardened base operating system image (with no applications installed) in a template, ensure all virtual machines are created with a known baseline level of security. Then use this template to create other, application-specific templates, or use the application template to deploy virtual machines. Manual installation of the OS and applications into a VM introduces the risk of misconfiguration due to human or process error.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70049r1_fix">Create hardened virtual machine templates to use for OS deployments.</fixtext>
+      <fix id="F-70049r1_fix" />
+      <check system="C-64871r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>Ask the SA if hardened, patched templates are used for VM creation, properly configured OS deployments, including applications both dependent and non-dependent on VM-specific configurations.If hardened, patched templates are not used for VM creation, this is a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-64123">
+    <title>SRG-OS-000480-VMM-002000</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-78613r1_rule" severity="medium" weight="10.0">
+      <version>VMCH-06-000044</version>
+      <title>The system must minimize use of the VM console.</title>
+      <description>&lt;VulnDiscussion&gt;The VM console enables a connection to the console of a virtual machine, in effect seeing what a monitor on a physical server would show. The VM console also provides power management and removable device connectivity controls, which might potentially allow a malicious user to bring down a virtual machine. In addition, it also has a performance impact on the service console, especially if many VM console sessions are open simultaneously.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target VMware Virtual Machine 6.x</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>VMware Virtual Machine 6.x</dc:subject>
+        <dc:identifier>2863</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+      <fixtext fixref="F-70051r1_fix">Develop a policy prohibiting the use of a VM console for performing management services. This policy should include procedures for the use of SSH and Terminal Management services for VM management. Where SSH and Terminal Management services prove insufficient to troubleshoot a VM, access to the VM console may be temporarily granted.</fixtext>
+      <fix id="F-70051r1_fix" />
+      <check system="C-64873r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_VMware_vSphere_Virtual_Machine_6.0_STIG.xml" />
+        <check-content>Remote management services, such as terminal services and SSH, must be used to interact with virtual machines. VM console access should only be granted when remote management services are unavailable or insufficient to perform necessary management tasks.Ask the SA if a VM console is used to perform VM management tasks, other than for troubleshooting VM issues.If a VM console is used to perform VM management tasks, other than for troubleshooting VM issues, this is a finding.If SSH and/or terminal management services are exclusively used to perform management tasks, this is not a finding.</check-content>
+      </check>
+    </Rule>
+  </Group>
+</Benchmark>
+
