@@ -126,28 +126,34 @@ try
                 )
                 'Windows' = @(
                     @{
-                        'id' = 'Windows_2012_DC_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_2012_DC_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'DC'
+                        'TechnologyRole'    = 'DC'
                     },
                     @{
-                        'id' = 'Windows_2012_MS_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_2012_MS_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'MS'
+                        'TechnologyRole'    = 'MS'
                     },
                     @{
-                        'id' = 'Windows_Server_2016_DC_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_Server_2016_DC_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2016'
-                        'TechnologyRole' = 'DC'
+                        'TechnologyRole'    = 'DC'
                     },
                     @{
-                        'id' = 'Windows_Server_2016_MS_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_Server_2016_MS_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2016'
-                        'TechnologyRole' = 'MS'
+                        'TechnologyRole'    = 'MS'
+                    },
+                    @{
+                        'id'                = 'Windows_10'
+                        'Technology'        = 'Windows'
+                        'TechnologyVersion' = '10'
+                        'TechnologyRole'    = 'Client'
                     }
                 )
                 'Active_Directory' = @(

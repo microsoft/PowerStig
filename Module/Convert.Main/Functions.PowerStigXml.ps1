@@ -561,6 +561,11 @@ function Split-BenchmarkId
             $returnId = $returnId -replace ($windowsVariations -join '|'), 'Windows'
             continue
         }
+        {$PSItem -match "Windows_10"}
+        {
+            $returnId = $Id + '_Client'
+            continue
+        }
         {$PSItem -match "Windows"}
         {
             $returnId = $Id -replace ($windowsVariations -join '|'), 'Windows'
