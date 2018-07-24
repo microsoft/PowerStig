@@ -21,7 +21,7 @@ function ConvertTo-PermissionRule
         with different permissions in a single rule.
         These need to be split into individual permission objects for DSC to process. Detect them
         before creating the Permission Rule class so that we can append the ID and title with a
-        character to identify it as a child object of a specif STIG setting.
+        character to identify it as a child object of a specific STIG setting.
     #>
     $permissionRules = @()
     $checkStrings = $StigRule.rule.Check.('check-content')

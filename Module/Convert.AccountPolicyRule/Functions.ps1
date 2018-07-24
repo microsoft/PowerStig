@@ -3,7 +3,7 @@
 #region Main Functions
 <#
     .SYNOPSIS
-       Calls the AccountPolicyRule class to generate an account Policy specic object.
+       Calls the AccountPolicyRule class to generate an account Policy specific object.
 #>
 function ConvertTo-AccountPolicyRule
 {

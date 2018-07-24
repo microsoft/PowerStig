@@ -3,7 +3,7 @@
 #region Functions
 <#
     .SYNOPSIS
-        Processes the raw STIG string that has been identifed as an Service configuration.
+        Processes the raw STIG string that has been identifed as a Service configuration.
 #>
 function ConvertTo-ServiceRule
 {
@@ -74,7 +74,7 @@ function Test-MatchServiceRule
         [string]
         $CheckContent
     )
-    # Find Service settings but exclude the 'Unecessary Service' rule
+    # Find Service settings but exclude the 'Unnecessary Service' rule
     if ( $CheckContent -Match 'services\.msc' -and $CheckContent -NotMatch 'Required Services' -and $CheckContent -NotMatch 'presence of applications' )
     {
         return $true

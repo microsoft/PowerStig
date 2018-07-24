@@ -3,7 +3,7 @@
 #region Functions
 <#
     .SYNOPSIS
-       Calls the ProcessMitigationRule class to generate an Process Mitigation Policy specfic object.
+       Calls the ProcessMitigationRule class to generate a Process Mitigation Policy specfic object.
 #>
 function ConvertTo-ProcessMitigationRule
 {

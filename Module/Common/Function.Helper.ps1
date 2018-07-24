@@ -28,7 +28,7 @@ function Get-AvailableId
     else
     {
         $startInt = 96
-        # 97 is ascii the char 'a' lets start with 96 so the second rule with the same id get appended with a letter
+        # 97 is the ascii char 'a', lets start with 96 so the second rule with the same id gets appended with a letter
 
         $appendLetterInt = $startInt + $usedId.count
 
