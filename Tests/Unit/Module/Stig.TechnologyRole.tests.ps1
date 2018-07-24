@@ -8,19 +8,25 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $technologyRole1 = 'DNS'
-        $technologyRole2 = 'ADDomain'
-        $technologyRole3 = 'Instance'
+        $technologyRole1 = 'Client'
+        $technologyRole2 = 'DNS'
+        $technologyRole3 = 'DC'
+        $technologyRole4 = 'ADDomain'
+        $technologyRole5 = 'Instance'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SQL
 
-        $technologyVersion1 = [TechnologyVersion]::new('2012R2', $Technology1)
-        $technologyVersion2 = [TechnologyVersion]::new('All', $Technology1)
-        $technologyVersion3 = [TechnologyVersion]::new('Server2012', $Technology2)
+        $technologyVersion1 = [TechnologyVersion]::new('10', $Technology1)
+        $technologyVersion2 = [TechnologyVersion]::new('2012R2', $Technology1)
+        $technologyVersion3 = [TechnologyVersion]::new('2016', $Technology1)
+        $technologyVersion4 = [TechnologyVersion]::new('All', $Technology1)
+        $technologyVersion5 = [TechnologyVersion]::new('Server2012', $Technology2)
 
         $TestValidateSet = @"
+10 = Client
 2012R2 = DNS, DC, MS, IISSite, IISServer
+2016 = DC, MS
 All = ADDomain, ADForest, FW, IE11
 Server2012 = Instance, Database
 "@
@@ -33,34 +39,46 @@ Server2012 = Instance, Database
         Describe "technologyRole Class" {
 
             Context "Constructor" {
-                It "Should create an technologyRole class instance using technologyRole1 and technologyVersion1 data" {
+                It "Should create a technologyRole object using technologyRole1 role and technologyVersion1 data" {
                     $technologyRole = [technologyRole]::new($technologyRole1, $technologyVersion1)
                     $technologyRole.Name | Should Be $technologyRole1
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion1
                 }
 
-                It "Should create an technologyRole class instance using technologyRole2 and technologyVersion2 data" {
+                It "Should create a technologyRole object using technologyRole2 role and technologyVersion2 data" {
                     $technologyRole = [technologyRole]::new($technologyRole2, $technologyVersion2)
                     $technologyRole.Name | Should Be $technologyRole2
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion2
                 }
 
-                It "Should create an technologyRole class instance using technologyRole3 and technologyVersion3 data" {
+                It "Should create a technologyRole object using technologyRole3 role and technologyVersion3 data" {
                     $technologyRole = [technologyRole]::new($technologyRole3, $technologyVersion3)
                     $technologyRole.Name | Should Be $technologyRole3
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion3
                 }
 
+                It "Should create a technologyRole object using technologyRole4 role and technologyVersion4 data" {
+                    $technologyRole = [technologyRole]::new($technologyRole4, $technologyVersion4)
+                    $technologyRole.Name | Should Be $technologyRole4
+                    $technologyRole.TechnologyVersion | Should Be $technologyVersion4
+                }
+
+                It "Should create a technologyRole object using technologyRole5 role and technologyVersion5 data" {
+                    $technologyRole = [technologyRole]::new($technologyRole5, $technologyVersion5)
+                    $technologyRole.Name | Should Be $technologyRole5
+                    $technologyRole.TechnologyVersion | Should Be $technologyVersion5
+                }
+
                 It "Should throw an exception for technologyRole not being available for TechnologyVersion: 2012R2 -> ADDomain" {
-                    { [technologyRole]::new($technologyRole1, $technologyVersion2) } | Should Throw
+                    { [technologyRole]::new($technologyRole4, $technologyVersion2) } | Should Throw
                 }
 
                 It "Should throw an exception for technologyRole not being available for TechnologyVersion: All -> DNS" {
-                    { [technologyRole]::new($technologyRole2, $technologyVersion1) } | Should Throw
+                    { [technologyRole]::new($technologyRole2, $technologyVersion4) } | Should Throw
                 }
 
-                It "Should throw an exception for technologyRole not being available for TechnologyVersion: 2012R2 -> DNS" {
-                    { [technologyRole]::new($technologyRole2, $technologyVersion3) } | Should Throw
+                It "Should throw an exception for technologyRole not being available for TechnologyVersion: 2016 -> Instance" {
+                    { [technologyRole]::new($technologyRole5, $technologyVersion3) } | Should Throw
                 }
             }
 

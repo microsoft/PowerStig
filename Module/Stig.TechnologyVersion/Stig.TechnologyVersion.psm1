@@ -39,7 +39,7 @@ Class TechnologyVersion
             The available versions for each technology currently in PowerStig
     #>
     static $ValidateSet = @"
-Windows = All, 2012R2
+Windows = All, 2016, 2012R2, 10
 SQL = Server2012
 "@
     #endregion

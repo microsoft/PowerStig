@@ -9,14 +9,16 @@ try
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
         $TechnologyVersion1 = 'All'
-        $TechnologyVersion2 = '2012R2'
-        $TechnologyVersion3 = 'Server2012'
+        $TechnologyVersion2 = '2016'
+        $TechnologyVersion3 = '2012R2'
+        $TechnologyVersion4 = '10'
+        $TechnologyVersion5 = 'Server2012'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SQL
 
         $TestValidateSet = @"
-Windows = All, 2012R2
+Windows = All, 2016, 2012R2, 10
 SQL = Server2012
 "@
 
@@ -29,21 +31,33 @@ SQL = Server2012
 
             Context "Constructor" {
 
-                It "Should create an TechnologyVersion class instance using Technology1 and TechnologyVersion1 data" {
+                It "Should create a TechnologyVersion class instance using Technology1 and TechnologyVersion1 data" {
                     $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion1, $Technology1)
                     $TechnologyVersion.Name | Should Be $TechnologyVersion1
                     $TechnologyVersion.Technology | Should Be $Technology1
                 }
 
-                It "Should create an TechnologyRole class instance using TechnologyRole2 and TechnologyVersion2 data" {
+                It "Should create a TechnologyVersion class instance using Technology1 and TechnologyVersion2 data" {
                     $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion2, $Technology1)
                     $TechnologyVersion.Name | Should Be $TechnologyVersion2
                     $TechnologyVersion.Technology | Should Be $Technology1
                 }
 
-                It "Should create an TechnologyRole class instance using TechnologyRole3 and TechnologyVersion3 data" {
-                    $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion3, $Technology2)
+                It "Should create a TechnologyVersion class instance using Technology1 and TechnologyVersion3 data" {
+                    $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion3, $Technology1)
                     $TechnologyVersion.Name | Should Be $TechnologyVersion3
+                    $TechnologyVersion.Technology | Should Be $Technology1
+                }
+
+                It "Should create a TechnologyVersion class instance using Technology1 and TechnologyVersion4 data" {
+                    $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion4, $Technology1)
+                    $TechnologyVersion.Name | Should Be $TechnologyVersion4
+                    $TechnologyVersion.Technology | Should Be $Technology1
+                }
+
+                It "Should create a TechnologyVersion class instance using Technology2 and TechnologyVersion5 data" {
+                    $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion5, $Technology2)
+                    $TechnologyVersion.Name | Should Be $TechnologyVersion5
                     $TechnologyVersion.Technology | Should Be $Technology2
                 }
 

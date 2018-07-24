@@ -523,6 +523,7 @@ function Split-BenchmarkId
     )
     $sqlServerVariations = @(
         'Microsoft_SQL_Server'
+        'MS_SQL_Server'
     )
     $sqlServerInstanceVariations = @(
         'Database_Instance'
@@ -537,7 +538,7 @@ function Split-BenchmarkId
         'Domain_Name_System'
     )
     $activeDirectoryVariations = @(
-        'Active_Directory'
+        'Active_Directory_'
     )
 
     $Id = $Id -replace ($idVariations -join '|'), ''
@@ -568,10 +569,11 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Active_Directory"}
         {
-            $returnId = $Id -replace ($activeDirectoryVariations -join '|'), 'Windows_All'
+            $returnId = $Id -replace ($activeDirectoryVariations -join '|'), 'AD'
+            $returnId = "Windows_All_$returnId"
             continue
         }
-        {$PSItem -match "IE_"}
+        {$PSItem -match "IE"}
         {
             $returnId = "Windows_All_" + -join ($Id -split '_')
             continue

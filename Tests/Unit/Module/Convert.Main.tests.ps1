@@ -96,80 +96,98 @@ try
             $sampleStrings = [ordered]@{
                 'SQLServer' = @(
                     @{
-                        'id' = 'Microsoft_SQL_Server_2012_Database__Security_Technical_Implementation_Guide_NewBenchmark'
-                        'Technology' = 'SQLServer'
+                        'id'                = 'Microsoft_SQL_Server_2012_Database__Security_Technical_Implementation_Guide_NewBenchmark'
+                        'Technology'        = 'SQLServer'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'Database'
+                        'TechnologyRole'    = 'Database'
                     },
                     @{
-                        'id' = 'Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide'
-                        'Technology' = 'SQLServer'
+                        'id'                = 'Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide'
+                        'Technology'        = 'SQLServer'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'Instance'
+                        'TechnologyRole'    = 'Instance'
+                    }
+                    @{
+                        'id'                = 'MS_SQL_Server_2014_Database_STIG'
+                        'Technology'        = 'SQLServer'
+                        'TechnologyVersion' = '2014'
+                        'TechnologyRole'    = 'Database'
+                    }
+                    @{
+                        'id'                = 'MS_SQL_Server_2014_Instance_STIG'
+                        'Technology'        = 'SQLServer'
+                        'TechnologyVersion' = '2014'
+                        'TechnologyRole'    = 'Instance'
                     }
                 )
                 'Firewall' = @(
                     @{
-                        'id' = 'Windows_Firewall'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_Firewall'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = 'All'
-                        'TechnologyRole' = 'FW'
+                        'TechnologyRole'    = 'FW'
                     }
                 )
                 'DNS' = @(
                     @{
-                        'id' = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'DNS'
+                        'TechnologyRole'    = 'DNS'
                     }
                 )
                 'Windows' = @(
                     @{
-                        'id' = 'Windows_2012_DC_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_2012_DC_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'DC'
+                        'TechnologyRole'    = 'DC'
                     },
                     @{
-                        'id' = 'Windows_2012_MS_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_2012_MS_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2012'
-                        'TechnologyRole' = 'MS'
+                        'TechnologyRole'    = 'MS'
                     },
                     @{
-                        'id' = 'Windows_Server_2016_DC_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_Server_2016_DC_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2016'
-                        'TechnologyRole' = 'DC'
+                        'TechnologyRole'    = 'DC'
                     },
                     @{
-                        'id' = 'Windows_Server_2016_MS_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_Server_2016_MS_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = '2016'
-                        'TechnologyRole' = 'MS'
+                        'TechnologyRole'    = 'MS'
                     }
                 )
                 'Active_Directory' = @(
                     @{
-                        'id' = 'Active_Directory_Domain'
-                        'Technology' = 'Windows'
+                        'id'                = 'Active_Directory_Domain'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = 'All'
-                        'TechnologyRole' = 'Domain'
+                        'TechnologyRole'    = 'ADDomain'
                     },
                     @{
-                        'id' = 'Active_Directory_Forest'
-                        'Technology' = 'Windows'
+                        'id'                = 'Active_Directory_Forest'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = 'All'
-                        'TechnologyRole' = 'Forest'
+                        'TechnologyRole'    = 'ADForest'
                     }
                 )
                 'IE' = @(
                     @{
-                        'id' = 'IE_11_STIG'
-                        'Technology' = 'Windows'
+                        'id'                = 'IE_11_STIG'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = 'All'
-                        'TechnologyRole' = 'IE11'
+                        'TechnologyRole'    = 'IE11'
+                    }
+                    @{
+                        'id'                = 'IE10_STIG'
+                        'Technology'        = 'Windows'
+                        'TechnologyVersion' = 'All'
+                        'TechnologyRole'    = 'IE10'
                     }
                 )
             }
@@ -192,7 +210,6 @@ try
                             }
                         }
                     }
-
                 }
             }
         }
