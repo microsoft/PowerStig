@@ -40,7 +40,7 @@ Class TechnologyVersion
     #>
     static $ValidateSet = @"
 Windows = All, 2012R2
-SqlServer = 2012
+SQL = Server2012
 "@
     #endregion
     #region Constructors

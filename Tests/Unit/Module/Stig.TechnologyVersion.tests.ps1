@@ -10,14 +10,14 @@ try
         #region Test Setup
         $TechnologyVersion1 = 'All'
         $TechnologyVersion2 = '2012R2'
-        $TechnologyVersion3 = '2012'
+        $TechnologyVersion3 = 'Server2012'
 
         $Technology1 = [Technology]::Windows
-        $Technology2 = [Technology]::SqlServer
+        $Technology2 = [Technology]::SQL
 
         $TestValidateSet = @"
 Windows = All, 2012R2
-SqlServer = 2012
+SQL = Server2012
 "@
 
         $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet

@@ -339,7 +339,7 @@ try
             RegistryRule                 = 5
             SecurityOptionRule           = $null
             ServiceRule                  = $null
-            SqlScriptQueryRule           = $null
+            SqlScriptRule                = $null
             UserRightRule                = $null
             WebAppPoolRule               = $null
             WebConfigurationPropertyRule = 10
