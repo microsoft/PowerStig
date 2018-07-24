@@ -193,3 +193,4 @@ HKCU\Software\Policies\Microsoft\Office\12.0\Word\Options\vpref
 
 Criteria: If the value fWarnRevisions_1805_1 is REG_DWORD = 1 this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

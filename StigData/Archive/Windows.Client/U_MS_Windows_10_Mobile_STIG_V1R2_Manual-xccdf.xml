@@ -723,3 +723,4 @@ SFR #: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/Fals
 6. Verify the "OS build" number is greater than or equal to 10.0.14393.10 to meet all DISA STIG requirements.
 
 If the "OS build" number under Settings/System/About/More info is not greater than or equal to 10.0.14393.10, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

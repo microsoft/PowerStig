@@ -4287,3 +4287,4 @@ The organization must have a policy that prohibits administrative accounts from 
 Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

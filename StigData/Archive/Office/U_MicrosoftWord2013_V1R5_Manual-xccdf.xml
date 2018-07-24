@@ -227,3 +227,4 @@ HKCU\Software\Policies\Microsoft\Office\15.0\word\security
 
 If the value "blockcontentexecutionfrominternet" is REG_DWORD = 1, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

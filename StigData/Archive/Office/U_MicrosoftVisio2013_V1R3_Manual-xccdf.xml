@@ -83,3 +83,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\Microsoft\office\15.0\Visio\security
 
 Criteria: If the value vbawarnings is REG_DWORD = 2, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

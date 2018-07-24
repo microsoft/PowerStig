@@ -1757,3 +1757,4 @@ AND audit_action_name = 'SCHEMA_OBJECT_ACCESS_GROUP';
 If no row is returned, this is a finding.
 
 If the audited_result column is not "SUCCESS" or "SUCCESS AND FAILURE", this is a finding.</check-content></check></Rule></Group></Benchmark>
+

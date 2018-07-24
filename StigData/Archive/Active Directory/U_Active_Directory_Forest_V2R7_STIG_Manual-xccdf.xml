@@ -168,3 +168,4 @@ Right-click on "Schema Admins" and select "Properties", and then select the "Mem
 If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
 
 If any accounts are members of the group when schema changes are not being made, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

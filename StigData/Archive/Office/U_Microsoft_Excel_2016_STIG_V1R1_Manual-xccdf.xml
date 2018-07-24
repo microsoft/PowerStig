@@ -377,3 +377,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\excel\security\protectedview
 
 Criteria: If the value DisableIntranetCheck is REG_DWORD = 0, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

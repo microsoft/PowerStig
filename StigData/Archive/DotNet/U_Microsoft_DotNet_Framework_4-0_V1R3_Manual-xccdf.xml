@@ -475,3 +475,4 @@ The TCP Channel supports encryption and message integrity when the 'secure' flag
 If encryption and message integrity are not used for the TCP remoting channel when the ServerProvider element typefilterlevel=”Full”,  this is a finding.
 
 </check-content></check></Rule></Group></Benchmark>
+

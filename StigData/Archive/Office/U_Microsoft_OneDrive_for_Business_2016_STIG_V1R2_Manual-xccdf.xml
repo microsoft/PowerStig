@@ -117,3 +117,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\SOFTWARE\Microsoft\OneDrive
 Criteria: If the value DisablePersonalSync is REG_DWORD = 1, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

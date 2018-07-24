@@ -180,3 +180,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\software\policies\Microsoft\office\16.0\common
 
 Criteria: If the value sendcustomerdata is REG_DWORD = 0, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

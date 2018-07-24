@@ -90,3 +90,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\15.0\ms project\security
 
 Criteria: If the value TrustWSS is REG_DWORD = 0, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+
