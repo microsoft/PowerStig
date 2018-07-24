@@ -138,3 +138,4 @@ If the value for "140C" is not REG_DWORD = 3, this is a finding.
 
 Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
 </check-content></check></Rule></Group></Benchmark>
+

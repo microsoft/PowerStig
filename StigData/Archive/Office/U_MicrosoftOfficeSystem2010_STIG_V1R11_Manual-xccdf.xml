@@ -372,3 +372,4 @@ HKCU\Software\Policies\Microsoft\Office\14.0\common\security
 Criteria: If the value EncryptDocProps is REG_DWORD = 1, this is not a finding.
 
 </check-content></check></Rule></Group></Benchmark>
+

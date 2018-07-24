@@ -4931,3 +4931,4 @@ Run "gpedit.msc".
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options.
 
 If the value for "Accounts: Guest account status" is not set to "Disabled", this is a finding.</check-content></check></Rule></Group></Benchmark>
+

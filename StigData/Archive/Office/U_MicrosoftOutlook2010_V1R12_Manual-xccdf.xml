@@ -872,3 +872,4 @@ HKCU\software\policies\Microsoft\office\14.0\outlook\options\autoformat
 
 Criteria: If the value pgrfafo_25_1 is REG_DWORD = 1, this is a finding.
 </check-content></check></Rule></Group></Benchmark>
+

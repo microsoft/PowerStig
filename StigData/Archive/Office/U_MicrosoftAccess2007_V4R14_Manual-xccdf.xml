@@ -101,3 +101,4 @@ HKCU\Software\Policies\Microsoft\Office\12.0\Access\Internet
 
 Criteria: If the value DoNotUnderlineHyperlinks is REG_DWORD = 0, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

@@ -97,3 +97,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS
 
 Criteria: If the value mspub.exe is REG_DWORD = 1, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

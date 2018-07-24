@@ -26,3 +26,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Policies\Microsoft\office\16.0\lync
 
 Criteria: If the value disablehttpconnect is REG_DWORD = 1, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

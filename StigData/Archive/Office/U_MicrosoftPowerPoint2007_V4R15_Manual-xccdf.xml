@@ -216,3 +216,4 @@ HKCU\Software\Policies\Microsoft\Office\12.0\PowerPoint\Security
 
 Criteria: If the value DownloadImages is REG_DWORD = 0, this is not a finding
 </check-content></check></Rule></Group></Benchmark>
+

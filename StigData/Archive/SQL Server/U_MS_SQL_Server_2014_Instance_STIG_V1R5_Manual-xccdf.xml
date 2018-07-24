@@ -3210,3 +3210,4 @@ Either navigate, via the Windows Start Menu and/or Control Panel, to "Administra
 Scroll to "SQL Server Browser".
 
 If its Startup Type is not shown as "Disabled", this is a finding.</check-content></check></Rule></Group></Benchmark>
+

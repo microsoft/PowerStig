@@ -4082,3 +4082,4 @@ View the permissions on "Eventvwr.exe".
 The default permissions below satisfy this requirement.
 TrustedInstaller - Full Control
 Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read &amp; Execute</check-content></check></Rule></Group></Benchmark>
+

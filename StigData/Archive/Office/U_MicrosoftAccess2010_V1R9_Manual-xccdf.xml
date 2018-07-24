@@ -154,3 +154,4 @@ HKCU\Software\Policies\Microsoft\Office\14.0\access\security
 
 Criteria: If the value EnableDEP is REG_DWORD = 1, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

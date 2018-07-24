@@ -220,3 +220,4 @@ HKLM\Software\Policies\Microsoft\office\14.0\infopath\security
 
 Criteria: If the value APTCA_AllowList is REG_DWORD = 1, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

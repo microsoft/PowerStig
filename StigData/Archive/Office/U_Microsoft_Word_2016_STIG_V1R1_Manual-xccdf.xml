@@ -318,3 +318,4 @@ HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\protectedview
 
 Criteria: If the value DisableIntranetCheck is REG_DWORD = 0, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

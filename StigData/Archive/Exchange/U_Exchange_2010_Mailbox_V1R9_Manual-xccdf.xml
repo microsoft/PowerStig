@@ -353,3 +353,4 @@ Get-RemoteDomain | select name, AutoForwardEnabled
 If any domain for user forwarding SMTP address is not documented in the EDSP, this is a finding.
 
 Note: If no remote SMTP domain matching the mail-enabled user or contact that allows forwarding is configured for users identified with a forwarding address, this function will not work properly. This requirement works with Exch-1-321.</check-content></check></Rule></Group></Benchmark>
+
