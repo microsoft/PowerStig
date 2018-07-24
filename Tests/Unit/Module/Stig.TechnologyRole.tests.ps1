@@ -39,31 +39,31 @@ Server2012 = Instance, Database
         Describe "technologyRole Class" {
 
             Context "Constructor" {
-                It "Should create a technologyRole object using technologyRole1 role and technologyVersion1 data" {
+                It "Should create a technologyRole class instance using technologyRole1 and technologyVersion1 data" {
                     $technologyRole = [technologyRole]::new($technologyRole1, $technologyVersion1)
                     $technologyRole.Name | Should Be $technologyRole1
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion1
                 }
 
-                It "Should create a technologyRole object using technologyRole2 role and technologyVersion2 data" {
+                It "Should create a technologyRole class instance using technologyRole2 and technologyVersion2 data" {
                     $technologyRole = [technologyRole]::new($technologyRole2, $technologyVersion2)
                     $technologyRole.Name | Should Be $technologyRole2
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion2
                 }
 
-                It "Should create a technologyRole object using technologyRole3 role and technologyVersion3 data" {
+                It "Should create a technologyRole class instance using technologyRole3 and technologyVersion3 data" {
                     $technologyRole = [technologyRole]::new($technologyRole3, $technologyVersion3)
                     $technologyRole.Name | Should Be $technologyRole3
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion3
                 }
 
-                It "Should create a technologyRole object using technologyRole4 role and technologyVersion4 data" {
+                It "Should create a technologyRole class instance using technologyRole4 and technologyVersion4 data" {
                     $technologyRole = [technologyRole]::new($technologyRole4, $technologyVersion4)
                     $technologyRole.Name | Should Be $technologyRole4
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion4
                 }
 
-                It "Should create a technologyRole object using technologyRole5 role and technologyVersion5 data" {
+                It "Should create a technologyRole class instance using technologyRole5 and technologyVersion5 data" {
                     $technologyRole = [technologyRole]::new($technologyRole5, $technologyVersion5)
                     $technologyRole.Name | Should Be $technologyRole5
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion5
