@@ -89,7 +89,7 @@ Enum RuleType
 enum Technology
 {
     Windows
-    SQL
+    SqlServer
 }
 
 #endregion
