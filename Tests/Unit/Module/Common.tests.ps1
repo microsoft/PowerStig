@@ -260,6 +260,8 @@ Describe 'Get-AvailableId' {
     Value:  1 or 2 = a Finding              $i -notmatch "1|2"
     Value: 14 (or greater)                  $i -gt "14"
     Value: 30 (or less, but not 0)          $i -le "30" -and $i -ne 0
+    Value: 0x0000001e (30) (or less, but not 0)     $i -le "30" -and $i -gt 0
+    Value: 0x0000001e (30) (or less, excluding 0)   $i -le "30" -and $i -gt 0
     Value: 90 (or less)                     $i -le "90"
     Value: 300000 (or less)                 $i -le "300000"
     Value:  3 (or less)                     $i -le "3"
@@ -277,6 +279,7 @@ Describe 'Get-OrganizationValueTestString' {
     Mock Test-StringIsLessThanOrEqual  -ModuleName Common
     Mock Test-StringIsLessThanButNot  -ModuleName Common
     Mock Test-StringIsLessThanOrEqualButNot  -ModuleName Common
+    Mock Test-StringIsLessThanOrEqualExcluding -ModuleName Common
     Mock Test-StringIsGreaterThan -ModuleName Common
     Mock Test-StringIsGreaterThanOrEqual  -ModuleName Common
     Mock Test-StringIsGreaterThanButNot  -ModuleName Common
@@ -307,16 +310,18 @@ Describe 'Get-TestStringTokenNumbers' {
     }
 
     $Strings = @{
-        'Greater than 30'                 = "30"
-        '30 (or greater)'                 = "30"
-        'Greater than 30 (but not 60)'    = "30", "60"
-        '30 (or greater, but not 60)'     = "30", "60"
-        'less than 30'                    = "30"
-        '30 (or less)'                    = "30"
-        "Less than 30 (but not 0)"        = "30", "0"
-        "30 (or less, but not 0)"         = "30", "0"
-        "0x0000000f (15) (or less)"       = "15"
-        "0x00008000 (32768) (or greater)" = "32768"
+        'Greater than 30'                        = "30"
+        '30 (or greater)'                        = "30"
+        'Greater than 30 (but not 60)'           = "30", "60"
+        '30 (or greater, but not 60)'            = "30", "60"
+        'less than 30'                           = "30"
+        '30 (or less)'                           = "30"
+        "Less than 30 (but not 0)"               = "30", "0"
+        "0x0000001e (30) (or less, but not 0)"   = "30", "0"
+        "0x0000001e (30) (or less, excluding 0)" = "30", "0"
+        "30 (or less, but not 0)"                = "30", "0"
+        "0x0000000f (15) (or less)"              = "15"
+        "0x00008000 (32768) (or greater)"        = "32768"
     }
 
     Foreach ($string in $strings.GetEnumerator())
@@ -343,6 +348,8 @@ Describe 'Get-TestStringTokenList' {
             '30 (or less)'                    = "or less"
             "Less than 30 (but not 0)"        = "less than but not"
             "30 (or less, but not 0)"         = "or less but not"
+            "0x0000001e (30) (or less, but not 0)"   = "or less but not"
+            "0x0000001e (30) (or less, excluding 0)" = "or less excluding"
             " 0x0000000f (15) (or less)"       = "or less"
             "0x00008000 (32768) (or greater)" = "or greater"
         }
@@ -381,6 +388,8 @@ Describe 'ConvertTo-TestString' {
         '30 (or less)'                    = "{0} -le '30'"
         "Less than 30 (but not 0)"        = "{0} -lt '30' -and {0} -gt '0'"
         "30 (or less, but not 0)"         = "{0} -le '30' -and {0} -gt '0'"
+        "0x0000001e (30) (or less, but not 0)"   = "{0} -le '30' -and {0} -gt '0'"
+        "0x0000001e (30) (or less, excluding 0)" = "{0} -le '30' -and {0} -gt '0'"
         "  0x0000000f (15) (or less)"     = "{0} -le '15'"
         "0x00008000 (32768) (or greater)" = "{0} -ge '32768'"
     }
@@ -653,12 +662,30 @@ Describe 'Test-StringIsLessThanOrEqualButNot' {
         '3 (or less, but not 1)',
         ' 3 (or less, but not 1)',
         ' 3 (or less, but not 1) '
+        '0x0000001e (30) (or less, but not 0)',
+        ' 0x0000001e (30) (or less, but not 0)',
+        ' 0x0000001e (30) (or less, but not 0) '
     )
 
     Foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqualButNot -String $string | Should Be $true
+        }
+    }
+}
+
+Describe 'Test-StringIsLessThanOrEqualExcluding' {
+
+    $strings = @(
+        '0x0000001e (30) (or less, excluding 0)',
+        ' 0x0000001e (30) (or less, excluding 0)'
+    )
+
+    Foreach ($string in $strings)
+    {
+        It "Should return $true when given '$string'" {
+            Test-StringIsLessThanOrEqualExcluding -String $string | Should Be $true
         }
     }
 }

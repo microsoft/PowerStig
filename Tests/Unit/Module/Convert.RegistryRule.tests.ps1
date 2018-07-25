@@ -314,6 +314,8 @@ try
                     'Value: 300000 (or less)',
                     'Value: 30 (or less, but not 0)',
                     'Value: 0x000dbba0 (900000) or less but not 0',
+                    'Value: 0x0000001e (30) (or less, but not 0)',
+                    'Value: 0x0000001e (30) (or less, excluding 0)',
                     'Value: Possible values are NoSync,NTP,NT5DS, AllSync'
                 )
 

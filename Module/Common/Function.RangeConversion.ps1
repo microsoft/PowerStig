@@ -39,13 +39,14 @@ function Get-OrganizationValueTestString
             continue
         }
         {
-            (Test-StringIsLessThan -String $PSItem)              -or
-            (Test-StringIsLessThanOrEqual -String $PSItem)       -or
-            (Test-StringIsLessThanButNot -String $PSItem)        -or
-            (Test-StringIsLessThanOrEqualButNot -String $PSItem) -or
-            (Test-StringIsGreaterThan -String $PSItem)           -or
-            (Test-StringIsGreaterThanOrEqual -String $PSItem)    -or
-            (Test-StringIsGreaterThanButNot -String $PSItem)     -or
+            (Test-StringIsLessThan -String $PSItem)                 -or
+            (Test-StringIsLessThanOrEqual -String $PSItem)          -or
+            (Test-StringIsLessThanButNot -String $PSItem)           -or
+            (Test-StringIsLessThanOrEqualButNot -String $PSItem)    -or
+            (Test-StringIsLessThanOrEqualExcluding -String $PSItem) -or
+            (Test-StringIsGreaterThan -String $PSItem)              -or
+            (Test-StringIsGreaterThanOrEqual -String $PSItem)       -or
+            (Test-StringIsGreaterThanButNot -String $PSItem)        -or
             (Test-StringIsGreaterThanOrEqualButNot -String $PSItem)
         }
         {
@@ -81,7 +82,14 @@ function Get-TestStringTokenNumbers
 
     if ($match)
     {
-        [convert]::ToInt32($match,16)
+        if ($number.count -gt 2)
+        {
+            $number[1, 2]
+        }
+        else 
+        {
+            [convert]::ToInt32($match,16)
+        }
     }
     else
     {
@@ -171,6 +179,10 @@ function ConvertTo-TestString
             return "{0} -lt '$($number[0])' -and {0} -gt '$($number[1])'"
         }
         'or less but not'
+        {
+            return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
+        }
+        'or less excluding'
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
         }
@@ -281,7 +293,7 @@ function Test-StringIsPositiveOr
     $optionalCharacter = "(\(|'|"")?"
 
     $regex = "^(\s*)(\d{1,})(\s*)$optionalCharacter.*$optionalCharacter" +
-            "(\s*)or(\s*)(\d{1,})(\s*)$optionalCharacter.*$optionalCharacter(\s*)$"
+             "(\s*)or(\s*)(\d{1,})(\s*)$optionalCharacter.*$optionalCharacter(\s*)$"
 
     if ($string -match $regex)
     {
@@ -630,8 +642,14 @@ function Test-StringIsLessThanButNot
 
     Test-StringIsLessThanOrEqualToButNot -String '30 (or less, but not 0)'
 
+ .EXAMPLE
+    This example returns $true
+
+    Test-StringIsLessThanOrEqualToButNot -String '0x0000001e (30) (or less, but not 0)'
+
  .NOTES
     Sample STIG data would convert 30 (or less, but not 0) into '$i -le "30" -and $i -gt 0'
+    Sample STIG data would convert 0x0000001e (30) (or less, but not 0) into '$i -le "30" -and $i -gt 0'
 #>
 function Test-StringIsLessThanOrEqualButNot
 {
@@ -644,7 +662,43 @@ function Test-StringIsLessThanOrEqualButNot
         $String
     )
 
-    if ($string -match "^(\s*)(\d{1,})(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
+    if ($string -match "^(\s*)(\d{1,})(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$" -or
+        $string -match "(\s*)(\()(\d{1,})(\))(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
+    {
+        $true
+    }
+    else
+    {
+        $false
+    }
+}
+ .SYNOPSIS
+    Converts English textual representation of numeric ranges into PowerShell equivalent
+    comparison statements.
+
+ .PARAMETER string
+    The String to test.
+
+ .EXAMPLE
+    This example returns $true
+
+    Test-StringIsLessThanOrEqualExcluding -String '0x0000001e (30) (or less, excluding 0)'
+
+ .NOTES
+    Sample STIG data would convert 0x0000001e (30) (or less, excluding 0) into '$i -le "30" -and $i -gt 0'
+#>
+function Test-StringIsLessThanOrEqualExcluding
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [string]
+        $String
+    )
+
+    if ($string -match "(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\s*),(\s*)excluding(\s*)(\d{1,})(\))?(\s*)$")
     {
         $true
     }
