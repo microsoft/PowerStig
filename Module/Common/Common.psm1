@@ -4,7 +4,7 @@
 #endregion
 #region Enum
 <#
-    STIGS have an associated severity that determines the impact of the findhing if it
+    STIGS have an associated severity that determines the impact of the finding if it
     is not configured properly
 #>
 enum severity
@@ -26,9 +26,9 @@ enum status
 
 <#
     The process enum is used as a flag for further automation. The intent is that if a STIG
-    has been fully process, then the setting can be automatically published to a server. If
-    a setting has not been fully process then it needs to be manually processed. This is
-    differnt from the status enum in that status is a control flag to descrive the state
+    has been fully processed, then the setting can be automatically published to a server. If
+    a setting has not been fully processed then it needs to be manually processed. This is
+    different from the status enum in that status is a control flag to describe the state
     of the item processing
 #>
 enum process
@@ -89,7 +89,7 @@ Enum RuleType
 enum Technology
 {
     Windows
-    SQL
+    SqlServer
 }
 
 #endregion

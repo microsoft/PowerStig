@@ -46,7 +46,7 @@ function Test-ValueDataIsHardCoded
         'V-21954', # Windows Server - Kerberos Supported Encryption Types
         'V-73805'  # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
         # resource does not use the Get-WindowsOptionalFeature cmdlet so this has to stay manual on
-        # the desktop for now or else we have to move everythign to a script resource.
+        # the desktop for now or else we have to move everything to a script resource.
     )
 
     if ($stigIds -contains $StigId)

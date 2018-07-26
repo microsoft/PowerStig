@@ -25,7 +25,7 @@ function Get-PermissionTargetPath
         # get path for permissions that pertains to event logs
         { $stigString -match $script:RegularExpression.WinEvtDirectory }
         {
-            $parentheseMatch = $StigString | Select-String -Pattern $script:RegularExpression.textBetweenParentheses
+            $parentheseMatch = $StigString | Select-String -Pattern $script:eventLogRegularExpression.name
 
             if ( $StigString -match $script:RegularExpression.dnsServerLog )
             {
@@ -271,8 +271,8 @@ function Get-PermissionAccessControlEntry
 
 <#
     .SYNOPSIS
-        This function converts the raw text from the STIG rule to a hastable with
-        the following keys: Princiapl,FileSystemRights, and Inheritance. This is to
+        This function converts the raw text from the STIG rule to a hashtable with
+        the following keys: Principal,FileSystemRights, and Inheritance. This is to
         handle scenarios where a target has multiple principals assigned permissions
         to it.
 #>
@@ -353,7 +353,7 @@ function ConvertTo-AccessControlEntryGrouped
 
 <#
     .SYNOPSIS
-        Converts permission rules entries that have an inheritence mapping
+        Converts permission rules entries that have an inheritance mapping
 #>
 function ConvertTo-AccessControlEntryIF
 {
@@ -403,8 +403,8 @@ function ConvertTo-AccessControlEntryIF
 
 <#
     .SYNOPSIS
-        Converts the raw text from the STIG rule hastable with
-        the following keys: Princiapl,FileSystemRights, and Inheritance.
+        Converts the raw text from the STIG rule hashtable with
+        the following keys: Principal,FileSystemRights, and Inheritance.
 #>
 function ConvertTo-AccessControlEntry
 {
@@ -428,7 +428,7 @@ function ConvertTo-AccessControlEntry
         if ( $entry -notmatch 'Type|Inherited|Columns|Principal|Applies' )
         {
             <#
-                Access control entries are commonly formated like so: 'Princiapl - FileSystemRights - Inheritance
+                Access control entries are commonly formatted like so: 'Principal - FileSystemRights - Inheritance
                 we will split on a regex pattern the represents space dash space ( - )
             #>
             $principals, $fileSystemRights, [string]$inheritance = $entry -split $script:RegularExpression.spaceDashSpace

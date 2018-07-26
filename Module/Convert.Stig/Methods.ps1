@@ -250,7 +250,7 @@ function Get-RuleTypeMatchList
         }
         <#
             Some rules have a documentation requirement only for exceptions, so the DocumentRule
-            needs to be at th end of the swtich as a catch all for documentation rules.
+            needs to be at the end of the swtich as a catch all for documentation rules.
         #>
         {
             $PSItem -Match "Document(ation)?" -and
@@ -493,7 +493,7 @@ function Test-DuplicateRule
         Looks in $global:stigSettings for existing rules
 
     .NOTES
-        Some rules in the STIG enforce multiple settings. This funciton will test for
+        Some rules in the STIG enforce multiple settings. This function will test for
         this scenario to so we can act upon it later.
 #>
 function Test-ExistingRule

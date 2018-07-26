@@ -13,16 +13,16 @@ try
         $technologyRole3 = 'Instance'
 
         $Technology1 = [Technology]::Windows
-        $Technology2 = [Technology]::SQL
+        $Technology2 = [Technology]::SqlServer
 
         $technologyVersion1 = [TechnologyVersion]::new('2012R2', $Technology1)
         $technologyVersion2 = [TechnologyVersion]::new('All', $Technology1)
-        $technologyVersion3 = [TechnologyVersion]::new('Server2012', $Technology2)
+        $technologyVersion3 = [TechnologyVersion]::new('2012', $Technology2)
 
         $TestValidateSet = @"
-2012R2 = DNS, DC, MS, IISSite
-All = ADDomain, ADForest, FW, IE11
-Server2012 = Instance, Database
+2012R2 = DNS, DC, MS, IISSite, IISServer
+All = ADDomain, ADForest, FW, IE11, DotNet4
+2012 = Instance, Database
 "@
 
         $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet

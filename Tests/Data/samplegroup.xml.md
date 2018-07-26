@@ -1,2 +1,0 @@
-# samplegroup.xml
-

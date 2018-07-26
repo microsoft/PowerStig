@@ -4,8 +4,8 @@
 #region Method Functions
 <#
     .SYNOPSIS
-        Determines what function to use to extract the registry key from a string. This is uesed to
-        account for all of the differnt variations on registry settign in different STIGs.
+        Determines what function to use to extract the registry key from a string. This is used to
+        account for all of the different variations on registry setting in different STIGs.
 
     .Parameter stigString
         This is an array of the raw sting data taken from the STIG setting.
@@ -217,7 +217,7 @@ function Get-RegistryValueTypeFromWindowsStig
     else
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]   Found : $false"
-        # If we get here, there is nothing to verify to verify so return.
+        # If we get here, there is nothing to verify so return.
         return
     }
 
@@ -656,7 +656,8 @@ function Test-RegistryValueDataContainsRange
     )
 
     # Is in a word boundary since it is a common pattern
-    if ( $ValueDataString -match $script:registryRegularExpression.registryValueRange )
+    if ( $ValueDataString -match $script:registryRegularExpression.registryValueRange -and
+         $ValueDataString -notmatch 'does not exist' )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -670,7 +671,7 @@ function Test-RegistryValueDataContainsRange
 
 <#
     .SYNOPSIS
-        Formats a string value into a multiline string by spliting it on a space or comma space foramt.
+        Formats a string value into a multiline string by spliting it on a space or comma space format.
 
     .PARAMETER ValueDataString
         The registry value data string to split.
@@ -735,7 +736,7 @@ function Get-MultiValueRegistryStringData
 
     .DESCRIPTION
         Dword registry data can only contain integers. This function provides a quick validation of
-        the data that was extracted from the stig string to furtherincrease the confidence of the
+        the data that was extracted from the stig string to further increase the confidence of the
         conversion process.
 
     .PARAMETER ValueData

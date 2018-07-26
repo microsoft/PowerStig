@@ -339,7 +339,7 @@ try
             RegistryRule                 = 5
             SecurityOptionRule           = $null
             ServiceRule                  = $null
-            SqlScriptRule                = $null
+            SqlScriptQueryRule                = $null
             UserRightRule                = $null
             WebAppPoolRule               = $null
             WebConfigurationPropertyRule = 10
@@ -370,6 +370,15 @@ try
                     }
                 }
             }
+        }
+    }
+
+    Describe 'PowerStig output' {
+        $path = (Get-ChildItem -Path $filePath -File -Recurse)[0].FullName
+
+        It 'Should not throw an error when a STIG is converted' {
+            {ConvertTo-PowerStigXml -Path $path -Destination $TestDrive} |
+                Should Not Throw
         }
     }
     #endregion

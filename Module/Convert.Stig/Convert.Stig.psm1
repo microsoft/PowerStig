@@ -72,7 +72,7 @@ Class STIG : ICloneable
             This hidden property is used by all of the methods and passed to subfunctions instead of
             splitting the sting in every function. THe Select-String removes any blank lines, so
             that the Mandatory parameter validataion does not fail and to prevent the need for a
-            work around by allowing empty strings in mandaotry parmaeters.
+            work around by allowing empty strings in mandatory parameters.
         #>
         $this.SplitCheckContent = [STIG]::SplitCheckContent( $this.rawString )
 
@@ -96,7 +96,7 @@ Class STIG : ICloneable
         $this.title = $this.title + ' Duplicate'
     }
 
-    # Fail a rule conversion if a propety is null or empty
+    # Fail a rule conversion if a property is null or empty
     [Boolean] SetStatus ( [String] $Value )
     {
         if ( [String]::IsNullOrEmpty( $Value ) )
@@ -110,7 +110,7 @@ Class STIG : ICloneable
         }
     }
 
-    # Fail a rule conversion if a propety is null or empty and not specifically allowed to be
+    # Fail a rule conversion if a property is null or empty and not specifically allowed to be
     [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
     {
         if ( [String]::IsNullOrEmpty( $Value ) -and -not $AllowNullOrEmpty )
