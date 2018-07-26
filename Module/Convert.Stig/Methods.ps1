@@ -190,7 +190,8 @@ function Get-RuleTypeMatchList
                 $PSItem -NotMatch 'verify the certificate path is to a DoD root CA' -and
                 $PSItem -NotMatch 'HKLM' -and
                 $PSItem -NotMatch 'Authorization Rules' -and
-                $PSItem -NotMatch 'regedit <enter>'
+                $PSItem -NotMatch 'regedit <enter>' -and
+                $PSItem -NotMatch 'Enable proxy'
             )
         }
         {
