@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.0'
+ModuleVersion = '1.1.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -47,13 +47,14 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'STIGs added:
-        Windows Server 2012R2 MS STIG V2R12
-        Windows Server 2012R2 DC STIG V2R12
-        Windows Server DNS V1R9
-        Windows AD Domain V2R9
-        IE11 V1R15
-        '
+        ReleaseNotes = 'Added the following STIGs:
+
+* IIS 8.5 Server STIG V1R3
+
+Updates
+
+* Updated SQL STIG code to account for SQL STIGS being added in PowerStigDsc
+* Update to PowerStig.psm1 to fix issue were StigData class was not accessible to PowerStigDsc'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

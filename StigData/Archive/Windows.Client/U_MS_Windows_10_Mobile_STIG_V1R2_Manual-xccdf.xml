@@ -1,0 +1,725 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" id="Microsoft_Windows_10_Mobile_STIG" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2016-09-26">accepted</status><title>Microsoft Windows 10 Mobile Security Technical Implementation Guide</title><description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><reference href="http://iase.disa.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 2 Benchmark Date: 28 Oct 2016</plain-text><version>1</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-69709" selected="true" /><select idref="V-69711" selected="true" /><select idref="V-69713" selected="true" /><select idref="V-70083" selected="true" /><select idref="V-70085" selected="true" /><select idref="V-70087" selected="true" /><select idref="V-70089" selected="true" /><select idref="V-70091" selected="true" /><select idref="V-70093" selected="true" /><select idref="V-70095" selected="true" /><select idref="V-70097" selected="true" /><select idref="V-70099" selected="true" /><select idref="V-70101" selected="true" /><select idref="V-70103" selected="true" /><select idref="V-70105" selected="true" /><select idref="V-70107" selected="true" /><select idref="V-70109" selected="true" /><select idref="V-70111" selected="true" /><select idref="V-70113" selected="true" /><select idref="V-70115" selected="true" /><select idref="V-70117" selected="true" /><select idref="V-70119" selected="true" /><select idref="V-70121" selected="true" /><select idref="V-70123" selected="true" /><select idref="V-70125" selected="true" /><select idref="V-70127" selected="true" /><select idref="V-70129" selected="true" /><select idref="V-70131" selected="true" /><select idref="V-70133" selected="true" /><select idref="V-70135" selected="true" /><select idref="V-70137" selected="true" /><select idref="V-70139" selected="true" /><select idref="V-70143" selected="true" /><select idref="V-71681" selected="true" /></Profile><Group id="V-69709"><title>PP-MDF-201008</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84331r1_rule" severity="medium" weight="10.0"><version>MSWM-10-200101</version><title>Windows 10 Mobile must not display notifications in the Action Center when the device is locked.</title><description>&lt;VulnDiscussion&gt;Many mobile devices display notifications on the lock screen so that users can obtain relevant information in a timely manner without having to frequently unlock the phone to determine if there are new notifications. However, in many cases, these notifications can contain sensitive information. When they are available on the lock screen, an adversary can see them merely by being in close physical proximity to the device. Configuring the MOS to not send notifications to the lock screen mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #21&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000062</ident><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-75913r1_fix">Configure the MDM system to require the "allow Action Center notifications" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-75913r1_fix" /><check system="C-70151r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the MOS displays notifications on the lock screen. If feasible, use a spare device and configure it for notifications on common triggers such as calendar appointments.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device. It assumes you have an existing device timeout policy in place that will lock the device after a certain period.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow Action Center notifications".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. If On, tap the power button to turn the screen off otherwise leave the screen off until the timeout period passes. The device could also be powered off instead.
+2. Press the power button to turn on the screen.
+3. The lock screen background screen should appear. Swipe a finger from the very top of the screen to bring up the action center.
+4. Verify that when the action center appears that that the only thing visible are the 4 configurable settings buttons along with the "all settings" button.
+
+If an MDM policy for "allow Action Center notifications" is not set to turned off/disallowed or if on the Windows 10 Mobile device any notifications for various services like email show up under the settings buttons, this is a finding.</check-content></check></Rule></Group><Group id="V-69711"><title>PP-MDF-201010</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84333r1_rule" severity="medium" weight="10.0"><version>MSWM-10-200303</version><title>Windows 10 Mobile must not allow use of developer modes.</title><description>&lt;VulnDiscussion&gt;Developer modes expose features of the MOS that are not available during standard operation. An adversary may leverage a vulnerability inherent in a developer mode to compromise the confidentiality, integrity, and availability of DoD-sensitive information. Disabling developer modes mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #24&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000381</ident><fixtext fixref="F-75915r1_fix">Configure the MDM system to require the Developer Unlocking/Developer Mode policy be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-75915r1_fix" /><check system="C-70153r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine whether a developer mode is enabled.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for restricting the Developer Unlocking/Developer Mode capability.
+3. Verify that setting is set to disabled/off.
+
+On the Windows 10 Mobile device:
+
+1. Launch "Settings".
+2. Tap on "Update &amp; security" and then tap on "For developers".
+3. Verify that the setting titled "Developer mode" is not selected and it is disabled/read-only.
+
+If the MDM does not have the Developer Unlocking/Developer Mode policy to disable developer mode enforced, or if on the phone the setting titled "Developer mode" is not disabled/read-only on the "Developer mode" screen, this is a finding.</check-content></check></Rule></Group><Group id="V-69713"><title>PP-MDF-201006</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84335r1_rule" severity="medium" weight="10.0"><version>MSWM-10-200305</version><title>Windows 10 Mobile must disable the Windows Store.</title><description>&lt;VulnDiscussion&gt;Forcing all applications to be installed from authorized application repositories can prevent unauthorized and malicious applications from being installed and executed on mobile devices. Allowing such installations and executions could cause a compromise of DoD data accessible by these unauthorized/malicious applications. A risk assessment for the download of apps from the Microsoft Store has not yet been completed by the DoD, and therefore, should not be accessed for the download of authorized non-managed apps (personal apps) at this time.
+
+SFR ID: FMT_SMF_EXT.1.1 #10a&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><ident system="http://iase.disa.mil/cci">CCI-001806</ident><fixtext fixref="F-75917r1_fix">Configure an application control policy using an MDM for Windows 10 Mobile to disable the Store application.
+
+Deploy the policy to managed devices.</fixtext><fix id="F-75917r1_fix" /><check system="C-70155r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the Windows Store is accessible. If feasible, use a spare device to determine if the "Store" application is accessible.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Display the policy that restricts the use of a Store application.
+2. Verify that this policy is set to be disabled.
+
+On Windows 10 Mobile device:
+
+1. From the Start page or on the Applications page (swipe to the left from the Start page), find the Store application icon.
+Note: The Store icon should appear dim.
+2. Tap on the Store app to attempt to launch it. A message should be displayed:
+"App disabled. This app has been disabled by company policy. Contact your company's support person for help."
+
+If the MDM does not have a policy that disables the Store application or if the Windows Store app can be successfully launched, this is a finding.</check-content></check></Rule></Group><Group id="V-70083"><title>PP-MDF-201007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84705r1_rule" severity="medium" weight="10.0"><version>MSWM-10-200306</version><title>Windows 10 Mobile must enforce an application installation policy by specifying an application whitelist.</title><description>&lt;VulnDiscussion&gt;Requiring all authorized applications to be in an application whitelist prevents the execution of any applications (e.g., unauthorized, malicious) that are not part of the whitelist. Failure to configure an application whitelist properly could allow unauthorized and malicious applications to be downloaded, installed, and executed on the mobile device, causing a compromise of DoD data accessible by these applications.
+
+The application whitelist, in addition to controlling the installation of applications on the MD, must control user access/execution of all core applications (included in the operating system (OS) by the OS vendor) and pre-installed applications (provided by the MD vendor and wireless carrier), or the MD must provide an alternate method of restricting user access/execution to core and pre-installed applications.
+
+SFR ID: FMT_SMF_EXT.1.1 #10b&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><ident system="http://iase.disa.mil/cci">CCI-001806</ident><fixtext fixref="F-76319r1_fix">Setup an Application whitelist (authorized apps) using an MDM for Windows 10 Mobile.
+
+Deploy the policy on managed devices.
+
+This will provide an authorized repository of applications which can be installed on a managed user's device.</fixtext><fix id="F-76319r1_fix" /><check system="C-70559r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device has an application whitelist configured. If feasible, use a spare device to determine if an application whitelist is configured.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Display policy area for managing allowed applications.
+2. Verify a policy exists that creates an application whitelist of allowed applications.
+3. Verify all applications on the list of whitelisted applications have been approved by the Authorizing Official (AO).
+4. Verify the application whitelist policy has been deployed to the target devices under management on the MDM console.
+5. This list can be empty if no applications have been approved. See the STIG supplemental document for additional information.
+
+On the Windows 10 Mobile device:
+
+1. Go to "All apps" page. From the Start page swipe left to reveal.
+2. If the whitelist policy has been successfully deployed the majority of apps listed should have a dimmed appearance and have the text "Unavailable" under each restricted application.
+3. Look for several apps that are not included in the application whitelist.
+4. Determine if any app can be launched by tapping on its icon.
+5. Verify that the app both has the text "Unavailable" under its title and that when launched this text appears on a pop-up page: "This app is disabled by your enterprise policy".
+
+If the application whitelist policy doesn't exist or doesn't only contain authorized applications or hasn't been deployed to targeted devices under enrollment or on the device any non-whitelisted app can be launched, this is a finding.</check-content></check></Rule></Group><Group id="V-70085"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84707r1_rule" severity="medium" weight="10.0"><version>MSWM-10-200512</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the ability for a device to send out advertisements/Bluetooth beacons to a Bluetooth peripheral.</title><description>&lt;VulnDiscussion&gt;Bluetooth usage could provide an attack vector for a hacker to connect to a mobile OS device without the knowledge of the user. Disabling Bluetooth advertising/beaconing reduces the risk of a non-authorized Bluetooth device connecting the DoD mobile OS device.
+
+SFR ID: FMT_SMF_EXT.1.1 #20d&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76321r1_fix">Configure the MDM system to enforce a policy that restricts "allow Bluetooth device advertising" policy to prevent low energy Bluetooth devices from advertising.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76321r1_fix" /><check system="C-70561r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is enforcing the policy to prevent Bluetooth Low Energy (LE) apps from doing any Bluetooth advertising.
+
+This validation procedure is performed only on the MDM administration console.
+
+Check whether the appropriate setting is configured on the MDM.
+
+Administration Console:
+
+1. Ask the MDM administrator to show the Bluetooth device advertising" security policy.
+2. Verify the "allow Bluetooth device advertising" security policy was set to disallowed for Windows 10 Mobile devices.
+
+If the MDM does not disable the policy for "allow Bluetooth device advertising", this is a finding.</check-content></check></Rule></Group><Group id="V-70087"><title>PP-MDF-201004</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84709r1_rule" severity="low" weight="10.0"><version>MSWM-10-201003</version><title>Windows 10 Mobile must not allow passwords that include more than two repeating or sequential characters.</title><description>&lt;VulnDiscussion&gt;Password strength is a measure of the effectiveness of a password in resisting guessing and brute force attacks. Passwords that contain repeating or sequential characters are significantly easier to guess than those that do not contain repeating or sequential characters. Therefore, disallowing repeating or sequential characters increases password strength and decreases risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #01b&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76323r1_fix">Configure the MDM system to enforce a password policy that disables "Require simple password, no repeating or pattern based passwords".
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76323r1_fix" /><check system="C-70563r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is prohibiting passwords with more than two repeating or sequential characters. If feasible, use a spare device to try to create a password with more than two repeating or sequential characters (e.g., bbb, 888, hij, 654).
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "Require simple password, no repeating or pattern based passwords".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. Wait for the MDM policy to be applied.
+2. When prompted that the password policy has changed, attempt to set a password that is either 111111 or 123456.
+3. Verify that those password types are not allowed.
+
+If the MDM system does not enforce a password policy that disables "Require simple password, no repeating or pattern based passwords" or on the phone creating simple password is allowed, this is a finding.</check-content></check></Rule></Group><Group id="V-70089"><title>PP-MDF-201005</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84711r1_rule" severity="low" weight="10.0"><version>MSWM-10-201008</version><title>Windows 10 Mobile must not allow more than 10 consecutive failed authentication attempts.</title><description>&lt;VulnDiscussion&gt;The more attempts an adversary has to guess a password, the more likely the adversary will enter the correct password and gain access to resources on the device. Setting a limit on the number of attempts mitigates this risk. Setting the limit at 10 gives authorized users the ability to make a few mistakes when entering the password but still provides adequate protection against dictionary or brute force attacks on the password.
+
+SFR ID: FMT_SMF_EXT.1.1 #02&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000044</ident><fixtext fixref="F-76325r1_fix">Configure the MDM system to enforce a local device wipe after 10 or less repeated sign-in failures.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76325r1_fix" /><check system="C-70565r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device has the maximum number of consecutive failed authentication attempts at 10 or less. If feasible, use a spare device to determine how many consecutive failed authentication attempts are permitted.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to display the device password settings. Check that these settings are configured:
+2. Verify that the number of repeated sign-in failures before device is wiped is set to 10 or less.
+
+On the Windows 10 Mobile device:
+
+1. Ensure that the device has timed out or power cycled so that the lockscreen is shown.
+2. Attempt to unlock the device using an incorrect PIN.
+3. On the last attempt a warning will be presented and ask the user to enter A1B2C3. This is to ensure that random logon attempts were not being pocket dialed. Once A1B2C3 is entered a final attempt to unlock the phone can be made.
+4. Verify that after the 10th attempt or less, the message Goodbye is displayed as the Windows 10 Mobile device reboots and wipes/hard resets.
+
+If the MDM is not configured to wipe the device in 10 password entry attempts or less or the device does not wipe after 10 password entry attempts to unlock it, this is a finding.</check-content></check></Rule></Group><Group id="V-70091"><title>PP-MDF-201003</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84713r1_rule" severity="medium" weight="10.0"><version>MSWM-10-201009</version><title>Windows 10 Mobile must lock the display after 15 minutes (or less) of inactivity.</title><description>&lt;VulnDiscussion&gt;The screen lock timeout must be set to a value that helps protect the device from unauthorized access. Having a too-long timeout would increase the window of opportunity for adversaries who gain physical access to the mobile device through loss, theft, etc. Such devices are much more likely to be in an unlocked state when acquired by an adversary, thus granting immediate access to the data on the mobile device. The maximum timeout period of 15 minutes has been selected to balance functionality and security; shorter timeout periods may be appropriate depending on the risks posed to the mobile device.
+
+SFR ID: FMT_SMF_EXT.1.1 #02b&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000057</ident><fixtext fixref="F-76327r1_fix">Configure Windows 10 Mobile policies to lock the device within 15 minutes or less.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76327r1_fix" /><check system="C-70567r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device has the screen lock timeout set to 15 minutes or less. If feasible, use a spare device to determine how much idle time must elapse before the screen lock activates.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to display the device password settings.
+2. Verify the device timeout/inactivity setting is turned on.
+3. Verify the minimum length is set to 15 minutes.
+
+On the Windows 10 Mobile device:
+
+1. Initiate the test by unlocking the device.
+2. Verify that within 15 minutes or less the device screen turns off and if after turning the screen on again that a password is required to gain access to the device.
+
+If the MDM is not configured to require a device lock after 15 minutes or less or; the device fails to lock in 15 minutes or less, this is a finding.</check-content></check></Rule></Group><Group id="V-70093"><title>PP-MDF-201002</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84715r1_rule" severity="low" weight="10.0"><version>MSWM-10-201012</version><title>Windows 10 Mobile must enforce a minimum password length of 6 characters.</title><description>&lt;VulnDiscussion&gt;Password strength is a measure of the effectiveness of a password in resisting guessing and brute force attacks. The ability to crack a password is a function of how many attempts an adversary is permitted, how quickly an adversary can do each attempt, and the size of the password space. The longer the minimum length of the password is, the larger the password space. Having a too-short minimum password length significantly reduces password strength, increasing the chance of password compromise and resulting device and data compromise.
+
+SFR ID: FMT_SMF_EXT.1.1 #01a&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000205</ident><fixtext fixref="F-76329r2_fix">Configure the MDM system to enforce a password required as well as a minimum length password of 6 characters for device unlock.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76329r2_fix" /><check system="C-70569r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is enforcing a minimum password length of 6 characters. If feasible, use a spare device to try to create a password with less than 6 characters using a standard user account.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to display the device password settings.
+2. Verify that a password required setting is in effect.
+3. Verify the minimum length for the password is set to 6 or greater.
+
+On the Windows 10 Mobile device:
+
+1. Go to Settings/Accounts/Sign-in options and tap on Change under the PIN section.
+2. Attempt to change the password to a five-digit password.
+3. Verify Windows 10 Mobile rejects the new password with a message of Your PIN must be at least 6 characters long.
+
+If the password policy on the MDM is not set to require a password with a minimum length of at least 6, or a device accepts a passcode of less than 6 characters, this is a finding.</check-content></check></Rule></Group><Group id="V-70095"><title>PP-MDF-201011</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84717r1_rule" severity="high" weight="10.0"><version>MSWM-10-201405</version><title>Windows 10 Mobile must protect data at rest on built-in storage media.</title><description>&lt;VulnDiscussion&gt;The MOS must ensure the data being written to the mobile device's built-in storage media is protected from unauthorized access. If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can read storage media directly, thereby circumventing operating system controls. Encrypting the data ensures confidentiality is protected even when the operating system is not running.
+
+SFR ID: FMT_SMF_EXT.1.1 #25&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-76331r1_fix">Configure the MDM system to require device encryption for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76331r1_fix" /><check system="C-70571r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if data in the mobile device's built-in storage media is encrypted.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to display the device encryption setting.
+2. Verify device encryption is activated.
+
+On the Windows 10 Mobile device:
+
+1. Launch "Settings".
+2. Select "Update &amp; security".
+3. Select "Device encryption".
+4. Verify the toggle for Device Encryption is set to "On" and that setting is disabled/read-only.
+
+If the MDM is not configured to enforce encryption, or if the "Device encryption" setting is not toggled to "On" and disabled/read-only, this is a finding.</check-content></check></Rule></Group><Group id="V-70097"><title>PP-MDF-201012</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84719r1_rule" severity="high" weight="10.0"><version>MSWM-10-201705</version><title>Windows 10 Mobile must protect data at rest on removable storage media.</title><description>&lt;VulnDiscussion&gt;The MOS must ensure the data being written to the mobile device's removable media is protected from unauthorized access. If data at rest is unencrypted, it is vulnerable to disclosure. Even if the operating system enforces permissions on data access, an adversary can read removable media directly, thereby circumventing operating system controls. Encrypting the data ensures confidentiality is protected even when the operating system is not running.
+
+With Windows 10 Mobile there is not a capability to encrypt data on removable storage therefore the mitigation is to disable the use of removable storage in the DoD.
+
+SFR ID: FMT_SMF_EXT.1.1 #26&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-76333r2_fix">Configure the MDM system to enforce a policy which configures the "allow removable storage" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76333r2_fix" /><check system="C-70573r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if data in the mobile device's removable storage media is encrypted. If feasible, use a spare device to confirm that data-at-rest protection is enabled for removable storage media.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow removable storage".
+3. Verify that setting restriction is turned off/disallowed.
+
+On a Windows 10 Mobile device that contains a microSD slot and has a microSD card inserted:
+
+1. Launch "Settings".
+2. Tap on "System" and then tap on "Storage".
+3. Look for a drive called "This Device" which shows how much space has been used.
+4. Verify that even if an SD card is mounted in the device there is not a drive called "SD Card" listed directly below the "This Device" drive.
+
+If the MDM does not have a policy enforcement that disables the use of removable storage or if on the phone an SD Card is listed under "This Device" on the "Storage" screen, this is a finding.</check-content></check></Rule></Group><Group id="V-70099"><title>PP-MDF-201031</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84721r1_rule" severity="medium" weight="10.0"><version>MSWM-10-201901</version><title>Windows 10 Mobile must be configured to disable automatic updates of system software.</title><description>&lt;VulnDiscussion&gt;FOTA allows the user to download and install firmware updates over-the-air. These updates can include OS upgrades, security patches, bug fixes, new features and applications. Since the updates are controlled by the carriers, DoD will not have an opportunity to review and update policies prior to update availability to end users. Disabling FOTA will mitigate the risk of allowing users access to applications that could compromise DoD sensitive data. After reviewing the update and adjusting any necessary policies (i.e., disabling applications determined to pose risk), the administrator can re-enable FOTA.
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76335r1_fix">Configure the MDM system to enforce a policy which configures the "Update/AllowAutoUpdate" and "Update/RequireDeferUpgrade" policies.
+
+Update/AllowAutoUpdate prevents automatic upgrades from being deployed and should be set to a value of 5 – Turn off automatic updates and Update/RequireDeferUpgrade which enables upgrades to be deferred until a later time under administrator control. This needs to be set to a value of 1 – Upgrades are paused.
+
+Deploy the MDM policy to managed devices.
+
+Note: These policies require that phones are upgraded to Windows 10 Mobile Enterprise.</fixtext><fix id="F-76335r1_fix" /><check system="C-70575r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile documentation and inspect the configuration on Windows 10 Mobile to disable automatic updates of system software.
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the OS Upgrade compliance policies.
+2. Find the settings for restricting OS updates.
+3. Verify the "Update/AllowAutoUpdate" policy is set to a value of "5" and "Update/RequireDeferUpgrade" policy is set to a value of "1".
+
+If the MDM does not have a compliance policy that set the value of "Update/AllowAutoUpdate" to "5" and the value of "Update/RequireDeferUpgrade" to "1", this is a finding.</check-content></check></Rule></Group><Group id="V-70101"><title>PP-MDF-201025</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84723r1_rule" severity="low" weight="10.0"><version>MSWM-10-202409</version><title>Windows 10 Mobile must enable VPN protection.</title><description>&lt;VulnDiscussion&gt;A key characteristic of a mobile device is that they typically will communicate wirelessly and are often expected to reside in locations outside the physical security perimeter of a DoD facility. In these circumstances, the threat of eavesdropping is substantial. Virtual private networks (VPNs) provide confidentiality and integrity protection for data transmitted over untrusted media (e.g., air) and networks (e.g., the Internet). They also provide authentication services to ensure that only authorized users are able to use them. Consequently, enabling VPN protection counters threats to communications to and from mobile devices.
+
+SFR ID: FMT_SMF_EXT.1.1 #03&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76337r1_fix">Configure the MDM system to create a site-specific VPN profile that is configured to route traffic through DoD authorized networks.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-76337r1_fix" /><check system="C-70577r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the device has enabled VPN protection.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+Ask the MDM administrator to verify that a site-specific VPN policy has been configured on the MDM and deployed to managed Windows 10 Mobile devices.
+
+On the Windows 10 Mobile device:
+
+1. Navigate to "Settings"/"Network &amp; Wireless"/"VPN".
+2. Verify that on the VPN settings page that there is a site-specific VPN profile listed under the "+ Add a VPN connection" button.
+
+If the MDM is not configured to enforce a VPN profile for connectivity or if the DoD VPN profile is not shown on the "VPN" screen of the Settings app on the Windows 10 Mobile device, this is a finding.</check-content></check></Rule></Group><Group id="V-70103"><title>PP-MDF-201026</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84725r1_rule" severity="medium" weight="10.0"><version>MSWM-10-202412</version><title>Windows 10 Mobile whitelist must not include applications with the following characteristics:
+
+- back up MD data to non-DoD cloud servers (including user and application access to cloud backup services, i.e. OneDrive, Box, Dropbox, Google Drive, Amazon Cloud Drive, Azure);
+- transmit MD diagnostic data to non-DoD servers;
+- voice assistant application if available when MD is locked;
+- voice dialing application if available when MD is locked;
+- allows synchronization of data or applications between devices associated with user;
+- payment processing; and
+- allows unencrypted (or encrypted but not FIPS 140-2 validated) data sharing with other MDs or printers.</title><description>&lt;VulnDiscussion&gt;Requiring all authorized applications to be in an application whitelist prevents the execution of any applications (e.g., unauthorized, malicious) that are not part of the whitelist. Failure to configure an application whitelist properly could allow unauthorized and malicious applications to be downloaded, installed, and executed on the mobile device, causing a compromise of DoD data accessible by these applications.
+
+SFR ID: FMT_SMF_EXT.1.1 #10b&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><ident system="http://iase.disa.mil/cci">CCI-001806</ident><fixtext fixref="F-76339r1_fix">Configure the MDM system to setup an application whitelist of authorized apps that do not have prohibited characteristics.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76339r1_fix" /><check system="C-70579r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device has an application whitelist configured. If feasible, use a spare device to determine if an application whitelist is configured. Verify the application white list does not include applications with the following characteristics:
+
+-back up MD data to non-DoD cloud servers (including user and application access to cloud backup services, i.e. OneDrive, Box, Dropbox, Google Drive, Amazon Cloud Drive, Azure);
+-transmit MD diagnostic data to non-DoD servers;
+-voice assistant application if available when MD is locked;
+-voice dialing application if available when MD is locked;
+-allows synchronization of data or applications between devices associated with user;
+-payment processing; and
+-allows unencrypted (or encrypted but not FIPS 140-2 validated) data sharing with other MDs or printers.
+
+This validation procedure is only performed on the MDM administration console.
+
+On the MDM administration console:
+
+1. Display policy area for managing allowed applications.
+2. Verify a policy exists that creates an application whitelist of allowed applications.
+3. Verify no applications are on the whitelist with the prohibited characteristics.
+4. Verify the application whitelist policy has been deployed to the target devices under management on the MDM console.
+
+Note: This list can be empty if no applications have been approved. See the STIG supplemental document for additional information.
+
+If the application whitelist policy doesn't exist or doesn't exclude applications with prohibited characteristics or hasn't been deployed to targeted devices under enrollment, this is a finding.</check-content></check></Rule></Group><Group id="V-70105"><title>PP-MDF-201029</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84727r1_rule" severity="medium" weight="10.0"><version>MSWM-10-202418</version><title>Windows 10 Mobile must be configured to disable VPN split-tunneling (if the MD provides a configurable control for FDP_IFC_EXT.1.1).</title><description>&lt;VulnDiscussion&gt;Spilt-tunneling allows multiple simultaneous remote connections to the mobile device. Without VPN split-tunneling disabled, malicious applications can covertly off-load device data to a third-party server or set up a trusted tunnel between a non-DoD third-party server and a DoD network, providing a vector to attack the network.
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><ident system="http://iase.disa.mil/cci">CCI-002824</ident><fixtext fixref="F-76341r1_fix">Configure the site-specific VPN profile on the MDM to disable split-tunneling.</fixtext><fix id="F-76341r1_fix" /><check system="C-70581r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile documentation and inspect the configuration on Windows 10 Mobile to disable VPN split-tunneling (if Windows 10 Mobile) provides a configurable control).
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+Ask the MDM administrator to verify that the site-specific VPN policy on the MDM console has been configured to disable split-tunneling.
+
+If the site-specific VPN profile on the MDM is not configured to disable split-tunneling functionality, this is a finding.</check-content></check></Rule></Group><Group id="V-70107"><title>PP-MDF-201018</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84729r2_rule" severity="medium" weight="10.0"><version>MSWM-10-202507</version><title>Windows 10 Mobile must not allow backup to remote systems and must have a mechanism to restrict abilities of applications and OS components that leverage cloud storage by blocking backup to OneDrive.</title><description>&lt;VulnDiscussion&gt;Backups to remote systems (including cloud backup) can leave data vulnerable to breach on the external systems, which often offer less protection than the MOS. Where the remote backup involves a cloud-based solution, the backup capability is often used to synchronize data across multiple devices. In this case, DoD devices may synchronize DoD-sensitive information to a user's personal device or other unauthorized computers that are vulnerable to breach. Disallowing remote backup mitigates this risk.
+
+For Windows 10 Mobile, this requirement is needed to prevent access to Cloud Services such as OneDrive by OS applications and components such as:
+
+• OneNote
+• Backup
+
+SFR ID: FMT_SMF_EXT.1.1 #40&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;MSWM-10-202507&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;Currently in Windows 10 Mobile the resolution for this requirement to restrict OneDrive/Cloud access from a backend network control perspective.
+
+In a new Windows 10 release coming in 2016 we will add restricting backup capability by extending the capability of the Experience/AllowSyncMySettings MDM policy.&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><ident system="http://iase.disa.mil/cci">CCI-002338</ident><fixtext fixref="F-76343r2_fix">Configure the MDM system to require the "allow settings synchronization" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76343r2_fix" /><check system="C-70583r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>This guidance only needs to be done once as it is the same procedure used for MSWM-10-911107.
+
+Review Windows 10 Mobile configuration settings to determine if the mobile device has its settings for remote backup disabled. If feasible, use a spare device to determine if enabling synching of settings is permitted.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow settings synchronization".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. From the Start page, swipe to the left to show the App list.
+2. Find and tap on "Settings".
+3. In the Settings list, tap on "Update &amp; security".
+4. Tap on “Backup” on the "Update &amp; security" page.
+5. Verify the setting "Back up content from participating apps” is set to “Off” and disabled.
+6. Verify the setting "Back up settings like my Start screen layout, accounts, and passwords” is set to “Off” and disabled.
+7. Tap on the “More options” text at the bottom of the page.
+8. Verify that under the title "Overview", a message is displayed that says "Backup is disabled" and the "Back up now" button is disabled and that under the title "Schedule backups", the toggle setting "Enable automatic backups” is set to “Off” and disabled.
+
+If the MDM does not have the "allow settings synchronization" policy disabled or, if the Windows 10 Mobile device is not configured with "Back up content from participating apps” set to “Off” and disabled, "Back up settings like my Start screen layout, accounts, and passwords” set to “Off” and disabled , "Back up now” button is set to “Off” and disabled , and “Enabled automatic backups” set to "Off" and disabled, this is a finding.
+</check-content></check></Rule></Group><Group id="V-70109"><title>PP-MDF-201017</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84731r1_rule" severity="medium" weight="10.0"><version>MSWM-10-202608</version><title>Windows 10 Mobile must not allow backup to locally connected systems.</title><description>&lt;VulnDiscussion&gt;Data on mobile devices is protected by numerous mechanisms, including user authentication, access control, and cryptography. When the data is backed up to an external system (either locally connected or cloud-based), many if not all of these mechanisms are no longer present. This leaves the backed up data vulnerable to attack. Disabling backup to external systems mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #40&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000097</ident><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76345r1_fix">This procedure is the same as requirement MSWM-10-290704. The procedure only has to be performed once.
+
+Configure the MDM system to require the "Allow USB Connection" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-76345r1_fix" /><check system="C-70585r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the capability to back up to a locally connected system has been disabled. If feasible, use a spare device and determine if the ability to back up is present, perhaps by attempting a back up to a locally connected machine.
+
+This procedure is the same as requirement MSWM-10-290704. The procedure only has to be performed once.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device and a locally connected desktop.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to display the USB connectivity setting.
+2. Verify the USB connectivity setting is disabled.
+
+On the Windows 10 Mobile device:
+
+1. Connect device to a desktop (that has USB ports enabled).
+2. Launch Windows File Explorer on the desktop or wait for a connection pop-up that asks if you want to display the device.
+3. In File Explorer click on "This PC" in the left pane.
+4. Verify by looking in the right pane of Windows Explorer that the name of the connected device, which may be "Windows Phone" is not displayed.
+
+If the MDM does not have a compliance policy that disables USB connectivity or if using Windows File Explorer a Windows 10 Mobile device name is shown under "This PC", this is a finding.</check-content></check></Rule></Group><Group id="V-70111"><title>PP-MDF-201028</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84733r1_rule" severity="medium" weight="10.0"><version>MSWM-10-202801</version><title>Windows 10 Mobile must be configured to disable authentication mechanisms providing user access to protected data other than a Password Authentication Factor (e.g., using a fingerprint), unless mechanism is DoD-approved.</title><description>&lt;VulnDiscussion&gt;The fingerprint reader or iris scan (supported by some Windows 10 Mobile devices) can be used to authenticate the user in order to unlock the mobile device. At this time, no biometric reader has been approved for DoD use on mobile devices. This technology would allow unauthorized users to have access to DoD sensitive data if compromised. By not permitting the use of non-password authentication mechanisms, users are forced to use passcodes that meet DoD passcode requirements.
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76347r1_fix">Configure the MDM system to require the "Biometrics/UseBiometrics" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-76347r1_fix" /><check system="C-70587r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile documentation and inspect the configuration on Windows 10 Mobile to disable authentication mechanisms providing user access to protected data other than a Password Authentication Factor (e.g., using a fingerprint), unless mechanism is DoD-approved.
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for restricting Biometrics authentication "Biometrics/UseBiometrics".
+3. Verify that setting restriction is turned on (feature disabled).
+
+If the MDM does not have a compliance policy that disables "Biometrics/UseBiometrics", this is a finding.</check-content></check></Rule></Group><Group id="V-70113"><title>PP-MDF-202028</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84735r1_rule" severity="medium" weight="10.0"><version>MSWM-10-202901</version><title>Windows 10 Mobile must enable all IP traffic (other than IP traffic required to establish the VPN connection) to flow through the IPsec VPN client or provide an interface to VPN applications for this purpose.</title><description>&lt;VulnDiscussion&gt;It is common for mobile devices to connect directly to wireless networks that DoD does not manage, including direct Internet access through the cellular service provider. This condition leaves the device vulnerable to attacks from those networks. It also prevents DoD from monitoring or filtering network traffic to or from the mobile device. This makes it more likely that users or application processes will have the ability to perform unauthorized activities or do so without detection. For example, the enterprise may have a filtering mechanism to prevent users from accessing certain websites. Directing all device IP traffic (other than traffic needed to establish the VPN connection) through a VPN client enables the enterprise to route and handle traffic appropriately based on DoD policy and IA objectives. This requirement is also related to verifying VPN split-tunneling is not enabled.
+
+SFR ID: FDP_IFC_EXT.1.1&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76349r1_fix">Configure the site-specific VPN profile on the MDM to require the VPN profile "LockDown".
+
+Note: A VPN profile using the LockDown configuration will become the authoritative VPN control as it mandates all traffic route through it. This overrides any other VPN profiles that are configured and only one Lockdown VPN profile should be configured.</fixtext><fix id="F-76349r1_fix" /><check system="C-70589r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if all IP traffic is enabled to flow through the IPsec VPN client or provide an interface to VPN applications for this purpose.
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+Ask the MDM administrator to verify that the site-specific VPN policy on the MDM console has been configured to require the "LockDown" setting which provides an always on forced tunnel configuration.
+
+If the site-specific VPN profile on the MDM is not configured to require the VPN profile "LockDown" setting, this is a finding.</check-content></check></Rule></Group><Group id="V-70115"><title>PP-MDF-203001</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84737r1_rule" severity="low" weight="10.0"><version>MSWM-10-203003</version><title>Windows 10 Mobile must generate audit records.</title><description>&lt;VulnDiscussion&gt;Audit logs enable monitoring of security-relevant events and subsequent forensics when breaches occur. They help identify attacks, so that breaches can either be prevented or limited in their scope. They facilitate analysis to improve performance and security. Auditable events include:
+
+1. Start-up and shutdown of the audit functions;
+2. All administrative actions;
+3. Start-up and shutdown of the OS and kernel;
+4. Insertion or removal of removable media;
+5. Establishment of a synchronizing connection;
+6. Specifically defined auditable events in Table 10 of MDF PP v.2.0.
+
+SFR ID: FAU_GEN.1.1&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000169</ident><fixtext fixref="F-76351r1_fix">Configure the MDM system to require the "Security Auditing" policy to be enabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-76351r1_fix" /><check system="C-70591r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if auditing is configured to generate audit records.
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the Security Auditing policy.
+2. Find the setting for enabling auditing using the "Security Auditing".
+3. Verify that setting configuration is turned on.
+
+If the MDM does not have a compliance policy that enables "Security Auditing", this is a finding.</check-content></check></Rule></Group><Group id="V-70117"><title>PP-MDF-201016</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84739r1_rule" severity="medium" weight="10.0"><version>MSWM-10-290704</version><title>Windows 10 Mobile must not allow a USB mass storage mode.</title><description>&lt;VulnDiscussion&gt;USB mass storage mode enables the transfer of data and software from one device to another. This software can include malware. When USB mass storage is enabled on a mobile device, it becomes a potential vector for malware and unauthorized data exfiltration. Prohibiting USB mass storage mode mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #39&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000381</ident><fixtext fixref="F-76353r1_fix">This procedure is the same as requirement MSWM-10-202608. The procedure only has to be performed once.
+
+Configure the MDM system to require the "Allow USB Connection" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-76353r1_fix" /><check system="C-70593r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device has a USB mass storage mode and whether it has been disabled. If feasible, use a spare device to determine if this data transfer capability is disabled.
+
+This procedure is the same as requirement MSWM-10-202608. The procedure only has to be performed once.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device and a locally connected desktop.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to display the USB connectivity setting.
+2. Verify the USB connectivity setting is disabled.
+
+On the Windows 10 Mobile device:
+
+1. Connect device to a desktop (that has USB ports enabled).
+2. Launch Windows File Explorer on the desktop or wait for a connection pop-up that asks if you want to display the device.
+3. In File Explorer click on "This PC" in the left pane.
+4. Verify by looking in the right pane of Windows Explorer that the name of the connected device, which may be "Windows Phone" is not displayed.
+
+If the MDM does not have a compliance policy that disables USB connectivity or if using Windows File Explorer a Windows 10 Mobile device name is shown under "This PC", this is a finding.</check-content></check></Rule></Group><Group id="V-70119"><title>PP-MDF-201027</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84741r1_rule" severity="medium" weight="10.0"><version>MSWM-10-500504</version><title>Windows 10 Mobile must be configured to disable all Bluetooth profiles except for HSP (Headset Profile), HFP (HandsFree Profile), and SPP (Serial Port Profile).</title><description>&lt;VulnDiscussion&gt;Some Bluetooth profiles provide the capability for remote transfer of sensitive DoD data without encryption or otherwise do not meet DoD IT security policies and therefore should be disabled.
+
+SFR ID: FMT_SMF_EXT.1.1 #20f&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76355r1_fix">Configure the MDM system to enforce a policy which configures the "Bluetooth Services Allowed" policy to restrict Bluetooth profiles to just HSP (Headset Profile), HFP (HandsFree Profile), and SPP (Serial Port Profile).
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76355r1_fix" /><check system="C-70595r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to disable all Bluetooth profiles except for HSP (Headset Profile), HFP (HandsFree Profile), and SPP (Serial Port Profile).
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the Bluetooth compliance policy.
+2. Find the setting for restricting "Bluetooth Services Allowed" profiles.
+3. Verify that HSP, HFP and SPP are the only Bluetooth profiles allowed in the Bluetooth policy. If the MDM console does not expose any UI controls for Bluetooth profiles a custom configuration value can used as shown here:
+
+"{0000111E-0000-1000-8000-00805F9B34FB};{00001108-0000-1000-8000-00805F9B34FB};{00001101-0000-1000-8000-00805F9B34FB}"
+
+If the MDM does not have a compliance policy that restricts Bluetooth profiles to just those allowed, this is a finding.</check-content></check></Rule></Group><Group id="V-70121"><title>PP-MDF-201021</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84743r1_rule" severity="low" weight="10.0"><version>MSWM-10-501706</version><title>Windows 10 Mobile must disable automatic transfer of diagnostic data to an external device other than an MDM service with which the device has enrolled.</title><description>&lt;VulnDiscussion&gt;Many software systems automatically send diagnostic data to the manufacturer or a third party. This data enables the developers to understand real world field behavior and improve the product based on that information. Unfortunately, it can also reveal information about what DoD users are doing with the systems and what causes them to fail. An adversary embedded within the software development team or elsewhere could use the information acquired to breach mobile operating system security. Disabling automatic transfer of such information mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1#45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000381</ident><fixtext fixref="F-76357r1_fix">Configure the MDM system to require the "Allow diagnostic and usage data to be sent" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76357r1_fix" /><check system="C-70597r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the device automatically sends diagnostic data to an external server other than an MDM service with which the device has enrolled.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device. It assumes there is an existing device timeout policy in place that will lock the device after a certain period.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "Allow diagnostic and usage data to be sent".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. Launch "Settings".
+2. Select "Privacy".
+3. Select "Feedback &amp; diagnostics".
+4. Verify that the drop-down list item under Diagnostics and usage data titled "Send your device data to Microsoft" is set to "Basic" and is disabled/read-only.
+
+If the MDM console does not have the "Allow diagnostic and usage data to be sent" policy disabled or on the phone the "Send your device data to Microsoft" is not disabled/read-only and set to "Basic" in the specified location on the "Feedback &amp; diagnostics" screen of the Settings app, this is a finding.</check-content></check></Rule></Group><Group id="V-70123"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84745r1_rule" severity="medium" weight="10.0"><version>MSWM-10-910201</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the ability for a user to add new email accounts.</title><description>&lt;VulnDiscussion&gt;Personal or unauthorized email accounts can lead to the transmission of sensitive DoD data to unauthorized recipients Disabling this feature mitigates the risk. The use of personal or non-DoD email accounts on a DoD mobile device should be approved by the Authorizing Official (AO).
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76359r1_fix">Configure the MDM system to enforce a policy that restricts the "allow adding non-Microsoft email accounts" policy to prevent users from being able to add new email accounts.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76359r1_fix" /><check system="C-70599r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is enforcing the policy to prevent additional email accounts from being added by a user. If feasible, use a spare device to attempt to add a new email account.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+Check whether the appropriate setting is configured on the MDM.
+
+Administration Console:
+
+Ask the MDM administrator to verify the "allow adding non-Microsoft e-mail accounts" security policy was set to be disallowed for Windows 10 Mobile devices.
+
+On the Windows 10 Mobile device:
+
+1. Go to "settings".
+2. Navigate to "Accounts", then under Email, calendar, and contacts tap on "Email &amp; app accounts".
+3. Tap the "+ Add an account" button.
+4. Verify that a screen comes up and says "Can't create account - Your company won't allow you to create that type of account".
+
+If the MDM does not disable the policy for setting for "allow adding non-Microsoft email accounts" or if on the phone a message starting with the sentence "Can't create account - Your company won't allow you to create that type of account" is not shown when tapping on the "+ Add an account" button in the "Email &amp; app accounts" app, this is a finding.</check-content></check></Rule></Group><Group id="V-70125"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84747r1_rule" severity="medium" weight="10.0"><version>MSWM-10-910502</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the device Bluetooth Discoverable Mode.</title><description>&lt;VulnDiscussion&gt;Bluetooth usage could provide an attack vector for a hacker to connect to a mobile OS device without the knowledge of the user. Disabling Discoverable mode reduces the risk of a non-authorized Bluetooth device connecting the DoD mobile OS device.
+
+SFR ID: FMT_SMF_EXT.1.1 #20a&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76361r1_fix">Configure the MDM system with a security policy that restricts the "allow Bluetooth device to be discoverable" capability to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76361r1_fix" /><check system="C-70601r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review MDM configuration settings to determine if the required Bluetooth discoverability mode is being disabled.
+
+This validation procedure is performed only on the MDM administration console.
+
+On the MDM administration console:
+
+Ask the MDM administrator to verify the "allow Bluetooth device to be discoverable" security policy was set to be disallowed for Windows 10 Mobile devices.
+
+If the MDM is not configured to restrict the "allow Bluetooth device to be discoverable", this is a finding.</check-content></check></Rule></Group><Group id="V-70127"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84749r1_rule" severity="low" weight="10.0"><version>MSWM-10-910505</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the ability of the Edge browser to cache passwords in the Password Manager.</title><description>&lt;VulnDiscussion&gt;Access to websites that require authentication can be streamlined for faster logon if credentials like passwords can be saved. But eliminating password prompts leaves protected websites vulnerable to access without a logon challenge.
+
+Disallowing password caching mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76363r1_fix">Configure the MDM system with a security policy that requires the "allow password manager" capability to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76363r1_fix" /><check system="C-70603r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the browser is blocked from being able to cache web site passwords. If feasible, use a spare device to determine if bringing up the "Offer to save passwords" setting shows that it's disabled.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow password manager".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. Go to "All apps" page. From the Start page swipe left to reveal.
+2. Navigate to browser app "Microsoft Edge", then tap to launch.
+3. At the bottom right of the page, look for the menu button which is "..." and tap on it.
+4. Look for "Settings" in menu list and Tap to launch.
+5. Scroll through settings page and look for section called "Advanced settings" and Tap on the button below called "View advanced settings".
+6. Verify that the toggle setting under "Privacy and services" called "Offer to save passwords" is both disabled/read-only and set to "Off".
+
+If the MDM does not disable the policy for setting for "allow password manager" or if on the phone the "Offer to save passwords" is not disabled/read-only and set to "Off" in the specified location on the "Advanced settings" screen of the Microsoft Edge app, this is a finding.</check-content></check></Rule></Group><Group id="V-70129"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84751r1_rule" severity="low" weight="10.0"><version>MSWM-10-910703</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the capability to use NFC.</title><description>&lt;VulnDiscussion&gt;NFC is a wireless technology that transmits small amounts of information from the device to the NFC reader. The data-in-transit (DIT) is not encrypted using FIPS 140-2 validated encryption. Any data transmitted can be potentially compromised. Disabling this feature mitigates this risk.
+
+SFR ID: FMT_MOF.1.2 #4&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76365r1_fix">Configure the MDM system to enforce a policy that restricts the "allow NFC" policy.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76365r1_fix" /><check system="C-70605r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is enforcing the policy to prevent the use of NFC for device to device communications. If feasible, use a spare device to test if NFC is disabled.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+Check whether the appropriate setting is configured on the MDM.
+
+Administration Console:
+
+Ask the MDM administrator to verify the "allow NFC" security policy was set to be disallowed for Windows 10 Mobile devices.
+
+On the Windows 10 Mobile device:
+
+1. Go to "settings".
+2. Navigate to "Devices", then tap on "NFC".
+3. Verify that the "Tap to share" toggle is set to "Off" and cannot be changed.
+
+If the MDM does not disable the policy for setting for "allow NFC" or if on the phone the "Tap to share" toggle is not set to "off" and can be changed on the "NFC" screen of the Settings app, this is a finding.</check-content></check></Rule></Group><Group id="V-70131"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84753r1_rule" severity="medium" weight="10.0"><version>MSWM-10-911005</version><title>Windows 10 Mobile must be configured to implement the management setting: Require a password be used before unlocking a Windows 10 Mobile device.</title><description>&lt;VulnDiscussion&gt;Passwords provide a form of access control that prevents unauthorized individuals from accessing computing resources and sensitive data. Passwords may also be a source of entropy for generation of key encryption or data encryption keys. If a password is not required to access data, then this data is accessible to any adversary who obtains physical possession of the device. Requiring that a password be successfully entered before the mobile device data is unencrypted mitigates this risk.
+
+SFR ID: FMT_SMF_EXT.1.1 #1&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76367r1_fix">Configure the MDM system to enforce a password is required before unlocking a device.
+
+Deploy the policy on managed devices.</fixtext><fix id="F-76367r1_fix" /><check system="C-70607r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device requires that a password be entered before the device is unlocked. If feasible, use a spare device to test if a password is required to unlock it.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+Check whether the appropriate setting is configured on the MDM.
+
+Administration Console:
+
+1. Ask the MDM administrator to display the "Password" setting in the MDM console.
+2. Verify the settings for requiring a password is enforced.
+
+On the Windows 10 Mobile device:
+
+1. Power down the device.
+2. Power back up the device.
+3. Verify that once the device powers up that the lockscreen is displayed and when you swipe up, the "Enter PIN" screen is shown and a PIN is required to access the device.
+
+If the MDM does not set the policy for requiring a password or if on the phone a password/PIN is not required to access the device, this is a finding.</check-content></check></Rule></Group><Group id="V-70133"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84755r2_rule" severity="low" weight="10.0"><version>MSWM-10-911101</version><title>Windows 10 Mobile must be configured to implement the management setting:
+
+Disable the ability to copy and paste data between trusted and non-trusted applications and between trusted and non-trusted networks.</title><description>&lt;VulnDiscussion&gt;Copy/Paste data protection provides the capability to restrict transfer of data between managed (work/enterprise) and non-managed (personal) apps. Sensitive DoD data could be compromised if this feature is not disabled as data leakage can occur.
+
+Note: The Windows Information Protection configuration control policy implements the following individual controls:
+Network address space including:
+* IP address ranges
+* Domain name spaces to be protected
+* Control of copy and paste between apps and between DoD and non-DoD networks
+
+These may be configured separately on the MDM server as part of a single Data Protection policy.
+
+SFR ID: FMT_SMF_EXT.1.1 #42&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76369r2_fix">Configure the MDM system with a security policy that requires the "enterprise data protection” capability to be enforced for Windows 10 Mobile devices.
+
+Within the policy:
+1. Select which applications are considered managed. These applications are allowed to access DoD data from approved network sources.
+2. Configure IP address ranges and domain names for DoD network space.
+3. Configure protection policy to block Copy and Paste operations.
+
+Refer to MICROSOFT WINDOWS 10 MOBILE SUPPLEMENTAL PROCEDURES, Section 2.2, for implementation details.
+
+Deploy the MDM policy to managed devices.
+</fixtext><fix id="F-76369r2_fix" /><check system="C-70609r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is enforcing the policy to prevent the use of copy and paste between applications and from trusted networks. If feasible, use a spare device to test if copy and paste is disabled.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM Administration Console:
+Check whether these settings are configured:
+Ask the MDM administrator to verify the "enterprise data protection" security policy was set to be enforced for Windows 10 Mobile devices.
+1. Verify that a list of Windows Store applications that should be managed be configured.
+NOTE:  This validation assumes that Microsoft Office Mobile applications such as Word are configured under the MDM policy to be a managed application as Word will be used in the mobile device validation of copy/paste protection.
+2. Verify the policy defines "Enterprise IP Ranges" that list IPv4 and/or IPv6 address ranges for protected DoD network space.
+3. Verify that "Enterprise Protected Domain Names" for the primary DoD networks (i.e., dod.mil, disa.mil) and additional domain space such as email domains (i.e., mail.mil) are defined.
+4. Verify that the "Enterprise Network Domain Names" setting includes the (comma-separated list of domains that computers use within your enterprise (i.e. contoso.sharepoint.com, fabrikam.com) is defined.
+5. Verify the "Protection Mode" for your enterprise data (paste/drop/share) policy is set to "Block" pasting/copying data to non-trusted DoD network locations.
+6. Verify the "User Decryption" policy is set to "off/false" so users cannot remove decryption from files previously encrypted.
+7. Verify the "Revoke encryption keys on unenroll" setting is enforced (if available) to prevent encryption from being removed from files after MDM unenrollment.
+8. Verify the "Protection Under Lock" policy is enforced.
+9. Verify the setting to show Windows Information Protection icons on encrypted files in File Manager is set to "on/true". This is not mandatory but is a desirable setting.
+
+On the Windows 10 Mobile device:
+1. Open an existing encrypted Word document on a Windows 10 Mobile phone, open one from a DoD network location, or create a new Word document. Then, using the menu, tap "Save" and then tap "Save a copy of this file" to save that document and encrypt it.
+2. Either type new text or tap and select existing text in the document and then when selected, tap the Clipboard icon in the pop-up toolbar to copy selected text to the clipboard.
+3. Go to the "All apps" page. From the Start page, swipe left to reveal.
+4. Scroll down to or search for the "Get Started" app, then tap to launch.
+5. Tap on the Search icon at the upper right. Tap into the text box. The keyboard will pop up and there will be a small toolbar above it with an icon for the Clipboard at the far left.
+6. Verify that when tapping on the Paste icon in the toolbar that the message "This is work content only. Your organization &lt;domain name in policy&gt;, doesn't allow you to change ownership of this content from work to personal" appears and text is blocked from being copied.
+
+If the MDM does not enforce the appropriate polices listed for controlling "enterprise data protection" or if on the phone, text can be copied from a managed application containing an encrypted document and pasted into an untrusted/managed app, this is a finding.
+</check-content></check></Rule></Group><Group id="V-70135"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84757r1_rule" severity="medium" weight="10.0"><version>MSWM-10-911102</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the capability of the Cortana personal assistant A.I. to be functional when the device is locked.</title><description>&lt;VulnDiscussion&gt;When a mobile device is locked, there should be no access to its protected/sensitive data as it could enable unauthorized people with physical access to the device to bring up and view sensitive information. The Cortana personal assistant can perform a number of voice related queries and actions which can aid productivity but also allows some of its actions to be done while the device is locked. For example, even if the device is locked, if you can bring up the Cortana search page you can ask things like "show me my calendar" and that will bring up potentially sensitive information under lockscreen. Disabling this feature mitigates the exposure of potentially sensitive information that should remain secured when a device is locked.
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76371r1_fix">Configure the MDM system to require the "allow access to the Cortana personal assistant" policy be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy on managed devices.</fixtext><fix id="F-76371r1_fix" /><check system="C-70611r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device can still use Cortana voice control while it is locked. If feasible, use a spare device to determine if calling up Cortana to listen and respond to commands is possible while the device is locked.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device. It assumes you have an existing device timeout policy in place that will lock the device after a certain period.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow access to the Cortana personal assistant".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. Unlock the device.
+2. Tap the "Search" button at the lower right of the device.
+3. Verify that when the search screen comes up that a message with "Sorry, but your company policy prevents me from working" appears at the top.
+
+If the MDM does not have a policy setting enforced for "allow access to the Cortana personal assistant" or if when you tap the "Search" button on an unlocked device a message does not come up with the wording "Sorry, but your company policy prevents me from working", this is a finding.</check-content></check></Rule></Group><Group id="V-70137"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84759r1_rule" severity="medium" weight="10.0"><version>MSWM-10-911104</version><title>Windows 10 Mobile must be configured to implement the management setting: Disable the capability for a user to manually unenroll from MDM management.</title><description>&lt;VulnDiscussion&gt;The use of an MDM allows an organization to assign values to security-related parameters across all the devices it manages. This provides assurance that the required mobile OS security controls are being enforced and that the device user or an adversary has not modified or disabled the controls. If a user has the ability on their device to manually unenroll from MDM management, this removes all IA controls and exposes the device and the user to a number of threat vectors and takes them out of compliance.
+Disabling this feature mitigates the risk from loss of control and ensures that the devices maintain the required locked down state.
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76373r1_fix">Configure the MDM system with a security policy that requires the "allow manual unenrollment from management" capability be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76373r1_fix" /><check system="C-70613r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the mobile device is restricted from unenrolling itself from MDM management. If feasible, use a spare device to determine if bringing up the enrollment app it is possible to unenroll that device.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow manual unenrollment from management".
+3. Verify that setting restriction is turned off/disallowed.
+
+On the Windows 10 Mobile device:
+
+1. Go to "settings".
+2. Navigate to "Accounts", then tap on "Work access".
+3. Scroll down the screen and look for a section titled "Enroll in to device management" to see if there is a company/agency name with the small text of "connected" under it.
+4. Tap on that enrollment name, which should take you to a new page with details about the enrollment and have a "refresh" and "wastebasket (delete)" icon at the bottom.
+5. Tap on the "wastebasket (delete)" icon to unenroll from MDM management. A message box should come up with a "Can't delete account - Your company policy prevents you from deleting your workplace account" alert.
+
+If the MDM does not disable the policy for setting for "allow manual unenrollment from management" or if on the phone a message starting with the sentence "Can't delete account - Your company policy prevents you from deleting your workplace account" is not shown when tapping on the wastebasket icon in the Work Access app, this is a finding.</check-content></check></Rule></Group><Group id="V-70139"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84761r2_rule" severity="medium" weight="10.0"><version>MSWM-10-911107</version><title>Windows 10 Mobile must be configured to implement the management setting:
+
+Disable the capability for synching settings such as the theme, application settings, Internet Explorer sites visited, and cached passwords to Microsoft OneDrive cloud storage.</title><description>&lt;VulnDiscussion&gt;Backups to remote systems (including cloud backup) can leave data vulnerable to breach on the external systems, which often offer less protection than the MOS. Where the remote backup involves a cloud-based solution, the backup capability is often used to synchronize data across multiple devices. In this case, DoD devices may synchronize DoD-sensitive information to a user's personal device or other unauthorized computers that are vulnerable to breach. Disallowing remote backup mitigates this risk.
+
+For Windows 10 Mobile, this requirement is needed to prevent access to Cloud Services such as OneDrive by OS applications and components such as:
+
+• Backup
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76375r3_fix">Configure the MDM system to require the "allow settings synchronization" policy to be disabled for Windows 10 Mobile devices.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76375r3_fix" /><check system="C-70615r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>This guidance only needs to be done once as it is the same procedure used for MSWM-10-202507.
+
+Review Windows 10 Mobile configuration settings to determine if the mobile device has the ability to sync its settings to remote backup disabled. If feasible, use a spare device to determine if enabling synching of settings is permitted.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the setting for "allow settings synchronization".
+3. Verify that setting restriction is turned off/disallowed.
+On the Windows 10 Mobile device:
+
+1. Launch "Settings".
+2. Navigate to "Accounts" and then tap on "Sync your settings".
+3. Verify that all of the "Sync settings", "Theme", and "Passwords" toggle settings are set to "Off" and they cannot be changed.
+
+If the MDM does not have the "allow settings synchronization" policy disabled or if on the device any of the "Sync settings", "Theme", and "Passwords" toggle settings are not set to "Off" or they can be changed, this is a finding.</check-content></check></Rule></Group><Group id="V-70143"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-84765r1_rule" severity="medium" weight="10.0"><version>MSWM-10-912419</version><title>Windows 10 Mobile devices must be upgraded to the Windows 10 Mobile Enterprise edition.  Enterprise edition provides the ability to leverage several enhanced controls that have a dependency on the enterprise edition.</title><description>&lt;VulnDiscussion&gt;During ongoing operating system development, Windows 10 has a cadence of MOS updates that add new features including improved enterprise and security capabilities as well as fixes to issues discovered after its initial release. Several key security related controls are not possible when the Enterprise version of Windows 10 mobile is not used, including:
+
+-disable automatic updates of Windows 10 Mobile
+-disable sending device diagnostic data to Microsoft
+
+SFR ID: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-76379r1_fix">Configure the MDM system with a deployment package policy that contains a licensing upgrade leveraging the "WindowsLicensing/UpgradeEditionWithLicense" Windows licensing policy to perform an in-place upgrade of Windows 10 Mobile devices from Windows 10 Mobile to Windows 10 Mobile Enterprise.
+
+Deploy the MDM policy to managed devices.</fixtext><fix id="F-76379r1_fix" /><check system="C-70619r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>Review Windows 10 Mobile configuration settings to determine if the MOS has been upgraded to Windows 10 Mobile Enterprise. If feasible, use a spare device to determine if bringing up the About/Device Information page shows it is running the correct Windows 10 Mobile edition.
+
+This validation procedure is performed on both the MDM administration console and the Windows 10 Mobile device.
+
+On the MDM administration console:
+
+1. Ask the MDM administrator to verify the phone compliance policy.
+2. Find the policy package used for distributing a license upgrade to Windows 10 Mobile Enterprise.
+3. Verify that package exists and has been deployed to all Windows 10 Mobile devices.
+
+On the Windows 10 Mobile device:
+
+1. Navigate to Settings/System/About (tap on About to open).
+2. On About page look for section called "Device information".
+3. Verify that the line entitled "Software:" contains the text "Windows 10 Mobile Enterprise".
+
+If the MDM does not have a configuration package to distribute a license upgrade to Windows 10 Mobile Enterprise or if on the phone the "Software:" text is not set to "Windows 10 Mobile Enterprise" in the specified location on the "About" page of the Settings/System area, this is a finding.</check-content></check></Rule></Group><Group id="V-71681"><title>PP-MDF-991000</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-86305r1_rule" severity="medium" weight="10.0"><version>MSWM-10-902420</version><title>Windows10 Mobile must be running at a minimum an OS build number of 10.0.14393.10 or higher to meet all requirements in the STIG.</title><description>&lt;VulnDiscussion&gt;During ongoing operating system development, Windows 10 has a cadence of MOS updates that adds new features, including improved enterprise and security capabilities as well as fixes to issues discovered after its initial release. Requirements and issues were discovered that were resolved through improvements in new Windows 10 Mobile OS releases. As a result, to completely meet all requirements outlined in the DOD STIG, devices used by DoD must have or exceed the minimum build numbers listed in the requirements.
+
+SFR #: FMT_SMF_EXT.1.1 #45&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Windows 10 Mobile</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Windows 10 Mobile</dc:subject><dc:identifier>3077</dc:identifier></reference><fixtext fixref="F-78007r1_fix">Ensure that the devices being used are running the required or higher Windows 10 Mobile operating system builds.
+</fixtext><fix id="F-78007r1_fix" /><check system="C-71989r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Microsoft_Windows_10_Mobile_STIG.xml" /><check-content>This procedure is performed only on the Windows 10 Mobile device.
+
+1. From the Start page, swipe to the left to show the App list.
+2. Find and tap on "Settings".
+3. Tap on "System".
+4. Scroll down to the bottom and tap on "About".
+5. Under the section titled "Device information", tap on the "More info" button.
+6. Verify the "OS build" number is greater than or equal to 10.0.14393.10 to meet all DISA STIG requirements.
+
+If the "OS build" number under Settings/System/About/More info is not greater than or equal to 10.0.14393.10, this is a finding.</check-content></check></Rule></Group></Benchmark>

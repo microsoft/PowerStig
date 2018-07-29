@@ -2,12 +2,14 @@
 #      environment configuration  #
 #---------------------------------#
 
-version: 1.0.{build}.0
+version: 1.1.0.{build}
 install:
-    - git clone https://github.com/PowerShell/DscResource.Tests
-    - ps: Write-Verbose -Message "PowerShell version $($PSVersionTable.PSVersion)" -Verbose
-    - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
-    - ps: Invoke-AppveyorInstallTask
+  - git clone https://github.com/PowerShell/DscResource.Tests
+  - git clone https://github.com/Microsoft/PowerStig.Tests
+  - ps: Write-Verbose -Message "PowerShell version $($PSVersionTable.PSVersion)" -Verbose
+  - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
+  - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\PowerStig.Tests\PowerStig.Tests.psd1"
+  - ps: Invoke-AppveyorInstallTask
 
 #---------------------------------#
 #      build configuration        #
@@ -28,6 +30,17 @@ test_script:
 #---------------------------------#
 
 # scripts to run before deployment
-deploy_script:
-    - ps: |
-        Invoke-AppveyorAfterTestTask
+before_deploy:
+  - ps: PowerStig.Tests\Invoke-AppveyorAfterTestTask
+
+for:
+-
+  branches:
+    only:
+      - master
+
+  deploy:
+    - provider: Environment
+      name: Test PS Gallery
+      on:
+        appveyor_repo_tag: true

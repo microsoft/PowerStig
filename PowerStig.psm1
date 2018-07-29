@@ -1,18 +1,21 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-using module .\Class\StigData.psm1
-using module .\Class\Technology.psm1
-using module .\Class\TechnologyRole.psm1
-using module .\Class\TechnologyVersion.psm1
-using module .\Class\StigException.psm1
-using module .\Class\OrganizationalSetting.psm1
-using module .\Class\SkippedRule.psm1
-using module .\Class\SkippedRuleType.psm1
+using module .\Module\Common\Common.psm1
+using module .\Module\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
+using module .\Module\Stig.SkippedRule\Stig.SkippedRule.psm1
+using module .\Module\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
+using module .\Module\Stig.StigData\Stig.StigData.psm1 
+using module .\Module\Stig.StigException\Stig.StigException.psm1
+using module .\Module\Stig.TechnologyRole\Stig.TechnologyRole.psm1
+using module .\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 
-Import-Module $PsScriptRoot\Common\Get-OrgSettingsObject.ps1
-Import-Module $PsScriptRoot\Common\Get-DomainName.ps1
-Import-Module $PsScriptRoot\Common\Get-StigList.ps1
+# load the public functions
+Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig.Main" -Filter '*.ps1' ) )
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 
 Export-ModuleMember -Function @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList')
 
