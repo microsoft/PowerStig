@@ -46,6 +46,8 @@ See our [contributing guide](CONTRIBUTING.md) for more info on how to become a c
 
 ### Unreleased
 
+### 1.1.0.0
+
 Added the following STIGs:
 
 * IIS 8.5 Server STIG V1R3
