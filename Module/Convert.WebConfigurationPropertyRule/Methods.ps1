@@ -85,10 +85,6 @@ function Get-ConfigSection
         {
             $configSection = '/system.web/sessionState'
         }
-        { $cleanCheckContent -match 'Application Request Routing' }
-        {
-            $configSection = '/system.webServer/proxy'
-        }
     }
 
     if ($null -ne $configSection)
@@ -215,7 +211,7 @@ function Get-KeyValuePair
         { $CheckContent -match $script:webRegularExpression.useCookies }
         {
             $key = 'cookieless'
-            $value = '1'
+            $value = 'UseCookies'
         }
         { $CheckContent -match $script:webRegularExpression.expiredSession }
         {
@@ -226,11 +222,6 @@ function Get-KeyValuePair
         {
             $key = 'timeout'
             $value = $null
-        }
-        { $CheckContent -match 'Server Proxy Settings' }
-        {
-            $key   = 'enable'
-            $value = 'false'
         }
 
     }
