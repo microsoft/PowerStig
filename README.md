@@ -48,12 +48,15 @@ Thank you to everyone that has reviewed the project and provided feedback throug
 We are especially thankful for those who have contributed pull requests to the code and documentation.
 
 * [@athaynes](https://github.com/athaynes) (Adam Haynes)
+* [@bgouldman](https://github.com/bgouldman) (Brian Gouldman)
 * [@camusicjunkie](https://github.com/camusicjunkie)
 * [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
 * [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
 * [@ldillonel](https://github.com/ldillonel)
+* [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
+* [@regedit32](https://github.com/regedit32) (Reggie Gibson)
 
 ## Versions
 
