@@ -13,6 +13,7 @@ version: 1.1.0.{build}
 skip_commits:
   files:
    - '**/*.md'
+   - .github/*
 
 #---------------------------------#
 #      environment configuration  #
