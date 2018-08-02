@@ -38,7 +38,7 @@ build: false
 #---------------------------------#
 
 test_script:
-    - pwsh: |
+    - ps: |
         Invoke-AppveyorTestScriptTask -CodeCoverage -CodeCovIo -ExcludeTag @()
 
 #---------------------------------#
@@ -47,7 +47,7 @@ test_script:
 
 # scripts to run before deployment
 before_deploy:
-  - pwsh: PowerStig.Tests\Invoke-AppveyorAfterTestTask
+  - ps: PowerStig.Tests\Invoke-AppveyorAfterTestTask
 
 for:
 -
