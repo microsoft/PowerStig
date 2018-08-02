@@ -38,7 +38,7 @@ build: false
 #---------------------------------#
 
 test_script:
-    - ps: |
+    - pwsh: |
         Invoke-AppveyorTestScriptTask -CodeCoverage -CodeCovIo -ExcludeTag @()
 
 #---------------------------------#
