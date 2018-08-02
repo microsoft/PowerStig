@@ -1,5 +1,5 @@
-<DISASTIG id="IIS_8-5_Server_STIG" version="1.3" created="7/3/2018">
-  <DocumentRule dscresourcemodule="None">
+<DISASTIG id="IIS_8-5_Server_STIG" version="1.3" created="7/26/2018">
+  <DocumentRule dscresourcemodule="">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -276,7 +276,7 @@ If the File System Object component is enabled and is not required for operation
 Note: If the File System Object component is required for operations and has supporting documentation signed by the ISSO, this is not a finding.</rawString>
     </Rule>
   </DocumentRule>
-  <IisLoggingRule dscresourcemodule="xWebAdministration">
+  <IisLoggingRule dscresourcemodule="">
     <Rule id="V-76681" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xIISLogging">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
@@ -414,7 +414,7 @@ Consult with the System Administrator to determine if there is a documented proc
 If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</rawString>
     </Rule>
   </IisLoggingRule>
-  <ManualRule dscresourcemodule="None">
+  <ManualRule dscresourcemodule="">
     <Rule id="V-76685" severity="medium" conversionstatus="pass" title="SRG-APP-000098-WSR-000060" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -529,6 +529,24 @@ Verify log files are backed up to an unrelated system or onto separate media tha
 
 If the paths of all log files are not part of the system backup and/or not backed up to a separate media, this is a finding.
 </rawString>
+    </Rule>
+    <Rule id="V-76703" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000076" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <rawString>Open the IIS 8.5 Manager.
+
+Under the "Connections" pane on the left side of the management console, select the IIS 8.5 web server. 
+
+If, under the IIS installed features, "Application Request Routing Cache" is not present, this is not a finding. 
+
+If, under the IIS installed features, "Application Request Routing Cache" is present, double-click the icon to open the feature.
+      
+From the right "Actions" pane, under "Proxy", select "Server Proxy Settings...". 
+    
+In the "Application Request Routing" settings window, verify whether "Enable proxy" is selected. 
+
+If “Enable proxy" is selected under the "Application Request Routing" settings, this is a finding.</rawString> 
     </Rule>
     <Rule id="V-76705" severity="high" conversionstatus="pass" title="SRG-APP-000141-WSR-000077" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -687,7 +705,7 @@ If any user other than “Administrator” is listed, this is a finding.
 </rawString>
     </Rule>
   </ManualRule>
-  <MimeTypeRule dscresourcemodule="xWebAdministration">
+  <MimeTypeRule dscresourcemodule="">
     <Rule id="V-76711.a" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
       <Ensure>Absent</Ensure>
       <Extension>.exe</Extension>
@@ -764,7 +782,7 @@ If any OS shell MIME types are configured, this is a finding.
 .csh</rawString>
     </Rule>
   </MimeTypeRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
+  <PermissionRule dscresourcemodule="">
     <Rule id="V-76745" severity="medium" conversionstatus="pass" title="SRG-APP-000340-WSR-000029" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
         <Entry>
@@ -834,7 +852,7 @@ Users: Read and execute, list folder contents
 Creator/Owner: Special permissions to subkeys</rawString>
     </Rule>
   </PermissionRule>
-  <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
+  <RegistryRule dscresourcemodule="">
     <Rule id="V-76759.a" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -891,28 +909,7 @@ Creator/Owner: Special permissions to subkeys</rawString>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
-  <WebConfigurationPropertyRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-76703" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000076" dscresource="xWebConfigKeyValue">
-      <ConfigSection>/system.webServer/proxy</ConfigSection>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>enable</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <rawString>Open the IIS 8.5 Manager.
-
-Under the "Connections" pane on the left side of the management console, select the IIS 8.5 web server.
-
-If, under the IIS installed features, "Application Request Routing Cache" is not present, this is not a finding.
-
-If, under the IIS installed features, "Application Request Routing Cache" is present, double-click the icon to open the feature.
-
-From the right "Actions" pane, under "Proxy", select "Server Proxy Settings...".
-
-In the "Application Request Routing" settings window, verify whether "Enable proxy" is selected.
-
-If “Enable proxy" is selected under the "Application Request Routing" settings, this is a finding.</rawString>
-      <Value>false</Value>
-    </Rule>
+  <WebConfigurationPropertyRule dscresourcemodule="">
     <Rule id="V-76723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000220-WSR-000201" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -921,7 +918,7 @@ If “Enable proxy" is selected under the "Application Request Routing" settings
       <OrganizationValueTestString />
       <rawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
 Verify "cookieless" is set to "UseCookies".</rawString>
-      <Value>1</Value>
+      <Value>UseCookies</Value>
     </Rule>
     <Rule id="V-76723.b" severity="medium" conversionstatus="pass" title="SRG-APP-000220-WSR-000201" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
@@ -1047,7 +1044,7 @@ Verify the "Allow unspecified ISAPI modules" check box is not checked</rawString
       <Value>false</Value>
     </Rule>
   </WebConfigurationPropertyRule>
-  <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
+  <WindowsFeatureRule dscresourcemodule="">
     <Rule id="V-76713" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsFeature">
       <FeatureName>Web-DAV-Publishing</FeatureName>
       <InstallState>Absent</InstallState>
