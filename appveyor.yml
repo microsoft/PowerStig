@@ -47,7 +47,7 @@ test_script:
 
 # scripts to run before deployment
 before_deploy:
-  - ps: PowerStig.Tests\Invoke-AppveyorAfterTestTask
+  - pwsh: PowerStig.Tests\Invoke-AppveyorAfterTestTask
 
 for:
 -
