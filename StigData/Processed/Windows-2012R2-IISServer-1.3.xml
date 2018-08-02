@@ -1,5 +1,5 @@
 <DISASTIG id="IIS_8-5_Server_STIG" version="1.3" created="7/26/2018">
-  <DocumentRule dscresourcemodule="">
+  <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -276,7 +276,7 @@ If the File System Object component is enabled and is not required for operation
 Note: If the File System Object component is required for operations and has supporting documentation signed by the ISSO, this is not a finding.</rawString>
     </Rule>
   </DocumentRule>
-  <IisLoggingRule dscresourcemodule="">
+  <IisLoggingRule dscresourcemodule="xWebAdministration">
     <Rule id="V-76681" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xIISLogging">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
@@ -414,7 +414,7 @@ Consult with the System Administrator to determine if there is a documented proc
 If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</rawString>
     </Rule>
   </IisLoggingRule>
-  <ManualRule dscresourcemodule="">
+  <ManualRule dscresourcemodule="None">
     <Rule id="V-76685" severity="medium" conversionstatus="pass" title="SRG-APP-000098-WSR-000060" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -705,7 +705,7 @@ If any user other than “Administrator” is listed, this is a finding.
 </rawString>
     </Rule>
   </ManualRule>
-  <MimeTypeRule dscresourcemodule="">
+  <MimeTypeRule dscresourcemodule="xWebAdministration">
     <Rule id="V-76711.a" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
       <Ensure>Absent</Ensure>
       <Extension>.exe</Extension>
@@ -782,7 +782,7 @@ If any OS shell MIME types are configured, this is a finding.
 .csh</rawString>
     </Rule>
   </MimeTypeRule>
-  <PermissionRule dscresourcemodule="">
+  <PermissionRule dscresourcemodule="AccessControlDsc">
     <Rule id="V-76745" severity="medium" conversionstatus="pass" title="SRG-APP-000340-WSR-000029" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
         <Entry>
@@ -852,7 +852,7 @@ Users: Read and execute, list folder contents
 Creator/Owner: Special permissions to subkeys</rawString>
     </Rule>
   </PermissionRule>
-  <RegistryRule dscresourcemodule="">
+  <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
     <Rule id="V-76759.a" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -909,7 +909,7 @@ Creator/Owner: Special permissions to subkeys</rawString>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
-  <WebConfigurationPropertyRule dscresourcemodule="">
+  <WebConfigurationPropertyRule dscresourcemodule="xWebAdministration">
     <Rule id="V-76723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000220-WSR-000201" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1044,7 +1044,7 @@ Verify the "Allow unspecified ISAPI modules" check box is not checked</rawString
       <Value>false</Value>
     </Rule>
   </WebConfigurationPropertyRule>
-  <WindowsFeatureRule dscresourcemodule="">
+  <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
     <Rule id="V-76713" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsFeature">
       <FeatureName>Web-DAV-Publishing</FeatureName>
       <InstallState>Absent</InstallState>
