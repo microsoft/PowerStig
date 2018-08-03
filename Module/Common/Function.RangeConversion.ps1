@@ -39,13 +39,14 @@ function Get-OrganizationValueTestString
             continue
         }
         {
-            (Test-StringIsLessThan -String $PSItem)              -or
-            (Test-StringIsLessThanOrEqual -String $PSItem)       -or
-            (Test-StringIsLessThanButNot -String $PSItem)        -or
-            (Test-StringIsLessThanOrEqualButNot -String $PSItem) -or
-            (Test-StringIsGreaterThan -String $PSItem)           -or
-            (Test-StringIsGreaterThanOrEqual -String $PSItem)    -or
-            (Test-StringIsGreaterThanButNot -String $PSItem)     -or
+            (Test-StringIsLessThan -String $PSItem)                 -or
+            (Test-StringIsLessThanOrEqual -String $PSItem)          -or
+            (Test-StringIsLessThanButNot -String $PSItem)           -or
+            (Test-StringIsLessThanOrEqualButNot -String $PSItem)    -or
+            (Test-StringIsLessThanOrEqualExcluding -String $PSItem) -or
+            (Test-StringIsGreaterThan -String $PSItem)              -or
+            (Test-StringIsGreaterThanOrEqual -String $PSItem)       -or
+            (Test-StringIsGreaterThanButNot -String $PSItem)        -or
             (Test-StringIsGreaterThanOrEqualButNot -String $PSItem)
         }
         {
@@ -81,7 +82,14 @@ function Get-TestStringTokenNumbers
 
     if ($match)
     {
-        [convert]::ToInt32($match,16)
+        if ($number.count -gt 2)
+        {
+            $number[1, 2]
+        }
+        else 
+        {
+            [convert]::ToInt32($match,16)
+        }
     }
     else
     {
@@ -174,6 +182,10 @@ function ConvertTo-TestString
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
         }
+        'or less excluding'
+        {
+            return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
+        }
     }
 }
 
@@ -209,7 +221,7 @@ function ConvertTo-HashTable
 #region Or
 <#
     .SYNOPSIS
-        Checks if a string is asking for a negative or evaluation. Applies a reagular expression against
+        Checks if a string is asking for a negative or evaluation. Applies a regular expression against
         the string to look for a known pattern asking for a value to not be equal to one of 2 values.
 
     .PARAMETER String
@@ -251,16 +263,18 @@ function Test-StringIsNegativeOr
 }
 
 <#
- .SYNOPSIS
+    .SYNOPSIS
+        Checks if a string is asking for a positive or evaluation. Applies a regular expression against
+        the string to look for a known pattern asking for a value to be equal to one of 2 values.
 
- .PARAMETER string
-    The string data to evaluate.
+    .PARAMETER string
+        The string data to evaluate.
 
- .EXAMPLE
-    An example
+    .EXAMPLE
+        An example
 
- .NOTES
-    # This regex looks for patterns such as "1 (Lock Workstation) or 2 (Force Logoff)"
+    .NOTES
+        # This regex looks for patterns such as "1 (Lock Workstation) or 2 (Force Logoff)"
 #>
 function Test-StringIsPositiveOr
 {
@@ -281,7 +295,7 @@ function Test-StringIsPositiveOr
     $optionalCharacter = "(\(|'|"")?"
 
     $regex = "^(\s*)(\d{1,})(\s*)$optionalCharacter.*$optionalCharacter" +
-            "(\s*)or(\s*)(\d{1,})(\s*)$optionalCharacter.*$optionalCharacter(\s*)$"
+             "(\s*)or(\s*)(\d{1,})(\s*)$optionalCharacter.*$optionalCharacter(\s*)$"
 
     if ($string -match $regex)
     {
@@ -294,37 +308,37 @@ function Test-StringIsPositiveOr
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of a comparison to a PowerShell code representation.
+    .SYNOPSIS
+        Converts English textual representation of a comparison to a PowerShell code representation.
 
- .DESCRIPTION
-    Using the Abstract Syntax Tree capability of PowerShell, the provided string is broken into
-    individual AST Tokens. Those tokens are then combined to form the PowerShell version of the
-    English text.
+    .DESCRIPTION
+        Using the Abstract Syntax Tree capability of PowerShell, the provided string is broken into
+        individual AST Tokens. Those tokens are then combined to form the PowerShell version of the
+        English text.
 
-    The output of this function is intended to be added to any STIG rule that is ambiguous due to
-    a range of possibilities be valid. The test string is used to determine if a local
-    organizational setting is within a valid range according to the STIG.
+        The output of this function is intended to be added to any STIG rule that is ambiguous due to
+        a range of possibilities be valid. The test string is used to determine if a local
+        organizational setting is within a valid range according to the STIG.
 
- .PARAMETER String
-    The string to convert
+    .PARAMETER String
+        The string to convert
 
- .EXAMPLE
-    This example returns the following comparison test
+    .EXAMPLE
+        This example returns the following comparison test
 
-        -ne '1|2'
+            -ne '1|2'
 
-    ConvertTo-OrTestString -String '1 or 2 = a Finding' -Operator NotEqual
+        ConvertTo-OrTestString -String '1 or 2 = a Finding' -Operator NotEqual
 
- .EXAMPLE
-    This example returns the following comparison test
+    .EXAMPLE
+        This example returns the following comparison test
 
-        -eq '1|2'
+            -eq '1|2'
 
-    ConvertTo-OrTestString -String '1 (Lock Workstation) or 2 (Force Logoff)' -Operator Equal
+        ConvertTo-OrTestString -String '1 (Lock Workstation) or 2 (Force Logoff)' -Operator Equal
 
- .NOTES
-    General notes
+    .NOTES
+        General notes
 #>
 function ConvertTo-OrTestString
 {
@@ -362,20 +376,20 @@ function ConvertTo-OrTestString
 #region Greater Than
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsGreaterThan -String '14 (or greater)'
+        Test-StringIsGreaterThan -String '14 (or greater)'
 
- .NOTES
-    Sample STIG data would convert
+    .NOTES
+        Sample STIG data would convert
 #>
 function Test-StringIsGreaterThan
 {
@@ -399,20 +413,20 @@ function Test-StringIsGreaterThan
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsGreaterThanOrEqual -String '0x00000032 (50)  (or greater)'
+        Test-StringIsGreaterThanOrEqual -String '0x00000032 (50)  (or greater)'
 
- .NOTES
-    Sample STIG data would convert 0x00000032 (50)  (or greater) into '-ge 50'"
+    .NOTES
+        Sample STIG data would convert 0x00000032 (50)  (or greater) into '-ge 50'"
 #>
 function Test-StringIsGreaterThanOrEqual
 {
@@ -436,20 +450,20 @@ function Test-StringIsGreaterThanOrEqual
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsGreaterThanButNot -String 'Greater than 30'
+        Test-StringIsGreaterThanButNot -String 'Greater than 30'
 
- .NOTES
-    Sample STIG data would convert 30 (or greater, but not 100)
+    .NOTES
+        Sample STIG data would convert 30 (or greater, but not 100)
 #>
 function Test-StringIsGreaterThanButNot
 {
@@ -473,20 +487,20 @@ function Test-StringIsGreaterThanButNot
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsGreaterThanOrEqualToButNot -String '0x00000032 (50)  (or greater)'
+        Test-StringIsGreaterThanOrEqualToButNot -String '0x00000032 (50)  (or greater)'
 
- .NOTES
-    Sample STIG data
+    .NOTES
+        Sample STIG data
 #>
 function Test-StringIsGreaterThanOrEqualButNot
 {
@@ -511,17 +525,17 @@ function Test-StringIsGreaterThanOrEqualButNot
 #endregion
 #region Less Than
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsLessThan -String 'is less than "14"'
+        Test-StringIsLessThan -String 'is less than "14"'
 #>
 function Test-StringIsLessThan
 {
@@ -545,17 +559,17 @@ function Test-StringIsLessThan
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsLessThanOrEqual -String '"4" logons or less'
+        Test-StringIsLessThanOrEqual -String '"4" logons or less'
 #>
 function Test-StringIsLessThanOrEqual
 {
@@ -579,20 +593,20 @@ function Test-StringIsLessThanOrEqual
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsLessThanButNot -String 'Less than 30 (but not 0)'
+        Test-StringIsLessThanButNot -String 'Less than 30 (but not 0)'
 
- .NOTES
-    Sample STIG data would convert "Less than 30 (but not 0)" into '$i -lt "30" -and $i -gt 0'
+    .NOTES
+        Sample STIG data would convert "Less than 30 (but not 0)" into '$i -lt "30" -and $i -gt 0'
 #>
 function Test-StringIsLessThanButNot
 {
@@ -618,20 +632,26 @@ function Test-StringIsLessThanButNot
 }
 
 <#
- .SYNOPSIS
-    Converts English textual representation of numeric ranges into PowerShell equivalent
-    comparison statements.
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
- .PARAMETER string
-    The String to test.
+    .PARAMETER string
+        The String to test.
 
- .EXAMPLE
-    This example returns $true
+    .EXAMPLE
+        This example returns $true
 
-    Test-StringIsLessThanOrEqualToButNot -String '30 (or less, but not 0)'
+        Test-StringIsLessThanOrEqualToButNot -String '30 (or less, but not 0)'
 
- .NOTES
-    Sample STIG data would convert 30 (or less, but not 0) into '$i -le "30" -and $i -gt 0'
+    .EXAMPLE
+        This example returns $true
+
+        Test-StringIsLessThanOrEqualToButNot -String '0x0000001e (30) (or less, but not 0)'
+
+    .NOTES
+        Sample STIG data would convert 30 (or less, but not 0) into '$i -le "30" -and $i -gt 0'
+        Sample STIG data would convert 0x0000001e (30) (or less, but not 0) into '$i -le "30" -and $i -gt 0'
 #>
 function Test-StringIsLessThanOrEqualButNot
 {
@@ -644,7 +664,44 @@ function Test-StringIsLessThanOrEqualButNot
         $String
     )
 
-    if ($string -match "^(\s*)(\d{1,})(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
+    if ($string -match "^(\s*)(\d{1,})(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$" -or
+        $string -match "(\s*)(\()(\d{1,})(\))(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
+    {
+        $true
+    }
+    else
+    {
+        $false
+    }
+}
+<#
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
+
+    .PARAMETER string
+        The String to test.
+
+    .EXAMPLE
+        This example returns $true
+
+        Test-StringIsLessThanOrEqualExcluding -String '0x0000001e (30) (or less, excluding 0)'
+
+    .NOTES
+        Sample STIG data would convert 0x0000001e (30) (or less, excluding 0) into '$i -le "30" -and $i -gt 0'
+#>
+function Test-StringIsLessThanOrEqualExcluding
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [string]
+        $String
+    )
+
+    if ($string -match "(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\s*),(\s*)excluding(\s*)(\d{1,})(\))?(\s*)$")
     {
         $true
     }
@@ -666,7 +723,6 @@ function Test-StringIsLessThanOrEqualButNot
         This example returns $true
 
         Test-StringIsMultipleValue -String 'Possible values are orange, lemon, cherry'
-
 #>
 function Test-StringIsMultipleValue
 {
@@ -700,7 +756,6 @@ function Test-StringIsMultipleValue
         This example returns "{0} -match 'orange|lemon|cherry'""
 
     ConvertTo-MultipleValue -String 'Possible values are orange, lemon, cherry'
-
 #>
 function ConvertTo-MultipleValue
 {
