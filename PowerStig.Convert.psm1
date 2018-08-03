@@ -31,7 +31,7 @@ using module .\Module\Convert.WindowsFeatureRule\Convert.WindowsFeatureRule.psm1
 using module .\Module\Convert.WinEventLogRule\Convert.WinEventLogRule.psm1
 using module .\Module\Convert.WmiRule\Convert.WmiRule.psm1
 # load the public functions
-. "$PSScriptRoot\Module\Convert.Stig\Data.ps1"
+
 Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Convert.Main" -Filter '*.ps1' ) )
 {
     Write-Verbose "Loading $($supportFile.FullName)"
