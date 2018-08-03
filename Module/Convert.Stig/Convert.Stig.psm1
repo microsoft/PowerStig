@@ -146,7 +146,7 @@ Class STIG : ICloneable
 
     [void] SetStigRuleResource ()
     {
-        $thisDscResource = Get-StigRuleResource -RuleType $this.GetType().ToString()
+        $thisDscResource = Get-StigRuleResource -RuleType $this.GetType()
 
         if ( -not $this.SetStatus( $thisDscResource ) )
         {
