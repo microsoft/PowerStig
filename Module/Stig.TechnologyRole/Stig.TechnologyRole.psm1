@@ -20,7 +20,7 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
     .NOTES
         This class requires PowerShell v5 or above.
 #>
-Class TechnologyRole 
+Class TechnologyRole
 {
     #region Properties
     <#
@@ -41,7 +41,7 @@ Class TechnologyRole
     #>
     static $ValidateSet = @"
 2012R2 = DNS, DC, MS, IISSite, IISServer
-All = ADDomain, ADForest, FW, IE11
+All = ADDomain, ADForest, FW, IE11, DotNet4
 2012 = Instance, Database
 "@
     #endregion
@@ -55,7 +55,7 @@ All = ADDomain, ADForest, FW, IE11
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    TechnologyRole() 
+    TechnologyRole()
     {
         Write-Warning "This constructor is for build testing only."
     }
@@ -74,12 +74,12 @@ All = ADDomain, ADForest, FW, IE11
         .PARAMETER TechnologyVersion
             The TechnologyVersion instance for the selected role
     #>
-    TechnologyRole ([string] $Name, [TechnologyVersion] $TechnologyVersion) 
+    TechnologyRole ([string] $Name, [TechnologyVersion] $TechnologyVersion)
     {
         $this.Name = $Name
         $TechnologyVersion.Validate()
         $this.TechnologyVersion = $TechnologyVersion
-        if (!($this.Validate())) 
+        if (!($this.Validate()))
         {
             throw("The specified Role name is not valid. Please check for available Roles.")
         }
@@ -94,15 +94,15 @@ All = ADDomain, ADForest, FW, IE11
             This method validates that the provided name for the TechnologyRole is
             available for a given TechnologyVersion in PowerStig
     #>
-    [bool] Validate () 
+    [bool] Validate ()
     {
         $roles = [TechnologyRole]::Available($this.TechnologyVersion.Name)
 
-        if ($roles -contains $this.Name) 
+        if ($roles -contains $this.Name)
         {
             return $true
         }
-        else 
+        else
         {
             Write-Warning -Message "The Roles currently available within PowerStig for $($this.TechnologyVersion.Name) include:`n$($roles -join "`n")"
             return $false
@@ -120,15 +120,15 @@ All = ADDomain, ADForest, FW, IE11
         .PARAMETER TechnologyVersion
             The TechnologyVersion name
     #>
-    static [string[]] Available ([string] $TechnologyVersion) 
+    static [string[]] Available ([string] $TechnologyVersion)
     {
         $roles = ConvertFrom-StringData -StringData $([TechnologyRole]::ValidateSet)
 
-        if ($roles.$TechnologyVersion) 
+        if ($roles.$TechnologyVersion)
         {
             return $roles.$TechnologyVersion.Split(',').Trim()
         }
-        else 
+        else
         {
             throw("No Roles are available for the Version you have specified. Please check available Versions and run again.")
         }

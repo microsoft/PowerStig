@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.0.0'
+ModuleVersion = '1.1.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -21,7 +21,12 @@ CompanyName = 'Microsoft Corporation'
 Copyright = '(c) 2017 Adam Haynes. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Module for managing the DISA STIGs'
+Description = 'The PowerStig module provides a set of PowerShell classes to access DISA STIG settings extracted from the xccdf. The module provides a unified way to access the parsed STIG data by enabling the concepts of:
+1. Exceptions (overriding and auto-documenting)
+2. Ignoring a single or entire class of rules (auto-documenting)
+3. Organizational settings to address STIG rules that have allowable ranges.
+
+This module is intended to be used by additional automation as a lightweight portable “database” to audit and enforce the parsed STIG data.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.1'
@@ -47,13 +52,14 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'STIGs added:
-        Windows Server 2012R2 MS STIG V2R12
-        Windows Server 2012R2 DC STIG V2R12
-        Windows Server DNS V1R9
-        Windows AD Domain V2R9
-        IE11 V1R15
-        '
+        ReleaseNotes = 'Added the following STIGs:
+
+* IIS 8.5 Server STIG V1R3
+
+Updates
+
+* Updated SQL STIG code to account for SQL STIGS being added in PowerStigDsc
+* Update to PowerStig.psm1 to fix issue were StigData class was not accessible to PowerStigDsc'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
