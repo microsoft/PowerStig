@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,22 +10,53 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER GetScript
+
+        .PARAMETER TestScript
+
+        .PARAMETER SetScript
+
+        .EXAMPLE
+    #>
 Class SqlScriptQueryRule : STIG
 {
     [string] $GetScript
-
     [string] $TestScript
-
     [string] $SetScript
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     SqlScriptQueryRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER RuleType
+
+        .EXAMPLE
+    #>
     [void] SetGetScript ( [string] $RuleType )
     {
         $thisGetScript = & Get-$($RuleType)GetScript -CheckContent $this.SplitCheckContent
@@ -37,6 +67,15 @@ Class SqlScriptQueryRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER RuleType
+
+        .EXAMPLE
+    #>
     [void] SetTestScript ( $RuleType )
     {
         $thisTestScript = & Get-$($RuleType)TestScript -CheckContent $this.SplitCheckContent
@@ -47,6 +86,17 @@ Class SqlScriptQueryRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER RuleType
+
+        .PARAMETER FixText
+
+        .EXAMPLE
+    #>
     [void] SetSetScript ( [string] $RuleType, [string[]] $FixText )
     {
         $checkContent = $this.SplitCheckContent
@@ -59,11 +109,21 @@ Class SqlScriptQueryRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     [string] GetRuleType ( [string[]] $CheckContent )
     {
         $ruleType = Get-SqlRuleType -CheckContent $CheckContent
 
         return $ruleType
     }
+
+    #endregion
 }
-#endregion

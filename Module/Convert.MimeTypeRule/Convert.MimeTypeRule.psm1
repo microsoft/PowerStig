@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,22 +10,52 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER Extension
+
+    .PARAMETER MimeType
+
+    .PARAMETER Ensure
+
+    .EXAMPLE
+#>
 Class MimeTypeRule : STIG
 {
     [string] $Extension
     [string] $MimeType
     [string] $Ensure
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     MimeTypeRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
-    [void] SetExtension ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetExtension ()
     {
         $thisExtension = Get-Extension -CheckContent $this.SplitCheckContent
 
@@ -36,7 +65,14 @@ Class MimeTypeRule : STIG
         }
     }
 
-    [void] SetMimeType ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetMimeType ()
     {
         $thisMimeType = Get-MimeType -Extension $this.Extension
 
@@ -46,7 +82,14 @@ Class MimeTypeRule : STIG
         }
     }
 
-    [void] SetEnsure ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetEnsure ()
     {
         $thisEnsure = Get-Ensure -CheckContent $this.SplitCheckContent
 
@@ -56,6 +99,15 @@ Class MimeTypeRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
         return Test-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) )
@@ -66,5 +118,5 @@ Class MimeTypeRule : STIG
         return ( Split-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
     }
 
+    #endregion
 }
-#endregion

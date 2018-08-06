@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,22 +10,52 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER ConfigSection
+
+    .PARAMETER Key
+
+    .PARAMETER Value
+
+    .EXAMPLE
+#>
 Class WebConfigurationPropertyRule : STIG
 {
     [string] $ConfigSection
     [string] $Key
     [string] $Value
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     WebConfigurationPropertyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
-    [void] SetConfigSection ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetConfigSection ()
     {
         $thisConfigSection = Get-ConfigSection -CheckContent $this.SplitCheckContent
 
@@ -36,7 +65,14 @@ Class WebConfigurationPropertyRule : STIG
         }
     }
 
-    [void] SetKeyValuePair ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetKeyValuePair ()
     {
         $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
 
@@ -47,7 +83,14 @@ Class WebConfigurationPropertyRule : STIG
         }
     }
 
-    [Boolean] IsOrganizationalSetting ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [Boolean] IsOrganizationalSetting ()
     {
         if ( -not [String]::IsNullOrEmpty( $this.key ) -and [String]::IsNullOrEmpty( $this.value ) )
         {
@@ -59,7 +102,14 @@ Class WebConfigurationPropertyRule : STIG
         }
     }
 
-    [void] SetOrganizationValueTestString ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetOrganizationValueTestString ()
     {
         $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
 
@@ -70,14 +120,33 @@ Class WebConfigurationPropertyRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
         return Test-MultipleWebConfigurationPropertyRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) )
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         return ( Split-MultipleWebConfigurationPropertyRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
     }
+
+    #endregion
 }
-#endregion

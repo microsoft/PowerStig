@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,20 +10,36 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER HostName
+
+    .PARAMETER IpAddress
+
+    .EXAMPLE
+#>
 Class DnsServerRootHintRule : STIG
 {
     [string] $HostName
     [string] $IpAddress
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     DnsServerRootHintRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
-
-    # Methods
-
 }
-#endregion

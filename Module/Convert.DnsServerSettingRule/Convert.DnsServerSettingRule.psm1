@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,19 +10,48 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER PropertyName
+
+    .PARAMETER PropertyValue
+
+    .EXAMPLE
+#>
 Class DnsServerSettingRule : STIG
 {
     [string] $PropertyName
     [string] $PropertyValue
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     DnsServerSettingRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
-    # Methods
+
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetDnsServerPropertyName ( )
     {
         $thisDnsServerSettingPropertyName = Get-DnsServerSettingProperty -CheckContent $this.SplitCheckContent
@@ -34,6 +62,13 @@ Class DnsServerSettingRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetDnsServerPropertyValue ( )
     {
         $thisDnsServerSettingPropertyValue = Get-DnsServerSettingPropertyValue -CheckContent $this.SplitCheckContent
@@ -43,5 +78,5 @@ Class DnsServerSettingRule : STIG
             $this.set_PropertyValue($thisDnsServerSettingPropertyValue)
         }
     }
+    #endregion
 }
-#endregion

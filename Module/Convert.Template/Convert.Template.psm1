@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,7 +10,38 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
 
-#endregion
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER template
+
+        .EXAMPLE
+    #>
+
+Class Tempalte
+{
+    [string] $template
+
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
+    Tempalte()
+    {
+
+    }
+
+    #region Methods
+
+    #endregion
+}

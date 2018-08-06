@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,20 +10,51 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER Subcategory
+
+    .PARAMETER AuditFlag
+
+    .PARAMETER Ensure
+
+    .EXAMPLE
+#>
 Class AuditPolicyRule : STIG
 {
     [string] $Subcategory
     [string] $AuditFlag
     [string] $Ensure
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     AuditPolicyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetSubcategory ()
     {
         $thisSubcategory = Get-AuditPolicySubCategory -CheckContent $this.SplitCheckContent
@@ -35,6 +65,13 @@ Class AuditPolicyRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetAuditFlag ()
     {
         $thisAuditFlag = Get-AuditPolicyFlag -CheckContent $this.SplitCheckContent
@@ -45,9 +82,18 @@ Class AuditPolicyRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER EnsureFlag
+
+        .EXAMPLE
+    #>
     [void] SetEnsureFlag ( [Ensure] $EnsureFlag )
     {
         $this.Ensure = $EnsureFlag
     }
+    #endregion
 }
-#endregion

@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,20 +10,49 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER Key
+
+    .PARAMETER Value
+
+    .EXAMPLE
+#>
 Class WebAppPoolRule : STIG
 {
     [string] $Key
     [string] $Value
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     WebAppPoolRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    [void] SetKeyValuePair ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetKeyValuePair ()
     {
         $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
 
@@ -35,7 +63,14 @@ Class WebAppPoolRule : STIG
         }
     }
 
-    [Boolean] IsOrganizationalSetting ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [Boolean] IsOrganizationalSetting ()
     {
         if ( -not [String]::IsNullOrEmpty( $this.key ) -and [String]::IsNullOrEmpty( $this.value ) )
         {
@@ -43,11 +78,18 @@ Class WebAppPoolRule : STIG
         }
         else
         {
-           return $false
+            return $false
         }
     }
 
-    [void] SetOrganizationValueTestString ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetOrganizationValueTestString ()
     {
         $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
 
@@ -57,5 +99,7 @@ Class WebAppPoolRule : STIG
             $this.set_OrganizationValueRequired( $true )
         }
     }
+
+    #endregion
 }
-#endregion
+

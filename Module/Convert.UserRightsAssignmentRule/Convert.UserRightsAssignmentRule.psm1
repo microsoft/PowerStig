@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,22 +10,55 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER DisplayName
+
+    .PARAMETER Constant
+
+    .PARAMETER Identity
+
+    .PARAMETER Force
+
+    .EXAMPLE
+#>
 Class UserRightRule : STIG
 {
     [ValidateNotNullOrEmpty()] [string] $DisplayName
     [ValidateNotNullOrEmpty()] [string] $Constant
     [ValidateNotNullOrEmpty()] [string] $Identity
+
     [bool] $Force = $false
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     UserRightRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetDisplayName ()
     {
         $thisDisplayName = Get-UserRightDisplayName -CheckContent $this.SplitCheckContent
@@ -37,6 +69,13 @@ Class UserRightRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetConstant ()
     {
         $thisConstant = Get-UserRightConstant -UserRightDisplayName $this.DisplayName
@@ -47,6 +86,13 @@ Class UserRightRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetIdentity ()
     {
         $thisIdentity = Get-UserRightIdentity -CheckContent $this.SplitCheckContent
@@ -71,6 +117,13 @@ Class UserRightRule : STIG
         #return $return
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetForce ()
     {
         if ( Test-SetForceFlag -CheckContent $this.SplitCheckContent )
@@ -83,6 +136,15 @@ Class UserRightRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
         if ( Test-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
@@ -93,9 +155,19 @@ Class UserRightRule : STIG
         return $false
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         return ( Split-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
     }
+
+    #endregion
 }
-#endregion

@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,21 +10,48 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER PolicyName
+
+    .PARAMETER PolicyValue
+
+    .EXAMPLE
+#>
 Class AccountPolicyRule : STIG
 {
-    # Properties
     [string] $PolicyName
     [string] $PolicyValue
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     AccountPolicyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetPolicyName ()
     {
         $thisPolicyName = Get-AccountPolicyName -CheckContent $this.SplitCheckContent
@@ -36,6 +62,13 @@ Class AccountPolicyRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [bool] TestPolicyValueForRange ()
     {
         if (Test-SecurityPolicyContainsRange -CheckContent $this.SplitCheckContent)
@@ -48,6 +81,13 @@ Class AccountPolicyRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetPolicyValue ()
     {
         $thisPolicyValue = Get-AccountPolicyValue -CheckContent $this.SplitCheckContent
@@ -58,6 +98,13 @@ Class AccountPolicyRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetPolicyValueRange ()
     {
         $this.set_OrganizationValueRequired($true)
@@ -69,5 +116,5 @@ Class AccountPolicyRule : STIG
             $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
         }
     }
+    #endregion
 }
-#endregion

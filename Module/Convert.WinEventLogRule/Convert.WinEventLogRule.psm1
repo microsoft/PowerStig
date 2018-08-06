@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,21 +10,49 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER LogName
+
+    .PARAMETER IsEnabled
+
+    .EXAMPLE
+#>
 Class WinEventLogRule : STIG
 {
     [string] $LogName
-    [bool]   $IsEnabled
+    [bool] $IsEnabled
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     WinEventLogRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
-    [void] SetWinEventLogName ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetWinEventLogName ()
     {
         $thisDnsWinEventLogName = Get-DnsServerWinEventLogName -StigString $this.SplitCheckContent
 
@@ -35,11 +62,18 @@ Class WinEventLogRule : STIG
         }
     }
 
-    [void] SetWinEventLogIsEnabled ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetWinEventLogIsEnabled ()
     {
         # the dns stig always sets this to true
         $this.IsEnabled = $true
     }
 
+    #endregion
 }
-#endregion

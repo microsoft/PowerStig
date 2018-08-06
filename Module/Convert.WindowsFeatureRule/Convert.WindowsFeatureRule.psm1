@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,23 +10,48 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER FeatureName
+
+    .PARAMETER InstallState
+
+    .EXAMPLE
+#>
 Class WindowsFeatureRule : STIG
 {
-    [string]
-    $FeatureName
+    [string] $FeatureName
+    [string] $InstallState
 
-    [string]
-    $InstallState
+    <#
+        .SYNOPSIS
+            Default constructor
 
-    # Constructor
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     WindowsFeatureRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
     }
 
-    # Methods
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetFeatureName ()
     {
         $thisFeatureName = Get-WindowsFeatureName -CheckContent $this.RawString
@@ -38,6 +62,15 @@ Class WindowsFeatureRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER StigRule
+
+        .EXAMPLE
+    #>
     [void] SetFeatureInstallState ()
     {
         $thisInstallState = Get-FeatureInstallState -CheckContent $this.RawString
@@ -48,14 +81,33 @@ Class WindowsFeatureRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER StigRule
+
+        .EXAMPLE
+    #>
     static [bool] HasMultipleRules ( [string] $FeatureName )
     {
         return ( Test-MultipleWindowsFeatureRule -FeatureName $FeatureName )
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER StigRule
+
+        .EXAMPLE
+    #>
     static [string[]] SplitMultipleRules ( [string] $FeatureName )
     {
         return ( Split-WindowsFeatureRule -FeatureName $FeatureName )
     }
+
+    #endregion
 }
-#endregion

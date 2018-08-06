@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,22 +10,49 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER OptionName
+
+    .PARAMETER OptionValue
+
+    .EXAMPLE
+#>
 Class SecurityOptionRule : STIG
 {
-    # Properties
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     SecurityOptionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
-    [void] SetOptionName ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetOptionName ()
     {
         $thisName = Get-SecurityOptionName -CheckContent $this.SplitCheckContent
         if ( -not $this.SetStatus( $thisName ) )
@@ -35,6 +61,13 @@ Class SecurityOptionRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [bool] TestOptionValueForRange ()
     {
         if ( Test-SecurityPolicyContainsRange -CheckContent $this.SplitCheckContent )
@@ -45,7 +78,14 @@ Class SecurityOptionRule : STIG
         return $false
     }
 
-    [void] SetOptionValue ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetOptionValue ()
     {
         $thisValue = Get-SecurityOptionValue -CheckContent $this.SplitCheckContent
 
@@ -55,6 +95,13 @@ Class SecurityOptionRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetOptionValueRange ()
     {
         $this.set_OrganizationValueRequired($true)
@@ -66,5 +113,6 @@ Class SecurityOptionRule : STIG
             $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
         }
     }
+
+    #endregion
 }
-#endregion

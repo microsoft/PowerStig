@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,8 +10,23 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER ServiceName
+
+    .PARAMETER ServiceState
+
+    .PARAMETER StartupType
+
+    .PARAMETER Ensure
+
+    .EXAMPLE
+#>
 Class ServiceRule : STIG
 {
     [string] $ServiceName
@@ -20,13 +34,30 @@ Class ServiceRule : STIG
     [string] $StartupType
     [ensure] $Ensure
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     ServiceRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
+    #region Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetServiceName ()
     {
         $thisServiceName = Get-ServiceName -CheckContent $this.SplitCheckContent
@@ -39,6 +70,13 @@ Class ServiceRule : STIG
 
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetServiceState ()
     {
         $thisServiceState = Get-ServiceState -CheckContent $this.SplitCheckContent
@@ -49,6 +87,13 @@ Class ServiceRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetStartupType ()
     {
         $thisServiceStartupType = Get-ServiceStartupType -CheckContent $this.SplitCheckContent
@@ -59,14 +104,33 @@ Class ServiceRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER ServiceName
+
+        .EXAMPLE
+    #>
     static [bool] HasMultipleRules ( [string] $Servicename )
     {
         return ( Test-MultipleServiceRule -ServiceName $Servicename )
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER ServiceName
+
+        .EXAMPLE
+    #>
     static [string[]] SplitMultipleRules ( [string] $ServiceName )
     {
         return ( Split-MultipleServiceRule -ServiceName $Servicename )
     }
+
+    #endregion
 }
-#endregion

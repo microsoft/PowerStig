@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -10,47 +9,82 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class Definition
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER Id
+        The STIG ID
+
+    .PARAMETER Title
+        Title string from STIG
+
+    .PARAMETER Severity
+        Severity data from STIG
+
+    .PARAMETER ConversionStatus
+        Module processing status of the raw string
+
+    .PARAMETER RawString
+        The raw string from the check-content element of the STIG item
+
+    .PARAMETER SplitCheckContent
+        The raw check string split into multiple lines for pattern matching
+
+    .PARAMETER IsNullOrEmpty
+        A flag to determine if a value is supposed to be empty or not.
+        Some items should be empty, but there needs to be a way to validate that empty is on purpose.
+
+    .PARAMETER OrganizationValueRequired
+        A flag to determine if a local organizational setting is required.
+
+    .PARAMETER OrganizationValueTestString
+        A string that can be invoked to test the chosen organizational value.
+
+    .PARAMETER DscResource
+        Defines the DSC resource used to configure the rule
+
+    .EXAMPLE
+#>
 Class STIG : ICloneable
 {
-    # The STIG ID
-    [String] $id
-
-    # Title string from STIG
-    [String] $title
-
-    # Severity data from STIG
-    [severity] $severity
-
-    # Module processing status of the raw string
-    [status] $conversionstatus
-
-    # The raw string from the check-content element of the STIG item
-    [String] $rawString
-
-    # The raw check string split into multiple lines for pattern matching
+    [String] $Id
+    [String] $Title
+    [severity] $Severity
+    [status] $ConversionStatus
+    [String] $RawString
     hidden [string[]] $SplitCheckContent
-
-    # A flag to determine if a value is supposed to be empty or not.
-    # Some items should be empty, but there needs to be a way to validate that empty is on purpose.
     [Boolean] $IsNullOrEmpty
-
-    # A flag to determine if a local organizational setting is required.
     [Boolean] $OrganizationValueRequired
-
-    # A string that can be invoked to test the chosen organizational value.
     [String] $OrganizationValueTestString
+    [String] $DscResource
 
-    # Defines the DSC resource used to configure the rule
-    [String] $dscresource
+    <#
+        .SYNOPSIS
 
-    # Constructors
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     STIG ()
     {
     }
 
-    # Methods
+    #region Methods
+
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     hidden [void] InvokeClass ( [xml.xmlelement] $StigRule )
     {
         $this.Id = $StigRule.id
@@ -81,22 +115,52 @@ Class STIG : ICloneable
         $this.OrganizationValueRequired = $false
     }
 
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+    #>
     [Object] Clone ()
     {
         return $this.MemberwiseClone()
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER ReferenceObject
+
+        .EXAMPLE
+    #>
     [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
     {
         return Test-DuplicateRule -ReferenceObject $ReferenceObject -DifferenceObject $this
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetDuplicateTitle ()
     {
         $this.title = $this.title + ' Duplicate'
     }
 
-    # Fail a rule conversion if a property is null or empty
+    <#
+        .SYNOPSIS
+            Fail a rule conversion if a property is null or empty
+        .DESCRIPTION
+
+        .PARAMETER Value
+
+        .EXAMPLE
+    #>
     [Boolean] SetStatus ( [String] $Value )
     {
         if ( [String]::IsNullOrEmpty( $Value ) )
@@ -110,7 +174,17 @@ Class STIG : ICloneable
         }
     }
 
-    # Fail a rule conversion if a property is null or empty and not specifically allowed to be
+    <#
+        .SYNOPSIS
+            Fail a rule conversion if a property is null or empty and not specifically allowed to be
+        .DESCRIPTION
+
+        .PARAMETER Value
+
+        .PARAMETER AllowNullOrEmpty
+
+        .EXAMPLE
+    #>
     [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
     {
         if ( [String]::IsNullOrEmpty( $Value ) -and -not $AllowNullOrEmpty )
@@ -124,26 +198,63 @@ Class STIG : ICloneable
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetIsNullOrEmpty ()
     {
         $this.IsNullOrEmpty = $true
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetOrganizationValueRequired ()
     {
         $this.OrganizationValueRequired = $true
     }
 
-    [String] GetOrganizationValueTestString ( [String] $testString )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER TestString
+
+        .EXAMPLE
+    #>
+    [String] GetOrganizationValueTestString ( [String] $TestString )
     {
         return Get-OrganizationValueTestString -String $testString
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [hashtable] ConvertToHashTable ()
     {
         return ConvertTo-HashTable -InputObject $this
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [void] SetStigRuleResource ()
     {
         $thisDscResource = Get-StigRuleResource -RuleType $this.GetType().ToString()
@@ -154,55 +265,122 @@ Class STIG : ICloneable
         }
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [string[]] SplitCheckContent ( [String] $CheckContent )
     {
         return (
             $CheckContent -split '\n' |
                 Select-String -Pattern "\w" |
-                    ForEach-Object { $PSitem.ToString().Trim() }
+                ForEach-Object { $PSitem.ToString().Trim() }
         )
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER StigRule
+
+        .EXAMPLE
+    #>
     static [string[]] GetFixText ( [xml.xmlelement] $StigRule )
     {
         $fullFix = $StigRule.Rule.fixtext.'#text'
 
         $return = $fullFix -split '\n' |
-                  Select-String -Pattern "\w" |
-                  ForEach-Object { $PSitem.ToString().Trim() }
+            Select-String -Pattern "\w" |
+            ForEach-Object { $PSitem.ToString().Trim() }
 
         return $return
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+        .EXAMPLE
+    #>
     static [RuleType[]] GetRuleTypeMatchList ( [String] $CheckContent )
     {
         return Get-RuleTypeMatchList -CheckContent $CheckContent
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER RuleCollection
+
+        .EXAMPLE
+    #>
     [Boolean] IsExistingRule ( [object] $RuleCollection )
     {
         return Test-ExistingRule -RuleCollection $RuleCollection $this
     }
+
+    #endregion
     #region Hard coded Methods
+
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [Boolean] IsHardCoded ()
     {
         return Test-ValueDataIsHardCoded -StigId $this.id
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTIONt
+
+        .EXAMPLE
+    #>
     [String] GetHardCodedString ()
     {
         return Get-HardCodedString -StigId $this.id
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [Boolean] IsHardCodedOrganizationValueTestString ()
     {
         return Test-IsHardCodedOrganizationValueTestString -StigId $this.id
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
     [String] GetHardCodedOrganizationValueTestString ()
     {
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
+
     #endregion
 }
-#endregion

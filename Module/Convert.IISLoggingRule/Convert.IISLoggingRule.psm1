@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,8 +10,25 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+
+    .DESCRIPTION
+
+    .PARAMETER LogCustomFieldEntry
+
+    .PARAMETER LogFlags
+
+    .PARAMETER LogFormat
+
+    .PARAMETER LogPeriod
+
+    .PARAMETER LogTargetW3C
+
+    .EXAMPLE
+#>
 Class IisLoggingRule : STIG
 {
     [object[]] $LogCustomFieldEntry
@@ -21,20 +37,43 @@ Class IisLoggingRule : STIG
     [string] $LogPeriod
     [string] $LogTargetW3C
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+
+        .DESCRIPTION
+            Converts a xccdf stig rule element into a {0}
+
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     IisLoggingRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    [void] SetLogCustomFields ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetLogCustomFields ()
     {
         $thisLogCustomField = Get-LogCustomFieldEntry -CheckContent $this.SplitCheckContent
 
         $this.set_LogCustomFieldEntry( $thisLogCustomField )
     }
 
-    [void] SetLogFlags ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetLogFlags ()
     {
         $thisLogFlag = Get-LogFlag -CheckContent $this.SplitCheckContent
 
@@ -44,7 +83,14 @@ Class IisLoggingRule : STIG
         }
     }
 
-    [void] SetLogFormat ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetLogFormat ()
     {
         $thisLogFormat = Get-LogFormat -CheckContent $this.SplitCheckContent
 
@@ -54,7 +100,14 @@ Class IisLoggingRule : STIG
         }
     }
 
-    [void] SetLogPeriod ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetLogPeriod ()
     {
         $thisLogPeriod = Get-LogPeriod -CheckContent $this.SplitCheckContent
 
@@ -64,7 +117,14 @@ Class IisLoggingRule : STIG
         }
     }
 
-    [void] SetLogTargetW3C ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetLogTargetW3C ()
     {
         $thisLogTargetW3C = Get-LogTargetW3C -CheckContent $this.SplitCheckContent
 
@@ -74,7 +134,14 @@ Class IisLoggingRule : STIG
         }
     }
 
-    [void] SetStatus ( )
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .EXAMPLE
+    #>
+    [void] SetStatus ()
     {
         $baseStig = [Stig]::New()
         $referenceProperties = ( $baseStig | Get-Member -MemberType Property ).Name
@@ -96,5 +163,7 @@ Class IisLoggingRule : STIG
             $this.conversionstatus = [status]::fail
         }
     }
+
+    #endregion
 }
-#endregion
+

@@ -1,16 +1,21 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-#endregion
 using module .\..\Stig.StigProperty\Stig.StigProperty.psm1
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes a StigException
 
     .DESCRIPTION
         The StigException class describes a StigException, the collection of StigProperty to override on a specific Stig rule.
+
+    .PARAMETER StigRuleId
+        The Id of an individual Stig Rule
+
+    .PARAMETER Properties
+        An array of properties and their values to override on a Stig rule
 
     .EXAMPLE
         $stigException = [StigException]::new([string] $StigRuleId, [StigProperty[]] $Properties)
@@ -20,20 +25,12 @@ using module .\..\Stig.StigProperty\Stig.StigProperty.psm1
 #>
 Class StigException
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The Id of an individual Stig Rule
-    #>
     [string] $StigRuleId
 
-    <#
-        .DESCRIPTION
-            An array of properties and their values to override on a Stig rule
-    #>
     [StigProperty[]] $Properties
-    #endregion
+
     #region Constructors
+
     <#
         .SYNOPSIS
             Parameterless constructor
@@ -67,8 +64,10 @@ Class StigException
         $this.StigRuleId = $StigRuleId
         $this.Properties = $Properties
     }
+
     #endregion
     #region Methods
+
     <#
         .SYNOPSIS
             Adds a StigPropery instance to the StigException Properties property
@@ -101,8 +100,10 @@ Class StigException
     {
         $this.Properties += [StigProperty]::new($Name, $Value)
     }
+
     #endregion Methods
     #region Static Methods
+
     <#
         .SYNOPSIS
             Converts a provided hashtable of Stig exceptions into a StigException array
@@ -141,14 +142,14 @@ Class StigException
 
         return $stigExceptions
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion
