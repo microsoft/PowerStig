@@ -35,6 +35,8 @@ data RegularExpression
 
         # Windows Feature Rule Matches
 
+        WindowsFeatureName = Get-WindowsFeature\\s-Name\\s*\\w+.\\w+
+
         FeatureNameEquals = FeatureName\\s-eq\\s*\\S*
 
         FeatureNameSpaceColon = FeatureName\\s\\:\\s\\S*
