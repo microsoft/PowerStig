@@ -23,6 +23,20 @@ try
             
             If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.'
         }
+        @{
+            FeatureName  = 'Powershell-v2'
+            InstallState = 'Absent'
+            OrganizationValueRequired = $false
+            CheckContent = 'Windows PowerShell 2.0 is not installed by default.
+
+            Open "Windows PowerShell".
+            
+            Enter "Get-WindowsFeature -Name PowerShell-v2".
+            
+            If "Installed State" is "Installed", this is a finding.
+            
+            An Installed State of "Available" or "Removed" is not a finding.'
+        }
     )
     #endregion
     #region Tests
