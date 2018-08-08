@@ -28,7 +28,6 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 Class TechnologyRole
 {
     [string] $Name
-
     [TechnologyVersion] $TechnologyVersion
 
     <#
@@ -45,25 +44,25 @@ All = ADDomain, ADForest, FW, IE11, DotNet4
 
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for TechnologyRole. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    TechnologyRole()
+    TechnologyRole ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for TechnologyRole. Returns a ready to use instance of TechnologyRole.
+
 
         .DESCRIPTION
-            A constructor for TechnologyRole. Returns a ready to use instance
-            of TechnologyRole.
+            A constructor for TechnologyRole. Returns a ready to use instance of TechnologyRole.
 
         .PARAMETER Name
             The name of a role of technology of the Stig to select

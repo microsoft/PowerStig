@@ -29,21 +29,21 @@ Class SkippedRule
 
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for SkippedRule. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    SkippedRule()
+    SkippedRule ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for SkippedRule. Returns a ready to use instance of SkippedRule.
 
         .DESCRIPTION
             A constructor for SkippedRule. Returns a ready to use instance
@@ -52,7 +52,7 @@ Class SkippedRule
         .PARAMETER StigRuleId
             The Id of an individual Stig Rule
     #>
-    SkippedRule([string] $StigRuleId)
+    SkippedRule ([string] $StigRuleId)
     {
         $this.StigRuleId = $StigRuleId
     }

@@ -27,7 +27,6 @@ using module .\..\Common\Common.psm1
 Class TechnologyVersion
 {
     [string] $Name
-
     [Technology] $Technology
 
     # The available versions for each technology currently in PowerStig
@@ -36,11 +35,9 @@ Windows = All, 2012R2
 SqlServer = 2012
 "@
 
-    #region Constructors
-
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for TechnologyVersion. To be used only for
@@ -54,11 +51,10 @@ SqlServer = 2012
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for TechnologyVersion. Returns a ready to use instance of TechnologyVersion.
 
         .DESCRIPTION
-            A constructor for TechnologyVersion. Returns a ready to use instance
-            of TechnologyVersion.
+            A constructor for TechnologyVersion. Returns a ready to use instance of TechnologyVersion.
 
         .PARAMETER Name
             The Technology for the selected version
@@ -76,7 +72,6 @@ SqlServer = 2012
         }
     }
 
-    #endregion
     #region Methods
 
     <#

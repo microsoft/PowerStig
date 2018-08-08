@@ -73,25 +73,24 @@ Class StigData
 
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for StigData. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    StigData()
+    StigData ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for StigData. Returns a ready to use instance of StigData.
 
         .DESCRIPTION
-            A constructor for StigData. Returns a ready to use instance
-            of StigData.
+            A constructor for StigData. Returns a ready to use instance of StigData.
 
         .PARAMETER StigVersion
             The document/published version of the Stig to select
@@ -117,7 +116,7 @@ Class StigData
         .PARAMETER SkippedRules
             An array of Stig rules to skip and move into the SkipRule rule type
     #>
-    StigData([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
+    StigData ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
     {
         if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion)) {
             throw("Technology, TechnologyVersion, and TechnologyRole must be provided.")

@@ -33,25 +33,24 @@ Class StigException
 
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for StigException. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    StigException()
+    StigException ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for StigException. Returns a ready to use instance of StigException.
 
         .DESCRIPTION
-            A constructor for StigException. Returns a ready to use instance
-            of StigException.
+            A constructor for StigException. Returns a ready to use instance of StigException.
 
         .PARAMETER StigRuleId
             The Id of an individual Stig Rule
@@ -59,7 +58,7 @@ Class StigException
         .PARAMETER Properties
             An array of properties and their values to override on a Stig rule
     #>
-    StigException([string] $StigRuleId, [StigProperty[]] $Properties)
+    StigException ([string] $StigRuleId, [StigProperty[]] $Properties)
     {
         $this.StigRuleId = $StigRuleId
         $this.Properties = $Properties

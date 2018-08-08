@@ -34,25 +34,24 @@ Class StigProperty
 
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for StigProperty. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    StigProperty()
+    StigProperty ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for StigProperty. Returns a ready to use instance of StigProperty.
 
         .DESCRIPTION
-            A constructor for StigProperty. Returns a ready to use instance
-            of StigProperty.
+            A constructor for StigProperty. Returns a ready to use instance of StigProperty.
 
         .PARAMETER Name
             The name of an individual property on a Stig Rule

@@ -34,21 +34,21 @@ Class OrganizationalSetting
 
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for OrganizationalSetting. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    OrganizationalSetting()
+    OrganizationalSetting ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for OrganizationalSetting. Returns a ready to use instance of OrganizationalSetting.
 
         .DESCRIPTION
             A constructor for OrganizationalSetting. Returns a ready to use instance
@@ -60,7 +60,7 @@ Class OrganizationalSetting
         .PARAMETER Value
             The specific organizational value to set for the associated Stig rule
     #>
-    OrganizationalSetting([string] $StigRuleId, [string] $Value)
+    OrganizationalSetting ([string] $StigRuleId, [string] $Value)
     {
         $this.StigRuleId = $StigRuleId
         $this.Value = $Value
