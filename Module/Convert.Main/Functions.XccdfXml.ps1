@@ -215,7 +215,7 @@ function Get-StigRuleList
             $global:stigRuleGlobal = $stigRule
             $informationParameters = @{
                 MessageData       = "INFO: [$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
-                InformationAction = 'Continue'
+                #InformationAction = 'Continue'
             }
 
             Write-Information @informationParameters
