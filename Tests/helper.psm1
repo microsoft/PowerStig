@@ -35,16 +35,9 @@ function Get-RequiredStigDataVersion
 
 function Get-StigDataRootPath
 {
-    [cmdletbinding()]
-    param
-    (
-        [parameter(Mandatory=$true)]
-        [version]
-        $ModuleVersion
-    )
+    param ( )
 
-    return "$((Get-Module -Name PowerStig -ListAvailable |
-        Where-Object {$PSItem.Version -eq $ModuleVersion}).ModuleBase)\StigData"
+    return Resolve-Path -Path "$PsScriptRoot\..\StigData"
 }
 
 <#
@@ -65,7 +58,7 @@ function Get-StigFileList
     )
 
     #
-    $stigFilePath     = Resolve-Path -Path $PSScriptRoot\..\..\src\stigData
+    $stigFilePath     = Get-StigDataRootPath
     $stigVersionFiles = Get-ChildItem -Path $stigFilePath -Exclude "*.org*"
 
     $stigVersionFiles
@@ -100,7 +93,7 @@ function Get-StigVersionTable
 
     $include = Import-PowerShellDataFile -Path $PSScriptRoot\CompositeResourceFilter.psd1
 
-    $path = "$PsScriptRoot\..\StigData\Processed"
+    $path = "$(Get-StigDataRootPath)\Processed"
 
     $versions = Get-ChildItem -Path $path -Exclude "*.org.*", "*.xsd" -Include $include.$CompositeResourceName -File -Recurse
 

@@ -33,7 +33,7 @@ try
 
         Context 'Registry' {
             $hasAllSettings = $true
-            $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
+            $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
             $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match "\[Registry\]"}
 

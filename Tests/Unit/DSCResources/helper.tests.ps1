@@ -1,4 +1,4 @@
-[String] $script:moduleRoot = Split-Path -Parent ( Split-Path -Parent $PSScriptRoot )
+[String] $script:moduleRoot = Split-Path -Parent ( Split-Path -Parent ( Split-Path -Parent $PSScriptRoot ) )
 
 Import-Module -Name ( Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1' )
 
@@ -17,8 +17,8 @@ Describe "Functions" {
 
         $title = Get-ResourceTitle -Rule $xml.DISASTIG.RegistryRule.Rule
 
-        It 'Title Should Exist' {
-            $title | Should Not BeNullOrEmpty
+        It 'Title Should be in the correct format' {
+            $title | Should Be "[V-1075][low][Display Shutdown Button]"
         }
     }
 
