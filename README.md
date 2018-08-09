@@ -1,27 +1,32 @@
 # PowerSTIG
 
-|Branch|Status|
-| ---- | ---- |
-| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) |
-| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) |
+**PowerStig** is a PowerShell module that contains several different components to support STIG automation.
 
-## Project List
+1. A module to extract settings from check-content elements of the xccdf
+1. Parsed Stig data that can be used by other components of this module or additional automation
+1. A module with PowerShell classes to provide a way of retrieving the parsed STIG data and documenting deviations
+    1. Provides a method to apply exceptions to a setting
+    1. Provides a method to exclude a rule
+    1. Provides a method to exclude an entire class of rules
+1. Windows PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items
+1. A module to create checklists and other types of documentation (Coming soon)
 
-| Project Name | Decscription |
-| ------------ | ------------ |
-| [PowerStig](https://github.com/Microsoft/PowerStig) | A data module that other modules in the PowerStig project reference.
-| [PowerStig.Tests](https://github.com/Microsoft/PowerStig.Tests) | A module that contains helper functions used across all pojects.
-| [PowerStigDsc](https://github.com/Microsoft/PowerStigDsc) | A Composite DSC resource to apply and Audit STIG settings.
+This project has adopted the [Microsoft Open Source Code of Conduct](
+  https://opensource.microsoft.com/codeofconduct/).
+For more information see the [Code of Conduct FAQ](
+  https://opensource.microsoft.com/codeofconduct/faq/)
+or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions
+or comments.
 
-## Released Modules
+|Branch|Status|Description|
+| ---- | ---- | --- |
+| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) | Ccontains the latest release - no contributions should be made directly to this branch. |
+| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) | Where contributions should be proposed by contributors as pull requests. This branch is merged into the master branch, and be released to [PowerShell Gallery](https://www.powershellgallery.com/).
+ |
 
-To see a list of **all** released PowerStig modules, go to the [PowerShell Gallery](https://www.powershellgallery.com/items?q=powerstig&x=19&y=15).
+## Released Module
 
-We recommend that you use PowerShellGet to install PowerStig modules:
-
-```powershell
-Install-Module -Name < module name >
-```
+To see the released PowerStig module, go to the [PowerShell Gallery](https://www.powershellgallery.com/items?q=powerstig&x=19&y=15). We recommend that you use PowerShellGet to install PowerStig:
 
 For example:
 
@@ -35,12 +40,26 @@ To update a previously installed module use this command:
 Update-Module -Name PowerStig
 ```
 
+## Composite Resources
+
+* [Browser](https://github.com/Microsoft/PowerStigDsc/wiki/Browser): Provides a mechanism to manage Browser STIG settings.
+
+* [SqlServer](https://github.com/Microsoft/PowerStigDsc/wiki/SqlServer): Provides a mechanism to manage SqlServer STIG settings.
+
+* [WindowsDnsServer](https://github.com/Microsoft/PowerStigDsc/wiki/WindowsDnsServer): Provides a mechanism to manage Windows DNS Server STIG settings.
+
+* [WindowsFirewall](https://github.com/Microsoft/PowerStigDsc/wiki/WindowsFirewall): Provides a mechanism to manage the Windows Firewall STIG settings.
+
+* [WindowsServer](https://github.com/Microsoft/PowerStigDsc/wiki/WindowsServer): Provides a mechanism to manage the Windows Server STIG settings.
+
 ## Contributing
 
 You are more than welcome to contribute to the development of PowerStig.
 There are several different ways you can help.
 You can create new convert modules, add test automation, improve documentation, fix existing issues, or open new ones.
 See our [contributing guide](CONTRIBUTING.md) for more info on how to become a contributor.
+If you would like to contribute to a Composite Resource, please check out common DSC Resources [contributing guidelines](https://github.com/PowerShell/DscResources/blob/master/CONTRIBUTING.md).
+
 Thank you to everyone that has reviewed the project and provided feedback through issues.
 We are especially thankful for those who have contributed pull requests to the code and documentation.
 
@@ -60,6 +79,11 @@ We are especially thankful for those who have contributed pull requests to the c
 ## Versions
 
 ### Unreleased
+
+* Merged PowerStigDsc into PowerStig so there is only one module to maintain
+  * Replaced PowerStig Technology Class with Enumeration
+  * Added script module back to manifest
+  * Added DotNetFramework composite resource
 
 ### 1.1.0.0
 

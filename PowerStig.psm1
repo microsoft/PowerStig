@@ -5,7 +5,7 @@ using module .\Module\Common\Common.psm1
 using module .\Module\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
 using module .\Module\Stig.SkippedRule\Stig.SkippedRule.psm1
 using module .\Module\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
-using module .\Module\Stig.StigData\Stig.StigData.psm1 
+using module .\Module\Stig.StigData\Stig.StigData.psm1
 using module .\Module\Stig.StigException\Stig.StigException.psm1
 using module .\Module\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
@@ -18,4 +18,3 @@ Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig.Main" 
 }
 
 Export-ModuleMember -Function @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList')
-

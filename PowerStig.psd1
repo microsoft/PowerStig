@@ -34,8 +34,38 @@ PowerShellVersion = '5.1'
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
 CLRVersion = '4.0'
 
+# Modules that must be imported into the global environment prior to importing this module
+RequiredModules  = @(
+    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.1.0.0'},
+    @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.3.0.0'},
+    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '11.4.0.0'},
+    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.9.0.0'},
+    @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
+    @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
+)
+
+# DSC resources to export from this module
+DscResourcesToExport = @(
+    'Browser',
+    'DotNetFramework',
+    'SqlServer',
+    'WindowsDnsServer',
+    'WindowsFirewall',
+    'WindowsServer'
+)
+
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList'
+FunctionsToExport = @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList')
+
+# Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
+CmdletsToExport = @()
+
+# Variables to export from this module
+VariablesToExport = @()
+
+# Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
+AliasesToExport = @()
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
@@ -60,6 +90,6 @@ Updates
 
 * Updated SQL STIG code to account for SQL STIGS being added in PowerStigDsc
 * Update to PowerStig.psm1 to fix issue were StigData class was not accessible to PowerStigDsc'
-        } # End of PSData hashtable
-    } # End of PrivateData hashtable
+        }
+    }
 }
