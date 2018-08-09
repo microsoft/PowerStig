@@ -21,7 +21,7 @@ skip_commits:
 
 install:
   - ps: Write-Verbose -Message "PowerShell version $($PSVersionTable.PSVersion)" -Verbose
-  - ps: (Import-PowerShellDataFile "$env:APPVEYOR_BUILD_FOLDER\PowerStigDsc.psd1").RequiredModules |
+  - ps: (Import-PowerShellDataFile "$env:APPVEYOR_BUILD_FOLDER\PowerStig.psd1").RequiredModules |
         ForEach-Object { Install-Module $PSItem.moduleName -RequiredVersion $PSItem.ModuleVersion -Repository PSGallery -Scope CurrentUser -Force }
   - git clone https://github.com/PowerShell/DscResource.Tests
   - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
