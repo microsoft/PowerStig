@@ -50,7 +50,6 @@ Class ProcessMitigationRule:STIG
 
         .DESCRIPTION
 
-        .EXAMPLE
     #>
     [void] SetMitigationTargetName ()
     {
@@ -67,7 +66,6 @@ Class ProcessMitigationRule:STIG
 
         .DESCRIPTION
 
-        .EXAMPLE
     #>
     [void] SetMitigationToEnable ()
     {
@@ -86,7 +84,6 @@ Class ProcessMitigationRule:STIG
 
         .PARAMETER MitigationTarget
 
-        .EXAMPLE
     #>
     static [bool] HasMultipleRules ( [string] $MitigationTarget )
     {
@@ -100,7 +97,6 @@ Class ProcessMitigationRule:STIG
 
         .PARAMETER MitigationTarget
 
-        .EXAMPLE
     #>
     static [string[]] SplitMultipleRules ( [string] $MitigationTarget )
     {
