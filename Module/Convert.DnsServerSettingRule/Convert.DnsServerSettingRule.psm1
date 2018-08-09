@@ -14,14 +14,17 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into an Dns Server
+        Setting object
     .DESCRIPTION
-
+        The DnsServerSettingRule class is used to extract the Dns Server settings
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        DNS server setting, it is passed to the DnsServerSettingRule class for
+        parsing and validation.
     .PARAMETER PropertyName
-
+        The name of the property to configure
     .PARAMETER PropertyValue
-
-    .EXAMPLE
+        The value to set the proerty to
 #>
 Class DnsServerSettingRule : STIG
 {
@@ -31,10 +34,8 @@ Class DnsServerSettingRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a DnsServerSettingRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -47,10 +48,12 @@ Class DnsServerSettingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the DNS server setting name from the check-content and sets
+            the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the DNS server setting name from the xccdf content and sets the
+            value. If the DNS server setting that is returned is not a valid name,
+            the parser status is set to fail.
     #>
     [void] SetDnsServerPropertyName ( )
     {
@@ -64,10 +67,12 @@ Class DnsServerSettingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the DNS server setting value from the check-content and
+            sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the DNS server setting value from the xccdf content and sets
+            the value. If the DNS server setting that is returned is not a valid
+            property, the parser status is set to fail.
     #>
     [void] SetDnsServerPropertyValue ( )
     {

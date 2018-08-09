@@ -14,20 +14,20 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into a document object
     .DESCRIPTION
-
-    .EXAMPLE
+        The DocumentRule class is used to extract the documentation requirements
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        document rule, it is passed to the DocumentRule class for parsing
+        and validation.
 #>
 Class DocumentRule : STIG
 {
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a DocumentRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -38,20 +38,15 @@ Class DocumentRule : STIG
 
     <#
         .SYNOPSIS
-            Default constructor
-
+            Constructor that fully populates the required properties
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Constructor that fully populates the required properties
         .PARAMETER Id
             The STIG ID
-
         .PARAMETER Severity
             The STIG Severity
-
         .PARAMETER Title
             The STIG Title
-
         .PARAMETER RawString
             The chcek-content element of the STIG xccdf
     #>
@@ -66,13 +61,13 @@ Class DocumentRule : STIG
 
     <#
         .SYNOPSIS
-
+            Converts an existing rule into a document rule
         .DESCRIPTION
-
+            Provides a way to convert stig rules that have already been parsed
+            into a document rule type. There are several instances where a STIG
+            rule needs to be documented if configure a certain way.
         .PARAMETER RuleToConvert
             A STIG rule that has already been parsed.
-
-        .EXAMPLE
     #>
     static [DocumentRule] ConvertFrom ( [object] $RuleToConvert )
     {

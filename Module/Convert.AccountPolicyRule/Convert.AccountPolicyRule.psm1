@@ -15,20 +15,15 @@ Foreach ($supportFile in $supportFileList)
 <#
     .SYNOPSIS
         Convert the contents of an xccdf check-content element into an Account Policy object
-
     .DESCRIPTION
         The AccountPolicyRule class is used to extract the Account Policy Settings
         from the check-content of the xccdf. Once a STIG rule is identifed as an
         Account Policy rule, it is passed to the AccountPolicyRule class for parsing
         and validation.
-
     .PARAMETER PolicyName
         The name of the account policy
-
     .PARAMETER PolicyValue
         The value the account policy should be set to.
-
-    .EXAMPLE
 #>
 Class AccountPolicyRule : STIG
 {
@@ -38,10 +33,8 @@ Class AccountPolicyRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a AccountPolicyRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -55,7 +48,6 @@ Class AccountPolicyRule : STIG
     <#
         .SYNOPSIS
             Gets the account policy name from the xccdf content and sets the Policy Name.
-
         .DESCRIPTION
             Gets the account policy name from the xccdf content and sets the Policy Name.
             If the account policy that is returned is not a valid account policy Name, the
@@ -74,7 +66,6 @@ Class AccountPolicyRule : STIG
     <#
         .SYNOPSIS
             Looks for a range of valid values
-
         .DESCRIPTION
             When a range of valid values is discovered, the range needs to be extracted out
             so. This method tests for ranges in the check-content.
@@ -94,7 +85,6 @@ Class AccountPolicyRule : STIG
     <#
         .SYNOPSIS
             Gets the account policy value from the xccdf content and sets the Policy value.
-
         .DESCRIPTION
             Gets the account policy value from the xccdf content and sets the Policy value.
             If the value is determined to be invalid, it sets the parser status to failed.
@@ -112,7 +102,6 @@ Class AccountPolicyRule : STIG
     <#
         .SYNOPSIS
             Sets the organizational value with the correct range.
-
         .DESCRIPTION
             A range of valid values is supported with PowerShell expressions. If
             a value is allowed to be between 1 and 3, then the PowerShell

@@ -14,16 +14,18 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into a mime type object
     .DESCRIPTION
-
+        The MimeTypeRule class is used to extract mime types from the
+        check-content of the xccdf. Once a STIG rule is identifed as an
+        mime type rule, it is passed to the MimeTypeRule class for parsing
+        and validation.
     .PARAMETER Extension
-
+        The Name of the extension
     .PARAMETER MimeType
-
+        The mime type
     .PARAMETER Ensure
-
-    .EXAMPLE
+        A present or absent flag
 #>
 Class MimeTypeRule : STIG
 {
@@ -34,10 +36,8 @@ Class MimeTypeRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a MimeTypeRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -50,10 +50,11 @@ Class MimeTypeRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the extension name from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the extension name from the xccdf content and sets the value.
+            If the extension name that is returned is not valid, the parser
+            status is set to fail
     #>
     [void] SetExtension ()
     {
@@ -67,10 +68,11 @@ Class MimeTypeRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the mime type from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the mime type from the xccdf content and sets the value.
+            If the mime type that is returned is not valid, the parser
+            status is set to fail
     #>
     [void] SetMimeType ()
     {
@@ -84,10 +86,9 @@ Class MimeTypeRule : STIG
 
     <#
         .SYNOPSIS
-
+            Sets the ensure flag to the provided value
         .DESCRIPTION
-
-        .EXAMPLE
+            Sets the ensure flag to the provided value
     #>
     [void] SetEnsure ()
     {
@@ -106,13 +107,20 @@ Class MimeTypeRule : STIG
 
         .PARAMETER CheckContent
 
-        .EXAMPLE
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
         return Test-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) )
     }
 
+    <#
+        .SYNOPSIS
+
+        .DESCRIPTION
+
+        .PARAMETER CheckContent
+
+    #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         return ( Split-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )

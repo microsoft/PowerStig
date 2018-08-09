@@ -14,14 +14,16 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into a group object
     .DESCRIPTION
-
+        The GroupRule class is used to extract the group membership settings
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        group rule, it is passed to the GroupRule class for parsing
+        and validation.
     .PARAMETER GroupName
-
+        The Name of the group to configure
     .PARAMETER MembersToExclude
-
-    .EXAMPLE
+        The list of memmbers that are not allowed to be in the group
 #>
 Class GroupRule : STIG
 {
@@ -31,10 +33,8 @@ Class GroupRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a GroupRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -47,10 +47,11 @@ Class GroupRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the group name from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the group name from the xccdf content and sets the value. If
+            the group that is returned is not a valid name, the parser status
+            is set to fail.
     #>
     [void] SetGroupName ()
     {
@@ -64,10 +65,11 @@ Class GroupRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the list of group names from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the list of group name from the xccdf content and sets the value.
+            If the list that is returned is not a valid, the parser status is
+            set to fail
     #>
     [void] SetMembersToExclude ()
     {

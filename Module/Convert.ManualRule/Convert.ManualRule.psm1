@@ -14,20 +14,19 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into a Manual check object
     .DESCRIPTION
-
-    .EXAMPLE
+        The ManualRule class is used to extract the manual checks from the
+        check-content of the xccdf. Once a STIG rule is identifed as a manual
+        rule, it is passed to the ManualRule class for parsing and validation.
 #>
 Class ManualRule : STIG
 {
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a ManualRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>

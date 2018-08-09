@@ -14,16 +14,18 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into an Audit Policy object
     .DESCRIPTION
-
+        The AuditPolicyRule class is used to extract the Audit Policy Settings
+        from the check-content of the xccdf. Once a STIG rule is identified as an
+        Audit Policy rule, it is passed to the AuditPolicyRule class for parsing
+        and validation.
     .PARAMETER Subcategory
-
+        The name of the subcategory to configure
     .PARAMETER AuditFlag
-
+        The Success or failure flag
     .PARAMETER Ensure
-
-    .EXAMPLE
+        A present or absent flag
 #>
 Class AuditPolicyRule : STIG
 {
@@ -34,10 +36,8 @@ Class AuditPolicyRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts an xccdf stig rule element into a AuditPolicyRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -50,10 +50,11 @@ Class AuditPolicyRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the subcategory name from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the audit policy subcategory from the xccdf content and sets the
+            value. If the audit policy subcategory that is returned is not a
+            valid subcategory, the parser status is set to fail.
     #>
     [void] SetSubcategory ()
     {
@@ -67,10 +68,11 @@ Class AuditPolicyRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the subcategory flag from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the audit policy flag from the xccdf content and sets the value.
+            If the audit policy flag that is returned is not a valid flag, the
+            parser status is set to fail.
     #>
     [void] SetAuditFlag ()
     {
@@ -84,12 +86,11 @@ Class AuditPolicyRule : STIG
 
     <#
         .SYNOPSIS
-
+            Sets the ensure flag to the provided value
         .DESCRIPTION
-
+            Sets the ensure flag to the provided value
         .PARAMETER EnsureFlag
-
-        .EXAMPLE
+            The value the Ensure flag should be set to
     #>
     [void] SetEnsureFlag ( [Ensure] $EnsureFlag )
     {

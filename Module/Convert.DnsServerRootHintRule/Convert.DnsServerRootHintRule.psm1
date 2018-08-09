@@ -14,14 +14,17 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into an Dns Server
+        Root Hint object
     .DESCRIPTION
-
+        The DnsServerRootHintRule class is used to extract the Dns Server Root Hints
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        DnsServerRootHint, it is passed to the DnsServerRootHintRule class for
+        parsing and validation.
     .PARAMETER HostName
-
+        The host name of the root hint server
     .PARAMETER IpAddress
-
-    .EXAMPLE
+        The ip address of the root hint server
 #>
 Class DnsServerRootHintRule : STIG
 {
@@ -31,10 +34,8 @@ Class DnsServerRootHintRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a DnsServerRootHintRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>

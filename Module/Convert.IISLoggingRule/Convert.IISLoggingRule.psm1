@@ -14,9 +14,13 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into an IIS
+        Logging object
     .DESCRIPTION
-
+        The IisLoggingRule class is used to extract the IIS Log Settings from
+        the check-content of the xccdf. Once a STIG rule is identified as an
+        IIS Log rule, it is passed to the IisLoggingRule class for parsing
+        and validation.
     .PARAMETER LogCustomFieldEntry
 
     .PARAMETER LogFlags
@@ -27,7 +31,6 @@ Foreach ($supportFile in $supportFileList)
 
     .PARAMETER LogTargetW3C
 
-    .EXAMPLE
 #>
 Class IisLoggingRule : STIG
 {
@@ -40,10 +43,8 @@ Class IisLoggingRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a IisLoggingRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -54,10 +55,11 @@ Class IisLoggingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the log custom field from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the log custom field from the xccdf content and sets the value.
+            If the log custom field that is returned is not valid, the parser
+            status is set to fail
     #>
     [void] SetLogCustomFields ()
     {
@@ -68,10 +70,11 @@ Class IisLoggingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the log flag from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the log flag from the xccdf content and sets the value. If the
+            log flag that is returned is not valid, the parser status is set
+            to fail
     #>
     [void] SetLogFlags ()
     {
@@ -85,10 +88,11 @@ Class IisLoggingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the log format from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the log format from the xccdf content and sets the value. If the
+            log format that is returned is not valid, the parser status is set
+            to fail.
     #>
     [void] SetLogFormat ()
     {
@@ -102,10 +106,11 @@ Class IisLoggingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the log period from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the log period from the xccdf content and sets the value. If the
+            log period that is returned is not valid, the parser status is set
+            to fail.
     #>
     [void] SetLogPeriod ()
     {
@@ -119,10 +124,11 @@ Class IisLoggingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the log target from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the log target from the xccdf content and sets the value. If the
+            log target that is returned is not valid, the parser status is set
+            to fail.
     #>
     [void] SetLogTargetW3C ()
     {
@@ -136,10 +142,10 @@ Class IisLoggingRule : STIG
 
     <#
         .SYNOPSIS
-
+            Validates the parsed data and sets the parser status
         .DESCRIPTION
-
-        .EXAMPLE
+            Compares the created rule object against and base stig object to
+            make sure that all of the properties have be set to valid values.
     #>
     [void] SetStatus ()
     {

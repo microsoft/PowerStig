@@ -23,7 +23,6 @@ Foreach ($supportFile in $supportFileList)
 
     .PARAMETER Disable
 
-    .EXAMPLE
 #>
 Class ProcessMitigationRule:STIG
 {
@@ -34,10 +33,8 @@ Class ProcessMitigationRule:STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf stig rule element into a ProcessMitigationRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
