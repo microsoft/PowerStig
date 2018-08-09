@@ -20,10 +20,12 @@ skip_commits:
 #---------------------------------#
 
 install:
-  - git clone https://github.com/PowerShell/DscResource.Tests
-  - git clone https://github.com/Microsoft/PowerStig.Tests
   - ps: Write-Verbose -Message "PowerShell version $($PSVersionTable.PSVersion)" -Verbose
+  - ps: (Import-PowerShellDataFile "$env:APPVEYOR_BUILD_FOLDER\PowerStigDsc.psd1").RequiredModules |
+        ForEach-Object { Install-Module $PSItem.moduleName -RequiredVersion $PSItem.ModuleVersion -Repository PSGallery -Scope CurrentUser -Force }
+  - git clone https://github.com/PowerShell/DscResource.Tests
   - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
+  - git clone https://github.com/Microsoft/PowerStig.Tests
   - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\PowerStig.Tests\PowerStig.Tests.psd1"
   - ps: Invoke-AppveyorInstallTask
 
