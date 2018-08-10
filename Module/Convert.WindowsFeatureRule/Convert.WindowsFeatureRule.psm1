@@ -14,14 +14,17 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into a windows
+        feature object
     .DESCRIPTION
-
+        The WindowsFeatureRule class is used to extract the windows feature from
+        the check-content of the xccdf. Once a STIG rule is identified as a
+        windows feature rule, it is passed to the WindowsFeatureRule class for
+        parsing and validation.
     .PARAMETER FeatureName
-
+        The windows feature name
     .PARAMETER InstallState
-
-    .EXAMPLE
+        The state the windows feature should be in
 #>
 Class WindowsFeatureRule : STIG
 {
@@ -31,10 +34,8 @@ Class WindowsFeatureRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf STIG rule element into a WindowsFeatureRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -47,10 +48,10 @@ Class WindowsFeatureRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the feature name from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the feature name from the xccdf content and sets the value. If
+            the name that is returned is not valid, the parser status is set to fail.
     #>
     [void] SetFeatureName ()
     {
@@ -64,12 +65,10 @@ Class WindowsFeatureRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the feature state from the check-content and sets the value
         .DESCRIPTION
-
-        .PARAMETER StigRule
-
-        .EXAMPLE
+            Gets the feature state from the xccdf content and sets the value. If
+            the state that is returned is not valid, the parser status is set to fail.
     #>
     [void] SetFeatureInstallState ()
     {
@@ -83,12 +82,12 @@ Class WindowsFeatureRule : STIG
 
     <#
         .SYNOPSIS
-
+            Tests if a rule contains multiple checks
         .DESCRIPTION
-
-        .PARAMETER StigRule
-
-        .EXAMPLE
+            Search the rule text to determine if multiple {0} are defined
+        .PARAMETER FeatureName
+            The feature name from the rule text from the check-content element
+            in the xccdf
     #>
     static [bool] HasMultipleRules ( [string] $FeatureName )
     {
@@ -97,12 +96,16 @@ Class WindowsFeatureRule : STIG
 
     <#
         .SYNOPSIS
-
+            Splits a rule into multiple checks
         .DESCRIPTION
-
-        .PARAMETER StigRule
-
-        .EXAMPLE
+            Once a rule has been found to have multiple checks, the rule needs
+            to be split. This method splits a windows feature into multiple rules.
+            Each split rule id is appended with a dot and letter to keep reporting
+            per the ID consistent. An example would be is V-1000 contained 2
+            checks, then SplitMultipleRules would return 2 objects with rule ids
+            V-1000.a and V-1000.b
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
     #>
     static [string[]] SplitMultipleRules ( [string] $FeatureName )
     {

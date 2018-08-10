@@ -14,14 +14,15 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Extracts the security option from the check-content and sets the value
     .DESCRIPTION
-
+        Gets the security option from the xccdf content and sets the value. If
+        the security option that is returned is not valid, the parser status is
+        set to fail.
     .PARAMETER OptionName
-
+        The security option name
     .PARAMETER OptionValue
-
-    .EXAMPLE
+        The security option value
 #>
 Class SecurityOptionRule : STIG
 {
@@ -31,10 +32,8 @@ Class SecurityOptionRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf STIG rule element into a SecurityOptionRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -47,10 +46,11 @@ Class SecurityOptionRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the security option name from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the security option name from the xccdf content and sets the
+            value. If the name that is returned is not valid, the parser status
+            is set to fail.
     #>
     [void] SetOptionName ()
     {
@@ -63,10 +63,11 @@ Class SecurityOptionRule : STIG
 
     <#
         .SYNOPSIS
-
+            Checks the string for text that indicates a range of acceptable
+            acceptable values are allowed by the STIG.
         .DESCRIPTION
-
-        .EXAMPLE
+            Checks the string for text that indicates a range of acceptable
+            acceptable values are allowed by the STIG.
     #>
     [bool] TestOptionValueForRange ()
     {
@@ -80,10 +81,11 @@ Class SecurityOptionRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the security option value from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the security option value from the xccdf content and sets the
+            value. If the value that is returned is not valid, the parser status
+            is set to fail.
     #>
     [void] SetOptionValue ()
     {
@@ -97,10 +99,12 @@ Class SecurityOptionRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the security option value range from the check-content and
+            sets the organizational test string
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the security option value range from the xccdf content and sets
+            the organizational test string. If the organizational value that is
+            returned is not valid, the parser status is set to fail.
     #>
     [void] SetOptionValueRange ()
     {

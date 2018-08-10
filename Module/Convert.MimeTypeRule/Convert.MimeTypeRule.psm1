@@ -102,11 +102,11 @@ Class MimeTypeRule : STIG
 
     <#
         .SYNOPSIS
-
+            Tests if a rule contains multiple checks
         .DESCRIPTION
-
+            Search the rule text to determine if multiple mime types are defined
         .PARAMETER CheckContent
-
+            The rule text from the check-content element in the xccdf
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
@@ -115,12 +115,18 @@ Class MimeTypeRule : STIG
 
     <#
         .SYNOPSIS
-
+            Splits a rule into multiple checks
         .DESCRIPTION
-
+            Once a rule has been found to have multiple checks, the rule needs
+            to be split. This method splits a mime type into multiple rules. Each
+            split rule id is appended with a dot and letter to keep reporting
+            per the ID consistent. An example would be is V-1000 contained 2
+            checks, then SplitMultipleRules would return 2 objects with rule ids
+            V-1000.a and V-1000.b
         .PARAMETER CheckContent
-
+            The rule text from the check-content element in the xccdf
     #>
+
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         return ( Split-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )

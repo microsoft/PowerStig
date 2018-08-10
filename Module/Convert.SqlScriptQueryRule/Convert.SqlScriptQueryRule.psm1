@@ -13,17 +13,20 @@ Foreach ($supportFile in $supportFileList)
 # Header
 
     <#
-        .SYNOPSIS
-
-        .DESCRIPTION
-
-        .PARAMETER GetScript
-
-        .PARAMETER TestScript
-
-        .PARAMETER SetScript
-
-        .EXAMPLE
+    .SYNOPSIS
+        Convert the contents of an xccdf check-content element into a
+        SqlScriptQueryRule object
+    .DESCRIPTION
+        The SqlScriptQueryRule class is used to extract the SQL Server settings
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        SQL script query rule, it is passed to the SqlScriptQueryRule class for
+        parsing and validation.
+    .PARAMETER GetScript
+        The Get script content
+    .PARAMETER TestScript
+        The test script content
+    .PARAMETER SetScript
+        The set script content
     #>
 Class SqlScriptQueryRule : STIG
 {
@@ -34,10 +37,8 @@ Class SqlScriptQueryRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf STIG rule element into a SqlScriptQueryRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -50,12 +51,13 @@ Class SqlScriptQueryRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the get script from the check-content and sets the value
         .DESCRIPTION
-
+            Gets the get script from the xccdf content and sets the value. If
+            the script that is returned is not valid, the parser status is set
+            to fail.
         .PARAMETER RuleType
-
-        .EXAMPLE
+            The type of rule to get the get script for
     #>
     [void] SetGetScript ( [string] $RuleType )
     {
@@ -69,12 +71,13 @@ Class SqlScriptQueryRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the test script from the check-content and sets the value
         .DESCRIPTION
-
+            Gets the test script from the xccdf content and sets the value. If
+            the script that is returned is not valid, the parser status is set
+            to fail.
         .PARAMETER RuleType
-
-        .EXAMPLE
+            The type of rule to get the test script for
     #>
     [void] SetTestScript ( $RuleType )
     {
@@ -88,14 +91,15 @@ Class SqlScriptQueryRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the set script from the check-content and sets the value
         .DESCRIPTION
-
+            Gets the set script from the xccdf content and sets the value. If
+            the script that is returned is not valid, the parser status is set
+            to fail.
         .PARAMETER RuleType
-
+            The type of rule to get the set script for
         .PARAMETER FixText
-
-        .EXAMPLE
+            The set script to run
     #>
     [void] SetSetScript ( [string] $RuleType, [string[]] $FixText )
     {
@@ -111,12 +115,11 @@ Class SqlScriptQueryRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the rule type from the check-content and sets the value
         .DESCRIPTION
-
+            Gets the rule type from the xccdf content and sets the value
         .PARAMETER CheckContent
-
-        .EXAMPLE
+            The rule text from the check-content element in the xccdf
     #>
     [string] GetRuleType ( [string[]] $CheckContent )
     {

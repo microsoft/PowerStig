@@ -13,41 +13,32 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        The base class for all STIG rule types
     .DESCRIPTION
-
+        The base class for all STIG rule types to support a common initializer and
+        set of methods that apply to all rule types. PowerShell does not support
+        abstract classes, but this class is not intended to be used directly.
     .PARAMETER Id
         The STIG ID
-
     .PARAMETER Title
         Title string from STIG
-
     .PARAMETER Severity
         Severity data from STIG
-
     .PARAMETER ConversionStatus
         Module processing status of the raw string
-
     .PARAMETER RawString
         The raw string from the check-content element of the STIG item
-
     .PARAMETER SplitCheckContent
         The raw check string split into multiple lines for pattern matching
-
     .PARAMETER IsNullOrEmpty
         A flag to determine if a value is supposed to be empty or not.
         Some items should be empty, but there needs to be a way to validate that empty is on purpose.
-
     .PARAMETER OrganizationValueRequired
         A flag to determine if a local organizational setting is required.
-
     .PARAMETER OrganizationValueTestString
         A string that can be invoked to test the chosen organizational value.
-
     .PARAMETER DscResource
         Defines the DSC resource used to configure the rule
-
-    .EXAMPLE
 #>
 Class STIG : ICloneable
 {
@@ -64,10 +55,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Default constructor
         .DESCRIPTION
-
-        .EXAMPLE
+            This is the base class constructor
     #>
     STIG ()
     {
@@ -77,11 +67,10 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-            Default constructor
-
+            The class initializer
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Extracts all of the settings from the xccdf rule that are needed to
+            instantiate the base class
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -104,8 +93,8 @@ Class STIG : ICloneable
 
         <#
             This hidden property is used by all of the methods and passed to subfunctions instead of
-            splitting the sting in every function. THe Select-String removes any blank lines, so
-            that the Mandatory parameter validataion does not fail and to prevent the need for a
+            splitting the sting in every function. The Select-String removes any blank lines, so
+            that the Mandatory parameter validation does not fail and to prevent the need for a
             work around by allowing empty strings in mandatory parameters.
         #>
         $this.SplitCheckContent = [STIG]::SplitCheckContent( $this.rawString )
@@ -117,9 +106,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-            Default constructor
-
+            Creates a shallow copy of the current
         .DESCRIPTION
+            Creates a shallow copy of the current
     #>
     [Object] Clone ()
     {
@@ -128,12 +117,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Tests if the rule already exists
         .DESCRIPTION
-
+            Compares the rule with existing converted rules
         .PARAMETER ReferenceObject
-
-        .EXAMPLE
+            The existing converted rules
     #>
     [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
     {
@@ -142,10 +130,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Tags a rule as being duplicate
         .DESCRIPTION
-
-        .EXAMPLE
+            Is a rule is a duplicate, tag the title for easy filtering and reporting
     #>
     [void] SetDuplicateTitle ()
     {
@@ -154,12 +141,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-            Fail a rule conversion if a property is null or empty
+            Sets the conversion status
         .DESCRIPTION
-
+            Sets the conversion status
         .PARAMETER Value
-
-        .EXAMPLE
+            The value to be tested
     #>
     [Boolean] SetStatus ( [String] $Value )
     {
@@ -176,14 +162,13 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-            Fail a rule conversion if a property is null or empty and not specifically allowed to be
+            Sets the conversion status with an allowed blank value
         .DESCRIPTION
-
+            Sets the conversion status with an allowed blank value
         .PARAMETER Value
-
+            The value to be tested
         .PARAMETER AllowNullOrEmpty
-
-        .EXAMPLE
+            A flag to allow blank values
     #>
     [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
     {
@@ -200,10 +185,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Sets the IsNullOrEmpty value to true
         .DESCRIPTION
-
-        .EXAMPLE
+            Sets the IsNullOrEmpty value to true
     #>
     [void] SetIsNullOrEmpty ()
     {
@@ -212,10 +196,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Sets the OrganizationValueRequired value to true
         .DESCRIPTION
-
-        .EXAMPLE
+            Sets the OrganizationValueRequired value to true
     #>
     [void] SetOrganizationValueRequired ()
     {
@@ -224,12 +207,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Gets the organization value test string
         .DESCRIPTION
-
+            Gets the organization value test string
         .PARAMETER TestString
-
-        .EXAMPLE
+            The string to extract the
     #>
     [String] GetOrganizationValueTestString ( [String] $TestString )
     {
@@ -238,10 +220,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Converts the object into a hashtable
         .DESCRIPTION
-
-        .EXAMPLE
+            Converts the object into a hashtable
     #>
     [hashtable] ConvertToHashTable ()
     {
@@ -250,10 +231,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Sets the Dsc resource that can use the object
         .DESCRIPTION
-
-        .EXAMPLE
+            Sets the Dsc resource that can use the object
     #>
     [void] SetStigRuleResource ()
     {
@@ -267,12 +247,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Splits the check-content element in the xccdf into an array
         .DESCRIPTION
-
+            Splits the check-content element in the xccdf into an array
         .PARAMETER CheckContent
-
-        .EXAMPLE
+            The rule text from the check-content element in the xccdf
     #>
     static [string[]] SplitCheckContent ( [String] $CheckContent )
     {
@@ -285,12 +264,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Get the fixtext from the xccdf
         .DESCRIPTION
-
+            Get the fixtext from the xccdf
         .PARAMETER StigRule
-
-        .EXAMPLE
+            The StigRule to extract the fix text from
     #>
     static [string[]] GetFixText ( [xml.xmlelement] $StigRule )
     {
@@ -305,12 +283,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Returns the rule type that is should be converted to
         .DESCRIPTION
-
+            Looks at the check-content data and returns the rule type that is should be converted to.
         .PARAMETER CheckContent
-
-        .EXAMPLE
+            The rule text from the check-content element in the xccdf
     #>
     static [RuleType[]] GetRuleTypeMatchList ( [String] $CheckContent )
     {
@@ -319,12 +296,11 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Looks for the rule to see if it already exists
         .DESCRIPTION
-
+            Looks for the rule to see if it already exists
         .PARAMETER RuleCollection
-
-        .EXAMPLE
+            The global rule collection
     #>
     [Boolean] IsExistingRule ( [object] $RuleCollection )
     {
@@ -336,10 +312,12 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Checks to see if the STIG is a hard coded return value
         .DESCRIPTION
-
-        .EXAMPLE
+            Accepts defeat in that the STIG string data for a select few checks
+            are too unwieldy to parse properly. The OVAL data does not provide
+            much more help in a few of the cases, so the STIG Id's for these
+            checks are hardcoded here to force a fixed value to be returned.
     #>
     [Boolean] IsHardCoded ()
     {
@@ -348,10 +326,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
-        .DESCRIPTIONt
-
-        .EXAMPLE
+            Returns a hard coded conversion value
+        .DESCRIPTION
+            Returns a hard coded conversion value
     #>
     [String] GetHardCodedString ()
     {
@@ -360,10 +337,12 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Checks to see if the STIG org value is a hard coded return value
         .DESCRIPTION
-
-        .EXAMPLE
+            Accepts defeat in that the STIG string data for a select few checks
+            are too unwieldy to parse properly. The OVAL data does not provide
+            much more help in a few of the cases, so the STIG Id's for these
+            checks are hardcoded here to force a fixed value to be returned.
     #>
     [Boolean] IsHardCodedOrganizationValueTestString ()
     {
@@ -372,10 +351,9 @@ Class STIG : ICloneable
 
     <#
         .SYNOPSIS
-
+            Returns a hard coded org value
         .DESCRIPTION
-
-        .EXAMPLE
+            Returns a hard coded org value
     #>
     [String] GetHardCodedOrganizationValueTestString ()
     {

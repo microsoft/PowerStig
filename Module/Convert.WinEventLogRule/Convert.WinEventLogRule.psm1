@@ -14,14 +14,17 @@ Foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-
+        Convert the contents of an xccdf check-content element into a
+        WinEventLogRule object
     .DESCRIPTION
-
+        The WinEventLogRule class is used to extract the windows event log settings
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        windows event log rule, it is passed to the WinEventLogRule class for
+        parsing and validation.
     .PARAMETER LogName
-
+        The name of the log
     .PARAMETER IsEnabled
-
-    .EXAMPLE
+        The enabled status of the log
 #>
 Class WinEventLogRule : STIG
 {
@@ -31,10 +34,8 @@ Class WinEventLogRule : STIG
     <#
         .SYNOPSIS
             Default constructor
-
         .DESCRIPTION
-            Converts a xccdf stig rule element into a {0}
-
+            Converts a xccdf STIG rule element into a WinEventLogRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
@@ -47,10 +48,11 @@ Class WinEventLogRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the event log from the check-content and sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the event log from the xccdf content and sets the value. If
+            the name that is returned is not valid, the parser status is set
+            to fail.
     #>
     [void] SetWinEventLogName ()
     {
@@ -64,14 +66,16 @@ Class WinEventLogRule : STIG
 
     <#
         .SYNOPSIS
-
+            Extracts the event log enabled status from the check-content and
+            sets the value
         .DESCRIPTION
-
-        .EXAMPLE
+            Gets the event log enabled status from the xccdf content and sets the
+            value. If the enabled status that is returned is not valid, the
+            parser status is set to fail.
     #>
     [void] SetWinEventLogIsEnabled ()
     {
-        # the dns stig always sets this to true
+        # The DNS STIG always sets this to true
         $this.IsEnabled = $true
     }
 

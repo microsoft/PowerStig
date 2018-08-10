@@ -116,6 +116,8 @@ Class PermissionRule : STIG
         .DESCRIPTION
             Gets the path defined in the rule from the xccdf content and then
             checks for the existance of multuple entries.
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
@@ -128,8 +130,13 @@ Class PermissionRule : STIG
             Splits mutiple paths from a singel rule into multiple rules
         .DESCRIPTION
             Once a rule has been found to have multiple checks, the rule needs
-            to be split. This method takes the check content and splits it into
-            multiple rules.
+            to be split. This method splits a permission check into multiple rules.
+            Each split rule id is appended with a dot and letter to keep reporting
+            per the ID consistent. An example would be is V-1000 contained 2
+            checks, then SplitMultipleRules would return 2 objects with rule ids
+            V-1000.a and V-1000.b
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
