@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,20 +10,50 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+        Convert the contents of an xccdf check-content element into a WebAppPoolRule object
+    .DESCRIPTION
+        The WebAppPoolRule class is used to extract the webapp pool settings
+        from the check-content of the xccdf. Once a STIG rule is identified as a
+        webapp rule, it is passed to the WebAppPoolRule class for parsing
+        and validation.
+    .PARAMETER Key
+        The name of the key in the web.config file
+    .PARAMETER Value
+        The value the web.config key should be set to
+#>
 Class WebAppPoolRule : STIG
 {
     [string] $Key
     [string] $Value
 
-    # Constructors
+    <#
+        .SYNOPSIS
+            Default constructor
+        .DESCRIPTION
+            Converts a xccdf STIG rule element into a WebAppPoolRule
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     WebAppPoolRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    [void] SetKeyValuePair ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+            Extracts the key value pair from the check-content and sets the value
+        .DESCRIPTION
+            Gets the key value pair from the xccdf content and sets the value.
+            If the value that is returned is not valid, the parser status is
+            set to fail.
+    #>
+    [void] SetKeyValuePair ()
     {
         $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
 
@@ -35,7 +64,13 @@ Class WebAppPoolRule : STIG
         }
     }
 
-    [Boolean] IsOrganizationalSetting ( )
+    <#
+        .SYNOPSIS
+            Tests if and organizational value is required
+        .DESCRIPTION
+            Tests if and organizational value is required
+    #>
+    [Boolean] IsOrganizationalSetting ()
     {
         if ( -not [String]::IsNullOrEmpty( $this.key ) -and [String]::IsNullOrEmpty( $this.value ) )
         {
@@ -43,11 +78,17 @@ Class WebAppPoolRule : STIG
         }
         else
         {
-           return $false
+            return $false
         }
     }
 
-    [void] SetOrganizationValueTestString ( )
+    <#
+        .SYNOPSIS
+            Set the organizational value
+        .DESCRIPTION
+            Extracts the organizational value from the key and then sets the value
+    #>
+    [void] SetOrganizationValueTestString ()
     {
         $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
 
@@ -57,5 +98,6 @@ Class WebAppPoolRule : STIG
             $this.set_OrganizationValueRequired( $true )
         }
     }
+
+    #endregion
 }
-#endregion

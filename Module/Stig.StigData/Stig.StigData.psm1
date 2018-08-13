@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -8,8 +7,8 @@ using module .\..\Stig.SkippedRule\Stig.SkippedRule.psm1
 using module .\..\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
 using module .\..\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
-#endregion
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes a StigData
@@ -20,6 +19,36 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
         the given technology and the implementing organizations specific settings, exceptions, and rules to skip. Upon creation of a
         StigData instance, the resulting Xml is immediately available for those preconditions.
 
+    .PARAMETER StigVersion
+        The document/published version of the Stig to select
+
+    .PARAMETER OrganizationalSettings
+        An array of settings/values specific to an organization to apply to specific rules
+
+    .PARAMETER Technology
+        The type of the technology of the Stig to select
+
+    .PARAMETER TechnologyRole
+        The role of the technology of the Stig to select
+
+    .PARAMETER TechnologyVersion
+        The version of the technology of the Stig to select
+
+    .PARAMETER StigExceptions
+        An array of names of Stig exceptions to apply to specific rules
+
+    .PARAMETER SkippedRuleTypes
+        An array of names of rule types to skip all rules of
+
+    .PARAMETER SkippedRules
+        An array of Stig rules to skip and move into the SkipRule rule type
+
+    .PARAMETER StigXml
+        The loaded Xml document of the Stig loaded from StigPath
+
+    .PARAMETER StigPath
+        The file path to the Stig Xml file in the StigData directory
+
     .EXAMPLE
         $stigData = [StigData]::new([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
 
@@ -28,89 +57,40 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 #>
 Class StigData
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The document/published version of the Stig to select
-    #>
     [Version] $StigVersion
-
-    <#
-        .DESCRIPTION
-            An array of settings/values specific to an organization to apply to specific rules
-    #>
     [OrganizationalSetting[]] $OrganizationalSettings
-
-    <#
-        .DESCRIPTION
-            The type of the technology of the Stig to select
-    #>
     [Technology] $Technology
-
-    <#
-        .DESCRIPTION
-            The role of the technology of the Stig to select
-    #>
     [TechnologyRole] $TechnologyRole
-
-    <#
-        .DESCRIPTION
-            The version of the technology of the Stig to select
-    #>
     [TechnologyVersion] $TechnologyVersion
-
-    <#
-        .DESCRIPTION
-            An array of names of Stig exceptions to apply to specific rules
-    #>
     [StigException[]] $StigExceptions
-
-    <#
-        .DESCRIPTION
-            An array of names of rule types to skip all rules of
-    #>
     [SkippedRuleType[]] $SkippedRuleTypes
-
-    <#
-        .DESCRIPTION
-            An array of Stig rules to skip and move into the SkipRule rule type
-    #>
     [SkippedRule[]] $SkippedRules
-
-    <#
-        .DESCRIPTION
-            The loaded Xml document of the Stig loaded from StigPath
-    #>
     [xml] $StigXml
-
-    <#
-        .DESCRIPTION
-            The file path to the Stig Xml file in the StigData directory
-    #>
     [string] $StigPath
-    #endregion
+
+
     #region Constructor
+
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for StigData. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    StigData()
+    StigData ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for StigData. Returns a ready to use instance of StigData.
 
         .DESCRIPTION
-            A constructor for StigData. Returns a ready to use instance
-            of StigData.
+            A constructor for StigData. Returns a ready to use instance of StigData.
 
         .PARAMETER StigVersion
             The document/published version of the Stig to select
@@ -136,7 +116,7 @@ Class StigData
         .PARAMETER SkippedRules
             An array of Stig rules to skip and move into the SkipRule rule type
     #>
-    StigData([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
+    StigData ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
     {
         if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion)) {
             throw("Technology, TechnologyVersion, and TechnologyRole must be provided.")
@@ -163,8 +143,10 @@ Class StigData
         $this.SetStigPath()
         $this.ProcessStigData()
     }
+
     #endregion
     #region Methods
+
     <#
         .SYNOPSIS
             Determines and sets the StigPath
@@ -384,8 +366,10 @@ Class StigData
             }
         }
     }
+
     #endregion
     #region Static Methods
+
     <#
         .SYNOPSIS
             Returns the root path to the StigData directory
@@ -467,14 +451,14 @@ Class StigData
 
         return $returnList
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion

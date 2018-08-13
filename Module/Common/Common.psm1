@@ -1,7 +1,7 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-#endregion
+# Header
+
 #region Enum
 <#
     STIGS have an associated severity that determines the impact of the finding if it
