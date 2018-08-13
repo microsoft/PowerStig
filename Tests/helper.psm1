@@ -25,7 +25,7 @@ Import-Module $PSScriptRoot\..\PowerStig.psm1
 
 function Get-RequiredStigDataVersion
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     param()
 
     $Manifest = Import-PowerShellDataFile -Path "$relDirectory\$moduleName.psd1"
@@ -49,7 +49,7 @@ function Get-StigDataRootPath
 #>
 function Get-StigFileList
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -78,8 +78,8 @@ function Get-StigFileList
 #>
 function Get-StigVersionTable
 {
-    [outputtype([psobject])]
-    [cmdletbinding()]
+    [OutputType([psobject])]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -126,8 +126,8 @@ function Get-StigVersionTable
 #>
 function Get-ConfigurationName
 {
-    [cmdletbinding()]
-    [outputtype([string[]])]
+    [CmdletBinding()]
+    [OutputType([string[]])]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -156,7 +156,7 @@ function Get-ConfigurationName
 function Get-StigVersionParameterValidateSet
 {
     [OutputType([string])]
-    [cmdletbinding()]
+    [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
@@ -185,10 +185,10 @@ function Get-StigVersionParameterValidateSet
 
 <#
     .SYNOPSIS
-    Get a unique list of valid STIG versions from the StigData
+        Get a unique list of valid STIG versions from the StigData
 
-    .PARAMETER CompositeResourceName
-    The resource to filter the results
+    .PARAMETER TechnologyRoleFilter
+        The technology role to filter the results
 #>
 
 function Get-ValidStigVersionNumbers

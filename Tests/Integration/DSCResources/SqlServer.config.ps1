@@ -21,9 +21,9 @@ Configuration SqlServerInstance_config
     {
         SqlServer Instance
         {
-            SqlVersion = $SqlVersion
-            SqlRole = $SqlRole
-            Stigversion = $StigVersion
+            SqlVersion     = $SqlVersion
+            SqlRole        = $SqlRole
+            Stigversion    = $StigVersion
             ServerInstance = 'TestServer'
         }
     }
@@ -46,7 +46,7 @@ Configuration SqlServerDatabase_config
         $StigVersion
     )
 
-    Import-DscResource -ModuleName PowerStigDsc
+    Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {

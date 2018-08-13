@@ -213,12 +213,9 @@ function Get-StigRuleList
         {
             # Global added so that the stig rule can be referenced later
             $global:stigRuleGlobal = $stigRule
-            $informationParameters = @{
-                MessageData       = "INFO: [$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
-                #InformationAction = 'Continue'
-            }
 
-            Write-Information @informationParameters
+            Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
+
             $ruleTypes = [STIG]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
             foreach ( $ruleType in $ruleTypes )
             {
@@ -258,8 +255,8 @@ function Get-StigRuleList
 #>
 function Get-StigXccdfBenchmarkContent
 {
-    [cmdletbinding()]
-    [outputtype([xml])]
+    [CmdletBinding()]
+    [OutputType([xml])]
     param
     (
         [parameter(Mandatory = $true)]
@@ -303,8 +300,8 @@ function Get-StigXccdfBenchmarkContent
 #>
 function Get-StigContentFromZip
 {
-    [cmdletbinding()]
-    [outputtype([xml])]
+    [CmdletBinding()]
+    [OutputType([xml])]
     param
     (
         [parameter(Mandatory = $true)]
@@ -339,8 +336,8 @@ function Get-StigContentFromZip
 #>
 function Test-ValidXccdf
 {
-    [cmdletbinding()]
-    [outputtype([bool])]
+    [CmdletBinding()]
+    [OutputType([bool])]
     param
     (
         [parameter(Mandatory = $true)]

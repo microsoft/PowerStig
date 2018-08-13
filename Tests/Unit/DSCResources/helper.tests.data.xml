@@ -1,6 +1,6 @@
 <DISASTIG Id="Windows_2012_DC_STIG" version="2.8" created="7/27/2017">
   <AuditPolicyRule>
-    <Rule Id="V-26529" severity="medium" status="pass" title="Audit - Credential Validation - Success">
+    <Rule Id="V-26529" severity="medium" status="pass" title="Audit - Credential Validation - Success" conversionstatus="pass">
       <AuditFlag>Success</AuditFlag>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -13,7 +13,7 @@
     </Rule>
   </AuditPolicyRule>
   <RegistryRule>
-    <Rule Id="V-1075" severity="low" status="pass" title="Display Shutdown Button">
+    <Rule Id="V-1075" severity="low" status="pass" title="Display Shutdown Button" conversionstatus="pass">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System</Key>

@@ -11,7 +11,7 @@
 #>
 function Get-ConversionReport
 {
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType([System.Collections.ArrayList])]
     param
     (

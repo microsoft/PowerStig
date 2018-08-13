@@ -159,6 +159,6 @@ Configuration SqlServer
     $StigData = $StigDataObject.StigXml
 
     # $resourcePath is exported from the helper module in the header
-    Import-DscResource -ModuleName SqlServerDsc
+    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '11.4.0.0'
     . "$resourcePath\windows.SqlScriptQuery.ps1"
 }

@@ -60,23 +60,13 @@ Describe 'Common Tests - Configuration Module Requirements' {
     {
         Context "$script:DSCModuleName required modules" {
 
-            ForEach ($RequiredModule in $Manifest.RequiredModules)
-            {
-                if ($RequiredModule.GetType().Name -eq 'Hashtable')
-                {
-                    $discoveredModule = Find-Module -Name $RequiredModule.ModuleName -RequiredVersion $RequiredModule.ModuleVersion -Repository 'PsGallery'
+            It "Should find <ModuleName> : <ModuleVersion> in the PowerShell public gallery" -TestCases $Manifest.RequiredModules {
+                param ($ModuleName, $ModuleVersion)
 
-                    It "Should find $($RequiredModule.ModuleName) : $($RequiredModule.ModuleVersion) in the PowerShell public gallery" {
-                        $discoveredModule.Name    | Should Be $RequiredModule.ModuleName
-                        $discoveredModule.Version | Should Be $RequiredModule.ModuleVersion
-                    }
-                }
-                else
-                {
-                    It "Should find $RequiredModule in the PowerShell public gallery" {
-                        (Find-Module -Name $RequiredModule -Repository 'PsGallery').Name | Should Be $RequiredModule
-                    }
-                }
+                $discoveredModule = Find-Module -Name $ModuleName -RequiredVersion $ModuleVersion -Repository 'PsGallery'
+
+                $discoveredModule.Name    | Should Be $ModuleName
+                $discoveredModule.Version | Should Be $ModuleVersion
             }
         }
     }

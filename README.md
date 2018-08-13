@@ -1,6 +1,6 @@
 # PowerSTIG
 
-**PowerStig** is a PowerShell module that contains several different components to support STIG automation.
+**PowerStig** is a PowerShell module that contains several different components to support the Security Technical Implementation Guides (STIGs) automation.
 
 1. A module to extract settings from check-content elements of the xccdf
 1. Parsed Stig data that can be used by other components of this module or additional automation
@@ -21,8 +21,7 @@ or comments.
 |Branch|Status|Description|
 | ---- | ---- | --- |
 | master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) | Ccontains the latest release - no contributions should be made directly to this branch. |
-| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) | Where contributions should be proposed by contributors as pull requests. This branch is merged into the master branch, and be released to [PowerShell Gallery](https://www.powershellgallery.com/).
- |
+| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) | Where contributions should be proposed by contributors as pull requests. This branch is merged into the master branch, and be released to [PowerShell Gallery](https://www.powershellgallery.com/). |
 
 ## Released Module
 
@@ -43,6 +42,8 @@ Update-Module -Name PowerStig
 ## Composite Resources
 
 * [Browser](https://github.com/Microsoft/PowerStigDsc/wiki/Browser): Provides a mechanism to manage Browser STIG settings.
+
+* [DotNetFramework](https://github.com/Microsoft/PowerStigDsc/wiki/DotNetFramework): Provides a mechanism to manage .Net Framework STIG settings.
 
 * [SqlServer](https://github.com/Microsoft/PowerStigDsc/wiki/SqlServer): Provides a mechanism to manage SqlServer STIG settings.
 
