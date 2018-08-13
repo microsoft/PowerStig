@@ -1,9 +1,8 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-#endregion
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes a SkippedRule
@@ -13,6 +12,9 @@ using module .\..\Common\Common.psm1
         processed. The SkippedRule class instance will move the specific Stig rule into a SkippedRule section of the StigData output Xml so that
         it is documented as having been skipped.
 
+    .PARAMETER StigRuleId
+        The Id of an individual Stig Rule
+
     .EXAMPLE
         $skippedRule = [SkippedRule]::new('V-1090')
 
@@ -21,31 +23,27 @@ using module .\..\Common\Common.psm1
 #>
 Class SkippedRule
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The Id of an individual Stig Rule
-    #>
     [string] $StigRuleId
-    #endregion Properties
+
     #region Constructor
+
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for SkippedRule. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    SkippedRule()
+    SkippedRule ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for SkippedRule. Returns a ready to use instance of SkippedRule.
 
         .DESCRIPTION
             A constructor for SkippedRule. Returns a ready to use instance
@@ -54,12 +52,14 @@ Class SkippedRule
         .PARAMETER StigRuleId
             The Id of an individual Stig Rule
     #>
-    SkippedRule([string] $StigRuleId)
+    SkippedRule ([string] $StigRuleId)
     {
         $this.StigRuleId = $StigRuleId
     }
+
     #endregion
     #region Static Methods
+
     <#
         .SYNOPSIS
             Converts a provided string array of Stig rule ids into a SkippedRule array
@@ -97,14 +97,14 @@ Class SkippedRule
 
         return $skips
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion

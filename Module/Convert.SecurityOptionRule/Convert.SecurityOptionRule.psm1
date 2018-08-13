@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,22 +10,49 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+        Extracts the security option from the check-content and sets the value
+    .DESCRIPTION
+        Gets the security option from the xccdf content and sets the value. If
+        the security option that is returned is not valid, the parser status is
+        set to fail.
+    .PARAMETER OptionName
+        The security option name
+    .PARAMETER OptionValue
+        The security option value
+#>
 Class SecurityOptionRule : STIG
 {
-    # Properties
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+        .DESCRIPTION
+            Converts a xccdf STIG rule element into a SecurityOptionRule
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     SecurityOptionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
-    [void] SetOptionName ( )
+    #region Methods
+
+    <#
+        .SYNOPSIS
+            Extracts the security option name from the check-content and sets the value
+        .DESCRIPTION
+            Gets the security option name from the xccdf content and sets the
+            value. If the name that is returned is not valid, the parser status
+            is set to fail.
+    #>
+    [void] SetOptionName ()
     {
         $thisName = Get-SecurityOptionName -CheckContent $this.SplitCheckContent
         if ( -not $this.SetStatus( $thisName ) )
@@ -35,6 +61,14 @@ Class SecurityOptionRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+            Checks the string for text that indicates a range of acceptable
+            acceptable values are allowed by the STIG.
+        .DESCRIPTION
+            Checks the string for text that indicates a range of acceptable
+            acceptable values are allowed by the STIG.
+    #>
     [bool] TestOptionValueForRange ()
     {
         if ( Test-SecurityPolicyContainsRange -CheckContent $this.SplitCheckContent )
@@ -45,7 +79,15 @@ Class SecurityOptionRule : STIG
         return $false
     }
 
-    [void] SetOptionValue ( )
+    <#
+        .SYNOPSIS
+            Extracts the security option value from the check-content and sets the value
+        .DESCRIPTION
+            Gets the security option value from the xccdf content and sets the
+            value. If the value that is returned is not valid, the parser status
+            is set to fail.
+    #>
+    [void] SetOptionValue ()
     {
         $thisValue = Get-SecurityOptionValue -CheckContent $this.SplitCheckContent
 
@@ -55,6 +97,15 @@ Class SecurityOptionRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+            Extracts the security option value range from the check-content and
+            sets the organizational test string
+        .DESCRIPTION
+            Gets the security option value range from the xccdf content and sets
+            the organizational test string. If the organizational value that is
+            returned is not valid, the parser status is set to fail.
+    #>
     [void] SetOptionValueRange ()
     {
         $this.set_OrganizationValueRequired($true)
@@ -66,5 +117,6 @@ Class SecurityOptionRule : STIG
             $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
         }
     }
+
+    #endregion
 }
-#endregion

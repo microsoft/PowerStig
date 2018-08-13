@@ -1,10 +1,9 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
-#endregion
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes a TechnologyRole
@@ -14,6 +13,12 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
         the Stig applies to. The TechnologyRole is one of a few Technology focused classes that work together to form a complete
         description of the Stig required by the user or application creating the StigData instance.
 
+    .PARAMETER Name
+        The name of a role of technology of the Stig to select
+
+    .PARAMETER TechnologyVersion
+        The TechnologyVersion instance for the selected role
+
     .EXAMPLE
         $technologyRole = [TechnologyRole]::new([string] $Name, [TechnologyVersion] $TechnologyVersion)
 
@@ -22,17 +27,7 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 #>
 Class TechnologyRole
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The name of a role of technology of the Stig to select
-    #>
     [string] $Name
-
-    <#
-        .DESCRIPTION
-            The TechnologyVersion instance for the selected role
-    #>
     [TechnologyVersion] $TechnologyVersion
 
     <#
@@ -44,29 +39,30 @@ Class TechnologyRole
 All = ADDomain, ADForest, FW, IE11, DotNet4
 2012 = Instance, Database
 "@
-    #endregion
+
     #region Constructors
+
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for TechnologyRole. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    TechnologyRole()
+    TechnologyRole ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for TechnologyRole. Returns a ready to use instance of TechnologyRole.
+
 
         .DESCRIPTION
-            A constructor for TechnologyRole. Returns a ready to use instance
-            of TechnologyRole.
+            A constructor for TechnologyRole. Returns a ready to use instance of TechnologyRole.
 
         .PARAMETER Name
             The name of a role of technology of the Stig to select
@@ -84,8 +80,10 @@ All = ADDomain, ADForest, FW, IE11, DotNet4
             throw("The specified Role name is not valid. Please check for available Roles.")
         }
     }
+
     #endregion
     #region Methods
+
     <#
         .SYNOPSIS
             Validates the provided name
@@ -108,8 +106,7 @@ All = ADDomain, ADForest, FW, IE11, DotNet4
             return $false
         }
     }
-    #endregion
-    #region Static Methods
+
     <#
         .SYNOPSIS
             Returns available TechnologyRoles
@@ -133,14 +130,14 @@ All = ADDomain, ADForest, FW, IE11, DotNet4
             throw("No Roles are available for the Version you have specified. Please check available Versions and run again.")
         }
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion

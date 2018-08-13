@@ -1,8 +1,24 @@
+# Notes:
+#   - Minimal appveyor.yml file is an empty file. All sections are optional.
+#   - Indent each level of configuration with 2 spaces. Do not use tabs!
+#   - All section names are case-sensitive.
+#   - Section names should be unique on each level.
+
+#---------------------------------#
+#      general configuration      #
+#---------------------------------#
+
+version: 1.1.1.{build}
+
+skip_commits:
+  files:
+   - '**/*.md'
+   - .github/*
+
 #---------------------------------#
 #      environment configuration  #
 #---------------------------------#
 
-version: 1.1.0.{build}
 install:
   - git clone https://github.com/PowerShell/DscResource.Tests
   - git clone https://github.com/Microsoft/PowerStig.Tests

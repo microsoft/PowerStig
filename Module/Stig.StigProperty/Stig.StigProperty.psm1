@@ -1,9 +1,8 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-#endregion
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes a StigProperty
@@ -13,6 +12,12 @@ using module .\..\Common\Common.psm1
         instances combine to for a complete description of a Stig rule. StigException instances are made up of a collection of StigProperty in order to
         override the existing values of those properties.
 
+    .PARAMETER Name
+        The name of an individual property on a Stig Rule
+
+    .PARAMETER Value
+            The value of an individual property on a Stig Rule
+
     .EXAMPLE
         $stigProperty = [StigProperty]::new([string] $Name, [string] $Value)
 
@@ -21,41 +26,32 @@ using module .\..\Common\Common.psm1
 #>
 Class StigProperty
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The name of an individual property on a Stig Rule
-    #>
     [string] $Name
 
-    <#
-        .DESCRIPTION
-            The value of an individual property on a Stig Rule
-    #>
     [string] $Value
-    #endregion
+
     #region Constructors
+
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for StigProperty. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    StigProperty()
+    StigProperty ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
-    <#s
+    <#
         .SYNOPSIS
-            Constructor
+            A constructor for StigProperty. Returns a ready to use instance of StigProperty.
 
         .DESCRIPTION
-            A constructor for StigProperty. Returns a ready to use instance
-            of StigProperty.
+            A constructor for StigProperty. Returns a ready to use instance of StigProperty.
 
         .PARAMETER Name
             The name of an individual property on a Stig Rule
@@ -68,14 +64,14 @@ Class StigProperty
         $this.Name = $Name
         $this.Value = $Value
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion

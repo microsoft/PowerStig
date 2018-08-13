@@ -1,4 +1,3 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
@@ -11,8 +10,25 @@ Foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
-#region Class
+# Header
+
+<#
+    .SYNOPSIS
+        Convert the contents of an xccdf check-content element into a user right object
+    .DESCRIPTION
+        The UserRightRule class is used to extract the {} settings from the
+        check-content of the xccdf. Once a STIG rule is identified a
+        user right rule, it is passed to the UserRightRule class for parsing
+        and validation.
+    .PARAMETER DisplayName
+        The user right display name
+    .PARAMETER Constant
+        The user right constant
+    .PARAMETER Identity
+        The identitys that should have the user right
+    .PARAMETER Force
+        A flag that replaces the identities vs append
+#>
 Class UserRightRule : STIG
 {
     [ValidateNotNullOrEmpty()] [string] $DisplayName
@@ -20,13 +36,28 @@ Class UserRightRule : STIG
     [ValidateNotNullOrEmpty()] [string] $Identity
     [bool] $Force = $false
 
-    # Constructor
+    <#
+        .SYNOPSIS
+            Default constructor
+        .DESCRIPTION
+            Converts a xccdf STIG rule element into a UserRightRule
+        .PARAMETER StigRule
+            The STIG rule to convert
+    #>
     UserRightRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
     }
 
-    # Methods
+    #region Methods
+
+    <#
+        .SYNOPSIS
+            Extracts the display name from the check-content and sets the value
+        .DESCRIPTION
+            Gets the display name from the xccdf content and sets the value. If
+            the name that is returned is not valid, the parser status is set to fail.
+    #>
     [void] SetDisplayName ()
     {
         $thisDisplayName = Get-UserRightDisplayName -CheckContent $this.SplitCheckContent
@@ -37,6 +68,14 @@ Class UserRightRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+            Extracts the user right constant from the check-content and sets the value
+        .DESCRIPTION
+            Gets the user right constant from the xccdf content and sets the
+            value. If the constant that is returned is not valid, the parser
+            status is set to fail.
+    #>
     [void] SetConstant ()
     {
         $thisConstant = Get-UserRightConstant -UserRightDisplayName $this.DisplayName
@@ -47,6 +86,14 @@ Class UserRightRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+            Extracts the user right identity from the check-content and sets the value
+        .DESCRIPTION
+            Gets the user right identity from the xccdf content and sets the
+            value. If the identity that is returned is not valid, the parser
+            status is set to fail.
+    #>
     [void] SetIdentity ()
     {
         $thisIdentity = Get-UserRightIdentity -CheckContent $this.SplitCheckContent
@@ -71,6 +118,12 @@ Class UserRightRule : STIG
         #return $return
     }
 
+    <#
+        .SYNOPSIS
+            Extracts the force flag from the check-content and sets the value
+        .DESCRIPTION
+            Gets the force flag from the xccdf content and sets the value
+    #>
     [void] SetForce ()
     {
         if ( Test-SetForceFlag -CheckContent $this.SplitCheckContent )
@@ -83,6 +136,15 @@ Class UserRightRule : STIG
         }
     }
 
+    <#
+        .SYNOPSIS
+            Tests if a rule contains multiple checks
+        .DESCRIPTION
+            Search the rule text to determine if multiple user rights are defined
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
+    #>
+
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
         if ( Test-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
@@ -93,9 +155,23 @@ Class UserRightRule : STIG
         return $false
     }
 
+    <#
+        .SYNOPSIS
+            Splits a rule into multiple checks
+        .DESCRIPTION
+            Once a rule has been found to have multiple checks, the rule needs
+            to be split. This method splits a user right into multiple rules. Each
+            split rule id is appended with a dot and letter to keep reporting
+            per the ID consistent. An example would be is V-1000 contained 2
+            checks, then SplitMultipleRules would return 2 objects with rule ids
+            V-1000.a and V-1000.b
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
+    #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         return ( Split-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
     }
+
+    #endregion
 }
-#endregion

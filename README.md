@@ -2,8 +2,8 @@
 
 |Branch|Status|
 | ---- | ---- |
-| Master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) |
-| Dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) |
+| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) |
+| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) |
 
 ## Project List
 
@@ -41,10 +41,29 @@ You are more than welcome to contribute to the development of PowerStig.
 There are several different ways you can help.
 You can create new convert modules, add test automation, improve documentation, fix existing issues, or open new ones.
 See our [contributing guide](CONTRIBUTING.md) for more info on how to become a contributor.
+Thank you to everyone that has reviewed the project and provided feedback through issues.
+We are especially thankful for those who have contributed pull requests to the code and documentation.
+
+### Contributors
+
+* [@athaynes](https://github.com/athaynes) (Adam Haynes)
+* [@bgouldman](https://github.com/bgouldman) (Brian Gouldman)
+* [@camusicjunkie](https://github.com/camusicjunkie)
+* [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
+* [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
+* [@jcwalker](https://github.com/jcwalker) (Jason Walker)
+* [@ldillonel](https://github.com/ldillonel)
+* [@mcollera](https://github.com/mcollera)
+* [@nehrua](https://github.com/nehrua) (Nehru Ali)
+* [@regedit32](https://github.com/regedit32) (Reggie Gibson)
 
 ## Versions
 
 ### Unreleased
+
+### 1.1.1.0
+
+Update IIS Server STIG V-76723.a with correct value
 
 ### 1.1.0.0
 

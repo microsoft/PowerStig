@@ -39,6 +39,7 @@ function Test-ValueDataIsHardCoded
     )
 
     $stigIds = @(
+        'V-30935', # DotNet4 - Registry Setting
         'V-1089', # Windows Server - Legal Notice Display
         'V-63675', # Windows Client - Legal Notice Display
         'V-26359', # Windows Server - Legal Banner Dialog Box Title
@@ -96,7 +97,7 @@ function Get-HardCodedString
             continue
         }
 
-        {$PSItem -match 'V-21954'}
+        {$PSItem -match 'V-(21954|30935)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SupportedEncryptionTypes : $true"
             $hardCodedString = $script:supportedEncryptionTypes

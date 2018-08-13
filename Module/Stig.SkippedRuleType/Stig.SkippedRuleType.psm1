@@ -1,9 +1,8 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-#endregion
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes a SkippedRuleType
@@ -13,6 +12,9 @@ using module .\..\Common\Common.psm1
         from the Stigs that need to be processed. The SkippedRuleType class instance will move all of the Stig rules under that type into a
         SkippedRule section of the StigData output Xml so that it is documented as having been skipped.
 
+    .PARAMETER StigRultType
+        The name of the type of Stig rule
+
     .EXAMPLE
         $skippedRuleType = [SkippedRuleType]::new('AccountPolicyRule')
 
@@ -21,45 +23,42 @@ using module .\..\Common\Common.psm1
 #>
 Class SkippedRuleType
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The name of the type of Stig rule
-    #>
     [RuleType] $StigRuleType
-    #endregion Properties
+
     #region Constructors
+
     <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for SkippedRuleType. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    SkippedRuleType()
+    SkippedRuleType ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for SkippedRuleType. Returns a ready to use instance of SkippedRuleType.
 
         .DESCRIPTION
-            A constructor for SkippedRuleType. Returns a ready to use instance
-            of SkippedRuleType.
+            A constructor for SkippedRuleType. Returns a ready to use instance of SkippedRuleType.
 
         .PARAMETER StigRuleType
             The name of the type of Stig rule from the StigRuleType Enum
     #>
-    SkippedRuleType([RuleType] $StigRuleType)
+    SkippedRuleType ([RuleType] $StigRuleType)
     {
         $this.StigRuleType = $StigRuleType
     }
+
     #endregion
     #region Static Methods
+
     <#
         .SYNOPSIS
             Converts a provided string array of Stig rule types into a SkippedRuleType array
@@ -100,14 +99,14 @@ Class SkippedRuleType
 
         return $skips
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion

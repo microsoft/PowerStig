@@ -25,6 +25,11 @@ function Get-WindowsFeatureName
     {
         switch ($CheckContent)
         {
+            { $PSItem -match $script:regularExpression.WindowsFeatureName }
+            {
+                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.WindowsFeatureName
+                $windowsFeatureName += ( $matches.Matches.Value -replace 'Get-WindowsFeature\s-Name' ).Trim()
+            }
             { $PSItem -match $script:regularExpression.FeatureNameEquals }
             {
                 $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameEquals
