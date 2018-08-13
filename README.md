@@ -61,6 +61,8 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+### 1.1.1.0
+
 Update IIS Server STIG V-76723.a with correct value
 
 ### 1.1.0.0
