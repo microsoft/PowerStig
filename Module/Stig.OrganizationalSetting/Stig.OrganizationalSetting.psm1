@@ -1,9 +1,8 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-#endregion
-#region Class
+# Header
+
 <#
     .SYNOPSIS
         This class describes an OrganizationalSetting
@@ -14,6 +13,12 @@ using module .\..\Common\Common.psm1
         values specific to the implementing organization. This Xml file will subsequently be transformed into OrganizationalSetting objects to
         be passed into and used in the StigData class constructor.
 
+    .PARAMETER StigRuleId
+        The Id of an individual Stig Rule
+
+    .PARAMETER Value
+        The specific organizational value to set for the associated Stig rule
+
     .EXAMPLE
         $organizationalSetting = [OrganizationalSetting]::new('V-1090', '4')
 
@@ -22,37 +27,28 @@ using module .\..\Common\Common.psm1
 #>
 Class OrganizationalSetting
 {
-    #region Properties
-    <#
-        .DESCRIPTION
-            The Id of an individual Stig Rule
-    #>
     [string] $StigRuleId
+    [string] $Value
+
+    #region Constructors
 
     <#
-        .DESCRIPTION
-            The specific organizational value to set for the associated Stig rule
-    #>
-    [string] $Value
-    #endregion
-    #region Constructors
-    <#
         .SYNOPSIS
-            Parameterless constructor
+            DO NOT USE - For testing only
 
         .DESCRIPTION
             A parameterless constructor for OrganizationalSetting. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    OrganizationalSetting()
+    OrganizationalSetting ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            Constructor
+            A constructor for OrganizationalSetting. Returns a ready to use instance of OrganizationalSetting.
 
         .DESCRIPTION
             A constructor for OrganizationalSetting. Returns a ready to use instance
@@ -64,13 +60,15 @@ Class OrganizationalSetting
         .PARAMETER Value
             The specific organizational value to set for the associated Stig rule
     #>
-    OrganizationalSetting([string] $StigRuleId, [string] $Value)
+    OrganizationalSetting ([string] $StigRuleId, [string] $Value)
     {
         $this.StigRuleId = $StigRuleId
         $this.Value = $Value
     }
+
     #endregion
     #region Static Methods
+
     <#
         .SYNOPSIS
             The mapping of Stig rule types to the property needing to be modified
@@ -80,10 +78,10 @@ Class OrganizationalSetting
             This method returns a Hashtable containing a mapping between a specific Stig rule
             type and the property of that Stig rule type that needs to be modified by the
             organizational setting
-        
+
         .NOTES
-            This method calls the Get-PropertyMap function which simply returns a variable that is 
-            only available in the module scope. This eliminates the need to load the module just to 
+            This method calls the Get-PropertyMap function which simply returns a variable that is
+            only available in the module scope. This eliminates the need to load the module just to
             get access to a variable.
     #>
     static [Hashtable] PropertyMap ()
@@ -171,14 +169,14 @@ Class OrganizationalSetting
 
         return $orgSettings
     }
+
     #endregion
 }
-#endregion
-#region Footer
+
+# Footer
 Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-#endregion
