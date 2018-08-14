@@ -1,0 +1,366 @@
+<DISASTIG id="Active_Directory_Domain" version="2.10" created="8/14/2018">
+  <DocumentRule dscresourcemodule="None">
+    <Rule id="V-8521" severity="low" conversionstatus="pass" title="Object Ownership Delegation" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8521</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>low</Severity>
+      <Title>Object Ownership Delegation</Title>
+    </Rule>
+    <Rule id="V-8525" severity="low" conversionstatus="pass" title="Directory Service Architecture DR Documentation" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8525</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>low</Severity>
+      <Title>Directory Service Architecture DR Documentation</Title>
+    </Rule>
+    <Rule id="V-8526" severity="low" conversionstatus="pass" title="Cross-Directory Authentication INFOCON Procedures" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8526</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>low</Severity>
+      <Title>Cross-Directory Authentication INFOCON Procedures</Title>
+    </Rule>
+    <Rule id="V-8530" severity="low" conversionstatus="pass" title="Cross-Directory Authentication Documentation" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8530</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>low</Severity>
+      <Title>Cross-Directory Authentication Documentation</Title>
+    </Rule>
+    <Rule id="V-8533" severity="medium" conversionstatus="pass" title="Trusts - document need " dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8533</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Trusts - document need </Title>
+    </Rule>
+    <Rule id="V-8534" severity="high" conversionstatus="pass" title="Trust - Classification Levels" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8534</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>high</Severity>
+      <Title>Trust - Classification Levels</Title>
+    </Rule>
+    <Rule id="V-8536" severity="high" conversionstatus="pass" title="Trust - Non-DoD" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8536</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>high</Severity>
+      <Title>Trust - Non-DoD</Title>
+    </Rule>
+    <Rule id="V-8548" severity="medium" conversionstatus="pass" title="AD.0240" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8548</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0240</Title>
+    </Rule>
+    <Rule id="V-36431" severity="high" conversionstatus="pass" title="Enterprise Admins Group Members" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36431</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>high</Severity>
+      <Title>Enterprise Admins Group Members</Title>
+    </Rule>
+    <Rule id="V-36432" severity="high" conversionstatus="pass" title="Domain Admins Group Members" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36432</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>high</Severity>
+      <Title>Domain Admins Group Members</Title>
+    </Rule>
+    <Rule id="V-36433" severity="medium" conversionstatus="pass" title="Domain Member Server Administrators Group Members" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36433</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Domain Member Server Administrators Group Members</Title>
+    </Rule>
+    <Rule id="V-36434" severity="medium" conversionstatus="pass" title="Domain Workstation Administrators Group Members" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36434</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Domain Workstation Administrators Group Members</Title>
+    </Rule>
+    <Rule id="V-53727" severity="medium" conversionstatus="pass" title="AD.0015" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-53727</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0015</Title>
+    </Rule>
+  </DocumentRule>
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-8522" severity="medium" conversionstatus="pass" title="Directory Service Inter-Enclave VPN Usage" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8522</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Directory Service Inter-Enclave VPN Usage</Title>
+    </Rule>
+    <Rule id="V-8523" severity="medium" conversionstatus="pass" title="IDS Visibility of Directory VPN Data Transport" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8523</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>IDS Visibility of Directory VPN Data Transport</Title>
+    </Rule>
+    <Rule id="V-8524" severity="medium" conversionstatus="pass" title="Directory Service Availability" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8524</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Directory Service Availability</Title>
+    </Rule>
+    <Rule id="V-8538" severity="medium" conversionstatus="pass" title="Trust - SID Filter Quarantining " dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8538</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Trust - SID Filter Quarantining </Title>
+    </Rule>
+    <Rule id="V-8540" severity="medium" conversionstatus="pass" title="Trust - Selective Authentication" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8540</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Trust - Selective Authentication</Title>
+    </Rule>
+    <Rule id="V-8547" severity="medium" conversionstatus="pass" title="Pre-Windows 2000 Compatible Access Group" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8547</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Pre-Windows 2000 Compatible Access Group</Title>
+    </Rule>
+    <Rule id="V-8549" severity="medium" conversionstatus="pass" title="Privileged Group Membership - Cross-Directory" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8549</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Privileged Group Membership - Cross-Directory</Title>
+    </Rule>
+    <Rule id="V-8551" severity="medium" conversionstatus="pass" title="Domain Functional Level" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8551</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Domain Functional Level</Title>
+    </Rule>
+    <Rule id="V-8553" severity="medium" conversionstatus="pass" title="Replication Schedule" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8553</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Replication Schedule</Title>
+    </Rule>
+    <Rule id="V-25385" severity="medium" conversionstatus="pass" title="Directory Data Backup" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-25385</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Directory Data Backup</Title>
+    </Rule>
+    <Rule id="V-25840" severity="medium" conversionstatus="pass" title="DSRM Password Change Policy" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-25840</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>DSRM Password Change Policy</Title>
+    </Rule>
+    <Rule id="V-25997" severity="medium" conversionstatus="pass" title="Replication in the DMZ (RODC)" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-25997</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Replication in the DMZ (RODC)</Title>
+    </Rule>
+    <Rule id="V-36435" severity="high" conversionstatus="pass" title="Delegation of Privileged Accounts" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36435</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>high</Severity>
+      <Title>Delegation of Privileged Accounts</Title>
+    </Rule>
+    <Rule id="V-36436" severity="medium" conversionstatus="pass" title="Dedicated Systems for Managing Active Directory" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36436</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Dedicated Systems for Managing Active Directory</Title>
+    </Rule>
+    <Rule id="V-36438" severity="medium" conversionstatus="pass" title="Unique Passwords for all Local Administrator Accounts" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-36438</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>Unique Passwords for all Local Administrator Accounts</Title>
+    </Rule>
+    <Rule id="V-43648" severity="medium" conversionstatus="pass" title="AD.0009" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-43648</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0009</Title>
+    </Rule>
+    <Rule id="V-43652" severity="medium" conversionstatus="pass" title="AD.0013" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-43652</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0013</Title>
+    </Rule>
+    <Rule id="V-43712" severity="medium" conversionstatus="pass" title="AD.AU.0001" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-43712</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.AU.0001</Title>
+    </Rule>
+    <Rule id="V-43713" severity="medium" conversionstatus="pass" title="AD.AU.0002" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-43713</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.AU.0002</Title>
+    </Rule>
+    <Rule id="V-43714" severity="medium" conversionstatus="pass" title="AD.AU.0003" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-43714</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.AU.0003</Title>
+    </Rule>
+    <Rule id="V-44059" severity="medium" conversionstatus="pass" title="AD.0014" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-44059</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0014</Title>
+    </Rule>
+    <Rule id="V-72821" severity="medium" conversionstatus="pass" title="AD.0016" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-72821</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0016</Title>
+    </Rule>
+    <Rule id="V-78131" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-78131</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Severity>medium</Severity>
+      <Title>AD.0017</Title>
+    </Rule>
+  </ManualRule>
+</DISASTIG>
