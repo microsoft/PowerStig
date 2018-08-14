@@ -1,6 +1,6 @@
 # PowerSTIG
 
-**PowerStig** is a PowerShell module that contains several different components to support the Security Technical Implementation Guides (STIGs) automation.
+**PowerStig** is a PowerShell module that contains several components to automate different DISA Security Technical Implementation Guides (STIGs) where possible.
 
 1. A module to extract settings from check-content elements of the xccdf
 1. Parsed Stig data that can be used by other components of this module or additional automation

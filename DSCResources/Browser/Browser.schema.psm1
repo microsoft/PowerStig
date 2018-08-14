@@ -9,13 +9,13 @@ using module ..\..\PowerStig.psm1
         A composite DSC resource to manage the Browser STIG settings
 
     .PARAMETER BrowserVersion
-        The version of the Browser STIG to apply and monitor
+        The version of the Browser the STIG applies to
 
     .PARAMETER StigVersion
-        The version of the Windows Server DNS STIG to apply and/or monitor
+        The version of the STIG to apply and monitor
 
     .PARAMETER Exception
-        A hash table of StigId=Value key pairs that are injected into the STIG data and applied to
+        A hash table of key value pairs that are injected into the STIG data and applied to
         the target node. The title of STIG setting is tagged with the text ‘Exception’ to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
 

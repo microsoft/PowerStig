@@ -1,7 +1,8 @@
-#region Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 $rules = Get-RuleClassData -StigData $StigData -Name SqlScriptQueryRule
-#endregion Header
-#region Resource
+
 foreach ($instance in $ServerInstance)
 {
     if ($null -ne $Database)
@@ -15,13 +16,13 @@ foreach ($instance in $ServerInstance)
                     ServerInstance = $Instance
                     GetQuery       = $rule.GetScript
                     TestQuery      = $rule.TestScript
-                    SetQuery       = $rule.SetScript 
+                    SetQuery       = $rule.SetScript
                     Variable       = $db
                 }
             }
         }
     }
-    else 
+    else
     {
         foreach ($rule in $rules)
         {
@@ -30,9 +31,8 @@ foreach ($instance in $ServerInstance)
                 ServerInstance = $instance
                 GetQuery       = $rule.GetScript
                 TestQuery      = $rule.TestScript
-                SetQuery       = $rule.SetScript 
+                SetQuery       = $rule.SetScript
             }
         }
     }
 }
-#endregion Resource

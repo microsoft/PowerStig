@@ -1,28 +1,5 @@
 Import-Module $PSScriptRoot\..\PowerStig.psm1
 
-# function Get-PowerStigVersionFromManifest
-# {
-#     [OutputType([version])]
-#     [CmdletBinding()]
-#     param
-#     (
-#         [Parameter(Mandatory)]
-#         [string]
-#         $ManifestPath
-#     )
-
-#     $requiredModules = (Import-PowerShellDataFile -Path $ManifestPath).RequiredModules
-#     $powerStigSpecification = ($RequiredModules | Where {$PSItem.ModuleName -eq 'PowerStig'}).ModuleVersion
-#     if(-not $powerStigSpecification )
-#     {
-#         throw "The PowerStig required version was not found in the manifest."
-#     }
-#     else
-#     {
-#         return $powerStigSpecification
-#     }
-# }
-
 function Get-RequiredStigDataVersion
 {
     [CmdletBinding()]

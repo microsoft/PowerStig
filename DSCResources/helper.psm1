@@ -1,8 +1,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+using namespace system.xml
+
 [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
-[string] $resourcePath = (Resolve-Path -Path $PSScriptRoot\common).Path
+[string] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Common).Path
 
 <#
     .SYNOPSIS
@@ -18,7 +20,7 @@ function Get-ResourceTitle
     param
     (
         [Parameter(Mandatory = $true)]
-        [System.Xml.XmlElement]
+        [xmlelement]
         $Rule
     )
 

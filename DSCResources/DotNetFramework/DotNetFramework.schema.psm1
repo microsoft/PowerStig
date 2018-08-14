@@ -31,20 +31,6 @@ using module ..\..\PowerStig.psm1
     .PARAMETER SkipRuleType
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
-
-    .EXAMPLE
-        In this example the 1.4 of the DotNetFramework 4.0 STIG is applied.
-
-        Import-DscResource -ModuleName PowerStigDsc
-
-        Node localhost
-        {
-            DotNetFramework DotNetConfigurartion
-            {
-                FrameworkVersion = 'DotNet4'
-                StigVersion = '1.4'
-            }
-        }
 #>
 Configuration DotNetFramework
 {
