@@ -1,8 +1,6 @@
-#region Header
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-#endregion
-#region Support Functions
+
 <#
     .SYNOPSIS
         Appends the next letter in the alphabet to the ID to handle rules that enforce multiple settings
@@ -35,4 +33,3 @@ function Get-AvailableId
         return "$Id.$([char]$appendLetterInt)"
     }
 }
-#endregion
