@@ -84,13 +84,10 @@ function New-StigCheckList
         $writer.WriteString($assetElement.value)
         $writer.WriteEndElement()
     }
-    # End ASSET
-    $writer.WriteEndElement()
 
+    $writer.WriteEndElement(<#ASSET#>)
     $writer.WriteStartElement("STIGS")
-
     $writer.WriteStartElement("iSTIG")
-
     $writer.WriteStartElement("STIG_INFO")
 
     #endregion
@@ -117,24 +114,20 @@ function New-StigCheckList
     {
         $writer.WriteStartElement("SI_DATA")
 
-        $writer.WriteStartElement('SID_NAME')
-        $writer.WriteString($StigInfoElement.name)
-        $writer.WriteEndElement()
+            $writer.WriteStartElement('SID_NAME')
+            $writer.WriteString($StigInfoElement.name)
+            $writer.WriteEndElement(<#SID_NAME#>)
 
-        $writer.WriteStartElement('SID_DATA')
-        $writer.WriteString($StigInfoElement.value)
-        $writer.WriteEndElement()
+            $writer.WriteStartElement('SID_DATA')
+            $writer.WriteString($StigInfoElement.value)
+            $writer.WriteEndElement(<#SID_DATA#>)
 
-        # End SI_DATA
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#SI_DATA#>)
     }
 
-    # End STIG_INFO
-    $writer.WriteEndElement()
+    $writer.WriteEndElement(<#STIG_INFO#>)
 
     #endregion
-
-
     #region Vulnerability
 
     $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
@@ -155,16 +148,15 @@ function New-StigCheckList
 
             $writer.WriteStartElement("STIG_DATA")
 
-            $writer.WriteStartElement("VULN_ATTRIBUTE")
-            $writer.WriteString($attribute.Name)
-            $writer.WriteEndElement()
+                $writer.WriteStartElement("VULN_ATTRIBUTE")
+                $writer.WriteString($attribute.Name)
+                $writer.WriteEndElement()
 
-            $writer.WriteStartElement("ATTRIBUTE_DATA")
-            $writer.WriteString($attribute.Value)
-            $writer.WriteEndElement()
+                $writer.WriteStartElement("ATTRIBUTE_DATA")
+                $writer.WriteString($attribute.Value)
+                $writer.WriteEndElement()
 
-            # End STIG_DATA
-            $writer.WriteEndElement()
+            $writer.WriteEndElement(<#STIG_DATA#>)
         }
 
         if ($PSCmdlet.ParameterSetName -eq 'mof')
@@ -206,40 +198,39 @@ function New-StigCheckList
 
         $writer.WriteStartElement("STATUS")
         $writer.WriteString($status)
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#STATUS#>)
 
         $writer.WriteStartElement("FINDING_DETAILS")
         $writer.WriteString( ( Get-FindingDetails -Setting $setting ) )
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#FINDING_DETAILS#>)
 
         $writer.WriteStartElement("COMMENTS")
         $writer.WriteString($comments)
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#COMMENTS#>)
 
         $writer.WriteStartElement("SEVERITY_OVERRIDE")
         $writer.WriteString('')
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#SEVERITY_OVERRIDE#>)
 
         $writer.WriteStartElement("SEVERITY_JUSTIFICATION")
         $writer.WriteString('')
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#SEVERITY_JUSTIFICATION#>)
 
-        # End VULN
-        $writer.WriteEndElement()
+        $writer.WriteEndElement(<#VULN#>)
     }
     #endregion
 
-    # End iSTIG
-    $writer.WriteEndElement()
-    # End STIGS
-    $writer.WriteEndElement()
-    #End CHECKLIST
-    $writer.WriteEndElement()
-
+    $writer.WriteEndElement(<#iSTIG#>)
+    $writer.WriteEndElement(<#STIGS#>)
+    $writer.WriteEndElement(<#CHECKLIST#>)
     $writer.Flush()
     $writer.Close()
 }
 
+<#
+    .SYNOPSIS
+
+#>
 function Get-VulnerabilityList
 {
     [CmdletBinding()]
@@ -352,133 +343,6 @@ function Get-SettingsFromResult
     return $script:allResources.Where( {$PSItem.ResourceID -match $Id} )
 }
 
-<#
-    .SYNOPSIS
-    Returns the benchmark element from the xccdf xml document.
-
-    .PARAMETER Path
-    The literal path to the the zip file that contain the xccdf or the specifc xccdf file.
-
-    .NOTES
-    General notes
-#>
-function Get-StigXccdfBenchmarkContent
-{
-    [cmdletbinding()]
-    [outputtype([xml])]
-    param
-    (
-        [parameter(Mandatory = $true)]
-        [string]
-        $Path
-    )
-
-    if (-not (Test-Path -Path $Path))
-    {
-        Throw "The file $Path was not found"
-    }
-
-    if ($Path -like "*.zip")
-    {
-        [xml] $xccdfXmlContent = Get-StigContentFromZip -Path $Path
-    }
-    else
-    {
-        [xml] $xccdfXmlContent = Get-Content -Path $Path
-    }
-
-    if (Test-ValidXccdf -xccdfXmlContent $xccdfXmlContent )
-    {
-        $xccdfXmlContent.Benchmark
-    }
-    else
-    {
-        Throw "$Path does not contain valid xccdf xml."
-    }
-}
-
-<#
-    .SYNOPSIS
-    Extracts the xccdf file from the zip file provided from the DISA website.
-
-    .PARAMETER Path
-    The literal path to the zip file.
-
-    .NOTES
-    General notes
-#>
-function Get-StigContentFromZip
-{
-    [cmdletbinding()]
-    [outputtype([xml])]
-    param
-    (
-        [parameter(Mandatory = $true)]
-        [string]
-        $Path
-    )
-
-    # Create a unique path in the users temp directory to expand the files to.
-    $zipDestinationPath = "$((Split-Path -Path $Path -Leaf) -replace '.zip','').$((Get-Date).Ticks)"
-    Expand-Archive -LiteralPath $filePath -DestinationPath $zipDestinationPath
-    # Get the full path to teh extracted xccdf file.
-    $xccdfPath = (
-        Get-ChildItem -Path $zipDestinationPath -Filter "*Manual-xccdf.xml" -Recurse -Verbose
-    ).fullName
-    # Get the xccdf content before removing the content from disk.
-    $xccdfContent = Get-Content -Path $xccdfPath
-    # Cleanup to temp folder
-    Remove-Item $zipDestinationPath -Recurse -Force
-
-    $xccdfContent
-}
-
-<#
-    .SYNOPSIS
-    Validates that the specific child elements the conversion process needs are avaialbe.
-
-    .PARAMETER xccdfXmlContent
-    Parameter description
-
-    .NOTES
-    General notes
-#>
-function Test-ValidXccdf
-{
-    [cmdletbinding()]
-    [outputtype([bool])]
-    param
-    (
-        [parameter(Mandatory = $true)]
-        [xml]
-        $xccdfXmlContent
-    )
-
-    $isValidXccdf = $true
-
-    if ($null -eq $xccdfXmlContent.Benchmark)
-    {
-        return $false
-    }
-
-    switch ($xccdfXmlContent.Benchmark)
-    {
-        {$null -eq $PSItem.title}
-        {
-            $isValidXccdf = $false
-        }
-        {$null -eq $PSItem.version}
-        {
-            $isValidXccdf = $false
-        }
-        {$null -eq $PSItem.Group}
-        {
-            $isValidXccdf = $false
-        }
-    }
-
-    $isValidXccdf
-}
 
 function Get-FindingDetails
 {
