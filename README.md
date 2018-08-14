@@ -86,6 +86,10 @@ We are especially thankful for those who have contributed pull requests to the c
   * Added script module back to manifest
   * Added DotNetFramework composite resource
 
+### 1.1.1.0
+
+Update IIS Server STIG V-76723.a with correct value
+
 ### 1.1.0.0
 
 Replaced Technology class with enumeration. This breaks PowerStigDsc < 1.1.0.0
