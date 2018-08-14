@@ -45,7 +45,6 @@ If the disaster recovery plans do not include directory hierarchy information, t
       <OrganizationValueTestString />
       <RawString>1. Refer to the list of actual manual AD trusts (cross-directory configurations) collected from the site representative.
 
-2. If there are no manual AD trusts (cross-directory configurations) defined, this check is not applicable.
 For AD, this includes external, forest, or realm trust relationship types.
 
 3. Obtain a copy of the site’s supplemental INFOCON procedures as required by Strategic Command Directive (SD) 527-1.
@@ -58,8 +57,6 @@ For AD, this includes external, forest, or realm trust relationship types.
 
 7. If actions to disable manual AD trusts (cross-directory configurations) *are* needed and no policy has been documented, then this is a finding.</RawString>
       <Severity>low</Severity>
-      <Title>Cross-Directory Authentication INFOCON Procedures</Title>
-    </Rule>
     <Rule id="V-8530" severity="low" conversionstatus="pass" title="Cross-Directory Authentication Documentation" dscresource="None">
       <ConversionStatus>pass</ConversionStatus>
       <DscResource>None</DscResource>
@@ -364,7 +361,6 @@ If the "Anonymous Logon" or "Everyone" groups are members, this is a finding.
       <OrganizationValueTestString />
       <RawString>1. Start the Active Directory Users and Computers console (Start, Run, “dsa.msc”).
 
-2. Select and expand the left pane item that matches the name of the domain being reviewed.
 
 3. Select the Built-in container. 
 a. If the Incoming Forest Trust Builders group is defined, double-click on the group, and select the Members tab
@@ -381,8 +377,6 @@ Note: An account that is from an outside domain appears in the format “outside
 
 Note:  It is possible to move the highly privileged AD security groups out of the AD Users container. If the Domain Admins, Enterprise Admins, Schema Admins, or Group Policy Creator Owners groups are not in the AD Users container, ask the SA for the new location and use that location for this check.</RawString>
       <Severity>medium</Severity>
-      <Title>Privileged Group Membership - Cross-Directory</Title>
-    </Rule>
     <Rule id="V-8551" severity="medium" conversionstatus="pass" title="Domain Functional Level" dscresource="None">
       <ConversionStatus>pass</ConversionStatus>
       <DscResource>None</DscResource>
@@ -513,7 +507,6 @@ Verify that any PAWs used to manage Active Directory remotely are used exclusive
       <OrganizationValueTestString />
       <RawString>Verify local administrator accounts on domain systems are using unique passwords. If local administrator accounts on domain systems are sharing a password, this is a finding.
 
-Microsoft's Local Administrator Password Solution (LAPS) provides an automated solution for maintaining and regularly changing a local administrator password for domain-joined systems. LAPS can manage a single local administrator account. The default is the built-in administrator account however it can be configured to manage an administrator account of a different name. If additional local administrator accounts exist across systems, the organization must have a process to require unique passwords on each system for the additional accounts.
 
 Other automated solutions that provide this capability may also be used.
 
@@ -527,8 +520,6 @@ If any systems are listed, this is a finding.
 
 Ignore computers with "OU=Domain Controllers" in the DistinguishedName field.</RawString>
       <Severity>medium</Severity>
-      <Title>Unique Passwords for all Local Administrator Accounts</Title>
-    </Rule>
     <Rule id="V-43648" severity="medium" conversionstatus="pass" title="AD.0009" dscresource="None">
       <ConversionStatus>pass</ConversionStatus>
       <DscResource>None</DscResource>

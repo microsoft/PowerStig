@@ -189,7 +189,6 @@ For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Wind
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
-
 Right-click DNS Server, point to View, and then click "Show Analytic and Debug Logs".
 
 Right-click Analytical and then click on Properties.
@@ -212,8 +211,6 @@ If the check box to enable analytic and debug logs is not enabled on a Windows 2
 Press Windows Key + R, execute dnsmgmt.msc.
 
 Right-click the DNS server, select Properties.
-
-Click on the Event Logging tab. By default, all events are logged.
 
 Verify "Errors and warnings" or "All events" is selected.
 
