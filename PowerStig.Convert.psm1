@@ -1,4 +1,6 @@
-#Requires -Version 5.0
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+#Requires -Version 5.1
 
 <#
     A funny note if you have OCD. The order of the dot sourced files is important due to the way

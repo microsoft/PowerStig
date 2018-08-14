@@ -17,4 +17,8 @@ Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig.Main" 
     . $supportFile.FullName
 }
 
-Export-ModuleMember -Function @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList')
+Export-ModuleMember -Function @(
+    'Get-OrgSettingsObject',
+    'Get-DomainName',
+    'Get-StigList'
+)
