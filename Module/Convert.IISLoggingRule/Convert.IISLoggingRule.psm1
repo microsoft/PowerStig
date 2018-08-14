@@ -172,4 +172,3 @@ Class IisLoggingRule : STIG
 
     #endregion
 }
-
