@@ -1,4 +1,4 @@
-<DISASTIG id="Active_Directory_Forest" version="2.8" created="8/13/2018">
+<DISASTIG id="Active_Directory_Forest" version="2.8" created="8/14/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-8527" severity="low" conversionstatus="pass" title="Schema Change Configuration Management" dscresource="None">
       <ConversionStatus>pass</ConversionStatus>
@@ -94,37 +94,13 @@ The US Naval Observatory operates stratum 1 time servers, identified at http://t
       <Severity>medium</Severity>
       <Title>Time Synchronization-Authoritative Source</Title>
     </Rule>
-    <Rule id="V-72835" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
+    <Rule id="V-15372" severity="high" conversionstatus="pass" title="Directory Schema Update Access" dscresource="None">
       <ConversionStatus>pass</ConversionStatus>
       <DscResource>None</DscResource>
-      <Id>V-72835</Id>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "Active Directory Users and Computers" on a domain controller in the forest root domain.
-
-Navigate to the "Users" container.
-
-Right-click on "Schema Admins" and select "Properties", and then select the "Members" tab.
-
-If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
-
-If any accounts are members of the group when schema changes are not being made, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0017</Title>
-    </Rule>
-  </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-15372" severity="high" conversionstatus="fail" title="Directory Schema Update Access" dscresource="">
-      <AccessControlEntry />
-      <ConversionStatus>fail</ConversionStatus>
-      <DscResource />
-      <Force>True</Force>
       <Id>V-15372</Id>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path />
       <RawString>Start a Schema management console. (See supplemental notes.)
 Select, then right-click on the Active Directory Schema entry in the left pane.
 Select Permissions.
@@ -193,5 +169,24 @@ Select the No button to the Save console settings… prompt (unless the SA wishe
       <Severity>high</Severity>
       <Title>Directory Schema Update Access</Title>
     </Rule>
-  </PermissionRule>
+    <Rule id="V-72835" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-72835</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Users and Computers" on a domain controller in the forest root domain.
+
+Navigate to the "Users" container.
+
+Right-click on "Schema Admins" and select "Properties", and then select the "Members" tab.
+
+If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
+
+If any accounts are members of the group when schema changes are not being made, this is a finding.</RawString>
+      <Severity>medium</Severity>
+      <Title>AD.0017</Title>
+    </Rule>
+  </ManualRule>
 </DISASTIG>
