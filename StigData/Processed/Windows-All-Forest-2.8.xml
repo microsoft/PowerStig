@@ -1,0 +1,192 @@
+<DISASTIG id="Active_Directory_Forest" version="2.8" created="8/14/2018">
+  <DocumentRule dscresourcemodule="None">
+    <Rule id="V-8527" severity="low" conversionstatus="pass" title="Schema Change Configuration Management" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8527</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Interview the IAO.
+
+2. Obtain a copy of the site’s configuration management procedures documentation.
+
+3. Verify that there is a local policy that requires changes to the directory schema to be processed through a configuration management process. This applies to directory schema changes whether implemented in a database or other types of files. For AD, this refers to changes to the AD schema.
+
+4. If there is no policy that requires changes to the directory schema to be processed through a configuration management process, then this is a finding.
+</RawString>
+      <Severity>low</Severity>
+      <Title>Schema Change Configuration Management</Title>
+    </Rule>
+  </DocumentRule>
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-8555" severity="medium" conversionstatus="pass" title="DS10.0230 dsHeuristics Option" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8555</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. At the command line prompt enter (on a single line): 
+dsquery * "cn=Directory Service,
+cn=Windows NT,cn=Services,cn=Configuration,dc=[forest-name]" -scope base -attr * 
+
+(Where dc=[forest-name] is the fully qualified LDAP name of the root of the domain being reviewed.)
+
+Example:
+The following is an example of the dsquery command for the vcfn.ost.com forest.
+
+dsquery * "cn=Directory Service,cn=Windows  NT,cn=Services,cn=Configuration,  dc=vcfn,dc=ost,dc=com -scope base -attr * 
+
+2. If the dsHeuristics attribute is listed, note the assigned value.
+
+3. If the dsHeuristics attribute is defined and has a “2” as the 7th character, then this is a finding.
+
+Examples of values that would be a finding as follows:
+ “0000002”, “0010002”, “0000002000001”.
+(The 7th character controls anonymous access.)
+
+Supplementary Notes:
+Domain controllers have this option disabled by default. However, this check verifies that the option has not been enabled.
+
+The dsHeuristics option can be configured with the Windows Support Tools Active Directory Service Interfaces Editor (ADSI Edit) console (adsiedit.msc).</RawString>
+      <Severity>medium</Severity>
+      <Title>DS10.0230 dsHeuristics Option</Title>
+    </Rule>
+    <Rule id="V-8557" severity="medium" conversionstatus="pass" title="Time Synchronization-Authoritative Source" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-8557</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to the domain controller with the PDC emulator role in forest root domain; it is NA for other domain controllers in the forest.
+
+Determine the domain controller with the PDC Emulator role in the forest root domain:
+
+Windows 2008 R2 or later: 
+
+Open "Windows PowerShell".
+
+Enter "Get-ADDomain -Identity [Forest Root Domain] | FT PDCEmulator", where [Forest Root Domain] is the forest root domain name, such as "example.mil". (This can also be entered without the -Identity parameter if running within the forest root domain.)
+
+Windows 2008:
+
+Open "Active Directory Users and Computers" from a domain controller in or connected to the forest root (available from various menus or run "dsa.msc").
+
+Select "Action" in the menu, then "All Tasks &gt;&gt; Operations Masters".
+
+Select the "PDC" tab.
+
+On the system with the PDC Emulator role, open "Windows PowerShell" or an elevated "Command Prompt" (run as administrator).
+
+Enter "W32tm /query /configuration".
+
+Under the "NtpClient" section:
+
+If the value for "Type" is not "NTP", this is a finding.
+
+If the value for "NtpServer" is not an external DoD time source, this is a finding.
+
+If an alternate time synchronization tool is used and is not enabled or not configured to a synchronize with an external DoD time source, this is a finding.
+
+The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</RawString>
+      <Severity>medium</Severity>
+      <Title>Time Synchronization-Authoritative Source</Title>
+    </Rule>
+    <Rule id="V-15372" severity="high" conversionstatus="pass" title="Directory Schema Update Access" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-15372</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Start a Schema management console. (See supplemental notes.)
+Select, then right-click on the Active Directory Schema entry in the left pane.
+Select Permissions.
+
+If any of the permissions for the Schema object are not at least as restrictive as those below, this is a finding. 
+
+The permissions shown are at the summary level.  More detailed permissions can be viewed by selecting the Advanced button, selecting the desired entry, and the Edit button.
+
+Authenticated Users:
+Read
+Special Permissions
+The Special permissions for Authenticated Users are List and Read type.  If detailed permissions include any additional Permissions or Properties this is a finding.
+
+System:
+Full Control
+
+Enterprise Read-only Domain Controllers:
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+
+Schema Admins:
+Read
+Write
+Create all child objects
+Change schema master
+Manage replication topology
+Monitor active directory replication
+Read only replication secret synchronization
+Reanimate tombstones
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication synchronization
+Update schema cache
+Special permissions
+(Special permissions = all except Full, Delete, and Delete subtree when detailed permissions viewed.)
+
+Administrators:
+Manage replication topology
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication Synchronization
+
+Enterprise Domain Controllers:
+Manage replication topology
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication Synchronization
+
+Supplemental Notes:
+If the Schema management console has not already been configured on the computer, create a console by using the following:
+
+The steps for adding the snap-in may vary depending on the Windows version.
+Register the required DLL module by typing the following at a command line "regsvr32 schmmgmt.dll".
+Run "mmc.exe" to start a Microsoft Management Console. 
+Select Add/Remove Snap-in from the File menu.
+From the Available Standalone Snap-ins list, select Active Directory Schema
+Select the Add button.
+Select the OK button.
+
+When done using the console, select Exit from the File (or Console) menu.
+Select the No button to the Save console settings… prompt (unless the SA wishes to retain this console). If the console is retained, the recommended name is schmmgmt.msc and the recommended location is the [systemroot]\system32 directory.</RawString>
+      <Severity>high</Severity>
+      <Title>Directory Schema Update Access</Title>
+    </Rule>
+    <Rule id="V-72835" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
+      <ConversionStatus>pass</ConversionStatus>
+      <DscResource>None</DscResource>
+      <Id>V-72835</Id>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Users and Computers" on a domain controller in the forest root domain.
+
+Navigate to the "Users" container.
+
+Right-click on "Schema Admins" and select "Properties", and then select the "Members" tab.
+
+If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
+
+If any accounts are members of the group when schema changes are not being made, this is a finding.</RawString>
+      <Severity>medium</Severity>
+      <Title>AD.0017</Title>
+    </Rule>
+  </ManualRule>
+</DISASTIG>

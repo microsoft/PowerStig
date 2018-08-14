@@ -1,4 +1,4 @@
-<DISASTIG id="IE_11_STIG" version="1.16" created="8/13/2018">
+<DISASTIG id="IE_11_STIG" version="1.16" created="8/14/2018">
   <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
     <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="Registry">
       <ConversionStatus>pass</ConversionStatus>
@@ -6,7 +6,7 @@
       <Ensure>Present</Ensure>
       <Id>V-46473</Id>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings!SecureProtocols</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Advanced Page &gt;&gt; "Turn off Encryption Support" must be "Enabled".
