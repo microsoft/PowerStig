@@ -238,6 +238,14 @@ function Get-RuleTypeMatchList
             [void] $ruleTypeList.Add( [RuleType]::GroupRule )
             $parsed = $true
         }
+        {
+            $PSItem -Match 'about:config' -and
+            $PSItem -NotMatch 'Mozilla.cfg'
+        }
+        {
+            [void] $ruleTypeList.Add( [RuleType]::FileContentRule )
+            $parsed = $true
+        }
         <#
             Break out of switch statement once a rule has been parsed before it tries to convert to a
             document or manual rule.

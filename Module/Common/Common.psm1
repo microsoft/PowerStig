@@ -63,6 +63,7 @@ Enum RuleType
     DnsServerRootHintRule
     DnsServerSettingRule
     DocumentRule
+    FileContentRule
     GroupRule
     IisLoggingRule
     ManualRule
