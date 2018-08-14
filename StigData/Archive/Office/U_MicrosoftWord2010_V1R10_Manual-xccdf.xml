@@ -298,3 +298,4 @@ HKCU\Software\Policies\Microsoft\Office\14.0\word\security\fileblock
 
 Criteria: If the value WordXPFiles is REG_DWORD = 5, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

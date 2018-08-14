@@ -1045,3 +1045,4 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 - Select the other tabs in this area to verify no other services or permissions are configured for this account.
 
 If the farm service account is a member of any other groups than WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, and WSS_WPG on the local server where SharePoint is installed, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

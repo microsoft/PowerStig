@@ -414,3 +414,4 @@ HKCU\Software\Policies\Microsoft\Office\14.0\excel\security\protectedview
 
 Criteria: If the value DisableAttachmentsInPV is REG_DWORD = 0, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

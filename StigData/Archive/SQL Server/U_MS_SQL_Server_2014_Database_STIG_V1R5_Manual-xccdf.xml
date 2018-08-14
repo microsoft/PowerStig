@@ -1766,3 +1766,4 @@ ORDER BY 1
 For each user database where encryption is required, verify that encryption is in effect. If not, this is a finding.
 
 Verify that there are physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s). If not, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

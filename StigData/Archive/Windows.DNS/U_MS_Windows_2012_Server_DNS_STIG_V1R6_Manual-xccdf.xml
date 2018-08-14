@@ -2855,3 +2855,4 @@ From the expanded list, click to select the zone.
 Review the zone's Resource Records (RR) and verify HINFO, RP, and LOC RRs are not used. If TXT RRs are used, they must not reveal any information about the organization which could be used for malicious purposes.
 
 If there are any HINFO, RP, LOC, or revealing TXT RRs in any zone hosted by the DNS Server, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

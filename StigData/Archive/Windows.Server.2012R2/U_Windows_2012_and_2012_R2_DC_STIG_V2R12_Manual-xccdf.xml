@@ -4902,3 +4902,4 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; Other System Events - Failure</check-content></check></Rule></Group></Benchmark>
+

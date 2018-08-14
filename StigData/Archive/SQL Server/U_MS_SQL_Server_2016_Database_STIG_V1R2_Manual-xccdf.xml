@@ -1,0 +1,794 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" id="MS_SQL_Server_2016_Database_STIG" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2018-06-25">accepted</status><title>MS SQL Server 2016 Database Security Technical Implementation Guide</title><description>This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><reference href="http://iase.disa.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 2 Benchmark Date: 27 Jul 2018</plain-text><version>1</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-79061" selected="true" /><select idref="V-79065" selected="true" /><select idref="V-79067" selected="true" /><select idref="V-79069" selected="true" /><select idref="V-79071" selected="true" /><select idref="V-79073" selected="true" /><select idref="V-79075" selected="true" /><select idref="V-79077" selected="true" /><select idref="V-79079" selected="true" /><select idref="V-79081" selected="true" /><select idref="V-79083" selected="true" /><select idref="V-79085" selected="true" /><select idref="V-79087" selected="true" /><select idref="V-79089" selected="true" /><select idref="V-79091" selected="true" /><select idref="V-79093" selected="true" /><select idref="V-79095" selected="true" /><select idref="V-79097" selected="true" /><select idref="V-79099" selected="true" /><select idref="V-79101" selected="true" /><select idref="V-79103" selected="true" /><select idref="V-79105" selected="true" /><select idref="V-79107" selected="true" /><select idref="V-79109" selected="true" /><select idref="V-79111" selected="true" /><select idref="V-79113" selected="true" /><select idref="V-79115" selected="true" /><select idref="V-79117" selected="true" /></Profile><Group id="V-79061"><title>SRG-APP-000023-DB-000001</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93767r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-000100</version><title>SQL Server databases must integrate with an organization-level authentication/access mechanism providing account management and automation for all users, groups, roles, and any other principals.</title><description>&lt;VulnDiscussion&gt;Enterprise environments make account management for applications and databases challenging and complex. A manual process for account management functions adds the risk of a potential oversight or other error. Managing accounts for the same person in multiple places is inefficient and prone to problems with consistency and synchronization.
+
+A comprehensive application account management process that includes automation helps to ensure that accounts designated as requiring attention are consistently and promptly addressed. 
+
+Examples include, but are not limited to, using automation to take action on multiple accounts designated as inactive, suspended, or terminated, or by disabling accounts located in non-centralized account stores, such as multiple servers. Account management functions can also include: assignment of group or role membership; identifying account type; specifying user access authorizations (i.e., privileges); account removal, update, or termination; and administrative alerts. The use of automated mechanisms can include, for example: using email or text messaging to notify account managers when users are terminated or transferred; using the information system to monitor account usage; and using automated telephone notification to report atypical system account usage.
+
+SQL Server must be configured to automatically utilize organization-level account management functions, and these functions must immediately enforce the organization's current account policy. 
+
+Automation may be comprised of differing technologies that when placed together contain an overall mechanism supporting an organization's automated account management requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000015</ident><fixtext fixref="F-85813r1_fix">If mixed mode is required, document the need and justification; describe the measures taken to ensure the use of SQL Server authentication is kept to a minimum; describe the measures taken to safeguard passwords; list or describe the SQL Logins used; and obtain official approval.
+
+If mixed mode is not required, disable it as follows: 
+
+In the SSMS Object Explorer, right-click on the server instance &gt;&gt; Select "Properties" &gt;&gt; Select the Security page &gt;&gt; Click on the radio button for Windows Authentication Mode &gt;&gt; Click "OK" 
+
+Restart the SQL Server instance. 
+
+OR
+
+Run the statement: 
+USE [master]
+EXEC xp_instance_regwrite N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\MSSQLServer', N'LoginMode', REG_DWORD, 2
+GO
+
+Restart the SQL Server instance. 
+
+For each account being managed by SQL Server but not requiring it, drop or disable the SQL Database user. Replace it with an appropriately configured account, as needed.
+
+To drop a User in the SSMS Object Explorer: 
+Navigate to Databases &gt;&gt; Security Users &gt;&gt; Right-click on the User name &gt;&gt; Click "Delete"
+
+To drop a User via a query: 
+USE database_name;
+DROP USER &lt;user_name&gt;;</fixtext><fix id="F-85813r1_fix" /><check system="C-78651r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Determine if SQL Server is configured to allow the use of contained databases.
+
+In the Object Explorer in SQL Server Management Studio (SSMS), Right-click on the server instance &gt;&gt; Select "Properties" &gt;&gt; Select the Advanced page
+
+If "Enabled Contained Databases" is "False", this is not a finding. 
+
+OR
+
+In a query interface such as the SSMS Transact-SQL editor, run the statement:
+EXEC sp_configure 'contained database authentication'
+
+If the returned value in the "config_value" and/or "run_value" column is 0, this is not a finding.
+
+Determine whether SQL Server is configured to use only Windows authentication. 
+
+In the Object Explorer in SQL Server Management Studio (SSMS), right-click on the server instance; select "Properties". Select the Security page. If Windows Authentication Mode is selected, this is not a finding. 
+
+OR
+
+In a query interface such as the SSMS Transact-SQL editor, run the statement: 
+
+SELECT CASE SERVERPROPERTY('IsIntegratedSecurityOnly')   
+ WHEN 1 THEN 'Windows Authentication'   
+ WHEN 0 THEN 'Windows and SQL Server Authentication'   
+END as [Authentication Mode] 
+
+If the returned value in the "Authentication Mode" column is "Windows Authentication", this is not a finding. 
+
+Mixed mode (both SQL Server authentication and Windows authentication) is in use. If the need for mixed mode has not been documented and approved, this is a finding. 
+
+From the documentation, obtain the list of accounts authorized to be managed by SQL Server. 
+
+Determine the accounts (SQL Logins) actually managed by SQL Server. Run the statement: 
+
+SELECT name
+FROM sys.database_principals
+WHERE type_desc = 'SQL_USER'
+AND authentication_type_desc = 'DATABASE'; 
+
+If any accounts listed by the query are not listed in the documentation, this is a finding.
+
+Risk must be accepted by the ISSO/ISSM.</check-content></check></Rule></Group><Group id="V-79065"><title>SRG-APP-000033-DB-000084</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93771r1_rule" severity="high" weight="10.0"><version>SQL6-D0-000300</version><title>SQL Server must enforce approved authorizations for logical access to information and system resources in accordance with applicable access control policies.</title><description>&lt;VulnDiscussion&gt;Authentication with a DoD-approved PKI certificate does not necessarily imply authorization to access SQL Server.  To mitigate the risk of unauthorized access to sensitive information by entities that have been issued certificates by DoD-approved PKIs, all DoD systems, including databases, must be properly configured to implement access control policies. 
+
+Successful authentication must not automatically give an entity access to an asset or security boundary. Authorization procedures and controls must be implemented to ensure each authenticated entity also has a validated and current authorization. Authorization is the process of determining whether an entity, once authenticated, is permitted to access a specific asset. Information systems use access control policies and enforcement mechanisms to implement this requirement. 
+
+Access control policies include identity-based policies, role-based policies, and attribute-based policies. Access enforcement mechanisms include access control lists, access control matrices, and cryptography. These policies and mechanisms must be employed by the application to control access between users (or processes acting on behalf of users) and objects (e.g., devices, files, records, processes, programs, and domains) in the information system. 
+
+This requirement is applicable to access control enforcement applications, a category that includes database management systems.  If SQL Server does not follow applicable policy when approving access, it may be in conflict with networks or other applications in the information system. This may result in users either gaining or being denied access inappropriately and in conflict with applicable policy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000213</ident><fixtext fixref="F-85817r1_fix">Use GRANT, REVOKE, DENY, ALTER ROLE … ADD MEMBER … and/or ALTER ROLE …. DROP MEMBER statements to add and remove permissions on database-level securables, bringing them into line with the documented requirements.</fixtext><fix id="F-85817r1_fix" /><check system="C-78655r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review the system documentation to determine the required levels of protection for securables in the database, by type of user. 
+
+Review the permissions actually in place in the database. 
+
+If the actual permissions do not match the documented requirements, this is a finding.
+
+Use the supplemental file "Database permission assignments to users and roles.sql".</check-content></check></Rule></Group><Group id="V-79067"><title>SRG-APP-000080-DB-000063</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93773r2_rule" severity="high" weight="10.0"><version>SQL6-D0-000400</version><title>SQL Server must protect against a user falsely repudiating by ensuring only clearly unique Active Directory user accounts can connect to the database.</title><description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message. 
+
+Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database.
+
+In designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring the DBMS's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to the DBMS, even where the application connects to the DBMS with a standard, shared account.
+
+If the computer account of a remote computer is granted access to a SQL Server database, any service or scheduled task running as NT AUTHORITY\SYSTEM or NT AUTHORITY\NETWORK SERVICE can log into the instance and perform actions. These actions cannot be traced back to a specific user or process.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000166</ident><fixtext fixref="F-85819r1_fix">Remove all users that were returned in the check SQL Statement:
+
+SELECT name
+FROM sys.database_principals
+WHERE type in ('U','G')
+AND name LIKE '%$'
+
+To remove users:
+
+Run the following command for each user:
+
+DROP USER [ IF EXISTS ] &lt;user_name&gt;;</fixtext><fix id="F-85819r1_fix" /><check system="C-78657r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Execute the following query:
+
+SELECT name
+FROM sys.database_principals
+WHERE type in ('U','G')
+AND name LIKE '%$'
+
+If no users are returned, this is not a finding.
+
+If users are returned, determine whether each user is a computer account.
+
+Launch PowerShell.
+
+Execute the following code:
+
+Note: &lt;name&gt; represents the username portion of the user. For example; if the user is "CONTOSO\user1$", the username is "user1".
+
+([ADSISearcher]"(&amp;(!ObjectCategory=Computer)(Name=&lt;name&gt;))").FindAll()
+
+If no account information is returned, this is not a finding.
+
+If account information is returned, this is a finding.</check-content></check></Rule></Group><Group id="V-79069"><title>SRG-APP-000080-DB-000063</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93775r1_rule" severity="low" weight="10.0"><version>SQL6-D0-000500</version><title>SQL Server must protect against a user falsely repudiating by use of system-versioned tables (Temporal Tables).</title><description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message.
+
+Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database. 
+
+In designing a database, the organization must define the types of data and the user actions that must be protected from repudiation. The implementation must then include building audit features into the application data tables and configuring SQL Server's audit tools to capture the necessary audit trail. Design and implementation also must ensure that applications pass individual user identification to SQL Server, even where the application connects to SQL Server with a standard, shared account. 
+
+Applications should use temporal tables to track the changes and history of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000166</ident><fixtext fixref="F-85821r1_fix">Alter sensitive tables to utilize system versioning.
+
+Alter non-temporal table to define periods for system versioning . 
+
+ALTER TABLE InsurancePolicy  
+ADD PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime),   
+SysStartTime datetime2 GENERATED ALWAYS AS ROW START HIDDEN NOT NULL DEFAULT GETUTCDATE(),   
+SysEndTime datetime2 GENERATED ALWAYS AS ROW END HIDDEN NOT NULL DEFAULT CONVERT(DATETIME2, '9999-12-31 23:59:59.99999999');  
+
+Enable system versioning with 1-year retention for historical data.
+
+ALTER TABLE InsurancePolicy 
+SET (SYSTEM_VERSIONING = ON (HISTORY_RETENTION_PERIOD = 1 YEAR));
+
+https://msdn.microsoft.com/en-us/library/ms190273.aspx#Anchor_16</fixtext><fix id="F-85821r1_fix" /><check system="C-78659r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Check the server documentation to determine if collecting and keeping historical versions of a table is required. If not, this is not a finding.
+
+Find all of the temporal tables in the database using the following query:
+
+SELECT SCHEMA_NAME(T.schema_id) AS schema_name, T.name AS table_name, T.temporal_type_desc,
+  SCHEMA_NAME(H.schema_id) + '.' + H.name AS history_table
+FROM sys.tables T
+JOIN sys.tables H ON T.history_table_id = H.object_id
+WHERE T.temporal_type != 0
+ORDER BY schema_name, table_name 
+
+Using the system documentation, determine which tables are required to be temporal tables. If any tables listed in the documentation are not in the above list, this is a finding.
+
+Ensure a field exists documenting the login and/or user who last modified the record. If this does not exist, this is a finding.
+
+Review the system documentation to determine the history retention period. 
+Navigate to the table in Object Explorer &gt;&gt; Right-click on the table and select Script Table As &gt;&gt; CREATE To &gt;&gt; New Query Editor Window
+
+Locate the line that contains "SYSTEM_VERSIONING".
+Locate the text that states "HISTORY_RETENTION_PERIOD".
+
+If this text is missing, or is set to a value less than the documented history retention period, this is a finding.</check-content></check></Rule></Group><Group id="V-79071"><title>SRG-APP-000080-DB-000063</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93777r2_rule" severity="high" weight="10.0"><version>SQL6-D0-000600</version><title>SQL Server must protect against a user falsely repudiating by ensuring databases are not in a trust relationship.</title><description>&lt;VulnDiscussion&gt;Non-repudiation of actions taken is required in order to maintain data integrity. Examples of particular actions taken by individuals include creating information, sending a message, approving information (e.g., indicating concurrence or signing a contract), and receiving a message. 
+
+Non-repudiation protects against later claims by a user of not having created, modified, or deleted a particular data item or collection of data in the database.
+
+SQL Server provides the ability for high privileged accounts to impersonate users in a database using the TRUSTWORTHY feature. This will allow members of the fixed database role to impersonate any user within the database. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000166</ident><fixtext fixref="F-85823r1_fix">Disable trustworthy on the database.
+
+ALTER DATABASE [&lt;database name&gt;] SET TRUSTWORTHY OFF</fixtext><fix id="F-85823r1_fix" /><check system="C-78661r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Determine if the trustworthy property is set on the database.
+
+SELECT name as DatabaseName,
+SUSER_SNAME(owner_sid) AS DatabaseOwner, is_trustworthy_on
+FROM sys.databases
+
+If trustworthy is not enabled, this is not a finding.
+
+If the database is MSDB, trustworthy is required to be enabled and therefore, this is not a finding.
+
+If trustworthy is enabled, determine if the database owner is a privileged account.
+
+DECLARE @databaseOwner AS nvarchar(50)
+SET @databaseOwner = 'sa'
+
+SELECT member.name AS Login, role.name AS Role
+FROM sys.server_principals member
+INNER JOIN sys.server_role_members rm ON member.principal_id = rm.member_principal_id
+INNER JOIN sys.server_principals role ON rm.role_principal_id = role.principal_id
+WHERE member.name = @databaseOwner
+ AND role.name IN ('sysadmin','securityadmin')
+
+SELECT login.name, permission.permission_name
+FROM sys.server_principals login
+INNER JOIN sys.server_permissions permission ON login.principal_id = permission.grantee_principal_id
+WHERE login.name = @databaseOwner
+ AND permission.permission_name IN ('CONTROL SERVER')
+
+If the database owner is a privileged account, this is a finding.
+
+If the database owner is not a privileged account, review the system documentation to determine if the trustworthy property is required and authorized. If this is not documented, this is a finding.</check-content></check></Rule></Group><Group id="V-79073"><title>SRG-APP-000090-DB-000065</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93779r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-000700</version><title>SQL Server must allow only the ISSM (or individuals or roles appointed by the ISSM) to select which auditable events are to be audited.</title><description>&lt;VulnDiscussion&gt;Without the capability to restrict which roles and individuals can select which events are audited, unauthorized personnel may be able to prevent or interfere with the auditing of critical events.
+
+Suppression of auditing could permit an adversary to evade detection.
+
+Misconfigured audits can degrade the system's performance by overwhelming the audit log. Misconfigured audits may also make it more difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000171</ident><fixtext fixref="F-85825r1_fix">Create a database role specifically for audit maintainers, and give it permission to maintain audits, without granting it unnecessary permissions (The role name used here is an example; other names may be used.):
+
+CREATE ROLE DATABASE_AUDIT_MAINTAINERS;
+GO
+
+GRANT ALTER ANY DATABASE AUDIT TO DATABASE_AUDIT_MAINTAINERS;
+GO
+
+Use REVOKE and/or DENY and/or ALTER ROLE ... DROP MEMBER ... statements to remove the ALTER ANY DATABASE AUDIT permission from all users.  Then, for each authorized database user, run the statement:  
+
+ALTER ROLE DATABASE_AUDIT_MAINTAINERS ADD MEMBER;
+GO
+
+Use REVOKE and/or DENY and/or ALTER SERVER ROLE ... DROP MEMBER ... statements to remove CONTROL DATABASE permission from logins that do not need it.</fixtext><fix id="F-85825r1_fix" /><check system="C-78663r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Obtain the list of approved audit maintainers from the system documentation.
+
+Review the database roles and individual users that have the following role memberships, all of which enable the ability to create and maintain audit specifications.
+
+db_owner
+
+Review the database roles and individual users that have the following permissions, all of which enable the ability to create and maintain audit definitions.
+
+ALTER ANY DATABASE AUDIT
+CONTROL
+ 
+Use the following query to determine the roles and users that have the listed permissions:
+
+SELECT DP.Name AS 'Database Principal', DbPerm.permission_name AS 'Granted Permission', R.name AS 'Role'
+FROM sys.database_principals DP
+LEFT OUTER JOIN sys.database_permissions DbPerm ON DP.principal_id = DbPerm.grantee_principal_id
+LEFT OUTER JOIN sys.database_role_members DRM ON DP.principal_id = DRM.member_principal_id
+INNER JOIN sys.database_principals R ON DRM.role_principal_id = R.principal_id
+WHERE DbPerm.permission_name IN ('CONTROL','ALTER ANY DATABASE AUDIT')
+ OR R.name IN ('db_owner')
+
+If any of the roles or users returned have permissions that are not documented, or the documented audit maintainers do not have permissions, this is a finding.</check-content></check></Rule></Group><Group id="V-79075"><title>SRG-APP-000133-DB-000179</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93781r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001100</version><title>SQL Server must limit privileges to change software modules, to include stored procedures, functions, and triggers.</title><description>&lt;VulnDiscussion&gt;If the system were to allow any user to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.
+
+Accordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.
+
+Unmanaged changes that occur to the database software libraries or configuration can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-85827r1_fix">Revoke the ALTER permission from unauthorized users and roles.
+
+REVOKE ALTER ON [&lt;Object Name&gt;] TO [&lt;Principal Name&gt;]</fixtext><fix id="F-85827r1_fix" /><check system="C-78665r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Obtain a listing of users and roles who are authorized to change stored procedures, functions, and triggers from the server documentation.
+
+In each user database, execute the following query:
+
+SELECT P.type_desc AS principal_type, P.name AS principal_name, O.type_desc,
+  CASE class
+   WHEN 0 THEN DB_NAME()
+   WHEN 1 THEN OBJECT_SCHEMA_NAME(major_id) + '.' + OBJECT_NAME(major_id)
+   WHEN 3 THEN SCHEMA_NAME(major_id)
+    ELSE class_desc + '(' + CAST(major_id AS nvarchar) + ')'
+   END AS securable_name, DP.state_desc, DP.permission_name
+FROM sys.database_permissions DP
+JOIN sys.database_principals P ON DP.grantee_principal_id = P.principal_id
+LEFT OUTER JOIN sys.all_objects O ON O.object_id = DP.major_id AND O.type IN ('TR','TA','P','','RF','PC','IF','FN','TF','U')
+WHERE DP.type IN ('AL','ALTG') AND DP.class IN (0, 1, 53)
+
+SELECT R.name AS role_name, M.type_desc AS principal_type, M.name AS principal_name
+FROM sys.database_principals R
+JOIN sys.database_role_members DRM ON R.principal_id = DRM.role_principal_id
+JOIN sys.database_principals M ON DRM.member_principal_id = M.principal_id
+WHERE R.name IN ('db ddladmin','db_owner')
+   AND M.name != 'dbo'
+
+If any users or role permissions returned are not authorized to modify the specified object or type, this is a finding.
+
+If any user or role membership is not authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-79077"><title>SRG-APP-000133-DB-000179</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93783r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001200</version><title>SQL Server must limit privileges to change software modules, to include stored procedures, functions, and triggers, and links to software external to SQL Server.</title><description>&lt;VulnDiscussion&gt;If the system were to allow any user to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.
+
+Accordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.
+
+Unmanaged changes that occur to the database software libraries or configuration can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-85829r1_fix">Transfer ownership of database schemas to authorized database principals.
+
+ALTER AUTHORIZATION ON SCHEMA::[&lt;Schema Name&gt;] TO [&lt;Principal Name&gt;]</fixtext><fix id="F-85829r1_fix" /><check system="C-78667r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Obtain a listing of schema ownership from the server documentation.
+
+Execute the following query to obtain a current listing of schema ownership.
+
+SELECT S.name AS schema_name, P.name AS owning_principal
+FROM sys.schemas S
+JOIN sys.database_principals P ON S.principal_id = P.principal_id
+ORDER BY schema_name
+
+If any schema is owned by an unauthorized database principal, this is a finding.</check-content></check></Rule></Group><Group id="V-79079"><title>SRG-APP-000133-DB-000200</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93785r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001300</version><title>Database objects (including but not limited to tables, indexes, storage, stored procedures, functions, triggers, links to software external to SQL Server, etc.) must be owned by database/DBMS principals authorized for ownership.</title><description>&lt;VulnDiscussion&gt;Within the database, object ownership implies full privileges to the owned object, including the privilege to assign access to the owned objects to other subjects. Database functions and procedures can be coded using definer's rights. This allows anyone who utilizes the object to perform the actions if they were the owner. If not properly managed, this can lead to privileged actions being taken by unauthorized individuals.
+
+Conversely, if critical tables or other objects in SQL Server rely on unauthorized owner accounts, these objects may be lost when an account is removed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-85831r1_fix">Add and/or update system documentation to include any accounts authorized for object ownership and remove any account not authorized. 
+
+To change the schema owning a database object in SQL Server, use this code as an example: 
+
+USE AdventureWorks2012;  
+GO  
+ALTER SCHEMA HumanResources TRANSFER Person.Address;  
+GO  
+
+Caution: This can break code. This Fix should be implemented in conjunction with corrections to such code. Test before deploying in production. Deploy during a scheduled maintenance window.</fixtext><fix id="F-85831r1_fix" /><check system="C-78669r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review system documentation to identify SQL Server accounts authorized to own database objects. 
+
+If the SQL Server database ownership list does not exist or needs to be updated, this is a finding. 
+
+The following query can be of use in making this determination: 
+
+;with objects_cte as
+(SELECT o.name, o.type_desc,
+   CASE
+    WHEN o.principal_id is null then s.principal_id
+     ELSE o.principal_id
+    END as principal_id
+ FROM sys.objects o
+ INNER JOIN sys.schemas s
+ ON o.schema_id = s.schema_id
+ WHERE o.is_ms_shipped = 0
+)
+SELECT cte.name, cte.type_desc, dp.name as ObjectOwner 
+FROM objects_cte cte
+INNER JOIN sys.database_principals dp
+ON cte.principal_id = dp.principal_id
+ORDER BY dp.name, cte.name
+
+If any of the listed owners is not authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-79081"><title>SRG-APP-000133-DB-000362</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93787r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001400</version><title>The role(s)/group(s) used to modify database structure (including but not necessarily limited to tables, indexes, storage, etc.) and logic modules (stored procedures, functions, triggers, links to software external to SQL Server, etc.) must be restricted to authorized users.</title><description>&lt;VulnDiscussion&gt;If SQL Server were to allow any user to make changes to database structure or logic, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.
+
+Accordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.
+
+Unmanaged changes that occur to the database software libraries or configuration can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-85833r1_fix">Document and obtain approval for any non-administrative users who require the ability to modify database structure and logic modules.
+
+REVOKE ALTER ON [&lt;Object Name&gt;] TO [&lt;Principal Name&gt;]</fixtext><fix id="F-85833r1_fix" /><check system="C-78671r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Obtain a listing of users and roles who are authorized to modify database structure and logic modules from the server documentation.
+
+Execute the following query:
+SELECT P.type_desc AS principal_type, P.name AS principal_name, O.type_desc,
+   CASE class
+    WHEN 0 THEN DB_NAME()
+    WHEN 1 THEN OBJECT_SCHEMA_NAME(major_id) + '.' + OBJECT_NAME(major_id)
+    WHEN 3 THEN SCHEMA_NAME(major_id)
+      ELSE class_desc + '(' + CAST(major_id AS nvarchar) + ')'
+   END AS securable_name, DP.state_desc, DP.permission_name
+FROM sys.database_permissions DP
+JOIN sys.database_principals P ON DP.grantee_principal_id = P.principal_id
+LEFT OUTER JOIN sys.all_objects O ON O.object_id = DP.major_id AND O.type IN ('TR','TA','P','X','RF','PC','IF','FN','TF','U')
+WHERE DP.type IN ('AL','ALTG') AND DP.class IN (0, 1, 53)
+
+SELECT R.name AS role_name, M.type_desc AS principal_type, M.name AS principal_name
+FROM sys.database_principals R
+JOIN sys.database_role_members DRM ON R.principal_id = DRM.role_principal_id
+JOIN sys.database_principals M ON DRM.member_principal_id = M.principal_id
+WHERE R.name IN ('db_ddladmin','db_owner')
+AND M.name != 'dbo'
+
+If any users or role permissions returned are not authorized to modify the specified object or type, this is a finding.
+
+If any user or role membership is not authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-79083"><title>SRG-APP-000226-DB-000147</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93789r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001500</version><title>In the event of a system failure, hardware loss or disk failure, SQL Server must be able to restore necessary databases with least disruption to mission processes.</title><description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system. In the event of a system failure, SQL Server must be able to bring the database back to a consistent state.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001665</ident><fixtext fixref="F-85835r1_fix">Modify the system security plan, to include whether the database is static, the correct recovery model to be used, the backup schedule, and the plan for testing database restoration. 
+
+In SQL Server Management Studio, Object Explorer, right-click on the name of the database; select Properties. Select the Options page. Set the Recovery Model field, near the top of the page, to the correct value. 
+
+In Object Explorer, expand &gt;&gt; SQL Server Agent &gt;&gt; Jobs. Create, modify, and delete jobs to implement the backup schedule. (Alternatively, this may done using T-SQL code or Third-party Backup software.) 
+
+Correct any issues that have been causing backups to fail. 
+
+Test the restoration of the database at least once a year; correct any issues that cause it to fail. Maintain a record of these tests.</fixtext><fix id="F-85835r1_fix" /><check system="C-78673r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review the system security plan (SSP) to determine whether the database is static, the recovery model to be used, the backup schedule, and the plan for testing database restoration.
+
+If the SSP does not state that the database is static, assume that it is not static. If any of the other information is absent, this is a finding. 
+
+If the database is not static, and the documented recovery model is Bulk Logged, but the justification and authorization for this are not documented, this is a finding. 
+
+Run the following to determine Recovery Model:
+
+USE [master]
+GO
+
+SELECT name, recovery_model_desc
+FROM sys.databases
+ORDER BY name
+
+If the recovery model description does not match the documented recovery model, this is a finding. 
+
+Review the jobs set up to implement the backup plan. If they are absent, this is a finding. 
+
+Check the history of the backups by running the following query.  It checks the last 30 days of backups by database.
+USE [msdb]
+GO
+
+SELECT database_name, 
+   CASE type
+    WHEN 'D' THEN 'Full'
+    WHEN 'I' THEN 'Differential'
+    WHEN 'L' THEN 'Log'
+   ELSE type
+   END AS backup_type,
+ is_copy_only,
+ backup_start_date, backup_finish_date
+FROM dbo.backupset
+WHERE backup_start_date &gt;= dateadd(day, - 30, getdate()) 
+ORDER BY database_name, backup_start_date DESC
+
+If the history indicates a pattern of job failures by missing or gaps in backups, this is a finding. 
+
+Review evidence that database recovery is tested annually or more often, and that the most recent test was successful. If not, this is a finding.</check-content></check></Rule></Group><Group id="V-79085"><title>SRG-APP-000231-DB-000154</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93791r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001600</version><title>The Database Master Key encryption password must meet DOD password complexity requirements. </title><description>&lt;VulnDiscussion&gt;Weak passwords may be easily guessed. When passwords are used to encrypt keys used for encryption of sensitive data, then the confidentiality of all data encrypted using that key is at risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-85837r1_fix">Assign an encryption password to the Database Master Key that is a minimum of 15 characters with at least 1 upper-case character, 1 lower-case character, 1 special character, and 1 numeric character, and at least 8 characters changed from the previous password. 
+
+To change the Database Master Key encryption password: 
+
+USE [database name]; 
+ALTER MASTER KEY REGENERATE WITH ENCRYPTION BY PASSWORD = '[new password]'; 
+
+Note: The Database Master Key encryption method should not be changed until the effects are thoroughly reviewed. Changing the master key encryption causes all encryption using the Database Master Key to be decrypted and re-encrypted. This action should not be taken during a high-demand time. Please see the MS SQL Server documentation prior to re-encrypting the Database Master Key for detailed information.</fixtext><fix id="F-85837r1_fix" /><check system="C-78675r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>From the query prompt: 
+
+SELECT name 
+FROM [master].sys.databases 
+WHERE state = 0 
+
+Repeat for each database: 
+From the query prompt: 
+USE [database name] 
+SELECT COUNT(name) 
+FROM sys.symmetric_keys s, sys.key_encryptions k 
+WHERE s.name = '##MS_DatabaseMasterKey##' 
+AND s.symmetric_key_id = k.key_id 
+AND k.crypt_type = 'ESKP' 
+
+If the value returned is greater than 0, a Database Master Key exists and is encrypted with a password. 
+
+Review procedures and evidence of password requirements used to encrypt Database Master Keys. 
+
+If the passwords are not required to meet DoD password standards, currently a minimum of 15 characters with at least 1 upper-case character, 1 lower-case character, 1 special character, and 1 numeric character, and at least 8 characters changed from the previous password, this is a finding.</check-content></check></Rule></Group><Group id="V-79087"><title>SRG-APP-000231-DB-000154</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93793r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001700</version><title>The Database Master Key must be encrypted by the Service Master Key, where a Database Master Key is required and another encryption method has not been specified. </title><description>&lt;VulnDiscussion&gt;When not encrypted by the Service Master Key, system administrators or application administrators may access and use the Database Master Key to view sensitive data that they are not authorized to view. Where alternate encryption means are not feasible, encryption by the Service Master Key may be necessary. To help protect sensitive data from unauthorized access by DBAs, mitigations may be in order. Mitigations may include automatic alerts or other audit events when the Database Master Key is accessed outside of the application or by a DBA account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-85839r1_fix">Where possible, encrypt the Database Master Key with a password known only to the application administrator.
+
+Where not possible, configure additional audit events or alerts to detect unauthorized access to the Database Master Key by users not authorized to view sensitive data.</fixtext><fix id="F-85839r1_fix" /><check system="C-78677r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>If no databases require encryption, this is not a finding. 
+
+From the query prompt: 
+
+SELECT name 
+FROM [master].sys.databases 
+WHERE is_master_key_encrypted_by_server = 1 
+AND owner_sid &lt;&gt; 1 
+AND state = 0; 
+(Note that this query assumes that the [sa] account is not used as the owner of application databases, in keeping with other STIG guidance. If this is not the case, modify the query accordingly.) 
+
+If no databases are returned by the query, this is not a finding. 
+
+For any databases returned, verify in the System Security Plan that encryption of the Database Master Key using the Service Master Key is acceptable and approved by the Information Owner, and the encrypted data does not require additional protections to deter or detect DBA access. If not approved, this is a finding. 
+
+If approved and additional protections are required, then verify the additional requirements are in place in accordance with the System Security Plan. These may include additional auditing on access of the Database Master Key with alerts or other automated monitoring. 
+
+If the additional requirements are not in place, this is a finding.</check-content></check></Rule></Group><Group id="V-79089"><title>SRG-APP-000231-DB-000154</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93795r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-001800</version><title>The Certificate used for encryption must be backed up, stored offline and off-site. </title><description>&lt;VulnDiscussion&gt;Backup and recovery of the Certificate used for encryption is critical to the complete recovery of the database. Not having this key can lead to loss of data during recovery.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-85841r1_fix">Document and implement procedures to safely back up and store the Certificate used for encryption. Include in the procedures methods to establish evidence of backup and storage, and careful, restricted access and restoration of the Certificate. Also, include provisions to store the backup off-site. 
+
+BACKUP CERTIFICATE 'CertificateName' TO FILE = 'path_to_file' 
+WITH PRIVATE KEY (FILE = 'path_to_pvk', ENCRYPTION BY PASSWORD = 'password'); 
+
+As this requires a password, take care to ensure it is not exposed to unauthorized persons or stored as plain text.</fixtext><fix id="F-85841r1_fix" /><check system="C-78679r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>If the application owner and Authorizing Official have determined that encryption of data at rest is not required, this is not a finding.
+
+Review procedures for, and evidence of backup of the Certificate used for encryption in the System Security Plan. 
+
+If the procedures or evidence does not exist, this is a finding. 
+
+If the procedures do not indicate offline and off-site storage of the Certificate used for encryption, this is a finding. 
+
+If procedures do not indicate access restrictions to the Certificate backup, this is a finding.</check-content></check></Rule></Group><Group id="V-79091"><title>SRG-APP-000233-DB-000124</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93797r1_rule" severity="low" weight="10.0"><version>SQL6-D0-001900</version><title>SQL Server must isolate security functions from non-security functions.</title><description>&lt;VulnDiscussion&gt;An isolation boundary provides access control and protects the integrity of the hardware, software, and firmware that perform security functions. 
+
+Security functions are the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based.
+
+Developers and implementers can increase the assurance in security functions by employing well-defined security policy models; structured, disciplined, and rigorous hardware and software development techniques; and sound system/security engineering principles. 
+
+Database Management Systems typically separate security functionality from non-security functionality via separate databases or schemas. Database objects or code implementing security functionality should not be commingled with objects or code implementing application logic. When security and non-security functionality are commingled, users who have access to non-security functionality may be able to access security functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001084</ident><fixtext fixref="F-85843r1_fix">Check the server documentation, locate security-related database objects and code in a separate database, schema, table, or other separate security domain from database objects and code implementing application logic.  
+
+Microsoft SQL Server 2005 introduced the concept of database object schemas. Schemas are analogous to separate namespaces or containers used to store database objects. Security permissions apply to schemas, making them an important tool for separating and protecting database objects based on access rights. Schemas reduce the work required, and improve the flexibility, for security-related administration of a database.
+
+User-schema separation allows for more flexibility in managing database object permissions. A schema is a named container for database objects, which allows you to group objects into separate namespaces.
+
+Where possible, locate security-related database objects and code in a separate database, schema, or other separate security domain from database objects and code implementing application logic. In all cases, use GRANT, REVOKE, DENY, ALTER ROLE … ADD MEMBER … and/or ALTER ROLE …. DROP MEMBER statements to add and remove permissions on server-level and database-level security-related objects to provide effective isolation.</fixtext><fix id="F-85843r1_fix" /><check system="C-78683r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Determine elements of security functionality (lists of permissions, additional authentication information, stored procedures, application specific auditing, etc.) which are being housed inside SQL server.
+
+For any elements found, check SQL Server to determine if these objects or code implementing security functionality are located in a separate security domain, such as a separate database, schema, or table created specifically for security functionality.
+
+Run the following query to list all the user-defined databases:
+SELECT Name 
+FROM sys.databases 
+WHERE database_id &gt; 4 
+ORDER BY 1;
+
+Review the database structure to determine where security related functionality is stored. If security-related database objects or code are not kept separate, this is a finding.</check-content></check></Rule></Group><Group id="V-79093"><title>SRG-APP-000243-DB-000128</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93799r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002000</version><title>Database contents must be protected from unauthorized and unintended information transfer by enforcement of a data-transfer policy.</title><description>&lt;VulnDiscussion&gt;Applications, including DBMSs, must prevent unauthorized and unintended information transfer via shared system resources. 
+
+Data used for the development and testing of applications often involves copying data from production. It is important that specific procedures exist for this process, to include the conditions under which such transfer may take place, where the copies may reside, and the rules for ensuring sensitive data are not exposed.
+
+Copies of sensitive data must not be misplaced or left in a temporary location without the proper controls.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001090</ident><fixtext fixref="F-85845r1_fix">Modify any code used for moving data from production to development/test systems to comply with the organization-defined data transfer policy, and to ensure copies of production data are not left in unsecured locations.</fixtext><fix id="F-85845r1_fix" /><check system="C-78685r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review the procedures for the refreshing of development/test data from production. Review any scripts or code that exists for the movement of production data to development/test systems, or to any other location or for any other purpose. Verify that copies of production data are not left in unprotected locations. If the code that exists for data movement does not comply with the organization-defined data transfer policy and/or fails to remove any copies of production data from unprotected locations, this is a finding.</check-content></check></Rule></Group><Group id="V-79095"><title>SRG-APP-000251-DB-000160</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93801r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002100</version><title>SQL Server must check the validity of all data inputs except those specifically identified by the organization.</title><description>&lt;VulnDiscussion&gt;Invalid user input occurs when a user inserts data or characters into an application's data entry fields and the application is unprepared to process that data. This results in unanticipated application behavior, potentially leading to an application or information system compromise. Invalid user input is one of the primary methods employed when attempting to compromise an application.
+
+With respect to database management systems, one class of threat is known as SQL Injection, or more generally, code injection. It takes advantage of the dynamic execution capabilities of various programming languages, including dialects of SQL. Potentially, the attacker can gain unauthorized access to data, including security settings, and severely corrupt or destroy the database.
+
+Even when no such hijacking takes place, invalid input that gets recorded in the database, whether accidental or malicious, reduces the reliability and usability of the system. Available protections include data types, referential constraints, uniqueness constraints, range checking, and application-specific logic. Application-specific logic can be implemented within the database in stored procedures and triggers, where appropriate.
+
+This calls for inspection of application source code, which will require collaboration with the application developers. It is recognized that in many cases, the database administrator (DBA) is organizationally separate from the application developers, and may have limited, if any, access to source code. Nevertheless, protections of this type are so important to the secure operation of databases that they must not be ignored. At a minimum, the DBA must attempt to obtain assurances from the development organization that this issue has been addressed, and must document what has been discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001310</ident><fixtext fixref="F-85847r1_fix">Use parameterized queries, constraints, foreign keys, etc. to validate data input. 
+
+Modify SQL Server to properly use the correct column data types as required in the database.</fixtext><fix id="F-85847r1_fix" /><check system="C-78687r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review DBMS code (stored procedures, functions, triggers), application code, settings, column and field definitions, and constraints to determine whether the database is protected against invalid input. 
+
+If code exists that allows invalid data to be acted upon or input into the database, this is a finding. 
+
+If column/field definitions are not reflective of the data, this is a finding. 
+
+If columns/fields do not contain constraints and validity checking where required, this is a finding. 
+
+Where a column/field is noted in the system documentation as necessarily free-form, even though its name and context suggest that it should be strongly typed and constrained, the absence of these protections is not a finding. 
+
+Where a column/field is clearly identified by name, caption or context as Notes, Comments, Description, Text, etc., the absence of these protections is not a finding.</check-content></check></Rule></Group><Group id="V-79097"><title>SRG-APP-000266-DB-000162</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93803r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002400</version><title>SQL Server must provide non-privileged users with error messages that provide information necessary for corrective actions without revealing information that could be exploited by adversaries.</title><description>&lt;VulnDiscussion&gt;Any DBMS or associated application providing too much information in error messages on the screen or printout risks compromising the data and security of the system. The structure and content of error messages need to be carefully considered by the organization and development team.
+
+Databases can inadvertently provide a wealth of information to an attacker through improperly handled error messages. In addition to sensitive business or personal information, database errors can provide host names, IP addresses, user names, and other system information not required for troubleshooting but very useful to someone targeting the system.
+
+Carefully consider the structure/content of error messages. The extent to which information systems are able to identify and handle error conditions is guided by organizational policy and operational requirements. Information that could be exploited by adversaries includes, for example, logon attempts with passwords entered by mistake as the username, mission/business information that can be derived from (if not stated explicitly by) information recorded, and personal information, such as account numbers, social security numbers, and credit card numbers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001312</ident><fixtext fixref="F-85849r1_fix">Adjust database code to remove any information not required for explaining the error to an end user.
+
+Consider enabling trace flag 3625 to mask certain system-level error information returned to non-administrative users.
+
+Launch SQL Server Configuration Manager &gt;&gt; Click SQL Services &gt;&gt; Open the instance properties &gt;&gt; Click the Service Parameters tab &gt;&gt; Enter "-T3625" &gt;&gt; Click Add &gt;&gt; Click OK &gt;&gt; Restart SQL instance.</fixtext><fix id="F-85849r1_fix" /><check system="C-78689r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review application behavior and custom database code (stored procedures, triggers), to determine whether error messages contain information beyond what is needed for explaining the issue to general users.
+
+If database error messages contain PII data, sensitive business data, or information useful for identifying the host system or database structure, this is a finding.</check-content></check></Rule></Group><Group id="V-79099"><title>SRG-APP-000311-DB-000308</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93805r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002500</version><title>SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in storage.</title><description>&lt;VulnDiscussion&gt;Without the association of security labels to information, there is no basis for SQL Server to make security-related access-control decisions.
+
+Security labels are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
+
+These labels are typically associated with internal data structures (e.g., tables, rows) within the database and are used to enable the implementation of access control and flow control policies; reflect special dissemination, handling, or distribution instructions; or support other aspects of the information security policy.
+
+One example includes marking data as classified or FOUO. These security labels may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security labels are lost when the data is stored, there is the risk of a data compromise.
+
+The mechanism used to support security labeling may be a feature of SQL Server, a third-party product, or custom application code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002262</ident><fixtext fixref="F-85851r1_fix">Deploy SQL Server Row-Level Security (see link below) or a third-party software, or add custom data structures, data elements and application code, to provide reliable security labeling of information in storage.
+
+https://msdn.microsoft.com/en-us/library/dn765131.aspx</fixtext><fix id="F-85851r1_fix" /><check system="C-78691r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>If security labeling is not required, this is not a finding.
+
+If security labeling requirements have been specified, but neither a third-party solution nor a SQL Server Row-Level security solution is implemented that reliably maintains labels on information in storage, this is a finding.</check-content></check></Rule></Group><Group id="V-79101"><title>SRG-APP-000313-DB-000309</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93807r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002600</version><title>SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in process.</title><description>&lt;VulnDiscussion&gt;Without the association of security labels to information, there is no basis for SQL Server to make security-related access-control decisions.
+
+Security labels are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
+
+These labels are typically associated with internal data structures (e.g., tables, rows) within the database and are used to enable the implementation of access control and flow control policies; reflect special dissemination, handling, or distribution instructions; or support other aspects of the information security policy.
+
+One example includes marking data as classified or FOUO. These security labels may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security labels are lost when the data is stored, there is the risk of a data compromise.
+
+The mechanism used to support security labeling may be a feature of SQL Server, a third-party product, or custom application code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002263</ident><fixtext fixref="F-85853r1_fix">Deploy SQL Server Row-Level Security (see link below) or a third-party software, or add custom data structures, data elements and application code, to provide reliable security labeling of information in process.
+
+https://msdn.microsoft.com/en-us/library/dn765131.aspx</fixtext><fix id="F-85853r1_fix" /><check system="C-78693r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>If security labeling is not required, this is not a finding.
+
+If security labeling requirements have been specified, but neither a third-party solution nor a SQL Server Row-Level security solution is implemented that reliably maintains labels on information in process, this is a finding.</check-content></check></Rule></Group><Group id="V-79103"><title>SRG-APP-000314-DB-000310</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93809r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002700</version><title>SQL Server must associate organization-defined types of security labels having organization-defined security label values with information in transmission.</title><description>&lt;VulnDiscussion&gt;Without the association of security labels to information, there is no basis for SQL Server to make security-related access-control decisions.
+
+Security labels are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information. These labels are typically associated with internal data structures (e.g., tables, rows) within the database and are used to enable the implementation of access control and flow control policies; reflect special dissemination, handling, or distribution instructions; or support other aspects of the information security policy. One example includes marking data as classified or FOUO. These security labels may be assigned manually or during data processing, but, either way, it is imperative these assignments are maintained while the data is in storage. If the security labels are lost when the data is stored, there is the risk of a data compromise.
+
+The mechanism used to support security labeling may be a feature of SQL Server, a third-party product, or custom application code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002264</ident><fixtext fixref="F-85855r1_fix">Deploy SQL Server Row-Level Security (see link below) or a third-party software, or add custom data structures, data elements and application code, to provide reliable security labeling of information in transmission.
+
+https://msdn.microsoft.com/en-us/library/dn765131.aspx</fixtext><fix id="F-85855r1_fix" /><check system="C-78695r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>If security labeling is not required, this is not a finding.
+
+If security labeling requirements have been specified, but neither a third-party solution nor a SQL Server Row-Level security solution is implemented that reliably maintains labels on information in transmission, this is a finding.</check-content></check></Rule></Group><Group id="V-79105"><title>SRG-APP-000328-DB-000301</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93811r1_rule" severity="low" weight="10.0"><version>SQL6-D0-002800</version><title>SQL Server must enforce discretionary access control policies, as defined by the data owner, over defined subjects and objects.</title><description>&lt;VulnDiscussion&gt;Discretionary Access Control (DAC) is based on the notion that individual users are "owners" of objects and therefore have discretion over who should be authorized to access the object and in which mode (e.g., read or write). Ownership is usually acquired as a consequence of creating the object or via specified ownership assignment. DAC allows the owner to determine who will have access to objects they control. An example of DAC includes user-controlled table permissions.
+
+When discretionary access control policies are implemented, subjects are not constrained with regard to what actions they can take with information for which they have already been granted access. Thus, subjects that have been granted access to information are not prevented from passing (i.e., the subjects have the discretion to pass) the information to other subjects or objects. 
+
+A subject that is constrained in its operation by Mandatory Access Control policies is still able to operate under the less rigorous constraints of this requirement. Thus, while Mandatory Access Control imposes constraints preventing a subject from passing information to another subject operating at a different sensitivity level, this requirement permits the subject to pass the information to any subject at the same sensitivity level. 
+
+The policy is bounded by the information system boundary. Once the information is passed outside of the control of the information system, additional means may be required to ensure the constraints remain in effect. While the older, more traditional definitions of discretionary access control require identity-based access control, that limitation is not required for this use of discretionary access control.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002165</ident><fixtext fixref="F-85857r1_fix">To correct object ownership:
+
+ALTER AUTHORIZATION ON &lt;Securable&gt; TO &lt;Principal&gt;
+
+To revoke any unauthorized permissions:
+
+REVOKE [Permission] ON &lt;Securable&gt; TO &lt;Principal&gt;</fixtext><fix id="F-85857r1_fix" /><check system="C-78697r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review system documentation to determine requirements for object ownership and authorization delegation.
+
+Use the following query to discover database object ownership:
+
+Schemas not owned by the schema or dbo:
+
+SELECT name AS schema_name, USER_NAME(principal_id) AS schema_owner
+FROM sys.schemas
+WHERE schema_id != principal_id
+ AND principal_id != 1
+
+Objects owned by an individual principal:
+
+SELECT object_id, name AS securable, 
+  USER_NAME(principal_id) AS object_owner,
+  type_desc
+FROM sys.objects
+WHERE is_ms_shipped = 0 AND principal_id IS NOT NULL
+ORDER BY type_desc, securable, object_owner
+
+Use the following query to discover database users who have been delegated the right to assign additional permissions:
+
+SELECT U.type_desc, U.name AS grantee,
+ DP.class_desc AS securable_type,
+   CASE DP.class
+    WHEN 0 THEN DB_NAME()
+    WHEN 1 THEN OBJECT_NAME(DP.major_id) 
+    WHEN 3 THEN SCHEMA_NAME(DP.major_id)
+   ELSE CAST(DP.major_id AS nvarchar)
+   END AS securable,
+       permission_name, state_desc
+FROM sys.database_permissions DP
+JOIN sys.database_principals U ON DP.grantee_principal_id = U.principal_id
+WHERE DP.state = 'W'
+ORDER BY grantee, securable_type, securable
+
+If any of these rights are not documented and authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-79107"><title>SRG-APP-000342-DB-000302</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93813r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-002900</version><title>Execution of stored procedures and functions that utilize execute as must be restricted to necessary cases only.</title><description>&lt;VulnDiscussion&gt;In certain situations, to provide required functionality, a DBMS needs to execute internal logic (stored procedures, functions, triggers, etc.) and/or external code modules with elevated privileges. However, if the privileges required for execution are at a higher level than the privileges assigned to organizational users invoking the functionality applications/programs, those users are indirectly provided with greater privileges than assigned by organizations.
+
+Privilege elevation must be utilized only where necessary and protected from misuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002233</ident><fixtext fixref="F-85859r1_fix">Alter stored procedures and functions to remove the "EXECUTE AS" statement.</fixtext><fix id="F-85859r1_fix" /><check system="C-78699r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review the system documentation to obtain a listing of stored procedures and functions that utilize impersonation. Execute the following query:
+
+SELECT S.name AS schema_name, O.name AS module_name,
+  USER_NAME(
+      CASE M.execute_as_principal_id
+       WHEN -2 THEN COALESCE(O.principal_id, S.principal_id)
+      ELSE M.execute_as_principal_id
+      END
+  ) AS execute_as
+FROM sys.sql_modules M
+JOIN sys.objects O ON M.object_id = O.object_id
+JOIN sys.schemas S ON O.schema_id = S.schema_id
+WHERE execute_as_principal_id IS NOT NULL
+ORDER BY schema_name, module_name
+
+If any procedures or functions are returned that are not documented, this is a finding.</check-content></check></Rule></Group><Group id="V-79109"><title>SRG-APP-000378-DB-000365</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93815r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-003000</version><title>SQL Server must prohibit user installation of logic modules (stored procedures, functions, triggers, views, etc.) without explicit privileged status.</title><description>&lt;VulnDiscussion&gt;Allowing regular users to install software, without explicit privileges, creates the risk that untested or potentially malicious software will be installed on the system. Explicit privileges (escalated or administrative privileges) provide the regular user with explicit capabilities and control that exceed the rights of a regular user.
+
+DBMS functionality and the nature and requirements of databases will vary; so while users are not permitted to install unapproved software, there may be instances where the organization allows the user to install approved software packages such as from an approved software repository. The requirements for production servers will be more restrictive than those used for development and research.
+
+SQL Server must enforce software installation by users based upon what types of software installations are permitted (e.g., updates and security patches to existing software) and what types of installations are prohibited (e.g., software whose pedigree with regard to being potentially malicious is unknown or suspect) by the organization). 
+
+In the case of a database management system, this requirement covers stored procedures, functions, triggers, views, etc.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001812</ident><fixtext fixref="F-85861r1_fix">Document and obtain approval for any non-administrative users who require the ability to create, alter, or replace logic modules.
+
+Revoke the ALTER permission from unauthorized users and roles:
+REVOKE ALTER ON [&lt;Object Name&gt;] TO [&lt;Principal Name&gt;]</fixtext><fix id="F-85861r1_fix" /><check system="C-78701r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>If the SQL Server instance supports only software development, experimentation and/or developer-level testing (that is, excluding production systems, integration testing, stress testing, and user acceptance testing), this is not a finding. 
+
+Obtain a listing of users and roles who are authorized to create, alter, or replace logic modules from the server documentation.
+
+In each user database, execute the following query:
+
+SELECT P.type_desc AS principal_type, P.name AS principal_name,
+O.type_desc,
+CASE class
+WHEN 0 THEN DB_NAME()
+WHEN 1 THEN OBJECT_SCHEMA_NAME(major_id) + '.' + OBJECT_NAME(major_id)
+WHEN 3 THEN SCHEMA_NAME(major_id)
+ELSE class_desc + '(' + CAST(major_id AS nvarchar) + ')'
+END AS securable_name, DP.state_desc, DP.permission_name
+FROM sys.database_permissions DP
+JOIN sys.database_principals P ON DP.grantee_principal_id = P.principal_id
+LEFT OUTER JOIN sys.all_objects O ON O.object_id = DP.major_id AND O.type IN ('TR','TA','P','X','RF','PC','IF','FN','TF','U')
+WHERE DP.type IN ('AL','ALTG') AND DP.class IN (0, 1, 53)
+
+SELECT R.name AS role_name, M.type_desc AS principal_type, M.name AS principal_name
+FROM sys.database_principals R
+JOIN sys.database_role_members DRM ON R.principal_id = DRM.role_principal_id
+JOIN sys.database_principals M ON DRM.member_principal_id = M.principal_id
+WHERE R.name IN ('db ddladmin','db_owner')
+AND M.name != 'dbo'
+
+If any users or role permissions returned are not authorized to modify the specified object or type, this is a finding. 
+
+If any user or role membership is not authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-79111"><title>SRG-APP-000380-DB-000360</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93817r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-003100</version><title>SQL Server must enforce access restrictions associated with changes to the configuration of the database(s).</title><description>&lt;VulnDiscussion&gt;Failure to provide logical access restrictions associated with changes to configuration may have significant effects on the overall security of the system. 
+
+When dealing with access restrictions pertaining to change control, it should be noted that any changes to the hardware, software, and/or firmware components of the information system can potentially have significant effects on the overall security of the system. 
+
+Accordingly, only qualified and authorized individuals should be allowed to obtain access to system components for the purposes of initiating changes, including upgrades and modifications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001813</ident><fixtext fixref="F-85863r1_fix">Remove unauthorized users from roles:
+
+ALTER ROLE DROP MEMBER user;
+
+https://msdn.microsoft.com/en-us/library/ms189775.aspx
+
+Set the owner of the database to an authorized login:
+
+ALTER AUTHORIZATION ON database::DatabaseName TO login;
+
+https://msdn.microsoft.com/en-us/library/ms187359.aspx</fixtext><fix id="F-85863r1_fix" /><check system="C-78703r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Obtain a list of users who have privileged role memberships in the database.
+
+Execute the following query to obtain a list of users and roles and their respective role memberships.
+
+SELECT p.name AS Principal,
+  p.type_desc AS Type,
+  r.name AS Role
+FROM sys.database_principals p
+INNER JOIN sys.database_role_members rm ON p.principal_id = rm.member_principal_id
+INNER JOIN sys.database_principals r ON rm.role_principal_id = r.principal_id
+WHERE r.name = 'db_owner'
+UNION ALL
+SELECT l.name AS Principal,
+ l.type_desc AS Type,
+ 'dbo' AS Role
+FROM sys.databases d
+INNER JOIN sys.server_principals l ON d.owner_sid = l.sid
+WHERE d.name = DB_NAME()
+
+Review the server documentation to verify the users and roles returned are authorized. 
+
+If any users and/or roles are not documented and authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-79113"><title>SRG-APP-000416-DB-000380</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93819r2_rule" severity="medium" weight="10.0"><version>SQL6-D0-003200</version><title>SQL Server must use NSA-approved cryptography to protect classified information in accordance with the data owners requirements.</title><description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated.
+
+It is the responsibility of the data owner to assess the cryptography requirements in light of applicable federal laws, Executive Orders, directives, policies, regulations, and standards.
+
+NSA-approved cryptography for classified networks is hardware based. This requirement addresses the compatibility of a DBMS with the encryption devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002450</ident><fixtext fixref="F-85865r1_fix">Configure cryptographic functions to use NSA-approved cryptography compliant algorithms.
+
+Use DoD code-signing certificates to create asymmetric keys stored in the database and used to encrypt sensitive data stored in the database.
+
+Run the following SQL script to create a certificate:
+USE 
+CREATE CERTIFICATE 
+ ENCRYPTION BY PASSWORD = &lt;'password'&gt;
+ FROM FILE = &lt;'path/file_name'&gt;
+ WITH SUBJECT = 'name of person creating key',
+ EXPIRY_DATE = '&lt;'expiration date: yyyymmdd'&gt;'
+
+Run the following SQL script to create a symmetric key and assign an existing certificate:
+USE 
+CREATE SYMMETRIC KEY &lt;'key name'&gt;
+ WITH ALGORITHM = AES_256 
+ ENCRYPTION BY CERTIFICATE
+
+For Transparent Data Encryption (TDE):
+USE master;
+CREATE MASTER KEY ENCRYPTION BY PASSWORD = '';
+CREATE CERTIFICATE  . . .;
+USE ;
+CREATE DATABASE ENCRYPTION KEY
+WITH ALGORITHM = AES_256
+ENCRYPTION BY SERVER CERTIFICATE ;
+ALTER DATABASE 
+SET ENCRYPTION ON;</fixtext><fix id="F-85865r1_fix" /><check system="C-78705r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Detailed information on the NIST Cryptographic Module Validation Program (CMVP) is available at the following website: http://csrc.nist.gov/groups/STM/cmvp/index.html.
+
+Review system documentation to determine whether cryptography for classified or sensitive information is required by the information owner.
+
+If the system documentation does not specify the type of information hosted on SQL Server: classified, sensitive, and/or unclassified, this is a finding.
+
+If neither classified nor sensitive information exists within SQL Server databases or configuration, this is not a finding.
+
+Verify that Windows is configured to require the use of FIPS compliant algorithms.
+
+Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; Expand "Local Policies" &gt;&gt; Select "Security Options" &gt;&gt; Locate "System Cryptography:  Use FIPS compliant algorithms for encryption, hashing, and signing".
+
+If the Security Setting for this option is "Disabled" this is a finding.
+
+Note: The list of acceptable algorithms: "AES 256" and "Triple DES".
+
+If cryptography is being used by SQL Server, verify that the cryptography is NIST FIPS 140-2 certified by running the following SQL query:
+
+SELECT DISTINCT name, algorithm_desc
+FROM sys.symmetric_keys
+WHERE key_algorithm NOT IN ('D3','A3')
+ORDER BY name
+
+If any items list showing an uncertified NIST FIPS 140-2 algorithm type, this is a finding.</check-content></check></Rule></Group><Group id="V-79115"><title>SRG-APP-000428-DB-000386</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93821r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-003300</version><title>SQL Server must implement cryptographic mechanisms to prevent unauthorized modification of organization-defined information at rest (to include, at a minimum, PII and classified information) on organization-defined information system components.</title><description>&lt;VulnDiscussion&gt;DBMSs handling data requiring "data at rest" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest. These cryptographic mechanisms may be native to SQL Server or implemented via additional software or operating system/file system settings, as appropriate to the situation.
+
+Selection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields). 
+
+The decision whether and what to encrypt rests with the data owner and is also influenced by the physical measures taken to secure the equipment and media on which the information resides.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002475</ident><fixtext fixref="F-85867r1_fix">Where full-disk encryption is required, configure Windows and/or the storage system to provide this. 
+
+Where transparent data encryption (TDE) is required, create a master key, obtain a certificate protected by the master key, create a database encryption key and protect it by the certificate, and then set the database to use encryption. For guidance from MSDN on how to do this: https://msdn.microsoft.com/en-us/library/bb934049.aspx. 
+
+Where table/column encryption is required, enable encryption on the tables/columns in question. For guidance from the Microsoft Developer Network on how to do this with Always Encrypted: https://msdn.microsoft.com/en-us/library/mt163865.aspx.</fixtext><fix id="F-85867r1_fix" /><check system="C-78707r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review the system documentation to determine whether the organization has defined the information at rest that is to be protected from modification, which must include, at a minimum, PII and classified information. 
+
+If no information is identified as requiring such protection, this is not a finding. 
+
+Review the configuration of SQL Server, Windows, and additional software as relevant. 
+
+If full-disk encryption is required, and Windows or the storage system is not configured for this, this is a finding. 
+
+If database transparent data encryption (TDE) is called for, check whether it is enabled: 
+
+SELECT
+DB_NAME(database_id) AS [Database Name], CASE encryption_state WHEN 0 THEN 'No database encryption key present, no encryption' 
+WHEN 1 THEN 'Unencrypted' 
+WHEN 2 THEN 'Encryption in progress' 
+WHEN 3 THEN 'Encrypted' 
+WHEN 4 THEN 'Key change in progress' 
+WHEN 5 THEN 'Decryption in progress' 
+WHEN 6 THEN 'Protection change in progress' 
+END AS [Encryption State]
+FROM sys.dm_database_encryption_keys
+
+For each user database for which encryption is called for and it is marked Unencrypted, this is a finding. 
+
+If table/column encryption and/or a separation between those who own the data (and can view it) and those who manage the data (but should have no access) is required for PII or similar types of data, use Always Encrypted.  The details for configuring Always Encrypted are located here: https://msdn.microsoft.com/en-us/library/mt163865.aspx.
+
+Review the definitions and contents of the relevant tables/columns for the Always Encryption settings, if any of the information defined as requiring cryptographic protection is not encrypted this is a finding.</check-content></check></Rule></Group><Group id="V-79117"><title>SRG-APP-000429-DB-000387</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93823r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-003400</version><title>SQL Server must implement cryptographic mechanisms preventing the unauthorized disclosure of organization-defined information at rest on organization-defined information system components.</title><description>&lt;VulnDiscussion&gt;SQL Server’s handling data requiring "data at rest" protections must employ cryptographic mechanisms to prevent unauthorized disclosure and modification of the information at rest. These cryptographic mechanisms may be native to SQL Server or implemented via additional software or operating system/file system settings, as appropriate to the situation.
+
+Selection of a cryptographic mechanism is based on the need to protect the integrity of organizational information. The strength of the mechanism is commensurate with the security category and/or classification of the information. Organizations have the flexibility to either encrypt all information on storage devices (i.e., full disk encryption) or encrypt specific data structures (e.g., files, records, or fields). 
+
+The decision whether and what to encrypt rests with the data owner and is also influenced by the physical measures taken to secure the equipment and media on which the information resides.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2016</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2016</dc:subject><dc:identifier>3217</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002476</ident><fixtext fixref="F-85869r1_fix">Where full-disk encryption is required, configure Windows and/or the storage system to provide this. 
+
+Where transparent data encryption (TDE) is required, create a master key, obtain a certificate protected by the master key, create a database encryption key and protect it by the certificate, and then set the database to use encryption. For guidance from MSDN on how to do this: https://msdn.microsoft.com/en-us/library/bb934049.aspx. 
+
+Where table/column encryption is required, enable encryption on the table/columns in question. For guidance from the Microsoft Developer Network on how to do this with Always Encrypted: https://msdn.microsoft.com/en-us/library/mt163865.aspx.</fixtext><fix id="F-85869r1_fix" /><check system="C-78709r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS_SQL_Server_2016_Database_STIG.xml" /><check-content>Review the system documentation to determine whether the organization has defined the information at rest that is to be protected from disclosure, which must include, at a minimum, PII and classified information. 
+
+If no information is identified as requiring such protection, this is not a finding. 
+
+If full-disk encryption is required, and Windows or the storage system is not configured for this, this is a finding. 
+
+If database transparent data encryption (TDE) is called for, check whether it is enabled: 
+
+SELECT
+DB_NAME(database_id) AS [Database Name], CASE encryption_state WHEN 0 THEN 'No database encryption key present, no encryption' 
+WHEN 1 THEN 'Unencrypted' 
+WHEN 2 THEN 'Encryption in progress' 
+WHEN 3 THEN 'Encrypted' 
+WHEN 4 THEN 'Key change in progress' 
+WHEN 5 THEN 'Decryption in progress' 
+WHEN 6 THEN 'Protection change in progress' 
+END AS [Encryption State]
+FROM sys.dm_database_encryption_keys
+
+For each user database for which encryption is called for and it is marked Unencrypted, this is a finding. 
+
+If table/column encryption and/or a separation between those who own the data (and can view it) and those who manage the data (but should have no access) is required for PII or similar types of data, use Always Encrypted.  The details for configuring Always Encrypted are located here: https://msdn.microsoft.com/en-us/library/mt163865.aspx.
+
+Review the definitions and contents of the relevant tables/columns for the Always Encryption settings, if any of the information defined as requiring cryptographic protection is not encrypted this is a finding.</check-content></check></Rule></Group></Benchmark>

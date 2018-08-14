@@ -147,3 +147,4 @@ HKCU\software\policies\Microsoft\office\16.0\access\security
 
 Criteria: If the value vbawarnings is REG_DWORD = 2, this is not a finding.   Values of REG_DWORD = 3 or 4 are also acceptable values.    If the registry key does not exist or the value is REG_DWORD =1, then this is a finding.
 </check-content></check></Rule></Group></Benchmark>
+

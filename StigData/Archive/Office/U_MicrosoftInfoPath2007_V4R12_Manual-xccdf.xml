@@ -248,3 +248,4 @@ HKCU\Software\Policies\Microsoft\Office\12.0\InfoPath\Security
 
 Criteria: If the value DisallowAttachmentCustomization is REG_DWORD = 1, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

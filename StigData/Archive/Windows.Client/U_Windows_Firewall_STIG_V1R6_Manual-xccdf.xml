@@ -590,3 +590,4 @@ Review inbound firewall exception rules in Windows Firewall with Advanced Securi
 One method for restricting inbound connections is to only allow exceptions for a specific scope of remote IP addresses.
 
 If allowed inbound exceptions are not limited to authorized management systems and remote management hosts, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

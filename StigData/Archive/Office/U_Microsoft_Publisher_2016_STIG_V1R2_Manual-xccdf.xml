@@ -141,3 +141,4 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\Common\Security
 
 Criteria: If the value AutomationSecurityPublisher is REG_DWORD = 3, this is not a finding.</check-content></check></Rule></Group></Benchmark>
+

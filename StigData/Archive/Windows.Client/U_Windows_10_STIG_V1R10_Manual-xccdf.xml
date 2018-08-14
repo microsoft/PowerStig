@@ -3503,3 +3503,4 @@ Compare the AuditPol settings with the following:
 Object Access &gt;&gt; File Share - Failure
 
 If the system does not audit the above, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

@@ -7695,3 +7695,4 @@ AND is_expiration_checked = 0;
 If no account names are listed, this is not a finding.
 
 For each account name listed, determine whether it is documented as requiring exemption from the standard password lifetime rules, if it is not, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

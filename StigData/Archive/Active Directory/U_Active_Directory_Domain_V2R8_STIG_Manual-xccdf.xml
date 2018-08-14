@@ -482,3 +482,4 @@ NSA has also provided a PowerShell script with Pass-the-Hash guidance at https:/
 Manually rolling the NT hash requires disabling and re-enabling the "Smart Card required for interactive logon" option for each smart card-enforced account, which is not practical for large groups of users.
 
 If NT hashes for smart card-enforced accounts are not rotated every 60 days, this is a finding.</check-content></check></Rule></Group></Benchmark>
+

@@ -764,3 +764,4 @@ Criteria: If the value DisableEPMCompat is REG_DWORD = 1, this is not a finding.
 
 Criteria: Internet Explorer 10 is only supported on Windows Server 2012. If the version number of Internet Explorer is any version of Internet Explorer 10, the Operating System in use must be Windows Server 2012. If Internet Explorer 10 is used on any other Operating System, this is a finding.
 </check-content></check></Rule></Group></Benchmark>
+

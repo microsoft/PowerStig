@@ -439,3 +439,4 @@ HKCU\software\policies\Microsoft\office\15.0\osm
 
 If the value “enablelogging” is REG_DWORD = 1, this is not a finding.
 </check-content></check></Rule></Group></Benchmark>
+

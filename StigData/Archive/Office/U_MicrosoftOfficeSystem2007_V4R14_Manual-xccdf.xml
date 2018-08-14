@@ -466,3 +466,4 @@ Severity Override: Unsupported service packs will be upgraded to a Category I fi
 
 If the service pack installed is not SP3 or later, this is a finding and Severity must be changed to a CAT I.
 </check-content></check></Rule></Group></Benchmark>
+
