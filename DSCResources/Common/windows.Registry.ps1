@@ -7,7 +7,7 @@ Foreach ( $rule in $rules )
 {
     $valueData = $rule.ValueData.Split("{;}")
 
-    Registry (Get-ResourceTitle -Rule $rule)
+    xRegistry (Get-ResourceTitle -Rule $rule)
     {
         Key       = $rule.Key
         ValueName = $rule.ValueName
