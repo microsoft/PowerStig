@@ -22,7 +22,6 @@ Foreach ($supportFile in $supportFileList)
         Specifies the name of the key pertaining to a configuration setting
     .PARAMETER Value
         Specifies the value of the configuration setting
-
 #>
 Class FileContentRule : STIG
 {
@@ -43,6 +42,7 @@ Class FileContentRule : STIG
     }
 
     #region Methods
+
     <#
         .SYNOPSIS
             Extracts the key name from the check-content and sets the value
@@ -103,7 +103,6 @@ Class FileContentRule : STIG
             CheckContent strings that contain single rules.
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
-
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {

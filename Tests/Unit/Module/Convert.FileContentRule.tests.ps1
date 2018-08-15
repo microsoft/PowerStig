@@ -17,9 +17,9 @@ try
                 Verify Preference Name "security.enable_ssl3" is set to the value "false" and locked.
                 Verify Preference Name "security.tls.version.min" is set to the value "2" and locked.
                 Verify Preference Name "security.tls.version.max" is set to the value "3" and locked.
-                
+
                 Criteria: If the parameters are set incorrectly, then this is a finding. 
-                
+
                 If the settings are not locked, then this is a finding.'
             }
             @{
