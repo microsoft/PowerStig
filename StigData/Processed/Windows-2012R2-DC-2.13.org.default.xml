@@ -5,65 +5,65 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="2.13">
+<OrganizationalSettings Version="2.13">
   <!-- Ensure 'V-1090' -le '4'-->
-  <OrganizationalSetting id="V-1090" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1090" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1097'' -le '3' -and ''V-1097'' -ne '0'-->
-  <OrganizationalSetting id="V-1097" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1097" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1098'' -ge '15'-->
-  <OrganizationalSetting id="V-1098" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1098" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1099'' -ge '15' -or ''V-1099'' -eq '0'-->
-  <OrganizationalSetting id="V-1099" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1099" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1104'' -le '60' -and ''V-1104'' -ne '0'-->
-  <OrganizationalSetting id="V-1104" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1104" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1105'' -ne '0'-->
-  <OrganizationalSetting id="V-1105" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1105" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1107'' -ge '24'-->
-  <OrganizationalSetting id="V-1107" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1107" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1114'' -ne 'Guest'-->
-  <OrganizationalSetting id="V-1114" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1114" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-1115'' -ne 'Administrator'-->
-  <OrganizationalSetting id="V-1115" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1115" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-1157' -match '1|2'-->
-  <OrganizationalSetting id="V-1157" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1157" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-1172' -ge '14'-->
-  <OrganizationalSetting id="V-1172" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1172" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-1174' -le '15'-->
-  <OrganizationalSetting id="V-1174" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-1174" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-3373' -le '30' -and 'V-3373' -gt '0'-->
-  <OrganizationalSetting id="V-3373" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-3373" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-4108' -le '90'-->
-  <OrganizationalSetting id="V-4108" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-4108" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-4113' -le '300000'-->
-  <OrganizationalSetting id="V-4113" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-4113" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-4438' -le '3'-->
-  <OrganizationalSetting id="V-4438" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-4438" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-4442' -le '5'-->
-  <OrganizationalSetting id="V-4442" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-4442" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-6836'' -ge '14'-->
-  <OrganizationalSetting id="V-6836" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-6836" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-8322.b'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
-  <OrganizationalSetting id="V-8322.b" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-8322.b" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-8324' -match '2|3'-->
-  <OrganizationalSetting id="V-8324" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-8324" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-14235'' -le '4'-->
-  <OrganizationalSetting id="V-14235" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-14235" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-15713' -notmatch '1|2'-->
-  <OrganizationalSetting id="V-15713" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-15713" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-21956' -le '3'-->
-  <OrganizationalSetting id="V-21956" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-21956" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-26359'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
-  <OrganizationalSetting id="V-26359" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-26359" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure ''V-26482'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
-  <OrganizationalSetting id="V-26482" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-26482" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-26579' -ge '32768'-->
-  <OrganizationalSetting id="V-26579" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-26579" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-26580' -ge '196608'-->
-  <OrganizationalSetting id="V-26580" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-26580" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-26581' -ge '32768'-->
-  <OrganizationalSetting id="V-26581" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-26581" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-26582' -ge '32768'-->
-  <OrganizationalSetting id="V-26582" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-26582" Value="LOCAL_STIG_SETTING_HERE" />
   <!-- Ensure 'V-36773' -le '900'-->
-  <OrganizationalSetting id="V-36773" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting Id="V-36773" Value="LOCAL_STIG_SETTING_HERE" />
 </OrganizationalSettings>

@@ -1,9 +1,6 @@
-<DISASTIG id="Active_Directory_Forest" version="2.8" created="8/13/2018">
-  <DocumentRule dscresourcemodule="None">
-    <Rule id="V-8527" severity="low" conversionstatus="pass" title="Schema Change Configuration Management" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8527</Id>
+<DISASTIG Id="Active_Directory_Forest" Version="2.8" Created="8/15/2018">
+  <DocumentRule DscResourcemodule="None">
+    <Rule Id="V-8527" Severity="low" ConversionStatus="pass" Title="Schema Change Configuration Management" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -15,15 +12,10 @@
 
 4. If there is no policy that requires changes to the directory schema to be processed through a configuration management process, then this is a finding.
 </RawString>
-      <Severity>low</Severity>
-      <Title>Schema Change Configuration Management</Title>
     </Rule>
   </DocumentRule>
-  <ManualRule dscresourcemodule="None">
-    <Rule id="V-8555" severity="medium" conversionstatus="pass" title="DS10.0230 dsHeuristics Option" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8555</Id>
+  <ManualRule DscResourcemodule="None">
+    <Rule Id="V-8555" Severity="medium" ConversionStatus="pass" Title="DS10.0230 dsHeuristics Option" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -50,13 +42,8 @@ Supplementary Notes:
 Domain controllers have this option disabled by default. However, this check verifies that the option has not been enabled.
 
 The dsHeuristics option can be configured with the Windows Support Tools Active Directory Service Interfaces Editor (ADSI Edit) console (adsiedit.msc).</RawString>
-      <Severity>medium</Severity>
-      <Title>DS10.0230 dsHeuristics Option</Title>
     </Rule>
-    <Rule id="V-8557" severity="medium" conversionstatus="pass" title="Time Synchronization-Authoritative Source" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8557</Id>
+    <Rule Id="V-8557" Severity="medium" ConversionStatus="pass" Title="Time Synchronization-Authoritative Source" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -91,40 +78,11 @@ If the value for "NtpServer" is not an external DoD time source, this is a findi
 If an alternate time synchronization tool is used and is not enabled or not configured to a synchronize with an external DoD time source, this is a finding.
 
 The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</RawString>
-      <Severity>medium</Severity>
-      <Title>Time Synchronization-Authoritative Source</Title>
     </Rule>
-    <Rule id="V-72835" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-72835</Id>
+    <Rule Id="V-15372" Severity="high" ConversionStatus="pass" Title="Directory Schema Update Access" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open "Active Directory Users and Computers" on a domain controller in the forest root domain.
-
-Navigate to the "Users" container.
-
-Right-click on "Schema Admins" and select "Properties", and then select the "Members" tab.
-
-If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
-
-If any accounts are members of the group when schema changes are not being made, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0017</Title>
-    </Rule>
-  </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-15372" severity="high" conversionstatus="fail" title="Directory Schema Update Access" dscresource="">
-      <AccessControlEntry />
-      <ConversionStatus>fail</ConversionStatus>
-      <DscResource />
-      <Force>True</Force>
-      <Id>V-15372</Id>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
       <RawString>Start a Schema management console. (See supplemental notes.)
 Select, then right-click on the Active Directory Schema entry in the left pane.
 Select Permissions.
@@ -190,8 +148,20 @@ Select the OK button.
 
 When done using the console, select Exit from the File (or Console) menu.
 Select the No button to the Save console settings… prompt (unless the SA wishes to retain this console). If the console is retained, the recommended name is schmmgmt.msc and the recommended location is the [systemroot]\system32 directory.</RawString>
-      <Severity>high</Severity>
-      <Title>Directory Schema Update Access</Title>
     </Rule>
-  </PermissionRule>
+    <Rule Id="V-72835" Severity="medium" ConversionStatus="pass" Title="AD.0017" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Users and Computers" on a domain controller in the forest root domain.
+
+Navigate to the "Users" container.
+
+Right-click on "Schema Admins" and select "Properties", and then select the "Members" tab.
+
+If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
+
+If any accounts are members of the group when schema changes are not being made, this is a finding.</RawString>
+    </Rule>
+  </ManualRule>
 </DISASTIG>

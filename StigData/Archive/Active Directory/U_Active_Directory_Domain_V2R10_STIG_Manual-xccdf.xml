@@ -231,7 +231,7 @@ Open "Active Directory Sites and Services". (Available from various menus or run
 Expand "Sites" in the left pane.
 Expand "Inter-Site Transports" and select "IP".
 For each site link that is defined in the right pane perform the following:
-Right click the site link item and select "Properties".	
+Right click the site link item and select "Properties".
 Select an interval in the "Replicate every" field less than "1440".  (By default this is 180.)
 Click the Change Schedule button.
 Select time frames for "Replication Available" to allow for replication to occur at least daily.</fixtext><fix id="F-71803r1_fix" /><check system="C-66415r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Active_Directory_Domain.xml" /><check-content>Open "Active Directory Sites and Services".  (Available from various menus or run "dssite.msc".)
