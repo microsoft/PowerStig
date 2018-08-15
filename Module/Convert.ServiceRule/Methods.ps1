@@ -20,7 +20,7 @@ function Get-ServiceName
 
     if ( $CheckContent -match $script:regularExpression.McAfee )
     {
-        $serviceName = 'McAfee'
+        $serviceName = 'masvc'
     }
     elseif ( $CheckContent -match $script:regularExpression.SmartCardRemovalPolicy )
     {

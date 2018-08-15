@@ -1,9 +1,6 @@
-<DISASTIG id="Active_Directory_Domain" version="2.10" created="8/14/2018">
-  <DocumentRule dscresourcemodule="None">
-    <Rule id="V-8521" severity="low" conversionstatus="pass" title="Object Ownership Delegation" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8521</Id>
+<DISASTIG Id="Active_Directory_Domain" Version="2.10" Created="8/15/2018">
+  <DocumentRule DscResourcemodule="None">
+    <Rule Id="V-8521" Severity="low" ConversionStatus="pass" Title="Object Ownership Delegation" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -17,13 +14,8 @@
 4. If the number of accounts with delegated authority is greater than 10, review the site documentation that justifies this number.  Validate that the IAM explicitly acknowledges the need to have a high number of privileged users.
 
 5. If the number of accounts with delegated authority is greater than 10 and there is no statement in the documentation that justifies the number, then this is a finding.</RawString>
-      <Severity>low</Severity>
-      <Title>Object Ownership Delegation</Title>
     </Rule>
-    <Rule id="V-8525" severity="low" conversionstatus="pass" title="Directory Service Architecture DR Documentation" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8525</Id>
+    <Rule Id="V-8525" Severity="low" ConversionStatus="pass" Title="Directory Service Architecture DR Documentation" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -33,18 +25,14 @@ If the Availability categorization of the domain is moderate or high, verify the
  (A chart showing forest hierarchy and domain names is the minimum suggested.)
 
 If the disaster recovery plans do not include directory hierarchy information, this is a finding.</RawString>
-      <Severity>low</Severity>
-      <Title>Directory Service Architecture DR Documentation</Title>
     </Rule>
-    <Rule id="V-8526" severity="low" conversionstatus="pass" title="Cross-Directory Authentication INFOCON Procedures" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8526</Id>
+    <Rule Id="V-8526" Severity="low" ConversionStatus="pass" Title="Cross-Directory Authentication INFOCON Procedures" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>1. Refer to the list of actual manual AD trusts (cross-directory configurations) collected from the site representative.
 
+2. If there are no manual AD trusts (cross-directory configurations) defined, this check is not applicable.
 For AD, this includes external, forest, or realm trust relationship types.
 
 3. Obtain a copy of the site’s supplemental INFOCON procedures as required by Strategic Command Directive (SD) 527-1.
@@ -56,11 +44,8 @@ For AD, this includes external, forest, or realm trust relationship types.
 6. If it has been determined that actions to disable manual AD trusts (cross-directory configurations) *are* necessary, verify that the policy to implement these actions has been documented.
 
 7. If actions to disable manual AD trusts (cross-directory configurations) *are* needed and no policy has been documented, then this is a finding.</RawString>
-      <Severity>low</Severity>
-    <Rule id="V-8530" severity="low" conversionstatus="pass" title="Cross-Directory Authentication Documentation" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8530</Id>
+    </Rule>
+    <Rule Id="V-8530" Severity="low" ConversionStatus="pass" Title="Cross-Directory Authentication Documentation" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -84,13 +69,8 @@ Status of the Selective Authentication option
 Status of the SID filtering option
 
 If an identified trust is not listed in the documentation or if any of the required items are not documented, this is a finding.</RawString>
-      <Severity>low</Severity>
-      <Title>Cross-Directory Authentication Documentation</Title>
     </Rule>
-    <Rule id="V-8533" severity="medium" conversionstatus="pass" title="Trusts - document need " dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8533</Id>
+    <Rule Id="V-8533" Severity="medium" ConversionStatus="pass" Title="Trusts - document need " DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -101,13 +81,8 @@ If an identified trust is not listed in the documentation or if any of the requi
 3. For each of the identified trusts, verify that the documentation includes a justification or explanation of the need-to-know basis of the trust. 
 
 4. If the need for the trust is not documented, then this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Trusts - document need </Title>
     </Rule>
-    <Rule id="V-8534" severity="high" conversionstatus="pass" title="Trust - Classification Levels" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8534</Id>
+    <Rule Id="V-8534" Severity="high" ConversionStatus="pass" Title="Trust - Classification Levels" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -117,13 +92,8 @@ If an identified trust is not listed in the documentation or if any of the requi
 
 3. If the classification level of the domain being reviewed is different than the classification level of any of the entities for which a trust relationship is defined, then this is a finding.
 </RawString>
-      <Severity>high</Severity>
-      <Title>Trust - Classification Levels</Title>
     </Rule>
-    <Rule id="V-8536" severity="high" conversionstatus="pass" title="Trust - Non-DoD" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8536</Id>
+    <Rule Id="V-8536" Severity="high" ConversionStatus="pass" Title="Trust - Non-DoD" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -136,13 +106,8 @@ If an identified trust is not listed in the documentation or if any of the requi
 4. The external network connection documentation is maintained by the IAO\NSO for compliance with the Network Infrastructure STIG.
 
 5. If any trust is defined with a non-DoD system and there is no documentation indicating approval of the external network connection and explicit DAA approval of the trust, then this is a finding.</RawString>
-      <Severity>high</Severity>
-      <Title>Trust - Non-DoD</Title>
     </Rule>
-    <Rule id="V-8548" severity="medium" conversionstatus="pass" title="AD.0240" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8548</Id>
+    <Rule Id="V-8548" Severity="medium" ConversionStatus="pass" Title="AD.0240" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -165,65 +130,40 @@ Right-click on the "Group Policy Creator Owner", select "Properties" and then th
 If any accounts are not documented as necessary with the ISSO, this is a finding.
 
 It is possible to move some system-defined groups from their default locations.  If a group is not in the location noted, review other containers to locate.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0240</Title>
     </Rule>
-    <Rule id="V-36431" severity="high" conversionstatus="pass" title="Enterprise Admins Group Members" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36431</Id>
+    <Rule Id="V-36431" Severity="high" ConversionStatus="pass" Title="Enterprise Admins Group Members" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the Enterprise Admins group in Active Directory Users and Computers.  Any accounts that are members of the Enterprise Admins group must be documented with the IAO.  Each Enterprise Administrator must have a separate unique account specifically for managing the Active Directory forest.  
 
 If any account listed in the Enterprise Admins group is a member of other administrator groups including the Domain Admins group, domain member server administrators groups, or domain workstation administrators groups, this is a finding.</RawString>
-      <Severity>high</Severity>
-      <Title>Enterprise Admins Group Members</Title>
     </Rule>
-    <Rule id="V-36432" severity="high" conversionstatus="pass" title="Domain Admins Group Members" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36432</Id>
+    <Rule Id="V-36432" Severity="high" ConversionStatus="pass" Title="Domain Admins Group Members" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the Domain Admins group in Active Directory Users and Computers.  Any accounts that are members of the Domain Admins group must be documented with the IAO.  Each Domain Administrator must have a separate unique account specifically for managing the Active Directory domain and domain controllers.  
 
 If any account listed in the Domain Admins group is a member of other administrator groups including the Enterprise Admins group, domain member server administrators groups, or domain workstation administrators groups, this is a finding.</RawString>
-      <Severity>high</Severity>
-      <Title>Domain Admins Group Members</Title>
     </Rule>
-    <Rule id="V-36433" severity="medium" conversionstatus="pass" title="Domain Member Server Administrators Group Members" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36433</Id>
+    <Rule Id="V-36433" Severity="medium" ConversionStatus="pass" Title="Domain Member Server Administrators Group Members" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain member server administrators. Domain member server administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each member server administrator must have a separate unique account specifically for managing member servers.  
 
 If any account listed in a domain member server administrator group is a member of other administrator groups including the Enterprise Admins group, the Domain Admins group, or domain workstation administrator groups, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Domain Member Server Administrators Group Members</Title>
     </Rule>
-    <Rule id="V-36434" severity="medium" conversionstatus="pass" title="Domain Workstation Administrators Group Members" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36434</Id>
+    <Rule Id="V-36434" Severity="medium" ConversionStatus="pass" Title="Domain Workstation Administrators Group Members" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain workstation administrators. Domain workstation administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each domain workstation administrator must have a separate unique account specifically for managing domain workstations.  
 
 If any account listed in a domain workstation administrator group is a member of other administrator groups including the Enterprise Admins group, the Domain Admins group, or domain member server administrator groups, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Domain Workstation Administrators Group Members</Title>
     </Rule>
-    <Rule id="V-53727" severity="medium" conversionstatus="pass" title="AD.0015" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-53727</Id>
+    <Rule Id="V-53727" Severity="medium" ConversionStatus="pass" Title="AD.0015" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -232,15 +172,10 @@ If any account listed in a domain workstation administrator group is a member of
 Review the Internet access restrictions with the administrator.  If Internet access is not prevented, this is a finding.
 
 If a critical function requires Internet access, this must be documented and approved by the organization.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0015</Title>
     </Rule>
   </DocumentRule>
-  <ManualRule dscresourcemodule="None">
-    <Rule id="V-8522" severity="medium" conversionstatus="pass" title="Directory Service Inter-Enclave VPN Usage" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8522</Id>
+  <ManualRule DscResourcemodule="None">
+    <Rule Id="V-8522" Severity="medium" ConversionStatus="pass" Title="Directory Service Inter-Enclave VPN Usage" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -255,13 +190,8 @@ If a critical function requires Internet access, this must be documented and app
 5. If a VPN solution is not used to transport directory network traffic across enclave boundaries, then this is a finding.
 
 6. If the ADAM mode is in use and a migration plan for converting to RODC is not in place, then this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Directory Service Inter-Enclave VPN Usage</Title>
     </Rule>
-    <Rule id="V-8523" severity="medium" conversionstatus="pass" title="IDS Visibility of Directory VPN Data Transport" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8523</Id>
+    <Rule Id="V-8523" Severity="medium" ConversionStatus="pass" Title="IDS Visibility of Directory VPN Data Transport" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -274,13 +204,8 @@ If a critical function requires Internet access, this must be documented and app
 4. If domain controllers are located in multiple enclaves and a VPN is used, review the site network diagram(s) with the SA, NSO, or network reviewer as required to determine if the AD network traffic is visible to a network or host IDS.
 
 5. If the AD network traffic is not visible to a network or host IDS, then this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>IDS Visibility of Directory VPN Data Transport</Title>
     </Rule>
-    <Rule id="V-8524" severity="medium" conversionstatus="pass" title="Directory Service Availability" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8524</Id>
+    <Rule Id="V-8524" Severity="medium" ConversionStatus="pass" Title="Directory Service Availability" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -292,13 +217,8 @@ Expand the left pane item that matches the domain being reviewed.
 Select the Domain Controllers Organizational Unit (OU) in the left pane.
 
 If there is only one domain controller in the OU, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Directory Service Availability</Title>
     </Rule>
-    <Rule id="V-8538" severity="medium" conversionstatus="pass" title="Trust - SID Filter Quarantining " dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8538</Id>
+    <Rule Id="V-8538" Severity="medium" ConversionStatus="pass" Title="Trust - SID Filter Quarantining " DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -315,13 +235,8 @@ If the result does not specify "SID filtering is enabled for this trust.  Only S
 If the trust type is Forest, run the following command on the trusting domain:
 "netdom trust &lt;trusting domain&gt; /d:&lt;trusted domain&gt; /enablesidhistory"
 If the result does not specify "SID history is disabled for this trust", this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Trust - SID Filter Quarantining </Title>
     </Rule>
-    <Rule id="V-8540" severity="medium" conversionstatus="pass" title="Trust - Selective Authentication" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8540</Id>
+    <Rule Id="V-8540" Severity="medium" ConversionStatus="pass" Title="Trust - Selective Authentication" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -332,13 +247,8 @@ For each outgoing forest trust, right-click the trust item and select "Propertie
 Select the "Authentication" tab.
 
 If the "Selective Authentication" option is not selected on every outgoing forest trust, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Trust - Selective Authentication</Title>
     </Rule>
-    <Rule id="V-8547" severity="medium" conversionstatus="pass" title="Pre-Windows 2000 Compatible Access Group" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8547</Id>
+    <Rule Id="V-8547" Severity="medium" ConversionStatus="pass" Title="Pre-Windows 2000 Compatible Access Group" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -349,18 +259,14 @@ Select the "Members" tab.
 
 If the "Anonymous Logon" or "Everyone" groups are members, this is a finding.
 (By default, these groups are not included in current Windows versions.)</RawString>
-      <Severity>medium</Severity>
-      <Title>Pre-Windows 2000 Compatible Access Group</Title>
     </Rule>
-    <Rule id="V-8549" severity="medium" conversionstatus="pass" title="Privileged Group Membership - Cross-Directory" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8549</Id>
+    <Rule Id="V-8549" Severity="medium" ConversionStatus="pass" Title="Privileged Group Membership - Cross-Directory" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>1. Start the Active Directory Users and Computers console (Start, Run, “dsa.msc”).
 
+2. Select and expand the left pane item that matches the name of the domain being reviewed.
 
 3. Select the Built-in container. 
 a. If the Incoming Forest Trust Builders group is defined, double-click on the group, and select the Members tab
@@ -376,11 +282,8 @@ Supplementary Notes:
 Note: An account that is from an outside domain appears in the format “outside-domain-NetBIOSname\account” or “account@outside-domain-fully-qualified-name”. Examples are “AOFN21\jsmith” or “jsmith@AOFN21.OST.COM”. It may be necessary to use the AD Domains and Trusts (domain.msc) console to determine if the domain is from another AD forest.
 
 Note:  It is possible to move the highly privileged AD security groups out of the AD Users container. If the Domain Admins, Enterprise Admins, Schema Admins, or Group Policy Creator Owners groups are not in the AD Users container, ask the SA for the new location and use that location for this check.</RawString>
-      <Severity>medium</Severity>
-    <Rule id="V-8551" severity="medium" conversionstatus="pass" title="Domain Functional Level" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8551</Id>
+    </Rule>
+    <Rule Id="V-8551" Severity="medium" ConversionStatus="pass" Title="Domain Functional Level" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -398,13 +301,8 @@ View the value for "DomainMode:"
 If the domain functional level is not Windows Server 2008 or later, this is a finding.
 
 Using the highest domain functional level supported by the domain controllers is recommended.</RawString>
-      <Severity>medium</Severity>
-      <Title>Domain Functional Level</Title>
     </Rule>
-    <Rule id="V-8553" severity="medium" conversionstatus="pass" title="Replication Schedule" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-8553</Id>
+    <Rule Id="V-8553" Severity="medium" ConversionStatus="pass" Title="Replication Schedule" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -422,13 +320,8 @@ Click the "Change Schedule" button.
 If the time frames selected for "Replication Available" do not allow for replication to occur at least daily, this is a finding.
 
 Click the Cancel buttons to exit.</RawString>
-      <Severity>medium</Severity>
-      <Title>Replication Schedule</Title>
     </Rule>
-    <Rule id="V-25385" severity="medium" conversionstatus="pass" title="Directory Data Backup" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-25385</Id>
+    <Rule Id="V-25385" Severity="medium" ConversionStatus="pass" Title="Directory Data Backup" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -439,26 +332,16 @@ If the Availability categorization of the domain is moderate or high, this must 
 Verify the type of backup is appropriate to capturing the directory data.  For AD domain controllers, this must include a System State data backup.
 
 If any of these conditions are not met, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Directory Data Backup</Title>
     </Rule>
-    <Rule id="V-25840" severity="medium" conversionstatus="pass" title="DSRM Password Change Policy" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-25840</Id>
+    <Rule Id="V-25840" Severity="medium" ConversionStatus="pass" Title="DSRM Password Change Policy" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the organization has a process that addresses DSRM password change frequency.
 
 If DSRM passwords are not changed at least annually, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>DSRM Password Change Policy</Title>
     </Rule>
-    <Rule id="V-25997" severity="medium" conversionstatus="pass" title="Replication in the DMZ (RODC)" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-25997</Id>
+    <Rule Id="V-25997" Severity="medium" ConversionStatus="pass" Title="Replication in the DMZ (RODC)" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -471,42 +354,28 @@ If DSRM passwords are not changed at least annually, this is a finding.</RawStri
 4. Verify that required patches and compatibility packs are installed if RODC is used with Windows 2003 (or earlier) clients.
 
 5. If RODC server and configuration does not comply with requirements, then this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Replication in the DMZ (RODC)</Title>
     </Rule>
-    <Rule id="V-36435" severity="high" conversionstatus="pass" title="Delegation of Privileged Accounts" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36435</Id>
+    <Rule Id="V-36435" Severity="high" ConversionStatus="pass" Title="Delegation of Privileged Accounts" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the properties of all privileged accounts in Active Directory Users and Computers. Under the Account tab, verify "Account is sensitive and cannot be delegated" is selected in the Account Options section. If delegation is not prohibited for any  privileged account, this is a finding.</RawString>
-      <Severity>high</Severity>
-      <Title>Delegation of Privileged Accounts</Title>
     </Rule>
-    <Rule id="V-36436" severity="medium" conversionstatus="pass" title="Dedicated Systems for Managing Active Directory" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36436</Id>
+    <Rule Id="V-36436" Severity="medium" ConversionStatus="pass" Title="Dedicated Systems for Managing Active Directory" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If Active Directory is only managed with local logons to domain controllers, not remotely, this can be marked NA.
 
 Verify that any PAWs used to manage Active Directory remotely are used exclusively for managing Active Directory. If PAWs used for managing Active Directory are used for additional functions, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>Dedicated Systems for Managing Active Directory</Title>
     </Rule>
-    <Rule id="V-36438" severity="medium" conversionstatus="pass" title="Unique Passwords for all Local Administrator Accounts" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-36438</Id>
+    <Rule Id="V-36438" Severity="medium" ConversionStatus="pass" Title="Unique Passwords for all Local Administrator Accounts" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify local administrator accounts on domain systems are using unique passwords. If local administrator accounts on domain systems are sharing a password, this is a finding.
 
+Microsoft's Local Administrator Password Solution (LAPS) provides an automated solution for maintaining and regularly changing a local administrator password for domain-joined systems. LAPS can manage a single local administrator account. The default is the built-in administrator account however it can be configured to manage an administrator account of a different name. If additional local administrator accounts exist across systems, the organization must have a process to require unique passwords on each system for the additional accounts.
 
 Other automated solutions that provide this capability may also be used.
 
@@ -519,22 +388,14 @@ Execute "Get-AdmPwdPassword -ComputerName * | Where-object {$_.password -eq $nul
 If any systems are listed, this is a finding.
 
 Ignore computers with "OU=Domain Controllers" in the DistinguishedName field.</RawString>
-      <Severity>medium</Severity>
-    <Rule id="V-43648" severity="medium" conversionstatus="pass" title="AD.0009" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-43648</Id>
+    </Rule>
+    <Rule Id="V-43648" Severity="medium" ConversionStatus="pass" Title="AD.0009" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify separate smart cards are used for EA and DA accounts from smart cards used for other accounts.  EA and DA accounts may be on the same smart card but must be separate from any other accounts.  If separate smart cards for EA and DA accounts from other accounts are not used, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0009</Title>
     </Rule>
-    <Rule id="V-43652" severity="medium" conversionstatus="pass" title="AD.0013" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-43652</Id>
+    <Rule Id="V-43652" Severity="medium" ConversionStatus="pass" Title="AD.0013" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -545,13 +406,8 @@ Review the local Administrators group on public facing servers.  Only the approp
 For public facing servers, the Domain Admins group must be replaced by a domain member server administrator group whose members are different from any used to manage internal servers.
 
 If any domain accounts or groups used to manage internal servers are members of the local administrators group, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0013</Title>
     </Rule>
-    <Rule id="V-43712" severity="medium" conversionstatus="pass" title="AD.AU.0001" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-43712</Id>
+    <Rule Id="V-43712" Severity="medium" ConversionStatus="pass" Title="AD.AU.0001" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -571,13 +427,8 @@ Failed User Account Login (Subcategory: Logon)
 4625 - An account failed to log on.
 Account Login with Explicit Credentials (Subcategory: Logon)
 4648 - A logon was attempted using explicit credentials.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.AU.0001</Title>
     </Rule>
-    <Rule id="V-43713" severity="medium" conversionstatus="pass" title="AD.AU.0002" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-43713</Id>
+    <Rule Id="V-43713" Severity="medium" ConversionStatus="pass" Title="AD.AU.0002" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -595,13 +446,8 @@ Successful User Account Login (Subcategory: Logon)
 4624 - An account was successfully logged on.
 Failed User Account Login (Subcategory: Logon)
 4625 - An account failed to log on.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.AU.0002</Title>
     </Rule>
-    <Rule id="V-43714" severity="medium" conversionstatus="pass" title="AD.AU.0003" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-43714</Id>
+    <Rule Id="V-43714" Severity="medium" ConversionStatus="pass" Title="AD.AU.0003" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -616,26 +462,16 @@ Authentication Package Name = Negotiate
 
 Successful User Account Login (Subcategory: Logon)
 4624 - An account was successfully logged on.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.AU.0003</Title>
     </Rule>
-    <Rule id="V-44059" severity="medium" conversionstatus="pass" title="AD.0014" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-44059</Id>
+    <Rule Id="V-44059" Severity="medium" ConversionStatus="pass" Title="AD.0014" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If no Windows service \ application accounts with manually managed passwords have administrative privileges, this is NA.
 
 Verify Windows service \ application accounts with administrative privileges and manually managed passwords, have passwords changed at least every 60 days.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0014</Title>
     </Rule>
-    <Rule id="V-72821" severity="medium" conversionstatus="pass" title="AD.0016" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-72821</Id>
+    <Rule Id="V-72821" Severity="medium" ConversionStatus="pass" Title="AD.0016" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -662,13 +498,8 @@ NSA has also provided a PowerShell script with Pass-the-Hash guidance at https:/
 Manually rolling the NT hash requires disabling and re-enabling the "Smart Card required for interactive logon" option for each smart card-enforced account, which is not practical for large groups of users.
 
 If NT hashes for smart card-enforced accounts are not rotated every 60 days, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0016</Title>
     </Rule>
-    <Rule id="V-78131" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-78131</Id>
+    <Rule Id="V-78131" Severity="medium" ConversionStatus="pass" Title="AD.0017" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -691,8 +522,6 @@ Backup Operators (Builtin node)
 It is recommended that one account be excluded to ensure availability if there are issues with Kerberos.
 
 Excluding the account left out for availability, if all user accounts from the local domain that are members of the domain level groups above are not also members of the Protected Users group, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>AD.0017</Title>
     </Rule>
   </ManualRule>
 </DISASTIG>

@@ -1,10 +1,7 @@
-<DISASTIG id="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" version="1.10" created="8/14/2018">
-  <DnsServerRootHintRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-58615" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>Script</DscResource>
+<DISASTIG Id="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" Version="1.10" Created="8/15/2018">
+  <DnsServerRootHintRule DscResourcemodule="PSDesiredStateConfiguration">
+    <Rule Id="V-58615" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000102" DscResource="Script">
       <HostName>$null</HostName>
-      <Id>V-58615</Id>
       <IpAddress>$null</IpAddress>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -23,15 +20,10 @@ Verify the "Root Hints" is either empty or only has entries for internal zones u
 
 If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name servers:" are external to the local network, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000102</Title>
     </Rule>
   </DnsServerRootHintRule>
-  <DnsServerSettingRule dscresourcemodule="xDnsServer">
-    <Rule id="V-58543" severity="medium" conversionstatus="pass" title="SRG-APP-000348-DNS-000042" dscresource="xDnsServerSetting">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>xDnsServerSetting</DscResource>
-      <Id>V-58543</Id>
+  <DnsServerSettingRule DscResourcemodule="xDnsServer">
+    <Rule Id="V-58543" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000348-DNS-000042" DscResource="xDnsServerSetting">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -48,13 +40,8 @@ Click on the “Event Logging” tab. By default, all events are logged.
 Verify "Errors and warnings" or "All events" is selected.
 
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000348-DNS-000042</Title>
     </Rule>
-    <Rule id="V-58579" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="xDnsServerSetting">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>xDnsServerSetting</DscResource>
-      <Id>V-58579</Id>
+    <Rule Id="V-58579" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000383-DNS-000047" DscResource="xDnsServerSetting">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -82,15 +69,10 @@ If forwarders are not enabled, click on the “Advanced” tab and ensure the "D
 
 If forwarders are not enabled and configured, and the "Disable recursion (also disables forwarders)" check box in the “Advanced” tab is not selected, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000383-DNS-000047</Title>
     </Rule>
   </DnsServerSettingRule>
-  <DocumentRule dscresourcemodule="None">
-    <Rule id="V-58547" severity="medium" conversionstatus="pass" title="SRG-APP-000350-DNS-000044" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58547</Id>
+  <DocumentRule DscResourcemodule="None">
+    <Rule Id="V-58547" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000350-DNS-000044" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -104,13 +86,8 @@ Administrator notification is only possible if a third-party event monitoring sy
 
 If a third-party event monitoring system is not configured, or a document procedure is not in place requiring the administrator to review the DNS logs on a routine, daily basis, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000350-DNS-000044</Title>
     </Rule>
-    <Rule id="V-58549" severity="medium" conversionstatus="pass" title="SRG-APP-000089-DNS-000004 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58549</Id>
+    <Rule Id="V-58549" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000089-DNS-000004 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -125,13 +102,8 @@ Click on the “Event Logging” tab. By default, all events are logged.
 Verify "Errors and warnings" or "All events" is selected.
 
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000089-DNS-000004 Duplicate</Title>
     </Rule>
-    <Rule id="V-58561" severity="medium" conversionstatus="pass" title="SRG-APP-000095-DNS-000006 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58561</Id>
+    <Rule Id="V-58561" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000095-DNS-000006 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -162,13 +134,8 @@ Right-click Analytical and then click on Properties.
 Confirm the "Enable logging" check box is selected.
 
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000095-DNS-000006 Duplicate</Title>
     </Rule>
-    <Rule id="V-58563" severity="medium" conversionstatus="pass" title="SRG-APP-000096-DNS-000007 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58563</Id>
+    <Rule Id="V-58563" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000096-DNS-000007 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -189,38 +156,6 @@ For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Wind
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
-Right-click DNS Server, point to View, and then click "Show Analytic and Debug Logs".
-
-Right-click Analytical and then click on Properties.
-
-Confirm the "Enable logging" check box is selected.
-
-If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000096-DNS-000007 Duplicate</Title>
-    </Rule>
-    <Rule id="V-58565" severity="medium" conversionstatus="pass" title="SRG-APP-000097-DNS-000008 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58565</Id>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Log on to the DNS server using the Domain Admin or Enterprise Admin account.
-
-Press Windows Key + R, execute dnsmgmt.msc.
-
-Right-click the DNS server, select Properties.
-
-Verify "Errors and warnings" or "All events" is selected.
-
-If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
-
-For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
-Run eventvwr.msc at an elevated command prompt.
-
-In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
 
 Right-click DNS Server, point to View, and then click "Show Analytic and Debug Logs".
 
@@ -229,13 +164,8 @@ Right-click Analytical and then click on Properties.
 Confirm the "Enable logging" check box is selected.
 
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000097-DNS-000008 Duplicate</Title>
     </Rule>
-    <Rule id="V-58567" severity="medium" conversionstatus="pass" title="SRG-APP-000098-DNS-000009 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58567</Id>
+    <Rule Id="V-58565" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000097-DNS-000008 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -264,13 +194,8 @@ Right-click Analytical and then click on Properties.
 Confirm the "Enable logging" check box is selected.
 
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000098-DNS-000009 Duplicate</Title>
     </Rule>
-    <Rule id="V-58569" severity="medium" conversionstatus="pass" title="SRG-APP-000099-DNS-000010 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58569</Id>
+    <Rule Id="V-58567" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000098-DNS-000009 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -299,13 +224,38 @@ Right-click Analytical and then click on Properties.
 Confirm the "Enable logging" check box is selected.
 
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000099-DNS-000010 Duplicate</Title>
     </Rule>
-    <Rule id="V-58571" severity="medium" conversionstatus="pass" title="SRG-APP-000100-DNS-000011 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58571</Id>
+    <Rule Id="V-58569" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000099-DNS-000010 Duplicate" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+
+Press Windows Key + R, execute dnsmgmt.msc.
+
+Right-click the DNS server, select Properties.
+
+Click on the Event Logging tab. By default, all events are logged.
+
+Verify "Errors and warnings" or "All events" is selected.
+
+If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
+
+For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
+ 
+Run eventvwr.msc at an elevated command prompt.
+
+In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
+
+Right-click DNS Server, point to View, and then click "Show Analytic and Debug Logs".
+
+Right-click Analytical and then click on Properties.
+
+Confirm the "Enable logging" check box is selected.
+
+If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-58571" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000100-DNS-000011 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -334,13 +284,8 @@ Right-click Analytical and then click on Properties.
 Confirm the "Enable logging" check box is selected.
 
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000100-DNS-000011 Duplicate</Title>
     </Rule>
-    <Rule id="V-58581" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58581</Id>
+    <Rule Id="V-58581" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000383-DNS-000047 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -366,13 +311,8 @@ If the DNS Server does not forward to another DoD-managed DNS server or to the D
 
 If the "Use root hints if no forwarders are available" is selected, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000383-DNS-000047 Duplicate</Title>
     </Rule>
-    <Rule id="V-58619" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000113" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58619</Id>
+    <Rule Id="V-58619" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000113" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -389,13 +329,8 @@ Confirm with the DNS administrator that the hosts defined in the zone files do n
 The exceptions are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms. In the case of third-party CDNs or cloud offerings, an approved mission need must be demonstrated. Additional exceptions are CNAME records in a multi-domain Active Directory environment pointing to hosts in other internal domains in the same multi-domain environment.
 
 If resource records are maintained that resolve to a fully qualified domain name in another zone, and the usage is not for resource records resolving to hosts that are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms with a documented and approved mission need, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000113</Title>
     </Rule>
-    <Rule id="V-58621" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000114" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58621</Id>
+    <Rule Id="V-58621" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000114" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -412,13 +347,8 @@ Review the RRs to confirm that there are no CNAME records older than 6 months.
 The exceptions are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms. In the case of third-party CDNs or cloud offerings, an approved mission need must be demonstrated (AO approval of use of a commercial cloud offering would satisfy this requirement). Additional exceptions are CNAME records in a multi-domain Active Directory environment pointing to hosts in other internal domains in the same multi-domain environment.
 
 If there are zone-spanning CNAME records older than 6 months and the CNAME records resolve to anything other than fully qualified domain names for glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms with an AO-approved and documented mission need, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000114</Title>
     </Rule>
-    <Rule id="V-58645" severity="medium" conversionstatus="pass" title="SRG-APP-000176-DNS-000019 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58645</Id>
+    <Rule Id="V-58645" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000176-DNS-000019 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -431,13 +361,8 @@ Verify the permissions on the folder, sub-folders and files are limited to “SY
 
 If any other user or group has greater than Read/Execute and List Folder contents permissions to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000176-DNS-000019 Duplicate</Title>
     </Rule>
-    <Rule id="V-58649" severity="medium" conversionstatus="pass" title="SRG-APP-000401-DNS-000051" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58649</Id>
+    <Rule Id="V-58649" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000401-DNS-000051" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -446,13 +371,8 @@ If any other user or group has greater than Read/Execute and List Folder content
 If there is, verify if a documented procedure is in place to store a copy of the CRL locally (local to the site, as an alternative to querying the actual Certificate Authorities). An example would be an OCSP responder installed at the local site.
 
 If there is no local cache of revocation data, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000401-DNS-000051</Title>
     </Rule>
-    <Rule id="V-58695" severity="medium" conversionstatus="pass" title="SRG-APP-000428-DNS-000061" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58695</Id>
+    <Rule Id="V-58695" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000428-DNS-000061" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -475,13 +395,8 @@ Review the zone records of the non-AD-integrated zones and compare to the separa
 Determine if any records have not been validated in over a year.
 
 If zone records exist which have not been validated in over a year, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000428-DNS-000061</Title>
     </Rule>
-    <Rule id="V-58709" severity="medium" conversionstatus="pass" title="SRG-APP-000451-DNS-000069" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58709</Id>
+    <Rule Id="V-58709" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000451-DNS-000069" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -492,39 +407,24 @@ If all of the DNS servers are AD-integrated, this is not a finding.
 Consult with the System Administrator to determine if there are documented procedures for re-roling a non-AD-integrated secondary name server to a master name server role in the event a master name server loses functionality.
 
 If there is not any documented procedures for re-roling a non-AD-integrated secondary name server to primary in the event a master name server loses functionality, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000451-DNS-000069</Title>
     </Rule>
-    <Rule id="V-58711" severity="medium" conversionstatus="pass" title="SRG-APP-000268-DNS-000039" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58711</Id>
+    <Rule Id="V-58711" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000268-DNS-000039" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Notification to system administrator is not configurable in Windows 2008. In order for system administrators to be notified when a component fails, the system administrator would need to implement a third-party monitoring system. At a minimum, the system administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
 
 If a third-party monitoring system is not in place to detect and notify the system administrator upon component failures and the system administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000268-DNS-000039</Title>
     </Rule>
-    <Rule id="V-58715" severity="medium" conversionstatus="pass" title="SRG-APP-000474-DNS-000073" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58715</Id>
+    <Rule Id="V-58715" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000474-DNS-000073" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Notification to system administrator is not configurable in Windows 2012. In order for administrator to be notified if functionality of DNSSEC/TSIG has been removed or broken, the ISSO/ISSM/DNS administrator would need to implement a third-party monitoring system. At a minimum, the ISSO/ISSM/DNS administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
 
 If a third-party monitoring system is not in place to detect and notify the ISSO/ISSM/DNS administrator if functionality of DNSSEC/TSIG has been removed or broken and the ISSO/ISSM/DNS administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000474-DNS-000073</Title>
     </Rule>
-    <Rule id="V-58717" severity="medium" conversionstatus="pass" title="SRG-APP-000275-DNS-000040" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58717</Id>
+    <Rule Id="V-58717" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000275-DNS-000040" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -533,13 +433,8 @@ If a third-party monitoring system is not in place to detect and notify the ISSO
 Notification to system administrator is not configurable in Windows 2008. In order for ISSO/ISSM/DNS administrator to be notified if functionality of Secure Updates has been removed or broken, the ISSO/ISSM/DNS administrator would need to implement a third party monitoring system. At a minimum, the ISSO/ISSM/DNS administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
 
 If a third party monitoring system is not in place to detect and notify the ISSO/ISSM/DNS administrator if functionality of Secure Updates has been removed or broken and the ISSO/ISSM/DNS administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000275-DNS-000040</Title>
     </Rule>
-    <Rule id="V-58719" severity="medium" conversionstatus="pass" title="SRG-APP-000504-DNS-000074 Duplicate" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58719</Id>
+    <Rule Id="V-58719" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000504-DNS-000074 Duplicate" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -568,15 +463,10 @@ Right-click Analytical and then click on Properties.
 Confirm the "Enable logging" check box is selected.
 
 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000504-DNS-000074 Duplicate</Title>
     </Rule>
   </DocumentRule>
-  <ManualRule dscresourcemodule="None">
-    <Rule id="V-58237" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DNS-000115" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58237</Id>
+  <ManualRule DscResourcemodule="None">
+    <Rule Id="V-58237" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000001-DNS-000115" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -599,13 +489,8 @@ Verify the Type: is Active Directory-Integrated.
 Verify the Dynamic updates has "Secure only" selected.
 
 If the zone is Active Directory-Integrated and the Dynamic updates are not configured for "Secure only", this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000001-DNS-000115</Title>
     </Rule>
-    <Rule id="V-58551" severity="medium" conversionstatus="pass" title="SRG-APP-000089-DNS-000005" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58551</Id>
+    <Rule Id="V-58551" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000089-DNS-000005" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -630,13 +515,8 @@ EnableLoggingForZoneLoadingEvent
 
 If all required diagnostic events are not set to "True", this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000089-DNS-000005</Title>
     </Rule>
-    <Rule id="V-58557" severity="medium" conversionstatus="pass" title="SRG-APP-000514-DNS-000075" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58557</Id>
+    <Rule Id="V-58557" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000514-DNS-000075" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -680,13 +560,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000514-DNS-000075</Title>
     </Rule>
-    <Rule id="V-58573" severity="medium" conversionstatus="pass" title="SRG-APP-000125-DNS-000012" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58573</Id>
+    <Rule Id="V-58573" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000125-DNS-000012" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -695,13 +570,8 @@ If the results do not show the RRSIG and signature information, this is a findin
 Review the backup methods used and determine if the backup's methods have been successful at backing up the audit records at least every seven days.
 
 If the organization does not have a backup policy in place for backing up the Windows 2008 DNS Server's audit records and/or the backup methods have not been successful at backing up the audit records at least every seven days, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000125-DNS-000012</Title>
     </Rule>
-    <Rule id="V-58575" severity="medium" conversionstatus="pass" title="SRG-APP-000214-DNS-000079" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58575</Id>
+    <Rule Id="V-58575" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000214-DNS-000079" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -718,13 +588,8 @@ From the expanded list, click to select the zone.
 View the validity period for the DS Resource Record. 
 
 If the validity period for the DS Resource Record for the child domain is less than two days (48 hours) or more than one week (168 hours), this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000214-DNS-000079</Title>
     </Rule>
-    <Rule id="V-58577" severity="medium" conversionstatus="pass" title="SRG-APP-000218-DNS-000027" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58577</Id>
+    <Rule Id="V-58577" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000218-DNS-000027" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -735,13 +600,8 @@ If all of the Windows 2008 DNS Servers are AD integrated, this check is Not Appl
 If any or all of the Windows 2008 DNS Servers are standalone and non-AD-integrated, verify with the System Administrator their geographic location.
 
 If any or all of the authoritative name servers are located in the same building as the master authoritative name server, and the master authoritative name server is not "hidden", this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000218-DNS-000027</Title>
     </Rule>
-    <Rule id="V-58583" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58583</Id>
+    <Rule Id="V-58583" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000383-DNS-000047" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -750,13 +610,8 @@ If any or all of the authoritative name servers are located in the same building
 This can be configured via a local or network firewall.
 
 If the caching name server is not restricted to answering queries from only specific networks, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000383-DNS-000047</Title>
     </Rule>
-    <Rule id="V-58585" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58585</Id>
+    <Rule Id="V-58585" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000383-DNS-000047" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -766,13 +621,8 @@ The non-AD-integrated, standalone, caching Windows 2012 DNS Server must be confi
 
 If the non-AD-integrated, standalone, caching Windows 2012 DNS Server is not configured to be DNSSEC-aware, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000383-DNS-000047</Title>
     </Rule>
-    <Rule id="V-58587" severity="medium" conversionstatus="pass" title="SRG-APP-000440-DNS-000065" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58587</Id>
+    <Rule Id="V-58587" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000440-DNS-000065" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -818,13 +668,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000440-DNS-000065</Title>
     </Rule>
-    <Rule id="V-58589" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000078" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58589</Id>
+    <Rule Id="V-58589" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000078" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -849,13 +694,8 @@ Verify the "DNSKEY signature validity period (hours):" is set to at least 48 hou
 
 If either the KSK or ZSK Tab "DNSKEY signature validity period (hours):" values are set to less than 48 hours or more than 168 hours, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000078</Title>
     </Rule>
-    <Rule id="V-58591" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000084" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58591</Id>
+    <Rule Id="V-58591" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000084" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -877,13 +717,8 @@ If NSEC3 RRs are not returned for the zone, this is a finding.
 
 2vf77rkf63hrgismnuvnb8... NSEC3      0                    01:00:00        [RsaSha1][False][50][F2738D980008F73C]
 7ceje475rse25gppr3vphs... NSEC3      0                    01:00:00        [RsaSha1][False][50][F2738D980008F73C]</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000084</Title>
     </Rule>
-    <Rule id="V-58593" severity="high" conversionstatus="pass" title="SRG-APP-000516-DNS-000085" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58593</Id>
+    <Rule Id="V-58593" Severity="high" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000085" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -913,13 +748,8 @@ Enter a FQDN for a known host record in the zone.
 
 If the NS server does not respond at all or responds with a non-authoritative answer, this is a finding.
 </RawString>
-      <Severity>high</Severity>
-      <Title>SRG-APP-000516-DNS-000085</Title>
     </Rule>
-    <Rule id="V-58595" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000087" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58595</Id>
+    <Rule Id="V-58595" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000087" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -930,13 +760,8 @@ If all of the Windows 2008 DNS Servers are AD-integrated, this check is not appl
 If any or all of the Windows 2008 DNS Servers are stand-alone and non-AD-integrated, verify with the System Administrator their geographic dispersal.
 
 If all of the authoritative name servers are located on the same network segment, and the master authoritative name server is not "hidden", this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000087</Title>
     </Rule>
-    <Rule id="V-58597" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000088" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58597</Id>
+    <Rule Id="V-58597" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000088" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -957,13 +782,8 @@ Access each secondary name server for the same zone and review the SOA informati
 Verify the Serial Number is the same on all authoritative name servers.
 
 If the Serial Number is not the same on one or more authoritative name servers, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000088</Title>
     </Rule>
-    <Rule id="V-58599" severity="high" conversionstatus="pass" title="SRG-APP-000516-DNS-000089" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58599</Id>
+    <Rule Id="V-58599" Severity="high" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000089" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -986,13 +806,8 @@ DNSKEY (Public Key)
 NSEC3 (Next Secure 3)
 
 If the zone does not show all of the DNSSEC record types, this is a finding.</RawString>
-      <Severity>high</Severity>
-      <Title>SRG-APP-000516-DNS-000089</Title>
     </Rule>
-    <Rule id="V-58601" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000090" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58601</Id>
+    <Rule Id="V-58601" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000090" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1013,13 +828,8 @@ Review the DNSKEY encryption in the Data column.  example: [DNSKEY][RsaSha1][310
 Confirm the encryption algorithm specified in the DNSKEY's Data is at RsaSha1, at a minimum.
 
 If the specified encryption algorithm is not RsaSha1 or stronger, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000090</Title>
     </Rule>
-    <Rule id="V-58603" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000091" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58603</Id>
+    <Rule Id="V-58603" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000091" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1036,13 +846,8 @@ For each zone, review the records.
 If any RRs (Resource Records) on an internal DNS server resolve to IP addresses located outside the internal DNS server's network, this is a finding.
 
 If any RRs (Resource Records) on an external DNS server resolve to IP addresses located inside the network, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000091</Title>
     </Rule>
-    <Rule id="V-58605" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000092" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58605</Id>
+    <Rule Id="V-58605" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000092" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1053,13 +858,8 @@ The inbound TCP and UDP ports 53 rule should be configured to only restrict IP a
 If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
 If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000092</Title>
     </Rule>
-    <Rule id="V-58607" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000093" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58607</Id>
+    <Rule Id="V-58607" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000093" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1070,13 +870,8 @@ The inbound TCP and UDP ports 53 rule should be configured to only allow hosts f
 If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
 If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000093</Title>
     </Rule>
-    <Rule id="V-58609" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000095" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58609</Id>
+    <Rule Id="V-58609" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000095" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1105,13 +900,8 @@ If the "Allow zone transfers:" check box is not selected, this is not a finding.
 If the "Allow zone transfers:" check box is selected, verify either "Only to servers listed on the Name Server tab" or "Only to the following servers" is selected.
 
 If the "To any server" option is selected, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000095</Title>
     </Rule>
-    <Rule id="V-58611" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000099" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58611</Id>
+    <Rule Id="V-58611" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000099" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1132,13 +922,8 @@ Select the “Security” tab.
 Review the permissions applied to the zone. No group or user should have greater than READ privileges other than the DNS Admins and the System service account under which the DNS Server Service is running.
 
 If any other account/group has greater than READ privileges, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000099</Title>
     </Rule>
-    <Rule id="V-58613" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000101" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58613</Id>
+    <Rule Id="V-58613" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000101" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1155,26 +940,16 @@ Consult with the DNS Admin to determine if any of the zones also have hostnames 
 If the zone is split between internal and external networks, verify separate DNS servers have been implemented for each network.
 
 If internal and external DNS servers have not been implemented for zones which require resolution from both the internal and external networks, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000101</Title>
     </Rule>
-    <Rule id="V-58617" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000103" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58617</Id>
+    <Rule Id="V-58617" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000103" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Consult with the network IAVM scanner to confirm all Microsoft Operating System IAVMs applicable to Windows 2008/2008 R2 have been applied to the DNS server.
 
 If the Windows Operating System has not been patched to handle all IAVMs, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000103</Title>
     </Rule>
-    <Rule id="V-58623" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58623</Id>
+    <Rule Id="V-58623" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000500" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1193,13 +968,8 @@ Expand each zone folder and examine the host record entries. The third column ti
 Verify this column does not contain any IP addresses that begin with the prefixes "FE8", "FE9", "FEA", or "FEB".
 
 If any non-routable IPv6 link-local scope addresses are in any zone, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000500</Title>
     </Rule>
-    <Rule id="V-58625" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58625</Id>
+    <Rule Id="V-58625" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000500" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1216,13 +986,8 @@ Verify if any contain both IPv4 and IPv6 addresses.
 If any hostnames contain both IPv4 and IPv6 addresses, confirm with the SA that the actual hosts are IPv6-aware.
 
 If any zone contains hosts with both IPv4 and IPv6 addresses but are determined to be non-IPv6-aware, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000500</Title>
     </Rule>
-    <Rule id="V-58627" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58627</Id>
+    <Rule Id="V-58627" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000500" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1235,13 +1000,8 @@ Click on "Change adapter settings".
 Right-click on the Ethernet and click “Properties”.
 
 If the display shows Microsoft TCP/IP version 6 with a check, but the DNS server is not hosting any AAAA records, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000500</Title>
     </Rule>
-    <Rule id="V-58629" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DNS-000014" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58629</Id>
+    <Rule Id="V-58629" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000142-DNS-000014" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1260,13 +1020,8 @@ The result is a list of all services running on the server, with the respective 
 Find Windows 2012 DNS Server service and verify the State is "LISTENING" and the port(s) are TCP 53 and UDP 53.
 
 If the server is listening on UDP and TCP port 53, this is not a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000142-DNS-000014</Title>
     </Rule>
-    <Rule id="V-58631" severity="medium" conversionstatus="pass" title="SRG-APP-000390-DNS-000048" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58631</Id>
+    <Rule Id="V-58631" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000390-DNS-000048" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1289,13 +1044,8 @@ Verify the Type: is Active Directory-Integrated.
 Verify the Dynamic updates has "Secure only" selected.
 
 If the zone is Active Directory-Integrated and the Dynamic updates are not configured for "Secure only", this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000390-DNS-000048</Title>
     </Rule>
-    <Rule id="V-58633" severity="medium" conversionstatus="pass" title="SRG-APP-000158-DNS-000015" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58633</Id>
+    <Rule Id="V-58633" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000158-DNS-000015" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1328,13 +1078,8 @@ On the “Remote Computers” tab, Endpoint1 and Endpoint2 are configured with t
 On the “Protocols and Ports” tab, "Protocol type:" is set to either TCP (depending upon which rule is being reviewed) and the "Endpoint 1 port:" is set to "Specific ports" and "53".
 
 If there are not rules(s) configured with the specified requirements, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000158-DNS-000015</Title>
     </Rule>
-    <Rule id="V-58635" severity="medium" conversionstatus="pass" title="SRG-APP-000394-DNS-000049" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58635</Id>
+    <Rule Id="V-58635" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000394-DNS-000049" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1381,13 +1126,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, indicating the zone has been signed with DNSSEC, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000394-DNS-000049</Title>
     </Rule>
-    <Rule id="V-58637" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DNS-000001" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58637</Id>
+    <Rule Id="V-58637" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000001-DNS-000001" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1414,13 +1154,8 @@ If the "Allow zone transfers" check box is not selected, this is not a finding.
 If the "Allow zone transfers" check box is selected, verify that either the "Only to servers listed on the Name Servers tab" radio button is selected or the "Only to the following servers" radio button is selected.
 
 If the "To any server" radio button is selected, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000001-DNS-000001</Title>
     </Rule>
-    <Rule id="V-58639" severity="medium" conversionstatus="pass" title="SRG-APP-000347-DNS-000041" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58639</Id>
+    <Rule Id="V-58639" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000347-DNS-000041" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1463,13 +1198,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000347-DNS-000041</Title>
     </Rule>
-    <Rule id="V-58643" severity="medium" conversionstatus="pass" title="SRG-APP-000176-DNS-000018" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58643</Id>
+    <Rule Id="V-58643" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000176-DNS-000018" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1489,13 +1219,8 @@ Verify the Owner on the folder, sub-folders, and files are the account under whi
 
 If any other user or group is listed as OWNER of the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders, and files, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000176-DNS-000018</Title>
     </Rule>
-    <Rule id="V-58647" severity="medium" conversionstatus="pass" title="SRG-APP-000176-DNS-000094" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58647</Id>
+    <Rule Id="V-58647" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000176-DNS-000094" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1506,13 +1231,8 @@ For Active Directory-integrated zones, private zone signing keys replicate autom
 If all DNS servers are AD integrated, this check is not applicable.
 
 If a DNS server is not AD integrated and has file-backed zones, does not accept dynamic updates and has a copy of the private key corresponding to the ZSK, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000176-DNS-000094</Title>
     </Rule>
-    <Rule id="V-58651" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000077" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58651</Id>
+    <Rule Id="V-58651" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000516-DNS-000077" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1534,13 +1254,8 @@ Review the zone's RRs in the right window pane.
 Determine the RRSIG NSEC3PARAM's Inception (in the Data column). Compare the Inception to the RRSIG DNSKEY Inception. The date and time should be the same.
 
 If the NSEC3PARAM's Inception date and time is different than the DNSKEY Inception Date and Time, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000516-DNS-000077</Title>
     </Rule>
-    <Rule id="V-58653" severity="medium" conversionstatus="pass" title="SRG-APP-000213-DNS-000024" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58653</Id>
+    <Rule Id="V-58653" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000213-DNS-000024" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1585,13 +1300,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000213-DNS-000024</Title>
     </Rule>
-    <Rule id="V-58655" severity="medium" conversionstatus="pass" title="SRG-APP-000420-DNS-000053" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58655</Id>
+    <Rule Id="V-58655" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000420-DNS-000053" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1608,13 +1318,8 @@ Select Internet Protocol Version 4 (TCP/IPv4) and click “Properties”.
 Verify the “Use the following IP address” is selected, with an IP address, subnet mask, and default gateway assigned.
 
 If the “Use the following IP address” is not selected with a configured IP address, subnet mask, and default gateway, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000420-DNS-000053</Title>
     </Rule>
-    <Rule id="V-58657" severity="medium" conversionstatus="pass" title="SRG-APP-000420-DNS-000053" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58657</Id>
+    <Rule Id="V-58657" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000420-DNS-000053" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1659,13 +1364,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000420-DNS-000053</Title>
     </Rule>
-    <Rule id="V-58659" severity="medium" conversionstatus="pass" title="SRG-APP-000421-DNS-000054" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58659</Id>
+    <Rule Id="V-58659" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000421-DNS-000054" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1708,13 +1408,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000421-DNS-000054</Title>
     </Rule>
-    <Rule id="V-58661" severity="medium" conversionstatus="pass" title="SRG-APP-000422-DNS-000055" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58661</Id>
+    <Rule Id="V-58661" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000422-DNS-000055" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1731,13 +1426,8 @@ In the “Properties” dialog box for the zone, click the “WINS” tab.
 Verify the "Use WINS forward lookup" check box is not selected.
 
 If the "Use WINS forward lookup" check box is selected, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000422-DNS-000055</Title>
     </Rule>
-    <Rule id="V-58663" severity="medium" conversionstatus="pass" title="SRG-APP-000422-DNS-000055" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58663</Id>
+    <Rule Id="V-58663" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000422-DNS-000055" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1780,13 +1470,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000422-DNS-000055</Title>
     </Rule>
-    <Rule id="V-58665" severity="medium" conversionstatus="pass" title="SRG-APP-000214-DNS-000025" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58665</Id>
+    <Rule Id="V-58665" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000214-DNS-000025" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1829,13 +1514,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000214-DNS-000025</Title>
     </Rule>
-    <Rule id="V-58667" severity="medium" conversionstatus="pass" title="SRG-APP-000215-DNS-000003" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58667</Id>
+    <Rule Id="V-58667" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000215-DNS-000003" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1852,13 +1532,8 @@ From the expanded list, click to select the zone.
 Review the records for the zone and ensure the complete RRSet of records are present: RRSIG, NSEC3, DNSKEY, indicating DNSSEC compliance.
 
 If the RRSet of records are not in the zone, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000215-DNS-000003</Title>
     </Rule>
-    <Rule id="V-58669" severity="medium" conversionstatus="pass" title="SRG-APP-000215-DNS-000003" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58669</Id>
+    <Rule Id="V-58669" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000215-DNS-000003" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1875,13 +1550,8 @@ get-dnsclientnrptpolicy &lt;enter&gt;
 In the results, verify the "DnsSecValidationRequired" is True.
 
 If there are no results to the get-dnsclientnrptpolicy cmdlet or the "DnsSecValidationRequired" is not True, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000215-DNS-000003</Title>
     </Rule>
-    <Rule id="V-58671" severity="medium" conversionstatus="pass" title="SRG-APP-000215-DNS-000026" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58671</Id>
+    <Rule Id="V-58671" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000215-DNS-000026" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1911,13 +1581,8 @@ In the previous example, DS records for the child zone, corp.adatum.com, were im
 
 If the Key Master DNS server for a child zone is not the same computer as the primary authoritative DNS server for the parent zone where the DS record is being added, the DSSET file must be obtained for the child zone and made available to the primary authoritative server for the parent zone. Alternatively, the DS records can be added manually.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000215-DNS-000026</Title>
     </Rule>
-    <Rule id="V-58673" severity="medium" conversionstatus="pass" title="SRG-APP-000215-DNS-000026" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58673</Id>
+    <Rule Id="V-58673" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000215-DNS-000026" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1931,13 +1596,8 @@ Two DNSKEY trust points should be displayed, one for the active key and one for 
 
 If each validating Windows 2012 DNS Servers does not reflect the DNSKEY trust points for each of the hosted zone(s), this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000215-DNS-000026</Title>
     </Rule>
-    <Rule id="V-58675" severity="medium" conversionstatus="pass" title="SRG-APP-000215-DNS-000026" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58675</Id>
+    <Rule Id="V-58675" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000215-DNS-000026" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1964,13 +1624,8 @@ Click the KSK tab.
 For each KSK that is listed under Key signing keys (KSKs), click the KSK, click Edit, and in the Key Rollover section verify the "Enable automatic rollover" check box is selected.
 
 If the "Enable automatic rollover" check box is not selected for every KSK listed, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000215-DNS-000026</Title>
     </Rule>
-    <Rule id="V-58677" severity="medium" conversionstatus="pass" title="SRG-APP-000423-DNS-000056" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58677</Id>
+    <Rule Id="V-58677" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000423-DNS-000056" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2013,13 +1668,8 @@ Section: Answer
 IP4Address:  ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000423-DNS-000056</Title>
     </Rule>
-    <Rule id="V-58679" severity="medium" conversionstatus="pass" title="SRG-APP-000424-DNS-000057" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58679</Id>
+    <Rule Id="V-58679" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000424-DNS-000057" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2062,13 +1712,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000424-DNS-000057</Title>
     </Rule>
-    <Rule id="V-58681" severity="medium" conversionstatus="pass" title="SRG-APP-000425-DNS-000058" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58681</Id>
+    <Rule Id="V-58681" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000425-DNS-000058" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2111,13 +1756,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000425-DNS-000058</Title>
     </Rule>
-    <Rule id="V-58683" severity="medium" conversionstatus="pass" title="SRG-APP-000426-DNS-000059" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58683</Id>
+    <Rule Id="V-58683" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000426-DNS-000059" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2160,13 +1800,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000426-DNS-000059</Title>
     </Rule>
-    <Rule id="V-58685" severity="medium" conversionstatus="pass" title="SRG-APP-000219-DNS-000028" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58685</Id>
+    <Rule Id="V-58685" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000219-DNS-000028" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2211,13 +1846,8 @@ Review the certificate specified and verify the certificate used was generated b
 If rules do not exist for server-to-server authentication, this is a finding.
 
 If rules exist for this server to authenticate to other name servers hosting the same file based zones when transacting zone transfers, but the rules are not configured with the above settings, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000219-DNS-000028</Title>
     </Rule>
-    <Rule id="V-58687" severity="high" conversionstatus="pass" title="SRG-APP-000219-DNS-000029" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58687</Id>
+    <Rule Id="V-58687" Severity="high" ConversionStatus="pass" Title="SRG-APP-000219-DNS-000029" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2262,13 +1892,8 @@ IP4Address : 156.112.108.76
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>high</Severity>
-      <Title>SRG-APP-000219-DNS-000029</Title>
     </Rule>
-    <Rule id="V-58689" severity="medium" conversionstatus="pass" title="SRG-APP-000219-DNS-000030" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58689</Id>
+    <Rule Id="V-58689" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000219-DNS-000030" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2319,13 +1944,8 @@ In the DNS Manager console tree on the DNS server being validated, navigate to F
 
 Right-click the zone (repeat for each hosted zone), point to DNSSEC, and then click Sign the Zone, either using saved parameters or custom parameters.  
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000219-DNS-000030</Title>
     </Rule>
-    <Rule id="V-58691" severity="medium" conversionstatus="pass" title="SRG-APP-000427-DNS-000060" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58691</Id>
+    <Rule Id="V-58691" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000427-DNS-000060" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2363,13 +1983,8 @@ Verify the "Select the credential to use for first authentication:" has "Compute
 Review the certificate specified and verify the certificate used was generated by the internally-managed server performing the Active Directory Certificate Services (AD CS) role.
 
 If the certificate used does not meet the requirements, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000427-DNS-000060</Title>
     </Rule>
-    <Rule id="V-58693" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DNS-000033" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58693</Id>
+    <Rule Id="V-58693" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000231-DNS-000033" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2381,13 +1996,8 @@ Verify the protection of the backup medium is secured to the same level, or high
 
 If a backup policy does not exist or the backup policy does not specify the protection required for backup medium to be at or above the same level as the server, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000231-DNS-000033</Title>
     </Rule>
-    <Rule id="V-58699" severity="medium" conversionstatus="pass" title="SRG-APP-000247-DNS-000036" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58699</Id>
+    <Rule Id="V-58699" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000247-DNS-000036" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2411,13 +2021,8 @@ On the displayed interface, verify if the "Allow zone transfers" check box is se
 If the "Allow zone transfers" check box is selected, click on the “Notify” button and verify “Automatically notify with Servers” is listed on the “Name Servers” tab is selected.
 
 If the “Notify” button is not enabled for non-AD-integrated DNS servers, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000247-DNS-000036</Title>
     </Rule>
-    <Rule id="V-58701" severity="medium" conversionstatus="pass" title="SRG-APP-000439-DNS-000063" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58701</Id>
+    <Rule Id="V-58701" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000439-DNS-000063" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2460,13 +2065,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000439-DNS-000063</Title>
     </Rule>
-    <Rule id="V-58703" severity="medium" conversionstatus="pass" title="SRG-APP-000441-DNS-000066" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58703</Id>
+    <Rule Id="V-58703" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000441-DNS-000066" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2509,13 +2109,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000441-DNS-000066</Title>
     </Rule>
-    <Rule id="V-58705" severity="medium" conversionstatus="pass" title="SRG-APP-000442-DNS-000067" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58705</Id>
+    <Rule Id="V-58705" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000442-DNS-000067" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2558,13 +2153,8 @@ IP4Address: ###.###.###.###
 
 If the results do not show the RRSIG and signature information, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000442-DNS-000067</Title>
     </Rule>
-    <Rule id="V-58707" severity="medium" conversionstatus="pass" title="SRG-APP-000251-DNS-000037" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58707</Id>
+    <Rule Id="V-58707" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000251-DNS-000037" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2587,13 +2177,8 @@ From the expanded list, click to select and then right-click the zone name.
 Review the zone information and compare to the IP ranges for the environment.
 
 If any zone information is for a different IP range or domain, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000251-DNS-000037</Title>
     </Rule>
-    <Rule id="V-58713" severity="medium" conversionstatus="pass" title="SRG-APP-000473-DNS-000072" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58713</Id>
+    <Rule Id="V-58713" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000473-DNS-000072" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2602,13 +2187,8 @@ If any zone information is for a different IP range or domain, this is a finding
 Check to ensure McAfee HBSS is installed and fully operational on the Windows 2008 DNS Server.
 
 If all required HBSS products are not installed and/or the installed products are not enabled, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000473-DNS-000072</Title>
     </Rule>
-    <Rule id="V-58737" severity="medium" conversionstatus="pass" title="SRG-APP-000333-DNS-000104" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58737</Id>
+    <Rule Id="V-58737" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000333-DNS-000104" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2628,13 +2208,8 @@ set class=CHAOS &lt;enter&gt;
 version.bind &lt;enter&gt;
 
 If the response returns something similar to text = "Microsoft DNS 6.1.7601 (1DB14556)", this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000333-DNS-000104</Title>
     </Rule>
-    <Rule id="V-58739" severity="medium" conversionstatus="pass" title="SRG-APP-000333-DNS-000107" dscresource="None">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>None</DscResource>
-      <Id>V-58739</Id>
+    <Rule Id="V-58739" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000333-DNS-000107" DscResource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2649,12 +2224,10 @@ From the expanded list, click to select the zone.
 Review the zone's Resource Records (RR) and verify HINFO, RP, and LOC RRs are not used. If TXT RRs are used, they must not reveal any information about the organization which could be used for malicious purposes.
 
 If there are any HINFO, RP, LOC, or revealing TXT RRs in any zone hosted by the DNS Server, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000333-DNS-000107</Title>
     </Rule>
   </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-58553" severity="medium" conversionstatus="pass" title="SRG-APP-000090-DNS-000005" dscresource="NTFSAccessEntry">
+  <PermissionRule DscResourcemodule="AccessControlDsc">
+    <Rule Id="V-58553" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000090-DNS-000005" DscResource="NTFSAccessEntry">
       <AccessControlEntry>
         <Entry>
           <Type>
@@ -2684,10 +2257,7 @@ If there are any HINFO, RP, LOC, or revealing TXT RRs in any zone hosted by the 
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>NTFSAccessEntry</DscResource>
       <Force>True</Force>
-      <Id>V-58553</Id>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2727,10 +2297,8 @@ Administrators - Full Control
 
 If the permissions for these files are not as restrictive as the ACLs listed, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000090-DNS-000005</Title>
     </Rule>
-    <Rule id="V-58641" severity="medium" conversionstatus="pass" title="SRG-APP-000176-DNS-000017" dscresource="NTFSAccessEntry">
+    <Rule Id="V-58641" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000176-DNS-000017" DscResource="NTFSAccessEntry">
       <AccessControlEntry>
         <Entry>
           <Type>
@@ -2749,10 +2317,7 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>NTFSAccessEntry</DscResource>
       <Force>True</Force>
-      <Id>V-58641</Id>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2766,18 +2331,13 @@ Navigate to the following location:
 Verify the permissions on the keys folder, sub-folders, and files are limited to SYSTEM and Administrators FULL CONTROL.
 
 If any other user or group has greater than READ privileges to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.</RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000176-DNS-000017</Title>
     </Rule>
   </PermissionRule>
-  <UserRightRule dscresourcemodule="SecurityPolicyDsc">
-    <Rule id="V-58553.a" severity="medium" conversionstatus="pass" title="SRG-APP-000090-DNS-000005" dscresource="UserRightsAssignment">
+  <UserRightRule DscResourcemodule="SecurityPolicyDsc">
+    <Rule Id="V-58553.a" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000090-DNS-000005" DscResource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
-      <ConversionStatus>pass</ConversionStatus>
       <DisplayName>Manage auditing and security log</DisplayName>
-      <DscResource>UserRightsAssignment</DscResource>
       <Force>True</Force>
-      <Id>V-58553.a</Id>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2817,16 +2377,11 @@ Administrators - Full Control
 
 If the permissions for these files are not as restrictive as the ACLs listed, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000090-DNS-000005</Title>
     </Rule>
-    <Rule id="V-58697.a" severity="medium" conversionstatus="pass" title="SRG-APP-000246-DNS-000035" dscresource="UserRightsAssignment">
+    <Rule Id="V-58697.a" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000246-DNS-000035" DscResource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
-      <ConversionStatus>pass</ConversionStatus>
       <DisplayName>Allow log on through Remote Desktop Services</DisplayName>
-      <DscResource>UserRightsAssignment</DscResource>
       <Force>True</Force>
-      <Id>V-58697.a</Id>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2834,16 +2389,11 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
       <RawString>If any accounts or groups other than the following are granted the "Allow log on through Remote Desktop Services" user right, this is a finding:
 Administrators
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000246-DNS-000035</Title>
     </Rule>
-    <Rule id="V-58697.b" severity="medium" conversionstatus="pass" title="SRG-APP-000246-DNS-000035" dscresource="UserRightsAssignment">
+    <Rule Id="V-58697.b" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000246-DNS-000035" DscResource="UserRightsAssignment">
       <Constant>SeDenyNetworkLogonRight</Constant>
-      <ConversionStatus>pass</ConversionStatus>
       <DisplayName>Deny access to this computer from the network</DisplayName>
-      <DscResource>UserRightsAssignment</DscResource>
       <Force>False</Force>
-      <Id>V-58697.b</Id>
       <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2851,16 +2401,11 @@ Administrators
       <RawString>If the following accounts or groups are not defined for the "Deny access to this computer from the network" user right, this is a finding:
 Guests Group
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000246-DNS-000035</Title>
     </Rule>
-    <Rule id="V-58697.c" severity="medium" conversionstatus="pass" title="SRG-APP-000246-DNS-000035" dscresource="UserRightsAssignment">
+    <Rule Id="V-58697.c" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000246-DNS-000035" DscResource="UserRightsAssignment">
       <Constant>SeDenyInteractiveLogonRight</Constant>
-      <ConversionStatus>pass</ConversionStatus>
       <DisplayName>Deny log on locally</DisplayName>
-      <DscResource>UserRightsAssignment</DscResource>
       <Force>False</Force>
-      <Id>V-58697.c</Id>
       <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2868,15 +2413,10 @@ Guests Group
       <RawString>If the following accounts or groups are not defined for the "Deny log on locally" user right, this is a finding:
 Guests Group
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000246-DNS-000035</Title>
     </Rule>
   </UserRightRule>
-  <WinEventLogRule dscresourcemodule="xWinEventLog">
-    <Rule id="V-58555" severity="medium" conversionstatus="pass" title="SRG-APP-000504-DNS-000082" dscresource="xWinEventLog">
-      <ConversionStatus>pass</ConversionStatus>
-      <DscResource>xWinEventLog</DscResource>
-      <Id>V-58555</Id>
+  <WinEventLogRule DscResourcemodule="xWinEventLog">
+    <Rule Id="V-58555" Severity="medium" ConversionStatus="pass" Title="SRG-APP-000504-DNS-000082" DscResource="xWinEventLog">
       <IsEnabled>True</IsEnabled>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogName>Microsoft-Windows-DnsServer/Analytical</LogName>
@@ -2914,8 +2454,6 @@ Confirm the "Enable logging" check box is selected.
 
 If the checkbox to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.
 </RawString>
-      <Severity>medium</Severity>
-      <Title>SRG-APP-000504-DNS-000082</Title>
     </Rule>
   </WinEventLogRule>
 </DISASTIG>
