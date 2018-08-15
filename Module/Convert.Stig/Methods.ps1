@@ -316,7 +316,7 @@ function Get-StigRuleResource
         }
         'FileContentRule'
         {
-            return Get-FileContentRuleDscResource -RuleId $global:stigRuleGlobal.Id
+            return Get-FileContentRuleDscResource -Key $this.Key
         }
         default
         {
@@ -409,13 +409,12 @@ function Get-FileContentRuleDscResource
     (
         [parameter(Mandatory = $true)]
         [String]
-        $RuleId
+        $Key
     )
 
-    if ($RuleId -match 'V-19741|V-79053|V-6318')
+    if ($Key -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled')
     {
         return 'cFireFoxPolicy'
-        continue
     }
     return 'cFireFoxPrefs'
 }
