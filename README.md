@@ -85,6 +85,8 @@ We are especially thankful for those who have contributed pull requests to the c
   * Replaced PowerStig Technology Class with Enumeration
   * Added script module back to manifest
   * Added DotNetFramework composite resource
+* Added FileContentRule class
+* FireFox STIG 4.21
 
 ### 1.1.1.0
 
