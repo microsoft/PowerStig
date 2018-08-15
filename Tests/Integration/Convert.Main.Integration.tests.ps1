@@ -14,6 +14,7 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 12
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 38
@@ -37,6 +38,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 13
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 37
             MimeTypeRule                 = $null
@@ -58,6 +61,7 @@ try
             AuditPolicyRule              = 38
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
+            FileContentRule              = $null
             DocumentRule                 = 16
             GroupRule                    = $null
             IisLoggingRule               = $null
@@ -82,6 +86,8 @@ try
             DnsServerRootHintRule        = $n
             DnsServerSettingRule         = $null
             DocumentRule                 = 17
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 51
             MimeTypeRule                 = $null
@@ -104,6 +110,7 @@ try
             DnsServerRootHintRule        = 1
             DnsServerSettingRule         = 2
             DocumentRule                 = 19
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 64
@@ -128,6 +135,7 @@ try
             DnsServerSettingRule         = 2
             DocumentRule                 = 19
             GroupRule                    = $null
+            FileContentRule              = $null
             IisLoggingRule               = $null
             ManualRule                   = 64
             MimeTypeRule                 = $null
@@ -151,6 +159,7 @@ try
             DnsServerSettingRule         = $null
             DocumentRule                 = $null
             GroupRule                    = $null
+            FileContentRule              = $null
             IisLoggingRule               = $null
             ManualRule                   = $null
             MimeTypeRule                 = $null
@@ -174,6 +183,7 @@ try
             DnsServerSettingRule         = $null
             DocumentRule                 = $null
             GroupRule                    = $null
+            FileContentRule              = $null
             IisLoggingRule               = $null
             ManualRule                   = $null
             MimeTypeRule                 = $null
@@ -196,6 +206,7 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = $null
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 1
@@ -219,6 +230,7 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 4
+            FileContentRule              = $null
             GroupRule                    = 1
             IisLoggingRule               = $null
             ManualRule                   = 27
@@ -242,6 +254,7 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 18
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = 5
             ManualRule                   = 14
@@ -265,6 +278,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 45
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 76
             MimeTypeRule                 = $null
@@ -287,6 +302,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 3
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 11
             MimeTypeRule                 = $null
@@ -309,6 +326,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 13
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 14
             MimeTypeRule                 = $null
@@ -331,6 +350,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 16
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = 5
             ManualRule                   = 17
             MimeTypeRule                 = 5
@@ -345,6 +366,30 @@ try
             WebConfigurationPropertyRule = 9
             WinEventLogRule              = $null
             WindowsFeatureRule           = 1
+            WmiRule                      = $null
+        }
+        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml'                 = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 1
+            FileContentRule              = $23
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 5
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
     }

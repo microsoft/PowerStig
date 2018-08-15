@@ -314,6 +314,10 @@ function Get-StigRuleResource
         {
             return 'WindowsOptionalFeature'
         }
+        'FileContentRule'
+        {
+            return Get-FileContentRuleDscResource -RuleId $global:stigRuleGlobal.Id
+        }
         default
         {
             return $DscResource.($RuleType.ToString())
@@ -389,6 +393,32 @@ function Get-PermissionRuleDscResource
     }
 }
 
+<#
+    .SYNOPSIS
+        Returns the name fo the DSC resource needed to manage a FileContentRule
+    .PARAMETER RuleId
+        The ID of the STIG rule
+    .EXAMPLE
+        Get-FileContentRuleDscResource -StigId 'V-19741'
+#>
+function Get-FileContentRuleDscResource
+{
+    [CmdletBinding()]
+    [OutputType([String])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [String]
+        $RuleId
+    )
+
+    if ($RuleId -match 'V-19741|V-79053|V-6318')
+    {
+        return 'cFireFoxPolicy'
+        continue
+    }
+    return 'cFireFoxPrefs'
+}
 <#
     .SYNOPSIS
         Checks for Html encoded char

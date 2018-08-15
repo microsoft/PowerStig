@@ -83,7 +83,7 @@ Class FileContentRule : STIG
         .SYNOPSIS
             Tests if a rules contains more than one check
         .DESCRIPTION
-            Gets the path defined in the rule from the xccdf content and then
+            Gets the policy setting in the rule from the xccdf content and then
             checks for the existance of multuple entries.
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
@@ -94,6 +94,17 @@ Class FileContentRule : STIG
         return ( Test-MultipleFileContentRule -KeyValuePair $keyValuePairs )
     }
 
+    <#
+        .SYNOPSIS
+            Splits the CheckContent into multiple CheckContent strings
+        .DESCRIPTION
+            When CheckContent is identified as containing multiple rules
+            this method with break the CheckContent out into multiple
+            CheckContent strings that contain single rules.
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
+
+    #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         $splitFileContentRules = Get-KeyValuePair -SplitCheckContent -CheckContent ([STIG]::SplitCheckContent($CheckContent))

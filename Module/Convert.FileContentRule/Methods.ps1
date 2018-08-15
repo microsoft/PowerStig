@@ -22,8 +22,8 @@ function Get-KeyValuePair
     )
 
     $result = @()
-    $regex = '({0}|"|{1})[\s\S]*?("|{0}|{1}|{2})' -f [char]8220, [char]39, [char]8221 # (“|"|')[\s\S]*?("|“|'|”)
-    $regexToRemove = '"|{0}|{1}|{2}||\s' -f [char]8220, [char]8221, [char]39 # "|“|”|'
+    $regex = $fileContentRegex.BetweenAllQuotes -f [char]8220, [char]39, [char]8221
+    $regexToRemove = $fileContentRegex.RegexToRemove -f [char]8220, [char]8221, [char]39
 
     foreach ($line in $checkContent)
     {
@@ -45,19 +45,23 @@ function Get-KeyValuePair
             }
         }
         # This code address the edge case where rules browser STIGs manage file extensions
-        if ($lineResult.Count -eq 1 -and ($CheckContent -join '`n') -cmatch '[A-Z]{2,5}')
+        if ($lineResult.Count -eq 1 -and ($CheckContent -join '`n') -cmatch $fileContentRegex.TwoTo5CapitalLetters)
         {
-            $fileExtensionMatches = $CheckContent | Select-String -Pattern '[A-Z,1-9]{2,5}(\s|\.)' -AllMatches
-            $fileExtensions = $fileExtensionMatches.Matches.Value | Where-Object -FilterScript {$PSItem -cmatch '[A-Z,1-9]{2,4}(\s|\.)'}
+            $fileExtensionMatches = $CheckContent | Select-String -Pattern $fileContentRegex.CapitalsEndWithSpaceOrDot5 -AllMatches
+            $fileExtensions = $fileExtensionMatches.Matches.Value | Where-Object -FilterScript {$PSItem -cmatch $fileContentRegex.CapitalsEndWithSpaceOrDot4}
 
             $result += [pscustomobject]@{
                 Key   = $lineResult.Value -replace $regexToRemove
-                Value = (-join $fileExtensions -replace '\.|\s')
+                Value = ($fileExtensions -replace $fileContentRegex.RemoveAnyNonWordCharacter) -join ','
             }
         }
     }
-    # We use Select-Object -Unique to handle rules that repeat themselves
-    return ($result | Select-Object -Unique)
+    # If array of stings return, if hashtable return unique
+    if ($result[0] -is [string])
+    {
+        return $result
+    }
+    return ($result | Select-Object -Property Key,Value -Unique)
 }
 
 <#
