@@ -12,8 +12,8 @@
 #>
 Function Get-StigList
 {
-    [cmdletbinding()]
-    [outputtype([PSObject[]])]
+    [CmdletBinding()]
+    [OutputType([PSObject[]])]
     param ()
 
     return [StigData]::GetAvailableStigs()

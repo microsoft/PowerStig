@@ -16,6 +16,10 @@
         "target": ""
     },
     {
+        "src": "DSCResources\\**",
+        "target": "DSCResources\\"
+    },
+    {
         "src": "StigData\\Processed\\**",
         "target": "StigData\\Processed"
     },

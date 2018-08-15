@@ -1,8 +1,7 @@
+# Cloned modules
 DSCResource.Tests
 PowerStig.Tests
+
+# Editors
 .vscode/
-.vs/ProjectSettings.json
-.vs/VSWorkspaceState.json
-.vs/slnx.sqlite
-.vs/PowerStig/v15/.suo
-.gitignore
+.vs/
