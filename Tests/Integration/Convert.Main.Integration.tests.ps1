@@ -374,7 +374,7 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 1
-            FileContentRule              = $23
+            FileContentRule              = 23
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 5
