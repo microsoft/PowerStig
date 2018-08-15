@@ -33,7 +33,7 @@ try
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It 'Should be a FileContentRule' {
-                $rule.GetType().Name -eq 'FileContentRule' | Should Be $true
+                $rule.GetType() | Should Be 'FileContentRule'
             }
 
             It "Should return Key:'$($rule.Key)'" {
