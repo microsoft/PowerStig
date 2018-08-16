@@ -87,10 +87,6 @@ We are especially thankful for those who have contributed pull requests to the c
   * Added script module back to manifest
   * Added DotNetFramework composite resource
 
-### 1.1.1.0
-
-Update IIS Server STIG V-76723.a with correct value
-
 Added the following STIGs:
 
 * Windows Server 2012R2 MS STIG V2R13
@@ -99,6 +95,10 @@ Added the following STIGs:
 * Windows Domain V2R10
 * Windows Forest V2R8
 * IE11-V1R16
+
+### 1.1.1.0
+
+Update IIS Server STIG V-76723.a with correct value
 
 ### 1.1.0.0
 
