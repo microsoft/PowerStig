@@ -280,7 +280,7 @@ function Get-VulnerabilityList
 function Get-MofContent
 {
     [cmdletbinding()]
-    [outputtype([psobject)]
+    [outputtype([psobject])
     param
     (
         [parameter(Mandatory = $true)]
