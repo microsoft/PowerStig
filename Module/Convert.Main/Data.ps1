@@ -4,18 +4,18 @@
 data xmlAttribute
 {
     ConvertFrom-StringData -stringdata @'
-        stigId             = Id
-        stigVersion        = Version
-        stigConvertCreated = Created
+        stigId             = id
+        stigVersion        = version
+        stigConvertCreated = created
 
-        ruleId                = Id
-        ruleSeverity          = Severity
-        ruleConversionStatus  = ConversionStatus
-        ruleTitle             = Title
-        ruleDscResource       = DscResource
-        ruleDscResourceModule = DscResourcemodule
+        ruleId                = id
+        ruleSeverity          = severity
+        ruleConversionStatus  = conversionstatus
+        ruleTitle             = title
+        ruleDscResource       = dscresource
+        ruleDscResourceModule = dscresourcemodule
 
-        organizationalSettingValue = Value
+        organizationalSettingValue = value
 '@
 }
 

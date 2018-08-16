@@ -1,6 +1,6 @@
-<DISASTIG Id="IE_11_STIG" Version="1.15" Created="8/16/2018">
-  <RegistryRule DscResourcemodule="PSDesiredStateConfiguration">
-    <Rule Id="V-46473" Severity="medium" ConversionStatus="pass" Title="DTBI014-IE11-TLS setting" DscResource="Registry">
+<DISASTIG id="IE_11_STIG" version="1.15" created="8/16/2018">
+  <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
+    <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -15,7 +15,7 @@ If the value for "SecureProtocols" is not REG_DWORD = "2560", this is a finding.
       <ValueName>SecureProtocols</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46475" Severity="medium" ConversionStatus="pass" Title="DTBI015-IE11-Warning of certificate mismatch" DscResource="Registry">
+    <Rule id="V-46475" severity="medium" conversionstatus="pass" title="DTBI015-IE11-Warning of certificate mismatch" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -26,7 +26,7 @@ If the value for "SecureProtocols" is not REG_DWORD = "2560", this is a finding.
       <ValueName>WarnOnBadCertRecving</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46477" Severity="low" ConversionStatus="pass" Title="DTBI018-IE11-Publishers Certificate Revocation" DscResource="Registry">
+    <Rule id="V-46477" severity="low" conversionstatus="pass" title="DTBI018-IE11-Publishers Certificate Revocation" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing</Key>
@@ -46,7 +46,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>State</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46481" Severity="medium" ConversionStatus="pass" Title="DTBI022-IE11-Download signed ActiveX - Internet" DscResource="Registry">
+    <Rule id="V-46481" severity="medium" conversionstatus="pass" title="DTBI022-IE11-Download signed ActiveX - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -57,7 +57,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1001</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46483" Severity="medium" ConversionStatus="pass" Title="DTBI023-IE11-Download unsigned ActiveX - Internet" DscResource="Registry">
+    <Rule id="V-46483" severity="medium" conversionstatus="pass" title="DTBI023-IE11-Download unsigned ActiveX - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -68,7 +68,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1004</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46501" Severity="medium" ConversionStatus="pass" Title="DTBI024-IE11-Initialize and script ActiveX - Internet" DscResource="Registry">
+    <Rule id="V-46501" severity="medium" conversionstatus="pass" title="DTBI024-IE11-Initialize and script ActiveX - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -79,7 +79,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1201</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46505" Severity="medium" ConversionStatus="pass" Title="DTBI030-IE11-Font download control - Internet" DscResource="Registry">
+    <Rule id="V-46505" severity="medium" conversionstatus="pass" title="DTBI030-IE11-Font download control - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -90,7 +90,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1604</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46507" Severity="medium" ConversionStatus="pass" Title="DTBI031-IE11-Java Permission - Internet" DscResource="Registry">
+    <Rule id="V-46507" severity="medium" conversionstatus="pass" title="DTBI031-IE11-Java Permission - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -101,7 +101,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46509" Severity="medium" ConversionStatus="pass" Title="DTBI032-IE11-Access data sources across domains - Internet" DscResource="Registry">
+    <Rule id="V-46509" severity="medium" conversionstatus="pass" title="DTBI032-IE11-Access data sources across domains - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -112,7 +112,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1406</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46511" Severity="medium" ConversionStatus="pass" Title="DTBI036-IE11-Drag and drop or copy and paste - Internet" DscResource="Registry">
+    <Rule id="V-46511" severity="medium" conversionstatus="pass" title="DTBI036-IE11-Drag and drop or copy and paste - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -123,7 +123,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1802</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46513" Severity="medium" ConversionStatus="pass" Title="DTBI038-IE11-Programs and files in IFRAME - Internet" DscResource="Registry">
+    <Rule id="V-46513" severity="medium" conversionstatus="pass" title="DTBI038-IE11-Programs and files in IFRAME - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -134,7 +134,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1804</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46515" Severity="medium" ConversionStatus="pass" Title="DTBI039-IE11-Navigating across domains - Internet" DscResource="Registry">
+    <Rule id="V-46515" severity="medium" conversionstatus="pass" title="DTBI039-IE11-Navigating across domains - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\InternetSettings\Zones\3</Key>
@@ -145,7 +145,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1607</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46517" Severity="medium" ConversionStatus="pass" Title="DTBI042-IE11-Userdata persistence - Internet" DscResource="Registry">
+    <Rule id="V-46517" severity="medium" conversionstatus="pass" title="DTBI042-IE11-Userdata persistence - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -156,7 +156,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1606</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46521" Severity="medium" ConversionStatus="pass" Title="DTBI044-IE11-Paste operations via script - Internet" DscResource="Registry">
+    <Rule id="V-46521" severity="medium" conversionstatus="pass" title="DTBI044-IE11-Paste operations via script - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -167,7 +167,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1407</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46523" Severity="medium" ConversionStatus="pass" Title="DTBI046-IE11-User Authentication-Logon - Internet" DscResource="Registry">
+    <Rule id="V-46523" severity="medium" conversionstatus="pass" title="DTBI046-IE11-User Authentication-Logon - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -178,7 +178,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1A00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46525" Severity="medium" ConversionStatus="pass" Title="DTBI061-IE11-Java Permission - Intranet" DscResource="Registry">
+    <Rule id="V-46525" severity="medium" conversionstatus="pass" title="DTBI061-IE11-Java Permission - Intranet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1</Key>
@@ -189,7 +189,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46543" Severity="medium" ConversionStatus="pass" Title="DTBI091-IE11-Java Permission - Trusted Sites" DscResource="Registry">
+    <Rule id="V-46543" severity="medium" conversionstatus="pass" title="DTBI091-IE11-Java Permission - Trusted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2</Key>
@@ -200,7 +200,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46545" Severity="medium" ConversionStatus="pass" Title="DTBI1000-IE11-Content from different domains within windows - Internet" DscResource="Registry">
+    <Rule id="V-46545" severity="medium" conversionstatus="pass" title="DTBI1000-IE11-Content from different domains within windows - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -211,7 +211,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>2708</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46547" Severity="medium" ConversionStatus="pass" Title="DTBI1005-IE11-Content from different domains across windows - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46547" severity="medium" conversionstatus="pass" title="DTBI1005-IE11-Content from different domains across windows - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -222,7 +222,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>2709</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46549" Severity="medium" ConversionStatus="pass" Title="DTBI1010-IE11-Restrict ActiveX Install - Explorer" DscResource="Registry">
+    <Rule id="V-46549" severity="medium" conversionstatus="pass" title="DTBI1010-IE11-Restrict ActiveX Install - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
@@ -233,7 +233,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46553" Severity="medium" ConversionStatus="pass" Title="DTBI1020-IE11-Restrict ActiveX Install - iexplore" DscResource="Registry">
+    <Rule id="V-46553" severity="medium" conversionstatus="pass" title="DTBI1020-IE11-Restrict ActiveX Install - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
@@ -244,7 +244,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46555" Severity="medium" ConversionStatus="pass" Title="DTBI1025-IE11-Content from different domains within windows - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46555" severity="medium" conversionstatus="pass" title="DTBI1025-IE11-Content from different domains within windows - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -255,7 +255,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>2708</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46573" Severity="medium" ConversionStatus="pass" Title="DTBI112-IE11-Download signed ActiveX - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46573" severity="medium" conversionstatus="pass" title="DTBI112-IE11-Download signed ActiveX - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -266,7 +266,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1001</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46575" Severity="medium" ConversionStatus="pass" Title="DTBI113-IE11-Download unsigned ActiveX - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46575" severity="medium" conversionstatus="pass" title="DTBI113-IE11-Download unsigned ActiveX - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -277,7 +277,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1004</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46577" Severity="medium" ConversionStatus="pass" Title="DTBI114-IE11-Initialize and script ActiveX - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46577" severity="medium" conversionstatus="pass" title="DTBI114-IE11-Initialize and script ActiveX - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -288,7 +288,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1201</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46579" Severity="medium" ConversionStatus="pass" Title="DTBI115-IE11-ActiveX control and plugins - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46579" severity="medium" conversionstatus="pass" title="DTBI115-IE11-ActiveX control and plugins - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -299,7 +299,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1200</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46581" Severity="medium" ConversionStatus="pass" Title="DTBI116-IE11-ActiveX controls marked safe - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46581" severity="medium" conversionstatus="pass" title="DTBI116-IE11-ActiveX controls marked safe - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -310,7 +310,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1405</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46583" Severity="medium" ConversionStatus="pass" Title="DTBI119-IE11-File download control - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46583" severity="medium" conversionstatus="pass" title="DTBI119-IE11-File download control - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -321,7 +321,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1803</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46585" Severity="medium" ConversionStatus="pass" Title="DTBI120-IE11-Font download control - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46585" severity="medium" conversionstatus="pass" title="DTBI120-IE11-Font download control - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -332,7 +332,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1604</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46587" Severity="medium" ConversionStatus="pass" Title="DTBI121-IE11-Java Permission - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46587" severity="medium" conversionstatus="pass" title="DTBI121-IE11-Java Permission - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -343,7 +343,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46589" Severity="medium" ConversionStatus="pass" Title="DTBI122-IE11-Access data sources across domains - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46589" severity="medium" conversionstatus="pass" title="DTBI122-IE11-Access data sources across domains - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -354,7 +354,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1406</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46591" Severity="medium" ConversionStatus="pass" Title="DTBI123-IE11-META REFRESH - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46591" severity="medium" conversionstatus="pass" title="DTBI123-IE11-META REFRESH - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -365,7 +365,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1608</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46593" Severity="medium" ConversionStatus="pass" Title="DTBI126-IE11-Drag and drop or copy and paste - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46593" severity="medium" conversionstatus="pass" title="DTBI126-IE11-Drag and drop or copy and paste - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -376,7 +376,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1802</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46597" Severity="medium" ConversionStatus="pass" Title="DTBI128-IE11-Programs and files in IFRAME - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46597" severity="medium" conversionstatus="pass" title="DTBI128-IE11-Programs and files in IFRAME - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -387,7 +387,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1804</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46599" Severity="medium" ConversionStatus="pass" Title="DTBI129-IE11-Navigating across domains - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46599" severity="medium" conversionstatus="pass" title="DTBI129-IE11-Navigating across domains - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -398,7 +398,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1607</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46601" Severity="medium" ConversionStatus="pass" Title="DTBI132-IE11-Userdata persistence - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46601" severity="medium" conversionstatus="pass" title="DTBI132-IE11-Userdata persistence - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -409,7 +409,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1606</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46603" Severity="medium" ConversionStatus="pass" Title="DTBI133-IE11-Active scripting - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46603" severity="medium" conversionstatus="pass" title="DTBI133-IE11-Active scripting - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -420,7 +420,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1400</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46605" Severity="medium" ConversionStatus="pass" Title="DTBI134-IE11-Paste operations via script - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46605" severity="medium" conversionstatus="pass" title="DTBI134-IE11-Paste operations via script - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -431,7 +431,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1407</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46607" Severity="medium" ConversionStatus="pass" Title="DTBI136-IE11-User Authentication-Logon - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46607" severity="medium" conversionstatus="pass" title="DTBI136-IE11-User Authentication-Logon - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -442,7 +442,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>1A00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46609.a" Severity="medium" ConversionStatus="pass" Title="DTBI300-IE11-Configuring History lists" DscResource="Registry">
+    <Rule id="V-46609.a" severity="medium" conversionstatus="pass" title="DTBI300-IE11-Configuring History lists" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Control Panel</Key>
@@ -453,7 +453,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>History</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46609.b" Severity="medium" ConversionStatus="pass" Title="DTBI300-IE11-Configuring History lists" DscResource="Registry">
+    <Rule id="V-46609.b" severity="medium" conversionstatus="pass" title="DTBI300-IE11-Configuring History lists" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Url History</Key>
@@ -464,7 +464,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>DaysToKeep</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46615" Severity="medium" ConversionStatus="pass" Title="DTBI318-IE11-Addition and deletion of sites" DscResource="Registry">
+    <Rule id="V-46615" severity="medium" conversionstatus="pass" title="DTBI318-IE11-Addition and deletion of sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -475,7 +475,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>Security_zones_map_edit</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46617" Severity="medium" ConversionStatus="pass" Title="DTBI319-IE11-Changing of policies" DscResource="Registry">
+    <Rule id="V-46617" severity="medium" conversionstatus="pass" title="DTBI319-IE11-Changing of policies" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -486,7 +486,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>Security_options_edit</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46619" Severity="medium" ConversionStatus="pass" Title="DTBI320-IE11-Security zone machine settings" DscResource="Registry">
+    <Rule id="V-46619" severity="medium" conversionstatus="pass" title="DTBI320-IE11-Security zone machine settings" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -497,7 +497,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>Security_HKLM_only</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46621" Severity="medium" ConversionStatus="pass" Title="DTBI325-IE11-Security settings check feature" DscResource="Registry">
+    <Rule id="V-46621" severity="medium" conversionstatus="pass" title="DTBI325-IE11-Security settings check feature" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Security</Key>
@@ -508,7 +508,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <ValueName>DisableSecuritySettingsCheck</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46625" Severity="medium" ConversionStatus="pass" Title="DTBI350-IE11-Software with invalid signatures" DscResource="Registry">
+    <Rule id="V-46625" severity="medium" conversionstatus="pass" title="DTBI350-IE11-Software with invalid signatures" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Download</Key>
@@ -521,7 +521,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>RunInvalidSignatures</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46629" Severity="low" ConversionStatus="pass" Title="DTBI365-IE11-Check for server certificate revocation" DscResource="Registry">
+    <Rule id="V-46629" severity="low" conversionstatus="pass" title="DTBI365-IE11-Check for server certificate revocation" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -532,7 +532,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>CertificateRevocation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46633" Severity="medium" ConversionStatus="pass" Title="DTBI370-IE11-Signature checking on downloaded programs" DscResource="Registry">
+    <Rule id="V-46633" severity="medium" conversionstatus="pass" title="DTBI370-IE11-Signature checking on downloaded programs" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Download</Key>
@@ -543,7 +543,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>CheckExeSignatures</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46635" Severity="medium" ConversionStatus="pass" Title="DTBI375-IE11-Network paths (UNCs) for Intranet sites" DscResource="Registry">
+    <Rule id="V-46635" severity="medium" conversionstatus="pass" title="DTBI375-IE11-Network paths (UNCs) for Intranet sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\ZoneMap</Key>
@@ -554,7 +554,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>UNCAsIntranet</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46637" Severity="medium" ConversionStatus="pass" Title="DTBI385-IE11-Script initiated windows - Internet" DscResource="Registry">
+    <Rule id="V-46637" severity="medium" conversionstatus="pass" title="DTBI385-IE11-Script initiated windows - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -565,7 +565,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2102</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46639" Severity="medium" ConversionStatus="pass" Title="DTBI390-IE11-Script initiated windows - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46639" severity="medium" conversionstatus="pass" title="DTBI390-IE11-Script initiated windows - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -576,7 +576,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2102</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46641" Severity="medium" ConversionStatus="pass" Title="DTBI395-IE11-Scriptlets - Internet" DscResource="Registry">
+    <Rule id="V-46641" severity="medium" conversionstatus="pass" title="DTBI395-IE11-Scriptlets - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -587,7 +587,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1209</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46643" Severity="medium" ConversionStatus="pass" Title="DTBI415-IE11-Prompt for file downloads - Internet" DscResource="Registry">
+    <Rule id="V-46643" severity="medium" conversionstatus="pass" title="DTBI415-IE11-Prompt for file downloads - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -598,7 +598,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2200</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46645" Severity="medium" ConversionStatus="pass" Title="DTBI425-IE11-Java permission - Local Machine" DscResource="Registry">
+    <Rule id="V-46645" severity="medium" conversionstatus="pass" title="DTBI425-IE11-Java permission - Local Machine" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0</Key>
@@ -609,7 +609,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46647" Severity="medium" ConversionStatus="pass" Title="DTBI430-IE11-Java permission - Locked Down Local Machine" DscResource="Registry">
+    <Rule id="V-46647" severity="medium" conversionstatus="pass" title="DTBI430-IE11-Java permission - Locked Down Local Machine" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\0</Key>
@@ -620,7 +620,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46649" Severity="medium" ConversionStatus="pass" Title="DTBI435-IE11-Java permission - Locked Down Intranet" DscResource="Registry">
+    <Rule id="V-46649" severity="medium" conversionstatus="pass" title="DTBI435-IE11-Java permission - Locked Down Intranet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\1</Key>
@@ -631,7 +631,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46653" Severity="medium" ConversionStatus="pass" Title="DTBI440-IE11-Java permission - Locked Down Trusted Sites" DscResource="Registry">
+    <Rule id="V-46653" severity="medium" conversionstatus="pass" title="DTBI440-IE11-Java permission - Locked Down Trusted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\2</Key>
@@ -642,7 +642,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46663" Severity="medium" ConversionStatus="pass" Title="DTBI450-IE11-Java permission - Locked Down Restricted Sites" DscResource="Registry">
+    <Rule id="V-46663" severity="medium" conversionstatus="pass" title="DTBI450-IE11-Java permission - Locked Down Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Lockdown_Zones\4</Key>
@@ -653,7 +653,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1C00</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46665" Severity="medium" ConversionStatus="pass" Title="DTBI455-IE11-Loading of XAML files - Internet" DscResource="Registry">
+    <Rule id="V-46665" severity="medium" conversionstatus="pass" title="DTBI455-IE11-Loading of XAML files - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -664,7 +664,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2402</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46669" Severity="medium" ConversionStatus="pass" Title="DTBI460-IE11-Loading of XAML files - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46669" severity="medium" conversionstatus="pass" title="DTBI460-IE11-Loading of XAML files - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -675,7 +675,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2402</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46681" Severity="medium" ConversionStatus="pass" Title="DTBI485-IE11-Protected Mode - Internet" DscResource="Registry">
+    <Rule id="V-46681" severity="medium" conversionstatus="pass" title="DTBI485-IE11-Protected Mode - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -686,7 +686,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2500</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46685" Severity="medium" ConversionStatus="pass" Title="DTBI490-IE11-Protected Mode - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46685" severity="medium" conversionstatus="pass" title="DTBI490-IE11-Protected Mode - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -697,7 +697,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2500</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46689" Severity="medium" ConversionStatus="pass" Title="DTBI495-IE11-Pop-up blocker - Internet" DscResource="Registry">
+    <Rule id="V-46689" severity="medium" conversionstatus="pass" title="DTBI495-IE11-Pop-up blocker - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -708,7 +708,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1809</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46691" Severity="medium" ConversionStatus="pass" Title="DTBI500-IE11-Pop-up Blocker - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46691" severity="medium" conversionstatus="pass" title="DTBI500-IE11-Pop-up Blocker - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -719,7 +719,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1809</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46693" Severity="medium" ConversionStatus="pass" Title="DTBI515-IE11-Less privileged web content - Internet" DscResource="Registry">
+    <Rule id="V-46693" severity="medium" conversionstatus="pass" title="DTBI515-IE11-Less privileged web content - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -730,7 +730,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2101</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46695" Severity="medium" ConversionStatus="pass" Title="DTBI520-IE11-Less privileged web content - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46695" severity="medium" conversionstatus="pass" title="DTBI520-IE11-Less privileged web content - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -741,7 +741,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2101</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46701" Severity="medium" ConversionStatus="pass" Title="DTBI575-IE11-Binary and script behaviors - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46701" severity="medium" conversionstatus="pass" title="DTBI575-IE11-Binary and script behaviors - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -752,7 +752,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2000</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46705" Severity="medium" ConversionStatus="pass" Title="DTBI580-IE11-Prompt for file downloads - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46705" severity="medium" conversionstatus="pass" title="DTBI580-IE11-Prompt for file downloads - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -763,7 +763,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2200</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46709" Severity="medium" ConversionStatus="pass" Title="DTBI590-IE11-MIME handling - Reserved" DscResource="Registry">
+    <Rule id="V-46709" severity="medium" conversionstatus="pass" title="DTBI590-IE11-MIME handling - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING</Key>
@@ -774,7 +774,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46711" Severity="medium" ConversionStatus="pass" Title="DTBI592-IE11-MIME handling - Explorer" DscResource="Registry">
+    <Rule id="V-46711" severity="medium" conversionstatus="pass" title="DTBI592-IE11-MIME handling - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING</Key>
@@ -785,7 +785,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46713" Severity="medium" ConversionStatus="pass" Title="DTBI594-IE11-MIME handling - iexplore" DscResource="Registry">
+    <Rule id="V-46713" severity="medium" conversionstatus="pass" title="DTBI594-IE11-MIME handling - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_HANDLING</Key>
@@ -796,7 +796,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46715" Severity="medium" ConversionStatus="pass" Title="DTBI595-IE11-MIME sniffing - Reserved" DscResource="Registry">
+    <Rule id="V-46715" severity="medium" conversionstatus="pass" title="DTBI595-IE11-MIME sniffing - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING</Key>
@@ -807,7 +807,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46717" Severity="medium" ConversionStatus="pass" Title="DTBI596-IE11-MIME sniffing - Explorer" DscResource="Registry">
+    <Rule id="V-46717" severity="medium" conversionstatus="pass" title="DTBI596-IE11-MIME sniffing - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING</Key>
@@ -818,7 +818,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46719" Severity="medium" ConversionStatus="pass" Title="DTBI597-IE11-MIME sniffing - iexplore" DscResource="Registry">
+    <Rule id="V-46719" severity="medium" conversionstatus="pass" title="DTBI597-IE11-MIME sniffing - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_MIME_SNIFFING</Key>
@@ -829,7 +829,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46721" Severity="medium" ConversionStatus="pass" Title="DTBI599-IE11-MK Protocol - Reserved" DscResource="Registry">
+    <Rule id="V-46721" severity="medium" conversionstatus="pass" title="DTBI599-IE11-MK Protocol - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL</Key>
@@ -840,7 +840,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46723" Severity="medium" ConversionStatus="pass" Title="DTBI600-IE11-MK Protocol - Explorer" DscResource="Registry">
+    <Rule id="V-46723" severity="medium" conversionstatus="pass" title="DTBI600-IE11-MK Protocol - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL</Key>
@@ -851,7 +851,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46725" Severity="medium" ConversionStatus="pass" Title="DTBI605-IE11-MK protocol - iexplore" DscResource="Registry">
+    <Rule id="V-46725" severity="medium" conversionstatus="pass" title="DTBI605-IE11-MK protocol - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_DISABLE_MK_PROTOCOL</Key>
@@ -862,7 +862,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46727" Severity="medium" ConversionStatus="pass" Title="DTBI610-IE11-Zone elevation - Reserved" DscResource="Registry">
+    <Rule id="V-46727" severity="medium" conversionstatus="pass" title="DTBI610-IE11-Zone elevation - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
@@ -873,7 +873,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46729" Severity="medium" ConversionStatus="pass" Title="DTBI612-IE11-Zone elevation - Explorer" DscResource="Registry">
+    <Rule id="V-46729" severity="medium" conversionstatus="pass" title="DTBI612-IE11-Zone elevation - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
@@ -884,7 +884,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46731" Severity="medium" ConversionStatus="pass" Title="DTBI614-IE11-Zone elevation - iexplore" DscResource="Registry">
+    <Rule id="V-46731" severity="medium" conversionstatus="pass" title="DTBI614-IE11-Zone elevation - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
@@ -895,7 +895,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46733" Severity="medium" ConversionStatus="pass" Title="DTBI630-IE11-Restrict File Download- Reserved" DscResource="Registry">
+    <Rule id="V-46733" severity="medium" conversionstatus="pass" title="DTBI630-IE11-Restrict File Download- Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
@@ -906,7 +906,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46779" Severity="medium" ConversionStatus="pass" Title="DTBI635-IE11-Restrict File download - Explorer" DscResource="Registry">
+    <Rule id="V-46779" severity="medium" conversionstatus="pass" title="DTBI635-IE11-Restrict File download - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
@@ -917,7 +917,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46781" Severity="medium" ConversionStatus="pass" Title="DTBI640-IE11-Restrict File download - iexplore" DscResource="Registry">
+    <Rule id="V-46781" severity="medium" conversionstatus="pass" title="DTBI640-IE11-Restrict File download - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
@@ -928,7 +928,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46787" Severity="medium" ConversionStatus="pass" Title="DTBI645-IE11-Restricting pop-up windows - Reserved" DscResource="Registry">
+    <Rule id="V-46787" severity="medium" conversionstatus="pass" title="DTBI645-IE11-Restricting pop-up windows - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
@@ -939,7 +939,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46789" Severity="medium" ConversionStatus="pass" Title="DTBI647-IE11-Restricting pop-up windows - Explorer" DscResource="Registry">
+    <Rule id="V-46789" severity="medium" conversionstatus="pass" title="DTBI647-IE11-Restricting pop-up windows - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
@@ -950,7 +950,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46791" Severity="medium" ConversionStatus="pass" Title="DTBI649-IE11-Restricing pop-up windows - iexplore" DscResource="Registry">
+    <Rule id="V-46791" severity="medium" conversionstatus="pass" title="DTBI649-IE11-Restricing pop-up windows - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
@@ -961,7 +961,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46797" Severity="medium" ConversionStatus="pass" Title="DTBI650-IE11-.NET w/Authenticode unsigned - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46797" severity="medium" conversionstatus="pass" title="DTBI650-IE11-.NET w/Authenticode unsigned - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -972,7 +972,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2004</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46799" Severity="medium" ConversionStatus="pass" Title="DTBI655-IE11-.NET w/Authenticode signed - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46799" severity="medium" conversionstatus="pass" title="DTBI655-IE11-.NET w/Authenticode signed - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -983,7 +983,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>2001</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46801" Severity="medium" ConversionStatus="pass" Title="DTBI670-IE11-Scripting of Java applets - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46801" severity="medium" conversionstatus="pass" title="DTBI670-IE11-Scripting of Java applets - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -994,7 +994,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>1402</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46807" Severity="medium" ConversionStatus="pass" Title="DTBI690-IE11-AutoComplete for forms" DscResource="Registry">
+    <Rule id="V-46807" severity="medium" conversionstatus="pass" title="DTBI690-IE11-AutoComplete for forms" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Main</Key>
@@ -1005,7 +1005,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>Use FormSuggest</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46811" Severity="medium" ConversionStatus="pass" Title="DTBI715-IE11-Crash Detection" DscResource="Registry">
+    <Rule id="V-46811" severity="medium" conversionstatus="pass" title="DTBI715-IE11-Crash Detection" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Restrictions</Key>
@@ -1016,7 +1016,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>NoCrashDetection</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46815.a" Severity="medium" ConversionStatus="pass" Title="DTBI725-IE11-Auto-complete feature for user names and passwords" DscResource="Registry">
+    <Rule id="V-46815.a" severity="medium" conversionstatus="pass" title="DTBI725-IE11-Auto-complete feature for user names and passwords" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Main</Key>
@@ -1027,7 +1027,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>FormSuggest Passwords</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46815.b" Severity="medium" ConversionStatus="pass" Title="DTBI725-IE11-Auto-complete feature for user names and passwords" DscResource="Registry">
+    <Rule id="V-46815.b" severity="medium" conversionstatus="pass" title="DTBI725-IE11-Auto-complete feature for user names and passwords" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Internet Explorer\Main</Key>
@@ -1038,7 +1038,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <ValueName>FormSuggest PW Ask</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46819" Severity="medium" ConversionStatus="pass" Title="DTBI740-IE11-Managing SmartScreen Filter" DscResource="Registry">
+    <Rule id="V-46819" severity="medium" conversionstatus="pass" title="DTBI740-IE11-Managing SmartScreen Filter" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\PhishingFilter</Key>
@@ -1057,7 +1057,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>EnabledV9</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46829" Severity="medium" ConversionStatus="pass" Title="DTBI760-IE11-Browser history on exit" DscResource="Registry">
+    <Rule id="V-46829" severity="medium" conversionstatus="pass" title="DTBI760-IE11-Browser history on exit" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Privacy</Key>
@@ -1068,7 +1068,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>ClearBrowsingHistoryOnExit</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46841" Severity="medium" ConversionStatus="pass" Title="DTBI770-IE11-Website visit history" DscResource="Registry">
+    <Rule id="V-46841" severity="medium" conversionstatus="pass" title="DTBI770-IE11-Website visit history" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Privacy</Key>
@@ -1079,7 +1079,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>CleanHistory</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46847" Severity="medium" ConversionStatus="pass" Title="DTBI780-IE11-InPrivate Browsing" DscResource="Registry">
+    <Rule id="V-46847" severity="medium" conversionstatus="pass" title="DTBI780-IE11-InPrivate Browsing" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Privacy</Key>
@@ -1090,7 +1090,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>EnableInPrivateBrowsing</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46849" Severity="medium" ConversionStatus="pass" Title="DTBI800-IE11-Scripting of WebBrowser control - Internet" DscResource="Registry">
+    <Rule id="V-46849" severity="medium" conversionstatus="pass" title="DTBI800-IE11-Scripting of WebBrowser control - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1101,7 +1101,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1206</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46853" Severity="medium" ConversionStatus="pass" Title="DTBI810-IE11-Local directory paths - Internet" DscResource="Registry">
+    <Rule id="V-46853" severity="medium" conversionstatus="pass" title="DTBI810-IE11-Local directory paths - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1112,7 +1112,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>160A</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46857" Severity="medium" ConversionStatus="pass" Title="DTBI815-IE11-Notification Bars - Reserved" DscResource="Registry">
+    <Rule id="V-46857" severity="medium" conversionstatus="pass" title="DTBI815-IE11-Notification Bars - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND</Key>
@@ -1123,7 +1123,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46859" Severity="medium" ConversionStatus="pass" Title="DTBI820-IE11-Security warning for unsafe files - Internet" DscResource="Registry">
+    <Rule id="V-46859" severity="medium" conversionstatus="pass" title="DTBI820-IE11-Security warning for unsafe files - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1134,7 +1134,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1806</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46861" Severity="medium" ConversionStatus="pass" Title="DTBI825-IE11-Notification Bars - Explorer" DscResource="Registry">
+    <Rule id="V-46861" severity="medium" conversionstatus="pass" title="DTBI825-IE11-Notification Bars - Explorer" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND</Key>
@@ -1145,7 +1145,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>explorer.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46865" Severity="medium" ConversionStatus="pass" Title="DTBI830-IE11-ActiveX controls without prompt - Internet" DscResource="Registry">
+    <Rule id="V-46865" severity="medium" conversionstatus="pass" title="DTBI830-IE11-ActiveX controls without prompt - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1156,7 +1156,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>120b</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46869" Severity="medium" ConversionStatus="pass" Title="DTBI835-IE11-Notification Bars - iexplore" DscResource="Registry">
+    <Rule id="V-46869" severity="medium" conversionstatus="pass" title="DTBI835-IE11-Notification Bars - iexplore" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SECURITYBAND</Key>
@@ -1167,7 +1167,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>iexplore.exe</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46879" Severity="medium" ConversionStatus="pass" Title="DTBI840-IE11-Cross-Site Scripting Filter-  Internet" DscResource="Registry">
+    <Rule id="V-46879" severity="medium" conversionstatus="pass" title="DTBI840-IE11-Cross-Site Scripting Filter-  Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1178,7 +1178,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1409</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46883" Severity="medium" ConversionStatus="pass" Title="DTBI850-IE11-Scripting of WebBrowser Control - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46883" severity="medium" conversionstatus="pass" title="DTBI850-IE11-Scripting of WebBrowser Control - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1189,7 +1189,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1206</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46885" Severity="medium" ConversionStatus="pass" Title="DTBI860-IE11-Local directory paths - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46885" severity="medium" conversionstatus="pass" title="DTBI860-IE11-Local directory paths - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1200,7 +1200,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>160A</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46889" Severity="medium" ConversionStatus="pass" Title="DTBI870-IE11-Security Warning for unsafe files - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46889" severity="medium" conversionstatus="pass" title="DTBI870-IE11-Security Warning for unsafe files - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1211,7 +1211,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1806</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46893" Severity="medium" ConversionStatus="pass" Title="DTBI880-IE11-ActiveX controls without prompt - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46893" severity="medium" conversionstatus="pass" title="DTBI880-IE11-ActiveX controls without prompt - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1222,7 +1222,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>120b</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46895" Severity="medium" ConversionStatus="pass" Title="DTBI890-IE11-Cross-Site Scripting Filter - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46895" severity="medium" conversionstatus="pass" title="DTBI890-IE11-Cross-Site Scripting Filter - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1233,7 +1233,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1409</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46897" Severity="medium" ConversionStatus="pass" Title="DTBI900-IE11-Restrict ActiveX Install - Reserved" DscResource="Registry">
+    <Rule id="V-46897" severity="medium" conversionstatus="pass" title="DTBI900-IE11-Restrict ActiveX Install - Reserved" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
@@ -1244,7 +1244,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>(Reserved)</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46903" Severity="medium" ConversionStatus="pass" Title="DTBI910-IE11-Status bar updates via script - Internet" DscResource="Registry">
+    <Rule id="V-46903" severity="medium" conversionstatus="pass" title="DTBI910-IE11-Status bar updates via script - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1255,7 +1255,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>2103</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46907" Severity="medium" ConversionStatus="pass" Title="DTBI920-IE11-.NET w/Authenticode unsigned - Internet" DscResource="Registry">
+    <Rule id="V-46907" severity="medium" conversionstatus="pass" title="DTBI920-IE11-.NET w/Authenticode unsigned - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1266,7 +1266,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>2004</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46921" Severity="medium" ConversionStatus="pass" Title="DTBI930-IE11-.NET w/Authenticode signed - Internet" DscResource="Registry">
+    <Rule id="V-46921" severity="medium" conversionstatus="pass" title="DTBI930-IE11-.NET w/Authenticode signed - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1277,7 +1277,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>2001</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46927" Severity="medium" ConversionStatus="pass" Title="DTBI940-IE11-Scriptlets - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46927" severity="medium" conversionstatus="pass" title="DTBI940-IE11-Scriptlets - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1288,7 +1288,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>1209</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46939" Severity="medium" ConversionStatus="pass" Title="DTBI950-IE11-Status bar updates via script - Restricted Sites" DscResource="Registry">
+    <Rule id="V-46939" severity="medium" conversionstatus="pass" title="DTBI950-IE11-Status bar updates via script - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1299,7 +1299,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>2103</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46975" Severity="medium" ConversionStatus="pass" Title="DTBI985-IE11-ActiveX controls in Enhanced Protected Mode" DscResource="Registry">
+    <Rule id="V-46975" severity="medium" conversionstatus="pass" title="DTBI985-IE11-ActiveX controls in Enhanced Protected Mode" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main</Key>
@@ -1310,7 +1310,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>DisableEPMCompat</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46981" Severity="medium" ConversionStatus="pass" Title="DTBI990-IE11-Content from different domains across windows - Internet" DscResource="Registry">
+    <Rule id="V-46981" severity="medium" conversionstatus="pass" title="DTBI990-IE11-Content from different domains across windows - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1321,7 +1321,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>2709</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46987" Severity="medium" ConversionStatus="pass" Title="DTBI995-IE11-Enhanced Protected Mode " DscResource="Registry">
+    <Rule id="V-46987" severity="medium" conversionstatus="pass" title="DTBI995-IE11-Enhanced Protected Mode " dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main</Key>
@@ -1332,7 +1332,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>Isolation</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule Id="V-46995" Severity="medium" ConversionStatus="pass" Title="DTBI356-IE11-Enhanced Protect Mode on 64-bit versions" DscResource="Registry">
+    <Rule id="V-46995" severity="medium" conversionstatus="pass" title="DTBI356-IE11-Enhanced Protect Mode on 64-bit versions" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Main</Key>
@@ -1343,7 +1343,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>Isolation64Bit</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46997" Severity="medium" ConversionStatus="pass" Title="DTBI1046-IE11-Anti-Malware programs against ActiveX controls - Internet" DscResource="Registry">
+    <Rule id="V-46997" severity="medium" conversionstatus="pass" title="DTBI1046-IE11-Anti-Malware programs against ActiveX controls - Internet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1354,7 +1354,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>270C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-46999" Severity="medium" ConversionStatus="pass" Title="DTBI062-IE11-Anti-Malware programs against ActiveX controls - Intranet" DscResource="Registry">
+    <Rule id="V-46999" severity="medium" conversionstatus="pass" title="DTBI062-IE11-Anti-Malware programs against ActiveX controls - Intranet" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1</Key>
@@ -1365,7 +1365,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>270C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-47003" Severity="medium" ConversionStatus="pass" Title="DTBI426-IE11-Anti-Malware programs against ActiveX controls - Local Machine" DscResource="Registry">
+    <Rule id="V-47003" severity="medium" conversionstatus="pass" title="DTBI426-IE11-Anti-Malware programs against ActiveX controls - Local Machine" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\0</Key>
@@ -1376,7 +1376,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>270C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-47005" Severity="medium" ConversionStatus="pass" Title="DTBI1051-IE11-Anti-Malware programs against ActiveX controls - Restricted Sites" DscResource="Registry">
+    <Rule id="V-47005" severity="medium" conversionstatus="pass" title="DTBI1051-IE11-Anti-Malware programs against ActiveX controls - Restricted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1387,7 +1387,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>270C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-47009" Severity="medium" ConversionStatus="pass" Title="DTBI092-IE11-Anti-Malware programs against ActiveX controls - Trusted Sites" DscResource="Registry">
+    <Rule id="V-47009" severity="medium" conversionstatus="pass" title="DTBI092-IE11-Anti-Malware programs against ActiveX controls - Trusted Sites" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2</Key>
@@ -1398,7 +1398,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <ValueName>270C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64711" Severity="medium" ConversionStatus="pass" Title="DTBI1060-IE11-Managing SmartScreen Filter Warnings" DscResource="Registry">
+    <Rule id="V-64711" severity="medium" conversionstatus="pass" title="DTBI1060-IE11-Managing SmartScreen Filter Warnings" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\PhishingFilter</Key>
@@ -1414,7 +1414,7 @@ Criteria: If the value "PreventOverride" is REG_DWORD = 1, this is not a finding
       <ValueName>PreventOverride</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64713" Severity="medium" ConversionStatus="pass" Title="DTBI1065-IE11-Managing SmartScreen Filter Warnings" DscResource="Registry">
+    <Rule id="V-64713" severity="medium" conversionstatus="pass" title="DTBI1065-IE11-Managing SmartScreen Filter Warnings" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\PhishingFilter</Key>
@@ -1430,7 +1430,7 @@ Criteria: If the value "PreventOverrideAppRepUnknown" is REG_DWORD = 1, this is 
       <ValueName>PreventOverrideAppRepUnknown</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64715" Severity="medium" ConversionStatus="pass" Title="DTBI1070-IE11-Per-User ActiveX Controls" DscResource="Registry">
+    <Rule id="V-64715" severity="medium" conversionstatus="pass" title="DTBI1070-IE11-Per-User ActiveX Controls" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Security\ActiveX</Key>
@@ -1446,7 +1446,7 @@ Criteria: If the value "BlockNonAdminActiveXInstall" is REG_DWORD = 1, this is n
       <ValueName>BlockNonAdminActiveXInstall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64717" Severity="medium" ConversionStatus="pass" Title="DTBI1075-IE11-Prevent Ignoring Certificate Errors" DscResource="Registry">
+    <Rule id="V-64717" severity="medium" conversionstatus="pass" title="DTBI1075-IE11-Prevent Ignoring Certificate Errors" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -1462,7 +1462,7 @@ Criteria: If the value "PreventIgnoreCertErrors" is REG_DWORD = 1, this is not a
       <ValueName>PreventIgnoreCertErrors</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64719" Severity="medium" ConversionStatus="pass" Title="DTBI1080-IE11-Managing SmartScreen Filter-Internet Zone" DscResource="Registry">
+    <Rule id="V-64719" severity="medium" conversionstatus="pass" title="DTBI1080-IE11-Managing SmartScreen Filter-Internet Zone" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1478,7 +1478,7 @@ Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
       <ValueName>2301</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64721" Severity="medium" ConversionStatus="pass" Title="DTBI1085-IE11-Managing SmartScreen Filter- Restricted Sites Zone" DscResource="Registry">
+    <Rule id="V-64721" severity="medium" conversionstatus="pass" title="DTBI1085-IE11-Managing SmartScreen Filter- Restricted Sites Zone" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1494,7 +1494,7 @@ Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
       <ValueName>2301</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64723" Severity="medium" ConversionStatus="pass" Title="DTBI1090-IE11-Initialize and script ActiveX-Intranet Zone" DscResource="Registry">
+    <Rule id="V-64723" severity="medium" conversionstatus="pass" title="DTBI1090-IE11-Initialize and script ActiveX-Intranet Zone" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1</Key>
@@ -1510,7 +1510,7 @@ Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
       <ValueName>1201</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64725" Severity="medium" ConversionStatus="pass" Title="DTBI1095-IE11-Initialize and script ActiveX-Trusted Sites Zone" DscResource="Registry">
+    <Rule id="V-64725" severity="medium" conversionstatus="pass" title="DTBI1095-IE11-Initialize and script ActiveX-Trusted Sites Zone" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2</Key>
@@ -1526,7 +1526,7 @@ Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
       <ValueName>1201</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-64729" Severity="medium" ConversionStatus="pass" Title="DTBI1100-IE11-Allow Fallback to SSL 3.0 (Internet Explorer)" DscResource="Registry">
+    <Rule id="V-64729" severity="medium" conversionstatus="pass" title="DTBI1100-IE11-Allow Fallback to SSL 3.0 (Internet Explorer)" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
@@ -1543,7 +1543,7 @@ Criteria: If the value "EnableSSL3Fallback" is REG_DWORD=0, this is not a findin
       <ValueName>EnableSSL3Fallback</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-72757" Severity="medium" ConversionStatus="pass" Title="DTBI1105-IE11-Run once selection for running outdated ActiveX controls must be disabled." DscResource="Registry">
+    <Rule id="V-72757" severity="medium" conversionstatus="pass" title="DTBI1105-IE11-Run once selection for running outdated ActiveX controls must be disabled." dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Ext</Key>
@@ -1560,7 +1560,7 @@ If the value "RunThisTimeEnabled" is REG_DWORD = 0, this is not a finding.</RawS
       <ValueName>RunThisTimeEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-72759" Severity="medium" ConversionStatus="pass" Title="DTBI1110-IE11-Enabling outdated ActiveX controls for Internet Explorer must be blocked." DscResource="Registry">
+    <Rule id="V-72759" severity="medium" conversionstatus="pass" title="DTBI1110-IE11-Enabling outdated ActiveX controls for Internet Explorer must be blocked." dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Ext</Key>
@@ -1577,7 +1577,7 @@ If the value "VersionCheckEnabled" is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>VersionCheckEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-72761" Severity="medium" ConversionStatus="pass" Title="DTBI1115-IE11-Use of the Tabular Data Control (TDC) ActiveX control must be disabled for the Interne" DscResource="Registry">
+    <Rule id="V-72761" severity="medium" conversionstatus="pass" title="DTBI1115-IE11-Use of the Tabular Data Control (TDC) ActiveX control must be disabled for the Interne" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1600,7 +1600,7 @@ If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <ValueName>120c</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-72763" Severity="medium" ConversionStatus="pass" Title="DTBI1120-IE11-Use of the Tabular Data Control (TDC) ActiveX control must be disabled for the Restric" DscResource="Registry">
+    <Rule id="V-72763" severity="medium" conversionstatus="pass" title="DTBI1120-IE11-Use of the Tabular Data Control (TDC) ActiveX control must be disabled for the Restric" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
@@ -1623,7 +1623,7 @@ If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <ValueName>120c</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-75169" Severity="medium" ConversionStatus="pass" Title="DTBI1125-IE11-VBScript" DscResource="Registry">
+    <Rule id="V-75169" severity="medium" conversionstatus="pass" title="DTBI1125-IE11-VBScript" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
@@ -1641,7 +1641,7 @@ Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and
       <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule Id="V-75171" Severity="medium" ConversionStatus="pass" Title="DTBI1130-IE11-VBScript" DscResource="Registry">
+    <Rule id="V-75171" severity="medium" conversionstatus="pass" title="DTBI1130-IE11-VBScript" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
