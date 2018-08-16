@@ -106,6 +106,26 @@ try
                     Value Type: REG_DWORD
                     Value: 0x20080000 (537395200)'
         }
+        @{
+            Hive                        = 'HKEY_CURRENT_USER'
+            Path                        = '\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing'
+            OrganizationValueRequired   = 'False'
+            OrganizationValueTestString = ''
+            ValueData                   = '23C00'
+            ValueName                   = 'State'
+            ValueType                   = 'DWORD'
+            Ensure                      = 'Present'
+            CheckContent                = 'If the system is on the SIPRNet, this requirement is NA.
+
+            Open Internet Explorer.
+            From the menu bar, select "Tools".
+            From the "Tools" drop-down menu, select "Internet Options". From the "Internet Options" window, select the "Advanced" tab, from the "Advanced" tab window, scroll down to the "Security" category, and verify the "Check for publishers certificate revocation" box is selected.
+
+            Procedure: Use the Windows Registry Editor to navigate to the following key:
+            HKCU\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing Criteria
+
+            If the value "State" is "REG_DWORD = 23C00", this is not a finding.'
+        }
     )
     #endregion
     #region Tests
