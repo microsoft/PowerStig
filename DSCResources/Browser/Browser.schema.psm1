@@ -115,5 +115,5 @@ Configuration Browser
     # $resourcePath is exported from the helper module in the header
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.xRegistry.ps1"
 }
