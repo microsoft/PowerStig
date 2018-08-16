@@ -76,6 +76,7 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
+* [@llansey] (https://github.com/llansey) (La'Neice Lansey)
 
 ## Versions
 
@@ -86,6 +87,15 @@ We are especially thankful for those who have contributed pull requests to the c
   * Replaced PowerStig Technology Class with Enumeration
   * Added script module back to manifest
   * Added DotNetFramework composite resource
+
+Added the following STIGs:
+
+* Windows Server 2012R2 MS STIG V2R13
+* Windows Server 2012R2 DC STIG V2R13
+* Windows 2012 DNS V1R10
+* Windows Domain V2R10
+* Windows Forest V2R8
+* IE11-V1R16
 
 ### 1.1.1.0
 

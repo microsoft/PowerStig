@@ -89,7 +89,8 @@ function Get-RuleTypeMatchList
             $PSItem -NotMatch "Select the Group Policy object in the left pane" -and
             $PSItem -NotMatch "Deny log on through Remote Desktop Services" -and
             $PSItem -NotMatch "Interview the IAM" -and
-            $PSItem -NotMatch "InetMgr\.exe"
+            $PSItem -NotMatch "InetMgr\.exe" -and
+            $PSItem -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""."
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::PermissionRule )
