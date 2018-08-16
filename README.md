@@ -98,8 +98,7 @@ We are especially thankful for those who have contributed pull requests to the c
 * Corrected parsing of rule V-46477 in the IE STIGs
   * Updated StigData
   * Bug fixes
-  * Rename DscResrouces\Common to DscResource\Resources
-  * Removed MS and DC StigData v2.9
+  * Removed Windows Server 2012R2 MS and DC StigData v2.9
 
 ### 1.1.1.0
 
