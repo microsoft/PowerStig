@@ -20,7 +20,7 @@ function Get-ServiceName
 
     if ( $CheckContent -match $script:regularExpression.McAfee )
     {
-        $serviceName = 'McAfee'
+        $serviceName = 'masvc'
     }
     elseif ( $CheckContent -match $script:regularExpression.SmartCardRemovalPolicy )
     {
@@ -107,7 +107,7 @@ function Get-ServiceState
     $serviceName = Get-ServiceName -CheckContent $CheckContent
 
     # ServiceState McAfee and Smartcard is running everything else is stopped
-    if ( $serviceName -match 'McAfee' -or $serviceName -eq 'SCPolicySvc' )
+    if ( $serviceName -match 'masvc' -or $serviceName -eq 'SCPolicySvc' )
     {
         return 'Running'
     }
@@ -146,7 +146,7 @@ function Get-ServiceStartupType
     $serviceName = Get-ServiceName -CheckContent $CheckContent
 
     # StartupType McAfee and Smartcard is Automatic everything else is disabled
-    if ( $serviceName -match 'McAfee' -or $serviceName -eq 'SCPolicySvc' )
+    if ( $serviceName -match 'masvc' -or $serviceName -eq 'SCPolicySvc' )
     {
         return 'Automatic'
     }

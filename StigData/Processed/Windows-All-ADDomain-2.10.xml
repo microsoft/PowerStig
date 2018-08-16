@@ -1,0 +1,527 @@
+<DISASTIG Id="Active_Directory_Domain" Version="2.10" Created="8/15/2018">
+  <DocumentRule DscResourcemodule="None">
+    <Rule Id="V-8521" Severity="low" ConversionStatus="pass" Title="Object Ownership Delegation" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Interview the IAM or site representative and obtain the list of accounts that have been delegated AD object ownership or update permissions and that are not members of Windows built-in administrative groups.
+(This includes accounts for help desk or support personnel who are not Administrators, but have authority in AD to maintain user accounts or printers.)
+
+2. If accounts with delegated authority are defined and there is no list, then this is a finding.
+
+3. Count the number of accounts on the list.
+
+4. If the number of accounts with delegated authority is greater than 10, review the site documentation that justifies this number.  Validate that the IAM explicitly acknowledges the need to have a high number of privileged users.
+
+5. If the number of accounts with delegated authority is greater than 10 and there is no statement in the documentation that justifies the number, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8525" Severity="low" ConversionStatus="pass" Title="Directory Service Architecture DR Documentation" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Determine the Availability categorization information for the domain.
+If the Availability categorization of the domain is low, this is NA.
+If the Availability categorization of the domain is moderate or high, verify the organization's disaster recovery plans includes documentation on the AD hierarchy (forest, tree and domain structure).
+ (A chart showing forest hierarchy and domain names is the minimum suggested.)
+
+If the disaster recovery plans do not include directory hierarchy information, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8526" Severity="low" ConversionStatus="pass" Title="Cross-Directory Authentication INFOCON Procedures" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Refer to the list of actual manual AD trusts (cross-directory configurations) collected from the site representative.
+
+2. If there are no manual AD trusts (cross-directory configurations) defined, this check is not applicable.
+For AD, this includes external, forest, or realm trust relationship types.
+
+3. Obtain a copy of the site’s supplemental INFOCON procedures as required by Strategic Command Directive (SD) 527-1.
+
+4. Verify that it has been determined by the IAM whether INFOCON response actions need to include procedures to disable manual AD trusts (cross-directory configurations). The objective is to determine if the need has been explicitly evaluated.
+
+5. If it has been determined that actions to disable manual AD trusts (cross-directory configurations) are not necessary, then this check is not applicable.
+
+6. If it has been determined that actions to disable manual AD trusts (cross-directory configurations) *are* necessary, verify that the policy to implement these actions has been documented.
+
+7. If actions to disable manual AD trusts (cross-directory configurations) *are* needed and no policy has been documented, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8530" Severity="low" ConversionStatus="pass" Title="Cross-Directory Authentication Documentation" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Start "Active Directory Domains and Trusts" (Available from various menus or run "domain.msc").
+Select the left pane item that matches the name of the domain being reviewed.
+Right-click the domain name and select "Properties".
+Select the "Trusts" tab.
+
+For each outbound and inbound external, forest, and realm trust, record the name of the other party (domain name), the trust type, transitivity, and the trust direction. (Keep this trust information for use in subsequent checks.)
+
+Compare the list of trusts identified with documentation maintained by the ISSO.  
+
+For each trust, the documentation must contain the following:
+Type (external, forest, or realm)
+Name of the other party
+Confidentiality, Availability, and Integrity categorization
+Classification level of the other party
+Trust direction (inbound and/or outbound)
+Transitivity
+Status of the Selective Authentication option
+Status of the SID filtering option
+
+If an identified trust is not listed in the documentation or if any of the required items are not documented, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8533" Severity="medium" ConversionStatus="pass" Title="Trusts - document need " DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Before performing this check, perform V-8530  which validates the trusts within the documentation are current within AD.
+
+2. Obtain documentation of the site's approved trusts from the site representative.  
+
+3. For each of the identified trusts, verify that the documentation includes a justification or explanation of the need-to-know basis of the trust. 
+
+4. If the need for the trust is not documented, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8534" Severity="high" ConversionStatus="pass" Title="Trust - Classification Levels" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Refer to the list of identified trusts and the trust documentation provided by the site representative. (Obtained in V-8530)
+
+2. For each of the identified trusts between DoD organizations, compare the classification level (unclassified, confidential, secret, and top secret) of the domain being reviewed with the classification level of the other trust party as noted in the documentation.
+
+3. If the classification level of the domain being reviewed is different than the classification level of any of the entities for which a trust relationship is defined, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule Id="V-8536" Severity="high" ConversionStatus="pass" Title="Trust - Non-DoD" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Refer to the list of identified trusts obtained in a previous check (V8530).
+
+2. For each of the identified trusts, determine if the other trust party is a non-DoD entity. For example, if the fully qualified domain name of the other party does not end in “.mil”, the other party is probably not a DoD entity.
+
+3. Review the local documentation approving the external network connection and documentation indicating explicit approval of the trust by the DAA.
+
+4. The external network connection documentation is maintained by the IAO\NSO for compliance with the Network Infrastructure STIG.
+
+5. If any trust is defined with a non-DoD system and there is no documentation indicating approval of the external network connection and explicit DAA approval of the trust, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8548" Severity="medium" ConversionStatus="pass" Title="AD.0240" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Start "Active Directory Users and Computers" (Available from various menus or run "dsa.msc").
+
+Review the membership of the "Incoming Forest Trust Builders" group.
+
+Navigate to the "Built-in" container.
+
+Right-click on the "Incoming Forest Trust Builders", select "Properties" and then the "Members" tab.
+
+If any accounts are not documented as necessary with the ISSO, this is a finding.
+
+Review the membership of the "Group Policy Creator Owner" group.
+
+Navigate to the "Users" container.
+
+Right-click on the "Group Policy Creator Owner", select "Properties" and then the "Members" tab.
+
+If any accounts are not documented as necessary with the ISSO, this is a finding.
+
+It is possible to move some system-defined groups from their default locations.  If a group is not in the location noted, review other containers to locate.</RawString>
+    </Rule>
+    <Rule Id="V-36431" Severity="high" ConversionStatus="pass" Title="Enterprise Admins Group Members" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the Enterprise Admins group in Active Directory Users and Computers.  Any accounts that are members of the Enterprise Admins group must be documented with the IAO.  Each Enterprise Administrator must have a separate unique account specifically for managing the Active Directory forest.  
+
+If any account listed in the Enterprise Admins group is a member of other administrator groups including the Domain Admins group, domain member server administrators groups, or domain workstation administrators groups, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-36432" Severity="high" ConversionStatus="pass" Title="Domain Admins Group Members" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the Domain Admins group in Active Directory Users and Computers.  Any accounts that are members of the Domain Admins group must be documented with the IAO.  Each Domain Administrator must have a separate unique account specifically for managing the Active Directory domain and domain controllers.  
+
+If any account listed in the Domain Admins group is a member of other administrator groups including the Enterprise Admins group, domain member server administrators groups, or domain workstation administrators groups, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-36433" Severity="medium" ConversionStatus="pass" Title="Domain Member Server Administrators Group Members" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain member server administrators. Domain member server administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each member server administrator must have a separate unique account specifically for managing member servers.  
+
+If any account listed in a domain member server administrator group is a member of other administrator groups including the Enterprise Admins group, the Domain Admins group, or domain workstation administrator groups, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-36434" Severity="medium" ConversionStatus="pass" Title="Domain Workstation Administrators Group Members" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain workstation administrators. Domain workstation administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each domain workstation administrator must have a separate unique account specifically for managing domain workstations.  
+
+If any account listed in a domain workstation administrator group is a member of other administrator groups including the Enterprise Admins group, the Domain Admins group, or domain member server administrator groups, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-53727" Severity="medium" ConversionStatus="pass" Title="AD.0015" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify domain controllers are blocked from Internet access.  Various methods may be employed to accomplish this, such as restrictions at boundary firewalls, through proxy services, host based firewalls or IPsec.
+
+Review the Internet access restrictions with the administrator.  If Internet access is not prevented, this is a finding.
+
+If a critical function requires Internet access, this must be documented and approved by the organization.</RawString>
+    </Rule>
+  </DocumentRule>
+  <ManualRule DscResourcemodule="None">
+    <Rule Id="V-8522" Severity="medium" ConversionStatus="pass" Title="Directory Service Inter-Enclave VPN Usage" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Review the site's network diagram(s) to determine if domain controllers for the domain are located in multiple enclaves. The object is to determine if network traffic is traversing enclave network boundaries.
+
+2. Request information about RODC or ADAM instances are installed. In particular, request details of Active Diretory functionality installed or extended into the DMZ or configured/allowed to cross the sites outbound firewall boundary. Ensure communications and replication traffic is encrypted.
+
+3. If domain controllers are not located in multiple enclaves, then this check is not applicable.
+
+4. If domain controllers are located in multiple enclaves, verify that a VPN is used to transport the network traffic (replication, user logon, queries, etc.).
+
+5. If a VPN solution is not used to transport directory network traffic across enclave boundaries, then this is a finding.
+
+6. If the ADAM mode is in use and a migration plan for converting to RODC is not in place, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8523" Severity="medium" ConversionStatus="pass" Title="IDS Visibility of Directory VPN Data Transport" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Interview the site representative. Ask about the location of the domain controllers. 
+
+2. If domain controllers are not located in multiple enclaves, then this check is not applicable.
+
+3. If domain controllers are located in multiple enclaves and a VPN is not used, then this check is not applicable.
+
+4. If domain controllers are located in multiple enclaves and a VPN is used, review the site network diagram(s) with the SA, NSO, or network reviewer as required to determine if the AD network traffic is visible to a network or host IDS.
+
+5. If the AD network traffic is not visible to a network or host IDS, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8524" Severity="medium" ConversionStatus="pass" Title="Directory Service Availability" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Determine the Availability categorization information for the domain.
+If the Availability categorization of the domain is low, this is NA.
+If the Availability categorization of the domain is moderate or high, verify the domain is supported by more than one domain controller.
+Start "Active Directory Users and Computers" (Available from various menus or run "dsa.msc").
+Expand the left pane item that matches the domain being reviewed.
+Select the Domain Controllers Organizational Unit (OU) in the left pane.
+
+If there is only one domain controller in the OU, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8538" Severity="medium" ConversionStatus="pass" Title="Trust - SID Filter Quarantining " DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Domains and Trusts". (Available from various menus or run "domain.msc".)
+Right click the domain in the left pane and select Properties.
+Select the Trusts tab.
+Note any existing trusts and the type.
+If no trusts exist, this is NA.
+
+If the trust type is External, run the following command on the trusting domain:
+"netdom trust &lt;trusting domain&gt; /d:&lt;trusted domain&gt; /quarantine"
+If the result does not specify "SID filtering is enabled for this trust.  Only SIDs from the trusted domain will be accepted for authorization data returned during authentication.  SIDs from other domains will be removed.", this is a finding. 
+
+If the trust type is Forest, run the following command on the trusting domain:
+"netdom trust &lt;trusting domain&gt; /d:&lt;trusted domain&gt; /enablesidhistory"
+If the result does not specify "SID history is disabled for this trust", this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8540" Severity="medium" ConversionStatus="pass" Title="Trust - Selective Authentication" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Domains and Trusts".  (Available from various menus or run "domain.msc".)
+Right click the domain name in the left pane and select "Properties".
+Select the "Trusts" tab.
+For each outgoing forest trust, right-click the trust item and select "Properties".
+Select the "Authentication" tab.
+
+If the "Selective Authentication" option is not selected on every outgoing forest trust, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-8547" Severity="medium" ConversionStatus="pass" Title="Pre-Windows 2000 Compatible Access Group" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+Expand the domain being reviewed in the left pane and select the "Builtin" container.
+Double-click on the "Pre-Windows 2000 Compatible Access" group in the right pane.
+Select the "Members" tab.
+
+If the "Anonymous Logon" or "Everyone" groups are members, this is a finding.
+(By default, these groups are not included in current Windows versions.)</RawString>
+    </Rule>
+    <Rule Id="V-8549" Severity="medium" ConversionStatus="pass" Title="Privileged Group Membership - Cross-Directory" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Start the Active Directory Users and Computers console (Start, Run, “dsa.msc”).
+
+2. Select and expand the left pane item that matches the name of the domain being reviewed.
+
+3. Select the Built-in container. 
+a. If the Incoming Forest Trust Builders group is defined, double-click on the group, and select the Members tab
+b. Examine the defined accounts to see if they are from a domain that is not in the forest being reviewed.
+
+4. Select the Users container
+a. For each group (Domain Admins, Enterprise Admins, Schema Admins, and Group Policy Creator Owners), double-click on the group, and select the Members tab.
+b. Examine the defined accounts to see if they are from a domain that is not in the forest being reviewed.
+
+5. If any account in a privileged group is from a domain outside the forest being reviewed and that outside forest is not maintained by the same organization (e.g., enclave) or subject to the same security policies, then this is a finding.
+
+Supplementary Notes:
+Note: An account that is from an outside domain appears in the format “outside-domain-NetBIOSname\account” or “account@outside-domain-fully-qualified-name”. Examples are “AOFN21\jsmith” or “jsmith@AOFN21.OST.COM”. It may be necessary to use the AD Domains and Trusts (domain.msc) console to determine if the domain is from another AD forest.
+
+Note:  It is possible to move the highly privileged AD security groups out of the AD Users container. If the Domain Admins, Enterprise Admins, Schema Admins, or Group Policy Creator Owners groups are not in the AD Users container, ask the SA for the new location and use that location for this check.</RawString>
+    </Rule>
+    <Rule Id="V-8551" Severity="medium" ConversionStatus="pass" Title="Domain Functional Level" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Domains and Trusts" (run "domain.msc") or "Active Directory Users and Computers" (run "dsa.msc").
+Right click in the left pane on the name of the Domain being reviewed.
+Select "Raise domain functional level…"
+The current domain functional level will be displayed (as well as the option to raise the domain functional level).
+Select "Cancel" to exit.
+
+Alternately, using PowerShell (Windows 2008 R2 or later).
+Select "Active Directory Module for Windows PowerShell", available in Administrative Tools or the Start Screen.
+Run "Get-ADDomain".
+View the value for "DomainMode:"
+
+If the domain functional level is not Windows Server 2008 or later, this is a finding.
+
+Using the highest domain functional level supported by the domain controllers is recommended.</RawString>
+    </Rule>
+    <Rule Id="V-8553" Severity="medium" ConversionStatus="pass" Title="Replication Schedule" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "Active Directory Sites and Services".  (Available from various menus or run "dssite.msc".)
+Expand "Sites" in the left pane.
+If only a single site exists, this is NA.  By default the first site in a domain is named "Default-First-Site-Name" but may have been changed.
+If more than one site exists, expand "Inter-Site Transports" and select "IP".
+For each site link that is defined in the right pane perform the following:
+Right click the site link item and select "Properties".
+
+If the interval on the "General" tab for the "Replicate every" field is greater than "1440", this is a finding.
+
+Click the "Change Schedule" button.
+
+If the time frames selected for "Replication Available" do not allow for replication to occur at least daily, this is a finding.
+
+Click the Cancel buttons to exit.</RawString>
+    </Rule>
+    <Rule Id="V-25385" Severity="medium" ConversionStatus="pass" Title="Directory Data Backup" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the organization's procedures for the backing up active directory data.
+Verify the frequency at which active directory data is backed up.
+If the Availability categorization of the domain is low, this must be at least weekly.
+If the Availability categorization of the domain is moderate or high, this must be at least daily.
+Verify the type of backup is appropriate to capturing the directory data.  For AD domain controllers, this must include a System State data backup.
+
+If any of these conditions are not met, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-25840" Severity="medium" ConversionStatus="pass" Title="DSRM Password Change Policy" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the organization has a process that addresses DSRM password change frequency.
+
+If DSRM passwords are not changed at least annually, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-25997" Severity="medium" ConversionStatus="pass" Title="Replication in the DMZ (RODC)" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. Verify that the site has applied the Network Infrastucture STIG to configure the VPN and IPSec. 
+
+2. Verify that IPSec and other communications and security configurations for the management and replication of the RODC will be managed by use of the minimum required Group Policy Objects (GPOs).
+
+3. Include an inspection of the RODC server in the DMZ when inspection for least privilege.
+
+4. Verify that required patches and compatibility packs are installed if RODC is used with Windows 2003 (or earlier) clients.
+
+5. If RODC server and configuration does not comply with requirements, then this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-36435" Severity="high" ConversionStatus="pass" Title="Delegation of Privileged Accounts" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the properties of all privileged accounts in Active Directory Users and Computers. Under the Account tab, verify "Account is sensitive and cannot be delegated" is selected in the Account Options section. If delegation is not prohibited for any  privileged account, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-36436" Severity="medium" ConversionStatus="pass" Title="Dedicated Systems for Managing Active Directory" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If Active Directory is only managed with local logons to domain controllers, not remotely, this can be marked NA.
+
+Verify that any PAWs used to manage Active Directory remotely are used exclusively for managing Active Directory. If PAWs used for managing Active Directory are used for additional functions, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-36438" Severity="medium" ConversionStatus="pass" Title="Unique Passwords for all Local Administrator Accounts" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify local administrator accounts on domain systems are using unique passwords. If local administrator accounts on domain systems are sharing a password, this is a finding.
+
+Microsoft's Local Administrator Password Solution (LAPS) provides an automated solution for maintaining and regularly changing a local administrator password for domain-joined systems. LAPS can manage a single local administrator account. The default is the built-in administrator account however it can be configured to manage an administrator account of a different name. If additional local administrator accounts exist across systems, the organization must have a process to require unique passwords on each system for the additional accounts.
+
+Other automated solutions that provide this capability may also be used.
+
+If LAPS has been installed and enabled in the domain, the following PowerShell query will return a list of systems that do not have a local administrator password managed by LAPS. (The LAPS PowerShell module requires PowerShell 2.0 or higher and .NET Framework 4.0.)
+
+Open "Windows PowerShell".
+If the LAPS PowerShell module has not been previously imported, execute the following first: "Import-Module AdmPwd.ps".
+Execute "Get-AdmPwdPassword -ComputerName * | Where-object {$_.password -eq $null}"
+
+If any systems are listed, this is a finding.
+
+Ignore computers with "OU=Domain Controllers" in the DistinguishedName field.</RawString>
+    </Rule>
+    <Rule Id="V-43648" Severity="medium" ConversionStatus="pass" Title="AD.0009" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify separate smart cards are used for EA and DA accounts from smart cards used for other accounts.  EA and DA accounts may be on the same smart card but must be separate from any other accounts.  If separate smart cards for EA and DA accounts from other accounts are not used, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-43652" Severity="medium" ConversionStatus="pass" Title="AD.0013" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the domain does not have any public facing servers, this is NA.
+
+Review the local Administrators group on public facing servers.  Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
+
+For public facing servers, the Domain Admins group must be replaced by a domain member server administrator group whose members are different from any used to manage internal servers.
+
+If any domain accounts or groups used to manage internal servers are members of the local administrators group, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-43712" Severity="medium" ConversionStatus="pass" Title="AD.AU.0001" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify account usage events for administrative accounts are being monitored.  This includes events related to approved administrative accounts as well as accounts being added to privileged groups such as Administrators, Domain and Enterprise Admins and other organization defined administrative groups.  Event monitoring may be implemented through various methods including log aggregation and the use of monitoring tools.
+
+Monitor for the events listed below, at minimum.  If these events are not monitored, this is a finding.
+
+Account Lockouts (Subcategory: User Account Management)
+4740 - A user account is locked out.
+User Added to Privileged Group (Subcategory: Security Group Management)
+4728 - A member was added to a security-enabled global group.
+4732 - A member was added to a security-enabled local group.
+4756 - A member was added to a security-enabled universal group.
+Successful User Account Login (Subcategory: Logon)
+4624 - An account was successfully logged on.
+Failed User Account Login (Subcategory: Logon)
+4625 - An account failed to log on.
+Account Login with Explicit Credentials (Subcategory: Logon)
+4648 - A logon was attempted using explicit credentials.</RawString>
+    </Rule>
+    <Rule Id="V-43713" Severity="medium" ConversionStatus="pass" Title="AD.AU.0002" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify attempts to use local accounts to log on remotely from other systems are being monitored.  Event monitoring may be implemented through various methods including log aggregation and the use of monitoring tools.
+
+Monitor for the events listed below.  If these events are not monitored, this is a finding.
+
+More advanced filtering is necessary to obtain the pertinent information than just looking for event IDs.
+Search for the event IDs listed with the following additional attributes:
+Logon Type = 3 (Network)
+Authentication Package Name = NTLM
+Not a domain logon and not the ANONYMOUS LOGON account
+
+Successful User Account Login (Subcategory: Logon)
+4624 - An account was successfully logged on.
+Failed User Account Login (Subcategory: Logon)
+4625 - An account failed to log on.</RawString>
+    </Rule>
+    <Rule Id="V-43714" Severity="medium" ConversionStatus="pass" Title="AD.AU.0003" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify Remote Desktop logins are being monitored.  Event monitoring may be implemented through various methods including log aggregation and the use of monitoring tools.
+
+Monitor for the events listed below.  If these events are not monitored, this is a finding.
+
+More advanced filtering is necessary to obtain the pertinent information than just looking for event IDs.
+Search for the event IDs listed with the following additional attributes:
+Logon Type = 10 (RemoteInteractive)
+Authentication Package Name = Negotiate
+
+Successful User Account Login (Subcategory: Logon)
+4624 - An account was successfully logged on.</RawString>
+    </Rule>
+    <Rule Id="V-44059" Severity="medium" ConversionStatus="pass" Title="AD.0014" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If no Windows service \ application accounts with manually managed passwords have administrative privileges, this is NA.
+
+Verify Windows service \ application accounts with administrative privileges and manually managed passwords, have passwords changed at least every 60 days.</RawString>
+    </Rule>
+    <Rule Id="V-72821" Severity="medium" ConversionStatus="pass" Title="AD.0016" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Windows Server 2016 with a domain functional level of Windows Server 2016:
+
+Open "Active Directory Administrative Center".
+
+Right-click on the domain name and select "Properties".
+
+If the "Domain functional level:" is not "Windows Server 2016", another method must be used to reset the NT hashes.  See below for other options.
+
+If the "Domain functional level:" is "Windows Server 2016" and "Enable rolling of expiring NTLM secrets during sign on, for users who are required to use Microsoft Passport or smart card for interactive sign on" is not checked, this is a finding.
+
+Active Directory domains with a domain functional level below Windows Server 2016:
+
+Verify the organization rotates the NT hash for smart card-enforced accounts every 60 days.  
+
+This can be accomplished with the use of scripts.  
+
+DoD PKI-PKE has provided a script under PKI and PKE Tools at http://iase.disa.mil/pki-pke/Pages/tools.aspx.  See the User Guide for additional information.
+
+NSA has also provided a PowerShell script with Pass-the-Hash guidance at https://github.com/iadgov/Pass-the-Hash-Guidance.  Running the "Invoke-SmartcardHashRefresh" cmdlet in the "PtHTools" module will trigger a change of the underlying NT hash.  See the site for additional information.
+
+Manually rolling the NT hash requires disabling and re-enabling the "Smart Card required for interactive logon" option for each smart card-enforced account, which is not practical for large groups of users.
+
+If NT hashes for smart card-enforced accounts are not rotated every 60 days, this is a finding.</RawString>
+    </Rule>
+    <Rule Id="V-78131" Severity="medium" ConversionStatus="pass" Title="AD.0017" DscResource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the domain functional level is not at least Windows 2012 R2, this is NA.
+
+Open "Windows PowerShell".
+
+Enter "Get-ADDomain | FL DomainMode" to determine the domain functional level.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc"). 
+
+Compare membership of the Protected Users group to membership of the following groups. By default, the groups are under the node referenced; however, it is possible to move those under "Users" to another location.
+Enterprise Admins (Users node)
+Domain Admins (Users node)
+Schema Admins (Users node)
+Administrators (Builtin node)
+Account Operators (Builtin node)
+Backup Operators (Builtin node)
+
+It is recommended that one account be excluded to ensure availability if there are issues with Kerberos.
+
+Excluding the account left out for availability, if all user accounts from the local domain that are members of the domain level groups above are not also members of the Protected Users group, this is a finding.</RawString>
+    </Rule>
+  </ManualRule>
+</DISASTIG>
