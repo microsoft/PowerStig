@@ -87,14 +87,15 @@ We are especially thankful for those who have contributed pull requests to the c
   * Added script module back to manifest
   * Added DotNetFramework composite resource
 
-Added the following STIGs:
+* Added the following STIGs
+  * Windows Server 2012R2 MS STIG V2R13
+  * Windows Server 2012R2 DC STIG V2R13
+  * Windows 2012 DNS V1R10
+  * Windows Domain V2R10
+  * Windows Forest V2R8
+  * IE11-V1R16
 
-* Windows Server 2012R2 MS STIG V2R13
-* Windows Server 2012R2 DC STIG V2R13
-* Windows 2012 DNS V1R10
-* Windows Domain V2R10
-* Windows Forest V2R8
-* IE11-V1R16
+* Corrected parsing of rule V-46477 in the IE STIGs
 
 ### 1.1.1.0
 
