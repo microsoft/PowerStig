@@ -23,8 +23,12 @@ function Get-RegistryKey
 
     $result = @()
     if (Test-SingleLineRegistryRule -CheckContent $CheckContent)
-    {
+    {   
         $result = Get-SingleLineRegistryPath -CheckContent $CheckContent
+        if ($result -match "!")
+        {
+            $result = $result.Substring(0, $result.IndexOf('!'))
+        }
     }
     else
     {

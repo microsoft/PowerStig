@@ -53,6 +53,28 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = 2
         }
+        'U_Windows_2012_and_2012_R2_MS_STIG_V2R13_Manual-xccdf.xml'   = @{
+            AccountPolicyRule            = 9
+            AuditPolicyRule              = 31
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 13
+            IisLoggingRule               = $null
+            ManualRule                   = 39
+            MimeTypeRule                 = $null
+            PermissionRule               = 11
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 202
+            SecurityOptionRule           = 5
+            ServiceRule                  = 7
+            SqlScriptQueryRule           = $null
+            UserRightRule                = 34
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = 2
+            WmiRule                      = 2
+        }
         'U_Windows_2012_and_2012_R2_DC_STIG_V2R9_Manual-xccdf.xml'    = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 38
@@ -96,6 +118,28 @@ try
             WebConfigurationPropertyRule = $null
             WinEventLogRule              = $null
             WindowsFeatureRule           = 1
+            WmiRule                      = 2
+        }
+        'U_Windows_2012_and_2012_R2_DC_STIG_V2R13_Manual-xccdf.xml'   = @{
+            AccountPolicyRule            = 9
+            AuditPolicyRule              = 36
+            DnsServerRootHintRule        = $n
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 17
+            IisLoggingRule               = $null
+            ManualRule                   = 53
+            MimeTypeRule                 = $null
+            PermissionRule               = 18
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 204
+            SecurityOptionRule           = 5
+            ServiceRule                  = 16
+            SqlScriptQueryRule           = $null
+            UserRightRule                = 36
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = 2
             WmiRule                      = 2
         }
         'U_MS_Windows_2012_Server_DNS_STIG_V1R7_Manual-xccdf.xml'     = @{
@@ -144,6 +188,29 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
+        'U_MS_Windows_2012_Server_DNS_STIG_V1R10_Manual-xccdf.xml'     = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = 1
+            DnsServerSettingRule         = 2
+            DocumentRule                 = 19
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 64
+            MimeTypeRule                 = $null
+            PermissionRule               = 2
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = 4
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = 1
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
         'U_MS_IE11_STIG_V1R13_Manual-xccdf.xml'                       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
@@ -168,6 +235,29 @@ try
             WmiRule                      = $null
         }
         'U_MS_IE11_STIG_V1R15_Manual-xccdf.xml'                       = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 140
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+        'U_MS_IE11_STIG_V1R16_Manual-xccdf.xml'                       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -345,6 +435,50 @@ try
             WebConfigurationPropertyRule = 9
             WinEventLogRule              = $null
             WindowsFeatureRule           = 1
+            WmiRule                      = $null
+        }
+        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'                 = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 13
+            IisLoggingRule               = $null
+            ManualRule                   = 23
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+        'U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml'                 = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 1
+            IisLoggingRule               = $null
+            ManualRule                   = 4
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
     }
