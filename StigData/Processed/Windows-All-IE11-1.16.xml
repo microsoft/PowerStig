@@ -1,4 +1,4 @@
-<DISASTIG Id="IE_11_STIG" Version="1.16" Created="8/15/2018">
+<DISASTIG Id="IE_11_STIG" Version="1.16" Created="8/16/2018">
   <RegistryRule DscResourcemodule="PSDesiredStateConfiguration">
     <Rule Id="V-46473" Severity="medium" ConversionStatus="pass" Title="DTBI014-IE11-TLS setting" DscResource="Registry">
       <Ensure>Present</Ensure>
@@ -31,7 +31,7 @@ Criteria: If the value for "SecureProtocols" is not REG_DWORD = "2560", this is 
     <Rule Id="V-46477" Severity="low" ConversionStatus="pass" Title="DTBI018-IE11-Publishers Certificate Revocation" DscResource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing Criteria</Key>
+      <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the system is on the SIPRNet, this requirement is NA.
