@@ -57,10 +57,14 @@ function Get-StigContentFromZip
     # Create a unique path in the users temp directory to expand the files to.
     $zipDestinationPath = "$((Split-Path -Path $Path -Leaf) -replace '.zip','').$((Get-Date).Ticks)"
     Expand-Archive -LiteralPath $Path -DestinationPath $zipDestinationPath
-    # Get the full path to teh extracted xccdf file.
-    $xccdfPath = (
-        Get-ChildItem -Path $zipDestinationPath -Filter "*Manual-xccdf.xml" -Recurse -Verbose
-    ).fullName
+    # Get the full path to the extracted xccdf file.
+    $getChildItem = @{
+        Path = $zipDestinationPath
+        Filter = "*Manual-xccdf.xml"
+        Recurse = $true
+    }
+
+    $xccdfPath = (Get-ChildItem @getChildItem).fullName
     # Get the xccdf content before removing the content from disk.
     $xccdfContent = Get-Content -Path $xccdfPath
     # Cleanup to temp folder
@@ -68,4 +72,3 @@ function Get-StigContentFromZip
 
     $xccdfContent
 }
-

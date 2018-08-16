@@ -1,28 +1,20 @@
 <#
     .SYNOPSIS
-        Short description
-
-    .DESCRIPTION
-        Long description
-
+        Automatically creates a Stig Viewer checklist from the DSC results or
+        compiled MOF
     .PARAMETER ReferenceConfiguration
-        Parameter description
-
+        The MOF that was compiled with a PowerStig composite
     .PARAMETER DscResult
-        Parameter description
-
+        The resutls of Test-DscConfiguration
     .PARAMETER XccdfPath
-        Parameter description
-
+        The path to the matching xccdf file. This is currently needed since we
+        do not pull add xccdf data into PowerStig
     .PARAMETER OutputPath
-        Parameter description
-
+        The location you want the checklist saved to
     .PARAMETER Enforcement
-        Parameter description
-
+         Flag to add additional checklist metadata
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -Enforcement DSC
-
 #>
 function New-StigCheckList
 {
@@ -229,7 +221,7 @@ function New-StigCheckList
 
 <#
     .SYNOPSIS
-
+        Gets the vulnerability details from the rule description
 #>
 function Get-VulnerabilityList
 {
@@ -281,10 +273,14 @@ function Get-VulnerabilityList
     return $vulnerabilityList
 }
 
+<#
+    .SYNOPSIS
+        Converts the mof into an array of objects
+#>
 function Get-MofContent
 {
     [cmdletbinding()]
-    [outputtype([psobject])]
+    [outputtype([psobject)]
     param
     (
         [parameter(Mandatory = $true)]
@@ -300,6 +296,10 @@ function Get-MofContent
     return $script:mofContent
 }
 
+<#
+    .SYNOPSIS
+        Gets the stig details from the mof
+#>
 function Get-SettingsFromMof
 {
     [cmdletbinding()]
@@ -320,6 +320,10 @@ function Get-SettingsFromMof
     return $mofContent.Where( {$PSItem.ResourceID -match $Id} )
 }
 
+<#
+    .SYNOPSIS
+        Gets the stig details from the Test\Get-DscConfiguration output
+#>
 function Get-SettingsFromResult
 {
     [cmdletbinding()]
@@ -343,7 +347,10 @@ function Get-SettingsFromResult
     return $script:allResources.Where( {$PSItem.ResourceID -match $Id} )
 }
 
-
+<#
+    .SYNOPSIS
+        Gets the value from a STIG setting
+#>
 function Get-FindingDetails
 {
     [OutputType([string])]
