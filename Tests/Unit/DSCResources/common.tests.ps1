@@ -75,7 +75,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
 
         [System.Collections.ArrayList] $manifestDscResourceList = $Manifest.DscResourcesToExport
 
-        [System.Collections.ArrayList] $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'common' |
+        [System.Collections.ArrayList] $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
                             Select-Object -Property BaseName -ExpandProperty BaseName
 
         It 'Should have all module resources listed in the manifest' {
