@@ -96,6 +96,9 @@ We are especially thankful for those who have contributed pull requests to the c
   * IE11-V1R16
 
 * Corrected parsing of rule V-46477 in the IE STIGs
+  * Updated StigData
+  * Bug fixes
+  * Rename DscResrouces\Common to DscResource\Resources
 
 ### 1.1.1.0
 
