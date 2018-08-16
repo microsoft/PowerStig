@@ -82,7 +82,7 @@ function Get-SingleLineRegistryPath
 
             "*HKCU*" {$fullRegistryPath = $fullRegistryPath -replace "^HKCU", "HKEY_CURRENT_USER"}
 
-            "*Software Publishing Criteria" {$fullRegistryPath = $fullRegistryPath -replace 'Software Publishing Criteria','Software Publishing'}
+            "*Software Publishing Criteria" {$fullRegistryPath = $fullRegistryPath -replace 'Software Publishing Criteria$','Software Publishing'}
         }
 
         $fullRegistryPath = $fullRegistryPath.ToString().trim(' ', '.')
