@@ -51,7 +51,7 @@ Configuration WindowsDnsServer
         $OsVersion,
 
         [Parameter()]
-        [ValidateSet('1.7','1.9')]
+        [ValidateSet('1.7','1.9','1.10')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
