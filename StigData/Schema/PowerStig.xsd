@@ -14,7 +14,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -38,7 +38,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="Subcategory" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
@@ -63,7 +63,7 @@
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
                     <xs:element name="HostName" type="xs:string" />
                     <xs:element name="IpAddress" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -87,7 +87,7 @@
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
                     <xs:element name="PropertyName" type="xs:string" />
                     <xs:element name="PropertyValue" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -109,7 +109,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -136,7 +136,7 @@
                     <xs:element name="LogTargetW3C" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -158,7 +158,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -183,7 +183,7 @@
                     <xs:element name="MimeType" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -208,7 +208,7 @@
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
                     <xs:element name="Path" type="xs:string" />
                     <xs:element name="Force" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -232,7 +232,7 @@
                     <xs:element name="Key" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="ValueData" type="xs:string" />
                     <xs:element name="ValueName" type="xs:string" />
                     <xs:element name="ValueType" type="xs:string" />
@@ -259,7 +259,7 @@
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
                     <xs:element name="OptionName" type="xs:string" />
                     <xs:element name="OptionValue" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -282,7 +282,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="ServiceName" type="xs:string" />
                     <xs:element name="ServiceState" type="xs:string" />
                     <xs:element name="StartupType" type="xs:string" />
@@ -308,7 +308,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="SetScript" type="xs:string" />
                     <xs:element name="TestScript" type="xs:string" />
                   </xs:all>
@@ -336,7 +336,7 @@
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -359,7 +359,7 @@
                     <xs:element name="Key" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="Value" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
@@ -384,7 +384,7 @@
                     <xs:element name="Key" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="Value" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
@@ -409,7 +409,7 @@
                     <xs:element name="InstallState" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -433,7 +433,7 @@
                     <xs:element name="LogName" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />
@@ -452,14 +452,14 @@
               <xs:element name="Rule" maxOccurs="unbounded" minOccurs="0">
                 <xs:complexType>
                   <xs:all>
-                    <xs:element name="Class" type="xs:string" />
                     <xs:element name="IsNullOrEmpty" type="xs:string" />
                     <xs:element name="Operator" type="xs:string" />
                     <xs:element name="OrganizationValueRequired" type="xs:string" />
                     <xs:element name="OrganizationValueTestString" type="xs:string" />
                     <xs:element name="Property" type="xs:string" />
-                    <xs:element name="rawString" type="xs:string" />
+                    <xs:element name="RawString" type="xs:string" />
                     <xs:element name="Value" type="xs:string" />
+                    <xs:element name="Query" type="xs:string" />
                   </xs:all>
                   <xs:attribute name="id" type="xs:string" use="required" />
                   <xs:attribute name="dscresource" type="xs:string" use="required" />

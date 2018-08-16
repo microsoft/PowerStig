@@ -4,7 +4,7 @@
 using namespace system.xml
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
-[string] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Common).Path
+[string] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Resources).Path
 
 <#
     .SYNOPSIS
