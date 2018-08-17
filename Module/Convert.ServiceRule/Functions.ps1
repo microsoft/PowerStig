@@ -9,9 +9,9 @@ function ConvertTo-ServiceRule
 {
     [CmdletBinding()]
     [OutputType([ServiceRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )
@@ -68,9 +68,9 @@ function Test-MatchServiceRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $CheckContent
     )

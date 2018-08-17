@@ -9,9 +9,9 @@ function ConvertTo-SqlScriptQueryRule
 {
     [CmdletBinding()]
     [OutputType([SqlScriptQueryRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

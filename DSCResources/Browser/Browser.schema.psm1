@@ -35,7 +35,7 @@ using module ..\..\PowerStig.psm1
 Configuration Browser
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [ValidateSet('IE11')]
@@ -43,7 +43,7 @@ Configuration Browser
         $BrowserVersion,
 
         [Parameter()]
-        [ValidateSet('1.13','1.15')]
+        [ValidateSet('1.13','1.15','1.16')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,

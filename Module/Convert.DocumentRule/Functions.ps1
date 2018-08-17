@@ -9,9 +9,9 @@ function ConvertTo-DocumentRule
 {
     [CmdletBinding()]
     [OutputType([DocumentRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

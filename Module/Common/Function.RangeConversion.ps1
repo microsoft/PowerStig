@@ -21,7 +21,7 @@ function Get-OrganizationValueTestString
     [OutputType([string])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -67,7 +67,7 @@ function Get-TestStringTokenNumbers
     [OutputType([string[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -86,7 +86,7 @@ function Get-TestStringTokenNumbers
         {
             $number[1, 2]
         }
-        else 
+        else
         {
             [convert]::ToInt32($match,16)
         }
@@ -108,15 +108,15 @@ function Get-TestStringTokenList
     [OutputType([string])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String,
 
-        [parameter(ParameterSetName = 'CommandTokens')]
+        [Parameter(ParameterSetName = 'CommandTokens')]
         [switch]
         $CommandTokens,
 
-        [parameter(ParameterSetName = 'StringTokens')]
+        [Parameter(ParameterSetName = 'StringTokens')]
         [switch]
         $StringTokens
     )
@@ -141,7 +141,7 @@ function ConvertTo-TestString
     [OutputType([string])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -236,7 +236,7 @@ function ConvertTo-HashTable
         This example returns $false
 
         Test-StringIsNegativeOr -String "1 or 2 = is not a Finding"
-        
+
     .NOTES
         Tests if a string such as '1 or 2 = a Finding' is a negative or test.
 #>
@@ -246,7 +246,7 @@ function Test-StringIsNegativeOr
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -282,7 +282,7 @@ function Test-StringIsPositiveOr
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $string
     )
@@ -346,7 +346,7 @@ function ConvertTo-OrTestString
     [OutputType([string])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String,
 
@@ -397,7 +397,7 @@ function Test-StringIsGreaterThan
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -434,7 +434,7 @@ function Test-StringIsGreaterThanOrEqual
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -471,7 +471,7 @@ function Test-StringIsGreaterThanButNot
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -508,7 +508,7 @@ function Test-StringIsGreaterThanOrEqualButNot
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -543,7 +543,7 @@ function Test-StringIsLessThan
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -577,7 +577,7 @@ function Test-StringIsLessThanOrEqual
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -614,7 +614,7 @@ function Test-StringIsLessThanButNot
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -659,7 +659,7 @@ function Test-StringIsLessThanOrEqualButNot
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -696,7 +696,7 @@ function Test-StringIsLessThanOrEqualExcluding
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -730,7 +730,7 @@ function Test-StringIsMultipleValue
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $String
     )
@@ -761,9 +761,9 @@ function ConvertTo-MultipleValue
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory)]
+        [Parameter(Mandatory)]
         [string[]] $String
     )
 
@@ -786,7 +786,7 @@ function Get-SecurityPolicyString
     [OutputType([string])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent
@@ -813,7 +813,7 @@ function Test-SecurityPolicyContainsRange
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent
@@ -842,7 +842,7 @@ function Get-SecurityPolicyOrganizationValueTestString
     [CmdletBinding()]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent

@@ -10,9 +10,9 @@ function Get-UserRightDisplayName
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -46,9 +46,9 @@ function Get-UserRightConstant
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $UserRightDisplayName
     )
@@ -76,9 +76,9 @@ function Get-UserRightIdentity
 {
     [CmdletBinding()]
     [OutputType([string[]])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -157,9 +157,9 @@ function Test-SetForceFlag
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -187,7 +187,7 @@ function Test-MultipleUserRightsAssignment
     [OutputType([bool])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent
@@ -215,7 +215,7 @@ function Split-MultipleUserRightsAssignment
     [OutputType([string[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent

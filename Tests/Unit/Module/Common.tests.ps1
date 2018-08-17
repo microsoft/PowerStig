@@ -1,13 +1,12 @@
 using module .\..\..\..\Module\Common\Common.psm1
-#region Header
 . $PSScriptRoot\.tests.Header.ps1
-#endregion
+# Header
 #region Enum Tests
-<#
-    a list of enums in the script that is used in a "burn down" manner. When an enum is processed
-    it is removed from the list, The last test will be to verify that all of the enums have
-    been tested
-#>
+    <#
+        a list of enums in the script that is used in a "burn down" manner. When an enum is processed
+        it is removed from the list, The last test will be to verify that all of the enums have
+        been tested
+    #>
 $enumDiscovered = New-Object System.Collections.ArrayList
 # select each line that starts with enum to count the number of enum's in the file
 
@@ -253,6 +252,45 @@ Describe 'Get-AvailableId' {
         }
     }
 }
+#endregion
+#region xccdf Tests
+
+Describe 'Get-StigXccdfBenchmarkContent' {
+
+    InModuleScope Common {
+        [xml]$xccdfTestContent = '<?xml version="1.0" encoding="utf-8"?><Benchmark><title>Test Title</title></Benchmark>'
+        Mock -CommandName Test-Path -MockWith { return $true }
+        Mock -CommandName Get-StigContentFromZip -MockWith { return $xccdfTestContent }
+        Mock -CommandName Get-Content -MockWith { return $xccdfTestContent }
+
+        It 'Should throw if the path is not found' {
+            Mock -CommandName Test-Path -MockWith { return $false }
+            { Get-StigXccdfBenchmarkContent -Path C:\Not\Found\file.xml } | Should Throw
+        }
+
+        It 'Should extract the xccdf from a ZIP' {
+            Mock -CommandName Test-Path -MockWith { $true }
+            $return = Get-StigXccdfBenchmarkContent -Path 'C:\download.zip'
+            $return.title | Should Be 'Test Title'
+        }
+    }
+}
+
+Describe 'Get-StigContentFromZip' {
+
+    InModuleScope Common {
+        Mock -CommandName Expand-Archive -MockWith { return }
+        Mock -CommandName Get-ChildItem -MockWith { return @{fullName = 'C:\file-Manual-xccdf.xml'} }
+        Mock -CommandName Get-Content -MockWith { return 'Test XML'}
+        Mock -CommandName Remove-Item -MockWith { return }
+
+        It 'Should Extract the xccdf from the zip' {
+            $return = Get-StigContentFromZip -Path C:\Path\to\file.zip
+            $return | Should Be 'Test XML'
+        }
+    }
+}
+
 #endregion
 #region Range Conversion Tests
 <#

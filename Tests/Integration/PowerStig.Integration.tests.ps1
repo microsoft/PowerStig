@@ -19,7 +19,7 @@ Describe "$ModuleName module" {
     Context 'Exported Commands' {
 
         $commands = (Get-Command -Module $ModuleName).Name
-        $exportedCommands = @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList')
+        $exportedCommands = @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList', 'New-StigCheckList')
 
         foreach ($export in $exportedCommands)
         {

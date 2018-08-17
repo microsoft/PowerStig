@@ -8,6 +8,10 @@
         "target": ""
     },
     {
+        "src": "PowerStig.Document.psm1",
+        "target": ""
+    },
+    {
         "src": "README.md",
         "target": ""
     },
@@ -29,6 +33,10 @@
     },
     {
         "src": "Module\\Stig*\\**",
+        "target": "Module"
+    },
+    {
+        "src": "Module\\Document*\\**",
         "target": "Module"
     }
 ]

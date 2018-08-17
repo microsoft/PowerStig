@@ -9,9 +9,9 @@ function ConvertTo-AccountPolicyRule
 {
     [CmdletBinding()]
     [OutputType([AccountPolicyRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

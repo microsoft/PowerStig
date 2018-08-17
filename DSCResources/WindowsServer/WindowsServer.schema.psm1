@@ -48,7 +48,7 @@ using module ..\..\PowerStig.psm1
 Configuration WindowsServer
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [ValidateSet('2012R2', '2016')]
@@ -62,7 +62,7 @@ Configuration WindowsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('2.9','2.12')]
+        [ValidateSet('2.12','2.13')]
         [version]
         $StigVersion,
 

@@ -19,7 +19,7 @@ Function Get-OrgSettingsObject
 {
     [CmdletBinding()]
     [OutputType([OrganizationalSetting])]
-    Param
+    param
     (
         [Parameter(Mandatory = $True)]
         [ValidateNotNullOrEmpty()]

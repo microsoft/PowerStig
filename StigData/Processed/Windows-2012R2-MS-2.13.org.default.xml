@@ -1,11 +1,11 @@
 <!--
-    The organizational settings file is used to define the local organizations  
+    The organizational settings file is used to define the local organizations
     preferred setting within an allowed range of the STIG.
 
-    Each setting in this file is linked by STIG ID and the valid range is in an 
+    Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="2.9">
+<OrganizationalSettings version="2.13">
   <!-- Ensure 'V-1090' -le '4'-->
   <OrganizationalSetting id="V-1090" value="4" />
   <!-- Ensure ''V-1097'' -le '3' -and ''V-1097'' -ne '0'-->
@@ -46,6 +46,10 @@
   <OrganizationalSetting id="V-4442" value="5" />
   <!-- Ensure ''V-6836'' -ge '14'-->
   <OrganizationalSetting id="V-6836" value="14" />
+  <!-- Ensure ''V-8322.b'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
+  <OrganizationalSetting id="V-8322.b" value="NT5DS" />
+  <!-- Ensure 'V-8324' -match '2|3'-->
+  <OrganizationalSetting id="V-8324" value="3" />
   <!-- Ensure ''V-14235'' -le '4'-->
   <OrganizationalSetting id="V-14235" value="4" />
   <!-- Ensure 'V-15713' -notmatch '1|2'-->

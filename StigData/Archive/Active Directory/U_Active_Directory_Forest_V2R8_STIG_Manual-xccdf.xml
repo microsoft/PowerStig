@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type='text/xsl' href='STIG_unclass.xsl'?><Benchmark xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cpe="http://cpe.mitre.org/language/2.0" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" id="Active_Directory_Forest" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd" xmlns="http://checklists.nist.gov/xccdf/1.1"><status date="2018-05-30">accepted</status><title>Active Directory Forest Security Technical Implementation Guide (STIG)</title><description>This STIG provides focused security requirements for the AD or Active Directory Domain Services (AD DS) element for Windows Servers operating systems. These requirements apply to the forest and can typically be reviewed once per AD Forest. The separate Active Directory Domain STIG contains domain level requirements. Systems must also be reviewed using the applicable Windows STIG. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description><notice id="terms-of-use" xml:lang="en"></notice><reference href="http://iase.disa.mil"><dc:publisher>DISA</dc:publisher><dc:source>STIG.DOD.MIL</dc:source></reference><plain-text id="release-info">Release: 8 Benchmark Date: 27 Jul 2018</plain-text><version>2</version><Profile id="MAC-1_Classified"><title>I - Mission Critical Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-1_Public"><title>I - Mission Critical Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-1_Sensitive"><title>I - Mission Critical Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-2_Classified"><title>II - Mission Support Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-2_Public"><title>II - Mission Support Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-2_Sensitive"><title>II - Mission Support Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-3_Classified"><title>III - Administrative Classified</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-3_Public"><title>III - Administrative Public</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Profile id="MAC-3_Sensitive"><title>III - Administrative Sensitive</title><description>&lt;ProfileDescription&gt;&lt;/ProfileDescription&gt;</description><select idref="V-8527" selected="true" /><select idref="V-8555" selected="true" /><select idref="V-8557" selected="true" /><select idref="V-15372" selected="true" /><select idref="V-72835" selected="true" /></Profile><Group id="V-8527"><title>Schema Change Configuration Management</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-30998r3_rule" severity="low" weight="10.0"><version>DS00.0100_AD</version><title>Changes to the AD schema must be subject to a documented configuration management process. </title><description>&lt;VulnDiscussion&gt;Poorly planned or implemented changes to the AD schema could cause the applications that rely on AD (such as web and database servers) to operate incorrectly or not all.
+
+Improper changes to the schema could result in changes to AD objects that are incompatible with correct operation of the Windows domain controller and the domain clients. This could cause outages that prevent users from logging on or accessing Windows server resources across multiple hosts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Manager&lt;/Responsibility&gt;&lt;IAControls&gt;DCPR-1&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Active Directory Forest</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Active Directory Forest</dc:subject><dc:identifier>871</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-8056r1_fix">Document and implement a policy to ensure that changes to the AD schema are subject to a configuration management process.
+</fixtext><fix id="F-8056r1_fix" /><check system="C-7684r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Active_Directory_Forest.xml" /><check-content>1. Interview the IAO.
+
+2. Obtain a copy of the site’s configuration management procedures documentation.
+
+3. Verify that there is a local policy that requires changes to the directory schema to be processed through a configuration management process. This applies to directory schema changes whether implemented in a database or other types of files. For AD, this refers to changes to the AD schema.
+
+4. If there is no policy that requires changes to the directory schema to be processed through a configuration management process, then this is a finding.
+</check-content></check></Rule></Group><Group id="V-8555"><title>DS10.0230 dsHeuristics Option</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-9052r2_rule" severity="medium" weight="10.0"><version>AD.0230</version><title>Anonymous Access to AD forest data above the rootDSE level must be disabled. </title><description>&lt;VulnDiscussion&gt;For Windows Server 2003 or above, the dsHeuristics option can be configured to override the default restriction on anonymous access to AD data above the rootDSE level. Anonymous access to AD data could provide valuable account or configuration information to an intruder trying to determine the most effective attack strategies.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;ECAN-1, ECCD-1, ECCD-2&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Active Directory Forest</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Active Directory Forest</dc:subject><dc:identifier>871</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-8074r1_fix">Disable anonymous access to AD forest data above the rootDSE level. </fixtext><fix id="F-8074r1_fix" /><check system="C-7713r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Active_Directory_Forest.xml" /><check-content>1. At the command line prompt enter (on a single line): 
+dsquery * "cn=Directory Service,
+cn=Windows NT,cn=Services,cn=Configuration,dc=[forest-name]" -scope base -attr * 
+
+(Where dc=[forest-name] is the fully qualified LDAP name of the root of the domain being reviewed.)
+
+Example:
+The following is an example of the dsquery command for the vcfn.ost.com forest.
+
+dsquery * "cn=Directory Service,cn=Windows  NT,cn=Services,cn=Configuration,  dc=vcfn,dc=ost,dc=com -scope base -attr * 
+
+2. If the dsHeuristics attribute is listed, note the assigned value.
+
+3. If the dsHeuristics attribute is defined and has a “2” as the 7th character, then this is a finding.
+
+Examples of values that would be a finding as follows:
+ “0000002”, “0010002”, “0000002000001”.
+(The 7th character controls anonymous access.)
+
+Supplementary Notes:
+Domain controllers have this option disabled by default. However, this check verifies that the option has not been enabled.
+
+The dsHeuristics option can be configured with the Windows Support Tools Active Directory Service Interfaces Editor (ADSI Edit) console (adsiedit.msc).</check-content></check></Rule></Group><Group id="V-8557"><title>Time Synchronization-Authoritative Source</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-9054r3_rule" severity="medium" weight="10.0"><version>AD.0295</version><title>The Windows Time Service on the forest root PDC Emulator must be configured to acquire its time from an external time source.</title><description>&lt;VulnDiscussion&gt;When the Windows Time service is used to synchronize time on client computers (workstations and servers) throughout an AD forest, the forest root domain PDC Emulator is the normal default to provide the authoritative time source for the entire forest. To obtain an accurate time for itself, the forest root domain PDC Emulator acts as a client to an external time source.
+
+If the Windows Time service on the forest root domain PDC Emulator is not configured to acquire the time from a proper source, it may cause time service clients throughout the forest to operate with the inaccurate time setting.
+
+When a Windows computer operates with an inaccurate time setting, access to resources on computers with the accurate time might be denied. This is notably true when Kerberos authentication is utilized. Operation with an inaccurate time setting can reduce the value of audit data and invalidate it as a source of forensic evidence in an incident investigation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Active Directory Forest</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Active Directory Forest</dc:subject><dc:identifier>871</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001891</ident><fixtext fixref="F-87329r1_fix">Configure the forest root PDC Emulator to acquire its time from an external time source.   
+
+The Windows Time Service can be configured by setting the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; Windows Time Service &gt;&gt; Time Providers &gt;&gt; "Configure Windows NTP Client" to "Enabled", and configure the "NtpServer" field to point to an authorized time server.</fixtext><fix id="F-87329r1_fix" /><check system="C-80209r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Active_Directory_Forest.xml" /><check-content>This applies to the domain controller with the PDC emulator role in forest root domain; it is NA for other domain controllers in the forest.
+
+Determine the domain controller with the PDC Emulator role in the forest root domain:
+
+Windows 2008 R2 or later: 
+
+Open "Windows PowerShell".
+
+Enter "Get-ADDomain -Identity [Forest Root Domain] | FT PDCEmulator", where [Forest Root Domain] is the forest root domain name, such as "example.mil". (This can also be entered without the -Identity parameter if running within the forest root domain.)
+
+Windows 2008:
+
+Open "Active Directory Users and Computers" from a domain controller in or connected to the forest root (available from various menus or run "dsa.msc").
+
+Select "Action" in the menu, then "All Tasks &gt;&gt; Operations Masters".
+
+Select the "PDC" tab.
+
+On the system with the PDC Emulator role, open "Windows PowerShell" or an elevated "Command Prompt" (run as administrator).
+
+Enter "W32tm /query /configuration".
+
+Under the "NtpClient" section:
+
+If the value for "Type" is not "NTP", this is a finding.
+
+If the value for "NtpServer" is not an external DoD time source, this is a finding.
+
+If an alternate time synchronization tool is used and is not enabled or not configured to a synchronize with an external DoD time source, this is a finding.
+
+The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</check-content></check></Rule></Group><Group id="V-15372"><title>Directory Schema Update Access</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-30999r4_rule" severity="high" weight="10.0"><version>DS00.3140_AD</version><title>Update access to the directory schema must be restricted to appropriate accounts.</title><description>&lt;VulnDiscussion&gt;A failure to control update access to the AD Schema object could result in the creation of invalid directory objects and attributes. Applications that rely on AD could fail as a result of invalid formats and values. The presence of invalid directory objects and attributes could cause failures in Windows AD client functions and improper resource access decisions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Active Directory Forest</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Active Directory Forest</dc:subject><dc:identifier>871</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002235</ident><fixtext fixref="F-71807r2_fix">Ensure the access control permissions for the AD Schema object conform to the required permissions as shown below.
+
+Authenticated Users:
+Read
+Special Permissions
+The Special permissions for Authenticated Users are List and Read type.  If detailed permissions include any additional Permissions or Properties this is a finding.
+
+System:
+Full Control
+
+Enterprise Read-only Domain Controllers:
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+
+Schema Admins:
+Read
+Write
+Create all child objects
+Change schema master
+Manage replication topology
+Monitor active directory replication
+Read only replication secret synchronization
+Reanimate tombstones
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication synchronization
+Update schema cache
+Special permissions
+(Special permissions = all except Full, Delete, and Delete subtree when detailed permissions viewed.)
+
+Administrators:
+Manage replication topology
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication Synchronization
+
+Enterprise Domain Controllers:
+Manage replication topology
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication Synchronization</fixtext><fix id="F-71807r2_fix" /><check system="C-66419r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Active_Directory_Forest.xml" /><check-content>Start a Schema management console. (See supplemental notes.)
+Select, then right-click on the Active Directory Schema entry in the left pane.
+Select Permissions.
+
+If any of the permissions for the Schema object are not at least as restrictive as those below, this is a finding. 
+
+The permissions shown are at the summary level.  More detailed permissions can be viewed by selecting the Advanced button, selecting the desired entry, and the Edit button.
+
+Authenticated Users:
+Read
+Special Permissions
+The Special permissions for Authenticated Users are List and Read type.  If detailed permissions include any additional Permissions or Properties this is a finding.
+
+System:
+Full Control
+
+Enterprise Read-only Domain Controllers:
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+
+Schema Admins:
+Read
+Write
+Create all child objects
+Change schema master
+Manage replication topology
+Monitor active directory replication
+Read only replication secret synchronization
+Reanimate tombstones
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication synchronization
+Update schema cache
+Special permissions
+(Special permissions = all except Full, Delete, and Delete subtree when detailed permissions viewed.)
+
+Administrators:
+Manage replication topology
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication Synchronization
+
+Enterprise Domain Controllers:
+Manage replication topology
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes In Filtered Set
+Replication Synchronization
+
+Supplemental Notes:
+If the Schema management console has not already been configured on the computer, create a console by using the following:
+
+The steps for adding the snap-in may vary depending on the Windows version.
+Register the required DLL module by typing the following at a command line "regsvr32 schmmgmt.dll".
+Run "mmc.exe" to start a Microsoft Management Console. 
+Select Add/Remove Snap-in from the File menu.
+From the Available Standalone Snap-ins list, select Active Directory Schema
+Select the Add button.
+Select the OK button.
+
+When done using the console, select Exit from the File (or Console) menu.
+Select the No button to the Save console settings… prompt (unless the SA wishes to retain this console). If the console is retained, the recommended name is schmmgmt.msc and the recommended location is the [systemroot]\system32 directory.</check-content></check></Rule></Group><Group id="V-72835"><title>AD.0017</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-87487r1_rule" severity="medium" weight="10.0"><version>AD.0017</version><title>Membership to the Schema Admins group must be limited.</title><description>&lt;VulnDiscussion&gt;The Schema Admins group is a privileged group in a forest root domain.  Members of the Schema Admins group can make changes to the schema, which is the framework for the Active Directory forest.  Changes to the schema are not frequently required.  This group only contains the Built-in Administrator account by default.  Additional accounts must only be added when changes to the schema are necessary and then must be removed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target Active Directory Forest</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>Active Directory Forest</dc:subject><dc:identifier>871</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-79269r1_fix">Limit membership in the Schema Admins group to only those accounts necessary during a schema update.  Remove accounts when the updates are complete.  Document accounts necessary during schema updates with the ISSO.</fixtext><fix id="F-79269r1_fix" /><check system="C-72961r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Active_Directory_Forest.xml" /><check-content>Open "Active Directory Users and Computers" on a domain controller in the forest root domain.
+
+Navigate to the "Users" container.
+
+Right-click on "Schema Admins" and select "Properties", and then select the "Members" tab.
+
+If any accounts other than the built-in Administrators group are members, verify their necessity with the ISSO.
+
+If any accounts are members of the group when schema changes are not being made, this is a finding.</check-content></check></Rule></Group></Benchmark>

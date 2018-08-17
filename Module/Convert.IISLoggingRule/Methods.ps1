@@ -13,7 +13,7 @@ function Get-LogCustomFieldEntry
 {
     [CmdletBinding()]
     [OutputType([object[]])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -49,7 +49,7 @@ function Get-LogFlag
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -87,7 +87,7 @@ function Get-LogFormat
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -119,7 +119,7 @@ function Get-LogPeriod
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -146,7 +146,7 @@ function Get-LogTargetW3C
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -185,7 +185,7 @@ function Get-LogFlagValue
 {
     [CmdletBinding()]
     [OutputType([string[]])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]

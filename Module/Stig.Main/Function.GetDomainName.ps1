@@ -35,7 +35,7 @@
 
         Returns "DC=contoso,DC=com"
 #>
-Function Get-DomainName 
+Function Get-DomainName
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -64,11 +64,11 @@ Function Get-DomainName
 
     if ($PSCmdlet.ParameterSetName -eq 'DomainName')
     {
-        if ( [string]::IsNullOrEmpty( $DomainName ) ) 
+        if ( [string]::IsNullOrEmpty( $DomainName ) )
         {
             $fqdn = Get-DomainFQDN
         }
-        else 
+        else
         {
             $fqdn = $DomainName
         }
@@ -90,9 +90,9 @@ Function Get-DomainName
         Write-Warning "$($PSCmdlet.ParameterSetName) was not found."
     }
 
-    switch ($Format) 
+    switch ($Format)
     {
-        'FQDN' 
+        'FQDN'
         {
             return $fqdn
         }
@@ -118,7 +118,7 @@ Function Get-DomainFQDN
 {
     [CmdletBinding()]
     [OutputType([string])]
-    param 
+    param
     ( )
 
     return $env:USERDNSDOMAIN
@@ -132,7 +132,7 @@ Function Get-ForestFQDN
 {
     [CmdletBinding()]
     [OutputType([string])]
-    param 
+    param
     ( )
 
     $forestRoot = [ADSI]"LDAP://RootDSE"
@@ -155,7 +155,7 @@ Function Get-NetbiosName
     {
         return $parts[0]
     }
-    else 
+    else
     {
         return $parts
     }
@@ -167,7 +167,7 @@ Function Get-DistinguishedName
     [OutputType([string])]
     param
     (
-        [parameter()]
+        [Parameter()]
         [string]
         $FQDN
     )
@@ -182,7 +182,7 @@ Function Format-DistinguishedName
     [OutputType([string])]
     param
     (
-        [parameter()]
+        [Parameter()]
         [string[]]
         $Parts
     )
@@ -211,7 +211,7 @@ Function Get-DomainParts
     [OutputType([string[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $FQDN
     )

@@ -12,7 +12,7 @@ function ConvertTo-WebConfigurationPropertyRule
 {
     [CmdletBinding()]
     [OutputType([WebConfigurationPropertyRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
@@ -58,7 +58,7 @@ function New-WebConfigurationPropertyRule
 {
     [CmdletBinding()]
     [OutputType([WebConfigurationPropertyRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]

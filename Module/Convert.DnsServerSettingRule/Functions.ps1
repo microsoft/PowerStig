@@ -9,9 +9,9 @@ function ConvertTo-DnsServerSettingRule
 {
     [CmdletBinding()]
     [OutputType([DnsServerSettingRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

@@ -9,9 +9,9 @@ function ConvertTo-UserRightRule
 {
     [CmdletBinding()]
     [OutputType([UserRightRule[]])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )
@@ -46,9 +46,9 @@ function New-UserRightRule
 {
     [CmdletBinding()]
     [OutputType([UserRightRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

@@ -9,9 +9,9 @@ function Get-DnsServerWinEventLogName
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter( Mandatory = $true)]
+        [Parameter( Mandatory = $true)]
         [psobject] $StigString
     )
 
