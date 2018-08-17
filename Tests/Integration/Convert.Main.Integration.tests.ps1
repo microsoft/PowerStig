@@ -62,6 +62,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 13
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 39
             MimeTypeRule                 = $null
@@ -83,8 +85,8 @@ try
             AuditPolicyRule              = 38
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            FileContentRule              = $null
             DocumentRule                 = 16
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 53
@@ -132,6 +134,8 @@ try
             DnsServerRootHintRule        = $n
             DnsServerSettingRule         = $null
             DocumentRule                 = 17
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 53
             MimeTypeRule                 = $null
@@ -178,8 +182,8 @@ try
             DnsServerRootHintRule        = 1
             DnsServerSettingRule         = 2
             DocumentRule                 = 19
-            GroupRule                    = $null
             FileContentRule              = $null
+            GroupRule                    = $null            
             IisLoggingRule               = $null
             ManualRule                   = 64
             MimeTypeRule                 = $null
@@ -196,12 +200,13 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_Windows_2012_Server_DNS_STIG_V1R10_Manual-xccdf.xml'     = @{
+        'U_MS_Windows_2012_Server_DNS_STIG_V1R10_Manual-xccdf.xml'    = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = 1
             DnsServerSettingRule         = 2
             DocumentRule                 = 19
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 64
@@ -225,8 +230,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = $null
-            GroupRule                    = $null
             FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = $null
             MimeTypeRule                 = $null
@@ -249,8 +254,8 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = $null
-            GroupRule                    = $null
             FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = $null
             MimeTypeRule                 = $null
@@ -273,6 +278,7 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = $null
+            FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = $null
@@ -458,12 +464,14 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'                 = @{
+        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 13
+            FileContentRule              = $null
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 23
             MimeTypeRule                 = $null
@@ -480,12 +488,36 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml'                 = @{
+        'U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml'        = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 1
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 4
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf'                   = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
             FileContentRule              = 23
             GroupRule                    = $null
             IisLoggingRule               = $null
