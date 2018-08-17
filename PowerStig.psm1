@@ -10,8 +10,13 @@ using module .\Module\Stig.StigException\Stig.StigException.psm1
 using module .\Module\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 
-# load the public functions
-Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig.Main" -Filter '*.ps1' ) )
+# load the public StigData functions
+
+$pathList = @(
+    "$PSScriptRoot\Module\Stig.Main",
+    "$PSScriptRoot\Module\Document.Main"
+)
+Foreach ($supportFile in (Get-ChildItem -Path $pathList -Filter '*.ps1'))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
@@ -20,5 +25,6 @@ Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig.Main" 
 Export-ModuleMember -Function @(
     'Get-OrgSettingsObject',
     'Get-DomainName',
-    'Get-StigList'
+    'Get-StigList',
+    'New-StigCheckList'
 )

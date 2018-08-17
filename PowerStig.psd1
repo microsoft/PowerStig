@@ -2,11 +2,8 @@
 # Licensed under the MIT License.
 
 @{
-# Modules to import as nested modules of the module specified in ModuleToProcess
-NestedModules = @(
-    'PowerStig.psm1',
-    'PowerStig.Document.psm1'
-)
+# Script module or binary module file associated with this manifest.
+RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.1.1.0'
