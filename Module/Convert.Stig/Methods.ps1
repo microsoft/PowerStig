@@ -414,9 +414,9 @@ function Get-FileContentRuleDscResource
 
     if ($Key -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled')
     {
-        return 'cFireFoxPolicy'
+        return 'cJsonFile'
     }
-    return 'cFireFoxPrefs'
+    return 'ReplaceText'
 }
 <#
     .SYNOPSIS
