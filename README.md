@@ -123,6 +123,8 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+### 2.0.0.0
+
 * Added a Document module to automatically create a Stig Checklist (EXPERIMENTAL)
 * Merged PowerStigDsc into PowerStig so there is only one module to maintain
   * Replaced PowerStig Technology Class with Enumeration

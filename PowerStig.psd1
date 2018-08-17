@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.1.1.0'
+ModuleVersion = '2.0.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -87,7 +87,24 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Update IIS Server STIG V-76723.a with correct value'
+        ReleaseNotes = '* Added a Document module to automatically create a Stig Checklist (EXPERIMENTAL)
+* Merged PowerStigDsc into PowerStig so there is only one module to maintain
+  * Replaced PowerStig Technology Class with Enumeration
+  * Added script module back to manifest
+  * Added DotNetFramework composite resource
+
+* Added the following STIGs
+  * Windows Server 2012R2 MS STIG V2R13
+  * Windows Server 2012R2 DC STIG V2R13
+  * Windows 2012 DNS V1R10
+  * Windows Domain V2R10
+  * Windows Forest V2R8
+  * IE11-V1R16
+
+* Corrected parsing of rule V-46477 in the IE STIGs
+  * Updated StigData
+  * Bug fixes
+  * Removed Windows Server 2012R2 MS and DC StigData v2.9'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
