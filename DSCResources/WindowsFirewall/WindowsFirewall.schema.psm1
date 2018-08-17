@@ -61,48 +61,21 @@ Configuration WindowsFirewall
         $SkipRuleType
     )
 
-    if ( $Exception )
-    {
-        $exceptionsObject = [StigException]::ConvertFrom( $Exception )
-    }
-    else
-    {
-        $exceptionsObject = $null
-    }
-
-    if ( $SkipRule )
-    {
-        $skipRuleObject = [SkippedRule]::ConvertFrom( $SkipRule )
-    }
-    else
-    {
-        $skipRuleObject = $null
-    }
-
-    if ( $SkipRuleType )
-    {
-        $skipRuleTypeObject = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
-    }
-    else
-    {
-        $skipRuleTypeObject = $null
-    }
-
-    if ( $OrgSettings )
-    {
-        $orgSettingsObject = Get-OrgSettingsObject -OrgSettings $OrgSettings
-    }
-    else
-    {
-        $orgSettingsObject = $null
-    }
+    <#
+        This file is dot sourced here becasue the code it contains applies
+        to all composites. It simply processes the exceptions, skipped rules,
+        and organizational objects that were provided to the composite and
+        converts then into the approperate class for the StigData class
+        constructor
+    #>
+    . ..\stigdata.usersettings.ps1
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( "All", $technology )
     $technologyRole    = [TechnologyRole]::New( "FW", $technologyVersion )
-    $StigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
-                                          $technologyRole, $technologyVersion, $exceptionsObject,
-                                          $skipRuleTypeObject, $skipRuleObject )
+    $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+                                          $technologyRole, $technologyVersion, $Exception,
+                                          $SkipRuleType, $SkipRule )
 
     $StigData = $StigDataObject.StigXml
     # $resourcePath is exported from the helper module in the header

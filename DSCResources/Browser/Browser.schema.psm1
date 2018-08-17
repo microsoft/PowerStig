@@ -66,54 +66,31 @@ Configuration Browser
         $SkipRuleType
     )
 
-    #region Add required data to XML
-    if ( $Exception )
-    {
-        $exceptionsObject = [StigException]::ConvertFrom( $Exception )
-    }
-    else
-    {
-        $exceptionsObject = $null
-    }
-
-    if ( $SkipRule )
-    {
-        $skipRuleObject = [SkippedRule]::ConvertFrom( $SkipRule )
-    }
-    else
-    {
-        $skipRuleObject = $null
-    }
-
-    if ( $SkipRuleType )
-    {
-        $skipRuleTypeObject = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
-    }
-    else
-    {
-        $skipRuleTypeObject = $null
-    }
-
-    if ( $OrgSettings )
-    {
-        $orgSettingsObject = Get-OrgSettingsObject -OrgSettings $OrgSettings
-    }
-    else
-    {
-        $orgSettingsObject = $null
-    }
-    #endregion
+    <#
+        This file is dot sourced here becasue the code it contains applies
+        to all composites. It simply processes the exceptions, skipped rules,
+        and organizational objects that were provided to the composite and
+        converts then into the approperate class for the StigData class
+        constructor
+    #>
+    . ..\stigdata.usersettings.ps1
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( 'All', $technology )
     $technologyRole    = [TechnologyRole]::New( $BrowserVersion, $technologyVersion )
-    $StigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
-                                       $technologyRole, $technologyVersion, $exceptionsObject,
-                                       $skipRuleTypeObject, $skipRuleObject )
+    $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+                                          $technologyRole, $technologyVersion, $Exception,
+                                          $SkipRuleType, $SkipRule )
 
     $StigData = $StigDataObject.StigXml
     # $resourcePath is exported from the helper module in the header
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Registry.ps1"
+
+    ## BEGIN DO NOT REMOVE
+    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
+    # This is required to process Skipped rules
+    . "$resourcePath\windows.Script.skip.ps1"
+    ## END DO NOT REMOVE
 }

@@ -62,7 +62,7 @@ Configuration WindowsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('2.12','2.13')]
+        [ValidateSet('2.12', '2.13')]
         [version]
         $StigVersion,
 
@@ -97,48 +97,21 @@ Configuration WindowsServer
         $SkipRuleType
     )
 
-    if ( $Exception )
-    {
-        $exceptionsObject = [StigException]::ConvertFrom( $Exception )
-    }
-    else
-    {
-        $exceptionsObject = $null
-    }
+    <#
+        This file is dot sourced here becasue the code it contains applies
+        to all composites. It simply processes the exceptions, skipped rules,
+        and organizational objects that were provided to the composite and
+        converts then into the approperate class for the StigData class
+        constructor
+    #>
+    . ..\stigdata.usersettings.ps1
 
-    if ( $SkipRule )
-    {
-        $skipRuleObject = [SkippedRule]::ConvertFrom( $SkipRule )
-    }
-    else
-    {
-        $skipRuleObject = $null
-    }
-
-    if ( $SkipRuleType )
-    {
-        $skipRuleTypeObject = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
-    }
-    else
-    {
-        $skipRuleTypeObject = $null
-    }
-
-    if ( $OrgSettings )
-    {
-        $orgSettingsObject = Get-OrgSettingsObject -OrgSettings $OrgSettings
-    }
-    else
-    {
-        $orgSettingsObject = $null
-    }
-
-    $technology        = [Technology]::Windows
+    $technology = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
-    $technologyRole    = [TechnologyRole]::New( $OsRole, $technologyVersion )
-    $StigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
-                                          $technologyRole, $technologyVersion, $exceptionsObject,
-                                          $skipRuleTypeObject, $skipRuleObject )
+    $technologyRole = [TechnologyRole]::New( $OsRole, $technologyVersion )
+    $stigDataObject = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+        $technologyRole, $technologyVersion, $Exception,
+        $SkipRuleType, $SkipRule )
 
     $StigData = $StigDataObject.StigXml
     # $resourcePath is exported from the helper module in the header

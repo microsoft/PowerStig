@@ -87,48 +87,21 @@ Configuration WindowsDnsServer
         $SkipRuleType
     )
 
-    if ( $Exception )
-    {
-        $exceptionsObject = [StigException]::ConvertFrom( $Exception )
-    }
-    else
-    {
-        $exceptionsObject = $null
-    }
-
-    if ( $SkipRule )
-    {
-        $skipRuleObject = [SkippedRule]::ConvertFrom( $SkipRule )
-    }
-    else
-    {
-        $skipRuleObject = $null
-    }
-
-    if ( $SkipRuleType )
-    {
-        $skipRuleTypeObject = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
-    }
-    else
-    {
-        $skipRuleTypeObject = $null
-    }
-
-    if ( $OrgSettings )
-    {
-        $orgSettingsObject = Get-OrgSettingsObject -OrgSettings $OrgSettings
-    }
-    else
-    {
-        $orgSettingsObject = $null
-    }
+    <#
+        This file is dot sourced here becasue the code it contains applies
+        to all composites. It simply processes the exceptions, skipped rules,
+        and organizational objects that were provided to the composite and
+        converts then into the approperate class for the StigData class
+        constructor
+    #>
+    . ..\stigdata.usersettings.ps1
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole    = [TechnologyRole]::New( "DNS", $technologyVersion )
     $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
-                                          $technologyRole, $technologyVersion, $exceptionsObject,
-                                          $skipRuleTypeObject, $skipRuleObject )
+                                          $technologyRole, $technologyVersion, $Exception,
+                                          $SkipRuleType, $SkipRule )
 
     $stigData = $stigDataObject.StigXml
     # $resourcePath is exported from the helper module in the header
@@ -139,6 +112,7 @@ Configuration WindowsDnsServer
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.RootHint.ps1"
+    . "$resourcePath\windows.Script.skip.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
