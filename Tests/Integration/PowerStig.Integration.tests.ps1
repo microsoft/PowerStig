@@ -16,6 +16,10 @@ Import-Module $modulePath -Force
 
 Describe "$ModuleName module" {
 
+    It 'Should be a Script Module' {
+        (Get-Module -Name PowerStig -ListAvailable).ModuleType | Should Be 'Script'
+    }
+
     Context 'Exported Commands' {
 
         $commands = (Get-Command -Module $ModuleName).Name
