@@ -168,5 +168,3 @@ Added the following STIGs:
 * Windows Server DNS V1R9
 * Windows AD Domain V2R9
 * IE11 V1R15
-
-
