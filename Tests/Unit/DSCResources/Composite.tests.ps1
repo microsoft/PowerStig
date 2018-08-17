@@ -7,28 +7,23 @@ Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Forc
 Describe 'Common Tests - Configuration Module Requirements' {
 
     $Files = Get-ChildItem -Path $script:moduleRoot
-    $Manifest = Import-PowerShellDataFile -Path "$script:moduleRoot\$script:DSCModuleName.psd1"
+    $manifestPath = "$script:moduleRoot\$script:DSCModuleName.psd1"
+    $Manifest = Import-PowerShellDataFile -Path $manifestPath
 
     Context "$script:DSCModuleName module manifest properties" {
 
+        It 'Should contain a module manifest that aligns to the folder and module names' {
+            Test-Path -Path $manifestPath | Should Be True
+        }
         It 'Should be a valid Manifest' {
-            {Microsoft.PowerShell.Core\Test-ModuleManifest -Path "$script:moduleRoot\$script:DSCModuleName.psd1" } |
+            {Microsoft.PowerShell.Core\Test-ModuleManifest -Path $manifestPath } |
             Should Not Throw
-        }
-        It 'Contains a module manifest that aligns to the folder and module names' {
-            $Files.Name.Contains("$script:DSCModuleName.psd1") | Should Be True
-        }
-        It 'Contains a readme' {
-            Test-Path "$($script:moduleRoot)\README.md" | Should Be True
         }
         It "Manifest $script:DSCModuleName.psd1 should import as a data file" {
             $Manifest | Should BeOfType 'Hashtable'
         }
         It 'Should have a GUID in the manifest' {
             $Manifest.GUID | Should Match '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}'
-        }
-        It 'Should list requirements in the manifest' {
-            $Manifest.RequiredModules | Should Not BeNullOrEmpty
         }
         It 'Should list a module version in the manifest' {
             $Manifest.ModuleVersion | Should BeGreaterThan 0.0.0.0
@@ -71,24 +66,53 @@ Describe 'Common Tests - Configuration Module Requirements' {
         }
     }
 
-    Context 'Composite Resources' {
 
-        [System.Collections.ArrayList] $manifestDscResourceList = $Manifest.DscResourcesToExport
+    Describe 'Composite Resources' {
 
-        [System.Collections.ArrayList] $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
+        $manifestDscResourceList = $Manifest.DscResourcesToExport
+
+        $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
                             Select-Object -Property BaseName -ExpandProperty BaseName
 
         It 'Should have all module resources listed in the manifest' {
             $manifestDscResourceList | Should Be $moduleDscResourceList
         }
 
+        $TechnologyRoleFilter = @{
+            Browser          =  'IE'
+            DotNetFramework  = 'DotNet'
+            SqlServer        =  'Database|Instance'
+            WindowsDnsServer = 'DNS'
+            WindowsFirewall  = 'FW'
+            WindowsServer    = 'DC|MS'
+        }
         Foreach ($resource in $moduleDscResourceList)
         {
             Context "$resource Composite Resource" {
+                $compositeManifestPath = "$($script:moduleRoot)\DscResources\$resource\$resource.psd1"
+                $compositeSchemaPath   = "$($script:moduleRoot)\DscResources\$resource\$resource.schema.psm1"
 
                 It "Should have a $resource Composite Resource" {
                     $manifestDscResourceList.Where( {$PSItem -eq $resource}) | Should Not BeNullOrEmpty
+                }
 
+                It 'Should be a valid manifest' {
+                    {Test-ModuleManifest -Path $compositeManifestPath} | Should Not Throw
+                }
+
+                It 'Should contain a schema module' {
+                    Test-Path -Path $compositeSchemaPath | Should Be $true
+                }
+
+                It 'Should contain a correctly named configuration' {
+                    $configurationName = Get-ConfigurationName -FilePath $compositeSchemaPath
+                    $configurationName | Should Be $resource
+                }
+
+                It "Should match ValidateSet from PowerStig" {
+                    $validateSet = Get-StigVersionParameterValidateSet -FilePath $compositeSchemaPath
+                    $availableStigVersions = Get-ValidStigVersionNumbers -TechnologyRoleFilter $TechnologyRoleFilter[$resource]
+                    $validateSet | Should BeIn $availableStigVersions
                 }
             }
         }
