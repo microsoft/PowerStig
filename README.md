@@ -2,14 +2,12 @@
 
 **PowerStig** is a PowerShell module that contains several components to automate different DISA Security Technical Implementation Guides (STIGs) where possible.
 
-1. A module to extract settings from check-content elements of the xccdf
-1. Parsed Stig data that can be used by other components of this module or additional automation
-1. A module with PowerShell classes to provide a way of retrieving the parsed STIG data and documenting deviations
-    1. Provides a method to apply exceptions to a setting
-    1. Provides a method to exclude a rule
-    1. Provides a method to exclude an entire class of rules
-1. Windows PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items
-1. A module to create checklists and other types of documentation (Coming soon)
+|Name|Description|Published to PS Gallery|
+| ---- | ---- | --- |
+|[PowerStig.Convert](#PowerStig.Convert) | Extract configuration objects from the xccdf | No
+|[PowerStig.Data](#PowerStig.Data) | A PowerShell class to access the PowerSTIG "database" | Yes
+|[PowerStig.DSC](#PowerStig.DSC) | Compsite DSC resources to apply and/or audit STIG settings | Yes
+|[PowerStig.Document](#PowerStig.Document) | An experimental module to create prefilled out checklists | Yes
 
 This project has adopted the [Microsoft Open Source Code of Conduct](
   https://opensource.microsoft.com/codeofconduct/).
@@ -30,7 +28,16 @@ To see the released PowerStig module, go to the [PowerShell Gallery](https://www
 For example:
 
 ```powershell
-Install-Module -Name PowerStig
+Install-Module -Name PowerStig -Scope CurrentUuer
+```
+
+Once PowerStig is installed, you can view the list of STIGs that are currently available.
+The Get-StigList function queries the StigData and returns a full list.
+This will give you an idea of what you can target in your environment.
+
+```powershell
+Import-Module PowerStig
+Get-StigList
 ```
 
 To update a previously installed module use this command:
@@ -39,19 +46,53 @@ To update a previously installed module use this command:
 Update-Module -Name PowerStig
 ```
 
-## Composite Resources
+## PowerStig.Convert
 
-* [Browser](https://github.com/Microsoft/PowerStigDsc/wiki/Browser): Provides a mechanism to manage Browser STIG settings.
+PowerStig.Convert is a utility module that we use to generate PowerStig XML to store in [PowerStig.Data](#PowerStig.Data).
+The module uses PowerShell classes to extract settings from check-content elements of the xccdf.
+This nested module is NOT published to the PS Gallery.
+The extracted settings are converted into and new PowerStig XML schema.
+The XML file is saved into a processed StigData folder and released to the PS Gallery on a regular cadence.
 
-* [DotNetFramework](https://github.com/Microsoft/PowerStigDsc/wiki/DotNetFramework): Provides a mechanism to manage .Net Framework STIG settings.
+For detailed information, please see the [Convert Wiki](https://github.com/Microsoft/PowerStig/wiki/Convert)
 
-* [SqlServer](https://github.com/Microsoft/PowerStigDsc/wiki/SqlServer): Provides a mechanism to manage SqlServer STIG settings.
+## PowerStig.Data
 
-* [WindowsDnsServer](https://github.com/Microsoft/PowerStigDsc/wiki/WindowsDnsServer): Provides a mechanism to manage Windows DNS Server STIG settings.
+PowerStig.Data is a module with PowerShell classes and a directory of PowerStig XML to provide a way of retrieving StigData and documenting deviations.
+The PowerStig.Data classes provide methods to:
 
-* [WindowsFirewall](https://github.com/Microsoft/PowerStigDsc/wiki/WindowsFirewall): Provides a mechanism to manage the Windows Firewall STIG settings.
+1. Override a setting defined in a STIG and automatically document the exception to policy
+1. Apply settings that have a valid range of values (Organizational Settings)
+1. Exclude a rule if it is already defined in another STIG (de-duplication) and automatically document the exception to policy
+1. Exclude an entire class of rules (intended for testing and integration) and automatically document the exception to policy
 
-* [WindowsServer](https://github.com/Microsoft/PowerStigDsc/wiki/WindowsServer): Provides a mechanism to manage the Windows Server STIG settings.
+For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig)
+
+## PowerStig.DSC
+
+PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items.
+Each composite uses [PowerStig.Data](#PowerStig.Data) as it's data source.
+This allows exceptions, Org settings, and skips to be applied uniformly across all composite resources.
+
+### Composite Resources
+
+|Name|Description|
+| ---- | --- |
+|[Browser](https://github.com/Microsoft/PowerStig/wiki/Browser) | Provides a mechanism to manage Browser STIG settings. |
+|[DotNetFramework](https://github.com/Microsoft/PowerStig/wiki/DotNetFramework) | Provides a mechanism to manage .Net Framework STIG settings. |
+|[SqlServer](https://github.com/Microsoft/PowerStig/wiki/SqlServer) | Provides a mechanism to manage SqlServer STIG settings. |
+|[WindowsDnsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsDnsServer) | Provides a mechanism to manage Windows DNS Server STIG settings. |
+|[WindowsFirewall](https://github.com/Microsoft/PowerStig/wiki/WindowsFirewall) | Provides a mechanism to manage the Windows Firewall STIG settings. |
+|[WindowsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsServer) | Provides a mechanism to manage the Windows Server STIG settings. |
+
+For detailed information, please see the [Composite Resources Wiki](https://github.com/Microsoft/PowerStig/wiki/CompositeResources)
+
+## PowerStig.Document
+
+An **Experimental** module to create checklists and other types of documentation based on the results of the DSC compliance report.
+This module generates a checklist, but we are not 100% sure on the workflow, so we wanted to publish the idea and build on it.
+
+For detailed information, please see the [Document Wiki](https://github.com/Microsoft/PowerStig/wiki/Document)
 
 ## Contributing
 
@@ -76,7 +117,7 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
-* [@llansey] (https://github.com/llansey) (La'Neice Lansey)
+* [@llansey](https://github.com/llansey) (La'Neice Lansey)
 
 ## Versions
 
@@ -127,3 +168,5 @@ Added the following STIGs:
 * Windows Server DNS V1R9
 * Windows AD Domain V2R9
 * IE11 V1R15
+
+
