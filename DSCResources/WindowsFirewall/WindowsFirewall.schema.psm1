@@ -108,5 +108,5 @@ Configuration WindowsFirewall
     # $resourcePath is exported from the helper module in the header
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\common\windows.xRegistry.ps1"
+    . "$resourcePath\windows.xRegistry.ps1"
 }
