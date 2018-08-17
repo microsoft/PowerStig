@@ -140,7 +140,7 @@ Configuration WindowsDnsServer
     . "$resourcePath\windows.Script.RootHint.ps1"
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
+    . "$resourcePath\common\windows.xRegistry.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
