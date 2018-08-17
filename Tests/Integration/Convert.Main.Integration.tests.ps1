@@ -512,7 +512,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml'                   = @{
+        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml'               = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
