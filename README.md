@@ -58,7 +58,7 @@ Update-Module -Name PowerStig
 You are more than welcome to contribute to the development of PowerStig.
 There are several different ways you can help.
 You can create new convert modules, add test automation, improve documentation, fix existing issues, or open new ones.
-See our [contributing guide](CONTRIBUTING.md) for more info on how to become a contributor.
+See our [contributing guide](README.CONTRIBUTING.md) for more info on how to become a contributor.
 If you would like to contribute to a Composite Resource, please check out common DSC Resources [contributing guidelines](https://github.com/PowerShell/DscResources/blob/master/CONTRIBUTING.md).
 
 Thank you to everyone that has reviewed the project and provided feedback through issues.
