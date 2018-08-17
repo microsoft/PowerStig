@@ -106,7 +106,6 @@ Class FileContentRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        $splitFileContentRules = Get-KeyValuePair -SplitCheckContent -CheckContent ([STIG]::SplitCheckContent($CheckContent))
-        return $splitFileContentRules
+        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([STIG]::SplitCheckContent($CheckContent)))         
     }
 }
