@@ -12,7 +12,7 @@ function Get-KeyValuePair
 {
     [CmdletBinding()]
     [OutputType([object])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -76,7 +76,7 @@ function Get-OrganizationValueTestString
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string]

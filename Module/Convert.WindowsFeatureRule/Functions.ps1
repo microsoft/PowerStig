@@ -10,9 +10,9 @@ function ConvertTo-WindowsFeatureRule
 {
     [CmdletBinding()]
     [OutputType([WindowsFeatureRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

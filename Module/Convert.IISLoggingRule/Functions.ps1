@@ -12,7 +12,7 @@ function ConvertTo-IisLoggingRule
 {
     [CmdletBinding()]
     [OutputType([IisLoggingRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]

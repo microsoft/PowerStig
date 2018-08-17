@@ -10,9 +10,9 @@ function ConvertTo-AuditPolicyRule
 {
     [CmdletBinding()]
     [OutputType([AuditPolicyRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

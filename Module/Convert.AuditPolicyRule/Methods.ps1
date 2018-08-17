@@ -9,9 +9,9 @@ function Get-AuditPolicySubCategory
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent
@@ -19,12 +19,12 @@ function Get-AuditPolicySubCategory
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    <# 
+    <#
         This is a little backwards since we don't know what subcategory we are looking for at this
         point. Grab what we assume to be a subcategory in the string and trim. Splitting with an or
         returns multiple matches and the subcategory should be at 1
     #>
-    
+
     $subCategory = ( Get-AuditPolicySettings -CheckContent $CheckContent )[1].Trim()
 
     # Validate the subcateory that we found against the known good list
@@ -46,9 +46,9 @@ function Get-AuditPolicySubCategory
     {
         [CmdletBinding()]
         [OutputType([string])]
-        Param
+        param
         (
-            [parameter(Mandatory = $true)]
+            [Parameter(Mandatory = $true)]
             [AllowEmptyString()]
             [string[]]
             $CheckContent
@@ -78,9 +78,9 @@ function Get-AuditPolicySubCategory
     {
         [CmdletBinding()]
         [OutputType([string[]])]
-        Param
+        param
         (
-            [parameter(Mandatory = $true)]
+            [Parameter(Mandatory = $true)]
             [AllowEmptyString()]
             [string[]]
             $CheckContent

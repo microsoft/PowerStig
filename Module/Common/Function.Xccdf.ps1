@@ -14,7 +14,7 @@ function Get-StigXccdfBenchmarkContent
     [OutputType([xml])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path
     )
@@ -49,7 +49,7 @@ function Get-StigContentFromZip
     [OutputType([xml])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path
     )

@@ -43,11 +43,11 @@ function ConvertFrom-StigXccdf
     [CmdletBinding()]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $IncludeRawString
     )
@@ -97,13 +97,13 @@ function ConvertFrom-StigXccdf
 function Split-StigXccdf
 {
     [CmdletBinding()]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path,
 
-        [parameter()]
+        [Parameter()]
         [string]
         $Destination
     )
@@ -194,11 +194,11 @@ function Get-StigRuleList
     [OutputType([System.Object[]])]
     param
     (
-        [parameter(Mandatory = $true, ValueFromPipeline = $true)]
+        [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [psobject]
         $StigGroups,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $IncludeRawString
     )

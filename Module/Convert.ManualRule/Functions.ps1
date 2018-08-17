@@ -9,9 +9,9 @@ function ConvertTo-ManualRule
 {
     [CmdletBinding()]
     [OutputType([ManualRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

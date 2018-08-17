@@ -30,15 +30,15 @@ function New-StigCheckList
         [PSCustomObject]
         $DscResult,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $XccdfPath,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $OutputPath,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [ValidateSet('DSC', 'GPO')]
         [string]
         $Enforcement
@@ -229,7 +229,7 @@ function Get-VulnerabilityList
     [OutputType([xml])]
     param
     (
-        [parameter()]
+        [Parameter()]
         [psobject]
         $XccdfBenchmark
     )
@@ -279,11 +279,11 @@ function Get-VulnerabilityList
 #>
 function Get-MofContent
 {
-    [cmdletbinding()]
-    [outputtype([psobject])
+    [CmdletBinding()]
+    [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ReferenceConfiguration
     )
@@ -302,15 +302,15 @@ function Get-MofContent
 #>
 function Get-SettingsFromMof
 {
-    [cmdletbinding()]
-    [outputtype([psobject])]
+    [CmdletBinding()]
+    [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ReferenceConfiguration,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Id
     )
@@ -326,15 +326,15 @@ function Get-SettingsFromMof
 #>
 function Get-SettingsFromResult
 {
-    [cmdletbinding()]
-    [outputtype([psobject])]
+    [CmdletBinding()]
+    [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [PSCustomObject]
         $DscResult,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Id
     )

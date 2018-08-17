@@ -15,7 +15,7 @@ function Get-ConversionReport
     [OutputType([System.Collections.ArrayList])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path
     )
@@ -70,7 +70,7 @@ function Get-RuleTypeList
 {
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [PSCustomObject]
         $StigSettings
     )

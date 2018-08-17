@@ -32,7 +32,7 @@ using module ..\..\PowerStig.psm1
 Configuration WindowsFirewall
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter()]
         [ValidateSet('1.6')]

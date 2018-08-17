@@ -9,9 +9,9 @@ function ConvertTo-ProcessMitigationRule
 {
     [CmdletBinding()]
     [OutputType([ProcessMitigationRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )
