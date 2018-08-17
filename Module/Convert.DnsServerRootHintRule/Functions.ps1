@@ -9,9 +9,9 @@ function ConvertTo-DnsServerRootHintRule
 {
     [CmdletBinding()]
     [OutputType([DnsServerRootHintRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

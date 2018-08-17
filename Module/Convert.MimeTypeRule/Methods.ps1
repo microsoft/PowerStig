@@ -12,7 +12,7 @@ function Get-Extension
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -35,7 +35,7 @@ function Get-MimeType
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string]
@@ -86,7 +86,7 @@ function Get-Ensure
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -117,7 +117,7 @@ function Test-MultipleMimeTypeRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -149,7 +149,7 @@ function Split-MultipleMimeTypeRule
 {
     [CmdletBinding()]
     [OutputType([object[]])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]

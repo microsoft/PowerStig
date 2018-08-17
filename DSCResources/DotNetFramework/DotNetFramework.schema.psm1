@@ -35,7 +35,7 @@ using module ..\..\PowerStig.psm1
 Configuration DotNetFramework
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [ValidateSet('DotNet4')]

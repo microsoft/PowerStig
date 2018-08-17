@@ -23,19 +23,19 @@ function ConvertTo-PowerStigXml
     [OutputType([xml])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path,
 
-        [parameter()]
+        [Parameter()]
         [string]
         $Destination,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $CreateOrgSettingsFile,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $IncludeRawString
     )
@@ -248,15 +248,15 @@ function Compare-PowerStigXml
     [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $OldStigPath,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $NewStigPath,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $ignoreRawString
     )
@@ -379,15 +379,15 @@ function New-OrganizationalSettingsXmlFile
     [OutputType()]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $ConvertedStigObjects,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [version]
         $StigVersionNumber,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Destination
     )
@@ -446,7 +446,7 @@ function Get-StigVersionNumber
     [OutputType([version])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml]
         $StigDetails
     )
@@ -474,11 +474,11 @@ function Get-PowerStigFileList
     [OutputType([Hashtable[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml]
         $StigDetails,
 
-        [parameter()]
+        [Parameter()]
         [string]
         $Destination
     )
@@ -517,7 +517,7 @@ function Split-BenchmarkId
     [OutputType([Hashtable[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Id
     )
@@ -619,7 +619,7 @@ function Get-StigObjectsWithOrgSettings
     [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $ConvertedStigObjects
     )

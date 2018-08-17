@@ -17,7 +17,7 @@ function Get-DbExistGetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -46,7 +46,7 @@ function Get-TraceGetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -77,7 +77,7 @@ function Get-PermissionGetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -113,7 +113,7 @@ function Get-DbExistTestScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -142,7 +142,7 @@ function Get-TraceTestScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -173,7 +173,7 @@ function Get-PermissionTestScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -211,7 +211,7 @@ function Get-PermissionTestScript
 function Get-DbExistSetScript {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter()]
         [AllowEmptyString()]
@@ -253,7 +253,7 @@ function Get-TraceSetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter()]
         [AllowEmptyString()]
@@ -290,7 +290,7 @@ function Get-PermissionSetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter()]
         [AllowEmptyString()]
@@ -339,7 +339,7 @@ function Get-Query
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -393,7 +393,7 @@ function Get-TraceIdQuery
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string]
@@ -416,7 +416,7 @@ function Get-EventIdQuery
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -444,7 +444,7 @@ function Get-EventIdData
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -478,7 +478,7 @@ function Get-SqlRuleType
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string[]]

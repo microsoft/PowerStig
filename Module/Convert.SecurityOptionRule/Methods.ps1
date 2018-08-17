@@ -11,7 +11,7 @@ function Get-SecurityOptionName
     [OutputType([string])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -43,9 +43,9 @@ function Get-SecurityOptionValue
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )

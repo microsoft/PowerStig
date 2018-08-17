@@ -12,7 +12,7 @@ function ConvertTo-MimeTypeRule
 {
     [CmdletBinding()]
     [OutputType([MimeTypeRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
@@ -57,7 +57,7 @@ function New-MimeTypeRule
 {
     [CmdletBinding()]
     [OutputType([MimeTypeRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]

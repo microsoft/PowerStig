@@ -48,9 +48,9 @@ function ConvertTo-RegistryRule
 {
     [CmdletBinding()]
     [OutputType([RegistryRule[]])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )
@@ -97,9 +97,9 @@ function New-RegistryRule
 {
     [CmdletBinding()]
     [OutputType([RegistryRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

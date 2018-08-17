@@ -31,9 +31,9 @@ function Test-ValueDataIsHardCoded
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $StigId
     )
@@ -75,9 +75,9 @@ function Get-HardCodedString
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $StigId
     )
@@ -128,9 +128,9 @@ function Get-HardCodedString
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $StigId
     )
@@ -165,9 +165,9 @@ function Get-HardCodedString
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $StigId
     )

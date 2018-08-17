@@ -9,9 +9,9 @@ function Get-AccountPolicyName
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
         $CheckContent

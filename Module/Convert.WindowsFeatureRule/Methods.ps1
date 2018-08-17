@@ -12,7 +12,7 @@ function Get-WindowsFeatureName
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string]
@@ -86,7 +86,7 @@ function Get-FeatureInstallState
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string]
@@ -122,9 +122,9 @@ function Test-MultipleWindowsFeatureRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $FeatureName
@@ -148,9 +148,9 @@ function Split-WindowsFeatureRule
 {
     [CmdletBinding()]
     [OutputType([array])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $FeatureName

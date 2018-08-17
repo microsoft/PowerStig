@@ -9,9 +9,9 @@ function Get-DnsServerSettingProperty
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter( Mandatory = $true)]
+        [Parameter( Mandatory = $true)]
         [string[]]
         $CheckContent
     )
@@ -43,9 +43,9 @@ function Get-DnsServerSettingPropertyValue
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter( Mandatory = $true)]
+        [Parameter( Mandatory = $true)]
         [string[]]
         $CheckContent
     )

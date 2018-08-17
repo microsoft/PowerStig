@@ -12,9 +12,9 @@ function Test-SingleLineRegistryRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -43,9 +43,9 @@ function Get-SingleLineRegistryPath
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -110,9 +110,9 @@ function Get-RegistryValueTypeFromSingleLineStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -189,9 +189,9 @@ function Get-RegistryValueNameFromSingleLineStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -244,9 +244,9 @@ function Get-RegistryValueDataFromSingleStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -311,13 +311,13 @@ function Get-RegistryValueStringFromSingleLineStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $Trim
     )
@@ -368,9 +368,9 @@ function Test-SingleLineStigFormat
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )

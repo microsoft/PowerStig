@@ -171,9 +171,9 @@ function Split-ProcessMitigationRule
 {
     [CmdletBinding()]
     [OutputType([array])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $MitigationTarget
@@ -190,9 +190,9 @@ function Test-MultipleProcessMitigationRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $MitigationTarget

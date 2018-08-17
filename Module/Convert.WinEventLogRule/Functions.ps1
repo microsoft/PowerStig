@@ -7,7 +7,7 @@ function ConvertTo-WinEventLogRule
     [OutputType([WinEventLogRule])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

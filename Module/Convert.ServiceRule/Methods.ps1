@@ -9,9 +9,9 @@ function Get-ServiceName
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter( Mandatory = $true )]
+        [Parameter( Mandatory = $true )]
         [string[]]
         $CheckContent
     )
@@ -95,9 +95,9 @@ function Get-ServiceState
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter( Mandatory = $true )]
+        [Parameter( Mandatory = $true )]
         [psobject]
         $CheckContent
     )
@@ -134,9 +134,9 @@ function Get-ServiceStartupType
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter( Mandatory = $true )]
+        [Parameter( Mandatory = $true )]
         [psobject]
         $CheckContent
     )
@@ -173,9 +173,9 @@ function Test-MultipleServiceRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ServiceName
@@ -196,9 +196,9 @@ function Split-MultipleServiceRule
 {
     [CmdletBinding()]
     [OutputType([array])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ServiceName

@@ -12,7 +12,7 @@ function Get-ConfigSection
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -110,7 +110,7 @@ function Get-KeyValuePair
 {
     [CmdletBinding()]
     [OutputType([object])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -252,7 +252,7 @@ function Test-MultipleWebConfigurationPropertyRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -318,7 +318,7 @@ function Split-MultipleWebConfigurationPropertyRule
 {
     [CmdletBinding()]
     [OutputType([System.Collections.ArrayList])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
@@ -426,7 +426,7 @@ function Get-OrganizationValueTestString
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [string]

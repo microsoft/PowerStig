@@ -64,7 +64,7 @@ using module ..\..\PowerStig.psm1
 Configuration SqlServer
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [ValidateSet('2012')]

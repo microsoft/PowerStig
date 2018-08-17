@@ -9,7 +9,7 @@ function Get-PermissionTargetPath
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
@@ -211,7 +211,7 @@ function Get-PermissionAccessControlEntry
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [psobject]
