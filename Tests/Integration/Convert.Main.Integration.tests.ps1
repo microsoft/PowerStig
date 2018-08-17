@@ -517,7 +517,7 @@ try
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            DocumentRule                 = $null
+            DocumentRule                 = 1
             FileContentRule              = 23
             GroupRule                    = $null
             IisLoggingRule               = $null
