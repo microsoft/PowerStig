@@ -12,9 +12,9 @@ function Test-SingleLineRegistryRule
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -43,9 +43,9 @@ function Get-SingleLineRegistryPath
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -81,6 +81,8 @@ function Get-SingleLineRegistryPath
             "*HKLM*" {$fullRegistryPath = $fullRegistryPath -replace "^HKLM", "HKEY_LOCAL_MACHINE"}
 
             "*HKCU*" {$fullRegistryPath = $fullRegistryPath -replace "^HKCU", "HKEY_CURRENT_USER"}
+
+            "*Software Publishing Criteria" {$fullRegistryPath = $fullRegistryPath -replace 'Software Publishing Criteria$','Software Publishing'}
         }
 
         $fullRegistryPath = $fullRegistryPath.ToString().trim(' ', '.')
@@ -108,9 +110,9 @@ function Get-RegistryValueTypeFromSingleLineStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -187,9 +189,9 @@ function Get-RegistryValueNameFromSingleLineStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -242,9 +244,9 @@ function Get-RegistryValueDataFromSingleStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -309,13 +311,13 @@ function Get-RegistryValueStringFromSingleLineStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $Trim
     )
@@ -366,9 +368,9 @@ function Test-SingleLineStigFormat
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )

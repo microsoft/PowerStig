@@ -12,7 +12,7 @@ function ConvertTo-WebAppPoolRule
 {
     [CmdletBinding()]
     [OutputType([WebAppPoolRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]

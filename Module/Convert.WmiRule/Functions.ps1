@@ -9,9 +9,9 @@ function ConvertTo-WmiRule
 {
     [CmdletBinding()]
     [OutputType([WmiRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )

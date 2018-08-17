@@ -23,19 +23,19 @@ function ConvertTo-PowerStigXml
     [OutputType([xml])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Path,
 
-        [parameter()]
+        [Parameter()]
         [string]
         $Destination,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $CreateOrgSettingsFile,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $IncludeRawString
     )
@@ -98,6 +98,13 @@ function ConvertTo-PowerStigXml
                 $xmlattribute.ruleConversionStatus, $xmlattribute.ruleTitle,
                 $xmlattribute.ruleDscResource)
 
+            <#
+                Because the Remove method on an array is case sensitive and the properties names
+                in $propertiesToRemove are in different case from $properties we use the -in comparison
+                operator to filter and return the proper case
+            #>
+            $propertiesToRemove = $properties | Where-Object -FilterScript {$PSItem -in $propertiesToRemove}
+
             # Remove the raw string from the output if it was not requested.
             if ( -not $IncludeRawString )
             {
@@ -138,56 +145,56 @@ function ConvertTo-PowerStigXml
                     The Permission rule returns an ACE list that needs to be serialized on a second
                     level. This will pick that up and expand the object in the xml.
                 #>
-                if ($property -eq 'AccessControlEntry')
-                {
-                    foreach ($ace in $rule.$property)
+                    if ($property -eq 'AccessControlEntry')
                     {
-                        [System.XML.XMLElement] $aceEntry = $xmlDocument.CreateElement( 'Entry' )
-                        [void] $xmlRuleTypePropertyUnique.appendChild( $aceEntry )
+                        foreach ($ace in $rule.$property)
+                        {
+                            [System.XML.XMLElement] $aceEntry = $xmlDocument.CreateElement( 'Entry' )
+                            [void] $xmlRuleTypePropertyUnique.appendChild( $aceEntry )
 
-                        # Add the ace entry Type
-                        [System.XML.XMLElement] $aceEntryType = $xmlDocument.CreateElement( 'Type' )
-                        [void] $aceEntry.appendChild( $aceEntryType )
-                        $aceEntryType.InnerText = $ace.Type
+                            # Add the ace entry Type
+                            [System.XML.XMLElement] $aceEntryType = $xmlDocument.CreateElement( 'Type' )
+                            [void] $aceEntry.appendChild( $aceEntryType )
+                            $aceEntryType.InnerText = $ace.Type
 
-                        # Add the ace entry Principal
-                        [System.XML.XMLElement] $aceEntryPrincipal = $xmlDocument.CreateElement( 'Principal' )
-                        [void] $aceEntry.appendChild( $aceEntryPrincipal )
-                        $aceEntryPrincipal.InnerText = $ace.Principal
+                            # Add the ace entry Principal
+                            [System.XML.XMLElement] $aceEntryPrincipal = $xmlDocument.CreateElement( 'Principal' )
+                            [void] $aceEntry.appendChild( $aceEntryPrincipal )
+                            $aceEntryPrincipal.InnerText = $ace.Principal
 
-                        # Add the ace entry Principal
-                        [System.XML.XMLElement] $aceEntryForcePrincipal = $xmlDocument.CreateElement( 'ForcePrincipal' )
-                        [void] $aceEntry.appendChild( $aceEntryForcePrincipal )
-                        $aceEntryForcePrincipal.InnerText = $ace.ForcePrincipal
+                            # Add the ace entry Principal
+                            [System.XML.XMLElement] $aceEntryForcePrincipal = $xmlDocument.CreateElement( 'ForcePrincipal' )
+                            [void] $aceEntry.appendChild( $aceEntryForcePrincipal )
+                            $aceEntryForcePrincipal.InnerText = $ace.ForcePrincipal
 
-                        # Add the ace entry Inheritance flag
-                        [System.XML.XMLElement] $aceEntryInheritance = $xmlDocument.CreateElement( 'Inheritance' )
-                        [void] $aceEntry.appendChild( $aceEntryInheritance )
-                        $aceEntryInheritance.InnerText = $ace.Inheritance
+                            # Add the ace entry Inheritance flag
+                            [System.XML.XMLElement] $aceEntryInheritance = $xmlDocument.CreateElement( 'Inheritance' )
+                            [void] $aceEntry.appendChild( $aceEntryInheritance )
+                            $aceEntryInheritance.InnerText = $ace.Inheritance
 
-                        # Add the ace entery FileSystemRights
-                        [System.XML.XMLElement] $aceEntryRights = $xmlDocument.CreateElement( 'Rights' )
-                        [void] $aceEntry.appendChild( $aceEntryRights )
-                        $aceEntryRights.InnerText = $ace.Rights
+                            # Add the ace entery FileSystemRights
+                            [System.XML.XMLElement] $aceEntryRights = $xmlDocument.CreateElement( 'Rights' )
+                            [void] $aceEntry.appendChild( $aceEntryRights )
+                            $aceEntryRights.InnerText = $ace.Rights
+                        }
                     }
-                }
-                elseif ($property -eq 'LogCustomFieldEntry')
-                {
-                    foreach ($entry in $rule.$property)
+                    elseif ($property -eq 'LogCustomFieldEntry')
                     {
-                        [System.XML.XMLElement] $logCustomFieldEntry = $xmlDocument.CreateElement( 'Entry' )
-                        [void] $xmlRuleTypePropertyUnique.appendChild( $logCustomFieldEntry )
+                        foreach ($entry in $rule.$property)
+                        {
+                            [System.XML.XMLElement] $logCustomFieldEntry = $xmlDocument.CreateElement( 'Entry' )
+                            [void] $xmlRuleTypePropertyUnique.appendChild( $logCustomFieldEntry )
 
-                        [System.XML.XMLElement] $entrySourceType = $xmlDocument.CreateElement( 'SourceType' )
-                        [void] $logCustomFieldEntry.appendChild( $entrySourceType )
-                        $entrySourceType.InnerText = $entry.SourceType
+                            [System.XML.XMLElement] $entrySourceType = $xmlDocument.CreateElement( 'SourceType' )
+                            [void] $logCustomFieldEntry.appendChild( $entrySourceType )
+                            $entrySourceType.InnerText = $entry.SourceType
 
-                        [System.XML.XMLElement] $entrySourceName = $xmlDocument.CreateElement( 'SourceName' )
-                        [void] $logCustomFieldEntry.appendChild( $entrySourceName )
-                        $entrySourceName.InnerText = $entry.SourceName
+                            [System.XML.XMLElement] $entrySourceName = $xmlDocument.CreateElement( 'SourceName' )
+                            [void] $logCustomFieldEntry.appendChild( $entrySourceName )
+                            $entrySourceName.InnerText = $entry.SourceName
+                        }
                     }
-                }
-                else
+                    else
                     {
                         $xmlRuleTypePropertyUnique.InnerText = $rule.$property
                     }
@@ -241,15 +248,15 @@ function Compare-PowerStigXml
     [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $OldStigPath,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $NewStigPath,
 
-        [parameter()]
+        [Parameter()]
         [switch]
         $ignoreRawString
     )
@@ -372,15 +379,15 @@ function New-OrganizationalSettingsXmlFile
     [OutputType()]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $ConvertedStigObjects,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [version]
         $StigVersionNumber,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Destination
     )
@@ -439,7 +446,7 @@ function Get-StigVersionNumber
     [OutputType([version])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml]
         $StigDetails
     )
@@ -467,11 +474,11 @@ function Get-PowerStigFileList
     [OutputType([Hashtable[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml]
         $StigDetails,
 
-        [parameter()]
+        [Parameter()]
         [string]
         $Destination
     )
@@ -510,7 +517,7 @@ function Split-BenchmarkId
     [OutputType([Hashtable[]])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $Id
     )
@@ -612,7 +619,7 @@ function Get-StigObjectsWithOrgSettings
     [OutputType([psobject])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $ConvertedStigObjects
     )

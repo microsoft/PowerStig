@@ -8,7 +8,7 @@ try
         #region Test Setup
         $servicesToTest = @(
             @{
-                ServiceName  = 'McAfee'
+                ServiceName  = 'masvc'
                 ServiceState = 'Running'
                 StartupType  = 'Automatic'
                 CheckContent = 'Run "Services.msc".

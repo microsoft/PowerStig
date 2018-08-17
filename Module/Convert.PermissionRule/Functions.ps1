@@ -9,7 +9,7 @@ function ConvertTo-PermissionRule
 {
     [CmdletBinding()]
     [OutputType([PermissionRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
@@ -59,7 +59,7 @@ function New-PermissionRule
 {
     [CmdletBinding()]
     [OutputType([PermissionRule])]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]

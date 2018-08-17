@@ -14,9 +14,9 @@ function Get-RegistryKey
 {
     [CmdletBinding()]
     [OutputType([string[]])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -25,6 +25,10 @@ function Get-RegistryKey
     if (Test-SingleLineRegistryRule -CheckContent $CheckContent)
     {
         $result = Get-SingleLineRegistryPath -CheckContent $CheckContent
+        if ($result -match "!")
+        {
+            $result = $result.Substring(0, $result.IndexOf('!'))
+        }
     }
     else
     {
@@ -54,9 +58,9 @@ function Get-RegistryHiveFromWindowsStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -92,9 +96,9 @@ function Get-RegistryPathFromWindowsStig
 {
     [CmdletBinding()]
     [OutputType([string[]])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -150,9 +154,9 @@ function Get-RegistryValueType
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -196,9 +200,9 @@ function Get-RegistryValueTypeFromWindowsStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -235,9 +239,9 @@ function Get-RegistryValueName
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -264,9 +268,9 @@ function Get-RegistryValueNameFromWindowsStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -305,9 +309,9 @@ function Get-RegistryValueData
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -340,9 +344,9 @@ function Get-RegistryValueDataFromWindowsStig
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -385,9 +389,9 @@ function Test-RegistryValueDataIsBlank
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ValueDataString
@@ -422,9 +426,9 @@ function Test-RegistryValueDataIsEnabledOrDisabled
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ValueDataString
@@ -459,13 +463,13 @@ function Get-ValidEnabledOrDisabled
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ValueType,
 
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ValueData
     )
@@ -497,9 +501,9 @@ function Test-RegistryValueDataIsHexCode
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ValueDataString
@@ -535,9 +539,9 @@ function Get-IntegerFromHex
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ValueDataString
     )
@@ -568,9 +572,9 @@ function Test-RegistryValueDataIsInteger
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ValueDataString
@@ -600,9 +604,9 @@ function Get-NumberFromString
 {
     [CmdletBinding()]
     [OutputType([int])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ValueDataString
     )
@@ -647,9 +651,9 @@ function Test-RegistryValueDataContainsRange
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ValueDataString
@@ -683,9 +687,9 @@ function Format-MultiStringRegistryData
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ValueDataString
     )
@@ -711,9 +715,9 @@ function Get-MultiValueRegistryStringData
 {
     [CmdletBinding()]
     [OutputType([string])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckStrings
     )
@@ -757,9 +761,9 @@ function Test-IsValidDword
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string]
         $ValueData
@@ -805,9 +809,9 @@ function ConvertTo-ValidDword
 {
     [CmdletBinding()]
     [OutputType([int])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string]
         $ValueData
     )
@@ -851,9 +855,9 @@ function Test-MultipleRegistryEntries
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )
@@ -908,9 +912,9 @@ function Split-MultipleRegistryEntries
 {
     [CmdletBinding()]
     [OutputType([System.Collections.ArrayList])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [psobject]
         $CheckContent
     )

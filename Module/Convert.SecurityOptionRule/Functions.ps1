@@ -9,9 +9,9 @@ function ConvertTo-SecurityOptionRule
 {
     [CmdletBinding()]
     [OutputType([SecurityOptionRule])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [xml.xmlelement]
         $StigRule
     )
@@ -45,9 +45,9 @@ function Test-ValueOtherThan
 {
     [CmdletBinding()]
     [OutputType([bool])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [string[]]
         $CheckContent
     )

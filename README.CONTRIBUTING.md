@@ -32,20 +32,11 @@ Submitting an issue to PowerStig is easy!
 
 Here are the steps:
 
-1. Find the correct repository to submit your issue to.
 1. Make sure the issue is not open already.
 1. Open a new issue.
 1. Fill in the issue title.
 1. Fill in the issue description.
 1. Submit the issue.
-
-### Find the Correct Repository
-
-| Issue Topic | Where to Submit |
-|-------------|-----------------|
-| PowerStig overall, Issues that span multiple PowerStig projects or repos, PowerStig processes | PowerStig (this repository) |
-| Common tests, Schemas | [PowerStig.Tests](https://github.com/Microsoft/PowerStig.Tests)
-| Bugs, feature requests, enhancements to a specific module | The repository of the module |
 
 ### Open an Issue
 
@@ -159,7 +150,7 @@ If you are making a breaking change, please make sure to read the [Breaking Chan
 All modules in PowerStig should have tests written using [Pester](https://github.com/pester/Pester) included in the Tests folder.
 You are required to provide adequate test coverage for the code you change.
 
-Please refer to our [testing guidelines](TestsGuidelines.md) for information on how to write tests for PowerStig.
+Please refer to our [testing guidelines](README.TESTGUIDELINES.md) for information on how to write tests for PowerStig.
 Our test templates and guidelines are currently under construction.
 Use them with caution as they may be changed soon.
 

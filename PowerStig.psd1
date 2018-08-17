@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.1.1.0'
+ModuleVersion = '2.0.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -34,8 +34,43 @@ PowerShellVersion = '5.1'
 # Minimum version of the common language runtime (CLR) required by this module. This prerequisite is valid for the PowerShell Desktop edition only.
 CLRVersion = '4.0'
 
+# Modules that must be imported into the global environment prior to importing this module
+RequiredModules  = @(
+    @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.1.0.0'},
+    @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.3.0.0'},
+    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '11.4.0.0'},
+    @{ModuleName = 'xDnsServer'; ModuleVersion = '1.9.0.0'},
+    @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
+    @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
+)
+
+# DSC resources to export from this module
+DscResourcesToExport = @(
+    'Browser',
+    'DotNetFramework',
+    'SqlServer',
+    'WindowsDnsServer',
+    'WindowsFirewall',
+    'WindowsServer'
+)
+
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = 'Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList'
+FunctionsToExport = @(
+    'Get-OrgSettingsObject',
+    'Get-DomainName',
+    'Get-StigList',
+    'New-StigCheckList'
+)
+
+# Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
+CmdletsToExport = @()
+
+# Variables to export from this module
+VariablesToExport = @()
+
+# Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
+AliasesToExport = @()
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
@@ -52,7 +87,24 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'Update IIS Server STIG V-76723.a with correct value'
+        ReleaseNotes = '* Added a Document module to automatically create a Stig Checklist (EXPERIMENTAL)
+* Merged PowerStigDsc into PowerStig so there is only one module to maintain
+  * Replaced PowerStig Technology Class with Enumeration
+  * Added script module back to manifest
+  * Added DotNetFramework composite resource
+
+* Added the following STIGs
+  * Windows Server 2012R2 MS STIG V2R13
+  * Windows Server 2012R2 DC STIG V2R13
+  * Windows 2012 DNS V1R10
+  * Windows Domain V2R10
+  * Windows Forest V2R8
+  * IE11-V1R16
+
+* Corrected parsing of rule V-46477 in the IE STIGs
+  * Updated StigData
+  * Bug fixes
+  * Removed Windows Server 2012R2 MS and DC StigData v2.9'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

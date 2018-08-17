@@ -16,10 +16,14 @@ Import-Module $modulePath -Force
 
 Describe "$ModuleName module" {
 
+    It 'Should be a Script Module' {
+        (Get-Module -Name $script:modulePath -ListAvailable).ModuleType | Should Be 'Script'
+    }
+
     Context 'Exported Commands' {
 
         $commands = (Get-Command -Module $ModuleName).Name
-        $exportedCommands = @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList')
+        $exportedCommands = @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList', 'New-StigCheckList')
 
         foreach ($export in $exportedCommands)
         {

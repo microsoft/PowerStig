@@ -10,9 +10,9 @@ function Get-RuleTypeMatchList
 {
     [CmdletBinding()]
     [OutputType([RuleType[]])]
-    Param
+    param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [String]
         $CheckContent
     )
@@ -89,7 +89,8 @@ function Get-RuleTypeMatchList
             $PSItem -NotMatch "Select the Group Policy object in the left pane" -and
             $PSItem -NotMatch "Deny log on through Remote Desktop Services" -and
             $PSItem -NotMatch "Interview the IAM" -and
-            $PSItem -NotMatch "InetMgr\.exe"
+            $PSItem -NotMatch "InetMgr\.exe" -and
+            $PSItem -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""."
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::PermissionRule )
@@ -283,7 +284,7 @@ function Get-StigRuleResource
     [OutputType([String])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [RuleType]
         $RuleType
     )
@@ -323,13 +324,13 @@ function Get-StigRuleResource
     .EXAMPLE
         Get-IISLoggingRuleDscResource -StigTitle "IIS 8.5 Server Security Technical Implementation Guide"
 #>
-function Get-IISLoggingRuleDscResource 
+function Get-IISLoggingRuleDscResource
 {
     [CmdletBinding()]
     [OutputType([String])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [String]
         $StigTitle
@@ -359,7 +360,7 @@ function Get-PermissionRuleDscResource
     [OutputType([String])]
     param
     (
-        [parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true)]
         [String]
         $Path
     )
@@ -450,12 +451,12 @@ function Test-DuplicateRule
     [OutputType([Boolean])]
     param
     (
-        [parameter( Mandatory = $true )]
+        [Parameter( Mandatory = $true )]
         [AllowNull()]
         [object]
         $ReferenceObject,
 
-        [parameter( Mandatory = $true )]
+        [Parameter( Mandatory = $true )]
         [object]
         $DifferenceObject
     )

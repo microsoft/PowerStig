@@ -1,4 +1,6 @@
-#Requires -Version 5.0
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+#Requires -Version 5.1
 
 <#
     A funny note if you have OCD. The order of the dot sourced files is important due to the way
@@ -30,8 +32,8 @@ using module .\Module\Convert.WebConfigurationPropertyRule\Convert.WebConfigurat
 using module .\Module\Convert.WindowsFeatureRule\Convert.WindowsFeatureRule.psm1
 using module .\Module\Convert.WinEventLogRule\Convert.WinEventLogRule.psm1
 using module .\Module\Convert.WmiRule\Convert.WmiRule.psm1
-# load the public functions
 
+# load the public functions
 Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Convert.Main" -Filter '*.ps1' ) )
 {
     Write-Verbose "Loading $($supportFile.FullName)"
