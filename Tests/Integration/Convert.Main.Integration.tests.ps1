@@ -490,8 +490,6 @@ try
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 5
-            IisLoggingRule               = $null
-            ManualRule                   = 4
             MimeTypeRule                 = $null
             PermissionRule               = $null
             ProcessMitigationRule        = $null
