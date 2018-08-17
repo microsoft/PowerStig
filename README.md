@@ -4,10 +4,10 @@
 
 |Name|Description|Published to PS Gallery|
 | ---- | ---- | --- |
-|[PowerStig.Convert](#PowerStig.Convert) | Extract configuration objects from the xccdf | No
-|[PowerStig.Data](#PowerStig.Data) | A PowerShell class to access the PowerSTIG "database" | Yes
-|[PowerStig.DSC](#PowerStig.DSC) | Compsite DSC resources to apply and/or audit STIG settings | Yes
-|[PowerStig.Document](#PowerStig.Document) | An experimental module to create prefilled out checklists | Yes
+|[PowerStig.Convert](#powerstigconvert) | Extract configuration objects from the xccdf | No
+|[PowerStig.Data](#powerstigdata) | A PowerShell class to access the PowerSTIG "database" | Yes
+|[PowerStig.DSC](#powerstigdsc) | Compsite DSC resources to apply and/or audit STIG settings | Yes
+|[PowerStig.Document](#powerstigdocument) | An experimental module to create prefilled out checklists | Yes
 
 This project has adopted the [Microsoft Open Source Code of Conduct](
   https://opensource.microsoft.com/codeofconduct/).
@@ -18,8 +18,8 @@ or comments.
 
 |Branch|Status|Description|
 | ---- | ---- | --- |
-| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) | Ccontains the latest release - no contributions should be made directly to this branch. |
-| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) | Where contributions should be proposed by contributors as pull requests. This branch is merged into the master branch, and be released to [PowerShell Gallery](https://www.powershellgallery.com/). |
+| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) | Ccontains the latest release - no contributions are made directly to this branch. |
+| dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) | Where contributions should be proposed by contributors as pull requests. This branch is merged into the master branch, and be released to PowerShell Gallery. |
 
 ## Released Module
 
@@ -48,7 +48,7 @@ Update-Module -Name PowerStig
 
 ## PowerStig.Convert
 
-PowerStig.Convert is a utility module that we use to generate PowerStig XML to store in [PowerStig.Data](#PowerStig.Data).
+PowerStig.Convert is a utility module that we use to generate PowerStig XML to store in [PowerStig.Data](#powerstigdata).
 The module uses PowerShell classes to extract settings from check-content elements of the xccdf.
 This nested module is NOT published to the PS Gallery.
 The extracted settings are converted into and new PowerStig XML schema.
@@ -71,7 +71,7 @@ For detailed information, please see the [StigData Wiki](https://github.com/Micr
 ## PowerStig.DSC
 
 PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items.
-Each composite uses [PowerStig.Data](#PowerStig.Data) as it's data source.
+Each composite uses [PowerStig.Data](#powerstigdata) as it's data source.
 This allows exceptions, Org settings, and skips to be applied uniformly across all composite resources.
 
 ### Composite Resources
