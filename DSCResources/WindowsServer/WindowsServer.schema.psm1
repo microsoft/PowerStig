@@ -62,7 +62,7 @@ Configuration WindowsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('2.12','2.13')]
+        [ValidateSet('2.12', '2.13')]
         [version]
         $StigVersion,
 
@@ -97,51 +97,34 @@ Configuration WindowsServer
         $SkipRuleType
     )
 
-    if ( $Exception )
-    {
-        $exceptionsObject = [StigException]::ConvertFrom( $Exception )
-    }
-    else
-    {
-        $exceptionsObject = $null
-    }
-
-    if ( $SkipRule )
-    {
-        $skipRuleObject = [SkippedRule]::ConvertFrom( $SkipRule )
-    }
-    else
-    {
-        $skipRuleObject = $null
-    }
-
-    if ( $SkipRuleType )
-    {
-        $skipRuleTypeObject = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
-    }
-    else
-    {
-        $skipRuleTypeObject = $null
-    }
-
-    if ( $OrgSettings )
-    {
-        $orgSettingsObject = Get-OrgSettingsObject -OrgSettings $OrgSettings
-    }
-    else
-    {
-        $orgSettingsObject = $null
-    }
+    ##### BEGIN DO NOT MODIFY #####
+    <#
+        The exception, skipped rule, and organizational settings functionality
+        is universal across all composites, so the code to process it is in a
+        central file that is dot sourced into each composite.
+    #>
+    $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
+    $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
+    . $userSettingsPath
+    ##### END DO NOT MODIFY #####
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole    = [TechnologyRole]::New( $OsRole, $technologyVersion )
-    $StigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
-                                          $technologyRole, $technologyVersion, $exceptionsObject,
-                                          $skipRuleTypeObject, $skipRuleObject )
-
+    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
+                                          $technologyRole, $technologyVersion, $Exception,
+                                          $SkipRuleType, $SkipRule )
+    #### BEGIN DO NOT MODIFY ####
+    # $StigData is used in the resources that are dot sourced below
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
     $StigData = $StigDataObject.StigXml
+
     # $resourcePath is exported from the helper module in the header
+
+    # This is required to process Skipped rules
+    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
+    . "$resourcePath\windows.Script.skip.ps1"
+    ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AuditPolicyDsc -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.AuditPolicySubcategory.ps1"
@@ -152,7 +135,6 @@ Configuration WindowsServer
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.wmi.ps1"
-    . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0

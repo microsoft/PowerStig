@@ -15,6 +15,7 @@ using module .\Module\Convert.AuditPolicyRule\Convert.AuditPolicyRule.psm1
 using module .\Module\Convert.DnsServerRootHintRule\Convert.DnsServerRootHintRule.psm1
 using module .\Module\Convert.DnsServerSettingRule\Convert.DnsServerSettingRule.psm1
 using module .\Module\Convert.DocumentRule\Convert.DocumentRule.psm1
+using module .\Module\Convert.FileContentRule\Convert.FileContentRule.psm1
 using module .\Module\Convert.GroupRule\Convert.GroupRule.psm1
 using module .\Module\Convert.IISLoggingRule\Convert.IISLoggingRule.psm1
 using module .\Module\Convert.ManualRule\Convert.ManualRule.psm1

@@ -11,3 +11,4 @@ Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath 'Tools\TestHe
     the unit tests can run successfully.
 #>
 [System.Collections.ArrayList] $global:stigSettings = @()
+$global:StigRuleGlobal = @{ID = 'V-1000'}
