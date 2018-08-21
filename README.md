@@ -123,6 +123,7 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Added SkipRule functionality to all composite resources
 * Added StigData for FireFox STIG V4R21
 
 ### 2.0.0.0
