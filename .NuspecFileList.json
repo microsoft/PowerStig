@@ -8,10 +8,6 @@
         "target": ""
     },
     {
-        "src": "PowerStig.Document.psm1",
-        "target": ""
-    },
-    {
         "src": "README.md",
         "target": ""
     },
