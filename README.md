@@ -123,6 +123,8 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Added StigData for FireFox STIG V4R21
+
 ### 2.0.0.0
 
 * Added a Document module to automatically create a Stig Checklist (EXPERIMENTAL)

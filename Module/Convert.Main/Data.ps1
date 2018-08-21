@@ -52,5 +52,6 @@ data DscResourceModule
         WindowsFeatureRule              = PSDesiredStateConfiguration
         WinEventLogRule                 = xWinEventLog
         WmiRule                         = PSDesiredStateConfiguration
+        FileContentRule                 = FileContentDsc
 '@
 }
