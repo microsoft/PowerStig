@@ -3,7 +3,7 @@
     skipped rules, and organizational objects that were provided to the composite
     and converts then into the approperate class for the StigData class constructor
 #>
-Switch ($PSBoundParameters.Keys)
+Switch ($PSCmdlet.MyInvocation.BoundParameters.Keys)
 {
     'Exception'
     {
