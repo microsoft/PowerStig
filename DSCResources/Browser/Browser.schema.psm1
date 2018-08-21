@@ -43,7 +43,7 @@ Configuration Browser
         $BrowserVersion,
 
         [Parameter()]
-        [ValidateSet('1.13','1.15','1.16')]
+        [ValidateSet('1.13', '1.15', '1.16')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -66,31 +66,35 @@ Configuration Browser
         $SkipRuleType
     )
 
+    ##### BEGIN DO NOT MODIFY #####
     <#
-        This file is dot sourced here becasue the code it contains applies
-        to all composites. It simply processes the exceptions, skipped rules,
-        and organizational objects that were provided to the composite and
-        converts then into the approperate class for the StigData class
-        constructor
+        The exception, skipped rule, and organizational settings functionality
+        is universal across all composites, so the code to process it is in a
+        central file that is dot sourced into each composite.
     #>
-    . ..\stigdata.usersettings.ps1
+    $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
+    $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
+    . $userSettingsPath
+    ##### END DO NOT MODIFY #####
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( 'All', $technology )
     $technologyRole    = [TechnologyRole]::New( $BrowserVersion, $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
-
+    #### BEGIN DO NOT MODIFY ####
+    # $StigData is used in the resources that are dot sourced below
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments")]
     $StigData = $StigDataObject.StigXml
+
     # $resourcePath is exported from the helper module in the header
+
+    # This is required to process Skipped rules
+    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
+    . "$resourcePath\windows.Script.skip.ps1"
+    ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Registry.ps1"
-
-    ## BEGIN DO NOT REMOVE
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    # This is required to process Skipped rules
-    . "$resourcePath\windows.Script.skip.ps1"
-    ## END DO NOT REMOVE
 }

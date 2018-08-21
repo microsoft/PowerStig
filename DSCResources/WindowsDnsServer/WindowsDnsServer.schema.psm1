@@ -51,7 +51,7 @@ Configuration WindowsDnsServer
         $OsVersion,
 
         [Parameter()]
-        [ValidateSet('1.7','1.9','1.10')]
+        [ValidateSet('1.7', '1.9', '1.10')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -87,24 +87,34 @@ Configuration WindowsDnsServer
         $SkipRuleType
     )
 
+    ##### BEGIN DO NOT MODIFY #####
     <#
-        This file is dot sourced here becasue the code it contains applies
-        to all composites. It simply processes the exceptions, skipped rules,
-        and organizational objects that were provided to the composite and
-        converts then into the approperate class for the StigData class
-        constructor
+        The exception, skipped rule, and organizational settings functionality
+        is universal across all composites, so the code to process it is in a
+        central file that is dot sourced into each composite.
     #>
-    . ..\stigdata.usersettings.ps1
+    $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
+    $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
+    . $userSettingsPath
+    ##### END DO NOT MODIFY #####
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole    = [TechnologyRole]::New( "DNS", $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
+    #### BEGIN DO NOT MODIFY ####
+    # $StigData is used in the resources that are dot sourced below
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments")]
+    $StigData = $StigDataObject.StigXml
 
-    $stigData = $stigDataObject.StigXml
     # $resourcePath is exported from the helper module in the header
+
+    # This is required to process Skipped rules
+    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
+    . "$resourcePath\windows.Script.skip.ps1"
+    ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.9.0.0
     . "$resourcePath\windows.xDnsServerSetting.ps1"
@@ -112,7 +122,6 @@ Configuration WindowsDnsServer
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.RootHint.ps1"
-    . "$resourcePath\windows.Script.skip.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
