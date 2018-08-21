@@ -261,7 +261,7 @@ function Get-StigDataRootPath
 {
     param ( )
 
-    $projectRoot = Split-Path -Path ( Split-Path -Path ( (Split-Path -Path $PsScriptRoot) ) )
+    $projectRoot = Split-Path -Path (Split-Path -Path $PsScriptRoot)
     return Join-Path -Path $projectRoot -Child 'StigData'
 }
 
