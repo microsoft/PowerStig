@@ -35,7 +35,7 @@ try
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It 'Should be a GroupRule' {
-                $rule.GetType().Name -eq 'GroupRule' | Should Be $true
+                $rule.GetType() | Should Be 'GroupRule'
             }
 
             It "Should return GroupName:'$($rule.GroupName)'" {

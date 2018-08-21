@@ -588,6 +588,10 @@ function Split-BenchmarkId
             $returnId = "Windows_All_" + -join ($Id -split '_')
             continue
         }
+        {$PSItem -match 'FireFox'}
+        {
+            $returnId = "Mozilla_All_FireFox"
+        }
         default
         {
             $returnId = $Id
