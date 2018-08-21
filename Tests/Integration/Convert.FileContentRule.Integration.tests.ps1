@@ -32,8 +32,8 @@ try
             1. The preference name "app.update.enabled" is set to "false" and locked or 
             
             2. If set to "true" then verify that "app.update.url", "app.update.url.details" and "app.update.url.manual" contain url information that point to a trusted server and is not the default setting. (Default would contain mozilla.com or Mozilla.org). 
-            
-            
+
+
             Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding.'
         }
     )

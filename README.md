@@ -123,6 +123,8 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Added StigData for FireFox STIG V4R21
+
 ### 2.0.0.0
 
 * Added a Document module to automatically create a Stig Checklist (EXPERIMENTAL)
@@ -130,8 +132,6 @@ We are especially thankful for those who have contributed pull requests to the c
   * Replaced PowerStig Technology Class with Enumeration
   * Added script module back to manifest
   * Added DotNetFramework composite resource
-* Added FileContentRule class
-* FireFox STIG 4.21
 
 * Added the following STIGs
   * Windows Server 2012R2 MS STIG V2R13
