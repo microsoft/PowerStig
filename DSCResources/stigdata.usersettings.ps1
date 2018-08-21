@@ -1,7 +1,7 @@
 <#
     This file is dot sourced into every composite. It processes the exceptions,
     skipped rules, and organizational objects that were provided to the composite
-    and converts then into the approperate class for the StigData class constructor
+    and converts them into the approperate class for the StigData class constructor
 #>
 Switch ($PSCmdlet.MyInvocation.BoundParameters.Keys)
 {
