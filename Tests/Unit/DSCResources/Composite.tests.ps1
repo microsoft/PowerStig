@@ -2,11 +2,10 @@ $script:DSCModuleName = 'PowerStig'
 # Header
 
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
-Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\TestHelper.psm1') -Force
+Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tests\helper.psm1') -Force
 
 Describe 'Common Tests - Configuration Module Requirements' {
 
-    $Files = Get-ChildItem -Path $script:moduleRoot
     $manifestPath = "$script:moduleRoot\$script:DSCModuleName.psd1"
     $Manifest = Import-PowerShellDataFile -Path $manifestPath
 
