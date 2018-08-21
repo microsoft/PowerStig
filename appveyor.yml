@@ -25,7 +25,7 @@ install:
         ForEach-Object { Install-Module $PSItem.moduleName -RequiredVersion $PSItem.ModuleVersion -Repository PSGallery -Scope CurrentUser -Force }
   - git clone https://github.com/PowerShell/DscResource.Tests
   - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
-  - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\Tools\AppVeyor.psm1"
+  - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\Tools\AppVeyor\AppVeyor.psm1"
   - ps: Invoke-AppveyorInstallTask
 
 #---------------------------------#
