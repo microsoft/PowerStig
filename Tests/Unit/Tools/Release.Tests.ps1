@@ -1,6 +1,11 @@
 $unitTestRoot = Split-Path -Path $PSScriptRoot -Parent
 . "$unitTestRoot\.tests.header.ps1"
 
+if ($PSVersionTable.PSEdition -ne 'Core')
+{
+    return
+}
+
 try
 {
     InModuleScope $script:ModuleName {
