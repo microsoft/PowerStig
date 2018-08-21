@@ -261,7 +261,8 @@ function Get-StigDataRootPath
 {
     param ( )
 
-    return Resolve-Path -Path "$PsScriptRoot\..\StigData"
+    $projectRoot = Split-Path -Path ( Split-Path -Path ( (Split-Path -Path $PsScriptRoot) ) )
+    return Join-Path -Path $projectRoot -Child 'StigData'
 }
 
 <#
@@ -435,6 +436,7 @@ function Get-ValidStigVersionNumbers
 
 Export-ModuleMember -Function @(
     'Split-TestStrings',
+    'Get-StigDataRootPath',
     'Test-Xml',
     'Get-TestStigRule',
     'Get-StigBaseMethods',
