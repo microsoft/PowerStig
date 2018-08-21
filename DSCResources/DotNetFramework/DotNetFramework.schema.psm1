@@ -113,6 +113,6 @@ Configuration DotNetFramework
     $StigData = $StigDataObject.StigXml
 
         # $resourcePath is exported from the helper module in the header
-        Import-DscResource -ModuleName PSDesiredStateConfiguration
-        . "$resourcePath\windows.Registry.ps1"
+        Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+        . "$resourcePath\windows.xRegistry.ps1"
     }
