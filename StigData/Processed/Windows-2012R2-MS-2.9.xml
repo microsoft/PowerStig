@@ -2405,8 +2405,8 @@ TrustedInstaller - Full Control
 Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read &amp; Execute</rawString>
     </Rule>
   </PermissionRule>
-  <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-1075" severity="low" conversionstatus="pass" title="Display Shutdown Button" dscresource="Registry">
+  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-1075" severity="low" conversionstatus="pass" title="Display Shutdown Button" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System</Key>
