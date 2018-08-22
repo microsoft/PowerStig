@@ -25,8 +25,7 @@ install:
         ForEach-Object { Install-Module $PSItem.moduleName -RequiredVersion $PSItem.ModuleVersion -Repository PSGallery -Scope CurrentUser -Force }
   - git clone https://github.com/PowerShell/DscResource.Tests
   - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\DscResource.Tests\AppVeyor.psm1"
-  - git clone https://github.com/Microsoft/PowerStig.Tests
-  - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\PowerStig.Tests\PowerStig.Tests.psd1"
+  - ps: Import-Module "$env:APPVEYOR_BUILD_FOLDER\Tools\AppVeyor\AppVeyor.psm1"
   - ps: Invoke-AppveyorInstallTask
 
 #---------------------------------#
@@ -41,7 +40,7 @@ build: false
 
 test_script:
     - ps: |
-        Invoke-AppveyorTestScriptTask -CodeCoverage -CodeCovIo -ExcludeTag @()
+        Invoke-AppveyorTestScriptTask -CodeCoverage -CodeCovIo -ExcludeTag @('tools')
 
 #---------------------------------#
 #      deployment configuration   #
@@ -49,7 +48,7 @@ test_script:
 
 # scripts to run before deployment
 before_deploy:
-  - ps: PowerStig.Tests\Invoke-AppveyorAfterTestTask
+  - ps: Invoke-PowerStigAppveyorAfterTestTask
 
 for:
 -

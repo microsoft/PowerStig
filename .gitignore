@@ -1,7 +1,9 @@
 # Cloned modules
 DSCResource.Tests
-PowerStig.Tests
 
 # Editors
 .vscode/
 .vs/
+
+# local preference scripts/utilities
+.local/
