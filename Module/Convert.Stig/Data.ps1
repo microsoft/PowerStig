@@ -14,7 +14,7 @@ data DscResource
         MimeTypeRule                    = xIisMimeTypeMapping
         ManualRule                      = None
         ProcessMitigationRule           = ProcessMitigation
-        RegistryRule                    = Registry
+        RegistryRule                    = xRegistry
         SecurityOptionRule              = SecurityOption
         ServiceRule                     = xService
         SqlScriptQueryRule              = SqlScriptQuery
