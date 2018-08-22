@@ -303,21 +303,9 @@ function Get-PermissionSetScript
         $CheckContent
     )
 
-    $fix = $FixText -join " "
+    $permission = ((Get-Query -CheckContent $CheckContent)[0] -split "'")[1]
 
-    $query = ($fix -split "script: ")[1]
-
-    $return = ($query -split "((?<=\>)|(?<=\>;)) (?=G)")[0]
-
-    if ($return -notmatch "USE master;")
-    {
-        $return = $return -replace "master", "master;"
-    }
-
-    if ($return -notmatch ";$")
-    {
-        $return = $return + ";"
-    }
+    $return = "DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = '{0}' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc <> 'SERVER_ROLE' AND who.name <> 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );" -f $permission
 
     return $return
 }
