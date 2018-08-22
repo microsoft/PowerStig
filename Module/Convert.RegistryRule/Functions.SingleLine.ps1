@@ -208,6 +208,11 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
+        $valueName = $CheckContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
+    }
+    
+    if (-not $valueName)
+    {
         $valueName = $CheckContent | Select-String -Pattern '((?<=for\s).*)'
     }
 
