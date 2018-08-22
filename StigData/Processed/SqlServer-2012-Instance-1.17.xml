@@ -2005,18 +2005,18 @@ If any DBA or administrator has authorization for non- administrative access to 
 
 From a Command Prompt, type services.msc, and press [ENTER]. Scroll down to the SQL Server Services. SQL Server Services begin with SQL.  The following services, when present, should be listed as follows:
 
-Service Name:					Log On As:
-SQL Full-text Filter Daemon Launcher:		NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server [stand-alone]:			NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server [cluster]:				&lt;domain&gt;\&lt;CustomServiceAccount&gt;
-SQL Server Agent:				NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Analysis Services:			NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Browser:				Local Service
-SQL Server Distributed Replay Client:		NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Distributed Replay Controller:	NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Integration Services 11.0:		NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Reporting Services:			NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server VSS Writer:				Local System
+Service Name:                    Log On As:
+SQL Full-text Filter Daemon Launcher:        NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server [stand-alone]:            NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server [cluster]:                &lt;domain&gt;\&lt;CustomServiceAccount&gt;
+SQL Server Agent:                NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Analysis Services:            NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Browser:                Local Service
+SQL Server Distributed Replay Client:        NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Distributed Replay Controller:    NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Integration Services 11.0:        NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Reporting Services:            NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server VSS Writer:                Local System
 
 UNIQUE CUSTOM ACCOUNT refers to an account with which no other service listed in the services.msc window is assigned. If any account requiring a unique custom account uses an account that any other service utilizes (regardless of service status), this is a finding.</RawString>
     </Rule>
@@ -2048,53 +2048,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges to the 'Unsafe assemb
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2127,54 +2127,54 @@ If any user accounts have direct access to the 'Alter any availability group' pe
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2206,53 +2206,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2284,53 +2284,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2362,53 +2362,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2440,53 +2440,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2518,53 +2518,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2598,53 +2598,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2676,53 +2676,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2754,53 +2754,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2858,53 +2858,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -2938,53 +2938,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3016,53 +3016,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3094,53 +3094,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3172,53 +3172,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3250,53 +3250,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3328,53 +3328,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3406,53 +3406,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3484,53 +3484,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3562,53 +3562,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3640,53 +3640,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3718,53 +3718,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -3796,53 +3796,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND    who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
     </Rule>
@@ -4312,54 +4312,54 @@ If any user accounts have direct access to the 'Alter any endpoint' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any endpoint' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4395,54 +4395,54 @@ If any user accounts have direct access to the 'Alter any database' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any database' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4478,54 +4478,54 @@ If any user accounts have direct access to the 'Alter any credential' permission
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any credential' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4561,54 +4561,54 @@ If any user accounts have direct access to the 'Alter any connection' permission
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any connection' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4644,54 +4644,54 @@ If any user accounts have direct access to the 'Alter server state' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter server state' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4727,54 +4727,54 @@ If any user accounts have direct access to the 'Alter any event notification' pe
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any event notification' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4810,54 +4810,54 @@ If any user accounts have direct access to the 'Alter any server audit' permissi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any server audit' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4893,54 +4893,54 @@ If any user accounts have direct access to the 'Authenticate Server' permission,
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'AUTHENTICATE SERVER' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -4976,54 +4976,54 @@ If any user accounts have direct access to the 'Administer bulk operations' perm
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Administer bulk operations' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5059,54 +5059,54 @@ If any user accounts have direct access to the 'Create endpoint' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Create endpoint' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5142,54 +5142,54 @@ If any user accounts have direct access to the 'Create DDL Event Notification' p
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Create DDL Event Notification' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5225,54 +5225,54 @@ If any user accounts have direct access to the 'Create availability group' permi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Create availability group' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5308,54 +5308,54 @@ If any user accounts have direct access to the 'Create any database' permission,
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Create any database' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5391,54 +5391,54 @@ If any user accounts have direct access to the 'Control server' permission, this
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Control server' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5474,54 +5474,54 @@ If any user accounts have direct access to the 'Alter any linked server' permiss
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any linked server' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5557,54 +5557,54 @@ If any user accounts have direct access to the 'Alter any event session' permiss
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any event session' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5640,54 +5640,54 @@ If any user accounts have direct access to the 'Alter trace' permission, this is
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter trace' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5723,54 +5723,54 @@ If any user accounts have direct access to the 'Alter Settings' permission, this
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter Settings' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5806,54 +5806,54 @@ If any user accounts have direct access to the 'Create trace event notification'
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Create trace event notification' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5889,54 +5889,54 @@ If any user accounts have direct access to the 'Alter resources' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter resources' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -5972,54 +5972,54 @@ If any user accounts have direct access to the 'External access assembly' permis
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'External access assembly' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6055,54 +6055,54 @@ If any user accounts have direct access to the 'Alter any login' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any login' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6138,54 +6138,54 @@ If any user accounts have direct access to the 'Shutdown' permission, this is a 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Shutdown' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6221,54 +6221,54 @@ If any user accounts have direct access to the 'Unsafe assembly' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Unsafe assembly' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6304,54 +6304,54 @@ If any user accounts have direct access to the 'Create server role' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Create server role' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6387,54 +6387,54 @@ If any user account has direct access to the 'View server state' permission, and
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'View server state' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6470,54 +6470,54 @@ If any user accounts have direct access to the 'Alter any server role' permissio
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'Alter any server role' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
@@ -6553,54 +6553,54 @@ If any user accounts have direct access to the 'View any definition' permission,
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</RawString>
       <SetScript>DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = 'View any definition' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc &lt;&gt; 'SERVER_ROLE' AND who.name &lt;&gt; 'sa' ORDER BY who.name OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );</SetScript>
