@@ -125,6 +125,9 @@ We are especially thankful for those who have contributed pull requests to the c
 
 * Added SkipRule functionality to all composite resources
 * Added StigData for FireFox STIG V4R21
+* Added Sql2012 1.17 to Archive and processed
+* Updated Sql2012 1.16 to fix broken rules
+* Removed Sql2012 1.14 from archives to comply with 3x backwards STIG policy
 
 ### 2.0.0.0
 
