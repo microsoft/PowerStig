@@ -3,34 +3,37 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name DnsServerRootHintRule
 
-Foreach ( $rule in $rules )
+if ($rules)
 {
-    Script (Get-ResourceTitle -Rule $rule)
+    foreach ( $rule in $rules )
     {
-        SetScript =
+        Script (Get-ResourceTitle -Rule $rule)
         {
-            Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."} | Remove-DnsServerRootHint
-        }
-
-        TestScript =
-        {
-            $result = $false
-            $targetResource = Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."}
-            if ($targetResource.Count -eq 0) {
-                $result = $True
+            SetScript =
+            {
+                Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."} | Remove-DnsServerRootHint
             }
 
-            Return $result
-        }
+            TestScript =
+            {
+                $result = $false
+                $targetResource = Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."}
+                if ($targetResource.Count -eq 0) {
+                    $result = $True
+                }
 
-        GetScript =
-        {
-            $returnString = $null
-            Foreach ( $rootHint in (Get-DnsServerRootHint) ) {
-                $returnString += $rootHint.ipaddress.hostName + ";"
+                Return $result
             }
 
-            Return  @{ Result = $returnString }
+            GetScript =
+            {
+                $returnString = $null
+                Foreach ( $rootHint in (Get-DnsServerRootHint) ) {
+                    $returnString += $rootHint.ipaddress.hostName + ";"
+                }
+
+                Return  @{ Result = $returnString }
+            }
         }
     }
 }

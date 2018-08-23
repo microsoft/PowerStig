@@ -3,17 +3,20 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name AccountPolicyRule
 
-Foreach ( $rule in $rules )
+if ($rules)
 {
-    $policy = $rule.PolicyName -replace "(:)*\s","_"
+    foreach ( $rule in $rules )
+    {
+        $policy = $rule.PolicyName -replace "(:)*\s","_"
 
-    $scriptblock = [scriptblock]::Create("
-        AccountPolicy '$(Get-ResourceTitle -Rule $rule)'
-        {
-            Name = '$policy'
-            $policy = '$($rule.PolicyValue)'
-        }"
-    )
+        $scriptblock = [scriptblock]::Create("
+            AccountPolicy '$(Get-ResourceTitle -Rule $rule)'
+            {
+                Name = '$policy'
+                $policy = '$($rule.PolicyValue)'
+            }"
+        )
 
-    $scriptblock.Invoke()
+        $scriptblock.Invoke()
+    }
 }

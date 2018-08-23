@@ -3,12 +3,15 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name ServiceRule
 
-Foreach( $rule in $rules )
+if ($rules)
 {
-    xService (Get-ResourceTitle -Rule $rule)
+    foreach( $rule in $rules )
     {
-        Name        = $rule.ServiceName
-        State       = $rule.ServiceState
-        StartupType = $rule.StartupType
+        xService (Get-ResourceTitle -Rule $rule)
+        {
+            Name        = $rule.ServiceName
+            State       = $rule.ServiceState
+            StartupType = $rule.StartupType
+        }
     }
 }

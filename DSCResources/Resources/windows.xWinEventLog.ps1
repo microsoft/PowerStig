@@ -3,11 +3,14 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name WinEventLogRule
 
-Foreach( $rule in $rules )
+if ($rules)
 {
-    xWinEventLog (Get-ResourceTitle -Rule $rule)
+    foreach( $rule in $rules )
     {
-        LogName     = $rule.LogName
-        IsEnabled   = [boolean]$($rule.IsEnabled)
+        xWinEventLog (Get-ResourceTitle -Rule $rule)
+        {
+            LogName     = $rule.LogName
+            IsEnabled   = [boolean]$($rule.IsEnabled)
+        }
     }
 }

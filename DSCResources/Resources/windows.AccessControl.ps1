@@ -3,104 +3,107 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name PermissionRule
 
-Foreach ( $rule in $rules )
+if ($rules)
 {
-    # Determine PermissionRule type and handle
-    Switch ($rule.dscresource)
+    foreach ( $rule in $rules )
     {
-        'RegistryAccessEntry'
+        # Determine PermissionRule type and handle
+        Switch ($rule.dscresource)
         {
-            RegistryAccessEntry (Get-ResourceTitle -Rule $rule)
+            'RegistryAccessEntry'
             {
-                Path = $rule.Path
-                Force = [bool]$rule.Force
-                AccessControlList = $(
+                RegistryAccessEntry (Get-ResourceTitle -Rule $rule)
+                {
+                    Path = $rule.Path
+                    Force = [bool]$rule.Force
+                    AccessControlList = $(
 
-                    foreach ($acentry in $rule.AccessControlEntry.Entry)
-                    {
-                        AccessControlList
+                        foreach ($acentry in $rule.AccessControlEntry.Entry)
                         {
-                            Principal = $acentry.Principal
-                            ForcePrincipal = [bool]$rule.ForcePrincipal
-                            AccessControlEntry = @(
-                                AccessControlEntry
-                                {
-                                    AccessControlType = $(
-                                        if (-not ([string]::IsNullOrEmpty($acentry.Type)))
-                                        {
-                                            $acentry.Type
-                                        }
-                                        else
-                                        {
-                                            'Allow'
-                                        }
-                                    )
-                                    Inheritance = $(
-                                        if (-not ([string]::IsNullOrEmpty($acentry.Inheritance)))
-                                        {
-                                            $acentry.Inheritance
-                                        }
-                                        else
-                                        {
-                                            'This Key and Subkeys'
-                                        }
-                                    )
-                                    Rights = $acentry.Rights.Split(',')
-                                    Ensure = 'Present'
-                                }
-                            )
+                            AccessControlList
+                            {
+                                Principal = $acentry.Principal
+                                ForcePrincipal = [bool]$rule.ForcePrincipal
+                                AccessControlEntry = @(
+                                    AccessControlEntry
+                                    {
+                                        AccessControlType = $(
+                                            if (-not ([string]::IsNullOrEmpty($acentry.Type)))
+                                            {
+                                                $acentry.Type
+                                            }
+                                            else
+                                            {
+                                                'Allow'
+                                            }
+                                        )
+                                        Inheritance = $(
+                                            if (-not ([string]::IsNullOrEmpty($acentry.Inheritance)))
+                                            {
+                                                $acentry.Inheritance
+                                            }
+                                            else
+                                            {
+                                                'This Key and Subkeys'
+                                            }
+                                        )
+                                        Rights = $acentry.Rights.Split(',')
+                                        Ensure = 'Present'
+                                    }
+                                )
+                            }
                         }
-                    }
-                )
+                    )
+                }
+                break
             }
-            break
-        }
-        'NTFSAccessEntry'
-        {
-            NTFSAccessEntry (Get-ResourceTitle -Rule $rule)
+            'NTFSAccessEntry'
             {
-                Path = $rule.Path
-                Force = [bool]$rule.Force
-                AccessControlList = $(
+                NTFSAccessEntry (Get-ResourceTitle -Rule $rule)
+                {
+                    Path = $rule.Path
+                    Force = [bool]$rule.Force
+                    AccessControlList = $(
 
-                    foreach ($acentry in $rule.AccessControlEntry.Entry)
-                    {
-                        NTFSAccessControlList
+                        foreach ($acentry in $rule.AccessControlEntry.Entry)
                         {
-                            Principal = $acentry.Principal
-                            ForcePrincipal = [bool]$rule.ForcePrincipal
-                            AccessControlEntry = @(
-                                NTFSAccessControlEntry
-                                {
-                                    AccessControlType = $(
-                                        if (-not ([string]::IsNullOrEmpty($acentry.Type)))
-                                        {
-                                            $acentry.Type
-                                        }
-                                        else
-                                        {
-                                            'Allow'
-                                        }
-                                    )
-                                    Inheritance = $(
-                                        if (-not ([string]::IsNullOrEmpty($acentry.Inheritance)))
-                                        {
-                                            $acentry.Inheritance
-                                        }
-                                        else
-                                        {
-                                            'This folder only'
-                                        }
-                                    )
-                                    FileSystemRights = $acentry.Rights.Split(',')
-                                    Ensure = 'Present'
-                                }
-                            )
+                            NTFSAccessControlList
+                            {
+                                Principal = $acentry.Principal
+                                ForcePrincipal = [bool]$rule.ForcePrincipal
+                                AccessControlEntry = @(
+                                    NTFSAccessControlEntry
+                                    {
+                                        AccessControlType = $(
+                                            if (-not ([string]::IsNullOrEmpty($acentry.Type)))
+                                            {
+                                                $acentry.Type
+                                            }
+                                            else
+                                            {
+                                                'Allow'
+                                            }
+                                        )
+                                        Inheritance = $(
+                                            if (-not ([string]::IsNullOrEmpty($acentry.Inheritance)))
+                                            {
+                                                $acentry.Inheritance
+                                            }
+                                            else
+                                            {
+                                                'This folder only'
+                                            }
+                                        )
+                                        FileSystemRights = $acentry.Rights.Split(',')
+                                        Ensure = 'Present'
+                                    }
+                                )
+                            }
                         }
-                    }
-                )
+                    )
+                }
+                break
             }
-            break
         }
     }
 }

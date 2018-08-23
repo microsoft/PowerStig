@@ -3,39 +3,41 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name WindowsFeatureRule
 
-$ensureMapping = @{
-    Present = 'Enable'
-    Absent  = 'Disable'
-}
-
-foreach ( $rule in $rules )
+if ($rules)
 {
-    <#
-        This is here to address the issue that WindowsOptionalFeature is writen
-        to not run on a DC, and WindowsFeature does not run on client OS. In the
-        future if WindowsOptionalFeature is updated to allow it to run a on DC
-        lines 17-31 can be removed.
-    #>
-    if ( $StigData.DISASTIG.id -match 'MS|DC' )
-    {
-        if ( $rule.FeatureName -eq 'SMB1Protocol' )
-        {
-            $rule.FeatureName = 'FS-SMB1'
-        }
-
-        WindowsFeature (Get-ResourceTitle -Rule $rule)
-        {
-            Name   = $rule.FeatureName
-            Ensure = $rule.InstallState
-        }
+    $ensureMapping = @{
+        Present = 'Enable'
+        Absent  = 'Disable'
     }
-    else
+
+    foreach ( $rule in $rules )
     {
-        WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
+        <#
+            This is here to address the issue that WindowsOptionalFeature is writen
+            to not run on a DC, and WindowsFeature does not run on client OS. In the
+            future if WindowsOptionalFeature is updated to allow it to run a on DC
+            lines 17-31 can be removed.
+        #>
+        if ( $StigData.DISASTIG.id -match 'MS|DC' )
         {
-            Name   = $rule.FeatureName
-            Ensure = $ensureMapping.($rule.InstallState)
+            if ( $rule.FeatureName -eq 'SMB1Protocol' )
+            {
+                $rule.FeatureName = 'FS-SMB1'
+            }
+
+            WindowsFeature (Get-ResourceTitle -Rule $rule)
+            {
+                Name   = $rule.FeatureName
+                Ensure = $rule.InstallState
+            }
+        }
+        else
+        {
+            WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
+            {
+                Name   = $rule.FeatureName
+                Ensure = $ensureMapping.($rule.InstallState)
+            }
         }
     }
 }
-

@@ -3,16 +3,19 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name RegistryRule
 
-Foreach ( $rule in $rules )
+if ($rules)
 {
-    $valueData = $rule.ValueData.Split("{;}")
-
-    Registry (Get-ResourceTitle -Rule $rule)
+    foreach ( $rule in $rules )
     {
-        Key       = $rule.Key
-        ValueName = $rule.ValueName
-        ValueData = $valueData
-        ValueType = $rule.ValueType
-        Ensure    = $rule.Ensure
+        $valueData = $rule.ValueData.Split("{;}")
+
+        Registry (Get-ResourceTitle -Rule $rule)
+        {
+            Key       = $rule.Key
+            ValueName = $rule.ValueName
+            ValueData = $valueData
+            ValueType = $rule.ValueType
+            Ensure    = $rule.Ensure
+        }
     }
 }
