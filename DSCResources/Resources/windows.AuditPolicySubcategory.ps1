@@ -3,12 +3,15 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name AuditPolicyRule
 
-Foreach ( $rule in $rules )
+if ($rules)
 {
-    AuditPolicySubcategory (Get-ResourceTitle -Rule $rule)
+    foreach ( $rule in $rules )
     {
-        Name      = $rule.Subcategory
-        AuditFlag = $rule.AuditFlag
-        Ensure    = $rule.Ensure
+        AuditPolicySubcategory (Get-ResourceTitle -Rule $rule)
+        {
+            Name      = $rule.Subcategory
+            AuditFlag = $rule.AuditFlag
+            Ensure    = $rule.Ensure
+        }
     }
 }

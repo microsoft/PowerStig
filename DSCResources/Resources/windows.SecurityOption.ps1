@@ -3,17 +3,20 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name SecurityOptionRule
 
-Foreach ( $rule in $rules )
+if ($rules)
 {
-    $policy = $rule.OptionName -replace "(\/)|(:)*\s", "_"
+    foreach ( $rule in $rules )
+    {
+        $policy = $rule.OptionName -replace "(\/)|(:)*\s", "_"
 
-    $scriptblock = ([scriptblock]::Create("
-        SecurityOption  '$(Get-ResourceTitle -Rule $rule)'
-        {
-            Name = '$policy'
-            $policy = '$($rule.OptionValue)'
-        }")
-    )
+        $scriptblock = ([scriptblock]::Create("
+            SecurityOption  '$(Get-ResourceTitle -Rule $rule)'
+            {
+                Name = '$policy'
+                $policy = '$($rule.OptionValue)'
+            }")
+        )
 
-    $scriptblock.Invoke()
+        $scriptblock.Invoke()
+    }
 }

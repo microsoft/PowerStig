@@ -3,35 +3,38 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name SqlScriptQueryRule
 
-foreach ($instance in $ServerInstance)
+if ($rules)
 {
-    if ($null -ne $Database)
+    foreach ($instance in $ServerInstance)
     {
-        foreach ($db in $Database)
+        if ($null -ne $Database)
         {
-            foreach ( $rule in $rules )
+            foreach ($db in $Database)
             {
-                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                foreach ( $rule in $rules )
                 {
-                    ServerInstance = $Instance
-                    GetQuery       = $rule.GetScript
-                    TestQuery      = $rule.TestScript
-                    SetQuery       = $rule.SetScript
-                    Variable       = $db
+                    SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                    {
+                        ServerInstance = $Instance
+                        GetQuery       = $rule.GetScript
+                        TestQuery      = $rule.TestScript
+                        SetQuery       = $rule.SetScript
+                        Variable       = $db
+                    }
                 }
             }
         }
-    }
-    else
-    {
-        foreach ($rule in $rules)
+        else
         {
-            SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+            foreach ($rule in $rules)
             {
-                ServerInstance = $instance
-                GetQuery       = $rule.GetScript
-                TestQuery      = $rule.TestScript
-                SetQuery       = $rule.SetScript
+                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                {
+                    ServerInstance = $instance
+                    GetQuery       = $rule.GetScript
+                    TestQuery      = $rule.TestScript
+                    SetQuery       = $rule.SetScript
+                }
             }
         }
     }
