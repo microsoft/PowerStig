@@ -213,10 +213,18 @@ function Get-RegistryValueNameFromSingleLineStig
     
     if (-not $valueName)
     {
+        if ($CheckContent -match '(Verify the policy value)')
+        {
+            $valueName = $CheckContent | Select-String -Pattern '(?<=")(.*)(?="\sis)'
+        }
+    }
+
+    if (-not $valueName)
+    {
         $valueName = $CheckContent | Select-String -Pattern '((?<=for\s).*)'
     }
 
-    $valueName = $valueName.Matches.Value.Replace('"', '')
+        $valueName = $valueName.Matches.Value.Replace('"', '')
 
     if ( -not [String]::IsNullOrEmpty( $valueName ) )
     {
