@@ -53,7 +53,7 @@
   <!-- Ensure ''V-14235'' -le '4'-->
   <OrganizationalSetting id="V-14235" value="4" />
   <!-- Ensure 'V-15713' -notmatch '1|2'-->
-  <OrganizationalSetting id="V-15713" value="3" />
+  <OrganizationalSetting id="V-15713" value="0" />
   <!-- Ensure 'V-21956' -le '3'-->
   <OrganizationalSetting id="V-21956" value="3" />
   <!-- Ensure ''V-26359'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
