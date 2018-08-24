@@ -183,7 +183,7 @@ try
             DnsServerSettingRule         = 2
             DocumentRule                 = 19
             FileContentRule              = $null
-            GroupRule                    = $null            
+            GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 64
             MimeTypeRule                 = $null
@@ -343,6 +343,30 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = 9
             WmiRule                      = 1
+        }
+        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
+            AccountPolicyRule            = 9
+            AuditPolicyRule              = 36
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 17
+            FileContentRule              = $null
+            GroupRule                    = 1
+            IisLoggingRule               = $null
+            ManualRule                   = 53
+            MimeTypeRule                 = $null
+            PermissionRule               = 19
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 204
+            SecurityOptionRule           = 5
+            ServiceRule                  = 16
+            SqlScriptQueryRule           = $null
+            UserRightRule                = 36
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = 2
+            WmiRule                      = 2
         }
         'U_IIS_8-5_Site_STIG_V1R2_Manual-xccdf.xml'                   = @{
             AccountPolicyRule            = $null
