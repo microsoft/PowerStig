@@ -126,7 +126,8 @@ SqlServer = 2012
 }
 
 # Footer
-Foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
