@@ -3,12 +3,13 @@
 using module .\..\Common\Common.psm1
 # Header
 
-# This file is not currently in use, but is provided as part of the standard module structure.
-
+<#
+    This file is not currently in use but is provided as part of the standard
+    module structure that loads any module sub-components.
+#>
 # Footer
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-Foreach ($supportFile in $supportFileList)
+Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
