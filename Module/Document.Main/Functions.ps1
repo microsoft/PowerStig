@@ -1,18 +1,28 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+# Header
+
 <#
     .SYNOPSIS
         Automatically creates a Stig Viewer checklist from the DSC results or
         compiled MOF
+
     .PARAMETER ReferenceConfiguration
         The MOF that was compiled with a PowerStig composite
+
     .PARAMETER DscResult
         The resutls of Test-DscConfiguration
+
     .PARAMETER XccdfPath
         The path to the matching xccdf file. This is currently needed since we
         do not pull add xccdf data into PowerStig
+
     .PARAMETER OutputPath
         The location you want the checklist saved to
+
     .PARAMETER Enforcement
          Flag to add additional checklist metadata
+
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -Enforcement DSC
 #>
