@@ -20,9 +20,6 @@
     .PARAMETER OutputPath
         The location you want the checklist saved to
 
-    .PARAMETER Enforcement
-         Flag to add additional checklist metadata
-
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath
 #>
@@ -393,7 +390,7 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
-        {$PSItem -match "^\[(x)Registry\]"}
+        {$PSItem -match "^\[(x)?Registry\]"}
         {
             return "Registry Value = $($setting.ValueData)"
         }
