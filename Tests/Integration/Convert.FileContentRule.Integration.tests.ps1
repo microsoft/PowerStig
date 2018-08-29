@@ -36,6 +36,16 @@ try
 
             Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding.'
         }
+        @{
+            Key          = 'deployment.security.revocation.check'
+            Value        = 'ALL_CERTIFICATES'
+            DscResource  = 'ReplaceText'
+            CheckContent = 'If the system is on the SIPRNet, this requirement is NA. 
+                
+            Navigate to the system-level "deployment.properties" file for JRE. 
+
+            If the key "deployment.security.revocation.check=ALL_CERTIFICATES" is not present, or is set to "PUBLISHER_ONLY", or "NO_CHECK", this is a finding.'
+        }
     )
     #endregion
     #region Tests
