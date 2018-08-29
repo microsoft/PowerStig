@@ -38,7 +38,20 @@ try
 
                 PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT PPS, PPT, DOS, DOT, WKS, BAT, PS, EPS, WCH, WCM, WB1, WB3, RTF, DOC, MDB, MDE, WBK, WB1, WCH, WCM, AD, ADP.'
             }
-        )
+            @{
+                Key          = 'deployment.security.revocation.check*'
+                Value        = 'MultipleRule'
+                CheckContent = 'If the system is on the SIPRNet, this requirement is NA. 
+                
+                Navigate to the system-level "deployment.properties" file for JRE. 
+                
+                The location of the deployment.properties file is defined in <JRE Installation Directory>\Lib\deployment.config 
+                
+                If the key "deployment.security.revocation.check=ALL_CERTIFICATES" is not present, or is set to "PUBLISHER_ONLY", or "NO_CHECK", this is a finding. 
+                
+                If the key "deployment.security.revocation.check.locked" is not present, this is a finding.'
+            }
+       )
         $rule = [FileContentRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
         #endregion
         #region Class Tests
@@ -113,6 +126,8 @@ try
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $keyValuePairs = Get-KeyValuePair -CheckContent $checkContent
                     $result = Test-MultipleFileContentRule -KeyValuePair $checkContent
+                    
+                    <# 'Enable' property of $rule is missing casuing empty string output #>
                     It "Should have Enable equal to: '$($rule.Enable)'" {
 
                         $result | Should Be $true
