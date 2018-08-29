@@ -11,9 +11,9 @@
         The MOF that was compiled with a PowerStig composite
 
     .PARAMETER DscResult
-        The resttls of Test-DscConfiguration
+        The results of Test-DscConfiguration
 
-        .PARAMETER XccdfPath
+    .PARAMETER XccdfPath
         The path to the matching xccdf file. This is currently needed since we
         do not pull add xccdf data into PowerStig
 
