@@ -11,9 +11,9 @@
         The MOF that was compiled with a PowerStig composite
 
     .PARAMETER DscResult
-        The resutls of Test-DscConfiguration
+        The resttls of Test-DscConfiguration
 
-    .PARAMETER XccdfPath
+        .PARAMETER XccdfPath
         The path to the matching xccdf file. This is currently needed since we
         do not pull add xccdf data into PowerStig
 
@@ -24,7 +24,7 @@
          Flag to add additional checklist metadata
 
     .EXAMPLE
-        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath -Enforcement DSC
+        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath
 #>
 function New-StigCheckList
 {
@@ -37,7 +37,7 @@ function New-StigCheckList
         $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'result')]
-        [PSCustomObject]
+        [System.Collections.ArrayList]
         $DscResult,
 
         [Parameter(Mandatory = $true)]
@@ -46,37 +46,33 @@ function New-StigCheckList
 
         [Parameter(Mandatory = $true)]
         [string]
-        $OutputPath,
-
-        [Parameter(Mandatory = $true)]
-        [ValidateSet('DSC', 'GPO')]
-        [string]
-        $Enforcement
+        $OutputPath
     )
 
-    #region Checklist Root
-
-    # Start the XML doc
     $settings = [System.Xml.XmlWriterSettings]::new()
     $settings.Indent = $true
+    $settings.IndentChars = "`t"
+    $settings.NewLineChars = "`n"
     $writer = [System.Xml.XmlWriter]::Create($OutputPath, $settings)
 
     $writer.WriteStartElement('CHECKLIST')
 
+    #region ASSET
+
     $writer.WriteStartElement("ASSET")
 
     $assetElements = [ordered] @{
-        'ROLE'            = 'None'
-        'ASSET_TYPE'      = 'Computing'
-        'HOST_NAME'       = ''
-        'HOST_IP'         = ''
-        'HOST_MAC'        = ''
-        'HOST_GUID'       = ''
-        'HOST_FQDN'       = ''
-        'TECH_AREA'       = ''
-        'TARGET_KEY'      = ''
-        'WEB_OR_DATABASE' = $false
-        'WEB_DB_SITE'     = ''
+        'ROLE' = 'None'
+        'ASSET_TYPE' = 'Computing'
+        'HOST_NAME' = ''
+        'HOST_IP' = ''
+        'HOST_MAC' = ''
+        'HOST_GUID' = ''
+        'HOST_FQDN' = ''
+        'TECH_AREA' = ''
+        'TARGET_KEY' = '2350'
+        'WEB_OR_DATABASE' = 'false'
+        'WEB_DB_SITE' = ''
         'WEB_DB_INSTANCE' = ''
     }
 
@@ -88,59 +84,60 @@ function New-StigCheckList
     }
 
     $writer.WriteEndElement(<#ASSET#>)
+
+    #endregion ASSET
+
     $writer.WriteStartElement("STIGS")
     $writer.WriteStartElement("iSTIG")
+
+    #region STIGS/iSTIG/STIG_INFO
+
     $writer.WriteStartElement("STIG_INFO")
-
-    #endregion
-
-    #region SI Data
 
     $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $XccdfPath
 
     $StigInfoElements = [ordered] @{
-        'version'        = "$($xccdfBenchmarkContent.version)"
+        'version'        = $xccdfBenchmarkContent.version
         'classification' = 'UNCLASSIFIED'
         'customname'     = ''
-        'stigid'         = "$($xccdfBenchmarkContent.id)"
-        'description'    = "$($xccdfBenchmarkContent.description)"
-        'filename'       = "$(Split-Path -Path $XccdfPath -Leaf)"
-        'releaseinfo'    = "$($xccdfBenchmarkContent.'plain-text'.InnerText)"
-        'title'          = "$($xccdfBenchmarkContent.title)"
-        'uuid'           = "$((New-Guid).Guid)"
-        'notice'         = "$($xccdfBenchmarkContent.notice.InnerText)"
-        'source'         = "$($xccdfBenchmarkContent.reference.source)"
+        'stigid'         = $xccdfBenchmarkContent.id
+        'description'    = $xccdfBenchmarkContent.description
+        'filename'       = Split-Path -Path $XccdfPath -Leaf
+        'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
+        'title'          = $xccdfBenchmarkContent.title
+        'uuid'           = (New-Guid).Guid
+        'notice'         = $xccdfBenchmarkContent.notice.InnerText
+        'source'         = $xccdfBenchmarkContent.reference.source
     }
 
     foreach ($StigInfoElement in $StigInfoElements.GetEnumerator())
     {
         $writer.WriteStartElement("SI_DATA")
 
-            $writer.WriteStartElement('SID_NAME')
-            $writer.WriteString($StigInfoElement.name)
-            $writer.WriteEndElement(<#SID_NAME#>)
+        $writer.WriteStartElement('SID_NAME')
+        $writer.WriteString($StigInfoElement.name)
+        $writer.WriteEndElement(<#SID_NAME#>)
 
-            $writer.WriteStartElement('SID_DATA')
-            $writer.WriteString($StigInfoElement.value)
-            $writer.WriteEndElement(<#SID_DATA#>)
+        $writer.WriteStartElement('SID_DATA')
+        $writer.WriteString($StigInfoElement.value)
+        $writer.WriteEndElement(<#SID_DATA#>)
 
         $writer.WriteEndElement(<#SI_DATA#>)
     }
 
     $writer.WriteEndElement(<#STIG_INFO#>)
 
-    #endregion
-    #region Vulnerability
+    #endregion STIGS/iSTIG/STIG_INFO
 
-    $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
+    #region STIGS/iSTIG/VULN[]
 
-    foreach ( $vulnerability in $vulnerabilities )
+    foreach ( $vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent) )
     {
         $writer.WriteStartElement("VULN")
 
         foreach ($attribute in $vulnerability.GetEnumerator())
         {
-            $status = $null
+            $status   = $null
             $comments = $null
 
             if ($attribute.Name -eq 'Vuln_Num')
@@ -150,15 +147,22 @@ function New-StigCheckList
 
             $writer.WriteStartElement("STIG_DATA")
 
-                $writer.WriteStartElement("VULN_ATTRIBUTE")
-                $writer.WriteString($attribute.Name)
-                $writer.WriteEndElement()
+            $writer.WriteStartElement("VULN_ATTRIBUTE")
+            $writer.WriteString($attribute.Name)
+            $writer.WriteEndElement(<#VULN_ATTRIBUTE#>)
 
-                $writer.WriteStartElement("ATTRIBUTE_DATA")
-                $writer.WriteString($attribute.Value)
-                $writer.WriteEndElement()
+            $writer.WriteStartElement("ATTRIBUTE_DATA")
+            $writer.WriteString($attribute.Value)
+            $writer.WriteEndElement(<#ATTRIBUTE_DATA#>)
 
             $writer.WriteEndElement(<#STIG_DATA#>)
+        }
+
+        $statusMap = @{
+            NotReviewed = 'Not_Reviewed'
+            Open = 'Open'
+            NotAFinding = 'NotAFinding'
+            NotApplicable = 'Not_Applicable'
         }
 
         if ($PSCmdlet.ParameterSetName -eq 'mof')
@@ -167,12 +171,12 @@ function New-StigCheckList
 
             if ($setting)
             {
-                $status = 'NotAFinding'
+                $status = $statusMap['NotAFinding']
                 $comments = 'Managed via PowerStigDsc'
             }
             else
             {
-                $status = 'NotReviewed'
+                $status = $statusMap['NotReviewed']
             }
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
@@ -183,18 +187,18 @@ function New-StigCheckList
             {
                 if ($setting.InDesiredState)
                 {
-                    $status = 'NotAFinding'
+                    $status = $statusMap['NotAFinding']
                 }
                 else
                 {
-                    $status = 'Open'
+                    $status = $statusMap['Open']
                 }
 
                 $comments = 'Managed via PowerStigDsc from Live call'
             }
             else
             {
-                $status = 'NotReviewed'
+                $status = $statusMap['NotReviewed']
             }
         }
 
@@ -220,7 +224,8 @@ function New-StigCheckList
 
         $writer.WriteEndElement(<#VULN#>)
     }
-    #endregion
+
+    #endregion STIGS/iSTIG/VULN[]
 
     $writer.WriteEndElement(<#iSTIG#>)
     $writer.WriteEndElement(<#STIGS#>)
@@ -251,32 +256,45 @@ function Get-VulnerabilityList
         [xml]$vulnerabiltyDiscussionElement = "<discussionroot>$($vulnerability.Rule.description)</discussionroot>"
 
         [void] $vulnerabilityList.Add(
-            [ordered]@{
-                'Vuln_Num'                      = "$($vulnerability.id)"
-                'Severity'                      = "$($vulnerability.Rule.severity)"
-                'Group_Title'                   = "$($vulnerability.title)"
-                'Rule_ID'                       = "$($vulnerability.Rule.id)"
-                'Rule_Ver'                      = "$($vulnerability.Rule.version)"
-                'Rule_Title'                    = "$($vulnerability.Rule.title)"
-                'Vuln_Discuss'                  = "$($vulnerabiltyDiscussionElement.discussionroot.VulnDiscussion)"
-                'IA_Controls'                   = "$($vulnerabiltyDiscussionElement.discussionroot.IAControls)"
-                'Check_Content'                 = "$($vulnerability.Rule.check.'check-content')"
-                'Fix_Text'                      = "$($vulnerability.Rule.fixtext.InnerText)"
-                'False_Positives'               = "$($vulnerabiltyDiscussionElement.discussionroot.FalsePositives)"
-                'False_Negatives'               = "$($vulnerabiltyDiscussionElement.discussionroot.FalseNegatives)"
-                'Documentable'                  = "$($vulnerabiltyDiscussionElement.discussionroot.Documentable)"
-                'Mitigations'                   = "$($vulnerabiltyDiscussionElement.discussionroot.Mitigations)"
-                'Potential_Impact'              = "$($vulnerabiltyDiscussionElement.discussionroot.PotentialImpacts)"
-                'Third_Party_Tools'             = "$($vulnerabiltyDiscussionElement.discussionroot.ThirdPartyTools)"
-                'Mitigation_Control'            = "$($vulnerabiltyDiscussionElement.discussionroot.MitigationControl)"
-                'Responsibility'                = "$($vulnerabiltyDiscussionElement.discussionroot.Responsibility)"
-                'Security_Override_Guidance'    = "$($vulnerabiltyDiscussionElement.discussionroot.SeverityOverrideGuidance)"
-                'Check_Content_Ref'             = "$($vulnerability.Rule.check.'check-content-ref'.href)"
-                'Class'                         = 'Unclass'
-                'STIGRef'                       = "$($XccdfBenchmark.title) :: $($XccdfBenchmark.'plain-text'.InnerText)"
-                'TargetKey'                     = "$($vulnerability.Rule.reference.identifier)"
-                'CCI_REF'                       = "$($vulnerability.Rule.ident.InnerText)"
-            }
+            @(
+                [PSCustomObject]@{ Name = 'Vuln_Num'; Value = $vulnerability.id },
+                [PSCustomObject]@{ Name = 'Severity'; Value= $vulnerability.Rule.severity},
+                [PSCustomObject]@{ Name = 'Group_Title'; Value = $vulnerability.title},
+                [PSCustomObject]@{ Name = 'Rule_ID'; Value = $vulnerability.Rule.id},
+                [PSCustomObject]@{ Name = 'Rule_Ver'; Value = $vulnerability.Rule.version},
+                [PSCustomObject]@{ Name = 'Rule_Title'; Value = $vulnerability.Rule.title},
+                [PSCustomObject]@{ Name = 'Vuln_Discuss'; Value = $vulnerabiltyDiscussionElement.discussionroot.VulnDiscussion},
+                [PSCustomObject]@{ Name = 'IA_Controls'; Value = $vulnerabiltyDiscussionElement.discussionroot.IAControls},
+                [PSCustomObject]@{ Name = 'Check_Content'; Value = $vulnerability.Rule.check.'check-content'},
+                [PSCustomObject]@{ Name = 'Fix_Text'; Value = $vulnerability.Rule.fixtext.InnerText},
+                [PSCustomObject]@{ Name = 'False_Positives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalsePositives},
+                [PSCustomObject]@{ Name = 'False_Negatives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalseNegatives},
+                [PSCustomObject]@{ Name = 'Documentable'; Value = $vulnerabiltyDiscussionElement.discussionroot.Documentable},
+                [PSCustomObject]@{ Name = 'Mitigations'; Value = $vulnerabiltyDiscussionElement.discussionroot.Mitigations},
+                [PSCustomObject]@{ Name = 'Potential_Impact'; Value = $vulnerabiltyDiscussionElement.discussionroot.PotentialImpacts},
+                [PSCustomObject]@{ Name = 'Third_Party_Tools'; Value = $vulnerabiltyDiscussionElement.discussionroot.ThirdPartyTools},
+                [PSCustomObject]@{ Name = 'Mitigation_Control'; Value = $vulnerabiltyDiscussionElement.discussionroot.MitigationControl},
+                [PSCustomObject]@{ Name = 'Responsibility'; Value = $vulnerabiltyDiscussionElement.discussionroot.Responsibility},
+                [PSCustomObject]@{ Name = 'Security_Override_Guidance'; Value = $vulnerabiltyDiscussionElement.discussionroot.SeverityOverrideGuidance},
+                [PSCustomObject]@{ Name = 'Check_Content_Ref'; Value = $vulnerability.Rule.check.'check-content-ref'.href },
+                [PSCustomObject]@{ Name = 'Weight'; Value = $vulnerability.Rule.Weight},
+                [PSCustomObject]@{ Name = 'Class'; Value = 'Unclass'},
+                [PSCustomObject]@{ Name = 'STIGRef'; Value = "$($XccdfBenchmark.title) :: $($XccdfBenchmark.'plain-text'.InnerText)"},
+                [PSCustomObject]@{ Name = 'TargetKey'; Value = $vulnerability.Rule.reference.identifier}
+
+                # Some Stigs have multiple Control Correlation Identifiers (CCI)
+                $(
+                    # Extract only the cci entries
+                    $CCIREFList = $vulnerability.Rule.ident |
+                        Where-Object {$PSItem.system -eq 'http://iase.disa.mil/cci'} |
+                            Select-Object 'InnerText' -ExpandProperty 'InnerText'
+
+                    foreach ($CCIREF in $CCIREFList)
+                    {
+                        [PSCustomObject]@{ Name = 'CCI_REF'; Value = $CCIREF}
+                    }
+                )
+            )
         )
     }
 
@@ -375,7 +393,7 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
-        {$PSItem -match "^\[Registry\]"}
+        {$PSItem -match "^\[(x)Registry\]"}
         {
             return "Registry Value = $($setting.ValueData)"
         }
@@ -401,5 +419,3 @@ function Get-FindingDetails
         }
     }
 }
-
-#endregion
