@@ -49,11 +49,11 @@ function New-StigCheckList
         $OutputPath
     )
 
-    $settings = [System.Xml.XmlWriterSettings]::new()
-    $settings.Indent = $true
-    $settings.IndentChars = "`t"
-    $settings.NewLineChars = "`n"
-    $writer = [System.Xml.XmlWriter]::Create($OutputPath, $settings)
+    $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()
+    $xmlWriterSettings.Indent = $true
+    $xmlWriterSettings.IndentChars = "`t"
+    $xmlWriterSettings.NewLineChars = "`n"
+    $writer = [System.Xml.XmlWriter]::Create($OutputPath, $xmlWriterSettings)
 
     $writer.WriteStartElement('CHECKLIST')
 
@@ -359,7 +359,7 @@ function Get-SettingsFromResult
     param
     (
         [Parameter(Mandatory = $true)]
-        [PSCustomObject]
+        [System.Collections.ArrayList]
         $DscResult,
 
         [Parameter(Mandatory = $true)]
