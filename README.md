@@ -123,6 +123,7 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
 * Added SkipRule functionality to all composite resources
 * Added StigData for FireFox STIG V4R21
 * Added Sql2012 1.17 to Archive and processed
