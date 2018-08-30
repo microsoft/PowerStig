@@ -15,8 +15,8 @@ One method for restricting inbound connections is to only allow exceptions for a
 If allowed inbound exceptions are not limited to authorized management systems and remote management hosts, this is a finding.</rawString>
     </Rule>
   </ManualRule>
-  <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-17415.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="Registry">
+  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-17415.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsFirewall\DomainProfile</Key>
