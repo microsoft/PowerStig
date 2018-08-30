@@ -142,7 +142,8 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
-        $valueType = ($CheckContent | Select-String -Pattern 'registry key exists and the([\s\S]*?)value').Matches.Groups[1].Value
+        $valueType = ($CheckContent | Select-String -Pattern 'registry key exists and the([\s\S]*?)value')
+        $ValueType = $ValueType.Matches.Groups[1].Value
     }
 
     if (-not $valueType)
@@ -218,7 +219,7 @@ function Get-RegistryValueNameFromSingleLineStig
     
     if (-not $valueName)
     {
-        if ($CheckContent -match 'the.*value')
+        if ($CheckContent -match 'the value of\s')
         {
             $valueName = $CheckContent | Select-String -Pattern '(?<=")(.*)(?="\sis)'
         }
