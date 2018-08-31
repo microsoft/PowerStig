@@ -123,6 +123,7 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Updated IE STIGs (V-46477) with the decimal value
 * Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
 * Added SkipRule functionality to all composite resources
 * Added StigData for FireFox STIG V4R21

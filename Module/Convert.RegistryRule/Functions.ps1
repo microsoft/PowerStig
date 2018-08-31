@@ -109,9 +109,9 @@ function New-RegistryRule
 
     $registryRule.SetKey()
 
-    $registryRule.SetValueName( )
+    $registryRule.SetValueName()
 
-    $registryRule.SetValueType( )
+    $registryRule.SetValueType()
 
     $registryRule.SetStigRuleResource()
 
@@ -126,7 +126,7 @@ function New-RegistryRule
     else
     {
         # Get the trimmed version of the value data line.
-        [string] $registryValueData = $registryRule.GetValueData( )
+        [string] $registryValueData = $registryRule.GetValueData()
 
         # If a range is found on the value line, it needs further processing.
         if ($registryRule.TestValueDataStringForRange($registryValueData))
@@ -145,9 +145,9 @@ function New-RegistryRule
         }
         else
         {
-            if ($registryRule.IsHardCoded( ))
+            if ($registryRule.IsHardCoded())
             {
-                $registryValueData = $registryRule.GetHardCodedString( )
+                $registryValueData = $registryRule.GetHardCodedString()
             }
             elseif ($registryRule.IsDataBlank($registryValueData))
             {
