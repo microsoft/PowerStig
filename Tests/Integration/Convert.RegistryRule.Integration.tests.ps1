@@ -111,7 +111,7 @@ try
             Path                        = '\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing'
             OrganizationValueRequired   = 'False'
             OrganizationValueTestString = ''
-            ValueData                   = '146432'
+            ValueData                   = '23C00'
             ValueName                   = 'State'
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
