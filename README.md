@@ -112,12 +112,14 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@camusicjunkie](https://github.com/camusicjunkie)
 * [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
 * [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
+* [@JakeDean3631](https://github.com/JakeDean3631) (Jake Dean)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
 * [@ldillonel](https://github.com/ldillonel)
+* [@llansey](https://github.com/llansey) (La'Neice Lansey)
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
-* [@llansey](https://github.com/llansey) (La'Neice Lansey)
+* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
 
 ## Versions
 
