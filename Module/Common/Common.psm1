@@ -90,6 +90,7 @@ Enum RuleType
 enum Technology
 {
     Windows
+    SharePoint
     SqlServer
 }
 
