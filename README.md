@@ -123,13 +123,15 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Migrated Composite resources to the xRegistry resource
+* Fixed 2012R2 V-15713 default org setting value
+* Updated IE STIGs (V-46477) with the decimal value
 * Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
 * Added SkipRule functionality to all composite resources
 * Added StigData for FireFox STIG V4R21
 * Added Sql2012 1.17 to Archive and processed
 * Updated Sql2012 1.16 to fix broken rules
-* Removed Sql2012 1.14 from archives to comply with 3x backwards STIG policy
-* The Composite resource have been migrated to the xRegistry resource.
+* Removed Sql2012 1.14 from archives to comply with n-2 version policy
 
 ### 2.0.0.0
 
