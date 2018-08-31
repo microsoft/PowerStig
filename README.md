@@ -123,6 +123,7 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+* Migrated Composite resources to the xRegistry resource
 * Fixed 2012R2 V-15713 default org setting value
 * Updated IE STIGs (V-46477) with the decimal value
 * Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
