@@ -419,10 +419,10 @@ Successfully processed 1 files; Failed processing 0 files
                 # Test scenario for same Inheritance for multiple Principals
                 It "Should have matching Inheritance values" {
                     $inheritanceValue = "This folder and subfolders"
-                    $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -InheritenceInput $inheritanceValue
+                    $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -inheritanceInput $inheritanceValue
                     foreach ( $entry in $result )
                     {
-                        $entry.Inheritance | Should Be $script:inheritenceConstant.$inheritanceValue
+                        $entry.Inheritance | Should Be $script:inheritanceConstant.$inheritanceValue
                     }
                 }
             }
@@ -464,9 +464,9 @@ Successfully processed 1 files; Failed processing 0 files
             #>
         }
 
-        Describe "inheritenceConstant Data Section" {
+        Describe "inheritanceConstant Data Section" {
 
-            [string] $dataSectionName = 'inheritenceConstant'
+            [string] $dataSectionName = 'inheritanceConstant'
 
             It "Should have a data section called $dataSectionName" {
                 ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName

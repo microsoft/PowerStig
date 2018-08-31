@@ -44,7 +44,7 @@ data activeDirectoryRightsConstant
 '@
 }
 
-data inheritenceConstant
+data inheritanceConstant
 {
     ConvertFrom-StringData -StringData @'
         This key and subkeys                    = This Key and Subkeys

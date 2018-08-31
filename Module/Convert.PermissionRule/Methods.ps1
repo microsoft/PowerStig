@@ -225,10 +225,10 @@ function Get-PermissionAccessControlEntry
         {
             <#
                 Permission rule that pertains to HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
-                This rule has an edge case which specifies the same inheritence to all the principals
+                This rule has an edge case which specifies the same inheritance to all the principals
                 and is not in the same format as the other rules.
             #>
-            return ConvertTo-AccessControlEntry -StigString $StigString -InheritenceInput 'This key and subkeys'
+            return ConvertTo-AccessControlEntry -StigString $StigString -inheritanceInput 'This key and subkeys'
         }
 
         { $StigString -match $script:RegularExpression.InheritancePermissionMap }
@@ -344,7 +344,7 @@ function ConvertTo-AccessControlEntryGrouped
             Principal          = $principal
             ForcePrincipal     = Get-ForcePrincipal -StigString $StigString
             Rights             = Convert-RightsConstant -RightsString $rights
-            Inheritance        = $script:inheritenceConstant[[string]$inheritance.trim()]
+            Inheritance        = $script:inheritanceConstant[[string]$inheritance.trim()]
             Type               = $type
         }
     }
@@ -381,13 +381,13 @@ function ConvertTo-AccessControlEntryIF
 
         $principal, [string]$inheritance, $fileSystemRights = $entry -split $script:RegularExpression.spaceDashSpace
 
-        if (-not $script:inheritenceConstant[[string]$inheritance.trim()])
+        if (-not $script:inheritanceConstant[[string]$inheritance.trim()])
         {
             $inheritance = ""
         }
         else
         {
-            $inheritance = $script:inheritenceConstant[[string]$inheritance.trim()]
+            $inheritance = $script:inheritanceConstant[[string]$inheritance.trim()]
         }
 
         $accessControlEntries += [pscustomobject[]]@{
@@ -418,7 +418,7 @@ function ConvertTo-AccessControlEntry
 
         [Parameter()]
         [string]
-        $InheritenceInput
+        $inheritanceInput
     )
 
     $accessControlEntryMatches = $StigString | Select-String -Pattern $script:RegularExpression.spaceDashSpace
@@ -450,9 +450,9 @@ function ConvertTo-AccessControlEntry
                 V-26070 states the inheritance is to be applied to all the prinicpals.  So if an inheritance is passed in from the Inheritance
                 parameter we applied to all the prinicipals.  If not we parse the rawString to extract the inheritance.
             #>
-            if ( $InheritenceInput )
+            if ( $inheritanceInput )
             {
-                $inheritance = $InheritenceInput
+                $inheritance = $inheritanceInput
             }
 
             foreach ( $principal in $principals -split ',' )
@@ -461,7 +461,7 @@ function ConvertTo-AccessControlEntry
                     Principal      = $principal.trim()
                     ForcePrincipal = Get-ForcePrincipal -StigString $StigString
                     Rights         = Convert-RightsConstant -RightsString $fileSystemRights
-                    Inheritance    = $script:inheritenceConstant[[string]$inheritance.trim()]
+                    Inheritance    = $script:inheritanceConstant[[string]$inheritance.trim()]
                 }
             }
         }

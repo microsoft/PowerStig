@@ -1,4 +1,4 @@
-<DISASTIG id="IE_11_STIG" version="1.13" created="8/16/2018">
+<DISASTIG id="IE_11_STIG" version="1.13" created="8/30/2018">
   <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
     <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="Registry">
       <Ensure>Present</Ensure>
@@ -42,7 +42,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
  HKCU\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing Criteria
 
 If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
-      <ValueData>23C00</ValueData>
+      <ValueData>146432</ValueData>
       <ValueName>State</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
