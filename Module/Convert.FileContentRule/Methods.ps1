@@ -28,44 +28,17 @@ function Get-KeyValuePair
     foreach ($line in $checkContent)
     {
         $matchResult = $line | Select-String -Pattern $regex -AllMatches
-
-        <# Fix added below is temporary to distguish between JRE and Firefox filter sets.  
-        Long-term fix needed like a paramerized script or script name to execute for filtering 
-        to support different filter sets.  Using -and/-or creates conflicts between technolgies #>
-
-        $lineResult = $matchResult.Matches | Where-Object -FilterScript {
-            if($checkContent -match 'JRE') 
-                    {
-                        $PSItem.Value -match '=' -or $PSItem.Value -match '.locked'
-                    } 
-                    else 
-                    {
-                        $PSItem.Value -notmatch 'about:config'
-                    }
-            }
         
-        <# Fix added below is temporary to distguish between JRE and Firefox parsing.  
-        Long-term fix needed like a paramerized script or script name to execute for parsing 
-        to support different parsing needs.  Using -and/-or creates conflicts between technolgies #>
-
-        if($lineResult -and $checkContent -match 'deployment' -and ($checkContent -match '=' -or $checkContent -match '.locked'))
+        #Added singleton class to handle different filtering and parsing within STIG files
+        
+        $filterType = [FileContentType]::GetInstance()
+        if($matchResult)
         {
-            $setting = @()
-            $settingNoQuotes = $lineResult[0].Value -replace $regexToRemove, ""
-            if($lineResult[0].Value -match '=')
-            {
-                $setting = $settingNoQuotes.Split('=') | ForEach-Object {
-                    New-Object PSObject -Property @{Value=$_}
-                }
-            }
-            
-            if($lineResult[0].Value -match '.locked')
-            {
-                $setting = @($settingNoQuotes, 'true') | ForEach-Object {
-                    New-Object PSObject -Property @{Value=$_}
-                }
-            }
-            $lineResult = $setting
+            $lineResult = $filterType.ProcessMatches($matchResult)
+        }
+        else 
+        {
+            $lineResult = $matchResult    
         }
 
         if ($lineResult.Count -eq 2)
@@ -124,3 +97,4 @@ function Test-MultipleFileContentRule
     }
     return $false
 }
+

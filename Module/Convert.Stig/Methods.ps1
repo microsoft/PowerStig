@@ -243,7 +243,6 @@ function Get-RuleTypeMatchList
             (
                 $PSItem -Match 'deployment.properties' -and
                 $PSItem -Match '=' -and
-                $PSItem -NotMatch '\"deployment.config\"' -and
                 $PSItem -NotMatch 'exception.sites'
             ) -or
             (

@@ -58,6 +58,12 @@ function ConvertFrom-StigXccdf
     # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs XWebsite
     $global:stigTitle = $stigBenchmarkXml.title
 
+    # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
+    if(!$global:stigArchiveFile)
+    {
+        $global:stigArchiveFile = -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))
+    }
+    
     # Read in the root stig data from the xml additional functions will dig in deeper
     $stigRuleParams = @{
         StigGroups       = $stigBenchmarkXml.Group
