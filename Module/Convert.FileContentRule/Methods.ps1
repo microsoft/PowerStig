@@ -24,12 +24,22 @@ function Get-KeyValuePair
     $result = @()
     $regex = $fileContentRegex.BetweenAllQuotes -f [char]8220, [char]39, [char]8221
     $regexToRemove = $fileContentRegex.RegexToRemove -f [char]8220, [char]8221, [char]39
-
+    
     foreach ($line in $checkContent)
     {
         $matchResult = $line | Select-String -Pattern $regex -AllMatches
-
-        $lineResult = $matchResult.Matches | Where-Object -FilterScript {$PSItem.Value -notmatch 'about:config'}
+        
+        #Added singleton class to handle different filtering and parsing within STIG files
+        
+        $filterType = [FileContentType]::GetInstance()
+        if($matchResult)
+        {
+            $lineResult = $filterType.ProcessMatches($matchResult)
+        }
+        else 
+        {
+            $lineResult = $matchResult    
+        }
 
         if ($lineResult.Count -eq 2)
         {
@@ -87,3 +97,4 @@ function Test-MultipleFileContentRule
     }
     return $false
 }
+

@@ -1,4 +1,4 @@
-<DISASTIG id="JRE_8_and_Windows_STIG" version="1.5" created="8/28/2018">
+<DISASTIG id="JRE_8_and_Windows_STIG" version="1.5" created="9/3/2018">
   <FileContentRule dscresourcemodule="FileContentDsc">
     <Rule id="V-66723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -14,6 +14,22 @@
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the key “deployment.security.revocation.check.locked” is not present, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66941.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.system.config</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"</RawString>
+      <Value>file:///C:/Windows/Java/Deployment/deployment.properties</Value>
+    </Rule>
+    <Rule id="V-66941.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.system.config.mandatory</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
     <Rule id="V-66945.a" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
@@ -157,25 +173,6 @@
 &lt;JRE Installation Directory&gt;\Lib\deployment.config
 
 If the "deployment.config" configuration file does not exist in either of these folders, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-66941" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Navigate to the "deployment.config" file for Java:
-
-&lt;Windows Directory&gt;\Sun\Java\Deployment\deployment.config
-- or -
-&lt;JRE Installation Directory&gt;\Lib\deployment.config
-
-The "deployment.config" file contains two properties: deployment.system.config and deployment.system.config.mandatory.
-
-The "deployment.system.config" key points to the location of the "deployment.properties" file. The location is variable. It can point to a file on the local disk or a UNC path. The following is an example:
-"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"
-
-If the "deployment.system.config" key does not exist or does not point to the location of the "deployment.properties" file, this is a finding.
-
-If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
     </Rule>
     <Rule id="V-66943" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>

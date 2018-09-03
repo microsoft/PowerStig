@@ -240,8 +240,15 @@ function Get-RuleTypeMatchList
             $parsed = $true
         }
         {
-            $PSItem -Match 'about:config' -and
-            $PSItem -NotMatch 'Mozilla.cfg'
+            (
+                $PSItem -Match 'deployment.properties' -and
+                $PSItem -Match '=' -and
+                $PSItem -NotMatch 'exception.sites'
+            ) -or
+            (
+                $PSItem -Match 'about:config' -and
+                $PSItem -NotMatch 'Mozilla.cfg'
+            )
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::FileContentRule )
