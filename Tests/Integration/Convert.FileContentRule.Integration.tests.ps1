@@ -9,6 +9,7 @@ try
             Key          = 'security.default_personal_cert'
             Value        = 'Ask Every Time'
             DscResource  = 'ReplaceText'
+            ArchiveFile  = 'MozillaFirefox'
             CheckContent = 'Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
 
             Criteria: If the value of "security.default_personal_cert" is set incorrectly or is not locked, then this is a finding.'
@@ -17,6 +18,7 @@ try
             Key          = 'plugin.disable_full_page_plugin_for_types'
             Value        = 'PDF,FDF,XFDF,LSL,LSO,LSS,IQY,RQY,XLK,XLS,XLT,POT,PPS,PPT,DOS,DOT,WKS,BAT,PS,EPS,WCH,WCM,WB1,WB3,RTF,DOC,MDB,MDE,WBK,WB1,WCH,WCM,AD,ADP'
             DscResource  = 'ReplaceText'
+            ArchiveFile  = 'MozillaFirefox'
             CheckContent = 'Open a browser window, type "about:config" in the address bar.
 
             Criteria:  If the "plugin.disable_full_page_plugin_for_types" value is not set to include the following external extensions and not locked, then this is a finding:
@@ -27,6 +29,7 @@ try
             Key          = 'app.update.enabled'
             Value        = 'false'
             DscResource  = 'cJsonFile'
+            ArchiveFile  = 'MozillaFirefox'
             CheckContent = 'Type "about:config" in the browser window. Verify that 
 
             1. The preference name "app.update.enabled" is set to "false" and locked or 
@@ -40,6 +43,7 @@ try
             Key          = 'deployment.security.revocation.check'
             Value        = 'ALL_CERTIFICATES'
             DscResource  = 'ReplaceText'
+            ArchiveFile  = 'OracleJRE'
             CheckContent = 'If the system is on the SIPRNet, this requirement is NA. 
                 
             Navigate to the system-level "deployment.properties" file for JRE. 
@@ -55,6 +59,7 @@ try
             [xml] $StigRule = Get-TestStigRule -CheckContent $fileContentRule.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $StigRule.Save( $TestFile )
+            $global:stigArchiveFile = $fileContentRule.ArchiveFile
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It 'Should be a FileContentRule' {
