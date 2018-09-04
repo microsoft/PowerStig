@@ -2681,7 +2681,7 @@ Value: 0</RawString>
     <Rule id="V-1151" severity="low" conversionstatus="pass" title="Secure Print Driver Installation" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Providers\LanManPrintServices\Servers</Key>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan PrintServices\Servers</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
@@ -3693,7 +3693,7 @@ Value: 1</RawString>
     <Rule id="V-4448" severity="medium" conversionstatus="pass" title="Group Policy - Registry Policy Processing" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\GroupPolicy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
@@ -5822,7 +5822,7 @@ Value: 1</RawString>
     <Rule id="V-36681" severity="medium" conversionstatus="pass" title="WINCC-000048" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\ControlPanel\International</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Control Panel\International</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
