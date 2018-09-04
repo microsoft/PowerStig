@@ -209,14 +209,14 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
-        $valueName = $CheckContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
+        $valueName = $CheckContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
     }
     
     if (-not $valueName)
     {
-        $valueName = $CheckContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
+        $valueName = $CheckContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
     }
-    
+
     if (-not $valueName)
     {
         if ($CheckContent -match 'the value of\s')
@@ -396,7 +396,7 @@ function Test-SingleLineStigFormat
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ($CheckContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\")
+    if ($CheckContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\" -and $CheckContent -notmatch "Criteria: ")
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] $true"
         $true
