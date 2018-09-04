@@ -59,7 +59,7 @@ function ConvertFrom-StigXccdf
     $global:stigTitle = $stigBenchmarkXml.title
 
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
-    if(!$global:stigArchiveFile)
+    if(!$global:stigArchiveFile -ne -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2)))
     {
         $global:stigArchiveFile = -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))
     }
