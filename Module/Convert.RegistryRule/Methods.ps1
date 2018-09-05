@@ -550,7 +550,7 @@ function Get-IntegerFromHex
 
     try
     {
-        [convert]::ToInt32( $matches[0], 16 )
+        [convert]::ToInt32($matches[0], 16)
     }
     catch
     {

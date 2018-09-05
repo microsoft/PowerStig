@@ -15,14 +15,14 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             CheckContent                = 'Windows Media Player is not installed by default.  If it is not installed, this is NA.
-            
+
                     If the following registry value does not exist or is not configured as specified, this is a finding:
-            
+
                     Registry Hive: HKEY_LOCAL_MACHINE
                     Registry Path: \Software\Policies\Microsoft\WindowsMediaPlayer\
-            
+
                     Value Name: GroupPrivacyAcceptance
-            
+
                     Type: REG_DWORD
                     Value: 1'
         },
@@ -36,17 +36,17 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             CheckContent                = 'Verify logging is configured to capture time source switches.
-            
+
                     If the Windows Time Service is used, verify the following registry value.  If it is not configured as specified, this is a finding.
-            
+
                     Registry Hive: HKEY_LOCAL_MACHINE
                     Registry Path: \System\CurrentControlSet\Services\W32Time\Config\
-            
+
                     Value Name: EventLogFlags
-            
+
                     Type: REG_DWORD
                     Value: 2 or 3
-            
+
                     If another time synchronization tool is used, review the available configuration options and logs.  If the tool has time source logging capability and it is not enabled, this is a finding.'
         },
         @{
@@ -59,12 +59,12 @@ try
             ValueType                   = 'MultiString'
             Ensure                      = 'Present'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
-            
+
                     Registry Hive: HKEY_LOCAL_MACHINE
                     Registry Path: \System\CurrentControlSet\Control\Session Manager\Subsystems\
-            
+
                     Value Name: Optional
-            
+
                     Value Type: REG_MULTI_SZ
                     Value: (Blank)'
         },
@@ -78,12 +78,12 @@ try
             ValueType                   = 'String'
             Ensure                      = 'Present'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
-            
+
                     Registry Hive: HKEY_LOCAL_MACHINE
                     Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
-            
+
                     Value Name: ScreenSaverGracePeriod
-            
+
                     Value Type: REG_SZ
                     Value: 5 (or less)'
         },
@@ -97,12 +97,12 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
-            
+
                     Registry Hive: HKEY_LOCAL_MACHINE
                     Registry Path: \System\CurrentControlSet\Control\Lsa\MSV1_0\
-            
+
                     Value Name: NTLMMinServerSec
-            
+
                     Value Type: REG_DWORD
                     Value: 0x20080000 (537395200)'
         }

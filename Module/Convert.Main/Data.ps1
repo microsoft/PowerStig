@@ -42,7 +42,7 @@ data DscResourceModule
         ManualRule                      = None
         PermissionRule                  = AccessControlDsc
         ProcessMitigationRule           = ProcessMitigationDsc
-        RegistryRule                    = PSDesiredStateConfiguration
+        RegistryRule                    = xPSDesiredStateConfiguration
         SecurityOptionRule              = SecurityPolicyDsc
         ServiceRule                     = xPSDesiredStateConfiguration
         SqlScriptQueryRule              = SqlServerDsc
@@ -52,5 +52,6 @@ data DscResourceModule
         WindowsFeatureRule              = PSDesiredStateConfiguration
         WinEventLogRule                 = xWinEventLog
         WmiRule                         = PSDesiredStateConfiguration
+        FileContentRule                 = FileContentDsc
 '@
 }

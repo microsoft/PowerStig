@@ -112,16 +112,31 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@camusicjunkie](https://github.com/camusicjunkie)
 * [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
 * [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
+* [@JakeDean3631](https://github.com/JakeDean3631) (Jake Dean)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
 * [@ldillonel](https://github.com/ldillonel)
+* [@llansey](https://github.com/llansey) (La'Neice Lansey)
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
-* [@llansey](https://github.com/llansey) (La'Neice Lansey)
+* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
 
 ## Versions
 
 ### Unreleased
+
+### 2.1.0.0
+
+* Migrated Composite resources to the xRegistry resource
+* Fixed 2012R2 V-15713 default org setting value
+* Updated IE STIGs (V-46477) with the decimal value
+* Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
+* Added SkipRule functionality to all composite resources
+* Added StigData for FireFox STIG V4R21
+* Added Sql2012 1.17 to Archive and processed
+* Updated Sql2012 1.16 to fix broken rules
+* Removed Sql2012 1.14 from archives to comply with n-2 version policy
+* Updated data for 2012R2 Stigs to fix broken rules
 
 ### 2.0.0.0
 

@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.0.0.0'
+ModuleVersion = '2.1.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -87,24 +87,16 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Added a Document module to automatically create a Stig Checklist (EXPERIMENTAL)
-* Merged PowerStigDsc into PowerStig so there is only one module to maintain
-  * Replaced PowerStig Technology Class with Enumeration
-  * Added script module back to manifest
-  * Added DotNetFramework composite resource
-
-* Added the following STIGs
-  * Windows Server 2012R2 MS STIG V2R13
-  * Windows Server 2012R2 DC STIG V2R13
-  * Windows 2012 DNS V1R10
-  * Windows Domain V2R10
-  * Windows Forest V2R8
-  * IE11-V1R16
-
-* Corrected parsing of rule V-46477 in the IE STIGs
-  * Updated StigData
-  * Bug fixes
-  * Removed Windows Server 2012R2 MS and DC StigData v2.9'
+        ReleaseNotes = '* Migrated Composite resources to the xRegistry resource
+* Fixed 2012R2 V-15713 default org setting value
+* Updated IE STIGs (V-46477) with the decimal value
+* Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
+* Added SkipRule functionality to all composite resources
+* Added StigData for FireFox STIG V4R21
+* Added Sql2012 1.17 to Archive and processed
+* Updated Sql2012 1.16 to fix broken rules
+* Removed Sql2012 1.14 from archives to comply with n-2 version policy
+* Updated data for 2012R2 Stigs to fix broken rules'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

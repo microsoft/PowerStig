@@ -22,10 +22,10 @@ $enumTests = @{
     'Severity' = 'low|medium|high'
     'Ensure'   = 'Present|Absent'
     'RuleType' = 'AccountPolicyRule|AuditPolicyRule|DnsServerRootHintRule|DnsServerSettingRule|' +
-                 'DocumentRule|GroupRule|IisLoggingRule|ManualRule|MimeTypeRule|PermissionRule|' +
-                 'ProcessMitigationRule|RegistryRule|SecurityOptionRule|ServiceRule|SkipRule|' +
-                 'SqlScriptQueryRule|UserRightRule|WebConfigurationPropertyRule|WebAppPoolRule|'+
-                 'WindowsFeatureRule|WinEventLogRule|WmiRule'
+                 'DocumentRule|FileContentRule|GroupRule|IisLoggingRule|ManualRule|MimeTypeRule|' +
+                 'PermissionRule|ProcessMitigationRule|RegistryRule|SecurityOptionRule|ServiceRule|' +
+                 '|SkipRuleSqlScriptQueryRule|UserRightRule|WebConfigurationPropertyRule|'+
+                 '|WebAppPoolRuleWindowsFeatureRule|WinEventLogRule|WmiRule'
     'Technology' = 'Windows|SQL'
 }
 
