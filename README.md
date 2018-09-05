@@ -134,6 +134,7 @@ We are especially thankful for those who have contributed pull requests to the c
 * Added Sql2012 1.17 to Archive and processed
 * Updated Sql2012 1.16 to fix broken rules
 * Removed Sql2012 1.14 from archives to comply with n-2 version policy
+* Updated data for 2012R2 Stigs to fix broken rules
 
 ### 2.0.0.0
 
