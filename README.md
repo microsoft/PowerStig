@@ -125,6 +125,8 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Unreleased
 
+### 2.1.0.0
+
 * Migrated Composite resources to the xRegistry resource
 * Fixed 2012R2 V-15713 default org setting value
 * Updated IE STIGs (V-46477) with the decimal value
