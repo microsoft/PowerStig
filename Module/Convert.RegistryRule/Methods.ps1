@@ -1002,7 +1002,6 @@ function Split-MultipleRegistryEntries
         {
             $paths = $paths -split " and "
         }
-
         foreach ($path in $paths)
         {
             if (![string]::IsNullOrWhiteSpace($path))
