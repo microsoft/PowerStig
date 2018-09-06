@@ -45,7 +45,8 @@ RequiredModules  = @(
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.2.0.0'},
-    @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
+    @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'}
 )
 
 # DSC resources to export from this module

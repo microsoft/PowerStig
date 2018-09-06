@@ -36,7 +36,7 @@ Configuration FireFox
     (
         [Parameter()]
         [string]
-        $InstallDirectory = '$env:ProgramFiles\Mozilla Firefox',
+        $InstallDirectory = "$env:ProgramFiles\Mozilla Firefox",
 
         [Parameter()]
         [ValidateSet('4.21')]
@@ -93,5 +93,4 @@ Configuration FireFox
 
     Import-DscResource -ModuleName FileContentDsc # add version
     . "$resourcePath\firefox.ReplaceText.ps1"
-    #. "$resourcePath\firefox.cJsonFile.ps1"
 }

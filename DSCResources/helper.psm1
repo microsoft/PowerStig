@@ -245,5 +245,5 @@ function Format-FireFoxPreference
 }
 #end region
 
-Export-ModuleMember -Function @('Get-ResourceTitle','Get-RuleClassData') `
+Export-ModuleMember -Function @('Get-ResourceTitle','Get-RuleClassData','Format-FireFoxPreference') `
                     -Variable 'resourcePath'
