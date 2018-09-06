@@ -40,10 +40,10 @@ function Get-ResourceTitle
 
 <#
     .SYNOPSIS
-        Filters the STIG items to a specifc type
+        Filters the STIG items to a specifc type.
 
     .PARAMETER Name
-        The name of the rule type to return
+        The name of the rule type to return.
 
     .PARAMETER StigData
         The main stig data object to filter.
@@ -208,3 +208,42 @@ function Get-LogCustomField
 
 Export-ModuleMember -Function 'Get-ResourceTitle','Get-RuleClassData','Get-UniqueString','Get-UniqueStringArray','Get-LogCustomField' `
     -Variable 'resourcePath'
+#region FireFox
+<#
+    .SYNOPSIS
+        Formats the value of a FireFox configuration preference.
+        The FireFox.cfg file wants double quotes around words but not around bools
+        or intergers.
+    .PARAMETER Value
+        Specifies the FireFox preference value to be formated.
+#>
+function Format-FireFoxPreference
+{
+    param
+    (
+        [Parameter()]
+        [string]
+        $Value
+    )
+
+    switch ($value)
+    {
+        {[bool]::TryParse($value, [ref]$null) }
+        {
+            $result = $value; break 
+        }
+        { [int]::TryParse($value, [ref]$null) }
+        {
+            $result = $value; break 
+        }
+        default
+        {
+            $result = '"' + $value + '"'
+        }
+    }
+    return $result
+}
+#end region
+
+Export-ModuleMember -Function @('Get-ResourceTitle','Get-RuleClassData') `
+                    -Variable 'resourcePath'
