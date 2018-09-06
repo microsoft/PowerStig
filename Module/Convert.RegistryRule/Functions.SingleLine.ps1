@@ -147,7 +147,7 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
-        $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName(\"")? is ).*="
+        $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName(\"")?\s+is ).*="
     }
 
     if (-not $valueType)
