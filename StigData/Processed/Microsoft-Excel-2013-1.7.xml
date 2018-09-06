@@ -715,10 +715,10 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableUnsafeLocationsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+    <Rule id="V-26616.a" severity="medium" conversionstatus="fail" title="DTOO292 - Set document behavior " dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</RawString>
@@ -726,15 +726,15 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+    <Rule id="V-26616.b" severity="medium" conversionstatus="fail" title="DTOO292 - Set document behavior " dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\excel\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>DisableEditFromPV</ValueName>
+      <ValueName>DisableInternetFilesInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="xRegistry">
