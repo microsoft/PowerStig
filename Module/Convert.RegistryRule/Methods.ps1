@@ -955,6 +955,11 @@ function Split-MultipleRegistryEntries
             }
         }
 
+        if ($paths.Count -lt 2)
+        {
+            $paths = $paths -split " and "
+        }
+
         foreach ($path in $paths)
         {
             if (![string]::IsNullOrWhiteSpace($path))
