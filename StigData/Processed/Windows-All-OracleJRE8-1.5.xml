@@ -1,6 +1,6 @@
-<DISASTIG id="JRE_8_and_Windows_STIG" version="1.5" created="9/3/2018">
+<DISASTIG id="JRE_8_and_Windows_STIG" version="1.5" created="9/7/2018">
   <FileContentRule dscresourcemodule="FileContentDsc">
-    <Rule id="V-66723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.revocation.check</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -8,7 +8,7 @@
       <RawString>If the key “deployment.security.revocation.check=ALL_CERTIFICATES” is not present, or is set to “PUBLISHER_ONLY”, or “NO_CHECK”, this is a finding.</RawString>
       <Value>ALL_CERTIFICATES</Value>
     </Rule>
-    <Rule id="V-66723.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66723.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.revocation.check.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -16,7 +16,7 @@
       <RawString>If the key “deployment.security.revocation.check.locked” is not present, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66941.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66941.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.system.config</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -24,7 +24,7 @@
       <RawString>"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"</RawString>
       <Value>file:///C:/Windows/Java/Deployment/deployment.properties</Value>
     </Rule>
-    <Rule id="V-66941.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66941.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.system.config.mandatory</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -32,7 +32,7 @@
       <RawString>If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66945.a" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66945.a" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.level</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -40,7 +40,7 @@
       <RawString>If the key "deployment.security.level=VERY_HIGH" is not present in the "deployment.properties file", or is set to "HIGH", this is a finding.</RawString>
       <Value>VERY_HIGH</Value>
     </Rule>
-    <Rule id="V-66945.b" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66945.b" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.level.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -48,7 +48,7 @@
       <RawString>If the key "deployment.security.level.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66947.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66947.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.webjava.enabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -56,7 +56,7 @@
       <RawString>If the key “deployment.webjava.enabled=true” is not present in the deployment.properties file, or is set to “false”, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66947.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="ReplaceText">
+    <Rule id="V-66947.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.webjava.enabled.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -64,7 +64,7 @@
       <RawString>If the key “deployment.webjava.enabled.locked” is not present in the deployment.properties file, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66949.a" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="ReplaceText">
+    <Rule id="V-66949.a" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.askgrantdialog.notinca</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -72,7 +72,7 @@
       <RawString>If the key "deployment.security.askgrantdialog.notinca=false" is not present, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
-    <Rule id="V-66949.b" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="ReplaceText">
+    <Rule id="V-66949.b" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.askgrantdialog.notinca.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -80,7 +80,7 @@
       <RawString>If the key "deployment.security.askgrantdialog.notinca.locked" is not present, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66951.a" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="ReplaceText">
+    <Rule id="V-66951.a" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.askgrantdialog.show</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -88,7 +88,7 @@
       <RawString>If the key "deployment.security.askgrantdialog.show=false" is not present, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
-    <Rule id="V-66951.b" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="ReplaceText">
+    <Rule id="V-66951.b" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.askgrantdialog.show.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -96,7 +96,7 @@
       <RawString>If the key "deployment.security.askgrantdialog.show.locked" is not present, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66953.a" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="ReplaceText">
+    <Rule id="V-66953.a" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.validation.ocsp</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -104,7 +104,7 @@
       <RawString>If the key "deployment.security.validation.ocsp=true" is not present in the "deployment.properties" file, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66953.b" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="ReplaceText">
+    <Rule id="V-66953.b" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.validation.ocsp.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -112,7 +112,7 @@
       <RawString>If the key "deployment.security.validation.ocsp.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66955.a" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="ReplaceText">
+    <Rule id="V-66955.a" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.blacklist.check</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -120,7 +120,7 @@
       <RawString>If the key "deployment.security.blacklist.check=true" is not present in the "deployment.properties" file, or is set to "false", this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66955.b" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="ReplaceText">
+    <Rule id="V-66955.b" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.blacklist.check.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -128,7 +128,7 @@
       <RawString>If the key "deployment.security.blacklist.check.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66961.a" severity="medium" conversionstatus="pass" title="SRG-APP-000401" dscresource="ReplaceText">
+    <Rule id="V-66961.a" severity="medium" conversionstatus="pass" title="SRG-APP-000401" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.validation.crl</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -136,7 +136,7 @@
       <RawString>If the key "deployment.security.validation.crl=true" is not present in the "deployment.properties" file, or is set to "false", this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66961.b" severity="medium" conversionstatus="pass" title="SRG-APP-000401" dscresource="ReplaceText">
+    <Rule id="V-66961.b" severity="medium" conversionstatus="pass" title="SRG-APP-000401" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.security.validation.crl.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -144,7 +144,7 @@
       <RawString>If the key "deployment.security.validation.crl.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-66963.a" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="ReplaceText">
+    <Rule id="V-66963.a" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.insecure.jres</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -152,7 +152,7 @@
       <RawString>If the key "deployment.insecure.jres=PROMPT" is not present in the "deployment.properties" file, this is a finding.</RawString>
       <Value>PROMPT</Value>
     </Rule>
-    <Rule id="V-66963.b" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="ReplaceText">
+    <Rule id="V-66963.b" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="KeyValuePairFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.insecure.jres.locked</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>

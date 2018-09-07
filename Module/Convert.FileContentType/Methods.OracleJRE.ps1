@@ -6,12 +6,12 @@
         Parses the rawString from the rule to retrieve the Key name and Value
         for OracleJRE STIGs
     .DESCRIPTION
-        The FileContentType is used to extend filter and parse logic for diiferent 
+        The FileContentType is used to extend filter and parse logic for different 
         FileContentRules without modifing existing filtering and parsing logic
     .PARAMETER MatchResult
         The list of items to filter and parse
 #>
-function Get-FilteredItems
+function Get-FilteredItem
 {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -25,22 +25,21 @@ function Get-FilteredItems
     )
     
         $lineResult = $MatchResult.Matches | Where-Object -FilterScript {$PSItem.Value -match '=' -or $PSItem.Value -match '.locked' -or $PSItem.Value -match '.mandatory'}
-        if($lineResult)
+        if ($lineResult)
         {
-            return Get-ParsedItems -LineResult $lineResult
+            return Get-ParsedItem -LineResult $lineResult
         }
-        else 
+        else
         {
             return $null
         }
-
 }
 
 <#
     .SYNOPSIS
         Applies the specific parsting strategy for a specific FileContentType
 #>
-function Get-ParsedItems
+function Get-ParsedItem
 {
     [CmdletBinding()]
     [OutputType([pscustomobject])]
@@ -51,17 +50,17 @@ function Get-ParsedItems
         [AllowEmptyString()]
         [psobject]
         $LineResult
-    )            
+    )
         $setting = @()
         $settingNoQuotes = $LineResult[0].Value -replace $regexToRemove, ""
-        if($LineResult[0].Value -match '=')
+        if ($LineResult[0].Value -match '=')
         {
             $setting = $settingNoQuotes.Split('=') | ForEach-Object {
                 New-Object PSObject -Property @{Value=$_}
             }
         }
-        
-        if($LineResult[0].Value -match '.locked' -or $LineResult[0].Value -match '.mandatory')
+
+        if ($LineResult[0].Value -match '.locked' -or $LineResult[0].Value -match '.mandatory')
         {
             $setting = @($settingNoQuotes, 'true') | ForEach-Object {
                 New-Object PSObject -Property @{Value=$_}

@@ -46,13 +46,13 @@ try
                 Value        = 'MultipleRule'
                 ArchiveFile  = 'OracleJRE'
                 CheckContent = 'If the system is on the SIPRNet, this requirement is NA. 
-                
-                Navigate to the system-level "deployment.properties" file for JRE. 
-                
-                The location of the deployment.properties file is defined in <JRE Installation Directory>\Lib\deployment.config 
-                
-                If the key "deployment.security.revocation.check=ALL_CERTIFICATES" is not present, or is set to "PUBLISHER_ONLY", or "NO_CHECK", this is a finding. 
-                
+
+                Navigate to the system-level "deployment.properties" file for JRE.
+
+                The location of the deployment.properties file is defined in <JRE Installation Directory>\Lib\deployment.config
+
+                If the key "deployment.security.revocation.check=ALL_CERTIFICATES" is not present, or is set to "PUBLISHER_ONLY", or "NO_CHECK", this is a finding.
+
                 If the key "deployment.security.revocation.check.locked" is not present, this is a finding.'
             }
        )
@@ -105,7 +105,7 @@ try
         Describe 'Get-KeyValuePair' {
             foreach ( $rule in $rulesToTest )
             {
-                $global:stigArchiveFile = $rule.ArchiveFile
+                $global:stigXccdfName = $rule.ArchiveFile
                 if ($rule.Value -ne 'MultipleRule')
                 {
                     It "Should be a Key of '$($rule.Key)'" {
@@ -131,7 +131,7 @@ try
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $keyValuePairs = Get-KeyValuePair -CheckContent $checkContent
                     $result = Test-MultipleFileContentRule -KeyValuePair $checkContent
-                    
+
                     <# 'Enable' property of $rule is missing casuing empty string output #>
                     It "Should have Enable equal to: '$($rule.Enable)'" {
 
@@ -144,7 +144,7 @@ try
         #region Function Tests
         Describe "ConvertTo-FileContentRule" {
 
-            $global:stigArchiveFile = $rulesToTest[1].ArchiveFile
+            $global:stigXccdfName = $rulesToTest[1].ArchiveFile
             $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
             $rule = ConvertTo-FileContentRule -StigRule $stigRule
 
