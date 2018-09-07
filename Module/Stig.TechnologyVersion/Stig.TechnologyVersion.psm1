@@ -33,7 +33,6 @@ Class TechnologyVersion
     static $ValidateSet = @"
 Windows = All, 2012R2
 SqlServer = 2012
-Office = 2013
 "@
 
     <#

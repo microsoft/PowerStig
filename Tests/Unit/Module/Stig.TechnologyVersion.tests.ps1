@@ -11,16 +11,13 @@ try
         $TechnologyVersion1 = 'All'
         $TechnologyVersion2 = '2012R2'
         $TechnologyVersion3 = '2012'
-        $TechnologyVersion4 = '2013'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SqlServer
-        $Technology3 = [Technology]::Office
 
         $TestValidateSet = @"
 Windows = All, 2012R2
 SqlServer = 2012
-Office = 2013
 "@
 
         $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet
