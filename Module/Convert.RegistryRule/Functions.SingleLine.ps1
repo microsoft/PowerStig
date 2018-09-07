@@ -211,7 +211,7 @@ function Get-RegistryValueNameFromSingleLineStig
     {
         $valueName = $CheckContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
     }
-    
+
     if (-not $valueName)
     {
         $valueName = $CheckContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'

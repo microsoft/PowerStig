@@ -46,7 +46,7 @@ SqlServer = 2012
                     $TechnologyVersion.Name | Should Be $TechnologyVersion3
                     $TechnologyVersion.Technology | Should Be $Technology2
                 }
-              
+
                 It "Should throw an exception for TechnologyRole not being available for TechnologyVersion: Windows -> Cheeseburger" {
                     { [TechnologyVersion]::new($InvalidName, $Technology1) } | Should Throw
                 }

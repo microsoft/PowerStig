@@ -560,7 +560,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml'               = @{
+        'U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml'        = @{
         AccountPolicyRule            = $null
         AuditPolicyRule              = $null
         DnsServerRootHintRule        = $null

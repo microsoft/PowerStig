@@ -609,7 +609,7 @@ function Split-BenchmarkId
 
 <#
     .SYNOPSIS
-        Filters the lsit of STIG objects and returns anything that requires an organizational desicion.
+        Filters the list of STIG objects and returns anything that requires an organizational decision.
 
     .PARAMETER convertedStigObjects
         A reference to the object that contains the converted stig data.
