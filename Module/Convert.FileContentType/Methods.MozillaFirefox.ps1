@@ -6,12 +6,12 @@
         Parses the rawString from the rule to retrieve the Key name and Value
         for MozillaFirefox STIGs
     .DESCRIPTION
-        The FileContentType is used to extend filter and parse logic for diiferent 
+        The FileContentType is used to extend filter and parse logic for different 
         FileContentRules without modifing existing filtering and parsing logic
     .PARAMETER MatchResult
         The list of items to filter and parse
 #>
-function Get-FilteredItems
+function Get-FilteredItem
 {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -25,11 +25,11 @@ function Get-FilteredItems
     )
     
     $lineResult = $matchResult.Matches -notmatch 'about:config'
-    if($lineResult)
+    if ($lineResult)
     {
         return $lineResult
     }
-    else 
+    else
     {
         return $null
     }

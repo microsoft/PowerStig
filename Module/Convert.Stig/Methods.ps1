@@ -420,11 +420,21 @@ function Get-FileContentRuleDscResource
         $Key
     )
 
-    if ($Key -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled')
+    switch ($Key) 
     {
-        return 'cJsonFile'
+        {$PSItem -match 'deployment.'}
+        {
+            return 'KeyValuePairFile'
+        }
+        {$PSItem -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled'}
+        {
+            return 'cJsonFile'
+        }
+        default 
+        {
+            'ReplaceText'
+        }
     }
-    return 'ReplaceText'
 }
 <#
     .SYNOPSIS
