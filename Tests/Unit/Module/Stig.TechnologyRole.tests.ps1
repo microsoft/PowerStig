@@ -11,18 +11,22 @@ try
         $technologyRole1 = 'DNS'
         $technologyRole2 = 'ADDomain'
         $technologyRole3 = 'Instance'
+        $technologyRole4 = 'Outlook'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SqlServer
+        $Technology3 = [Technology]::Office
 
         $technologyVersion1 = [TechnologyVersion]::new('2012R2', $Technology1)
         $technologyVersion2 = [TechnologyVersion]::new('All', $Technology1)
         $technologyVersion3 = [TechnologyVersion]::new('2012', $Technology2)
+        $technologyVersion4 = [TechnologyVersion]::new('2013', $Technology3)
 
         $TestValidateSet = @"
 2012R2 = DNS, DC, MS, IISSite, IISServer
 All = ADDomain, ADForest, FW, IE11, DotNet4
 2012 = Instance, Database
+2013 = Outlook
 "@
 
         $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet
@@ -50,7 +54,13 @@ All = ADDomain, ADForest, FW, IE11, DotNet4
                     $technologyRole.Name | Should Be $technologyRole3
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion3
                 }
-
+               
+                It "Should create an technologyRole class instance using technologyRole4 and technologyVersion4 data" {
+                    $technologyRole = [technologyRole]::new($technologyRole4, $technologyVersion4)
+                    $technologyRole.Name | Should Be $technologyRole4
+                    $technologyRole.TechnologyVersion | Should Be $technologyVersion4
+                }
+                
                 It "Should throw an exception for technologyRole not being available for TechnologyVersion: 2012R2 -> ADDomain" {
                     { [technologyRole]::new($technologyRole1, $technologyVersion2) } | Should Throw
                 }

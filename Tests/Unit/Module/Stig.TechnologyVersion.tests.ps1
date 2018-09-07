@@ -11,13 +11,16 @@ try
         $TechnologyVersion1 = 'All'
         $TechnologyVersion2 = '2012R2'
         $TechnologyVersion3 = '2012'
+        $TechnologyVersion4 = '2013'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SqlServer
+        $Technology3 = [Technology]::Office
 
         $TestValidateSet = @"
 Windows = All, 2012R2
 SqlServer = 2012
+Office = 2013
 "@
 
         $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet
@@ -46,7 +49,7 @@ SqlServer = 2012
                     $TechnologyVersion.Name | Should Be $TechnologyVersion3
                     $TechnologyVersion.Technology | Should Be $Technology2
                 }
-
+              
                 It "Should throw an exception for TechnologyRole not being available for TechnologyVersion: Windows -> Cheeseburger" {
                     { [TechnologyVersion]::new($InvalidName, $Technology1) } | Should Throw
                 }

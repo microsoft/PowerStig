@@ -764,9 +764,9 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = 132 (decimal)</RawString>
-      <ValueData />
-      <ValueName />
-      <ValueType />
+      <ValueData>132</ValueData>
+      <ValueName>PlainWrapLen</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17761.b" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -775,10 +775,9 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>the value for HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is REG_DWORD = 1, this is not a finding.</RawString>
-      <ValueData>
-      </ValueData>
-      <ValueName>HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is REG_DWORD = 1, this is not a finding.</ValueName>
-      <ValueType />
+      <ValueData>1</ValueData>
+      <ValueName>Message Plain Format Mime</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17762" severity="medium" conversionstatus="pass" title="DTOO217 - Prevent publishing to DAV Servers" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -872,9 +871,9 @@ Criteria: If the value ReadSignedAsPlain is REG_DWORD = 1, this is not a finding
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security</RawString>
-      <ValueData />
-      <ValueName />
-      <ValueType />
+      <ValueData>0</ValueData>
+      <ValueName>FileExtensionsRemoveLevel1</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17774.b" severity="medium" conversionstatus="fail" title="DTOO244 - Lvl 1 File extensions" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -901,10 +900,9 @@ HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
 
 Criteria: If the registry value “FileExtensionsRemoveLevel2” exists, this is a finding.
 </RawString>
-      <ValueData>
-      </ValueData>
-      <ValueName>Remove file extensions blocked as Level 2</ValueName>
-      <ValueType />
+      <ValueData>0</ValueData>
+      <ValueName>FileExtensionsRemoveLevel2</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17776" severity="medium" conversionstatus="pass" title="DTOO218 - Calendar details published by users" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -919,7 +917,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\pubcal
 
 Criteria: If the value PublishCalendarDetailsPolicy is REG_DWORD = 4000 (hex) or 16384 (Decimal), this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>4000</ValueData>
       <ValueName>PublishCalendarDetailsPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1138,10 +1136,9 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\rss
 
 Criteria: If the REG_DWORD value for "Disable" is 1, this is not a finding.</RawString>
-      <ValueData>
-      </ValueData>
-      <ValueName>Turn off RSS feature Disable</ValueName>
-      <ValueType />
+      <ValueData>1</ValueData>
+      <ValueName>Turn off RSS feature</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17812" severity="medium" conversionstatus="pass" title="DTOO231 - Unicode use when dragging Email " dscresource="xRegistry">
       <Ensure>Present</Ensure>
