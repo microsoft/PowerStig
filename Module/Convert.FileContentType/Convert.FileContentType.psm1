@@ -18,7 +18,6 @@ using module .\..\Convert.Stig\Convert.Stig.psm1
 Class FileContentType
 {
     static [FileContentType] $instance
-    
     #region Constructor
     hidden FileContentType ()
     {
@@ -57,21 +56,21 @@ Class FileContentType
     [pscustomobject] ProcessMatches ( [psobject] $matchResult )
     {
         $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-        $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude -Recurse -Include "*.$($global:stigArchiveFile).*"
+        $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude -Recurse -Include "*.$($global:stigXccdfName).*"
         Foreach ($supportFile in $supportFileList)
         {
             Write-Verbose "Loading $($supportFile.FullName)"
             . $supportFile.FullName
         }
 
-        $filtered = Get-FilteredItems $matchResult
+        $filtered = Get-FilteredItem $matchResult
         if ($filtered)
         {
             return $filtered;
-        } 
-        else 
+        }
+        else
         {
-            return $null    
+            return $null
         }
     }
 }

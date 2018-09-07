@@ -28,17 +28,15 @@ function Get-KeyValuePair
     foreach ($line in $checkContent)
     {
         $matchResult = $line | Select-String -Pattern $regex -AllMatches
-        
-        #Added singleton class to handle different filtering and parsing within STIG files
-        
+        # Added singleton class to handle different filtering and parsing within STIG files
         $filterType = [FileContentType]::GetInstance()
         if($matchResult)
         {
             $lineResult = $filterType.ProcessMatches($matchResult)
         }
-        else 
+        else
         {
-            $lineResult = $matchResult    
+            $lineResult = $matchResult
         }
 
         if ($lineResult.Count -eq 2)

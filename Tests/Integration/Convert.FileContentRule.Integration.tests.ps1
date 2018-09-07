@@ -30,10 +30,10 @@ try
             Value        = 'false'
             DscResource  = 'cJsonFile'
             ArchiveFile  = 'MozillaFirefox'
-            CheckContent = 'Type "about:config" in the browser window. Verify that 
+            CheckContent = 'Type "about:config" in the browser window. Verify that
 
-            1. The preference name "app.update.enabled" is set to "false" and locked or 
-            
+            1. The preference name "app.update.enabled" is set to "false" and locked or
+
             2. If set to "true" then verify that "app.update.url", "app.update.url.details" and "app.update.url.manual" contain url information that point to a trusted server and is not the default setting. (Default would contain mozilla.com or Mozilla.org). 
 
 
@@ -42,10 +42,10 @@ try
         @{
             Key          = 'deployment.security.revocation.check'
             Value        = 'ALL_CERTIFICATES'
-            DscResource  = 'ReplaceText'
+            DscResource  = 'KeyValuePairFile'
             ArchiveFile  = 'OracleJRE'
-            CheckContent = 'If the system is on the SIPRNet, this requirement is NA. 
-                
+            CheckContent = 'If the system is on the SIPRNet, this requirement is NA.
+
             Navigate to the system-level "deployment.properties" file for JRE. 
 
             If the key "deployment.security.revocation.check=ALL_CERTIFICATES" is not present, or is set to "PUBLISHER_ONLY", or "NO_CHECK", this is a finding.'
@@ -59,7 +59,7 @@ try
             [xml] $StigRule = Get-TestStigRule -CheckContent $fileContentRule.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $StigRule.Save( $TestFile )
-            $global:stigArchiveFile = $fileContentRule.ArchiveFile
+            $global:stigXccdfName = $fileContentRule.ArchiveFile
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It 'Should be a FileContentRule' {

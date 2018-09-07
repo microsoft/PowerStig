@@ -59,11 +59,18 @@ function ConvertFrom-StigXccdf
     $global:stigTitle = $stigBenchmarkXml.title
 
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
-    if((!$global:stigArchiveFile) -or $global:stigArchiveFile -ne -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2)))
+    switch ($true)
     {
-        $global:stigArchiveFile = -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))
+        {$global:stigXccdfName -and -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2)) -eq ''}
+        {
+            break;
+        }
+        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))}
+        {
+            $global:stigXccdfName = -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))
+            break;
+        }
     }
-    
     # Read in the root stig data from the xml additional functions will dig in deeper
     $stigRuleParams = @{
         StigGroups       = $stigBenchmarkXml.Group
