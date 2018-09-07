@@ -28,7 +28,7 @@ To see the released PowerStig module, go to the [PowerShell Gallery](https://www
 For example:
 
 ```powershell
-Install-Module -Name PowerStig -Scope CurrentUuer
+Install-Module -Name PowerStig -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
@@ -71,7 +71,7 @@ For detailed information, please see the [StigData Wiki](https://github.com/Micr
 ## PowerStig.DSC
 
 PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items.
-Each composite uses [PowerStig.Data](#powerstigdata) as it's data source.
+Each composite uses [PowerStig.Data](#powerstigdata) as its data source.
 This allows exceptions, Org settings, and skips to be applied uniformly across all composite resources.
 
 ### Composite Resources
