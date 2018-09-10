@@ -23,7 +23,7 @@ function Get-FilteredItem
         [psobject]
         $MatchResult
     )
-    
+
         $lineResult = $MatchResult.Matches | Where-Object -FilterScript {$PSItem.Value -match '=' -or $PSItem.Value -match '.locked' -or $PSItem.Value -match '.mandatory'}
         if ($lineResult)
         {
@@ -37,7 +37,12 @@ function Get-FilteredItem
 
 <#
     .SYNOPSIS
-        Applies the specific parsting strategy for a specific FileContentType
+        Applies the specific parsing strategy for a specific FileContentType
+    .DESCRIPTION
+        The FileContentType is used to extend filter and parse logic for different 
+        FileContentRules without modifing existing filtering and parsing logic
+    .PARAMETER LineResult
+        The specific line item to parse
 #>
 function Get-ParsedItem
 {
@@ -51,6 +56,7 @@ function Get-ParsedItem
         [psobject]
         $LineResult
     )
+    
         $setting = @()
         $settingNoQuotes = $LineResult[0].Value -replace $regexToRemove, ""
         if ($LineResult[0].Value -match '=')

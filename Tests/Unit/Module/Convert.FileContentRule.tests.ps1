@@ -132,7 +132,7 @@ try
                     $keyValuePairs = Get-KeyValuePair -CheckContent $checkContent
                     $result = Test-MultipleFileContentRule -KeyValuePair $checkContent
 
-                    <# 'Enable' property of $rule is missing casuing empty string output #>
+                    <# 'Enable' property of $rule is missing causing empty string output #>
                     It "Should have Enable equal to: '$($rule.Enable)'" {
 
                         $result | Should Be $true
