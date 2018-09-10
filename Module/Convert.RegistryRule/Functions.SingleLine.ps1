@@ -396,7 +396,7 @@ function Test-SingleLineStigFormat
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ($CheckContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\" -and $CheckContent -notmatch "Criteria: ")
+    if ($CheckContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\")
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] $true"
         $true
