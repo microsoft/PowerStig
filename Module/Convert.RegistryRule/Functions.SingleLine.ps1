@@ -230,7 +230,7 @@ function Get-RegistryValueNameFromSingleLineStig
         $valueName = $CheckContent | Select-String -Pattern '((?<=for\s).*)'
     }
 
-        $valueName = $valueName.Matches.Value.Replace('"', '')
+    $valueName = $valueName.Matches.Value.Replace('"', '')
 
     if ( -not [String]::IsNullOrEmpty( $valueName ) )
     {
