@@ -11,13 +11,13 @@ using module .\..\Convert.Stig\Convert.Stig.psm1
     .DESCRIPTION
         The FileContentType is used to extend filter and parse logic for diiferent 
         FileContentRules without modifing existing filtering and parsing logic
-    .PARAMETER instance
+    .PARAMETER Instance
         Maintains a single instance of the object
 
 #>
 Class FileContentType
 {
-    static [FileContentType] $instance
+    static [FileContentType] $Instance
     #region Constructor
     hidden FileContentType ()
     {
@@ -35,11 +35,11 @@ Class FileContentType
 
      static [FileContentType] GetInstance()
      {
-         if ([FileContentType]::instance -eq $null)
+         if ([FileContentType]::Instance -eq $null)
          {
-             [FileContentType]::instance = [FileContentType]::new()
+             [FileContentType]::Instance = [FileContentType]::new()
          }
-         return [FileContentType]::instance
+         return [FileContentType]::Instance
      }
  
     <#
@@ -49,21 +49,21 @@ Class FileContentType
             When Key-Value settings are located in a rule, the format
             of Key-Value pairs differ between technologies, this method 
             supports a unique filter and parsing strategy for the rule 
-        .PARAMETER matchResule
-            The key-value settitngs from the check-content element in the xccdf
+        .PARAMETER matchResult
+            The key-value settings from the check-content element in the xccdf
     #>
 
     [pscustomobject] ProcessMatches ( [psobject] $matchResult )
     {
         $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
         $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude -Recurse -Include "*.$($global:stigXccdfName).*"
-        Foreach ($supportFile in $supportFileList)
+        foreach ($supportFile in $supportFileList)
         {
             Write-Verbose "Loading $($supportFile.FullName)"
             . $supportFile.FullName
         }
 
-        $filtered = Get-FilteredItem $matchResult
+        $filtered = Get-FilteredItem -MatchResult $matchResult
         if ($filtered)
         {
             return $filtered;
