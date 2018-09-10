@@ -23,7 +23,7 @@ function Get-FilteredItem
         [psobject]
         $MatchResult
     )
-    
+
     $lineResult = $matchResult.Matches -notmatch 'about:config'
     if ($lineResult)
     {
