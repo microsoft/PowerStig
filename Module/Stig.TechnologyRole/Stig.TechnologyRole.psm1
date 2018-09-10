@@ -38,7 +38,7 @@ Class TechnologyRole
 2012R2 = DNS, DC, MS, IISSite, IISServer
 All = ADDomain, ADForest, FW, IE11, DotNet4
 2012 = Instance, Database
-2013 = Member
+2013 = Server
 "@
 
     #region Constructors

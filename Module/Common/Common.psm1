@@ -74,6 +74,7 @@ Enum RuleType
     SecurityOptionRule
     ServiceRule
     SkipRule
+    SPWebApplicationRule
     SqlScriptQueryRule
     UserRightRule
     WebAppPoolRule

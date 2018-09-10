@@ -592,6 +592,10 @@ function Split-BenchmarkId
         {
             $returnId = "Mozilla_All_FireFox"
         }
+        {$PSItem -match 'SharePoint'}
+        {
+            $returnId = $Id + '_Server'
+        }
         default
         {
             $returnId = $Id

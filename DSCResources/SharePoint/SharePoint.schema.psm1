@@ -101,7 +101,7 @@ Configuration SharePoint
 
     $technology        = [Technology]::SharePoint
     $technologyVersion = [TechnologyVersion]::New( $SharePointVersion, $technology )
-    $technologyRole    = [TechnologyRole]::New( 'Member', $technologyVersion )
+    $technologyRole    = [TechnologyRole]::New( 'Server', $technologyVersion )
     $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
