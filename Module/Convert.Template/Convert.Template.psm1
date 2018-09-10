@@ -22,7 +22,7 @@ Foreach ($supportFile in $supportFileList)
         .EXAMPLE
     #>
 
-Class Tempalte
+Class Template
 {
     [string] $template
 
@@ -36,7 +36,7 @@ Class Tempalte
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    Tempalte()
+    Template()
     {
 
     }
