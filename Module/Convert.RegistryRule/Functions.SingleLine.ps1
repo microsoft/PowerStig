@@ -69,6 +69,10 @@ function Get-SingleLineRegistryPath
     {
         $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU|HKEY_LOCAL_MACHINE).*(?=key))"
     }
+    if ($fullRegistryPath.Count -gt 1 -and $fullRegistryPath[0] -match 'outlook\\security')
+    {
+        $fullRegistryPath = $fullRegistryPath[1].ToString() | Select-String -Pattern "((HKLM|HKCU).*\\security)"
+    }
 
     $fullRegistryPath = $fullRegistryPath.Matches.Value
 
@@ -152,6 +156,11 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
+        $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName`" is set to ).*`""
+    }
+
+    if (-not $valueType)
+    {
         if ($CheckContent | Select-String -Pattern "does not exist, this is not a finding")
         {
             return "Does Not Exist"
@@ -175,7 +184,7 @@ function Get-RegistryValueTypeFromSingleLineStig
     else
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)]   Found Type : $false"
-        # If we get here, there is nothing to verify to verify so return.
+        # If we get here, there is nothing to verify so return.
         return
     }
 
@@ -235,6 +244,11 @@ function Get-RegistryValueNameFromSingleLineStig
     }
 
     $valueName = $valueName.Matches.Value.Replace('"', '')
+
+    if ($valueName.Count -gt 1)
+    {
+        $valueName = $valueName[0]
+    }
 
     if ( -not [String]::IsNullOrEmpty( $valueName ) )
     {
@@ -298,6 +312,11 @@ function Get-RegistryValueDataFromSingleStig
     if (-not $valueData)
     {
         $valueData = $CheckContent | Select-String -Pattern "((?<=set\sto).*(?=\(true\)))"
+    }
+
+    if (-not $valueData)
+    {
+        $valueData = $CheckContent | Select-String -Pattern "((?<=is\sset\sto\s)(`'|`")).*(?=(`'|`"))"
     }
 
     $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '')
