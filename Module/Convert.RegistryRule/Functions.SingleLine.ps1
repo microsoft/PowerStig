@@ -59,7 +59,14 @@ function Get-SingleLineRegistryPath
 
     if ($fullRegistryPath.ToString().Contains("Criteria:"))
     {
-        $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=Criteria:))"
+        if ($fullRegistryPath.ToString() -match "((HKLM|HKCU).*(?=Criteria:))")
+        {
+            $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=Criteria:))"
+        }
+        elseif ($fullRegistryPath.ToString() -match "Criteria:.*(HKLM|HKCU)")
+        {
+            $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=\sis))"
+        }
     }
     if ($fullRegistryPath.ToString().Contains("Verify"))
     {
@@ -151,7 +158,6 @@ function Get-RegistryValueTypeFromSingleLineStig
         {
             $valueType = $valueType.Matches.Groups[1].Value
         }
-
     }
 
     if (-not $valueType)
@@ -302,7 +308,7 @@ function Get-RegistryValueDataFromSingleStig
         return
     }
 
-    $valueData = $CheckContent | Select-String -Pattern "(?<=$($valueType)(\s*)?=).*,"
+    $valueData = $CheckContent | Select-String -Pattern "(?<=$($valueType)(\s*)?=).*(?=(,|\())"
 
     if (-not $valueData)
     {
