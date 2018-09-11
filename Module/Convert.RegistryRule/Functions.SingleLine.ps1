@@ -80,6 +80,10 @@ function Get-SingleLineRegistryPath
     {
         $fullRegistryPath = $fullRegistryPath[1].ToString() | Select-String -Pattern "((HKLM|HKCU).*\\security)"
     }
+    if ($fullRegistryPath.ToString() -match "the value for hkcu.*Message\sPlain\sFormat\sMime")
+    {
+        $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=\sis))"
+    }
 
     $fullRegistryPath = $fullRegistryPath.Matches.Value
 
@@ -163,6 +167,16 @@ function Get-RegistryValueTypeFromSingleLineStig
     if (-not $valueType)
     {
         $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName`" is set to ).*`""
+    }
+
+    if (-not $valueType)
+    {
+        $valueType = $CheckContent | Select-String -Pattern "((hkcu|hklm).*\sis\s(.*)=)"
+
+        if ($valueType)
+        {
+            $valueType = $valueType.Matches.Groups[3].Value
+        }
     }
 
     if (-not $valueType)
