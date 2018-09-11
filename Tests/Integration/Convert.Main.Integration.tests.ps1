@@ -573,7 +573,7 @@ try
         MimeTypeRule                 = $null
         PermissionRule               = $null
         ProcessMitigationRule        = $null
-        RegistryRule                 = 83
+        RegistryRule                 = 82
         SecurityOptionRule           = $null
         ServiceRule                  = $null
         SqlScriptQueryRule           = $null
