@@ -178,6 +178,14 @@ try
                         'TechnologyRole' = 'IE11'
                     }
                 )
+                'Outlook2013' = @(
+                    @{
+                        'id' = 'Windows_Outlook2013_STIG'
+                        'Technology' = 'Windows'
+                        'TechnologyVersion' = 'All'
+                        'TechnologyRole' = 'Outlook2013'
+                    }
+                )
             }
             foreach ($sampleString in $sampleStrings.GetEnumerator())
             {

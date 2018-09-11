@@ -758,7 +758,7 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
     <Rule id="V-17761.a" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key />
+      <Key>HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = 132 (decimal)</RawString>
@@ -769,7 +769,7 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
     <Rule id="V-17761.b" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is REG_DWORD = 1, this is not a finding</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\mail</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>the value for HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is REG_DWORD = 1, this is not a finding.</RawString>
