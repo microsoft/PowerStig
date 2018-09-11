@@ -12,7 +12,7 @@ using module .\..\Convert.Stig\Convert.Stig.psm1
         The FileContentType is used to extend filter and parse logic for diiferent 
         FileContentRules without modifing existing filtering and parsing logic
     .PARAMETER Instance
-        Maintains a single instance of the object
+        Maintains a single instance of the class object
 
 #>
 Class FileContentType
