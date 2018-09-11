@@ -57,20 +57,20 @@ function Get-ParsedItem
         $LineResult
     )
     
-        $setting = @()
-        $settingNoQuotes = $LineResult[0].Value -replace $regexToRemove, ""
-        if ($LineResult[0].Value -match '=')
-        {
-            $setting = $settingNoQuotes.Split('=') | ForEach-Object {
-                New-Object PSObject -Property @{Value=$_}
-            }
+    $setting = @()
+    $settingNoQuotes = $LineResult[0].Value -replace $regexToRemove, ""
+    if ($LineResult[0].Value -match '=')
+    {
+        $setting = $settingNoQuotes.Split('=') | ForEach-Object {
+            New-Object PSObject -Property @{Value=$_}
         }
+    }
 
-        if ($LineResult[0].Value -match '.locked' -or $LineResult[0].Value -match '.mandatory')
-        {
-            $setting = @($settingNoQuotes, 'true') | ForEach-Object {
-                New-Object PSObject -Property @{Value=$_}
-            }
+    if ($LineResult[0].Value -match '.locked' -or $LineResult[0].Value -match '.mandatory')
+    {
+        $setting = @($settingNoQuotes, 'true') | ForEach-Object {
+            New-Object PSObject -Property @{Value=$_}
         }
-        return $setting
+    }
+    return $setting
 }
