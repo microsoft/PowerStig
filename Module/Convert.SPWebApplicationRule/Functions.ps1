@@ -70,14 +70,14 @@ function New-SPWebApplicationRule
     $spWebApplicationRule = [SPWebApplicationRule]::New( $StigRule )
 
     # call class methods to do stuff
-    $spWebApplicationRule.SetConfigSection()
+    # $spWebApplicationRule.SetConfigSection()
 
-    $spWebApplicationRule.SetKeyValuePair()
+    # $spWebApplicationRule.SetKeyValuePair()
 
-    if ($spWebApplicationRule.IsOrganizationalSetting())
-    {
-        $spWebApplicationRule.SetOrganizationValueTestString()
-    }
+    # if ($spWebApplicationRule.IsOrganizationalSetting())
+    # {
+    #     $spWebApplicationRule.SetOrganizationValueTestString()
+    # }
 
     if ($spWebApplicationRule.conversionstatus -eq 'pass')
     {
