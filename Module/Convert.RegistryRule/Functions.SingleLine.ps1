@@ -197,6 +197,7 @@ function Get-RegistryValueTypeFromSingleLineStig
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)]    Found Type : $valueTypetype"
 
+        $valueType = Test-RegistryValueType -TestValueType $valueType
         $return = $valueType.trim()
 
         Write-Verbose "[$($MyInvocation.MyCommand.Name)]  Trimmed Type : $valueType"
@@ -261,6 +262,11 @@ function Get-RegistryValueNameFromSingleLineStig
     if (-not $valueName)
     {
         $valueName = $CheckContent | Select-String -Pattern '((?<=for\s).*)'
+    }
+
+    if (-not $valueName)
+    {
+        $valueName = $CheckContent | Select-String -Pattern "(?<=filevalidation\\).*(?=\sis\sset\sto)"
     }
 
     $valueName = $valueName.Matches.Value.Replace('"', '')
@@ -337,6 +343,11 @@ function Get-RegistryValueDataFromSingleStig
     if (-not $valueData)
     {
         $valueData = $CheckContent | Select-String -Pattern "((?<=is\sset\sto\s)(`'|`")).*(?=(`'|`"))"
+    }
+
+    if (-not $valueData)
+    {
+        $valueData = $CheckContent | Select-String -Pattern "(?<=$($valueType)\s=).*"
     }
 
     $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '')

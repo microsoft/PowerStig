@@ -189,6 +189,27 @@ function Get-RegistryValueType
     $return
 }
 
+function Test-RegistryValueType
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $TestValueType
+    )
+
+    foreach ($valueType in $dscRegistryValueType.Keys)
+    {
+        if ($TestValueType -match $valueType)
+        {
+            $return = $valueType
+        }
+    }
+
+    return $return
+}
 <#
     .SYNOPSIS
         Extract the registry value type from a Windows STIG string.
