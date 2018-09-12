@@ -1255,7 +1255,7 @@ try
             # A list of the registry types in the STIG(key) to DSC(value) format
             # this is a seperate list to detect changes in the script
             $registryTypes = @(
-                'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
+                'REG_SZ', 'REG_BINARY', 'DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
             )
 
             foreach ( $registryType in $registryTypes )
@@ -1299,7 +1299,8 @@ try
             $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
 
             It "Should return '$valueData' from '$checkContent'" {
-                Get-RegistryValueDataFromSingleStig -CheckContent $checkContent | Should Be $valueData
+                $result = Get-RegistryValueDataFromSingleStig -CheckContent $checkContent 
+                $result | Should Be $valueData
             }
         }
         #########################################   Registry Data   ########################################
