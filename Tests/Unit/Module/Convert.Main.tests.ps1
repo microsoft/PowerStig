@@ -180,7 +180,7 @@ try
                 )
                 'Outlook2013' = @(
                     @{
-                        'id' = 'Windows_Outlook2013_STIG'
+                        'id' = 'Windows_All_Outlook2013'
                         'Technology' = 'Windows'
                         'TechnologyVersion' = 'All'
                         'TechnologyRole' = 'Outlook2013'
