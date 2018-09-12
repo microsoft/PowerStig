@@ -875,7 +875,7 @@ function Test-MultipleRegistryEntries
         {
             return $true
         }
-        
+
         return $false
     }
     else
