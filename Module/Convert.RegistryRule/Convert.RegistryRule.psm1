@@ -3,7 +3,6 @@
 using module .\..\Common\Common.psm1
 using module .\..\Convert.Stig\Convert.Stig.psm1
 
-#test to verify build
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 Foreach ($supportFile in $supportFileList)
