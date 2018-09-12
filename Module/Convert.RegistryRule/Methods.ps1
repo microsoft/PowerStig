@@ -189,6 +189,27 @@ function Get-RegistryValueType
     $return
 }
 
+function Test-RegistryValueType
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $TestValueType
+    )
+
+    foreach ($valueType in $dscRegistryValueType.Keys)
+    {
+        if ($TestValueType -match $valueType)
+        {
+            $return = $valueType
+        }
+    }
+
+    return $return
+}
 <#
     .SYNOPSIS
         Tests that the ValueType is able to be used in a STIG
