@@ -865,10 +865,17 @@ function Test-MultipleRegistryEntries
     if (Test-SingleLineStigFormat -CheckContent $CheckContent)
     {
         $matches = $CheckContent | Select-String -Pattern "(HKLM|HKCU)\\" -AllMatches
+
+        if ($matches.Matches.Count -gt 1 -and $matches -match 'outlook\\security')
+        {
+            return $false
+        }
+
         if ( $matches.Matches.Count -gt 1 )
         {
             return $true
         }
+
         return $false
     }
     else
@@ -953,6 +960,11 @@ function Split-MultipleRegistryEntries
                     }
                 }
             }
+        }
+
+        if ($paths.Count -lt 2)
+        {
+            $paths = $paths -split " and "
         }
 
         foreach ($path in $paths)

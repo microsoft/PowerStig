@@ -28,7 +28,7 @@ To see the released PowerStig module, go to the [PowerShell Gallery](https://www
 For example:
 
 ```powershell
-Install-Module -Name PowerStig -Scope CurrentUuer
+Install-Module -Name PowerStig -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
@@ -114,11 +114,12 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@camusicjunkie](https://github.com/camusicjunkie)
 * [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
 * [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
+* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
 * [@JakeDean3631](https://github.com/JakeDean3631) (Jake Dean)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
+* [@jesal858](https://github.com/jesal858) (Jeff Salas)
 * [@ldillonel](https://github.com/ldillonel)
 * [@llansey](https://github.com/llansey) (La'Neice Lansey)
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
-* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
