@@ -13,6 +13,8 @@ data dscRegistryValueType
         REG_EXPAND_SZ  = ExpandableString
         Does Not Exist = Does Not Exist
         DWORD          = Dword
+        Disabled       = Dword
+        Enabled        = Dword
 '@
 }
 

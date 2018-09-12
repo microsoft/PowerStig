@@ -2,7 +2,7 @@
 
 **PowerStig** is a PowerShell module that contains several components to automate different DISA Security Technical Implementation Guides (STIGs) where possible.
 
-|Name|Description|Published to PS Gallery|
+| Name | Description | Published to PS Gallery|
 | ---- | ---- | --- |
 |[PowerStig.Convert](#powerstigconvert) | Extract configuration objects from the xccdf | No
 |[PowerStig.Data](#powerstigdata) | A PowerShell class to access the PowerSTIG "database" | Yes
@@ -16,9 +16,9 @@ For more information see the [Code of Conduct FAQ](
 or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions
 or comments.
 
-|Branch|Status|Description|
+| Branch | Status | Description |
 | ---- | ---- | --- |
-| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) | Ccontains the latest release - no contributions are made directly to this branch. |
+| master | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/master?svg=true) | Contains the latest release - no contributions are made directly to this branch. |
 | dev | [![Build status](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true)](https://ci.appveyor.com/api/projects/status/9iuhve75mrjdxokb/branch/dev?svg=true) | Where contributions should be proposed by contributors as pull requests. This branch is merged into the master branch, and be released to PowerShell Gallery. |
 
 ## Released Module
@@ -28,7 +28,7 @@ To see the released PowerStig module, go to the [PowerShell Gallery](https://www
 For example:
 
 ```powershell
-Install-Module -Name PowerStig -Scope CurrentUuer
+Install-Module -Name PowerStig -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
@@ -48,17 +48,17 @@ Update-Module -Name PowerStig
 
 ## PowerStig.Convert
 
-PowerStig.Convert is a utility module that we use to generate PowerStig XML to store in [PowerStig.Data](#powerstigdata).
+A utility module that we use to generate PowerStig XML to store in [PowerStig.Data](#powerstigdata).
 The module uses PowerShell classes to extract settings from check-content elements of the xccdf.
 This nested module is NOT published to the PS Gallery.
-The extracted settings are converted into and new PowerStig XML schema.
+The extracted settings are converted into a new PowerStig XML schema.
 The XML file is saved into a processed StigData folder and released to the PS Gallery on a regular cadence.
 
 For detailed information, please see the [Convert Wiki](https://github.com/Microsoft/PowerStig/wiki/Convert)
 
 ## PowerStig.Data
 
-PowerStig.Data is a module with PowerShell classes and a directory of PowerStig XML to provide a way of retrieving StigData and documenting deviations.
+A module with PowerShell classes and a directory of PowerStig XML to provide a way of retrieving StigData and documenting deviations.
 The PowerStig.Data classes provide methods to:
 
 1. Override a setting defined in a STIG and automatically document the exception to policy
@@ -70,11 +70,13 @@ For detailed information, please see the [StigData Wiki](https://github.com/Micr
 
 ## PowerStig.DSC
 
-PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items.
-Each composite uses [PowerStig.Data](#powerstigdata) as it's data source.
-This allows exceptions, Org settings, and skips to be applied uniformly across all composite resources.
+PowerStig.DSC is not really a specific module, but rather a collection of PowerShell Desired State Configuration (DSC) composite resources to manage the configurable items in each STIG.
+Each composite uses [PowerStig.Data](#powerstigdata) classes to retrieve PowerStig XML.
+This allows the PowerStig.Data classes to manage exceptions, Org settings, and skipped rules uniformly across all composite resources. The standard DSC ResourceID's can them be used by additional automation to automatically generate compliance reports or trigger other automation solutions.
 
 ### Composite Resources
+
+The list of STIGs that we are currently covering.
 
 |Name|Description|
 | ---- | --- |
@@ -96,7 +98,7 @@ For detailed information, please see the [Document Wiki](https://github.com/Micr
 
 ## Contributing
 
-You are more than welcome to contribute to the development of PowerStig.
+We welcome all contributions to the development of PowerStig.
 There are several different ways you can help.
 You can create new convert modules, add test automation, improve documentation, fix existing issues, or open new ones.
 See our [contributing guide](README.CONTRIBUTING.md) for more info on how to become a contributor.
@@ -112,11 +114,12 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@camusicjunkie](https://github.com/camusicjunkie)
 * [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
 * [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
+* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
 * [@JakeDean3631](https://github.com/JakeDean3631) (Jake Dean)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
+* [@jesal858](https://github.com/jesal858) (Jeff Salas)
 * [@ldillonel](https://github.com/ldillonel)
 * [@llansey](https://github.com/llansey) (La'Neice Lansey)
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
-* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
