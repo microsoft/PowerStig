@@ -1,0 +1,691 @@
+<DISASTIG id="Microsoft_PowerPoint_2013" version="1.6" created="9/12/2018">
+  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Disable user name and password" is set to "Enabled" and a check in the 'powerpnt.exe' check box is selected.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17174" severity="medium" conversionstatus="pass" title="DTOO111 - Enable IE Bind to Object " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SAFE_BINDTOOBJECT</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Bind to Object" is set to "Enabled" and a check in the 'powerpnt.exe' check box is selected.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SAFE_BINDTOOBJECT
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17175" severity="medium" conversionstatus="pass" title="DTOO117 - Saved from URL" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_UNC_SAVEDFILECHECK</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Saved from URL" is set to "Enabled" and a check in the 'powerpnt.exe' check box is selected. 
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_UNC_SAVEDFILECHECK
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17183" severity="medium" conversionstatus="pass" title="DTOO123-Block Navigation to URL from Office " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_VALIDATE_NAVIGATE_URL</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Navigate URL" must be "Enabled" and a check in the 'powerpnt.exe' check box is selected.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_VALIDATE_NAVIGATE_URL
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17184" severity="medium" conversionstatus="pass" title="DTOO129 - Block Pop-Ups" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBOC_POPUPMANAGEMENT</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Block popups" must be "Enabled" and 'powerpnt.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBOC_POPUPMANAGEMENT
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\powerpoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center "Disable Trust Bar Notification for unsigned application add-ins and block them" must be "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\software\policies\Microsoft\office\15.0\powerpoint\security
+
+Criteria: If the value notbpromptunsignedaddin is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>notbpromptunsignedaddin</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17322" severity="medium" conversionstatus="pass" title="DTOO210 - Block opening of pre-release versions " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\PowerPoint\security\fileblock</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 -&gt; Office 2013 Converters -&gt; "Block opening of pre-release versions of file formats new to PowerPoint 2013 through the Compatibility Pack for Office 2013 and PowerPoint 2013 Converter" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\software\policies\Microsoft\office\15.0\PowerPoint\security\fileblock  
+
+Criteria: If the value powerpoint12betafilesfromconverters is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpoint12betafilesfromconverters</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\trusted locations</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center -&gt; Trusted Locations "Disable all trusted locations" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\trusted locations
+
+Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>AllLocationsDisabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security "Scan encrypted macros in PowerPoint Open XML presentations" must be "Enabled (Scan encrypted macros (default)".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value PowerPointBypassEncryptedMacroScan is REG_DWORD = 0, this not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>PowerPointBypassEncryptedMacroScan</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\trusted locations</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center -&gt; Trusted Locations "Allow Trusted Locations on the network" is set to "Disabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\trusted locations
+
+Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>AllowNetworkLocations</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\options</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Save "default file format" is set to "Enabled PowerPoint Presentation (*.pptx)".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\options 
+
+Criteria: If the value DefaultFormat is REG_DWORD = 1b (hex) 27 (dec), this is not a finding.</RawString>
+      <ValueData>27</ValueData>
+      <ValueName>DefaultFormat</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center "Trust access to Visual Basic Project" is set to "Disabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value AccessVBOM is REG_DWORD=0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>AccessVBOM</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center "VBA Macro Notification Settings" is set to "Enabled (Disable all with notification)".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>VBAWarnings</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17752" severity="medium" conversionstatus="pass" title="DTOO290 - Make Hidden marks visible in PowerPoint" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\options</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security "Make hidden markup visible" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\options
+
+Criteria: If the value MarkupOpenSave is REG_DWORD = 1, this is not a finding.
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>MarkupOpenSave</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17788" severity="medium" conversionstatus="pass" title="DTOO289 - Running programs in PowerPoint" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security "Run Programs" must be "Enabled (disable - (don't run any programs))".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value RunPrograms is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>RunPrograms</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-17809" severity="medium" conversionstatus="pass" title="DTOO291 - Linked images " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security "Unblock automatic download of linked images" is set to "Disabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value DownloadImages is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DownloadImages</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26584" severity="medium" conversionstatus="pass" title="DTOO126 - Add-on Management" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ADDON_MANAGEMENT</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Add-on Management" is set to "Enabled" and 'powerpnt.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following keys: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ADDON_MANAGEMENT
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26585" severity="medium" conversionstatus="pass" title="DTOO209 - Zone Elevation Protection" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Protection From Zone Elevation" is set to "Enabled" and 'powerpnt.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26586" severity="medium" conversionstatus="pass" title="DTOO211 - Restrict ActiveX Install" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict ActiveX Install" is set to "Enabled" and 'powerpnt.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26587" severity="medium" conversionstatus="pass" title="DTOO132 - Restrict File Download" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict File Download" is set to "Enabled" and 'powerpnt.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26588" severity="medium" conversionstatus="pass" title="DTOO124 - Scripted Window Security" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Scripted Window Security Restrictions" is set to "Enabled" and 'powerpnt.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS
+
+Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>powerpnt.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center "Require that application add-ins are signed by Trusted Publisher" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>RequireAddinSig</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security "Turn off file validation" set to "Disabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation
+
+Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableOnLoad</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\fileblock</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center -&gt; File Block Settings "Set default file block behavior" is set to "Enabled: Blocked files are not opened".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\fileblock
+
+Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a finding</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>OpenInProtectedView</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center -&gt; Protected View "Do not open files from the Internet zone in Protected View" is set to "Disabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview
+
+Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableInternetFilesInPV</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center -&gt; Protected View "Do not open files in unsafe locations in Protected View" is set to "Disabled". 
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview 
+
+Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableUnsafeLocationsInPV</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>OpenInProtectedView</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableEditFromPV</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; PowerPoint Options -&gt; Security -&gt; Trust Center -&gt; Protected View "Turn off Protected View for attachments opened from Outlook" is set to "Disabled". 
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview
+
+Criteria: If the value DisableAttachmentsInPV  is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableAttachmentsInPV</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-26639" severity="medium" conversionstatus="pass" title="DTOO319 - Disable Slide Update" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\slide libraries</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft PowerPoint 2013 -&gt; Miscellaneous "Disable Slide Update" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\slide libraries
+
+Criteria: If the value DisableSlideUpdate is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableSlideUpdate</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42327" severity="medium" conversionstatus="pass" title="DTOO501 - Disable user name and password in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Disable user name and password" is set to "Enabled" and a check in the 'pptview.exe' check box is selected.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_HTTP_USERNAME_PASSWORD_DISABLE
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42328" severity="medium" conversionstatus="pass" title="DTOO510 - Restrict ActiveX Install in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict ActiveX Install" is set to "Enabled" and 'pptview.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_ACTIVEXINSTALL
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42329" severity="medium" conversionstatus="pass" title="DTOO509 - Zone Elevation Protection in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Protection From Zone Elevation" is set to "Enabled" and 'pptview.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ZONE_ELEVATION
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42330" severity="medium" conversionstatus="pass" title="DTOO507 - Block Pop-Ups in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBOC_POPUPMANAGEMENT</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Block popups" must be "Enabled" and 'pptview.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WEBOC_POPUPMANAGEMENT
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42331" severity="medium" conversionstatus="pass" title="DTOO508 - Restrict File Download in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Restrict File Download" is set to "Enabled" and 'pptview.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_RESTRICT_FILEDOWNLOAD
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42332" severity="medium" conversionstatus="pass" title="DTOO502 - Enable IE Bind to Object in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SAFE_BINDTOOBJECT</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Bind to Object" is set to "Enabled" and a check in the 'pptview.exe' check box is selected.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_SAFE_BINDTOOBJECT
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42333" severity="medium" conversionstatus="pass" title="DTOO503 - Saved from URL in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_UNC_SAVEDFILECHECK</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Saved from URL" is set to "Enabled" and a check in the 'pptview.exe' check box is selected. 
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_UNC_SAVEDFILECHECK
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42334" severity="medium" conversionstatus="pass" title="DTOO504 - Block Navigation to URL from Office in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_VALIDATE_NAVIGATE_URL</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Navigate URL" must be "Enabled" and a check in the 'pptview.exe' check box is selected.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_VALIDATE_NAVIGATE_URL
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42335" severity="medium" conversionstatus="pass" title="DTOO505 - Scripted Window Security in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Scripted Window Security Restrictions" is set to "Enabled" and 'pptview.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_WINDOW_RESTRICTIONS
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42336" severity="medium" conversionstatus="pass" title="DTOO506 - Add-on Management in PowerPoint Viewer" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ADDON_MANAGEMENT</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Microsoft Office 2013 (Machine) -&gt; Security Settings -&gt; IE Security "Add-on Management" is set to "Enabled" and 'pptview.exe' is checked.
+
+Procedure: Use the Windows Registry Editor to navigate to the following keys: 
+
+HKLM\Software\Microsoft\Internet Explorer\Main\FeatureControl\FEATURE_ADDON_MANAGEMENT
+
+Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>pptview.exe</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-72839" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft PowerPoint 2013 &gt;&gt; PowerPoint Options &gt;&gt; Security &gt;&gt; Trust Center "Block macros from running in Office files from the Internet" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+
+HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security
+
+Criteria: If the value blockcontentexecutionfrominternet is REG_DWORD = 1, this is not a finding.
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>blockcontentexecutionfrominternet</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+  </RegistryRule>
+</DISASTIG>

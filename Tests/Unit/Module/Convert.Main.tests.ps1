@@ -186,6 +186,14 @@ try
                         'TechnologyRole' = 'Outlook2013'
                     }
                 )
+                'PowerPoint2013' = @(
+                    @{
+                        'id' = 'Windows_All_PowerPoint2013'
+                        'Technology' = 'Windows'
+                        'TechnologyVersion' = 'All'
+                        'TechnologyRole' = 'PowerPoint2013'
+                    }
+                )
             }
             foreach ($sampleString in $sampleStrings.GetEnumerator())
             {
