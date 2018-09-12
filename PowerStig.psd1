@@ -52,6 +52,7 @@ DscResourcesToExport = @(
     'SqlServer',
     'WindowsDnsServer',
     'WindowsFirewall',
+    'WindowsOutlook2013',
     'WindowsServer'
 )
 

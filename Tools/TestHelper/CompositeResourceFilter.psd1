@@ -5,5 +5,6 @@
     SqlServer        = @("*Instance*", "*Database*")
     WindowsFirewall  = @("*FW*")
     WindowsDnsServer = @("*DNS*")
+    WindowsOutlook2013 = @("*Outlook2013*")
     WindowsServer    = @("*DC*", "*MS*")
 }

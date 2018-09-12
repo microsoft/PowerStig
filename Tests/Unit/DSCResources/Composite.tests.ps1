@@ -83,6 +83,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
             SqlServer        = 'Database|Instance'
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'
+            WindowsOutlook2013 = 'Outlook2013'
             WindowsServer    = 'DC|MS'
         }
         Foreach ($resource in $moduleDscResourceList)
