@@ -632,6 +632,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
+        
     }
     #endregion
     #region Tests
