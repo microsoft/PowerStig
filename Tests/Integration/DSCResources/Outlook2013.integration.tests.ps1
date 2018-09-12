@@ -19,6 +19,7 @@ try
         It 'Should compile the MOF without throwing' {
             {
                 & "$($script:DSCCompositeResourceName)_config" `
+                -Outlook2013 $stig.TechnologyRole `
                 -StigVersion $stig.stigVersion `
                 -OutputPath $TestDrive
             } | Should Not throw

@@ -4,7 +4,7 @@
 @{
 
     # Script module or binary module file associated with this manifest.
-    RootModule = 'WindowsOutlook2013.schema.psm1'
+    RootModule = 'Outlook2013.schema.psm1'
     
     # Version number of this module. #jjs need to define moduleversion i'll be using
     ModuleVersion = '1.0.0.0'
@@ -22,10 +22,10 @@
     Copyright = '(c) 2018 Microsoft. All rights reserved.'
     
     # Description of the functionality provided by this module
-    Description = 'Composite DSC Resource for managing the Windows Outlook 2013 DISA STIGs'
+    Description = 'Composite DSC Resource for managing the Outlook 2013 DISA STIGs'
     
     # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-    FunctionsToExport = @('WindowsOutlook2013') #jjs do I need to create a seperate function for WindowsOutlook2013?
+    FunctionsToExport = @('Outlook2013') #jjs do I need to create a seperate function for Outlook2013?
     
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
     CmdletsToExport = @()

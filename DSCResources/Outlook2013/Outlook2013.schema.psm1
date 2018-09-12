@@ -29,11 +29,16 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration WindowsOutlook2013
+Configuration Outlook2013
 {
     [CmdletBinding()]
     param
     (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('Outlook2013')]
+        [string]
+        $Outlook2013,
+
         [Parameter()]
         [ValidateSet('1.12')]
         [ValidateNotNullOrEmpty()]

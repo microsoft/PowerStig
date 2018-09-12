@@ -3,8 +3,8 @@
     Browser          = @("*IE11*")
     DotNetFramework  = @("*DotNet4*")
     SqlServer        = @("*Instance*", "*Database*")
+    Outlook2013      = @("*Outlook2013*")
     WindowsFirewall  = @("*FW*")
     WindowsDnsServer = @("*DNS*")
-    WindowsOutlook2013 = @("*Outlook2013*")
     WindowsServer    = @("*DC*", "*MS*")
 }

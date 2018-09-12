@@ -49,10 +49,10 @@ RequiredModules  = @(
 DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
+    'Outlook2013',
     'SqlServer',
     'WindowsDnsServer',
     'WindowsFirewall',
-    'WindowsOutlook2013',
     'WindowsServer'
 )
 
