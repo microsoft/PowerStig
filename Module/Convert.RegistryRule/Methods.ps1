@@ -212,11 +212,10 @@ function Test-RegistryValueType
         if ($TestValueType -match $valueType)
         {
             $return = $valueType
-
             break
         }
     }
-    
+
     if ($null -eq $return)
     {
         $return = $TestValueType
@@ -985,7 +984,7 @@ function Split-MultipleRegistryEntries
                     {
                         $keys += $line
                     }
-                    
+
                     if ( $line -match 'REG_DWORD value' )
                     {
                         foreach ($key in $keys)

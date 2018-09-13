@@ -354,7 +354,7 @@ function Get-RegistryRuleDscResource
         [String]
         $Key
     )
-    
+
     if ($Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
     {
         return "xRegistry"
