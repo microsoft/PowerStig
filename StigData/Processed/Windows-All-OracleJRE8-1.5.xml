@@ -1,0 +1,250 @@
+<DISASTIG id="JRE_8_and_Windows_STIG" version="1.5" created="9/7/2018">
+  <FileContentRule dscresourcemodule="FileContentDsc">
+    <Rule id="V-66723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.revocation.check</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key “deployment.security.revocation.check=ALL_CERTIFICATES” is not present, or is set to “PUBLISHER_ONLY”, or “NO_CHECK”, this is a finding.</RawString>
+      <Value>ALL_CERTIFICATES</Value>
+    </Rule>
+    <Rule id="V-66723.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.revocation.check.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key “deployment.security.revocation.check.locked” is not present, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66941.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.system.config</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"</RawString>
+      <Value>file:///C:/Windows/Java/Deployment/deployment.properties</Value>
+    </Rule>
+    <Rule id="V-66941.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.system.config.mandatory</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66945.a" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.level</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.level=VERY_HIGH" is not present in the "deployment.properties file", or is set to "HIGH", this is a finding.</RawString>
+      <Value>VERY_HIGH</Value>
+    </Rule>
+    <Rule id="V-66945.b" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.level.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.level.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66947.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.webjava.enabled</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key “deployment.webjava.enabled=true” is not present in the deployment.properties file, or is set to “false”, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66947.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.webjava.enabled.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key “deployment.webjava.enabled.locked” is not present in the deployment.properties file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66949.a" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.askgrantdialog.notinca</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.askgrantdialog.notinca=false" is not present, this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-66949.b" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.askgrantdialog.notinca.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.askgrantdialog.notinca.locked" is not present, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66951.a" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.askgrantdialog.show</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.askgrantdialog.show=false" is not present, this is a finding.</RawString>
+      <Value>false</Value>
+    </Rule>
+    <Rule id="V-66951.b" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.askgrantdialog.show.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.askgrantdialog.show.locked" is not present, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66953.a" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.validation.ocsp</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.validation.ocsp=true" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66953.b" severity="medium" conversionstatus="pass" title="SRG-APP-000175" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.validation.ocsp.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.validation.ocsp.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66955.a" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.blacklist.check</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.blacklist.check=true" is not present in the "deployment.properties" file, or is set to "false", this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66955.b" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.blacklist.check.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.blacklist.check.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66961.a" severity="medium" conversionstatus="pass" title="SRG-APP-000401" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.validation.crl</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.validation.crl=true" is not present in the "deployment.properties" file, or is set to "false", this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66961.b" severity="medium" conversionstatus="pass" title="SRG-APP-000401" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.security.validation.crl.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.security.validation.crl.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+    <Rule id="V-66963.a" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.insecure.jres</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.insecure.jres=PROMPT" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>PROMPT</Value>
+    </Rule>
+    <Rule id="V-66963.b" severity="medium" conversionstatus="pass" title="SRG-APP-000488" dscresource="KeyValuePairFile">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>deployment.insecure.jres.locked</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the key "deployment.insecure.jres.locked" is not present in the "deployment.properties" file, this is a finding.</RawString>
+      <Value>true</Value>
+    </Rule>
+  </FileContentRule>
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-66939" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>By default, no "deployment.config" file exists; it must be created. Verify a "deployment.config" configuration file exists in either:
+
+&lt;Windows Directory&gt;\Sun\Java\Deployment\deployment.config
+- or -
+&lt;JRE Installation Directory&gt;\Lib\deployment.config
+
+If the "deployment.config" configuration file does not exist in either of these folders, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-66943" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Navigate to the system-level "deployment.properties" file for JRE.
+
+The location of the "deployment.properties" file is defined in the "deployment.config" file.
+
+If there are no files titled "deployment.properties", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-66957" severity="medium" conversionstatus="pass" title="SRG-APP-000386" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Navigate to the system-level "deployment.properties" file for JRE.
+
+&lt;Windows Directory&gt;\Sun\Java\Deployment\deployment.properties
+- or -
+&lt;JRE Installation Directory&gt;\Lib\deployment.properties
+
+If the key "deployment.user.security.exception.sites" is not present in the "deployment.properties" file, this is a finding. 
+
+If the key "deployment.user.security.exception.sites" is not set to the location of the "exception.sites" file, this is a finding.
+
+An example of a correct setting is:
+deployment.user.security.exception.sites=C\:\\Windows\\Sun\\Java\\Deployment\\exception.sites</RawString>
+    </Rule>
+    <Rule id="V-66959" severity="medium" conversionstatus="pass" title="SRG-APP-000386" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the system is on the SIPRNet, this requirement is NA.
+
+Navigate to the “exception.sites” file for Java:
+
+The location of the "exception.sites" file is defined in the deployment.properties file.
+
+The "exception.sites" file is a text file containing single-line URLs for accepted risk sites. If there are no AO approved sites to be added to the configuration, it is acceptable for this file to be blank.
+
+If the “exception.sites” file does not exist, this is a finding.
+
+If the “exception.sites” file contains URLs that are not AO approved, this is a finding.
+
+Note: DeploymentRuleSet.jar is an acceptable substitute for using exception.sites.  Interview the SA to view contents of the "DeploymentRuleSet.jar" file to ensure any AO approved sites are whitelisted.</RawString>
+    </Rule>
+    <Rule id="V-66965" severity="medium" conversionstatus="pass" title="SRG-APP-000454" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the system configuration to ensure old versions of JRE have been removed.
+
+Open the Windows Control Panel, and navigate to "Programs and Features".
+
+Ensure only one instance of JRE is in the list of installed software. If more than one instance of JRE is listed, this is a finding.
+
+Note:  A 32 and 64 bit version of the same instance is acceptable.</RawString>
+    </Rule>
+    <Rule id="V-66967" severity="high" conversionstatus="pass" title="SRG-APP-000456" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a terminal window and type the command:
+"java -version" sans quotes.
+
+The return value should contain Java build information:
+
+"Java (TM) SE Runtime Environment (build x.x.x.x)"
+
+Cross reference the build information on the system with the Oracle Java site to identify the most recent build available.
+
+If the version of Oracle JRE 8 running on the system is out of date, this is a finding.</RawString>
+    </Rule>
+  </ManualRule>
+</DISASTIG>

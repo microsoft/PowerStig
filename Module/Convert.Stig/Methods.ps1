@@ -240,8 +240,15 @@ function Get-RuleTypeMatchList
             $parsed = $true
         }
         {
-            $PSItem -Match 'about:config' -and
-            $PSItem -NotMatch 'Mozilla.cfg'
+            (
+                $PSItem -Match 'deployment.properties' -and
+                $PSItem -Match '=' -and
+                $PSItem -NotMatch 'exception.sites'
+            ) -or
+            (
+                $PSItem -Match 'about:config' -and
+                $PSItem -NotMatch 'Mozilla.cfg'
+            )
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::FileContentRule )
@@ -413,11 +420,21 @@ function Get-FileContentRuleDscResource
         $Key
     )
 
-    if ($Key -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled')
+    switch ($Key) 
     {
-        return 'cJsonFile'
+        {$PSItem -match 'deployment.'}
+        {
+            return 'KeyValuePairFile'
+        }
+        {$PSItem -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled'}
+        {
+            return 'cJsonFile'
+        }
+        default 
+        {
+            'ReplaceText'
+        }
     }
-    return 'ReplaceText'
 }
 <#
     .SYNOPSIS
