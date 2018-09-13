@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_PowerPoint_2013" version="1.6" created="9/12/2018">
+<DISASTIG id="Microsoft_PowerPoint_2013" version="1.6" created="9/13/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
