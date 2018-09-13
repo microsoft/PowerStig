@@ -201,7 +201,7 @@ try
                 Value Name: AddPrinterDrivers
                 
                 Value Type: REG_DWORD
-                Value: 11'
+                Value: 1'
             }
         )
         $rule = [RegistryRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
