@@ -217,6 +217,40 @@ function Test-RegistryValueType
 }
 <#
     .SYNOPSIS
+        Tests that the ValueType is able to be used in a STIG
+
+    .PARAMETER TestValueType
+        The string to test against known good ValueTypes
+#>
+function Test-RegistryValueType
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $TestValueType
+    )
+
+    foreach ($valueType in $dscRegistryValueType.Keys)
+    {
+        if ($TestValueType -match $valueType)
+        {
+            $return = $valueType
+            break
+        }
+    }
+
+    if ($null -eq $return)
+    {
+        $return = $TestValueType
+    }
+
+    return $return
+}
+<#
+    .SYNOPSIS
         Extract the registry value type from a Windows STIG string.
 
     .Parameter CheckContent
@@ -965,6 +999,7 @@ function Split-MultipleRegistryEntries
             {
                 $paths = $($CheckContent -join " ") -Split "AND(\s*)Procedure:"
             }
+
             if ( $CheckContent -match 'Navigate to:' )
             {
                 $keys = @()
@@ -975,6 +1010,7 @@ function Split-MultipleRegistryEntries
                     {
                         $keys += $line
                     }
+
                     if ( $line -match 'REG_DWORD value' )
                     {
                         foreach ($key in $keys)
