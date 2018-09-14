@@ -223,6 +223,7 @@ function Test-RegistryValueType
 
     return $return
 }
+
 <#
     .SYNOPSIS
         Extract the registry value type from a Windows STIG string.
@@ -1002,7 +1003,6 @@ function Split-MultipleRegistryEntries
         {
             $paths = $paths -split " and "
         }
-
         foreach ($path in $paths)
         {
             if (![string]::IsNullOrWhiteSpace($path))
