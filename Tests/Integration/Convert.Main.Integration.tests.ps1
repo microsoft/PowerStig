@@ -657,7 +657,6 @@ try
             WmiRule                      = $null
             }
         }
-    }
     #endregion
     #region Tests
     # Verify conversion report rule set values are equal to baseline values
