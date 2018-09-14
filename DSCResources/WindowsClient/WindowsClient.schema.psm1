@@ -132,9 +132,8 @@ Configuration WindowsServer
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
-    Import-DscResource -ModuleName ProcessMitigationDSC -ModuleVersion 1.1
-    #. "$resourcePath\windows.Script.wmi.ps1"
-    #. "$resourcePath\windows.WindowsFeature.ps1"
+    Import-DscResource -ModuleName ProcessMitigationDSC -ModuleVersion 1.0.0.4
+    . "$resourcePath\windows.ProcessMitigation.ps1"
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Script.wmi.ps1"
