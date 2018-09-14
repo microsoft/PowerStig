@@ -97,7 +97,5 @@ Configuration Outlook2013
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
-
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0 #jjs continue to work the applicable module required.
-    . "$resourcePath\windows.cAdministratorTemplate.ps1"
+    . "$resourcePath\windows.cAdministratorTemplate.ps1" #jjs continue to work the applicable module required.
 }
