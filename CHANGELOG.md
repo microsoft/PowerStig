@@ -5,6 +5,7 @@
 * Added the following STIGs
   * Microsoft Outlook 2013 STIG V1R12
 * Added the DSC Composite Resource for Windows Outlook2013 STIG
+* Added cAdministratorTemplate for applying Office HKCU settings #jjs
 
 ## 2.1.0.0
 

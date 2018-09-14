@@ -49,6 +49,26 @@ try
             It "Should have $($dscXml.Count) Registry settings" {
                 $hasAllSettings | Should Be $true
             }
+
+            Context 'AdministratorTemplate' { #jjs
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.ServiceRule.Rule
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[cAdministratorTemplate\]"} #jjs need to address different between two
+
+                Foreach ( $setting in $dscXml )
+                {
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing service setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) Registry settings" {
+                    $hasAllSettings | Should Be $true
+                }
+            }
         }
     }
 }
