@@ -249,6 +249,7 @@ function Test-RegistryValueType
 
     return $return
 }
+
 <#
     .SYNOPSIS
         Extract the registry value type from a Windows STIG string.
