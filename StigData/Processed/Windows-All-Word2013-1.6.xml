@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_Word_2013" version="1.6" created="9/12/2018">
+<DISASTIG id="Microsoft_Word_2013" version="1.6" created="9/14/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -85,7 +85,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>winword.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="xRegistry">
+    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security</Key>
@@ -102,7 +102,7 @@ Criteria: If the value NoTBPromptUnsignedAddin is REG_DWORD = 1, this is not a f
       <ValueName>NoTBPromptUnsignedAddin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="xRegistry">
+    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\trusted locations</Key>
@@ -119,7 +119,7 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
       <ValueName>AllLocationsDisabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="xRegistry">
+    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security</Key>
@@ -136,7 +136,7 @@ Criteria: If the value WordBypassEncryptedMacroScan is REG_DWORD = 0, this is no
       <ValueName>WordBypassEncryptedMacroScan</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="xRegistry">
+    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\trusted locations</Key>
@@ -153,7 +153,7 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
       <ValueName>AllowNetworkLocations</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="xRegistry">
+    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>True</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\options</Key>
@@ -171,7 +171,7 @@ Criteria: If the value DefaultFormat is REG_SZ = (blank), this is not a finding.
       <ValueName>DefaultFormat</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="xRegistry">
+    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security</Key>
@@ -188,7 +188,7 @@ Criteria: If the value AccessVBOM is REG_DWORD = 0, this is not a finding.</RawS
       <ValueName>AccessVBOM</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="xRegistry">
+    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security</Key>
@@ -207,7 +207,7 @@ Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</Raw
       <ValueName>VBAWarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17811" severity="medium" conversionstatus="pass" title="DTOO302 - Don't update Links at Open" dscresource="xRegistry">
+    <Rule id="V-17811" severity="medium" conversionstatus="pass" title="DTOO302 - Don't update Links at Open" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\options</Key>
@@ -224,7 +224,7 @@ Criteria: If the value DontUpdateLinks is REG_DWORD = 1, this is not a finding.<
       <ValueName>DontUpdateLinks</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17813" severity="medium" conversionstatus="pass" title="DTOO303 - Warn before printing " dscresource="xRegistry">
+    <Rule id="V-17813" severity="medium" conversionstatus="pass" title="DTOO303 - Warn before printing " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\options</Key>
@@ -327,7 +327,7 @@ Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>winword.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="xRegistry">
+    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security</Key>
@@ -344,7 +344,7 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
       <ValueName>RequireAddinSig</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="xRegistry">
+    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\filevalidation</Key>
@@ -361,7 +361,7 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>EnableOnLoad</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="xRegistry">
+    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -378,7 +378,7 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="xRegistry">
+    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\protectedview</Key>
@@ -395,7 +395,7 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
       <ValueName>DisableInternetFilesInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="xRegistry">
+    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\protectedview</Key>
@@ -412,7 +412,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableUnsafeLocationsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\filevalidation</Key>
@@ -423,7 +423,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\filevalidation</Key>
@@ -434,7 +434,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableEditFromPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="xRegistry">
+    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\protectedview</Key>
@@ -451,7 +451,7 @@ Criteria: If the value DisableAttachmentsInPV is REG_DWORD = 0, this is not a fi
       <ValueName>DisableAttachmentsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26648" severity="medium" conversionstatus="pass" title="DTOO328 - Use online translation dictionaries" dscresource="xRegistry">
+    <Rule id="V-26648" severity="medium" conversionstatus="pass" title="DTOO328 - Use online translation dictionaries" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\common\research\translation</Key>
@@ -468,7 +468,7 @@ Criteria: If the value useonline is REG_DWORD = 0, this is not a finding.</RawSt
       <ValueName>useonline</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26653" severity="medium" conversionstatus="pass" title="DTOO333 - Word 2 and earlier binary documents" dscresource="xRegistry">
+    <Rule id="V-26653" severity="medium" conversionstatus="pass" title="DTOO333 - Word 2 and earlier binary documents" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -485,7 +485,7 @@ Criteria: If the value Word2Files is REG_DWORD = 2, this is not a finding.</RawS
       <ValueName>Word2Files</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26654" severity="medium" conversionstatus="pass" title="DTOO334 - Word 2000 binary documents and templates" dscresource="xRegistry">
+    <Rule id="V-26654" severity="medium" conversionstatus="pass" title="DTOO334 - Word 2000 binary documents and templates" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -502,7 +502,7 @@ Criteria: If the value Word2000Files is REG_DWORD = 5, this is not a finding.</R
       <ValueName>Word2000Files</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26656" severity="medium" conversionstatus="pass" title="DTOO336 - Word 6.0 binary documents and templates" dscresource="xRegistry">
+    <Rule id="V-26656" severity="medium" conversionstatus="pass" title="DTOO336 - Word 6.0 binary documents and templates" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -519,7 +519,7 @@ Criteria: If the value Word60Files is REG_DWORD = 2, this is not a finding.</Raw
       <ValueName>Word60Files</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26657" severity="medium" conversionstatus="pass" title="DTOO337 - Word 95 binary documents and templates" dscresource="xRegistry">
+    <Rule id="V-26657" severity="medium" conversionstatus="pass" title="DTOO337 - Word 95 binary documents and templates" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -536,7 +536,7 @@ Criteria: If the value Word95Files is REG_DWORD = 5, this is not a finding.</Raw
       <ValueName>Word95Files</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26658" severity="medium" conversionstatus="pass" title="DTOO338 -  Word 97 binary documents and templates" dscresource="xRegistry">
+    <Rule id="V-26658" severity="medium" conversionstatus="pass" title="DTOO338 -  Word 97 binary documents and templates" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -553,7 +553,7 @@ Criteria: If the value Word97Files is REG_DWORD = 5, this is not a finding.</Raw
       <ValueName>Word97Files</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26659" severity="medium" conversionstatus="pass" title="DTOO339 - Word XP binary documents and templates" dscresource="xRegistry">
+    <Rule id="V-26659" severity="medium" conversionstatus="pass" title="DTOO339 - Word XP binary documents and templates" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security\fileblock</Key>
@@ -570,7 +570,7 @@ Criteria: If the value WordXPFiles is REG_DWORD = 5, this is not a finding.</Raw
       <ValueName>WordXPFiles</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-41147" severity="medium" conversionstatus="pass" title="DTOO426 - Custom XML markup warning" dscresource="xRegistry">
+    <Rule id="V-41147" severity="medium" conversionstatus="pass" title="DTOO426 - Custom XML markup warning" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\options</Key>
@@ -587,7 +587,7 @@ Criteria: If the value custommarkupwarning is REG_DWORD = 1, this is not a findi
       <ValueName>custommarkupwarning</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72829" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="xRegistry">
+    <Rule id="V-72829" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\word\security</Key>
