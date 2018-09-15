@@ -168,6 +168,40 @@ try
 
                 Value Type: REG_DWORD
                 Value: 0x00000002 (2) (or if the Value Name does not exist)'
+            },
+            @{
+                Hive                      = 'HKEY_LOCAL_MACHINE'
+                Path                      = '\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
+                OrganizationValueRequired = 'False'
+                ValueName                 = 'EnableScriptBlockLogging'
+                ValueData                 = '1'
+                ValueType                 = 'Dword'
+                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding.
+
+                Registry Hive: HKEY_LOCAL_MACHINE 
+                Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+                
+                Value Name: EnableScriptBlockLogging
+                
+                Value Type: REG_DWORD
+                Value: 1'
+            },
+            @{
+                Hive                      = 'HKEY_LOCAL_MACHINE'
+                Path                      = '\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers'
+                OrganizationValueRequired = 'False'
+                ValueName                 = 'AddPrinterDrivers'
+                ValueData                 = '1'
+                ValueType                 = 'Dword'
+                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding:
+
+                Registry Hive: HKEY_LOCAL_MACHINE 
+                Registry Path: \System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\
+                
+                Value Name: AddPrinterDrivers
+                
+                Value Type: REG_DWORD
+                Value: 1'
             }
         )
         $rule = [RegistryRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
