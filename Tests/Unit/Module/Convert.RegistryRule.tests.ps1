@@ -1280,7 +1280,7 @@ try
             # A list of the registry types in the STIG(key) to DSC(value) format
             # this is a seperate list to detect changes in the script
             $registryTypes = @(
-                'REG_SZ', 'REG_BINARY', 'DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
+                'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
             )
 
             foreach ( $registryType in $registryTypes )
