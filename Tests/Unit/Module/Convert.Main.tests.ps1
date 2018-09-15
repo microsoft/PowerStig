@@ -188,10 +188,10 @@ try
                 )
                 'PowerPoint2013' = @(
                     @{
-                        'id' = 'Windows_All_PowerPoint2013'
-                        'Technology' = 'Windows'
+                        'id'                = 'Windows_All_PowerPoint2013'
+                        'Technology'        = 'Windows'
                         'TechnologyVersion' = 'All'
-                        'TechnologyRole' = 'PowerPoint2013'
+                        'TechnologyRole'    = 'PowerPoint2013'
                     }
                 )
                 'Excel2013' = @(
