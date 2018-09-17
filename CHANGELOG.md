@@ -3,6 +3,9 @@
 ## Unreleased
 
 * Added the following STIGs
+  * Oracle JRE 8 STIG V1R5
+  
+* Added the following STIGs
   * Microsoft Outlook 2013 STIG V1R12
 
 ## 2.1.0.0
