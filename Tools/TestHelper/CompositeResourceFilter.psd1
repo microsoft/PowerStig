@@ -2,6 +2,7 @@
 @{
     Browser          = @("*IE11*")
     DotNetFramework  = @("*DotNet4*")
+    IisSite          = @("*IISSite*")
     SqlServer        = @("*Instance*", "*Database*")
     WindowsFirewall  = @("*FW*")
     WindowsDnsServer = @("*DNS*")
