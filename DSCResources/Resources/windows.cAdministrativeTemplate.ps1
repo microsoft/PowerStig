@@ -1,34 +1,20 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name RegistryRule #jjs
+$rules = Get-RuleClassData -StigData $StigData -Name RegistryRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
-    $valueData = $rule.ValueData.Split("{;}")
-
-    xRegistry (Get-ResourceTitle -Rule $rule)
-    {
-        Key       = $rule.Key
-        ValueName = $rule.ValueName
-        ValueData = $valueData
-        ValueType = $rule.ValueType
-        Ensure    = $rule.Ensure
-    }
-}
-else 
-{
-    Foreach ( $rule in $rules )
+    if ($rule.Key -match "^HKEY_Current_User")
     {
         $valueData = $rule.ValueData.Split("{;}")
-    
+
         cAdministrativeTemplate (Get-ResourceTitle -Rule $rule)
         {
-            Key       = $rule.Key
-            ValueName = $rule.ValueName
-            ValueData = $valueData
-            ValueType = $rule.ValueType
-            Ensure    = $rule.Ensure
+            PolicyType   = 'User'
+            KeyValueName = $rule.Key + '\' + $rule.ValueName
+            Data         = $rule.ValueData
+            Type         = $rule.ValueType
         }
-    }
+    }   
 }

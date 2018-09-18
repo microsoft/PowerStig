@@ -6,10 +6,10 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Windows Outlook 2013 DISA STIG settings
+        A composite DSC resource to manage the Windows Office 2013 DISA STIG settings
 
     .PARAMETER StigVersion
-        The version of the Outlook 2013 DISA STIG to apply and/or monitor
+        The version of the Office 2013 DISA STIG to apply and/or monitor
 
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
@@ -29,15 +29,15 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration Outlook2013
+Configuration Office
 {
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('Outlook2013')]
+        [ValidateSet('Outlook2013, Excel2013, Word2013, PowerPoint2013')]
         [string]
-        $Outlook2013,
+        $OfficeApp,
 
         [Parameter()]
         [ValidateSet('1.12')]
@@ -79,7 +79,7 @@ Configuration Outlook2013
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( "All", $technology )
-    $technologyRole    = [TechnologyRole]::New( "Outlook2013", $technologyVersion )
+    $technologyRole    = [TechnologyRole]::New( $OfficeApp, $technologyVersion )
     $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
@@ -97,5 +97,7 @@ Configuration Outlook2013
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
-    . "$resourcePath\windows.cAdministratorTemplate.ps1" #jjs continue to work the applicable module required.
+
+    Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
+    . "$resourcePath\windows.cAdministrativeTemplate.ps1"
 }
