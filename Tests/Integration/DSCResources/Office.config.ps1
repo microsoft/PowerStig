@@ -1,10 +1,10 @@
-Configuration Outlook2013_config
+Configuration Office_config
 {
     param
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Outlook2013,
+        $OfficeApp,
 
         [Parameter(Mandatory = $true)]
         [version]
@@ -15,9 +15,9 @@ Configuration Outlook2013_config
 
     Node localhost
     {
-        Outlook2013 BaseLineSettings
+        Office BaseLineSettings
         {
-            Outlook2013 = $Outlook2013
+            OfficeApp   = $Outlook2013
             StigVersion = $StigVersion
         }
     }

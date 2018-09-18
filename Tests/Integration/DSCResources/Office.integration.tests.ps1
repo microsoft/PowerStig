@@ -5,7 +5,7 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
-    #region Integration Tests
+    #region Integration Tests$
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
@@ -19,7 +19,7 @@ try
         It 'Should compile the MOF without throwing' {
             {
                 & "$($script:DSCCompositeResourceName)_config" `
-                -Outlook2013 $stig.TechnologyRole `
+                -OfficeApp $stig.TechnologyRole `
                 -StigVersion $stig.stigVersion `
                 -OutputPath $TestDrive
             } | Should Not throw
