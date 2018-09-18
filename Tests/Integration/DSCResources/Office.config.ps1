@@ -17,7 +17,7 @@ Configuration Office_config
     {
         Office BaseLineSettings
         {
-            OfficeApp   = $Outlook2013
+            OfficeApp   = $OfficeApp
             StigVersion = $StigVersion
         }
     }

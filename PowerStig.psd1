@@ -38,7 +38,7 @@ CLRVersion = '4.0'
 RequiredModules  = @(
     @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
     @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.1.0.0'},
-    @{ModuleName = 'FilePolicyEditor'; ModuleVersion = '3.0.1'},
+    @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.3.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '11.4.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.9.0.0'},
@@ -50,12 +50,11 @@ RequiredModules  = @(
 DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
-    'Outlook2013',
+    'Office',
     'SqlServer',
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer'
-    'Office'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
