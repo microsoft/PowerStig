@@ -6,7 +6,7 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Windows Server STIG settings
+        A composite DSC resource to manage the Windows 10 STIG settings
 
     .PARAMETER OsVersion
         The version of the server operating system STIG to apply and monitor
