@@ -118,7 +118,7 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@JakeDean3631](https://github.com/JakeDean3631) (Jake Dean)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
 * [@jesal858](https://github.com/jesal858) (Jeff Salas)
-* [@ldillonel](https://github.com/ldillonel) (LaNika Dillon)
+* [@ldillonel](https://github.com/ldillonel)
 * [@llansey](https://github.com/llansey) (La'Neice Lansey)
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)

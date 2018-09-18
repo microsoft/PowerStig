@@ -2,7 +2,9 @@
 using module ..\helper.psm1
 using module ..\..\PowerStig.psm1
 #endregion Header
+
 #region Composite
+
 <#
     .SYNOPSIS
         A composite DSC resource to manage the IIS Site STIG settings
@@ -98,41 +100,16 @@ Configuration IisSite
         $SkipRuleType
     )
 
-    if ( $Exception ) 
-    {
-        $exceptionsObject = [StigException]::ConvertFrom( $Exception )
-    }
-    else 
-    {
-        $exceptionsObject = $null
-    }
-
-    if ( $SkipRule ) 
-    {
-        $skipRuleObject = [SkippedRule]::ConvertFrom( $SkipRule )
-    }
-    else 
-    {
-        $skipRuleObject = $null
-    }
-
-    if ( $SkipRuleType ) 
-    {
-        $skipRuleTypeObject = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
-    }
-    else 
-    {
-        $skipRuleTypeObject = $null
-    }
-
-    if ( $OrgSettings ) 
-    {
-        $orgSettingsObject = Get-OrgSettingsObject -OrgSettings $OrgSettings
-    }
-    else 
-    {
-        $orgSettingsObject = $null
-    }
+    ##### BEGIN DO NOT MODIFY #####
+    <#
+        The exception, skipped rule, and organizational settings functionality
+        is universal across all composites, so the code to process it is in a
+        central file that is dot sourced into each composite.
+    #>
+    $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
+    $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
+    . $userSettingsPath
+    ##### END DO NOT MODIFY #####
 
         
     $technology = [Technology]::Windows
@@ -140,7 +117,17 @@ Configuration IisSite
     $technologyRole = [TechnologyRole]::New( "IISSite", $technologyVersion )
     $stigDataObject = [StigData]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
 
-    $stigData = $stigDataObject.StigXml
+    #### BEGIN DO NOT MODIFY ####
+    # $StigData is used in the resources that are dot sourced below
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
+    $StigData = $StigDataObject.StigXml
+
+    # $resourcePath is exported from the helper module in the header
+
+    # This is required to process Skipped rules
+    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
+    . "$resourcePath\windows.Script.skip.ps1"
+    ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
     . "$resourcePath\windows.xWebSite.ps1"
@@ -148,4 +135,5 @@ Configuration IisSite
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.xWebConfigProperty.ps1"
 }
-    #endregion Composite
+
+#endregion Composite
