@@ -1,7 +1,7 @@
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
-
+$officeApps = @('Excel2013', 'Outlook', 'PowerPoint2013', 'Word2013')
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
@@ -9,64 +9,67 @@ try
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
-    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    foreach ($app in $officeApps)
+    { 
+        $stigList = Get-StigVersionTable -CompositeResourceName $app
 
-    #region Integration Tests
-    Foreach ($stig in $stigList)
-    {
-        Describe "Outlook2013 $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+        #region Integration Tests
+        Foreach ($stig in $stigList)
+        {
+            Describe "Outlook2013 $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
-        It 'Should compile the MOF without throwing' {
-            {
-                & "$($script:DSCCompositeResourceName)_config" `
-                -OfficeApp $stig.TechnologyRole `
-                -StigVersion $stig.stigVersion `
-                -OutputPath $TestDrive
-            } | Should Not throw
-        }
-
-        [xml] $dscXml = Get-Content -Path $stig.Path
-
-        $configurationDocumentPath = "$TestDrive\localhost.mof"
-
-        $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-
-        Context 'Registry' {
-            $hasAllSettings = $true
-            $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
-            $dscMof = $instances |
-                Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
-
-            Foreach ($setting in $dscXml)
-            {
-                If (-not ($dscMof.ResourceID -match $setting.Id) )
+            It 'Should compile the MOF without throwing' {
                 {
-                    Write-Warning -Message "Missing registry Setting $($setting.Id)"
-                    $hasAllSettings = $false
-                }
+                    & "$($script:DSCCompositeResourceName)_config" `
+                    -OfficeApp $stig.TechnologyRole `
+                    -StigVersion $stig.stigVersion `
+                    -OutputPath $TestDrive
+                } | Should Not throw
             }
 
-            It "Should have $($dscXml.Count) Registry settings" {
-                $hasAllSettings | Should Be $true
-            }
+            [xml] $dscXml = Get-Content -Path $stig.Path
 
-            Context 'AdministratorTemplate' { #jjs
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+
+            Context 'Registry' {
                 $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.ServiceRule.Rule
+                $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
                 $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[cAdministratorTemplate\]"} #jjs need to address different between two
+                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
 
-                Foreach ( $setting in $dscXml )
+                Foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
-                        Write-Warning -Message "Missing service setting $($setting.Id)"
+                        Write-Warning -Message "Missing registry Setting $($setting.Id)"
                         $hasAllSettings = $false
                     }
                 }
 
                 It "Should have $($dscXml.Count) Registry settings" {
                     $hasAllSettings | Should Be $true
+                }
+
+                Context 'AdministratorTemplate' { #jjs
+                    $hasAllSettings = $true
+                    $dscXml = $dscXml.DISASTIG.ServiceRule.Rule
+                    $dscMof = $instances |
+                        Where-Object {$PSItem.ResourceID -match "\[cAdministratorTemplate\]"} #jjs need to address different between two
+
+                    Foreach ( $setting in $dscXml )
+                    {
+                        If (-not ($dscMof.ResourceID -match $setting.Id) )
+                        {
+                            Write-Warning -Message "Missing service setting $($setting.Id)"
+                            $hasAllSettings = $false
+                        }
+                    }
+
+                    It "Should have $($dscXml.Count) Registry settings" {
+                        $hasAllSettings | Should Be $true
+                    }
                 }
             }
         }
