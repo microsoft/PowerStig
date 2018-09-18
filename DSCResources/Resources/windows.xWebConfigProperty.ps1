@@ -1,7 +1,8 @@
-#region Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 $rules = Get-RuleClassData -StigData $StigData -Name WebConfigurationPropertyRule
-#endregion Header
-#region Resource
+
 foreach ($website in $WebsiteName)
 {
     foreach ( $rule in $rules )
@@ -15,4 +16,3 @@ foreach ($website in $WebsiteName)
         }
     }
 }
-#endregion Resource

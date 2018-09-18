@@ -1,7 +1,7 @@
-#region Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 $rules = Get-RuleClassData -StigData $StigData -Name WebAppPoolRule
-#endregion Header
-#region Resource
 
 $stringBuilder = [System.Text.StringBuilder]::new()
 foreach($rule in $rules)
@@ -22,4 +22,3 @@ foreach ($appPool in $WebAppPool)
 
     & $scriptBlock
 }
-#endregion Resource

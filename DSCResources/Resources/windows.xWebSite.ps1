@@ -1,7 +1,7 @@
-#region Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 $rules = Get-RuleClassData -StigData $StigData -Name IisLoggingRule
-#endregion Header
-#region Resource
 
 $logFlags = Get-UniqueStringArray -InputObject $rules.LogFlags -AsString
 $logFormat = Get-UniqueString -InputObject $rules.LogFormat
@@ -25,4 +25,3 @@ foreach ($website in $WebsiteName)
 
     & $scriptBlock
 }
-#endregion Resource
