@@ -106,7 +106,7 @@ Configuration IisSite
         is universal across all composites, so the code to process it is in a
         central file that is dot sourced into each composite.
     #>
-    
+
     $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
     $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
     . $userSettingsPath
@@ -129,7 +129,7 @@ Configuration IisSite
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
+    Import-DscResource -ModuleName xWebAdministration
     . "$resourcePath\windows.xWebSite.ps1"
     . "$resourcePath\windows.xWebAppPool.ps1"
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
