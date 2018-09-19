@@ -1,11 +1,11 @@
 # Versions
 
 ## Unreleased
-
-* Added the following STIGs
-  * Oracle JRE 8 STIG V1R5
   
 * Added the following STIGs
+  * IIS Site 8.5 STIG V1R2
+  * IIS Site 8.5 STIG V1R3
+  * Oracle JRE 8 STIG V1R5
   * Microsoft Outlook 2013 STIG V1R12
   * Microsoft PowerPoint 2013 Stig V1R6
   * Microsoft Excel 2013 STIG V1R7
