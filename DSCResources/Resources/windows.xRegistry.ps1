@@ -5,7 +5,7 @@ $rules = Get-RuleClassData -StigData $StigData -Name RegistryRule
 
 foreach ( $rule in $rules )
 {
-    if ($rules -match "^HKEY_Local_Machine")
+    if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
         $valueData = $rule.ValueData.Split("{;}")
 

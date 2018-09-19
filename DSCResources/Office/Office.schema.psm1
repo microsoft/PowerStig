@@ -40,7 +40,7 @@ Configuration Office
         $OfficeApp,
 
         [Parameter()]
-        [ValidateSet('1.12')]
+        [ValidateSet('1.6', '1.7', '1.12')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -99,5 +99,5 @@ Configuration Office
     . "$resourcePath\windows.xRegistry.ps1"
 
     Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
-    . "$resourcePath\windows.cAdministrativeTemplate.ps1"
+    . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
 }

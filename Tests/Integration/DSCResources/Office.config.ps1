@@ -11,7 +11,7 @@ Configuration Office_config
         $StigVersion
     )
 
-    Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.1.0.0
 
     Node localhost
     {

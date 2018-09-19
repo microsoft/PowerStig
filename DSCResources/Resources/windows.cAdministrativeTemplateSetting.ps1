@@ -9,7 +9,7 @@ foreach ( $rule in $rules )
     {
         $valueData = $rule.ValueData.Split("{;}")
 
-        cAdministrativeTemplate (Get-ResourceTitle -Rule $rule)
+        cAdministrativeTemplateSetting (Get-ResourceTitle -Rule $rule)
         {
             PolicyType   = 'User'
             KeyValueName = $rule.Key + '\' + $rule.ValueName
