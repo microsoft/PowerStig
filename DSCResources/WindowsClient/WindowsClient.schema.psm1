@@ -45,7 +45,7 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration WindowsServer
+Configuration WindowsClient
 {
     [CmdletBinding()]
     param
@@ -62,7 +62,7 @@ Configuration WindowsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('2.12', '2.13')]
+        [ValidateSet('1.14')]
         [version]
         $StigVersion,
 
@@ -132,7 +132,7 @@ Configuration WindowsServer
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
-    Import-DscResource -ModuleName ProcessMitigationDSC -ModuleVersion 1.0.0.4
+    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 1.0.0.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
