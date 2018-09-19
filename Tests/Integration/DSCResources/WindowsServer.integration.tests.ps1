@@ -38,7 +38,7 @@ try
                 $hasAllSettings = $true
                 $dscXml         = $dscXml.DISASTIG.AuditPolicyRule.Rule
                 $dscMof         = $instances |
-                Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}}
+                Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}
 
                 foreach ( $setting in $dscXml )
                 {
