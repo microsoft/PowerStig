@@ -38,7 +38,7 @@ try
                 $hasAllSettings = $true
                 $dscXml         = $dscXml.DISASTIG.AuditPolicyRule.Rule
                 $dscMof         = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
+                Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}}
 
                 foreach ( $setting in $dscXml )
                 {
@@ -86,7 +86,7 @@ try
                 $hasAllSettings = $true
                 $dscXml   = $dscXml.DISASTIG.RegistryRule.Rule
                 $dscMof   = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
+                Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
 
                 Foreach ( $setting in $dscXml )
                 {
