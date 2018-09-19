@@ -6,9 +6,9 @@
   * Microsoft Outlook 2013 STIG V1R12
   * Microsoft PowerPoint 2013 Stig V1R6
   * Microsoft Excel 2013 STIG V1R7
-* Added the DSC Composite Resource for Windows Outlook2013 STIG
-* Added PolicyFileEditor for applying Office HKCU settings #jjs
   * Microsoft Word 2013 STIG V1R6
+* Added the DSC Composite Resource for Windows Outlook2013 STIG
+* Added PolicyFileEditor for applying Office HKCU/HKLM settings
 
 ## 2.1.0.0
 
