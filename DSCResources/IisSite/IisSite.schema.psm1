@@ -13,7 +13,7 @@ using module ..\..\PowerStig.psm1
         Array of website names used for MimeTypeRule, WebConfigurationPropertyRule, and IisLoggingRule.
 
     .PARAMETER WebAppPool
-        Array of web application pool names used for WebAppPoolRule 
+        Array of web application pool names used for WebAppPoolRule
 
     .PARAMETER OsVersion
         The version of the server operating system STIG to apply and monitor
@@ -106,12 +106,12 @@ Configuration IisSite
         is universal across all composites, so the code to process it is in a
         central file that is dot sourced into each composite.
     #>
+    
     $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
     $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
     . $userSettingsPath
     ##### END DO NOT MODIFY #####
 
-        
     $technology = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole = [TechnologyRole]::New( "IISSite", $technologyVersion )

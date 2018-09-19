@@ -17,14 +17,10 @@ try
     #endregionTest Setup
 
     #region Tests
-    Foreach ($stig in $stigList) 
+    foreach ($stig in $stigList)
     {
-        # $stigDetails = $stig.Key -Split "-"
-        # $osVersion = $stigDetails[1]
-        # $stigVersion = $stigDetails[3]
-
         Describe "IIS Site $($stig.StigVersion) mof output" {
-    
+
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
@@ -38,9 +34,9 @@ try
 
             [xml] $dscXml = Get-Content -Path $stig.Path
 
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
 
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             Context 'IisLoggingRule' {
                 $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebSite\]"}
@@ -55,11 +51,11 @@ try
                 $dscXml = $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[xWebConfigProperty\]"}
 
-                foreach ($website in $websiteName) 
+                foreach ($website in $websiteName)
                 {
-                    foreach ( $setting in $dscXml ) 
+                    foreach ($setting in $dscXml)
                     {
-                        if (-not ($dscMof.ResourceID -match $setting.Id) ) 
+                        if (-not ($dscMof.ResourceID -match $setting.Id) )
                         {
                             Write-Warning -Message "$website missing WebConfigurationPropertyRule Setting $($setting.Id)"
                             $hasAllSettings = $false
@@ -87,7 +83,7 @@ try
 
                 foreach ($website in $websiteName) 
                 {
-                    foreach ( $setting in $dscXml ) 
+                    foreach ($setting in $dscXml) 
                     {
                         if (-not ($dscMof.ResourceID -match $setting.Id) ) 
                         {

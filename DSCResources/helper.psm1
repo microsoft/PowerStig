@@ -79,7 +79,6 @@ function Get-UniqueStringArray
         [Parameter()]
         [switch]
         $AsString
-
     )
 
     $return = @()
@@ -87,21 +86,22 @@ function Get-UniqueStringArray
     foreach ($item in $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) }) 
     {
         $splitItems = $item -Split ','
-        
-        foreach ($string in $splitItems) 
+ 
+        foreach ($string in $splitItems)
         {
-            if (-not ($return -contains $string)) 
+            if (-not ($return -contains $string))
             {
                 $return += $string
             }
         }
     }
-    
-    if ($AsString) 
+
+    if ($AsString)
     {
         return ($return | Foreach-Object { "'$PSItem'" }) -join ','
     }
-    else {
+    else 
+    {
         return $return
     }
 }
@@ -111,10 +111,10 @@ function Get-UniqueStringArray
         Some STIG rules have redundant values that we only need to set once.  This function will take those,
         validate there is only one unique value, then return it. 
 
-    .Parameter InputObject
+    .PARAMETER InputObject
         An array of strings.
 #>
-function Get-UniqueString 
+function Get-UniqueString
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -127,11 +127,12 @@ function Get-UniqueString
 
     $return = $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) } | Select-Object -Unique
 
-    if ($return.count -eq 1) 
+    if ($return.count -eq 1)
     {
         return $return
     }
-    else {
+    else 
+    {
         throw 'Conflicting values found. Only one unique value can be used.'
     }
 }
@@ -140,9 +141,9 @@ function Get-UniqueString
     .SYNOPSIS
         The IIS STIG has multple rules that specify logging custom field entries, but those need
         to be combined into one resource block and formatted as instances of MSFT_xLogCustomFieldInformation.
-        This function will gather all those entires and return it in the format DSC requires.
+        This function will gather all those entries and return it in the format DSC requires.
 
-    .Parameter LogCustomField
+    .PARAMETER LogCustomField
         An array of LogCustomField entries.
 #>
 function Get-LogCustomField
@@ -158,7 +159,7 @@ function Get-LogCustomField
 
     $return = @()
 
-    foreach ($entry in $LogCustomField) 
+    foreach ($entry in $LogCustomField)
     {
         $classInstance = [System.Text.StringBuilder]::new()
 
@@ -176,4 +177,4 @@ function Get-LogCustomField
 #endregion
 
 Export-ModuleMember -Function 'Get-ResourceTitle','Get-RuleClassData', 'Get-UniqueStringArray', 'Get-UniqueString', 'Get-LogCustomField' `
-                    -Variable 'resourcePath'
+    -Variable 'resourcePath'
