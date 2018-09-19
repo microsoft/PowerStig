@@ -9,7 +9,7 @@ foreach ($website in $WebsiteName)
     {
         xWebConfigProperty "$(Get-ResourceTitle -Rule $rule)-$website"
         {
-            WebsitePath     = 'IIS:\Sites\$website'
+            WebsitePath     = "IIS:\Sites\$website"
             Filter          = $rule.ConfigSection
             PropertyName    = $rule.Key
             Value           = $rule.Value

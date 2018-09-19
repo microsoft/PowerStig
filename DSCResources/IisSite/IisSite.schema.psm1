@@ -129,7 +129,7 @@ Configuration IisSite
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName xWebAdministration
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
     . "$resourcePath\windows.xWebSite.ps1"
     . "$resourcePath\windows.xWebAppPool.ps1"
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
