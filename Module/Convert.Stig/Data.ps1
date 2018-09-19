@@ -14,7 +14,7 @@ data DscResource
         MimeTypeRule                    = xIisMimeTypeMapping
         ManualRule                      = None
         ProcessMitigationRule           = ProcessMitigation
-        RegistryRule                    = xRegistry, cAdministratorTemplate #jjs
+        RegistryRule                    = xRegistry
         SecurityOptionRule              = SecurityOption
         ServiceRule                     = xService
         SqlScriptQueryRule              = SqlScriptQuery
@@ -26,4 +26,3 @@ data DscResource
         WmiRule                         = Script
 '@
 }
-#jjs need to address RegistryRule between xRegistry and cAdministratorTemplate
