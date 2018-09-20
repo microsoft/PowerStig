@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name RegistryRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     if ($rule.Key -match "^HKEY_CURRENT_USER")
     {
@@ -16,5 +16,5 @@ foreach ( $rule in $rules )
             Data         = $valueData
             Type         = $rule.ValueType
         }
-    }   
+    }
 }

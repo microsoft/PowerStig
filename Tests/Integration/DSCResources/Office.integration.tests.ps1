@@ -8,7 +8,7 @@ try
     #region Integration Tests$
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
- 
+
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests

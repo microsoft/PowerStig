@@ -6,10 +6,10 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Windows Office 2013 DISA STIG settings
+        A composite DSC resource to manage the Microsoft Office DISA STIG settings
 
     .PARAMETER StigVersion
-        The version of the Office 2013 DISA STIG to apply and/or monitor
+        The version of the Microsoft Office DISA STIG to apply and/or monitor
 
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
