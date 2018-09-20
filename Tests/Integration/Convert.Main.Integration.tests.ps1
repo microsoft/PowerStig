@@ -588,16 +588,15 @@ try
 
     Describe 'PowerStig output' {
 
-        $destination = $TestDrive
         $path = (Get-ChildItem -Path $filePath -File -Recurse)[0].FullName
 
         It 'Should not throw an error when a STIG is converted' {
-            {ConvertTo-PowerStigXml -Path $path -Destination $destination} |
+            {ConvertTo-PowerStigXml -Path $path -Destination $TestDrive} |
                 Should Not Throw
         }
 
         It 'Should append a blank line to the end of the file' {
-            $output = Get-ChildItem -Path $destination -Filter *.xml
+            $output = Get-ChildItem -Path $TestDrive -Filter *.xml
             (Get-Content $output.FullName -Raw)[-1] -eq "`n" | Should Be $true
         }
     }
