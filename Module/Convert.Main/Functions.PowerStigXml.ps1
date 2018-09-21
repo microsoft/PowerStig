@@ -548,6 +548,12 @@ function Split-BenchmarkId
     $activeDirectoryVariations = @(
         'Active_Directory'
     )
+    $OfficeVariations = @(
+        'Excel',
+        'Outlook',
+        'PowerPoint',
+        'Word'
+    )
 
     $Id = $Id -replace ($idVariations -join '|'), ''
 
@@ -594,6 +600,12 @@ function Split-BenchmarkId
         {
             $returnId = "Mozilla_All_FireFox"
         }
+        {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word'}
+        {
+            $officeStig = ($Id -split '_')
+            $officeStig = $officeStig[1] + $officeStig[2]
+            $returnId = 'Windows_All_' + $officeStig 
+        }
         default
         {
             $returnId = $Id
@@ -611,7 +623,7 @@ function Split-BenchmarkId
 
 <#
     .SYNOPSIS
-        Filters the lsit of STIG objects and returns anything that requires an organizational desicion.
+        Filters the list of STIG objects and returns anything that requires an organizational decision.
 
     .PARAMETER convertedStigObjects
         A reference to the object that contains the converted stig data.

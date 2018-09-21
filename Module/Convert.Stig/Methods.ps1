@@ -240,8 +240,15 @@ function Get-RuleTypeMatchList
             $parsed = $true
         }
         {
-            $PSItem -Match 'about:config' -and
-            $PSItem -NotMatch 'Mozilla.cfg'
+            (
+                $PSItem -Match 'deployment.properties' -and
+                $PSItem -Match '=' -and
+                $PSItem -NotMatch 'exception.sites'
+            ) -or
+            (
+                $PSItem -Match 'about:config' -and
+                $PSItem -NotMatch 'Mozilla.cfg'
+            )
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::FileContentRule )
@@ -319,10 +326,42 @@ function Get-StigRuleResource
         {
             return Get-FileContentRuleDscResource -Key $this.Key
         }
+        'RegistryRule'
+        {
+            return Get-RegistryRuleDscResource -Key $this.Key
+        }
         default
         {
             return $DscResource.($RuleType.ToString())
         }
+    }
+}
+
+<#
+    .SYNOPSIS
+        Returns the name of the DSC resource used to handle the specific rule
+
+    .PARAMETER Key
+        The Registry Key of the STIG Rule
+#>
+function Get-RegistryRuleDscResource
+{
+    [CmdletBinding()]
+    [OutputType([String])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [String]
+        $Key
+    )
+
+    if ($Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
+    {
+        return "xRegistry"
+    }
+    else
+    {
+        return "cAdministrativeTemplate"
     }
 }
 
@@ -397,8 +436,8 @@ function Get-PermissionRuleDscResource
 <#
     .SYNOPSIS
         Returns the name fo the DSC resource needed to manage a FileContentRule
-    .PARAMETER RuleId
-        The ID of the STIG rule
+    .PARAMETER Key
+        The Key of the STIG rule
     .EXAMPLE
         Get-FileContentRuleDscResource -StigId 'V-19741'
 #>
@@ -413,11 +452,21 @@ function Get-FileContentRuleDscResource
         $Key
     )
 
-    if ($Key -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled')
+    switch ($Key) 
     {
-        return 'cJsonFile'
+        {$PSItem -match 'deployment.'}
+        {
+            return 'KeyValuePairFile'
+        }
+        {$PSItem -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled'}
+        {
+            return 'cJsonFile'
+        }
+        default 
+        {
+            'ReplaceText'
+        }
     }
-    return 'ReplaceText'
 }
 <#
     .SYNOPSIS
