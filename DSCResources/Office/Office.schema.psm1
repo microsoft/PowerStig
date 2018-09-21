@@ -8,6 +8,9 @@ using module ..\..\PowerStig.psm1
     .SYNOPSIS
         A composite DSC resource to manage the Microsoft Office DISA STIG settings
 
+    .PARAMETER OfficeApp
+        The version of the Microsoft Office application the STIG applies to
+
     .PARAMETER StigVersion
         The version of the Microsoft Office DISA STIG to apply and/or monitor
 

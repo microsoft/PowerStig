@@ -39,7 +39,7 @@ try
 
             foreach ($setting in $dscXml)
             {
-                If (-not ($dscMof.ResourceID -match $setting.Id) )
+                if (-not ($dscMof.ResourceID -match $setting.Id) )
                 {
                     Write-Warning -Message "Missing registry Setting $($setting.Id)"
                     $hasAllSettings = $false
