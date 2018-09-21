@@ -12,6 +12,9 @@ using namespace system.xml
 
     .PARAMETER Rule
         The Stig rule that is being created.
+
+    .PARAMETER InstanceName
+        The target SQL DB instance name.
 #>
 function Get-ResourceTitle
 {
@@ -21,10 +24,19 @@ function Get-ResourceTitle
     (
         [Parameter(Mandatory = $true)]
         [xmlelement]
-        $Rule
+        $Rule,
+ 
+        [Parameter()]
+        [string]
+        $InstanceName
     )
-
-    return "[$($rule.Id)][$($rule.severity)][$($rule.title)]"
+ 
+    if ($InstanceName)
+    {
+        $Rule.title = "$($Rule.title):$InstanceName"
+    }
+ 
+    return "[$($Rule.Id)][$($Rule.severity)][$($Rule.title)]"
 }
 
 <#
