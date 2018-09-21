@@ -8,9 +8,6 @@
   * Microsoft Excel 2013 STIG V1R7
   * Microsoft Word 2013 STIG V1R6
 
-* Updated the following Stigs
-  * WIndows 10 STIG - Updated for xRegistryResource and RegistryRule to Manual Rule
-
 ## 2.1.0.0
 
 * Migrated Composite resources to the xRegistry resource
