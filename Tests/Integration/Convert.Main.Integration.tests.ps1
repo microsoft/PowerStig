@@ -699,6 +699,7 @@ try
         }
 
         It 'Should append a blank line to the end of the file' {
+            $output = Get-ChildItem -Path $TestDrive -Filter *.xml
             (Get-Content -Path $output.FullName -Raw)[-1] -eq "`n" | Should Be $true
         }
     }
