@@ -3,12 +3,31 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name ProcessMitigationRule
 
-foreach ($rule in $rules)
+if ($rules.MitigationTarget -match 'System')
 {
+    foreach ($rule in $rules)
+    {
+        $enable = $rule.Enable
+        $enableValue = @()
+        $enableValue += "$enable"
+    }
+
     ProcessMitigation (Get-ResourceTitle -Rule $rule)
     {
         MitigationTarget = $rule.MitigationTarget
-        Enable           = $rule.Enable
+        Enable           = $rule.$enableValue
         Disable          = $rule.Disable
     }
+}
+else
+{
+    foreach ($rule in $rules)
+    {
+        ProcessMitigation (Get-ResourceTitle -Rule $rule)
+        {
+            MitigationTarget = $rule.MitigationTarget
+            Enable           = $rule.Enable
+            Disable          = $rule.Disable
+        }
+    }    
 }
