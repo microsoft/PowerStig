@@ -80,6 +80,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
         $TechnologyRoleFilter = @{
             Browser          = 'IE'
             DotNetFramework  = 'DotNet'
+            IisServer        = 'IISServer'
             SqlServer        = 'Database|Instance'
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'

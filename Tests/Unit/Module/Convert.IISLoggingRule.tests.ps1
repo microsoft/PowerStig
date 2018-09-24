@@ -221,7 +221,7 @@ try
             Describe 'Get-LogCustomFieldEntry' {
                 It "Should return expected LogCustomFieldEntry object" {
                     $checkContent = Split-TestStrings -CheckContent $entry.CheckContent
-                    $logCustomFieldEntry = Get-LogCustomFieldEntry -CheckContent $checkContent
+                    $Entry = Get-LogCustomFieldEntry -CheckContent $checkContent
                     $compare = Compare-Object -ReferenceObject $logCustomFieldEntry -DifferenceObject $entry.LogCustomFieldEntry
                     $compare.Count | Should Be 0
                 }
