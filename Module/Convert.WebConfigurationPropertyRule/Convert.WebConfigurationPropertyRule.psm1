@@ -28,7 +28,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Value
         The value the web.config key should be set to
 #>
-Class WebConfigurationPropertyRule : STIG
+Class WebConfigurationPropertyRule : Rule
 {
     [string] $ConfigSection
     [string] $Key
@@ -131,7 +131,7 @@ Class WebConfigurationPropertyRule : STIG
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        return Test-MultipleWebConfigurationPropertyRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleWebConfigurationPropertyRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
     }
 
     <#
@@ -149,7 +149,7 @@ Class WebConfigurationPropertyRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultipleWebConfigurationPropertyRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        return ( Split-MultipleWebConfigurationPropertyRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
     }
 
     #endregion

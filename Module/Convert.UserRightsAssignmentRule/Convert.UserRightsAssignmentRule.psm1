@@ -29,7 +29,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Force
         A flag that replaces the identities vs append
 #>
-Class UserRightRule : STIG
+Class UserRightRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $DisplayName
     [ValidateNotNullOrEmpty()] [string] $Constant
@@ -147,7 +147,7 @@ Class UserRightRule : STIG
 
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        if ( Test-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        if ( Test-MultipleUserRightsAssignment -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
         {
             return $true
         }
@@ -170,7 +170,7 @@ Class UserRightRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        return ( Split-MultipleUserRightsAssignment -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
     }
 
     #endregion

@@ -26,7 +26,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER IsEnabled
         The enabled status of the log
 #>
-Class WinEventLogRule : STIG
+Class WinEventLogRule : Rule
 {
     [string] $LogName
     [bool] $IsEnabled

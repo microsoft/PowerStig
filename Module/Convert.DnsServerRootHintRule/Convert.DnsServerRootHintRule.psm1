@@ -26,7 +26,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER IpAddress
         The ip address of the root hint server
 #>
-Class DnsServerRootHintRule : STIG
+Class DnsServerRootHintRule : Rule
 {
     [string] $HostName
     [string] $IpAddress

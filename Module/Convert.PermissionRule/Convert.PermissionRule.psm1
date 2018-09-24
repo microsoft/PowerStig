@@ -27,7 +27,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Force
         A flag that will overwrite the current ACE in the ACL instead of merge
 #>
-Class PermissionRule : STIG
+Class PermissionRule : Rule
 {
     [string] $Path
     [object[]] $AccessControlEntry
@@ -121,7 +121,7 @@ Class PermissionRule : STIG
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        $permissionPaths = Get-PermissionTargetPath -StigString ([STIG]::SplitCheckContent( $CheckContent ) )
+        $permissionPaths = Get-PermissionTargetPath -StigString ([Rule]::SplitCheckContent( $CheckContent ) )
         return ( Test-MultiplePermissionRule -PermissionPath $permissionPaths )
     }
 
@@ -140,7 +140,7 @@ Class PermissionRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultiplePermissionRule -CheckContent ([STIG]::SplitCheckContent( $CheckContent ) ) )
+        return ( Split-MultiplePermissionRule -CheckContent ([Rule]::SplitCheckContent( $CheckContent ) ) )
     }
 
     #endregion

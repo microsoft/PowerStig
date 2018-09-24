@@ -27,7 +27,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class MimeTypeRule : STIG
+Class MimeTypeRule : Rule
 {
     [string] $Extension
     [string] $MimeType
@@ -110,7 +110,7 @@ Class MimeTypeRule : STIG
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        return Test-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
     }
 
     <#
@@ -129,7 +129,7 @@ Class MimeTypeRule : STIG
 
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultipleMimeTypeRule -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        return ( Split-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
     }
 
     #endregion

@@ -21,7 +21,7 @@ Foreach ($supportFile in $supportFileList)
         document rule, it is passed to the DocumentRule class for parsing
         and validation.
 #>
-Class DocumentRule : STIG
+Class DocumentRule : Rule
 {
     <#
         .SYNOPSIS

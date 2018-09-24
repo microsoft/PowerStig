@@ -26,7 +26,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER InstallState
         The state the windows feature should be in
 #>
-Class WindowsFeatureRule : STIG
+Class WindowsFeatureRule : Rule
 {
     [string] $FeatureName
     [string] $InstallState

@@ -25,7 +25,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER MembersToExclude
         The list of memmbers that are not allowed to be in the group
 #>
-Class GroupRule : STIG
+Class GroupRule : Rule
 {
     [string] $GroupName
     [string[]] $MembersToExclude

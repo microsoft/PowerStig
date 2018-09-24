@@ -27,7 +27,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class AuditPolicyRule : STIG
+Class AuditPolicyRule : Rule
 {
     [string] $Subcategory
     [string] $AuditFlag

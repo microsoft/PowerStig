@@ -25,7 +25,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Value
         The value the web.config key should be set to
 #>
-Class WebAppPoolRule : STIG
+Class WebAppPoolRule : Rule
 {
     [string] $Key
     [string] $Value

@@ -32,7 +32,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER LogTargetW3C
 
 #>
-Class IisLoggingRule : STIG
+Class IisLoggingRule : Rule
 {
     [object[]] $LogCustomFieldEntry
     [string] $LogFlags
@@ -149,8 +149,8 @@ Class IisLoggingRule : STIG
     #>
     [void] SetStatus ()
     {
-        $baseStig = [Stig]::New()
-        $referenceProperties = ( $baseStig | Get-Member -MemberType Property ).Name
+        $baseRule = [Rule]::New()
+        $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
         $differenceProperties = ( $this | Get-Member -MemberType Property ).Name
         $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
 

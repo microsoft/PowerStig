@@ -24,7 +24,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Value
         Specifies the value of the configuration setting
 #>
-Class FileContentRule : STIG
+Class FileContentRule : Rule
 {
     [string] $Key
     [string] $Value
@@ -91,7 +91,7 @@ Class FileContentRule : STIG
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        $keyValuePairs = Get-KeyValuePair -CheckContent ([STIG]::SplitCheckContent( $CheckContent ) )
+        $keyValuePairs = Get-KeyValuePair -CheckContent ([Rule]::SplitCheckContent( $CheckContent ) )
         return ( Test-MultipleFileContentRule -KeyValuePair $keyValuePairs )
     }
 
@@ -107,6 +107,6 @@ Class FileContentRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([STIG]::SplitCheckContent($CheckContent)))
+        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 }

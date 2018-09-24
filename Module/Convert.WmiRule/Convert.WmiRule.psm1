@@ -29,7 +29,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Operator
         The PowerShell equivalent operator
 #>
-Class WmiRule : STIG
+Class WmiRule : Rule
 {
     [string] $Query
     [string] $Property

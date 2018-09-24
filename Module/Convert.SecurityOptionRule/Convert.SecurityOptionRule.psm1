@@ -24,7 +24,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER OptionValue
         The security option value
 #>
-Class SecurityOptionRule : STIG
+Class SecurityOptionRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue

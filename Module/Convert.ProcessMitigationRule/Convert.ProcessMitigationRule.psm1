@@ -28,7 +28,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Disable
         A flag to disable the mitigation rule
 #>
-Class ProcessMitigationRule : STIG
+Class ProcessMitigationRule : Rule
 {
     [string] $MitigationTarget
     [string] $Enable

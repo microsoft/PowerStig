@@ -28,7 +28,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class ServiceRule : STIG
+Class ServiceRule : Rule
 {
     [string] $ServiceName
     [string] $ServiceState

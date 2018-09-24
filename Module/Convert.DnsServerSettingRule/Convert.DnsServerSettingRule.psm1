@@ -26,7 +26,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER PropertyValue
         The value to set the proerty to
 #>
-Class DnsServerSettingRule : STIG
+Class DnsServerSettingRule : Rule
 {
     [string] $PropertyName
     [string] $PropertyValue

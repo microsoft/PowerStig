@@ -28,7 +28,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER SetScript
         The set script content
     #>
-Class SqlScriptQueryRule : STIG
+Class SqlScriptQueryRule : Rule
 {
     [string] $GetScript
     [string] $TestScript

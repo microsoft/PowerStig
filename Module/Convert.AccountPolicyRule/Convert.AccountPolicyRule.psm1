@@ -25,7 +25,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER PolicyValue
         The value the account policy should be set to.
 #>
-Class AccountPolicyRule : STIG
+Class AccountPolicyRule : Rule
 {
     [string] $PolicyName
     [string] $PolicyValue

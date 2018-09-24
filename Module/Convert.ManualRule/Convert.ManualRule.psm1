@@ -20,7 +20,7 @@ Foreach ($supportFile in $supportFileList)
         check-content of the xccdf. Once a STIG rule is identifed as a manual
         rule, it is passed to the ManualRule class for parsing and validation.
 #>
-Class ManualRule : STIG
+Class ManualRule : Rule
 {
     <#
         .SYNOPSIS

@@ -31,7 +31,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class RegistryRule : STIG
+Class RegistryRule : Rule
 {
     [string] $Key
     [string] $ValueName
@@ -295,7 +295,7 @@ Class RegistryRule : STIG
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        return Test-MultipleRegistryEntries -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleRegistryEntries -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
     }
 
     <#
@@ -313,7 +313,7 @@ Class RegistryRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultipleRegistryEntries -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        return ( Split-MultipleRegistryEntries -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
     }
 
     #endregion

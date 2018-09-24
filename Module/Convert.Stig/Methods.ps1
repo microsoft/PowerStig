@@ -452,7 +452,7 @@ function Get-FileContentRuleDscResource
         $Key
     )
 
-    switch ($Key) 
+    switch ($Key)
     {
         {$PSItem -match 'deployment.'}
         {
@@ -462,7 +462,7 @@ function Get-FileContentRuleDscResource
         {
             return 'cJsonFile'
         }
-        default 
+        default
         {
             'ReplaceText'
         }
@@ -548,9 +548,9 @@ function Test-DuplicateRule
     )
 
     $ruleType = $DifferenceObject.GetType().Name
-    $baseStig = [Stig]::New()
+    $baseRule = [Rule]::New()
 
-    $referenceProperties = ( $baseStig | Get-Member -MemberType Property ).Name
+    $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
     $differenceProperties = ( $DifferenceObject | Get-Member -MemberType Property ).Name
 
     $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
