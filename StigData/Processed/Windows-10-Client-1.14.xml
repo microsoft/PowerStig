@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_10_STIG" version="1.14" created="8/24/2018">
+<DISASTIG id="Windows_10_STIG" version="1.14" created="9/20/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1324,6 +1324,54 @@ Issued To: DoD Root CA 3
 Issuer by: US DoD CCEB Interoperability Root CA 2
 Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
 Valid: Friday, September 27, 2019</RawString>
+    </Rule>
+    <Rule id="V-63685" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
+
+If the following registry values do not exist or are not configured as specified, this is a finding:
+
+v1703 and later of Windows 10:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: EnableSmartScreen
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)
+
+And
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: ShellSmartScreenLevel
+
+Value Type: REG_SZ
+Value: Block
+
+v1607 of Windows 10:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: EnableSmartScreen
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)
+
+v1507 LTSB:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: EnableSmartScreen
+
+Value Type: REG_DWORD
+Value: 0x00000002 (2)</RawString>
     </Rule>
     <Rule id="V-63795" severity="medium" conversionstatus="pass" title="WN10-SO-000190" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2987,8 +3035,8 @@ EnableRopSimExec: ON
 The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.</RawString>
     </Rule>
   </ProcessMitigationRule>
-  <RegistryRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-63321" severity="medium" conversionstatus="pass" title="WN10-CC-000310" dscresource="Registry">
+  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-63321" severity="medium" conversionstatus="pass" title="WN10-CC-000310" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
@@ -3007,7 +3055,7 @@ Value: 0</RawString>
       <ValueName>EnableUserControl</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63325" severity="high" conversionstatus="pass" title="WN10-CC-000315" dscresource="Registry">
+    <Rule id="V-63325" severity="high" conversionstatus="pass" title="WN10-CC-000315" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
@@ -3026,7 +3074,7 @@ Value: 0</RawString>
       <ValueName>AlwaysInstallElevated</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63329" severity="medium" conversionstatus="pass" title="WN10-CC-000320" dscresource="Registry">
+    <Rule id="V-63329" severity="medium" conversionstatus="pass" title="WN10-CC-000320" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
@@ -3051,7 +3099,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueName>SafeForScripting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63333" severity="medium" conversionstatus="pass" title="WN10-CC-000325" dscresource="Registry">
+    <Rule id="V-63333" severity="medium" conversionstatus="pass" title="WN10-CC-000325" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -3070,7 +3118,7 @@ Value: 1</RawString>
       <ValueName>DisableAutomaticRestartSignOn</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63335" severity="high" conversionstatus="pass" title="WN10-CC-000330" dscresource="Registry">
+    <Rule id="V-63335" severity="high" conversionstatus="pass" title="WN10-CC-000330" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client</Key>
@@ -3089,7 +3137,7 @@ Value: 0</RawString>
       <ValueName>AllowBasic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63339" severity="medium" conversionstatus="pass" title="WN10-CC-000335" dscresource="Registry">
+    <Rule id="V-63339" severity="medium" conversionstatus="pass" title="WN10-CC-000335" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client</Key>
@@ -3108,7 +3156,7 @@ Value: 0</RawString>
       <ValueName>AllowUnencryptedTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63341" severity="medium" conversionstatus="pass" title="WN10-CC-000340" dscresource="Registry">
+    <Rule id="V-63341" severity="medium" conversionstatus="pass" title="WN10-CC-000340" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client</Key>
@@ -3127,7 +3175,7 @@ Value: 0</RawString>
       <ValueName>AllowDigest</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63347" severity="high" conversionstatus="pass" title="WN10-CC-000345" dscresource="Registry">
+    <Rule id="V-63347" severity="high" conversionstatus="pass" title="WN10-CC-000345" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service</Key>
@@ -3146,7 +3194,7 @@ Value: 0</RawString>
       <ValueName>AllowBasic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63369" severity="medium" conversionstatus="pass" title="WN10-CC-000350" dscresource="Registry">
+    <Rule id="V-63369" severity="medium" conversionstatus="pass" title="WN10-CC-000350" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service</Key>
@@ -3165,7 +3213,7 @@ Value: 0</RawString>
       <ValueName>AllowUnencryptedTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63375" severity="medium" conversionstatus="pass" title="WN10-CC-000355" dscresource="Registry">
+    <Rule id="V-63375" severity="medium" conversionstatus="pass" title="WN10-CC-000355" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service</Key>
@@ -3184,7 +3232,7 @@ Value: 1</RawString>
       <ValueName>DisableRunAs</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63519" severity="medium" conversionstatus="pass" title="WN10-AU-000500" dscresource="Registry">
+    <Rule id="V-63519" severity="medium" conversionstatus="pass" title="WN10-AU-000500" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application</Key>
@@ -3205,7 +3253,7 @@ Value:  0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63523" severity="medium" conversionstatus="pass" title="WN10-AU-000505" dscresource="Registry">
+    <Rule id="V-63523" severity="medium" conversionstatus="pass" title="WN10-AU-000505" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security</Key>
@@ -3226,7 +3274,7 @@ Value: 0x000fa000 (1024000) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63527" severity="medium" conversionstatus="pass" title="WN10-AU-000510" dscresource="Registry">
+    <Rule id="V-63527" severity="medium" conversionstatus="pass" title="WN10-AU-000510" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\System</Key>
@@ -3247,7 +3295,7 @@ Value:  0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63545" severity="medium" conversionstatus="pass" title="WN10-CC-000005" dscresource="Registry">
+    <Rule id="V-63545" severity="medium" conversionstatus="pass" title="WN10-CC-000005" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization</Key>
@@ -3268,7 +3316,7 @@ Value: 1</RawString>
       <ValueName>NoLockScreenCamera</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63549" severity="medium" conversionstatus="pass" title="WN10-CC-000010" dscresource="Registry">
+    <Rule id="V-63549" severity="medium" conversionstatus="pass" title="WN10-CC-000010" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization</Key>
@@ -3287,7 +3335,7 @@ Value: 1</RawString>
       <ValueName>NoLockScreenSlideshow</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63555" severity="medium" conversionstatus="pass" title="WN10-CC-000020" dscresource="Registry">
+    <Rule id="V-63555" severity="medium" conversionstatus="pass" title="WN10-CC-000020" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</Key>
@@ -3306,7 +3354,7 @@ Value: 2</RawString>
       <ValueName>DisableIpSourceRouting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63559" severity="medium" conversionstatus="pass" title="WN10-CC-000025" dscresource="Registry">
+    <Rule id="V-63559" severity="medium" conversionstatus="pass" title="WN10-CC-000025" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters</Key>
@@ -3325,7 +3373,7 @@ Value: 2</RawString>
       <ValueName>DisableIPSourceRouting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63563" severity="low" conversionstatus="pass" title="WN10-CC-000030" dscresource="Registry">
+    <Rule id="V-63563" severity="low" conversionstatus="pass" title="WN10-CC-000030" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters</Key>
@@ -3344,7 +3392,7 @@ Value: 0</RawString>
       <ValueName>EnableICMPRedirect</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63567" severity="low" conversionstatus="pass" title="WN10-CC-000035" dscresource="Registry">
+    <Rule id="V-63567" severity="low" conversionstatus="pass" title="WN10-CC-000035" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netbt\Parameters</Key>
@@ -3363,7 +3411,7 @@ Value:  1</RawString>
       <ValueName>NoNameReleaseOnDemand</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63569" severity="medium" conversionstatus="pass" title="WN10-CC-000040" dscresource="Registry">
+    <Rule id="V-63569" severity="medium" conversionstatus="pass" title="WN10-CC-000040" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LanmanWorkstation</Key>
@@ -3382,7 +3430,7 @@ Value:  0</RawString>
       <ValueName>AllowInsecureGuestAuth</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63577.a" severity="medium" conversionstatus="pass" title="WN10-CC-000050" dscresource="Registry">
+    <Rule id="V-63577.a" severity="medium" conversionstatus="pass" title="WN10-CC-000050" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths</Key>
@@ -3397,7 +3445,7 @@ Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueName>\\*\NETLOGON</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63577.b" severity="medium" conversionstatus="pass" title="WN10-CC-000050" dscresource="Registry">
+    <Rule id="V-63577.b" severity="medium" conversionstatus="pass" title="WN10-CC-000050" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths</Key>
@@ -3412,7 +3460,7 @@ Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueName>\\*\SYSVOL</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63581" severity="medium" conversionstatus="pass" title="WN10-CC-000055" dscresource="Registry">
+    <Rule id="V-63581" severity="medium" conversionstatus="pass" title="WN10-CC-000055" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy</Key>
@@ -3437,7 +3485,7 @@ Value: 1 (or if the Value Name does not exist)</RawString>
       <ValueName>fMinimizeConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63585" severity="medium" conversionstatus="pass" title="WN10-CC-000060" dscresource="Registry">
+    <Rule id="V-63585" severity="medium" conversionstatus="pass" title="WN10-CC-000060" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy</Key>
@@ -3456,7 +3504,7 @@ Value: 1</RawString>
       <ValueName>fBlockNonDomain</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63591" severity="medium" conversionstatus="pass" title="WN10-CC-000065" dscresource="Registry">
+    <Rule id="V-63591" severity="medium" conversionstatus="pass" title="WN10-CC-000065" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config</Key>
@@ -3475,7 +3523,7 @@ Value:  0</RawString>
       <ValueName>AutoConnectAllowedOEM</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63595.a" severity="low" conversionstatus="pass" title="WN10-CC-000070" dscresource="Registry">
+    <Rule id="V-63595.a" severity="low" conversionstatus="pass" title="WN10-CC-000070" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3490,7 +3538,7 @@ Value: 1</RawString>
       <ValueName>EnableVirtualizationBasedSecurity</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63595.b" severity="low" conversionstatus="pass" title="WN10-CC-000070" dscresource="Registry">
+    <Rule id="V-63595.b" severity="low" conversionstatus="pass" title="WN10-CC-000070" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3505,7 +3553,7 @@ Value: 1 (Secure Boot only) or 3 (Secure Boot and DMA Protection)</RawString>
       <ValueName>RequirePlatformSecurityFeatures</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63597" severity="medium" conversionstatus="pass" title="WN10-CC-000037" dscresource="Registry">
+    <Rule id="V-63597" severity="medium" conversionstatus="pass" title="WN10-CC-000037" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -3526,7 +3574,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>LocalAccountTokenFilterPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63599" severity="low" conversionstatus="pass" title="WN10-CC-000075" dscresource="Registry">
+    <Rule id="V-63599" severity="low" conversionstatus="pass" title="WN10-CC-000075" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3566,7 +3614,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock)</RawString>
       <ValueName>LsaCfgFlags</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63603" severity="low" conversionstatus="pass" title="WN10-CC-000080" dscresource="Registry">
+    <Rule id="V-63603" severity="low" conversionstatus="pass" title="WN10-CC-000080" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3607,7 +3655,7 @@ This setting is "Enabled Virtualization Based Protection of Code Integrity" (wit
       <ValueName>HypervisorEnforcedCodeIntegrity</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63607" severity="medium" conversionstatus="pass" title="WN10-CC-000085" dscresource="Registry">
+    <Rule id="V-63607" severity="medium" conversionstatus="pass" title="WN10-CC-000085" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\EarlyLaunch</Key>
@@ -3636,10 +3684,10 @@ Possible values for this setting are:
       <ValueName>DriverLoadPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63609" severity="medium" conversionstatus="pass" title="WN10-CC-000090" dscresource="Registry">
+    <Rule id="V-63609" severity="medium" conversionstatus="pass" title="WN10-CC-000090" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GroupPolicy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
@@ -3655,7 +3703,7 @@ Value: 0</RawString>
       <ValueName>NoGPOListChanges</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63615" severity="medium" conversionstatus="pass" title="WN10-CC-000100" dscresource="Registry">
+    <Rule id="V-63615" severity="medium" conversionstatus="pass" title="WN10-CC-000100" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers</Key>
@@ -3674,7 +3722,7 @@ Value: 1</RawString>
       <ValueName>DisableWebPnPDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63617" severity="medium" conversionstatus="pass" title="WN10-SO-000015" dscresource="Registry">
+    <Rule id="V-63617" severity="medium" conversionstatus="pass" title="WN10-SO-000015" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -3693,7 +3741,7 @@ Value: 1</RawString>
       <ValueName>LimitBlankPasswordUse</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63621" severity="medium" conversionstatus="pass" title="WN10-CC-000105" dscresource="Registry">
+    <Rule id="V-63621" severity="medium" conversionstatus="pass" title="WN10-CC-000105" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -3712,7 +3760,7 @@ Value: 1</RawString>
       <ValueName>NoWebServices</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63623" severity="medium" conversionstatus="pass" title="WN10-CC-000110" dscresource="Registry">
+    <Rule id="V-63623" severity="medium" conversionstatus="pass" title="WN10-CC-000110" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers</Key>
@@ -3731,7 +3779,7 @@ Value: 1</RawString>
       <ValueName>DisableHTTPPrinting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63627" severity="medium" conversionstatus="pass" title="WN10-CC-000115" dscresource="Registry">
+    <Rule id="V-63627" severity="medium" conversionstatus="pass" title="WN10-CC-000115" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
@@ -3757,7 +3805,7 @@ Value:  1 (or if the Value Name does not exist)</RawString>
       <ValueName>DevicePKInitEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63629" severity="medium" conversionstatus="pass" title="WN10-CC-000120" dscresource="Registry">
+    <Rule id="V-63629" severity="medium" conversionstatus="pass" title="WN10-CC-000120" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
@@ -3776,7 +3824,7 @@ Value: 1</RawString>
       <ValueName>DontDisplayNetworkSelectionUI</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63633" severity="medium" conversionstatus="pass" title="WN10-CC-000130" dscresource="Registry">
+    <Rule id="V-63633" severity="medium" conversionstatus="pass" title="WN10-CC-000130" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
@@ -3797,7 +3845,7 @@ Value: 0</RawString>
       <ValueName>EnumerateLocalUsers</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63635" severity="medium" conversionstatus="pass" title="WN10-SO-000030" dscresource="Registry">
+    <Rule id="V-63635" severity="medium" conversionstatus="pass" title="WN10-SO-000030" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -3816,7 +3864,7 @@ Value: 1</RawString>
       <ValueName>SCENoApplyLegacyAuditPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63639" severity="medium" conversionstatus="pass" title="WN10-SO-000035" dscresource="Registry">
+    <Rule id="V-63639" severity="medium" conversionstatus="pass" title="WN10-SO-000035" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3835,7 +3883,7 @@ Value: 1</RawString>
       <ValueName>RequireSignOrSeal</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63643" severity="medium" conversionstatus="pass" title="WN10-SO-000040" dscresource="Registry">
+    <Rule id="V-63643" severity="medium" conversionstatus="pass" title="WN10-SO-000040" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3854,7 +3902,7 @@ Value: 1</RawString>
       <ValueName>SealSecureChannel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63645" severity="medium" conversionstatus="pass" title="WN10-CC-000145" dscresource="Registry">
+    <Rule id="V-63645" severity="medium" conversionstatus="pass" title="WN10-CC-000145" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51</Key>
@@ -3873,7 +3921,7 @@ Value: 1</RawString>
       <ValueName>DCSettingIndex</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63647" severity="medium" conversionstatus="pass" title="WN10-SO-000045" dscresource="Registry">
+    <Rule id="V-63647" severity="medium" conversionstatus="pass" title="WN10-SO-000045" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3892,7 +3940,7 @@ Value: 1</RawString>
       <ValueName>SignSecureChannel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63649" severity="medium" conversionstatus="pass" title="WN10-CC-000150" dscresource="Registry">
+    <Rule id="V-63649" severity="medium" conversionstatus="pass" title="WN10-CC-000150" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51</Key>
@@ -3911,7 +3959,7 @@ Value: 1</RawString>
       <ValueName>ACSettingIndex</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63651" severity="high" conversionstatus="pass" title="WN10-CC-000155" dscresource="Registry">
+    <Rule id="V-63651" severity="high" conversionstatus="pass" title="WN10-CC-000155" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -3930,7 +3978,7 @@ Value: 0</RawString>
       <ValueName>fAllowToGetHelp</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63653" severity="low" conversionstatus="pass" title="WN10-SO-000050" dscresource="Registry">
+    <Rule id="V-63653" severity="low" conversionstatus="pass" title="WN10-SO-000050" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3949,7 +3997,7 @@ Value: 0</RawString>
       <ValueName>DisablePasswordChange</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63657" severity="medium" conversionstatus="pass" title="WN10-CC-000165" dscresource="Registry">
+    <Rule id="V-63657" severity="medium" conversionstatus="pass" title="WN10-CC-000165" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Rpc</Key>
@@ -3968,7 +4016,7 @@ Value: 1</RawString>
       <ValueName>RestrictRemoteClients</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63659" severity="low" conversionstatus="pass" title="WN10-CC-000170" dscresource="Registry">
+    <Rule id="V-63659" severity="low" conversionstatus="pass" title="WN10-CC-000170" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -3987,7 +4035,7 @@ Value: 1</RawString>
       <ValueName>MSAOptional</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63661" severity="low" conversionstatus="pass" title="WN10-SO-000055" dscresource="Registry">
+    <Rule id="V-63661" severity="low" conversionstatus="pass" title="WN10-SO-000055" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -4008,7 +4056,7 @@ Value: 0x0000001e (30)  (or less, excluding 0)</RawString>
       <ValueName>MaximumPasswordAge</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63663" severity="low" conversionstatus="pass" title="WN10-CC-000175" dscresource="Registry">
+    <Rule id="V-63663" severity="low" conversionstatus="pass" title="WN10-CC-000175" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat</Key>
@@ -4027,7 +4075,7 @@ Value: 1</RawString>
       <ValueName>DisableInventory</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63665" severity="medium" conversionstatus="pass" title="WN10-SO-000060" dscresource="Registry">
+    <Rule id="V-63665" severity="medium" conversionstatus="pass" title="WN10-SO-000060" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -4048,7 +4096,7 @@ Warning: This setting may prevent a system from being joined to a domain if not 
       <ValueName>RequireStrongKey</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63667" severity="high" conversionstatus="pass" title="WN10-CC-000180" dscresource="Registry">
+    <Rule id="V-63667" severity="high" conversionstatus="pass" title="WN10-CC-000180" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
@@ -4067,7 +4115,7 @@ Value: 1</RawString>
       <ValueName>NoAutoplayfornonVolume</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63669" severity="medium" conversionstatus="pass" title="WN10-SO-000070" dscresource="Registry">
+    <Rule id="V-63669" severity="medium" conversionstatus="pass" title="WN10-SO-000070" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4086,7 +4134,7 @@ Value: 0x00000384 (900)</RawString>
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63671" severity="high" conversionstatus="pass" title="WN10-CC-000185" dscresource="Registry">
+    <Rule id="V-63671" severity="high" conversionstatus="pass" title="WN10-CC-000185" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -4105,7 +4153,7 @@ Value: 1</RawString>
       <ValueName>NoAutorun</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63673" severity="high" conversionstatus="pass" title="WN10-CC-000190" dscresource="Registry">
+    <Rule id="V-63673" severity="high" conversionstatus="pass" title="WN10-CC-000190" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer</Key>
@@ -4126,7 +4174,7 @@ Note: If the value for NoDriveTypeAutorun is entered manually, it must be entere
       <ValueName>NoDriveTypeAutoRun</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63675" severity="medium" conversionstatus="pass" title="WN10-SO-000075" dscresource="Registry">
+    <Rule id="V-63675" severity="medium" conversionstatus="pass" title="WN10-SO-000075" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4154,17 +4202,24 @@ By using this IS (which includes any device attached to this IS), you consent to
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</RawString>
-      <ValueData>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+      <ValueData>
+You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
 -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
 -At any time, the USG may inspect and seize data stored on this IS.
+
 -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</ValueData>
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</ValueData>
       <ValueName>LegalNoticeText</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63677" severity="medium" conversionstatus="pass" title="WN10-CC-000195" dscresource="Registry">
+    <Rule id="V-63677" severity="medium" conversionstatus="pass" title="WN10-CC-000195" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Biometrics\FacialFeatures</Key>
@@ -4183,7 +4238,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnhancedAntiSpoofing</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63679" severity="medium" conversionstatus="pass" title="WN10-CC-000200" dscresource="Registry">
+    <Rule id="V-63679" severity="medium" conversionstatus="pass" title="WN10-CC-000200" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\CredUI</Key>
@@ -4202,7 +4257,7 @@ Value: 0</RawString>
       <ValueName>EnumerateAdministrators</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63681" severity="low" conversionstatus="pass" title="WN10-SO-000080" dscresource="Registry">
+    <Rule id="V-63681" severity="low" conversionstatus="pass" title="WN10-SO-000080" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4225,7 +4280,7 @@ If a site-defined title is used, it can in no case contravene or modify the lang
       <ValueName>LegalNoticeCaption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63683" severity="medium" conversionstatus="pass" title="WN10-CC-000205" dscresource="Registry">
+    <Rule id="V-63683" severity="medium" conversionstatus="pass" title="WN10-CC-000205" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
@@ -4244,67 +4299,7 @@ Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63685.a" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_DWORD
-Value Name: EnableSmartScreen
-Value: 0x00000001 (1)</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>EnableSmartScreen</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63685.b" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_SZ
-Value Name: ShellSmartScreenLevel
-Value: Block</RawString>
-      <ValueData>Block</ValueData>
-      <ValueName>ShellSmartScreenLevel</ValueName>
-      <ValueType>String</ValueType>
-    </Rule>
-    <Rule id="V-63685.c" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_DWORD
-Value Name: EnableSmartScreen
-Value: 0x00000001 (1)</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>EnableSmartScreen</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63685.d" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_DWORD
-Value Name: EnableSmartScreen
-Value: 0x00000002 (2)</RawString>
-      <ValueData>2</ValueData>
-      <ValueName>EnableSmartScreen</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63687" severity="low" conversionstatus="pass" title="WN10-SO-000085" dscresource="Registry">
+    <Rule id="V-63687" severity="low" conversionstatus="pass" title="WN10-SO-000085" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
@@ -4327,7 +4322,7 @@ This setting only applies to domain-joined systems, however, it is configured by
       <ValueName>CachedLogonsCount</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63689" severity="medium" conversionstatus="pass" title="WN10-CC-000215" dscresource="Registry">
+    <Rule id="V-63689" severity="medium" conversionstatus="pass" title="WN10-CC-000215" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
@@ -4352,7 +4347,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueName>NoDataExecutionPrevention</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63691" severity="low" conversionstatus="pass" title="WN10-CC-000220" dscresource="Registry">
+    <Rule id="V-63691" severity="low" conversionstatus="pass" title="WN10-CC-000220" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
@@ -4377,7 +4372,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueName>NoHeapTerminationOnCorruption</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63695" severity="medium" conversionstatus="pass" title="WN10-CC-000225" dscresource="Registry">
+    <Rule id="V-63695" severity="medium" conversionstatus="pass" title="WN10-CC-000225" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -4402,7 +4397,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueName>PreXPSP2ShellProtocolBehavior</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63697" severity="medium" conversionstatus="pass" title="WN10-SO-000095" dscresource="Registry">
+    <Rule id="V-63697" severity="medium" conversionstatus="pass" title="WN10-SO-000095" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
@@ -4426,7 +4421,7 @@ This can be left not configured or set to "No action" on workstations with the f
       <ValueName>SCRemoveOption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63699" severity="medium" conversionstatus="pass" title="WN10-CC-000230" dscresource="Registry">
+    <Rule id="V-63699" severity="medium" conversionstatus="pass" title="WN10-CC-000230" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter</Key>
@@ -4449,7 +4444,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>PreventOverride</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63701" severity="medium" conversionstatus="pass" title="WN10-CC-000235" dscresource="Registry">
+    <Rule id="V-63701" severity="medium" conversionstatus="pass" title="WN10-CC-000235" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter</Key>
@@ -4472,7 +4467,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>PreventOverrideAppRepUnknown</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63703" severity="medium" conversionstatus="pass" title="WN10-SO-000100" dscresource="Registry">
+    <Rule id="V-63703" severity="medium" conversionstatus="pass" title="WN10-SO-000100" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
@@ -4491,7 +4486,7 @@ Value: 1</RawString>
       <ValueName>RequireSecuritySignature</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63705" severity="medium" conversionstatus="pass" title="WN10-CC-000240" dscresource="Registry">
+    <Rule id="V-63705" severity="medium" conversionstatus="pass" title="WN10-CC-000240" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main</Key>
@@ -4512,7 +4507,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowInPrivate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63707" severity="medium" conversionstatus="pass" title="WN10-SO-000105" dscresource="Registry">
+    <Rule id="V-63707" severity="medium" conversionstatus="pass" title="WN10-SO-000105" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
@@ -4531,7 +4526,7 @@ Value: 1</RawString>
       <ValueName>EnableSecuritySignature</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63709" severity="medium" conversionstatus="pass" title="WN10-CC-000245" dscresource="Registry">
+    <Rule id="V-63709" severity="medium" conversionstatus="pass" title="WN10-CC-000245" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main</Key>
@@ -4552,7 +4547,7 @@ Value: no</RawString>
       <ValueName>FormSuggest Passwords</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-63711" severity="medium" conversionstatus="pass" title="WN10-SO-000110" dscresource="Registry">
+    <Rule id="V-63711" severity="medium" conversionstatus="pass" title="WN10-SO-000110" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
@@ -4571,7 +4566,7 @@ Value:  0</RawString>
       <ValueName>EnablePlainTextPassword</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63713" severity="medium" conversionstatus="pass" title="WN10-CC-000250" dscresource="Registry">
+    <Rule id="V-63713" severity="medium" conversionstatus="pass" title="WN10-CC-000250" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter</Key>
@@ -4594,7 +4589,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnabledV9</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63715" severity="low" conversionstatus="pass" title="WN10-SO-000115" dscresource="Registry">
+    <Rule id="V-63715" severity="low" conversionstatus="pass" title="WN10-SO-000115" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4613,7 +4608,7 @@ Value:  0x0000000f (15) (or less)</RawString>
       <ValueName>autodisconnect</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63717" severity="medium" conversionstatus="pass" title="WN10-CC-000255" dscresource="Registry">
+    <Rule id="V-63717" severity="medium" conversionstatus="pass" title="WN10-CC-000255" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PassportForWork</Key>
@@ -4634,7 +4629,7 @@ Value: 1</RawString>
       <ValueName>RequireSecurityDevice</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63719" severity="medium" conversionstatus="pass" title="WN10-SO-000120" dscresource="Registry">
+    <Rule id="V-63719" severity="medium" conversionstatus="pass" title="WN10-SO-000120" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4653,7 +4648,7 @@ Value: 1</RawString>
       <ValueName>RequireSecuritySignature</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63721" severity="medium" conversionstatus="pass" title="WN10-CC-000260" dscresource="Registry">
+    <Rule id="V-63721" severity="medium" conversionstatus="pass" title="WN10-CC-000260" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PassportForWork\PINComplexity</Key>
@@ -4672,7 +4667,7 @@ Value:  6 (or greater)</RawString>
       <ValueName>MinimumPINLength</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63723" severity="medium" conversionstatus="pass" title="WN10-SO-000125" dscresource="Registry">
+    <Rule id="V-63723" severity="medium" conversionstatus="pass" title="WN10-SO-000125" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4691,7 +4686,7 @@ Value: 1</RawString>
       <ValueName>EnableSecuritySignature</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63725" severity="medium" conversionstatus="pass" title="WN10-CC-000265" dscresource="Registry">
+    <Rule id="V-63725" severity="medium" conversionstatus="pass" title="WN10-CC-000265" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive</Key>
@@ -4710,7 +4705,7 @@ Value: 1</RawString>
       <ValueName>DisableFileSyncNGSC</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63729" severity="medium" conversionstatus="pass" title="WN10-CC-000270" dscresource="Registry">
+    <Rule id="V-63729" severity="medium" conversionstatus="pass" title="WN10-CC-000270" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4729,7 +4724,7 @@ Value: 1</RawString>
       <ValueName>DisablePasswordSaving</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63731" severity="medium" conversionstatus="pass" title="WN10-CC-000275" dscresource="Registry">
+    <Rule id="V-63731" severity="medium" conversionstatus="pass" title="WN10-CC-000275" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4748,7 +4743,7 @@ Value: 1</RawString>
       <ValueName>fDisableCdm</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63733" severity="medium" conversionstatus="pass" title="WN10-CC-000280" dscresource="Registry">
+    <Rule id="V-63733" severity="medium" conversionstatus="pass" title="WN10-CC-000280" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4767,7 +4762,7 @@ Value: 1</RawString>
       <ValueName>fPromptForPassword</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63737" severity="medium" conversionstatus="pass" title="WN10-CC-000285" dscresource="Registry">
+    <Rule id="V-63737" severity="medium" conversionstatus="pass" title="WN10-CC-000285" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4786,7 +4781,7 @@ Value: 1</RawString>
       <ValueName>fEncryptRPCTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63741" severity="medium" conversionstatus="pass" title="WN10-CC-000290" dscresource="Registry">
+    <Rule id="V-63741" severity="medium" conversionstatus="pass" title="WN10-CC-000290" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4805,7 +4800,7 @@ Value: 3</RawString>
       <ValueName>MinEncryptionLevel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63743" severity="medium" conversionstatus="pass" title="WN10-CC-000295" dscresource="Registry">
+    <Rule id="V-63743" severity="medium" conversionstatus="pass" title="WN10-CC-000295" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
@@ -4824,7 +4819,7 @@ Value: 1</RawString>
       <ValueName>DisableEnclosureDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63745" severity="high" conversionstatus="pass" title="WN10-SO-000145" dscresource="Registry">
+    <Rule id="V-63745" severity="high" conversionstatus="pass" title="WN10-SO-000145" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4843,7 +4838,7 @@ Value: 1</RawString>
       <ValueName>RestrictAnonymousSAM</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63747" severity="medium" conversionstatus="pass" title="WN10-CC-000300" dscresource="Registry">
+    <Rule id="V-63747" severity="medium" conversionstatus="pass" title="WN10-CC-000300" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
@@ -4868,7 +4863,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueName>AllowBasicAuthInClear</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63749" severity="high" conversionstatus="pass" title="WN10-SO-000150" dscresource="Registry">
+    <Rule id="V-63749" severity="high" conversionstatus="pass" title="WN10-SO-000150" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4887,7 +4882,7 @@ Value: 1</RawString>
       <ValueName>RestrictAnonymous</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63751" severity="medium" conversionstatus="pass" title="WN10-CC-000305" dscresource="Registry">
+    <Rule id="V-63751" severity="medium" conversionstatus="pass" title="WN10-CC-000305" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search</Key>
@@ -4906,7 +4901,7 @@ Value: 0</RawString>
       <ValueName>AllowIndexingEncryptedStoresOrItems</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63753" severity="medium" conversionstatus="pass" title="WN10-SO-000155" dscresource="Registry">
+    <Rule id="V-63753" severity="medium" conversionstatus="pass" title="WN10-SO-000155" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4925,7 +4920,7 @@ Value: 1</RawString>
       <ValueName>DisableDomainCreds</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63755" severity="medium" conversionstatus="pass" title="WN10-SO-000160" dscresource="Registry">
+    <Rule id="V-63755" severity="medium" conversionstatus="pass" title="WN10-SO-000160" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4944,7 +4939,7 @@ Value: 0</RawString>
       <ValueName>EveryoneIncludesAnonymous</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63759" severity="high" conversionstatus="pass" title="WN10-SO-000165" dscresource="Registry">
+    <Rule id="V-63759" severity="high" conversionstatus="pass" title="WN10-SO-000165" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4963,7 +4958,7 @@ Value: 1</RawString>
       <ValueName>RestrictNullSessAccess</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63763" severity="medium" conversionstatus="pass" title="WN10-SO-000175" dscresource="Registry">
+    <Rule id="V-63763" severity="medium" conversionstatus="pass" title="WN10-SO-000175" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA</Key>
@@ -4982,7 +4977,7 @@ Value: 1</RawString>
       <ValueName>UseMachineId</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63765" severity="medium" conversionstatus="pass" title="WN10-SO-000180" dscresource="Registry">
+    <Rule id="V-63765" severity="medium" conversionstatus="pass" title="WN10-SO-000180" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\MSV1_0</Key>
@@ -5001,7 +4996,7 @@ Value: 0</RawString>
       <ValueName>allownullsessionfallback</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63767" severity="medium" conversionstatus="pass" title="WN10-SO-000185" dscresource="Registry">
+    <Rule id="V-63767" severity="medium" conversionstatus="pass" title="WN10-SO-000185" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\pku2u</Key>
@@ -5020,7 +5015,7 @@ Value: 0</RawString>
       <ValueName>AllowOnlineID</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63797" severity="high" conversionstatus="pass" title="WN10-SO-000195" dscresource="Registry">
+    <Rule id="V-63797" severity="high" conversionstatus="pass" title="WN10-SO-000195" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -5039,7 +5034,7 @@ Value: 1</RawString>
       <ValueName>NoLMHash</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63801" severity="high" conversionstatus="pass" title="WN10-SO-000205" dscresource="Registry">
+    <Rule id="V-63801" severity="high" conversionstatus="pass" title="WN10-SO-000205" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -5058,7 +5053,7 @@ Value: 5</RawString>
       <ValueName>LmCompatibilityLevel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63803" severity="medium" conversionstatus="pass" title="WN10-SO-000210" dscresource="Registry">
+    <Rule id="V-63803" severity="medium" conversionstatus="pass" title="WN10-SO-000210" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LDAP</Key>
@@ -5077,7 +5072,7 @@ Value: 1</RawString>
       <ValueName>LDAPClientIntegrity</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63805" severity="medium" conversionstatus="pass" title="WN10-SO-000215" dscresource="Registry">
+    <Rule id="V-63805" severity="medium" conversionstatus="pass" title="WN10-SO-000215" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0</Key>
@@ -5096,7 +5091,7 @@ Value: 0x20080000 (537395200)</RawString>
       <ValueName>NTLMMinClientSec</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63807" severity="medium" conversionstatus="pass" title="WN10-SO-000220" dscresource="Registry">
+    <Rule id="V-63807" severity="medium" conversionstatus="pass" title="WN10-SO-000220" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0</Key>
@@ -5115,7 +5110,7 @@ Value: 0x20080000 (537395200)</RawString>
       <ValueName>NTLMMinServerSec</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63811" severity="medium" conversionstatus="pass" title="WN10-SO-000230" dscresource="Registry">
+    <Rule id="V-63811" severity="medium" conversionstatus="pass" title="WN10-SO-000230" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy</Key>
@@ -5136,7 +5131,7 @@ Warning: Clients with this setting enabled will not be able to communicate via d
       <ValueName>Enabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63815" severity="low" conversionstatus="pass" title="WN10-SO-000240" dscresource="Registry">
+    <Rule id="V-63815" severity="low" conversionstatus="pass" title="WN10-SO-000240" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager</Key>
@@ -5155,7 +5150,7 @@ Value: 1</RawString>
       <ValueName>ProtectionMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63817" severity="medium" conversionstatus="pass" title="WN10-SO-000245" dscresource="Registry">
+    <Rule id="V-63817" severity="medium" conversionstatus="pass" title="WN10-SO-000245" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5174,7 +5169,7 @@ Value: 1</RawString>
       <ValueName>FilterAdministratorToken</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63819" severity="medium" conversionstatus="pass" title="WN10-SO-000250" dscresource="Registry">
+    <Rule id="V-63819" severity="medium" conversionstatus="pass" title="WN10-SO-000250" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5193,7 +5188,7 @@ Value: 2 (Prompt for consent on the secure desktop)</RawString>
       <ValueName>ConsentPromptBehaviorAdmin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63821" severity="medium" conversionstatus="pass" title="WN10-SO-000255" dscresource="Registry">
+    <Rule id="V-63821" severity="medium" conversionstatus="pass" title="WN10-SO-000255" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5212,7 +5207,7 @@ Value: 0</RawString>
       <ValueName>ConsentPromptBehaviorUser</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63825" severity="medium" conversionstatus="pass" title="WN10-SO-000260" dscresource="Registry">
+    <Rule id="V-63825" severity="medium" conversionstatus="pass" title="WN10-SO-000260" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5231,7 +5226,7 @@ Value: 1</RawString>
       <ValueName>EnableInstallerDetection</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63827" severity="medium" conversionstatus="pass" title="WN10-SO-000265" dscresource="Registry">
+    <Rule id="V-63827" severity="medium" conversionstatus="pass" title="WN10-SO-000265" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5250,7 +5245,7 @@ Value: 1</RawString>
       <ValueName>EnableSecureUIAPaths</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63829" severity="medium" conversionstatus="pass" title="WN10-SO-000270" dscresource="Registry">
+    <Rule id="V-63829" severity="medium" conversionstatus="pass" title="WN10-SO-000270" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5269,7 +5264,7 @@ Value: 1</RawString>
       <ValueName>EnableLUA</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63831" severity="medium" conversionstatus="pass" title="WN10-SO-000275" dscresource="Registry">
+    <Rule id="V-63831" severity="medium" conversionstatus="pass" title="WN10-SO-000275" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5288,7 +5283,7 @@ Value: 1</RawString>
       <ValueName>EnableVirtualization</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63839" severity="low" conversionstatus="pass" title="WN10-UC-000015" dscresource="Registry">
+    <Rule id="V-63839" severity="low" conversionstatus="pass" title="WN10-UC-000015" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications</Key>
@@ -5307,7 +5302,7 @@ Value: 1</RawString>
       <ValueName>NoToastApplicationNotificationOnLockScreen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63841" severity="medium" conversionstatus="pass" title="WN10-UC-000020" dscresource="Registry">
+    <Rule id="V-63841" severity="medium" conversionstatus="pass" title="WN10-UC-000020" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
@@ -5332,7 +5327,7 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
       <ValueName>SaveZoneInformation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-65681.a" severity="low" conversionstatus="pass" title="WN10-CC-000206" dscresource="Registry">
+    <Rule id="V-65681.a" severity="low" conversionstatus="pass" title="WN10-CC-000206" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization</Key>
@@ -5347,7 +5342,7 @@ Value: 0x00000000 (0) - No peering (HTTP Only)</RawString>
       <ValueName>DODownloadMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-65681.b" severity="low" conversionstatus="pass" title="WN10-CC-000206" dscresource="Registry">
+    <Rule id="V-65681.b" severity="low" conversionstatus="pass" title="WN10-CC-000206" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config</Key>
@@ -5362,7 +5357,7 @@ Value: 0x00000000 (0) - Off</RawString>
       <ValueName>DODownloadMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-68817" severity="medium" conversionstatus="pass" title="WN10-CC-000066" dscresource="Registry">
+    <Rule id="V-68817" severity="medium" conversionstatus="pass" title="WN10-CC-000066" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit</Key>
@@ -5381,7 +5376,7 @@ Value: 1</RawString>
       <ValueName>ProcessCreationIncludeCmdLine_Enabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-68819" severity="medium" conversionstatus="pass" title="WN10-CC-000326" dscresource="Registry">
+    <Rule id="V-68819" severity="medium" conversionstatus="pass" title="WN10-CC-000326" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</Key>
@@ -5400,7 +5395,7 @@ Value: 1</RawString>
       <ValueName>EnableScriptBlockLogging</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-68849" severity="high" conversionstatus="pass" title="WN10-00-000150" dscresource="Registry">
+    <Rule id="V-68849" severity="high" conversionstatus="pass" title="WN10-00-000150" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel</Key>
@@ -5423,7 +5418,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>DisableExceptionChainValidation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-71763" severity="medium" conversionstatus="pass" title="WN10-CC-000038" dscresource="Registry">
+    <Rule id="V-71763" severity="medium" conversionstatus="pass" title="WN10-CC-000038" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\Wdigest</Key>
@@ -5442,7 +5437,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>UseLogonCredential</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-71765" severity="medium" conversionstatus="pass" title="WN10-CC-000044" dscresource="Registry">
+    <Rule id="V-71765" severity="medium" conversionstatus="pass" title="WN10-CC-000044" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Network Connections</Key>
@@ -5461,7 +5456,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>NC_ShowSharedAccessUI</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-71769" severity="medium" conversionstatus="pass" title="WN10-SO-000167" dscresource="Registry">
+    <Rule id="V-71769" severity="medium" conversionstatus="pass" title="WN10-SO-000167" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -5482,7 +5477,7 @@ Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
       <ValueName>RestrictRemoteSAM</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-71771" severity="low" conversionstatus="pass" title="WN10-CC-000197" dscresource="Registry">
+    <Rule id="V-71771" severity="low" conversionstatus="pass" title="WN10-CC-000197" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent</Key>
@@ -5501,7 +5496,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisableWindowsConsumerFeatures</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72329.a" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="Registry">
+    <Rule id="V-72329.a" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\batfile\shell\runasuser</Key>
@@ -5516,7 +5511,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueName>SuppressionPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72329.b" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="Registry">
+    <Rule id="V-72329.b" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\cmdfile\shell\runasuser</Key>
@@ -5531,7 +5526,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueName>SuppressionPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72329.c" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="Registry">
+    <Rule id="V-72329.c" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\exefile\shell\runasuser</Key>
@@ -5546,7 +5541,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueName>SuppressionPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72329.d" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="Registry">
+    <Rule id="V-72329.d" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\mscfile\shell\runasuser</Key>
@@ -5561,7 +5556,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueName>SuppressionPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-74413" severity="medium" conversionstatus="pass" title="WN10-CC-000052" dscresource="Registry">
+    <Rule id="V-74413" severity="medium" conversionstatus="pass" title="WN10-CC-000052" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\ Cryptography\Configuration\SSL\00010002</Key>
@@ -5580,10 +5575,10 @@ Value: NistP384 NistP256</RawString>
       <ValueName>EccCurves</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
-    <Rule id="V-74415" severity="medium" conversionstatus="pass" title="WN10-CC-000228" dscresource="Registry">
+    <Rule id="V-74415" severity="medium" conversionstatus="pass" title="WN10-CC-000228" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Privacy</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\ Privacy</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1703 of Windows 10, it is NA for prior versions.
@@ -5601,7 +5596,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>ClearBrowsingHistoryOnExit</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-74417" severity="medium" conversionstatus="pass" title="WN10-CC-000252" dscresource="Registry">
+    <Rule id="V-74417" severity="medium" conversionstatus="pass" title="WN10-CC-000252" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR</Key>
@@ -5622,7 +5617,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowGameDVR</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-74699" severity="medium" conversionstatus="pass" title="WN10-CC-000068" dscresource="Registry">
+    <Rule id="V-74699" severity="medium" conversionstatus="pass" title="WN10-CC-000068" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation</Key>
@@ -5643,7 +5638,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>AllowProtectedCreds</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-74723" severity="medium" conversionstatus="pass" title="WN10-00-000165" dscresource="Registry">
+    <Rule id="V-74723" severity="medium" conversionstatus="pass" title="WN10-00-000165" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters</Key>
@@ -5664,7 +5659,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>SMB1</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-74725" severity="medium" conversionstatus="pass" title="WN10-00-000170" dscresource="Registry">
+    <Rule id="V-74725" severity="medium" conversionstatus="pass" title="WN10-00-000170" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mrxsmb10</Key>
@@ -5685,10 +5680,10 @@ Value: 0x00000004 (4)</RawString>
       <ValueName>Start</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-77025" severity="medium" conversionstatus="pass" title="WN10-EP-000010" dscresource="Registry">
+    <Rule id="V-77025" severity="medium" conversionstatus="pass" title="WN10-EP-000010" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\WindowsDefenderSecurityCenter\AppandBrowserprotection</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\App and Browser protection</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This is NA prior to v1709 of Windows 10.

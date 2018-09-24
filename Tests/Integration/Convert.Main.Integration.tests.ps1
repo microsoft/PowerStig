@@ -320,9 +320,9 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Windows_10_STIG_V1R12_Manual-xccdf.xml'                    = @{
+        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
             AccountPolicyRule            = 9
-            AuditPolicyRule              = 38
+            AuditPolicyRule              = 35
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 4
@@ -333,31 +333,7 @@ try
             MimeTypeRule                 = $null
             PermissionRule               = 9
             ProcessMitigationRule        = 31
-            RegistryRule                 = 140
-            SecurityOptionRule           = 6
-            ServiceRule                  = 2
-            SqlScriptQueryRule           = $null
-            UserRightRule                = 30
-            WebAppPoolRule               = $null
-            WebConfigurationPropertyRule = $null
-            WinEventLogRule              = $null
-            WindowsFeatureRule           = 9
-            WmiRule                      = 1
-        }
-        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
-            AccountPolicyRule            = 9
-            AuditPolicyRule              = 35
-            DnsServerRootHintRule        = $null
-            DnsServerSettingRule         = $null
-            DocumentRule                 = 4
-            FileContentRule              = $null
-            GroupRule                    = 1
-            IisLoggingRule               = $null
-            ManualRule                   = 26
-            MimeTypeRule                 = $null
-            PermissionRule               = 9
-            ProcessMitigationRule        = 31
-            RegistryRule                 = 136
+            RegistryRule                 = 132
             SecurityOptionRule           = 5
             ServiceRule                  = 1
             SqlScriptQueryRule           = $null
