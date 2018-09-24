@@ -82,6 +82,7 @@ The list of STIGs that we are currently covering.
 | ---- | --- |
 |[Browser](https://github.com/Microsoft/PowerStig/wiki/Browser) | Provides a mechanism to manage Browser STIG settings. |
 |[DotNetFramework](https://github.com/Microsoft/PowerStig/wiki/DotNetFramework) | Provides a mechanism to manage .Net Framework STIG settings. |
+|[Office](https://github.com/Microsoft/PowerStig/wiki/Office) | Provides a mechanism to manage Microsoft Office STIG settings. |
 |[SqlServer](https://github.com/Microsoft/PowerStig/wiki/SqlServer) | Provides a mechanism to manage SqlServer STIG settings. |
 |[WindowsDnsServer](https://github.com/Microsoft/PowerStig/wiki/WindowsDnsServer) | Provides a mechanism to manage Windows DNS Server STIG settings. |
 |[WindowsFirewall](https://github.com/Microsoft/PowerStig/wiki/WindowsFirewall) | Provides a mechanism to manage the Windows Firewall STIG settings. |

@@ -6,25 +6,25 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Browser STIG settings
+        A composite DSC resource to manage the Microsoft Office DISA STIG settings
 
-    .PARAMETER BrowserVersion
-        The version of the Browser the STIG applies to
+    .PARAMETER OfficeApp
+        The version of the Microsoft Office application the STIG applies to
 
     .PARAMETER StigVersion
-        The version of the STIG to apply and monitor
+        The version of the Microsoft Office DISA STIG to apply and/or monitor
 
     .PARAMETER Exception
-        A hash table of key value pairs that are injected into the STIG data and applied to
-        the target node. The title of STIG setting is tagged with the text ‘Exception’ to identify
+        A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
+        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
 
     .PARAMETER OrgSettings
-        The path to the XML file that contains the local organizations preferred settings for STIG
+        The path to the xml file that contains the local organizations preferred settings for STIG
         items that have allowable ranges.
 
     .PARAMETER SkipRule
-        The SkipRule Node is injected into the STIG data and applied to the target node. The title
+        The SkipRule Node is injected into the STIG data and applied to the taget node. The title
         of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
         data center when you centralize DSC log collection.
 
@@ -32,18 +32,18 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration Browser
+Configuration Office
 {
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('IE11')]
+        [ValidateSet('Outlook2013', 'Excel2013', 'Word2013', 'PowerPoint2013')]
         [string]
-        $BrowserVersion,
+        $OfficeApp,
 
         [Parameter()]
-        [ValidateSet('1.13', '1.15', '1.16')]
+        [ValidateSet('1.6', '1.7', '1.12')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -54,14 +54,17 @@ Configuration Browser
         $Exception,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [psobject]
         $OrgSettings,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [psobject]
         $SkipRule,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [psobject]
         $SkipRuleType
     )
@@ -78,8 +81,8 @@ Configuration Browser
     ##### END DO NOT MODIFY #####
 
     $technology        = [Technology]::Windows
-    $technologyVersion = [TechnologyVersion]::New( 'All', $technology )
-    $technologyRole    = [TechnologyRole]::New( $BrowserVersion, $technologyVersion )
+    $technologyVersion = [TechnologyVersion]::New( "All", $technology )
+    $technologyRole    = [TechnologyRole]::New( $OfficeApp, $technologyVersion )
     $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )

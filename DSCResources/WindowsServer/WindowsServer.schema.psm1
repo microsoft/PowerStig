@@ -144,4 +144,7 @@ Configuration WindowsServer
     . "$resourcePath\windows.AccountPolicy.ps1"
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"
+
+    Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
+    . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
 }
