@@ -667,9 +667,16 @@ try
                 Should Not Throw
         }
 
+        It 'Should contain Stig Rules' {
+            $output = Get-ChildItem -Path $TestDrive -Filter *.xml
+            [xml] $stigContent = Get-Content -Path $output.FullName -Raw
+
+            $stigContent.DISASTIG | Should -Not -Be $null
+        }
+
         It 'Should append a blank line to the end of the file' {
             $output = Get-ChildItem -Path $TestDrive -Filter *.xml
-            (Get-Content $output.FullName -Raw)[-1] -eq "`n" | Should Be $true
+            (Get-Content -Path $output.FullName -Raw)[-1] -eq "`n" | Should Be $true
         }
     }
     #endregion
@@ -678,4 +685,3 @@ finally
 {
     . $PSScriptRoot\.tests.footer.ps1
 }
-
