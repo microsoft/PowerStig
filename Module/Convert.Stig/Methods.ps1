@@ -101,7 +101,8 @@ function Get-RuleTypeMatchList
                 $PSItem -Match "HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER" -and
                 $PSItem -NotMatch "Permission(s|)" -and
                 $PSItem -NotMatch "SupportedEncryptionTypes" -and
-                $PSItem -NotMatch "Sql Server"
+                $PSItem -NotMatch "Sql Server" -and
+                $PSItem -NotMatch "v1607 of Windows 10"
             ) -or
             (
                 $PSItem -Match "Windows Registry Editor" -and
