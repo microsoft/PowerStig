@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_PowerPoint_2013" version="1.6" created="9/13/2018">
+<DISASTIG id="Microsoft_PowerPoint_2013" version="1.6" created="9/23/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -85,7 +85,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="xRegistry">
+    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\powerpoint\security</Key>
@@ -102,7 +102,7 @@ Criteria: If the value notbpromptunsignedaddin is REG_DWORD = 1, this is not a f
       <ValueName>notbpromptunsignedaddin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17322" severity="medium" conversionstatus="pass" title="DTOO210 - Block opening of pre-release versions " dscresource="xRegistry">
+    <Rule id="V-17322" severity="medium" conversionstatus="pass" title="DTOO210 - Block opening of pre-release versions " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\software\policies\Microsoft\office\15.0\PowerPoint\security\fileblock</Key>
@@ -119,7 +119,7 @@ Criteria: If the value powerpoint12betafilesfromconverters is REG_DWORD = 1, thi
       <ValueName>powerpoint12betafilesfromconverters</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="xRegistry">
+    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\trusted locations</Key>
@@ -136,7 +136,7 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
       <ValueName>AllLocationsDisabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="xRegistry">
+    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
@@ -153,7 +153,7 @@ Criteria: If the value PowerPointBypassEncryptedMacroScan is REG_DWORD = 0, this
       <ValueName>PowerPointBypassEncryptedMacroScan</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="xRegistry">
+    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\trusted locations</Key>
@@ -170,7 +170,7 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
       <ValueName>AllowNetworkLocations</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="xRegistry">
+    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\options</Key>
@@ -187,7 +187,7 @@ Criteria: If the value DefaultFormat is REG_DWORD = 1b (hex) 27 (dec), this is n
       <ValueName>DefaultFormat</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="xRegistry">
+    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
@@ -204,7 +204,7 @@ Criteria: If the value AccessVBOM is REG_DWORD=0, this is not a finding.</RawStr
       <ValueName>AccessVBOM</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="xRegistry">
+    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
@@ -221,7 +221,7 @@ Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</Raw
       <ValueName>VBAWarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17752" severity="medium" conversionstatus="pass" title="DTOO290 - Make Hidden marks visible in PowerPoint" dscresource="xRegistry">
+    <Rule id="V-17752" severity="medium" conversionstatus="pass" title="DTOO290 - Make Hidden marks visible in PowerPoint" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\options</Key>
@@ -239,7 +239,7 @@ Criteria: If the value MarkupOpenSave is REG_DWORD = 1, this is not a finding.
       <ValueName>MarkupOpenSave</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17788" severity="medium" conversionstatus="pass" title="DTOO289 - Running programs in PowerPoint" dscresource="xRegistry">
+    <Rule id="V-17788" severity="medium" conversionstatus="pass" title="DTOO289 - Running programs in PowerPoint" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
@@ -256,7 +256,7 @@ Criteria: If the value RunPrograms is REG_DWORD = 0, this is not a finding.</Raw
       <ValueName>RunPrograms</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17809" severity="medium" conversionstatus="pass" title="DTOO291 - Linked images " dscresource="xRegistry">
+    <Rule id="V-17809" severity="medium" conversionstatus="pass" title="DTOO291 - Linked images " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
@@ -358,7 +358,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="xRegistry">
+    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>
@@ -375,7 +375,7 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
       <ValueName>RequireAddinSig</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="xRegistry">
+    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation</Key>
@@ -392,7 +392,7 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>EnableOnLoad</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="xRegistry">
+    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\fileblock</Key>
@@ -409,7 +409,7 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="xRegistry">
+    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview</Key>
@@ -426,7 +426,7 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
       <ValueName>DisableInternetFilesInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="xRegistry">
+    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview</Key>
@@ -443,10 +443,10 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableUnsafeLocationsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</RawString>
@@ -454,10 +454,10 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="xRegistry">
+    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>HKCU\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
@@ -465,7 +465,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableEditFromPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="xRegistry">
+    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security\protectedview</Key>
@@ -482,7 +482,7 @@ Criteria: If the value DisableAttachmentsInPV  is REG_DWORD = 0, this is not a f
       <ValueName>DisableAttachmentsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26639" severity="medium" conversionstatus="pass" title="DTOO319 - Disable Slide Update" dscresource="xRegistry">
+    <Rule id="V-26639" severity="medium" conversionstatus="pass" title="DTOO319 - Disable Slide Update" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\slide libraries</Key>
@@ -669,7 +669,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72839" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="xRegistry">
+    <Rule id="V-72839" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\PowerPoint\security</Key>

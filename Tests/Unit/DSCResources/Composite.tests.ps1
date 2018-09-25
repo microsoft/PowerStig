@@ -84,10 +84,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'
             WindowsServer    = 'DC|MS'
-            Excel2013        = 'Excel2013'
-            Outlook2013      = 'Outlook2013'
-            PowerPoint2013   = 'PowerPoint2013'
-            Word2013         = 'Word2013'
+            Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
         }
         Foreach ($resource in $moduleDscResourceList)
         {
