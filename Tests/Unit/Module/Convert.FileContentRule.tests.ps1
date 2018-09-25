@@ -19,7 +19,7 @@ try
                 Verify Preference Name "security.tls.version.min" is set to the value "2" and locked.
                 Verify Preference Name "security.tls.version.max" is set to the value "3" and locked.
 
-                Criteria: If the parameters are set incorrectly, then this is a finding. 
+                Criteria: If the parameters are set incorrectly, then this is a finding.
 
                 If the settings are not locked, then this is a finding.'
             }
@@ -45,7 +45,7 @@ try
                 Key          = 'deployment.security.revocation.check*'
                 Value        = 'MultipleRule'
                 ArchiveFile  = 'OracleJRE'
-                CheckContent = 'If the system is on the SIPRNet, this requirement is NA. 
+                CheckContent = 'If the system is on the SIPRNet, this requirement is NA.
 
                 Navigate to the system-level "deployment.properties" file for JRE.
 
@@ -64,7 +64,7 @@ try
             Context 'Base Class' {
 
                 It "Shoud have a BaseType of STIG" {
-                    $rule.GetType().BaseType.ToString() | Should Be 'STIG'
+                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
 
