@@ -178,11 +178,11 @@ try
                 ValueType                 = 'Dword'
                 CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding.
 
-                Registry Hive: HKEY_LOCAL_MACHINE 
+                Registry Hive: HKEY_LOCAL_MACHINE
                 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
-                
+
                 Value Name: EnableScriptBlockLogging
-                
+
                 Value Type: REG_DWORD
                 Value: 1'
             },
@@ -195,11 +195,11 @@ try
                 ValueType                 = 'Dword'
                 CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
-                Registry Hive: HKEY_LOCAL_MACHINE 
+                Registry Hive: HKEY_LOCAL_MACHINE
                 Registry Path: \System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\
-                
+
                 Value Name: AddPrinterDrivers
-                
+
                 Value Type: REG_DWORD
                 Value: 1'
             }
@@ -211,7 +211,7 @@ try
 
             Context 'Base Class' {
                 It "Shoud have a BaseType of STIG" {
-                    $rule.GetType().BaseType.ToString() | Should Be 'STIG'
+                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
 
@@ -741,7 +741,7 @@ try
                 }
             }
         }
-        
+
         Describe "Get-RegistryValueTypeFromWindowsStig" {
 
             $checkContent = "Type: REG_SZ"
@@ -1358,7 +1358,7 @@ try
             $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
 
             It "Should return '$valueData' from '$checkContent'" {
-                $result = Get-RegistryValueDataFromSingleStig -CheckContent $checkContent 
+                $result = Get-RegistryValueDataFromSingleStig -CheckContent $checkContent
                 $result | Should Be $valueData
             }
         }
