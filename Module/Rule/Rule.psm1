@@ -59,7 +59,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             This is the base class constructor
     #>
-    STIG ()
+    Rule ()
     {
     }
 
