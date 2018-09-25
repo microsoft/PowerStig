@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Document.Main\Document.Main.psm1
+using module .\..\..\..\Module\STIG.Checklist\STIG.Checklist.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
