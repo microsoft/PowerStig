@@ -52,6 +52,7 @@ DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
     'IisServer',
+    'Office',
     'SqlServer',
     'WindowsDnsServer',
     'WindowsFirewall',
