@@ -47,7 +47,7 @@ try
             }
 
             Context 'WebConfigurationPropertyRule' {
-                $hasAllSettings = $true
+               $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[xWebConfigProperty\]"}
 
@@ -60,7 +60,7 @@ try
                             Write-Warning -Message "$website missing WebConfigurationPropertyRule Setting $($setting.Id)"
                             $hasAllSettings = $false
                         }
-                    } 
+                    }
                 }
 
                 It "Should have $($dscXml.Count) WebConfigurationPropertyRule settings" {
@@ -81,11 +81,11 @@ try
                 $dscXml = $dscXml.DISASTIG.MimeTypeRule.Rule
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[xIisMimeTypeMapping\]"}
 
-                foreach ($website in $websiteName) 
+                foreach ($website in $websiteName)
                 {
-                    foreach ($setting in $dscXml) 
+                    foreach ($setting in $dscXml)
                     {
-                        if (-not ($dscMof.ResourceID -match $setting.Id) ) 
+                        if (-not ($dscMof.ResourceID -match $setting.Id) )
                         {
                             Write-Warning -Message "$website ,missing MimeTypeRule Setting $($setting.Id)"
                             $hasAllSettings = $false
