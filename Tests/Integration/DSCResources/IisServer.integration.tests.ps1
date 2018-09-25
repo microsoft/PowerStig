@@ -12,11 +12,11 @@ try
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    foreach ($stig in $stigList) 
+    foreach ($stig in $stigList)
     {
 
         Describe "IIS Server $($stig.StigVersion) mof output" {
-        
+
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
@@ -38,15 +38,15 @@ try
                 $dscXml = $dscXml.DISASTIG.IisLoggingRule.Rule
                 $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xIisLogging\]"}
 
-                foreach ( $setting in $dscXml ) 
+                foreach ($setting in $dscXml)
                 {
-                    if (-not ($dscMof.ResourceID -match $setting.Id) ) 
+                    if (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
                         Write-Warning -Message "WebServer missing IisLoggingRule Setting $($setting.Id)"
                         $hasAllSettings = $false
                     }
                 }
-                
+
                 It "Should have $($dscXml.count) IisLoggingRule settings" {
                     $hasAllSettings | Should Be $true
                 }
@@ -57,15 +57,15 @@ try
                 $dscXml = $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[xWebConfigProperty\]"}
 
-                foreach ( $setting in $dscXml ) 
+                foreach ($setting in $dscXml)
                 {
-                    if (-not ($dscMof.ResourceID -match $setting.Id) ) 
+                    if (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
                         Write-Warning -Message "WebServer missing WebConfigurationPropertyRule Setting $($setting.Id)"
                         $hasAllSettings = $false
                     }
-                } 
-            
+                }
+
 
                 It "Should have $($dscXml.Count) WebConfigurationPropertyRule settings" {
                     $hasAllSettings | Should -Be $true
@@ -77,14 +77,14 @@ try
                 $dscXml = $dscXml.DISASTIG.MimeTypeRule.Rule
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[xIisMimeTypeMapping\]"}
 
-                foreach ( $setting in $dscXml ) 
+                foreach ($setting in $dscXml)
                 {
-                    if (-not ($dscMof.ResourceID -match $setting.Id) ) 
+                    if (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
                         Write-Warning -Message "WebServer missing MimeTypeRule Setting $($setting.Id)"
                         $hasAllSettings = $false
                     }
-                } 
+                }
 
                 It "Should have $($dscXml.Count) MimeTypeRule settings" {
                     $hasAllSettings | Should Be $true
@@ -98,5 +98,3 @@ finally
 {
     Restore-TestEnvironment -TestEnvironment $TestEnvironment
 }
-
-

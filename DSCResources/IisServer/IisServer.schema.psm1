@@ -9,7 +9,10 @@ using module ..\..\PowerStig.psm1
         A composite DSC resource to manage the IIS Server STIG settings
 
     .PARAMETER OsVersion
-        The version of the server operating system STIG to apply and monitor 
+        The version of the server operating system STIG to apply and monitor
+
+    .PARAMETER LogPath
+        The path to store log information 
 
     .PARAMETER StigVersion
         The version of the IIS Server STIG to apply and/or monitor
@@ -101,7 +104,7 @@ Configuration IisServer
 
     $technology = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
-    $technologyRole = [TechnologyRole]::New( "IISServer", $technologyVersion )
+    $technologyRole = [TechnologyRole]::New( 'IISServer', $technologyVersion )
     $stigDataObject = [StigData]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
 
     #### BEGIN DO NOT MODIFY ####

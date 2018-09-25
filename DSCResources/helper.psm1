@@ -79,15 +79,14 @@ function Get-UniqueStringArray
         [Parameter()]
         [switch]
         $AsString
-
-    )
+   )
 
     $return = @()
 
     foreach ($item in $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) })
     {
         $splitItems = $item -Split ','
-        
+
         foreach ($string in $splitItems)
         {
             if (-not ($return -contains $string))
@@ -96,7 +95,7 @@ function Get-UniqueStringArray
             }
         }
     }
-    
+
     if ($AsString)
     {
         return ($return | Foreach-Object { "'$PSItem'" }) -join ','
@@ -110,7 +109,7 @@ function Get-UniqueStringArray
 <#
     .SYNOPSIS
         Some STIG rules have redundant values that we only need to set once.  This function will take those,
-        validate there is only one unique value, then return it. 
+        validate there is only one unique value, then return it.
 
     .PARAMETER InputObject
         An array of strings.
@@ -140,15 +139,16 @@ function Get-UniqueString
 
 <#
     .SYNOPSIS
-        The IIS STIG has multple rules that specify logging custom field entries, but those need
+        The IIS STIG has multiple rules that specify logging custom field entries, but those need
         to be combined into one resource block and formatted as instances of MSFT_xLogCustomFieldInformation.
-        This function will gather all those entires and return it in the format DSC requires.
+        This function will gather all those entries and return it in the format DSC requires.
 
     .PARAMETER LogCustomField
         An array of LogCustomField entries.
     
     .PARAMETER Resource
-        Name of resource to use#>
+        Name of resource to use
+#>
 function Get-LogCustomField
 {
     [CmdletBinding()]
@@ -158,8 +158,8 @@ function Get-LogCustomField
         [Parameter(Mandatory=$true)]
         [object[]]
         $LogCustomField,
-        [Parameter()]
 
+        [Parameter()]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('xIisLogging','xWebSite')]
         [string]

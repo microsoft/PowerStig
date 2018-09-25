@@ -3,13 +3,13 @@ $rules = Get-RuleClassData -StigData $StigData -Name MimeTypeRule
 #endregion Header
 
 #region Resource
-if ($WebsiteName) 
+if ($WebsiteName)
 {
-    foreach ($website in $WebsiteName) 
+    foreach ($website in $WebsiteName)
     {
-        foreach ($rule in $rules) 
+        foreach ($rule in $rules)
         {
-            xIisMimeTypeMapping "$(Get-ResourceTitle -Rule $rule)-$website"
+            xIisMimeTypeMapping "$(Get-ResourceTitle -Rule $rule -Instance $website)"
             {
                 ConfigurationPath = "IIS:\Sites\$website"
                 Extension         = $rule.Extension
@@ -21,7 +21,7 @@ if ($WebsiteName)
 }
 else 
 {
-    foreach ($rule in $rules) 
+    foreach ($rule in $rules)
     {
         xIisMimeTypeMapping "$(Get-ResourceTitle -Rule $rule)"
         {

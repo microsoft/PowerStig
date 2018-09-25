@@ -15,7 +15,7 @@ Configuration IisServer_Config
         $LogPath
     )
     
-    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.1.0.0
+    Import-DscResource -ModuleName PowerStig
     Node localhost
     {
         IisServer ServerConfiguration
