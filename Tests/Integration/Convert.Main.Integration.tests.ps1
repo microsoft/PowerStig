@@ -320,9 +320,9 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Windows_10_STIG_V1R12_Manual-xccdf.xml'                    = @{
+        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
             AccountPolicyRule            = 9
-            AuditPolicyRule              = 38
+            AuditPolicyRule              = 35
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 4
@@ -333,31 +333,7 @@ try
             MimeTypeRule                 = $null
             PermissionRule               = 9
             ProcessMitigationRule        = 31
-            RegistryRule                 = 140
-            SecurityOptionRule           = 6
-            ServiceRule                  = 2
-            SqlScriptQueryRule           = $null
-            UserRightRule                = 30
-            WebAppPoolRule               = $null
-            WebConfigurationPropertyRule = $null
-            WinEventLogRule              = $null
-            WindowsFeatureRule           = 9
-            WmiRule                      = 1
-        }
-        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
-            AccountPolicyRule            = 9
-            AuditPolicyRule              = 35
-            DnsServerRootHintRule        = $null
-            DnsServerSettingRule         = $null
-            DocumentRule                 = 4
-            FileContentRule              = $null
-            GroupRule                    = 1
-            IisLoggingRule               = $null
-            ManualRule                   = 26
-            MimeTypeRule                 = $null
-            PermissionRule               = 9
-            ProcessMitigationRule        = 31
-            RegistryRule                 = 136
+            RegistryRule                 = 132
             SecurityOptionRule           = 5
             ServiceRule                  = 1
             SqlScriptQueryRule           = $null
@@ -560,7 +536,103 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-    }
+        'U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml'          = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 82
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+        'U_MS_Excel_2013_STIG_V1R7_Manual-xccdf.xml'                  = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 48
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+        'U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml'        = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 41
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+            }
+        'U_MS_Word_2013_STIG_V1R6_Manual-xccdf.xml'                   = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 36
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+            }
+        }
     #endregion
     #region Tests
     # Verify conversion report rule set values are equal to baseline values
@@ -587,11 +659,24 @@ try
     }
 
     Describe 'PowerStig output' {
+
         $path = (Get-ChildItem -Path $filePath -File -Recurse)[0].FullName
 
         It 'Should not throw an error when a STIG is converted' {
             {ConvertTo-PowerStigXml -Path $path -Destination $TestDrive} |
                 Should Not Throw
+        }
+
+        It 'Should contain Stig Rules' {
+            $output = Get-ChildItem -Path $TestDrive -Filter *.xml
+            [xml] $stigContent = Get-Content -Path $output.FullName -Raw
+
+            $stigContent.DISASTIG | Should -Not -Be $null
+        }
+
+        It 'Should append a blank line to the end of the file' {
+            $output = Get-ChildItem -Path $TestDrive -Filter *.xml
+            (Get-Content -Path $output.FullName -Raw)[-1] -eq "`n" | Should Be $true
         }
     }
     #endregion

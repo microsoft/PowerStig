@@ -16,7 +16,7 @@ using module .\..\Common\Common.psm1
         The Technology for the selected version
 
     .PARAMETER Technology
-            The Technology instance for the selected version
+        The Technology instance for the selected version
 
     .EXAMPLE
         $technologyVersion = [TechnologyVersion]::new([string] $Name, [Technology] $Technology)

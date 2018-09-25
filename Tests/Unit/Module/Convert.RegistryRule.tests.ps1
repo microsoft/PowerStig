@@ -168,6 +168,40 @@ try
 
                 Value Type: REG_DWORD
                 Value: 0x00000002 (2) (or if the Value Name does not exist)'
+            },
+            @{
+                Hive                      = 'HKEY_LOCAL_MACHINE'
+                Path                      = '\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
+                OrganizationValueRequired = 'False'
+                ValueName                 = 'EnableScriptBlockLogging'
+                ValueData                 = '1'
+                ValueType                 = 'Dword'
+                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding.
+
+                Registry Hive: HKEY_LOCAL_MACHINE
+                Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+
+                Value Name: EnableScriptBlockLogging
+
+                Value Type: REG_DWORD
+                Value: 1'
+            },
+            @{
+                Hive                      = 'HKEY_LOCAL_MACHINE'
+                Path                      = '\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers'
+                OrganizationValueRequired = 'False'
+                ValueName                 = 'AddPrinterDrivers'
+                ValueData                 = '1'
+                ValueType                 = 'Dword'
+                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding:
+
+                Registry Hive: HKEY_LOCAL_MACHINE
+                Registry Path: \System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\
+
+                Value Name: AddPrinterDrivers
+
+                Value Type: REG_DWORD
+                Value: 1'
             }
         )
         $rule = [RegistryRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
@@ -177,7 +211,7 @@ try
 
             Context 'Base Class' {
                 It "Shoud have a BaseType of STIG" {
-                    $rule.GetType().BaseType.ToString() | Should Be 'STIG'
+                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
 
@@ -636,6 +670,8 @@ try
                 'REG_QWORD'     = 'Qword'
                 'REG_MULTI_SZ'  = 'MultiString'
                 'REG_EXPAND_SZ' = 'ExpandableString'
+                'Disabled'      = 'Dword'
+                'Enabled'       = 'Dword'
             }
 
             Context 'Windows STIG' {
@@ -659,6 +695,8 @@ try
                         Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_QWORD'}  -ParameterFilter {$CheckContent -match 'REG_QWORD'}
                         Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_MULTI_SZ'}  -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
                         Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_EXPAND_SZ'}  -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'Disabled'}  -ParameterFilter {$CheckContent -match 'Disabled'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'Enabled'}  -ParameterFilter {$CheckContent -match 'Enabled'}
 
                         $RegistryValueType = Get-RegistryValueType -CheckContent "Type: $($item.Key)"
                         $RegistryValueType | Should Be $registryTypeForDSC
@@ -669,7 +707,6 @@ try
                     Mock Get-RegistryValueTypeFromWindowsStig {return 'Invalid'}
                     Get-RegistryValueType -CheckContent 'Mocked data' | Should Be $null
                 }
-
             }
 
             Context 'Office STIG' {
@@ -679,6 +716,28 @@ try
                 It "Should call Get-RegistryValueTypeFromSingleLineStig when an Office STIG is given" {
                     Get-RegistryValueType -CheckContent "Type: REG_SZ" | Out-Null
                     Assert-VerifiableMock
+                }
+            }
+        }
+
+        Describe 'Test-RegistryValueType' {
+            $registryTypes = [ordered] @{
+                'REG_SZ'        = 'String'
+                'REG_BINARY'    = 'Binary'
+                'REG_DWORD'     = 'Dword'
+                'REG_QWORD'     = 'Qword'
+                'REG_MULTI_SZ'  = 'MultiString'
+                'REG_EXPAND_SZ' = 'ExpandableString'
+                'Disabled'      = 'Dword'
+                'Enabled'       = 'Dword'
+            }
+
+            foreach ( $item in $registryTypes.GetEnumerator() )
+            {
+                [string] $registryTypeFromSTIG = $item.Key
+                It "Should return '$registryTypeFromSTIG'" {
+                    $RegistryValueType = Test-RegistryValueType -TestValueType "Type: $($item.Key)"
+                    $RegistryValueType | Should Be $registryTypeFromSTIG
                 }
             }
         }
@@ -1299,7 +1358,8 @@ try
             $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
 
             It "Should return '$valueData' from '$checkContent'" {
-                Get-RegistryValueDataFromSingleStig -CheckContent $checkContent | Should Be $valueData
+                $result = Get-RegistryValueDataFromSingleStig -CheckContent $checkContent
+                $result | Should Be $valueData
             }
         }
         #########################################   Registry Data   ########################################
@@ -1323,14 +1383,15 @@ try
             }
 
             <#
-        "Criteria: If the value HtmlandXmlssFiles is REG_DWORD = 2, this is not a finding.",
-        "Criteria: If the value DifandSylkFiles is REG_DWORD = 2, this is not a finding.",
-        "Criteria: If the value XL9597WorkbooksandTemplates is REG_DWORD = 5, this is not a finding.",
-        "Criteria: If the value of excel.exe is REG_DWORD = 1, this is not a finding.",
-        "Criteria: If the value openinprotectedview does not exist, this is not a finding. If the value is REG_DWORD = 1, this is not a finding.",
-        "Criteria: If the value ExcelBypassEncryptedMacroScan does not exist, this is not a finding. If the value is REG_DWORD = 0, this is not a finding.",
-        "Criteria: If the value DefaultFormat is REG_DWORD =  0x00000033(hex) or 51 (Decimal), this is not a finding."
-    #>
+                "Criteria: If the value HtmlandXmlssFiles is REG_DWORD = 2, this is not a finding.",
+                "Criteria: If the value DifandSylkFiles is REG_DWORD = 2, this is not a finding.",
+                "Criteria: If the value XL9597WorkbooksandTemplates is REG_DWORD = 5, this is not a finding.",
+                "Criteria: If the value of excel.exe is REG_DWORD = 1, this is not a finding.",
+                "Criteria: If the value openinprotectedview does not exist, this is not a finding. If the value is REG_DWORD = 1, this is not a finding.",
+                "Criteria: If the value ExcelBypassEncryptedMacroScan does not exist, this is not a finding. If the value is REG_DWORD = 0, this is not a finding.",
+                "Criteria: If the value DefaultFormat is REG_DWORD =  0x00000033(hex) or 51 (Decimal), this is not a finding."
+            #>
+
             $stringFormats = @(
                 "Criteria: If the value of $registryValueInnerString, this is not a finding.",
                 "Criteria: If the value $registryValueInnerString, this is not a finding."
@@ -1397,9 +1458,9 @@ try
             Context "Hive Match" {
 
                 $hiveStrings = @(
-                    'Hive:HKEY_LOCAL_MACHINE',
                     'Hive: HKEY_LOCAL_MACHINE',
-                    'Registry Hive:HKEY_LOCAL_MACHINE',
+                    'Hive: HKEY_LOCAL_MACHINE',
+                    'Registry Hive: HKEY_LOCAL_MACHINE',
                     'Registry Hive: HKEY_LOCAL_MACHINE'
                 )
 
@@ -1429,12 +1490,12 @@ try
             Context "Type Match" {
 
                 $typeStrings = @(
-                    'Type:REG_SZ',
+                    'Type: REG_SZ',
                     'Type: REG_BINARY',
-                    '  Type:  REG_DWORD',
-                    ' Type: REG_QWORD',
+                    'Type: REG_DWORD',
+                    'Type: REG_QWORD',
                     'Type: REG_MULTI_SZ ',
-                    'Type:  REG_EXPAND_SZ'
+                    'Type: REG_EXPAND_SZ'
                 )
 
                 foreach ($string in $typeStrings)

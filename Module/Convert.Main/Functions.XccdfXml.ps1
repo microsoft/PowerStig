@@ -58,6 +58,19 @@ function ConvertFrom-StigXccdf
     # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs XWebsite
     $global:stigTitle = $stigBenchmarkXml.title
 
+    # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
+    switch ($true)
+    {
+        {$global:stigXccdfName -and -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2)) -eq ''}
+        {
+            break;
+        }
+        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))}
+        {
+            $global:stigXccdfName = -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))
+            break;
+        }
+    }
     # Read in the root stig data from the xml additional functions will dig in deeper
     $stigRuleParams = @{
         StigGroups       = $stigBenchmarkXml.Group
@@ -218,7 +231,7 @@ function Get-StigRuleList
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 
-            $ruleTypes = [STIG]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
+            $ruleTypes = [Rule]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
             foreach ( $ruleType in $ruleTypes )
             {
                 $rules = & "ConvertTo-$ruleType" -StigRule $stigRule

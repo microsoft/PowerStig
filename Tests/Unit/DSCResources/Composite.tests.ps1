@@ -80,10 +80,12 @@ Describe 'Common Tests - Configuration Module Requirements' {
         $TechnologyRoleFilter = @{
             Browser          = 'IE'
             DotNetFramework  = 'DotNet'
+            IisSite          = 'IISSite'
             SqlServer        = 'Database|Instance'
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'
             WindowsServer    = 'DC|MS'
+            Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
         }
         Foreach ($resource in $moduleDscResourceList)
         {
@@ -118,3 +120,4 @@ Describe 'Common Tests - Configuration Module Requirements' {
     }
 }
 #endregion Tests
+

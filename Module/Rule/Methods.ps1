@@ -101,7 +101,8 @@ function Get-RuleTypeMatchList
                 $PSItem -Match "HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER" -and
                 $PSItem -NotMatch "Permission(s|)" -and
                 $PSItem -NotMatch "SupportedEncryptionTypes" -and
-                $PSItem -NotMatch "Sql Server"
+                $PSItem -NotMatch "Sql Server" -and
+                $PSItem -NotMatch "v1607 of Windows 10"
             ) -or
             (
                 $PSItem -Match "Windows Registry Editor" -and
@@ -240,8 +241,15 @@ function Get-RuleTypeMatchList
             $parsed = $true
         }
         {
-            $PSItem -Match 'about:config' -and
-            $PSItem -NotMatch 'Mozilla.cfg'
+            (
+                $PSItem -Match 'deployment.properties' -and
+                $PSItem -Match '=' -and
+                $PSItem -NotMatch 'exception.sites'
+            ) -or
+            (
+                $PSItem -Match 'about:config' -and
+                $PSItem -NotMatch 'Mozilla.cfg'
+            )
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::FileContentRule )
@@ -319,10 +327,42 @@ function Get-StigRuleResource
         {
             return Get-FileContentRuleDscResource -Key $this.Key
         }
+        'RegistryRule'
+        {
+            return Get-RegistryRuleDscResource -Key $this.Key
+        }
         default
         {
             return $DscResource.($RuleType.ToString())
         }
+    }
+}
+
+<#
+    .SYNOPSIS
+        Returns the name of the DSC resource used to handle the specific rule
+
+    .PARAMETER Key
+        The Registry Key of the STIG Rule
+#>
+function Get-RegistryRuleDscResource
+{
+    [CmdletBinding()]
+    [OutputType([String])]
+    param
+    (
+        [parameter(Mandatory = $true)]
+        [String]
+        $Key
+    )
+
+    if ($Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
+    {
+        return "xRegistry"
+    }
+    else
+    {
+        return "cAdministrativeTemplate"
     }
 }
 
@@ -397,8 +437,8 @@ function Get-PermissionRuleDscResource
 <#
     .SYNOPSIS
         Returns the name fo the DSC resource needed to manage a FileContentRule
-    .PARAMETER RuleId
-        The ID of the STIG rule
+    .PARAMETER Key
+        The Key of the STIG rule
     .EXAMPLE
         Get-FileContentRuleDscResource -StigId 'V-19741'
 #>
@@ -413,11 +453,21 @@ function Get-FileContentRuleDscResource
         $Key
     )
 
-    if ($Key -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled')
+    switch ($Key)
     {
-        return 'cJsonFile'
+        {$PSItem -match 'deployment.'}
+        {
+            return 'KeyValuePairFile'
+        }
+        {$PSItem -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled'}
+        {
+            return 'cJsonFile'
+        }
+        default
+        {
+            'ReplaceText'
+        }
     }
-    return 'ReplaceText'
 }
 <#
     .SYNOPSIS
@@ -499,9 +549,9 @@ function Test-DuplicateRule
     )
 
     $ruleType = $DifferenceObject.GetType().Name
-    $baseStig = [Stig]::New()
+    $baseRule = [Rule]::New()
 
-    $referenceProperties = ( $baseStig | Get-Member -MemberType Property ).Name
+    $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
     $differenceProperties = ( $DifferenceObject | Get-Member -MemberType Property ).Name
 
     $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject

@@ -1,7 +1,8 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-using module .\..\Convert.Stig\Convert.Stig.psm1
+using module .\..\Rule\Rule.psm1
+using module .\..\Convert.FileContentType\Convert.FileContentType.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -23,7 +24,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Value
         Specifies the value of the configuration setting
 #>
-Class FileContentRule : STIG
+Class FileContentRule : Rule
 {
     [string] $Key
     [string] $Value
@@ -90,7 +91,7 @@ Class FileContentRule : STIG
     #>
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        $keyValuePairs = Get-KeyValuePair -CheckContent ([STIG]::SplitCheckContent( $CheckContent ) )
+        $keyValuePairs = Get-KeyValuePair -CheckContent ([Rule]::SplitCheckContent( $CheckContent ) )
         return ( Test-MultipleFileContentRule -KeyValuePair $keyValuePairs )
     }
 
@@ -106,6 +107,6 @@ Class FileContentRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([STIG]::SplitCheckContent($CheckContent)))
+        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 }
