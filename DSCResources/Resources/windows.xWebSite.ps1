@@ -6,7 +6,7 @@ $rules = Get-RuleClassData -StigData $StigData -Name IisLoggingRule
 $logFlags = Get-UniqueStringArray -InputObject $rules.LogFlags -AsString
 $logFormat = Get-UniqueString -InputObject $rules.LogFormat
 $logPeriod = Get-UniqueString -InputObject $rules.LogPeriod
-$logCustomField = Get-LogCustomField -LogCustomField $rules.LogCustomFieldEntry.Entry
+$logCustomField = Get-LogCustomField -LogCustomField $rules.LogCustomFieldEntry.Entry -Resource 'xWebSite'
 
 if ($rules)
 {

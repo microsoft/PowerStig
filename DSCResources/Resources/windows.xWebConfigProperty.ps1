@@ -5,9 +5,9 @@ $rules = Get-RuleClassData -StigData $StigData -Name WebConfigurationPropertyRul
 
 foreach ($website in $WebsiteName)
 {
-    foreach ( $rule in $rules )
+    foreach ($rule in $rules)
     {
-        xWebConfigProperty "$(Get-ResourceTitle -Rule $rule)-$website"
+        xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
         {
             WebsitePath     = "IIS:\Sites\$website"
             Filter          = $rule.ConfigSection
