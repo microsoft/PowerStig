@@ -13,8 +13,8 @@ using namespace system.xml
     .PARAMETER Rule
         The Stig rule that is being created.
 
-    .PARAMETER InstanceName
-        The target SQL DB instance name.
+    .PARAMETER Instance
+        The target instance name.
 #>
 function Get-ResourceTitle
 {
@@ -28,12 +28,12 @@ function Get-ResourceTitle
  
         [Parameter()]
         [string]
-        $InstanceName
+        $Instance
     )
  
-    if ($InstanceName)
+    if ($Instance)
     {
-        $Rule.title = "$($Rule.title):$InstanceName"
+        $Rule.title = "$($Rule.title):$Instance"
     }
  
     return "[$($Rule.Id)][$($Rule.severity)][$($Rule.title)]"
@@ -166,7 +166,12 @@ function Get-LogCustomField
     (
         [Parameter(Mandatory = $true)]
         [object[]]
-        $LogCustomField
+        $LogCustomField,
+
+        [ValidateNotNullOrEmpty()]
+        [ValidateSet('xIisLogging','xWebSite')]
+        [string]
+        $Resource
     )
 
     $return = @()
@@ -175,7 +180,20 @@ function Get-LogCustomField
     {
         $classInstance = [System.Text.StringBuilder]::new()
 
-        $null = $classInstance.AppendLine("MSFT_xLogCustomFieldInformation")
+
+        switch ($Resource) 
+        {
+            'xIisLogging'
+            {
+                $null = $classInstance.AppendLine("MSFT_xLogCustomField")
+                break
+            }
+            'xWebSite'
+            {
+                $null = $classInstance.AppendLine("MSFT_xLogCustomFieldInformation")
+                break
+            }
+        }        
         $null = $classInstance.AppendLine("{")
         $null = $classInstance.AppendLine("LogFieldName = '$($entry.SourceName)'")
         $null = $classInstance.AppendLine("SourceName   = '$($entry.SourceName)'")
