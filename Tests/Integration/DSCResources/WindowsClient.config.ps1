@@ -1,4 +1,4 @@
-Configuration WindowsServer_config
+Configuration WindowsClient_config
 {
     param
     (
@@ -10,11 +10,11 @@ Configuration WindowsServer_config
         [string]
         $OsRole,
 
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
 
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string]
         $ForestName,
 
@@ -22,7 +22,7 @@ Configuration WindowsServer_config
         [string]
         $Exception,
 
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string]
         $DomainName,
 
@@ -40,7 +40,7 @@ Configuration WindowsServer_config
     Node localhost
     {
         & ([scriptblock]::Create("
-            WindowsServer BaseLineSettings
+            WindowsClient BaseLineSettings
             {
                 OsVersion    = '$OsVersion'
                 OsRole       = '$OsRole'
