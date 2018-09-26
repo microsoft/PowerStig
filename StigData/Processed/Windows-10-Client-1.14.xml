@@ -873,7 +873,7 @@ Approval must be documented with the ISSO.</RawString>
     </Rule>
   </DocumentRule>
   <GroupRule dscresourcemodule="">
-    <Rule id="V-63361" severity="high" conversionstatus="pass" title="WN10-00-000070" dscresource="Group">
+    <Rule id="V-63361" severity="high" conversionstatus="pass" title="WN10-00-000070" dscresource="None">
       <GroupName>Administrators</GroupName>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MembersToExclude>Domain Admins</MembersToExclude>
