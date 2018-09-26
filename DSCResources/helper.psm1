@@ -25,7 +25,7 @@ function Get-ResourceTitle
         [Parameter(Mandatory = $true)]
         [xmlelement]
         $Rule,
- 
+        
         [Parameter()]
         [string]
         $Instance
@@ -35,7 +35,6 @@ function Get-ResourceTitle
     {
         $Rule.title = "$($Rule.title):$Instance"
     }
- 
     return "[$($Rule.Id)][$($Rule.severity)][$($Rule.title)]"
 }
 
@@ -69,16 +68,16 @@ function Get-RuleClassData
 
 <#
     .SYNOPSIS
-        Some STIG rules have redundant values that we only need to set once.  This function will take all those
+        Some STIG rules have redudant values that we only need to set once.  This function will take all those
         values and only return the unique values as either an array or as string values joined by commas.
 
-    .Parameter InputObject
+    .PARAMETER InputObject
         An array of strings.
 
-    .Parameter AsString
+    .PARAMETER AsString
         Switch parameter to indicate returning as a string joined by commas. 
 #>
-function Get-UniqueStringArray 
+function Get-UniqueStringArray
 {
     [CmdletBinding()]
     [OutputType([object[]])]
@@ -91,14 +90,14 @@ function Get-UniqueStringArray
         [Parameter()]
         [switch]
         $AsString
-    )
+   )
 
     $return = @()
 
-    foreach ($item in $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) }) 
+    foreach ($item in $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) })
     {
         $splitItems = $item -Split ','
- 
+
         foreach ($string in $splitItems)
         {
             if (-not ($return -contains $string))
@@ -112,7 +111,7 @@ function Get-UniqueStringArray
     {
         return ($return | Foreach-Object { "'$PSItem'" }) -join ','
     }
-    else 
+    else
     {
         return $return
     }
@@ -121,8 +120,8 @@ function Get-UniqueStringArray
 <#
     .SYNOPSIS
         Some STIG rules have redundant values that we only need to set once.  This function will take those,
-        validate there is only one unique value, then return it. 
-
+        validate there is only one unique value, then return it.
+        
     .PARAMETER InputObject
         An array of strings.
 #>
@@ -143,7 +142,7 @@ function Get-UniqueString
     {
         return $return
     }
-    else 
+    else
     {
         throw 'Conflicting values found. Only one unique value can be used.'
     }
@@ -151,12 +150,15 @@ function Get-UniqueString
 
 <#
     .SYNOPSIS
-        The IIS STIG has multple rules that specify logging custom field entries, but those need
+        The IIS STIG has multiple rules that specify logging custom field entries, but those need
         to be combined into one resource block and formatted as instances of MSFT_xLogCustomFieldInformation.
         This function will gather all those entries and return it in the format DSC requires.
 
     .PARAMETER LogCustomField
         An array of LogCustomField entries.
+
+    .PARAMETER Resource
+        Name of resource to use
 #>
 function Get-LogCustomField
 {
@@ -168,7 +170,7 @@ function Get-LogCustomField
         [object[]]
         $LogCustomField,
 
-        [ValidateNotNullOrEmpty()]
+        [Parameter(Mandatory = $true)]
         [ValidateSet('xIisLogging','xWebSite')]
         [string]
         $Resource
@@ -179,7 +181,6 @@ function Get-LogCustomField
     foreach ($entry in $LogCustomField)
     {
         $classInstance = [System.Text.StringBuilder]::new()
-
 
         switch ($Resource) 
         {
@@ -193,7 +194,7 @@ function Get-LogCustomField
                 $null = $classInstance.AppendLine("MSFT_xLogCustomFieldInformation")
                 break
             }
-        }        
+        }
         $null = $classInstance.AppendLine("{")
         $null = $classInstance.AppendLine("LogFieldName = '$($entry.SourceName)'")
         $null = $classInstance.AppendLine("SourceName   = '$($entry.SourceName)'")
@@ -201,10 +202,9 @@ function Get-LogCustomField
         $null = $classInstance.AppendLine("};")
         $return += $classInstance.ToString()
     }
-
     return $return
 }
 #endregion
 
-Export-ModuleMember -Function 'Get-ResourceTitle','Get-RuleClassData', 'Get-UniqueStringArray', 'Get-UniqueString', 'Get-LogCustomField' `
+Export-ModuleMember -Function 'Get-ResourceTitle','Get-RuleClassData','Get-UniqueString','Get-UniqueStringArray','Get-LogCustomField' `
     -Variable 'resourcePath'

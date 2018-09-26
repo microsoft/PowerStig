@@ -51,6 +51,7 @@ RequiredModules  = @(
 DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
+    'IisServer',
     'IisSite',
     'Office',
     'SqlServer',

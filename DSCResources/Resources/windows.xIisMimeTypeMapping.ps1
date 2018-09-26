@@ -1,18 +1,35 @@
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
-
+#region Header
 $rules = Get-RuleClassData -StigData $StigData -Name MimeTypeRule
+#endregion Header
 
-foreach ($website in $WebsiteName)
+#region Resource
+if ($WebsiteName)
+{
+    foreach ($website in $WebsiteName)
+    {
+        foreach ($rule in $rules)
+        {
+            xIisMimeTypeMapping "$(Get-ResourceTitle -Rule $rule -Instance $website)"
+            {
+                ConfigurationPath = "IIS:\Sites\$website"
+                Extension         = $rule.Extension
+                MimeType          = $rule.MimeType
+                Ensure            = $rule.Ensure
+            }
+        }
+    }    
+}
+else 
 {
     foreach ($rule in $rules)
     {
-        xIisMimeTypeMapping "$(Get-ResourceTitle -Rule $rule)-$website"
+        xIisMimeTypeMapping "$(Get-ResourceTitle -Rule $rule)"
         {
-            ConfigurationPath = "IIS:\Sites\$website"
+            ConfigurationPath = "MACHINE/WEBROOT/APPHOST"
             Extension         = $rule.Extension
             MimeType          = $rule.MimeType
             Ensure            = $rule.Ensure
         }
     }
 }
+#endregion Resource

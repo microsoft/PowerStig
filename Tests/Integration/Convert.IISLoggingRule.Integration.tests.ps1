@@ -92,7 +92,7 @@ try
     #region Tests
     Describe "IisLogging Rule Conversion" {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle $stig.StigTitle
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
