@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-using module .\..\Convert.Stig\Convert.Stig.psm1
+using module .\..\Rule\Rule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -29,7 +29,7 @@ Foreach ($supportFile in $supportFileList)
     .PARAMETER Force
         A flag that replaces the identities vs append
 #>
-Class UserRightRule : STIG
+Class UserRightRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $DisplayName
     [ValidateNotNullOrEmpty()] [string] $Constant
@@ -147,7 +147,7 @@ Class UserRightRule : STIG
 
     static [bool] HasMultipleRules ( [string] $CheckContent )
     {
-        if ( Test-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        if ( Test-MultipleUserRightsAssignment -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
         {
             return $true
         }
@@ -170,7 +170,7 @@ Class UserRightRule : STIG
     #>
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
-        return ( Split-MultipleUserRightsAssignment -CheckContent ( [STIG]::SplitCheckContent( $CheckContent ) ) )
+        return ( Split-MultipleUserRightsAssignment -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
     }
 
     #endregion

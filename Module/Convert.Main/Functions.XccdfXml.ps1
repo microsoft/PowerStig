@@ -231,7 +231,7 @@ function Get-StigRuleList
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 
-            $ruleTypes = [STIG]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
+            $ruleTypes = [Rule]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
             foreach ( $ruleType in $ruleTypes )
             {
                 $rules = & "ConvertTo-$ruleType" -StigRule $stigRule
