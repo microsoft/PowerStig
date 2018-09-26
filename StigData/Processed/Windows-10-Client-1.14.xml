@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_10_STIG" version="1.14" created="9/20/2018">
+<DISASTIG id="Windows_10_STIG" version="1.14" created="9/26/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -872,29 +872,6 @@ Verify the Bluetooth radio is turned off unless approved by the organization. If
 Approval must be documented with the ISSO.</RawString>
     </Rule>
   </DocumentRule>
-  <GroupRule dscresourcemodule="">
-    <Rule id="V-63361" severity="high" conversionstatus="pass" title="WN10-00-000070" dscresource="None">
-      <GroupName>Administrators</GroupName>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MembersToExclude>Domain Admins</MembersToExclude>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Run "Computer Management".
-Navigate to System Tools &gt;&gt; Local Users and Groups &gt;&gt; Groups.
-Review the members of the Administrators group.
-Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
-
-For domain-joined workstations, the Domain Admins group must be replaced by a domain workstation administrator group.
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.  AD admin platforms may use the Domain Admins group or a domain administrative group created specifically for AD admin platforms (see V-43711 in the Active Directory Domain STIG).
-
-Standard user accounts must not be members of the local administrator group.
-
-If prohibited accounts are members of the local administrators group, this is a finding.
-
-The built-in Administrator account or other required administrative accounts would not be a finding.</RawString>
-    </Rule>
-  </GroupRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-63319" severity="medium" conversionstatus="pass" title="WN10-00-000005" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1049,6 +1026,25 @@ If the file shares have not been reconfigured to restrict permissions to the spe
 Select the "Security" tab.
 
 If the NTFS permissions have not been reconfigured to restrict permissions to the specific groups or accounts that require access, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-63361" severity="high" conversionstatus="pass" title="WN10-00-000070" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "Computer Management".
+Navigate to System Tools &gt;&gt; Local Users and Groups &gt;&gt; Groups.
+Review the members of the Administrators group.
+Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
+
+For domain-joined workstations, the Domain Admins group must be replaced by a domain workstation administrator group.
+
+Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.  AD admin platforms may use the Domain Admins group or a domain administrative group created specifically for AD admin platforms (see V-43711 in the Active Directory Domain STIG).
+
+Standard user accounts must not be members of the local administrator group.
+
+If prohibited accounts are members of the local administrators group, this is a finding.
+
+The built-in Administrator account or other required administrative accounts would not be a finding.</RawString>
     </Rule>
     <Rule id="V-63363" severity="medium" conversionstatus="pass" title="WN10-00-000075" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
