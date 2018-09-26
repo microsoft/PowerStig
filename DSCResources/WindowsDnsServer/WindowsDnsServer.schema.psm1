@@ -124,7 +124,7 @@ Configuration WindowsDnsServer
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
-    
+
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
 
