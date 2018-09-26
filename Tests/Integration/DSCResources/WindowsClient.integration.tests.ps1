@@ -146,7 +146,7 @@ try
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
                 $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
+                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]|\[cAdministrativeTemplate\]"}
 
                 Foreach ( $setting in $dscXml )
                 {
