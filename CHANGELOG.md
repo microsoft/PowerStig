@@ -1,13 +1,21 @@
 # Versions
 
 ## Unreleased
-
+  
 * Added the following STIGs
+  * IIS Site 8.5 STIG V1R2
+  * IIS Site 8.5 STIG V1R3
+  * Oracle JRE 8 STIG V1R5
   * Microsoft Outlook 2013 STIG V1R12
   * Microsoft PowerPoint 2013 Stig V1R6
   * Microsoft Excel 2013 STIG V1R7
   * Microsoft Word 2013 STIG V1R6
-* Added the DSC Composite Resource for Microsoft Office 2013 STIGs
+
+* Added the following DSC Composite Resources
+  * Microsoft Office 2013 STIGs
+  * IIS Site STIG
+  * IIS Server STIG
+
 * Added required module "PolicyFileEditor" for applying Office HKey_Current_User settings
 
 * Updated the following Stigs

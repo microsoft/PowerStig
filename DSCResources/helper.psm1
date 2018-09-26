@@ -12,6 +12,9 @@ using namespace system.xml
 
     .PARAMETER Rule
         The Stig rule that is being created.
+
+    .PARAMETER Instance
+        The target instance name.
 #>
 function Get-ResourceTitle
 {
@@ -32,7 +35,7 @@ function Get-ResourceTitle
     {
         $Rule.title = "$($Rule.title):$Instance"
     }
-    return "[$($rule.Id)][$($rule.severity)][$($rule.title)]"
+    return "[$($Rule.Id)][$($Rule.severity)][$($Rule.title)]"
 }
 
 <#
@@ -80,7 +83,7 @@ function Get-UniqueStringArray
     [OutputType([object[]])]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [object[]]
         $InputObject,
 
@@ -118,7 +121,7 @@ function Get-UniqueStringArray
     .SYNOPSIS
         Some STIG rules have redundant values that we only need to set once.  This function will take those,
         validate there is only one unique value, then return it.
-
+        
     .PARAMETER InputObject
         An array of strings.
 #>
@@ -128,13 +131,13 @@ function Get-UniqueString
     [OutputType([string])]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [object[]]
         $InputObject
     )
 
     $return = $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) } | Select-Object -Unique
-    
+
     if ($return.count -eq 1)
     {
         return $return
@@ -153,7 +156,7 @@ function Get-UniqueString
 
     .PARAMETER LogCustomField
         An array of LogCustomField entries.
-    
+
     .PARAMETER Resource
         Name of resource to use
 #>
@@ -163,12 +166,11 @@ function Get-LogCustomField
     [OutputType([object[]])]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter(Mandatory = $true)]
         [object[]]
         $LogCustomField,
 
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
+        [Parameter(Mandatory = $true)]
         [ValidateSet('xIisLogging','xWebSite')]
         [string]
         $Resource
@@ -200,7 +202,6 @@ function Get-LogCustomField
         $null = $classInstance.AppendLine("};")
         $return += $classInstance.ToString()
     }
-
     return $return
 }
 #endregion

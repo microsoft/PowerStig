@@ -81,6 +81,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
             Browser          = 'IE'
             DotNetFramework  = 'DotNet'
             IisServer        = 'IISServer'
+            IisSite          = 'IISSite'
             SqlServer        = 'Database|Instance'
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'
