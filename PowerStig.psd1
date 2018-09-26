@@ -53,6 +53,7 @@ DscResourcesToExport = @(
     'DotNetFramework',
     'Office',
     'SqlServer',
+    'WindowsClient'
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer'

@@ -2,32 +2,35 @@
 # Licensed under the MIT License.
 
 $rules = Get-RuleClassData -StigData $StigData -Name ProcessMitigationRule
+$mitigationTargets = $rules.MitigationTarget | Select-Object -Unique
 
-if ($rules.MitigationTarget -match 'System')
+foreach ($target in $mitigationTargets)
 {
-    foreach ($rule in $rules)
-    {
-        $enable = $rule.Enable
-        $enableValue = @()
-        $enableValue += "$enable"
-    }
+    $targetrules = $rules | where {$_.MitigationTarget -eq "$target"}
+    $enableValue = @()
+    $disableValue = @()
+    $idValue = @()
 
-    ProcessMitigation (Get-ResourceTitle -Rule $rule)
-    {
-        MitigationTarget = $rule.MitigationTarget
-        Enable           = $rule.$enableValue
-        Disable          = $rule.Disable
-    }
-}
-else
-{
-    foreach ($rule in $rules)
-    {
-        ProcessMitigation (Get-ResourceTitle -Rule $rule)
+    foreach ($rule in $targetrules)
+    {   
+        if ($rule.enable)
         {
-            MitigationTarget = $rule.MitigationTarget
-            Enable           = $rule.Enable
-            Disable          = $rule.Disable
+            $enableValue  += $rule.enable
         }
-    }    
+        if ($rule.disable)
+        {
+            $disableValue += $rule.disable    
+        }
+
+        $idValue += $rule.id
+    }
+
+    $enableValue = $enableValue.split(',')
+
+    ProcessMitigation "$Target-$idValue"
+    {
+        MitigationTarget = $target
+        Enable           = $enableValue
+        Disable          = $disableValue  
+    }
 }
