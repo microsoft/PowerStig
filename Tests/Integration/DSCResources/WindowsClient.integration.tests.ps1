@@ -74,6 +74,26 @@ try
                 }
             }
 
+            Context 'Group' {
+                $hasAllSettings = $true
+                $dscXml         = $dscXml.DISASTIG.GroupRule.Rule
+                $dscMof         = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[Group\]"}
+
+                Foreach ( $setting in $dscXml )
+                {
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing Group Setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) Group settings" {
+                    $hasAllSettings | Should Be $true
+                }
+            }
+
             Context 'Permissions' {
                 $hasAllSettings = $true
                 <#
