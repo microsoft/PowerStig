@@ -133,6 +133,9 @@ Configuration WindowsClient
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
+    Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
+    . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
+
     Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 1.0.0.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
