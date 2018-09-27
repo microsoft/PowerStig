@@ -11,10 +11,6 @@ using module ..\..\PowerStig.psm1
     .PARAMETER OsVersion
         The version of the server operating system STIG to apply and monitor
 
-    .PARAMETER OsRole
-        The role of the server operating system STIG to apply and monitor. This value further
-        filters the OsVersion to select the exact STIG to apply
-
     .PARAMETER StigVersion
         Uses the OsVersion and OsRole to select the version of the STIG to apply and monitor. If
         this parameter is not provided, the most recent version of the STIG is automatically selected.
