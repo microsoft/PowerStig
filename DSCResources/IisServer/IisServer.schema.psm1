@@ -73,7 +73,7 @@ Configuration IisServer
         [ValidateNotNullOrEmpty()]
         [psobject]
         $Exception,
-        
+
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [psobject]
@@ -123,7 +123,7 @@ Configuration IisServer
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
-  
+
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.WebConfigProperty.ps1"
