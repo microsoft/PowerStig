@@ -146,7 +146,7 @@ try
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
                 $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]|\[cAdministrativeTemplate\]"}
+                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]|\[cAdministrativeTemplateSetting\]"}
 
                 Foreach ( $setting in $dscXml )
                 {
@@ -226,7 +226,7 @@ try
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.WindowsFeatureRule.Rule
                 $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[WindowsFeature\]"}
+                    Where-Object {$PSItem.ResourceID -match "\[WindowsOptionalFeature\]"}
 
                 Foreach ($setting in $dscXml)
                 {

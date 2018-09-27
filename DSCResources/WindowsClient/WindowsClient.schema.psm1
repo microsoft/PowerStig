@@ -55,11 +55,6 @@ Configuration WindowsClient
         [string]
         $OsVersion,
 
-        [Parameter(Mandatory = $true)]
-        [ValidateSet('Client')]
-        [string]
-        $OsRole,
-
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [ValidateSet('1.14')]
@@ -110,7 +105,7 @@ Configuration WindowsClient
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
-    $technologyRole    = [TechnologyRole]::New( $OsRole, $technologyVersion )
+    $technologyRole    = [TechnologyRole]::New( 'Client', $technologyVersion )
     $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
