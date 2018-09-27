@@ -25,7 +25,7 @@ function Get-ResourceTitle
         [Parameter(Mandatory = $true)]
         [xmlelement]
         $Rule,
-        
+
         [Parameter()]
         [string]
         $Instance

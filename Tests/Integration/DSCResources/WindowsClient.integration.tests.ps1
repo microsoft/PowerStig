@@ -12,7 +12,7 @@ try
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
@@ -39,7 +39,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[AccountPolicy\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -59,7 +59,7 @@ try
                 $dscMof         = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -79,7 +79,7 @@ try
                 $dscMof         = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[Group\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -107,7 +107,7 @@ try
                 $dscMofPermissionPolicy = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[NTFSAccessEntry\]|\[RegistryAccessEntry\]"}
 
-                Foreach ($setting in $dscXmlPermissionPolicy)
+                foreach ($setting in $dscXmlPermissionPolicy)
                 {
                     If (-not ($dscMofPermissionPolicy.ResourceID -match $setting.Id) )
                     {
@@ -127,7 +127,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[ProcessMitigation\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -147,7 +147,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]|\[cAdministrativeTemplateSetting\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -167,7 +167,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[SecurityOption\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -187,7 +187,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xService\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -207,7 +207,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[UserRightsAssignment\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -227,7 +227,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[WindowsOptionalFeature\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -247,7 +247,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[Script\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
