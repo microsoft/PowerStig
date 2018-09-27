@@ -329,7 +329,7 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 27
+            ManualRule                   = 28
             MimeTypeRule                 = $null
             PermissionRule               = 9
             ProcessMitigationRule        = 31
