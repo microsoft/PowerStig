@@ -7,10 +7,6 @@ Configuration WindowsClient_config
         $OsVersion,
 
         [Parameter(Mandatory = $true)]
-        [string]
-        $OsRole,
-
-        [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
 
@@ -43,7 +39,6 @@ Configuration WindowsClient_config
             WindowsClient BaseLineSettings
             {
                 OsVersion    = '$OsVersion'
-                OsRole       = '$OsRole'
                 StigVersion  = '$StigVersion'
                 ForestName   = '$ForestName'
                 DomainName   = '$DomainName'
