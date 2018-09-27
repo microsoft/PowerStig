@@ -1,6 +1,10 @@
+## There is nor current group rule to verify against. The current example is being parsed as a manual rule.
+## Commented out to keep the work and reuse later if needed but not run the tests until then
+<#
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     #region Test Setup
@@ -53,3 +57,4 @@ finally
 {
     . $PSScriptRoot\.tests.footer.ps1
 }
+#>
