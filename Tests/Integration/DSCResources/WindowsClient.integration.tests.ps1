@@ -22,7 +22,6 @@ try
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -OsVersion $stig.TechnologyVersion  `
-                        -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
