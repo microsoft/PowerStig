@@ -31,7 +31,7 @@ Configuration WindowsClient_config
         $SkipRuleType
     )
 
-    Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName PowerStig -moduleVersion 2.1.0.0
 
     Node localhost
     {
