@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name PermissionRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     # Determine PermissionRule type and handle
     Switch ($rule.dscresource)

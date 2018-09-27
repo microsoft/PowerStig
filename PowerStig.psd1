@@ -44,6 +44,7 @@ RequiredModules  = @(
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.2.0.0'},
     @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
 )
 
@@ -51,6 +52,8 @@ RequiredModules  = @(
 DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
+    'IisServer',
+    'IisSite',
     'Office',
     'SqlServer',
     'WindowsClient'
