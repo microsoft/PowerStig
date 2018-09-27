@@ -65,7 +65,6 @@ Describe 'Common Tests - Configuration Module Requirements' {
         }
     }
 
-
     Describe 'Composite Resources' {
 
         $manifestDscResourceList = $Manifest.DscResourcesToExport
@@ -80,11 +79,14 @@ Describe 'Common Tests - Configuration Module Requirements' {
         $TechnologyRoleFilter = @{
             Browser          = 'IE'
             DotNetFramework  = 'DotNet'
+            IisServer        = 'IISServer'
+            IisSite          = 'IISSite'
             SqlServer        = 'Database|Instance'
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'
             WindowsServer    = 'DC|MS'
             Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
+            WindowsClient    = 'Client'
         }
         Foreach ($resource in $moduleDscResourceList)
         {
