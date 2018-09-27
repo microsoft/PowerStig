@@ -58,7 +58,6 @@ function New-UserRightRule
     $userRightRule.SetConstant()
     $userRightRule.SetIdentity()
     $userRightRule.SetForce()
-    $userRightRule.SetStigRuleResource()
 
     if ( $userRightRule.IsDuplicateRule( $global:stigSettings ) )
     {

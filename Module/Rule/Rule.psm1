@@ -231,22 +231,6 @@ Class Rule : ICloneable
 
     <#
         .SYNOPSIS
-            Sets the Dsc resource that can use the object
-        .DESCRIPTION
-            Sets the Dsc resource that can use the object
-    #>
-    [void] SetStigRuleResource ()
-    {
-        $thisDscResource = Get-StigRuleResource -RuleType $this.GetType().ToString()
-
-        if ( -not $this.SetStatus( $thisDscResource ) )
-        {
-            $this.set_dscresource( $thisDscResource )
-        }
-    }
-
-    <#
-        .SYNOPSIS
             Splits the check-content element in the xccdf into an array
         .DESCRIPTION
             Splits the check-content element in the xccdf into an array

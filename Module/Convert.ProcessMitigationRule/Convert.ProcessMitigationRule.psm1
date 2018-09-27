@@ -33,6 +33,7 @@ Class ProcessMitigationRule : Rule
     [string] $MitigationTarget
     [string] $Enable
     [string] $Disable
+    [String] $DscResource = 'ProcessMitigation'
 
     <#
         .SYNOPSIS

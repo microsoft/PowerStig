@@ -20,8 +20,6 @@ function ConvertTo-DocumentRule
 
     $documentRule = [DocumentRule]::New( $StigRule )
 
-    $documentRule.SetStigRuleResource()
-
     return $documentRule
 }
 #endregion

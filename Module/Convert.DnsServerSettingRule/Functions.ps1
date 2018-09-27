@@ -24,8 +24,6 @@ function ConvertTo-DnsServerSettingRule
 
     $dnsServerSettingRule.SetDnsServerPropertyValue()
 
-    $dnsServerSettingRule.SetStigRuleResource()
-
     if ( $dnsServerSettingRule.IsDuplicateRule( $global:stigSettings ) )
     {
         $dnsServerSettingRule.SetDuplicateTitle()

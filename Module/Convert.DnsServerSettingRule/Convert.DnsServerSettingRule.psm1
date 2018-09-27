@@ -30,6 +30,7 @@ Class DnsServerSettingRule : Rule
 {
     [string] $PropertyName
     [string] $PropertyValue
+    [String] $DscResource = 'xDnsServerSetting'
 
     <#
         .SYNOPSIS

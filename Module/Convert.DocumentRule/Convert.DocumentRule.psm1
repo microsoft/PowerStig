@@ -23,6 +23,7 @@ Foreach ($supportFile in $supportFileList)
 #>
 Class DocumentRule : Rule
 {
+    [String] $DscResource = 'None'
     <#
         .SYNOPSIS
             Default constructor
@@ -56,7 +57,6 @@ Class DocumentRule : Rule
         $this.severity = $Severity
         $this.title = $Title
         $this.rawString = $RawString
-        $this.SetStigRuleResource()
     }
 
     <#

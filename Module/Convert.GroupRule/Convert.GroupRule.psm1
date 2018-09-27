@@ -29,7 +29,7 @@ Class GroupRule : Rule
 {
     [string] $GroupName
     [string[]] $MembersToExclude
-
+    [String] $DscResource = 'Group'
     <#
         .SYNOPSIS
             Default constructor

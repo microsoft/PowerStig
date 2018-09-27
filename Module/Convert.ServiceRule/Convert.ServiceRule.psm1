@@ -34,6 +34,7 @@ Class ServiceRule : Rule
     [string] $ServiceState
     [string] $StartupType
     [ensure] $Ensure
+    [String] $DscResource = 'xService'
 
     <#
         .SYNOPSIS

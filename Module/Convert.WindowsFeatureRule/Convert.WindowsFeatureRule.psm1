@@ -30,6 +30,7 @@ Class WindowsFeatureRule : Rule
 {
     [string] $FeatureName
     [string] $InstallState
+    [String] $DscResource = 'WindowsOptionalFeature'
 
     <#
         .SYNOPSIS

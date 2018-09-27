@@ -32,6 +32,7 @@ Class MimeTypeRule : Rule
     [string] $Extension
     [string] $MimeType
     [string] $Ensure
+    [String] $DscResource = 'xIisMimeTypeMapping'
 
     <#
         .SYNOPSIS

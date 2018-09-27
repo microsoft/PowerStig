@@ -19,7 +19,6 @@ function ConvertTo-AccountPolicyRule
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
     $accountPolicyRule = [AccountPolicyRule]::New( $StigRule )
-    $accountPolicyRule.SetStigRuleResource()
     $accountPolicyRule.SetPolicyName()
 
     if ( $accountPolicyRule.TestPolicyValueForRange())

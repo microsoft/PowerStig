@@ -47,7 +47,7 @@ function ConvertTo-WmiRule
             $valueName = 'NTFS|ReFS'
         }
     }
-    $wmiRule.SetStigRuleResource()
+
     $wmiRule.set_Query( $query )
     $wmiRule.set_Property( $propertyName )
     $wmiRule.set_Operator( $operatorString )

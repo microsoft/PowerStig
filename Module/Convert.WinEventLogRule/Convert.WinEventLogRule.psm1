@@ -30,6 +30,7 @@ Class WinEventLogRule : Rule
 {
     [string] $LogName
     [bool] $IsEnabled
+    [String] $DscResource = 'xWinEventLog'
 
     <#
         .SYNOPSIS

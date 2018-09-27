@@ -33,6 +33,7 @@ Class WebConfigurationPropertyRule : Rule
     [string] $ConfigSection
     [string] $Key
     [string] $Value
+    [String] $DscResource = 'xWebConfigKeyValue'
 
     <#
         .SYNOPSIS

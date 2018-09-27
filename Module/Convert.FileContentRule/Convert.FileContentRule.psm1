@@ -40,6 +40,7 @@ Class FileContentRule : Rule
     FileContentRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetStigRuleResource
     }
 
     #region Methods
@@ -80,6 +81,24 @@ Class FileContentRule : Rule
         }
     }
 
+    hidden [void] SetStigRuleResource()
+    {
+        switch ($this.Key)
+        {
+            {$PSItem -match 'deployment.'}
+            {
+                $this.DscResource = 'KeyValuePairFile'
+            }
+            {$PSItem -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled'}
+            {
+                $this.DscResource = 'cJsonFile'
+            }
+            default
+            {
+                $this.DscResource = 'ReplaceText'
+            }
+        }
+    }
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check

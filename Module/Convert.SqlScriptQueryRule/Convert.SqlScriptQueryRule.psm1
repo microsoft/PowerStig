@@ -33,6 +33,7 @@ Class SqlScriptQueryRule : Rule
     [string] $GetScript
     [string] $TestScript
     [string] $SetScript
+    [String] $DscResource = 'SqlScriptQuery'
 
     <#
         .SYNOPSIS

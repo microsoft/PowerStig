@@ -73,8 +73,6 @@ function New-PermissionRule
 
     $permissionRule.SetForce()
 
-    $permissionRule.SetStigRuleResource()
-
     $permissionRule.SetAccessControlEntry()
 
     if ( $permissionRule.IsDuplicateRule( $global:stigSettings ) )

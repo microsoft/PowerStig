@@ -35,6 +35,7 @@ Class UserRightRule : Rule
     [ValidateNotNullOrEmpty()] [string] $Constant
     [ValidateNotNullOrEmpty()] [string] $Identity
     [bool] $Force = $false
+    [String] $DscResource = 'UserRightsAssignment'
 
     <#
         .SYNOPSIS

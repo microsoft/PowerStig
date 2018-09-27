@@ -20,8 +20,6 @@ function ConvertTo-DnsServerRootHintRule
 
     $dnsServerRootHintRule = [DnsServerRootHintRule]::New( $StigRule )
 
-    $dnsServerRootHintRule.SetStigRuleResource()
-
     $dnsServerRootHintRule.set_HostName( '$null' )
 
     $dnsServerRootHintRule.set_IpAddress( '$null' )

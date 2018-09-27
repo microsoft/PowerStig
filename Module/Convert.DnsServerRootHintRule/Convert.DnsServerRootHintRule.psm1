@@ -30,6 +30,7 @@ Class DnsServerRootHintRule : Rule
 {
     [string] $HostName
     [string] $IpAddress
+    [String] $DscResource = 'Script'
 
     <#
         .SYNOPSIS

@@ -29,7 +29,7 @@ Class AccountPolicyRule : Rule
 {
     [string] $PolicyName
     [string] $PolicyValue
-
+    [String] $DscResource = 'AccountPolicy'
     <#
         .SYNOPSIS
             Default constructor

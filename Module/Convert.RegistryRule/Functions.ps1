@@ -113,8 +113,6 @@ function New-RegistryRule
 
     $registryRule.SetValueType()
 
-    $registryRule.SetStigRuleResource()
-
     #First check if there are rules that require hard coded organization value test strings
     if ($registryRule.IsHardCodedOrganizationValueTestString())
     {

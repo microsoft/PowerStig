@@ -58,7 +58,6 @@ function New-FileContentRule
     $fileContentRule = [FileContentRule]::New( $StigRule )
     $fileContentRule.SetKeyName()
     $fileContentRule.SetValue()
-    $fileContentRule.SetStigRuleResource()
 
     if ($fileContentRule.conversionstatus -eq 'pass')
     {

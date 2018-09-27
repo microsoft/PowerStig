@@ -32,7 +32,7 @@ Class AuditPolicyRule : Rule
     [string] $Subcategory
     [string] $AuditFlag
     [string] $Ensure
-
+    [String] $DscResource = 'AuditPolicySubcategory'
     <#
         .SYNOPSIS
             Default constructor

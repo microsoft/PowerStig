@@ -28,6 +28,7 @@ Class SecurityOptionRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue
+    [String] $DscResource = 'SecurityOption'
 
     <#
         .SYNOPSIS

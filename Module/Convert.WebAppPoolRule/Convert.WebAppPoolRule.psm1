@@ -29,6 +29,7 @@ Class WebAppPoolRule : Rule
 {
     [string] $Key
     [string] $Value
+    [String] $DscResource = 'xWebAppPool'
 
     <#
         .SYNOPSIS

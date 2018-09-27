@@ -21,8 +21,6 @@ function ConvertTo-AuditPolicyRule
 
     $auditPolicyRule = [AuditPolicyRule]::New( $StigRule )
 
-    $auditPolicyRule.SetStigRuleResource()
-
     $auditPolicyRule.SetSubcategory()
 
     $auditPolicyRule.SetAuditFlag()

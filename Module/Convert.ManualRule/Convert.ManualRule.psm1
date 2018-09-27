@@ -22,6 +22,7 @@ Foreach ($supportFile in $supportFileList)
 #>
 Class ManualRule : Rule
 {
+    [String] $DscResource = 'None'
     <#
         .SYNOPSIS
             Default constructor

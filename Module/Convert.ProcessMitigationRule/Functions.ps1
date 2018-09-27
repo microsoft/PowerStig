@@ -19,7 +19,6 @@ function ConvertTo-ProcessMitigationRule
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
     $processMitigationRule = [ProcessMitigationRule]::New( $StigRule )
-    $processMitigationRule.SetStigRuleResource()
     $processMitigationRule.SetMitigationTargetName()
     $processMitigationRule.SetMitigationToEnable()
 
