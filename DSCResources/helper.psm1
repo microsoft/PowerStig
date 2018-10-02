@@ -25,12 +25,12 @@ function Get-ResourceTitle
         [Parameter(Mandatory = $true)]
         [xmlelement]
         $Rule,
-        
+
         [Parameter()]
         [string]
         $Instance
     )
- 
+    
     if ($Instance)
     {
         $Rule.title = "$($Rule.title):$Instance"

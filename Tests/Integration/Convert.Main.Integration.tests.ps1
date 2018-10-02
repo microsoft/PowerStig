@@ -327,9 +327,9 @@ try
             DnsServerSettingRule         = $null
             DocumentRule                 = 4
             FileContentRule              = $null
-            GroupRule                    = 1
+            GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 27
+            ManualRule                   = 28
             MimeTypeRule                 = $null
             PermissionRule               = 9
             ProcessMitigationRule        = 31

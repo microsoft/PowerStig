@@ -234,7 +234,8 @@ function Get-RuleTypeMatchList
         }
         {
             $PSItem -Match 'Navigate to System Tools >> Local Users and Groups >> Groups\.' -and
-            $PSItem -NotMatch 'Backup Operators|Hyper-V Administrators'
+            $PSItem -NotMatch 'Backup Operators|Hyper-V Administrators' -and
+            $PSItem -NotMatch 'domain-joined workstations, the Domain Admins'
         }
         {
             [void] $ruleTypeList.Add( [RuleType]::GroupRule )

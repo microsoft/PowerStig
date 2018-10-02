@@ -140,7 +140,7 @@ Configuration WindowsServer
     . "$resourcePath\windows.xService.ps1"
     . "$resourcePath\windows.xRegistry.ps1"
 
-    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.3.0.0
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.AccountPolicy.ps1"
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"

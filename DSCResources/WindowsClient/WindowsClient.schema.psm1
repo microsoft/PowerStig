@@ -6,13 +6,14 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Windows Server DNS STIG settings
+        A composite DSC resource to manage the Windows 10 STIG settings
 
     .PARAMETER OsVersion
         The version of the server operating system STIG to apply and monitor
 
     .PARAMETER StigVersion
-        The version of the Windows Server DNS STIG to apply and/or monitor
+        Uses the OsVersion and OsRole to select the version of the STIG to apply and monitor. If
+        this parameter is not provided, the most recent version of the STIG is automatically selected.
 
     .PARAMETER ForestName
         A string that sets the forest name for items such as security group. The input should be the FQDN of the forest.
@@ -40,19 +41,19 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration WindowsDnsServer
+Configuration WindowsClient
 {
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('2012R2')]
+        [ValidateSet('10')]
         [string]
         $OsVersion,
 
         [Parameter()]
-        [ValidateSet('1.7', '1.9', '1.10')]
         [ValidateNotNullOrEmpty()]
+        [ValidateSet('1.14')]
         [version]
         $StigVersion,
 
@@ -100,10 +101,11 @@ Configuration WindowsDnsServer
 
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
-    $technologyRole    = [TechnologyRole]::New( "DNS", $technologyVersion )
+    $technologyRole    = [TechnologyRole]::New( 'Client', $technologyVersion )
     $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
+    
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
@@ -116,21 +118,28 @@ Configuration WindowsDnsServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
-    . "$resourcePath\windows.xDnsServerSetting.ps1"
-
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.RootHint.ps1"
-
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
-
-    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
-    . "$resourcePath\windows.UserRightsAssignment.ps1"
+    Import-DscResource -ModuleName AuditPolicyDsc -ModuleVersion 1.2.0.0
+    . "$resourcePath\windows.AuditPolicySubcategory.ps1"
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
-    Import-DscResource -ModuleName xWinEventLog -ModuleVersion 1.2.0.0
-    . "$resourcePath\windows.xWinEventLog.ps1"
+    Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
+    . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
+
+    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 1.0.0.0
+    . "$resourcePath\windows.ProcessMitigation.ps1"
+
+    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
+    . "$resourcePath\windows.Script.wmi.ps1"
+    . "$resourcePath\windows.WindowsFeature.ps1"
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xService.ps1"
+    . "$resourcePath\windows.xRegistry.ps1"
+
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
+    . "$resourcePath\windows.AccountPolicy.ps1"
+    . "$resourcePath\windows.UserRightsAssignment.ps1"
+    . "$resourcePath\windows.SecurityOption.ps1"
 }

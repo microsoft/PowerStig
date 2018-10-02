@@ -15,12 +15,10 @@
   * Microsoft Office 2013 STIGs
   * IIS Site STIG
   * IIS Server STIG
+  * Windows10 STIG
 
 * Added required module "PolicyFileEditor" for applying Office HKey_Current_User settings
 
-* Updated the following Stigs
-  * WIndows 10 STIG - Updated for xRegistryResource and RegistryRule to Manual Rule
-  
 ## 2.1.0.0
 
 * Migrated Composite resources to the xRegistry resource
