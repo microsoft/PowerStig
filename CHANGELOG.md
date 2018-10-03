@@ -15,6 +15,7 @@
   * Microsoft Office 2013 STIGs
   * IIS Site STIG
   * IIS Server STIG
+  * Oracle JRE STIG
   * Windows10 STIG
 
 * Added required module "PolicyFileEditor" for applying Office HKey_Current_User settings
