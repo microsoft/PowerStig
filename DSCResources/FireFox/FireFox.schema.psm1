@@ -82,7 +82,7 @@ Configuration FireFox
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
-    $StigData = $StigDataObject.StigXml
+    $stigData = $stigDataObject.StigXml
 
     # $resourcePath is exported from the helper module in the header
 

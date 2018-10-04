@@ -5,6 +5,7 @@
     IisServer        = @("*IISServer*")
     IisSite          = @("*IISSite*")
     SqlServer        = @("*Instance*", "*Database*")
+    Firefox          = @("*Firefox*")
     Office           = @("*Excel2013*", "*Outlook2013*", "*PowerPoint2013*", "*Word2013*")
     WindowsClient    = @("*Client*")
     WindowsFirewall  = @("*FW*")
