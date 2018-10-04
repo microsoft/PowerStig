@@ -2,11 +2,10 @@
 # Licensed under the MIT License.
 
 $rules = Get-RuleClassData -StigData $StigData -Name FileContentRule
-#$rules = (Get-RuleClassData -StigData $StigData -Name FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
-    if($rule.Key -match "config")
+    if ($rule.Key -match "config")
     {
         $Path = $ConfigPath
     }
