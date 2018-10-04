@@ -35,7 +35,6 @@ ReplaceText BeginFileWithComment
     Search      = '// FireFox preference file'
     Type        = 'Text'
     Text        = '// FireFox preference file'
-    AllowAppend = $true
 }
 
 foreach ( $rule in $rules )

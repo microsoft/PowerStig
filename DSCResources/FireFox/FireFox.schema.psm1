@@ -6,7 +6,7 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Browser STIG settings
+        A composite DSC resource to manage the Firefox STIG settings
 
     .PARAMETER StigVersion
         The version of the STIG to apply and monitor
@@ -91,6 +91,6 @@ Configuration FireFox
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName FileContentDsc # add version
+    Import-DscResource -ModuleName FileContentDsc -ModuleVersion 1.1.0.108
     . "$resourcePath\firefox.ReplaceText.ps1"
 }
