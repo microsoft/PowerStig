@@ -34,7 +34,7 @@ ReplaceText BeginFileWithComment
     Path        = "$InstallDirectory\firefox.cfg"
     Search      = '// FireFox preference file'
     Type        = 'Text'
-    Text        = '// FireFox preference file'
+    Text        = ('// FireFox preference file' + "`r")
 }
 
 foreach ( $rule in $rules )
