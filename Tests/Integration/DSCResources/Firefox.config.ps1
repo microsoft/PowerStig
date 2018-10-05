@@ -7,13 +7,13 @@ Configuration Firefox_config
         $StigVersion
     )
 
-    Import-DscResource -ModuleName PowerStig -ModuleVersion 2.1.0.0
+    Import-DscResource -ModuleName PowerStig 
 
     Node localhost
     {
         Firefox Firefox
         {
-            Stigversion    = $StigVersion
+            Stigversion = $StigVersion
         }
     }
 }
