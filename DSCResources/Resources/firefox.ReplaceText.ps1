@@ -4,7 +4,7 @@ $rules = (Get-RuleClassData -StigData $StigData -Name FileContentRule).Where({ $
 
 if (-not(Test-Path -Path $InstallDirectory))
 {
-    throw "$InstallDirectory not found"
+    Write-Warning "$InstallDirectory not found. Verify FireFox is installed and you have the correct Install Directory defined prior to starting DSC."
 }
 
 ReplaceText GeneralConfigFileName
