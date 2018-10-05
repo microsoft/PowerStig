@@ -44,7 +44,7 @@ foreach ( $rule in $rules )
         Path        = "$InstallDirectory\FireFox.cfg"
         Search      = 'lockPref\("{0}", (.*)\);' -f $rule.Key
         Type        = 'Text'
-        Text        = 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value)
+        Text        = ("`r`n" + 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value))
         AllowAppend = $true
     }
 }
