@@ -53,6 +53,7 @@ RequiredModules  = @(
 DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
+    'FireFox',
     'IisServer',
     'IisSite',
     'Office',

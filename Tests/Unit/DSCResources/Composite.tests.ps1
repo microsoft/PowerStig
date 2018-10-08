@@ -88,7 +88,9 @@ Describe 'Common Tests - Configuration Module Requirements' {
             WindowsServer    = 'DC|MS'
             Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
             WindowsClient    = 'Client'
+            FireFox          = 'FireFox'
         }
+
         Foreach ($resource in $moduleDscResourceList)
         {
             Context "$resource Composite Resource" {
@@ -122,4 +124,3 @@ Describe 'Common Tests - Configuration Module Requirements' {
     }
 }
 #endregion Tests
-

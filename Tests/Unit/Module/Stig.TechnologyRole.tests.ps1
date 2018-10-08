@@ -11,17 +11,20 @@ try
         $technologyRole1 = 'DNS'
         $technologyRole2 = 'ADDomain'
         $technologyRole3 = 'Instance'
+        $technologyRole4 = 'Firefox'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SqlServer
+        $Technology3 = [Technology]::Mozilla
 
         $technologyVersion1 = [TechnologyVersion]::new('2012R2', $Technology1)
         $technologyVersion2 = [TechnologyVersion]::new('All', $Technology1)
         $technologyVersion3 = [TechnologyVersion]::new('2012', $Technology2)
+        $technologyVersion4 = [TechnologyVersion]::new('All', $Technology3)
 
         $TestValidateSet = @"
 2012R2 = DNS, DC, MS, IISSite, IISServer
-All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013, Word2013, PowerPoint2013
+All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013, Word2013, PowerPoint2013, FireFox
 2012 = Instance, Database
 10 = Client
 "@
@@ -50,6 +53,11 @@ All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013,
                     $technologyRole = [technologyRole]::new($technologyRole3, $technologyVersion3)
                     $technologyRole.Name | Should Be $technologyRole3
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion3
+                }
+                It "Should create an technologyRole class instance using technologyRole4 and technologyVersion4 data" {
+                    $technologyRole = [technologyRole]::new($technologyRole4, $technologyVersion4)
+                    $technologyRole.Name | Should Be $technologyRole4
+                    $technologyRole.TechnologyVersion | Should Be $technologyVersion4
                 }
 
                 It "Should throw an exception for technologyRole not being available for TechnologyVersion: 2012R2 -> ADDomain" {
@@ -105,4 +113,3 @@ finally
 {
     . $PSScriptRoot\.tests.footer.ps1
 }
-
