@@ -51,7 +51,7 @@ Class IisLoggingRule : Rule
     #>
     IisLoggingRule ( [xml.xmlelement] $StigRule )
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetStigRuleResource()
     }
 

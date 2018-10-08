@@ -49,7 +49,7 @@ Class RegistryRule : Rule
     #>
     RegistryRule ( [xml.xmlelement] $StigRule )
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetStigRuleResource()
     }
 
@@ -290,11 +290,11 @@ Class RegistryRule : Rule
     {
         if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
         {
-            return "xRegistry"
+            $this.DscResource = "xRegistry"
         }
         else
         {
-            return "cAdministrativeTemplate"
+            $this.DscResource = "cAdministrativeTemplate"
         }
     }
     <#

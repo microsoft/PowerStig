@@ -39,8 +39,8 @@ Class FileContentRule : Rule
     #>
     FileContentRule ( [xml.xmlelement] $StigRule )
     {
-        $this.InvokeClass( $StigRule )
-        $this.SetStigRuleResource
+        $this.InvokeClass($StigRule)
+        $this.SetStigRuleResource()
     }
 
     #region Methods
