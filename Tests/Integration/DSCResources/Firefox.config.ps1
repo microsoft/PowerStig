@@ -11,7 +11,7 @@ Configuration Firefox_config
 
     Node localhost
     {
-        Firefox Firefox
+        Firefox FirefoxConfiguration
         {
             Stigversion = $StigVersion
         }
