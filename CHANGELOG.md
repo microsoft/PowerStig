@@ -16,6 +16,7 @@
   * FireFox STIG
   * IIS Site STIG
   * IIS Server STIG
+  * Oracle JRE STIG
   * Windows10 STIG
 
 * Newly required modules

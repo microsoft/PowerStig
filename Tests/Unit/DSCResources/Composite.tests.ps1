@@ -81,6 +81,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
             DotNetFramework  = 'DotNet'
             IisServer        = 'IISServer'
             IisSite          = 'IISSite'
+            OracleJRE        = 'OracleJRE'
             SqlServer        = 'Database|Instance'
             WindowsDnsServer = 'DNS'
             WindowsFirewall  = 'FW'
