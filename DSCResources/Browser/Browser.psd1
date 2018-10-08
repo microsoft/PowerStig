@@ -13,7 +13,7 @@ ModuleVersion = '1.0.0.0'
 GUID = '2c710cae-34b9-4557-b19b-7e1da84485ab'
 
 # Author of this module
-Author = 'Wade Baker'
+Author = 'Microsoft Corporation'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'

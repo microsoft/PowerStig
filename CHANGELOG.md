@@ -23,7 +23,7 @@
   * PolicyFileEditor
   * FileContentDsc
   * WindowsDefenderDSC
-  * xWebAdministrator
+  * xWebAdministration
   * xWinEventLog
 
 * Updated required module versions
