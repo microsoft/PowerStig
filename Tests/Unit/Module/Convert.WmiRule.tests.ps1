@@ -38,26 +38,6 @@ try
                     }
                 }
             }
-
-            Context 'Class Methods' {
-
-                $classMethods = @()
-
-                foreach ( $method in $classMethods )
-                {
-                    It "Should have a method named '$method'" {
-                        ($rule | Get-Member -Name $method).Name | Should Be $method
-                    }
-                }
-
-                # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
-                    $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
-                    $memberActual = ( $rule | Get-Member -MemberType Method ).Name
-                    $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
-                    $compare.Count | Should Be 0
-                }
-            }
         }
         #endregion
         #region Method Tests
