@@ -33,25 +33,25 @@ try
             CheckContent        = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
                 Access the IIS 8.5 web server IIS 8.5 Manager.
-                
+
                 Under "IIS", double-click the "Logging" icon.
-                
+
                 Verify the "Format:" under "Log File" is configured to "W3C".
-                
+
                 Select the "Fields" button.
-                
+
                 Under "Standard Fields", verify "User Agent", "User Name" and "Referrer" are selected.
-                
-                Under "Custom Fields", verify the following fields have been configured: 
-                
+
+                Under "Custom Fields", verify the following fields have been configured:
+
                 Server Variable >> HTTP_USER_AGENT
-                
+
                 Request Header >> User-Agent
-                
+
                 Request Header >> Authorization
-                
+
                 Response Header >> Content-Type
-                
+
                 If any of the above fields are not selected, this is a finding.'
         }
         @{
@@ -72,19 +72,19 @@ try
             LogTargetW3C        = $null
             dscresource         = 'xIisLogging'
             CheckContent        = 'Access the IIS 8.5 web server IIS Manager.
-            
-                Click the IIS 8.5 web server name. 
-                
-                Under "IIS", double-click the "Logging" icon. 
-                
-                Verify the "Format:" under "Log File" is configured to "W3C". 
-                
-                Select the "Fields" button. Under "Custom Fields", verify the following fields have been configured: 
-                
-                Request Header >> Connection 
-                
-                Request Header >> Warning 
-                
+
+                Click the IIS 8.5 web server name.
+
+                Under "IIS", double-click the "Logging" icon.
+
+                Verify the "Format:" under "Log File" is configured to "W3C".
+
+                Select the "Fields" button. Under "Custom Fields", verify the following fields have been configured:
+
+                Request Header >> Connection
+
+                Request Header >> Warning
+
                 If any of the above fields are not selected, this is a finding.'
         }
     )
@@ -128,7 +128,7 @@ try
                 $rule.ConversionStatus | Should Be 'pass'
             }
 
-            It 'Should set dscresource to pass' {
+            It 'Should set dscresource to the correct value' {
                 $rule.Dscresource | Should Be $stig.Dscresource
             }
         }

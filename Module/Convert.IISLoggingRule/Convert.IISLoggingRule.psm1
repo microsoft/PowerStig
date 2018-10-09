@@ -178,8 +178,10 @@ Class IisLoggingRule : Rule
         {
             $this.DscResource = "xIISLogging"
         }
-
-        $this.DscResource = "XWebsite"
+        else
+        {
+            $this.DscResource = "XWebsite"
+        }
     }
     #endregion
 }
