@@ -12,7 +12,7 @@ try
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
@@ -22,7 +22,6 @@ try
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -OsVersion $stig.TechnologyVersion  `
-                        -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
@@ -34,11 +33,31 @@ try
 
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
+            Context 'AccountPolicy' {
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.AccountPolicyRule.Rule
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[AccountPolicy\]"}
+
+                foreach ( $setting in $dscXml )
+                {
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing AccountPolicy setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) AccountPolicy settings" {
+                    $hasAllSettings | Should Be $true
+                }
+            }
+            
             Context 'AuditPolicy' {
                 $hasAllSettings = $true
                 $dscXml         = $dscXml.DISASTIG.AuditPolicyRule.Rule
                 $dscMof         = $instances |
-                Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}
+                    Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}
 
                 foreach ( $setting in $dscXml )
                 {
@@ -50,6 +69,26 @@ try
                 }
 
                 It "Should have $($dscXml.Count) Audit Policy settings" {
+                    $hasAllSettings | Should Be $true
+                }
+            }
+
+            Context 'Group' {
+                $hasAllSettings = $true
+                $dscXml         = $dscXml.DISASTIG.GroupRule.Rule
+                $dscMof         = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[Group\]"}
+
+                foreach ( $setting in $dscXml )
+                {
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing Group Setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) Group settings" {
                     $hasAllSettings | Should Be $true
                 }
             }
@@ -68,7 +107,7 @@ try
                 $dscMofPermissionPolicy = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[NTFSAccessEntry\]|\[RegistryAccessEntry\]"}
 
-                Foreach ($setting in $dscXmlPermissionPolicy)
+                foreach ($setting in $dscXmlPermissionPolicy)
                 {
                     If (-not ($dscMofPermissionPolicy.ResourceID -match $setting.Id) )
                     {
@@ -82,13 +121,33 @@ try
                 }
             }
 
+            Context 'ProcessMitigation' {
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.ProcessMitigation.Rule
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[ProcessMitigation\]"}
+
+                foreach ($setting in $dscXml)
+                {
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing ProcessMitigation setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) ProcessMitigation settings" {
+                    $hasAllSettings | Should Be $true
+                }
+            }
+
             Context 'Registry' {
                 $hasAllSettings = $true
-                $dscXml   = $dscXml.DISASTIG.RegistryRule.Rule
-                $dscMof   = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
+                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]|\[cAdministrativeTemplateSetting\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -102,62 +161,42 @@ try
                 }
             }
 
-            Context 'WMI' {
+            Context 'SecurityOption' {
                 $hasAllSettings = $true
-                $dscXml    = $dscXml.DISASTIG.WmiRule.Rule
-                $dscMof   = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[script\]"}
+                $dscXml = $dscXml.DISASTIG.SecurityOptionRule.Rule
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[SecurityOption\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
-                        Write-Warning -Message "Missing wmi setting $($setting.Id)"
+                        Write-Warning -Message "Missing SecurityOption Setting $($setting.Id)"
                         $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($dscXml.Count) wmi settings" {
+                It "Should have $($dscXml.Count) SecurityOption settings" {
                     $hasAllSettings | Should Be $true
                 }
             }
 
-            Context 'Services' {
+            Context 'Service' {
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.ServiceRule.Rule
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xService\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
-                        Write-Warning -Message "Missing service setting $($setting.Id)"
+                        Write-Warning -Message "Missing Service Setting $($setting.Id)"
                         $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($dscXml.Count) service settings" {
-                    $hasAllSettings | Should Be $true
-                }
-            }
-
-            Context 'AccountPolicy' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.AccountPolicyRule.Rule
-                $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[AccountPolicy\]"}
-
-                Foreach ( $setting in $dscXml )
-                {
-                    If (-not ($dscMof.ResourceID -match $setting.Id) )
-                    {
-                        Write-Warning -Message "Missing security setting $($setting.Id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.Count) security settings" {
+                It "Should have $($dscXml.Count) Service settings" {
                     $hasAllSettings | Should Be $true
                 }
             }
@@ -168,7 +207,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[UserRightsAssignment\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -182,33 +221,13 @@ try
                 }
             }
 
-            Context 'SecurityOption' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.SecurityOptionRule.Rule
-                $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[SecurityOption\]"}
-
-                Foreach ( $setting in $dscXml )
-                {
-                    If (-not ($dscMof.ResourceID -match $setting.Id) )
-                    {
-                        Write-Warning -Message "Missing security setting $($setting.Id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.Count) security settings" {
-                    $hasAllSettings | Should Be $true
-                }
-            }
-
             Context 'Windows Feature' {
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.WindowsFeatureRule.Rule
                 $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[WindowsFeature\]"}
+                    Where-Object {$PSItem.ResourceID -match "\[WindowsOptionalFeature\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -218,6 +237,26 @@ try
                 }
 
                 It "Should have $($dscXml.Count) windows feature settings" {
+                    $hasAllSettings | Should Be $true
+                }
+            }
+
+            Context 'WMI' {
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.WmiRule.Rule
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[Script\]"}
+
+                foreach ($setting in $dscXml)
+                {
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing WMI setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) WMI settings" {
                     $hasAllSettings | Should Be $true
                 }
             }
@@ -232,7 +271,6 @@ try
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -OsVersion $stig.TechnologyVersion  `
-                        -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
@@ -271,7 +309,6 @@ try
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -OsVersion $stig.TechnologyVersion  `
-                        -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `

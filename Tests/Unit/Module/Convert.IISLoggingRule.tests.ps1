@@ -167,7 +167,7 @@ try
         }
         #endregion
         #region Method Tests
-        foreach ( $rule in $rulesToTest )
+        foreach ($rule in $rulesToTest)
         {
             $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
             Describe 'Get-LogFlag' {

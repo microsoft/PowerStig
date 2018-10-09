@@ -38,11 +38,14 @@ CLRVersion = '4.0'
 RequiredModules  = @(
     @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
     @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.1.0.0'},
+    @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
     @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '11.4.0.0'},
+    @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.2.0.0'},
     @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
 )
 
@@ -50,8 +53,13 @@ RequiredModules  = @(
 DscResourcesToExport = @(
     'Browser',
     'DotNetFramework',
+    'FireFox',
+    'IisServer',
+    'IisSite',
     'Office',
+    'OracleJRE',
     'SqlServer',
+    'WindowsClient'
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer'

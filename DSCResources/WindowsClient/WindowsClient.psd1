@@ -4,34 +4,34 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-RootModule = 'Browser.schema.psm1'
+RootModule = 'WindowsClient.schema.psm1'
 
 # Version number of this module.
 ModuleVersion = '1.0.0.0'
 
 # ID used to uniquely identify this module
-GUID = '2c710cae-34b9-4557-b19b-7e1da84485ab'
+GUID = '37cf1202-1111-4b58-bf11-0158a35b8b54'
 
 # Author of this module
-Author = 'Microsoft Corporation'
+Author = 'Drew Taylor'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Wade Baker. All rights reserved.'
+Copyright = '(c) 2018 Drew Taylor. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Composite DSC Resource for managing browser related DISA STIGs'
+Description = 'Composite DSC Resource for managing the Windows 10 Client DISA STIGs'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-FunctionsToExport = @('Browser')
+FunctionsToExport = @('WindowsClient')
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = @()
 
 # Variables to export from this module
-VariablesToExport = '*'
+VariablesToExport = ''
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
 AliasesToExport = @()

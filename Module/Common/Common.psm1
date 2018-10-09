@@ -91,6 +91,7 @@ enum Technology
 {
     Windows
     SqlServer
+    Mozilla
 }
 
 #endregion

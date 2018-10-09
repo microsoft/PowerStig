@@ -37,11 +37,12 @@ data DscResourceModule
         DnsServerSettingRule            = xDnsServer
         DnsServerRootHintRule           = PSDesiredStateConfiguration
         DocumentRule                    = None
+        GroupRule                       = PSDesiredStateConfiguration
         IisLoggingRule                  = xWebAdministration
         MimeTypeRule                    = xWebAdministration
         ManualRule                      = None
         PermissionRule                  = AccessControlDsc
-        ProcessMitigationRule           = ProcessMitigationDsc
+        ProcessMitigationRule           = WindowsDefenderDsc
         RegistryRule                    = xPSDesiredStateConfiguration
         SecurityOptionRule              = SecurityPolicyDsc
         ServiceRule                     = xPSDesiredStateConfiguration
