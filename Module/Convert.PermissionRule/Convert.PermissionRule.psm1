@@ -44,7 +44,14 @@ Class PermissionRule : Rule
     PermissionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetPath()
         $this.SetStigRuleResource()
+        $this.SetForce()
+        $this.SetAccessControlEntry()
+        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        {
+            $this.SetDuplicateTitle()
+        }
     }
 
     # Methods

@@ -40,6 +40,8 @@ Class FileContentRule : Rule
     FileContentRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetKeyName()
+        $this.SetValue()
         $this.SetStigRuleResource()
     }
 
