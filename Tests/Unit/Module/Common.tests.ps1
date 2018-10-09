@@ -26,7 +26,7 @@ $enumTests = @{
                  'PermissionRule|ProcessMitigationRule|RegistryRule|SecurityOptionRule|ServiceRule|' +
                  '|SkipRuleSqlScriptQueryRule|UserRightRule|WebConfigurationPropertyRule|'+
                  '|WebAppPoolRuleWindowsFeatureRule|WinEventLogRule|WmiRule'
-    'Technology' = 'Windows|SQL'
+    'Technology' = 'Windows|SQL|Mozilla'
 }
 
 foreach( $enum in $enumTests.GetEnumerator() )

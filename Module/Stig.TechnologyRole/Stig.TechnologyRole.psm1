@@ -36,7 +36,7 @@ Class TechnologyRole
     #>
     static $ValidateSet = @"
 2012R2 = DNS, DC, MS, IISSite, IISServer
-All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013, Word2013, PowerPoint2013
+All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013, Word2013, PowerPoint2013, FireFox
 2012 = Instance, Database
 10 = Client
 "@
@@ -143,4 +143,3 @@ Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
-

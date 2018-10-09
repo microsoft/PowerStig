@@ -13,11 +13,22 @@
 
 * Added the following DSC Composite Resources
   * Microsoft Office 2013 STIGs
+  * FireFox STIG
   * IIS Site STIG
   * IIS Server STIG
+  * Oracle JRE STIG
   * Windows10 STIG
 
-* Added required module "PolicyFileEditor" for applying Office HKey_Current_User settings
+* Newly required modules
+  * PolicyFileEditor
+  * FileContentDsc
+  * WindowsDefenderDSC
+  * xWebAdministration
+  * xWinEventLog
+
+* Updated required module versions
+  * xDnsServer from 1.9.0.0 to 1.11.0.0
+  * SecurityPolicyDsc from 2.2.0.0 to 2.4.0.0
 
 ## 2.1.0.0
 

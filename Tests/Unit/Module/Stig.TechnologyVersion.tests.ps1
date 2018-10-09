@@ -18,6 +18,7 @@ try
         $TestValidateSet = @"
 Windows = All, 2012R2, 10
 SqlServer = 2012
+Mozilla = All
 "@
 
         $TestValidSetData = ConvertFrom-StringData -StringData $TestValidateSet
