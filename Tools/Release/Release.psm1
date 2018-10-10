@@ -288,11 +288,11 @@ function Update-ReleaseNotes
     $changelogContent = Get-Content -Path $changelogPath -Raw
 
     $unreleasedHeaderReplace = New-Object System.Text.StringBuilder
-    $null = $unreleasedHeaderReplace.AppendLine('### Unreleased')
+    $null = $unreleasedHeaderReplace.AppendLine('## Unreleased')
     $null = $unreleasedHeaderReplace.AppendLine('')
-    $null = $unreleasedHeaderReplace.AppendLine("### $ModuleVersion")
+    $null = $unreleasedHeaderReplace.AppendLine("## $ModuleVersion")
 
-    $changelogContent = $changelogContent -replace '###\sUnreleased',
+    $changelogContent = $changelogContent -replace '##\sUnreleased',
     $unreleasedHeaderReplace.ToString().Trim()
 
     Set-Content -Path $changelogPath -Value $changelogContent.Trim()
