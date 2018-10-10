@@ -566,6 +566,7 @@ function Get-GitHubRefStatus
         'Token' = $script:GitHubApiKeySecure
         'Uri' = "$($Repository.api_url)/commits/$Name/status"
         'Method' = 'Get'
+        'Verbose' = $false
     }
 
     [int] $i = 0
