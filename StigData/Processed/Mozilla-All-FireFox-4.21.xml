@@ -197,7 +197,7 @@ Criteria:  If the parameter is set incorrectly, then this is a finding.  If the 
 </RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-19741" severity="medium" conversionstatus="pass" title="DTBF080-Firefox Preferences–Auto-update of Firefox" dscresource="cJsonFile">
+    <Rule id="V-19741" severity="medium" conversionstatus="pass" title="DTBF080-Firefox Preferences–Auto-update of Firefox" dscresource="ReplaceText">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>app.update.enabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -248,7 +248,7 @@ If the value is locked, this is not a finding.
 </RawString>
       <Value>false</Value>
     </Rule>
-    <Rule id="V-79053" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="cJsonFile">
+    <Rule id="V-79053" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="ReplaceText">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>datareporting.policy.dataSubmissionEnabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>

@@ -16,7 +16,7 @@ using module .\..\Common\Common.psm1
         The Technology for the selected version
 
     .PARAMETER Technology
-            The Technology instance for the selected version
+        The Technology instance for the selected version
 
     .EXAMPLE
         $technologyVersion = [TechnologyVersion]::new([string] $Name, [Technology] $Technology)
@@ -31,8 +31,9 @@ Class TechnologyVersion
 
     # The available versions for each technology currently in PowerStig
     static $ValidateSet = @"
-Windows = All, 2012R2
+Windows = All, 2012R2, 10
 SqlServer = 2012
+Mozilla = All
 "@
 
     <#

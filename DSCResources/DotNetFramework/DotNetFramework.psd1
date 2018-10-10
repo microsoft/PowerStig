@@ -13,7 +13,7 @@
     GUID              = '4b1b6e2b-afa0-4396-876e-f7d3ad1efca3'
 
     # Author of this module
-    Author            = 'LaNika Dillon'
+    Author            = 'Microsoft Corporation'
 
     # Company or vendor of this module
     CompanyName       = 'Microsoft Corporation'

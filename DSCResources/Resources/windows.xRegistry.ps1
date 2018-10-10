@@ -3,16 +3,20 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name RegistryRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
-    $valueData = $rule.ValueData.Split("{;}")
-
-    xRegistry (Get-ResourceTitle -Rule $rule)
+    if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
-        Key       = $rule.Key
-        ValueName = $rule.ValueName
-        ValueData = $valueData
-        ValueType = $rule.ValueType
-        Ensure    = $rule.Ensure
+        $valueData = $rule.ValueData.Split("{;}")
+
+        xRegistry (Get-ResourceTitle -Rule $rule)
+        {
+            Key       = $rule.Key
+            ValueName = $rule.ValueName
+            ValueData = $valueData
+            ValueType = $rule.ValueType
+            Ensure    = $rule.Ensure
+            Force     = $true  
+        }
     }
 }
