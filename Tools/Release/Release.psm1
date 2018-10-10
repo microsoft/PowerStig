@@ -285,18 +285,17 @@ function Update-ReleaseNotes
 
     Write-Host 'Updating ReleaseNotes'
     $changelogPath = (Get-ChildItem -Path $PWD -Filter "CHANGELOG.md").FullName
-    $changelogPath = Get-Content -Path $changelogPath -Raw
+    $changelogContent = Get-Content -Path $changelogPath -Raw
 
-    $unreleasedHeaderRegEx = '###\sUnreleased'
     $unreleasedHeaderReplace = New-Object System.Text.StringBuilder
     $null = $unreleasedHeaderReplace.AppendLine('### Unreleased')
     $null = $unreleasedHeaderReplace.AppendLine('')
     $null = $unreleasedHeaderReplace.AppendLine("### $ModuleVersion")
 
-    $changelogPath = $changelogPath -replace $unreleasedHeaderRegEx,
+    $changelogContent = $changelogContent -replace '###\sUnreleased',
     $unreleasedHeaderReplace.ToString().Trim()
 
-    Set-Content -Path $changelogPath -Value $changelogPath.Trim()
+    Set-Content -Path $changelogPath -Value $changelogContent.Trim()
 }
 
 <#
