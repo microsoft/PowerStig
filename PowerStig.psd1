@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.1.0.0'
+ModuleVersion = '2.2.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -97,16 +97,33 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Migrated Composite resources to the xRegistry resource
-* Fixed 2012R2 V-15713 default org setting value
-* Updated IE STIGs (V-46477) with the decimal value
-* Updated New-StigCheckList to output StigViewer 2.7.1 ckl files
-* Added SkipRule functionality to all composite resources
-* Added StigData for FireFox STIG V4R21
-* Added Sql2012 1.17 to Archive and processed
-* Updated Sql2012 1.16 to fix broken rules
-* Removed Sql2012 1.14 from archives to comply with n-2 version policy
-* Updated data for 2012R2 Stigs to fix broken rules'
+        ReleaseNotes = '* Added the following STIGs
+  * IIS Site 8.5 STIG V1R2
+  * IIS Site 8.5 STIG V1R3
+  * Oracle JRE 8 STIG V1R5
+  * Microsoft Outlook 2013 STIG V1R12
+  * Microsoft PowerPoint 2013 Stig V1R6
+  * Microsoft Excel 2013 STIG V1R7
+  * Microsoft Word 2013 STIG V1R6
+
+* Added the following DSC Composite Resources
+  * Microsoft Office 2013 STIGs
+  * FireFox STIG
+  * IIS Site STIG
+  * IIS Server STIG
+  * Oracle JRE STIG
+  * Windows10 STIG
+
+* Newly required modules
+  * PolicyFileEditor
+  * FileContentDsc
+  * WindowsDefenderDSC
+  * xWebAdministration
+  * xWinEventLog
+
+* Updated required module versions
+  * xDnsServer from 1.9.0.0 to 1.11.0.0
+  * SecurityPolicyDsc from 2.2.0.0 to 2.4.0.0'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
