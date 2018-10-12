@@ -34,6 +34,7 @@ Class DocumentRule : Rule
     DocumentRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     <#
