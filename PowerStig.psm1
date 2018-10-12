@@ -14,7 +14,7 @@ using module .\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 
 $pathList = @(
     "$PSScriptRoot\Module\Stig.Main",
-    "$PSScriptRoot\Module\Document.Main"
+    "$PSScriptRoot\Module\STIG.Checklist"
 )
 Foreach ($supportFile in (Get-ChildItem -Path $pathList -Filter '*.ps1'))
 {
