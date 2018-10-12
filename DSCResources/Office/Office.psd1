@@ -13,7 +13,7 @@
     GUID = '345c2922-2447-46ad-bd5a-0c169bd31203'
 
     # Author of this module
-    Author = 'Jeff Salas'
+    Author = 'Microsoft Corporation'
 
     # Company or vendor of this module
     CompanyName = 'Microsoft Corporation'

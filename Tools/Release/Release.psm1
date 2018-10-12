@@ -15,26 +15,12 @@ function Test-ModuleVersion
     (
         [Parameter(Mandatory = $true)]
         [version]
-        $ModuleVersion,
-
-        [Parameter()]
-        [string]
-        $ManifestPath
+        $ModuleVersion
     )
 
-    if (Get-GitBranch -ne 'master')
-    {
-        Set-GitBranch -Branch master
-    }
+    $publishedModule = Find-Module PowerStig -Repository PsGallery -Verbose:$false
 
-    if (-not $ManifestPath)
-    {
-        $ManifestPath = (Get-ChildItem -Path $PWD -Filter "*.psd1").FullName
-    }
-
-    $masterManifest = Import-PowerShellDataFile -Path $ManifestPath
-
-    if ($ModuleVersion -le $masterManifest.ModuleVersion)
+    if ($ModuleVersion -le $publishedModule.Version)
     {
         return $false
     }
@@ -244,7 +230,7 @@ function Push-GitBranch
 
 <#
     .SYNOPSIS
-        Get Unreleased content from the readme
+        Get Unreleased content from the changlog
 #>
 function Get-UnreleasedNotes
 {
@@ -256,20 +242,20 @@ function Get-UnreleasedNotes
         [string]
         $Branch
     )
-    Write-Host "Getting unreleased notes from Readme."
-    $readmePath = (Get-ChildItem -Path $PWD -Filter "readme.md").FullName
-    $readmeContent = Get-Content -Path $readmePath
+    Write-Host "Getting unreleased notes from CHANGELOG."
+    $changelogPath = (Get-ChildItem -Path $PWD -Filter "CHANGELOG.md").FullName
+    $changelogContent = Get-Content -Path $changelogPath
 
-    $h3 = '^###'
-    $unreleasedHeader = "$h3\s+Unreleased"
-    $latestedreleaseHeader = "$h3\s+\d\.\d\.\d\.\d"
+    $h2 = '^##'
+    $unreleasedHeader = "$h2\s+Unreleased"
+    $latestedreleaseHeader = "$h2\s+\d\.\d\.\d\.\d"
 
-    $unreleasedLine = $readmeContent |
-        Select-String -Pattern $unreleasedHeader
-    $latestedreleaseLine = ($readmeContent |
+    $unreleasedLine = $changelogContent | Select-String -Pattern $unreleasedHeader
+
+    $latestedreleaseLine = ($changelogContent |
         Select-String -Pattern $latestedreleaseHeader)[0]
 
-    $releaseNotes = $readmeContent[
+    $releaseNotes = $changelogContent[
         ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
             Out-String
 
@@ -287,62 +273,75 @@ function Get-UnreleasedNotes
     .PARAMETER Repository
         A hashtable that contains the repository api url to query for the list of contributors
 #>
-function Update-Readme
+function Update-ReleaseNotes
 {
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true, ParameterSetName = 'ReleaseNotes')]
         [version]
-        $ModuleVersion,
+        $ModuleVersion
+    )
 
-        [Parameter(Mandatory = $true, ParameterSetName = 'Contributors')]
+    Write-Host 'Updating ReleaseNotes'
+    $changelogPath = (Get-ChildItem -Path $PWD -Filter "CHANGELOG.md").FullName
+    $changelogContent = Get-Content -Path $changelogPath -Raw
+
+    $unreleasedHeaderReplace = New-Object System.Text.StringBuilder
+    $null = $unreleasedHeaderReplace.AppendLine('## Unreleased')
+    $null = $unreleasedHeaderReplace.AppendLine('')
+    $null = $unreleasedHeaderReplace.AppendLine("## $ModuleVersion")
+
+    $changelogContent = $changelogContent -replace '##\sUnreleased',
+    $unreleasedHeaderReplace.ToString().Trim()
+
+    Set-Content -Path $changelogPath -Value $changelogContent.Trim()
+}
+
+<#
+    .SYNOPSIS
+        Adds a new version section to the readme released notes or  updates the
+        list of contributors to the Contributors section.
+
+    .PARAMETER ModuleVersion
+        The module version to add to the readme below the unreleased section
+
+    .PARAMETER Repository
+        A hashtable that contains the repository api url to query for the list of contributors
+#>
+function Update-Contributors
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
         [hashtable]
         $Repository
     )
 
-    Write-Host "Updating $($PSCmdlet.ParameterSetName)."
-    $readmePath = (Get-ChildItem -Path $PWD -Filter "readme.md").FullName
+    Write-Host 'Updating Contributor List'
+    $readmePath = (Get-ChildItem -Path $PWD -Filter "README.md").FullName
     $readmeContent = Get-Content -Path $readmePath -Raw
 
-    switch ($PSCmdlet.ParameterSetName)
+    $contributorList = Get-ProjectContributorList -Repository $Repository
+    $contributorsMd = New-Object System.Text.StringBuilder
+    $null = $contributorsMd.AppendLine('')
+    $null = $contributorsMd.AppendLine('')
+
+    foreach ($contributor in $contributorList)
     {
-        'ReleaseNotes'
+        $line = "* [@$($contributor.login)](https://github.com/$($contributor.login))"
+        if ($contributor.Name)
         {
-            $unreleasedHeaderRegEx = '###\sUnreleased'
-            $unreleasedHeaderReplace = New-Object System.Text.StringBuilder
-            $null = $unreleasedHeaderReplace.AppendLine('### Unreleased')
-            $null = $unreleasedHeaderReplace.AppendLine('')
-            $null = $unreleasedHeaderReplace.AppendLine("### $ModuleVersion")
-
-            $readmeContent = $readmeContent -replace $unreleasedHeaderRegEx,
-                $unreleasedHeaderReplace.ToString().Trim()
-            continue
+            $line = $line + " ($($contributor.Name))"
         }
-        'Contributors'
-        {
-            $contributorList = Get-ProjectContributorList -Repository $Repository
-            $contributorsMd = New-Object System.Text.StringBuilder
-            $null = $contributorsMd.AppendLine('')
-            $null = $contributorsMd.AppendLine('')
 
-            foreach ($contributor in $contributorList)
-            {
-                $line = "* [@$($contributor.login)](https://github.com/$($contributor.login))"
-                if ($contributor.Name)
-                {
-                    $line = $line + " ($($contributor.Name))"
-                }
-
-                $null = $contributorsMd.AppendLine($line)
-            }
-            $null = $contributorsMd.AppendLine('')
-
-            $readmeContributorsRegEx = '(?<=### Contributors)[^#]+(?=#)'
-            $readmeContent = $readmeContent -replace $readmeContributorsRegEx,$contributorsMd.ToString()
-            continue
-        }
+        $null = $contributorsMd.AppendLine($line)
     }
+    $null = $contributorsMd.AppendLine('')
+
+    $readmeContributorsRegEx = '(?<=### Contributors)[^#]+(?=#)'
+    $readmeContent = $readmeContent -replace $readmeContributorsRegEx,$contributorsMd.ToString()
 
     Set-Content -Path $readmePath -Value $readmeContent.Trim()
 }
@@ -567,6 +566,7 @@ function Get-GitHubRefStatus
         'Token' = $script:GitHubApiKeySecure
         'Uri' = "$($Repository.api_url)/commits/$Name/status"
         'Method' = 'Get'
+        'Verbose' = $false
     }
 
     [int] $i = 0
@@ -860,11 +860,11 @@ function Start-PowerStigRelease
         {
             if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
             {
-                Write-Verbose -Message "$ModuleVersion is greater than $($masterManifest.ModuleVersion)"
+                Write-Verbose -Message "$ModuleVersion is greater than currently released."
             }
             else
             {
-                throw "The module version ($ModuleVersion) is not greater than currently released."
+                throw "$ModuleVersion is not greater than currently released."
             }
 
             New-GitReleaseBranch -BranchName $branchName
@@ -876,7 +876,7 @@ function Start-PowerStigRelease
                 throw 'There are no release notes for this release.'
             }
 
-            Update-Readme -ModuleVersion $ModuleVersion
+            Update-ReleaseNotes -ModuleVersion $ModuleVersion
 
             Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
 
@@ -1116,7 +1116,7 @@ function Complete-PowerStigDevMerge
 
         Set-GitBranch -Branch dev
 
-        Update-Readme -Repository $repository
+        Update-Contributors -Repository $repository
 
         Push-GitBranch -Name 'dev' -CommitMessage "Updated contributor list"
     }

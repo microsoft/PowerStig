@@ -16,6 +16,7 @@ foreach ( $rule in $rules )
             ValueData = $valueData
             ValueType = $rule.ValueType
             Ensure    = $rule.Ensure
+            Force     = $true  
         }
     }
 }
