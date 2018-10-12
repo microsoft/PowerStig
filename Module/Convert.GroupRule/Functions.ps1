@@ -19,7 +19,6 @@ function ConvertTo-GroupRule
     $groupRule = [GroupRule]::New( $StigRule )
     $groupRule.SetGroupName()
     $groupRule.SetMembersToExclude()
-    $groupRule.SetStigRuleResource()
 
     if ($groupRule.conversionstatus -eq 'pass')
     {

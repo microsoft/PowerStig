@@ -39,6 +39,9 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
             It 'Should have a IpAddress of $null' {
                 $rule.IpAddress | Should Be '$null'
             }
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'Script'
+            }
             It "Should set the Conversion status to pass" {
                 $rule.conversionstatus | Should be 'pass'
             }

@@ -33,5 +33,11 @@ Class ManualRule : Rule
     ManualRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'None'
     }
 }

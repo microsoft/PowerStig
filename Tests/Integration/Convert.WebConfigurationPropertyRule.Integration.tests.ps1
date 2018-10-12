@@ -12,13 +12,13 @@ try
             CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
             Open the IIS 8.5 Manager.
-            
+
             Click on the site name.
-            
+
             Double-click the "Request Filtering" icon.
-            
+
             Click Edit Feature Settings in the "Actions" pane.
-            
+
             If the "Allow high-bit characters" check box is checked, this is a finding.'
         }
         @{
@@ -28,13 +28,13 @@ try
             CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
             Open the IIS 8.5 Manager.
-            
+
             Click on the site name.
-            
+
             Double-click the "Request Filtering" icon.
-            
+
             Click Edit Feature Settings in the "Actions" pane.
-            
+
             If the "Allow double escaping" check box is checked, this is a finding.'
         }
     )
@@ -44,29 +44,31 @@ try
 
         foreach ( $stig in $stigRulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'IIS'
-            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
-            $rule = ConvertFrom-StigXccdf -Path $TestFile
+            Context $stig.Key {
 
-            It "Should return an WebConfigurationPropertyRule Object" {
-                $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
-            }
+                [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'IIS'
+                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $StigRule.Save( $TestFile )
+                $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return ConfigSection '$($stig.ConfigSection)'" {
-                $rule.ConfigSection | Should Be $stig.ConfigSection
-            }
-
-            It "Should return Key '$($stig.Key)'" {
-                $rule.Key | Should Be $stig.Key
-            }
-
-            It "Should return Value '$($stig.Value)'" {
-                $rule.Value | Should Be $stig.Value
-            }
-
-            It 'Should Set the status to pass' {
-                $rule.ConversionStatus | Should Be 'pass'
+                It "Should return an WebConfigurationPropertyRule Object" {
+                    $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
+                }
+                It "Should return ConfigSection '$($stig.ConfigSection)'" {
+                    $rule.ConfigSection | Should Be $stig.ConfigSection
+                }
+                It "Should return Key '$($stig.Key)'" {
+                    $rule.Key | Should Be $stig.Key
+                }
+                It "Should return Value '$($stig.Value)'" {
+                    $rule.Value | Should Be $stig.Value
+                }
+                It "Should set the correct DscResource" {
+                    $rule.DscResource | Should Be 'xWebConfigKeyValue'
+                }
+                It 'Should Set the status to pass' {
+                    $rule.ConversionStatus | Should Be 'pass'
+                }
             }
         }
     }

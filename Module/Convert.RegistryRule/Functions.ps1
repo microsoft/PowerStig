@@ -107,14 +107,6 @@ function New-RegistryRule
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     $registryRule = [RegistryRule]::New( $StigRule )
 
-    $registryRule.SetKey()
-
-    $registryRule.SetValueName()
-
-    $registryRule.SetValueType()
-
-    $registryRule.SetStigRuleResource()
-
     #First check if there are rules that require hard coded organization value test strings
     if ($registryRule.IsHardCodedOrganizationValueTestString())
     {

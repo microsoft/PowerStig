@@ -33,6 +33,7 @@ Class MimeTypeRule : Rule
     [string] $MimeType
     [string] $Ensure
 
+
     <#
         .SYNOPSIS
             Default constructor
@@ -44,6 +45,7 @@ Class MimeTypeRule : Rule
     MimeTypeRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -130,6 +132,11 @@ Class MimeTypeRule : Rule
     static [string[]] SplitMultipleRules ( [string] $CheckContent )
     {
         return ( Split-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xIisMimeTypeMapping'
     }
 
     #endregion

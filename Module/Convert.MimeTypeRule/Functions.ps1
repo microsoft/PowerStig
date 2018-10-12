@@ -82,8 +82,6 @@ function New-MimeTypeRule
         }
     }
 
-    $mimeTypeRule.SetStigRuleResource()
-
     return $mimeTypeRule
 }
 #endregion

@@ -45,7 +45,7 @@ try
             SELECT * FROM sys.trace_events;
             5. Because this check procedure is designed to address multiple requirements/vulnerabilities, it may appear to exceed the needs of some individual requirements.  However, it does represent the aggregate of all such requirements.
             6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.'
-            FixText      = 'This will not be used for this type of rule.'     
+            FixText      = 'This will not be used for this type of rule.'
         }
         @{
             GetScript    = "SELECT who.name AS [Principal Name], who.type_desc AS [Principal Type], who.is_disabled AS [Principal Is Disabled], what.state_desc AS [Permission State], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE what.permission_name = 'Alter any endpoint' AND    who.name NOT LIKE '##MS%##' AND    who.type_desc &lt;&gt; 'SERVER_ROLE' ORDER BY who.name;"
@@ -138,11 +138,9 @@ try
             It "Should return a SqlScriptQueryRule Object" {
                 $rule.GetType() | Should Be 'SqlScriptQueryRule'
             }
-
             It "Should return ConfigSection '$($stig.ConfigSection)'" {
                 $rule.ConfigSection | Should Be $stig.ConfigSection
             }
-
             It "Should return SqlScriptQueryRule GetScript" {
                 if ($rule.GetScript -match "<")
                 {
@@ -151,25 +149,25 @@ try
 
                 $rule.GetScript | Should Be $stig.GetScript
             }
-
             It "Should return SqlScriptQueryRule TestScript" {
-                if ($rule.TestScript -match "<") 
+                if ($rule.TestScript -match "<")
                 {
                     $rule.TestScript = $rule.TestScript -replace "<", "&lt;" -replace ">", "&gt;"
                 }
 
                 $rule.TestScript | Should Be $stig.TestScript
             }
-
             It "Should return SqlScriptQueryRule SetScript" {
                 if ($rule.SetScript -match "<")
                 {
                     $rule.SetScript = $rule.SetScript -replace "<", "&lt;" -replace ">", "&gt;"
                 }
-                
+
                 $rule.SetScript | Should Be $stig.SetScript
             }
-
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'SqlScriptQuery'
+            }
             It 'Should Set the status to pass' {
                 $rule.ConversionStatus | Should Be 'pass'
             }

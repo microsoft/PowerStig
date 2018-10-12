@@ -86,8 +86,6 @@ function New-WebConfigurationPropertyRule
         }
     }
 
-    $webConfigurationProperty.SetStigRuleResource()
-
     return $webConfigurationProperty
 }
 #endregion

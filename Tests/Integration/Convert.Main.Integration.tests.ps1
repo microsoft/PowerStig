@@ -646,12 +646,20 @@ try
 
             Context "$file" {
 
-                foreach ($key in $ruleConversion.keys)
+                foreach ($rule in $ruleConversion.keys)
                 {
-                    $keyValue = $ruleConversion.$key
+                    $ruleCount = $ruleConversion.$rule
 
-                    It "Should return $keyValue rules from $key" {
-                        ($conversionReport | Where-Object {$_.type -eq $key}).conversionpass | Should be $keyValue
+                    if ($null -eq $ruleCount)
+                    {
+                        $ruleCountTitle = '0'
+                    }
+                    else
+                    {
+                        $ruleCountTitle = $ruleCount
+                    }
+                    It "Should return $ruleCountTitle $rule" {
+                        ($conversionReport | Where-Object {$_.type -eq $rule}).conversionpass | Should be $ruleCount
                     }
                 }
             }

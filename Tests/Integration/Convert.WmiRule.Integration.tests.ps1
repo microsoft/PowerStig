@@ -10,7 +10,7 @@ try
 
     If the file system column does not indicate "NTFS" as the file system for each local hard drive, this is a finding.
 
-    Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This 
+    Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
     must be documented with the ISSO.'
     #endregion
     #region Tests
@@ -34,6 +34,9 @@ try
         }
         It "Should set the correct Operator" {
             $rule.Operator | Should be '-match'
+        }
+        It "Should set the correct DscResource" {
+            $rule.DscResource | Should Be 'Script'
         }
         It 'Should Set the status to pass' {
             $rule.conversionstatus | Should Be 'pass'

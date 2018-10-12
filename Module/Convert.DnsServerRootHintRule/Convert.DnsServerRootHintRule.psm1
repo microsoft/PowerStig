@@ -42,5 +42,13 @@ Class DnsServerRootHintRule : Rule
     DnsServerRootHintRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.set_HostName( '$null' )
+        $this.set_IpAddress( '$null' )
+        $this.SetDscResource()
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'Script'
     }
 }

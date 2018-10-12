@@ -41,6 +41,7 @@ Class WebAppPoolRule : Rule
     WebAppPoolRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -99,5 +100,9 @@ Class WebAppPoolRule : Rule
         }
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xWebAppPool'
+    }
     #endregion
 }

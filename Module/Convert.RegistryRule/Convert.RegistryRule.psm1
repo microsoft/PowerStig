@@ -49,7 +49,11 @@ Class RegistryRule : Rule
     #>
     RegistryRule ( [xml.xmlelement] $StigRule )
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetKey()
+        $this.SetValueName()
+        $this.SetValueType()
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -285,6 +289,17 @@ Class RegistryRule : Rule
         $this.Ensure = $Ensure
     }
 
+    hidden [void] SetDscResource ()
+    {
+        if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
+        {
+            $this.DscResource = "xRegistry"
+        }
+        else
+        {
+            $this.DscResource = "cAdministrativeTemplate"
+        }
+    }
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

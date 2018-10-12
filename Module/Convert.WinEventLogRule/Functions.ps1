@@ -32,8 +32,6 @@ function ConvertTo-WinEventLogRule
         $dnsWinEventLogRule.set_id( $newId )
     }
 
-    $dnsWinEventLogRule.SetStigRuleResource()
-
     return $dnsWinEventLogRule
 }
 #endregion
