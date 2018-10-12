@@ -18,8 +18,6 @@ function ConvertTo-ManualRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $manualRule = [ManualRule]::New( $StigRule )
-
-    return $manualRule
+    return [ManualRule]::New( $StigRule )
 }
 #endregion

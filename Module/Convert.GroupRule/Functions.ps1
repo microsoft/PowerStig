@@ -16,17 +16,6 @@ function ConvertTo-GroupRule
         $StigRule
     )
 
-    $groupRule = [GroupRule]::New( $StigRule )
-    $groupRule.SetGroupName()
-    $groupRule.SetMembersToExclude()
-
-    if ($groupRule.conversionstatus -eq 'pass')
-    {
-        if ( $groupRule.IsDuplicateRule( $global:stigSettings ))
-        {
-            $groupRule.SetDuplicateTitle()
-        }
-    }
-    return $groupRule
+    return [GroupRule]::New( $StigRule )
 }
 #endregion

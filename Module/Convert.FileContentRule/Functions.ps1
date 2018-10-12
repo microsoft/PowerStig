@@ -55,15 +55,6 @@ function New-FileContentRule
         $StigRule
     )
 
-    $fileContentRule = [FileContentRule]::New( $StigRule )
-
-    if ($fileContentRule.conversionstatus -eq 'pass')
-    {
-        if ( $fileContentRule.IsDuplicateRule( $global:stigSettings ))
-        {
-            $fileContentRule.SetDuplicateTitle()
-        }
-    }
-    return $fileContentRule
+    return [FileContentRule]::New( $StigRule )
 }
 #endregion

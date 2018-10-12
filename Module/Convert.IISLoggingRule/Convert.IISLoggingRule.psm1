@@ -51,6 +51,19 @@ Class IisLoggingRule : Rule
     IisLoggingRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetLogCustomFields()
+        $this.SetLogFlags()
+        $this.SetLogFormat()
+        $this.SetLogPeriod()
+        $this.SetLogTargetW3C()
+        $this.SetStatus()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 

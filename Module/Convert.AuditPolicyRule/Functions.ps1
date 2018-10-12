@@ -19,14 +19,6 @@ function ConvertTo-AuditPolicyRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $auditPolicyRule = [AuditPolicyRule]::New( $StigRule )
-
-    $auditPolicyRule.SetSubcategory()
-
-    $auditPolicyRule.SetAuditFlag()
-
-    $auditPolicyRule.SetEnsureFlag( [Ensure]::Present )
-
-    return $auditPolicyRule
+    return [AuditPolicyRule]::New( $StigRule )
 }
 #endregion

@@ -18,23 +18,6 @@ function ConvertTo-DnsServerSettingRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $dnsServerSettingRule = [DnsServerSettingRule]::New( $StigRule )
-
-    $dnsServerSettingRule.SetDnsServerPropertyName()
-
-    $dnsServerSettingRule.SetDnsServerPropertyValue()
-
-    if ( $dnsServerSettingRule.IsDuplicateRule( $global:stigSettings ) )
-    {
-        $dnsServerSettingRule.SetDuplicateTitle()
-    }
-
-    if ( $dnsServerSettingRule.IsExistingRule( $global:stigSettings ) )
-    {
-        $newId = Get-AvailableId -Id $dnsServerSettingRule.Id
-        $dnsServerSettingRule.set_id( $newId )
-    }
-
-    return $dnsServerSettingRule
+    return [DnsServerSettingRule]::New( $StigRule )
 }
 #endregion

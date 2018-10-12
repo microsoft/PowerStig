@@ -41,6 +41,15 @@ Class AccountPolicyRule : Rule
     AccountPolicyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetPolicyName()
+        if ( $this.TestPolicyValueForRange())
+        {
+            $this.SetPolicyValueRange()
+        }
+        else
+        {
+            $this.SetPolicyValue()
+        }
         $this.SetDscResource()
     }
 

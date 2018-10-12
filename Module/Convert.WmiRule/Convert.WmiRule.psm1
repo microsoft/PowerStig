@@ -47,6 +47,34 @@ Class WmiRule : Rule
     WmiRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        Switch ( $this.rawString )
+        {
+            {$PSItem -Match "Service Pack" }
+            {
+                Write-Verbose "[$($MyInvocation.MyCommand.Name)] Service Pack"
+                $this.Query = 'SELECT * FROM Win32_OperatingSystem'
+                $this.Property = 'Version'
+                $this.Operator = '-ge'
+
+                $this.rawString -match "\d\.\d" | Out-Null
+                $osMajMin = $matches[0]
+
+                ($this.rawString -match "\(Build\s\d{1,}\)" | Out-Null )
+                $osBuild = $matches[0] -replace "\(|\)|Build|\s", ""
+
+                $this.Value = "$osMajMin.$osBuild"
+                continue
+            }
+            {$PSItem -Match "Disk Management"}
+            {
+                Write-Verbose "[$($MyInvocation.MyCommand.Name)] File System Type"
+                $this.Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
+                $this.Property = 'FileSystem'
+                $this.Operator = '-match'
+                $this.Value = 'NTFS|ReFS'
+            }
+        }
+
         $this.SetDscResource()
     }
 

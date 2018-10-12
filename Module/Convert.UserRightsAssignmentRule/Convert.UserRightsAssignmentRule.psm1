@@ -47,6 +47,21 @@ Class UserRightRule : Rule
     UserRightRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDisplayName()
+        $this.SetConstant()
+        $this.SetIdentity()
+        $this.SetForce()
+
+        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        {
+            $this.SetDuplicateTitle()
+        }
+
+        if ( Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $this )
+        {
+            $newId = Get-AvailableId -Id $this.Id
+            $this.set_id( $newId )
+        }
         $this.SetDscResource()
     }
 

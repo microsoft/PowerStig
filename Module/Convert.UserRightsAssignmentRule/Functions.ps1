@@ -53,23 +53,6 @@ function New-UserRightRule
         $StigRule
     )
 
-    $userRightRule = [UserRightRule]::New( $StigRule )
-    $userRightRule.SetDisplayName()
-    $userRightRule.SetConstant()
-    $userRightRule.SetIdentity()
-    $userRightRule.SetForce()
-
-    if ( $userRightRule.IsDuplicateRule( $global:stigSettings ) )
-    {
-        $userRightRule.SetDuplicateTitle()
-    }
-
-    if ( Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $userRightRule )
-    {
-        $newId = Get-AvailableId -Id $userRightRule.Id
-        $userRightRule.set_id( $newId )
-    }
-
-    return $userRightRule
+    return [UserRightRule]::New( $StigRule )
 }
 #endregion

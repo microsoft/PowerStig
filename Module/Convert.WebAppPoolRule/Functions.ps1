@@ -21,23 +21,6 @@ function ConvertTo-WebAppPoolRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $webAppPool = [WebAppPoolRule]::New( $StigRule )
-
-    $webAppPool.SetKeyValuePair()
-
-    if ($webAppPool.IsOrganizationalSetting())
-    {
-        $webAppPool.SetOrganizationValueTestString()
-    }
-
-    if ($webAppPool.conversionstatus -eq 'pass')
-    {
-        if ( $webAppPool.IsDuplicateRule( $global:stigSettings ))
-        {
-            $webAppPool.SetDuplicateTitle()
-        }
-    }
-
-    return $webAppPool
+    return [WebAppPoolRule]::New( $StigRule )
 }
 #endregion

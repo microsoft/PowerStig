@@ -18,8 +18,6 @@ function ConvertTo-DocumentRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $documentRule = [DocumentRule]::New( $StigRule )
-
-    return $documentRule
+    return [DocumentRule]::New( $StigRule )
 }
 #endregion

@@ -12,7 +12,7 @@ try
         Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
 
         {0}'
-        $rule = [AccountPolicyRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $rule = [AccountPolicyRule]::new( (Get-TestStigRule -CheckContent ($baseString -f 'If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.') -ReturnGroupOnly) )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

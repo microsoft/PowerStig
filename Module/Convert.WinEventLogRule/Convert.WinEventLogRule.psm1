@@ -42,6 +42,19 @@ Class WinEventLogRule : Rule
     WinEventLogRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetWinEventLogName()
+        $this.SetWinEventLogIsEnabled()
+
+        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        {
+            $this.SetDuplicateTitle()
+        }
+
+        if ( $this.IsExistingRule( $global:stigSettings ) )
+        {
+            $newId = Get-AvailableId -Id $StigRule.id
+            $this.set_id( $newId )
+        }
         $this.SetDscResource()
     }
 

@@ -41,6 +41,16 @@ Class GroupRule : Rule
     GroupRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetGroupName()
+        $this.SetMembersToExclude()
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 

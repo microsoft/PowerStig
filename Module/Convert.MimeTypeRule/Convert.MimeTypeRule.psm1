@@ -45,6 +45,16 @@ Class MimeTypeRule : Rule
     MimeTypeRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetExtension()
+        $this.SetMimeType()
+        $this.SetEnsure()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 

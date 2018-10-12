@@ -45,6 +45,21 @@ Class WebConfigurationPropertyRule : Rule
     WebConfigurationPropertyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetConfigSection()
+        $this.SetKeyValuePair()
+
+        if ($this.IsOrganizationalSetting())
+        {
+            $this.SetOrganizationValueTestString()
+        }
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 

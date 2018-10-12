@@ -66,22 +66,6 @@ function New-MimeTypeRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $mimeTypeRule = [MimeTypeRule]::New( $StigRule )
-
-    $mimeTypeRule.SetExtension()
-
-    $mimeTypeRule.SetMimeType()
-
-    $mimeTypeRule.SetEnsure()
-
-    if ($mimeTypeRule.conversionstatus -eq 'pass')
-    {
-        if ( $mimeTypeRule.IsDuplicateRule( $global:stigSettings ))
-        {
-            $mimeTypeRule.SetDuplicateTitle()
-        }
-    }
-
-    return $mimeTypeRule
+    return [MimeTypeRule]::New( $StigRule )
 }
 #endregion

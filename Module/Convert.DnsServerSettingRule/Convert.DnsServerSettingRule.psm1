@@ -42,6 +42,17 @@ Class DnsServerSettingRule : Rule
     DnsServerSettingRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDnsServerPropertyName()
+        $this.SetDnsServerPropertyValue()
+        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        {
+            $this.SetDuplicateTitle()
+        }
+        if ( $this.IsExistingRule( $global:stigSettings ) )
+        {
+            $newId = Get-AvailableId -Id $this.Id
+            $this.set_id( $newId )
+        }
         $this.SetDscResource()
     }
 

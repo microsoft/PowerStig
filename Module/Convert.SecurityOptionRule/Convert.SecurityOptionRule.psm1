@@ -40,6 +40,15 @@ Class SecurityOptionRule : Rule
     SecurityOptionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetOptionName()
+        if ( $this.TestOptionValueForRange() )
+        {
+            $this.SetOptionValueRange()
+        }
+        else
+        {
+            $this.SetOptionValue()
+        }
         $this.SetDscResource()
     }
 

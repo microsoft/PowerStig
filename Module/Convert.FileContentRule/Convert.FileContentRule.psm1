@@ -42,6 +42,13 @@ Class FileContentRule : Rule
         $this.InvokeClass($StigRule)
         $this.SetKeyName()
         $this.SetValue()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 

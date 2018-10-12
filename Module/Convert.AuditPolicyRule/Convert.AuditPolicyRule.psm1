@@ -44,6 +44,9 @@ Class AuditPolicyRule : Rule
     AuditPolicyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetSubcategory()
+        $this.SetAuditFlag()
+        $this.SetEnsureFlag( [Ensure]::Present )
         $this.SetDscResource()
     }
 

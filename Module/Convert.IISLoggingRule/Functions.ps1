@@ -21,28 +21,6 @@ function ConvertTo-IisLoggingRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $iisLoggingRule = [IisLoggingRule]::New( $StigRule )
-
-    $iisLoggingRule.SetLogCustomFields()
-
-    $iisLoggingRule.SetLogFlags()
-
-    $iisLoggingRule.SetLogFormat()
-
-    $iisLoggingRule.SetLogPeriod()
-
-    $iisLoggingRule.SetLogTargetW3C()
-
-    $iisLoggingRule.SetStatus()
-
-    if ($iisLoggingRule.conversionstatus -eq 'pass')
-    {
-        if ( $iisLoggingRule.IsDuplicateRule( $global:stigSettings ))
-        {
-            $iisLoggingRule.SetDuplicateTitle()
-        }
-    }
-
-    return $iisLoggingRule
+    return [IisLoggingRule]::New( $StigRule )
 }
 #endregion

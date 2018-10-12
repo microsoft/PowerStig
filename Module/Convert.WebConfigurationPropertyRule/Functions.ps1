@@ -67,25 +67,6 @@ function New-WebConfigurationPropertyRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $webConfigurationProperty = [WebConfigurationPropertyRule]::New( $StigRule )
-
-    $webConfigurationProperty.SetConfigSection()
-
-    $webConfigurationProperty.SetKeyValuePair()
-
-    if ($webConfigurationProperty.IsOrganizationalSetting())
-    {
-        $webConfigurationProperty.SetOrganizationValueTestString()
-    }
-
-    if ($webConfigurationProperty.conversionstatus -eq 'pass')
-    {
-        if ( $webConfigurationProperty.IsDuplicateRule( $global:stigSettings ))
-        {
-            $webConfigurationProperty.SetDuplicateTitle()
-        }
-    }
-
-    return $webConfigurationProperty
+    return [WebConfigurationPropertyRule]::New( $StigRule )
 }
 #endregion

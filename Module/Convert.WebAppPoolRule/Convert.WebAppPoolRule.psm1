@@ -41,6 +41,19 @@ Class WebAppPoolRule : Rule
     WebAppPoolRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetKeyValuePair()
+        if ($this.IsOrganizationalSetting())
+        {
+            $this.SetOrganizationValueTestString()
+        }
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
