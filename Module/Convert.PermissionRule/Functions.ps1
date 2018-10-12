@@ -18,34 +18,33 @@ function ConvertTo-PermissionRule
 
     <#
         There are several permission rules that define multiple permission paths
-        with different permissions in a single rule.
-        These need to be split into individual permission objects for DSC to process. Detect them
-        before creating the Permission Rule class so that we can append the ID and title with a
-        character to identify it as a child object of a specific STIG setting.
+        with different permissions in a single rule. These need to be split into
+        individual permission objects for DSC to process. Detect them before
+        creating the Permission Rule class so that we can append the ID and title
+        with a character to identify it as a child object of a specific STIG setting.
     #>
-    $permissionRules = @()
     $checkStrings = $StigRule.rule.Check.('check-content')
 
     if ( [PermissionRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitPermissionEntries = [PermissionRule]::SplitMultipleRules( $checkStrings )
-
+        $permissionRules = @()
         [int]$byte = 97
         $id = $StigRule.id
         foreach ($splitPermissionEntry in $splitPermissionEntries)
         {
             $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
             $StigRule.rule.Check.('check-content') = $splitPermissionEntry
-            $Rule = [PermissionRule]::New( $StigRule )
-            $permissionRules += $Rule
+            $permissionRules += [PermissionRule]::New( $StigRule )
             $byte ++
         }
+
+        return $permissionRules
     }
     else
     {
-        $PermissionRules += [PermissionRule]::New( $StigRule )
+        return [PermissionRule]::New( $StigRule )
     }
-    return $permissionRules
 }
 
 #endregion

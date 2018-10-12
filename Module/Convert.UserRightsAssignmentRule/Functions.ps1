@@ -17,12 +17,11 @@ function ConvertTo-UserRightRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-    $userRightRules = @()
 
     if ( [UserRightRule]::HasMultipleRules( $StigRule.rule.Check.'check-content' ) )
     {
         [string[]] $splitRules = [UserRightRule]::SplitMultipleRules( $StigRule.rule.Check.'check-content' )
-
+        $userRightRules = @()
         [int] $byte = 97
         [string] $ruleId = $StigRule.id
         foreach ( $splitRule in $splitRules )
@@ -32,13 +31,12 @@ function ConvertTo-UserRightRule
             $userRightRules += [UserRightRule]::New( $StigRule )
             $byte++
         }
+        return $userRightRules
     }
     else
     {
-        $userRightRules += [UserRightRule]::New( $StigRule )
+        return [UserRightRule]::New( $StigRule )
     }
-
-    return $userRightRules
 }
 
 #endregion

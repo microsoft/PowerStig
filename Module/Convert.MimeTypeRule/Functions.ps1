@@ -19,29 +19,26 @@ function ConvertTo-MimeTypeRule
         $StigRule
     )
 
-    $mimeTypeRules = @()
     $checkStrings = $StigRule.rule.Check.('check-content')
 
     if ( [MimeTypeRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitMimeTypeRules = [MimeTypeRule]::SplitMultipleRules( $checkStrings )
-
+        $mimeTypeRules = @()
         [int]$byte = 97
         $id = $StigRule.id
         foreach ($mimeTypeRule in $splitMimeTypeRules)
         {
             $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
             $StigRule.rule.Check.('check-content') = $mimeTypeRule
-            $rule = [MimeTypeRule]::New( $StigRule )
-            $mimeTypeRules += $rule
+            $mimeTypeRules += [MimeTypeRule]::New( $StigRule )
             $byte ++
         }
+        return $mimeTypeRules
     }
     else
     {
-        $mimeTypeRules += [MimeTypeRule]::New( $StigRule )
+        return [MimeTypeRule]::New( $StigRule )
     }
-    return $mimeTypeRules
-
 }
 #endregion

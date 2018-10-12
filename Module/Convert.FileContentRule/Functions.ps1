@@ -16,13 +16,12 @@ function ConvertTo-FileContentRule
         $StigRule
     )
 
-    $fileContentRules = @()
     $checkStrings = $StigRule.rule.Check.('check-content')
 
     if ( [FileContentRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitFileContentEntries = [FileContentRule]::SplitMultipleRules( $checkStrings )
-
+        $fileContentRules = @()
         [int]$byte = 97
         $id = $StigRule.id
         foreach ($splitFileContentEntry in $splitFileContentEntries)
@@ -32,12 +31,13 @@ function ConvertTo-FileContentRule
             $fileContentRules += [FileContentRule]::New( $StigRule )
             $byte ++
         }
+
+        return $fileContentRules
     }
     else
     {
-        $fileContentRules += ( New-FileContentRule -StigRule $StigRule )
+        return [FileContentRule]::New( $StigRule )
     }
-    return $fileContentRules
 }
 
 #endregion

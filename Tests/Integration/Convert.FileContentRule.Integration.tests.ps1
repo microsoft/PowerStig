@@ -34,7 +34,7 @@ try
 
             1. The preference name "app.update.enabled" is set to "false" and locked or
 
-            2. If set to "true" then verify that "app.update.url", "app.update.url.details" and "app.update.url.manual" contain url information that point to a trusted server and is not the default setting. (Default would contain mozilla.com or Mozilla.org). 
+            2. If set to "true" then verify that "app.update.url", "app.update.url.details" and "app.update.url.manual" contain url information that point to a trusted server and is not the default setting. (Default would contain mozilla.com or Mozilla.org).
 
 
             Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding.'
@@ -46,7 +46,7 @@ try
             ArchiveFile  = 'OracleJRE'
             CheckContent = 'If the system is on the SIPRNet, this requirement is NA.
 
-            Navigate to the system-level "deployment.properties" file for JRE. 
+            Navigate to the system-level "deployment.properties" file for JRE.
 
             If the key "deployment.security.revocation.check=ALL_CERTIFICATES" is not present, or is set to "PUBLISHER_ONLY", or "NO_CHECK", this is a finding.'
         }
@@ -65,15 +65,12 @@ try
             It 'Should be a FileContentRule' {
                 $rule.GetType() | Should Be 'FileContentRule'
             }
-
             It "Should return Key:'$($fileContentRule.Key)'" {
                 $rule.Key | Should Be $fileContentRule.Key
             }
-
             It "Should return Value:'$($fileContentRule.Value)'" {
                 $rule.Value | Should Be $fileContentRule.Value
             }
-
             It "Should have a DscResource of '$($fileContentRule.DscResource)'" {
                 $rule.DscResource | Should Be $fileContentRule.DscResource
             }

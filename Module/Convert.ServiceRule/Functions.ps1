@@ -56,29 +56,4 @@ function ConvertTo-ServiceRule
     return $serviceRule
 }
 
-<#
-    .SYNOPSIS
-        Looks in the Check-Content element to see if it matches a service check string.
-
-    .PARAMETER CheckContent
-        Check-Content element
-#>
-function Test-MatchServiceRule
-{
-    [CmdletBinding()]
-    [OutputType([bool])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $CheckContent
-    )
-    # Find Service settings but exclude the 'Unnecessary Service' rule
-    if ( $CheckContent -Match 'services\.msc' -and $CheckContent -NotMatch 'Required Services' -and $CheckContent -NotMatch 'presence of applications' )
-    {
-        return $true
-    }
-
-    return $false
-}
 #endregion
