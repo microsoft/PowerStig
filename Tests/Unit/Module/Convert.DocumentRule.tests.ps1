@@ -21,7 +21,7 @@ try
         #endregion
         #region Method Tests
 
-        #endregion5
+        #endregion
         #region Function Tests
         Describe "ConvertTo-DocumentRule" {
             $checkContent = 'If no accounts are members of the Backup Operators group, this is NA.

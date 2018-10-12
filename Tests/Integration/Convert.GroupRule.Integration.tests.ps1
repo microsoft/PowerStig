@@ -48,8 +48,8 @@ try
                 $rule.MembersToExclude | Should Be $groupRule.MembersToExclude
             }
             It "Should set the correct DscResource" {
-            $rule.DscResource | Should Be 'Group'
-        }
+                $rule.DscResource | Should Be 'Group'
+            }
         }
     }
     #endregion
