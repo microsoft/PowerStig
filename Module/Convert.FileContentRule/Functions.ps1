@@ -29,7 +29,7 @@ function ConvertTo-FileContentRule
         {
             $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
             $StigRule.rule.Check.('check-content') = $splitFileContentEntry
-            $fileContentRules += New-FileContentRule -StigRule $StigRule
+            $fileContentRules += [FileContentRule]::New( $StigRule )
             $byte ++
         }
     }
@@ -40,21 +40,4 @@ function ConvertTo-FileContentRule
     return $fileContentRules
 }
 
-<#
-    .SYNOPSIS
-       Calls the FileContent class to generate a fileContent specfic object.
-#>
-function New-FileContentRule
-{
-    [CmdletBinding()]
-    [OutputType([FileContentRule])]
-    Param
-    (
-        [parameter(Mandatory = $true)]
-        [xml.xmlelement]
-        $StigRule
-    )
-
-    return [FileContentRule]::New( $StigRule )
-}
 #endregion

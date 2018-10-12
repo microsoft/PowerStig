@@ -29,30 +29,16 @@ function ConvertTo-UserRightRule
         {
             $StigRule.id = "$($ruleId).$([CHAR][BYTE]$byte)"
             $StigRule.rule.Check.'check-content' = $splitRule
-            $userRightRules += New-UserRightRule -StigRule $StigRule
+            $userRightRules += [UserRightRule]::New( $StigRule )
             $byte++
         }
     }
     else
     {
-        $userRightRules += New-UserRightRule -StigRule $StigRule
+        $userRightRules += [UserRightRule]::New( $StigRule )
     }
 
     return $userRightRules
 }
-#endregion Main Functions
-#region Support Function
-function New-UserRightRule
-{
-    [CmdletBinding()]
-    [OutputType([UserRightRule])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [xml.xmlelement]
-        $StigRule
-    )
 
-    return [UserRightRule]::New( $StigRule )
-}
 #endregion

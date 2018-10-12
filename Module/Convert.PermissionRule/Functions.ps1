@@ -36,38 +36,16 @@ function ConvertTo-PermissionRule
         {
             $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
             $StigRule.rule.Check.('check-content') = $splitPermissionEntry
-            $Rule = New-PermissionRule -StigRule $StigRule
+            $Rule = [PermissionRule]::New( $StigRule )
             $permissionRules += $Rule
             $byte ++
         }
     }
     else
     {
-        $PermissionRules += ( New-PermissionRule -StigRule $StigRule )
+        $PermissionRules += [PermissionRule]::New( $StigRule )
     }
     return $permissionRules
-}
-
-<#
-    .SYNOPSIS
-        Creates a new PermissionRule
-
-    .PARAMETER StigRule
-        The xml Stig rule from the XCCDF.
-#>
-function New-PermissionRule
-{
-    [CmdletBinding()]
-    [OutputType([PermissionRule])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [xml.xmlelement]
-        $StigRule
-    )
-
-    Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-    return [PermissionRule]::New( $StigRule )
 }
 
 #endregion

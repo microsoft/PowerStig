@@ -32,40 +32,16 @@ function ConvertTo-MimeTypeRule
         {
             $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
             $StigRule.rule.Check.('check-content') = $mimeTypeRule
-            $rule = New-MimeTypeRule -StigRule $StigRule
+            $rule = [MimeTypeRule]::New( $StigRule )
             $mimeTypeRules += $rule
             $byte ++
         }
     }
     else
     {
-        $mimeTypeRules += ( New-MimeTypeRule -StigRule $StigRule )
+        $mimeTypeRules += [MimeTypeRule]::New( $StigRule )
     }
     return $mimeTypeRules
 
-}
-#endregion
-#region Support Functions
-<#
-    .SYNOPSIS
-        Creates a new MimeTypeRule
-
-    .PARAMETER StigRule
-        The xml Stig rule from the XCCDF.
-#>
-function New-MimeTypeRule
-{
-    [CmdletBinding()]
-    [OutputType([MimeTypeRule])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [xml.xmlelement]
-        $StigRule
-    )
-
-    Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-
-    return [MimeTypeRule]::New( $StigRule )
 }
 #endregion
