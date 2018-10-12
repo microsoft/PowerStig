@@ -33,7 +33,6 @@ Class SqlScriptQueryRule : Rule
     [string] $GetScript
     [string] $TestScript
     [string] $SetScript
-    [String] $DscResource = 'SqlScriptQuery'
 
     <#
         .SYNOPSIS
@@ -46,6 +45,7 @@ Class SqlScriptQueryRule : Rule
     SqlScriptQueryRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -129,5 +129,9 @@ Class SqlScriptQueryRule : Rule
         return $ruleType
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'SqlScriptQuery'
+    }
     #endregion
 }

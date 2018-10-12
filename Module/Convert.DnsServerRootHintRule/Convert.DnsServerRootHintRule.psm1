@@ -30,7 +30,6 @@ Class DnsServerRootHintRule : Rule
 {
     [string] $HostName
     [string] $IpAddress
-    [String] $DscResource = 'Script'
 
     <#
         .SYNOPSIS
@@ -45,5 +44,11 @@ Class DnsServerRootHintRule : Rule
         $this.InvokeClass( $StigRule )
         $this.set_HostName( '$null' )
         $this.set_IpAddress( '$null' )
+        $this.SetDscResource()
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'Script'
     }
 }

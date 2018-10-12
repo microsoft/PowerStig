@@ -42,7 +42,7 @@ Class FileContentRule : Rule
         $this.InvokeClass($StigRule)
         $this.SetKeyName()
         $this.SetValue()
-        $this.SetStigRuleResource()
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -83,7 +83,7 @@ Class FileContentRule : Rule
         }
     }
 
-    hidden [void] SetStigRuleResource()
+    hidden [void] SetDscResource ()
     {
         switch ($this.Key)
         {

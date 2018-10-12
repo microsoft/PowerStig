@@ -35,7 +35,7 @@ Class WmiRule : Rule
     [string] $Property
     [string] $Value
     [string] $Operator
-    [String] $DscResource = 'Script'
+
     <#
         .SYNOPSIS
             Default constructor
@@ -47,5 +47,11 @@ Class WmiRule : Rule
     WmiRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'Script'
     }
 }

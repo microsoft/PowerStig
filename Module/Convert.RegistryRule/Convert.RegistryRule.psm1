@@ -50,7 +50,10 @@ Class RegistryRule : Rule
     RegistryRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
-        $this.SetStigRuleResource()
+        $this.SetKey()
+        $this.SetValueName()
+        $this.SetValueType()
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -286,7 +289,7 @@ Class RegistryRule : Rule
         $this.Ensure = $Ensure
     }
 
-    [void] SetStigRuleResource ()
+    hidden [void] SetDscResource ()
     {
         if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
         {

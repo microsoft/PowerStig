@@ -32,7 +32,7 @@ Class PermissionRule : Rule
     [string] $Path
     [object[]] $AccessControlEntry
     [bool] $Force
-    [String] $DscResource = ''
+
     <#
         .SYNOPSIS
             Default constructor
@@ -45,7 +45,7 @@ Class PermissionRule : Rule
     {
         $this.InvokeClass($StigRule)
         $this.SetPath()
-        $this.SetStigRuleResource()
+        $this.SetDscResource()
         $this.SetForce()
         $this.SetAccessControlEntry()
         if ( $this.IsDuplicateRule( $global:stigSettings ) )
@@ -119,7 +119,7 @@ Class PermissionRule : Rule
     }
 
 
-    [void] SetStigRuleResource ()
+    hidden [void] SetDscResource ()
     {
         if ( $this.Path )
         {

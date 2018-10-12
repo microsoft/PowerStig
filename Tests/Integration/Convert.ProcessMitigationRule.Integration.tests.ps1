@@ -109,21 +109,20 @@ try
                 It "Should return Enable $($mitigationsRule.Enable -join ',' )" {
                     $rule.Enable -split ',' | Should Be $($mitigationsRule.Enable -split ',')
                 }
-
                 It "Should return Disable '$($mitigationsRule.Disable -join ',')'" {
                     $rule.Disable | Should be $mitigationsRule.Disable
                 }
-
                 It "Enable Should not return 'Enable'" {
                     $rule.Enable -contains 'Enable' | Should Be $false
                 }
-
                 It "Enable Should not return 'ON'" {
                     $rule.Enable -contains 'ON' | Should Be $false
                 }
-
                 It "Enable Should not return ':'" {
                     $rule.Enable -contains ':' | Should Be $false
+                }
+                It "Should set the correct DscResource" {
+                    $rule.DscResource | Should Be 'ProcessMitigation'
                 }
             }
         }

@@ -11,9 +11,9 @@ try
             Identity     = 'NULL'
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
-        
+
             Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-        
+
             If any accounts or groups (to include administrators), are granted the "{0}" user right, this is a finding.'
         }
         @{
@@ -22,11 +22,11 @@ try
             Identity     = 'Administrators'
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
-            
+
             Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-            
+
             If any groups or accounts other than the following are granted the "{0}" user right, this is a finding:
-            
+
             Administrators'
         }
         @{
@@ -60,31 +60,37 @@ try
 
         foreach ( $testRule in $rulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
-            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
-            $rule = ConvertFrom-StigXccdf -Path $TestFile
+            Context $testRule.Constant {
 
-            It "Should return an UserRightRule Object" {
-                $rule.GetType() | Should Be 'UserRightRule'
-            }
-            It "Should extract the correct DisplayName" {
-                $rule.DisplayName | Should Be $testRule.displayName
-            }
-            It "Should return the correct Constant" {
-                $rule.Constant | Should Be $testRule.constant
-            }
-            It "Should extract the correct identity" {
-                $rule.Identity | Should Be $testRule.Identity
-            }
-            It 'Should not have OrganizationValueRequired set' {
-                $rule.OrganizationValueRequired | Should Be $false
-            }
-            It 'Should have emtpty test string' {
-                $rule.OrganizationValueTestString | Should BeNullOrEmpty
-            }
-            It 'Should Set the status to pass' {
-                $rule.conversionstatus | Should Be 'pass'
+                [xml] $StigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
+                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $StigRule.Save( $TestFile )
+                $rule = ConvertFrom-StigXccdf -Path $TestFile
+
+                It "Should return an UserRightRule Object" {
+                    $rule.GetType() | Should Be 'UserRightRule'
+                }
+                It "Should extract the correct DisplayName" {
+                    $rule.DisplayName | Should Be $testRule.displayName
+                }
+                It "Should return the correct Constant" {
+                    $rule.Constant | Should Be $testRule.constant
+                }
+                It "Should extract the correct identity" {
+                    $rule.Identity | Should Be $testRule.Identity
+                }
+                It 'Should not have OrganizationValueRequired set' {
+                    $rule.OrganizationValueRequired | Should Be $false
+                }
+                It 'Should have emtpty test string' {
+                    $rule.OrganizationValueTestString | Should BeNullOrEmpty
+                }
+                It "Should set the correct DscResource" {
+                    $rule.DscResource | Should Be 'UserRightsAssignment'
+                }
+                It 'Should Set the status to pass' {
+                    $rule.conversionstatus | Should Be 'pass'
+                }
             }
         }
     }

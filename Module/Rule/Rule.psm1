@@ -42,16 +42,16 @@ Foreach ($supportFile in $supportFileList)
 #>
 Class Rule : ICloneable
 {
-    [String] $Id
-    [String] $Title
+    [string] $Id
+    [string] $Title
     [severity] $Severity
     [status] $ConversionStatus
-    [String] $RawString
+    [string] $RawString
     hidden [string[]] $SplitCheckContent
     [Boolean] $IsNullOrEmpty
     [Boolean] $OrganizationValueRequired
-    [String] $OrganizationValueTestString
-    [String] $DscResource
+    [string] $OrganizationValueTestString
+    hidden [string] $DscResource
 
     <#
         .SYNOPSIS
@@ -344,5 +344,9 @@ Class Rule : ICloneable
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
 
+    hidden [void] SetDscResource ()
+    {
+        throw 'SetDscResource must be implemented in the child class'
+    }
     #endregion
 }

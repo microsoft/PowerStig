@@ -22,7 +22,6 @@ Foreach ($supportFile in $supportFileList)
 #>
 Class ManualRule : Rule
 {
-    [String] $DscResource = 'None'
     <#
         .SYNOPSIS
             Default constructor
@@ -34,5 +33,11 @@ Class ManualRule : Rule
     ManualRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'None'
     }
 }

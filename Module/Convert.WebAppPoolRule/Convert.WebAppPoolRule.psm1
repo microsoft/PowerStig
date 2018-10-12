@@ -29,7 +29,6 @@ Class WebAppPoolRule : Rule
 {
     [string] $Key
     [string] $Value
-    [String] $DscResource = 'xWebAppPool'
 
     <#
         .SYNOPSIS
@@ -42,6 +41,7 @@ Class WebAppPoolRule : Rule
     WebAppPoolRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -100,5 +100,9 @@ Class WebAppPoolRule : Rule
         }
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xWebAppPool'
+    }
     #endregion
 }

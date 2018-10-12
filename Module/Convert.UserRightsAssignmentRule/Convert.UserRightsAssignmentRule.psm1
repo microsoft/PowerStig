@@ -35,7 +35,6 @@ Class UserRightRule : Rule
     [ValidateNotNullOrEmpty()] [string] $Constant
     [ValidateNotNullOrEmpty()] [string] $Identity
     [bool] $Force = $false
-    [String] $DscResource = 'UserRightsAssignment'
 
     <#
         .SYNOPSIS
@@ -48,6 +47,7 @@ Class UserRightRule : Rule
     UserRightRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -135,6 +135,11 @@ Class UserRightRule : Rule
         {
             $this.set_Force( $false )
         }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'UserRightsAssignment'
     }
 
     <#

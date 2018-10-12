@@ -29,7 +29,7 @@ Class AccountPolicyRule : Rule
 {
     [string] $PolicyName
     [string] $PolicyValue
-    [String] $DscResource = 'AccountPolicy'
+
     <#
         .SYNOPSIS
             Default constructor
@@ -41,6 +41,7 @@ Class AccountPolicyRule : Rule
     AccountPolicyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -117,6 +118,11 @@ Class AccountPolicyRule : Rule
         {
             $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
         }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'AccountPolicy'
     }
     #endregion
 }

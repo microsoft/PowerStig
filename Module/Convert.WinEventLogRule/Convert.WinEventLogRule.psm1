@@ -30,7 +30,6 @@ Class WinEventLogRule : Rule
 {
     [string] $LogName
     [bool] $IsEnabled
-    [String] $DscResource = 'xWinEventLog'
 
     <#
         .SYNOPSIS
@@ -43,6 +42,7 @@ Class WinEventLogRule : Rule
     WinEventLogRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -80,5 +80,9 @@ Class WinEventLogRule : Rule
         $this.IsEnabled = $true
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xWinEventLog'
+    }
     #endregion
 }

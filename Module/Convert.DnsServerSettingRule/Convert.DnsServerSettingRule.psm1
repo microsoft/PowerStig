@@ -30,7 +30,6 @@ Class DnsServerSettingRule : Rule
 {
     [string] $PropertyName
     [string] $PropertyValue
-    [String] $DscResource = 'xDnsServerSetting'
 
     <#
         .SYNOPSIS
@@ -43,6 +42,7 @@ Class DnsServerSettingRule : Rule
     DnsServerSettingRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -83,6 +83,11 @@ Class DnsServerSettingRule : Rule
         {
             $this.set_PropertyValue($thisDnsServerSettingPropertyValue)
         }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xDnsServerSetting'
     }
     #endregion
 }

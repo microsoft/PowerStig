@@ -28,7 +28,6 @@ Class SecurityOptionRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue
-    [String] $DscResource = 'SecurityOption'
 
     <#
         .SYNOPSIS
@@ -41,6 +40,7 @@ Class SecurityOptionRule : Rule
     SecurityOptionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -119,5 +119,9 @@ Class SecurityOptionRule : Rule
         }
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'SecurityOption'
+    }
     #endregion
 }

@@ -39,7 +39,6 @@ Class IisLoggingRule : Rule
     [string] $LogFormat
     [string] $LogPeriod
     [string] $LogTargetW3C
-    [String] $DscResource = 'xWebSite'
 
     <#
         .SYNOPSIS
@@ -52,7 +51,7 @@ Class IisLoggingRule : Rule
     IisLoggingRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
-        $this.SetStigRuleResource()
+        $this.SetDscResource()
     }
 
     <#
@@ -172,7 +171,7 @@ Class IisLoggingRule : Rule
         }
     }
 
-    [void] SetStigRuleResource ()
+    hidden [void] SetDscResource  ()
     {
         if ($global:stigTitle -match "Server")
         {

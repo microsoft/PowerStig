@@ -23,7 +23,6 @@ Foreach ($supportFile in $supportFileList)
 #>
 Class DocumentRule : Rule
 {
-    [String] $DscResource = 'None'
     <#
         .SYNOPSIS
             Default constructor
@@ -57,6 +56,7 @@ Class DocumentRule : Rule
         $this.severity = $Severity
         $this.title = $Title
         $this.rawString = $RawString
+        $this.SetDscResource()
     }
 
     <#
@@ -73,5 +73,10 @@ Class DocumentRule : Rule
     {
         return [DocumentRule]::New($RuleToConvert.Id, $RuleToConvert.severity,
             $RuleToConvert.title, $RuleToConvert.rawString)
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'None'
     }
 }

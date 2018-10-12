@@ -16,6 +16,9 @@ try
         It "Should return an ManualRule Object" {
             $rule.GetType() | Should Be 'ManualRule'
         }
+        It "Should set the correct DscResource" {
+            $rule.DscResource | Should Be 'None'
+        }
     }
     #endregion
 }

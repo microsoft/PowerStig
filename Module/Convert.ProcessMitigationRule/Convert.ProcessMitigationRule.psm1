@@ -33,7 +33,6 @@ Class ProcessMitigationRule : Rule
     [string] $MitigationTarget
     [string] $Enable
     [string] $Disable
-    [String] $DscResource = 'ProcessMitigation'
 
     <#
         .SYNOPSIS
@@ -46,6 +45,7 @@ Class ProcessMitigationRule : Rule
     ProcessMitigationRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -117,5 +117,9 @@ Class ProcessMitigationRule : Rule
         return ( Split-ProcessMitigationRule -MitigationTarget $MitigationTarget )
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'ProcessMitigation'
+    }
     #endregion
 }

@@ -34,7 +34,6 @@ Class ServiceRule : Rule
     [string] $ServiceState
     [string] $StartupType
     [ensure] $Ensure
-    [String] $DscResource = 'xService'
 
     <#
         .SYNOPSIS
@@ -47,6 +46,7 @@ Class ServiceRule : Rule
     ServiceRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -138,5 +138,9 @@ Class ServiceRule : Rule
         return ( Split-MultipleServiceRule -ServiceName $Servicename )
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xService'
+    }
     #endregion
 }

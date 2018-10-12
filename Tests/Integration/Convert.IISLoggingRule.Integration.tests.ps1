@@ -128,8 +128,8 @@ try
                 $rule.ConversionStatus | Should Be 'pass'
             }
 
-            It 'Should set dscresource to the correct value' {
-                $rule.Dscresource | Should Be $stig.Dscresource
+            It 'Should set the correct DscResource' {
+                $rule.DscResource | Should Be $stig.DscResource
             }
         }
     }
