@@ -140,8 +140,8 @@ try
               If any of the above fields are not selected, this is a finding.'
             }
         )
-
-        $rule = [IisLoggingRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -ReturnGroupOnly
+        $rule = [IisLoggingRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

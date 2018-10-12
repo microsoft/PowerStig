@@ -52,6 +52,8 @@ Verify the "Root Hints" is either empty or only has entries for internal zones u
 If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name servers:" are external to the local network, this is a finding.'
 
             $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+
+            <# TODO This needs to be converted to the the class implemtation#>
             $rule = ConvertTo-DnsServerRootHintRule -StigRule $stigRule
 
             It "Should return an DnsServerRootHintRule object" {

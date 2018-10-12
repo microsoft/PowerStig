@@ -128,7 +128,9 @@ try
                 GO"
             }
         }
-        $rule = [SqlScriptQueryRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $sqlScriptQueryRule.DbExist.CheckContent -ReturnGroupOnly
+        $rule = [SqlScriptQueryRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

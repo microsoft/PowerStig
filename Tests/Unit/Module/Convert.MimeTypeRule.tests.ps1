@@ -57,7 +57,9 @@ try
             '.csh' = 'application/x-csh'
             '.com' = 'application/octet-stream'
         }
-        $rule = [MimeTypeRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $mimeTypeRule.CheckContent -ReturnGroupOnly
+        $rule = [MimeTypeRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class"{

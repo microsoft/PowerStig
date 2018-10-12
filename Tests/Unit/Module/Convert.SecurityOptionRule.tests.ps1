@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $stringsToTest = @(
+        $rulesToTest = @(
             @{
                 Name                        = 'Accounts: Guest account status'
                 Value                       = 'Disabled'
@@ -45,7 +45,8 @@ try
             }
         )
 
-        $rule = [SecurityOptionRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [SecurityOptionRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -73,7 +74,7 @@ try
         #region Method Tests
         Describe 'Get-SecurityOptionName' {
 
-            foreach ( $string in $stringsToTest )
+            foreach ( $string in $rulesToTest )
             {
                 It "Should return '$($string.Name)'" {
                     $checkContent = Split-TestStrings -CheckContent $string.CheckContent
@@ -84,7 +85,7 @@ try
 
         Describe 'Get-SecurityOptionValue' {
 
-            foreach ( $string in $stringsToTest )
+            foreach ( $string in $rulesToTest )
             {
                 It "Should return '$($string.Value)'" {
                     $checkContent = Split-TestStrings -CheckContent $string.CheckContent
@@ -96,7 +97,7 @@ try
         #region Function Tests
         Describe "ConvertTo-SecurityOptionRule" {
 
-            $stigRule = Get-TestStigRule -CheckContent $stringsToTest[0].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-SecurityOptionRule -StigRule $stigRule
 
             It "Should return a SecurityOptionRule object" {

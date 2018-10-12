@@ -23,7 +23,9 @@ try
         If any option other than "Errors and warnings" or "All events" is selected, this is a finding.'
             }
         )
-        $rule = [DnsServerSettingRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -ReturnGroupOnly
+        $rule = [DnsServerSettingRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

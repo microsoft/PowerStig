@@ -6,7 +6,8 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $rule = [DocumentRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -ReturnGroupOnly
+        $rule = [DocumentRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

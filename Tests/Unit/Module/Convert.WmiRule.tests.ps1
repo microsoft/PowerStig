@@ -15,7 +15,8 @@ try
         Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
         must be documented with the ISSO.'
 
-        $rule = [WmiRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = [WmiRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

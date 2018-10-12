@@ -204,7 +204,8 @@ try
                 Value: 1'
             }
         )
-        $rule = [RegistryRule]::new( (Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [RegistryRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

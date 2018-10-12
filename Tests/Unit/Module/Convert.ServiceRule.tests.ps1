@@ -6,11 +6,11 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $servicesToTest = @(
+        $rulesToTest = @(
             @{
-                ServiceName  = 'masvc'
+                ServiceName = 'masvc'
                 ServiceState = 'Running'
-                StartupType  = 'Automatic'
+                StartupType = 'Automatic'
                 CheckContent = 'Run "Services.msc".
 
                 Verify the McAfee Agent service is running, depending on the version installed.
@@ -22,9 +22,9 @@ try
                 If the service is not listed or does not have a Status of "Started", this is a finding.'
             },
             @{
-                ServiceName  = 'SCPolicySvc'
+                ServiceName = 'SCPolicySvc'
                 ServiceState = 'Running'
-                StartupType  = 'Automatic'
+                StartupType = 'Automatic'
                 CheckContent = 'Verify the Smart Card Removal Policy service is configured to "Automatic".
 
                 Run "Services.msc".
@@ -32,9 +32,9 @@ try
                 If the Startup Type for Smart Card Removal Policy is not set to Automatic, this is a finding.'
             },
             @{
-                ServiceName  = 'simptcp'
+                ServiceName = 'simptcp'
                 ServiceState = 'Stopped'
-                StartupType  = 'Disabled'
+                StartupType = 'Disabled'
                 CheckContent = 'Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
 
                 Run "Services.msc".
@@ -44,25 +44,27 @@ try
                 Simple TCP/IP Services (simptcp)'
             },
             @{
-                ServiceName  = 'FTPSVC'
+                ServiceName = 'FTPSVC'
                 ServiceState = 'Stopped'
-                StartupType  = 'Disabled'
+                StartupType = 'Disabled'
                 CheckContent = 'If the server has the role of an FTP server, this is NA.
                 Run "Services.msc".
 
                 If the "Microsoft FTP Service" (Service name: FTPSVC) is installed and not disabled, this is a finding.'
             },
             @{
-                ServiceName  = $null
+                ServiceName = $null
                 ServiceState = 'Stopped'
-                StartupType  = 'Disabled'
+                StartupType = 'Disabled'
                 CheckContent = 'If the server has the role of a server, this is NA.
                 Run "Services.msc".
 
                 If A string without parentheses is installed and not disabled, this is a finding.'
             }
         )
-        $rule = [ServiceRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [ServiceRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -90,7 +92,7 @@ try
         #region Method Tests
         Describe 'Get-ServiceName' {
 
-            foreach ( $service in $servicesToTest )
+            foreach ( $service in $rulesToTest )
             {
                 It "Should return '$($service.ServiceName)'" {
                     $checkContent = Split-TestStrings -CheckContent $service.CheckContent
@@ -101,7 +103,7 @@ try
 
         Describe 'Get-ServiceState' {
 
-            foreach ( $service in $servicesToTest )
+            foreach ( $service in $rulesToTest )
             {
                 It "Should return '$($service.ServiceState)' from '$($service.ServiceName)'" {
                     $checkContent = Split-TestStrings -CheckContent $service.CheckContent
@@ -112,7 +114,7 @@ try
 
         Describe 'Get-ServiceStartupType' {
 
-            foreach ( $service in $servicesToTest )
+            foreach ( $service in $rulesToTest )
             {
                 It "Should return '$($service.StartupType)' from '$($service.ServiceName)'" {
                     $checkContent = Split-TestStrings -CheckContent $service.CheckContent
@@ -143,7 +145,7 @@ try
                 This function can't really be unit tested, since the call cannot be mocked by pester, so
                 the only thing we can really do at this point is to verify that it returns the correct object.
             #>
-            $stigRule = Get-TestStigRule -CheckContent $servicesToTest[3].checkContent -ReturnGroupOnly
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[3].checkContent -ReturnGroupOnly
             $rule = ConvertTo-ServiceRule -StigRule $stigRule
 
             It "Should return an ServiceRule object" {

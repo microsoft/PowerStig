@@ -108,8 +108,8 @@ try
             }
         )
         $MultiplePaths = @{
-            Paths             = '%ProgramFiles%;%ProgramFiles(x86)'
-            CheckContent      = 'The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377). If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
+            Paths = '%ProgramFiles%;%ProgramFiles(x86)'
+            CheckContent = 'The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377). If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
 
         Verify the default permissions for the program file directories (Program Files and Program Files (x86)). Nonprivileged groups such as Users or Authenticated Users must not have greater than Read & execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 
@@ -158,7 +158,8 @@ try
         Successfully processed 1 files; Failed processing 0 files'
             SplitMultplePaths = @('%ProgramFiles%', '%ProgramFiles(x86)%')
         }
-        $rule = [PermissionRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [PermissionRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

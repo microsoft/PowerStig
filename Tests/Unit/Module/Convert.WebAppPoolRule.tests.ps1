@@ -43,7 +43,9 @@ try
             key        = 'queueLength'
             TestString = '{0} -le 1000'
         }
-        $rule = [WebAppPoolrule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [WebAppPoolrule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {

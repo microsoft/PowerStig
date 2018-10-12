@@ -184,7 +184,9 @@ try
                 Guests Group'
             }
         )
-        $rule = [UserRightRule]::new( ( Get-TestStigRule -ReturnGroupOnly ) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [UserRightRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
