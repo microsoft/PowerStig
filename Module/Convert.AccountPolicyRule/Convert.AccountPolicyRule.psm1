@@ -133,5 +133,18 @@ Class AccountPolicyRule : Rule
     {
         $this.DscResource = 'AccountPolicy'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'gpedit\.msc' -and
+            $CheckContent -match 'Account Policies'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }

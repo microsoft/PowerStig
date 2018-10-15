@@ -117,5 +117,20 @@ Class WebAppPoolRule : Rule
     {
         $this.DscResource = 'xWebAppPool'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -cMatch 'IIS' -and
+            $CheckContent -Match 'Application Pools' -and
+            $CheckContent -NotMatch 'recycl' -and
+            $CheckContent -NotMatch 'review the "Applications"'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }

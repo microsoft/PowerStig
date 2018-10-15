@@ -107,6 +107,22 @@ Class ServiceRule : Rule
         }
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'services\.msc' -and
+            $CheckContent -NotMatch 'Required Services' -and
+            $CheckContent -NotMatch 'presence of applications' -and
+            $CheckContent -NotMatch 'is not installed by default' -and
+            $CheckContent -NotMatch 'Sql Server'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

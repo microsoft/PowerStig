@@ -184,7 +184,7 @@ Class IisLoggingRule : Rule
         }
     }
 
-    hidden [void] SetDscResource  ()
+    hidden [void] SetDscResource ()
     {
         if ($global:stigTitle -match "Server")
         {
@@ -194,6 +194,23 @@ Class IisLoggingRule : Rule
         {
             $this.DscResource = "XWebsite"
         }
+    }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'Logging' -and
+            $CheckContent -Match 'IIS 8\.5' -and
+            $CheckContent -NotMatch 'review source IP' -and
+            $CheckContent -NotMatch 'verify only authorized groups' -and
+            $CheckContent -NotMatch 'consult with the System Administrator to review' -and
+            $CheckContent -Notmatch 'If an account associated with roles other than auditors'
+        )
+        {
+            return $true
+        }
+        return $false
     }
     #endregion
 }

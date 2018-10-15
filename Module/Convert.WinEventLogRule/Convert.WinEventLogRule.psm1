@@ -97,5 +97,18 @@ Class WinEventLogRule : Rule
     {
         $this.DscResource = 'xWinEventLog'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'Logs\\Microsoft' -and
+            $CheckContent -Match 'eventvwr\.msc'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }

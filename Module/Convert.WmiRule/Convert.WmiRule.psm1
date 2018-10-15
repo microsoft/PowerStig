@@ -82,4 +82,17 @@ Class WmiRule : Rule
     {
         $this.DscResource = 'Script'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match "Disk Management" -or
+            $CheckContent -Match "Service Pack"
+        )
+        {
+            return $true
+        }
+        return $false
+    }
 }

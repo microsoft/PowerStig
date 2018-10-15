@@ -157,6 +157,21 @@ Class UserRightRule : Rule
         $this.DscResource = 'UserRightsAssignment'
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'gpedit\.msc' -and
+            $CheckContent -Match 'User Rights Assignment' -and
+            $CheckContent -NotMatch 'unresolved SIDs' -and
+            $CheckContent -NotMatch 'SQL Server'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

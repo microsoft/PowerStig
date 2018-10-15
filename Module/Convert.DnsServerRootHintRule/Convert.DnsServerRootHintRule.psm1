@@ -51,4 +51,17 @@ Class DnsServerRootHintRule : Rule
     {
         $this.DscResource = 'Script'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'dnsmgmt\.msc' -and
+            $CheckContent -Match 'Verify the \"root hints\"'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
 }

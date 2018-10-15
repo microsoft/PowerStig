@@ -106,5 +106,17 @@ Class AuditPolicyRule : Rule
         $this.DscResource = 'AuditPolicySubcategory'
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match "\bAuditpol\b" -and
+            $CheckContent -NotMatch "resourceSACL"
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }

@@ -100,5 +100,21 @@ Class DnsServerSettingRule : Rule
     {
         $this.DscResource = 'xDnsServerSetting'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'dnsmgmt\.msc' -and
+            $CheckContent -NotMatch 'Forward Lookup Zones' -and
+            $CheckContent -Notmatch 'Logs\\Microsoft' -and
+            $CheckContent -NotMatch 'Verify the \"root hints\"'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     #endregion
 }

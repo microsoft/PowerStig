@@ -81,6 +81,20 @@ Class WindowsFeatureRule : Rule
         }
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match '(Get-Windows(Optional)?Feature|is not installed by default)' -or
+            $CheckContent -Match 'WebDAV Authoring Rules' -and
+            $CheckContent -NotMatch 'HKEY_LOCAL_MACHINE'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

@@ -118,7 +118,6 @@ Class PermissionRule : Rule
         }
     }
 
-
     hidden [void] SetDscResource ()
     {
         if ( $this.Path )
@@ -140,6 +139,35 @@ Class PermissionRule : Rule
             }
         }
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'permission(s|)' -and
+            $CheckContent -NotMatch 'Forward\sLookup\sZones|Devices\sand\sPrinters|Shared\sFolders' -and
+            $CheckContent -NotMatch 'Verify(ing)? the ((permissions .* ((G|g)roup (P|p)olicy|OU|ou))|auditing .* ((G|g)roup (P|p)olicy))' -and
+            $CheckContent -NotMatch 'Windows Registry Editor' -and
+            $CheckContent -NotMatch '(ID|id)s? .* (A|a)uditors?,? (SA|sa)s?,? .* (W|w)eb (A|a)dministrators? .* access to log files?' -and
+            $CheckContent -NotMatch '\n*\.NET Trust Level' -and
+            $CheckContent -NotMatch 'IIS 8\.5 web' -and
+            $CheckContent -cNotmatch 'SELECT' -and
+            $CheckContent -NotMatch 'SQL Server' -and
+            $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
+            $CheckContent -NotMatch 'Query the SA' -and
+            $CheckContent -NotMatch "caspol\.exe" -and
+            $CheckContent -NotMatch "Select the Group Policy object in the left pane" -and
+            $CheckContent -NotMatch "Deny log on through Remote Desktop Services" -and
+            $CheckContent -NotMatch "Interview the IAM" -and
+            $CheckContent -NotMatch "InetMgr\.exe" -and
+            $CheckContent -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""."
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check

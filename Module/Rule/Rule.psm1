@@ -229,6 +229,10 @@ Class Rule : ICloneable
         return ConvertTo-HashTable -InputObject $this
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        throw 'Must be implemented in the child class'
+    }
     <#
         .SYNOPSIS
             Splits the check-content element in the xccdf into an array

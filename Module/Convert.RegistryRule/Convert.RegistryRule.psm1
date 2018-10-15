@@ -300,6 +300,33 @@ Class RegistryRule : Rule
             $this.DscResource = "cAdministrativeTemplate"
         }
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            (
+                $CheckContent -Match "HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER" -and
+                $CheckContent -NotMatch "Permission(s|)" -and
+                $CheckContent -NotMatch "SupportedEncryptionTypes" -and
+                $CheckContent -NotMatch "Sql Server" -and
+                $CheckContent -NotMatch "v1607 of Windows 10"
+            ) -or
+            (
+                $CheckContent -Match "Windows Registry Editor" -and
+                $CheckContent -Match "HKLM|HKCU"
+            ) -or
+            (
+                $CheckContent -match "HKLM|HKCU" -and
+                $CheckContent -match "REG_DWORD"
+            )
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

@@ -142,6 +142,43 @@ Class WebConfigurationPropertyRule : Rule
         $this.DscResource = 'xWebConfigKeyValue'
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match '\.NET Trust Level' -or
+            (
+                $CheckContent -Match 'IIS 8\.5 web' -and
+                $CheckContent -NotMatch 'document'
+            ) -and
+            (
+                $CheckContent -NotMatch 'alternateHostName' -and
+                $CheckContent -NotMatch 'Application Pools' -and
+                $CheckContent -NotMatch 'bindings' -and
+                $CheckContent -NotMatch 'DoD PKI Root CA' -and
+                $CheckContent -NotMatch 'IUSR account' -and
+                $CheckContent -NotMatch 'Logging' -and
+                $CheckContent -NotMatch 'MIME Types' -and
+                $CheckContent -NotMatch 'Physical Path' -and
+                $CheckContent -NotMatch 'script extensions' -and
+                $CheckContent -NotMatch 'recycl' -and
+                $CheckContent -NotMatch 'WebDAV' -and
+                $CheckContent -NotMatch 'Review the local users' -and
+                $CheckContent -NotMatch 'System Administrator' -and
+                $CheckContent -NotMatch 'are not restrictive enough to prevent connections from nonsecure zones' -and
+                $CheckContent -NotMatch 'verify the certificate path is to a DoD root CA' -and
+                $CheckContent -NotMatch 'HKLM' -and
+                $CheckContent -NotMatch 'Authorization Rules' -and
+                $CheckContent -NotMatch 'regedit <enter>' -and
+                $CheckContent -NotMatch 'Enable proxy'
+            )
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

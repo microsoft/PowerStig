@@ -149,5 +149,17 @@ Class MimeTypeRule : Rule
         $this.DscResource = 'xIisMimeTypeMapping'
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'MIME Types' -and
+            $CheckContent -Match 'IIS 8\.5'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }

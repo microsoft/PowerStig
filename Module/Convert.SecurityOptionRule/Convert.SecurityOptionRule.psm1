@@ -132,5 +132,18 @@ Class SecurityOptionRule : Rule
     {
         $this.DscResource = 'SecurityOption'
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'gpedit\.msc' -and
+            $CheckContent -match 'Security Options'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }
