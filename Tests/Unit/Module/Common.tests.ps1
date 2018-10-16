@@ -42,7 +42,7 @@ foreach( $enum in $enumTests.GetEnumerator() )
         foreach ( $value in $EnumValues )
         {
             It "$value should exist" {
-                $value | should match $enum.Value
+                $value | Should Match $enum.Value
             }
         }
     }
@@ -169,7 +169,7 @@ Describe "rangeMatch Data Section" {
 
     [string] $dataSectionName = 'rangeMatch'
 
-    It "should have a data section called $dataSectionName" {
+    It "Should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
@@ -182,7 +182,7 @@ Describe "errorMessage Data Section" {
 
     [string] $dataSectionName = 'errorMessage'
 
-    It "should have a data section called $dataSectionName" {
+    It "Should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
@@ -195,7 +195,7 @@ Describe "ADAuditPath Data Section" {
 
     [string] $dataSectionName = 'ADAuditPath'
 
-    It "should have a data section called $dataSectionName" {
+    It "Should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
@@ -207,7 +207,7 @@ Describe "ADAuditPath Data Section" {
 Describe "eventLogRegularExpression Data Section" {
 
     [string] $dataSectionName = 'eventLogRegularExpression'
-    It "should have a data section called $dataSectionName" {
+    It "Should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
     }
 
