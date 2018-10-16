@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name SecurityOptionRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     $policy = $rule.OptionName -replace "(\/)|(:)*\s", "_"
 

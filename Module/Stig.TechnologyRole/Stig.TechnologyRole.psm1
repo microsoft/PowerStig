@@ -137,7 +137,7 @@ All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013,
 
 # Footer
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
+foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

@@ -347,7 +347,7 @@ Class StigData
             [System.XML.XMLElement] $skipNode = $this.StigXml.CreateElement("SkipRule")
             [void] $this.StigXml.DISASTIG.AppendChild($skipNode)
 
-            Foreach ($rule in $this.SkippedRules)
+            foreach ($rule in $this.SkippedRules)
             {
                 # Lookup the STIG Id in the data
                 $ruleToOverride = ( $this.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.StigRuleId )']" -ErrorAction Stop ).Node
@@ -457,7 +457,7 @@ Class StigData
 
 # Footer
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
+foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

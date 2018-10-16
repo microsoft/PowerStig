@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name DnsServerRootHintRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     Script (Get-ResourceTitle -Rule $rule)
     {
@@ -26,7 +26,7 @@ Foreach ( $rule in $rules )
         GetScript =
         {
             $returnString = $null
-            Foreach ( $rootHint in (Get-DnsServerRootHint) ) {
+            foreach ( $rootHint in (Get-DnsServerRootHint) ) {
                 $returnString += $rootHint.ipaddress.hostName + ";"
             }
 

@@ -958,7 +958,7 @@ try
                     {Get-IntegerFromHex -ValueDataString 'No Hex code here'} | Should Throw
                 }
 
-                Foreach ($testValue in $testValues.GetEnumerator())
+                foreach ($testValue in $testValues.GetEnumerator())
                 {
                     It "Should return '$($testValue.value)' from '$($testValue.key)'" {
                         Get-IntegerFromHex -ValueDataString $testValue.Key | Should Be $testValue.Value
@@ -1006,7 +1006,7 @@ try
                     {Get-NumberFromString -ValueDataString 'No Integers here'} | Should Throw
                 }
 
-                Foreach ($string in $testValues.GetEnumerator())
+                foreach ($string in $testValues.GetEnumerator())
                 {
                     It "Should return '$($string.value)' from '$($string.key)'" {
                         Get-NumberFromString -ValueDataString $string.Key | Should Be $String.Value
@@ -1071,7 +1071,7 @@ try
                 'Disabled'     = '0'
             }
 
-            Foreach ($testValue in $testValues.GetEnumerator())
+            foreach ($testValue in $testValues.GetEnumerator())
             {
                 It "Should return '$($testValue.value)' when given '$($testValue.key)'" {
                     ConvertTo-ValidDword -ValueData $testValue.key | Should Be $testValue.value

@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name SkipRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     Script (Get-ResourceTitle -Rule $rule)
     {

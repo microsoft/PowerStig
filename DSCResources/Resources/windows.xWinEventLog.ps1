@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name WinEventLogRule
 
-Foreach( $rule in $rules )
+foreach ( $rule in $rules )
 {
     xWinEventLog (Get-ResourceTitle -Rule $rule)
     {

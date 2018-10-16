@@ -362,7 +362,7 @@ Describe 'Get-TestStringTokenNumbers' {
         "0x00008000 (32768) (or greater)"        = "32768"
     }
 
-    Foreach ($string in $strings.GetEnumerator())
+    foreach ($string in $strings.GetEnumerator())
     {
         It "Should return '$($string.Value)' when given '$($string.Key)'" {
             Get-TestStringTokenNumbers -String $string.Key | Should Be $string.Value
@@ -392,7 +392,7 @@ Describe 'Get-TestStringTokenList' {
             "0x00008000 (32768) (or greater)"        = "or greater"
         }
 
-        Foreach ($string in $strings.GetEnumerator())
+        foreach ($string in $strings.GetEnumerator())
         {
             It "Should return '$($string.Value)' when given '$($string.Key)'" {
                 Get-TestStringTokenList -String $string.Key | Should Be $string.Value
@@ -407,7 +407,7 @@ Describe 'Get-TestStringTokenList' {
             '"text1" and "text2" but "text3" are between quotes' = @('text1','text2','text3')
         }
 
-        Foreach ($string in $strings.GetEnumerator())
+        foreach ($string in $strings.GetEnumerator())
         {
             It "Should return '$($string.Value)' when given '$($string.Key)'" {
                 Get-TestStringTokenList -String $string.Key -StringTokens | Should Be $string.Value
@@ -431,7 +431,7 @@ Describe 'ConvertTo-TestString' {
         "  0x0000000f (15) (or less)"            = "{0} -le '15'"
         "0x00008000 (32768) (or greater)"        = "{0} -ge '32768'"
     }
-    Foreach ($string in $strings.GetEnumerator())
+    foreach ($string in $strings.GetEnumerator())
     {
         Mock -CommandName Get-TestStringTokenNumbers `
             -ParameterFilter {$string -eq $string.key} `
@@ -466,7 +466,7 @@ Describe "Test-StringIsNegativeOr" {
             "1or2=aFinding"
         )
 
-        Foreach($positiveMatchString in $positiveMatchStrings)
+        foreach ($positiveMatchString in $positiveMatchStrings)
         {
             It "Should be true with '$positiveMatchString'" {
                 Test-StringIsNegativeOr -String $positiveMatchString | Should be $true
@@ -480,7 +480,7 @@ Describe "Test-StringIsNegativeOr" {
             "greater than 1"
         )
 
-        Foreach($negativeMatchString in $negativeMatchStrings)
+        foreach ($negativeMatchString in $negativeMatchStrings)
         {
             It "Should be false with '$negativeMatchString'" {
                 Test-StringIsNegativeOr -String $negativeMatchString | Should be $false
@@ -508,7 +508,7 @@ Describe "Test-StringIsPositiveOr" {
         "1 or 2 = is not a Finding"
     )
 
-    Foreach ($positiveMatchString in $positiveMatchStrings)
+    foreach ($positiveMatchString in $positiveMatchStrings)
     {
         It "Should be true with '$positiveMatchString'" {
             Test-StringIsPositiveOr -String $positiveMatchString | Should be $true
@@ -521,7 +521,7 @@ Describe "Test-StringIsPositiveOr" {
         "Less than 10"
     )
 
-    Foreach ($negativeMatchString in $negativeMatchStrings)
+    foreach ($negativeMatchString in $negativeMatchStrings)
     {
         It "Should be false with '$negativeMatchString'" {
             Test-StringIsPositiveOr -String $negativeMatchString | Should be $false
@@ -542,7 +542,7 @@ Describe 'ConvertTo-OrTestString' {
             "10 or 20 = a Finding" = "{0} -notmatch '10|20'"
         }
 
-        Foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
+        foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
         {
             It "Should return '$($positiveMatchString.Value)' from '$($positiveMatchString.Key)'" {
                 ConvertTo-OrTestString -String $positiveMatchString.Key -Operator $operator |
@@ -563,7 +563,7 @@ Describe 'ConvertTo-OrTestString' {
             "1 (Lock Workstation) or 2 (Force Logoff)" = "{0} -match '1|2'"
         }
 
-        Foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
+        foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
         {
             It "Should return '$($positiveMatchString.Value)' from '$($positiveMatchString.Key)'" {
                 ConvertTo-OrTestString -String $positiveMatchString.Key -Operator $operator |
@@ -583,7 +583,7 @@ Describe 'Test-StringIsGreaterThan' {
         'Greater than 30'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThan -String $string | Should Be $true
@@ -604,7 +604,7 @@ Describe 'Test-StringIsGreaterThanOrEqual' {
         ' 0x0000000f (15) (or greater) '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThanOrEqual -String $string | Should Be $true
@@ -617,7 +617,7 @@ Describe 'Test-StringIsGreaterThanButNot' {
         'Greater than 30 (but not 100)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThanButNot -String $string | Should Be $true
@@ -630,7 +630,7 @@ Describe 'Test-StringIsGreaterThanOrEqualButNot' {
         '30 (or greater, but not 100)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThanOrEqualButNot -String $string | Should Be $true
@@ -647,7 +647,7 @@ Describe 'Test-StringIsLessThan' {
         ' less than 90 '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThan -String $string | Should Be $true
@@ -669,7 +669,7 @@ Describe 'Test-StringIsLessThanOrEqual' {
         ' 0x0000000f (15) (or less) '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqual -String $string | Should Be $true
@@ -683,7 +683,7 @@ Describe 'Test-StringIsLessThanButNot' {
         'less than 30 (but not 0)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanButNot -String $string | Should Be $true
@@ -705,7 +705,7 @@ Describe 'Test-StringIsLessThanOrEqualButNot' {
         ' 0x0000001e (30) (or less, but not 0) '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqualButNot -String $string | Should Be $true
@@ -720,7 +720,7 @@ Describe 'Test-StringIsLessThanOrEqualExcluding' {
         ' 0x0000001e (30) (or less, excluding 0)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqualExcluding -String $string | Should Be $true
@@ -735,7 +735,7 @@ Describe 'Test-StringIsMultipleValue' {
             'Possible values are NoSync, NTP, NT5DS, AllSync'
         )
 
-        Foreach ($string in $strings)
+        foreach ($string in $strings)
         {
             It "Should return $true when given '$string'" {
                 Test-StringIsMultipleValue -String $string | Should Be $true
@@ -747,7 +747,7 @@ Describe 'ConvertTo-MultipleValue' {
     $Strings = @{
         'Possible values are orange, lemon, cherry' = "'{0}' -match '^(orange|lemon|cherry)$'"
     }
-    Foreach ($string in $strings.GetEnumerator())
+    foreach ($string in $strings.GetEnumerator())
     {
         It "Should return '$($string.Value)' when given '$($string.key)'" {
             ConvertTo-MultipleValue -String $string.key | Should Be $string.Value

@@ -215,7 +215,7 @@ function Get-WikiContent
     $FunctionDefinitionAst = $astModified.FindAll(
         {$args[0] -is [System.Management.Automation.Language.FunctionDefinitionAst]}, $true)
 
-    Foreach ($Function in $FunctionDefinitionAst)
+    foreach ($Function in $FunctionDefinitionAst)
     {
         $keyName = ($return.Keys.Where( {$PSitem -match ".\.$($Function.Extent.StartLineNumber)"}))[0]
 
@@ -340,7 +340,7 @@ function New-WikiPage
         $propertyKeyList = $wikiContent.Keys.Where( {$PSitem -match 'Property\.'})
         [void]$helpFileStrings.Add($propertiesHeader)
 
-        Foreach ($propertyKey in $propertyKeyList.GetEnumerator())
+        foreach ($propertyKey in $propertyKeyList.GetEnumerator())
         {
             $property = $wikiContent[$propertyKey]
 
@@ -364,7 +364,7 @@ function New-WikiPage
         $methodKeyList = $wikiContent.Keys.Where( {$PSitem -match 'Method\.'})
         [void]$helpFileStrings.Add($methodsHeader)
 
-        Foreach ($methodKey in $methodKeyList.GetEnumerator())
+        foreach ($methodKey in $methodKeyList.GetEnumerator())
         {
             $method = $wikiContent[$methodKey]
             $link = ($method.Link -split "\:")[0]

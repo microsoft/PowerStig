@@ -6,7 +6,7 @@ using module .\..\Convert.FileContentType\Convert.FileContentType.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-Foreach ($supportFile in $supportFileList)
+foreach ($supportFile in $supportFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

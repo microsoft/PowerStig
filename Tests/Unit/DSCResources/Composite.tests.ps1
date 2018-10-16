@@ -91,7 +91,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
             FireFox          = 'FireFox'
         }
 
-        Foreach ($resource in $moduleDscResourceList)
+        foreach ($resource in $moduleDscResourceList)
         {
             Context "$resource Composite Resource" {
                 $compositeManifestPath = "$($script:moduleRoot)\DscResources\$resource\$resource.psd1"

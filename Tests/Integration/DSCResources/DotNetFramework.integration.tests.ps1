@@ -37,7 +37,7 @@ try
             $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
 
-            Foreach ($setting in $dscXml)
+            foreach ($setting in $dscXml)
             {
                 If (-not ($dscMof.ResourceID -match $setting.Id) )
                 {

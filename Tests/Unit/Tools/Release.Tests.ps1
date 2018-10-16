@@ -361,7 +361,7 @@ try
             $stateList = @('pending', 'failure', 'success')
             $repository = @{}
 
-            Foreach ($state in $stateList)
+            foreach ($state in $stateList)
             {
                 It "Should return '$state' from rest API" {
                     Mock -CommandName Invoke-RestMethod -MockWith { return @{ state = $state } }

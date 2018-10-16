@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name DnsServerSettingRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     $scriptblock = ([scriptblock]::Create("
         xDnsServerSetting  '$(Get-ResourceTitle -Rule $rule)'

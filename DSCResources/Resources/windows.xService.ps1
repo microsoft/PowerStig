@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $StigData -Name ServiceRule
 
-Foreach( $rule in $rules )
+foreach ( $rule in $rules )
 {
     xService (Get-ResourceTitle -Rule $rule)
     {

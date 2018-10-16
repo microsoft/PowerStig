@@ -30,7 +30,7 @@ $forestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosNa
 
 #endregion Header
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     Write-Verbose $rule
     $identitySplit = $rule.Identity -split ","
