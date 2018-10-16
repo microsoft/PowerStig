@@ -16,10 +16,10 @@ function Get-KeyValuePair
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
-    switch ( $CheckContent )
+    switch ( $checkContent )
     {
         { $PsItem -match 'Idle Time-out' }
         {

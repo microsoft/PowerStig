@@ -13,9 +13,9 @@ try
         Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Account Lockout Policy.
         
         If the value for "Setting to Configure" is not set to "Disabled", this is a finding.'
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
         
         It "Should return an AccountPolicyRule Object" {
@@ -42,9 +42,9 @@ try
         Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Account Lockout Policy.
         
         If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
         It 'Should set the correct Policy Name' {

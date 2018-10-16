@@ -16,30 +16,30 @@ function ConvertTo-MimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     $mimeTypeRules = @()
-    $checkStrings = $StigRule.rule.Check.('check-content')
+    $checkStrings = $stigRule.rule.Check.('check-content')
 
     if ( [MimeTypeRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitMimeTypeRules = [MimeTypeRule]::SplitMultipleRules( $checkStrings )
 
         [int]$byte = 97
-        $id = $StigRule.id
+        $id = $stigRule.id
         foreach ($mimeTypeRule in $splitMimeTypeRules)
         {
-            $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
-            $StigRule.rule.Check.('check-content') = $mimeTypeRule
-            $rule = New-MimeTypeRule -StigRule $StigRule
+            $stigRule.id = "$id.$([CHAR][BYTE]$byte)"
+            $stigRule.rule.Check.('check-content') = $mimeTypeRule
+            $rule = New-MimeTypeRule -StigRule $stigRule
             $mimeTypeRules += $rule
             $byte ++
         }
     }
     else
     {
-        $mimeTypeRules += ( New-MimeTypeRule -StigRule $StigRule )
+        $mimeTypeRules += ( New-MimeTypeRule -StigRule $stigRule )
     }
     return $mimeTypeRules
 
@@ -61,12 +61,12 @@ function New-MimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $mimeTypeRule = [MimeTypeRule]::New( $StigRule )
+    $mimeTypeRule = [MimeTypeRule]::New( $stigRule )
 
     $mimeTypeRule.SetExtension()
 

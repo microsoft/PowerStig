@@ -334,7 +334,7 @@ Describe 'Get-OrganizationValueTestString' {
     Context 'NegativeOr' {
         Mock Test-StringIsNegativeOr -MockWith { return $true  } -ModuleName Common
         Mock Test-StringIsPositiveOr -MockWith { return $false } -ModuleName Common
-        Mock ConvertTo-OrTestString  { return 'ConvertedString' } -ModuleName Common -ParameterFilter {$String -eq "";
+        Mock ConvertTo-OrTestString  { return 'ConvertedString' } -ModuleName Common -ParameterFilter {$string -eq "";
             $Operator -eq 'Equal'}
         It 'Should return the correct string' {
             Get-OrganizationValueTestString -String "1 or 2 = a Finding" | Should Be "ConvertedString"

@@ -31,9 +31,9 @@ try
         
         $checkContent = $checkContent -f $targetExe, $principal1, $permission1, $principalList,
         $permission2, $principal2, $permission3, $inheritance
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
         It "Should return a PermissionRule Object" {

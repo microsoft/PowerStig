@@ -81,9 +81,9 @@ try
     Describe 'ProcessMitigation Integration Tests' {
         foreach ($mitigationsRule in $mitigationsRulesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $mitigationsRule.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $mitigationsRule.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rules = ConvertFrom-StigXccdf -Path $TestFile
 
             foreach ( $rule in $rules)

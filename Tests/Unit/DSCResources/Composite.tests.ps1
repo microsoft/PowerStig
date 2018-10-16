@@ -55,11 +55,11 @@ Describe 'Common Tests - Configuration Module Requirements' {
         Context "$script:DSCModuleName required modules" {
 
             It "Should find <ModuleName> : <ModuleVersion> in the PowerShell public gallery" -TestCases $Manifest.RequiredModules {
-                param ($ModuleName, $ModuleVersion)
+                param ($moduleName, $ModuleVersion)
 
-                $discoveredModule = Find-Module -Name $ModuleName -RequiredVersion $ModuleVersion -Repository 'PsGallery'
+                $discoveredModule = Find-Module -Name $moduleName -RequiredVersion $ModuleVersion -Repository 'PsGallery'
 
-                $discoveredModule.Name    | Should Be $ModuleName
+                $discoveredModule.Name    | Should Be $moduleName
                 $discoveredModule.Version | Should Be $ModuleVersion
             }
         }

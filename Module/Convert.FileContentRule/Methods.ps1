@@ -14,7 +14,7 @@ function Get-KeyValuePair
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent,
+        $checkContent,
 
         [Parameter()]
         [switch]
@@ -53,9 +53,9 @@ function Get-KeyValuePair
             }
         }
         # This code address the edge case where rules browser STIGs manage file extensions
-        if ($lineResult.Count -eq 1 -and ($CheckContent -join '`n') -cmatch $fileContentRegex.TwoTo5CapitalLetters)
+        if ($lineResult.Count -eq 1 -and ($checkContent -join '`n') -cmatch $fileContentRegex.TwoTo5CapitalLetters)
         {
-            $fileExtensionMatches = $CheckContent | Select-String -Pattern $fileContentRegex.CapitalsEndWithSpaceOrDot5 -AllMatches
+            $fileExtensionMatches = $checkContent | Select-String -Pattern $fileContentRegex.CapitalsEndWithSpaceOrDot5 -AllMatches
             $fileExtensions = $fileExtensionMatches.Matches.Value | Where-Object -FilterScript {$PSItem -cmatch $fileContentRegex.CapitalsEndWithSpaceOrDot4}
 
             $result += [pscustomobject]@{

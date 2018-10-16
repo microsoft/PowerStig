@@ -1,5 +1,5 @@
 #region Header
-$rules = Get-RuleClassData -StigData $StigData -Name WebConfigurationPropertyRule
+$rules = Get-RuleClassData -StigData $stigData -Name WebConfigurationPropertyRule
 #endregion Header
 #region Resource
 if ($WebsiteName)

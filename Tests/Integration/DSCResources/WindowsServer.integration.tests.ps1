@@ -251,7 +251,7 @@ try
 
                 #region counts how many Skips there are and how many there should be.
                 $dscXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
-                $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
+                $dscXml = ($($dscXml.Count) + $($skipRule.Count))
 
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion

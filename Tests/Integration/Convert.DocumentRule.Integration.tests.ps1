@@ -12,9 +12,9 @@ try
     #endregion
     #region Tests
     Describe 'DocumentRule Conversion' {
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle 'Windows'
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle 'Windows'
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
         It "Should return an DocumentRule Object" {

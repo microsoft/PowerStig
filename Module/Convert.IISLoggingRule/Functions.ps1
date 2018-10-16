@@ -16,12 +16,12 @@ function ConvertTo-IisLoggingRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $iisLoggingRule = [IisLoggingRule]::New( $StigRule )
+    $iisLoggingRule = [IisLoggingRule]::New( $stigRule )
 
     $iisLoggingRule.SetLogCustomFields()
 

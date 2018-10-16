@@ -33,9 +33,9 @@ try
     Describe "GroupRule Integration Tests" {
         foreach ($groupRule in $groupRulesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $groupRule.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $groupRule.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It 'Should be a GroupRule' {

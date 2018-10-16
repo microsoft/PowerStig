@@ -17,14 +17,14 @@ function Get-MitigationTargetName
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
     try
     {
-        switch ($CheckContent)
+        switch ($checkContent)
         {
             { $PSItem -match '-System' }
             {
@@ -33,7 +33,7 @@ function Get-MitigationTargetName
             { $PSItem -match '-Name' }
             {
                 # Grab all the text that starts on a new line or with whitespace and ends in .exe
-                $executableMatches = $CheckContent | Select-String -Pattern '(^|\s)\S*?\.exe' -AllMatches
+                $executableMatches = $checkContent | Select-String -Pattern '(^|\s)\S*?\.exe' -AllMatches
                 return ( $executableMatches.Matches.Value.Trim() ) -join ','
 
             }
@@ -62,7 +62,7 @@ function Get-MitigationPolicyToEnable
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -70,13 +70,13 @@ function Get-MitigationPolicyToEnable
     try
     {
         # Determine if the stig rule contains policies to be enabled
-        if ( ( Test-PoliciesToEnable -CheckContent $CheckContent ) -eq $false )
+        if ( ( Test-PoliciesToEnable -CheckContent $checkContent ) -eq $false )
         {
             return $null
         }
 
         $result = @()
-        foreach ($line in $CheckContent)
+        foreach ($line in $checkContent)
         {
             switch ($line)
             {
@@ -106,8 +106,8 @@ function Get-MitigationPolicyToEnable
                     #>
                     if ( $line -match $script:processMitigationRegex.EnableColon )
                     {
-                        $enableLineMatch = ( $CheckContent | Select-String -Pattern $line ).LineNumber
-                        $result += ( ( $CheckContent[$enableLineMatch - 2] ) -replace ':' ).Trim()
+                        $enableLineMatch = ( $checkContent | Select-String -Pattern $line ).LineNumber
+                        $result += ( ( $checkContent[$enableLineMatch - 2] ) -replace ':' ).Trim()
                     }
                     else
                     {
@@ -145,10 +145,10 @@ function Test-PoliciesToEnable
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
-    foreach ( $line in $CheckContent )
+    foreach ( $line in $checkContent )
     {
         if ( $line -match $script:processMitigationRegex.IfTheStatusOfIsOff )
         {

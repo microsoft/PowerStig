@@ -691,14 +691,14 @@ try
                     [string] $registryTypeForDSC = $item.Value
 
                     It "Should accept '$registryTypeFromSTIG' and return '$registryTypeForDSC'" {
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_SZ'}  -ParameterFilter {$CheckContent -eq 'Type: REG_SZ'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_BINARY'}  -ParameterFilter {$CheckContent -match 'REG_BINARY'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_DWORD'}  -ParameterFilter {$CheckContent -match 'REG_DWORD'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_QWORD'}  -ParameterFilter {$CheckContent -match 'REG_QWORD'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_MULTI_SZ'}  -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_EXPAND_SZ'}  -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'Disabled'}  -ParameterFilter {$CheckContent -match 'Disabled'}
-                        Mock Get-RegistryValueTypeFromWindowsStig {return 'Enabled'}  -ParameterFilter {$CheckContent -match 'Enabled'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_SZ'}  -ParameterFilter {$checkContent -eq 'Type: REG_SZ'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_BINARY'}  -ParameterFilter {$checkContent -match 'REG_BINARY'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_DWORD'}  -ParameterFilter {$checkContent -match 'REG_DWORD'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_QWORD'}  -ParameterFilter {$checkContent -match 'REG_QWORD'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_MULTI_SZ'}  -ParameterFilter {$checkContent -match 'REG_MULTI_SZ'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'REG_EXPAND_SZ'}  -ParameterFilter {$checkContent -match 'REG_EXPAND_SZ'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'Disabled'}  -ParameterFilter {$checkContent -match 'Disabled'}
+                        Mock Get-RegistryValueTypeFromWindowsStig {return 'Enabled'}  -ParameterFilter {$checkContent -match 'Enabled'}
 
                         $RegistryValueType = Get-RegistryValueType -CheckContent "Type: $($item.Key)"
                         $RegistryValueType | Should Be $registryTypeForDSC
@@ -1011,7 +1011,7 @@ try
                 foreach ($string in $testValues.GetEnumerator())
                 {
                     It "Should return '$($string.value)' from '$($string.key)'" {
-                        Get-NumberFromString -ValueDataString $string.Key | Should Be $String.Value
+                        Get-NumberFromString -ValueDataString $string.Key | Should Be $string.Value
                     }
                 }
             }
@@ -1324,12 +1324,12 @@ try
             foreach ( $registryType in $registryTypes )
             {
                 $checkContent = "Criteria: If the value ""1001"" is $registryType = 3"
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_SZ = 3'}  -ParameterFilter {$CheckContent -match 'REG_SZ'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_BINARY = 3'}  -ParameterFilter {$CheckContent -match 'REG_BINARY'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_QWORD = 3'}  -ParameterFilter {$CheckContent -match 'REG_QWORD'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_MULTI_SZ = 3'}  -ParameterFilter {$CheckContent -match 'REG_MULTI_SZ'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is DWORD = 3'}  -ParameterFilter {$CheckContent -match 'REG_DWORD'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_EXPAND_SZ = 3'}  -ParameterFilter {$CheckContent -match 'REG_EXPAND_SZ'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_SZ'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_BINARY = 3'}  -ParameterFilter {$checkContent -match 'REG_BINARY'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_QWORD = 3'}  -ParameterFilter {$checkContent -match 'REG_QWORD'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_MULTI_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_MULTI_SZ'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is DWORD = 3'}  -ParameterFilter {$checkContent -match 'REG_DWORD'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_EXPAND_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_EXPAND_SZ'}
 
                 It "Should return '$registryType' from '$checkContent'" {
 

@@ -8,9 +8,9 @@ try
     #endregion
     #region Tests
     Describe "Manual Check Conversion" {
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
         It "Should return an ManualRule Object" {

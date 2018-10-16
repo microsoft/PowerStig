@@ -13,12 +13,12 @@ function ConvertTo-ServiceRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $serviceRule = [ServiceRule]::New( $StigRule )
+    $serviceRule = [ServiceRule]::New( $stigRule )
 
     $serviceRule.SetServiceName()
 
@@ -72,10 +72,10 @@ function Test-MatchServiceRule
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $CheckContent
+        $checkContent
     )
     # Find Service settings but exclude the 'Unnecessary Service' rule
-    if ( $CheckContent -Match 'services\.msc' -and $CheckContent -NotMatch 'Required Services' -and $CheckContent -NotMatch 'presence of applications' )
+    if ( $checkContent -Match 'services\.msc' -and $checkContent -NotMatch 'Required Services' -and $checkContent -NotMatch 'presence of applications' )
     {
         return $true
     }

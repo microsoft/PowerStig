@@ -13,12 +13,12 @@ function ConvertTo-DnsServerSettingRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $dnsServerSettingRule = [DnsServerSettingRule]::New( $StigRule )
+    $dnsServerSettingRule = [DnsServerSettingRule]::New( $stigRule )
 
     $dnsServerSettingRule.SetDnsServerPropertyName()
 

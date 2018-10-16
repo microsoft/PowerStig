@@ -12,11 +12,11 @@ Configuration IisSite_config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $OsVersion,
+        $osVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $stigVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -26,8 +26,8 @@ Configuration IisSite_config
         {
             WebAppPool  = $WebAppPool
             WebSiteName = $WebSiteName
-            OsVersion   = $OsVersion
-            StigVersion = $StigVersion
+            OsVersion   = $osVersion
+            StigVersion = $stigVersion
         }
     }
 }

@@ -14,12 +14,12 @@ function ConvertTo-WindowsFeatureRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $windowsFeatureRule = [WindowsFeatureRule]::New( $StigRule )
+    $windowsFeatureRule = [WindowsFeatureRule]::New( $stigRule )
 
     $windowsFeatureRule.SetFeatureName()
 

@@ -297,7 +297,7 @@ try
             $appveyorValue = $appveyor.ToString() -replace [regex]::Escape($versionString), $newVersionString
             Mock -CommandName Set-Content -MockWith {} `
                 -ParameterFilter {
-                    $Path -eq $appveyorPath -and
+                    $path -eq $appveyorPath -and
                     $Value -eq $appveyorValue.TrimEnd()} -Verifiable
 
             It "Should update the version number" {
@@ -340,7 +340,7 @@ try
             It 'Should load the secure string from disk' {
                 Mock -CommandName Split-Path -MockWith { return } -Verifiable
                 Mock -CommandName Get-Content -MockWith { 'APIKeyMaterial' } `
-                    -ParameterFilter { $Path.EndsWith('PowerStigGitHubApi.txt')} -Verifiable
+                    -ParameterFilter { $path.EndsWith('PowerStigGitHubApi.txt')} -Verifiable
                 Mock -CommandName ConvertTo-SecureString -MockWith {} -Verifiable
                 Get-GitHubApiKey
                 Assert-VerifiableMock
@@ -349,7 +349,7 @@ try
             It 'Should load the file that is passed in' {
                 Mock -CommandName Test-Path -MockWith {return $true} -Verifiable
                 Mock -CommandName Get-Content -MockWith { 'APIKeyMaterial' } `
-                    -ParameterFilter { $Path.EndsWith('sampleFile.txt')} -Verifiable
+                    -ParameterFilter { $path.EndsWith('sampleFile.txt')} -Verifiable
                 Mock -CommandName ConvertTo-SecureString -MockWith {} -Verifiable
                 Get-GitHubApiKey -SecureFilePath "$Testdrive\sampleFile.txt"
                 Assert-VerifiableMock
@@ -655,7 +655,7 @@ try
                 -ParameterFilter { $PullRequest -eq $PullRequest -and $MergeMethod -eq 'merge' } -Verifiable
             Mock -CommandName Get-ChildItem -MockWith { @{FullName = $testManifestPath } }
             Mock -CommandName Import-PowerShellDataFile -MockWith { return $powerShellDataFileObject } `
-                -ParameterFilter { $Path -eq $testManifestPath } -Verifiable
+                -ParameterFilter { $path -eq $testManifestPath } -Verifiable
             Mock -CommandName New-GitHubRelease -ParameterFilter { $Description -eq $testReleaseNotes } -Verifiable
             Mock -CommandName Remove-GitReleaseBranch -ParameterFilter { $BranchName -eq $testReleaseBranchName} -Verifiable
 

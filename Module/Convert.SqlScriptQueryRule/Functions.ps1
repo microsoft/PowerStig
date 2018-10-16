@@ -13,16 +13,16 @@ function ConvertTo-SqlScriptQueryRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $sqlScriptQueryRule = [SqlScriptQueryRule]::New( $StigRule )
+    $sqlScriptQueryRule = [SqlScriptQueryRule]::New( $stigRule )
 
     $ruleType = $sqlScriptQueryRule.GetRuleType( $sqlScriptQueryRule.splitCheckContent )
 
-    $fixText = [SqlScriptQueryRule]::GetFixText( $StigRule )
+    $fixText = [SqlScriptQueryRule]::GetFixText( $stigRule )
 
     $sqlScriptQueryRule.SetStigRuleResource()
 

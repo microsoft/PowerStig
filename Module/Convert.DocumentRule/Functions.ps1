@@ -13,12 +13,12 @@ function ConvertTo-DocumentRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $documentRule = [DocumentRule]::New( $StigRule )
+    $documentRule = [DocumentRule]::New( $stigRule )
 
     $documentRule.SetStigRuleResource()
 

@@ -23,10 +23,10 @@ function Get-OrganizationValueTestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
-    switch ($String)
+    switch ($string)
     {
         {Test-StringIsNegativeOr -String $PSItem}
         {
@@ -69,10 +69,10 @@ function Get-TestStringTokenNumbers
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
-    $tokens = [System.Management.Automation.PSParser]::Tokenize($String, [ref]$null)
+    $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
     $number = $tokens.Where({$PSItem.type -eq 'Number'}).Content
     <#
         There is an edge case where the hex and decimal values are provided inline, so pick
@@ -110,7 +110,7 @@ function Get-TestStringTokenList
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String,
+        $string,
 
         [Parameter(ParameterSetName = 'CommandTokens')]
         [switch]
@@ -121,7 +121,7 @@ function Get-TestStringTokenList
         $StringTokens
     )
 
-    $tokens = [System.Management.Automation.PSParser]::Tokenize($String, [ref]$null)
+    $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
 
     if($PSCmdlet.ParameterSetName -eq 'StringTokens')
     {
@@ -143,10 +143,10 @@ function ConvertTo-TestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
-    $number    = Get-TestStringTokenNumbers -String $String
-    $operators = Get-TestStringTokenList -String $String -CommandTokens
+    $number    = Get-TestStringTokenNumbers -String $string
+    $operators = Get-TestStringTokenList -String $string -CommandTokens
 
     switch ($operators)
     {
@@ -248,7 +248,7 @@ function Test-StringIsNegativeOr
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     #
@@ -348,7 +348,7 @@ function ConvertTo-OrTestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String,
+        $string,
 
         [Parameter(Mandatory = $true)]
         [ValidateSet('Match', 'NotMatch')]
@@ -399,7 +399,7 @@ function Test-StringIsGreaterThan
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "^(\s*)Greater(\s*)than(\s*)(\d{1,})(\s*)$")
@@ -436,7 +436,7 @@ function Test-StringIsGreaterThanOrEqual
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "^(\s*)((0x[A-Fa-f0-9]{8}){1})|(\d{1,})(\s*)(\()?or(\s*)greater(\s*)(\))?(\s*)$")
@@ -473,7 +473,7 @@ function Test-StringIsGreaterThanButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "^(\s*)greater(\s*)than(\s*)(\d{1,})(\s*)(\()?(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
@@ -510,7 +510,7 @@ function Test-StringIsGreaterThanOrEqualButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "^(\s*)(\d{1,})(\s*)(\()?(\s*)or(\s*)greater(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
@@ -545,10 +545,10 @@ function Test-StringIsLessThan
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
-    if ($String -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
+    if ($string -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
     {
         $true
     }
@@ -579,10 +579,10 @@ function Test-StringIsLessThanOrEqual
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
     # Turn 0x00000384 (900) (or less) into '-le 900'
-    if ($String -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
+    if ($string -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
     {
         $true
     }
@@ -616,7 +616,7 @@ function Test-StringIsLessThanButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     #"$i -lt $value -and -ne $x"
@@ -661,7 +661,7 @@ function Test-StringIsLessThanOrEqualButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "^(\s*)(\d{1,})(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$" -or
@@ -698,7 +698,7 @@ function Test-StringIsLessThanOrEqualExcluding
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\s*),(\s*)excluding(\s*)(\d{1,})(\))?(\s*)$")
@@ -732,7 +732,7 @@ function Test-StringIsMultipleValue
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $String
+        $string
     )
 
     if ($string -match "(?<=Possible values are ).*")
@@ -764,7 +764,7 @@ function ConvertTo-MultipleValue
     param
     (
         [Parameter(Mandatory)]
-        [string[]] $String
+        [string[]] $string
     )
 
     $values = [regex]::match( $string, "(?<=Possible values are ).*" ).groups.Value
@@ -789,12 +789,12 @@ function Get-SecurityPolicyString
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     $stringMatch = 'If the (value for (the)?)?|(value\s)'
-    $result = ( $CheckContent | Select-String -Pattern $stringMatch ) -replace $stringMatch, ''
+    $result = ( $checkContent | Select-String -Pattern $stringMatch ) -replace $stringMatch, ''
     # 'V-63427' (Win10) returns multiple matches. This is ensure the only the correct one is returned.
     $result = $result | Where-Object -FilterScript {$PSItem -notmatch 'site is using a password filter'}
     # V-73317 (WinSvr 2016) returns multiple matches, but we want both joined to calculate the range.
@@ -816,12 +816,12 @@ function Test-SecurityPolicyContainsRange
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $CheckContent
+    $string = Get-SecurityPolicyString -CheckContent $checkContent
     $string = Get-TestStringTokenList -String $string
 
     if ( $string -match '(?:is not set to )(?!(?:(a )other than)).*(?:this is a finding\.)' )
@@ -845,12 +845,12 @@ function Get-SecurityPolicyOrganizationValueTestString
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $stringBase = Get-SecurityPolicyString -CheckContent $CheckContent
+    $stringBase = Get-SecurityPolicyString -CheckContent $checkContent
     $string = Get-TestStringTokenList -String $stringBase -CommandTokens
     $settings = Get-TestStringTokenList -String $stringBase -StringTokens
 

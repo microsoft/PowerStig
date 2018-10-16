@@ -4,7 +4,7 @@ Configuration Firefox_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $stigVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -13,7 +13,7 @@ Configuration Firefox_config
     {
         Firefox FirefoxConfiguration
         {
-            Stigversion = $StigVersion
+            Stigversion = $stigVersion
         }
     }
 }

@@ -25,9 +25,9 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
     Describe "DnsServerRootHintRule conversion" {
 
         Context "Root hints" {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $rootHintsCheckContent -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $rootHintsCheckContent -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should be a DnsServerRootHintRule" {

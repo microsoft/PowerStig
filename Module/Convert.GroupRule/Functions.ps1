@@ -13,10 +13,10 @@ function ConvertTo-GroupRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
-    $groupRule = [GroupRule]::New( $StigRule )
+    $groupRule = [GroupRule]::New( $stigRule )
     $groupRule.SetGroupName()
     $groupRule.SetMembersToExclude()
     $groupRule.SetStigRuleResource()

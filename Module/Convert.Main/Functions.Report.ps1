@@ -17,11 +17,11 @@ function Get-ConversionReport
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Path
+        $path
     )
 
     # Read in the raw stig xml and get the list of types that are discovered
-    [PSCustomObject] $global:stigSettings = ConvertFrom-StigXccdf -Path $Path
+    [PSCustomObject] $global:stigSettings = ConvertFrom-StigXccdf -Path $path
 
     # Get the list of stig types or categories. This is used to sort and filter the results
     $ruleTypes = Get-RuleTypeList -StigSettings $global:stigSettings

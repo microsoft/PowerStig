@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name ProcessMitigationRule
+$rules = Get-RuleClassData -StigData $stigData -Name ProcessMitigationRule
 $mitigationTargets = $rules.MitigationTarget | Select-Object -Unique
 
 foreach ($target in $mitigationTargets)

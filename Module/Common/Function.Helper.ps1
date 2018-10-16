@@ -13,7 +13,7 @@ function Get-AvailableId
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Id
+        $id
     )
 
     $usedId = $global:stigSettings | Where-Object -FilterScript { $PSItem.Id -match $ID } |
@@ -21,7 +21,7 @@ function Get-AvailableId
 
     if ( $null -eq $usedId )
     {
-        return $Id
+        return $id
     }
     else
     {
@@ -30,6 +30,6 @@ function Get-AvailableId
 
         $appendLetterInt = $startInt + $usedId.count
 
-        return "$Id.$([char]$appendLetterInt)"
+        return "$id.$([char]$appendLetterInt)"
     }
 }

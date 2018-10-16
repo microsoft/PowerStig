@@ -16,32 +16,32 @@ function ConvertTo-WebConfigurationPropertyRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
     $webConfigurationPropertyRules = @()
-    $checkStrings = $StigRule.rule.Check.('check-content')
+    $checkStrings = $stigRule.rule.Check.('check-content')
 
     if ( [WebConfigurationPropertyRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitWebConfigurationPropertyRules = [WebConfigurationPropertyRule]::SplitMultipleRules( $checkStrings )
 
         [int]$byte = 97
-        $id = $StigRule.id
+        $id = $stigRule.id
         foreach ($webConfigurationPropertyRule in $splitWebConfigurationPropertyRules)
         {
-            $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
-            $StigRule.rule.Check.('check-content') = $webConfigurationPropertyRule
-            $rule = New-WebConfigurationPropertyRule -StigRule $StigRule
+            $stigRule.id = "$id.$([CHAR][BYTE]$byte)"
+            $stigRule.rule.Check.('check-content') = $webConfigurationPropertyRule
+            $rule = New-WebConfigurationPropertyRule -StigRule $stigRule
             $webConfigurationPropertyRules += $rule
             $byte ++
         }
     }
     else
     {
-        $webConfigurationPropertyRules += ( New-WebConfigurationPropertyRule -StigRule $StigRule )
+        $webConfigurationPropertyRules += ( New-WebConfigurationPropertyRule -StigRule $stigRule )
     }
     return $webConfigurationPropertyRules
 }
@@ -62,12 +62,12 @@ function New-WebConfigurationPropertyRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $webConfigurationProperty = [WebConfigurationPropertyRule]::New( $StigRule )
+    $webConfigurationProperty = [WebConfigurationPropertyRule]::New( $stigRule )
 
     $webConfigurationProperty.SetConfigSection()
 

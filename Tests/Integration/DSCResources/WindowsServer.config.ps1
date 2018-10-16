@@ -4,31 +4,31 @@ Configuration WindowsServer_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $OsVersion,
+        $osVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $OsRole,
+        $osRole,
 
         [Parameter(Mandatory = $true)]
         [version]
-        $StigVersion,
+        $stigVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $ForestName,
+        $forestName,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $DomainName,
+        $domainName,
 
         [Parameter()]
         [psobject]
-        $SkipRule,
+        $skipRule,
 
         [Parameter()]
         [psobject]
-        $SkipRuleType
+        $skipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -38,18 +38,18 @@ Configuration WindowsServer_config
         & ([scriptblock]::Create("
             WindowsServer BaseLineSettings
             {
-                OsVersion    = '$OsVersion'
-                OsRole       = '$OsRole'
-                StigVersion  = '$StigVersion'
-                ForestName   = '$ForestName'
-                DomainName   = '$DomainName'
-                $(if($null -ne $SkipRule)
+                OsVersion    = '$osVersion'
+                OsRole       = '$osRole'
+                StigVersion  = '$stigVersion'
+                ForestName   = '$forestName'
+                DomainName   = '$domainName'
+                $(if($null -ne $skipRule)
                 {
-                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRule = @($( ($skipRule | % {"'$_'"}) -join ',' ))`n"
                 }
-                if ($null -ne $SkipRuleType)
+                if ($null -ne $skipRuleType)
                 {
-                    " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    " SkipRuleType = @($( ($skipRuleType | % {"'$_'"}) -join ',' ))`n"
                 })
             }")
         )

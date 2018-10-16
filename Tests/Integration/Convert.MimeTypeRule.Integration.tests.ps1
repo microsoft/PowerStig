@@ -42,9 +42,9 @@ try
     #region Tests
     Describe "MimeType Rule Conversion" {
 
-        [xml] $StigRule = Get-TestStigRule -CheckContent $stigRuleToTest.CheckContent -XccdfTitle 'IIS'
+        [xml] $stigRule = Get-TestStigRule -CheckContent $stigRuleToTest.CheckContent -XccdfTitle 'IIS'
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rules = ConvertFrom-StigXccdf -Path $TestFile
 
         It "Should retrun '$($stigRuleToTest.RuleCount))'" {

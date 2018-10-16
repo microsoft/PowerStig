@@ -9,12 +9,12 @@ function ConvertTo-WinEventLogRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $dnsWinEventLogRule = [WinEventLogRule]::New( $StigRule )
+    $dnsWinEventLogRule = [WinEventLogRule]::New( $stigRule )
     $dnsWinEventLogRule.SetWinEventLogName()
 
     # Get the DNS Server setting PropertyValue
@@ -28,7 +28,7 @@ function ConvertTo-WinEventLogRule
 
     if ( $dnsWinEventLogRule.IsExistingRule( $global:stigSettings ) )
     {
-        $newId = Get-AvailableId -Id $StigRule.id
+        $newId = Get-AvailableId -Id $stigRule.id
         $dnsWinEventLogRule.set_id( $newId )
     }
 

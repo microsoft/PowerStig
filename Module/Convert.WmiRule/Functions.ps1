@@ -13,12 +13,12 @@ function ConvertTo-WmiRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $wmiRule = [wmiRule]::New( $StigRule )
+    $wmiRule = [wmiRule]::New( $stigRule )
 
     Switch ( $wmiRule.rawString )
     {

@@ -73,9 +73,9 @@ try
         {
             Context "Service '$($service.ServiceName)'" {
 
-                [xml] $StigRule = Get-TestStigRule -CheckContent $service.CheckContent -XccdfTitle Windows
+                [xml] $stigRule = Get-TestStigRule -CheckContent $service.CheckContent -XccdfTitle Windows
                 $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save( $TestFile )
+                $stigRule.Save( $TestFile )
                 $rule = ConvertFrom-StigXccdf -Path $TestFile
 
                 It "Should return an ServiceRule Object" {
@@ -106,9 +106,9 @@ try
     
     If the Startup Type for any of these services is not Automatic, this is a finding'
      
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
         It "Should return Multiple ServiceRule Objects" {

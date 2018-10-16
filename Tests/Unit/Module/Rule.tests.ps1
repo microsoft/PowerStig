@@ -91,13 +91,13 @@ try
         #region Method Tests
         Describe 'SplitCheckContent static method' {
             # This creates a multiline string with a blank line between them
-            $CheckContent = '
+            $checkContent = '
             Line 1
 
             Line 2
             '
 
-            [string[]] $splitCheckContent = [Rule]::SplitCheckContent( $CheckContent )
+            [string[]] $splitCheckContent = [Rule]::SplitCheckContent( $checkContent )
 
             It 'Should trim strings and remove empty lines' {
                 $splitCheckContent[0] | Should Be 'Line 1'

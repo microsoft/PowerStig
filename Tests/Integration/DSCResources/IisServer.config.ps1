@@ -4,11 +4,11 @@ Configuration IisServer_Config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $OsVersion,
+        $osVersion,
         
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion,
+        $stigVersion,
         
         [Parameter(Mandatory = $true)]
         [string]
@@ -20,8 +20,8 @@ Configuration IisServer_Config
     {
         IisServer ServerConfiguration
         {
-            OsVersion   = $OsVersion
-            StigVersion = $StigVersion
+            OsVersion   = $osVersion
+            StigVersion = $stigVersion
             LogPath     = $LogPath
         }
     }

@@ -1,5 +1,5 @@
 #region Header
-$rules = Get-RuleClassData -StigData $StigData -Name IisLoggingRule
+$rules = Get-RuleClassData -StigData $stigData -Name IisLoggingRule
 #endregion Header
 
 #region Resource

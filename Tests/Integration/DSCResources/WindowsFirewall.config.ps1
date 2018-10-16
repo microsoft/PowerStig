@@ -4,7 +4,7 @@ Configuration WindowsFirewall_config
     (
         [Parameter(Mandatory = $true)]
         [version]
-        $StigVersion
+        $stigVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -13,7 +13,7 @@ Configuration WindowsFirewall_config
     {
         WindowsFirewall BaseLineSettings
         {
-            StigVersion = $StigVersion
+            StigVersion = $stigVersion
         }
     }
 }

@@ -4,11 +4,11 @@ Configuration Browser_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $BrowserVersion,
+        $browserVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $stigVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -17,8 +17,8 @@ Configuration Browser_config
     {
         Browser InternetExplorer
         {
-            BrowserVersion = $BrowserVersion
-            Stigversion    = $StigVersion
+            BrowserVersion = $browserVersion
+            Stigversion    = $stigVersion
         }
     }
 }

@@ -4,19 +4,19 @@ Configuration WindowsDnsServer_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $OsVersion,
+        $osVersion,
 
         [Parameter(Mandatory = $true)]
         [version]
-        $StigVersion,
+        $stigVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $ForestName,
+        $forestName,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $DomainName
+        $domainName
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -25,10 +25,10 @@ Configuration WindowsDnsServer_config
     {
         WindowsDnsServer BaseLineSettings
         {
-            OsVersion   = $OsVersion
-            StigVersion = $StigVersion
-            ForestName  = $ForestName
-            DomainName  = $DomainName
+            OsVersion   = $osVersion
+            StigVersion = $stigVersion
+            ForestName  = $forestName
+            DomainName  = $domainName
         }
     }
 }

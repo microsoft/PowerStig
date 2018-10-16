@@ -1,5 +1,5 @@
 #region Header
-$rules = Get-RuleClassData -StigData $StigData -Name MimeTypeRule
+$rules = Get-RuleClassData -StigData $stigData -Name MimeTypeRule
 #endregion Header
 
 #region Resource

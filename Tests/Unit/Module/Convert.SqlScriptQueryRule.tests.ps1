@@ -230,7 +230,7 @@ try
 
                 $traceSetScript = $sqlScriptQueryRule.Trace.TestScript -split ";"
 
-                $eventId = Get-EventIdData -CheckContent $CheckContent
+                $eventId = Get-EventIdData -CheckContent $checkContent
                 $traceIdQuery = Get-TraceIdQuery -EventId $eventId
 
                 It "Should return Trace Id Query" {

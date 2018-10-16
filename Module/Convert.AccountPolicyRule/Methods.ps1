@@ -14,12 +14,12 @@ function Get-AccountPolicyName
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $CheckContent
+    $string = Get-SecurityPolicyString -CheckContent $checkContent
 
     try
     {
@@ -52,12 +52,12 @@ function Get-AccountPolicyValue
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $CheckContent
+    $string = Get-SecurityPolicyString -CheckContent $checkContent
 
     try
     {

@@ -94,9 +94,9 @@ try
 
         foreach ($stig in $stigRulesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle $stig.StigTitle
+            [xml] $stigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle $stig.StigTitle
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should return an IisLoggingRule Object" {

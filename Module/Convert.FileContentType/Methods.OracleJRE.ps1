@@ -21,10 +21,10 @@ function Get-FilteredItem
         [AllowNull()]
         [AllowEmptyString()]
         [psobject]
-        $MatchResult
+        $matchResult
     )
 
-        $lineResult = $MatchResult.Matches | Where-Object -FilterScript {$PSItem.Value -match '=' -or $PSItem.Value -match '.locked' -or $PSItem.Value -match '.mandatory'}
+        $lineResult = $matchResult.Matches | Where-Object -FilterScript {$PSItem.Value -match '=' -or $PSItem.Value -match '.locked' -or $PSItem.Value -match '.mandatory'}
         if ($lineResult)
         {
             return Get-ParsedItem -LineResult $lineResult
@@ -54,19 +54,19 @@ function Get-ParsedItem
         [AllowNull()]
         [AllowEmptyString()]
         [psobject]
-        $LineResult
+        $lineResult
     )
     
     $setting = @()
-    $settingNoQuotes = $LineResult[0].Value -replace $regexToRemove, ""
-    if ($LineResult[0].Value -match '=')
+    $settingNoQuotes = $lineResult[0].Value -replace $regexToRemove, ""
+    if ($lineResult[0].Value -match '=')
     {
         $setting = $settingNoQuotes.Split('=') | ForEach-Object {
             New-Object PSObject -Property @{Value=$_}
         }
     }
 
-    if ($LineResult[0].Value -match '.locked' -or $LineResult[0].Value -match '.mandatory')
+    if ($lineResult[0].Value -match '.locked' -or $lineResult[0].Value -match '.mandatory')
     {
         $setting = @($settingNoQuotes, 'true') | ForEach-Object {
             New-Object PSObject -Property @{Value=$_}

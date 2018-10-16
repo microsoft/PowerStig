@@ -133,9 +133,9 @@ try
 
         foreach ($registry in $registriesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should return an RegistryRule Object" {

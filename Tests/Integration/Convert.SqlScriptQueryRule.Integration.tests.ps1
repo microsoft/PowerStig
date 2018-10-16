@@ -130,9 +130,9 @@ try
     Describe "SqlScriptQuery Rule Conversion" {
         foreach ( $stig in $stigRulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'SQL' -FixText $stig.FixText
+            [xml] $stigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'SQL' -FixText $stig.FixText
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should return a SqlScriptQueryRule Object" {

@@ -45,7 +45,7 @@ function ConvertFrom-StigXccdf
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Path,
+        $path,
 
         [Parameter()]
         [switch]
@@ -53,7 +53,7 @@ function ConvertFrom-StigXccdf
     )
 
     # Get the xml data from the file path provided.
-    $stigBenchmarkXml = Get-StigXccdfBenchmarkContent -Path $Path
+    $stigBenchmarkXml = Get-StigXccdfBenchmarkContent -Path $path
 
     # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs XWebsite
     $global:stigTitle = $stigBenchmarkXml.title
@@ -61,13 +61,13 @@ function ConvertFrom-StigXccdf
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
     switch ($true)
     {
-        {$global:stigXccdfName -and -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2)) -eq ''}
+        {$global:stigXccdfName -and -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1,2)) -eq ''}
         {
             break;
         }
-        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))}
+        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1,2))}
         {
-            $global:stigXccdfName = -join ((Split-Path -Path $Path -Leaf).Split('_') | Select-Object -Index (1,2))
+            $global:stigXccdfName = -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1,2))
             break;
         }
     }
@@ -114,7 +114,7 @@ function Split-StigXccdf
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Path,
+        $path,
 
         [Parameter()]
         [string]
@@ -133,7 +133,7 @@ function Split-StigXccdf
     Process
     {
         # Get the raw xccdf xml to pull additional details from the root node.
-        [xml] $msStig = Get-Content -Path $Path
+        [xml] $msStig = Get-Content -Path $path
         [xml] $dcStig = $msStig.Clone()
 
         # Update the benchmark ID to reflect the STIG content
@@ -164,14 +164,14 @@ function Split-StigXccdf
 
         if ([string]::IsNullOrEmpty($Destination))
         {
-            $Destination = Split-Path -Path $Path -Parent
+            $Destination = Split-Path -Path $path -Parent
         }
         else
         {
             $Destination = $Destination.TrimEnd("\")
         }
 
-        $FilePath = "$Destination\$(Split-Path -Path $Path -Leaf)"
+        $FilePath = "$Destination\$(Split-Path -Path $path -Leaf)"
 
         $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
         $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_SPLIT_STIG'))

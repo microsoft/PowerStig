@@ -14,12 +14,12 @@ function ConvertTo-AuditPolicyRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $auditPolicyRule = [AuditPolicyRule]::New( $StigRule )
+    $auditPolicyRule = [AuditPolicyRule]::New( $stigRule )
 
     $auditPolicyRule.SetStigRuleResource()
 

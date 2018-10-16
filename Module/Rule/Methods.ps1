@@ -14,12 +14,12 @@ function Get-RuleTypeMatchList
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $CheckContent
+        $checkContent
     )
 
     [System.Collections.ArrayList] $ruleTypeList = @()
     $parsed = $false
-    switch ( $CheckContent )
+    switch ( $checkContent )
     {
         {
             $PSItem -Match 'gpedit\.msc' -and $PSItem -match 'Account Policies'
@@ -310,10 +310,10 @@ function Get-StigRuleResource
     {
         'PermissionRule'
         {
-            $Path = $this.Path
-            if ( $Path )
+            $path = $this.Path
+            if ( $path )
             {
-                return Get-PermissionRuleDscResource -Path $Path
+                return Get-PermissionRuleDscResource -Path $path
             }
         }
         'IISLoggingRule'
@@ -415,10 +415,10 @@ function Get-PermissionRuleDscResource
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $Path
+        $path
     )
 
-    switch ($Path)
+    switch ($path)
     {
         {$PSItem -match '{domain}'}
         {

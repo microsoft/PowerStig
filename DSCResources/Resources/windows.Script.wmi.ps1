@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name WmiRule
+$rules = Get-RuleClassData -StigData $stigData -Name WmiRule
 
 foreach ( $rule in $rules )
 {

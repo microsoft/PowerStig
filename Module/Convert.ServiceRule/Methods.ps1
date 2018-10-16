@@ -13,26 +13,26 @@ function Get-ServiceName
     (
         [Parameter( Mandatory = $true )]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ( $CheckContent -match $script:regularExpression.McAfee )
+    if ( $checkContent -match $script:regularExpression.McAfee )
     {
         $serviceName = 'masvc'
     }
-    elseif ( $CheckContent -match $script:regularExpression.SmartCardRemovalPolicy )
+    elseif ( $checkContent -match $script:regularExpression.SmartCardRemovalPolicy )
     {
         $serviceName = 'SCPolicySvc'
     }
-    elseif ( $CheckContent -match $script:regularExpression.SecondaryLogon )
+    elseif ( $checkContent -match $script:regularExpression.SecondaryLogon )
     {
         $serviceName = 'seclogon'
     }
-    elseif ( $CheckContent -match $script:regularExpression.followingservices )
+    elseif ( $checkContent -match $script:regularExpression.followingservices )
     {
-        $regexMatch = $CheckContent | Select-String $script:regularExpression.dash
+        $regexMatch = $checkContent | Select-String $script:regularExpression.dash
         $svcArray = @()
         foreach ($match in $regexMatch)
         {
@@ -51,7 +51,7 @@ function Get-ServiceName
     }
     else
     {
-        $regexMatch = $CheckContent | Select-String $script:regularExpression.textBetweenParentheses
+        $regexMatch = $checkContent | Select-String $script:regularExpression.textBetweenParentheses
 
         if ( -not [string]::IsNullOrEmpty( $regexMatch ) )
         {
@@ -99,24 +99,24 @@ function Get-ServiceState
     (
         [Parameter( Mandatory = $true )]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $serviceName = Get-ServiceName -CheckContent $CheckContent
+    $serviceName = Get-ServiceName -CheckContent $checkContent
 
     # ServiceState McAfee and Smartcard is running everything else is stopped
     if ( $serviceName -match 'masvc' -or $serviceName -eq 'SCPolicySvc' )
     {
         return 'Running'
     }
-    elseif ( $CheckContent -match 'is installed and not disabled, this is a finding' )
+    elseif ( $checkContent -match 'is installed and not disabled, this is a finding' )
     {
         return 'Stopped'
     }
-    elseif ( $CheckContent -match 'is not set to Automatic, this is a finding' -or
-             $CheckContent -match 'is not Automatic, this is a finding' )
+    elseif ( $checkContent -match 'is not set to Automatic, this is a finding' -or
+             $checkContent -match 'is not Automatic, this is a finding' )
     {
         return 'Running'
     }
@@ -138,24 +138,24 @@ function Get-ServiceStartupType
     (
         [Parameter( Mandatory = $true )]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $serviceName = Get-ServiceName -CheckContent $CheckContent
+    $serviceName = Get-ServiceName -CheckContent $checkContent
 
     # StartupType McAfee and Smartcard is Automatic everything else is disabled
     if ( $serviceName -match 'masvc' -or $serviceName -eq 'SCPolicySvc' )
     {
         return 'Automatic'
     }
-    elseif ( $CheckContent -match 'is installed and not disabled, this is a finding' )
+    elseif ( $checkContent -match 'is installed and not disabled, this is a finding' )
     {
         return 'Disabled'
     }
-    elseif ( $CheckContent -match 'is not set to Automatic, this is a finding' -or
-        $CheckContent -match 'is not Automatic, this is a finding' )
+    elseif ( $checkContent -match 'is not set to Automatic, this is a finding' -or
+        $checkContent -match 'is not Automatic, this is a finding' )
     {
         return 'Automatic'
     }

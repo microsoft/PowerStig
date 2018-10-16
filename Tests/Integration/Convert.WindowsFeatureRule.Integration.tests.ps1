@@ -44,9 +44,9 @@ try
 
         foreach ( $testString in $testStrings )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should return an WindowsFeatureRule Object" {

@@ -109,9 +109,9 @@ finding.
     Describe "DnsServerSettingRule conversion" {
 
         Context "Forwarders" {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $forwardersCheckContent -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $forwardersCheckContent -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should be a DnsServerSettingRule" {
@@ -130,9 +130,9 @@ finding.
 
         Context "EventLogLevel" {
 
-            [xml] $StigRule = Get-TestStigRule -CheckContent $eventLogLevelCheckContent -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $eventLogLevelCheckContent -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should be a DnsServerSettingRule" {
@@ -154,9 +154,9 @@ finding.
 
         Context "Multiple settings in STIG rule" {
 
-            [xml] $StigRule = Get-TestStigRule -CheckContent $multiUserRightRule -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $multiUserRightRule -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should have 3 unique IDs" {
@@ -167,9 +167,9 @@ finding.
 
         Context "UserRightRule and PermissionRule Combo" {
 
-            [xml] $StigRule = Get-TestStigRule -CheckContent $userRightPermissionRuleCombo -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $userRightPermissionRuleCombo -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             $userRightRule = $rule | Where-Object { $PSItem.GetType().ToString() -eq 'UserRightRule'  }

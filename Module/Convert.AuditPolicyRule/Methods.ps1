@@ -14,7 +14,7 @@ function Get-AuditPolicySubCategory
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $CheckContent
+        $checkContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -25,7 +25,7 @@ function Get-AuditPolicySubCategory
         returns multiple matches and the subcategory should be at 1
     #>
 
-    $subCategory = ( Get-AuditPolicySettings -CheckContent $CheckContent )[1].Trim()
+    $subCategory = ( Get-AuditPolicySettings -CheckContent $checkContent )[1].Trim()
 
     # Validate the subcateory that we found against the known good list
     if ( $auditPolicySubcategories.Contains( $subCategory ) )
@@ -51,13 +51,13 @@ function Get-AuditPolicySubCategory
             [Parameter(Mandatory = $true)]
             [AllowEmptyString()]
             [string[]]
-            $CheckContent
+            $checkContent
         )
 
         Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
         # The audit flag should be at the second index.
-        $flagString = ( Get-AuditPolicySettings -CheckContent $CheckContent )[2].Trim()
+        $flagString = ( Get-AuditPolicySettings -CheckContent $checkContent )[2].Trim()
 
         # Validate the flag that we found against the known good list
         if ( $auditPolicyFlags.Contains( $flagString ) )
@@ -83,12 +83,12 @@ function Get-AuditPolicySubCategory
             [Parameter(Mandatory = $true)]
             [AllowEmptyString()]
             [string[]]
-            $CheckContent
+            $checkContent
         )
 
         Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-        $auditPolicyLine = $CheckContent | Select-String -Pattern $auditPolicyRegularExpressions.AuditPolicyLine
+        $auditPolicyLine = $checkContent | Select-String -Pattern $auditPolicyRegularExpressions.AuditPolicyLine
 
         return $auditPolicyLine -split $auditPolicyRegularExpressions.AuditPolicySplit
     }

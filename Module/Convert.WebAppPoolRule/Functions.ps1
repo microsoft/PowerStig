@@ -16,12 +16,12 @@ function ConvertTo-WebAppPoolRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $webAppPool = [WebAppPoolRule]::New( $StigRule )
+    $webAppPool = [WebAppPoolRule]::New( $stigRule )
 
     $webAppPool.SetKeyValuePair()
 

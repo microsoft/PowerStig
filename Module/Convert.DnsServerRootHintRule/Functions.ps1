@@ -13,12 +13,12 @@ function ConvertTo-DnsServerRootHintRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $dnsServerRootHintRule = [DnsServerRootHintRule]::New( $StigRule )
+    $dnsServerRootHintRule = [DnsServerRootHintRule]::New( $stigRule )
 
     $dnsServerRootHintRule.SetStigRuleResource()
 

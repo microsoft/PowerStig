@@ -8,7 +8,7 @@ Configuration Office_config
 
         [Parameter(Mandatory = $true)]
         [version]
-        $StigVersion
+        $stigVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -18,7 +18,7 @@ Configuration Office_config
         Office BaseLineSettings
         {
             OfficeApp   = $OfficeApp
-            StigVersion = $StigVersion
+            StigVersion = $stigVersion
         }
     }
 }

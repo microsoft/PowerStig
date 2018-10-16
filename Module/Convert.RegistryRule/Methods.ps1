@@ -18,13 +18,13 @@ function Get-RegistryKey
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     $result = @()
-    if (Test-SingleLineRegistryRule -CheckContent $CheckContent)
+    if (Test-SingleLineRegistryRule -CheckContent $checkContent)
     {
-        $result = Get-SingleLineRegistryPath -CheckContent $CheckContent
+        $result = Get-SingleLineRegistryPath -CheckContent $checkContent
         if ($result -match "!")
         {
             $result = $result.Substring(0, $result.IndexOf('!'))
@@ -33,10 +33,10 @@ function Get-RegistryKey
     else
     {
         # Get the registry hive from the content string
-        $registryHive = Get-RegistryHiveFromWindowsStig -CheckContent $CheckContent
+        $registryHive = Get-RegistryHiveFromWindowsStig -CheckContent $checkContent
 
         # Get the registry path from the content string
-        $registryPath = Get-RegistryPathFromWindowsStig -CheckContent $CheckContent
+        $registryPath = Get-RegistryPathFromWindowsStig -CheckContent $checkContent
 
         foreach ($path in $registryPath)
         {
@@ -62,11 +62,11 @@ function Get-RegistryHiveFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     # Get the second index of the list, which should be the hive and remove spaces.
-    $hive = ( ( $CheckContent | Select-String -Pattern $script:registryRegularExpression.RegistryHive ) -split ":" )[1]
+    $hive = ( ( $checkContent | Select-String -Pattern $script:registryRegularExpression.RegistryHive ) -split ":" )[1]
 
     if ( -not [string]::IsNullOrEmpty( $hive ) )
     {
@@ -100,11 +100,11 @@ function Get-RegistryPathFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     $result = @()
-    $paths = ( $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryPath )
+    $paths = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryPath )
 
     if ( [string]::IsNullOrEmpty($paths) )
     {
@@ -158,18 +158,18 @@ function Get-RegistryValueType
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     # The Office format is different to check which way to send the strings.
-    if ( Test-SingleLineStigFormat -CheckContent $CheckContent )
+    if ( Test-SingleLineStigFormat -CheckContent $checkContent )
     {
-        [string] $type = Get-RegistryValueTypeFromSingleLineStig -CheckContent $CheckContent
+        [string] $type = Get-RegistryValueTypeFromSingleLineStig -CheckContent $checkContent
     }
     else
     {
         # Get the second index of the list, which should be the data type and remove spaces.
-        [string] $type = Get-RegistryValueTypeFromWindowsStig -CheckContent $CheckContent
+        [string] $type = Get-RegistryValueTypeFromWindowsStig -CheckContent $checkContent
     }
 
     [string] $DscRegistryValueType = $dscRegistryValueType.$type
@@ -239,10 +239,10 @@ function Get-RegistryValueTypeFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
-    $type = ( $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType ).Matches.Value
+    $type = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType ).Matches.Value
 
     if ( -not [string]::IsNullOrEmpty( $type ) )
     {
@@ -278,17 +278,17 @@ function Get-RegistryValueName
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     # The Office format is different to check which way to send the strings.
-    if ( Test-SingleLineStigFormat -CheckContent $CheckContent )
+    if ( Test-SingleLineStigFormat -CheckContent $checkContent )
     {
-        Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
+        Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent
     }
     else
     {
-        Get-RegistryValueNameFromWindowsStig -CheckContent $CheckContent
+        Get-RegistryValueNameFromWindowsStig -CheckContent $checkContent
     }
 }
 
@@ -307,11 +307,11 @@ function Get-RegistryValueNameFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     # Get the second index of the list, which should be the data type and remove spaces
-    [string] $name = ( ( $CheckContent |
+    [string] $name = ( ( $checkContent |
                 Select-String -Pattern $script:registryRegularExpression.registryValueName ) -split ":" )[1]
 
     if ( -not [string]::IsNullOrEmpty( $name ) )
@@ -348,19 +348,19 @@ function Get-RegistryValueData
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     # The Office format is different to check which way to send the strings.
     switch ( $true )
     {
-        { Test-SingleLineStigFormat -CheckContent $CheckContent }
+        { Test-SingleLineStigFormat -CheckContent $checkContent }
         {
-            return Get-RegistryValueDataFromSingleStig -CheckContent $CheckContent
+            return Get-RegistryValueDataFromSingleStig -CheckContent $checkContent
         }
         default
         {
-            $valueString = ( $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryValueData )
+            $valueString = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryValueData )
             return Get-RegistryValueDataFromWindowsStig -CheckContent $valueString
         }
     }
@@ -383,14 +383,14 @@ function Get-RegistryValueDataFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     <#
         Get the second index of the list, which should be the data and remove spaces# Get the second
         index of the list, which should be the data and remove spaces.
     #>
-    [string] $initialData = ( $CheckContent -replace $script:registryRegularExpression.registryValueData )
+    [string] $initialData = ( $checkContent -replace $script:registryRegularExpression.registryValueData )
 
     if ( -not [string]::IsNullOrEmpty( $initialData ) )
     {
@@ -894,12 +894,12 @@ function Test-MultipleRegistryEntries
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
-    if (Test-SingleLineStigFormat -CheckContent $CheckContent)
+    if (Test-SingleLineStigFormat -CheckContent $checkContent)
     {
-        $matches = $CheckContent | Select-String -Pattern "(HKLM|HKCU)\\" -AllMatches
+        $matches = $checkContent | Select-String -Pattern "(HKLM|HKCU)\\" -AllMatches
 
         if ($matches.Matches.Count -gt 1 -and $matches -match 'outlook\\security')
         {
@@ -915,16 +915,16 @@ function Test-MultipleRegistryEntries
     }
     else
     {
-        [int] $hiveCount = ($CheckContent |
+        [int] $hiveCount = ($checkContent |
                 Select-String -Pattern $script:registryRegularExpression.registryHive ).Count
 
-        [int] $pathCount = ($CheckContent |
+        [int] $pathCount = ($checkContent |
                 Select-String -Pattern $script:registryRegularExpression.registryPath ).Count
 
-        [int] $valueCount = ($CheckContent |
+        [int] $valueCount = ($checkContent |
                 Select-String -Pattern $script:registryRegularExpression.registryValueData ).Count
 
-        [int] $valueNameCount = ($CheckContent |
+        [int] $valueNameCount = ($checkContent |
                 Select-String -Pattern $script:registryRegularExpression.registryValueName ).Count
 
         if ( ( $hiveCount + $pathCount + $valueCount + $valueNameCount ) -gt 4 )
@@ -958,28 +958,28 @@ function Split-MultipleRegistryEntries
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     [int] $registryEntryCounter = 0
     [System.Collections.ArrayList] $registryEntries = @()
 
-    if ( Test-SingleLineStigFormat -CheckContent $CheckContent )
+    if ( Test-SingleLineStigFormat -CheckContent $checkContent )
     {
-        $paths = $CheckContent | Select-String "(HKLM|HKCU)\\" -AllMatches
+        $paths = $checkContent | Select-String "(HKLM|HKCU)\\" -AllMatches
 
         if ( $paths.Matches.Count -gt 1 )
         {
             if ( $paths -match 'Procedure:' )
             {
-                $paths = $($CheckContent -join " ") -Split "AND(\s*)Procedure:"
+                $paths = $($checkContent -join " ") -Split "AND(\s*)Procedure:"
             }
 
-            if ( $CheckContent -match 'Navigate to:' )
+            if ( $checkContent -match 'Navigate to:' )
             {
                 $keys = @()
                 $paths = @()
-                foreach ($line in $CheckContent)
+                foreach ($line in $checkContent)
                 {
                     if ( $line -match '^(HKLM|HKCU)' )
                     {
@@ -1014,11 +1014,11 @@ function Split-MultipleRegistryEntries
     }
     else
     {
-        $hives  = $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryHive
-        $paths  = $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryPath
-        $types  = $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType
-        $names  = $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryValueName
-        $values = $CheckContent | Select-String -Pattern $script:registryRegularExpression.registryValueData
+        $hives  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryHive
+        $paths  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryPath
+        $types  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType
+        $names  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryValueName
+        $values = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryValueData
 
         # If a check contains a multiple registry hives, then reference each one that is discovered.
         if ( $hives.Count -gt 1 )

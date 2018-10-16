@@ -60,9 +60,9 @@ try
 
         foreach ( $testRule in $rulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It "Should return an UserRightRule Object" {

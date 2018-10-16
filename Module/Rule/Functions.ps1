@@ -43,7 +43,7 @@ function Test-ValueDataIsHardCoded
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $StigId
+        $stigId
     )
 
     $stigIds = @(
@@ -60,7 +60,7 @@ function Test-ValueDataIsHardCoded
         # but there is not other identifier.
     )
 
-    if ($stigIds -contains $StigId)
+    if ($stigIds -contains $stigId)
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] HardCoded : $true"
         $true
@@ -87,10 +87,10 @@ function Get-HardCodedString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $StigId
+        $stigId
     )
 
-    Switch ($StigId)
+    Switch ($stigId)
     {
         {$PSItem -match 'V-(1089|63675)'}
         {
@@ -138,7 +138,7 @@ function Get-HardCodedString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $StigId
+        $stigId
     )
 
     $stigIds = @(
@@ -148,7 +148,7 @@ function Get-HardCodedString
         'V-26359' # Windows Server - Legal Banner Dialog Box Title
     )
 
-    if ($stigIds -contains $StigId)
+    if ($stigIds -contains $stigId)
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] HardCoded : $true"
         $true
@@ -175,10 +175,10 @@ function Get-HardCodedString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $StigId
+        $stigId
     )
 
-    Switch ($StigId)
+    Switch ($stigId)
     {
         {$PSItem -match 'V-3472.b'}
         {

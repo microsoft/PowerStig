@@ -16,10 +16,10 @@ function Get-Extension
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
-    $mimeTypeMatch = $CheckContent | Select-String -Pattern $script:webRegularExpression.mimeType
+    $mimeTypeMatch = $checkContent | Select-String -Pattern $script:webRegularExpression.mimeType
 
     return $mimeTypeMatch.matches.groups.value
 }
@@ -90,10 +90,10 @@ function Get-Ensure
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
-    if ($CheckContent -match $script:webRegularExpression.mimeTypeAbsent)
+    if ($checkContent -match $script:webRegularExpression.mimeTypeAbsent)
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Ensure Absent"
 
@@ -121,10 +121,10 @@ function Test-MultipleMimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
-    $mimeTypes = $CheckContent | Where-Object -FilterScript {$PSItem.startswith('.')}
+    $mimeTypes = $checkContent | Where-Object -FilterScript {$PSItem.startswith('.')}
 
     if ($mimeTypes.Count -gt 1)
     {
@@ -153,16 +153,16 @@ function Split-MultipleMimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $CheckContent
+        $checkContent
     )
 
     $splitMimeTypeRules = @()
 
-    $mimeTypeMatches = $CheckContent | Select-String -Pattern $script:webRegularExpression.mimeType
+    $mimeTypeMatches = $checkContent | Select-String -Pattern $script:webRegularExpression.mimeType
 
     $mimeTypes  = $mimeTypeMatches.matches.groups.value
 
-    $baseCheckContent = $CheckContent| Where-Object -Filterscript {$PSItem -notin $mimeTypes}
+    $baseCheckContent = $checkContent| Where-Object -Filterscript {$PSItem -notin $mimeTypes}
 
     foreach($mimeType in $mimeTypes)
     {

@@ -13,7 +13,7 @@ function ConvertTo-PermissionRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     <#
@@ -24,26 +24,26 @@ function ConvertTo-PermissionRule
         character to identify it as a child object of a specific STIG setting.
     #>
     $permissionRules = @()
-    $checkStrings = $StigRule.rule.Check.('check-content')
+    $checkStrings = $stigRule.rule.Check.('check-content')
 
     if ( [PermissionRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitPermissionEntries = [PermissionRule]::SplitMultipleRules( $checkStrings )
 
         [int]$byte = 97
-        $id = $StigRule.id
+        $id = $stigRule.id
         foreach ($splitPermissionEntry in $splitPermissionEntries)
         {
-            $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
-            $StigRule.rule.Check.('check-content') = $splitPermissionEntry
-            $Rule = New-PermissionRule -StigRule $StigRule
+            $stigRule.id = "$id.$([CHAR][BYTE]$byte)"
+            $stigRule.rule.Check.('check-content') = $splitPermissionEntry
+            $Rule = New-PermissionRule -StigRule $stigRule
             $permissionRules += $Rule
             $byte ++
         }
     }
     else
     {
-        $PermissionRules += ( New-PermissionRule -StigRule $StigRule )
+        $PermissionRules += ( New-PermissionRule -StigRule $stigRule )
     }
     return $permissionRules
 }
@@ -63,11 +63,11 @@ function New-PermissionRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-    $permissionRule = [PermissionRule]::New( $StigRule )
+    $permissionRule = [PermissionRule]::New( $stigRule )
 
     $permissionRule.SetPath()
 

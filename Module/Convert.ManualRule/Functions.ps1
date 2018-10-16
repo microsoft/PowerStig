@@ -13,12 +13,12 @@ function ConvertTo-ManualRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $StigRule
+        $stigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $manualRule = [ManualRule]::New( $StigRule )
+    $manualRule = [ManualRule]::New( $stigRule )
 
     $manualRule.SetStigRuleResource()
 

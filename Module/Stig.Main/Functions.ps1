@@ -47,43 +47,43 @@ Function Get-DomainName
         [AllowNull()]
         [AllowEmptyString()]
         [string]
-        $DomainName,
+        $domainName,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'ForestName')]
         [AllowNull()]
         [AllowEmptyString()]
         [string]
-        $ForestName,
+        $forestName,
 
         [Parameter(ParameterSetName = 'DomainName')]
         [Parameter(ParameterSetName = 'ForestName')]
         [ValidateSet('FQDN', 'NetbiosName', 'DistinguishedName')]
         [string]
-        $Format = 'FQDN'
+        $format = 'FQDN'
     )
 
     $fqdn = [string]::Empty
 
     if ($PSCmdlet.ParameterSetName -eq 'DomainName')
     {
-        if ( [string]::IsNullOrEmpty( $DomainName ) )
+        if ( [string]::IsNullOrEmpty( $domainName ) )
         {
             $fqdn = Get-DomainFQDN
         }
         else
         {
-            $fqdn = $DomainName
+            $fqdn = $domainName
         }
     }
     else
     {
-        if ( [string]::IsNullOrEmpty( $ForestName ) )
+        if ( [string]::IsNullOrEmpty( $forestName ) )
         {
             $fqdn = Get-ForestFQDN
         }
         else
         {
-            $fqdn = $ForestName
+            $fqdn = $forestName
         }
     }
 
@@ -92,7 +92,7 @@ Function Get-DomainName
         Write-Warning "$($PSCmdlet.ParameterSetName) was not found."
     }
 
-    switch ($Format)
+    switch ($format)
     {
         'FQDN'
         {
@@ -244,14 +244,14 @@ Function Get-OrgSettingsObject
         [Parameter(Mandatory = $True)]
         [ValidateNotNullOrEmpty()]
         [PSObject]
-        $OrgSettings
+        $orgSettings
     )
 
-    switch ($OrgSettings.GetType())
+    switch ($orgSettings.GetType())
     {
         "string"
         {
-            if (Test-Path -Path $OrgSettings)
+            if (Test-Path -Path $orgSettings)
             {
                 [xml] $orgSettingsXml = Get-Content -Path $orgSettings
                 $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettingsXml)
@@ -263,11 +263,11 @@ Function Get-OrgSettingsObject
         }
         "xml"
         {
-            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($OrgSettings)
+            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettings)
         }
         "hashtable"
         {
-            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($OrgSettings)
+            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettings)
         }
     }
 
