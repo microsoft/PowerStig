@@ -231,7 +231,8 @@ Class Rule : ICloneable
 
     static [bool] Match ( [string] $CheckContent )
     {
-        throw 'Must be implemented in the child class'
+
+        throw "Must be implemented in the child class$(Get-PSCallStack)"
     }
     <#
         .SYNOPSIS

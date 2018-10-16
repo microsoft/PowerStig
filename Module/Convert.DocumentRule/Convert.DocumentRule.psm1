@@ -76,6 +76,23 @@ Class DocumentRule : Rule
             $RuleToConvert.title, $RuleToConvert.rawString)
     }
 
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match "Document(ation)?" -and
+            $CheckContent -NotMatch "resourceSACL|Disk Management" -and
+            $CheckContent -NotMatch "Caspol\.exe" -and
+            $CheckContent -NotMatch "Examine the \.NET CLR configuration files" -and
+            $CheckContent -NotMatch "\*\.exe\.config"
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'None'

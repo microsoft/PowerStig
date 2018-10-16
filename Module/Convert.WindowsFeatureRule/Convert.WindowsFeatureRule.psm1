@@ -39,13 +39,62 @@ Class WindowsFeatureRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WindowsFeatureRule ( [xml.xmlelement] $StigRule )
+    hidden WindowsFeatureRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetFeatureName()
+        $this.SetFeatureInstallState()
         $this.SetDscResource()
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
     }
 
     #region Methods
+
+    static [WindowsFeatureRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $windowsFeatureRule = [WindowsFeatureRule]::new($StigRule)
+
+        if ( [WindowsFeatureRule]::HasMultipleRules( $windowsFeatureRule.FeatureName ) )
+        {
+            $firstElement = $true
+            [int] $byte = 97
+            $windowsFeatureRules = @()
+            $tempRule = $windowsFeatureRule.Clone()
+            [string[]] $splitRules = [WindowsFeatureRule]::SplitMultipleRules( $windowsFeatureRule.FeatureName )
+
+            foreach ( $windowsFeatureName in $splitRules )
+            {
+                if ( $firstElement )
+                {
+                    $windowsFeatureRule.FeatureName = $windowsFeatureName
+                    $windowsFeatureRule.id = "$($windowsFeatureRule.id).$([CHAR][BYTE]$byte)"
+                    $windowsFeatureRules += $windowsFeatureRule
+                    $firstElement = $false
+                }
+                else
+                {
+                    $newRule = $tempRule.Clone()
+                    $newRule.FeatureName = $windowsFeatureName
+                    $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
+                    $windowsFeatureRules += $newRule
+                    [void] $global:stigSettings.Add($newRule)
+                }
+                $byte++
+            }
+            return $windowsFeatureRules
+        }
+        else
+        {
+            return $windowsFeatureRule
+        }
+    }
 
     <#
         .SYNOPSIS

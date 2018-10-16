@@ -42,13 +42,18 @@ Class ProcessMitigationRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    ProcessMitigationRule ( [xml.xmlelement] $StigRule )
+    hidden ProcessMitigationRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
         $this.SetDscResource()
     }
 
     #region Methods
+
+    # static [ProcessMitigationRule[]] ConvertFromXccdf ($StigRule)
+    # {
+
+    # }
 
     <#
         .SYNOPSIS
@@ -115,6 +120,18 @@ Class ProcessMitigationRule : Rule
     static [string[]] SplitMultipleRules ( [string] $MitigationTarget )
     {
         return ( Split-ProcessMitigationRule -MitigationTarget $MitigationTarget )
+    }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match "Get-ProcessMitigation"
+        )
+        {
+            return $true
+        }
+        return $false
     }
 
     hidden [void] SetDscResource ()

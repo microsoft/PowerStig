@@ -231,25 +231,38 @@ function Get-StigRuleList
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 
-            $ruleTypes = [Rule]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
-            foreach ( $ruleType in $ruleTypes )
-            {
-                $rules = & "ConvertTo-$ruleType" -StigRule $stigRule
+            $rules = [ConvertFactory]::Rule( $stigRule )
 
-                foreach ( $rule in $rules )
+            foreach ( $rule in $rules )
+            {
+                if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
                 {
-                    if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
-                    {
-                        [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
-                    }
-                    else
-                    {
-                        [void] $global:stigSettings.Add( $rule )
-                    }
+                    [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
                 }
+                else
+                {
+                    [void] $global:stigSettings.Add( $rule )
+                }
+            }
+            #$ruleTypes = [Rule]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
+            #foreach ( $ruleType in $ruleTypes )
+            #{
+                # $rules = & "ConvertTo-$ruleType" -StigRule $stigRule
+
+                # foreach ( $rule in $rules )
+                # {
+                #     if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
+                #     {
+                #         [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
+                #     }
+                #     else
+                #     {
+                #         [void] $global:stigSettings.Add( $rule )
+                #     }
+                # }
                 # Increment the counter to update the console output
                 $stigProcessedCounter ++
-            }
+            #}
         }
     }
     end

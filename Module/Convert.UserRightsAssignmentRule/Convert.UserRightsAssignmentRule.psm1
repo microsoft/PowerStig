@@ -44,7 +44,7 @@ Class UserRightRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    UserRightRule ( [xml.xmlelement] $StigRule )
+    hidden UserRightRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
         $this.SetDisplayName()
@@ -66,6 +66,29 @@ Class UserRightRule : Rule
     }
 
     #region Methods
+
+    static [UserRightRule[]] ConvertFromXccdf ($StigRule)
+    {
+        if ( [UserRightRule]::HasMultipleRules( $StigRule.rule.Check.'check-content' ) )
+        {
+            $userRightRules = @()
+            [string[]] $splitRules = [UserRightRule]::SplitMultipleRules( $StigRule.rule.Check.'check-content' )
+            [int] $byte = 97
+            [string] $ruleId = $StigRule.id
+            foreach ( $splitRule in $splitRules )
+            {
+                $StigRule.id = "$($ruleId).$([CHAR][BYTE]$byte)"
+                $StigRule.rule.Check.'check-content' = $splitRule
+                $userRightRules += [UserRightRule]::New( $StigRule )
+                $byte++
+            }
+            return $userRightRules
+        }
+        else
+        {
+            return [UserRightRule]::New( $StigRule )
+        }
+    }
 
     <#
         .SYNOPSIS

@@ -98,6 +98,20 @@ Class GroupRule : Rule
         }
     }
 
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'Navigate to System Tools >> Local Users and Groups >> Groups\.' -and
+            $CheckContent -NotMatch 'Backup Operators|Hyper-V Administrators' -and
+            $CheckContent -NotMatch 'domain-joined workstations, the Domain Admins'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'Group'

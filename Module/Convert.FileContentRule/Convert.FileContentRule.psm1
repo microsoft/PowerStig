@@ -37,7 +37,7 @@ Class FileContentRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    FileContentRule ( [xml.xmlelement] $StigRule )
+    hidden FileContentRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
         $this.SetKeyName()
@@ -53,6 +53,31 @@ Class FileContentRule : Rule
     }
 
     #region Methods
+
+    static [FileContentRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $checkStrings = $StigRule.rule.Check.('check-content')
+
+        if ( [FileContentRule]::HasMultipleRules( $checkStrings ) )
+        {
+            $splitFileContentEntries = [FileContentRule]::SplitMultipleRules( $checkStrings )
+            $fileContentRules = @()
+            [int]$byte = 97
+            $id = $StigRule.id
+            foreach ($splitFileContentEntry in $splitFileContentEntries)
+            {
+                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
+                $StigRule.rule.Check.('check-content') = $splitFileContentEntry
+                $fileContentRules += [FileContentRule]::New( $StigRule )
+                $byte ++
+            }
+            return $fileContentRules
+        }
+        else
+        {
+            return [FileContentRule]::New( $StigRule )
+        }
+    }
 
     <#
         .SYNOPSIS
@@ -108,6 +133,21 @@ Class FileContentRule : Rule
             }
         }
     }
+
+    static [bool] Match ( [string] $CheckContent )
+    {
+        if
+        (
+            $CheckContent -Match 'deployment.properties' -and
+            $CheckContent -Match '=' -and
+            $CheckContent -NotMatch 'exception.sites'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check

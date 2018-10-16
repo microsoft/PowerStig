@@ -45,6 +45,18 @@ Class SqlScriptQueryRule : Rule
     SqlScriptQueryRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $ruleType = $this.GetRuleType( $this.splitCheckContent )
+
+        $fixText = [SqlScriptQueryRule]::GetFixText( $StigRule )
+
+        $this.SetGetScript( $ruleType )
+        $this.SetTestScript( $ruleType )
+        $this.SetSetScript( $ruleType, $fixText )
+
+        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        {
+            $this.SetDuplicateTitle()
+        }
         $this.SetDscResource()
     }
 

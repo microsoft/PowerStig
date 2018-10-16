@@ -43,13 +43,54 @@ Class ServiceRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    ServiceRule ( [xml.xmlelement] $StigRule )
+    hidden ServiceRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetServiceName()
+        $this.SetServiceState()
+        $this.SetStartupType()
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [ServiceRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $serviceRule = [ServiceRule]::New( $StigRule )
+
+        if ( [ServiceRule]::HasMultipleRules( $serviceRule.Servicename ) )
+        {
+            $firstElement = $true
+            [int] $byte = 97
+            $serviceRules = @()
+            $tempRule = $serviceRule.Clone()
+            [string[]] $splitRules = [ServiceRule]::SplitMultipleRules( $serviceRule.Servicename )
+            foreach ( $serviceName in $splitRules )
+            {
+                if ( $firstElement )
+                {
+                    $serviceRule.ServiceName = $serviceName
+                    $serviceRule.id = "$($serviceRule.id).$([CHAR][BYTE]$byte)"
+                    $serviceRules += $serviceRule
+                    $firstElement = $false
+                }
+                else
+                {
+                    $newRule = $tempRule.Clone()
+                    $newRule.ServiceName = $serviceName
+                    $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
+                    $serviceRules += $newRule
+                    [void] $global:stigSettings.Add($newRule)
+                }
+                $byte++
+            }
+            return $serviceRules
+        }
+        else
+        {
+            return $serviceRule
+        }
+    }
 
     <#
         .SYNOPSIS

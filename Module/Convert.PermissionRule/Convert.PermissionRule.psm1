@@ -56,6 +56,32 @@ Class PermissionRule : Rule
 
     # Methods
 
+    static [PermissionRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $checkStrings = $StigRule.rule.Check.('check-content')
+
+        if ( [PermissionRule]::HasMultipleRules( $checkStrings ) )
+        {
+            $splitPermissionEntries = [PermissionRule]::SplitMultipleRules( $checkStrings )
+            $permissionRules = @()
+            [int]$byte = 97
+            $id = $StigRule.id
+            foreach ($splitPermissionEntry in $splitPermissionEntries)
+            {
+                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
+                $StigRule.rule.Check.('check-content') = $splitPermissionEntry
+                $permissionRules += [PermissionRule]::New( $StigRule )
+                $byte ++
+            }
+
+            return $permissionRules
+        }
+        else
+        {
+            return [PermissionRule]::New( $StigRule )
+        }
+    }
+
     <#
         .SYNOPSIS
             Extracts the object path from the check-content and sets the value

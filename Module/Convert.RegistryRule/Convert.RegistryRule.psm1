@@ -47,16 +47,110 @@ Class RegistryRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    RegistryRule ( [xml.xmlelement] $StigRule )
+    hidden RegistryRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
         $this.SetKey()
         $this.SetValueName()
         $this.SetValueType()
         $this.SetDscResource()
+
+        if ($this.IsHardCodedOrganizationValueTestString())
+        {
+            $OrganizationValueTestString = $this.GetHardCodedOrganizationValueTestString()
+            $this.set_OrganizationValueTestString($OrganizationValueTestString)
+
+            $this.SetOrganizationValueRequired()
+        }
+        else
+        {
+            # Get the trimmed version of the value data line.
+            [string] $registryValueData = $this.GetValueData()
+
+            # If a range is found on the value line, it needs further processing.
+            if ($this.TestValueDataStringForRange($registryValueData))
+            {
+                # Set the OrganizationValueRequired flag to true so that a org level setting will be required.
+                $this.SetOrganizationValueRequired()
+
+                # Try to extract a test string from the range text.
+                $OrganizationValueTestString = $this.GetOrganizationValueTestString($registryValueData)
+
+                # If a test string was returned, add it.
+                if ($null -ne $OrganizationValueTestString)
+                {
+                    $this.set_OrganizationValueTestString($OrganizationValueTestString)
+                }
+            }
+            else
+            {
+                if ($this.IsHardCoded())
+                {
+                    $registryValueData = $this.GetHardCodedString()
+                }
+                elseif ($this.IsDataBlank($registryValueData))
+                {
+                    $this.SetIsNullOrEmpty()
+                    $registryValueData = ''
+                }
+                elseif ($this.IsDataEnabledOrDisabled($registryValueData))
+                {
+                    $registryValueData = $this.GetValidEnabledOrDisabled(
+                        $this.ValueType, $registryValueData
+                    )
+                }
+                elseif ($this.IsDataHexCode($registryValueData))
+                {
+                    $registryValueData = $this.GetIntegerFromHex($registryValueData)
+                }
+                elseif ($this.IsDataInteger($registryValueData))
+                {
+                    $registryValueData = $this.GetNumberFromString($registryValueData)
+                }
+                elseif ($this.ValueType -eq 'MultiString')
+                {
+                    if ($registryValueData -match "see below")
+                    {
+                        $registryValueData = $this.GetMultiValueRegistryStringData($this.RawString)
+                    }
+                    else
+                    {
+                        $registryValueData = $this.FormatMultiStringRegistryData($registryValueData)
+                    }
+                }
+                $this.Set_ValueData($registryValueData)
+            }
+        }
     }
 
     #region Methods
+    static [RegistryRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $checkStrings = $StigRule.rule.Check.('check-content')
+
+        if ( [RegistryRule]::HasMultipleRules( $checkStrings ) )
+        {
+            $splitRegistryEntries = [RegistryRule]::SplitMultipleRules( $checkStrings )
+            $registryRules = @()
+
+            [int]$byte = 97
+            $id = $StigRule.id
+            foreach ($splitRegistryEntry in $splitRegistryEntries)
+            {
+                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
+                $StigRule.rule.Check.('check-content') = $splitRegistryEntry
+                $registryRules += [RegistryRule]::New( $StigRule )
+                $byte ++
+            }
+
+            return $registryRules
+        }
+        else
+        {
+            return [RegistryRule]::New( $StigRule )
+        }
+    }
+
 
     <#
         .SYNOPSIS
@@ -360,4 +454,3 @@ Class RegistryRule : Rule
 
     #endregion
 }
-

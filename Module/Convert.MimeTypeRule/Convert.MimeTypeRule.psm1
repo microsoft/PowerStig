@@ -42,7 +42,7 @@ Class MimeTypeRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    MimeTypeRule ( [xml.xmlelement] $StigRule )
+    hidden MimeTypeRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
         $this.SetExtension()
@@ -59,6 +59,31 @@ Class MimeTypeRule : Rule
     }
 
     #region Methods
+
+    static [MimeTypeRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $checkStrings = $StigRule.rule.Check.('check-content')
+
+        if ( [MimeTypeRule]::HasMultipleRules( $checkStrings ) )
+        {
+            $splitMimeTypeRules = [MimeTypeRule]::SplitMultipleRules( $checkStrings )
+            $mimeTypeRules = @()
+            [int]$byte = 97
+            $id = $StigRule.id
+            foreach ($mimeTypeRule in $splitMimeTypeRules)
+            {
+                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
+                $StigRule.rule.Check.('check-content') = $mimeTypeRule
+                $mimeTypeRules += [MimeTypeRule]::New( $StigRule )
+                $byte ++
+            }
+            return $mimeTypeRules
+        }
+        else
+        {
+            return [MimeTypeRule]::New( $StigRule )
+        }
+    }
 
     <#
         .SYNOPSIS

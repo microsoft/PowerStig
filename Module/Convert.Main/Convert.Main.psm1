@@ -2,6 +2,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
+using module .\..\Convert\Convert.psm1
 using module .\..\Rule\Rule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
