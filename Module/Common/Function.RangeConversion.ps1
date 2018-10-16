@@ -869,7 +869,7 @@ function Get-SecurityPolicyOrganizationValueTestString
     # If not strongly typed, a single operator will return indexed characters.
     [string[]] $operators = @()
     # Some of the sentence structure is inverted, so this flag will realign the sentence structure so that that range operator
-    # is always before the eq|ne operators.
+    # Is always before the eq|ne operators.
     $invertAdjective = $false
     # Some of the ranges have exclusions, so the comparison operator should not be inverted and this flag controls that.
     $excludeSecondAdjective = $false
@@ -922,7 +922,7 @@ function Get-SecurityPolicyOrganizationValueTestString
     # Some settings are negated with the string 'this is a finding, so invert the comparison operators if the check is negated.
     if ($string -match 'this is a finding')
     {
-        # if a string contains and/or build that into the test string operators
+        # If a string contains and/or build that into the test string operators
         if ($operators.count -gt '1')
         {
             # Some settings have values that need to be excluded from a range, so do not invert that operator

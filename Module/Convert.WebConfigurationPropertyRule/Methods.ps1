@@ -283,7 +283,7 @@ function Test-MultipleWebConfigurationPropertyRule
     {
         foreach ($line in $CheckContent)
         {
-            # handles the specific cases that need to be split
+            # Handles the specific cases that need to be split
             if ($line -match "Verify ""cookieless"" is set to ""UseCookies""")
             {
                 return $true

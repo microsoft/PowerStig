@@ -9,10 +9,10 @@ data RegularExpression
 
         dash = -
 
-        # match a exactly one ( the first ) hexcode in a string
+        # Match a exactly one ( the first ) hexcode in a string
         hexCode = \\b(0x[A-Fa-f0-9]{8}){1}\\b
 
-        # looks for an integer but is not hex
+        # Looks for an integer but is not hex
         leadingIntegerUnbound = \\b([0-9]{1,})\\b
 
         textBetweenQuotes = ["\''](.*?)["\'']

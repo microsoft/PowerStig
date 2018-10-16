@@ -8,12 +8,12 @@ using module .\..\..\..\Module\Common\Common.psm1
         been tested
     #>
 $enumDiscovered = New-Object System.Collections.ArrayList
-# select each line that starts with enum to count the number of enum's in the file
+# Select each line that starts with enum to count the number of enum's in the file
 
 $enumListString = ( Get-Content $modulePath | Select-String "^Enum " )
-# add each enum that is found to the array
+# Add each enum that is found to the array
 $enumListString | Foreach-Object { $enumDiscovered.add( ( $_ -split " " )[1].ToString().ToLower() ) | Out-Null }
-# get a count to to use in a final test to validate enum test coverage
+# Get a count to to use in a final test to validate enum test coverage
 [int] $enumTestCount = $enumDiscovered.Count
 
 $enumTests = @{
@@ -36,7 +36,7 @@ foreach( $enum in $enumTests.GetEnumerator() )
         $enumDiscovered.Remove( $enum.Key.tolower() )
 
         # Dump the status enum and verify it is the expected list
-        #[process].GetEnumValues()
+        # [process].GetEnumValues()
         $EnumValues = [enum]::GetValues($enum.Key)
 
         foreach ( $value in $EnumValues )
@@ -48,13 +48,15 @@ foreach( $enum in $enumTests.GetEnumerator() )
     }
 }
 
-# final test to validate all enums habve been tested
+# Final test to validate all enums habve been tested
 Describe 'Enum coverage' {
 
     It "Should have tested $enumTestCount enum's" {
 
-        # if this test is failing verify that the $enumList.Remove('enum') line is in the
-        # describe statemetn for the enum.
+        <# 
+            If this test is failing verify that the $enumList.Remove('enum') line is in the
+            describe statemetn for the enum.
+        #>
         ( $enumDiscovered.count - $enumTestCount ) * -1 | Should Be $enumTestCount
     }
 }

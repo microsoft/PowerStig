@@ -193,7 +193,7 @@ function Remove-GitReleaseBranch
     Invoke-Git -Command "push"
     # Delete the release branch (Locally and remotely)
     Invoke-Git -Command "branch -d $branchName"
-    # push the delete to GitHub
+    # Push the delete to GitHub
     Invoke-Git -Command "push origin -d $branchName"
     # Remove the origin branch reference from the local repo
     Invoke-Git -Command "remote prune origin"

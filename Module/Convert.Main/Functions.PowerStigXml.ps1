@@ -62,8 +62,10 @@ function ConvertTo-PowerStigXml
         $xmlDocument = [System.XML.XMLDocument]::New()
         [System.XML.XMLElement] $xmlRoot = $xmlDocument.CreateElement( $xmlElement.stigConvertRoot )
 
-        # Append as child to an existing node. This method will 'leak' an object out of the function
-        # so DO NOT remove the [void]
+        <#
+            Append as child to an existing node. This method will 'leak' an object out of the function
+            so DO NOT remove the [void]
+        #>
         [void] $xmlDocument.appendChild( $xmlRoot )
         $xmlRoot.SetAttribute( $xmlAttribute.stigId , $xccdfXml.Benchmark.ID )
 

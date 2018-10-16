@@ -22,7 +22,7 @@ function Get-PermissionTargetPath
     switch ($StigString)
     {
         # Do not use $env: for environment variables. They will not be able to be converted to text for XML.
-        # get path for permissions that pertains to event logs
+        # Get path for permissions that pertains to event logs
         { $stigString -match $script:RegularExpression.WinEvtDirectory }
         {
             $parentheseMatch = $StigString | Select-String -Pattern $script:eventLogRegularExpression.name
@@ -40,14 +40,14 @@ function Get-PermissionTargetPath
             break
         }
 
-        # get path for permissions that pertains to eventvwr.exe
+        # Get path for permissions that pertains to eventvwr.exe
         { $StigString -match $script:RegularExpression.eventViewer }
         {
             $permissionTargetPath = '%windir%\SYSTEM32\eventvwr.exe'
             break
         }
 
-        # get path that pertains to C:\
+        # Get path that pertains to C:\
 
         { $StigString -match $script:RegularExpression.cDrive }
         {
@@ -55,70 +55,70 @@ function Get-PermissionTargetPath
             break
         }
 
-        # get path that pertains to Sysvol
+        # Get path that pertains to Sysvol
         { $StigString -match $script:RegularExpression.SysVol}
         {
             $permissionTargetPath = '%windir%\sysvol'
             break
         }
 
-        # get path that pertains to  C:\Windows
+        # Get path that pertains to  C:\Windows
         { $StigString -match $script:RegularExpression.systemRoot }
         {
             $permissionTargetPath = '%windir%'
             break
         }
 
-        # get path that pertains to registry Installed Components key
+        # Get path that pertains to registry Installed Components key
         { $StigString -match $script:RegularExpression.permissionRegistryInstalled }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Installed Components\'
             break
         }
 
-        # get path that pertains to registry Winlogon key
+        # Get path that pertains to registry Winlogon key
         { $StigString -match $script:RegularExpression.permissionRegistryWinlogon }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Winlogon\'
             break
         }
 
-        # get path that pertains to registry WinReg key
+        # Get path that pertains to registry WinReg key
         { $StigString -match $script:RegularExpression.permissionRegistryWinreg }
         {
             $permissionTargetPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
             break
         }
 
-        # get path that pertains to registry NTDS key
+        # Get path that pertains to registry NTDS key
         { $StigString -match $script:RegularExpression.permissionRegistryNTDS }
         {
             $permissionTargetPath = '%windir%\NTDS\*.*'
             break
         }
 
-        # get path that pertains to both program files directories
+        # Get path that pertains to both program files directories
         { $StigString -match $script:RegularExpression.programFiles }
         {
             $permissionTargetPath = '%ProgramFiles%;%ProgramFiles(x86)%'
             break
         }
 
-        # get crypto folder path
+        # Get crypto folder path
         { $StigString -match $script:RegularExpression.cryptoFolder }
         {
             $permissionTargetPath = '%ALLUSERSPROFILE%\Microsoft\Crypto\Keys'
             break
         }
 
-        # get path that pertains to Admin Shares
+        # Get path that pertains to Admin Shares
         { $StigString -match $Script:RegularExpression.adminShares }
         {
             $permissionTargetPath = $null
             break
         }
 
-        # get Active Directory Path
+        # Get Active Directory Path
         { $stigString -match $script:RegularExpression.ADAuditPath }
         {
             $ADPath = (Select-String -InputObject $stigString -Pattern $script:RegularExpression.ADAuditPath) -replace $script:RegularExpression.ADAuditPath, "" -replace " object.*", ""
@@ -126,7 +126,7 @@ function Get-PermissionTargetPath
             break
         }
 
-        # get HKLM\Security path
+        # Get HKLM\Security path
         {
             $StigString -match $script:RegularExpression.hklmSecurity -and
             $StigString -match $script:RegularExpression.hklmSoftware -and
@@ -137,7 +137,7 @@ function Get-PermissionTargetPath
             break
         }
 
-        # get the individual HKLM paths
+        # Get the individual HKLM paths
         { $StigString -match $script:RegularExpression.hklmSecurity }
         {
             $permissionTargetPath = 'HKLM:\SECURITY'
@@ -153,7 +153,7 @@ function Get-PermissionTargetPath
             $permissionTargetPath = 'HKLM:\SYSTEM'
         }
 
-        # get path for C:, Program file, and Windows
+        # Get path for C:, Program file, and Windows
         {
             $StigString -match $script:RegularExpression.rootOfC -and
             $StigString -match $script:RegularExpression.winDir -and
@@ -576,7 +576,7 @@ function Split-MultiplePermissionRule
 
     $result = @()
     [System.Collections.ArrayList]$contentRanges = @()
-    # test for multiple paths at HKLMRoot
+    # Test for multiple paths at HKLMRoot
     if ( $CheckContent -match $script:RegularExpression.hklmRootKeys )
     {
         $hklmSecurityMatch = $CheckContent | Select-String -Pattern $script:RegularExpression.hklmSecurity

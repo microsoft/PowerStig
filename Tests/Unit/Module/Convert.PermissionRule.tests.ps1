@@ -335,7 +335,7 @@ Successfully processed 1 files; Failed processing 0 files
             [string] $functionName = 'Get-PermissionTargetPath'
             Context $functionName {
 
-                # get path that pertain to C:\ tests
+                # Get path that pertain to C:\ tests
                 $stringsToTestcDrive = @("system drive's root directory", "system drive's root directory ", " system drive's root directory")
                 $testTargetPathcDrive = '%SystemDrive%\'
 
@@ -346,7 +346,7 @@ Successfully processed 1 files; Failed processing 0 files
                     }
                 }
 
-                # get path for permissions that pertain to eventvwr.exe tests
+                # Get path for permissions that pertain to eventvwr.exe tests
                 $stringsToTesteventvwr = @('eventvwr.exe', ' eventvwr.exe', 'eventvwr.exe ',
                     ' The event viewer is eventvwr.exe '
                 )
@@ -358,7 +358,7 @@ Successfully processed 1 files; Failed processing 0 files
                     }
                 }
 
-                # get path for permissions that pertain to event logs tests
+                # Get path for permissions that pertain to event logs tests
                 $stringsToTestEventLogDirectory = @( '%SystemRoot%\SYSTEM32\WINEVT\LOGS ', '  %SystemRoot%\SYSTEM32\WINEVT\LOGS ',
                     '  %SystemRoot%\SYSTEM32\WINEVT\LOGS', '%SystemRoot%\SYSTEM32\WINEVT\LOGS  ',
                     'The eventlog directory is %SystemRoot%\SYSTEM32\WINEVT\LOGS period. ')

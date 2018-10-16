@@ -621,7 +621,7 @@ try
 
         Describe "Get-RegistryPathFromWindowsStig" {
 
-            # a list of invalid registry key formats to validate the regex
+            # A list of invalid registry key formats to validate the regex
             $pathToExtract = 'SYSTEM\CurrentControlSet'
             $goodStrings = @(
                 "Registry Path: \$pathToExtract\" , " Registry Path: $pathToExtract\",
@@ -636,7 +636,7 @@ try
                     Get-RegistryPathFromWindowsStig -CheckContent $path | Should Be "\$pathToExtract"
                 }
             }
-            # test for an edge case where the intern at DISA added a space between 'SOFTWARE\ Polices'
+            # Test for an edge case where the intern at DISA added a space between 'SOFTWARE\ Polices'
 
             It "Should return path with typo and formated correctly" {
                 $typoString = 'Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
@@ -645,7 +645,7 @@ try
 
                 $result | Should Be $expected
             }
-            #  Fuzz testing the regex
+            # Fuzz testing the regex
             $badStrings = @(
                 'Registry Path: SYSTEM', 'Registry Path: \SYSTEM', 'Registry Path: \SYSTEM\',
                 "Path: SYSTEM", " Path: SYSTEM", "Path: \SYSTEM", "Path:  \SYSTEM", "Path: \SYSTEM\",
@@ -661,8 +661,10 @@ try
         }
         #region #########################################   Registry Type   ########################################
         Describe "Get-RegistryValueType" {
-            # A list of the registry types in the STIG(key) to DSC(value) format
-            # this is a seperate list to detect changes in the script
+            <#
+                A list of the registry types in the STIG(key) to DSC(value) format
+                this is a seperate list to detect changes in the script
+            #>
             $registryTypes = [ordered] @{
                 'REG_SZ'        = 'String'
                 'REG_BINARY'    = 'Binary'
@@ -828,7 +830,7 @@ try
             There are a lot of different string formats that have been found in the registry data
             so replicas of each pattern seen to data is represented below with the expected
             output. If new patterns are disovered, add them here to expand the test coverage.
-        #>
+            #>
             $testValues = @{
 
                 # Integers with different leading and trailing spaces
@@ -1311,8 +1313,10 @@ try
 
         #########################################   Registry Type   ########################################
         Describe "Get-RegistryValueTypeFromSingleLineStig" {
-            # A list of the registry types in the STIG(key) to DSC(value) format
-            # this is a seperate list to detect changes in the script
+            <#
+                A list of the registry types in the STIG(key) to DSC(value) format
+                this is a seperate list to detect changes in the script
+            #>
             $registryTypes = @(
                 'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
             )

@@ -284,7 +284,7 @@ Class StigData
 
                 # Append [Exception] to the STIG title
                 $ruleToOverride.title = "[Exception]" + $ruleToOverride.title
-                # select and Update the property to override
+                # Select and Update the property to override
                 $propertiesToOverride = $exception.Properties
                 foreach ($property in $propertiesToOverride)
                 {

@@ -573,7 +573,7 @@ function Test-DuplicateRule
             return $true
         }
     }
-    # if the code made it this far a duplicate does not exist and we return $false
+    # If the code made it this far a duplicate does not exist and we return $false
     return $false
 }
 
