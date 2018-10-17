@@ -114,7 +114,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
                     $configurationName | Should Be $resource
                 }
 
-                It "Should match ValidateSet from PowerStig" {
+                It 'Should match ValidateSet from PowerStig' {
                     $validateSet = Get-StigVersionParameterValidateSet -FilePath $compositeSchemaPath
                     $availableStigVersions = Get-ValidStigVersionNumbers -TechnologyRoleFilter $TechnologyRoleFilter[$resource]
                     $validateSet | Should BeIn $availableStigVersions

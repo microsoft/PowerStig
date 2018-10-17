@@ -67,7 +67,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "Single Service Rule Conversion" {
+    Describe 'Single Service Rule Conversion' {
 
         foreach ( $service in $servicesToTest)
         {
@@ -78,7 +78,7 @@ try
                 $stigRule.Save( $TestFile )
                 $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-                It "Should return an ServiceRule Object" {
+                It 'Should return an ServiceRule Object' {
                     $rule.GetType() | Should Be 'ServiceRule'
                 }
                 It "Should return Service Name '$($service.ServiceName)'" {
@@ -90,13 +90,13 @@ try
                 It "Should return Startup Type '$($service.StartupType)' from '$($service.ServiceName)'" {
                     $rule.StartupType | Should Be $service.StartupType
                 }
-                It "Should set the Conversion statud to pass ensure value" {
+                It 'Should set the Conversion statud to pass ensure value' {
                     $rule.conversionstatus | Should be $service.conversionstatus
                 }
             }
         }
     }
-    Describe "Multiple Service Rule Conversion" {
+    Describe 'Multiple Service Rule Conversion' {
 
         $checkContent = 'Run "services.msc" to display the Services console.
     
@@ -111,7 +111,7 @@ try
         $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-        It "Should return Multiple ServiceRule Objects" {
+        It 'Should return Multiple ServiceRule Objects' {
             $rule.Count | Should Be 2
         }
 
@@ -119,10 +119,10 @@ try
 
             $rule = $rule[-1]
 
-            It "Should return an ServiceRule Object" {
+            It 'Should return an ServiceRule Object' {
                 $rule.GetType() | Should Be 'ServiceRule'
             }
-            It "Should append .a to the id" {
+            It 'Should append .a to the id' {
                 $rule.id | Should Match '^V-.*\.a$'
             }
             It "Should return 'NTDS'" {
@@ -134,7 +134,7 @@ try
             It "Should return 'Automatic'" {
                 $rule.StartupType | Should Be 'Automatic'
             }
-            It "Should set the Conversion statud to pass ensure value" {
+            It 'Should set the Conversion statud to pass ensure value' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }
@@ -143,10 +143,10 @@ try
 
             $rule = $rule[-2]
 
-            It "Should return an ServiceRule Object" {
+            It 'Should return an ServiceRule Object' {
                 $rule.GetType() | Should Be 'ServiceRule'
             }
-            It "Should append .b to the id" {
+            It 'Should append .b to the id' {
                 $rule.id | Should Match '^V-.*\.b$'
             }
             It "Should return 'W32Time'" {
@@ -158,7 +158,7 @@ try
             It "Should return 'Automatic'" {
                 $rule.StartupType | Should Be 'Automatic'
             }
-            It "Should set the Conversion statud to pass ensure value" {
+            It 'Should set the Conversion statud to pass ensure value' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }

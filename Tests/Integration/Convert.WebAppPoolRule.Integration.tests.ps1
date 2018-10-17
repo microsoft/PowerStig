@@ -38,7 +38,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "WebAppPool Rule Conversion" {
+    Describe 'WebAppPool Rule Conversion' {
 
         foreach ( $stig in $stigRulesToTest )
         {
@@ -47,7 +47,7 @@ try
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an WebAppPoolRule Object" {
+            It 'Should return an WebAppPoolRule Object' {
                 $rule.GetType() | Should Be 'WebAppPoolRule'
             }
 

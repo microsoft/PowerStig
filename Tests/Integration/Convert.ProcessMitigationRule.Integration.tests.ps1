@@ -94,7 +94,7 @@ try
 
                 if ( ($mitigationsRule.MitigationTarget -split ',').Count -gt 1 )
                 {
-                    It "Should have a MitigationTarget in the desired MitigationTargetList" {
+                    It 'Should have a MitigationTarget in the desired MitigationTargetList' {
                         $result = ($mitigationsRule.MitigationTarget -split ',') -contains $rule.MitigationTarget
                         $result | Should Be $true
                     }

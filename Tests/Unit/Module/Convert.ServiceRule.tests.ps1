@@ -69,7 +69,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -98,7 +98,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -117,7 +117,7 @@ try
                     }
                 }
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more static methods than are tested" {
+                It 'Should not have more static methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -Static -ChildClassMethodNames $staticMethods
                     $memberActual = ( [ServiceRule] | Get-Member -Static -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -162,7 +162,7 @@ try
 
         Describe 'Test-MultipleServiceRule' {
 
-            It "Should return $true if a Multiple Services are found " {
+            It 'Should return $true if a Multiple Services are found' {
                 Test-MultipleServiceRule -ServiceName "NTDS,DFSR,DNS,W32Time" | Should Be $true
             }
             It "Should return $false if a comma is found " {
@@ -171,13 +171,13 @@ try
             It "Should return $false if a null value is passed" {
                 Test-MultipleServiceRule -ServiceName $null | Should Be $false
             }
-            It "Should not thrown an error if a null value is passed" {
+            It 'Should not thrown an error if a null value is passed' {
                 {Test-MultipleServiceRule -ServiceName $null} | Should Not Throw
             }
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-ServiceRule" {
+        Describe 'ConvertTo-ServiceRule' {
             <#
                 This function can't really be unit tested, since the call cannot be mocked by pester, so
                 the only thing we can really do at this point is to verify that it returns the correct object.
@@ -185,13 +185,13 @@ try
             $stigRule = Get-TestStigRule -CheckContent $servicesToTest[3].checkContent -ReturnGroupOnly
             $rule = ConvertTo-ServiceRule -StigRule $stigRule
 
-            It "Should return an ServiceRule object" {
+            It 'Should return an ServiceRule object' {
                 $rule.GetType() | Should Be 'ServiceRule'
             }
         }
         #endregion
         #region Data Tests
-        Describe "ServicesDisplayNameToName Data Section" {
+        Describe 'ServicesDisplayNameToName Data Section' {
 
             [string] $dataSectionName = 'ServicesDisplayNameToName'
 

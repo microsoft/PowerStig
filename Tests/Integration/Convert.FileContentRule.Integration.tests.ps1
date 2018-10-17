@@ -53,7 +53,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "FileContentRule Integration Tests" {
+    Describe 'FileContentRule Integration Tests' {
         foreach ($fileContentRule in $fileContentRulesToTest)
         {
             [xml] $stigRule = Get-TestStigRule -CheckContent $fileContentRule.CheckContent -XccdfTitle Windows

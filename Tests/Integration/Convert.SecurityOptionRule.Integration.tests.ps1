@@ -31,7 +31,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "Security Option Conversion" {
+    Describe 'Security Option Conversion' {
 
         foreach ( $testString in $testStrings )
         {
@@ -40,7 +40,7 @@ try
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
             
-            It "Should return an SecurityOptionRule Object" {
+            It 'Should return an SecurityOptionRule Object' {
                 $rule.GetType() | Should Be 'SecurityOptionRule'
             }
             It "Should set Option Name to '$($testString.OptionName)'" {

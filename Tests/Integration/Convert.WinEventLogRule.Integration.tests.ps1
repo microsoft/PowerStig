@@ -46,7 +46,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "DnsWinEventLog Rule Conversion" {
+    Describe 'DnsWinEventLog Rule Conversion' {
 
         foreach ( $WinEvents in $EventsToTest)
         {
@@ -57,7 +57,7 @@ try
                 $stigRule.Save( $TestFile )
                 $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-                It "Should return an WinEventLogRule Object" {
+                It 'Should return an WinEventLogRule Object' {
                     $rule.GetType() | Should Be 'WinEventLogRule'
                 }
                 It "Should return LogName '$($WinEvents.LogName)'" {

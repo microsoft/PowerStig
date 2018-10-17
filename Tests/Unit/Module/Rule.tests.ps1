@@ -20,31 +20,31 @@ try
 
             Context 'InvokeClass with Stigdata element' {
 
-                It "Should return the rule Id" {
+                It 'Should return the rule Id' {
                     $stig.id | Should Be 'V-1000'
                 }
-                It "Should return the Severity" {
+                It 'Should return the Severity' {
                     $stig.severity | Should Be 'medium'
                 }
-                It "Should return the Title" {
+                It 'Should return the Title' {
                     $stig.title | Should Be 'Sample Title'
                 }
-                It "Should return the default status of pass" {
+                It 'Should return the default status of pass' {
                     $stig.conversionstatus | Should Be 'pass'
                 }
-                It "Should return the raw string" {
+                It 'Should return the raw string' {
                     $stig.rawString | Should Not BeNullOrEmpty
                 }
-                It "Should return decoded html in the rawString" {
+                It 'Should return decoded html in the rawString' {
                     $stig.rawString | Should Not Match '&\w+;'
                 }
-                It "Should set IsNullOrEmptyt to false by default" {
+                It 'Should set IsNullOrEmptyt to false by default' {
                     $stig.IsNullOrEmpty | Should Be $false
                 }
-                It "Should set OrganizationValueRequired to false by default" {
+                It 'Should set OrganizationValueRequired to false by default' {
                     $stig.OrganizationValueRequired | Should Be $false
                 }
-                It "Should OrganizationValueTestString to empty by default" {
+                It 'Should OrganizationValueTestString to empty by default' {
                     $stig.OrganizationValueTestString | Should BeNullOrEmpty
                 }
             }
@@ -60,7 +60,7 @@ try
                     }
                 }
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = $stigClassMethodNames
                     $memberActual = ( $stig | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -79,7 +79,7 @@ try
                     }
                 }
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more static methods than are tested" {
+                It 'Should not have more static methods than are tested' {
                     $memberPlanned = $staticMethods + @('Equals', 'new', 'ReferenceEquals')
                     $memberActual = ( [Rule] | Get-Member -Static -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -137,7 +137,7 @@ try
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Account Lockout Policy.
 
                 If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'
-                It "Should return AccountPolicyRule when 'Account Policies' is found" {
+                It 'Should return AccountPolicyRule when 'Account Policies' is found' {
                     $testResults = Get-RuleTypeMatchList -CheckContent $checkContent
                     $testResults | Should Be 'AccountPolicyRule'
                 }

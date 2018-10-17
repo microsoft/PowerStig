@@ -40,7 +40,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "WebConfigurationProperty Rule Conversion" {
+    Describe 'WebConfigurationProperty Rule Conversion' {
 
         foreach ( $stig in $stigRulesToTest )
         {
@@ -49,7 +49,7 @@ try
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an WebConfigurationPropertyRule Object" {
+            It 'Should return an WebConfigurationPropertyRule Object' {
                 $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
             }
 

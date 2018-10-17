@@ -13,7 +13,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -32,7 +32,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -51,7 +51,7 @@ try
                     }
                 }
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more static methods than are tested" {
+                It 'Should not have more static methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -Static -ChildClassMethodNames $staticMethods
                     $memberActual = ( [DocumentRule] | Get-Member -Static -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -64,7 +64,7 @@ try
 
         #endregion
         #region Function Tests
-        Describe "ConvertTo-DocumentRule" {
+        Describe 'ConvertTo-DocumentRule' {
             $checkContent = 'If no accounts are members of the Backup Operators group, this is NA.
 
     Any accounts that are members of the Backup Operators group, including application accounts, must be documented with the ISSO.  If documentation of accounts that are members of the Backup Operators group is not maintained this is a finding.'
@@ -75,7 +75,7 @@ try
             $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $rule = ConvertTo-DocumentRule -StigRule $stigRule
 
-            It "Should return an DocumentRule object" {
+            It 'Should return an DocumentRule object' {
                 $rule.GetType() | Should Be 'DocumentRule'
             }
         }

@@ -30,7 +30,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "GroupRule Integration Tests" {
+    Describe 'GroupRule Integration Tests' {
         foreach ($groupRule in $groupRulesToTest)
         {
             [xml] $stigRule = Get-TestStigRule -CheckContent $groupRule.CheckContent -XccdfTitle Windows

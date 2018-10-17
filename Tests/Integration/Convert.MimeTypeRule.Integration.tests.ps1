@@ -40,7 +40,7 @@ try
     $index = 0
     #endregion
     #region Tests
-    Describe "MimeType Rule Conversion" {
+    Describe 'MimeType Rule Conversion' {
 
         [xml] $stigRule = Get-TestStigRule -CheckContent $stigRuleToTest.CheckContent -XccdfTitle 'IIS'
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
@@ -53,7 +53,7 @@ try
 
         foreach ($rule in $rules)
         {
-            It "Should return an MimeTypeRule Object" {
+            It 'Should return an MimeTypeRule Object' {
                 $rule.GetType() | Should Be 'MimeTypeRule'
             }
 

@@ -2,14 +2,14 @@
 
 Import-Module -Name ( Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1' )
 
-Describe "Variables" {
+Describe 'Variables' {
 
     It 'Should export the resourcePath variable' {
         $resourcePath | Should Not BeNullOrEmpty
     }
 }
 
-Describe "Functions" {
+Describe 'Functions' {
 
     Context 'Get-ResourceTitle' {
 

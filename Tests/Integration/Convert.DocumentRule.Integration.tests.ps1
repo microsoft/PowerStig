@@ -17,19 +17,19 @@ try
         $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-        It "Should return an DocumentRule Object" {
+        It 'Should return an DocumentRule Object' {
             $rule.GetType() | Should Be 'DocumentRule'
         }
-        It "Should set IsNullOrEmpty to false" {
+        It 'Should set IsNullOrEmpty to false' {
             $rule.IsNullOrEmpty | Should Be $false
         }
-        It "Should set OrganizationValueRequired to false" {
+        It 'Should set OrganizationValueRequired to false' {
             $rule.OrganizationValueRequired | Should Be $false
         }
         It "Should set dscresource to 'None'" {
             $rule.dscresource | Should Be 'None'
         }
-        It "Should set the Conversion statud to pass ensure value" {
+        It 'Should set the Conversion statud to pass ensure value' {
             $rule.conversionstatus | Should Be 'pass'
         }
     }

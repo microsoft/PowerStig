@@ -62,7 +62,7 @@ Describe 'Enum coverage' {
 }
 #endregion Tests
 #region Data Tests
-Describe "RegularExpression Data Section" {
+Describe 'RegularExpression Data Section' {
 
     [string] $dataSectionName = 'RegularExpression'
 
@@ -87,16 +87,16 @@ Describe "RegularExpression Data Section" {
 
     Context 'Text Between Quotes' {
 
-        It "Should match string with double quotes" {
+        It 'Should match string with double quotes' {
             'hello "this" test' -Match $RegularExpression.textBetweenQuotes | Should Be $true
         }
 
-        It "Should match string with single quotes" {
+        It 'Should match string with single quotes' {
             "hello 'this' test" -Match $RegularExpression.textBetweenQuotes | Should Be $true
         }
     }
 
-    Context "Blank String" {
+    Context 'Blank String' {
 
         It "Should match '(Blank)' literal string" {
             "(Blank)" -Match $RegularExpression.blankString | Should Be $true
@@ -135,7 +135,7 @@ Describe "RegularExpression Data Section" {
         }
     }
 
-    Context "TextBetweenParentheses string matches" {
+    Context 'TextBetweenParentheses string matches' {
 
         It 'Should match string inside parentheses' {
             '(text inside parentheses)' -Match $RegularExpression.textBetweenParentheses | Should Be $true
@@ -165,7 +165,7 @@ Describe "RegularExpression Data Section" {
     #>
 }
 
-Describe "rangeMatch Data Section" {
+Describe 'rangeMatch Data Section' {
 
     [string] $dataSectionName = 'rangeMatch'
 
@@ -178,7 +178,7 @@ Describe "rangeMatch Data Section" {
     #>
 }
 
-Describe "errorMessage Data Section" {
+Describe 'errorMessage Data Section' {
 
     [string] $dataSectionName = 'errorMessage'
 
@@ -191,7 +191,7 @@ Describe "errorMessage Data Section" {
     #>
 }
 
-Describe "ADAuditPath Data Section" {
+Describe 'ADAuditPath Data Section' {
 
     [string] $dataSectionName = 'ADAuditPath'
 
@@ -204,7 +204,7 @@ Describe "ADAuditPath Data Section" {
     #>
 }
 
-Describe "eventLogRegularExpression Data Section" {
+Describe 'eventLogRegularExpression Data Section' {
 
     [string] $dataSectionName = 'eventLogRegularExpression'
     It "Should have a data section called $dataSectionName" {
@@ -345,7 +345,7 @@ Describe 'Get-OrganizationValueTestString' {
 
 Describe 'Get-TestStringTokenNumbers' {
 
-    It "Should exist" {
+    It 'Should exist' {
         Get-Command Get-TestStringTokenNumbers | Should Not BeNullOrEmpty
     }
 
@@ -374,7 +374,7 @@ Describe 'Get-TestStringTokenNumbers' {
 
 Describe 'Get-TestStringTokenList' {
 
-    It "Should exist" {
+    It 'Should exist' {
         Get-Command Get-TestStringTokenList | Should Not BeNullOrEmpty
     }
 
@@ -450,9 +450,9 @@ Describe 'ConvertTo-TestString' {
 }
 #endregion
 #region OR
-Describe "Test-StringIsNegativeOr" {
+Describe 'Test-StringIsNegativeOr' {
 
-        It "Verifies the function exists" {
+        It 'Verifies the function exists' {
             Get-Command Test-StringIsNegativeOr | Should Not BeNullOrEmpty
         }
 
@@ -490,9 +490,9 @@ Describe "Test-StringIsNegativeOr" {
         }
 }
 
-Describe "Test-StringIsPositiveOr" {
+Describe 'Test-StringIsPositiveOr' {
 
-    It "Verifies the function exists" {
+    It 'Verifies the function exists' {
         Get-Command Test-StringIsPositiveOr | Should Not BeNullOrEmpty
     }
 
@@ -533,7 +533,7 @@ Describe "Test-StringIsPositiveOr" {
 
 Describe 'ConvertTo-OrTestString' {
 
-    It "Should exist" {
+    It 'Should exist' {
         Get-Command ConvertTo-OrTestString | Should Not BeNullOrEmpty
     }
 
@@ -820,7 +820,7 @@ Describe 'Test-SecurityPolicyContainsRange' {
         }
     }
 
-    Context "Not Match" {
+    Context 'Not Match' {
 
         $strings = @(
             'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',

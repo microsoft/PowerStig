@@ -90,7 +90,7 @@ try
     )
     #endregion
     #region Tests
-    Describe "IisLogging Rule Conversion" {
+    Describe 'IisLogging Rule Conversion' {
 
         foreach ($stig in $stigRulesToTest)
         {
@@ -99,11 +99,11 @@ try
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an IisLoggingRule Object" {
+            It 'Should return an IisLoggingRule Object' {
                 $rule.GetType() | Should Be 'IisLoggingRule'
             }
 
-            It "Should return expected LogCustomFieldEntry" {
+            It 'Should return expected LogCustomFieldEntry' {
                 $compare = Compare-Object -ReferenceObject  $rule.LogCustomFieldEntry -DifferenceObject $stig.LogCustomFieldEntry
                 $compare.count | Should Be 0
             }

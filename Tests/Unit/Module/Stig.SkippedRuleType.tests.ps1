@@ -16,11 +16,11 @@ try
         )
         #endregion
         #region Class Tests
-        Describe "SkippedRuleType Class" {
+        Describe 'SkippedRuleType Class' {
 
-            Context "Constructor" {
+            'Constructor' {
 
-                It "Should create an SkippedRuleType class instance using SkippedRuleType1 data" {
+                It 'Should create an SkippedRuleType class instance using SkippedRuleType1 data' {
                     foreach ($type in $SkippedRuleTypeArray)
                     {
                         $SkippedRuleType = [SkippedRuleType]::new($type)
@@ -29,8 +29,8 @@ try
                 }
             }
 
-            Context "Static Methods" {
-                It "ConvertFrom: Should be able to convert an array of SkippedRuleType strings to a SkippedRuleType array" {
+            Context 'Static Methods' {
+                It 'ConvertFrom: Should be able to convert an array of SkippedRuleType strings to a SkippedRuleType array' {
                     $SkippedRuleTypes = [SkippedRuleType]::ConvertFrom($SkippedRuleTypeArray)
 
                     foreach ($type in $SkippedRuleTypeArray)

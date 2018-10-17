@@ -6,7 +6,7 @@ try
     #region Test Setup
     #endregion
     #region Tests
-    Describe "ConvertTo-AccountPolicyRule without range" {
+    Describe 'ConvertTo-AccountPolicyRule without range' {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
         
@@ -18,7 +18,7 @@ try
         $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
         
-        It "Should return an AccountPolicyRule Object" {
+        It 'Should return an AccountPolicyRule Object' {
             $rule.GetType() | Should Be 'AccountPolicyRule'
         }
         It 'Should set the correct Policy Name' {
@@ -35,7 +35,7 @@ try
         }
     }
 
-    Describe "ConvertTo-AccountPolicyRule with a range" {
+    Describe 'ConvertTo-AccountPolicyRule with a range' {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
         
