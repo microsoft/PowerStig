@@ -515,15 +515,6 @@ try
         }
         #endregion
         #region Function Tests
-        Describe 'ConvertTo-RegistryRule' {
-
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-RegistryRule -StigRule $stigRule
-
-            It "Should return an RegistryRule object" {
-                $rule.GetType() | Should Be 'RegistryRule'
-            }
-        }
 
         Describe "Get-RegistryKey" {
 

@@ -90,16 +90,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-WebAppPoolRule" {
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-WebAppPoolRule -StigRule $stigRule
 
-            It "Should return an WebAppPoolRule object" {
-                $rule.GetType() | Should Be 'WebAppPoolRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

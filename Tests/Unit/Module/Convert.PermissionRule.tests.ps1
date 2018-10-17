@@ -244,54 +244,7 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-PermissionRule" {
-            $checkContent = @'
-The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377).  If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
 
-Verify the default permissions for the system drive's root directory (usually C:\).  Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults.  (Individual accounts must not be used to assign permissions.)
-
-Viewing in File Explorer:
-View the Properties of system drive root directory.
-Select the "Security" tab, and the "Advanced" button.
-
-C:\
-Type - "Allow" for all
-Inherited from - "None" for all
-
-Principal - Access - Applies to
-
-SYSTEM - Full control - This folder, subfolders and files
-Administrators - Full control - This folder, subfolders and files
-Users - Read &amp; execute - This folder, subfolders and files
-Users - Create folders / append data - This folder and subfolders
-Users - Create files / write data - Subfolders only
-CREATOR OWNER - Full Control - Subfolders and files only
-
-Alternately, use Icacls:
-
-Open a Command prompt (admin).
-Enter icacls followed by the directory:
-
-icacls c:\
-
-The following results should be displayed:
-
-c:\
-NT AUTHORITY\SYSTEM:(OI)(CI)(F)
-BUILTIN\Administrators:(OI)(CI)(F)
-BUILTIN\Users:(OI)(CI)(RX)
-BUILTIN\Users:(CI)(AD)
-BUILTIN\Users:(CI)(IO)(WD)
-CREATOR OWNER:(OI)(CI)(IO)(F)
-Successfully processed 1 files; Failed processing 0 files
-'@
-            $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $rule = ConvertTo-PermissionRule -StigRule $stigRule
-
-            It "Should return an PermissionRule object" {
-                $rule.GetType() | Should Be 'PermissionRule'
-            }
-        }
         Describe "Private Permission Rule" {
 
             [string] $functionName = 'Get-PermissionTargetPath'

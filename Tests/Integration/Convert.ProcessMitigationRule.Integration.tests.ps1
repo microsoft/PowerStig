@@ -51,7 +51,6 @@ try
             MitigationTarget = 'java.exe,javaw.exe,javaws.exe'
             Enable           = 'DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec'
             Disable          = $null
-            SplitRule        = $true
             CheckContent     = 'This is NA prior to v1709 of Windows 10.
 
             Run "Windows PowerShell" with elevated privileges (run as administrator).

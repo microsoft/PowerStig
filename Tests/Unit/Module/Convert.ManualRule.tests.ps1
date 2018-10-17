@@ -25,19 +25,7 @@ try
         #region Method Tests
 
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-ManualRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $rule = ConvertTo-ManualRule -StigRule $stigRule
 
-            It "Should return an ManualRule object" {
-                $rule.GetType() | Should Be 'ManualRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

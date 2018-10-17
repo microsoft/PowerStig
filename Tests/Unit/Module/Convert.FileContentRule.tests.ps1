@@ -123,18 +123,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-FileContentRule" {
 
-            $global:stigXccdfName = $rulesToTest[1].ArchiveFile
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-FileContentRule -StigRule $stigRule
-
-            It "Should return a FileContentRule object" {
-                $rule.GetType() | Should Be 'FileContentRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

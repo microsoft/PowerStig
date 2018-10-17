@@ -94,17 +94,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-SecurityOptionRule" {
 
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-SecurityOptionRule -StigRule $stigRule
-
-            It "Should return a SecurityOptionRule object" {
-                $rule.GetType() | Should Be 'SecurityOptionRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

@@ -124,16 +124,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-MimeTypeRule" {
-            $stigRule = Get-TestStigRule -CheckContent $mimeTypeRule.checkContent -ReturnGroupOnly
-            $rule = ConvertTo-MimeTypeRule -StigRule $stigRule
 
-            It "Should return an MimeTypeRule object" {
-                $rule.GetType() | Should Be 'MimeTypeRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

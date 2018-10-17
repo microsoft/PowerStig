@@ -6,7 +6,7 @@ try
     #region Test Setup
     #endregion
     #region Tests
-    Describe "ConvertTo-AccountPolicyRule without range" {
+    Describe "AccountPolicyRule without range" {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
 
@@ -38,7 +38,7 @@ try
         }
     }
 
-    Describe "ConvertTo-AccountPolicyRule with a range" {
+    Describe "AccountPolicyRule with a range" {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
 

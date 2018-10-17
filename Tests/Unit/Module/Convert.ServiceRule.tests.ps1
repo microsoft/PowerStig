@@ -139,20 +139,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-ServiceRule" {
-            <#
-                This function can't really be unit tested, since the call cannot be mocked by pester, so
-                the only thing we can really do at this point is to verify that it returns the correct object.
-            #>
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[3].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-ServiceRule -StigRule $stigRule
 
-            It "Should return an ServiceRule object" {
-                $rule.GetType() | Should Be 'ServiceRule'
-            }
-        }
-        #endregion
         #region Data Tests
         Describe "ServicesDisplayNameToName Data Section" {
 

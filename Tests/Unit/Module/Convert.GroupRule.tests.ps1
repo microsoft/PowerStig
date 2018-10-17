@@ -103,20 +103,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-GroupRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-GroupRule -StigRule $stigRule
 
-            It "Should return an GroupRule object" {
-                $rule.GetType() | Should Be 'GroupRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

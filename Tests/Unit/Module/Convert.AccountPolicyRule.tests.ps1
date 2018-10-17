@@ -18,6 +18,12 @@ try
         $rule = [AccountPolicyRule]::new( $stigRule )
         #endregion
         #region Class Tests
+
+        Describe "AccountPolicyRule" {
+        <#
+            This function can't really be unit tested, since the call cannot be mocked by pester, so
+            the only thing we can really do at this point is to verify that it returns the correct object.
+        #>
         Describe "$($rule.GetType().Name) Child Class" {
 
             Context 'Base Class' {
@@ -140,25 +146,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        $checkContent = 'Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; {0} -&gt; Account Lockout Policy.
-
-If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'
-        Describe "ConvertTo-AccountPolicyRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $rule = ConvertTo-AccountPolicyRule -StigRule $stigRule
-
-            It "Should return an AccountPolicyRule object" {
-                $rule.GetType() | Should Be 'AccountPolicyRule'
-            }
-        }
-        #endregion
         #region Data Tests
         Describe "PolicyNameFixes Data Section" {
 

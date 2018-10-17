@@ -8,7 +8,7 @@ try
 
     # Building the baseline rule set values
     $stigs = [ordered]@{
-        'U_Windows_2012_and_2012_R2_MS_STIG_V2R9_Manual-xccdf.xml'    = @{
+        'U_Windows_2012_and_2012_R2_MS_STIG_V2R9_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 34
             DnsServerRootHintRule        = $null
@@ -32,7 +32,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = 2
         }
-        'U_Windows_2012_and_2012_R2_MS_STIG_V2R12_Manual-xccdf.xml'   = @{
+        'U_Windows_2012_and_2012_R2_MS_STIG_V2R12_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 31
             DnsServerRootHintRule        = $null
@@ -56,7 +56,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = 2
         }
-        'U_Windows_2012_and_2012_R2_MS_STIG_V2R13_Manual-xccdf.xml'   = @{
+        'U_Windows_2012_and_2012_R2_MS_STIG_V2R13_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 31
             DnsServerRootHintRule        = $null
@@ -80,7 +80,7 @@ try
             WindowsFeatureRule           = 2
             WmiRule                      = 2
         }
-        'U_Windows_2012_and_2012_R2_DC_STIG_V2R9_Manual-xccdf.xml'    = @{
+        'U_Windows_2012_and_2012_R2_DC_STIG_V2R9_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 38
             DnsServerRootHintRule        = $null
@@ -104,7 +104,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = 2
         }
-        'U_Windows_2012_and_2012_R2_DC_STIG_V2R12_Manual-xccdf.xml'   = @{
+        'U_Windows_2012_and_2012_R2_DC_STIG_V2R12_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 36
             DnsServerRootHintRule        = $n
@@ -128,7 +128,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = 2
         }
-        'U_Windows_2012_and_2012_R2_DC_STIG_V2R13_Manual-xccdf.xml'   = @{
+        'U_Windows_2012_and_2012_R2_DC_STIG_V2R13_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 36
             DnsServerRootHintRule        = $n
@@ -152,7 +152,7 @@ try
             WindowsFeatureRule           = 2
             WmiRule                      = 2
         }
-        'U_MS_Windows_2012_Server_DNS_STIG_V1R7_Manual-xccdf.xml'     = @{
+        'U_MS_Windows_2012_Server_DNS_STIG_V1R7_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = 1
@@ -176,7 +176,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_Windows_2012_Server_DNS_STIG_V1R9_Manual-xccdf.xml'     = @{
+        'U_MS_Windows_2012_Server_DNS_STIG_V1R9_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = 1
@@ -200,7 +200,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_Windows_2012_Server_DNS_STIG_V1R10_Manual-xccdf.xml'    = @{
+        'U_MS_Windows_2012_Server_DNS_STIG_V1R10_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = 1
@@ -224,7 +224,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_IE11_STIG_V1R13_Manual-xccdf.xml'                       = @{
+        'U_MS_IE11_STIG_V1R13_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -248,7 +248,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_IE11_STIG_V1R15_Manual-xccdf.xml'                       = @{
+        'U_MS_IE11_STIG_V1R15_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -272,7 +272,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_IE11_STIG_V1R16_Manual-xccdf.xml'                       = @{
+        'U_MS_IE11_STIG_V1R16_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -296,7 +296,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Windows_Firewall_STIG_V1R6_Manual-xccdf.xml'               = @{
+        'U_Windows_Firewall_STIG_V1R6_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -320,7 +320,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
+        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml' = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 35
             DnsServerRootHintRule        = $null
@@ -344,7 +344,7 @@ try
             WindowsFeatureRule           = 9
             WmiRule                      = 1
         }
-        'U_IIS_8-5_Site_STIG_V1R2_Manual-xccdf.xml'                   = @{
+        'U_IIS_8-5_Site_STIG_V1R2_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -368,7 +368,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_SQL_Server_2012_Instance_STIG_V1R16_Manual-xccdf.xml'      = @{
+        'U_SQL_Server_2012_Instance_STIG_V1R16_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -416,7 +416,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_SQL_Server_2012_Database_STIG_V1R17_Manual-xccdf.xml'      = @{
+        'U_SQL_Server_2012_Database_STIG_V1R17_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -440,7 +440,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_IIS_8-5_Server_STIG_V1R3_Manual-xccdf.xml'                 = @{
+        'U_IIS_8-5_Server_STIG_V1R3_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -464,7 +464,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'       = @{
+        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -488,7 +488,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml'        = @{
+        'U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -512,7 +512,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml'               = @{
+        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -536,7 +536,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml'          = @{
+        'U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -560,7 +560,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_Excel_2013_STIG_V1R7_Manual-xccdf.xml'                  = @{
+        'U_MS_Excel_2013_STIG_V1R7_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -584,7 +584,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml'        = @{
+        'U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -607,8 +607,8 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = $null
             WmiRule                      = $null
-            }
-        'U_MS_Word_2013_STIG_V1R6_Manual-xccdf.xml'                   = @{
+        }
+        'U_MS_Word_2013_STIG_V1R6_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -631,8 +631,8 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = $null
             WmiRule                      = $null
-            }
         }
+    }
     #endregion
     #region Tests
     # Verify conversion report rule set values are equal to baseline values

@@ -8,9 +8,9 @@ try
         #region Test Setup
         $rulesToTest = @(
             @{
-                PropertyName  = 'EventLogLevel'
+                PropertyName = 'EventLogLevel'
                 PropertyValue = '4'
-                CheckContent  = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+                CheckContent = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
         Press Windows Key + R, execute dnsmgmt.msc.
 
@@ -102,16 +102,8 @@ try
             }
         }
 
-        Describe "ConvertTo-DnsServerSettingRule" {
-
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest.checkContent -ReturnGroupOnly
-            $rule = ConvertTo-DnsServerSettingRule -StigRule $stigRule
-
-            It "Should return an DnsServerSettingRule object" {
-                $rule.GetType() | Should Be 'DnsServerSettingRule'
-            }
-        }
         #endregion
+
         #region Data Tests
 
         #endregion
