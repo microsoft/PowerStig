@@ -244,25 +244,7 @@ function Get-StigRuleList
                     [void] $global:stigSettings.Add( $rule )
                 }
             }
-            #$ruleTypes = [Rule]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
-            #foreach ( $ruleType in $ruleTypes )
-            #{
-                # $rules = & "ConvertTo-$ruleType" -StigRule $stigRule
-
-                # foreach ( $rule in $rules )
-                # {
-                #     if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
-                #     {
-                #         [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
-                #     }
-                #     else
-                #     {
-                #         [void] $global:stigSettings.Add( $rule )
-                #     }
-                # }
-                # Increment the counter to update the console output
-                $stigProcessedCounter ++
-            #}
+            $stigProcessedCounter ++
         }
     }
     end
