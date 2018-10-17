@@ -27,126 +27,96 @@ class ConvertFactory
     static [System.Collections.ArrayList] Rule ([xml.xmlelement] $Rule)
     {
         [System.Collections.ArrayList] $ruleTypeList = @()
-        $parsed = $false
 
         switch ( $Rule.rule.check.'check-content' )
         {
             {[AccountPolicyRule]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add( [AccountPolicyRule]::new($Rule) )
-                $parsed = $true
             }
             {[AuditPolicyRule]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add( [AuditPolicyRule]::new($Rule) )
-                $parsed = $true
             }
             {[DnsServerSettingRule]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add( [DnsServerSettingRule]::new($Rule) )
-                $parsed = $true
             }
             {[DnsServerRootHintRule]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add( [DnsServerRootHintRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[IisLoggingRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [IisLoggingRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[MimeTypeRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.AddRange( [MimeTypeRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
-            }
-            {[PermissionRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.AddRange( [PermissionRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
-            }
-            {[RegistryRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.AddRange( [RegistryRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
-            }
-            {[SecurityOptionRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [SecurityOptionRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[ServiceRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.AddRange( [ServiceRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
-            }
-            {[SqlScriptQueryRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [SqlScriptQueryRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[UserRightRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.AddRange( [UserRightRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
-            }
-            {[WebAppPoolRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [WebAppPoolRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[WebConfigurationPropertyRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [WebConfigurationPropertyRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[WindowsFeatureRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.AddRange( [WindowsFeatureRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
-            }
-            {[WinEventLogRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [WinEventLogRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[WmiRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [WmiRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[ProcessMitigationRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [ProcessMitigationRule]::new($Rule) )
-                $parsed = $true
-            }
-            {[GroupRule]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add( [GroupRule]::new($Rule) )
-                $parsed = $true
             }
             {[FileContentRule]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange( [FileContentRule]::ConvertFromXccdf($Rule) )
-                $parsed = $true
             }
+            {[GroupRule]::Match($PSItem)}
             {
-                <#
-                    Break out of switch statement once a rule has been parsed before
-                    it tries to convert to a document or manual rule.
-                #>
-                $parsed -eq $true
+                $null = $ruleTypeList.Add( [GroupRule]::new($Rule) )
             }
+            {[IisLoggingRule]::Match($PSItem)}
             {
-                break
+                $null = $ruleTypeList.Add( [IisLoggingRule]::new($Rule) )
+            }
+            {[MimeTypeRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange( [MimeTypeRule]::ConvertFromXccdf($Rule) )
+            }
+            {[PermissionRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange( [PermissionRule]::ConvertFromXccdf($Rule) )
+            }
+            {[ProcessMitigationRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [ProcessMitigationRule]::ConvertFromXccdf($Rule) )
+            }
+            {[RegistryRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange( [RegistryRule]::ConvertFromXccdf($Rule) )
+            }
+            {[SecurityOptionRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [SecurityOptionRule]::new($Rule) )
+            }
+            {[ServiceRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange( [ServiceRule]::ConvertFromXccdf($Rule) )
+            }
+            {[SqlScriptQueryRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [SqlScriptQueryRule]::new($Rule) )
+            }
+            {[UserRightRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange( [UserRightRule]::ConvertFromXccdf($Rule) )
+            }
+            {[WebAppPoolRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [WebAppPoolRule]::new($Rule) )
+            }
+            {[WebConfigurationPropertyRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [WebConfigurationPropertyRule]::new($Rule) )
+            }
+            {[WindowsFeatureRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.AddRange( [WindowsFeatureRule]::ConvertFromXccdf($Rule) )
+            }
+            {[WinEventLogRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [WinEventLogRule]::new($Rule) )
+            }
+            {[WmiRule]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add( [WmiRule]::new($Rule) )
             }
             <#
                 Some rules have a documentation requirement only for exceptions,
                 so the DocumentRule needs to be at the end of the swtich as a
-                catch all for documentation rules.
+                catch all for documentation rules. Once a rule has been parsed,
+                it should not be converted into a document rule.
             #>
-            {[DocumentRule]::Match($PSItem)}
+            {[DocumentRule]::Match($PSItem) -and $ruleTypeList.Count -gt 0}
             {
                 $null = $ruleTypeList.Add( [DocumentRule]::new($Rule) )
             }
@@ -157,6 +127,32 @@ class ConvertFactory
         }
 
         return $ruleTypeList
+    }
+
+    static [Object[]] ConvertFromXccdf ([Object] $Rule)
+    {
+        $ruleList = @()
+
+        if ( $Rule.HasMultipleRules() )
+        {
+            [int] $LowercaseAByte = 97
+            [string[]] $splitRules = $Rule.SplitMultipleRules()
+            foreach ( $splitRule in $splitRules )
+            {
+                $RuleClone = $Rule.Clone()
+                $RuleClone.MitigationTarget = $splitRule
+                $RuleClone.id = "$($Rule.id).$([CHAR][BYTE]$LowercaseAByte)"
+                $ruleList += $RuleClone
+
+                $LowercaseAByte++
+            }
+        }
+        else
+        {
+            $ruleList += $Rule
+        }
+
+        return $ruleList
     }
 }
 
