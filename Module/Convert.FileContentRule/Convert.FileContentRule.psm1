@@ -138,9 +138,15 @@ Class FileContentRule : Rule
     {
         if
         (
-            $CheckContent -Match 'deployment.properties' -and
-            $CheckContent -Match '=' -and
-            $CheckContent -NotMatch 'exception.sites'
+            (
+                $CheckContent -Match 'deployment.properties' -and
+                $CheckContent -Match '=' -and
+                $CheckContent -NotMatch 'exception.sites'
+            ) -or
+            (
+                $CheckContent -Match 'about:config' -and
+                $CheckContent -NotMatch 'Mozilla.cfg'
+            )
         )
         {
             return $true
