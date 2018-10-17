@@ -41,7 +41,7 @@ Class PermissionRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    PermissionRule ( [xml.xmlelement] $StigRule )
+    hidden PermissionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
         $this.SetPath()

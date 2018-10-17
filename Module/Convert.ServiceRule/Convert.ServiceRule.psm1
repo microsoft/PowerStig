@@ -54,42 +54,30 @@ Class ServiceRule : Rule
 
     #region Methods
 
-    static [ServiceRule[]] ConvertFromXccdf ($StigRule)
+    static [ServiceRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
     {
-        $serviceRule = [ServiceRule]::New( $StigRule )
-
-        if ( [ServiceRule]::HasMultipleRules( $serviceRule.Servicename ) )
+        $ruleList = @()
+        $rule = [ServiceRule]::new($StigRule)
+        if ( $rule.HasMultipleRules() )
         {
-            $firstElement = $true
-            [int] $byte = 97
-            $serviceRules = @()
-            $tempRule = $serviceRule.Clone()
-            [string[]] $splitRules = [ServiceRule]::SplitMultipleRules( $serviceRule.Servicename )
-            foreach ( $serviceName in $splitRules )
+            [int] $LowercaseAByte = 97
+            [string[]] $splitRules = $rule.SplitMultipleRules()
+            foreach ( $splitRule in $splitRules )
             {
-                if ( $firstElement )
-                {
-                    $serviceRule.ServiceName = $serviceName
-                    $serviceRule.id = "$($serviceRule.id).$([CHAR][BYTE]$byte)"
-                    $serviceRules += $serviceRule
-                    $firstElement = $false
-                }
-                else
-                {
-                    $newRule = $tempRule.Clone()
-                    $newRule.ServiceName = $serviceName
-                    $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
-                    $serviceRules += $newRule
-                    [void] $global:stigSettings.Add($newRule)
-                }
-                $byte++
+                $ruleClone = $rule.Clone()
+                $ruleClone.ServiceName = $splitRule
+                $ruleClone.id = "$($rule.id).$([CHAR][BYTE]$LowercaseAByte)"
+                $ruleList += $ruleClone
+
+                $LowercaseAByte++
             }
-            return $serviceRules
         }
         else
         {
-            return $serviceRule
+            $ruleList += $rule
         }
+
+        return $ruleList
     }
 
     <#
@@ -172,9 +160,9 @@ Class ServiceRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $Servicename )
+    [bool] HasMultipleRules ( )
     {
-        return ( Test-MultipleServiceRule -ServiceName $Servicename )
+        return ( Test-MultipleServiceRule -ServiceName $this.Servicename )
     }
 
     <#
@@ -190,9 +178,9 @@ Class ServiceRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $ServiceName )
+    [string[]] SplitMultipleRules ( )
     {
-        return ( Split-MultipleServiceRule -ServiceName $Servicename )
+        return ( Split-MultipleServiceRule -ServiceName $this.Servicename )
     }
 
     hidden [void] SetDscResource ()

@@ -45,15 +45,45 @@ Class ProcessMitigationRule : Rule
     hidden ProcessMitigationRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetMitigationTargetName()
+        $this.SetMitigationToEnable()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
     #region Methods
 
-    # static [ProcessMitigationRule[]] ConvertFromXccdf ($StigRule)
-    # {
+    static [ProcessMitigationRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
+    {
+        $ruleList = @()
+        $rule = [ProcessMitigationRule]::new($StigRule)
+        if ( $rule.HasMultipleRules() )
+        {
+            [int] $LowercaseAByte = 97
+            [string[]] $splitRules = $rule.SplitMultipleRules()
+            foreach ( $splitRule in $splitRules )
+            {
+                $ruleClone = $rule.Clone()
+                $ruleClone.MitigationTarget = $splitRule
+                $ruleClone.id = "$($rule.id).$([CHAR][BYTE]$LowercaseAByte)"
+                $ruleList += $ruleClone
 
-    # }
+                $LowercaseAByte++
+            }
+        }
+        else
+        {
+            $ruleList += $rule
+        }
+
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -99,9 +129,9 @@ Class ProcessMitigationRule : Rule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
-    static [bool] HasMultipleRules ( [string] $MitigationTarget )
+    [bool] HasMultipleRules ( )
     {
-        return ( Test-MultipleProcessMitigationRule -MitigationTarget $MitigationTarget )
+        return ( Test-MultipleProcessMitigationRule -MitigationTarget $this.MitigationTarget )
     }
 
     <#
@@ -117,17 +147,14 @@ Class ProcessMitigationRule : Rule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
-    static [string[]] SplitMultipleRules ( [string] $MitigationTarget )
+    [string[]] SplitMultipleRules ( )
     {
-        return ( Split-ProcessMitigationRule -MitigationTarget $MitigationTarget )
+        return ( Split-ProcessMitigationRule -MitigationTarget $this.MitigationTarget )
     }
 
     static [bool] Match ( [string] $CheckContent )
     {
-        if
-        (
-            $CheckContent -Match "Get-ProcessMitigation"
-        )
+        if ( $CheckContent -Match "Get-ProcessMitigation" )
         {
             return $true
         }

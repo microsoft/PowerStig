@@ -44,8 +44,6 @@ Class WindowsFeatureRule : Rule
         $this.InvokeClass($StigRule)
         $this.SetFeatureName()
         $this.SetFeatureInstallState()
-        $this.SetDscResource()
-
         if ($this.conversionstatus -eq 'pass')
         {
             if ( $this.IsDuplicateRule( $global:stigSettings ))
@@ -53,47 +51,35 @@ Class WindowsFeatureRule : Rule
                 $this.SetDuplicateTitle()
             }
         }
+        $this.SetDscResource()
     }
 
     #region Methods
 
-    static [WindowsFeatureRule[]] ConvertFromXccdf ($StigRule)
+    static [WindowsFeatureRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
     {
-        $windowsFeatureRule = [WindowsFeatureRule]::new($StigRule)
-
-        if ( [WindowsFeatureRule]::HasMultipleRules( $windowsFeatureRule.FeatureName ) )
+        $ruleList = @()
+        $rule = [WindowsFeatureRule]::new($StigRule)
+        if ( $rule.HasMultipleRules() )
         {
-            $firstElement = $true
-            [int] $byte = 97
-            $windowsFeatureRules = @()
-            $tempRule = $windowsFeatureRule.Clone()
-            [string[]] $splitRules = [WindowsFeatureRule]::SplitMultipleRules( $windowsFeatureRule.FeatureName )
-
-            foreach ( $windowsFeatureName in $splitRules )
+            [int] $LowercaseAByte = 97
+            [string[]] $splitRules = $rule.SplitMultipleRules()
+            foreach ( $splitRule in $splitRules )
             {
-                if ( $firstElement )
-                {
-                    $windowsFeatureRule.FeatureName = $windowsFeatureName
-                    $windowsFeatureRule.id = "$($windowsFeatureRule.id).$([CHAR][BYTE]$byte)"
-                    $windowsFeatureRules += $windowsFeatureRule
-                    $firstElement = $false
-                }
-                else
-                {
-                    $newRule = $tempRule.Clone()
-                    $newRule.FeatureName = $windowsFeatureName
-                    $newRule.id = "$($newRule.id).$([CHAR][BYTE]$byte)"
-                    $windowsFeatureRules += $newRule
-                    [void] $global:stigSettings.Add($newRule)
-                }
-                $byte++
+                $ruleClone = $rule.Clone()
+                $ruleClone.FeatureName = $splitRule
+                $ruleClone.id = "$($rule.id).$([CHAR][BYTE]$LowercaseAByte)"
+                $ruleList += $ruleClone
+
+                $LowercaseAByte++
             }
-            return $windowsFeatureRules
         }
         else
         {
-            return $windowsFeatureRule
+            $ruleList += $rule
         }
+
+        return $ruleList
     }
 
     <#
@@ -153,9 +139,9 @@ Class WindowsFeatureRule : Rule
             The feature name from the rule text from the check-content element
             in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $FeatureName )
+    [bool] HasMultipleRules ( )
     {
-        return ( Test-MultipleWindowsFeatureRule -FeatureName $FeatureName )
+        return ( Test-MultipleWindowsFeatureRule -FeatureName $this.FeatureName )
     }
 
     <#
@@ -171,9 +157,9 @@ Class WindowsFeatureRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $FeatureName )
+    [string[]] SplitMultipleRules ( )
     {
-        return ( Split-WindowsFeatureRule -FeatureName $FeatureName )
+        return ( Split-WindowsFeatureRule -FeatureName $this.FeatureName )
     }
 
     hidden [void] SetDscResource ()
