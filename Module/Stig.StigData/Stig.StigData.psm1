@@ -118,7 +118,8 @@ Class StigData
     #>
     StigData ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
     {
-        if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion)) {
+        if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion))
+        {
             throw("Technology, TechnologyVersion, and TechnologyRole must be provided.")
         }
 
@@ -320,7 +321,7 @@ Class StigData
                 }
                 else
                 {
-                    foreach($rule in $ruleToOverride)
+                    foreach ($rule in $ruleToOverride)
                     {
                         $newSkipRule = [SkippedRule]::new($rule)
                         $this.SkippedRules += $newSkipRule

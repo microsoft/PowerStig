@@ -16,7 +16,8 @@ foreach ( $rule in $rules )
         {
             $result = $false
             $targetResource = Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."}
-            if ($targetResource.Count -eq 0) {
+            if ($targetResource.Count -eq 0)
+            {
                 $result = $True
             }
 
@@ -26,7 +27,8 @@ foreach ( $rule in $rules )
         GetScript =
         {
             $returnString = $null
-            foreach ( $rootHint in (Get-DnsServerRootHint) ) {
+            foreach ( $rootHint in (Get-DnsServerRootHint) )
+            {
                 $returnString += $rootHint.ipaddress.hostName + ";"
             }
 

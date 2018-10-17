@@ -96,7 +96,6 @@ function Get-Ensure
     if ($checkContent -match $script:webRegularExpression.mimeTypeAbsent)
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Ensure Absent"
-
         return "Absent"
     }
     else
@@ -164,7 +163,7 @@ function Split-MultipleMimeTypeRule
 
     $baseCheckContent = $checkContent| Where-Object -Filterscript {$PSItem -notin $mimeTypes}
 
-    foreach($mimeType in $mimeTypes)
+    foreach ($mimeType in $mimeTypes)
     {
         $rule = $baseCheckContent + $mimeType
         $splitMimeTypeRules += ($rule -join "`r`n")

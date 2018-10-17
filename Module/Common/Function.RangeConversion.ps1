@@ -123,7 +123,7 @@ function Get-TestStringTokenList
 
     $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
 
-    if($PSCmdlet.ParameterSetName -eq 'StringTokens')
+    if ($PSCmdlet.ParameterSetName -eq 'StringTokens')
     {
         return $tokens.Where({ $PSItem.type -eq 'String' }).Content
     }

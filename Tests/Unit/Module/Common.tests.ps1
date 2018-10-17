@@ -29,7 +29,7 @@ $enumTests = @{
     'Technology' = 'Windows|SQL|Mozilla'
 }
 
-foreach( $enum in $enumTests.GetEnumerator() )
+foreach ( $enum in $enumTests.GetEnumerator() )
 {
     Describe "$($enum.Key) Enumeration" {
 
@@ -219,7 +219,7 @@ Describe 'eventLogRegularExpression Data Section' {
     )
     Context 'Name' {
 
-        foreach($name in $namesToTest)
+        foreach ($name in $namesToTest)
         {
             It "Should match $name" {
                 $name -Match $eventLogRegularExpression.name | Should Be $true
@@ -783,7 +783,7 @@ Describe 'Get-SecurityPolicyString' {
         }
     )
 
-    foreach($checkString in $checkStrings)
+    foreach ($checkString in $checkStrings)
     {
         It 'Should return the second string in quotes' {
             $checkContent = (Split-TestStrings -CheckContent $checkString.checkContent)

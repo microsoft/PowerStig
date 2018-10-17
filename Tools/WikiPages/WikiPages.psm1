@@ -385,7 +385,7 @@ function New-WikiPage
 
         [void]$helpFileStrings.Add($examplesHeader)
 
-        foreach($example in $examples)
+        foreach s($example in $examples)
         {
             "```PowerShell`n$example`n``` "
         }

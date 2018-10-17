@@ -30,7 +30,7 @@ function Get-KeyValuePair
         $matchResult = $line | Select-String -Pattern $regex -AllMatches
         # Added singleton class to handle different filtering and parsing within STIG files
         $filterType = [FileContentType]::GetInstance()
-        if($matchResult)
+        if ($matchResult)
         {
             $lineResult = $filterType.ProcessMatches($matchResult)
         }

@@ -43,7 +43,7 @@ Configuration WindowsServer_config
                 StigVersion  = '$stigVersion'
                 ForestName   = '$forestName'
                 DomainName   = '$domainName'
-                $(if($null -ne $skipRule)
+                $(if ($null -ne $skipRule)
                 {
                     "SkipRule = @($( ($skipRule | % {"'$_'"}) -join ',' ))`n"
                 }
