@@ -38,7 +38,7 @@ try
                 It "Should return decoded html in the rawString" {
                     $stig.rawString | Should Not Match '&\w+;'
                 }
-                It "Should set IsNullOrEmptyt to false by default" {
+                It "Should set IsNullOrEmpty to false by default" {
                     $stig.IsNullOrEmpty | Should Be $false
                 }
                 It "Should set OrganizationValueRequired to false by default" {
@@ -46,44 +46,6 @@ try
                 }
                 It "Should OrganizationValueTestString to empty by default" {
                     $stig.OrganizationValueTestString | Should BeNullOrEmpty
-                }
-            }
-
-            Context 'Methods' {
-
-                $stigClassMethodNames = Get-StigBaseMethods
-
-                foreach ( $method in $stigClassMethodNames )
-                {
-                    It "Should have a method named '$method'" {
-                        ( $stig | Get-Member -Name $method ).Name | Should Be $method
-                    }
-                }
-                # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
-                    $memberPlanned = $stigClassMethodNames
-                    $memberActual = ( $stig | Get-Member -MemberType Method ).Name
-                    $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
-                    $compare.Count | Should Be 0
-                }
-            }
-
-            Context 'Static Methods' {
-
-                $staticMethods = @('SplitCheckContent', 'GetRuleTypeMatchList', 'GetFixText')
-
-                foreach ( $method in $staticMethods )
-                {
-                    It "Should have a method named '$method'" {
-                        ( [Rule] | Get-Member -Static -Name $method ).Name | Should Be $method
-                    }
-                }
-                # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more static methods than are tested" {
-                    $memberPlanned = $staticMethods + @('Equals', 'new', 'ReferenceEquals')
-                    $memberActual = ( [Rule] | Get-Member -Static -MemberType Method ).Name
-                    $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
-                    $compare.Count | Should Be 0
                 }
             }
         }
