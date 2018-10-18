@@ -114,7 +114,7 @@ function ConvertTo-PowerStigXml
             }
 
             # These properties are removed becasue they are attributes of the object, not elements
-            foreach ($propertyToRemove in $propertiesToRemove)
+            foreach ( $propertyToRemove in $propertiesToRemove )
             {
                 [void] $properties.Remove( $propertyToRemove )
             }
