@@ -68,7 +68,7 @@ class ConvertFactory
             }
             {[ProcessMitigationRule]::Match($PSItem)}
             {
-                $null = $ruleTypeList.Add([ProcessMitigationRule]::ConvertFromXccdf($Rule))
+                $null = $ruleTypeList.AddRange([ProcessMitigationRule]::ConvertFromXccdf($Rule))
             }
             {[RegistryRule]::Match($PSItem)}
             {
