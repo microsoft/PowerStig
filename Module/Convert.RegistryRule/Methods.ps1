@@ -648,7 +648,7 @@ function Get-NumberFromString
 
     $string = Select-String -InputObject $ValueDataString `
                             -Pattern $script:regularExpression.leadingIntegerUnbound
-    if($null -eq $string)
+    if ($null -eq $string)
     {
         throw
     }

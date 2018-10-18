@@ -59,8 +59,7 @@ Class UserRightRule : Rule
 
         if ( Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $this )
         {
-            $newId = Get-AvailableId -Id $this.Id
-            $this.set_id( $newId )
+            $this.set_id( (Get-AvailableId -Id $this.Id) )
         }
         $this.SetDscResource()
     }

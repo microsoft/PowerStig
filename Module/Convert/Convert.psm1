@@ -112,7 +112,7 @@ class ConvertFactory
             }
             <#
                 Some rules have a documentation requirement only for exceptions,
-                so the DocumentRule needs to be at the end of the swtich as a
+                so the DocumentRule needs to be at the end of the switch as a
                 catch all for documentation rules. Once a rule has been parsed,
                 it should not be converted into a document rule.
             #>
@@ -155,30 +155,3 @@ class ConvertFactory
         return $ruleList
     }
 }
-
-
-# function Convert-XccdfRuleList
-# {
-#     Param ([string] $path)
-
-#     $global:stigRuleGlobal = $stigRule
-#     [System.Collections.ArrayList] $global:stigSettings = @()
-
-#     [xml] $xccdf = Get-Content -Path $path
-
-#     foreach ($group in $xccdf.Benchmark.Group)
-#     {
-#         $rule = [ConvertXccdf]::Rule( $group )
-
-#         if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
-#         {
-#             [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
-#         }
-#         else
-#         {
-#             [void] $global:stigSettings.Add( $rule )
-#         }
-#     }
-
-#     return $global:stigSettings
-# }

@@ -165,7 +165,7 @@ function New-GitReleaseBranch
         $BranchName
     )
 
-    if(Get-GitBranch -ne 'dev')
+    if (Get-GitBranch -ne 'dev')
     {
         Set-GitBranch -Branch dev
     }
@@ -197,7 +197,7 @@ function Remove-GitReleaseBranch
     Write-Host "Removing Git branch ($BranchName)"
 
     # Merge the release back into dev
-    if(Get-GitBranch -ne 'dev')
+    if (Get-GitBranch -ne 'dev')
     {
         Set-GitBranch -Branch dev
     }
@@ -465,9 +465,9 @@ function Get-ProjectContributorList
         PowerStigDsc = @('jcwalker','regedit32','bgouldman','mcollera')
     }
 
-    foreach($user in $preGitHubContributors.($Repository.name))
+    foreach ($user in $preGitHubContributors.($Repository.name))
     {
-        if($users -notcontains $user)
+        if ($users -notcontains $user)
         {
             $null = $users.Add($user)
         }

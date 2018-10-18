@@ -42,7 +42,7 @@ Class AccountPolicyRule : Rule
     {
         $this.InvokeClass( $StigRule )
         $this.SetPolicyName()
-        if ( $this.TestPolicyValueForRange())
+        if ($this.TestPolicyValueForRange())
         {
             $this.SetPolicyValueRange()
         }
@@ -67,7 +67,7 @@ Class AccountPolicyRule : Rule
     {
         $thisPolicyName = Get-AccountPolicyName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyName ) )
+        if (-not $this.SetStatus( $thisPolicyName ))
         {
             $this.set_PolicyName( $thisPolicyName )
         }
@@ -103,7 +103,7 @@ Class AccountPolicyRule : Rule
     {
         $thisPolicyValue = Get-AccountPolicyValue -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyValue ) )
+        if (-not $this.SetStatus( $thisPolicyValue ))
         {
             $this.set_PolicyValue( $thisPolicyValue )
         }
@@ -123,7 +123,7 @@ Class AccountPolicyRule : Rule
 
         $thisPolicyValueTestString = Get-SecurityPolicyOrganizationValueTestString -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyValueTestString ) )
+        if (-not $this.SetStatus( $thisPolicyValueTestString ))
         {
             $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
         }
@@ -139,7 +139,7 @@ Class AccountPolicyRule : Rule
         if
         (
             $CheckContent -Match 'gpedit\.msc' -and
-            $CheckContent -match 'Account Policies'
+            $CheckContent -Match 'Account Policies'
         )
         {
             return $true

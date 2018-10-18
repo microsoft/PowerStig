@@ -178,7 +178,7 @@ finding.
             $StigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            $userRightRule = $rule | Where-Object { $PSItem.GetType().ToString() -eq 'UserRightRule'  }
+            $userRightRule  = $rule | Where-Object { $PSItem.GetType().ToString() -eq 'UserRightRule' }
             $permissionRule = $rule | Where-Object { $PSItem.GetType().ToString() -eq 'PermissionRule' }
 
             It "Should contain a UserRightRule" {
