@@ -705,7 +705,7 @@ try
                     }
                 }
 
-                It 'Should return 'null' with invalid registry type' {
+                It "Should return 'null' with invalid registry type" {
                     Mock Get-RegistryValueTypeFromWindowsStig {return 'Invalid'}
                     Get-RegistryValueType -CheckContent 'Mocked data' | Should Be $null
                 }
