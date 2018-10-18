@@ -42,18 +42,18 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    SqlScriptQueryRule ( [xml.xmlelement] $StigRule )
+    SqlScriptQueryRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
-        $ruleType = $this.GetRuleType( $this.splitCheckContent )
+        $this.InvokeClass($StigRule)
+        $ruleType = $this.GetRuleType($this.splitCheckContent)
 
-        $fixText = [SqlScriptQueryRule]::GetFixText( $StigRule )
+        $fixText = [SqlScriptQueryRule]::GetFixText($StigRule)
 
-        $this.SetGetScript( $ruleType )
-        $this.SetTestScript( $ruleType )
-        $this.SetSetScript( $ruleType, $fixText )
+        $this.SetGetScript($ruleType)
+        $this.SetTestScript($ruleType)
+        $this.SetSetScript($ruleType, $fixText)
 
-        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
         }
@@ -72,13 +72,13 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER RuleType
             The type of rule to get the get script for
     #>
-    [void] SetGetScript ( [string] $RuleType )
+    [void] SetGetScript ([string] $RuleType)
     {
         $thisGetScript = & Get-$($RuleType)GetScript -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisGetScript ) )
+        if (-not $this.SetStatus($thisGetScript))
         {
-            $this.set_GetScript( $thisGetScript )
+            $this.set_GetScript($thisGetScript)
         }
     }
 
@@ -92,13 +92,13 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER RuleType
             The type of rule to get the test script for
     #>
-    [void] SetTestScript ( $RuleType )
+    [void] SetTestScript ($RuleType)
     {
         $thisTestScript = & Get-$($RuleType)TestScript -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisTestScript ) )
+        if (-not $this.SetStatus($thisTestScript))
         {
-            $this.set_TestScript( $thisTestScript )
+            $this.set_TestScript($thisTestScript)
         }
     }
 
@@ -114,15 +114,15 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER FixText
             The set script to run
     #>
-    [void] SetSetScript ( [string] $RuleType, [string[]] $FixText )
+    [void] SetSetScript ([string] $RuleType, [string[]] $FixText)
     {
         $checkContent = $this.SplitCheckContent
 
         $thisSetScript = & Get-$($RuleType)SetScript -FixText $FixText -CheckContent $checkContent
 
-        if ( -not $this.SetStatus( $thisSetScript ) )
+        if (-not $this.SetStatus($thisSetScript))
         {
-            $this.set_SetScript( $thisSetScript )
+            $this.set_SetScript($thisSetScript)
         }
     }
 
@@ -134,7 +134,7 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    [string] GetRuleType ( [string[]] $CheckContent )
+    [string] GetRuleType ([string[]] $CheckContent)
     {
         $ruleType = Get-SqlRuleType -CheckContent $CheckContent
 
@@ -146,7 +146,7 @@ Class SqlScriptQueryRule : Rule
         $this.DscResource = 'SqlScriptQuery'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

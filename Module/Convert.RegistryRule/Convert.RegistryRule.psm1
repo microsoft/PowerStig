@@ -47,7 +47,7 @@ Class RegistryRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden RegistryRule ( [xml.xmlelement] $StigRule )
+    hidden RegistryRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetKey()
@@ -128,26 +128,22 @@ Class RegistryRule : Rule
     {
         $checkStrings = $StigRule.rule.Check.('check-content')
 
-        if ( [RegistryRule]::HasMultipleRules( $checkStrings ) )
+        if ([RegistryRule]::HasMultipleRules($checkStrings))
         {
-            $splitRegistryEntries = [RegistryRule]::SplitMultipleRules( $checkStrings )
+            $splitRegistryEntries = [RegistryRule]::SplitMultipleRules($checkStrings)
             $registryRules = @()
 
-            [int]$byte = 97
-            $id = $StigRule.id
             foreach ($splitRegistryEntry in $splitRegistryEntries)
             {
-                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
                 $StigRule.rule.Check.('check-content') = $splitRegistryEntry
-                $registryRules += [RegistryRule]::New( $StigRule )
-                $byte ++
+                $registryRules += [RegistryRule]::New($StigRule)
             }
 
             return $registryRules
         }
         else
         {
-            return [RegistryRule]::New( $StigRule )
+            return [RegistryRule]::New($StigRule)
         }
     }
 
@@ -164,9 +160,9 @@ Class RegistryRule : Rule
     {
         $thisKey = Get-RegistryKey -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisKey ) )
+        if (-not $this.SetStatus($thisKey))
         {
-            $this.set_Key( $thisKey )
+            $this.set_Key($thisKey)
         }
     }
 
@@ -183,9 +179,9 @@ Class RegistryRule : Rule
     {
         $thisValueName = Get-RegistryValueName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisValueName ) )
+        if (-not $this.SetStatus($thisValueName))
         {
-            $this.set_ValueName( $thisValueName )
+            $this.set_ValueName($thisValueName)
         }
     }
 
@@ -204,9 +200,9 @@ Class RegistryRule : Rule
 
         if ($thisValueType -ne "Does Not Exist")
         {
-            if ( -not $this.SetStatus( $thisValueType ) )
+            if (-not $this.SetStatus($thisValueType))
             {
-                $this.set_ValueType( $thisValueType )
+                $this.set_ValueType($thisValueType)
             }
         }
         else
@@ -224,7 +220,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [bool] TestValueDataStringForRange ( [string] $ValueDataString )
+    [bool] TestValueDataStringForRange ([string] $ValueDataString)
     {
         return Test-RegistryValueDataContainsRange -ValueDataString $ValueDataString
     }
@@ -253,7 +249,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [bool] IsDataBlank ( [string] $ValueDataString )
+    [bool] IsDataBlank ([string] $ValueDataString)
     {
         return Test-RegistryValueDataIsBlank -ValueDataString $ValueDataString
     }
@@ -266,7 +262,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [bool] IsDataEnabledOrDisabled ( [string] $ValueDataString )
+    [bool] IsDataEnabledOrDisabled ([string] $ValueDataString)
     {
         return Test-RegistryValueDataIsEnabledOrDisabled -ValueDataString $ValueDataString
     }
@@ -283,7 +279,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueData
             The value data to evaluate
     #>
-    [string] GetValidEnabledOrDisabled ( [string] $ValueType, [string] $ValueData )
+    [string] GetValidEnabledOrDisabled ([string] $ValueType, [string] $ValueData)
     {
         return Get-ValidEnabledOrDisabled -ValueType $ValueType -ValueData $ValueData
     }
@@ -296,7 +292,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [bool] IsDataHexCode ( [string] $ValueDataString )
+    [bool] IsDataHexCode ([string] $ValueDataString)
     {
         return Test-RegistryValueDataIsHexCode -ValueDataString $ValueDataString
     }
@@ -311,7 +307,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [int] GetIntegerFromHex ( [string] $ValueDataString )
+    [int] GetIntegerFromHex ([string] $ValueDataString)
     {
         return Get-IntegerFromHex -ValueDataString $ValueDataString
     }
@@ -325,7 +321,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [bool] IsDataInteger ( [string] $ValueDataString )
+    [bool] IsDataInteger ([string] $ValueDataString)
     {
         return Test-RegistryValueDataIsInteger -ValueDataString $ValueDataString
     }
@@ -338,7 +334,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [string] GetNumberFromString ( [string] $ValueDataString )
+    [string] GetNumberFromString ([string] $ValueDataString)
     {
         return Get-NumberFromString -ValueDataString $ValueDataString
     }
@@ -352,7 +348,7 @@ Class RegistryRule : Rule
         .PARAMETER ValueDataString
             The text to test
     #>
-    [string[]] FormatMultiStringRegistryData ( [string] $ValueDataString )
+    [string[]] FormatMultiStringRegistryData ([string] $ValueDataString)
     {
         return Format-MultiStringRegistryData -ValueDataString $ValueDataString
     }
@@ -365,7 +361,7 @@ Class RegistryRule : Rule
         .PARAMETER CheckStrings
             The rule text from the check-content element in the xccdf
     #>
-    [string[]] GetMultiValueRegistryStringData ( [string[]] $CheckStrings )
+    [string[]] GetMultiValueRegistryStringData ([string[]] $CheckStrings)
     {
         return Get-MultiValueRegistryStringData -CheckStrings $CheckStrings
     }
@@ -378,7 +374,7 @@ Class RegistryRule : Rule
         .PARAMETER EnsureFlag
             The value the Ensure flag should be set to
     #>
-    [void] SetEnsureFlag ( [Ensure] $Ensure )
+    [void] SetEnsureFlag ([Ensure] $Ensure)
     {
         $this.Ensure = $Ensure
     }
@@ -395,7 +391,7 @@ Class RegistryRule : Rule
         }
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (
@@ -429,9 +425,9 @@ Class RegistryRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return Test-MultipleRegistryEntries -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleRegistryEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent))
     }
 
     <#
@@ -447,9 +443,9 @@ Class RegistryRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultipleRegistryEntries -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultipleRegistryEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     #endregion

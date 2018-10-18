@@ -38,7 +38,7 @@ Class GroupRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    GroupRule ( [xml.xmlelement] $StigRule )
+    GroupRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetGroupName()
@@ -46,7 +46,7 @@ Class GroupRule : Rule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -68,9 +68,9 @@ Class GroupRule : Rule
     {
         $thisGroupDetails = Get-GroupDetail -CheckContent $this.rawString
 
-        if ( -not $this.SetStatus( $thisGroupDetails.GroupName ) )
+        if (-not $this.SetStatus($thisGroupDetails.GroupName))
         {
-            $this.set_GroupName( $thisGroupDetails.GroupName )
+            $this.set_GroupName($thisGroupDetails.GroupName)
         }
     }
 
@@ -92,13 +92,13 @@ Class GroupRule : Rule
         {
             $thisGroupMember = $null
         }
-        if ( -not $this.SetStatus( $thisGroupMember ) )
+        if (-not $this.SetStatus($thisGroupMember))
         {
-            $this.set_MembersToExclude( $thisGroupMember )
+            $this.set_MembersToExclude($thisGroupMember)
         }
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

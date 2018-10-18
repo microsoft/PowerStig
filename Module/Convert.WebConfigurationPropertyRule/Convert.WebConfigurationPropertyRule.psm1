@@ -42,9 +42,9 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WebConfigurationPropertyRule ( [xml.xmlelement] $StigRule )
+    WebConfigurationPropertyRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetConfigSection()
         $this.SetKeyValuePair()
 
@@ -55,7 +55,7 @@ Class WebConfigurationPropertyRule : Rule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -77,9 +77,9 @@ Class WebConfigurationPropertyRule : Rule
     {
         $thisConfigSection = Get-ConfigSection -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisConfigSection ) )
+        if (-not $this.SetStatus($thisConfigSection))
         {
-            $this.set_ConfigSection( $thisConfigSection )
+            $this.set_ConfigSection($thisConfigSection)
         }
     }
 
@@ -95,10 +95,10 @@ Class WebConfigurationPropertyRule : Rule
     {
         $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisKeyValuePair ) )
+        if (-not $this.SetStatus($thisKeyValuePair))
         {
-            $this.set_Key( $thisKeyValuePair.Key )
-            $this.set_Value( $thisKeyValuePair.Value )
+            $this.set_Key($thisKeyValuePair.Key)
+            $this.set_Value($thisKeyValuePair.Value)
         }
     }
 
@@ -110,7 +110,7 @@ Class WebConfigurationPropertyRule : Rule
     #>
     [Boolean] IsOrganizationalSetting ()
     {
-        if ( -not [String]::IsNullOrEmpty( $this.key ) -and [String]::IsNullOrEmpty( $this.value ) )
+        if (-not [String]::IsNullOrEmpty($this.key) -and [String]::IsNullOrEmpty($this.value))
         {
             return $true
         }
@@ -130,10 +130,10 @@ Class WebConfigurationPropertyRule : Rule
     {
         $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
 
-        if ( -not $this.SetStatus( $thisOrganizationValueTestString ) )
+        if (-not $this.SetStatus($thisOrganizationValueTestString))
         {
-            $this.set_OrganizationValueTestString( $thisOrganizationValueTestString )
-            $this.set_OrganizationValueRequired( $true )
+            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
+            $this.set_OrganizationValueRequired($true)
         }
     }
 
@@ -142,7 +142,7 @@ Class WebConfigurationPropertyRule : Rule
         $this.DscResource = 'xWebConfigKeyValue'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (
@@ -187,9 +187,9 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return Test-MultipleWebConfigurationPropertyRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleWebConfigurationPropertyRule -CheckContent ([Rule]::SplitCheckContent($CheckContent))
     }
 
     <#
@@ -205,9 +205,9 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultipleWebConfigurationPropertyRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultipleWebConfigurationPropertyRule -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     #endregion

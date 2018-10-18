@@ -42,14 +42,14 @@ Class ProcessMitigationRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden ProcessMitigationRule ( [xml.xmlelement] $StigRule )
+    hidden ProcessMitigationRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetMitigationTargetName()
         $this.SetMitigationToEnable()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -63,18 +63,14 @@ Class ProcessMitigationRule : Rule
     {
         $ruleList = @()
         $rule = [ProcessMitigationRule]::new($StigRule)
-        if ( $rule.HasMultipleRules() )
+        if ($rule.HasMultipleRules())
         {
-            [int] $LowercaseAByte = 97
             [string[]] $splitRules = $rule.SplitMultipleRules()
-            foreach ( $splitRule in $splitRules )
+            foreach ($splitRule in $splitRules)
             {
                 $ruleClone = $rule.Clone()
                 $ruleClone.MitigationTarget = $splitRule
-                $ruleClone.id = "$($rule.id).$([CHAR][BYTE]$LowercaseAByte)"
                 $ruleList += $ruleClone
-
-                $LowercaseAByte++
             }
         }
         else
@@ -98,9 +94,9 @@ Class ProcessMitigationRule : Rule
     {
         $thisMitigationTargetName = Get-MitigationTargetName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisMitigationTargetName ) )
+        if (-not $this.SetStatus($thisMitigationTargetName))
         {
-            $this.set_MitigationTarget( $thisMitigationTargetName )
+            $this.set_MitigationTarget($thisMitigationTargetName)
         }
     }
 
@@ -115,9 +111,9 @@ Class ProcessMitigationRule : Rule
     {
         $thisMitigation = Get-MitigationPolicyToEnable -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisMitigation ) )
+        if (-not $this.SetStatus($thisMitigation))
         {
-            $this.set_Enable( $thisMitigation )
+            $this.set_Enable($thisMitigation)
         }
     }
 
@@ -129,9 +125,9 @@ Class ProcessMitigationRule : Rule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
-    [bool] HasMultipleRules ( )
+    [bool] HasMultipleRules ()
     {
-        return ( Test-MultipleProcessMitigationRule -MitigationTarget $this.MitigationTarget )
+        return (Test-MultipleProcessMitigationRule -MitigationTarget $this.MitigationTarget)
     }
 
     <#
@@ -147,14 +143,14 @@ Class ProcessMitigationRule : Rule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
-    [string[]] SplitMultipleRules ( )
+    [string[]] SplitMultipleRules ()
     {
-        return ( Split-ProcessMitigationRule -MitigationTarget $this.MitigationTarget )
+        return (Split-ProcessMitigationRule -MitigationTarget $this.MitigationTarget)
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
-        if ( $CheckContent -Match "Get-ProcessMitigation" )
+        if ($CheckContent -Match "Get-ProcessMitigation")
         {
             return $true
         }

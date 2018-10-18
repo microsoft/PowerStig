@@ -39,20 +39,22 @@ Class DnsServerSettingRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    DnsServerSettingRule ( [xml.xmlelement] $StigRule )
+    DnsServerSettingRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetDnsServerPropertyName()
         $this.SetDnsServerPropertyValue()
-        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+
+        if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
         }
-        if ( $this.IsExistingRule( $global:stigSettings ) )
+        if ($this.IsExistingRule($global:stigSettings))
         {
             $newId = Get-AvailableId -Id $this.Id
-            $this.set_id( $newId )
+            $this.set_id($newId)
         }
+
         $this.SetDscResource()
     }
 
@@ -67,11 +69,11 @@ Class DnsServerSettingRule : Rule
             value. If the DNS server setting that is returned is not a valid name,
             the parser status is set to fail.
     #>
-    [void] SetDnsServerPropertyName ( )
+    [void] SetDnsServerPropertyName ()
     {
         $thisDnsServerSettingPropertyName = Get-DnsServerSettingProperty -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisDnsServerSettingPropertyName ) )
+        if (-not $this.SetStatus($thisDnsServerSettingPropertyName))
         {
             $this.set_PropertyName($thisDnsServerSettingPropertyName)
         }
@@ -86,11 +88,11 @@ Class DnsServerSettingRule : Rule
             the value. If the DNS server setting that is returned is not a valid
             property, the parser status is set to fail.
     #>
-    [void] SetDnsServerPropertyValue ( )
+    [void] SetDnsServerPropertyValue ()
     {
         $thisDnsServerSettingPropertyValue = Get-DnsServerSettingPropertyValue -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisDnsServerSettingPropertyValue ) )
+        if (-not $this.SetStatus($thisDnsServerSettingPropertyValue))
         {
             $this.set_PropertyValue($thisDnsServerSettingPropertyValue)
         }
@@ -101,7 +103,7 @@ Class DnsServerSettingRule : Rule
         $this.DscResource = 'xDnsServerSetting'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

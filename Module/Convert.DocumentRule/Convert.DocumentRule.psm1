@@ -31,9 +31,9 @@ Class DocumentRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    DocumentRule ( [xml.xmlelement] $StigRule )
+    DocumentRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetDscResource()
     }
 
@@ -51,7 +51,7 @@ Class DocumentRule : Rule
         .PARAMETER RawString
             The chcek-content element of the STIG xccdf
     #>
-    DocumentRule ( [string] $Id, [severity] $Severity, [string] $Title, [string] $RawString )
+    DocumentRule ([string] $Id, [severity] $Severity, [string] $Title, [string] $RawString)
     {
         $this.Id = $Id
         $this.severity = $Severity
@@ -70,14 +70,14 @@ Class DocumentRule : Rule
         .PARAMETER RuleToConvert
             A STIG rule that has already been parsed.
     #>
-    static [DocumentRule] ConvertFrom ( [object] $RuleToConvert )
+    static [DocumentRule] ConvertFrom ([object] $RuleToConvert)
     {
         return [DocumentRule]::New($RuleToConvert.Id, $RuleToConvert.severity,
             $RuleToConvert.title, $RuleToConvert.rawString)
     }
 
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

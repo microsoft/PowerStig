@@ -53,7 +53,7 @@ Class FileContentType
             The key-value settings from the check-content element in the xccdf
     #>
 
-    [pscustomobject] ProcessMatches ( [psobject] $matchResult )
+    [pscustomobject] ProcessMatches ([psobject] $matchResult)
     {
         $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
         $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude -Recurse -Include "*.$($global:stigXccdfName).*"

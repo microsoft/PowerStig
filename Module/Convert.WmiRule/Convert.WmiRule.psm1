@@ -44,10 +44,10 @@ Class WmiRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WmiRule ( [xml.xmlelement] $StigRule )
+    WmiRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
-        Switch ( $this.rawString )
+        $this.InvokeClass($StigRule)
+        Switch ($this.rawString)
         {
             {$PSItem -Match "Service Pack" }
             {
@@ -59,7 +59,7 @@ Class WmiRule : Rule
                 $this.rawString -match "\d\.\d" | Out-Null
                 $osMajMin = $matches[0]
 
-                ($this.rawString -match "\(Build\s\d{1,}\)" | Out-Null )
+                ($this.rawString -match "\(Build\s\d{1,}\)" | Out-Null)
                 $osBuild = $matches[0] -replace "\(|\)|Build|\s", ""
 
                 $this.Value = "$osMajMin.$osBuild"
@@ -83,7 +83,7 @@ Class WmiRule : Rule
         $this.DscResource = 'Script'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

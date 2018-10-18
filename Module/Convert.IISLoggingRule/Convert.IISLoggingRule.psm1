@@ -48,7 +48,7 @@ Class IisLoggingRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    IisLoggingRule ( [xml.xmlelement] $StigRule )
+    IisLoggingRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetLogCustomFields()
@@ -59,7 +59,7 @@ Class IisLoggingRule : Rule
         $this.SetStatus()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -79,7 +79,7 @@ Class IisLoggingRule : Rule
     {
         $thisLogCustomField = Get-LogCustomFieldEntry -CheckContent $this.SplitCheckContent
 
-        $this.set_LogCustomFieldEntry( $thisLogCustomField )
+        $this.set_LogCustomFieldEntry($thisLogCustomField)
     }
 
     <#
@@ -94,9 +94,9 @@ Class IisLoggingRule : Rule
     {
         $thisLogFlag = Get-LogFlag -CheckContent $this.SplitCheckContent
 
-        if ( -not [String]::IsNullOrEmpty( $thisLogFlag ) )
+        if (-not [String]::IsNullOrEmpty($thisLogFlag))
         {
-            $this.set_LogFlags( $thisLogFlag )
+            $this.set_LogFlags($thisLogFlag)
         }
     }
 
@@ -112,9 +112,9 @@ Class IisLoggingRule : Rule
     {
         $thisLogFormat = Get-LogFormat -CheckContent $this.SplitCheckContent
 
-        if ( -not [String]::IsNullOrEmpty( $thisLogFormat ) )
+        if (-not [String]::IsNullOrEmpty($thisLogFormat))
         {
-            $this.set_LogFormat( $thisLogFormat )
+            $this.set_LogFormat($thisLogFormat)
         }
     }
 
@@ -130,9 +130,9 @@ Class IisLoggingRule : Rule
     {
         $thisLogPeriod = Get-LogPeriod -CheckContent $this.SplitCheckContent
 
-        if ( -not [String]::IsNullOrEmpty( $thisLogPeriod ) )
+        if (-not [String]::IsNullOrEmpty($thisLogPeriod))
         {
-            $this.set_LogPeriod( $thisLogPeriod )
+            $this.set_LogPeriod($thisLogPeriod)
         }
     }
 
@@ -148,9 +148,9 @@ Class IisLoggingRule : Rule
     {
         $thisLogTargetW3C = Get-LogTargetW3C -CheckContent $this.SplitCheckContent
 
-        if ( -not [String]::IsNullOrEmpty( $thisLogTargetW3C ) )
+        if (-not [String]::IsNullOrEmpty($thisLogTargetW3C))
         {
-            $this.set_LogTargetW3C( $thisLogTargetW3C )
+            $this.set_LogTargetW3C($thisLogTargetW3C)
         }
     }
 
@@ -164,15 +164,15 @@ Class IisLoggingRule : Rule
     [void] SetStatus ()
     {
         $baseRule = [Rule]::New()
-        $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
-        $differenceProperties = ( $this | Get-Member -MemberType Property ).Name
+        $referenceProperties = ($baseRule | Get-Member -MemberType Property).Name
+        $differenceProperties = ($this | Get-Member -MemberType Property).Name
         $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
 
         $status = $false
 
         foreach ($property in $propertyList)
         {
-            if ( $null -ne $this.$property )
+            if ($null -ne $this.$property)
             {
                 $status = $true
             }
@@ -196,7 +196,7 @@ Class IisLoggingRule : Rule
         }
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

@@ -42,15 +42,15 @@ Class MimeTypeRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden MimeTypeRule ( [xml.xmlelement] $StigRule )
+    hidden MimeTypeRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetExtension()
         $this.SetMimeType()
         $this.SetEnsure()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -64,24 +64,20 @@ Class MimeTypeRule : Rule
     {
         $checkStrings = $StigRule.rule.Check.('check-content')
 
-        if ( [MimeTypeRule]::HasMultipleRules( $checkStrings ) )
+        if ([MimeTypeRule]::HasMultipleRules($checkStrings))
         {
-            $splitMimeTypeRules = [MimeTypeRule]::SplitMultipleRules( $checkStrings )
+            $splitMimeTypeRules = [MimeTypeRule]::SplitMultipleRules($checkStrings)
             $mimeTypeRules = @()
-            [int]$byte = 97
-            $id = $StigRule.id
             foreach ($mimeTypeRule in $splitMimeTypeRules)
             {
-                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
                 $StigRule.rule.Check.('check-content') = $mimeTypeRule
-                $mimeTypeRules += [MimeTypeRule]::New( $StigRule )
-                $byte ++
+                $mimeTypeRules += [MimeTypeRule]::New($StigRule)
             }
             return $mimeTypeRules
         }
         else
         {
-            return [MimeTypeRule]::New( $StigRule )
+            return [MimeTypeRule]::New($StigRule)
         }
     }
 
@@ -97,9 +93,9 @@ Class MimeTypeRule : Rule
     {
         $thisExtension = Get-Extension -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisExtension ) )
+        if (-not $this.SetStatus($thisExtension))
         {
-            $this.set_Extension( $thisExtension )
+            $this.set_Extension($thisExtension)
         }
     }
 
@@ -115,9 +111,9 @@ Class MimeTypeRule : Rule
     {
         $thisMimeType = Get-MimeType -Extension $this.Extension
 
-        if ( -not $this.SetStatus( $thisMimeType ) )
+        if (-not $this.SetStatus($thisMimeType))
         {
-            $this.set_MimeType( $thisMimeType )
+            $this.set_MimeType($thisMimeType)
         }
     }
 
@@ -131,9 +127,9 @@ Class MimeTypeRule : Rule
     {
         $thisEnsure = Get-Ensure -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisEnsure ) )
+        if (-not $this.SetStatus($thisEnsure))
         {
-            $this.set_Ensure( $thisEnsure )
+            $this.set_Ensure($thisEnsure)
         }
     }
 
@@ -145,9 +141,9 @@ Class MimeTypeRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return Test-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleMimeTypeRule -CheckContent ([Rule]::SplitCheckContent($CheckContent))
     }
 
     <#
@@ -164,9 +160,9 @@ Class MimeTypeRule : Rule
             The rule text from the check-content element in the xccdf
     #>
 
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultipleMimeTypeRule -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     hidden [void] SetDscResource ()
@@ -174,7 +170,7 @@ Class MimeTypeRule : Rule
         $this.DscResource = 'xIisMimeTypeMapping'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

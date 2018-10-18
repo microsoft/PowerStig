@@ -43,9 +43,9 @@ Class ServiceRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden ServiceRule ( [xml.xmlelement] $StigRule )
+    hidden ServiceRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetServiceName()
         $this.SetServiceState()
         $this.SetStartupType()
@@ -58,18 +58,14 @@ Class ServiceRule : Rule
     {
         $ruleList = @()
         $rule = [ServiceRule]::new($StigRule)
-        if ( $rule.HasMultipleRules() )
+        if ($rule.HasMultipleRules())
         {
-            [int] $LowercaseAByte = 97
             [string[]] $splitRules = $rule.SplitMultipleRules()
-            foreach ( $splitRule in $splitRules )
+            foreach ($splitRule in $splitRules)
             {
                 $ruleClone = $rule.Clone()
                 $ruleClone.ServiceName = $splitRule
-                $ruleClone.id = "$($rule.id).$([CHAR][BYTE]$LowercaseAByte)"
                 $ruleList += $ruleClone
-
-                $LowercaseAByte++
             }
         }
         else
@@ -92,10 +88,10 @@ Class ServiceRule : Rule
     {
         $thisServiceName = Get-ServiceName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisServiceName ) )
+        if (-not $this.SetStatus($thisServiceName))
         {
-            $this.set_ServiceName( $thisServiceName )
-            $this.set_Ensure( [ensure]::Present )
+            $this.set_ServiceName($thisServiceName)
+            $this.set_Ensure([ensure]::Present)
         }
     }
 
@@ -111,9 +107,9 @@ Class ServiceRule : Rule
     {
         $thisServiceState = Get-ServiceState -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisServiceState ) )
+        if (-not $this.SetStatus($thisServiceState))
         {
-            $this.set_ServiceState( $thisServiceState )
+            $this.set_ServiceState($thisServiceState)
         }
     }
 
@@ -130,13 +126,13 @@ Class ServiceRule : Rule
     {
         $thisServiceStartupType = Get-ServiceStartupType -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisServiceStartupType ) )
+        if (-not $this.SetStatus($thisServiceStartupType))
         {
-            $this.set_StartupType( $thisServiceStartupType )
+            $this.set_StartupType($thisServiceStartupType)
         }
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (
@@ -160,9 +156,9 @@ Class ServiceRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    [bool] HasMultipleRules ( )
+    [bool] HasMultipleRules ()
     {
-        return ( Test-MultipleServiceRule -ServiceName $this.Servicename )
+        return (Test-MultipleServiceRule -ServiceName $this.Servicename)
     }
 
     <#
@@ -178,9 +174,9 @@ Class ServiceRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    [string[]] SplitMultipleRules ( )
+    [string[]] SplitMultipleRules ()
     {
-        return ( Split-MultipleServiceRule -ServiceName $this.Servicename )
+        return (Split-MultipleServiceRule -ServiceName $this.Servicename)
     }
 
     hidden [void] SetDscResource ()

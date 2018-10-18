@@ -37,14 +37,14 @@ Class FileContentRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden FileContentRule ( [xml.xmlelement] $StigRule )
+    hidden FileContentRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetKeyName()
         $this.SetValue()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -58,24 +58,20 @@ Class FileContentRule : Rule
     {
         $checkStrings = $StigRule.rule.Check.('check-content')
 
-        if ( [FileContentRule]::HasMultipleRules( $checkStrings ) )
+        if ([FileContentRule]::HasMultipleRules($checkStrings))
         {
-            $splitFileContentEntries = [FileContentRule]::SplitMultipleRules( $checkStrings )
+            $splitFileContentEntries = [FileContentRule]::SplitMultipleRules($checkStrings)
             $fileContentRules = @()
-            [int]$byte = 97
-            $id = $StigRule.id
             foreach ($splitFileContentEntry in $splitFileContentEntries)
             {
-                $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
                 $StigRule.rule.Check.('check-content') = $splitFileContentEntry
-                $fileContentRules += [FileContentRule]::New( $StigRule )
-                $byte ++
+                $fileContentRules += [FileContentRule]::New($StigRule)
             }
             return $fileContentRules
         }
         else
         {
-            return [FileContentRule]::New( $StigRule )
+            return [FileContentRule]::New($StigRule)
         }
     }
 
@@ -91,9 +87,9 @@ Class FileContentRule : Rule
     {
         $thisKeyName = (Get-KeyValuePair $this.SplitCheckContent).Key
 
-        if ( -not $this.SetStatus( $thisKeyName ) )
+        if (-not $this.SetStatus($thisKeyName))
         {
-            $this.set_Key( $thisKeyName )
+            $this.set_Key($thisKeyName)
         }
     }
 
@@ -109,9 +105,9 @@ Class FileContentRule : Rule
     {
         $thisValue = (Get-KeyValuePair $this.SplitCheckContent).Value
 
-        if ( -not $this.SetStatus( $thisValue ) )
+        if (-not $this.SetStatus($thisValue))
         {
-            $this.set_Value( $thisValue )
+            $this.set_Value($thisValue)
         }
     }
 
@@ -134,7 +130,7 @@ Class FileContentRule : Rule
         }
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (
@@ -163,10 +159,10 @@ Class FileContentRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        $keyValuePairs = Get-KeyValuePair -CheckContent ([Rule]::SplitCheckContent( $CheckContent ) )
-        return ( Test-MultipleFileContentRule -KeyValuePair $keyValuePairs )
+        $keyValuePairs = Get-KeyValuePair -CheckContent ([Rule]::SplitCheckContent($CheckContent))
+        return (Test-MultipleFileContentRule -KeyValuePair $keyValuePairs)
     }
 
     <#
@@ -179,7 +175,7 @@ Class FileContentRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
         return (Get-KeyValuePair -SplitCheckContent -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }

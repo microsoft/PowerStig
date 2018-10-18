@@ -39,11 +39,11 @@ Class DnsServerRootHintRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    DnsServerRootHintRule ( [xml.xmlelement] $StigRule )
+    DnsServerRootHintRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
-        $this.set_HostName( '$null' )
-        $this.set_IpAddress( '$null' )
+        $this.InvokeClass($StigRule)
+        $this.set_HostName('$null')
+        $this.set_IpAddress('$null')
         $this.SetDscResource()
     }
 
@@ -52,7 +52,7 @@ Class DnsServerRootHintRule : Rule
         $this.DscResource = 'Script'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (

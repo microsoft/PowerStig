@@ -39,14 +39,14 @@ Class WindowsFeatureRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden WindowsFeatureRule ( [xml.xmlelement] $StigRule )
+    hidden WindowsFeatureRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetFeatureName()
         $this.SetFeatureInstallState()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -60,18 +60,14 @@ Class WindowsFeatureRule : Rule
     {
         $ruleList = @()
         $rule = [WindowsFeatureRule]::new($StigRule)
-        if ( $rule.HasMultipleRules() )
+        if ($rule.HasMultipleRules())
         {
-            [int] $LowercaseAByte = 97
             [string[]] $splitRules = $rule.SplitMultipleRules()
-            foreach ( $splitRule in $splitRules )
+            foreach ($splitRule in $splitRules)
             {
                 $ruleClone = $rule.Clone()
                 $ruleClone.FeatureName = $splitRule
-                $ruleClone.id = "$($rule.id).$([CHAR][BYTE]$LowercaseAByte)"
                 $ruleList += $ruleClone
-
-                $LowercaseAByte++
             }
         }
         else
@@ -93,9 +89,9 @@ Class WindowsFeatureRule : Rule
     {
         $thisFeatureName = Get-WindowsFeatureName -CheckContent $this.RawString
 
-        if ( -not $this.SetStatus( $thisFeatureName ) )
+        if (-not $this.SetStatus($thisFeatureName))
         {
-            $this.set_FeatureName( $thisFeatureName )
+            $this.set_FeatureName($thisFeatureName)
         }
     }
 
@@ -110,13 +106,13 @@ Class WindowsFeatureRule : Rule
     {
         $thisInstallState = Get-FeatureInstallState -CheckContent $this.RawString
 
-        if ( -not $this.SetStatus( $thisInstallState ) )
+        if (-not $this.SetStatus($thisInstallState))
         {
-            $this.set_InstallState( $thisInstallState )
+            $this.set_InstallState($thisInstallState)
         }
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (
@@ -139,9 +135,9 @@ Class WindowsFeatureRule : Rule
             The feature name from the rule text from the check-content element
             in the xccdf
     #>
-    [bool] HasMultipleRules ( )
+    [bool] HasMultipleRules ()
     {
-        return ( Test-MultipleWindowsFeatureRule -FeatureName $this.FeatureName )
+        return (Test-MultipleWindowsFeatureRule -FeatureName $this.FeatureName)
     }
 
     <#
@@ -157,9 +153,9 @@ Class WindowsFeatureRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    [string[]] SplitMultipleRules ( )
+    [string[]] SplitMultipleRules ()
     {
-        return ( Split-WindowsFeatureRule -FeatureName $this.FeatureName )
+        return (Split-WindowsFeatureRule -FeatureName $this.FeatureName)
     }
 
     hidden [void] SetDscResource ()

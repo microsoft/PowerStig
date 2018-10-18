@@ -38,9 +38,9 @@ Class WebAppPoolRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WebAppPoolRule ( [xml.xmlelement] $StigRule )
+    WebAppPoolRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetKeyValuePair()
         if ($this.IsOrganizationalSetting())
         {
@@ -49,7 +49,7 @@ Class WebAppPoolRule : Rule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ( $this.IsDuplicateRule( $global:stigSettings ))
+            if ($this.IsDuplicateRule($global:stigSettings))
             {
                 $this.SetDuplicateTitle()
             }
@@ -71,10 +71,10 @@ Class WebAppPoolRule : Rule
     {
         $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisKeyValuePair ) )
+        if (-not $this.SetStatus($thisKeyValuePair))
         {
-            $this.set_Key( $thisKeyValuePair.Key )
-            $this.set_Value( $thisKeyValuePair.Value )
+            $this.set_Key($thisKeyValuePair.Key)
+            $this.set_Value($thisKeyValuePair.Value)
         }
     }
 
@@ -86,7 +86,7 @@ Class WebAppPoolRule : Rule
     #>
     [Boolean] IsOrganizationalSetting ()
     {
-        if ( -not [String]::IsNullOrEmpty( $this.key ) -and [String]::IsNullOrEmpty( $this.value ) )
+        if (-not [String]::IsNullOrEmpty($this.key) -and [String]::IsNullOrEmpty($this.value))
         {
             return $true
         }
@@ -106,10 +106,10 @@ Class WebAppPoolRule : Rule
     {
         $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
 
-        if ( -not $this.SetStatus( $thisOrganizationValueTestString ) )
+        if (-not $this.SetStatus($thisOrganizationValueTestString))
         {
-            $this.set_OrganizationValueTestString( $thisOrganizationValueTestString )
-            $this.set_OrganizationValueRequired( $true )
+            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
+            $this.set_OrganizationValueRequired($true)
         }
     }
 
@@ -118,7 +118,7 @@ Class WebAppPoolRule : Rule
         $this.DscResource = 'xWebAppPool'
     }
 
-    static [bool] Match ( [string] $CheckContent )
+    static [bool] Match ([string] $CheckContent)
     {
         if
         (
