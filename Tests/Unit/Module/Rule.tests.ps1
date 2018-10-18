@@ -137,7 +137,7 @@ try
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Account Lockout Policy.
 
                 If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'
-                It 'Should return AccountPolicyRule when 'Account Policies' is found' {
+                It "Should return AccountPolicyRule when 'Account Policies' is found" {
                     $testResults = Get-RuleTypeMatchList -CheckContent $checkContent
                     $testResults | Should Be 'AccountPolicyRule'
                 }

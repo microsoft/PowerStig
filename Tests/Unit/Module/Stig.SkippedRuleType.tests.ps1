@@ -18,7 +18,7 @@ try
         #region Class Tests
         Describe 'SkippedRuleType Class' {
 
-            'Constructor' {
+            Context 'Constructor' {
 
                 It 'Should create an SkippedRuleType class instance using SkippedRuleType1 data' {
                     foreach ($type in $SkippedRuleTypeArray)
