@@ -15,5 +15,3 @@ finally
     . $PSScriptRoot\.tests.Footer.ps1
 }
 
-#commit uses to build the PR again 
-
