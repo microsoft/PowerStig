@@ -146,5 +146,10 @@ Class AccountPolicyRule : Rule
         }
         return $false
     }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'AccountPolicy'
+    }
     #endregion
 }

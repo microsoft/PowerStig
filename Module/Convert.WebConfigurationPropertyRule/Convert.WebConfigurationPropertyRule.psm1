@@ -179,6 +179,11 @@ Class WebConfigurationPropertyRule : Rule
         return $false
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xWebConfigKeyValue'
+    }
+
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

@@ -190,6 +190,28 @@ Class PermissionRule : Rule
         return $false
     }
 
+
+    hidden [void] SetDscResource ()
+    {
+        if ( $this.Path )
+        {
+            switch ($this.Path)
+            {
+                {$PSItem -match '{domain}'}
+                {
+                    $this.DscResource = "ActiveDirectoryAuditRuleEntry"
+                }
+                {$PSItem -match 'HKLM:\\'}
+                {
+                    $this.DscResource = 'RegistryAccessEntry'
+                }
+                {$PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)'}
+                {
+                    $this.DscResource = 'NTFSAccessEntry'
+                }
+            }
+        }
+    }
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check
