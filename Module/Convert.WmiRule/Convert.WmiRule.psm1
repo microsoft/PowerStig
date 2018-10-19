@@ -47,5 +47,11 @@ Class WmiRule : Rule
     WmiRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'Script'
     }
 }

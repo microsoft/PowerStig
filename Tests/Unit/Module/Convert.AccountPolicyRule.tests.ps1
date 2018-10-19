@@ -19,7 +19,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It "Shoud have a BaseType of Rule" {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -32,18 +32,6 @@ try
                 {
                     It "Should have a property named '$property'" {
                         ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
-
-            Context 'Class Methods' {
-
-                $classMethods = @('SetPolicyName', 'SetPolicyValue', 'SetPolicyValueRange')
-
-                foreach ( $method in $classMethods )
-                {
-                    It "Should have a method named '$method'" {
-                        ( $rule | Get-Member -Name $method ).Name | Should Be $method
                     }
                 }
             }

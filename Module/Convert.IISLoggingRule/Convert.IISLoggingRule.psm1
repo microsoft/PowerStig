@@ -50,7 +50,8 @@ Class IisLoggingRule : Rule
     #>
     IisLoggingRule ( [xml.xmlelement] $StigRule )
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetDscResource()
     }
 
     <#
@@ -170,5 +171,16 @@ Class IisLoggingRule : Rule
         }
     }
 
+    hidden [void] SetDscResource  ()
+    {
+        if ($global:stigTitle -match "Server")
+        {
+            $this.DscResource = "xIISLogging"
+        }
+        else
+        {
+            $this.DscResource = "XWebsite"
+        }
+    }
     #endregion
 }

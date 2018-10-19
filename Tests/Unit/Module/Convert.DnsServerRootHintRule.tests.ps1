@@ -13,7 +13,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It "Shoud have a BaseType of Rule" {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -27,19 +27,6 @@ try
                     It "Should have a property named '$property'" {
                         ( $rule | Get-Member -Name $property ).Name | Should Be $property
                     }
-                }
-            }
-
-            Context 'Class Methods' {
-
-                $classMethods = @()
-
-                # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
-                    $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
-                    $memberActual = ( $rule | Get-Member -MemberType Method ).Name
-                    $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
-                    $compare.Count | Should Be 0
                 }
             }
         }

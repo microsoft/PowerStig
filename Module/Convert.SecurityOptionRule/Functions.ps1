@@ -19,7 +19,6 @@ function ConvertTo-SecurityOptionRule
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
     $securityOptionRule = [SecurityOptionRule]::New( $StigRule )
-    $securityOptionRule.SetStigRuleResource()
     $securityOptionRule.SetOptionName()
 
     if ( $securityOptionRule.TestOptionValueForRange() )

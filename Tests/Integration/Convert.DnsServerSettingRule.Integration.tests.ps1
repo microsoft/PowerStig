@@ -46,27 +46,27 @@ If any option other than "Errors and warnings" or "All events" is selected, this
 
 $multiUserRightRule = @'
 Review the DNS server to confirm the server restricts direct and remote console access to users other than Administrators.
-                              
+
 Verify the effective setting in Local Group Policy Editor.
-                              
+
 Run "gpedit.msc".
-                              
+
 Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
-                              
-If any accounts or groups other than the following are granted the "Allow log on through Remote Desktop Services" user right, this is a finding: 
-                              
+
+If any accounts or groups other than the following are granted the "Allow log on through Remote Desktop Services" user right, this is a finding:
+
 Administrators
-                              
+
 Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
-                              
-If the following accounts or groups are not defined for the "Deny access to this computer from the network" user right, this is a finding: 
-                              
+
+If the following accounts or groups are not defined for the "Deny access to this computer from the network" user right, this is a finding:
+
 Guests Group
-                              
+
 Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
-                              
-If the following accounts or groups are not defined for the "Deny log on locally" user right, this is a finding: 
-                              
+
+If the following accounts or groups are not defined for the "Deny log on locally" user right, this is a finding:
+
 Guests Group
 '@
 
@@ -123,6 +123,9 @@ finding.
             It "Should have PropertyValue of None" {
                 $rule.PropertyValue | Should Be '$True'
             }
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'xDnsServerSetting'
+            }
             It "Should set the Conversion status to pass" {
                 $rule.conversionstatus | Should be 'pass'
             }
@@ -143,6 +146,9 @@ finding.
             }
             It "Should have PropertyValue of 4" {
                 $rule.PropertyValue | Should Be '4'
+            }
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'xDnsServerSetting'
             }
             It "Should set the Conversion status to pass" {
                 $rule.conversionstatus | Should be 'pass'
@@ -196,9 +202,9 @@ finding.
                     $entry.Rights | Should Be 'FullControl'
                 }
 
-                $principalCount = $permissionRule.AccessControlEntry.Principal | 
+                $principalCount = $permissionRule.AccessControlEntry.Principal |
                     Where-Object {$PSItem -match 'Eventlog|SYSTEM|Administrators'}
-                
+
                 $principalCount.count | Should Be 3
             }
 

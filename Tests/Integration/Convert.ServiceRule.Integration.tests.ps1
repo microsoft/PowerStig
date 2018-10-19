@@ -10,13 +10,13 @@ try
             ServiceState = 'Running'
             StartupType  = 'Automatic'
             CheckContent = 'Run "Services.msc".
-        
+
             Verify the McAfee Agent service is running, depending on the version installed.
-        
+
             Version - Service Name
             McAfee Agent v5.x - McAfee Agent Service
             McAfee Agent v4.x - McAfee Framework Service
-        
+
             If the service is not listed or does not have a Status of "Started", this is a finding.'
             ConversionStatus = 'pass'
         },
@@ -25,9 +25,9 @@ try
             ServiceState = 'Running'
             StartupType  = 'Automatic'
             CheckContent = 'Verify the Smart Card Removal Policy service is configured to "Automatic".
-        
+
             Run "Services.msc".
-        
+
             If the Startup Type for Smart Card Removal Policy is not set to Automatic, this is a finding.'
             ConversionStatus = 'pass'
         },
@@ -36,11 +36,11 @@ try
             ServiceState = 'Stopped'
             StartupType  = 'Disabled'
             CheckContent = 'Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
-        
+
             Run "Services.msc".
-        
+
             If the following is installed and not disabled, this is a finding:
-        
+
             Simple TCP/IP Services (simptcp)'
             ConversionStatus = 'pass'
         },
@@ -50,7 +50,7 @@ try
             StartupType  = 'Disabled'
             CheckContent = 'If the server has the role of an FTP server, this is NA.
             Run "Services.msc".
-        
+
             If the "Microsoft FTP Service" (Service name: FTPSVC) is installed and not disabled, this is a finding.'
             ConversionStatus = 'pass'
         },
@@ -60,7 +60,7 @@ try
             StartupType  = 'Disabled'
             CheckContent = 'If the server has the role of a server, this is NA.
             Run "Services.msc".
-        
+
             If A string without parentheses is installed and not disabled, this is a finding.'
             ConversionStatus = 'fail'
         }
@@ -83,14 +83,17 @@ try
                 }
                 It "Should return Service Name '$($service.ServiceName)'" {
                     $rule.ServiceName | Should Be $service.ServiceName
-                } 
+                }
                 It "Should return Service State '$($service.ServiceState)' from '$($service.ServiceName)'" {
                     $rule.ServiceState | Should Be $service.ServiceState
                 }
                 It "Should return Startup Type '$($service.StartupType)' from '$($service.ServiceName)'" {
                     $rule.StartupType | Should Be $service.StartupType
                 }
-                It "Should set the Conversion statud to pass ensure value" {
+                It "Should set the correct DscResource" {
+                    $rule.DscResource | Should Be 'xService'
+                }
+                It "Should set the Conversion status to pass ensure value" {
                     $rule.conversionstatus | Should be $service.conversionstatus
                 }
             }
@@ -99,13 +102,13 @@ try
     Describe "Multiple Service Rule Conversion" {
 
         $checkContent = 'Run "services.msc" to display the Services console.
-    
-    Verify the Startup Type for the following Windows services: 
+
+    Verify the Startup Type for the following Windows services:
     - Active Directory Domain Services
     - Windows Time (not required if another time synchronization tool is implemented to start automatically)
-    
+
     If the Startup Type for any of these services is not Automatic, this is a finding'
-     
+
         [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
         $StigRule.Save( $TestFile )
@@ -127,14 +130,17 @@ try
             }
             It "Should return 'NTDS'" {
                 $rule.ServiceName | Should Be 'NTDS'
-            } 
+            }
             It "Should return 'Running'" {
                 $rule.ServiceState | Should Be 'Running'
             }
             It "Should return 'Automatic'" {
                 $rule.StartupType | Should Be 'Automatic'
             }
-            It "Should set the Conversion statud to pass ensure value" {
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'xService'
+            }
+            It "Should set the Conversion status to pass ensure value" {
                 $rule.conversionstatus | Should be 'pass'
             }
         }
@@ -151,14 +157,17 @@ try
             }
             It "Should return 'W32Time'" {
                 $rule.ServiceName | Should Be 'W32Time'
-            } 
+            }
             It "Should return 'Running'" {
                 $rule.ServiceState | Should Be 'Running'
             }
             It "Should return 'Automatic'" {
                 $rule.StartupType | Should Be 'Automatic'
             }
-            It "Should set the Conversion statud to pass ensure value" {
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'xService'
+            }
+            It "Should set the Conversion status to pass ensure value" {
                 $rule.conversionstatus | Should be 'pass'
             }
         }

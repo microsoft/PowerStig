@@ -38,8 +38,6 @@ function ConvertTo-WebAppPoolRule
         }
     }
 
-    $webAppPool.SetStigRuleResource()
-
     return $webAppPool
 }
 #endregion

@@ -25,8 +25,6 @@ function ConvertTo-WindowsFeatureRule
 
     $windowsFeatureRule.SetFeatureInstallState()
 
-    $windowsFeatureRule.SetStigRuleResource()
-
     $featureNameList = $windowsFeatureRule.FeatureName
 
     if ( [WindowsFeatureRule]::HasMultipleRules( $featureNameList ) )

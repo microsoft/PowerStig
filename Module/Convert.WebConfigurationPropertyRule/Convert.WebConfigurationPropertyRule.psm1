@@ -45,6 +45,7 @@ Class WebConfigurationPropertyRule : Rule
     WebConfigurationPropertyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -119,6 +120,11 @@ Class WebConfigurationPropertyRule : Rule
             $this.set_OrganizationValueTestString( $thisOrganizationValueTestString )
             $this.set_OrganizationValueRequired( $true )
         }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'xWebConfigKeyValue'
     }
 
     <#

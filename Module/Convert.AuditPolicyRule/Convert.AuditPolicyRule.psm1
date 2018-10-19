@@ -44,6 +44,7 @@ Class AuditPolicyRule : Rule
     AuditPolicyRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -96,5 +97,11 @@ Class AuditPolicyRule : Rule
     {
         $this.Ensure = $EnsureFlag
     }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'AuditPolicySubcategory'
+    }
+
     #endregion
 }

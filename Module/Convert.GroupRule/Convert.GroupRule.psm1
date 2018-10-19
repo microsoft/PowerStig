@@ -41,6 +41,7 @@ Class GroupRule : Rule
     GroupRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -85,6 +86,11 @@ Class GroupRule : Rule
         {
             $this.set_MembersToExclude( $thisGroupMember )
         }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'Group'
     }
     #endregion
 }

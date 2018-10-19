@@ -20,8 +20,6 @@ function ConvertTo-ManualRule
 
     $manualRule = [ManualRule]::New( $StigRule )
 
-    $manualRule.SetStigRuleResource()
-
     return $manualRule
 }
 #endregion

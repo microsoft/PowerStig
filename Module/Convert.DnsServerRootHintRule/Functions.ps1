@@ -18,14 +18,6 @@ function ConvertTo-DnsServerRootHintRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $dnsServerRootHintRule = [DnsServerRootHintRule]::New( $StigRule )
-
-    $dnsServerRootHintRule.SetStigRuleResource()
-
-    $dnsServerRootHintRule.set_HostName( '$null' )
-
-    $dnsServerRootHintRule.set_IpAddress( '$null' )
-
-    return $dnsServerRootHintRule
+    return [DnsServerRootHintRule]::New( $StigRule )
 }
 #endregion

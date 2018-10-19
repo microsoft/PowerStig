@@ -24,8 +24,6 @@ function ConvertTo-SqlScriptQueryRule
 
     $fixText = [SqlScriptQueryRule]::GetFixText( $StigRule )
 
-    $sqlScriptQueryRule.SetStigRuleResource()
-
     $sqlScriptQueryRule.SetGetScript( $ruleType )
 
     $sqlScriptQueryRule.SetTestScript( $ruleType )

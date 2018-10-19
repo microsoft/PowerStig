@@ -41,13 +41,14 @@ try
             It 'Should be a GroupRule' {
                 $rule.GetType() | Should Be 'GroupRule'
             }
-
             It "Should return GroupName:'$($rule.GroupName)'" {
                 $rule.GroupName | Should Be $groupRule.GroupName
             }
-
             It "Should return MembersToExclude:'$($rule.MembersToExclude)'" {
                 $rule.MembersToExclude | Should Be $groupRule.MembersToExclude
+            }
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'Group'
             }
         }
     }

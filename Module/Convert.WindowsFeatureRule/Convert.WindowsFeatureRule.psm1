@@ -42,6 +42,7 @@ Class WindowsFeatureRule : Rule
     WindowsFeatureRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -112,5 +113,9 @@ Class WindowsFeatureRule : Rule
         return ( Split-WindowsFeatureRule -FeatureName $FeatureName )
     }
 
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'WindowsOptionalFeature'
+    }
     #endregion
 }

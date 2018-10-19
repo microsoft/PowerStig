@@ -34,6 +34,7 @@ Class DocumentRule : Rule
     DocumentRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass( $StigRule )
+        $this.SetDscResource()
     }
 
     <#
@@ -56,7 +57,7 @@ Class DocumentRule : Rule
         $this.severity = $Severity
         $this.title = $Title
         $this.rawString = $RawString
-        $this.SetStigRuleResource()
+        $this.SetDscResource()
     }
 
     <#
@@ -73,5 +74,10 @@ Class DocumentRule : Rule
     {
         return [DocumentRule]::New($RuleToConvert.Id, $RuleToConvert.severity,
             $RuleToConvert.title, $RuleToConvert.rawString)
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'None'
     }
 }

@@ -26,7 +26,6 @@ function ConvertTo-ServiceRule
 
     $serviceRule.SetStartupType()
 
-    $serviceRule.SetStigRuleResource()
     $ServiceName = $serviceRule.Servicename
 
     if ( [ServiceRule]::HasMultipleRules( $ServiceName ) )

@@ -67,22 +67,7 @@ function New-PermissionRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-    $permissionRule = [PermissionRule]::New( $StigRule )
-
-    $permissionRule.SetPath()
-
-    $permissionRule.SetForce()
-
-    $permissionRule.SetStigRuleResource()
-
-    $permissionRule.SetAccessControlEntry()
-
-    if ( $permissionRule.IsDuplicateRule( $global:stigSettings ) )
-    {
-        $permissionRule.SetDuplicateTitle()
-    }
-
-    return $permissionRule
+    return [PermissionRule]::New( $StigRule )
 }
 
 #endregion

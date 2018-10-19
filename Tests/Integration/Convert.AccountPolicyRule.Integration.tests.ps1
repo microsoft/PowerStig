@@ -9,15 +9,15 @@ try
     Describe "ConvertTo-AccountPolicyRule without range" {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
-        
+
         Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Account Lockout Policy.
-        
+
         If the value for "Setting to Configure" is not set to "Disabled", this is a finding.'
         [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
         $StigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
-        
+
         It "Should return an AccountPolicyRule Object" {
             $rule.GetType() | Should Be 'AccountPolicyRule'
         }
@@ -30,6 +30,9 @@ try
         It 'Should have emtpty test string' {
             $rule.OrganizationValueTestString | Should BeNullOrEmpty
         }
+        It "Should set the correct DscResource" {
+            $rule.DscResource | Should Be 'AccountPolicy'
+        }
         It 'Should Set the status to pass' {
             $rule.conversionstatus | Should Be 'pass'
         }
@@ -38,9 +41,9 @@ try
     Describe "ConvertTo-AccountPolicyRule with a range" {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
-        
+
         Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Account Lockout Policy.
-        
+
         If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'
         [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
@@ -55,6 +58,9 @@ try
         }
         It 'Should have set a test string' {
             $rule.OrganizationValueTestString | Should Be "'{0}' -le '3' -and '{0}' -ne '0'"
+        }
+        It "Should set the correct DscResource" {
+            $rule.DscResource | Should Be 'AccountPolicy'
         }
         It 'Should Set the status to pass' {
             $rule.conversionstatus | Should Be 'pass'

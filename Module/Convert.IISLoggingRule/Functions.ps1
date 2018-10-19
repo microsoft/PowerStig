@@ -35,8 +35,6 @@ function ConvertTo-IisLoggingRule
 
     $iisLoggingRule.SetStatus()
 
-    $iisLoggingRule.SetStigRuleResource()
-
     if ($iisLoggingRule.conversionstatus -eq 'pass')
     {
         if ( $iisLoggingRule.IsDuplicateRule( $global:stigSettings ))

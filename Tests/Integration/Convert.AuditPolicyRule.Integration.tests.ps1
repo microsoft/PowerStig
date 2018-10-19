@@ -5,7 +5,7 @@
 try
 {
     #region Test Setup
-    $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+    $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -33,6 +33,9 @@ Account Management -&gt; Computer Account Management - Success'
         }
         It "Should set the correct ensure value" {
             $rule.Ensure | Should be 'Present'
+        }
+        It "Should set the correct DscResource" {
+            $rule.DscResource | Should Be 'AuditPolicySubcategory'
         }
         It "Should set the Conversion statud to pass ensure value" {
             $rule.conversionstatus | Should be 'pass'

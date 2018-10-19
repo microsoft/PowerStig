@@ -44,6 +44,14 @@ Class PermissionRule : Rule
     PermissionRule ( [xml.xmlelement] $StigRule )
     {
         $this.InvokeClass($StigRule)
+        $this.SetPath()
+        $this.SetDscResource()
+        $this.SetForce()
+        $this.SetAccessControlEntry()
+        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        {
+            $this.SetDuplicateTitle()
+        }
     }
 
     # Methods
@@ -110,6 +118,28 @@ Class PermissionRule : Rule
         }
     }
 
+
+    hidden [void] SetDscResource ()
+    {
+        if ( $this.Path )
+        {
+            switch ($this.Path)
+            {
+                {$PSItem -match '{domain}'}
+                {
+                    $this.DscResource = "ActiveDirectoryAuditRuleEntry"
+                }
+                {$PSItem -match 'HKLM:\\'}
+                {
+                    $this.DscResource = 'RegistryAccessEntry'
+                }
+                {$PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)'}
+                {
+                    $this.DscResource = 'NTFSAccessEntry'
+                }
+            }
+        }
+    }
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check
