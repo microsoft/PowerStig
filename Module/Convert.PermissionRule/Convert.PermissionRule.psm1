@@ -58,24 +58,21 @@ Class PermissionRule : Rule
 
     static [PermissionRule[]] ConvertFromXccdf ($StigRule)
     {
-        $checkStrings = $StigRule.rule.Check.('check-content')
-
-        if ([PermissionRule]::HasMultipleRules($checkStrings))
+        $ruleList = @()
+        if ([PermissionRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
-            $splitPermissionEntries = [PermissionRule]::SplitMultipleRules($checkStrings)
-            $permissionRules = @()
-            foreach ($splitPermissionEntry in $splitPermissionEntries)
+            [string[]] $splitRules = [PermissionRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $splitPermissionEntry
-                $permissionRules += [PermissionRule]::New($StigRule)
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [PermissionRule]::New($StigRule)
             }
-
-            return $permissionRules
         }
         else
         {
-            return [PermissionRule]::New($StigRule)
+            $ruleList += [PermissionRule]::New($StigRule)
         }
+        return $ruleList
     }
 
     <#

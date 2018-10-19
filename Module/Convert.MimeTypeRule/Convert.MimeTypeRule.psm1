@@ -62,23 +62,21 @@ Class MimeTypeRule : Rule
 
     static [MimeTypeRule[]] ConvertFromXccdf ($StigRule)
     {
-        $checkStrings = $StigRule.rule.Check.('check-content')
-
-        if ([MimeTypeRule]::HasMultipleRules($checkStrings))
+        $ruleList = @()
+        if ([MimeTypeRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
-            $splitMimeTypeRules = [MimeTypeRule]::SplitMultipleRules($checkStrings)
-            $mimeTypeRules = @()
-            foreach ($mimeTypeRule in $splitMimeTypeRules)
+            [string[]] $splitRules = [MimeTypeRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $mimeTypeRule
-                $mimeTypeRules += [MimeTypeRule]::New($StigRule)
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [MimeTypeRule]::New($StigRule)
             }
-            return $mimeTypeRules
         }
         else
         {
-            return [MimeTypeRule]::New($StigRule)
+            $ruleList += [MimeTypeRule]::New($StigRule)
         }
+        return $ruleList
     }
 
     <#

@@ -68,21 +68,21 @@ Class UserRightRule : Rule
 
     static [UserRightRule[]] ConvertFromXccdf ($StigRule)
     {
+        $ruleList = @()
         if ([UserRightRule]::HasMultipleRules($StigRule.rule.Check.'check-content'))
         {
-            $userRightRules = @()
             [string[]] $splitRules = [UserRightRule]::SplitMultipleRules($StigRule.rule.Check.'check-content')
             foreach ($splitRule in $splitRules)
             {
                 $StigRule.rule.Check.'check-content' = $splitRule
-                $userRightRules += [UserRightRule]::New($StigRule)
+                $ruleList += [UserRightRule]::New($StigRule)
             }
-            return $userRightRules
         }
         else
         {
-            return [UserRightRule]::New($StigRule)
+            $ruleList += [UserRightRule]::New($StigRule)
         }
+        return $ruleList
     }
 
     <#

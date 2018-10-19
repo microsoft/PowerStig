@@ -124,27 +124,24 @@ Class RegistryRule : Rule
     }
 
     #region Methods
+
     static [RegistryRule[]] ConvertFromXccdf ($StigRule)
     {
-        $checkStrings = $StigRule.rule.Check.('check-content')
-
-        if ([RegistryRule]::HasMultipleRules($checkStrings))
+        $ruleList = @()
+        if ([RegistryRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
-            $splitRegistryEntries = [RegistryRule]::SplitMultipleRules($checkStrings)
-            $registryRules = @()
-
-            foreach ($splitRegistryEntry in $splitRegistryEntries)
+            [string[]] $splitRules = [RegistryRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $splitRegistryEntry
-                $registryRules += [RegistryRule]::New($StigRule)
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [RegistryRule]::New($StigRule)
             }
-
-            return $registryRules
         }
         else
         {
-            return [RegistryRule]::New($StigRule)
+            $ruleList += [RegistryRule]::New($StigRule)
         }
+        return $ruleList
     }
 
 

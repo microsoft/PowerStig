@@ -56,23 +56,21 @@ Class FileContentRule : Rule
 
     static [FileContentRule[]] ConvertFromXccdf ($StigRule)
     {
-        $checkStrings = $StigRule.rule.Check.('check-content')
-
-        if ([FileContentRule]::HasMultipleRules($checkStrings))
+        $ruleList = @()
+        if ([FileContentRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
-            $splitFileContentEntries = [FileContentRule]::SplitMultipleRules($checkStrings)
-            $fileContentRules = @()
-            foreach ($splitFileContentEntry in $splitFileContentEntries)
+            [string[]] $splitRules = [FileContentRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $splitFileContentEntry
-                $fileContentRules += [FileContentRule]::New($StigRule)
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [FileContentRule]::New($StigRule)
             }
-            return $fileContentRules
         }
         else
         {
-            return [FileContentRule]::New($StigRule)
+            $ruleList += [FileContentRule]::New($StigRule)
         }
+        return $ruleList
     }
 
     <#

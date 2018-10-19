@@ -96,7 +96,7 @@ class ConvertFactory
             }
             {[WebConfigurationPropertyRule]::Match($PSItem)}
             {
-                $null = $ruleTypeList.Add([WebConfigurationPropertyRule]::new($Rule))
+                $null = $ruleTypeList.AddRange([WebConfigurationPropertyRule]::new($Rule))
             }
             {[WindowsFeatureRule]::Match($PSItem)}
             {

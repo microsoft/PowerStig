@@ -65,6 +65,25 @@ Class WebConfigurationPropertyRule : Rule
 
     #region Methods
 
+    static [WebConfigurationPropertyRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $ruleList = @()
+        if ([WebConfigurationPropertyRule]::HasMultipleRules($StigRule.rule.Check.'check-content'))
+        {
+            [string[]] $splitRules = [WebConfigurationPropertyRule]::SplitMultipleRules($StigRule.rule.Check.'check-content')
+            foreach ($splitRule in $splitRules)
+            {
+                $StigRule.rule.Check.'check-content' = $splitRule
+                $ruleList += [WebConfigurationPropertyRule]::New($StigRule)
+            }
+        }
+        else
+        {
+            $ruleList += [WebConfigurationPropertyRule]::New($StigRule)
+        }
+        return $ruleList
+    }
+
     <#
         .SYNOPSIS
             Extracts the config section from the check-content and sets the value
