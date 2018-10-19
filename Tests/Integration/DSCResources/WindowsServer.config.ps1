@@ -4,7 +4,7 @@ Configuration WindowsServer_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $OVersion,
+        $OsVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
