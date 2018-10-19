@@ -8,7 +8,7 @@ Copy the following snipet of code into a new test file and update the TO DO item
 
 ```PowerShell
 #region Header
-using module .\..\..\..\Module\Convert.xRule\Convert.xRule.psm1 # TO DO - Update the path to the module
+using module .\..\..\..\Module\xRule\xRule.psm1 # TO DO - Update the path to the module
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try

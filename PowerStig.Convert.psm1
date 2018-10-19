@@ -11,29 +11,29 @@
 #>
 using module .\Module\Common\Common.psm1
 using module .\Module\Convert\Convert.psm1
-using module .\Module\Convert.AccountPolicyRule\Convert.AccountPolicyRule.psm1
-using module .\Module\Convert.AuditPolicyRule\Convert.AuditPolicyRule.psm1
-using module .\Module\Convert.DnsServerRootHintRule\Convert.DnsServerRootHintRule.psm1
-using module .\Module\Convert.DnsServerSettingRule\Convert.DnsServerSettingRule.psm1
-using module .\Module\Convert.DocumentRule\Convert.DocumentRule.psm1
-using module .\Module\Convert.FileContentRule\Convert.FileContentRule.psm1
-using module .\Module\Convert.GroupRule\Convert.GroupRule.psm1
-using module .\Module\Convert.IISLoggingRule\Convert.IISLoggingRule.psm1
-using module .\Module\Convert.ManualRule\Convert.ManualRule.psm1
-using module .\Module\Convert.MimeTypeRule\Convert.MimeTypeRule.psm1
-using module .\Module\Convert.PermissionRule\Convert.PermissionRule.psm1
-using module .\Module\Convert.ProcessMitigationRule\Convert.ProcessMitigationRule.psm1
-using module .\Module\Convert.RegistryRule\Convert.RegistryRule.psm1
-using module .\Module\Convert.SecurityOptionRule\Convert.SecurityOptionRule.psm1
-using module .\Module\Convert.ServiceRule\Convert.ServiceRule.psm1
-using module .\Module\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
+using module .\Module\AccountPolicyRule\AccountPolicyRule.psm1
+using module .\Module\AuditPolicyRule\AuditPolicyRule.psm1
+using module .\Module\DnsServerRootHintRule\DnsServerRootHintRule.psm1
+using module .\Module\DnsServerSettingRule\DnsServerSettingRule.psm1
+using module .\Module\DocumentRule\DocumentRule.psm1
+using module .\Module\FileContentRule\FileContentRule.psm1
+using module .\Module\GroupRule\GroupRule.psm1
+using module .\Module\IISLoggingRule\IISLoggingRule.psm1
+using module .\Module\ManualRule\ManualRule.psm1
+using module .\Module\MimeTypeRule\MimeTypeRule.psm1
+using module .\Module\PermissionRule\PermissionRule.psm1
+using module .\Module\ProcessMitigationRule\ProcessMitigationRule.psm1
+using module .\Module\RegistryRule\RegistryRule.psm1
+using module .\Module\SecurityOptionRule\SecurityOptionRule.psm1
+using module .\Module\ServiceRule\ServiceRule.psm1
+using module .\Module\SqlScriptQueryRule\SqlScriptQueryRule.psm1
 using module .\Module\Rule\Rule.psm1
-using module .\Module\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
-using module .\Module\Convert.WebAppPoolRule\Convert.WebAppPoolRule.psm1
-using module .\Module\Convert.WebConfigurationPropertyRule\Convert.WebConfigurationPropertyRule.psm1
-using module .\Module\Convert.WindowsFeatureRule\Convert.WindowsFeatureRule.psm1
-using module .\Module\Convert.WinEventLogRule\Convert.WinEventLogRule.psm1
-using module .\Module\Convert.WmiRule\Convert.WmiRule.psm1
+using module .\Module\UserRightsAssignmentRule\UserRightsAssignmentRule.psm1
+using module .\Module\WebAppPoolRule\WebAppPoolRule.psm1
+using module .\Module\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
+using module .\Module\WindowsFeatureRule\WindowsFeatureRule.psm1
+using module .\Module\WinEventLogRule\WinEventLogRule.psm1
+using module .\Module\WmiRule\WmiRule.psm1
 
 # load the public functions
 Foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Convert.Main" -Filter '*.ps1' ) )
