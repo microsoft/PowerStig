@@ -2,14 +2,14 @@ $rules = (Get-RuleClassData -StigData $stigData -Name FileContentRule).Where({ $
 
 # Assert FireFox install directory
 
-if (-not(Test-Path -Path $installDirectory))
+if (-not(Test-Path -Path $InstallDirectory))
 {
-    Write-Warning "$installDirectory not found. Verify FireFox is installed and the correct Install Directory is defined prior to starting DSC."
+    Write-Warning "$InstallDirectory not found. Verify FireFox is installed and the correct Install Directory is defined prior to starting DSC."
 }
 
 ReplaceText GeneralConfigFileName
 {
-    Path        = "$installDirectory\defaults\pref\autoconfig.js"
+    Path        = "$InstallDirectory\defaults\pref\autoconfig.js"
     Search      = 'pref\("general.config.filename", (.*)\);'
     Type        = 'Text'
     Text        = 'pref("general.config.filename", "firefox.cfg");'
@@ -18,7 +18,7 @@ ReplaceText GeneralConfigFileName
 
 ReplaceText DoNotObscureFile
 {
-    Path        = "$installDirectory\defaults\pref\autoconfig.js"
+    Path        = "$InstallDirectory\defaults\pref\autoconfig.js"
     Search      = 'pref\("general.config.obscure_value", (.*)\);'
     Type        = 'Text'
     Text        = 'pref("general.config.obscure_value", 0);'
@@ -31,7 +31,7 @@ ReplaceText DoNotObscureFile
 #>
 ReplaceText BeginFileWithComment
 {
-    Path        = "$installDirectory\firefox.cfg"
+    Path        = "$InstallDirectory\firefox.cfg"
     Search      = '// FireFox preference file'
     Type        = 'Text'
     Text        = ('// FireFox preference file' + "`r")
@@ -41,7 +41,7 @@ foreach ( $rule in $rules )
 {
     ReplaceText (Get-ResourceTitle -Rule $rule)
     {
-        Path        = "$installDirectory\FireFox.cfg"
+        Path        = "$InstallDirectory\FireFox.cfg"
         Search      = 'lockPref\("{0}", (.*)\);' -f $rule.Key
         Type        = 'Text'
         Text        = ("`r`n" + 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value))

@@ -22,7 +22,7 @@ function Get-DbExistGetScript
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $return = Get-Query -CheckContent $checkContent
@@ -51,7 +51,7 @@ function Get-TraceGetScript
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $eventId = Get-EventIdData -CheckContent $checkContent
@@ -82,7 +82,7 @@ function Get-PermissionGetScript
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $queries = Get-Query -CheckContent $checkContent
@@ -118,7 +118,7 @@ function Get-DbExistTestScript
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $return = Get-Query -CheckContent $checkContent
@@ -147,7 +147,7 @@ function Get-TraceTestScript
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $eventId = Get-EventIdData -CheckContent $checkContent
@@ -178,7 +178,7 @@ function Get-PermissionTestScript
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $queries = Get-Query -CheckContent $checkContent
@@ -221,7 +221,7 @@ function Get-DbExistSetScript {
         [Parameter()]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $return = $FixText[1].Trim()
@@ -263,7 +263,7 @@ function Get-TraceSetScript
         [Parameter()]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $eventId = Get-EventIdData -CheckContent $checkContent
@@ -300,7 +300,7 @@ function Get-PermissionSetScript
         [Parameter()]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $permission = ((Get-Query -CheckContent $checkContent)[0] -split "'")[1]
@@ -332,7 +332,7 @@ function Get-Query
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $collection = @()
@@ -437,7 +437,7 @@ function Get-EventIdData
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $array = @()
@@ -470,7 +470,7 @@ function Get-SqlRuleType
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $content = $checkContent -join " "

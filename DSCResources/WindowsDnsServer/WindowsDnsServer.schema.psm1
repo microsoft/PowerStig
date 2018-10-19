@@ -127,7 +127,7 @@ Configuration WindowsDnsServer
 
     Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
     . "$resourcePath\windows.xDnsServerSetting.ps1"
-    
+
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
 

@@ -4,31 +4,31 @@ Configuration WindowsServer_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $osVersion,
+        $OVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $osRole,
+        $OsRole,
 
         [Parameter(Mandatory = $true)]
         [version]
-        $stigVersion,
+        $StigVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $forestName,
+        $ForestName,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $domainName,
+        $DomainName,
 
         [Parameter()]
         [psobject]
-        $skipRule,
+        $SkipRule,
 
         [Parameter()]
         [psobject]
-        $skipRuleType
+        $SkipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig

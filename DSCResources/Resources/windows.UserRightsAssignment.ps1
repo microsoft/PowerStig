@@ -25,12 +25,12 @@ $forestGroupTranslation = @{
 }
 
 # This requires a local forest and/or domain name to be injected to ensure a valid account name.
-$domainName = PowerStig\Get-DomainName -DomainName $domainName -Format NetbiosName
-$forestName = PowerStig\Get-DomainName -ForestName $forestName -Format NetbiosName
+$DomainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
+$ForestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
 
 #endregion Header
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     Write-Verbose $rule
     $identitySplit = $rule.Identity -split ","
@@ -40,11 +40,11 @@ foreach ( $rule in $rules )
     {
         if ($domainGroupTranslation.Contains($identity))
         {
-            [void] $identityList.Add($domainGroupTranslation.$identity -f $domainName )
+            [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
         }
         elseif ($forestGroupTranslation.Contains($identity))
         {
-            [void] $identityList.Add($forestGroupTranslation.$identity -f $forestName )
+            [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
         }
         # Default to adding the identify as provided for any non-default identities.
         else

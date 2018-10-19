@@ -114,15 +114,15 @@ try
                     $rule.Disable | Should be $mitigationsRule.Disable
                 }
 
-                It "Enable Should not return 'Enable'" {
+                It 'Enable Should not return "Enable"' {
                     $rule.Enable -contains 'Enable' | Should Be $false
                 }
 
-                It "Enable Should not return 'ON'" {
+                It 'Enable Should not return "ON"' {
                     $rule.Enable -contains 'ON' | Should Be $false
                 }
 
-                It "Enable Should not return ':'" {
+                It 'Enable Should not return ":"' {
                     $rule.Enable -contains ':' | Should Be $false
                 }
             }

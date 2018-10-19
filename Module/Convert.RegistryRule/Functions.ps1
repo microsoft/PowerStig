@@ -52,7 +52,7 @@ function ConvertTo-RegistryRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -101,7 +101,7 @@ function New-RegistryRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

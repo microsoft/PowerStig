@@ -43,7 +43,7 @@ function Test-ValueDataIsHardCoded
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $stigId
+        $StigId
     )
 
     $stigIds = @(
@@ -87,7 +87,7 @@ function Get-HardCodedString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $stigId
+        $StigId
     )
 
     Switch ($stigId)
@@ -138,7 +138,7 @@ function Get-HardCodedString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $stigId
+        $StigId
     )
 
     $stigIds = @(
@@ -175,7 +175,7 @@ function Get-HardCodedString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $stigId
+        $StigId
     )
 
     Switch ($stigId)

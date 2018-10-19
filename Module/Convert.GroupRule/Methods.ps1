@@ -17,7 +17,7 @@ function Get-GroupDetail
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $templateFile = "$PSScriptRoot\Template.GroupDetail.txt"

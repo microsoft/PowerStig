@@ -18,7 +18,7 @@ function Get-RegistryKey
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $result = @()
@@ -62,7 +62,7 @@ function Get-RegistryHiveFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     # Get the second index of the list, which should be the hive and remove spaces.
@@ -100,7 +100,7 @@ function Get-RegistryPathFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $result = @()
@@ -158,7 +158,7 @@ function Get-RegistryValueType
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     # The Office format is different to check which way to send the strings.
@@ -239,7 +239,7 @@ function Get-RegistryValueTypeFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $type = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType ).Matches.Value
@@ -278,7 +278,7 @@ function Get-RegistryValueName
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     # The Office format is different to check which way to send the strings.
@@ -307,7 +307,7 @@ function Get-RegistryValueNameFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     # Get the second index of the list, which should be the data type and remove spaces
@@ -348,7 +348,7 @@ function Get-RegistryValueData
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     # The Office format is different to check which way to send the strings.
@@ -383,7 +383,7 @@ function Get-RegistryValueDataFromWindowsStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     <#
@@ -894,7 +894,7 @@ function Test-MultipleRegistryEntries
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     if (Test-SingleLineStigFormat -CheckContent $checkContent)
@@ -958,7 +958,7 @@ function Split-MultipleRegistryEntries
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     [int] $registryEntryCounter = 0

@@ -12,11 +12,11 @@ Configuration IisSite_config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $osVersion,
+        $OsVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $stigVersion
+        $StigVersion
     )
 
     Import-DscResource -ModuleName PowerStig

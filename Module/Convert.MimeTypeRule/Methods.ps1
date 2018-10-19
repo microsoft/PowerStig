@@ -16,7 +16,7 @@ function Get-Extension
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $mimeTypeMatch = $checkContent | Select-String -Pattern $script:webRegularExpression.mimeType
@@ -90,7 +90,7 @@ function Get-Ensure
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     if ($checkContent -match $script:webRegularExpression.mimeTypeAbsent)
@@ -120,7 +120,7 @@ function Test-MultipleMimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $mimeTypes = $checkContent | Where-Object -FilterScript {$PSItem.startswith('.')}
@@ -152,7 +152,7 @@ function Split-MultipleMimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $splitMimeTypeRules = @()

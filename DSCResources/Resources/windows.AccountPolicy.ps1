@@ -3,7 +3,7 @@
 
 $rules = Get-RuleClassData -StigData $stigData -Name AccountPolicyRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     $policy = $rule.PolicyName -replace "(:)*\s","_"
 

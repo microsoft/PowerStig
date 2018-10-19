@@ -17,7 +17,7 @@ function Get-LogCustomFieldEntry
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     if ($checkContent -match $script:webRegularExpression.customFieldSection)
@@ -53,7 +53,7 @@ function Get-LogFlag
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $cleanCheckContent = $checkContent -replace $script:webRegularExpression.excludeExtendedAscii, ''
@@ -91,7 +91,7 @@ function Get-LogFormat
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     [string] $logFormatLine = $checkContent | Select-String -Pattern $script:webRegularExpression.logformat -AllMatches
@@ -123,7 +123,7 @@ function Get-LogPeriod
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     switch ( $checkContent )
@@ -150,7 +150,7 @@ function Get-LogTargetW3C
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     [string] $logTargetW3cLine = $checkContent | Select-String -Pattern $script:webRegularExpression.logtargetw3c -AllMatches

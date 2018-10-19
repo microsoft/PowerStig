@@ -4,17 +4,17 @@ Configuration IisServer_Config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $osVersion,
-        
+        $OsVersion,
+
         [Parameter(Mandatory = $true)]
         [string]
-        $stigVersion,
-        
+        $StigVersion,
+
         [Parameter(Mandatory = $true)]
         [string]
         $LogPath
     )
-    
+
     Import-DscResource -ModuleName PowerStig
     Node localhost
     {

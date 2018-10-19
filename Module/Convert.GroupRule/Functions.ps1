@@ -13,7 +13,7 @@ function ConvertTo-GroupRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     $groupRule = [GroupRule]::New( $stigRule )

@@ -16,7 +16,7 @@ function Get-WindowsFeatureName
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -90,7 +90,7 @@ function Get-FeatureInstallState
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $checkContent
+        $CheckContent
     )
 
     switch ($checkContent)

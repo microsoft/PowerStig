@@ -13,7 +13,7 @@ function ConvertTo-DnsServerRootHintRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

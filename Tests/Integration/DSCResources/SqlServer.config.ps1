@@ -12,7 +12,7 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string]
-        $stigVersion
+        $StigVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -43,7 +43,7 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [string]
-        $stigVersion
+        $StigVersion
     )
 
     Import-DscResource -ModuleName PowerStig

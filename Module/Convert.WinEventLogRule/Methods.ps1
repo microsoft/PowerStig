@@ -12,7 +12,8 @@ function Get-DnsServerWinEventLogName
     param
     (
         [Parameter( Mandatory = $true)]
-        [psobject] $stigString
+        [psobject] 
+        $StigString
     )
 
     # There is only one scenario to handle but we will use a switch to easily add additional scenarios

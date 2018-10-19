@@ -16,7 +16,7 @@ function ConvertTo-WebConfigurationPropertyRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -62,7 +62,7 @@ function New-WebConfigurationPropertyRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

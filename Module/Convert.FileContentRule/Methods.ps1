@@ -14,7 +14,7 @@ function Get-KeyValuePair
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent,
+        $CheckContent,
 
         [Parameter()]
         [switch]

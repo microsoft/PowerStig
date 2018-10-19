@@ -8,7 +8,7 @@ Configuration DotNetFramework_config
 
         [Parameter(Mandatory = $true)]
         [version]
-        $stigVersion
+        $StigVersion
     )
 
     Import-DscResource -ModuleName PowerStig

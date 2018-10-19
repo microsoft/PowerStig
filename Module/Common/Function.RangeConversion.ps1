@@ -23,7 +23,7 @@ function Get-OrganizationValueTestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     switch ($string)
@@ -69,7 +69,7 @@ function Get-TestStringTokenNumbers
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
@@ -110,7 +110,7 @@ function Get-TestStringTokenList
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string,
+        $String,
 
         [Parameter(ParameterSetName = 'CommandTokens')]
         [switch]
@@ -143,7 +143,7 @@ function ConvertTo-TestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
     $number    = Get-TestStringTokenNumbers -String $string
     $operators = Get-TestStringTokenList -String $string -CommandTokens
@@ -248,7 +248,7 @@ function Test-StringIsNegativeOr
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     #
@@ -284,7 +284,7 @@ function Test-StringIsPositiveOr
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     <#
@@ -348,7 +348,7 @@ function ConvertTo-OrTestString
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string,
+        $String,
 
         [Parameter(Mandatory = $true)]
         [ValidateSet('Match', 'NotMatch')]
@@ -399,7 +399,7 @@ function Test-StringIsGreaterThan
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "^(\s*)Greater(\s*)than(\s*)(\d{1,})(\s*)$")
@@ -436,7 +436,7 @@ function Test-StringIsGreaterThanOrEqual
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "^(\s*)((0x[A-Fa-f0-9]{8}){1})|(\d{1,})(\s*)(\()?or(\s*)greater(\s*)(\))?(\s*)$")
@@ -473,7 +473,7 @@ function Test-StringIsGreaterThanButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "^(\s*)greater(\s*)than(\s*)(\d{1,})(\s*)(\()?(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
@@ -510,7 +510,7 @@ function Test-StringIsGreaterThanOrEqualButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "^(\s*)(\d{1,})(\s*)(\()?(\s*)or(\s*)greater(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$")
@@ -545,7 +545,7 @@ function Test-StringIsLessThan
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
@@ -579,7 +579,7 @@ function Test-StringIsLessThanOrEqual
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
     # Turn 0x00000384 (900) (or less) into '-le 900'
     if ($string -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
@@ -616,7 +616,7 @@ function Test-StringIsLessThanButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     #"$i -lt $value -and -ne $x"
@@ -661,7 +661,7 @@ function Test-StringIsLessThanOrEqualButNot
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "^(\s*)(\d{1,})(\s*)(\()?or(\s*)less(\s*),(\s*)but(\s*)not(\s*)(\d{1,})(\))?(\s*)$" -or
@@ -698,7 +698,7 @@ function Test-StringIsLessThanOrEqualExcluding
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\s*),(\s*)excluding(\s*)(\d{1,})(\))?(\s*)$")
@@ -732,7 +732,7 @@ function Test-StringIsMultipleValue
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     if ($string -match "(?<=Possible values are ).*")
@@ -764,7 +764,8 @@ function ConvertTo-MultipleValue
     param
     (
         [Parameter(Mandatory)]
-        [string[]] $string
+        [string[]] 
+        $String
     )
 
     $values = [regex]::match( $string, "(?<=Possible values are ).*" ).groups.Value
@@ -789,7 +790,7 @@ function Get-SecurityPolicyString
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -816,7 +817,7 @@ function Test-SecurityPolicyContainsRange
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -845,7 +846,7 @@ function Get-SecurityPolicyOrganizationValueTestString
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

@@ -47,19 +47,19 @@ Function Get-DomainName
         [AllowNull()]
         [AllowEmptyString()]
         [string]
-        $domainName,
+        $DomainName,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'ForestName')]
         [AllowNull()]
         [AllowEmptyString()]
         [string]
-        $forestName,
+        $ForestName,
 
         [Parameter(ParameterSetName = 'DomainName')]
         [Parameter(ParameterSetName = 'ForestName')]
         [ValidateSet('FQDN', 'NetbiosName', 'DistinguishedName')]
         [string]
-        $format = 'FQDN'
+        $Format = 'FQDN'
     )
 
     $fqdn = [string]::Empty
@@ -244,7 +244,7 @@ Function Get-OrgSettingsObject
         [Parameter(Mandatory = $True)]
         [ValidateNotNullOrEmpty()]
         [PSObject]
-        $orgSettings
+        $OrgSettings
     )
 
     switch ($orgSettings.GetType())

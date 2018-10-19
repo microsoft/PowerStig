@@ -83,7 +83,7 @@ try
                 }
                 It "Should return Service Name '$($service.ServiceName)'" {
                     $rule.ServiceName | Should Be $service.ServiceName
-                } 
+                }
                 It "Should return Service State '$($service.ServiceState)' from '$($service.ServiceName)'" {
                     $rule.ServiceState | Should Be $service.ServiceState
                 }
@@ -99,13 +99,13 @@ try
     Describe 'Multiple Service Rule Conversion' {
 
         $checkContent = 'Run "services.msc" to display the Services console.
-    
+
     Verify the Startup Type for the following Windows services: 
     - Active Directory Domain Services
     - Windows Time (not required if another time synchronization tool is implemented to start automatically)
-    
+
     If the Startup Type for any of these services is not Automatic, this is a finding'
-     
+
         [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
         $stigRule.Save( $TestFile )
@@ -125,13 +125,13 @@ try
             It 'Should append .a to the id' {
                 $rule.id | Should Match '^V-.*\.a$'
             }
-            It "Should return 'NTDS'" {
+            It 'Should return "NTDS"' {
                 $rule.ServiceName | Should Be 'NTDS'
             } 
-            It "Should return 'Running'" {
+            It 'Should return "Running"' {
                 $rule.ServiceState | Should Be 'Running'
             }
-            It "Should return 'Automatic'" {
+            It 'Should return "Automatic"' {
                 $rule.StartupType | Should Be 'Automatic'
             }
             It 'Should set the Conversion statud to pass ensure value' {
@@ -149,13 +149,13 @@ try
             It 'Should append .b to the id' {
                 $rule.id | Should Match '^V-.*\.b$'
             }
-            It "Should return 'W32Time'" {
+            It 'Should return "W32Time"' {
                 $rule.ServiceName | Should Be 'W32Time'
             } 
-            It "Should return 'Running'" {
+            It 'Should return "Running"' {
                 $rule.ServiceState | Should Be 'Running'
             }
-            It "Should return 'Automatic'" {
+            It 'Should return "Automatic"' {
                 $rule.StartupType | Should Be 'Automatic'
             }
             It 'Should set the Conversion statud to pass ensure value' {

@@ -26,7 +26,7 @@ try
         It 'Should set OrganizationValueRequired to false' {
             $rule.OrganizationValueRequired | Should Be $false
         }
-        It "Should set dscresource to 'None'" {
+        It 'Should set dscresource to "None"' {
             $rule.dscresource | Should Be 'None'
         }
         It 'Should set the Conversion statud to pass ensure value' {

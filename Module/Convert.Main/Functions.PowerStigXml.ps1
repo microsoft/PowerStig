@@ -25,7 +25,7 @@ function ConvertTo-PowerStigXml
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $path,
+        $Path,
 
         [Parameter()]
         [string]
@@ -262,7 +262,7 @@ function Compare-PowerStigXml
 
         [Parameter()]
         [switch]
-        $ignoreRawString
+        $IgnoreRawString
     )
     Begin
     {
@@ -523,7 +523,7 @@ function Split-BenchmarkId
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $id
+        $Id
     )
 
     # Different STIG's present the Id field in a different format.

@@ -165,7 +165,7 @@ try
             It 'Should return $true if a Multiple Services are found' {
                 Test-MultipleServiceRule -ServiceName "NTDS,DFSR,DNS,W32Time" | Should Be $true
             }
-            It "Should return $false if a comma is found " {
+            It "Should return $false if a comma is found" {
                 Test-MultipleServiceRule -ServiceName "service" | Should Be $false
             }
             It "Should return $false if a null value is passed" {

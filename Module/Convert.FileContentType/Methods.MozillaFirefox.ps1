@@ -21,7 +21,7 @@ function Get-FilteredItem
         [AllowNull()]
         [AllowEmptyString()]
         [psobject]
-        $matchResult
+        $MatchResult
     )
 
     $lineResult = $matchResult.Matches -notmatch 'about:config'

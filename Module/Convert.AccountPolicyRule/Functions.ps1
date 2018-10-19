@@ -13,7 +13,7 @@ function ConvertTo-AccountPolicyRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

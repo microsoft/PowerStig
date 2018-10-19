@@ -21,7 +21,7 @@ function Get-FilteredItem
         [AllowNull()]
         [AllowEmptyString()]
         [psobject]
-        $matchResult
+        $MatchResult
     )
 
         $lineResult = $matchResult.Matches | Where-Object -FilterScript {$PSItem.Value -match '=' -or $PSItem.Value -match '.locked' -or $PSItem.Value -match '.mandatory'}
@@ -54,7 +54,7 @@ function Get-ParsedItem
         [AllowNull()]
         [AllowEmptyString()]
         [psobject]
-        $lineResult
+        $LineResult
     )
     
     $setting = @()

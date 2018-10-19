@@ -39,7 +39,7 @@ try
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
-            
+
             It 'Should return an SecurityOptionRule Object' {
                 $rule.GetType() | Should Be 'SecurityOptionRule'
             }

@@ -13,7 +13,7 @@ function Get-DnsServerSettingProperty
     (
         [Parameter( Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     # There is only one scenario to handle but we will use a switch to easily add additional scenarios
@@ -47,7 +47,7 @@ function Get-DnsServerSettingPropertyValue
     (
         [Parameter( Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $MyCommand = $MyInvocation.MyCommand.Name

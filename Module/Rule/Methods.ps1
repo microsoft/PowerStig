@@ -14,7 +14,7 @@ function Get-RuleTypeMatchList
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $checkContent
+        $CheckContent
     )
 
     [System.Collections.ArrayList] $ruleTypeList = @()
@@ -415,7 +415,7 @@ function Get-PermissionRuleDscResource
     (
         [Parameter(Mandatory = $true)]
         [String]
-        $path
+        $Path
     )
 
     switch ($path)

@@ -16,7 +16,7 @@ function Test-SingleLineRegistryRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     if ($checkContent -match "(HKCU|HKLM|HKEY_LOCAL_MACHINE)\\")
@@ -47,7 +47,7 @@ function Get-SingleLineRegistryPath
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $fullRegistryPath = $checkContent | Select-String -Pattern "((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)"
@@ -129,7 +129,7 @@ function Get-RegistryValueTypeFromSingleLineStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     try
@@ -228,7 +228,7 @@ function Get-RegistryValueNameFromSingleLineStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $valueName = $checkContent | Select-String -Pattern '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))'
@@ -311,7 +311,7 @@ function Get-RegistryValueDataFromSingleStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     try
@@ -388,7 +388,7 @@ function Get-RegistryValueStringFromSingleLineStig
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent,
+        $CheckContent,
 
         [Parameter()]
         [switch]
@@ -445,7 +445,7 @@ function Test-SingleLineStigFormat
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

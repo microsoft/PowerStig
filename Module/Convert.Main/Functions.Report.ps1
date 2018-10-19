@@ -17,7 +17,7 @@ function Get-ConversionReport
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $path
+        $Path
     )
 
     # Read in the raw stig xml and get the list of types that are discovered
@@ -34,23 +34,31 @@ function Get-ConversionReport
         $reportItem = New-Object PSObject
         $reportItem | Add-Member -MemberType NoteProperty -Name Type -Value $ruleType
 
-        # Get all of the STIG settings discoverd for the current type
-        # The @ will force PS to return an array so the count method works properly
+        <#
+            Get all of the STIG settings discoverd for the current type
+            The @ will force PS to return an array so the count method works properly
+        #>
         $values = @( $global:stigSettings | Where-Object {$_.GetType().Name -eq $ruleType} )
         $reportItem | Add-Member -MemberType NoteProperty -Name Count -Value $values.Count
 
-        # Of the list of items that was just filtered above, count any that have an error
-        # The @ will force PS to return an array so the count method works properly
+        <#
+            Of the list of items that was just filtered above, count any that have an error
+            The @ will force PS to return an array so the count method works properly
+        #>
         $errorCount = @( $values | Where-Object 'status' -eq 'fail' ).Count
         $reportItem | Add-Member -MemberType NoteProperty -Name Errors -Value $errorCount
 
-        # Of the list of items that was filtered above, count all that pass the conversion
-        # The @ will force PS to return an array so the count method works properly
+        <#
+            Of the list of items that was filtered above, count all that pass the conversion
+            The @ will force PS to return an array so the count method works properly
+        #>
         $passcount = @($values | Where-Object 'conversionstatus' -eq 'pass').Count
         $reportItem | Add-Member -MemberType NoteProperty -Name ConversionPass -Value $passcount
 
-        # Of the list of items that was filtered above, count any that fail the conversion.
-        # The @ will force PS to return an array so the count method works properly
+        <#
+            Of the list of items that was filtered above, count any that fail the conversion.
+            The @ will force PS to return an array so the count method works properly
+        #>
         $failcount = @( $values | Where-Object 'conversionstatus' -eq 'fail' ).Count
         $reportItem | Add-Member -MemberType NoteProperty -Name ConversionFail -Value $failcount
 

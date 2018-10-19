@@ -31,19 +31,19 @@ function New-StigCheckList
     (
         [Parameter(Mandatory = $true, ParameterSetName = 'mof')]
         [string]
-        $referenceConfiguration,
+        $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'result')]
         [System.Collections.ArrayList]
-        $dscResult,
+        $DscResult,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $xccdfPath,
+        $XccdfPath,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $outputPath
+        $OutputPath
     )
 
     $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()
@@ -310,7 +310,7 @@ function Get-MofContent
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $referenceConfiguration
+        $ReferenceConfiguration
     )
 
     if ( -not $script:mofContent )
@@ -333,11 +333,11 @@ function Get-SettingsFromMof
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $referenceConfiguration,
+        $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $id
+        $Id
     )
 
     $mofContent = Get-MofContent -ReferenceConfiguration $referenceConfiguration
@@ -357,11 +357,11 @@ function Get-SettingsFromResult
     (
         [Parameter(Mandatory = $true)]
         [System.Collections.ArrayList]
-        $dscResult,
+        $DscResult,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $id
+        $Id
     )
 
     if (-not $script:allResources)

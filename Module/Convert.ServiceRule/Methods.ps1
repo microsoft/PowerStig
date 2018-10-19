@@ -13,7 +13,7 @@ function Get-ServiceName
     (
         [Parameter( Mandatory = $true )]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -99,7 +99,7 @@ function Get-ServiceState
     (
         [Parameter( Mandatory = $true )]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -138,7 +138,7 @@ function Get-ServiceStartupType
     (
         [Parameter( Mandatory = $true )]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

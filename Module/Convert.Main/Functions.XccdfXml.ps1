@@ -45,7 +45,7 @@ function ConvertFrom-StigXccdf
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $path,
+        $Path,
 
         [Parameter()]
         [switch]
@@ -114,7 +114,7 @@ function Split-StigXccdf
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $path,
+        $Path,
 
         [Parameter()]
         [string]

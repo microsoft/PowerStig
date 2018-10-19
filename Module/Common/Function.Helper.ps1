@@ -13,7 +13,7 @@ function Get-AvailableId
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $id
+        $Id
     )
 
     $usedId = $global:stigSettings | Where-Object -FilterScript { $PSItem.Id -match $ID } |

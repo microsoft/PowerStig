@@ -17,7 +17,7 @@ function Get-MitigationTargetName
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -62,7 +62,7 @@ function Get-MitigationPolicyToEnable
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -145,7 +145,7 @@ function Test-PoliciesToEnable
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     foreach ( $line in $checkContent )

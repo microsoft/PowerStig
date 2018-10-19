@@ -7,11 +7,11 @@ foreach ($rule in $rules)
 {
     if ($rule.Key -match "config")
     {
-        $path = $configPath
+        $path = $ConfigPath
     }
     else 
     {
-        $path = $propertiesPath
+        $path = $PropertiesPath
     }
 
     KeyValuePairFile "$(Get-ResourceTitle -Rule $rule)"

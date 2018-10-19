@@ -16,7 +16,7 @@ function ConvertTo-MimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     $mimeTypeRules = @()
@@ -61,7 +61,7 @@ function New-MimeTypeRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

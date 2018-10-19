@@ -16,7 +16,7 @@ function Get-ConfigSection
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $cleanCheckContent = $checkContent -replace $script:webRegularExpression.excludeExtendedAscii, '"'
@@ -114,7 +114,7 @@ function Get-KeyValuePair
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     switch ( $checkContent )
@@ -256,7 +256,7 @@ function Test-MultipleWebConfigurationPropertyRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $matchConfigSection = $checkContent | Select-String -Pattern $script:webRegularExpression.configSection -AllMatches
@@ -322,7 +322,7 @@ function Split-MultipleWebConfigurationPropertyRule
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     $splitWebConfigurationPropertyRules = @()

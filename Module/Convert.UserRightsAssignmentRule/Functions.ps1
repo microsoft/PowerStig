@@ -13,7 +13,7 @@ function ConvertTo-UserRightRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -50,7 +50,7 @@ function New-UserRightRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     $userRightRule = [UserRightRule]::New( $stigRule )

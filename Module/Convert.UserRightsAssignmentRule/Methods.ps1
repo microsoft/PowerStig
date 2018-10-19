@@ -14,7 +14,7 @@ function Get-UserRightDisplayName
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -80,7 +80,7 @@ function Get-UserRightIdentity
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -161,7 +161,7 @@ function Test-SetForceFlag
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     if ( $checkContent -match 'If any (accounts or groups|groups or accounts) other than the following' )
@@ -190,7 +190,7 @@ function Test-MultipleUserRightsAssignment
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -218,7 +218,7 @@ function Split-MultipleUserRightsAssignment
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

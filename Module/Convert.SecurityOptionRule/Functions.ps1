@@ -13,7 +13,7 @@ function ConvertTo-SecurityOptionRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -49,7 +49,7 @@ function Test-ValueOtherThan
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     if ( $checkContent -match 'value other than' )

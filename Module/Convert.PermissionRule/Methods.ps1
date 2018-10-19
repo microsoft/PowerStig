@@ -14,7 +14,7 @@ function Get-PermissionTargetPath
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $stigString
+        $StigString
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -215,7 +215,7 @@ function Get-PermissionAccessControlEntry
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $stigString
+        $StigString
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -284,7 +284,7 @@ function ConvertTo-AccessControlEntryGrouped
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $stigString
+        $StigString
     )
 
     $accessControlEntryPrincipal = $stigString | Select-String -Pattern "Principal\s*-"
@@ -363,7 +363,7 @@ function ConvertTo-AccessControlEntryIF
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $stigString
+        $StigString
     )
 
     $accessControlEntryMatches = $stigString | Select-String -Pattern $script:RegularExpression.InheritancePermissionMap
@@ -414,11 +414,11 @@ function ConvertTo-AccessControlEntry
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $stigString,
+        $StigString,
 
         [Parameter()]
         [string]
-        $inheritanceInput
+        $InheritanceInput
     )
 
     $accessControlEntryMatches = $stigString | Select-String -Pattern $script:RegularExpression.spaceDashSpace
@@ -571,7 +571,7 @@ function Split-MultiplePermissionRule
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     $result = @()

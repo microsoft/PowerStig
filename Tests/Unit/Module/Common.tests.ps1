@@ -98,7 +98,7 @@ Describe 'RegularExpression Data Section' {
 
     Context 'Blank String' {
 
-        It "Should match '(Blank)' literal string" {
+        It 'Should match "(Blank)" literal string' {
             "(Blank)" -Match $RegularExpression.blankString | Should Be $true
         }
     }

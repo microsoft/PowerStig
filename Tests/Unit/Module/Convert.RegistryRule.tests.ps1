@@ -1224,7 +1224,7 @@ try
                 $checkContent = Split-TestStrings -CheckContent $multipleRegistryPathString
                 $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
-                It "Should not return the second registry entry in the first object, but have the same Hive" {
+                It 'Should not return the second registry entry in the first object, but have the same Hive' {
                     $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
                     $registryEntries[0] -notmatch '\\Path\\ToTheSecondValue\\To\\Set\\' | Should Be $true
                     $registryEntries[0] -notmatch 'SettingTwoName' | Should Be $true
@@ -1232,7 +1232,7 @@ try
                     $registryEntries[0] -notmatch 'ValueTwo' | Should Be $true
                 }
 
-                It "Should not return the first registry entry in the second object, but have the same Hive" {
+                It 'Should not return the first registry entry in the second object, but have the same Hive' {
                     $registryEntries[1] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
                     $registryEntries[1] -notmatch '\\Path\\ToTheFirstalue\\To\\Set\\' | Should Be $true
                     $registryEntries[1] -notmatch 'SettingOneName' | Should Be $true
@@ -1245,7 +1245,7 @@ try
                 $checkContent = Split-TestStrings -CheckContent $multipleRegistryValueString
                 $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
-                It "Should not return the second registry entry in the first object, but have the same hive and path" {
+                It 'Should not return the second registry entry in the first object, but have the same hive and path' {
                     $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
                     $registryEntries[0] -match '\\Path\\ToTheFirstValue\\To\\Set\\' | Should Be $true
                     $registryEntries[0] -notmatch 'SettingTwoName' | Should Be $true
@@ -1253,7 +1253,7 @@ try
                     $registryEntries[0] -notmatch 'ValueTwo' | Should Be $true
                 }
 
-                It "Should not return the first registry entry in the second object, but have the same hive and path" {
+                It 'Should not return the first registry entry in the second object, but have the same hive and path' {
                     $registryEntries[1] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
                     $registryEntries[1] -match '\\Path\\ToTheFirstValue\\To\\Set\\' | Should Be $true
                     $registryEntries[1] -notmatch 'SettingOneName' | Should Be $true
@@ -1337,7 +1337,7 @@ try
                 }
             }
 
-            It "Should return 'null' with invalid registry type" {
+            It 'Should return "null" with invalid registry type' {
 
                 Get-RegistryValueTypeFromSingleLineStig -CheckContent 'Mocked data' | Should Be $null
             }

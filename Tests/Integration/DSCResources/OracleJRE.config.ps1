@@ -4,15 +4,15 @@ Configuration OracleJRE_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $configPath,
+        $ConfigPath,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $propertiesPath,
+        $PropertiesPath,
 
         [Parameter(Mandatory = $true)]
         [string]
-        $stigVersion
+        $StigVersion
     )
 
     Import-DscResource -ModuleName PowerStig

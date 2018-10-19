@@ -101,10 +101,10 @@ try
                 $result = ($text |
                         Select-String $script:regularExpression.textBetweenTheTab -AllMatches |
                         Select-Object Matches).Matches.Groups[1]
-                It "Should match text inside of the words 'the' and 'tab'" {
+                It 'Should match text inside of the words "the" and "tab"' {
                     $result.Success | Should be $true
                 }
-                It "Should return text between the words 'the' and 'tab'" {
+                It 'Should return text between the words "the" and "tab"' {
                     $result.Value.trim() | Should Be 'forwarders'
                 }
 

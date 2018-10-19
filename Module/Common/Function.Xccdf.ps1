@@ -16,7 +16,7 @@ function Get-StigXccdfBenchmarkContent
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $path
+        $Path
     )
 
     if (-not (Test-Path -Path $path))
@@ -51,7 +51,7 @@ function Get-StigContentFromZip
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $path
+        $Path
     )
 
     # Create a unique path in the users temp directory to expand the files to.

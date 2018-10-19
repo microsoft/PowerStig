@@ -13,7 +13,7 @@ function Get-SecurityOptionName
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
@@ -47,7 +47,7 @@ function Get-SecurityOptionValue
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $checkContent
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"

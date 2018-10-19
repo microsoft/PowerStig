@@ -13,7 +13,7 @@ function ConvertTo-FileContentRule
     (
         [Parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     $fileContentRules = @()
@@ -52,7 +52,7 @@ function New-FileContentRule
     (
         [parameter(Mandatory = $true)]
         [xml.xmlelement]
-        $stigRule
+        $StigRule
     )
 
     $fileContentRule = [FileContentRule]::New( $stigRule )

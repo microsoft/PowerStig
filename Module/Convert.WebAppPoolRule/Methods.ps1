@@ -16,7 +16,7 @@ function Get-KeyValuePair
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $checkContent
+        $CheckContent
     )
 
     switch ( $checkContent )
