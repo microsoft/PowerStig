@@ -27,7 +27,7 @@ Configuration IisSite_config
             WebAppPool  = $WebAppPool
             WebSiteName = $WebSiteName
             OsVersion   = $OsVersion
-            StigVersion = $stigVersion
+            StigVersion = $StigVersion
         }
     }
 }

@@ -18,7 +18,7 @@ Configuration Office_config
         Office BaseLineSettings
         {
             OfficeApp   = $OfficeApp
-            StigVersion = $stigVersion
+            StigVersion = $StigVersion
         }
     }
 }

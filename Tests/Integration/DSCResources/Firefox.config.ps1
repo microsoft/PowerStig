@@ -13,7 +13,7 @@ Configuration Firefox_config
     {
         Firefox FirefoxConfiguration
         {
-            Stigversion = $stigVersion
+            Stigversion = $StigVersion
         }
     }
 }

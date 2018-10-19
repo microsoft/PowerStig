@@ -26,9 +26,9 @@ Configuration WindowsDnsServer_config
         WindowsDnsServer BaseLineSettings
         {
             OsVersion   = $OsVersion
-            StigVersion = $stigVersion
-            ForestName  = $forestName
-            DomainName  = $domainName
+            StigVersion = $StigVersion
+            ForestName  = $ForestName
+            DomainName  = $DomainName
         }
     }
 }

@@ -66,24 +66,24 @@ Function Get-DomainName
 
     if ($PSCmdlet.ParameterSetName -eq 'DomainName')
     {
-        if ( [string]::IsNullOrEmpty( $domainName ) )
+        if ( [string]::IsNullOrEmpty( $DomainName ) )
         {
             $fqdn = Get-DomainFQDN
         }
         else
         {
-            $fqdn = $domainName
+            $fqdn = $DomainName
         }
     }
     else
     {
-        if ( [string]::IsNullOrEmpty( $forestName ) )
+        if ( [string]::IsNullOrEmpty( $ForestName ) )
         {
             $fqdn = Get-ForestFQDN
         }
         else
         {
-            $fqdn = $forestName
+            $fqdn = $ForestName
         }
     }
 
@@ -247,13 +247,13 @@ Function Get-OrgSettingsObject
         $OrgSettings
     )
 
-    switch ($orgSettings.GetType())
+    switch ($OrgSettings.GetType())
     {
         "string"
         {
-            if (Test-Path -Path $orgSettings)
+            if (Test-Path -Path $OrgSettings)
             {
-                [xml] $orgSettingsXml = Get-Content -Path $orgSettings
+                [xml] $orgSettingsXml = Get-Content -Path $OrgSettings
                 $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettingsXml)
             }
             else
@@ -263,11 +263,11 @@ Function Get-OrgSettingsObject
         }
         "xml"
         {
-            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettings)
+            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($OrgSettings)
         }
         "hashtable"
         {
-            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettings)
+            $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($OrgSettings)
         }
     }
 

@@ -23,7 +23,7 @@ Configuration SqlServerInstance_config
         {
             SqlVersion     = $SqlVersion
             SqlRole        = $SqlRole
-            Stigversion    = $stigVersion
+            Stigversion    = $StigVersion
             ServerInstance = 'TestServer'
         }
     }
@@ -54,7 +54,7 @@ Configuration SqlServerDatabase_config
         {
             SqlVersion     = $SqlVersion
             SqlRole        = $SqlRole
-            Stigversion    = $stigVersion
+            Stigversion    = $StigVersion
             ServerInstance = 'TestServer'
             Database       = 'TestDataBase'
         }

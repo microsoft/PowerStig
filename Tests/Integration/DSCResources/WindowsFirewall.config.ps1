@@ -13,7 +13,7 @@ Configuration WindowsFirewall_config
     {
         WindowsFirewall BaseLineSettings
         {
-            StigVersion = $stigVersion
+            StigVersion = $StigVersion
         }
     }
 }

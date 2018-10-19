@@ -23,7 +23,7 @@ Configuration OracleJRE_config
         {
             ConfigPath     = $configPath
             PropertiesPath = $propertiesPath
-            Stigversion    = $stigVersion
+            Stigversion    = $StigVersion
         }
     }
 }

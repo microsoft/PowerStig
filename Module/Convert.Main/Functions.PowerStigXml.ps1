@@ -396,7 +396,7 @@ function New-OrganizationalSettingsXmlFile
         $Destination
     )
 
-    $orgSettings = Get-StigObjectsWithOrgSettings -ConvertedStigObjects $ConvertedStigObjects
+    $OrgSettings = Get-StigObjectsWithOrgSettings -ConvertedStigObjects $ConvertedStigObjects
 
     $xmlDocument = [System.XML.XMLDocument]::New()
 
@@ -413,7 +413,7 @@ function New-OrganizationalSettingsXmlFile
     #########################################   Root object   ##########################################
     #########################################    ID object    ##########################################
 
-    foreach ( $orgSetting in $orgSettings)
+    foreach ( $orgSetting in $OrgSettings)
     {
         [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement(
             $xmlElement.organizationalSettingChild )

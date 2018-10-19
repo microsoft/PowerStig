@@ -7,18 +7,18 @@ Switch ($PSCmdlet.MyInvocation.BoundParameters.Keys)
 {
     'Exception'
     {
-        $exception = [StigException]::ConvertFrom( $exception )
+        $Exception = [StigException]::ConvertFrom( $Exception )
     }
     'SkipRule'
     {
-        $skipRule = [SkippedRule]::ConvertFrom( $skipRule )
+        $SkipRule = [SkippedRule]::ConvertFrom( $SkipRule )
     }
     'SkipRuleType'
     {
-        $skipRuleType = [SkippedRuleType]::ConvertFrom( $skipRuleType )
+        $SkipRuleType = [SkippedRuleType]::ConvertFrom( $SkipRuleType )
     }
     'OrgSettings'
     {
-        $orgSettings = Get-OrgSettingsObject -OrgSettings $orgSettings
+        $OrgSettings = Get-OrgSettingsObject -OrgSettings $OrgSettings
     }
 }

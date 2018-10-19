@@ -30,7 +30,7 @@ try
             "V-26581"  = "32768"
         }
 
-        $orgSettings = [OrganizationalSetting]::ConvertFrom($orgSettingHashtable)
+        $OrgSettings = [OrganizationalSetting]::ConvertFrom($orgSettingHashtable)
 
         $technologyVersionName = '2012R2';
         $technologyRoleName = 'DC';
@@ -39,7 +39,7 @@ try
         $technologyVersion = [TechnologyVersion]::new($technologyVersionName, $technology)
         $technologyRole = [TechnologyRole]::new($technologyRoleName, $technologyVersion)
 
-        $stigVersion = [StigData]::GetHighestStigVersion($technology, $technologyRole, $technologyVersion)
+        $StigVersion = [StigData]::GetHighestStigVersion($technology, $technologyRole, $technologyVersion)
 
         [hashtable] $stigExceptionHashtable = @{
             "V-26606" = @{'ServiceState' = 'Running';
@@ -77,13 +77,13 @@ try
             Context 'Constructor' {
 
                 It 'Should create an StigData class instance using StigData1 data' {
-                    {$script:stigData = [StigData]::new($stigVersion, $orgSettings,
+                    {$script:stigData = [StigData]::new($StigVersion, $OrgSettings,
                             $technology, $technologyRole, $technologyVersion,
                             $stigExceptions, $skippedRuleTypes, $skippedRules)} |
                         Should Not Throw
                 }
                 It 'Should return the Stig Version' {
-                    $script:stigData.StigVersion | Should Be $stigVersion
+                    $script:stigData.StigVersion | Should Be $StigVersion
                 }
 
                 # $organizationalSettings = $stigData.OrganizationalSettings
@@ -136,51 +136,51 @@ try
                 }
 
                 It 'Should create an StigData class with the highest available version because no StigVersion was provided' {
-                    $stigData = [StigData]::new($null, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($null, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
                     $stigData.StigVersion | Should Not Be $null
                 }
 
                 It 'Should throw an exception when Technology is Null' {
-                    { [StigData]::new($stigVersion, $orgSettings, $null, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
+                    { [StigData]::new($StigVersion, $OrgSettings, $null, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
                         | Should Throw
                 }
 
                 It 'Should throw an exception when TechnologyVersion is Null' {
-                    { [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $null, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
+                    { [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $null, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
                         | Should Throw
                 }
 
                 It 'Should throw an exception when TechnologyRole is Null' {
-                    { [StigData]::new($stigVersion, $orgSettings, $technology, $null, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
+                    { [StigData]::new($StigVersion, $OrgSettings, $technology, $null, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
                         | Should Throw
                 }
             }
 
             Context 'Instance Methods' {
                 It 'SetStigPath: Should be able to determine the StigPath for the provided valid set of Technology, TechnologyVersion, TechnologyRole, and StigVersion' {
-                    $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
                     $stigData.SetStigPath()
-                    $stigData.StigPath | Should Be "$([StigData]::GetRootPath())\$($technology.ToString())-$($technologyVersion.Name)-$($technologyRole.Name)-$($stigVersion).xml"
+                    $stigData.StigPath | Should Be "$([StigData]::GetRootPath())\$($technology.ToString())-$($technologyVersion.Name)-$($technologyRole.Name)-$($StigVersion).xml"
                 }
 
                 It 'ProcessStigData: Should load the Stig Xml document from the filesystem into the StigXml property' {
-                    $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
                     $stigData.StigXml | Should Not Be $null
                 }
 
                 It 'SetStigPath: Should throw an exception if it is unable to find a matching Stig for the provided Technology, TechnologyVersion, TechnologyRole, and StigVersion' {
-                    { [StigData]::new('111.222', $orgSettings, $technology, $technologyRole, $technologyVersion,
+                    { [StigData]::new('111.222', $OrgSettings, $technology, $technologyRole, $technologyVersion,
                             $stigExceptions, $skippedRuleTypes, $skippedRules) } | Should Throw
                 }
 
                 It 'MergeOrganizationalSettings: Should merge the default organizational settings into instance OrganizationalSettings when no OrganizationalSettings is provided for a Stig that requires them' {
-                    $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
                     $stigData.OrganizationalSettings | Should Not Be $null
                     $stigData.OrganizationalSettings.Length | Should BeGreaterThan 0
                 }
 
                 It 'MergeOrganizationalSettings: Should merge provided settings into instance OrganizationalSettings for a Stig that requires them' {
-                    $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
 
                     $organizationalSettings = $stigData.OrganizationalSettings
                     foreach ($hash in $orgSettingHashtable.GetEnumerator())
@@ -192,7 +192,7 @@ try
                 }
 
                 It 'MergeOrganizationalSettings: Should merge instance OrganizationalSettings into StigXml' {
-                    $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
 
                     $propertyMap = [OrganizationalSetting]::PropertyMap()
 
@@ -213,24 +213,24 @@ try
                 }
 
                 It 'MergeOrganizationalSettings: Should pass schema testing after organizational settings have been merged' {
-                    $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $null, $null, $null)
+                    $stigData = [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $null, $null, $null)
 
                     { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
                 }
 
                 It 'MergeStigExceptions: Should merge the supplied stig exceptions when StigExceptions is not Null' {
-                    $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
+                    $stigData = [StigData]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
 
-                    foreach ($exception in $stigData.StigExceptions)
+                    foreach ($Exception in $stigData.StigExceptions)
                     {
-                        $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $exception.StigRuleId )']" -ErrorAction Stop ).Node
+                        $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $Exception.StigRuleId )']" -ErrorAction Stop ).Node
 
                         if ($null -ne $ruleToCheck)
                         {
                             $ParentNodeName = $ruleToCheck.ParentNode.Name
                             if ($ParentNodeName -ne "SkipRule")
                             {
-                                foreach ($property in $exception.Properties)
+                                foreach ($property in $Exception.Properties)
                                 {
                                     $ruleToCheck.$($property.Name) | Should Be $property.Value
                                 }
@@ -240,20 +240,20 @@ try
                 }
 
                 It 'MergeStigExceptions: Should pass schema testing after stig exceptions have been merged' {
-                    $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
+                    $stigData = [StigData]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
 
                     { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
                 }
 
                 It 'ProcessSkippedRuleTypes: Should process the supplied skipped rule types when SkippedRuleTypes is not Null' {
-                    $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $null)
+                    $stigData = [StigData]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $null)
 
                     $stigData.SkippedRules | Should Not Be $null
                     $stigData.SkippedRules.Length | Should BeGreaterThan 0
                 }
 
                 It 'MergeSkippedRules: Should merge the supplied skipped rules when SkippedRules is not Null' {
-                    $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
 
                     foreach ($skippedRule in $stigData.SkippedRules)
                     {
@@ -264,13 +264,13 @@ try
                 }
 
                 It 'MergeSkippedRules: Should pass schema testing after skipped rules have been merged' {
-                    $stigData = [StigData]::new($stigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
 
                     { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
                 }
 
                 It 'Should pass schema testing after with values passed in to all parameters' {
-                    $stigData = [StigData]::new($stigVersion, $orgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
+                    $stigData = [StigData]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
 
                     { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
                 }

@@ -264,8 +264,8 @@ try
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-            $skipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $skipRuleType = "AuditPolicyRule"
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $SkipRuleType = "AuditPolicyRule"
 
             It 'Should compile the MOF without throwing' {
                 {
@@ -274,8 +274,8 @@ try
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -289,7 +289,7 @@ try
 
                 #region counts how many Skips there are and how many there should be.
                 $dscXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
-                $dscXml = ($($dscXml.Count) + $($skipRule.Count))
+                $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
 
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
@@ -302,8 +302,8 @@ try
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
 
-            $skipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-            $skipRuleType = @('AuditPolicyRule','AccountPolicyRule')
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $SkipRuleType = @('AuditPolicyRule','AccountPolicyRule')
 
             It 'Should compile the MOF without throwing' {
                 {
@@ -312,8 +312,8 @@ try
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -329,7 +329,7 @@ try
                 $dscAuditXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
                 $dscPermissionXml = $dscXml.DISASTIG.AccountPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
 
-                $dscXml = ($($dscAuditXml.Count) + $($dscPermissionXml.count) + $($skipRule.Count))
+                $dscXml = ($($dscAuditXml.Count) + $($dscPermissionXml.count) + $($SkipRule.Count))
 
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion

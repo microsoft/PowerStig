@@ -270,23 +270,23 @@ Class StigData
     {
         if ($this.StigExceptions)
         {
-            foreach ($exception in $this.StigExceptions)
+            foreach ($Exception in $this.StigExceptions)
             {
                 # Lookup the STIG Id in the data
                 $ruleToOverride = ( $this.StigXml.DISASTIG |
-                                Select-Xml -XPath "//Rule[@id='$( $exception.StigRuleId )']" -ErrorAction Stop ).Node
+                                Select-Xml -XPath "//Rule[@id='$( $Exception.StigRuleId )']" -ErrorAction Stop ).Node
 
                 # If an Id is not found we can continue, but notify the user.
                 if ($null -eq $ruleToOverride)
                 {
-                    Write-warning "$($exception.StigRuleId) was not found"
+                    Write-warning "$($Exception.StigRuleId) was not found"
                     continue
                 }
 
                 # Append [Exception] to the STIG title
                 $ruleToOverride.title = "[Exception]" + $ruleToOverride.title
                 # Select and Update the property to override
-                $propertiesToOverride = $exception.Properties
+                $propertiesToOverride = $Exception.Properties
                 foreach ($property in $propertiesToOverride)
                 {
                     $propertyToOverride = $property.Name

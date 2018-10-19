@@ -40,16 +40,16 @@ Configuration WindowsServer_config
             {
                 OsVersion    = '$OsVersion'
                 OsRole       = '$osRole'
-                StigVersion  = '$stigVersion'
-                ForestName   = '$forestName'
-                DomainName   = '$domainName'
-                $(if ($null -ne $skipRule)
+                StigVersion  = '$StigVersion'
+                ForestName   = '$ForestName'
+                DomainName   = '$DomainName'
+                $(if ($null -ne $SkipRule)
                 {
-                    "SkipRule = @($( ($skipRule | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
                 }
-                if ($null -ne $skipRuleType)
+                if ($null -ne $SkipRuleType)
                 {
-                    " SkipRuleType = @($( ($skipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
                 })
             }")
         )
