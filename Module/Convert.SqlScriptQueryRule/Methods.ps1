@@ -208,7 +208,8 @@ function Get-PermissionTestScript
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the event Ids that will be returned
 #>
-function Get-DbExistSetScript {
+function Get-DbExistSetScript
+{
     [CmdletBinding()]
     [OutputType([string])]
     param
