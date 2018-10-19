@@ -20,7 +20,7 @@ Configuration IisServer_Config
     {
         IisServer ServerConfiguration
         {
-            OsVersion   = $osVersion
+            OsVersion   = $OsVersion
             StigVersion = $stigVersion
             LogPath     = $LogPath
         }

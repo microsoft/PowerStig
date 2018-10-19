@@ -38,7 +38,7 @@ Configuration WindowsClient_config
         & ([scriptblock]::Create("
             WindowsClient BaseLineSettings
             {
-                OsVersion    = '$osVersion'
+                OsVersion    = '$OsVersion'
                 StigVersion  = '$stigVersion'
                 ForestName   = '$forestName'
                 DomainName   = '$domainName'

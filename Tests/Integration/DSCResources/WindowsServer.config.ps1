@@ -38,7 +38,7 @@ Configuration WindowsServer_config
         & ([scriptblock]::Create("
             WindowsServer BaseLineSettings
             {
-                OsVersion    = '$osVersion'
+                OsVersion    = '$OsVersion'
                 OsRole       = '$osRole'
                 StigVersion  = '$stigVersion'
                 ForestName   = '$forestName'
