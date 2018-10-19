@@ -129,7 +129,12 @@ try
             }
         }
 
-        $stigRule = Get-TestStigRule -CheckContent $sqlScriptQueryRule.DbExist.CheckContent -ReturnGroupOnly
+        $testStigRuleParam = @{
+            CheckContent    = $sqlScriptQueryRule.DbExist.CheckContent
+            FixText         = $sqlScriptQueryRule.DbExist.FixText
+            ReturnGroupOnly = $true
+        }
+        $stigRule = Get-TestStigRule @testStigRuleParam
         $rule = [SqlScriptQueryRule]::new( $stigRule )
         #endregion
         #region Class Tests
