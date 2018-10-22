@@ -1,6 +1,17 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+data ADAuditPath
+{
+    ConvertFrom-StringData -StringData @'
+        domain = {Domain}
+        Domain Controller OU = OU=Domain Controllers,{Domain}
+        AdminSDHolder = CN=AdminSDHolder,CN=System,{Domain}
+        RID Manager$ = CN=RID Manager$,CN=System,{Domain}
+        Infrastructure = CN=Infrastructure,{Domain}
+'@
+}
+
 data fileRightsConstant
 {
     ConvertFrom-StringData -StringData @'
@@ -56,5 +67,19 @@ data inheritanceConstant
         This folder, subfolders and files       = This folder subfolders and files
         This folder, subfolder and files        = This folder subfolders and files
         Subfolders only                         = Subfolders only
+'@
+}
+
+data eventLogRegularExpression
+{
+    <#
+        The name entry was added to support event log name extraction from the
+        different formats found in different Window Server STIGs. For example in
+        the 2012 Stig, (Application.evtx) was used, in 2016 “Application.evtx”
+        is used, so name now extracts the log name from the extension and the
+        preceding word.
+    #>
+    ConvertFrom-StringData -stringdata @'
+        name = \\w+\\.evtx
 '@
 }

@@ -1,6 +1,7 @@
+#region Header
 using module .\..\..\..\Module\Common\Common.psm1
-. $PSScriptRoot\.tests.Header.ps1
-# Header
+. $PSScriptRoot\.tests.header.ps1
+#endregion
 #region Enum Tests
     <#
         a list of enums in the script that is used in a "burn down" manner. When an enum is processed
@@ -865,5 +866,4 @@ Describe 'Get-SecurityPolicyOrganizationValueTestString' {
         {Get-SecurityPolicyOrganizationValueTestString -CheckContent 'no match'} | Should Throw
     }
 }
-#endregion
 #endregion

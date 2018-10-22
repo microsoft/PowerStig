@@ -119,59 +119,6 @@ data RegularExpression
 '@
 }
 
-data ADAuditPath
-{
-    ConvertFrom-StringData -StringData @'
-        domain = {Domain}
-        Domain Controller OU = OU=Domain Controllers,{Domain}
-        AdminSDHolder = CN=AdminSDHolder,CN=System,{Domain}
-        RID Manager$ = CN=RID Manager$,CN=System,{Domain}
-        Infrastructure = CN=Infrastructure,{Domain}
-'@
-}
-
-# This is used to centralize the regEx patterns
-data rangeMatch
-{
-    ConvertFrom-StringData -stringdata @'
-        gt = ^0x([A-Fa-f0-9]{8})
-        ge = ^[0-9]{1,}
-        lt =  or less
-        less than = lt
-        or less   = lt
-        le = '(.*?)'
-'@
-}
-
-data errorMessage
-{
-    ConvertFrom-StringData -stringdata @'
-        ruleNotFound    = rule not found
-        ruleNotComplete = rule not complete
-'@
-}
-
-data processMitigationRegex
-{
-    ConvertFrom-StringData -StringData @'
-        TextBetweenDoubleQuoteAndColon = "[\\s\\S]*?:
-        TextBetweenColonAndDoubleQuote = :[\\s\\S]*?"
-        EnableColon        = Enable:
-        ColonSpaceOn       = :\\sON
-        IfTheStatusOf      = If\\sthe\\sstatus\\sof
-        IfTheStatusOfIsOff = If\\sthe\\sstatus\\sof[\\s\\S]*?\\sis\\s"OFF"[\\s\\S]*this\\sis\\sa\\sfinding
-        NotHaveAStatusOfOn = If\\sthe\\sfollowing\\smitigations\\sdo\\snot\\shave\\sa\\sstatus\\sof\\s"ON"
-'@
-}
-
-# List rules that can be excluded
-data exclusionRuleList
-{
-    ConvertFrom-StringData -StringData @'
-        V-73523 =
-'@
-}
-
 data webRegularExpression
 {
     ConvertFrom-StringData -stringdata @'
@@ -197,19 +144,5 @@ data webRegularExpression
         expiredSession          = Regenerate expired session ID
         sessionTimeout          = Time\-out
         inetpub                 = inetpub
-'@
-}
-
-data eventLogRegularExpression
-{
-    <#
-        The name entry was added to support event log name extraction from the
-        different formats found in different Window Server STIGs. For example in
-        the 2012 Stig, (Application.evtx) was used, in 2016 “Application.evtx”
-        is used, so name now extracts the log name from the extension and the
-        preceding word.
-    #>
-    ConvertFrom-StringData -stringdata @'
-        name = \\w+\\.evtx
 '@
 }
