@@ -164,19 +164,6 @@ Describe "commonRegEx Data Section" {
     #>
 }
 
-Describe "rangeMatch Data Section" {
-
-    [string] $dataSectionName = 'rangeMatch'
-
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    <#
-    TO DO - Add rules
-    #>
-}
-
 Describe "errorMessage Data Section" {
 
     [string] $dataSectionName = 'errorMessage'
