@@ -1,4 +1,4 @@
-s#region Header
+#region Header
 using module .\..\..\..\Module\DocumentRule\DocumentRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
