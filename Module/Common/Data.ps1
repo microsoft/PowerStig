@@ -146,3 +146,11 @@ data webRegularExpression
         inetpub                 = inetpub
 '@
 }
+
+# List rules that can be excluded
+data exclusionRuleList
+{
+    ConvertFrom-StringData -StringData @'
+        V-73523 =
+'@
+}
