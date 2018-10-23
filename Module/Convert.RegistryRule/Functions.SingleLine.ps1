@@ -19,7 +19,7 @@ function Test-SingleLineRegistryRule
         $CheckContent
     )
 
-    if ($CheckContent -match "(HKCU|HKLM|HKEY_LOCAL_MACHINE)\\")
+    if ($checkContent -match "(HKCU|HKLM|HKEY_LOCAL_MACHINE)\\")
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] $true"
         $true
@@ -50,7 +50,7 @@ function Get-SingleLineRegistryPath
         $CheckContent
     )
 
-    $fullRegistryPath = $CheckContent | Select-String -Pattern "((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)"
+    $fullRegistryPath = $checkContent | Select-String -Pattern "((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)"
 
     if (-not $fullRegistryPath)
     {
@@ -134,7 +134,7 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     try
     {
-        $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
+        $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent
     }
     catch
     {
@@ -143,21 +143,21 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     $valueName = [Regex]::Escape($valueName)
 
-    $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName(\"")? is not ).*="
+    $valueType = $checkContent | Select-String -Pattern "(?<=$valueName(\"")? is not ).*="
 
     if (-not $valueType)
     {
-        $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName(\"")?\s+is ).*="
+        $valueType = $checkContent | Select-String -Pattern "(?<=$valueName(\"")?\s+is ).*="
     }
 
     if (-not $valueType)
     {
-        $valueType = $CheckContent | Select-String -Pattern "(?<=Verify\sa).*(?=value\sof)"
+        $valueType = $checkContent | Select-String -Pattern "(?<=Verify\sa).*(?=value\sof)"
     }
 
     if (-not $valueType)
     {
-        $valueType = ($CheckContent | Select-String -Pattern 'registry key exists and the([\s\S]*?)value')
+        $valueType = ($checkContent | Select-String -Pattern 'registry key exists and the([\s\S]*?)value')
         if ($valueType)
         {
             $valueType = $valueType.Matches.Groups[1].Value
@@ -166,12 +166,12 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
-        $valueType = $CheckContent | Select-String -Pattern "(?<=$valueName`" is set to ).*`""
+        $valueType = $checkContent | Select-String -Pattern "(?<=$valueName`" is set to ).*`""
     }
 
     if (-not $valueType)
     {
-        $valueType = $CheckContent | Select-String -Pattern "((hkcu|hklm).*\sis\s(.*)=)"
+        $valueType = $checkContent | Select-String -Pattern "((hkcu|hklm).*\sis\s(.*)=)"
 
         if ($valueType)
         {
@@ -181,7 +181,7 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
-        if ($CheckContent | Select-String -Pattern "does not exist, this is not a finding")
+        if ($checkContent | Select-String -Pattern "does not exist, this is not a finding")
         {
             return "Does Not Exist"
         }
@@ -231,42 +231,42 @@ function Get-RegistryValueNameFromSingleLineStig
         $CheckContent
     )
 
-    $valueName = $CheckContent | Select-String -Pattern '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))'
+    $valueName = $checkContent | Select-String -Pattern '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))'
 
     if (-not $valueName)
     {
-        if ($CheckContent -match 'If the.+(registry key does not exist)')
+        if ($checkContent -match 'If the.+(registry key does not exist)')
         {
-            $valueName = $CheckContent | Select-String -Pattern '"[\s\S]*?"' | Select-Object -First 1
+            $valueName = $checkContent | Select-String -Pattern '"[\s\S]*?"' | Select-Object -First 1
         }
     }
 
     if (-not $valueName)
     {
-        $valueName = $CheckContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
+        $valueName = $checkContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
     }
 
     if (-not $valueName)
     {
-        $valueName = $CheckContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
+        $valueName = $checkContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
     }
 
     if (-not $valueName)
     {
-        if ($CheckContent -match 'the policy value')
+        if ($checkContent -match 'the policy value')
         {
-            $valueName = $CheckContent | Select-String -Pattern '(?<=")(.*)(?="\sis)'
+            $valueName = $checkContent | Select-String -Pattern '(?<=")(.*)(?="\sis)'
         }
     }
 
     if (-not $valueName)
     {
-        $valueName = $CheckContent | Select-String -Pattern '((?<=for\s).*)'
+        $valueName = $checkContent | Select-String -Pattern '((?<=for\s).*)'
     }
 
     if (-not $valueName)
     {
-        $valueName = $CheckContent | Select-String -Pattern "(?<=filevalidation\\).*(?=\sis\sset\sto)"
+        $valueName = $checkContent | Select-String -Pattern "(?<=filevalidation\\).*(?=\sis\sset\sto)"
     }
 
     $valueName = $valueName.Matches.Value.Replace('"', '')
@@ -316,7 +316,7 @@ function Get-RegistryValueDataFromSingleStig
 
     try
     {
-        $valueType = Get-RegistryValueTypeFromSingleLineStig -CheckContent $CheckContent
+        $valueType = Get-RegistryValueTypeFromSingleLineStig -CheckContent $checkContent
     }
     catch
     {
@@ -328,26 +328,26 @@ function Get-RegistryValueDataFromSingleStig
         return
     }
 
-    $valueData = $CheckContent | Select-String -Pattern "(?<=$($valueType)(\s*)?=).*(?=(,|\())"
+    $valueData = $checkContent | Select-String -Pattern "(?<=$($valueType)(\s*)?=).*(?=(,|\())"
 
     if (-not $valueData)
     {
-        $valueData = $CheckContent | Select-String -Pattern "((?<=value\sof).*(?=for))"
+        $valueData = $checkContent | Select-String -Pattern "((?<=value\sof).*(?=for))"
     }
 
     if (-not $valueData)
     {
-        $valueData = $CheckContent | Select-String -Pattern "((?<=set\sto).*(?=\(true\)))"
+        $valueData = $checkContent | Select-String -Pattern "((?<=set\sto).*(?=\(true\)))"
     }
 
     if (-not $valueData)
     {
-        $valueData = $CheckContent | Select-String -Pattern "((?<=is\sset\sto\s)(`'|`")).*(?=(`'|`"))"
+        $valueData = $checkContent | Select-String -Pattern "((?<=is\sset\sto\s)(`'|`")).*(?=(`'|`"))"
     }
 
     if (-not $valueData)
     {
-        $valueData = $CheckContent | Select-String -Pattern "(?<=$($valueType)\s=).*"
+        $valueData = $checkContent | Select-String -Pattern "(?<=$($valueType)\s=).*"
     }
 
     $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '')
@@ -395,7 +395,7 @@ function Get-RegistryValueStringFromSingleLineStig
         $Trim
     )
 
-    [string] $registryLine = ( $CheckContent | Select-String -Pattern "Criteria:")
+    [string] $registryLine = ( $checkContent | Select-String -Pattern "Criteria:")
 
     if ( -not [String]::IsNullOrEmpty( $registryLine ) )
     {
@@ -450,7 +450,7 @@ function Test-SingleLineStigFormat
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ($CheckContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\")
+    if ($checkContent -match "HKLM|HKCU|HKEY_LOCAL_MACHINE\\")
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] $true"
         $true

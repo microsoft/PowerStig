@@ -19,7 +19,7 @@ function ConvertTo-WindowsFeatureRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $windowsFeatureRule = [WindowsFeatureRule]::New( $StigRule )
+    $windowsFeatureRule = [WindowsFeatureRule]::New( $stigRule )
 
     $windowsFeatureRule.SetFeatureName()
 

@@ -46,19 +46,19 @@ try
                 }
             }
         }
-        Describe "Get-StigVersionNumber" {
+        Describe 'Get-StigVersionNumber' {
             $majorVersionNumber = '1'
             $minorVersionNumber = '5'
             $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
                 -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901"
 
-            It "Should extract the version number from the xccdf" {
+            It 'Should extract the version number from the xccdf' {
                 Get-StigVersionNumber -StigDetails $sampleXccdf |
                     Should Be "$majorVersionNumber.$minorVersionNumber"
             }
         }
 
-        Describe "Get-PowerStigFileList" {
+        Describe 'Get-PowerStigFileList' {
             $majorVersionNumber = '1'
             $minorVersionNumber = '5'
             $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
@@ -69,13 +69,13 @@ try
 
                 $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf
 
-                It "Should return a fileInfo Object" {
+                It 'Should return a fileInfo Object' {
                     $powerStigFileList.Settings.GetType().ToString() | Should Be 'System.IO.FileInfo'
                 }
-                It " Should return the file name" {
+                It 'Should return the file name' {
                     $powerStigFileList.Settings.Name | Should Be $expectedName
                 }
-                It " Should return the full path" {
+                It 'Should return the full path' {
                     $powerStigFileList.Settings.FullName | Should Be "$script:moduleRoot\StigData\Processed\$expectedName"
                 }
             }
@@ -85,13 +85,13 @@ try
                 Mock -CommandName Resolve-Path -MockWith {return "C:\Test\Path"}
                 $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf -Destination ".\Path"
 
-                It "Should return the full path of the supplied destination" {
+                It 'Should return the full path of the supplied destination' {
                     $powerStigFileList.Settings.FullName | Should Be "C:\Test\Path\$expectedName"
                 }
             }
         }
 
-        Describe "Split-BenchmarkId" {
+        Describe 'Split-BenchmarkId' {
 
             $sampleStrings = [ordered]@{
                 'SQLServer' = @(

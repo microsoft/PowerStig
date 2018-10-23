@@ -40,16 +40,16 @@ try
     )
     #endregion
     #region Tests
-    Describe "Windows Feature Conversion" {
+    Describe 'Windows Feature Conversion' {
 
         foreach ( $testString in $testStrings )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an WindowsFeatureRule Object" {
+            It 'Should return an WindowsFeatureRule Object' {
                 $rule.GetType() | Should Be 'WindowsFeatureRule'
             }
             It "Should set Feature Name to '$($testString.FeatureName)'" {

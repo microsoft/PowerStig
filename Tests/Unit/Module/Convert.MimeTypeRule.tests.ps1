@@ -64,7 +64,7 @@ try
 
             Context 'Base Class'{
 
-                It "Shoud have a BaseType of STIG"{
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -93,7 +93,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested"{
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -143,11 +143,11 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-MimeTypeRule" {
+        Describe 'ConvertTo-MimeTypeRule' {
             $stigRule = Get-TestStigRule -CheckContent $mimeTypeRule.checkContent -ReturnGroupOnly
             $rule = ConvertTo-MimeTypeRule -StigRule $stigRule
 
-            It "Should return an MimeTypeRule object" {
+            It 'Should return an MimeTypeRule object' {
                 $rule.GetType() | Should Be 'MimeTypeRule'
             }
         }

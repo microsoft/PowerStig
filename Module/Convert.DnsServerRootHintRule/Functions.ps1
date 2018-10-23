@@ -18,7 +18,7 @@ function ConvertTo-DnsServerRootHintRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $dnsServerRootHintRule = [DnsServerRootHintRule]::New( $StigRule )
+    $dnsServerRootHintRule = [DnsServerRootHintRule]::New( $stigRule )
 
     $dnsServerRootHintRule.SetStigRuleResource()
 

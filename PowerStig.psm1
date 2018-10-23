@@ -16,7 +16,7 @@ $pathList = @(
     "$PSScriptRoot\Module\Stig.Main",
     "$PSScriptRoot\Module\STIG.Checklist"
 )
-Foreach ($supportFile in (Get-ChildItem -Path $pathList -Filter '*.ps1'))
+foreach ($supportFile in (Get-ChildItem -Path $pathList -Filter '*.ps1'))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

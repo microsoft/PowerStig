@@ -12,7 +12,7 @@ try
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         Describe "SqlServer $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
@@ -37,7 +37,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[SqlScriptQuery\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {

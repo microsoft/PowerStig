@@ -23,26 +23,26 @@ function Get-WindowsFeatureName
     $windowsFeatureName = @()
     try
     {
-        switch ($CheckContent)
+        switch ($checkContent)
         {
             { $PSItem -match $script:regularExpression.WindowsFeatureName }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.WindowsFeatureName
+                $matches = $checkContent | Select-String -Pattern $script:regularExpression.WindowsFeatureName
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'Get-WindowsFeature\s-Name' ).Trim()
             }
             { $PSItem -match $script:regularExpression.FeatureNameEquals }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameEquals
+                $matches = $checkContent | Select-String -Pattern $script:regularExpression.FeatureNameEquals
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
             }
             { $PSItem -match $script:regularExpression.FeatureNameSpaceColon }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameSpaceColon -AllMatches
+                $matches = $checkContent | Select-String -Pattern $script:regularExpression.FeatureNameSpaceColon -AllMatches
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
             }
             { $PSItem -match $script:regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.IfTheApplicationExists
+                $matches = $checkContent | Select-String -Pattern $script:regularExpression.IfTheApplicationExists
                 $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern $script:regularExpression.textBetweenQuotes).Matches.Value -replace '"').Trim()
             }
             { $PSItem -match 'telnet' }
@@ -93,7 +93,7 @@ function Get-FeatureInstallState
         $CheckContent
     )
 
-    switch ($CheckContent)
+    switch ($checkContent)
     {
         <#
             Currently ALL WindowsFeatureRules referenced in any of the STIGs will be uninstalled (Absent)

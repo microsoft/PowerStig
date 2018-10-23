@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 #region Header
-$rules = Get-RuleClassData -StigData $StigData -Name UserRightRule
+$rules = Get-RuleClassData -StigData $stigData -Name UserRightRule
 
 $domainGroupTranslation = @{
     'Administrators'            = 'Builtin\Administrators'
@@ -25,37 +25,37 @@ $forestGroupTranslation = @{
 }
 
 # This requires a local forest and/or domain name to be injected to ensure a valid account name.
-$domainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
-$forestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
+$DomainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
+$ForestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
 
 #endregion Header
 
-Foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     Write-Verbose $rule
     $identitySplit = $rule.Identity -split ","
-    [System.Collections.ArrayList]  $IdentityList = @()
+    [System.Collections.ArrayList]  $identityList = @()
 
     foreach ($identity in $identitySplit)
     {
         if ($domainGroupTranslation.Contains($identity))
         {
-            [void] $IdentityList.Add($domainGroupTranslation.$identity -f $domainName )
+            [void] $identityList.Add($domainGroupTranslation.$identity -f $DomainName )
         }
         elseif ($forestGroupTranslation.Contains($identity))
         {
-            [void] $IdentityList.Add($forestGroupTranslation.$identity -f $forestName )
+            [void] $identityList.Add($forestGroupTranslation.$identity -f $ForestName )
         }
-        # default to adding the identify as provided for any non-default identities.
+        # Default to adding the identify as provided for any non-default identities.
         else
         {
-            [void] $IdentityList.Add($identity)
+            [void] $identityList.Add($identity)
         }
     }
 
     UserRightsAssignment (Get-ResourceTitle -Rule $rule)
     {
         Policy   = ($rule.DisplayName -replace " ", "_")
-        Identity = $IdentityList
+        Identity = $identityList
     }
 }

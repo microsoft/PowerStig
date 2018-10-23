@@ -116,20 +116,20 @@ Configuration WindowsDnsServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
-    . "$resourcePath\windows.xDnsServerSetting.ps1"
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
+    . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Script.RootHint.ps1"
 
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
-
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
-    . "$resourcePath\windows.AccessControl.ps1"
+    Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
+    . "$resourcePath\windows.xDnsServerSetting.ps1"
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xRegistry.ps1"
 
     Import-DscResource -ModuleName xWinEventLog -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.xWinEventLog.ps1"

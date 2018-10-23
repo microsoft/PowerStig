@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name WindowsFeatureRule
+$rules = Get-RuleClassData -StigData $stigData -Name WindowsFeatureRule
 
 $ensureMapping = @{
     Present = 'Enable'
@@ -16,7 +16,7 @@ foreach ( $rule in $rules )
         future if WindowsOptionalFeature is updated to allow it to run a on DC
         lines 17-31 can be removed.
     #>
-    if ( $StigData.DISASTIG.id -match 'MS|DC' )
+    if ( $stigData.DISASTIG.id -match 'MS|DC' )
     {
         if ( $rule.FeatureName -eq 'SMB1Protocol' )
         {

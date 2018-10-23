@@ -21,11 +21,11 @@ try
         )
         #endregion
         #region Class Tests
-        Describe "SkippedRule Class" {
+        Describe 'SkippedRule Class' {
 
-            Context "Constructor" {
+            Context 'Constructor' {
 
-                It "Should create an SkippedRule class instance using SkippedRule data" {
+                It 'Should create an SkippedRule class instance using SkippedRule data' {
                     foreach ($rule in $SkippedRuleArray)
                     {
                         $SkippedRule = [SkippedRule]::new($rule)
@@ -34,8 +34,8 @@ try
                 }
             }
 
-            Context "Static Methods" {
-                It "ConvertFrom: Should be able to convert an array of StigRuleId strings to a SkippedRule array" {
+            Context 'Static Methods' {
+                It 'ConvertFrom: Should be able to convert an array of StigRuleId strings to a SkippedRule array' {
                     $SkippedRules = [SkippedRule]::ConvertFrom($SkippedRuleArray)
 
                     foreach ($rule in $SkippedRuleArray)

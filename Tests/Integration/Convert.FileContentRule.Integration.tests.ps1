@@ -53,12 +53,12 @@ try
     )
     #endregion
     #region Tests
-    Describe "FileContentRule Integration Tests" {
+    Describe 'FileContentRule Integration Tests' {
         foreach ($fileContentRule in $fileContentRulesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $fileContentRule.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $fileContentRule.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $global:stigXccdfName = $fileContentRule.ArchiveFile
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 

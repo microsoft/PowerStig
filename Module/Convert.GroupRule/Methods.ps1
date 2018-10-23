@@ -21,7 +21,7 @@ function Get-GroupDetail
     )
 
     $templateFile = "$PSScriptRoot\Template.GroupDetail.txt"
-    $result = $CheckContent | ConvertFrom-String -TemplateFile $templateFile
+    $result = $checkContent | ConvertFrom-String -TemplateFile $templateFile
 
     return $result
 }

@@ -16,25 +16,25 @@ Compare the AuditPol settings with the following.  If the system does not audit 
 Account Management -&gt; Computer Account Management - Success'
     #endregion
     #region Tests
-    Describe "Audit Policy Conversion" {
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+    Describe 'Audit Policy Conversion' {
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-        It "Should return an AuditPolicyRule Object" {
+        It 'Should return an AuditPolicyRule Object' {
             $rule.GetType() | Should Be 'AuditPolicyRule'
         }
-        It "Should extract the correct SubCategory" {
+        It 'Should extract the correct SubCategory' {
             $rule.SubCategory | Should Be 'Computer Account Management'
         }
-        It "Should extract the correct AuditFlag" {
+        It 'Should extract the correct AuditFlag' {
             $rule.AuditFlag | Should be 'Success'
         }
-        It "Should set the correct ensure value" {
+        It 'Should set the correct ensure value' {
             $rule.Ensure | Should be 'Present'
         }
-        It "Should set the Conversion statud to pass ensure value" {
+        It 'Should set the Conversion statud to pass ensure value' {
             $rule.conversionstatus | Should be 'pass'
         }
     }

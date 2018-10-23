@@ -40,16 +40,16 @@ try
     )
     #endregion
     #region Tests
-    Describe "WebConfigurationProperty Rule Conversion" {
+    Describe 'WebConfigurationProperty Rule Conversion' {
 
         foreach ( $stig in $stigRulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'IIS'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'IIS'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an WebConfigurationPropertyRule Object" {
+            It 'Should return an WebConfigurationPropertyRule Object' {
                 $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
             }
 

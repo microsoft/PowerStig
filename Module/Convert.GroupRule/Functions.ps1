@@ -16,7 +16,7 @@ function ConvertTo-GroupRule
         $StigRule
     )
 
-    $groupRule = [GroupRule]::New( $StigRule )
+    $groupRule = [GroupRule]::New( $stigRule )
     $groupRule.SetGroupName()
     $groupRule.SetMembersToExclude()
     $groupRule.SetStigRuleResource()

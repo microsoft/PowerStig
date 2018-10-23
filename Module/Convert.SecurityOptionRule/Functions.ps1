@@ -18,7 +18,7 @@ function ConvertTo-SecurityOptionRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $securityOptionRule = [SecurityOptionRule]::New( $StigRule )
+    $securityOptionRule = [SecurityOptionRule]::New( $stigRule )
     $securityOptionRule.SetStigRuleResource()
     $securityOptionRule.SetOptionName()
 
@@ -52,7 +52,7 @@ function Test-ValueOtherThan
         $CheckContent
     )
 
-    if ( $CheckContent -match 'value other than' )
+    if ( $checkContent -match 'value other than' )
     {
         return $true
     }

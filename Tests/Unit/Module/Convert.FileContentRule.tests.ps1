@@ -63,7 +63,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -92,7 +92,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -142,13 +142,13 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-FileContentRule" {
+        Describe 'ConvertTo-FileContentRule' {
 
             $global:stigXccdfName = $rulesToTest[1].ArchiveFile
             $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
             $rule = ConvertTo-FileContentRule -StigRule $stigRule
 
-            It "Should return a FileContentRule object" {
+            It 'Should return a FileContentRule object' {
                 $rule.GetType() | Should Be 'FileContentRule'
             }
         }

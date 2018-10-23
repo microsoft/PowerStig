@@ -56,25 +56,25 @@ try
     )
     #endregion
     #region Tests
-    Describe "User Rights Assignment Conversion" {
+    Describe 'User Rights Assignment Conversion' {
 
         foreach ( $testRule in $rulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an UserRightRule Object" {
+            It 'Should return an UserRightRule Object' {
                 $rule.GetType() | Should Be 'UserRightRule'
             }
-            It "Should extract the correct DisplayName" {
+            It 'Should extract the correct DisplayName' {
                 $rule.DisplayName | Should Be $testRule.displayName
             }
-            It "Should return the correct Constant" {
+            It 'Should return the correct Constant' {
                 $rule.Constant | Should Be $testRule.constant
             }
-            It "Should extract the correct identity" {
+            It 'Should extract the correct identity' {
                 $rule.Identity | Should Be $testRule.Identity
             }
             It 'Should not have OrganizationValueRequired set' {

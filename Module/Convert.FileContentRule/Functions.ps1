@@ -17,25 +17,25 @@ function ConvertTo-FileContentRule
     )
 
     $fileContentRules = @()
-    $checkStrings = $StigRule.rule.Check.('check-content')
+    $checkStrings = $stigRule.rule.Check.('check-content')
 
     if ( [FileContentRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitFileContentEntries = [FileContentRule]::SplitMultipleRules( $checkStrings )
 
         [int]$byte = 97
-        $id = $StigRule.id
+        $id = $stigRule.id
         foreach ($splitFileContentEntry in $splitFileContentEntries)
         {
-            $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
-            $StigRule.rule.Check.('check-content') = $splitFileContentEntry
-            $fileContentRules += New-FileContentRule -StigRule $StigRule
+            $stigRule.id = "$id.$([CHAR][BYTE]$byte)"
+            $stigRule.rule.Check.('check-content') = $splitFileContentEntry
+            $fileContentRules += New-FileContentRule -StigRule $stigRule
             $byte ++
         }
     }
     else
     {
-        $fileContentRules += ( New-FileContentRule -StigRule $StigRule )
+        $fileContentRules += ( New-FileContentRule -StigRule $stigRule )
     }
     return $fileContentRules
 }
@@ -55,7 +55,7 @@ function New-FileContentRule
         $StigRule
     )
 
-    $fileContentRule = [FileContentRule]::New( $StigRule )
+    $fileContentRule = [FileContentRule]::New( $stigRule )
     $fileContentRule.SetKeyName()
     $fileContentRule.SetValue()
     $fileContentRule.SetStigRuleResource()

@@ -14,25 +14,25 @@ try
     must be documented with the ISSO.'
     #endregion
     #region Tests
-    Describe "Wmi Rule Conversion" {
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+    Describe 'Wmi Rule Conversion' {
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-        It "Should return an WmiRule Object" {
+        It 'Should return an WmiRule Object' {
             $rule.GetType() | Should Be 'WmiRule'
         }
-        It "Should extract the correct Query" {
+        It 'Should extract the correct Query' {
             $rule.Query | Should Be "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
         }
-        It "Should extract the correct Property Name" {
+        It 'Should extract the correct Property Name' {
             $rule.Property | Should be 'FileSystem'
         }
-        It "Should set the correct Value" {
+        It 'Should set the correct Value' {
             $rule.Value | Should be 'NTFS|ReFS'
         }
-        It "Should set the correct Operator" {
+        It 'Should set the correct Operator' {
             $rule.Operator | Should be '-match'
         }
         It 'Should Set the status to pass' {

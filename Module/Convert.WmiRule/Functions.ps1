@@ -18,7 +18,7 @@ function ConvertTo-WmiRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $wmiRule = [wmiRule]::New( $StigRule )
+    $wmiRule = [wmiRule]::New( $stigRule )
 
     Switch ( $wmiRule.rawString )
     {

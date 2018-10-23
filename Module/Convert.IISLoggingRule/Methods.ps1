@@ -20,10 +20,10 @@ function Get-LogCustomFieldEntry
         $CheckContent
     )
 
-    if ($CheckContent -match $script:webRegularExpression.customFieldSection)
+    if ($checkContent -match $script:webRegularExpression.customFieldSection)
     {
         $customFieldEntries = @()
-        [string[]] $customFieldMatch = $CheckContent | Select-String -Pattern $script:webRegularExpression.customFields -AllMatches
+        [string[]] $customFieldMatch = $checkContent | Select-String -Pattern $script:webRegularExpression.customFields -AllMatches
 
         foreach ($customField in $customFieldMatch)
         {
@@ -56,7 +56,7 @@ function Get-LogFlag
         $CheckContent
     )
 
-    $cleanCheckContent = $CheckContent -replace $script:webRegularExpression.excludeExtendedAscii, ''
+    $cleanCheckContent = $checkContent -replace $script:webRegularExpression.excludeExtendedAscii, ''
 
     switch ($cleanCheckContent)
     {
@@ -94,7 +94,7 @@ function Get-LogFormat
         $CheckContent
     )
 
-    [string] $logFormatLine = $CheckContent | Select-String -Pattern $script:webRegularExpression.logformat -AllMatches
+    [string] $logFormatLine = $checkContent | Select-String -Pattern $script:webRegularExpression.logformat -AllMatches
 
     if (-not [String]::IsNullOrEmpty( $logFormatLine ))
     {
@@ -126,7 +126,7 @@ function Get-LogPeriod
         $CheckContent
     )
 
-    switch ( $CheckContent )
+    switch ( $checkContent )
     {
         { $PsItem -match $script:webRegularExpression.logperiod }
         {
@@ -153,7 +153,7 @@ function Get-LogTargetW3C
         $CheckContent
     )
 
-    [string] $logTargetW3cLine = $CheckContent | Select-String -Pattern $script:webRegularExpression.logtargetw3c -AllMatches
+    [string] $logTargetW3cLine = $checkContent | Select-String -Pattern $script:webRegularExpression.logtargetw3c -AllMatches
 
     if (-not [String]::IsNullOrEmpty( $logTargetW3cLine ))
     {

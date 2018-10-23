@@ -18,8 +18,8 @@ function Get-SecurityOptionName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    # use a regular expression to pull the user string from between the quotes
-    $Option = ( $CheckContent |
+    # Use a regular expression to pull the user string from between the quotes
+    $Option = ( $checkContent |
             Select-String -Pattern $script:regularExpression.textBetweenQuotes -AllMatches )
 
     If ( $Option )
@@ -52,8 +52,8 @@ function Get-SecurityOptionValue
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    # use a regular expression to pull the user string from between the quotes
-    $option = ( $CheckContent |
+    # Use a regular expression to pull the user string from between the quotes
+    $option = ( $checkContent |
             Select-String -Pattern $script:regularExpression.textBetweenQuotes -AllMatches )
 
     if ( $option )

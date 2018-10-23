@@ -19,23 +19,23 @@ function ConvertTo-UserRightRule
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     $userRightRules = @()
 
-    if ( [UserRightRule]::HasMultipleRules( $StigRule.rule.Check.'check-content' ) )
+    if ( [UserRightRule]::HasMultipleRules( $stigRule.rule.Check.'check-content' ) )
     {
-        [string[]] $splitRules = [UserRightRule]::SplitMultipleRules( $StigRule.rule.Check.'check-content' )
+        [string[]] $splitRules = [UserRightRule]::SplitMultipleRules( $stigRule.rule.Check.'check-content' )
 
         [int] $byte = 97
-        [string] $ruleId = $StigRule.id
+        [string] $ruleId = $stigRule.id
         foreach ( $splitRule in $splitRules )
         {
-            $StigRule.id = "$($ruleId).$([CHAR][BYTE]$byte)"
-            $StigRule.rule.Check.'check-content' = $splitRule
-            $userRightRules += New-UserRightRule -StigRule $StigRule
+            $stigRule.id = "$($ruleId).$([CHAR][BYTE]$byte)"
+            $stigRule.rule.Check.'check-content' = $splitRule
+            $userRightRules += New-UserRightRule -StigRule $stigRule
             $byte++
         }
     }
     else
     {
-        $userRightRules += New-UserRightRule -StigRule $StigRule
+        $userRightRules += New-UserRightRule -StigRule $stigRule
     }
 
     return $userRightRules
@@ -53,7 +53,7 @@ function New-UserRightRule
         $StigRule
     )
 
-    $userRightRule = [UserRightRule]::New( $StigRule )
+    $userRightRule = [UserRightRule]::New( $stigRule )
     $userRightRule.SetDisplayName()
     $userRightRule.SetConstant()
     $userRightRule.SetIdentity()

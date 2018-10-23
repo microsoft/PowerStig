@@ -64,26 +64,26 @@ function ConvertTo-RegistryRule
         character to identify it as a child object of a specific STIG setting.
     #>
     $RegistryRules = @()
-    $checkStrings = $StigRule.rule.Check.('check-content')
+    $checkStrings = $stigRule.rule.Check.('check-content')
 
     if ( [RegistryRule]::HasMultipleRules( $checkStrings ) )
     {
         $splitRegistryEntries = [RegistryRule]::SplitMultipleRules( $checkStrings )
 
         [int]$byte = 97
-        $id = $StigRule.id
+        $id = $stigRule.id
         foreach ($splitRegistryEntry in $splitRegistryEntries)
         {
-            $StigRule.id = "$id.$([CHAR][BYTE]$byte)"
-            $StigRule.rule.Check.('check-content') = $splitRegistryEntry
-            $Rule = New-RegistryRule -StigRule $StigRule
+            $stigRule.id = "$id.$([CHAR][BYTE]$byte)"
+            $stigRule.rule.Check.('check-content') = $splitRegistryEntry
+            $Rule = New-RegistryRule -StigRule $stigRule
             $RegistryRules += $Rule
             $byte ++
         }
     }
     else
     {
-        $RegistryRules += ( New-RegistryRule -StigRule $StigRule )
+        $RegistryRules += ( New-RegistryRule -StigRule $stigRule )
     }
     return $RegistryRules
 }
@@ -105,7 +105,7 @@ function New-RegistryRule
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-    $registryRule = [RegistryRule]::New( $StigRule )
+    $registryRule = [RegistryRule]::New( $stigRule )
 
     $registryRule.SetKey()
 

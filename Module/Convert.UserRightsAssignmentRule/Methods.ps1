@@ -21,7 +21,7 @@ function Get-UserRightDisplayName
 
     Write-Verbose "match = $($script:regularExpression.textBetweenQuotes)"
     # Use a regular expression to pull the user right string from between the quotes
-    $userRightDisplayNameSearch = ( $CheckContent |
+    $userRightDisplayNameSearch = ( $checkContent |
             Select-String -Pattern $($script:regularExpression).textBetweenQuotes -AllMatches )
 
     [string[]] $userRightDisplayName = $userRightDisplayNameSearch.matches.Groups.Value |
@@ -91,19 +91,19 @@ function Get-UserRightIdentity
 
     $return = [System.Collections.ArrayList] @()
 
-    if ($CheckContent -Match "Administrators\sAuditors\s" -and $CheckContent -Match "DNS\sServer\slog\sfile" )
+    if ($checkContent -Match "Administrators\sAuditors\s" -and $checkContent -Match "DNS\sServer\slog\sfile" )
     {
         [void] $return.Add('Administrators')
     }
-    elseif ( $CheckContent -Match "If (any|the following){1} (accounts or groups|groups or accounts) (other than the following|are not defined){1}.*this is a finding" )
+    elseif ( $checkContent -Match "If (any|the following){1} (accounts or groups|groups or accounts) (other than the following|are not defined){1}.*this is a finding" )
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Ensure : Present"
         # There is an edge case where multiple finding statements are made, so a zero index is needed.
-        [int] $lineNumber = ( ( $CheckContent | Select-String "this is a finding" )[0] ).LineNumber
+        [int] $lineNumber = ( ( $checkContent | Select-String "this is a finding" )[0] ).LineNumber
         # Set the negative index number of the first group to process.
-        $startLine = $lineNumber - $CheckContent.Count
+        $startLine = $lineNumber - $checkContent.Count
 
-        foreach ( $line in $CheckContent[$startLine..-1] )
+        foreach ( $line in $checkContent[$startLine..-1] )
         {
             if ( $line.Trim() -notmatch ":|^If|^Microsoft|^Organizations|^Vendor|^The|^(Systems|Workstations)\sDedicated" -and -not [string]::IsNullOrEmpty( $line.Trim() ) )
             {
@@ -139,7 +139,7 @@ function Get-UserRightIdentity
             }
         }
     }
-    elseif ( $CheckContent -Match "If any (accounts or groups|groups or accounts).*are (granted|defined).*this is a finding" )
+    elseif ( $checkContent -Match "If any (accounts or groups|groups or accounts).*are (granted|defined).*this is a finding" )
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Ensure : Absent"
 
@@ -164,11 +164,11 @@ function Test-SetForceFlag
         $CheckContent
     )
 
-    if ( $CheckContent -match 'If any (accounts or groups|groups or accounts) other than the following' )
+    if ( $checkContent -match 'If any (accounts or groups|groups or accounts) other than the following' )
     {
         return $true
     }
-    elseif ( $CheckContent -match 'If any (accounts or groups|groups or accounts)\s*(\(.*\),)?\s*are (granted|defined)' )
+    elseif ( $checkContent -match 'If any (accounts or groups|groups or accounts)\s*(\(.*\),)?\s*are (granted|defined)' )
     {
         return $true
     }
@@ -195,7 +195,7 @@ function Test-MultipleUserRightsAssignment
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $userRightMatches = $CheckContent | Select-String -Pattern 'local computer policy'
+    $userRightMatches = $checkContent | Select-String -Pattern 'local computer policy'
 
     if ( $userRightMatches.count -gt 1 )
     {
@@ -223,18 +223,18 @@ function Split-MultipleUserRightsAssignment
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $userRightMatches = $CheckContent | Select-String -Pattern 'local computer policy'
+    $userRightMatches = $checkContent | Select-String -Pattern 'local computer policy'
     $i = 1
     foreach ( $match in $userRightMatches )
     {
         $stringBuilder = New-Object System.Text.StringBuilder
         if ($i -ne $userRightMatches.count)
         {
-            [string[]] $content = $CheckContent[($match.lineNumber)..($userRightMatches[$i].lineNumber - 2 )]
+            [string[]] $content = $checkContent[($match.lineNumber)..($userRightMatches[$i].lineNumber - 2 )]
         }
         else
         {
-            [string[]] $content = $CheckContent[($match.lineNumber)..$CheckContent.Length]
+            [string[]] $content = $checkContent[($match.lineNumber)..$checkContent.Length]
         }
 
         foreach ( $line in $content  )

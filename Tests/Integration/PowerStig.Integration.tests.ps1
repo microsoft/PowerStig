@@ -8,7 +8,7 @@ Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath 'Tools\TestHe
 Import-Module $modulePath -Force
 #endregion
 
-Describe "$ModuleName module" {
+Describe "$moduleName module" {
 
     It 'Should be a Script Module' {
         (Get-Module -Name $script:modulePath -ListAvailable).ModuleType | Should Be 'Script'
@@ -16,7 +16,7 @@ Describe "$ModuleName module" {
 
     Context 'Exported Commands' {
 
-        $commands = (Get-Command -Module $ModuleName).Name
+        $commands = (Get-Command -Module $moduleName).Name
         $exportedCommands = @('Get-OrgSettingsObject', 'Get-DomainName', 'Get-StigList', 'New-StigCheckList')
 
         foreach ($export in $exportedCommands)
@@ -26,7 +26,7 @@ Describe "$ModuleName module" {
             }
         }
 
-    It "Should not have more commands than are tested" {
+    It 'Should not have more commands than are tested' {
             $compare = Compare-Object -ReferenceObject $commands -DifferenceObject $exportedCommands
             $compare.Count | Should Be 0
         }

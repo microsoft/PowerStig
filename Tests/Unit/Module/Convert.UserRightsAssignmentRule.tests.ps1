@@ -191,7 +191,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -219,7 +219,7 @@ try
                     }
                 }
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -238,7 +238,7 @@ try
                     }
                 }
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more static methods than are tested" {
+                It 'Should not have more static methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -Static -ChildClassMethodNames $staticMethods
                     $memberActual = ( [UserRightRule] | Get-Member -Static -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -350,27 +350,27 @@ try
 
             Context 'First User Right' {
 
-                It "Should return the first " {
+                It 'Should return the first' {
                     $results[0] | Should Match 'Allow log on through Remote Desktop Services'
                 }
-                It "Should Not return the second" {
+                It 'Should Not return the second' {
                     $results[0] | Should Not Match 'Deny access to this computer from the network'
                 }
             }
 
             Context 'Second User Right' {
 
-                It "Should return the second" {
+                It 'Should return the second' {
                     $results[1] | Should Match 'Deny access to this computer from the network'
                 }
-                It "Should Not return the first" {
+                It 'Should Not return the first' {
                     $results[1] | Should Not Match 'Allow log on through Remote Desktop Services'
                 }
             }
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-UserRightRule" {
+        Describe 'ConvertTo-UserRightRule' {
 
             <#
                 This function can't really be unit tested, since the call cannot be mocked by pester, so
@@ -379,13 +379,13 @@ try
             $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
             $rule = ConvertTo-UserRightRule -StigRule $stigRule
 
-            It "Should return an UserRightRule object" {
+            It 'Should return an UserRightRule object' {
                 $rule.GetType() | Should Be 'UserRightRule'
             }
         }
         #endregion
         #region Data Tests
-        Describe "UserRightNameToConstant Data Section" {
+        Describe 'UserRightNameToConstant Data Section' {
 
             [string] $dataSectionName = 'UserRightNameToConstant'
 

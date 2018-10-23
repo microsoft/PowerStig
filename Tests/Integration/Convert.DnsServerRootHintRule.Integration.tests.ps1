@@ -22,15 +22,15 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
 '@
     #endregion
     #region Tests
-    Describe "DnsServerRootHintRule conversion" {
+    Describe 'DnsServerRootHintRule conversion' {
 
-        Context "Root hints" {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $rootHintsCheckContent -XccdfTitle 'Domain Name System'
+        Context 'Root hints' {
+            [xml] $stigRule = Get-TestStigRule -CheckContent $rootHintsCheckContent -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should be a DnsServerRootHintRule" {
+            It 'Should be a DnsServerRootHintRule' {
                 $rule.GetType() | Should be 'DnsServerRootHintRule'
             }
             It 'Should have a HostName of $null' {
@@ -39,7 +39,7 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
             It 'Should have a IpAddress of $null' {
                 $rule.IpAddress | Should Be '$null'
             }
-            It "Should set the Conversion status to pass" {
+            It 'Should set the Conversion status to pass' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }

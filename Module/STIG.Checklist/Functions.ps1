@@ -21,7 +21,7 @@
         The location you want the checklist saved to
 
     .EXAMPLE
-        New-StigCheckList -ReferenceConfiguration $ReferenceConfiguration -XccdfPath $XccdfPath -OutputPath $outputPath
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -XccdfPath $xccdfPath -OutputPath $outputPath
 #>
 function New-StigCheckList
 {
@@ -50,7 +50,7 @@ function New-StigCheckList
     $xmlWriterSettings.Indent = $true
     $xmlWriterSettings.IndentChars = "`t"
     $xmlWriterSettings.NewLineChars = "`n"
-    $writer = [System.Xml.XmlWriter]::Create($OutputPath, $xmlWriterSettings)
+    $writer = [System.Xml.XmlWriter]::Create($outputPath, $xmlWriterSettings)
 
     $writer.WriteStartElement('CHECKLIST')
 
@@ -91,15 +91,15 @@ function New-StigCheckList
 
     $writer.WriteStartElement("STIG_INFO")
 
-    $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $XccdfPath
+    $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $xccdfPath
 
-    $StigInfoElements = [ordered] @{
+    $stigInfoElements = [ordered] @{
         'version'        = $xccdfBenchmarkContent.version
         'classification' = 'UNCLASSIFIED'
         'customname'     = ''
         'stigid'         = $xccdfBenchmarkContent.id
         'description'    = $xccdfBenchmarkContent.description
-        'filename'       = Split-Path -Path $XccdfPath -Leaf
+        'filename'       = Split-Path -Path $xccdfPath -Leaf
         'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
         'title'          = $xccdfBenchmarkContent.title
         'uuid'           = (New-Guid).Guid
@@ -107,7 +107,7 @@ function New-StigCheckList
         'source'         = $xccdfBenchmarkContent.reference.source
     }
 
-    foreach ($StigInfoElement in $StigInfoElements.GetEnumerator())
+    foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
     {
         $writer.WriteStartElement("SI_DATA")
 
@@ -164,7 +164,7 @@ function New-StigCheckList
 
         if ($PSCmdlet.ParameterSetName -eq 'mof')
         {
-            $setting = Get-SettingsFromMof -ReferenceConfiguration $ReferenceConfiguration -Id $vid
+            $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
 
             if ($setting)
             {
@@ -178,7 +178,7 @@ function New-StigCheckList
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
-            $setting = Get-SettingsFromResult -DscResult $DscResult -Id $vid
+            $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
 
             if ($setting)
             {
@@ -315,7 +315,7 @@ function Get-MofContent
 
     if ( -not $script:mofContent )
     {
-        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ReferenceConfiguration, 4)
+        $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($referenceConfiguration, 4)
     }
 
     return $script:mofContent
@@ -340,9 +340,9 @@ function Get-SettingsFromMof
         $Id
     )
 
-    $mofContent = Get-MofContent -ReferenceConfiguration $ReferenceConfiguration
+    $mofContent = Get-MofContent -ReferenceConfiguration $referenceConfiguration
 
-    return $mofContent.Where( {$PSItem.ResourceID -match $Id} )
+    return $mofContent.Where( {$PSItem.ResourceID -match $id} )
 }
 
 <#
@@ -366,10 +366,10 @@ function Get-SettingsFromResult
 
     if (-not $script:allResources)
     {
-        $script:allResources = $DscResult.ResourcesNotInDesiredState + $DscResult.ResourcesInDesiredState
+        $script:allResources = $dscResult.ResourcesNotInDesiredState + $dscResult.ResourcesInDesiredState
     }
 
-    return $script:allResources.Where( {$PSItem.ResourceID -match $Id} )
+    return $script:allResources.Where( {$PSItem.ResourceID -match $id} )
 }
 
 <#

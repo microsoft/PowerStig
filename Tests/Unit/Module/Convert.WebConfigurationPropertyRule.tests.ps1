@@ -82,7 +82,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -112,7 +112,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -159,7 +159,7 @@ try
         }
 
         Describe 'Split-MultipleWebConfigurationPropertyRule' {
-            It "Should return two rules" {
+            It 'Should return two rules' {
                 $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
                 $multipleRule = Split-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
                 $multipleRule.count | Should Be 2
@@ -167,18 +167,18 @@ try
         }
 
         Describe 'Get-OrganizationValueTestString' {
-            It "Should return two rules" {
+            It 'Should return two rules' {
                 $testString = Get-OrganizationValueTestString -Key $OrganizationValueTestString.Key
                 $testString | Should Be $OrganizationValueTestString.TestString
             }
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-WebConfigurationPropertyRule" {
+        Describe 'ConvertTo-WebConfigurationPropertyRule' {
             $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
             $rule = ConvertTo-WebConfigurationPropertyRule -StigRule $stigRule
 
-            It "Should return an WebConfigurationPropertyRule object" {
+            It 'Should return an WebConfigurationPropertyRule object' {
                 $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
             }
         }

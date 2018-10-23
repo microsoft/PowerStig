@@ -46,7 +46,7 @@ test_script:
 #      deployment configuration   #
 #---------------------------------#
 
-# scripts to run before deployment
+# Scripts to run before deployment
 before_deploy:
   - ps: Invoke-PowerStigAppveyorAfterTestTask
 

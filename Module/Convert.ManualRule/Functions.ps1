@@ -18,7 +18,7 @@ function ConvertTo-ManualRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $manualRule = [ManualRule]::New( $StigRule )
+    $manualRule = [ManualRule]::New( $stigRule )
 
     $manualRule.SetStigRuleResource()
 

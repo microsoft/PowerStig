@@ -262,7 +262,7 @@ try
                 $paths.Count | Should Be 2
             }
 
-            Context "Should contain one path and not the other" {
+            Context 'Should contain one path and not the other' {
                 foreach ($path in $paths)
                 {
                     $matchProgramFiles86 += ($path -split '\n').Trim() | ForEach-Object -Process {$_ -match '^\\Program Files \(x86\)$'}
@@ -282,7 +282,7 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-PermissionRule" {
+        Describe 'ConvertTo-PermissionRule' {
             $checkContent = @'
 The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377).  If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
 
@@ -330,12 +330,12 @@ Successfully processed 1 files; Failed processing 0 files
                 $rule.GetType() | Should Be 'PermissionRule'
             }
         }
-        Describe "Private Permission Rule" {
+        Describe 'Private Permission Rule' {
 
             [string] $functionName = 'Get-PermissionTargetPath'
             Context $functionName {
 
-                # get path that pertain to C:\ tests
+                # Get path that pertain to C:\ tests
                 $stringsToTestcDrive = @("system drive's root directory", "system drive's root directory ", " system drive's root directory")
                 $testTargetPathcDrive = '%SystemDrive%\'
 
@@ -346,7 +346,7 @@ Successfully processed 1 files; Failed processing 0 files
                     }
                 }
 
-                # get path for permissions that pertain to eventvwr.exe tests
+                # Get path for permissions that pertain to eventvwr.exe tests
                 $stringsToTesteventvwr = @('eventvwr.exe', ' eventvwr.exe', 'eventvwr.exe ',
                     ' The event viewer is eventvwr.exe '
                 )
@@ -358,7 +358,7 @@ Successfully processed 1 files; Failed processing 0 files
                     }
                 }
 
-                # get path for permissions that pertain to event logs tests
+                # Get path for permissions that pertain to event logs tests
                 $stringsToTestEventLogDirectory = @( '%SystemRoot%\SYSTEM32\WINEVT\LOGS ', '  %SystemRoot%\SYSTEM32\WINEVT\LOGS ',
                     '  %SystemRoot%\SYSTEM32\WINEVT\LOGS', '%SystemRoot%\SYSTEM32\WINEVT\LOGS  ',
                     'The eventlog directory is %SystemRoot%\SYSTEM32\WINEVT\LOGS period. ')
@@ -386,12 +386,12 @@ Successfully processed 1 files; Failed processing 0 files
                 # Test scenario for same FileSystemRights for multiple Principals
                 $multiplePrincipalString = 'Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read & Execute'
 
-                It "Should return a principal count of 4" {
+                It 'Should return a principal count of 4' {
                     $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
                     $result.Principal.count | Should Be 4
                 }
 
-                It "Should have matching Values" {
+                It 'Should have matching Values' {
                     $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString
 
                     foreach ( $entry in $result )
@@ -411,13 +411,13 @@ Successfully processed 1 files; Failed processing 0 files
                 Users - Read & execute - This folder, subfolders and files
                 Users - Create folders / append data - This folder and subfolders
                 "
-                It "Should assign different permissions" {
+                It 'Should assign different permissions' {
                     $result = ConvertTo-AccessControlEntry -StigString $differentPermissions
                     {$result[0].FileSystemRights -ne $result[1].FileSystemRights} | Should Be $true
                 }
 
                 # Test scenario for same Inheritance for multiple Principals
-                It "Should have matching Inheritance values" {
+                It 'Should have matching Inheritance values' {
                     $inheritanceValue = "This folder and subfolders"
                     $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -inheritanceInput $inheritanceValue
                     foreach ( $entry in $result )
@@ -429,7 +429,7 @@ Successfully processed 1 files; Failed processing 0 files
         }
         #endregion
         #region Data Tests
-        Describe "fileRightsConstant Data Section" {
+        Describe 'fileRightsConstant Data Section' {
 
             [string] $dataSectionName = 'fileRightsConstant'
 
@@ -438,7 +438,7 @@ Successfully processed 1 files; Failed processing 0 files
             }
         }
 
-        Describe "registryRightsConstant Data Section" {
+        Describe 'registryRightsConstant Data Section' {
 
             [string] $dataSectionName = 'registryRightsConstant'
 
@@ -451,7 +451,7 @@ Successfully processed 1 files; Failed processing 0 files
             #>
         }
 
-        Describe "activeDirectoryRightsConstant Data Section" {
+        Describe 'activeDirectoryRightsConstant Data Section' {
 
             [string] $dataSectionName = 'activeDirectoryRightsConstant'
 
@@ -464,7 +464,7 @@ Successfully processed 1 files; Failed processing 0 files
             #>
         }
 
-        Describe "inheritanceConstant Data Section" {
+        Describe 'inheritanceConstant Data Section' {
 
             [string] $dataSectionName = 'inheritanceConstant'
 

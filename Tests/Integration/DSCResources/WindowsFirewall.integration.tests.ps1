@@ -13,7 +13,7 @@ try
 
     #region Integration Tests
 
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         Describe "Windows Firewall $($stig.stigVersion) mof output" {
 
@@ -37,7 +37,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {

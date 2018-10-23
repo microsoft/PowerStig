@@ -230,7 +230,7 @@ function New-Nuspec
     {
         $null = $nuspecFileContent.AppendLine("    <dependencies>")
 
-        ForEach($dependency in $RequiredModules)
+        foreach ($dependency in $RequiredModules)
         {
             $moduleName = $dependency.ModuleName
             $moduleVersion = "[$($dependency.ModuleVersion)]"

@@ -19,7 +19,7 @@ function Get-RuleTypeMatchList
 
     [System.Collections.ArrayList] $ruleTypeList = @()
     $parsed = $false
-    switch ( $CheckContent )
+    switch ( $checkContent )
     {
         {
             $PSItem -Match 'gpedit\.msc' -and $PSItem -match 'Account Policies'
@@ -310,10 +310,10 @@ function Get-StigRuleResource
     {
         'PermissionRule'
         {
-            $Path = $this.Path
-            if ( $Path )
+            $path = $this.Path
+            if ( $path )
             {
-                return Get-PermissionRuleDscResource -Path $Path
+                return Get-PermissionRuleDscResource -Path $path
             }
         }
         'IISLoggingRule'
@@ -418,7 +418,7 @@ function Get-PermissionRuleDscResource
         $Path
     )
 
-    switch ($Path)
+    switch ($path)
     {
         {$PSItem -match '{domain}'}
         {
@@ -573,7 +573,7 @@ function Test-DuplicateRule
             return $true
         }
     }
-    # if the code made it this far a duplicate does not exist and we return $false
+    # If the code made it this far a duplicate does not exist and we return $false
     return $false
 }
 

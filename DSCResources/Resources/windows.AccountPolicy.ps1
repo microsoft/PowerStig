@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name AccountPolicyRule
+$rules = Get-RuleClassData -StigData $stigData -Name AccountPolicyRule
 
-Foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     $policy = $rule.PolicyName -replace "(:)*\s","_"
 

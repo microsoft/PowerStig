@@ -21,7 +21,7 @@ function ConvertTo-WebAppPoolRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $webAppPool = [WebAppPoolRule]::New( $StigRule )
+    $webAppPool = [WebAppPoolRule]::New( $stigRule )
 
     $webAppPool.SetKeyValuePair()
 

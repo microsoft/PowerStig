@@ -129,34 +129,34 @@ try
     )
     #endregion
     #region Tests
-    Describe "Registry basic settings conversion" {
+    Describe 'Registry basic settings conversion' {
 
         foreach ($registry in $registriesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return an RegistryRule Object" {
+            It 'Should return an RegistryRule Object' {
                 $rule.GetType() | Should Be 'RegistryRule'
             }
-            It "Should extract the correct key" {
+            It 'Should extract the correct key' {
                 $rule.key | Should Be $($registry.Hive + $registry.Path)
             }
-            It "Should extract the correct value name" {
+            It 'Should extract the correct value name' {
                 $rule.valueName | Should Be $registry.ValueName
             }
-            It "Should extract the correct value data" {
+            It 'Should extract the correct value data' {
                 $rule.valueData | Should Be $registry.ValueData
             }
-            It "Should extract the correct value type" {
+            It 'Should extract the correct value type' {
                 $rule.valueType | Should Be $registry.ValueType
             }
-            It "Should set the ensure value" {
+            It 'Should set the ensure value' {
                 $rule.Ensure | Should Be $registry.Ensure
             }
-            It "Should set OrganizationValueRequired to true" {
+            It 'Should set OrganizationValueRequired to true' {
                 $rule.OrganizationValueRequired | Should Be $registry.OrganizationValueRequired
             }
             It 'Should Set the status to pass' {

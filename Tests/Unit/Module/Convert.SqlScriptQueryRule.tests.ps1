@@ -133,14 +133,14 @@ try
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
 
-            Context "Base Class" {
+            Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
 
-            Context "Class Properties" {
+            Context 'Class Properties' {
 
                 $classProperties = @("GetScript", "TestScript", "SetScript")
 
@@ -152,7 +152,7 @@ try
                 }
             }
 
-            Context "Class Methods" {
+            Context 'Class Methods' {
 
                 $classMethods = @("SetGetScript", "SetTestScript", "SetSetScript", "GetRuleType")
 
@@ -164,7 +164,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -174,7 +174,7 @@ try
         }
         #endregion
         #region Method Tests
-        Describe "Method Function Tests" {
+        Describe 'Method Function Tests' {
             foreach ( $rule in $sqlScriptQueryRule.Keys )
             {
                 $ruleType = Get-SqlRuleType -CheckContent ($sqlScriptQueryRule.$($rule).CheckContent)
@@ -215,41 +215,41 @@ try
                 }
             }
 
-            Context "Get-Query" {
+            Context 'Get-Query' {
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
 
                 $query = Get-Query -CheckContent $checkContent
 
-                It "Should return 3 queries" {
+                It 'Should return 3 queries' {
                     $query.Count | Should be 3
                 }
             }
 
-            Context "SQL Trace Rule functions" {
+            Context 'SQL Trace Rule functions' {
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
 
                 $traceSetScript = $sqlScriptQueryRule.Trace.TestScript -split ";"
 
-                $eventId = Get-EventIdData -CheckContent $CheckContent
+                $eventId = Get-EventIdData -CheckContent $checkContent
                 $traceIdQuery = Get-TraceIdQuery -EventId $eventId
 
-                It "Should return Trace Id Query" {
+                It 'Should return Trace Id Query' {
                     $traceIdQuery | Should be ($traceSetScript[0])
                 }
 
                 $eventId = Get-EventIdData -CheckContent $checkContent
-                It "Should return Event Id Data" {
+                It 'Should return Event Id Data' {
                     $eventId | Should be $sqlScriptQueryRule.Trace.EventId
                 }
             }
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-SqlScriptQueryRule" {
+        Describe 'ConvertTo-SqlScriptQueryRule' {
             $stigRule = Get-TestStigRule -CheckContent $sqlScriptQueryRule.Trace.checkContent -FixText $fixText -ReturnGroupOnly
             $rule = ConvertTo-SqlScriptQueryRule -StigRule $stigRule
 
-            It "Should return an SqlScriptQueryRule object" {
+            It 'Should return an SqlScriptQueryRule object' {
                 $rule.GetType() | Should Be 'SqlScriptQueryRule'
             }
         }

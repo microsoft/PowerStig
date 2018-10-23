@@ -12,11 +12,10 @@ try
         }
         #endregion
         #region Class Tests
-        Describe "StigProperty Class" {
+        Describe 'StigProperty Class' {
+            Context 'Constructor' {
 
-            Context "Constructor" {
-
-                It "Should create an StigProperty class instance using StigProperty1 data" {
+                It 'Should create an StigProperty class instance using StigProperty1 data' {
                     foreach ($property in $StigPropertyTest.GetEnumerator())
                     {
                         $stigProperty = [StigProperty]::new($property.Key, $property.Value)

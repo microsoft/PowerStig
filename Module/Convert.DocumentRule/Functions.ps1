@@ -18,7 +18,7 @@ function ConvertTo-DocumentRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $documentRule = [DocumentRule]::New( $StigRule )
+    $documentRule = [DocumentRule]::New( $stigRule )
 
     $documentRule.SetStigRuleResource()
 

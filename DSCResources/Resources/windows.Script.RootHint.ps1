@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name DnsServerRootHintRule
+$rules = Get-RuleClassData -StigData $stigData -Name DnsServerRootHintRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     Script (Get-ResourceTitle -Rule $rule)
     {
@@ -16,7 +16,8 @@ Foreach ( $rule in $rules )
         {
             $result = $false
             $targetResource = Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."}
-            if ($targetResource.Count -eq 0) {
+            if ($targetResource.Count -eq 0)
+            {
                 $result = $True
             }
 
@@ -26,7 +27,8 @@ Foreach ( $rule in $rules )
         GetScript =
         {
             $returnString = $null
-            Foreach ( $rootHint in (Get-DnsServerRootHint) ) {
+            foreach ( $rootHint in (Get-DnsServerRootHint) )
+            {
                 $returnString += $rootHint.ipaddress.hostName + ";"
             }
 

@@ -13,7 +13,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -35,7 +35,7 @@ try
                 $classMethods = @()
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -49,7 +49,7 @@ try
 
         #endregion
         #region Function Tests
-        Describe "ConvertTo-DnsServerRootHintRule" {
+        Describe 'ConvertTo-DnsServerRootHintRule' {
             $checkContent = 'Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 
 Log on to the authoritative DNS server using the Domain Admin or Enterprise Admin account.
@@ -67,7 +67,7 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
             $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $rule = ConvertTo-DnsServerRootHintRule -StigRule $stigRule
 
-            It "Should return an DnsServerRootHintRule object" {
+            It 'Should return an DnsServerRootHintRule object' {
                 $rule.GetType() | Should Be 'DnsServerRootHintRule'
             }
         }

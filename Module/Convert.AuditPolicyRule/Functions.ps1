@@ -19,7 +19,7 @@ function ConvertTo-AuditPolicyRule
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $auditPolicyRule = [AuditPolicyRule]::New( $StigRule )
+    $auditPolicyRule = [AuditPolicyRule]::New( $stigRule )
 
     $auditPolicyRule.SetStigRuleResource()
 

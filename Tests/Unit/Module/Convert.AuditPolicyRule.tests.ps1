@@ -22,7 +22,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of STIG" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -51,7 +51,7 @@ try
                 }
 
                 # If new methods are added this will catch them so test coverage can be added
-                It "Should not have more methods than are tested" {
+                It 'Should not have more methods than are tested' {
                     $memberPlanned = Get-StigBaseMethods -ChildClassMethodNames $classMethods
                     $memberActual = ( $rule | Get-Member -MemberType Method ).Name
                     $compare = Compare-Object -ReferenceObject $memberActual -DifferenceObject $memberPlanned
@@ -128,7 +128,7 @@ try
 
     Account Management -&gt; Computer Account Management - Success'
 
-        Describe "ConvertTo-AuditPolicyRule" {
+        Describe 'ConvertTo-AuditPolicyRule' {
             <#
             This function can't really be unit tested, since the call cannot be mocked by pester, so
             the only thing we can really do at this point is to verify that it returns the correct object.
@@ -136,13 +136,13 @@ try
             $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $rule = ConvertTo-AuditPolicyRule -StigRule $stigRule
 
-            It "Should return an AuditPolicyRule object" {
+            It 'Should return an AuditPolicyRule object' {
                 $rule.GetType() | Should Be 'AuditPolicyRule'
             }
         }
         #endregion
         #region Data Tests
-        Describe "Audit Policy Data Variables" {
+        Describe 'Audit Policy Data Variables' {
 
             [string[]] $dataSectionNameList = @(
                 'auditPolicySubcategories',

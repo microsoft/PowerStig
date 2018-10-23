@@ -12,13 +12,14 @@ function Get-DnsServerWinEventLogName
     param
     (
         [Parameter( Mandatory = $true)]
-        [psobject] $StigString
+        [psobject] 
+        $StigString
     )
 
     # There is only one scenario to handle but we will use a switch to easily add additional scenarios
     switch ( $stigString )
     {
-        { $StigString -match $script:regularExpression.WinEventLogPath }
+        { $stigString -match $script:regularExpression.WinEventLogPath }
         {
             $dnsServerWinEventLogName = 'Microsoft-Windows-DnsServer/Analytical'
 

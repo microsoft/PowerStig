@@ -8,6 +8,6 @@
 #>
 function Get-PropertyMap
 {
-    return $PropertyMap
+    return $propertyMap
 }
 #endregion
