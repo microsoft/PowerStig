@@ -25,43 +25,43 @@ function Get-WindowsFeatureName
     {
         switch ($CheckContent)
         {
-            { $PSItem -match $script:regularExpression.WindowsFeatureName }
+            { $PSItem -match $script:commonRegEx.WindowsFeatureName }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.WindowsFeatureName
+                $matches = $CheckContent | Select-String -Pattern $script:commonRegEx.WindowsFeatureName
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'Get-WindowsFeature\s-Name' ).Trim()
             }
-            { $PSItem -match $script:regularExpression.FeatureNameEquals }
+            { $PSItem -match $script:commonRegEx.FeatureNameEquals }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameEquals
+                $matches = $CheckContent | Select-String -Pattern $script:commonRegEx.FeatureNameEquals
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
             }
-            { $PSItem -match $script:regularExpression.FeatureNameSpaceColon }
+            { $PSItem -match $script:commonRegEx.FeatureNameSpaceColon }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.FeatureNameSpaceColon -AllMatches
+                $matches = $CheckContent | Select-String -Pattern $script:commonRegEx.FeatureNameSpaceColon -AllMatches
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
             }
-            { $PSItem -match $script:regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
+            { $PSItem -match $script:commonRegEx.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
-                $matches = $CheckContent | Select-String -Pattern $script:regularExpression.IfTheApplicationExists
-                $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern $script:regularExpression.textBetweenQuotes).Matches.Value -replace '"').Trim()
+                $matches = $CheckContent | Select-String -Pattern $script:commonRegEx.IfTheApplicationExists
+                $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern $script:commonRegEx.textBetweenQuotes).Matches.Value -replace '"').Trim()
             }
             { $PSItem -match 'telnet' }
             {
                 $windowsFeatureName += 'TelnetClient'
             }
-            { $PSItem -match $script:regularExpression.WebDavPublishingFeature }
+            { $PSItem -match $script:commonRegEx.WebDavPublishingFeature }
             {
                 $windowsFeatureName += 'Web-DAV-Publishing'
             }
-            { $PSItem -match $script:regularExpression.SimpleTCP }
+            { $PSItem -match $script:commonRegEx.SimpleTCP }
             {
                 $windowsFeatureName += 'SimpleTCP'
             }
-            { $PSItem -match $script:regularExpression.IISHostableWebCore }
+            { $PSItem -match $script:commonRegEx.IISHostableWebCore }
             {
                 $windowsFeatureName += 'IIS-HostableWebCore'
             }
-            { $PSItem -match $script:regularExpression.IISWebserver }
+            { $PSItem -match $script:commonRegEx.IISWebserver }
             {
                 $windowsFeatureName += 'IIS-WebServer'
             }

@@ -353,6 +353,31 @@ try
             }
         }
 
+        Describe "eventLogRegularExpression Data Section" {
+
+            [string] $dataSectionName = 'eventLogRegularExpression'
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+
+            $namesToTest = @(
+                '(Application.evtx)',
+                '"Application.evtx"',
+                '''(System.evtx)''',
+                '''("System.evtx")'''
+            )
+            Context 'Name' {
+
+                foreach ($name in $namesToTest)
+                {
+                    It "Should match $name" {
+                        $name -Match $eventLogRegularExpression.name | Should Be $true
+                    }
+                }
+
+            }
+        }
+
         Describe "registryRightsConstant Data Section" {
 
             [string] $dataSectionName = 'registryRightsConstant'

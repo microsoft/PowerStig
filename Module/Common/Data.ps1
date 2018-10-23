@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # This is used to centralize the regEx patterns
-data RegularExpression
+data commonRegEx
 {
     ConvertFrom-StringData -stringdata @'
         # General matches

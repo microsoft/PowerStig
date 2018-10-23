@@ -61,9 +61,9 @@ Describe 'Enum coverage' {
 }
 #endregion Tests
 #region Data Tests
-Describe "RegularExpression Data Section" {
+Describe "commonRegEx Data Section" {
 
-    [string] $dataSectionName = 'RegularExpression'
+    [string] $dataSectionName = 'commonRegEx'
 
     It "Should have a data section called $dataSectionName" {
         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
@@ -72,11 +72,11 @@ Describe "RegularExpression Data Section" {
     Context 'Hex Code' {
 
         It 'Should match a hexcode' {
-            '0X00000000' -Match $RegularExpression.hexCode | Should Be $true
+            '0X00000000' -match $Script:commonRegEx.hexCode | Should Be $true
         }
 
         It 'Should NOT match nonhexcode' {
-            '0X000000000' -Match $RegularExpression.hexCode | Should Be $false
+            '0X000000000' -notmatch $Script:commonRegEx.hexCode | Should Be $true
         }
     }
 
@@ -87,18 +87,18 @@ Describe "RegularExpression Data Section" {
     Context 'Text Between Quotes' {
 
         It "Should match string with double quotes" {
-            'hello "this" test' -Match $RegularExpression.textBetweenQuotes | Should Be $true
+            'hello "this" test' -match $Script:commonRegEx.textBetweenQuotes | Should Be $true
         }
 
         It "Should match string with single quotes" {
-            "hello 'this' test" -Match $RegularExpression.textBetweenQuotes | Should Be $true
+            "hello 'this' test" -match $Script:commonRegEx.textBetweenQuotes | Should Be $true
         }
     }
 
     Context "Blank String" {
 
         It "Should match '(Blank)' literal string" {
-            "(Blank)" -Match $RegularExpression.blankString | Should Be $true
+            "(Blank)" -match $Script:commonRegEx.blankString | Should Be $true
         }
     }
 
@@ -107,7 +107,7 @@ Describe "RegularExpression Data Section" {
         foreach ( $flag in ('Enabled','enabled','Disabled','disabled') )
         {
             It "Should match the exact string '$flag'" {
-                $flag -Match $RegularExpression.enabledOrDisabled | Should Be $true
+                $flag -match $Script:commonRegEx.enabledOrDisabled | Should Be $true
             }
         }
     }
@@ -117,7 +117,7 @@ Describe "RegularExpression Data Section" {
         foreach ( $flag in ('Success','success','Failure','failure') )
         {
             It "Should match the exact string '$flag'" {
-                $flag -Match $RegularExpression.AuditFlag | Should Be $true
+                $flag -match $Script:commonRegEx.AuditFlag | Should Be $true
             }
         }
 
@@ -129,7 +129,7 @@ Describe "RegularExpression Data Section" {
         foreach ($audiPolicyStringFormat in $audiPolicyStringFormats)
         {
             It "Should match the string '$audiPolicyStringFormat'" {
-                $audiPolicyStringFormat -Match $RegularExpression.getAuditPolicy | Should Be $true
+                $audiPolicyStringFormat -match $Script:commonRegEx.getAuditPolicy | Should Be $true
             }
         }
     }
@@ -137,15 +137,15 @@ Describe "RegularExpression Data Section" {
     Context "TextBetweenParentheses string matches" {
 
         It 'Should match string inside parentheses' {
-            '(text inside parentheses)' -Match $RegularExpression.textBetweenParentheses | Should Be $true
+            '(text inside parentheses)' -match $Script:commonRegEx.textBetweenParentheses | Should Be $true
         }
 
         It 'Should NOT match text outside of parentheses' {
-            'text outside ()' -Match $RegularExpression.textBetweenParentheses | Should Be $false
+            'text outside ()' -match $Script:commonRegEx.textBetweenParentheses | Should Be $false
         }
 
         It 'Should NOT match text inside improperly written parentheses' {
-            ')text(' -Match $RegularExpression.textBetweenParentheses | Should Be $false
+            ')text(' -match $Script:commonRegEx.textBetweenParentheses | Should Be $false
         }
 
         It 'Should return text inside of parentheses when grabbing the last group' {
@@ -153,7 +153,7 @@ Describe "RegularExpression Data Section" {
             $unneededText = 'Unneeded text'
 
             $result = ( "$unneededText (" + $text + ") $unneededText" |
-                Select-String $RegularExpression.textBetweenParentheses ).matches.groups[-1].Value
+                Select-String $Script:commonRegEx.textBetweenParentheses ).matches.groups[-1].Value
 
             $result | Should Be $text
         }
@@ -203,30 +203,7 @@ Describe "ADAuditPath Data Section" {
     #>
 }
 
-Describe "eventLogRegularExpression Data Section" {
 
-    [string] $dataSectionName = 'eventLogRegularExpression'
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    $namesToTest = @(
-        '(Application.evtx)',
-        '"Application.evtx"',
-        '''(System.evtx)''',
-        '''("System.evtx")'''
-    )
-    Context 'Name' {
-
-        foreach($name in $namesToTest)
-        {
-            It "Should match $name" {
-                $name -Match $eventLogRegularExpression.name | Should Be $true
-            }
-        }
-
-    }
-}
 #endregion Tests
 #region Helper Tests
 Describe 'Get-AvailableId' {

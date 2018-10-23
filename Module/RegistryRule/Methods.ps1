@@ -435,7 +435,7 @@ function Test-RegistryValueDataIsBlank
         There is an edge case that returns the string (Blank) with the expected return to be an
         empty string. No further processing is necessary, so simply return the empty string.
     #>
-    if ( $ValueDataString -Match $script:regularExpression.blankString )
+    if ( $ValueDataString -Match $script:commonRegEx.blankString )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -472,7 +472,7 @@ function Test-RegistryValueDataIsEnabledOrDisabled
         Here is an edge case that returns the string (Blank) with the expected return to be an
         empty string. No further processing is necessary, so simply return the empty string.
     #>
-    if ( $ValueDataString -Match $script:regularExpression.enabledOrDisabled )
+    if ( $ValueDataString -Match $script:commonRegEx.enabledOrDisabled )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -547,7 +547,7 @@ function Test-RegistryValueDataIsHexCode
         There is an edge case that returns the string (Blank) with the expected return to be an
         empty string. No further processing is necessary, so simply return the empty string.
     #>
-    if ( $ValueDataString -Match $script:regularExpression.hexCode )
+    if ( $ValueDataString -Match $script:commonRegEx.hexCode )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -581,7 +581,7 @@ function Get-IntegerFromHex
         $ValueDataString
     )
 
-    $ValueDataString -Match $script:regularExpression.hexCode | Out-Null
+    $ValueDataString -Match $script:commonRegEx.hexCode | Out-Null
 
     try
     {
@@ -615,7 +615,7 @@ function Test-RegistryValueDataIsInteger
         $ValueDataString
     )
 
-    if ( $ValueDataString -Match $script:regularExpression.leadingIntegerUnbound -and
+    if ( $ValueDataString -Match $script:commonRegEx.leadingIntegerUnbound -and
             $ValueDataString -NotMatch $script:registryRegularExpression.hardenUncPathValues )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
@@ -647,7 +647,7 @@ function Get-NumberFromString
     )
 
     $string = Select-String -InputObject $ValueDataString `
-                            -Pattern $script:regularExpression.leadingIntegerUnbound
+                            -Pattern $script:commonRegEx.leadingIntegerUnbound
     if ($null -eq $string)
     {
         throw
@@ -860,7 +860,7 @@ function ConvertTo-ValidDword
         There is an edge case the puts the data in the '1 (Enabled)' format
         pull out the string and convert it to the integer.
     #>
-    $ValueData -Match $script:regularExpression.enabledOrDisabled | Out-Null
+    $ValueData -Match $script:commonRegEx.enabledOrDisabled | Out-Null
 
     $ValueData = $matches[0]
     if ( $null -ne $conversionTable.$ValueData )

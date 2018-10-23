@@ -19,10 +19,10 @@ function Get-UserRightDisplayName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    Write-Verbose "match = $($script:regularExpression.textBetweenQuotes)"
+    Write-Verbose "match = $($script:commonRegEx.textBetweenQuotes)"
     # Use a regular expression to pull the user right string from between the quotes
     $userRightDisplayNameSearch = ( $CheckContent |
-            Select-String -Pattern $($script:regularExpression).textBetweenQuotes -AllMatches )
+            Select-String -Pattern $($script:commonRegEx).textBetweenQuotes -AllMatches )
 
     [string[]] $userRightDisplayName = $userRightDisplayNameSearch.matches.Groups.Value |
         Where-Object { $script:UserRightNameToConstant.Keys -contains $PSItem }
