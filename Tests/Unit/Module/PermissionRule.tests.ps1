@@ -8,21 +8,21 @@ try
         #region Test Setup
         $rulesToTest = @(
             @{
-                Path               = '%windir%\SYSTEM32\WINEVT\LOGS\Security.evtx'
+                Path = '%windir%\SYSTEM32\WINEVT\LOGS\Security.evtx'
                 AccessControlEntry = @(
                     [pscustomobject[]]@{
-                        Principal   = "Eventlog"
-                        Rights      = "FullControl"
+                        Principal = "Eventlog"
+                        Rights = "FullControl"
                         Inheritance = ""
                     }
                     [pscustomobject[]]@{
-                        Principal   = "SYSTEM"
-                        Rights      = "FullControl"
+                        Principal = "SYSTEM"
+                        Rights = "FullControl"
                         Inheritance = ""
                     }
                     [pscustomobject[]]@{
-                        Principal   = "Administrators"
-                        Rights      = "FullControl"
+                        Principal = "Administrators"
+                        Rights = "FullControl"
                         Inheritance = ""
                     }
                 )
@@ -37,25 +37,25 @@ try
             If the permissions for these files are not as restrictive as the ACLs listed, this is a finding.'
             }
             @{
-                Path               = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
+                Path = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
                 AccessControlEntry = @(
                     [pscustomobject[]]@{
-                        Principal   = "Administrators"
-                        Rights      = "FullControl"
+                        Principal = "Administrators"
+                        Rights = "FullControl"
                         Inheritance = "This Key and Subkeys"
                     }
                     [pscustomobject[]]@{
-                        Principal   = "Backup Operators"
-                        Rights      = "Read"
+                        Principal = "Backup Operators"
+                        Rights = "Read"
                         Inheritance = "This Key Only"
                     }
                     [pscustomobject[]]@{
-                        Principal   = "LOCAL SERVICE"
-                        Rights      = "Read"
+                        Principal = "LOCAL SERVICE"
+                        Rights = "Read"
                         Inheritance = "This Key and Subkeys"
                     }
                 )
-                CheckContent       = 'Run "Regedit".
+                CheckContent = 'Run "Regedit".
                 Navigate to the following registry key:
                 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\
 
@@ -77,15 +77,15 @@ try
             }
             @{
                 # Windows 10 STIG V-63593
-                Path               = 'HKLM:\SECURITY'
+                Path = 'HKLM:\SECURITY'
                 AccessControlEntry = @{
                     System = @{
-                        Rights      = 'FullControl'
+                        Rights = 'FullControl'
                         Inheritance = 'This Key and subkeys'
-                        Type        = 'Allow'
+                        Type = 'Allow'
                     }
                 }
-                CheckContent       = 'Verify the default registry permissions for the keys note below of the HKEY_LOCAL_MACHINE hive.
+                CheckContent = 'Verify the default registry permissions for the keys note below of the HKEY_LOCAL_MACHINE hive.
 
             If any non-privileged groups such as Everyone, Users or Authenticated Users have greater than Read permission, this is a finding.
 
@@ -344,6 +344,27 @@ try
         }
         #endregion
         #region Data Tests
+
+        Describe "permissionRegEx Data Section" {
+
+            [string] $dataSectionName = 'permissionRegEx'
+
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+        }
+        Describe "ADAuditPath Data Section" {
+
+            [string] $dataSectionName = 'ADAuditPath'
+
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+
+            <#
+            TO DO - Add rules
+            #>
+        }
         Describe "fileRightsConstant Data Section" {
 
             [string] $dataSectionName = 'fileRightsConstant'

@@ -141,6 +141,19 @@ try
         #endregion
 
         #region Data Tests
+        Describe "serviceRegEx Data Section" {
+
+            [string] $dataSectionName = 'serviceRegEx'
+
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+
+            <#
+            TO DO - Add rules
+            #>
+        }
+
         Describe "ServicesDisplayNameToName Data Section" {
 
             [string] $dataSectionName = 'ServicesDisplayNameToName'

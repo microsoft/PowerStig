@@ -18,25 +18,25 @@ function Get-ServiceName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ( $CheckContent -match $script:commonRegEx.McAfee )
+    if ( $CheckContent -match $script:serviceRegEx.McAfee )
     {
         $serviceName = 'masvc'
     }
-    elseif ( $CheckContent -match $script:commonRegEx.SmartCardRemovalPolicy )
+    elseif ( $CheckContent -match $script:serviceRegEx.SmartCardRemovalPolicy )
     {
         $serviceName = 'SCPolicySvc'
     }
-    elseif ( $CheckContent -match $script:commonRegEx.SecondaryLogon )
+    elseif ( $CheckContent -match $script:serviceRegEx.SecondaryLogon )
     {
         $serviceName = 'seclogon'
     }
-    elseif ( $CheckContent -match $script:commonRegEx.followingservices )
+    elseif ( $CheckContent -match $script:serviceRegEx.followingservices )
     {
-        $regexMatch = $CheckContent | Select-String $script:commonRegEx.dash
+        $regexMatch = $CheckContent | Select-String '-'
         $svcArray = @()
         foreach ($match in $regexMatch)
         {
-            $svc = $match -replace $script:commonRegEx.dash, ''
+            $svc = $match -replace '-', ''
             if ( $svc.Contains('(') )
             {
                 $svc = $svc.ToString().Substring(0, $svc.IndexOf('(') - 1)

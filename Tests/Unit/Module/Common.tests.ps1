@@ -164,20 +164,6 @@ Describe "commonRegEx Data Section" {
     #>
 }
 
-Describe "ADAuditPath Data Section" {
-
-    [string] $dataSectionName = 'ADAuditPath'
-
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    <#
-    TO DO - Add rules
-    #>
-}
-
-
 #endregion Tests
 #region Helper Tests
 Describe 'Get-AvailableId' {
