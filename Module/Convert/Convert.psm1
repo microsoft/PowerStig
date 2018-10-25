@@ -6,7 +6,7 @@ using module .\..\DnsServerRootHintRule\DnsServerRootHintRule.psm1
 using module .\..\DnsServerSettingRule\DnsServerSettingRule.psm1
 using module .\..\FileContentRule\FileContentRule.psm1
 using module .\..\GroupRule\GroupRule.psm1
-using module .\..\Convert.IisLoggingRule\Convert.IisLoggingRule.psm1
+using module .\..\IISLoggingRule\IISLoggingRule.psm1
 using module .\..\Convert.ManualRule\Convert.ManualRule.psm1
 using module .\..\Convert.MimeTypeRule\Convert.MimeTypeRule.psm1
 using module .\..\Convert.PermissionRule\Convert.PermissionRule.psm1

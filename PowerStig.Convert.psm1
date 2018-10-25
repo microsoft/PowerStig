@@ -18,7 +18,7 @@ using module .\Module\DnsServerSettingRule\DnsServerSettingRule.psm1
 using module .\Module\DocumentRule\DocumentRule.psm1
 using module .\Module\FileContentRule\FileContentRule.psm1
 using module .\Module\GroupRule\GroupRule.psm1
-using module .\Module\Convert.IISLoggingRule\Convert.IISLoggingRule.psm1
+using module .\Module\IISLoggingRule\IISLoggingRule.psm1
 using module .\Module\Convert.ManualRule\Convert.ManualRule.psm1
 using module .\Module\Convert.MimeTypeRule\Convert.MimeTypeRule.psm1
 using module .\Module\Convert.PermissionRule\Convert.PermissionRule.psm1

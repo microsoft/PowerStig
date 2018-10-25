@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.IISLoggingRule\Convert.IISLoggingRule.psm1
+using module .\..\..\..\Module\IISLoggingRule\IISLoggingRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
