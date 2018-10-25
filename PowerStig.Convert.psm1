@@ -14,7 +14,7 @@ using module .\Module\Convert\Convert.psm1
 using module .\Module\AccountPolicyRule\AccountPolicyRule.psm1
 using module .\Module\AuditPolicyRule\AuditPolicyRule.psm1
 using module .\Module\DnsServerRootHintRule\DnsServerRootHintRule.psm1
-using module .\Module\Convert.DnsServerSettingRule\Convert.DnsServerSettingRule.psm1
+using module .\Module\DnsServerSettingRule\DnsServerSettingRule.psm1
 using module .\Module\Convert.DocumentRule\Convert.DocumentRule.psm1
 using module .\Module\Convert.FileContentRule\Convert.FileContentRule.psm1
 using module .\Module\Convert.GroupRule\Convert.GroupRule.psm1

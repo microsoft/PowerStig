@@ -3,7 +3,7 @@ using module .\..\AccountPolicyRule\AccountPolicyRule.psm1
 using module .\..\AuditPolicyRule\AuditPolicyRule.psm1
 using module .\..\Convert.DocumentRule\Convert.DocumentRule.psm1
 using module .\..\DnsServerRootHintRule\DnsServerRootHintRule.psm1
-using module .\..\Convert.DnsServerSettingRule\Convert.DnsServerSettingRule.psm1
+using module .\..\DnsServerSettingRule\DnsServerSettingRule.psm1
 using module .\..\Convert.FileContentRule\Convert.FileContentRule.psm1
 using module .\..\Convert.GroupRule\Convert.GroupRule.psm1
 using module .\..\Convert.IisLoggingRule\Convert.IisLoggingRule.psm1

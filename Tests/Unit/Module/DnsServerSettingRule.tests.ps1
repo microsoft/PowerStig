@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.DnsServerSettingRule\Convert.DnsServerSettingRule.psm1
+using module .\..\..\..\Module\DnsServerSettingRule\DnsServerSettingRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
