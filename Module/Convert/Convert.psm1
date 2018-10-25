@@ -12,7 +12,7 @@ using module .\..\MimeTypeRule\MimeTypeRule.psm1
 using module .\..\PermissionRule\PermissionRule.psm1
 using module .\..\ProcessMitigationRule\ProcessMitigationRule.psm1
 using module .\..\RegistryRule\RegistryRule.psm1
-using module .\..\Convert.SecurityOptionRule\Convert.SecurityOptionRule.psm1
+using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
 using module .\..\Convert.ServiceRule\Convert.ServiceRule.psm1
 using module .\..\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
 using module .\..\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
