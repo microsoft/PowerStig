@@ -12,7 +12,7 @@
 using module .\Module\Common\Common.psm1
 using module .\Module\Convert\Convert.psm1
 using module .\Module\AccountPolicyRule\AccountPolicyRule.psm1
-using module .\Module\Convert.AuditPolicyRule\Convert.AuditPolicyRule.psm1
+using module .\Module\AuditPolicyRule\AuditPolicyRule.psm1
 using module .\Module\Convert.DnsServerRootHintRule\Convert.DnsServerRootHintRule.psm1
 using module .\Module\Convert.DnsServerSettingRule\Convert.DnsServerSettingRule.psm1
 using module .\Module\Convert.DocumentRule\Convert.DocumentRule.psm1

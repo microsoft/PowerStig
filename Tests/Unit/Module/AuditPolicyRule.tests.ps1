@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.AuditPolicyRule\Convert.AuditPolicyRule.psm1
+using module .\..\..\..\Module\AuditPolicyRule\AuditPolicyRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
