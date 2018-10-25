@@ -23,7 +23,7 @@ using module .\Module\ManualRule\ManualRule.psm1
 using module .\Module\MimeTypeRule\MimeTypeRule.psm1
 using module .\Module\Convert.PermissionRule\Convert.PermissionRule.psm1
 using module .\Module\Convert.ProcessMitigationRule\Convert.ProcessMitigationRule.psm1
-using module .\Module\Convert.RegistryRule\Convert.RegistryRule.psm1
+using module .\Module\RegistryRule\RegistryRule.psm1
 using module .\Module\Convert.SecurityOptionRule\Convert.SecurityOptionRule.psm1
 using module .\Module\Convert.ServiceRule\Convert.ServiceRule.psm1
 using module .\Module\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
