@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.GroupRule\Convert.GroupRule.psm1
+using module .\..\..\..\Module\GroupRule\GroupRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
