@@ -140,8 +140,8 @@ try
               If any of the above fields are not selected, this is a finding.'
             }
         )
-
-        $rule = [IisLoggingRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -ReturnGroupOnly
+        $rule = [IisLoggingRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -207,16 +207,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-IisLoggingRule" {
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-IisLoggingRule -StigRule $stigRule
 
-            It "Should return an IisLoggingRule object" {
-                $rule.GetType() | Should Be 'IisLoggingRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

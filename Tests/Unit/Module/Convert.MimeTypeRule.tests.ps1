@@ -57,7 +57,9 @@ try
             '.csh' = 'application/x-csh'
             '.com' = 'application/octet-stream'
         }
-        $rule = [MimeTypeRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $mimeTypeRule.CheckContent -ReturnGroupOnly
+        $rule = [MimeTypeRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class"{
@@ -122,16 +124,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-MimeTypeRule" {
-            $stigRule = Get-TestStigRule -CheckContent $mimeTypeRule.checkContent -ReturnGroupOnly
-            $rule = ConvertTo-MimeTypeRule -StigRule $stigRule
 
-            It "Should return an MimeTypeRule object" {
-                $rule.GetType() | Should Be 'MimeTypeRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

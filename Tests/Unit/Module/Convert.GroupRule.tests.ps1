@@ -8,7 +8,7 @@ try
         #region Test Setup
         $rulesToTest = @(
             @{
-                GroupName    = 'Backup Operators'
+                GroupName = 'Backup Operators'
                 CheckContent = 'Run "Computer Management".
             Navigate to System Tools >> Local Users and Groups >> Groups.
             Review the members of the Backup Operators group.
@@ -20,8 +20,8 @@ try
             If the group contains any standard user accounts used for performing normal user tasks, this is a finding.'
             }
             @{
-                GroupName    = 'Administrators'
-                Members      = 'Domain Admins'
+                GroupName = 'Administrators'
+                Members = 'Domain Admins'
                 CheckContent = 'Run "Computer Management".
             Navigate to System Tools >> Local Users and Groups >> Groups.
             Review the members of the Administrators group.
@@ -38,7 +38,7 @@ try
             The built-in Administrator account or other required administrative accounts would not be a finding.'
             }
             @{
-                GroupName    = 'Hyper-V Administrators'
+                GroupName = 'Hyper-V Administrators'
                 CheckContent = 'Run "Computer Management".
             Navigate to System Tools >> Local Users and Groups >> Groups.
             Double click on "Hyper-V Administrators".
@@ -48,7 +48,9 @@ try
             If the workstation has an approved use of Hyper-V, such as being used as a dedicated admin workstation using Hyper-V to separate administration and standard user functions, the account(s) needed to access the virtual machine is not a finding.'
             }
         )
-        $rule = [GroupRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [GroupRule]::new( $StigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -101,20 +103,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-GroupRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-GroupRule -StigRule $stigRule
 
-            It "Should return an GroupRule object" {
-                $rule.GetType() | Should Be 'GroupRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

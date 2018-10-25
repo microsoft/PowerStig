@@ -120,7 +120,7 @@ try
 
         Context 'First Split Rule' {
 
-            $rule = $rule[-1]
+            $rule = $rule[0]
 
             It "Should return an ServiceRule Object" {
                 $rule.GetType() | Should Be 'ServiceRule'
@@ -147,7 +147,7 @@ try
 
         Context 'Second Split Rule' {
 
-            $rule = $rule[-2]
+            $rule = $rule[1]
 
             It "Should return an ServiceRule Object" {
                 $rule.GetType() | Should Be 'ServiceRule'

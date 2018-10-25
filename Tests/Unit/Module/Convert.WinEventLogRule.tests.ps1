@@ -46,7 +46,9 @@ try
                 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.'
             }
         )
-        $rule = [WinEventLogRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [WinEventLogRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -83,20 +85,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-WinEventLogRule" {
-            <#
-                This function can't really be unit tested, since the call cannot be mocked by pester, so
-                the only thing we can really do at this point is to verify that it returns the correct object.
-            #>
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-WinEventLogRule -StigRule $stigRule
 
-            It "Should return an WinEventLogRule object" {
-                $rule.GetType() | Should Be 'WinEventLogRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

@@ -10,6 +10,7 @@
     enumerations.
 #>
 using module .\Module\Common\Common.psm1
+using module .\Module\Convert\Convert.psm1
 using module .\Module\Convert.AccountPolicyRule\Convert.AccountPolicyRule.psm1
 using module .\Module\Convert.AuditPolicyRule\Convert.AuditPolicyRule.psm1
 using module .\Module\Convert.DnsServerRootHintRule\Convert.DnsServerRootHintRule.psm1

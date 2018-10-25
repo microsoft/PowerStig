@@ -206,7 +206,7 @@ Function Get-StigBaseMethods
     if ( $Static )
     {
         $stigClassMethodNames = @('Equals', 'new', 'ReferenceEquals', 'SplitCheckContent',
-            'GetRuleTypeMatchList', 'GetFixText')
+            'GetFixText')
     }
     else
     {

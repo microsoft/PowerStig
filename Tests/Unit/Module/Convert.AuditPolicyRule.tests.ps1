@@ -15,7 +15,10 @@ try
         Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
 
         {0}'
-        $rule = [AuditPolicyRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $checkContentString = 'Account Management -&gt; Computer Account Management - Success'
+        $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
+        $rule = [AuditPolicyRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -41,13 +44,13 @@ try
         }
         #endregion
         #region Method Tests
-        $string = 'Account Management -> Computer Account Management - Success'
+        $checkContentString = 'Account Management -> Computer Account Management - Success'
 
         Describe 'Get-AuditPolicySettings' {
 
             Context 'Data format "->"' {
 
-                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
+                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
                 $settings = Get-AuditPolicySettings -CheckContent $checkContent
 
                 It 'Should return the Category in the first index' {
@@ -63,8 +66,8 @@ try
 
             Context 'Data format ">>"' {
 
-                $string = 'Account Management >> Computer Account Management - Success'
-                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
+                $checkContentString = 'Account Management >> Computer Account Management - Success'
+                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
                 $settings = Get-AuditPolicySettings -CheckContent $checkContent
 
                 It 'Should return the Category in the first index' {
@@ -82,7 +85,7 @@ try
         Describe 'Get-AuditPolicySubCategory' {
 
             #Mock -CommandName Get-AuditPolicySettings -MockWith { @('Category ', ' Subcategory ', ' Flag') }
-            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
+            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
             It 'Should return the second string in quotes' {
                 Get-AuditPolicySubCategory -CheckContent $checkContent | Should Be 'Computer Account Management'
             }
@@ -90,37 +93,13 @@ try
 
         Describe 'Get-AuditPolicyFlag' {
 
-            #Mock -CommandName Get-AuditPolicySettings -MockWith { @('Category ', ' Subcategory ', ' Flag') }
-            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $string)
+            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
             It 'Should return the audit policy flag' {
                 Get-AuditPolicyFlag -CheckContent $checkContent | Should Be 'Success'
             }
         }
         #endregion
-        #region Function Tests
-        $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
-    Use the AuditPol tool to review the current Audit Policy configuration:
-    -Open a Command Prompt with elevated privileges ("Run as Administrator").
-    -Enter "AuditPol /get /category:*".
-
-    Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
-
-    Account Management -&gt; Computer Account Management - Success'
-
-        Describe "ConvertTo-AuditPolicyRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $rule = ConvertTo-AuditPolicyRule -StigRule $stigRule
-
-            It "Should return an AuditPolicyRule object" {
-                $rule.GetType() | Should Be 'AuditPolicyRule'
-            }
-        }
-        #endregion
         #region Data Tests
         Describe "Audit Policy Data Variables" {
 
@@ -132,7 +111,7 @@ try
 
             foreach ($dataSectionName in $dataSectionNameList)
             {
-                It "Should have a data section '$dataSectionName" {
+                It "Should have a data section '$dataSectionName'" {
                     ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
                 }
             }

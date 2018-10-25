@@ -70,7 +70,7 @@ try
 
             Context 'Static Methods' {
 
-                $staticMethods = @('SplitCheckContent', 'GetRuleTypeMatchList', 'GetFixText')
+                $staticMethods = @('SplitCheckContent', 'GetFixText')
 
                 foreach ( $method in $staticMethods )
                 {

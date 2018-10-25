@@ -75,7 +75,9 @@ try
             key        = 'maxUrl'
             TestString = '{0} -le 4096'
         }
-        $rule = [WebConfigurationPropertyRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [WebConfigurationPropertyRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -152,16 +154,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-WebConfigurationPropertyRule" {
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-WebConfigurationPropertyRule -StigRule $stigRule
 
-            It "Should return an WebConfigurationPropertyRule object" {
-                $rule.GetType() | Should Be 'WebConfigurationPropertyRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

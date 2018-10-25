@@ -56,7 +56,9 @@ try
                 If the key "deployment.security.revocation.check.locked" is not present, this is a finding.'
             }
        )
-       $rule = [FileContentRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+       $stigRule = Get-TestStigRule -ReturnGroupOnly
+       $rule = [FileContentRule]::new( $stigRule)
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -121,18 +123,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-FileContentRule" {
 
-            $global:stigXccdfName = $rulesToTest[1].ArchiveFile
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[1].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-FileContentRule -StigRule $stigRule
-
-            It "Should return a FileContentRule object" {
-                $rule.GetType() | Should Be 'FileContentRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

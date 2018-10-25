@@ -8,9 +8,9 @@ try
         #region Test Setup
         $rulesToTest = @(
             @{
-                PropertyName  = 'EventLogLevel'
+                PropertyName = 'EventLogLevel'
                 PropertyValue = '4'
-                CheckContent  = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+                CheckContent = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
         Press Windows Key + R, execute dnsmgmt.msc.
 
@@ -23,7 +23,9 @@ try
         If any option other than "Errors and warnings" or "All events" is selected, this is a finding.'
             }
         )
-        $rule = [DnsServerSettingRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -ReturnGroupOnly
+        $rule = [DnsServerSettingRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -79,7 +81,7 @@ try
 
                 [string] $text = 'the          forwarders     tab.'
                 $result = ($text |
-                        Select-String $script:regularExpression.textBetweenTheTab -AllMatches |
+                        Select-String $script:RegularExpression.textBetweenTheTab -AllMatches |
                         Select-Object Matches).Matches.Groups[1]
                 It "Should match text inside of the words 'the' and 'tab'" {
                     $result.Success | Should be $true
@@ -90,26 +92,18 @@ try
 
                 [string] $text = ' âForwardersâ'
                 It "Should match any non letter characters" {
-                    $result = $text -match $script:regularExpression.nonLetters
+                    $result = $text -match $script:RegularExpression.nonLetters
                     $result | Should Be $true
                 }
                 It "Should remove the non word characters" {
-                    $result = $text -replace $script:regularExpression.nonLetters
+                    $result = $text -replace $script:RegularExpression.nonLetters
                     $result.Trim() | Should Be 'Forwarders'
                 }
             }
         }
 
-        Describe "ConvertTo-DnsServerSettingRule" {
-
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest.checkContent -ReturnGroupOnly
-            $rule = ConvertTo-DnsServerSettingRule -StigRule $stigRule
-
-            It "Should return an DnsServerSettingRule object" {
-                $rule.GetType() | Should Be 'DnsServerSettingRule'
-            }
-        }
         #endregion
+
         #region Data Tests
 
         #endregion

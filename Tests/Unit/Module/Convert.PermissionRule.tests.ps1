@@ -8,21 +8,21 @@ try
         #region Test Setup
         $rulesToTest = @(
             @{
-                Path               = '%windir%\SYSTEM32\WINEVT\LOGS\Security.evtx'
+                Path = '%windir%\SYSTEM32\WINEVT\LOGS\Security.evtx'
                 AccessControlEntry = @(
                     [pscustomobject[]]@{
-                        Principal   = "Eventlog"
-                        Rights      = "FullControl"
+                        Principal = "Eventlog"
+                        Rights = "FullControl"
                         Inheritance = ""
                     }
                     [pscustomobject[]]@{
-                        Principal   = "SYSTEM"
-                        Rights      = "FullControl"
+                        Principal = "SYSTEM"
+                        Rights = "FullControl"
                         Inheritance = ""
                     }
                     [pscustomobject[]]@{
-                        Principal   = "Administrators"
-                        Rights      = "FullControl"
+                        Principal = "Administrators"
+                        Rights = "FullControl"
                         Inheritance = ""
                     }
                 )
@@ -37,25 +37,25 @@ try
             If the permissions for these files are not as restrictive as the ACLs listed, this is a finding.'
             }
             @{
-                Path               = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
+                Path = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
                 AccessControlEntry = @(
                     [pscustomobject[]]@{
-                        Principal   = "Administrators"
-                        Rights      = "FullControl"
+                        Principal = "Administrators"
+                        Rights = "FullControl"
                         Inheritance = "This Key and Subkeys"
                     }
                     [pscustomobject[]]@{
-                        Principal   = "Backup Operators"
-                        Rights      = "Read"
+                        Principal = "Backup Operators"
+                        Rights = "Read"
                         Inheritance = "This Key Only"
                     }
                     [pscustomobject[]]@{
-                        Principal   = "LOCAL SERVICE"
-                        Rights      = "Read"
+                        Principal = "LOCAL SERVICE"
+                        Rights = "Read"
                         Inheritance = "This Key and Subkeys"
                     }
                 )
-                CheckContent       = 'Run "Regedit".
+                CheckContent = 'Run "Regedit".
                 Navigate to the following registry key:
                 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\
 
@@ -77,15 +77,15 @@ try
             }
             @{
                 # Windows 10 STIG V-63593
-                Path               = 'HKLM:\SECURITY'
+                Path = 'HKLM:\SECURITY'
                 AccessControlEntry = @{
                     System = @{
-                        Rights      = 'FullControl'
+                        Rights = 'FullControl'
                         Inheritance = 'This Key and subkeys'
-                        Type        = 'Allow'
+                        Type = 'Allow'
                     }
                 }
-                CheckContent       = 'Verify the default registry permissions for the keys note below of the HKEY_LOCAL_MACHINE hive.
+                CheckContent = 'Verify the default registry permissions for the keys note below of the HKEY_LOCAL_MACHINE hive.
 
             If any non-privileged groups such as Everyone, Users or Authenticated Users have greater than Read permission, this is a finding.
 
@@ -108,8 +108,8 @@ try
             }
         )
         $MultiplePaths = @{
-            Paths             = '%ProgramFiles%;%ProgramFiles(x86)'
-            CheckContent      = 'The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377). If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
+            Paths = '%ProgramFiles%;%ProgramFiles(x86)'
+            CheckContent = 'The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377). If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
 
         Verify the default permissions for the program file directories (Program Files and Program Files (x86)). Nonprivileged groups such as Users or Authenticated Users must not have greater than Read & execute permissions except where noted as defaults. (Individual accounts must not be used to assign permissions.)
 
@@ -158,7 +158,8 @@ try
         Successfully processed 1 files; Failed processing 0 files'
             SplitMultplePaths = @('%ProgramFiles%', '%ProgramFiles(x86)%')
         }
-        $rule = [PermissionRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [PermissionRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -243,54 +244,7 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-PermissionRule" {
-            $checkContent = @'
-The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (V-3377).  If the default ACLs are maintained and the referenced option is set to "Disabled", this is not a finding.
 
-Verify the default permissions for the system drive's root directory (usually C:\).  Nonprivileged groups such as Users or Authenticated Users must not have greater than Read &amp; execute permissions except where noted as defaults.  (Individual accounts must not be used to assign permissions.)
-
-Viewing in File Explorer:
-View the Properties of system drive root directory.
-Select the "Security" tab, and the "Advanced" button.
-
-C:\
-Type - "Allow" for all
-Inherited from - "None" for all
-
-Principal - Access - Applies to
-
-SYSTEM - Full control - This folder, subfolders and files
-Administrators - Full control - This folder, subfolders and files
-Users - Read &amp; execute - This folder, subfolders and files
-Users - Create folders / append data - This folder and subfolders
-Users - Create files / write data - Subfolders only
-CREATOR OWNER - Full Control - Subfolders and files only
-
-Alternately, use Icacls:
-
-Open a Command prompt (admin).
-Enter icacls followed by the directory:
-
-icacls c:\
-
-The following results should be displayed:
-
-c:\
-NT AUTHORITY\SYSTEM:(OI)(CI)(F)
-BUILTIN\Administrators:(OI)(CI)(F)
-BUILTIN\Users:(OI)(CI)(RX)
-BUILTIN\Users:(CI)(AD)
-BUILTIN\Users:(CI)(IO)(WD)
-CREATOR OWNER:(OI)(CI)(IO)(F)
-Successfully processed 1 files; Failed processing 0 files
-'@
-            $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $rule = ConvertTo-PermissionRule -StigRule $stigRule
-
-            It "Should return an PermissionRule object" {
-                $rule.GetType() | Should Be 'PermissionRule'
-            }
-        }
         Describe "Private Permission Rule" {
 
             [string] $functionName = 'Get-PermissionTargetPath'
@@ -390,12 +344,50 @@ Successfully processed 1 files; Failed processing 0 files
         }
         #endregion
         #region Data Tests
+
+        Describe "ADAuditPath Data Section" {
+
+            [string] $dataSectionName = 'ADAuditPath'
+
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+
+            <#
+            TO DO - Add rules
+            #>
+        }
         Describe "fileRightsConstant Data Section" {
 
             [string] $dataSectionName = 'fileRightsConstant'
 
             It "Should have a data section called $dataSectionName" {
                 ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+        }
+
+        Describe "eventLogRegularExpression Data Section" {
+
+            [string] $dataSectionName = 'eventLogRegularExpression'
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+
+            $namesToTest = @(
+                '(Application.evtx)',
+                '"Application.evtx"',
+                '''(System.evtx)''',
+                '''("System.evtx")'''
+            )
+            Context 'Name' {
+
+                foreach ($name in $namesToTest)
+                {
+                    It "Should match $name" {
+                        $name -Match $eventLogRegularExpression.name | Should Be $true
+                    }
+                }
+
             }
         }
 

@@ -128,7 +128,14 @@ try
                 GO"
             }
         }
-        $rule = [SqlScriptQueryRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $testStigRuleParam = @{
+            CheckContent    = $sqlScriptQueryRule.DbExist.CheckContent
+            FixText         = $sqlScriptQueryRule.DbExist.FixText
+            ReturnGroupOnly = $true
+        }
+        $stigRule = Get-TestStigRule @testStigRuleParam
+        $rule = [SqlScriptQueryRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -224,16 +231,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-SqlScriptQueryRule" {
-            $stigRule = Get-TestStigRule -CheckContent $sqlScriptQueryRule.Trace.checkContent -FixText $fixText -ReturnGroupOnly
-            $rule = ConvertTo-SqlScriptQueryRule -StigRule $stigRule
 
-            It "Should return an SqlScriptQueryRule object" {
-                $rule.GetType() | Should Be 'SqlScriptQueryRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

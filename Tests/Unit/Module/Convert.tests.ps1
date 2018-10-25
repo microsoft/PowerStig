@@ -104,19 +104,28 @@ $checkContent = 'Security Option "Audit: Force audit policy subcategory settings
 
     Context 'RegistryRule' {
         It "Should return 'RegistryRule' when 'HKEY_LOCAL_MACHINE' is found" {
-            $checkContent = 'HKEY_LOCAL_MACHINE'
+            $checkContent = 'Registry Hive: HKEY_LOCAL_MACHINE
+            Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
+
+            Value Name: ShutdownWithoutLogon
+
+            Value Type: REG_DWORD
+            Value: 0'
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
             $testResults[0].GetType().Name | Should Be 'RegistryRule'
         }
         It "Should Not return 'RegistryRule' when 'Permission' is found" {
-            $checkContent = 'HKEY_LOCAL_MACHINE Permission'
+            $checkContent = 'Hive: HKEY_LOCAL_MACHINE Permission'
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
             $testResults[0].GetType().Name | Should Not Be 'RegistryRule'
         }
         It "Should Not return 'RegistryRule' when 'SupportedEncryptionTypes' is found" {
-            $checkContent = 'HKEY_LOCAL_MACHINE SupportedEncryptionTypes'
+            $checkContent = 'Registry Hive:  HKEY_LOCAL_MACHINE
+            Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
+            Value Name:  SupportedEncryptionTypes
+            Type:  REG_DWORD'
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
             $testResults[0].GetType().Name | Should Not Be 'RegistryRule'
@@ -151,15 +160,21 @@ $checkContent = 'Security Option "Audit: Force audit policy subcategory settings
     Context 'ServiceRule' {
         It "Should return 'ServiceRule' when 'services.msc' is found" {
             $checkContent = 'services.msc'
-            $testResults | Should Be 'ServiceRule'
+            $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+            $testResults = [ConvertFactory]::Rule( $rule )
+            $testResults[0].GetType().Name | Should Be 'ServiceRule'
         }
         It "Should Not return 'ServiceRule' when 'Required Services' is found" {
             $checkContent = 'Required Services'
-            $testResults | Should Not Be 'ServiceRule'
+            $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+            $testResults = [ConvertFactory]::Rule( $rule )
+            $testResults[0].GetType().Name | Should Not Be 'ServiceRule'
         }
         It "Should Not return 'ServiceRule' when 'presence of applications' is found" {
             $checkContent = 'presence of applications'
-            $testResults | Should Not Be 'ServiceRule'
+            $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+            $testResults = [ConvertFactory]::Rule( $rule )
+            $testResults[0].GetType().Name | Should Not Be 'ServiceRule'
         }
     }
 
@@ -172,22 +187,19 @@ $checkContent = 'Security Option "Audit: Force audit policy subcategory settings
         It "Should return 'UserRightRule' when 'gpedit and Security Option' is found" {
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name = 'Get-WindowsFeature'
-            $testResults  | Should Be 'UserRightRule'
+            $testResults[0].GetType().Name | Should Be 'UserRightRule'
         }
         It "Should Not return 'UserRightRule' when 'gpedit and Account Policy' are found" {
             $checkContent = 'gpedit and Account Policy'
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name = 'Get-WindowsFeature'
-            $testResults | Should Not Be 'UserRightRule'
+            $testResults[0].GetType().Name | Should Not Be 'UserRightRule'
         }
         It "Should Not return 'UserRightRule' when 'gpedit and Security Option' are found" {
             $checkContent = 'gpedit and Security Option'
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name = 'Get-WindowsFeature'
-            $testResults  | Should Not Be 'UserRightRule'
+            $testResults[0].GetType().Name | Should Not Be 'UserRightRule'
         }
     }
 
@@ -196,8 +208,7 @@ $checkContent = 'Security Option "Audit: Force audit policy subcategory settings
             $checkContent = 'Get-WindowsFeature'
             $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
             $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name = 'Get-WindowsFeature'
-            $testResults | Should Be 'WindowsFeatureRule'
+            $testResults[0].GetType().Name | Should Be 'WindowsFeatureRule'
         }
         It "Should return 'WindowsFeatureRule' when 'Get-WindowsOptionalFeature' is found" {
             $checkContent = 'Get-WindowsOptionalFeature'

@@ -6,15 +6,19 @@ try
 {
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
-        $baseString = 'Verify the effective setting in Local Group Policy Editor.
+        $checkContentBase = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
 
         Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
 
         {0}'
-        $rule = [AccountPolicyRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $checkContentString = 'If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.'
+        $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
+        $rule = [AccountPolicyRule]::new( $stigRule )
         #endregion
         #region Class Tests
+
         Describe "$($rule.GetType().Name) Child Class" {
 
             Context 'Base Class' {
@@ -100,7 +104,7 @@ try
 
             Context 'Match' {
 
-                $strings = @(
+                $checkContentStrings = @(
                     'If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.',
                     'If the value for "Enforce password history" is less than "24" passwords remembered, this is a finding.',
                     'If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.',
@@ -110,10 +114,10 @@ try
                     'If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.'
                 )
 
-                foreach ($string in $strings)
+                foreach ($checkContentString in $checkContentStrings)
                 {
-                    It "Should return true from '$string'" {
-                        $checkContent = Split-TestStrings -CheckContent ($baseString -f $string)
+                    It "Should return true from '$checkContentString'" {
+                        $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
                         Test-SecurityPolicyContainsRange -CheckContent $checkContent| Should Be $true
                     }
                 }
@@ -121,41 +125,23 @@ try
 
             Context "Not Match" {
 
-                $strings = @(
+                $checkContentStrings = @(
                     'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',
                     'If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.',
                     'If the "Account lockout duration" is not set to "0", requiring an administrator to unlock the account, this is a finding.'
                 )
 
-                foreach ($string in $strings)
+                foreach ($checkContentString in $checkContentStrings)
                 {
-                    It "Should return false from '$string'" {
-                        $checkContent = Split-TestStrings -CheckContent ($baseString -f $string)
+                    It "Should return false from '$checkContentString'" {
+                        $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
                         Test-SecurityPolicyContainsRange -CheckContent $checkContent | Should Be $false
                     }
                 }
             }
         }
         #endregion
-        #region Function Tests
-        $checkContent = 'Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; {0} -&gt; Account Lockout Policy.
-
-If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'
-        Describe "ConvertTo-AccountPolicyRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $rule = ConvertTo-AccountPolicyRule -StigRule $stigRule
-
-            It "Should return an AccountPolicyRule object" {
-                $rule.GetType() | Should Be 'AccountPolicyRule'
-            }
-        }
-        #endregion
         #region Data Tests
         Describe "PolicyNameFixes Data Section" {
 

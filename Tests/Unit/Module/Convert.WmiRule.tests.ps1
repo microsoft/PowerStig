@@ -15,7 +15,8 @@ try
         Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
         must be documented with the ISSO.'
 
-        $rule = [WmiRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
+        $rule = [WmiRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -43,20 +44,7 @@ try
         #region Method Tests
 
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-WmiRule" {
-            <#
-            This function can't really be unit tested, since the call cannot be mocked by pester, so
-            the only thing we can really do at this point is to verify that it returns the correct object.
-        #>
-            $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $rule = ConvertTo-WmiRule -StigRule $stigRule
 
-            It "Should return an WmiRule object" {
-                $rule.GetType() | Should Be 'WmiRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

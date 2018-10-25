@@ -267,19 +267,6 @@ Class Rule : ICloneable
 
     <#
         .SYNOPSIS
-            Returns the rule type that is should be converted to
-        .DESCRIPTION
-            Looks at the check-content data and returns the rule type that is should be converted to.
-        .PARAMETER CheckContent
-            The rule text from the check-content element in the xccdf
-    #>
-    static [RuleType[]] GetRuleTypeMatchList ( [String] $CheckContent )
-    {
-        return Get-RuleTypeMatchList -CheckContent $CheckContent
-    }
-
-    <#
-        .SYNOPSIS
             Looks for the rule to see if it already exists
         .DESCRIPTION
             Looks for the rule to see if it already exists

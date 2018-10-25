@@ -89,7 +89,9 @@ try
                 NOTSET'
             }
         )
-        $rule = [ProcessMitigationRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [ProcessMitigationRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -140,17 +142,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-ProcessMitigationRule" {
 
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-ProcessMitigationRule -StigRule $stigRule
-
-            It "Should return a ProcessMitigationRule object" {
-                $rule.GetType() | Should Be 'ProcessMitigationRule'
-            }
-        }
-        #endregion
         #region Data Tests
 
         #endregion

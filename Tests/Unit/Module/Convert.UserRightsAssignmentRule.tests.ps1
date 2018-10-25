@@ -184,7 +184,9 @@ try
                 Guests Group'
             }
         )
-        $rule = [UserRightRule]::new( ( Get-TestStigRule -ReturnGroupOnly ) )
+
+        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        $rule = [UserRightRule]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -331,21 +333,7 @@ try
             }
         }
         #endregion
-        #region Function Tests
-        Describe "ConvertTo-UserRightRule" {
 
-            <#
-                This function can't really be unit tested, since the call cannot be mocked by pester, so
-                the only thing we can really do at this point is to verify that it returns the correct object.
-            #>
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-UserRightRule -StigRule $stigRule
-
-            It "Should return an UserRightRule object" {
-                $rule.GetType() | Should Be 'UserRightRule'
-            }
-        }
-        #endregion
         #region Data Tests
         Describe "UserRightNameToConstant Data Section" {
 
