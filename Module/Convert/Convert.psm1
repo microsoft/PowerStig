@@ -9,10 +9,10 @@ using module .\..\GroupRule\GroupRule.psm1
 using module .\..\IISLoggingRule\IISLoggingRule.psm1
 using module .\..\ManualRule\ManualRule.psm1
 using module .\..\MimeTypeRule\MimeTypeRule.psm1
-using module .\..\PermissionRule\PermissionRule.psm1
-using module .\..\ProcessMitigationRule\ProcessMitigationRule.psm1
+using module .\..\Convert.PermissionRule\Convert.PermissionRule.psm1
+using module .\..\Convert.ProcessMitigationRule\Convert.ProcessMitigationRule.psm1
 using module .\..\Convert.RegistryRule\Convert.RegistryRule.psm1
-using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
+using module .\..\Convert.SecurityOptionRule\Convert.SecurityOptionRule.psm1
 using module .\..\Convert.ServiceRule\Convert.ServiceRule.psm1
 using module .\..\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
 using module .\..\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1

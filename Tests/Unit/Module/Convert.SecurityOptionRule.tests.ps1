@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\SecurityOptionRule\SecurityOptionRule.psm1
+using module .\..\..\..\Module\Convert.SecurityOptionRule\Convert.SecurityOptionRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
