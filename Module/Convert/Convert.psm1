@@ -4,7 +4,7 @@ using module .\..\AuditPolicyRule\AuditPolicyRule.psm1
 using module .\..\DocumentRule\DocumentRule.psm1
 using module .\..\DnsServerRootHintRule\DnsServerRootHintRule.psm1
 using module .\..\DnsServerSettingRule\DnsServerSettingRule.psm1
-using module .\..\Convert.FileContentRule\Convert.FileContentRule.psm1
+using module .\..\FileContentRule\FileContentRule.psm1
 using module .\..\Convert.GroupRule\Convert.GroupRule.psm1
 using module .\..\Convert.IisLoggingRule\Convert.IisLoggingRule.psm1
 using module .\..\Convert.ManualRule\Convert.ManualRule.psm1
