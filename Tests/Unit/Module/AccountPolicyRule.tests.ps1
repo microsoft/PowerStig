@@ -1,4 +1,4 @@
-using module .\..\..\..\Module\Convert.AccountPolicyRule\Convert.AccountPolicyRule.psm1
+using module .\..\..\..\Module\AccountPolicyRule\AccountPolicyRule.psm1
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion

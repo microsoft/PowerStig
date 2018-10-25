@@ -1,5 +1,5 @@
 using module .\..\Common\Common.psm1
-using module .\..\Convert.AccountPolicyRule\Convert.AccountPolicyRule.psm1
+using module .\..\AccountPolicyRule\AccountPolicyRule.psm1
 using module .\..\Convert.AuditPolicyRule\Convert.AuditPolicyRule.psm1
 using module .\..\Convert.DocumentRule\Convert.DocumentRule.psm1
 using module .\..\Convert.DnsServerRootHintRule\Convert.DnsServerRootHintRule.psm1
