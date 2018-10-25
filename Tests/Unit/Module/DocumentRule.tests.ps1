@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.DocumentRule\Convert.DocumentRule.psm1
+using module .\..\..\..\Module\DocumentRule\DocumentRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
