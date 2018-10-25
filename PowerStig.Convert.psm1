@@ -25,7 +25,7 @@ using module .\Module\PermissionRule\PermissionRule.psm1
 using module .\Module\ProcessMitigationRule\ProcessMitigationRule.psm1
 using module .\Module\Convert.RegistryRule\Convert.RegistryRule.psm1
 using module .\Module\SecurityOptionRule\SecurityOptionRule.psm1
-using module .\Module\ServiceRule\ServiceRule.psm1
+using module .\Module\Convert.ServiceRule\Convert.ServiceRule.psm1
 using module .\Module\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
 using module .\Module\Rule\Rule.psm1
 using module .\Module\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1

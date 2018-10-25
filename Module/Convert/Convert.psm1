@@ -13,7 +13,7 @@ using module .\..\PermissionRule\PermissionRule.psm1
 using module .\..\ProcessMitigationRule\ProcessMitigationRule.psm1
 using module .\..\Convert.RegistryRule\Convert.RegistryRule.psm1
 using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
-using module .\..\ServiceRule\ServiceRule.psm1
+using module .\..\Convert.ServiceRule\Convert.ServiceRule.psm1
 using module .\..\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
 using module .\..\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
 using module .\..\Convert.WebAppPoolRule\Convert.WebAppPoolRule.psm1
