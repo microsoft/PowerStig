@@ -41,9 +41,12 @@ Class AuditPolicyRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    AuditPolicyRule ( [xml.xmlelement] $StigRule )
+    AuditPolicyRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetSubcategory()
+        $this.SetAuditFlag()
+        $this.SetEnsureFlag([Ensure]::Present)
         $this.SetDscResource()
     }
 
@@ -61,9 +64,9 @@ Class AuditPolicyRule : Rule
     {
         $thisSubcategory = Get-AuditPolicySubCategory -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisSubcategory ) )
+        if (-not $this.SetStatus($thisSubcategory))
         {
-            $this.set_Subcategory( $thisSubcategory )
+            $this.set_Subcategory($thisSubcategory)
         }
     }
 
@@ -79,9 +82,9 @@ Class AuditPolicyRule : Rule
     {
         $thisAuditFlag = Get-AuditPolicyFlag -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisAuditFlag ) )
+        if (-not $this.SetStatus($thisAuditFlag))
         {
-            $this.set_AuditFlag( $thisAuditFlag )
+            $this.set_AuditFlag($thisAuditFlag)
         }
     }
 
@@ -93,7 +96,7 @@ Class AuditPolicyRule : Rule
         .PARAMETER EnsureFlag
             The value the Ensure flag should be set to
     #>
-    [void] SetEnsureFlag ( [Ensure] $EnsureFlag )
+    [void] SetEnsureFlag ([Ensure] $EnsureFlag)
     {
         $this.Ensure = $EnsureFlag
     }
@@ -103,5 +106,17 @@ Class AuditPolicyRule : Rule
         $this.DscResource = 'AuditPolicySubcategory'
     }
 
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match "\bAuditpol\b" -and
+            $CheckContent -NotMatch "resourceSACL"
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }

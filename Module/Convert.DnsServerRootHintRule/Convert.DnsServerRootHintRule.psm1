@@ -39,16 +39,29 @@ Class DnsServerRootHintRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    DnsServerRootHintRule ( [xml.xmlelement] $StigRule )
+    DnsServerRootHintRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
-        $this.set_HostName( '$null' )
-        $this.set_IpAddress( '$null' )
+        $this.InvokeClass($StigRule)
+        $this.set_HostName('$null')
+        $this.set_IpAddress('$null')
         $this.SetDscResource()
     }
 
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'Script'
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'dnsmgmt\.msc' -and
+            $CheckContent -Match 'Verify the \"root hints\"'
+        )
+        {
+            return $true
+        }
+        return $false
     }
 }

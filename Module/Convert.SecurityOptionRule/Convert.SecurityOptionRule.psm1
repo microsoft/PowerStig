@@ -37,9 +37,18 @@ Class SecurityOptionRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    SecurityOptionRule ( [xml.xmlelement] $StigRule )
+    SecurityOptionRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetOptionName()
+        if ($this.TestOptionValueForRange())
+        {
+            $this.SetOptionValueRange()
+        }
+        else
+        {
+            $this.SetOptionValue()
+        }
         $this.SetDscResource()
     }
 
@@ -56,9 +65,9 @@ Class SecurityOptionRule : Rule
     [void] SetOptionName ()
     {
         $thisName = Get-SecurityOptionName -CheckContent $this.SplitCheckContent
-        if ( -not $this.SetStatus( $thisName ) )
+        if (-not $this.SetStatus($thisName))
         {
-            $this.set_OptionName( $thisName )
+            $this.set_OptionName($thisName)
         }
     }
 
@@ -72,7 +81,7 @@ Class SecurityOptionRule : Rule
     #>
     [bool] TestOptionValueForRange ()
     {
-        if ( Test-SecurityPolicyContainsRange -CheckContent $this.SplitCheckContent )
+        if (Test-SecurityPolicyContainsRange -CheckContent $this.SplitCheckContent)
         {
             return $true
         }
@@ -92,9 +101,9 @@ Class SecurityOptionRule : Rule
     {
         $thisValue = Get-SecurityOptionValue -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisValue ) )
+        if (-not $this.SetStatus($thisValue))
         {
-            $this.set_OptionValue( $thisValue )
+            $this.set_OptionValue($thisValue)
         }
     }
 
@@ -113,15 +122,28 @@ Class SecurityOptionRule : Rule
 
         $thisPolicyValueTestString = Get-SecurityPolicyOrganizationValueTestString -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyValueTestString ) )
+        if (-not $this.SetStatus($thisPolicyValueTestString))
         {
-            $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
+            $this.set_OrganizationValueTestString($thisPolicyValueTestString)
         }
     }
 
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'SecurityOption'
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'gpedit\.msc' -and
+            $CheckContent -match 'Security Options'
+        )
+        {
+            return $true
+        }
+        return $false
     }
     #endregion
 }

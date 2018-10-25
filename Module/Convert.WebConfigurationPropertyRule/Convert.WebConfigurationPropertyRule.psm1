@@ -42,13 +42,47 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WebConfigurationPropertyRule ( [xml.xmlelement] $StigRule )
+    WebConfigurationPropertyRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetConfigSection()
+        $this.SetKeyValuePair()
+
+        if ($this.IsOrganizationalSetting())
+        {
+            $this.SetOrganizationValueTestString()
+        }
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ($this.IsDuplicateRule($global:stigSettings))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [WebConfigurationPropertyRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $ruleList = @()
+        if ([WebConfigurationPropertyRule]::HasMultipleRules($StigRule.rule.Check.'check-content'))
+        {
+            [string[]] $splitRules = [WebConfigurationPropertyRule]::SplitMultipleRules($StigRule.rule.Check.'check-content')
+            foreach ($splitRule in $splitRules)
+            {
+                $StigRule.rule.Check.'check-content' = $splitRule
+                $ruleList += [WebConfigurationPropertyRule]::New($StigRule)
+            }
+        }
+        else
+        {
+            $ruleList += [WebConfigurationPropertyRule]::New($StigRule)
+        }
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -62,9 +96,9 @@ Class WebConfigurationPropertyRule : Rule
     {
         $thisConfigSection = Get-ConfigSection -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisConfigSection ) )
+        if (-not $this.SetStatus($thisConfigSection))
         {
-            $this.set_ConfigSection( $thisConfigSection )
+            $this.set_ConfigSection($thisConfigSection)
         }
     }
 
@@ -80,10 +114,10 @@ Class WebConfigurationPropertyRule : Rule
     {
         $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisKeyValuePair ) )
+        if (-not $this.SetStatus($thisKeyValuePair))
         {
-            $this.set_Key( $thisKeyValuePair.Key )
-            $this.set_Value( $thisKeyValuePair.Value )
+            $this.set_Key($thisKeyValuePair.Key)
+            $this.set_Value($thisKeyValuePair.Value)
         }
     }
 
@@ -95,7 +129,7 @@ Class WebConfigurationPropertyRule : Rule
     #>
     [Boolean] IsOrganizationalSetting ()
     {
-        if ( -not [String]::IsNullOrEmpty( $this.key ) -and [String]::IsNullOrEmpty( $this.value ) )
+        if (-not [String]::IsNullOrEmpty($this.key) -and [String]::IsNullOrEmpty($this.value))
         {
             return $true
         }
@@ -115,16 +149,53 @@ Class WebConfigurationPropertyRule : Rule
     {
         $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
 
-        if ( -not $this.SetStatus( $thisOrganizationValueTestString ) )
+        if (-not $this.SetStatus($thisOrganizationValueTestString))
         {
-            $this.set_OrganizationValueTestString( $thisOrganizationValueTestString )
-            $this.set_OrganizationValueRequired( $true )
+            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
+            $this.set_OrganizationValueRequired($true)
         }
     }
 
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'xWebConfigKeyValue'
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match '\.NET Trust Level' -or
+            (
+                $CheckContent -Match 'IIS 8\.5 web' -and
+                $CheckContent -NotMatch 'document'
+            ) -and
+            (
+                $CheckContent -NotMatch 'alternateHostName' -and
+                $CheckContent -NotMatch 'Application Pools' -and
+                $CheckContent -NotMatch 'bindings' -and
+                $CheckContent -NotMatch 'DoD PKI Root CA' -and
+                $CheckContent -NotMatch 'IUSR account' -and
+                $CheckContent -NotMatch 'Logging' -and
+                $CheckContent -NotMatch 'MIME Types' -and
+                $CheckContent -NotMatch 'Physical Path' -and
+                $CheckContent -NotMatch 'script extensions' -and
+                $CheckContent -NotMatch 'recycl' -and
+                $CheckContent -NotMatch 'WebDAV' -and
+                $CheckContent -NotMatch 'Review the local users' -and
+                $CheckContent -NotMatch 'System Administrator' -and
+                $CheckContent -NotMatch 'are not restrictive enough to prevent connections from nonsecure zones' -and
+                $CheckContent -NotMatch 'verify the certificate path is to a DoD root CA' -and
+                $CheckContent -NotMatch 'HKLM' -and
+                $CheckContent -NotMatch 'Authorization Rules' -and
+                $CheckContent -NotMatch 'regedit <enter>' -and
+                $CheckContent -NotMatch 'Enable proxy'
+            )
+        )
+        {
+            return $true
+        }
+        return $false
     }
 
     <#
@@ -135,9 +206,9 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return Test-MultipleWebConfigurationPropertyRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleWebConfigurationPropertyRule -CheckContent ([Rule]::SplitCheckContent($CheckContent))
     }
 
     <#
@@ -153,9 +224,9 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultipleWebConfigurationPropertyRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultipleWebConfigurationPropertyRule -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     #endregion

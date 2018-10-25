@@ -30,9 +30,9 @@ Class ManualRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    ManualRule ( [xml.xmlelement] $StigRule )
+    ManualRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
         $this.SetDscResource()
     }
 

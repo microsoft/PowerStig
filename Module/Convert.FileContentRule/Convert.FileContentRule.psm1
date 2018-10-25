@@ -37,15 +37,41 @@ Class FileContentRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    FileContentRule ( [xml.xmlelement] $StigRule )
+    hidden FileContentRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetKeyName()
         $this.SetValue()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ($this.IsDuplicateRule($global:stigSettings))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [FileContentRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $ruleList = @()
+        if ([FileContentRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
+        {
+            [string[]] $splitRules = [FileContentRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
+            {
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [FileContentRule]::New($StigRule)
+            }
+        }
+        else
+        {
+            $ruleList += [FileContentRule]::New($StigRule)
+        }
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -59,9 +85,9 @@ Class FileContentRule : Rule
     {
         $thisKeyName = (Get-KeyValuePair $this.SplitCheckContent).Key
 
-        if ( -not $this.SetStatus( $thisKeyName ) )
+        if (-not $this.SetStatus($thisKeyName))
         {
-            $this.set_Key( $thisKeyName )
+            $this.set_Key($thisKeyName)
         }
     }
 
@@ -77,9 +103,9 @@ Class FileContentRule : Rule
     {
         $thisValue = (Get-KeyValuePair $this.SplitCheckContent).Value
 
-        if ( -not $this.SetStatus( $thisValue ) )
+        if (-not $this.SetStatus($thisValue))
         {
-            $this.set_Value( $thisValue )
+            $this.set_Value($thisValue)
         }
     }
 
@@ -101,6 +127,27 @@ Class FileContentRule : Rule
             }
         }
     }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            (
+                $CheckContent -Match 'deployment.properties' -and
+                $CheckContent -Match '=' -and
+                $CheckContent -NotMatch 'exception.sites'
+            ) -or
+            (
+                $CheckContent -Match 'about:config' -and
+                $CheckContent -NotMatch 'Mozilla.cfg'
+            )
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check
@@ -110,10 +157,10 @@ Class FileContentRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        $keyValuePairs = Get-KeyValuePair -CheckContent ([Rule]::SplitCheckContent( $CheckContent ) )
-        return ( Test-MultipleFileContentRule -KeyValuePair $keyValuePairs )
+        $keyValuePairs = Get-KeyValuePair -CheckContent ([Rule]::SplitCheckContent($CheckContent))
+        return (Test-MultipleFileContentRule -KeyValuePair $keyValuePairs)
     }
 
     <#
@@ -126,7 +173,7 @@ Class FileContentRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
         return (Get-KeyValuePair -SplitCheckContent -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }

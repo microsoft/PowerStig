@@ -39,9 +39,22 @@ Class WinEventLogRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WinEventLogRule ( [xml.xmlelement] $StigRule )
+    WinEventLogRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetWinEventLogName()
+        $this.SetWinEventLogIsEnabled()
+
+        if ($this.IsDuplicateRule($global:stigSettings))
+        {
+            $this.SetDuplicateTitle()
+        }
+
+        if ($this.IsExistingRule($global:stigSettings))
+        {
+            $newId = Get-AvailableId -Id $StigRule.id
+            $this.set_id($newId)
+        }
         $this.SetDscResource()
     }
 
@@ -59,7 +72,7 @@ Class WinEventLogRule : Rule
     {
         $thisDnsWinEventLogName = Get-DnsServerWinEventLogName -StigString $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisDnsWinEventLogName ) )
+        if (-not $this.SetStatus($thisDnsWinEventLogName))
         {
             $this.set_LogName($thisDnsWinEventLogName)
         }
@@ -83,6 +96,19 @@ Class WinEventLogRule : Rule
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'xWinEventLog'
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'Logs\\Microsoft' -and
+            $CheckContent -Match 'eventvwr\.msc'
+        )
+        {
+            return $true
+        }
+        return $false
     }
     #endregion
 }

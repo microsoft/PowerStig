@@ -39,13 +39,44 @@ Class WindowsFeatureRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    WindowsFeatureRule ( [xml.xmlelement] $StigRule )
+    hidden WindowsFeatureRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
+        $this.SetFeatureName()
+        $this.SetFeatureInstallState()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ($this.IsDuplicateRule($global:stigSettings))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [WindowsFeatureRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
+    {
+        $ruleList = @()
+        $rule = [WindowsFeatureRule]::new($StigRule)
+        if ($rule.HasMultipleRules())
+        {
+            [string[]] $splitRules = $rule.SplitMultipleRules()
+            foreach ($splitRule in $splitRules)
+            {
+                $ruleClone = $rule.Clone()
+                $ruleClone.FeatureName = $splitRule
+                $ruleList += $ruleClone
+            }
+        }
+        else
+        {
+            $ruleList += $rule
+        }
+
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -58,9 +89,9 @@ Class WindowsFeatureRule : Rule
     {
         $thisFeatureName = Get-WindowsFeatureName -CheckContent $this.RawString
 
-        if ( -not $this.SetStatus( $thisFeatureName ) )
+        if (-not $this.SetStatus($thisFeatureName))
         {
-            $this.set_FeatureName( $thisFeatureName )
+            $this.set_FeatureName($thisFeatureName)
         }
     }
 
@@ -75,10 +106,24 @@ Class WindowsFeatureRule : Rule
     {
         $thisInstallState = Get-FeatureInstallState -CheckContent $this.RawString
 
-        if ( -not $this.SetStatus( $thisInstallState ) )
+        if (-not $this.SetStatus($thisInstallState))
         {
-            $this.set_InstallState( $thisInstallState )
+            $this.set_InstallState($thisInstallState)
         }
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match '(Get-Windows(Optional)?Feature|is not installed by default)' -or
+            $CheckContent -Match 'WebDAV Authoring Rules' -and
+            $CheckContent -NotMatch 'HKEY_LOCAL_MACHINE'
+        )
+        {
+            return $true
+        }
+        return $false
     }
 
     <#
@@ -90,9 +135,9 @@ Class WindowsFeatureRule : Rule
             The feature name from the rule text from the check-content element
             in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $FeatureName )
+    [bool] HasMultipleRules ()
     {
-        return ( Test-MultipleWindowsFeatureRule -FeatureName $FeatureName )
+        return (Test-MultipleWindowsFeatureRule -FeatureName $this.FeatureName)
     }
 
     <#
@@ -108,9 +153,9 @@ Class WindowsFeatureRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $FeatureName )
+    [string[]] SplitMultipleRules ()
     {
-        return ( Split-WindowsFeatureRule -FeatureName $FeatureName )
+        return (Split-WindowsFeatureRule -FeatureName $this.FeatureName)
     }
 
     hidden [void] SetDscResource ()

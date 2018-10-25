@@ -38,9 +38,19 @@ Class GroupRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    GroupRule ( [xml.xmlelement] $StigRule )
+    GroupRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
+        $this.SetGroupName()
+        $this.SetMembersToExclude()
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ($this.IsDuplicateRule($global:stigSettings))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
@@ -58,9 +68,9 @@ Class GroupRule : Rule
     {
         $thisGroupDetails = Get-GroupDetail -CheckContent $this.rawString
 
-        if ( -not $this.SetStatus( $thisGroupDetails.GroupName ) )
+        if (-not $this.SetStatus($thisGroupDetails.GroupName))
         {
-            $this.set_GroupName( $thisGroupDetails.GroupName )
+            $this.set_GroupName($thisGroupDetails.GroupName)
         }
     }
 
@@ -82,10 +92,24 @@ Class GroupRule : Rule
         {
             $thisGroupMember = $null
         }
-        if ( -not $this.SetStatus( $thisGroupMember ) )
+        if (-not $this.SetStatus($thisGroupMember))
         {
-            $this.set_MembersToExclude( $thisGroupMember )
+            $this.set_MembersToExclude($thisGroupMember)
         }
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'Navigate to System Tools >> Local Users and Groups >> Groups\.' -and
+            $CheckContent -NotMatch 'Backup Operators|Hyper-V Administrators' -and
+            $CheckContent -NotMatch 'domain-joined workstations, the Domain Admins'
+        )
+        {
+            return $true
+        }
+        return $false
     }
 
     hidden [void] SetDscResource ()

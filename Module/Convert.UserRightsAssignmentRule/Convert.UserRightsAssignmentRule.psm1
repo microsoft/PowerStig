@@ -44,13 +44,46 @@ Class UserRightRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    UserRightRule ( [xml.xmlelement] $StigRule )
+    hidden UserRightRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetDisplayName()
+        $this.SetConstant()
+        $this.SetIdentity()
+        $this.SetForce()
+
+        if ($this.IsDuplicateRule($global:stigSettings))
+        {
+            $this.SetDuplicateTitle()
+        }
+
+        if (Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $this)
+        {
+            $this.set_id((Get-AvailableId -Id $this.Id))
+        }
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [UserRightRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $ruleList = @()
+        if ([UserRightRule]::HasMultipleRules($StigRule.rule.Check.'check-content'))
+        {
+            [string[]] $splitRules = [UserRightRule]::SplitMultipleRules($StigRule.rule.Check.'check-content')
+            foreach ($splitRule in $splitRules)
+            {
+                $StigRule.rule.Check.'check-content' = $splitRule
+                $ruleList += [UserRightRule]::New($StigRule)
+            }
+        }
+        else
+        {
+            $ruleList += [UserRightRule]::New($StigRule)
+        }
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -63,9 +96,9 @@ Class UserRightRule : Rule
     {
         $thisDisplayName = Get-UserRightDisplayName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisDisplayName ) )
+        if (-not $this.SetStatus($thisDisplayName))
         {
-            $this.set_DisplayName( $thisDisplayName )
+            $this.set_DisplayName($thisDisplayName)
         }
     }
 
@@ -81,9 +114,9 @@ Class UserRightRule : Rule
     {
         $thisConstant = Get-UserRightConstant -UserRightDisplayName $this.DisplayName
 
-        if ( -not $this.SetStatus( $thisConstant ) )
+        if (-not $this.SetStatus($thisConstant))
         {
-            $this.set_Constant( $thisConstant )
+            $this.set_Constant($thisConstant)
         }
     }
 
@@ -99,17 +132,17 @@ Class UserRightRule : Rule
     {
         $thisIdentity = Get-UserRightIdentity -CheckContent $this.SplitCheckContent
         $return = $true
-        if ( [String]::IsNullOrEmpty( $thisIdentity ) )
+        if ([String]::IsNullOrEmpty($thisIdentity))
         {
             $return = $false
         }
-        elseif ( $thisIdentity -ne 'NULL' )
+        elseif ($thisIdentity -ne 'NULL')
         {
             if ($thisIdentity -join "," -match "{Hyper-V}")
             {
                 $this.SetOrganizationValueRequired()
                 $HyperVIdentity = $thisIdentity -join "," -replace "{Hyper-V}", "NT Virtual Machine\\Virtual Machines"
-                $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
+                $NoHyperVIdentity = $thisIdentity.Where({$PSItem -ne "{Hyper-V}"}) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
             }
         }
@@ -127,19 +160,34 @@ Class UserRightRule : Rule
     #>
     [void] SetForce ()
     {
-        if ( Test-SetForceFlag -CheckContent $this.SplitCheckContent )
+        if (Test-SetForceFlag -CheckContent $this.SplitCheckContent)
         {
-            $this.set_Force( $true )
+            $this.set_Force($true)
         }
         else
         {
-            $this.set_Force( $false )
+            $this.set_Force($false)
         }
     }
 
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'UserRightsAssignment'
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'gpedit\.msc' -and
+            $CheckContent -Match 'User Rights Assignment' -and
+            $CheckContent -NotMatch 'unresolved SIDs' -and
+            $CheckContent -NotMatch 'SQL Server'
+        )
+        {
+            return $true
+        }
+        return $false
     }
 
     <#
@@ -151,9 +199,9 @@ Class UserRightRule : Rule
             The rule text from the check-content element in the xccdf
     #>
 
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        if ( Test-MultipleUserRightsAssignment -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        if (Test-MultipleUserRightsAssignment -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
         {
             return $true
         }
@@ -174,9 +222,9 @@ Class UserRightRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultipleUserRightsAssignment -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultipleUserRightsAssignment -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     #endregion

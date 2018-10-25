@@ -38,9 +38,18 @@ Class AccountPolicyRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    AccountPolicyRule ( [xml.xmlelement] $StigRule )
+    AccountPolicyRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetPolicyName()
+        if ($this.TestPolicyValueForRange())
+        {
+            $this.SetPolicyValueRange()
+        }
+        else
+        {
+            $this.SetPolicyValue()
+        }
         $this.SetDscResource()
     }
 
@@ -58,9 +67,9 @@ Class AccountPolicyRule : Rule
     {
         $thisPolicyName = Get-AccountPolicyName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyName ) )
+        if (-not $this.SetStatus($thisPolicyName))
         {
-            $this.set_PolicyName( $thisPolicyName )
+            $this.set_PolicyName($thisPolicyName)
         }
     }
 
@@ -94,9 +103,9 @@ Class AccountPolicyRule : Rule
     {
         $thisPolicyValue = Get-AccountPolicyValue -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyValue ) )
+        if (-not $this.SetStatus($thisPolicyValue))
         {
-            $this.set_PolicyValue( $thisPolicyValue )
+            $this.set_PolicyValue($thisPolicyValue)
         }
     }
 
@@ -114,15 +123,28 @@ Class AccountPolicyRule : Rule
 
         $thisPolicyValueTestString = Get-SecurityPolicyOrganizationValueTestString -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPolicyValueTestString ) )
+        if (-not $this.SetStatus($thisPolicyValueTestString))
         {
-            $this.set_OrganizationValueTestString( $thisPolicyValueTestString )
+            $this.set_OrganizationValueTestString($thisPolicyValueTestString)
         }
     }
 
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'AccountPolicy'
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'gpedit\.msc' -and
+            $CheckContent -Match 'Account Policies'
+        )
+        {
+            return $true
+        }
+        return $false
     }
     #endregion
 }

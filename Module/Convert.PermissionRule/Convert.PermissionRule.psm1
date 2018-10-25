@@ -41,20 +41,39 @@ Class PermissionRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    PermissionRule ( [xml.xmlelement] $StigRule )
+    hidden PermissionRule ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetPath()
         $this.SetDscResource()
         $this.SetForce()
         $this.SetAccessControlEntry()
-        if ( $this.IsDuplicateRule( $global:stigSettings ) )
+        if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
         }
     }
 
     # Methods
+
+    static [PermissionRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $ruleList = @()
+        if ([PermissionRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
+        {
+            [string[]] $splitRules = [PermissionRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
+            {
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [PermissionRule]::New($StigRule)
+            }
+        }
+        else
+        {
+            $ruleList += [PermissionRule]::New($StigRule)
+        }
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -64,13 +83,13 @@ Class PermissionRule : Rule
             If the object path that is returned is not valid, the parser
             status is set to fail
     #>
-    [void] SetPath ( )
+    [void] SetPath ()
     {
         $thisPath = Get-PermissionTargetPath -StigString $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisPath ) )
+        if (-not $this.SetStatus($thisPath))
         {
-            $this.set_Path( $thisPath )
+            $this.set_Path($thisPath)
         }
     }
 
@@ -81,7 +100,7 @@ Class PermissionRule : Rule
             For now we're setting a default value. Later there could be
             additional logic here
     #>
-    [void] SetForce ( )
+    [void] SetForce ()
     {
         $this.set_Force($true)
     }
@@ -93,35 +112,34 @@ Class PermissionRule : Rule
             Gets the ACE from the xccdf content and sets the value. If the ACE
             that is returned is not valid, the parser status is set to fail
     #>
-    [void] SetAccessControlEntry ( )
+    [void] SetAccessControlEntry ()
     {
         $thisAccessControlEntry = Get-PermissionAccessControlEntry -StigString $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisAccessControlEntry ) )
+        if (-not $this.SetStatus($thisAccessControlEntry))
         {
-            foreach ( $principal in $thisAccessControlEntry.Principal )
+            foreach ($principal in $thisAccessControlEntry.Principal)
             {
-                $this.SetStatus( $principal )
+                $this.SetStatus($principal)
             }
 
-            foreach ( $rights in $thisAccessControlEntry.Rights )
+            foreach ($rights in $thisAccessControlEntry.Rights)
             {
-                if ( $rights -eq 'blank' )
+                if ($rights -eq 'blank')
                 {
-                    $this.SetStatus( "", $true )
+                    $this.SetStatus("", $true)
                     continue
                 }
-                $this.SetStatus( $rights )
+                $this.SetStatus($rights)
             }
 
-            $this.set_AccessControlEntry( $thisAccessControlEntry )
+            $this.set_AccessControlEntry($thisAccessControlEntry)
         }
     }
 
-
     hidden [void] SetDscResource ()
     {
-        if ( $this.Path )
+        if ($this.Path)
         {
             switch ($this.Path)
             {
@@ -140,6 +158,35 @@ Class PermissionRule : Rule
             }
         }
     }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'permission(s|)' -and
+            $CheckContent -NotMatch 'Forward\sLookup\sZones|Devices\sand\sPrinters|Shared\sFolders' -and
+            $CheckContent -NotMatch 'Verify(ing)? the ((permissions .* ((G|g)roup (P|p)olicy|OU|ou))|auditing .* ((G|g)roup (P|p)olicy))' -and
+            $CheckContent -NotMatch 'Windows Registry Editor' -and
+            $CheckContent -NotMatch '(ID|id)s? .* (A|a)uditors?,? (SA|sa)s?,? .* (W|w)eb (A|a)dministrators? .* access to log files?' -and
+            $CheckContent -NotMatch '\n*\.NET Trust Level' -and
+            $CheckContent -NotMatch 'IIS 8\.5 web' -and
+            $CheckContent -cNotmatch 'SELECT' -and
+            $CheckContent -NotMatch 'SQL Server' -and
+            $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
+            $CheckContent -NotMatch 'Query the SA' -and
+            $CheckContent -NotMatch "caspol\.exe" -and
+            $CheckContent -NotMatch "Select the Group Policy object in the left pane" -and
+            $CheckContent -NotMatch "Deny log on through Remote Desktop Services" -and
+            $CheckContent -NotMatch "Interview the IAM" -and
+            $CheckContent -NotMatch "InetMgr\.exe" -and
+            $CheckContent -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""."
+        )
+        {
+            return $true
+        }
+        return $false
+    }
+
     <#
         .SYNOPSIS
             Tests if a rules contains more than one check
@@ -149,10 +196,10 @@ Class PermissionRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        $permissionPaths = Get-PermissionTargetPath -StigString ([Rule]::SplitCheckContent( $CheckContent ) )
-        return ( Test-MultiplePermissionRule -PermissionPath $permissionPaths )
+        $permissionPaths = Get-PermissionTargetPath -StigString ([Rule]::SplitCheckContent($CheckContent))
+        return (Test-MultiplePermissionRule -PermissionPath $permissionPaths)
     }
 
     <#
@@ -168,9 +215,9 @@ Class PermissionRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultiplePermissionRule -CheckContent ([Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultiplePermissionRule -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     #endregion

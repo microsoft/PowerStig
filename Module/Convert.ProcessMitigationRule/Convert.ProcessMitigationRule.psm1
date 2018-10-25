@@ -42,13 +42,44 @@ Class ProcessMitigationRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    ProcessMitigationRule ( [xml.xmlelement] $StigRule )
+    hidden ProcessMitigationRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetMitigationTargetName()
+        $this.SetMitigationToEnable()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ($this.IsDuplicateRule($global:stigSettings))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [ProcessMitigationRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
+    {
+        $ruleList = @()
+        $rule = [ProcessMitigationRule]::new($StigRule)
+        if ($rule.HasMultipleRules())
+        {
+            [string[]] $splitRules = $rule.SplitMultipleRules()
+            foreach ($splitRule in $splitRules)
+            {
+                $ruleClone = $rule.Clone()
+                $ruleClone.MitigationTarget = $splitRule
+                $ruleList += $ruleClone
+            }
+        }
+        else
+        {
+            $ruleList += $rule
+        }
+
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -63,9 +94,9 @@ Class ProcessMitigationRule : Rule
     {
         $thisMitigationTargetName = Get-MitigationTargetName -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisMitigationTargetName ) )
+        if (-not $this.SetStatus($thisMitigationTargetName))
         {
-            $this.set_MitigationTarget( $thisMitigationTargetName )
+            $this.set_MitigationTarget($thisMitigationTargetName)
         }
     }
 
@@ -80,9 +111,9 @@ Class ProcessMitigationRule : Rule
     {
         $thisMitigation = Get-MitigationPolicyToEnable -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisMitigation ) )
+        if (-not $this.SetStatus($thisMitigation))
         {
-            $this.set_Enable( $thisMitigation )
+            $this.set_Enable($thisMitigation)
         }
     }
 
@@ -94,9 +125,9 @@ Class ProcessMitigationRule : Rule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
-    static [bool] HasMultipleRules ( [string] $MitigationTarget )
+    [bool] HasMultipleRules ()
     {
-        return ( Test-MultipleProcessMitigationRule -MitigationTarget $MitigationTarget )
+        return (Test-MultipleProcessMitigationRule -MitigationTarget $this.MitigationTarget)
     }
 
     <#
@@ -112,9 +143,18 @@ Class ProcessMitigationRule : Rule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
-    static [string[]] SplitMultipleRules ( [string] $MitigationTarget )
+    [string[]] SplitMultipleRules ()
     {
-        return ( Split-ProcessMitigationRule -MitigationTarget $MitigationTarget )
+        return (Split-ProcessMitigationRule -MitigationTarget $this.MitigationTarget)
+    }
+
+    static [bool] Match ([string] $CheckContent)
+    {
+        if ($CheckContent -Match "Get-ProcessMitigation")
+        {
+            return $true
+        }
+        return $false
     }
 
     hidden [void] SetDscResource ()

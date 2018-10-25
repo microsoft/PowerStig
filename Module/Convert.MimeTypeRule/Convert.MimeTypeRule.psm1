@@ -42,13 +42,42 @@ Class MimeTypeRule : Rule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    MimeTypeRule ( [xml.xmlelement] $StigRule )
+    hidden MimeTypeRule ([xml.xmlelement] $StigRule)
     {
-        $this.InvokeClass( $StigRule )
+        $this.InvokeClass($StigRule)
+        $this.SetExtension()
+        $this.SetMimeType()
+        $this.SetEnsure()
+        if ($this.conversionstatus -eq 'pass')
+        {
+            if ($this.IsDuplicateRule($global:stigSettings))
+            {
+                $this.SetDuplicateTitle()
+            }
+        }
         $this.SetDscResource()
     }
 
     #region Methods
+
+    static [MimeTypeRule[]] ConvertFromXccdf ($StigRule)
+    {
+        $ruleList = @()
+        if ([MimeTypeRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
+        {
+            [string[]] $splitRules = [MimeTypeRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            foreach ($splitRule in $splitRules)
+            {
+                $StigRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [MimeTypeRule]::New($StigRule)
+            }
+        }
+        else
+        {
+            $ruleList += [MimeTypeRule]::New($StigRule)
+        }
+        return $ruleList
+    }
 
     <#
         .SYNOPSIS
@@ -62,9 +91,9 @@ Class MimeTypeRule : Rule
     {
         $thisExtension = Get-Extension -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisExtension ) )
+        if (-not $this.SetStatus($thisExtension))
         {
-            $this.set_Extension( $thisExtension )
+            $this.set_Extension($thisExtension)
         }
     }
 
@@ -80,9 +109,9 @@ Class MimeTypeRule : Rule
     {
         $thisMimeType = Get-MimeType -Extension $this.Extension
 
-        if ( -not $this.SetStatus( $thisMimeType ) )
+        if (-not $this.SetStatus($thisMimeType))
         {
-            $this.set_MimeType( $thisMimeType )
+            $this.set_MimeType($thisMimeType)
         }
     }
 
@@ -96,9 +125,9 @@ Class MimeTypeRule : Rule
     {
         $thisEnsure = Get-Ensure -CheckContent $this.SplitCheckContent
 
-        if ( -not $this.SetStatus( $thisEnsure ) )
+        if (-not $this.SetStatus($thisEnsure))
         {
-            $this.set_Ensure( $thisEnsure )
+            $this.set_Ensure($thisEnsure)
         }
     }
 
@@ -110,9 +139,9 @@ Class MimeTypeRule : Rule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [bool] HasMultipleRules ( [string] $CheckContent )
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return Test-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) )
+        return Test-MultipleMimeTypeRule -CheckContent ([Rule]::SplitCheckContent($CheckContent))
     }
 
     <#
@@ -129,9 +158,9 @@ Class MimeTypeRule : Rule
             The rule text from the check-content element in the xccdf
     #>
 
-    static [string[]] SplitMultipleRules ( [string] $CheckContent )
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return ( Split-MultipleMimeTypeRule -CheckContent ( [Rule]::SplitCheckContent( $CheckContent ) ) )
+        return (Split-MultipleMimeTypeRule -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     hidden [void] SetDscResource ()
@@ -139,5 +168,17 @@ Class MimeTypeRule : Rule
         $this.DscResource = 'xIisMimeTypeMapping'
     }
 
+    static [bool] Match ([string] $CheckContent)
+    {
+        if
+        (
+            $CheckContent -Match 'MIME Types' -and
+            $CheckContent -Match 'IIS 8\.5'
+        )
+        {
+            return $true
+        }
+        return $false
+    }
     #endregion
 }
