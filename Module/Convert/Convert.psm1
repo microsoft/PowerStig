@@ -11,7 +11,7 @@ using module .\..\ManualRule\ManualRule.psm1
 using module .\..\MimeTypeRule\MimeTypeRule.psm1
 using module .\..\PermissionRule\PermissionRule.psm1
 using module .\..\ProcessMitigationRule\ProcessMitigationRule.psm1
-using module .\..\RegistryRule\RegistryRule.psm1
+using module .\..\Convert.RegistryRule\Convert.RegistryRule.psm1
 using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
 using module .\..\ServiceRule\ServiceRule.psm1
 using module .\..\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
