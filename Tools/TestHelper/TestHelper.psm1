@@ -250,7 +250,7 @@ function Format-RuleText
 function Get-RequiredStigDataVersion
 {
     [CmdletBinding()]
-    param()
+    param ()
 
     $Manifest = Import-PowerShellDataFile -Path "$relDirectory\$moduleName.psd1"
 

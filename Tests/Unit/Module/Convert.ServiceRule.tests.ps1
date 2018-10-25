@@ -71,7 +71,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -125,23 +125,22 @@ try
 
         Describe 'Test-MultipleServiceRule' {
 
-            It "Should return $true if a Multiple Services are found " {
+            It 'Should return $true if a Multiple Services are found' {
                 Test-MultipleServiceRule -ServiceName "NTDS,DFSR,DNS,W32Time" | Should Be $true
             }
-            It "Should return $false if a comma is found " {
+            It "Should return $false if a comma is found" {
                 Test-MultipleServiceRule -ServiceName "service" | Should Be $false
             }
             It "Should return $false if a null value is passed" {
                 Test-MultipleServiceRule -ServiceName $null | Should Be $false
             }
-            It "Should not thrown an error if a null value is passed" {
+            It 'Should not thrown an error if a null value is passed' {
                 {Test-MultipleServiceRule -ServiceName $null} | Should Not Throw
             }
         }
         #endregion
-
         #region Data Tests
-        Describe "ServicesDisplayNameToName Data Section" {
+        Describe 'ServicesDisplayNameToName Data Section' {
 
             [string] $dataSectionName = 'ServicesDisplayNameToName'
 

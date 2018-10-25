@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name IisLoggingRule
+$rules = Get-RuleClassData -StigData $stigData -Name IisLoggingRule
 
 $logFlags = Get-UniqueStringArray -InputObject $rules.LogFlags -AsString
 $logFormat = Get-UniqueString -InputObject $rules.LogFormat

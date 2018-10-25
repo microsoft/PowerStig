@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name ServiceRule
+$rules = Get-RuleClassData -StigData $stigData -Name ServiceRule
 
-Foreach( $rule in $rules )
+foreach ( $rule in $rules )
 {
     xService (Get-ResourceTitle -Rule $rule)
     {

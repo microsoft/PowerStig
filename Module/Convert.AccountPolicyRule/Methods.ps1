@@ -19,7 +19,7 @@ function Get-AccountPolicyName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $CheckContent
+    $string = Get-SecurityPolicyString -CheckContent $checkContent
 
     try
     {
@@ -57,7 +57,7 @@ function Get-AccountPolicyValue
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $CheckContent
+    $string = Get-SecurityPolicyString -CheckContent $checkContent
 
     try
     {

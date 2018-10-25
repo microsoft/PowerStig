@@ -81,9 +81,9 @@ try
     Describe 'ProcessMitigation Integration Tests' {
         foreach ($mitigationsRule in $mitigationsRulesToTest)
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $mitigationsRule.CheckContent -XccdfTitle Windows
+            [xml] $stigRule = Get-TestStigRule -CheckContent $mitigationsRule.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rules = ConvertFrom-StigXccdf -Path $TestFile
 
             foreach ( $rule in $rules)
@@ -94,7 +94,7 @@ try
 
                 if ( ($mitigationsRule.MitigationTarget -split ',').Count -gt 1 )
                 {
-                    It "Should have a MitigationTarget in the desired MitigationTargetList" {
+                    It 'Should have a MitigationTarget in the desired MitigationTargetList' {
                         $result = ($mitigationsRule.MitigationTarget -split ',') -contains $rule.MitigationTarget
                         $result | Should Be $true
                     }
@@ -112,13 +112,13 @@ try
                 It "Should return Disable '$($mitigationsRule.Disable -join ',')'" {
                     $rule.Disable | Should be $mitigationsRule.Disable
                 }
-                It "Enable Should not return 'Enable'" {
+                It 'Enable Should not return "Enable"' {
                     $rule.Enable -contains 'Enable' | Should Be $false
                 }
-                It "Enable Should not return 'ON'" {
+                It 'Enable Should not return "ON"' {
                     $rule.Enable -contains 'ON' | Should Be $false
                 }
-                It "Enable Should not return ':'" {
+                It 'Enable Should not return ":"' {
                     $rule.Enable -contains ':' | Should Be $false
                 }
                 It "Should set the correct DscResource" {

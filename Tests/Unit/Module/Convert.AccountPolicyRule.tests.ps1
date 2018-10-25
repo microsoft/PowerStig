@@ -23,7 +23,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -123,7 +123,7 @@ try
                 }
             }
 
-            Context "Not Match" {
+            Context 'Not Match' {
 
                 $checkContentStrings = @(
                     'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',
@@ -141,9 +141,8 @@ try
             }
         }
         #endregion
-
         #region Data Tests
-        Describe "PolicyNameFixes Data Section" {
+        Describe 'PolicyNameFixes Data Section' {
 
             [string] $dataSectionName = 'PolicyNameFixes'
 

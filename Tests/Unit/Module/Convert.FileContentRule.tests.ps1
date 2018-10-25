@@ -65,7 +65,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -123,7 +123,6 @@ try
             }
         }
         #endregion
-
         #region Data Tests
 
         #endregion

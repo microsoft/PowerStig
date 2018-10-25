@@ -25,7 +25,7 @@ function Get-DbExistGetScript
         $CheckContent
     )
 
-    $return = Get-Query -CheckContent $CheckContent
+    $return = Get-Query -CheckContent $checkContent
 
     return $return
 }
@@ -54,7 +54,7 @@ function Get-TraceGetScript
         $CheckContent
     )
 
-    $eventId = Get-EventIdData -CheckContent $CheckContent
+    $eventId = Get-EventIdData -CheckContent $checkContent
 
     $return = Get-TraceIdQuery -EventId $eventID
 
@@ -85,7 +85,7 @@ function Get-PermissionGetScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $CheckContent
+    $queries = Get-Query -CheckContent $checkContent
 
     $return = $queries[0]
 
@@ -121,7 +121,7 @@ function Get-DbExistTestScript
         $CheckContent
     )
 
-    $return = Get-Query -CheckContent $CheckContent
+    $return = Get-Query -CheckContent $checkContent
 
     return $return
 }
@@ -150,7 +150,7 @@ function Get-TraceTestScript
         $CheckContent
     )
 
-    $eventId = Get-EventIdData -CheckContent $CheckContent
+    $eventId = Get-EventIdData -CheckContent $checkContent
 
     $return = Get-TraceIdQuery -EventId $eventId
 
@@ -181,7 +181,7 @@ function Get-PermissionTestScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $CheckContent
+    $queries = Get-Query -CheckContent $checkContent
 
     $return = $queries[0]
 
@@ -266,7 +266,7 @@ function Get-TraceSetScript
         $CheckContent
     )
 
-    $eventId = Get-EventIdData -CheckContent $CheckContent
+    $eventId = Get-EventIdData -CheckContent $checkContent
 
     return "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) INSERT INTO #StigEvent (EventId) VALUES $($eventId) CREATE TABLE #Trace (TraceId INT) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0)ORDER BY TraceId DESC CREATE TABLE #TraceEvent (TraceId INT, EventId INT) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @currentTraceId INT FETCH NEXT FROM cursorTrace INTO @currentTraceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @currentTraceId, EventId FROM sys.fn_trace_geteventinfo(@currentTraceId) FETCH NEXT FROM cursorTrace INTO @currentTraceId END CLOSE cursorTrace DEALLOCATE cursorTrace DECLARE @missingStigEventCount INT SET @missingStigEventCount = (SELECT COUNT(*) FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL) IF @missingStigEventCount > 0 BEGIN DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 EXEC @returnCode = sp_trace_create @traceid = @newTraceId OUTPUT, @options = 2, @tracefile = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Log\PowerStig', @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; IF @returnCode = 0 BEGIN EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 0 DECLARE cursorMissingStigEvent CURSOR FOR SELECT DISTINCT SE.EventId FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL OPEN cursorMissingStigEvent DECLARE @currentStigEventId INT FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId WHILE @@FETCH_STATUS = 0 BEGIN EXEC sp_trace_setevent @traceid = @newTraceId, @eventid = @currentStigEventId, @columnid = NULL, @on = 1 FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId END CLOSE cursorMissingStigEvent DEALLOCATE cursorMissingStigEvent EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 1 END END END"
 }
@@ -303,7 +303,7 @@ function Get-PermissionSetScript
         $CheckContent
     )
 
-    $permission = ((Get-Query -CheckContent $CheckContent)[0] -split "'")[1]
+    $permission = ((Get-Query -CheckContent $checkContent)[0] -split "'")[1]
 
     $return = "DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = '{0}' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc <> 'SERVER_ROLE' AND who.name <> 'sa'  AND what.permission_name = @permission OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );" -f $permission
 
@@ -338,12 +338,12 @@ function Get-Query
     $collection = @()
     $queries = @()
 
-    if ($CheckContent.Count -gt 1)
+    if ($checkContent.Count -gt 1)
     {
-        $CheckContent = $CheckContent -join ' '
+        $checkContent = $checkContent -join ' '
     }
 
-    $lines = $CheckContent -split "(?=SELECT)"
+    $lines = $checkContent -split "(?=SELECT)"
 
     foreach ($line in $lines)
     {
@@ -442,7 +442,7 @@ function Get-EventIdData
 
     $array = @()
 
-    $eventData = $CheckContent -join " "
+    $eventData = $checkContent -join " "
     $eventData = ($eventData -split "listed:")[1]
     $eventData = ($eventData -split "\.")[0]
 
@@ -473,7 +473,7 @@ function Get-SqlRuleType
         $CheckContent
     )
 
-    $content = $CheckContent -join " "
+    $content = $checkContent -join " "
 
     switch ( $content )
     {

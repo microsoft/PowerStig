@@ -148,7 +148,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -198,7 +198,7 @@ try
         foreach ($entry in $customLogEntries)
         {
             Describe 'Get-LogCustomFieldEntry' {
-                It "Should return expected LogCustomFieldEntry object" {
+                It 'Should return expected LogCustomFieldEntry object' {
                     $checkContent = Split-TestStrings -CheckContent $entry.CheckContent
                     $logCustomFieldEntry = Get-LogCustomFieldEntry -CheckContent $checkContent
                     $compare = Compare-Object -ReferenceObject $logCustomFieldEntry -DifferenceObject $entry.LogCustomFieldEntry
@@ -207,7 +207,6 @@ try
             }
         }
         #endregion
-
         #region Data Tests
 
         #endregion

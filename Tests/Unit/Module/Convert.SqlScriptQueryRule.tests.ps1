@@ -140,14 +140,14 @@ try
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
 
-            Context "Base Class" {
+            Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
 
-            Context "Class Properties" {
+            Context 'Class Properties' {
 
                 $classProperties = @("GetScript", "TestScript", "SetScript")
 
@@ -161,7 +161,7 @@ try
         }
         #endregion
         #region Method Tests
-        Describe "Method Function Tests" {
+        Describe 'Method Function Tests' {
             foreach ( $rule in $sqlScriptQueryRule.Keys )
             {
                 $ruleType = Get-SqlRuleType -CheckContent ($sqlScriptQueryRule.$($rule).CheckContent)
@@ -202,36 +202,35 @@ try
                 }
             }
 
-            Context "Get-Query" {
+            Context 'Get-Query' {
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
 
                 $query = Get-Query -CheckContent $checkContent
 
-                It "Should return 3 queries" {
+                It 'Should return 3 queries' {
                     $query.Count | Should be 3
                 }
             }
 
-            Context "SQL Trace Rule functions" {
+            Context 'SQL Trace Rule functions' {
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
 
                 $traceSetScript = $sqlScriptQueryRule.Trace.TestScript -split ";"
 
-                $eventId = Get-EventIdData -CheckContent $CheckContent
+                $eventId = Get-EventIdData -CheckContent $checkContent
                 $traceIdQuery = Get-TraceIdQuery -EventId $eventId
 
-                It "Should return Trace Id Query" {
+                It 'Should return Trace Id Query' {
                     $traceIdQuery | Should be ($traceSetScript[0])
                 }
 
                 $eventId = Get-EventIdData -CheckContent $checkContent
-                It "Should return Event Id Data" {
+                It 'Should return Event Id Data' {
                     $eventId | Should be $sqlScriptQueryRule.Trace.EventId
                 }
             }
         }
         #endregion
-
         #region Data Tests
 
         #endregion

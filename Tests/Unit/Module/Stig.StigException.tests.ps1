@@ -25,19 +25,19 @@ try
         }
         #endregion
         #region Class Tests
-        Describe "StigException Class" {
+        Describe 'StigException Class' {
 
-            Context "Constructor" {
+            Context 'Constructor' {
 
-                It "Should create an StigException class instance using StigException1 data" {
+                It 'Should create an StigException class instance using StigException1 data' {
                     $StigException = [StigException]::new($StigException1StigRuleId, $StigException1StigProperty)
                     $StigException.StigRuleId | Should Be $StigException1StigRuleId
                     $StigException.Properties | Should Be $StigException1StigProperty
                 }
             }
 
-            Context "Instance Methods" {
-                It "AddProperty: Should be able to add a StigProperty instance." {
+            Context 'Instance Methods' {
+                It 'AddProperty: Should be able to add a StigProperty instance.' {
                     $StigException = [StigException]::new()
                     $StigException.StigRuleId = $StigException1StigRuleId
                     $StigException.AddProperty($StigExceptionAddMethodStigProperty1)
@@ -48,7 +48,7 @@ try
                     $StigProperty.Value | Should Be $StigExceptionAddMethodStigProperty1.Value
                 }
 
-                It "AddProperty: Should be able to add a StigProperty equivalent Name/Value pair." {
+                It 'AddProperty: Should be able to add a StigProperty equivalent Name/Value pair.' {
                     $StigException = [StigException]::new()
                     $StigException.StigRuleId = $StigException1StigRuleId
                     $StigException.AddProperty($StigExceptionAddMethodNameValue1.Name, $StigExceptionAddMethodNameValue1.Value)
@@ -60,8 +60,8 @@ try
                 }
             }
 
-            Context "Static Methods" {
-                It "ConvertFrom: Should be able to convert an Hashtable to a StigException array" {
+            Context 'Static Methods' {
+                It 'ConvertFrom: Should be able to convert an Hashtable to a StigException array' {
                     $StigExceptions = [StigException]::ConvertFrom($StigExceptionHashtable)
 
                     foreach ($hash in $StigExceptionHashtable.GetEnumerator())

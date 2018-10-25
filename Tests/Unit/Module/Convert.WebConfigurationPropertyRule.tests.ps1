@@ -84,7 +84,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -140,7 +140,7 @@ try
         }
 
         Describe 'Split-MultipleWebConfigurationPropertyRule' {
-            It "Should return two rules" {
+            It 'Should return two rules' {
                 $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
                 $multipleRule = Split-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
                 $multipleRule.count | Should Be 2
@@ -148,13 +148,12 @@ try
         }
 
         Describe 'Get-OrganizationValueTestString' {
-            It "Should return two rules" {
+            It 'Should return two rules' {
                 $testString = Get-OrganizationValueTestString -Key $OrganizationValueTestString.Key
                 $testString | Should Be $OrganizationValueTestString.TestString
             }
         }
         #endregion
-
         #region Data Tests
 
         #endregion

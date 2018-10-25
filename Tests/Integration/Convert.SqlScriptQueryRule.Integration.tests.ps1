@@ -127,21 +127,22 @@ try
     )
     #endregion
     #region Tests
-    Describe "SqlScriptQuery Rule Conversion" {
+    Describe 'SqlScriptQuery Rule Conversion' {
         foreach ( $stig in $stigRulesToTest )
         {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'SQL' -FixText $stig.FixText
+            [xml] $stigRule = Get-TestStigRule -CheckContent $stig.CheckContent -XccdfTitle 'SQL' -FixText $stig.FixText
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should return a SqlScriptQueryRule Object" {
+            It 'Should return a SqlScriptQueryRule Object' {
                 $rule.GetType() | Should Be 'SqlScriptQueryRule'
             }
             It "Should return ConfigSection '$($stig.ConfigSection)'" {
                 $rule.ConfigSection | Should Be $stig.ConfigSection
             }
-            It "Should return SqlScriptQueryRule GetScript" {
+
+            It 'Should return SqlScriptQueryRule GetScript' {
                 if ($rule.GetScript -match "<")
                 {
                     $rule.GetScript = $rule.GetScript -replace "<", "&lt;" -replace ">", "&gt;"
@@ -149,7 +150,8 @@ try
 
                 $rule.GetScript | Should Be $stig.GetScript
             }
-            It "Should return SqlScriptQueryRule TestScript" {
+
+            It 'Should return SqlScriptQueryRule TestScript' {
                 if ($rule.TestScript -match "<")
                 {
                     $rule.TestScript = $rule.TestScript -replace "<", "&lt;" -replace ">", "&gt;"
@@ -157,7 +159,8 @@ try
 
                 $rule.TestScript | Should Be $stig.TestScript
             }
-            It "Should return SqlScriptQueryRule SetScript" {
+
+            It 'Should return SqlScriptQueryRule SetScript' {
                 if ($rule.SetScript -match "<")
                 {
                     $rule.SetScript = $rule.SetScript -replace "<", "&lt;" -replace ">", "&gt;"
@@ -165,7 +168,7 @@ try
 
                 $rule.SetScript | Should Be $stig.SetScript
             }
-            It "Should set the correct DscResource" {
+            It 'Should set the correct DscResource' {
                 $rule.DscResource | Should Be 'SqlScriptQuery'
             }
             It 'Should Set the status to pass' {

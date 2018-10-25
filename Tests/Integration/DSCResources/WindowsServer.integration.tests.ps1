@@ -12,7 +12,7 @@ try
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
@@ -68,7 +68,7 @@ try
                 $dscMofPermissionPolicy = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[NTFSAccessEntry\]|\[RegistryAccessEntry\]"}
 
-                Foreach ($setting in $dscXmlPermissionPolicy)
+                foreach ($setting in $dscXmlPermissionPolicy)
                 {
                     If (-not ($dscMofPermissionPolicy.ResourceID -match $setting.Id) )
                     {
@@ -88,7 +88,7 @@ try
                 $dscMof   = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -108,7 +108,7 @@ try
                 $dscMof   = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[script\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -128,7 +128,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xService\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -148,7 +148,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[AccountPolicy\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -168,7 +168,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[UserRightsAssignment\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -188,7 +188,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[SecurityOption\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -208,7 +208,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[WindowsFeature\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -225,8 +225,8 @@ try
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-            $skipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $skipRuleType = "AuditPolicyRule"
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $SkipRuleType = "AuditPolicyRule"
 
             It 'Should compile the MOF without throwing' {
                 {
@@ -236,8 +236,8 @@ try
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -264,8 +264,8 @@ try
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
 
-            $skipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-            $skipRuleType = @('AuditPolicyRule','AccountPolicyRule')
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $SkipRuleType = @('AuditPolicyRule','AccountPolicyRule')
 
             It 'Should compile the MOF without throwing' {
                 {
@@ -275,8 +275,8 @@ try
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -292,7 +292,7 @@ try
                 $dscAuditXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
                 $dscPermissionXml = $dscXml.DISASTIG.AccountPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
 
-                $dscXml = ($($dscAuditXml.Count) + $($dscPermissionXml.count) + $($skipRule.Count))
+                $dscXml = ($($dscAuditXml.Count) + $($dscPermissionXml.count) + $($SkipRule.Count))
 
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion

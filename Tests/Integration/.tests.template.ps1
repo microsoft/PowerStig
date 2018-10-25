@@ -14,3 +14,4 @@ finally
 {
     . $PSScriptRoot\.tests.Footer.ps1
 }
+

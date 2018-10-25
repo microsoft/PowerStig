@@ -118,7 +118,8 @@ Class StigData
     #>
     StigData ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
     {
-        if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion)) {
+        if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion))
+        {
             throw("Technology, TechnologyVersion, and TechnologyRole must be provided.")
         }
 
@@ -269,23 +270,23 @@ Class StigData
     {
         if ($this.StigExceptions)
         {
-            foreach ($exception in $this.StigExceptions)
+            foreach ($Exception in $this.StigExceptions)
             {
                 # Lookup the STIG Id in the data
                 $ruleToOverride = ( $this.StigXml.DISASTIG |
-                                Select-Xml -XPath "//Rule[@id='$( $exception.StigRuleId )']" -ErrorAction Stop ).Node
+                                Select-Xml -XPath "//Rule[@id='$( $Exception.StigRuleId )']" -ErrorAction Stop ).Node
 
                 # If an Id is not found we can continue, but notify the user.
                 if ($null -eq $ruleToOverride)
                 {
-                    Write-warning "$($exception.StigRuleId) was not found"
+                    Write-warning "$($Exception.StigRuleId) was not found"
                     continue
                 }
 
                 # Append [Exception] to the STIG title
                 $ruleToOverride.title = "[Exception]" + $ruleToOverride.title
-                # select and Update the property to override
-                $propertiesToOverride = $exception.Properties
+                # Select and Update the property to override
+                $propertiesToOverride = $Exception.Properties
                 foreach ($property in $propertiesToOverride)
                 {
                     $propertyToOverride = $property.Name
@@ -320,7 +321,7 @@ Class StigData
                 }
                 else
                 {
-                    foreach($rule in $ruleToOverride)
+                    foreach ($rule in $ruleToOverride)
                     {
                         $newSkipRule = [SkippedRule]::new($rule)
                         $this.SkippedRules += $newSkipRule
@@ -347,7 +348,7 @@ Class StigData
             [System.XML.XMLElement] $skipNode = $this.StigXml.CreateElement("SkipRule")
             [void] $this.StigXml.DISASTIG.AppendChild($skipNode)
 
-            Foreach ($rule in $this.SkippedRules)
+            foreach ($rule in $this.SkippedRules)
             {
                 # Lookup the STIG Id in the data
                 $ruleToOverride = ( $this.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.StigRuleId )']" -ErrorAction Stop ).Node
@@ -457,7 +458,7 @@ Class StigData
 
 # Footer
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
+foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

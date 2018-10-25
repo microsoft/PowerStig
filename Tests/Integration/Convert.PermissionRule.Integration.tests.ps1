@@ -27,39 +27,39 @@ try
     $inheritance = 'This folder, subfolders and files'
     #endregion
     #region Tests
-    Describe "Permission Rule Multiple Principals, same permissions, same line" {
+    Describe 'Permission Rule Multiple Principals, same permissions, same line' {
         
         $checkContent = $checkContent -f $targetExe, $principal1, $permission1, $principalList,
         $permission2, $principal2, $permission3, $inheritance
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-        It "Should return a PermissionRule Object" {
+        It 'Should return a PermissionRule Object' {
             $rule.GetType() | Should Be 'PermissionRule'
         }
-        It "Should extract the correct path" {
+        It 'Should extract the correct path' {
             $rule.Path | Should Be ('%windir%\SYSTEM32\' + $targetExe)
         }
-        It "Should extract the FullControl permission for TrustedInstaller" {
+        It 'Should extract the FullControl permission for TrustedInstaller' {
             $principalToTest = $rule.AccessControlEntry | Where-Object Principal -eq 'TrustedInstaller'
             $principalToTest.Rights | Should Be 'FullControl'
         }
 
         foreach ( $principal in $principalList -split ',' )
         {
-            It "Should extract the ReadAndExecute permission for all the principals listed on one line" {
+            It 'Should extract the ReadAndExecute permission for all the principals listed on one line' {
                 $principalToTest = $rule.AccessControlEntry | Where-Object Principal -eq $principal.Trim()
                 $principalToTest.Rights | Should Be 'ReadAndExecute'
             }
         }
-        It "Should extract This folder subfolders and files for inheritance" {
+        It 'Should extract This folder subfolders and files for inheritance' {
             $principalToTest = $rule.AccessControlEntry | Where-Object Principal -eq $principal2
             $principalToTest.Inheritance | Should Be 'This folder subfolders and files'
         }
 
-        It "Should return NTFSAccessEntry for DscResource" {
+        It 'Should return NTFSAccessEntry for DscResource' {
             $rule.dscresource | Should Be 'NTFSAccessEntry'
         }
     }

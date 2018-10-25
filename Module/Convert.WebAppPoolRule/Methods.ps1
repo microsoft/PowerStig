@@ -19,7 +19,7 @@ function Get-KeyValuePair
         $CheckContent
     )
 
-    switch ( $CheckContent )
+    switch ( $checkContent )
     {
         { $PsItem -match 'Idle Time-out' }
         {

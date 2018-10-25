@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name DnsServerSettingRule
+$rules = Get-RuleClassData -StigData $stigData -Name DnsServerSettingRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     $scriptblock = ([scriptblock]::Create("
         xDnsServerSetting  '$(Get-ResourceTitle -Rule $rule)'

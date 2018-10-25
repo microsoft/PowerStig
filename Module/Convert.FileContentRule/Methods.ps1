@@ -30,7 +30,7 @@ function Get-KeyValuePair
         $matchResult = $line | Select-String -Pattern $regex -AllMatches
         # Added singleton class to handle different filtering and parsing within STIG files
         $filterType = [FileContentType]::GetInstance()
-        if($matchResult)
+        if ($matchResult)
         {
             $lineResult = $filterType.ProcessMatches($matchResult)
         }
@@ -53,9 +53,9 @@ function Get-KeyValuePair
             }
         }
         # This code address the edge case where rules browser STIGs manage file extensions
-        if ($lineResult.Count -eq 1 -and ($CheckContent -join '`n') -cmatch $fileContentRegex.TwoTo5CapitalLetters)
+        if ($lineResult.Count -eq 1 -and ($checkContent -join '`n') -cmatch $fileContentRegex.TwoTo5CapitalLetters)
         {
-            $fileExtensionMatches = $CheckContent | Select-String -Pattern $fileContentRegex.CapitalsEndWithSpaceOrDot5 -AllMatches
+            $fileExtensionMatches = $checkContent | Select-String -Pattern $fileContentRegex.CapitalsEndWithSpaceOrDot5 -AllMatches
             $fileExtensions = $fileExtensionMatches.Matches.Value | Where-Object -FilterScript {$PSItem -cmatch $fileContentRegex.CapitalsEndWithSpaceOrDot4}
 
             $result += [pscustomobject]@{

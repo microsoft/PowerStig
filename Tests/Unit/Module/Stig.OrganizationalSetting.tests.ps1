@@ -35,11 +35,11 @@ try
         }
         #endregion
         #region Class Tests
-        Describe "OrganizationalSetting Class" {
+        Describe 'OrganizationalSetting Class' {
 
-            Context "Constructor" {
+            Context 'Constructor' {
 
-                It "Should create an OrganizationalSetting class instance using OrgSettingHashtable data" {
+                It 'Should create an OrganizationalSetting class instance using OrgSettingHashtable data' {
                     foreach ($hash in $OrgSettingHashtable.GetEnumerator())
                     {
                         $newOrgSetting = [OrganizationalSetting]::new($hash.Key, $hash.Value)
@@ -49,8 +49,8 @@ try
                 }
             }
 
-            Context "Static Methods" {
-                It "ConvertFrom: Should be able to convert an Xml document to a OrganizationalSetting array" {
+            Context 'Static Methods' {
+                It 'ConvertFrom: Should be able to convert an Xml document to a OrganizationalSetting array' {
                     $orgSettingArray = [OrganizationalSetting]::ConvertFrom($OrgSettingXml)
 
                     foreach ($node in $OrgSettingXml.OrganizationalSettings.ChildNodes)
@@ -61,7 +61,7 @@ try
                     }
                 }
 
-                It "ConvertFrom: Should be able to convert a Hashtable to a OrganizationalSetting array" {
+                It 'ConvertFrom: Should be able to convert a Hashtable to a OrganizationalSetting array' {
                     $orgSettingArray = [OrganizationalSetting]::ConvertFrom($OrgSettingHashtable)
 
                     foreach ($hash in $OrgSettingHashtable.GetEnumerator())

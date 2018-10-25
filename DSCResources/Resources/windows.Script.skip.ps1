@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name SkipRule
+$rules = Get-RuleClassData -StigData $stigData -Name SkipRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     Script (Get-ResourceTitle -Rule $rule)
     {

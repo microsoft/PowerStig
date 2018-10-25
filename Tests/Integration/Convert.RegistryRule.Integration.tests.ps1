@@ -135,44 +135,41 @@ try
     )
     #endregion
     #region Tests
-    Describe "Registry basic settings conversion" {
+    Describe 'Registry basic settings conversion' {
 
         foreach ($registry in $registriesToTest)
         {
-            Context "$($registry.Hive + $registry.Path)" {
+            [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
+            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+            $stigRule.Save( $TestFile )
+            $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-                [xml] $StigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save( $TestFile )
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
-
-                It "Should return an RegistryRule Object" {
-                    $rule.GetType() | Should Be 'RegistryRule'
-                }
-                It "Should extract the correct key" {
-                    $rule.Key | Should Be $($registry.Hive + $registry.Path)
-                }
-                It "Should extract the correct value name" {
-                    $rule.ValueName | Should Be $registry.ValueName
-                }
-                It "Should extract the correct value data" {
-                    $rule.ValueData | Should Be $registry.ValueData
-                }
-                It "Should extract the correct value type" {
-                    $rule.ValueType | Should Be $registry.ValueType
-                }
-                It "Should set the ensure value" {
-                    $rule.Ensure | Should Be $registry.Ensure
-                }
-                It "Should set OrganizationValueRequired to true" {
-                    $rule.OrganizationValueRequired | Should Be $registry.OrganizationValueRequired
-                }
-                It "Should set the correct DscResource" {
-                    $rule.DscResource | Should Be $registry.DscResource
-                }
-                It 'Should Set the status to pass' {
-                    $rule.conversionstatus | Should Be 'pass'
-                }
+            It 'Should return an RegistryRule Object' {
+                $rule.GetType() | Should Be 'RegistryRule'
+            }
+            It 'Should extract the correct key' {
+                $rule.key | Should Be $($registry.Hive + $registry.Path)
+            }
+            It 'Should extract the correct value name' {
+                $rule.valueName | Should Be $registry.ValueName
+            }
+            It 'Should extract the correct value data' {
+                $rule.valueData | Should Be $registry.ValueData
+            }
+            It 'Should extract the correct value type' {
+                $rule.valueType | Should Be $registry.ValueType
+            }
+            It 'Should set the ensure value' {
+                $rule.Ensure | Should Be $registry.Ensure
+            }
+            It 'Should set OrganizationValueRequired to true' {
+                $rule.OrganizationValueRequired | Should Be $registry.OrganizationValueRequired
+            }
+            It 'Should set the correct DscResource' {
+                $rule.DscResource | Should Be $registry.DscResource
+            }
+            It 'Should Set the status to pass' {
+                $rule.conversionstatus | Should Be 'pass'
             }
         }
     }

@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name SecurityOptionRule
+$rules = Get-RuleClassData -StigData $stigData -Name SecurityOptionRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     $policy = $rule.OptionName -replace "(\/)|(:)*\s", "_"
 

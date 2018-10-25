@@ -51,7 +51,7 @@ function Get-PowerStigRepository
 {
     [OutputType([string])]
     [CmdletBinding()]
-    param()
+    param ()
 
     Write-Host "Testing git is installed"
 
@@ -151,7 +151,7 @@ function New-GitReleaseBranch
         $BranchName
     )
 
-    if(Get-GitBranch -ne 'dev')
+    if (Get-GitBranch -ne 'dev')
     {
         Set-GitBranch -Branch dev
     }
@@ -183,7 +183,7 @@ function Remove-GitReleaseBranch
     Write-Host "Removing Git branch ($BranchName)"
 
     # Merge the release back into dev
-    if(Get-GitBranch -ne 'dev')
+    if (Get-GitBranch -ne 'dev')
     {
         Set-GitBranch -Branch dev
     }
@@ -193,7 +193,7 @@ function Remove-GitReleaseBranch
     Invoke-Git -Command "push"
     # Delete the release branch (Locally and remotely)
     Invoke-Git -Command "branch -d $branchName"
-    # push the delete to GitHub
+    # Push the delete to GitHub
     Invoke-Git -Command "push origin -d $branchName"
     # Remove the origin branch reference from the local repo
     Invoke-Git -Command "remote prune origin"
@@ -464,9 +464,9 @@ function Get-ProjectContributorList
         PowerStigDsc = @('jcwalker','regedit32','bgouldman','mcollera')
     }
 
-    foreach($user in $preGitHubContributors.($Repository.name))
+    foreach ($user in $preGitHubContributors.($Repository.name))
     {
-        if($users -notcontains $user)
+        if ($users -notcontains $user)
         {
             $null = $users.Add($user)
         }

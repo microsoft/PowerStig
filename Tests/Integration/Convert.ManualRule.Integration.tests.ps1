@@ -7,13 +7,13 @@ try
     $checkContent = 'Verify servers are located in controlled access areas that are accessible only to authorized personnel.  If systems are not adequately protected, this is a finding.'
     #endregion
     #region Tests
-    Describe "Manual Check Conversion" {
-        [xml] $StigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
+    Describe 'Manual Check Conversion' {
+        [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-        $StigRule.Save( $TestFile )
+        $stigRule.Save( $TestFile )
         $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-        It "Should return an ManualRule Object" {
+        It 'Should return an ManualRule Object' {
             $rule.GetType() | Should Be 'ManualRule'
         }
         It "Should set the correct DscResource" {

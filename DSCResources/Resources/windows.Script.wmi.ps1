@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name WmiRule
+$rules = Get-RuleClassData -StigData $stigData -Name WmiRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     Script (Get-ResourceTitle -Rule $rule)
     {
@@ -18,7 +18,7 @@ Foreach ( $rule in $rules )
         TestScript = {
             $valueToTest = ( ( Get-WmiObject -Query $using:rule.Query ).$( $using:rule.Property ) )
 
-            ForEach ( $value in $valueToTest )
+            foreach ( $value in $valueToTest )
             {
                 $wmiTest = [scriptBlock]::create("""$value"" $($using:rule.Operator) ""$($using:rule.Value)""")
 

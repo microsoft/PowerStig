@@ -193,7 +193,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -314,28 +314,27 @@ try
 
             Context 'First User Right' {
 
-                It "Should return the first " {
+                It 'Should return the first' {
                     $results[0] | Should Match 'Allow log on through Remote Desktop Services'
                 }
-                It "Should Not return the second" {
+                It 'Should Not return the second' {
                     $results[0] | Should Not Match 'Deny access to this computer from the network'
                 }
             }
 
             Context 'Second User Right' {
 
-                It "Should return the second" {
+                It 'Should return the second' {
                     $results[1] | Should Match 'Deny access to this computer from the network'
                 }
-                It "Should Not return the first" {
+                It 'Should Not return the first' {
                     $results[1] | Should Not Match 'Allow log on through Remote Desktop Services'
                 }
             }
         }
         #endregion
-
         #region Data Tests
-        Describe "UserRightNameToConstant Data Section" {
+        Describe 'UserRightNameToConstant Data Section' {
 
             [string] $dataSectionName = 'UserRightNameToConstant'
 

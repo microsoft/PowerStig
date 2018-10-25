@@ -106,95 +106,95 @@ finding.
 '@
     #endregion
     #region Tests
-    Describe "DnsServerSettingRule conversion" {
+    Describe 'DnsServerSettingRule conversion' {
 
-        Context "Forwarders" {
-            [xml] $StigRule = Get-TestStigRule -CheckContent $forwardersCheckContent -XccdfTitle 'Domain Name System'
+        Context 'Forwarders' {
+            [xml] $stigRule = Get-TestStigRule -CheckContent $forwardersCheckContent -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should be a DnsServerSettingRule" {
+            It 'Should be a DnsServerSettingRule' {
                 $rule.GetType() | Should be 'DnsServerSettingRule'
             }
-            It "Should have Forwarders for PropertyName" {
+            It 'Should have Forwarders for PropertyName' {
                 $rule.PropertyName | Should Be 'NoRecursion'
             }
-            It "Should have PropertyValue of None" {
+            It 'Should have PropertyValue of None' {
                 $rule.PropertyValue | Should Be '$True'
             }
-            It "Should set the correct DscResource" {
+            It 'Should set the correct DscResource' {
                 $rule.DscResource | Should Be 'xDnsServerSetting'
             }
-            It "Should set the Conversion status to pass" {
+            It 'Should set the Conversion status to pass' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }
 
-        Context "EventLogLevel" {
+        Context 'EventLogLevel' {
 
-            [xml] $StigRule = Get-TestStigRule -CheckContent $eventLogLevelCheckContent -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $eventLogLevelCheckContent -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should be a DnsServerSettingRule" {
+            It 'Should be a DnsServerSettingRule' {
                 $rule.GetType() | Should be 'DnsServerSettingRule'
             }
-            It "Should have Forwarders for EventLogLevel" {
+            It 'Should have Forwarders for EventLogLevel' {
                 $rule.PropertyName | Should Be 'EventLogLevel'
             }
-            It "Should have PropertyValue of 4" {
+            It 'Should have PropertyValue of 4' {
                 $rule.PropertyValue | Should Be '4'
             }
-            It "Should set the correct DscResource" {
+            It 'Should set the correct DscResource' {
                 $rule.DscResource | Should Be 'xDnsServerSetting'
             }
-            It "Should set the Conversion status to pass" {
+            It 'Should set the Conversion status to pass' {
                 $rule.conversionstatus | Should be 'pass'
             }
         }
     }
 
-    Describe "UserRightRule conversion" {
+    Describe 'UserRightRule conversion' {
 
-        Context "Multiple settings in STIG rule" {
+        Context 'Multiple settings in STIG rule' {
 
-            [xml] $StigRule = Get-TestStigRule -CheckContent $multiUserRightRule -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $multiUserRightRule -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It "Should have 3 unique IDs" {
+            It 'Should have 3 unique IDs' {
                 $result = $rule | Select-Object Id -Unique
                 $result.count | Should be 3
             }
         }
 
-        Context "UserRightRule and PermissionRule Combo" {
+        Context 'UserRightRule and PermissionRule Combo' {
 
-            [xml] $StigRule = Get-TestStigRule -CheckContent $userRightPermissionRuleCombo -XccdfTitle 'Domain Name System'
+            [xml] $stigRule = Get-TestStigRule -CheckContent $userRightPermissionRuleCombo -XccdfTitle 'Domain Name System'
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $StigRule.Save( $TestFile )
+            $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             $userRightRule = $rule | Where-Object { $PSItem.GetType().ToString() -eq 'UserRightRule'  }
             $permissionRule = $rule | Where-Object { $PSItem.GetType().ToString() -eq 'PermissionRule' }
 
-            It "Should contain a UserRightRule" {
+            It 'Should contain a UserRightRule' {
                 $userRightRule.GetType() | Should Be 'UserRightRule'
             }
 
-            It "Should contain a PermissionRule" {
+            It 'Should contain a PermissionRule' {
                 $permissionRule.GetType() | Should Be 'PermissionRule'
             }
 
-            It "Should have different Ids" {
+            It 'Should have different Ids' {
                 $result = $rule | Select-Object -Property Id -Unique
                 $result.count | Should Be 2
             }
 
-            It "PermissionRule should have correct property values" {
+            It 'PermissionRule should have correct property values' {
                 $permissionRule.path | Should Be '%windir%\SYSTEM32\WINEVT\LOGS\DNS Server.evtx'
 
                 foreach ($entry in $permissionRule.AccessControlEntry)
@@ -208,7 +208,7 @@ finding.
                 $principalCount.count | Should Be 3
             }
 
-            It "UserRightRule Should have a correct property values" {
+            It 'UserRightRule Should have a correct property values' {
                 $userRightRule.Constant | Should Be 'SeSecurityPrivilege'
                 $userRightRule.Identity | Should Be 'Administrators'
             }

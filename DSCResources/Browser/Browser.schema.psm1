@@ -95,9 +95,9 @@ Configuration Browser
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
-
     Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
     . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xRegistry.ps1"
 }

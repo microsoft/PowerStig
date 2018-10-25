@@ -105,7 +105,7 @@ Class SkippedRuleType
 
 # Footer
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
+foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

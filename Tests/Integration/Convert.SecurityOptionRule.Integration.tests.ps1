@@ -31,38 +31,35 @@ try
     )
     #endregion
     #region Tests
-    Describe "Security Option Conversion" {
+    Describe 'Security Option Conversion' {
 
         foreach ( $testString in $testStrings )
         {
-            Context $testString.OptionName {
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
+            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+            $stigRule.Save( $TestFile )
+            $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-                [xml] $StigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save( $TestFile )
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
-
-                It "Should return an SecurityOptionRule Object" {
-                    $rule.GetType() | Should Be 'SecurityOptionRule'
-                }
-                It "Should set Option Name to '$($testString.OptionName)'" {
-                    $rule.OptionName | Should Be $testString.OptionName
-                }
-                It "Should set Option Value to '$($testString.OptionValue)'" {
-                    $rule.OptionValue | Should Be $testString.OptionValue
-                }
-                It "Should set OrganizationValueRequired to $($testString.OrganizationValueRequired)" {
-                    $rule.OrganizationValueRequired | Should Be $testString.OrganizationValueRequired
-                }
-                It "Should set OrganizationValueTestString to $($testString.OrganizationValueTestString)" {
-                    $rule.OrganizationValueTestString | Should Be $testString.OrganizationValueTestString
-                }
-                It "Should set the correct DscResource" {
-                    $rule.DscResource | Should Be 'SecurityOption'
-                }
-                It 'Should Set the status to pass' {
-                    $rule.conversionstatus | Should Be 'pass'
-                }
+            It 'Should return an SecurityOptionRule Object' {
+                $rule.GetType() | Should Be 'SecurityOptionRule'
+            }
+            It "Should set Option Name to '$($testString.OptionName)'" {
+                $rule.OptionName | Should Be $testString.OptionName
+            }
+            It "Should set Option Value to '$($testString.OptionValue)'" {
+                $rule.OptionValue | Should Be $testString.OptionValue
+            }
+            It "Should set OrganizationValueRequired to $($testString.OrganizationValueRequired)" {
+                $rule.OrganizationValueRequired | Should Be $testString.OrganizationValueRequired
+            }
+            It "Should set OrganizationValueTestString to $($testString.OrganizationValueTestString)" {
+                $rule.OrganizationValueTestString | Should Be $testString.OrganizationValueTestString
+            }
+            It 'Should set the correct DscResource' {
+                $rule.DscResource | Should Be 'SecurityOption'
+            }
+            It 'Should Set the status to pass' {
+                $rule.conversionstatus | Should Be 'pass'
             }
         }
     }

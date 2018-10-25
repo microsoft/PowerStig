@@ -40,38 +40,35 @@ try
     )
     #endregion
     #region Tests
-    Describe "Windows Feature Conversion" {
+    Describe 'Windows Feature Conversion' {
 
         foreach ( $testString in $testStrings )
         {
-            Context $testString.FeatureName {
+            [xml] $stigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
+            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+            $stigRule.Save( $TestFile )
+            $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-                [xml] $StigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save( $TestFile )
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
-
-                It "Should return an WindowsFeatureRule Object" {
-                    $rule.GetType() | Should Be 'WindowsFeatureRule'
-                }
-                It "Should set Feature Name to '$($testString.FeatureName)'" {
-                    $rule.FeatureName | Should Be $testString.FeatureName
-                }
-                It "Should set Install State to '$($testString.InstallState)'" {
-                    $rule.InstallState | Should Be $testString.InstallState
-                }
-                It "Should set OrganizationValueRequired to $($testString.OrganizationValueRequired)" {
-                    $rule.OrganizationValueRequired | Should Be $testString.OrganizationValueRequired
-                }
-                It "Should set OrganizationValueTestString to $($testString.OrganizationValueTestString)" {
-                    $rule.OrganizationValueTestString | Should Be $testString.OrganizationValueTestString
-                }
-                It "Should set the correct DscResource" {
-                    $rule.DscResource | Should Be 'WindowsOptionalFeature'
-                }
-                It 'Should Set the status to pass' {
-                    $rule.conversionstatus | Should Be 'pass'
-                }
+            It 'Should return an WindowsFeatureRule Object' {
+                $rule.GetType() | Should Be 'WindowsFeatureRule'
+            }
+            It "Should set Feature Name to '$($testString.FeatureName)'" {
+                $rule.FeatureName | Should Be $testString.FeatureName
+            }
+            It "Should set Install State to '$($testString.InstallState)'" {
+                $rule.InstallState | Should Be $testString.InstallState
+            }
+            It "Should set OrganizationValueRequired to $($testString.OrganizationValueRequired)" {
+                $rule.OrganizationValueRequired | Should Be $testString.OrganizationValueRequired
+            }
+            It "Should set OrganizationValueTestString to $($testString.OrganizationValueTestString)" {
+                $rule.OrganizationValueTestString | Should Be $testString.OrganizationValueTestString
+            }
+            It 'Should set the correct DscResource' {
+                $rule.DscResource | Should Be 'WindowsOptionalFeature'
+            }
+            It 'Should Set the status to pass' {
+                $rule.conversionstatus | Should Be 'pass'
             }
         }
     }

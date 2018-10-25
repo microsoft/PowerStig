@@ -32,7 +32,7 @@ try
 
             Context 'Base Class' {
 
-                It "Shoud have a BaseType of Rule" {
+                It 'Shoud have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -74,29 +74,29 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "Private DnsServerSetting Rule tests" {
+        Describe 'Private DnsServerSetting Rule tests' {
 
             # Regular expression tests
-            Context "Dns Stig Rules regex tests" {
+            Context 'Dns Stig Rules regex tests' {
 
                 [string] $text = 'the          forwarders     tab.'
                 $result = ($text |
                         Select-String $script:RegularExpression.textBetweenTheTab -AllMatches |
                         Select-Object Matches).Matches.Groups[1]
-                It "Should match text inside of the words 'the' and 'tab'" {
+                It 'Should match text inside of the words "the" and "tab"' {
                     $result.Success | Should be $true
                 }
-                It "Should return text between the words 'the' and 'tab'" {
+                It 'Should return text between the words "the" and "tab"' {
                     $result.Value.trim() | Should Be 'forwarders'
                 }
 
                 [string] $text = ' âForwardersâ'
-                It "Should match any non letter characters" {
-                    $result = $text -match $script:RegularExpression.nonLetters
+                It 'Should match any non letter characters' {
+                    $result = $text -match $script:regularExpression.nonLetters
                     $result | Should Be $true
                 }
-                It "Should remove the non word characters" {
-                    $result = $text -replace $script:RegularExpression.nonLetters
+                It 'Should remove the non word characters' {
+                    $result = $text -replace $script:regularExpression.nonLetters
                     $result.Trim() | Should Be 'Forwarders'
                 }
             }

@@ -56,41 +56,38 @@ try
     )
     #endregion
     #region Tests
-    Describe "User Rights Assignment Conversion" {
+    Describe 'User Rights Assignment Conversion' {
 
         foreach ( $testRule in $rulesToTest )
         {
-            Context $testRule.Constant {
+            [xml] $stigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
+            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+            $stigRule.Save( $TestFile )
+            $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-                [xml] $StigRule = Get-TestStigRule -CheckContent ( $testRule.CheckContent -f $testRule.displayName ) -XccdfTitle Windows
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save( $TestFile )
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
-
-                It "Should return an UserRightRule Object" {
-                    $rule.GetType() | Should Be 'UserRightRule'
-                }
-                It "Should extract the correct DisplayName" {
-                    $rule.DisplayName | Should Be $testRule.displayName
-                }
-                It "Should return the correct Constant" {
-                    $rule.Constant | Should Be $testRule.constant
-                }
-                It "Should extract the correct identity" {
-                    $rule.Identity | Should Be $testRule.Identity
-                }
-                It 'Should not have OrganizationValueRequired set' {
-                    $rule.OrganizationValueRequired | Should Be $false
-                }
-                It 'Should have emtpty test string' {
-                    $rule.OrganizationValueTestString | Should BeNullOrEmpty
-                }
-                It "Should set the correct DscResource" {
-                    $rule.DscResource | Should Be 'UserRightsAssignment'
-                }
-                It 'Should Set the status to pass' {
-                    $rule.conversionstatus | Should Be 'pass'
-                }
+            It 'Should return an UserRightRule Object' {
+                $rule.GetType() | Should Be 'UserRightRule'
+            }
+            It 'Should extract the correct DisplayName' {
+                $rule.DisplayName | Should Be $testRule.displayName
+            }
+            It 'Should return the correct Constant' {
+                $rule.Constant | Should Be $testRule.constant
+            }
+            It 'Should extract the correct identity' {
+                $rule.Identity | Should Be $testRule.Identity
+            }
+            It 'Should not have OrganizationValueRequired set' {
+                $rule.OrganizationValueRequired | Should Be $false
+            }
+            It 'Should have emtpty test string' {
+                $rule.OrganizationValueTestString | Should BeNullOrEmpty
+            }
+            It "Should set the correct DscResource" {
+                $rule.DscResource | Should Be 'UserRightsAssignment'
+            }
+            It 'Should Set the status to pass' {
+                $rule.conversionstatus | Should Be 'pass'
             }
         }
     }
