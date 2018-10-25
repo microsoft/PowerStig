@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.MimeTypeRule\Convert.MimeTypeRule.psm1
+using module .\..\..\..\Module\MimeTypeRule\MimeTypeRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
