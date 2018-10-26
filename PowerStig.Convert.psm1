@@ -21,7 +21,7 @@ using module .\Module\GroupRule\GroupRule.psm1
 using module .\Module\IISLoggingRule\IISLoggingRule.psm1
 using module .\Module\ManualRule\ManualRule.psm1
 using module .\Module\MimeTypeRule\MimeTypeRule.psm1
-using module .\Module\Convert.PermissionRule\Convert.PermissionRule.psm1
+using module .\Module\PermissionRule\PermissionRule.psm1
 using module .\Module\Convert.ProcessMitigationRule\Convert.ProcessMitigationRule.psm1
 using module .\Module\Convert.RegistryRule\Convert.RegistryRule.psm1
 using module .\Module\Convert.SecurityOptionRule\Convert.SecurityOptionRule.psm1

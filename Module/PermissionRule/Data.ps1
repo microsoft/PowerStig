@@ -1,5 +1,50 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+data RegularExpression
+{
+    ConvertFrom-StringData -stringdata @'
+        ADAuditPath = Verify the auditing configuration for (the)?
+        adminShares = (?=.*?\\bADMIN\\b\\$)(?=.*?\\bC\\b\\$)(?=.*?\\bIPC\\b\\$).*$
+        cDrive = system drive's root directory
+        cryptoFolder = ^%ALLUSERSPROFILE%\\\\Microsoft\\\\Crypto$
+        dnsServerLog = DNS\\sServer\\.evtx
+        eventLogName = \\w+\\.evtx
+        eventViewer = eventvwr\.exe
+        hklmSecurity = HKEY_LOCAL_MACHINE\\\\SECURITY
+        hklmSoftware = HKEY_LOCAL_MACHINE\\\\SOFTWARE
+        hklmSystem = HKEY_LOCAL_MACHINE\\\\SYSTEM
+        hklmRootKeys = HKEY_LOCAL_MACHINE\\\\(SECURITY|SOFTWARE|SYSTEM)
+        InheritancePermissionMap = :\\(\\w\\)\\(\\w\\)
+        inetpub = inetpub
+        permissionRegistryInstalled = (?=.*?\\bHKEY_LOCAL_MACHINE\\b)(?=.*?\\bInstalled\\sComponents\\b).*$
+        permissionRegistryWinlogon = (?=.*?\\bHKEY_LOCAL_MACHINE\\b)(?=.*?\\bWinlogon\\b).*$
+        permissionRegistryWinreg = (?=.*?\\bHKEY_LOCAL_MACHINE\\b)(?=.*?\\bwinreg\\b).*$
+        permissionRegistryNTDS = (?=.*?\\bHKEY_LOCAL_MACHINE\\b)(?=.*?\\bNTDS\\b).*$
+        PermissionRuleMap = \\(\\w\\)\\s*-\\s*\\w
+        programFiles = ^\\\\Program\\sFiles\\sand\\s\\\\Program\\sFiles\\s\\(x86\\)
+        programFiles86 = ^\\\\Program\\sFiles\\s\\(x86\\)*
+        programFileFolder = ^\\\\Program\\sFiles$
+        rootOfC = ^C\\:\\\\$
+        spaceDashSpace = \\s-\\s
+        systemRoot = Windows installation directory
+        SysVol = Windows\\\\SYSVOL
+        textBetweenParentheses = \\(([^\)]+)\\)
+        TypePrincipalAccess = (?:\\bType\\b\\s*-\\s*\\w*\\s*)(?:\\bPrincipal\\b\\s*-\\s*(\\w*\\s*){1,2})(?:\\bAccess\\b\\s*-\\s*\\w*\\s*)
+        winDir = ^\\\\Windows
+        WinEvtDirectory = %SystemRoot%\\\\SYSTEM32\\\\WINEVT\\\\LOGS
+'@
+}
+
+data ADAuditPath
+{
+    ConvertFrom-StringData -StringData @'
+        domain = {Domain}
+        Domain Controller OU = OU=Domain Controllers,{Domain}
+        AdminSDHolder = CN=AdminSDHolder,CN=System,{Domain}
+        RID Manager$ = CN=RID Manager$,CN=System,{Domain}
+        Infrastructure = CN=Infrastructure,{Domain}
+'@
+}
 
 data fileRightsConstant
 {

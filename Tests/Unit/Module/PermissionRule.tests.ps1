@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.PermissionRule\Convert.PermissionRule.psm1
+using module .\..\..\..\Module\PermissionRule\PermissionRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
@@ -344,6 +344,30 @@ try
         }
         #endregion
         #region Data Tests
+        Describe 'RegularExpression Data Section' {
+
+            [string] $dataSectionName = 'RegularExpression'
+            It "Should have a data section called $dataSectionName" {
+                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+            }
+
+            $namesToTest = @(
+                '(Application.evtx)',
+                '"Application.evtx"',
+                '''(System.evtx)''',
+                '''("System.evtx")'''
+            )
+            Context 'Name' {
+
+                foreach ($name in $namesToTest)
+                {
+                    It "Should match $name" {
+                        $name -Match $RegularExpression.name | Should Be $true
+                    }
+                }
+
+            }
+        }
 
         Describe 'ADAuditPath Data Section' {
 
@@ -363,31 +387,6 @@ try
 
             It "Should have a data section called $dataSectionName" {
                 ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-            }
-        }
-
-        Describe 'eventLogRegularExpression Data Section' {
-
-            [string] $dataSectionName = 'eventLogRegularExpression'
-            It "Should have a data section called $dataSectionName" {
-                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-            }
-
-            $namesToTest = @(
-                '(Application.evtx)',
-                '"Application.evtx"',
-                '''(System.evtx)''',
-                '''("System.evtx")'''
-            )
-            Context 'Name' {
-
-                foreach ($name in $namesToTest)
-                {
-                    It "Should match $name" {
-                        $name -Match $eventLogRegularExpression.name | Should Be $true
-                    }
-                }
-
             }
         }
 

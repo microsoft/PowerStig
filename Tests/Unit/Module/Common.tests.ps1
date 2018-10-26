@@ -1,5 +1,5 @@
 using module .\..\..\..\Module\Common\Common.psm1
-. $PSScriptRoot\.tests.Header.ps1
+. $PSScriptRoot\.tests.header.ps1
 # Header
 #region Enum Tests
     <#
@@ -53,7 +53,7 @@ Describe 'Enum coverage' {
 
     It "Should have tested $enumTestCount enum's" {
 
-        <# 
+        <#
             If this test is failing verify that the $enumList.Remove('enum') line is in the
             describe statemetn for the enum.
         #>
