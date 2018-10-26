@@ -17,14 +17,6 @@ data RegularExpression
 
         textBetweenParentheses = \\(([^\)]+)\\)
 
-
-
-
-
-
-
-
-
         blankString = \\(Blank\\)
 
         nonLetters = [^a-zA-Z ]
