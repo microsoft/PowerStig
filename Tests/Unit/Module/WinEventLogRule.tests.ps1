@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.WinEventLogRule\Convert.WinEventLogRule.psm1
+using module .\..\..\..\Module\WinEventLogRule\WinEventLogRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
