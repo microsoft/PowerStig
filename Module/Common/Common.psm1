@@ -95,6 +95,27 @@ enum Technology
 }
 
 #endregion
+
+#region RegexClass
+
+class RegularExpression
+{
+    static [string[]] $TextBetweenQuotes = '["''](.*?)["'']'
+
+    static [bool] MatchTextBetweenQuotes([string] $string)
+    {
+        return $string -Match [RegularExpression]::TextBetweenQuotes
+    }
+
+    static [string[]] $TextBetweenParentheses = '\(([^\)]+)\)'
+
+    static [bool] MatchTextBetweenParentheses([string] $string)
+    {
+        return $string -Match [RegularExpression]::TextBetweenParentheses
+    }
+
+}
+#endregion
 #region Footer
 foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
 {

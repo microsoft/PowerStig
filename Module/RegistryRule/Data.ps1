@@ -2,6 +2,21 @@
 # Licensed under the MIT License.
 
 # These are the registry types that are accepted by the registry DSC resource
+data RegularExpression
+{
+    ConvertFrom-StringData -stringdata @'
+
+        blankString = \\(Blank\\)
+        enabledOrDisabled = Enable(d)?|Disable(d)?
+        # Match a exactly one ( the first ) hexcode in a string
+        hexCode = \\b(0x[A-Fa-f0-9]{8}){1}\\b
+        # Looks for an integer but is not hex
+        leadingIntegerUnbound = \\b([0-9]{1,})\\b
+
+
+'@
+}
+
 data dscRegistryValueType
 {
     ConvertFrom-StringData -stringdata @'

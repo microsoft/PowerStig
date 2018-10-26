@@ -25,43 +25,43 @@ function Get-WindowsFeatureName
     {
         switch ($checkContent)
         {
-            { $PSItem -match $script:regularExpression.WindowsFeatureName }
+            { $PSItem -match $regularExpression.WindowsFeatureName }
             {
-                $matches = $checkContent | Select-String -Pattern $script:regularExpression.WindowsFeatureName
+                $matches = $checkContent | Select-String -Pattern $regularExpression.WindowsFeatureName
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'Get-WindowsFeature\s-Name' ).Trim()
             }
-            { $PSItem -match $script:regularExpression.FeatureNameEquals }
+            { $PSItem -match $regularExpression.FeatureNameEquals }
             {
-                $matches = $checkContent | Select-String -Pattern $script:regularExpression.FeatureNameEquals
+                $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameEquals
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
             }
-            { $PSItem -match $script:regularExpression.FeatureNameSpaceColon }
+            { $PSItem -match $RegularExpression.FeatureNameSpaceColon }
             {
-                $matches = $checkContent | Select-String -Pattern $script:regularExpression.FeatureNameSpaceColon -AllMatches
+                $matches = $checkContent | Select-String -Pattern $RegularExpression.FeatureNameSpaceColon -AllMatches
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
             }
-            { $PSItem -match $script:regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
+            { $PSItem -match $RegularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
-                $matches = $checkContent | Select-String -Pattern $script:regularExpression.IfTheApplicationExists
-                $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern $script:regularExpression.textBetweenQuotes).Matches.Value -replace '"').Trim()
+                $matches = $checkContent | Select-String -Pattern $RegularExpression.IfTheApplicationExists
+                $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern ([RegularExpression]::TextBetweenQuotes)).Matches.Value -replace '"').Trim()
             }
             { $PSItem -match 'telnet' }
             {
                 $windowsFeatureName += 'TelnetClient'
             }
-            { $PSItem -match $script:regularExpression.WebDavPublishingFeature }
+            { $PSItem -match $RegularExpression.WebDavPublishingFeature }
             {
                 $windowsFeatureName += 'Web-DAV-Publishing'
             }
-            { $PSItem -match $script:regularExpression.SimpleTCP }
+            { $PSItem -match $RegularExpression.SimpleTCP }
             {
                 $windowsFeatureName += 'SimpleTCP'
             }
-            { $PSItem -match $script:regularExpression.IISHostableWebCore }
+            { $PSItem -match $RegularExpression.IISHostableWebCore }
             {
                 $windowsFeatureName += 'IIS-HostableWebCore'
             }
-            { $PSItem -match $script:regularExpression.IISWebserver }
+            { $PSItem -match $RegularExpression.IISWebserver }
             {
                 $windowsFeatureName += 'IIS-WebServer'
             }

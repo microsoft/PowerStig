@@ -20,7 +20,7 @@ function Get-SecurityOptionName
 
     # Use a regular expression to pull the user string from between the quotes
     $Option = ( $checkContent |
-            Select-String -Pattern $script:regularExpression.textBetweenQuotes -AllMatches )
+            Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
     If ( $Option )
     {
@@ -54,7 +54,7 @@ function Get-SecurityOptionValue
 
     # Use a regular expression to pull the user string from between the quotes
     $option = ( $checkContent |
-            Select-String -Pattern $script:regularExpression.textBetweenQuotes -AllMatches )
+            Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
     if ( $option )
     {

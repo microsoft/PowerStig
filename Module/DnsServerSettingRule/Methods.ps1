@@ -19,10 +19,10 @@ function Get-DnsServerSettingProperty
     # There is only one scenario to handle but we will use a switch to easily add additional scenarios
     switch ( $checkContent )
     {
-        { $checkContent -match $script:regularExpression.textBetweenTheTab }
+        { $checkContent -match $RegularExpression.textBetweenTheTab }
         {
-            $patternMatch = $checkContent | Select-String -Pattern $script:regularExpression.textBetweenTheTab
-            $dnsServerPropertyName = ($patternMatch.Matches.groups[-1].Value -replace $script:regularExpression.nonLetters).Trim()
+            $patternMatch = $checkContent | Select-String -Pattern $RegularExpression.textBetweenTheTab
+            $dnsServerPropertyName = ($patternMatch.Matches.groups[-1].Value -replace $RegularExpression.nonLetters).Trim()
             $dnsServerPropertyName = $Script:DnsServerSetting[$dnsServerPropertyName]
 
             break
@@ -56,7 +56,7 @@ function Get-DnsServerSettingPropertyValue
 
     switch ( $checkContent )
     {
-        { $checkContent -match $script:regularExpression.allEvents}
+        { $checkContent -match $RegularExpression.allEvents}
         {
             # 4 equals all events
             $dnsServerSettingPropertyValue = 4

@@ -433,9 +433,9 @@ function ConvertTo-AccessControlEntry
             #>
             $principals, $fileSystemRights, [string]$inheritance = $entry -split $RegularExpression.spaceDashSpace
 
-            if ( $fileSystemRights -match $Script:RegularExpression.textBetweenParentheses )
+            if ( $fileSystemRights -match ([RegularExpression]::TextBetweenParentheses) )
             {
-                $inheritance = [regex]::Match( $fileSystemRights, $script:RegularExpression.textBetweenParentheses ).groups[1].Value
+                $inheritance = [regex]::Match( $fileSystemRights, ([RegularExpression]::TextBetweenParentheses) ).groups[1].Value
 
                 $fileSystemRights = ($fileSystemRights -split '\(')[0]
             }
