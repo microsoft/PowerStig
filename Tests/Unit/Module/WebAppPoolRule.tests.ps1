@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.WebAppPoolRule\Convert.WebAppPoolRule.psm1
+using module .\..\..\..\Module\WebAppPoolRule\WebAppPoolRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
