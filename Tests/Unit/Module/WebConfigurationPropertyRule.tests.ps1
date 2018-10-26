@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.WebConfigurationPropertyRule\Convert.WebConfigurationPropertyRule.psm1
+using module .\..\..\..\Module\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
