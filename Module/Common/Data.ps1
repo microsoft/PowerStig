@@ -7,8 +7,6 @@ data RegularExpression
     ConvertFrom-StringData -stringdata @'
         # General matches
 
-        dash = -
-
         # Match a exactly one ( the first ) hexcode in a string
         hexCode = \\b(0x[A-Fa-f0-9]{8}){1}\\b
 
@@ -19,13 +17,13 @@ data RegularExpression
 
         textBetweenParentheses = \\(([^\)]+)\\)
 
-        spaceDashSpace = \\s-\\s
 
-        TypePrincipalAccess = (?:\\bType\\b\\s*-\\s*\\w*\\s*)(?:\\bPrincipal\\b\\s*-\\s*(\\w*\\s*){1,2})(?:\\bAccess\\b\\s*-\\s*\\w*\\s*)
 
-        InheritancePermissionMap = :\\(\\w\\)\\(\\w\\)
 
-        PermissionRuleMap = \\(\\w\\)\\s*-\\s*\\w
+
+
+
+
 
         blankString = \\(Blank\\)
 
@@ -113,20 +111,9 @@ data RegularExpression
         # WinEventLog rule matches
         WinEventLogPath = Logs\\\\Microsoft\\\\Windows
 
-        ADAuditPath = Verify the auditing configuration for (the)?
 
-        inetpub = inetpub
-'@
-}
 
-data ADAuditPath
-{
-    ConvertFrom-StringData -StringData @'
-        domain = {Domain}
-        Domain Controller OU = OU=Domain Controllers,{Domain}
-        AdminSDHolder = CN=AdminSDHolder,CN=System,{Domain}
-        RID Manager$ = CN=RID Manager$,CN=System,{Domain}
-        Infrastructure = CN=Infrastructure,{Domain}
+
 '@
 }
 
@@ -196,20 +183,7 @@ data webRegularExpression
         useCookies              = (Use Cookies|UseCookies)
         expiredSession          = Regenerate expired session ID
         sessionTimeout          = Time\-out
-        inetpub                 = inetpub
 '@
 }
 
-data eventLogRegularExpression
-{
-    <#
-        The name entry was added to support event log name extraction from the
-        different formats found in different Window Server STIGs. For example in
-        the 2012 Stig, (Application.evtx) was used, in 2016 “Application.evtx”
-        is used, so name now extracts the log name from the extension and the
-        preceding word.
-    #>
-    ConvertFrom-StringData -stringdata @'
-        name = \\w+\\.evtx
-'@
-}
+
