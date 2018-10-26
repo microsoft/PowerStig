@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.ServiceRule\Convert.ServiceRule.psm1
+using module .\..\..\..\Module\ServiceRule\ServiceRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
