@@ -385,8 +385,8 @@ try
                 }
 
                 It "Should return '$($result)'" {
-                    $registryKey = Test-RegistryValueDataIsBlank -ValueDataString ($registryData)
-                    $registryKey | Should Be ($result)
+                    $registryKey = Test-RegistryValueDataIsBlank -ValueDataString $registryData
+                    $registryKey | Should Be $result
                 }
             }
         }

@@ -32,11 +32,11 @@ function Get-ServiceName
     }
     elseif ( $checkContent -match $script:regularExpression.followingservices )
     {
-        $regexMatch = $checkContent | Select-String $script:regularExpression.dash
+        $regexMatch = $checkContent | Select-String '-'
         $svcArray = @()
         foreach ($match in $regexMatch)
         {
-            $svc = $match -replace $script:regularExpression.dash, ''
+            $svc = $match -replace '-', ''
             if ( $svc.Contains('(') )
             {
                 $svc = $svc.ToString().Substring(0, $svc.IndexOf('(') - 1)
