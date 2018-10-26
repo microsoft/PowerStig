@@ -213,7 +213,7 @@ function Get-KeyValuePair
             $key = 'cookieless'
             $value = 'UseCookies'
         }
-        { $checkContent -match $RegularExpression.configSection }
+        { $checkContent -match $RegularExpression.expiredSession }
         {
             $key = 'regenerateExpiredSessionId'
             $value = 'True'
