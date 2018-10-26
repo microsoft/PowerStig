@@ -31,8 +31,8 @@ using module .\Module\Rule\Rule.psm1
 using module .\Module\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
 using module .\Module\Convert.WebAppPoolRule\Convert.WebAppPoolRule.psm1
 using module .\Module\Convert.WebConfigurationPropertyRule\Convert.WebConfigurationPropertyRule.psm1
-using module .\Module\Convert.WindowsFeatureRule\Convert.WindowsFeatureRule.psm1
-using module .\Module\Convert.WinEventLogRule\Convert.WinEventLogRule.psm1
+using module .\Module\WindowsFeatureRule\WindowsFeatureRule.psm1
+using module .\Module\WinEventLogRule\WinEventLogRule.psm1
 using module .\Module\WmiRule\WmiRule.psm1
 
 # load the public functions

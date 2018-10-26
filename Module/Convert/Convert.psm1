@@ -18,8 +18,8 @@ using module .\..\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
 using module .\..\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
 using module .\..\Convert.WebAppPoolRule\Convert.WebAppPoolRule.psm1
 using module .\..\Convert.WebConfigurationPropertyRule\Convert.WebConfigurationPropertyRule.psm1
-using module .\..\Convert.WindowsFeatureRule\Convert.WindowsFeatureRule.psm1
-using module .\..\Convert.WinEventLogRule\Convert.WinEventLogRule.psm1
+using module .\..\WindowsFeatureRule\WindowsFeatureRule.psm1
+using module .\..\WinEventLogRule\WinEventLogRule.psm1
 using module .\..\WmiRule\WmiRule.psm1
 
 class ConvertFactory
