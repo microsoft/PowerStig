@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
+using module .\..\..\..\Module\UserRightsAssignmentRule\UserRightsAssignmentRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try

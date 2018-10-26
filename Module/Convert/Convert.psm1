@@ -15,7 +15,7 @@ using module .\..\RegistryRule\RegistryRule.psm1
 using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
 using module .\..\ServiceRule\ServiceRule.psm1
 using module .\..\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
-using module .\..\Convert.UserRightsAssignmentRule\Convert.UserRightsAssignmentRule.psm1
+using module .\..\UserRightsAssignmentRule\UserRightsAssignmentRule.psm1
 using module .\..\Convert.WebAppPoolRule\Convert.WebAppPoolRule.psm1
 using module .\..\Convert.WebConfigurationPropertyRule\Convert.WebConfigurationPropertyRule.psm1
 using module .\..\WindowsFeatureRule\WindowsFeatureRule.psm1
