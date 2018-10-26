@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.SqlScriptQueryRule\Convert.SqlScriptQueryRule.psm1
+using module .\..\..\..\Module\SqlScriptQueryRule\SqlScriptQueryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
