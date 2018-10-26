@@ -362,7 +362,7 @@ try
                 foreach ($name in $namesToTest)
                 {
                     It "Should match $name" {
-                        $name -Match $RegularExpression.name | Should Be $true
+                        $RegularExpression.eventLogName | Should Be $true
                     }
                 }
 

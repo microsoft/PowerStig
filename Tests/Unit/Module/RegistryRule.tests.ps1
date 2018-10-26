@@ -1403,6 +1403,53 @@ try
         }
         #endregion
         #region Data Tests
+
+        Describe 'RegularExpression Data Section' {
+
+            Context 'Blank String' {
+
+                It 'Should match "(Blank)" literal string' {
+                    "(Blank)" -Match $RegularExpression.blankString | Should Be $true
+                }
+            }
+
+            Context 'Enabled or Disabled String' {
+
+                foreach ( $flag in ('Enabled','enabled','Disabled','disabled') )
+                {
+                    It "Should match the exact string '$flag'" {
+                        $flag -Match $RegularExpression.enabledOrDisabled | Should Be $true
+                    }
+                }
+            }
+
+            Context 'Hex Code' {
+
+                It 'Should match a hexcode' {
+                    '0X00000000' -Match $RegularExpression.hexCode | Should Be $true
+                }
+
+                It 'Should NOT match nonhexcode' {
+                    '0X000000000' -Match $RegularExpression.hexCode | Should Be $false
+                }
+            }
+
+            Context 'Leading Integer Unbound' {
+
+                It 'Should match a leading integerUnbound' {
+                    '12' -Match $RegularExpression.leadingIntegerUnbound | Should Be $true
+                }
+
+                It 'Should match a leading integer before hex' {
+                    '0 0X00000000' -Match $RegularExpression.leadingIntegerUnbound | Should Be $true
+                }
+
+                It 'Should not match hex code' {
+                    '0X00000000' -Match $RegularExpression.leadingIntegerUnbound | Should Be $false
+                }
+            }
+        }
+
         Describe 'DscRegistryValueType Data Section' {
 
             # Validate the static data section to convert the registry value types

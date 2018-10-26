@@ -20,14 +20,14 @@ function Get-LogCustomFieldEntry
         $CheckContent
     )
 
-    if ($checkContent -match $script:webRegularExpression.customFieldSection)
+    if ($checkContent -match $RegularExpression.customFieldSection)
     {
         $customFieldEntries = @()
-        [string[]] $customFieldMatch = $checkContent | Select-String -Pattern $script:webRegularExpression.customFields -AllMatches
+        [string[]] $customFieldMatch = $checkContent | Select-String -Pattern $RegularExpression.customFields -AllMatches
 
         foreach ($customField in $customFieldMatch)
         {
-            $customFieldEntry = ($customField -split $script:webRegularExpression.customFields).trim()
+            $customFieldEntry = ($customField -split $RegularExpression.customFields).trim()
             $customFieldEntries += @{
                 SourceType = $customFieldEntry[0] -replace ' ', ''
                 SourceName = $customFieldEntry[1]
@@ -56,19 +56,19 @@ function Get-LogFlag
         $CheckContent
     )
 
-    $cleanCheckContent = $checkContent -replace $script:webRegularExpression.excludeExtendedAscii, ''
+    $cleanCheckContent = $checkContent -replace ([RegularExpression]::excludeExtendedAscii), ''
 
     switch ($cleanCheckContent)
     {
-        { $PSItem -match $script:webRegularExpression.logFlags }
+        { $PSItem -match $RegularExpression.logFlags }
         {
-            $logFlagString = $cleanCheckContent | Select-String -Pattern $script:webRegularExpression.logFlags -AllMatches
+            $logFlagString = $cleanCheckContent | Select-String -Pattern $RegularExpression.logFlags -AllMatches
             $logFlagValue = Get-LogFlagValue -LogFlags ($logFlagString.Matches.groups.value -split ',')
         }
-        { $PSItem -match $script:webRegularExpression.standardFields }
+        { $PSItem -match $RegularExpression.standardFields }
         {
-            [string] $logFlagLine = $cleanCheckContent | Select-String -Pattern $script:webRegularExpression.standardFields -AllMatches
-            $logFlagString = $logFlagLine | Select-String -Pattern $script:webRegularExpression.standardFieldEntries -AllMatches
+            [string] $logFlagLine = $cleanCheckContent | Select-String -Pattern $RegularExpression.standardFields -AllMatches
+            $logFlagString = $logFlagLine | Select-String -Pattern $RegularExpression.standardFieldEntries -AllMatches
             $logFlagValue = Get-LogFlagValue -LogFlags ( $logFlagString.Matches.Groups.Where{$PSItem.name -eq 1}.value )
         }
     }
@@ -94,11 +94,11 @@ function Get-LogFormat
         $CheckContent
     )
 
-    [string] $logFormatLine = $checkContent | Select-String -Pattern $script:webRegularExpression.logformat -AllMatches
+    [string] $logFormatLine = $checkContent | Select-String -Pattern $RegularExpression.logFormat -AllMatches
 
     if (-not [String]::IsNullOrEmpty( $logFormatLine ))
     {
-        $logFormat = $logFormatLine | Select-String -Pattern $script:webRegularExpression.keyValuePair -AllMatches
+        $logFormat = $logFormatLine | Select-String -Pattern ([RegularExpression]::KeyValuePair) -AllMatches
         return $logFormat.Matches.Groups.value[-1]
     }
     else
@@ -128,7 +128,7 @@ function Get-LogPeriod
 
     switch ( $checkContent )
     {
-        { $PsItem -match $script:webRegularExpression.logperiod }
+        { $PsItem -match $RegularExpression.logperiod }
         {
             return 'daily'
         }
@@ -153,11 +153,11 @@ function Get-LogTargetW3C
         $CheckContent
     )
 
-    [string] $logTargetW3cLine = $checkContent | Select-String -Pattern $script:webRegularExpression.logtargetw3c -AllMatches
+    [string] $logTargetW3cLine = $checkContent | Select-String -Pattern $RegularExpression.logtargetw3c -AllMatches
 
     if (-not [String]::IsNullOrEmpty( $logTargetW3cLine ))
     {
-        $logTargetW3C = $logTargetW3cLine | Select-String -Pattern $script:webRegularExpression.keyValuePair -AllMatches
+        $logTargetW3C = $logTargetW3cLine | Select-String -Pattern ([RegularExpression]::KeyValuePair) -AllMatches
 
         switch ( $logTargetW3C.Matches.Groups.value )
         {

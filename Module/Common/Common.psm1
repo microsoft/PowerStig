@@ -101,19 +101,34 @@ enum Technology
 class RegularExpression
 {
     static [string[]] $TextBetweenQuotes = '["''](.*?)["'']'
-
     static [bool] MatchTextBetweenQuotes([string] $string)
     {
         return $string -Match [RegularExpression]::TextBetweenQuotes
     }
 
     static [string[]] $TextBetweenParentheses = '\(([^\)]+)\)'
-
     static [bool] MatchTextBetweenParentheses([string] $string)
     {
         return $string -Match [RegularExpression]::TextBetweenParentheses
     }
 
+    static [string[]] $CustomFieldSection = 'Under "Custom Fields", verify the following fields'
+    static [bool] MatchCustomFieldSection([string] $string)
+    {
+        return $string -Match [RegularExpression]::CustomFieldSection
+    }
+
+    static [string[]] $ExcludeExtendedAscii = '[^\x20-\x7A]+'
+    static [bool] MatchExcludeExtendedAscii([string] $string)
+    {
+        return $string -Match [RegularExpression]::ExcludeExtendedAscii
+    }
+
+    static [string[]] $KeyValuePair = '(?<=\").+?(?=\")'
+    static [bool] MatchKeyValuePair([string] $string)
+    {
+        return $string -Match [RegularExpression]::KeyValuePair
+    }
 }
 #endregion
 #region Footer
