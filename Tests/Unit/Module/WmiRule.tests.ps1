@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Convert.WmiRule\Convert.WmiRule.psm1
+using module .\..\..\..\Module\WmiRule\WmiRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
