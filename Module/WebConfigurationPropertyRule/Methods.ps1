@@ -360,18 +360,18 @@ function Split-MultipleWebConfigurationPropertyRule
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Matches.Groups.Value) -join "`r`n"
         }
     }
-    elseif (($checkContent -match $RegularExpression.useCookies) -and ($checkContent -match $RegularExpression.configSection))
+    elseif (($checkContent -match $RegularExpression.useCookies) -and ($checkContent -match $RegularExpression.expiredSession))
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $RegularExpression.useCookies -and $PSItem -notmatch $RegularExpression.configSection}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $RegularExpression.useCookies -and $PSItem -notmatch $RegularExpression.expiredSession}
 
         if ($checkContent -match $RegularExpression.useCookies)
         {
             $match = $checkContent | Select-String -Pattern $RegularExpression.useCookies | Select-String -NotMatch "Regenerate"
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Line) -join "`r`n"
         }
-        if ($checkContent -match $RegularExpression.configSection)
+        if ($checkContent -match $RegularExpression.expiredSession)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.configSection | Select-String -NotMatch "Cookie"
+            $match = $checkContent | Select-String -Pattern $RegularExpression.expiredSession | Select-String -NotMatch "Cookie"
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Line) -join "`r`n"
         }
     }
