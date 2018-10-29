@@ -591,7 +591,7 @@ function Split-MultiplePermissionRule
         $footerLineRange = ($checkContent.Length - 4)..($checkContent.Length + 1)
     }
     elseIf ( $checkContent -match $RegularExpression.rootOfC -and
-        $checkContent -match $RegularExpression.programFiles -and
+        $checkContent -match $RegularExpression.programFilesWin10 -and
         $checkContent -match $RegularExpression.winDir
     )
     {
