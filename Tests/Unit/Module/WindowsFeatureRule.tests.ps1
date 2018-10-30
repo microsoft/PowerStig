@@ -14,7 +14,7 @@ try
 
             Context 'Base Class' {
 
-                It 'Shoud have a BaseType of STIG' {
+                It 'Shoud have a BaseType of Rule' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
