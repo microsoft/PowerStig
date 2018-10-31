@@ -237,6 +237,14 @@ try
                 $rule.GetType() | Should Be 'IisLoggingRule'
             }
         }
+        
+        Describe 'Get-LogFlagValue' {
+            $logFlags = @('User Agent','User Name','Referrer') 
+            
+            It "Should return $($rulesToTest[1].LogFlags)" {
+                Get-LogFlagValue -LogFlags $logFlags | Should Be $rulesToTest[1].LogFlags
+            }
+        }
         #endregion
         #region Data Tests
 
