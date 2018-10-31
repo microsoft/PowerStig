@@ -4,14 +4,13 @@ using module .\..\..\..\Module\Stig.Main\Stig.Main.psm1
 #endregion
 
 #region Tests
-
 Describe 'Get-NetbiosName' {
     $fqdn = 'server1.test.local'
     $domainParts = @('server1','test','local')
     Mock -CommandName Get-DomainParts -MockWith {$domainParts}
 
-    It "Should return NetBIOS name" {
+    It 'Should return NetBIOS name' {
         Get-NetbiosName -FQDN $fqdn | Should be $domainParts[0]
-    }       
+    }
 }
 #endregion
