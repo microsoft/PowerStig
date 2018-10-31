@@ -207,6 +207,24 @@ try
             }
         }
         #endregion
+        #region Function Tests
+        Describe "ConvertTo-IisLoggingRule" {
+            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
+            $rule = ConvertTo-IisLoggingRule -StigRule $stigRule
+
+            It "Should return an IisLoggingRule object" {
+                $rule.GetType() | Should Be 'IisLoggingRule'
+            }
+        }
+        
+        Describe 'Get-LogFlagValue' {
+            $logFlags = @('User Agent','User Name','Referrer') 
+            
+            It "Should return $($rulesToTest[1].LogFlags)" {
+                Get-LogFlagValue -LogFlags $logFlags | Should Be $rulesToTest[1].LogFlags
+            }
+        }
+        #endregion
         #region Data Tests
 
         #endregion
