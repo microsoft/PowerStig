@@ -10,7 +10,7 @@ Describe 'Get-NetbiosName' {
     $domainParts = @('server1','test','local')
     Mock -CommandName Get-DomainParts -MockWith {$domainParts}
 
-    It "Should return netbios name" {
+    It "Should return NetBIOS name" {
         Get-NetbiosName -FQDN $fqdn | Should be $domainParts[0]
     }       
 }
