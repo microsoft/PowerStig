@@ -4,7 +4,7 @@ using module .\..\Common\Common.psm1
 using module .\..\Stig.StigException\Stig.StigException.psm1
 using module .\..\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
 using module .\..\Stig.SkippedRule\Stig.SkippedRule.psm1
-using module .\..\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
+using module .\..\OrganizationalSetting\OrganizationalSetting.psm1
 using module .\..\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 # Header
@@ -203,8 +203,6 @@ Class STIG
     #>
     [void] MergeOrganizationalSettings ()
     {
-        $propertyMap = [OrganizationalSetting]::PropertyMap()
-
         # Check if default Org Settings exists for STIG
         $orgSettingPath = $this.StigPath -replace "\.xml", ".org.default.xml"
         $orgSettingsExists = Test-Path -Path $orgSettingPath
@@ -232,11 +230,11 @@ Class STIG
 
             # Merge Org Settings into StigXml
 
-            foreach ( $node in $this.StigXml.DISASTIG.ChildNodes.Name )
+            foreach ( $ruleType in $this.StigXml.DISASTIG.ChildNodes.Name )
             {
                 # Get the list of STIG settings for the current type
 
-                foreach ( $rule in $this.StigXml.DISASTIG.$node.Rule )
+                foreach ( $rule in $this.StigXml.DISASTIG.$ruleType.Rule )
                 {
                     if ( $rule.OrganizationValueRequired -eq $true )
                     {
@@ -253,8 +251,8 @@ Class STIG
                             Please check and update the Organizational Setting array passed in."
                         }
 
-                        $propertyToOverride = $propertyMap.$node
-                        $rule.$propertyToOverride = $orgSetting.Value
+                        $overrideValue = [scriptblock]::Create("[$ruleType]::OverrideValue").Invoke()
+                        $rule.$overrideValue = $orgSetting.Value
                     }
                 }
             }

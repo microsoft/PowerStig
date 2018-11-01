@@ -4,7 +4,7 @@ using module .\..\..\..\Module\Stig.StigException\Stig.StigException.psm1
 using module .\..\..\..\Module\Stig.StigProperty\Stig.StigProperty.psm1
 using module .\..\..\..\Module\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
 using module .\..\..\..\Module\Stig.SkippedRule\Stig.SkippedRule.psm1
-using module .\..\..\..\Module\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
+using module .\..\..\..\Module\OrganizationalSetting\OrganizationalSetting.psm1
 using module .\..\..\..\Module\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\..\..\..\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 using module .\..\..\..\Module\STIG\STIG.psm1

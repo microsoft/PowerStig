@@ -71,26 +71,6 @@ Class OrganizationalSetting
 
     <#
         .SYNOPSIS
-            The mapping of Stig rule types to the property needing to be modified
-            within the Stig rule
-
-        .DESCRIPTION
-            This method returns a Hashtable containing a mapping between a specific Stig rule
-            type and the property of that Stig rule type that needs to be modified by the
-            organizational setting
-
-        .NOTES
-            This method calls the Get-PropertyMap function which simply returns a variable that is
-            only available in the module scope. This eliminates the need to load the module just to
-            get access to a variable.
-    #>
-    static [Hashtable] PropertyMap ()
-    {
-        return Get-PropertyMap
-    }
-
-    <#
-        .SYNOPSIS
             Converts a provided Xml document into an OrganizationalSetting array
 
         .DESCRIPTION

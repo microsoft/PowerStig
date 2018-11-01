@@ -138,7 +138,7 @@ function Get-WikiContent
             LineNumber = $entry.Extent.StartLineNumber
             PropertyType = $entry.PropertyType.TypeName.FullName
             PropertyAttributes = $entry.PropertyAttributes
-            Link = "[Property.$($entry.Name)]: Stig.OrganizationalSettings.Class.Syntax#property$($entry.Name.ToLower())"
+            Link = "[Property.$($entry.Name)]: OrganizationalSettings.Class.Syntax#property$($entry.Name.ToLower())"
         }
         $return.Add("Property.$($entry.Extent.StartLineNumber)", $details)
     }
@@ -189,7 +189,7 @@ function Get-WikiContent
         {
             $linkpath = "Method.$($entry.Name)"
         }
-        $details.Add('Link', "[$linkpath]: Stig.OrganizationalSettings.Class.Syntax#$($linkpath.ToLower() -replace "\.",'')")
+        $details.Add('Link', "[$linkpath]: OrganizationalSettings.Class.Syntax#$($linkpath.ToLower() -replace "\.",'')")
         $return.Add("Method.$($entry.Extent.StartLineNumber)", $details)
     }
 

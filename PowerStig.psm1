@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 using module .\Module\Common\Common.psm1
-using module .\Module\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
+using module .\Module\OrganizationalSetting\OrganizationalSetting.psm1
 using module .\Module\Stig.SkippedRule\Stig.SkippedRule.psm1
 using module .\Module\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
 using module .\Module\STIG\STIG.psm1

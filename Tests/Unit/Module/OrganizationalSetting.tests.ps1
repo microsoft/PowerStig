@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
+using module .\..\..\..\Module\OrganizationalSetting\OrganizationalSetting.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
@@ -71,14 +71,6 @@ try
                         $orgSetting.Value | Should Be $hash.Value
                     }
                 }
-            }
-        }
-        #endregion
-        #region Method Tests
-        Describe 'Get-PropertyMap' {
-
-            It 'Should return the local $PropertyMap variable hashtable' {
-                (Get-PropertyMap).GetType() | Should Be 'hashtable'
             }
         }
         #endregion
