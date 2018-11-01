@@ -449,7 +449,7 @@ Class STIG
             Returns all of the currently available for PowerStig along with their
             associated Technology, TechnologyVersion, TechnologyRole, and StigVersion
     #>
-    static [PSObject[]] GetAvailableStigs ()
+    static [PSObject[]] ListAvailable ()
     {
         $childItemParameters = @{
             Path = "$([STIG]::GetRootPath())"
