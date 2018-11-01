@@ -337,7 +337,7 @@ try
                     $result = ConvertTo-AccessControlEntry -StigString $multiplePrincipalString -inheritanceInput $inheritanceValue
                     foreach ( $entry in $result )
                     {
-                        $entry.Inheritance | Should Be $script:inheritanceConstant.$inheritanceValue
+                        $entry.Inheritance | Should Be $inheritanceConstant.$inheritanceValue
                     }
                 }
             }
@@ -362,7 +362,7 @@ try
                 foreach ($name in $namesToTest)
                 {
                     It "Should match $name" {
-                        $RegularExpression.eventLogName | Should Be $true
+                        $regularExpression.eventLogName | Should Be $true
                     }
                 }
 

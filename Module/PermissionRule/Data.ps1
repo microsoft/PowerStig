@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-data RegularExpression
+data regularExpression
 {
     ConvertFrom-StringData -stringdata @'
         ADAuditPath = Verify the auditing configuration for (the)?
@@ -35,7 +35,7 @@ data RegularExpression
 '@
 }
 
-data ADAuditPath
+data aDAuditPath
 {
     ConvertFrom-StringData -StringData @'
         domain = {Domain}

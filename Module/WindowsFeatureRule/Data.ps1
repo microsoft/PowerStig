@@ -3,7 +3,7 @@
 
 # This is used to centralize the regEx patterns
 
-data RegularExpression
+data regularExpression
 {
     ConvertFrom-StringData -stringdata @'
         WindowsFeatureName = Get-WindowsFeature\\s-Name\\s*\\w+.\\w+

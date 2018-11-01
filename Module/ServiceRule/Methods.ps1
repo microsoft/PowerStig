@@ -18,19 +18,19 @@ function Get-ServiceName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    if ( $checkContent -match $RegularExpression.McAfee )
+    if ( $checkContent -match $regularExpression.McAfee )
     {
         $serviceName = 'masvc'
     }
-    elseif ( $checkContent -match $RegularExpression.SmartCardRemovalPolicy )
+    elseif ( $checkContent -match $regularExpression.SmartCardRemovalPolicy )
     {
         $serviceName = 'SCPolicySvc'
     }
-    elseif ( $checkContent -match $RegularExpression.SecondaryLogon )
+    elseif ( $checkContent -match $regularExpression.SecondaryLogon )
     {
         $serviceName = 'seclogon'
     }
-    elseif ( $checkContent -match $RegularExpression.followingservices )
+    elseif ( $checkContent -match $regularExpression.followingservices )
     {
         $regexMatch = $checkContent | Select-String '-'
         $svcArray = @()
@@ -41,9 +41,9 @@ function Get-ServiceName
             {
                 $svc = $svc.ToString().Substring(0, $svc.IndexOf('(') - 1)
             }
-            if ( $Script:ServicesDisplayNameToName.Contains( $svc.Trim() ) )
+            if ( $servicesDisplayNameToName.Contains( $svc.Trim() ) )
             {
-                $svc = $Script:ServicesDisplayNameToName.$( $svc.Trim() )
+                $svc = $servicesDisplayNameToName.$( $svc.Trim() )
             }
             $svcArray += $svc.Trim()
         }
@@ -79,9 +79,9 @@ function Get-ServiceName
         return
     }
 
-    if ( $Script:ServicesDisplayNameToName.Contains( $serviceName ) )
+    if ( $servicesDisplayNameToName.Contains( $serviceName ) )
     {
-        $serviceName = $Script:ServicesDisplayNameToName.$serviceName
+        $serviceName = $servicesDisplayNameToName.$serviceName
     }
 
     return $serviceName

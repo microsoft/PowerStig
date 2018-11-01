@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-data RegularExpression
+data regularExpression
 {
     ConvertFrom-StringData -stringdata @'
         customFields            = >>

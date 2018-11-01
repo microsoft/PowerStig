@@ -81,7 +81,7 @@ try
 
                 [string] $text = 'the          forwarders     tab.'
                 $result = ($text |
-                        Select-String $RegularExpression.textBetweenTheTab -AllMatches |
+                        Select-String $regularExpression.textBetweenTheTab -AllMatches |
                         Select-Object Matches).Matches.Groups[1]
                 It 'Should match text inside of the words "the" and "tab"' {
                     $result.Success | Should be $true
@@ -92,11 +92,11 @@ try
 
                 [string] $text = ' âForwardersâ'
                 It 'Should match any non letter characters' {
-                    $result = $text -match $RegularExpression.nonLetters
+                    $result = $text -match $regularExpression.nonLetters
                     $result | Should Be $true
                 }
                 It 'Should remove the non word characters' {
-                    $result = $text -replace $RegularExpression.nonLetters
+                    $result = $text -replace $regularExpression.nonLetters
                     $result.Trim() | Should Be 'Forwarders'
                 }
             }

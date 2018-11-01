@@ -23,9 +23,9 @@ function Get-ConfigSection
 
     switch ($cleanCheckContent)
     {
-        { $PSItem -match $RegularExpression.configSection }
+        { $PSItem -match $regularExpression.configSection }
         {
-            $matchConfigSection = $PSItem | Select-String -Pattern ($RegularExpression.configSection) -AllMatches
+            $matchConfigSection = $PSItem | Select-String -Pattern ($regularExpression.configSection) -AllMatches
             $configSection = $matchConfigSection.Matches.Groups.Value -replace " ", "/"
 
             if ( -not $configSection.StartsWith("/") )
@@ -119,9 +119,9 @@ function Get-KeyValuePair
 
     switch ( $checkContent )
     {
-        { $PSItem -match $RegularExpression.keyValuePairLine }
+        { $PSItem -match $regularExpression.keyValuePairLine }
         {
-            [string] $matchKeyValuePairLine = $PsItem | Select-String -Pattern $RegularExpression.keyValuePairLine -AllMatches
+            [string] $matchKeyValuePairLine = $PsItem | Select-String -Pattern $regularExpression.keyValuePairLine -AllMatches
 
             $keyValuePair = $matchKeyValuePairLine | Select-String -Pattern ([RegularExpression]::KeyValuePair) -AllMatches
 
@@ -188,37 +188,37 @@ function Get-KeyValuePair
             $key = 'timeout'
             $value = $null
         }
-        { $checkContent -match $RegularExpression.HMACSHA256 }
+        { $checkContent -match $regularExpression.HMACSHA256 }
         {
             $key = 'validation'
             $value = '4'
         }
-        { $checkContent -match $RegularExpression.autoEncryptionMethod }
+        { $checkContent -match $regularExpression.autoEncryptionMethod }
         {
             $key = 'decryption'
             $value = 'Auto'
         }
-        { $checkContent -match $RegularExpression.CGIModules }
+        { $checkContent -match $regularExpression.CGIModules }
         {
             $key = 'notListedCgisAllowed'
             $value = 'false'
         }
-        { $checkContent -match $RegularExpression.ISAPIModules }
+        { $checkContent -match $regularExpression.ISAPIModules }
         {
             $key = 'notListedIsapisAllowed'
             $value = 'false'
         }
-        { $checkContent -match $RegularExpression.useCookies }
+        { $checkContent -match $regularExpression.useCookies }
         {
             $key = 'cookieless'
             $value = 'UseCookies'
         }
-        { $checkContent -match $RegularExpression.expiredSession }
+        { $checkContent -match $regularExpression.expiredSession }
         {
             $key = 'regenerateExpiredSessionId'
             $value = 'True'
         }
-        { $checkContent -match $RegularExpression.sessionTimeout }
+        { $checkContent -match $regularExpression.sessionTimeout }
         {
             $key = 'timeout'
             $value = $null
@@ -259,10 +259,10 @@ function Test-MultipleWebConfigurationPropertyRule
         $CheckContent
     )
 
-    $matchConfigSection = $checkContent | Select-String -Pattern $RegularExpression.configSection -AllMatches
-    $matchEncryptionRule = $checkContent | Select-String -Pattern $RegularExpression.HMACSHA256 -AllMatches
+    $matchConfigSection = $checkContent | Select-String -Pattern $regularExpression.configSection -AllMatches
+    $matchEncryptionRule = $checkContent | Select-String -Pattern $regularExpression.HMACSHA256 -AllMatches
     $matchMultipleKeyvaluePair = $checkContent | Select-String -Pattern ([RegularExpression]::KeyValuePair) -AllMatches
-    $matchUseCookies = $checkContent | Select-String -Pattern $RegularExpression.useCookies -AllMatches
+    $matchUseCookies = $checkContent | Select-String -Pattern $regularExpression.useCookies -AllMatches
 
     if ($matchConfigSection.Count -gt 1)
     {
@@ -328,16 +328,16 @@ function Split-MultipleWebConfigurationPropertyRule
     $splitWebConfigurationPropertyRules = @()
     $matchMultipleKeyvaluePair = $checkContent | Select-String -Pattern ([RegularExpression]::KeyValuePair) -AllMatches
 
-    if ($checkContent -match $RegularExpression.configSection)
+    if ($checkContent -match $regularExpression.configSection)
     {
         foreach ($line in $checkContent)
         {
-            if ($line -match $RegularExpression.configSection)
+            if ($line -match $regularExpression.configSection)
             {
                 $webConfigurationPropertyRuleConfig = @()
                 $webConfigurationPropertyRuleConfig += $line
             }
-            if ($line -match $RegularExpression.keyValuePairLine)
+            if ($line -match $regularExpression.keyValuePairLine)
             {
                 $webConfigurationPropertyRule = @()
                 $webConfigurationPropertyRule = $webConfigurationPropertyRuleConfig + $line
@@ -345,62 +345,62 @@ function Split-MultipleWebConfigurationPropertyRule
             }
         }
     }
-    elseif ($checkContent -match $RegularExpression.HMACSHA256)
+    elseif ($checkContent -match $regularExpression.HMACSHA256)
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $RegularExpression.HMACSHA256}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.HMACSHA256}
 
-        if ($checkContent -match $RegularExpression.HMACSHA256)
+        if ($checkContent -match $regularExpression.HMACSHA256)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.HMACSHA256 -AllMatches
+            $match = $checkContent | Select-String -Pattern $regularExpression.HMACSHA256 -AllMatches
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Matches.Groups.Value) -join "`r`n"
         }
-        if ($checkContent -match $RegularExpression.autoEncryptionMethod)
+        if ($checkContent -match $regularExpression.autoEncryptionMethod)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.autoEncryptionMethod -AllMatches
+            $match = $checkContent | Select-String -Pattern $regularExpression.autoEncryptionMethod -AllMatches
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Matches.Groups.Value) -join "`r`n"
         }
     }
-    elseif (($checkContent -match $RegularExpression.useCookies) -and ($checkContent -match $RegularExpression.expiredSession))
+    elseif (($checkContent -match $regularExpression.useCookies) -and ($checkContent -match $regularExpression.expiredSession))
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $RegularExpression.useCookies -and $PSItem -notmatch $RegularExpression.expiredSession}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.useCookies -and $PSItem -notmatch $regularExpression.expiredSession}
 
-        if ($checkContent -match $RegularExpression.useCookies)
+        if ($checkContent -match $regularExpression.useCookies)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.useCookies | Select-String -NotMatch "Regenerate"
+            $match = $checkContent | Select-String -Pattern $regularExpression.useCookies | Select-String -NotMatch "Regenerate"
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Line) -join "`r`n"
         }
-        if ($checkContent -match $RegularExpression.expiredSession)
+        if ($checkContent -match $regularExpression.expiredSession)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.expiredSession | Select-String -NotMatch "Cookie"
+            $match = $checkContent | Select-String -Pattern $regularExpression.expiredSession | Select-String -NotMatch "Cookie"
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Line) -join "`r`n"
         }
     }
-    elseif (($checkContent -match $RegularExpression.useCookies) -and ($checkContent -match $RegularExpression.sessionTimeout))
+    elseif (($checkContent -match $regularExpression.useCookies) -and ($checkContent -match $regularExpression.sessionTimeout))
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $RegularExpression.useCookies -and $PSItem -notmatch $RegularExpression.sessionTimeout}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.useCookies -and $PSItem -notmatch $regularExpression.sessionTimeout}
 
-        if ($checkContent -match $RegularExpression.useCookies)
+        if ($checkContent -match $regularExpression.useCookies)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.useCookies | Select-String -NotMatch "Time-out"
+            $match = $checkContent | Select-String -Pattern $regularExpression.useCookies | Select-String -NotMatch "Time-out"
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Line) -join "`r`n"
         }
-        if ($checkContent -match $RegularExpression.sessionTimeout)
+        if ($checkContent -match $regularExpression.sessionTimeout)
         {
-            $match = $checkContent | Select-String -Pattern $RegularExpression.sessionTimeout -AllMatches
+            $match = $checkContent | Select-String -Pattern $regularExpression.sessionTimeout -AllMatches
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match.Line) -join "`r`n"
         }
     }
     elseif ($matchMultipleKeyvaluePair.count -gt 1)
     {
-        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $RegularExpression.CGIModules -and $PSItem -notmatch $RegularExpression.ISAPIModules}
+        [Array] $webConfigurationPropertyRule = $checkContent | Where-Object -Filterscript {$PSItem -notMatch $regularExpression.CGIModules -and $PSItem -notmatch $regularExpression.ISAPIModules}
 
-        if ($checkContent -match $RegularExpression.CGIModules)
+        if ($checkContent -match $regularExpression.CGIModules)
         {
             $match = 'Verify the "Allow unspecified CGI modules" check box is not checked'
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match) -join "`r`n"
         }
 
-        if ($checkContent -match $RegularExpression.ISAPIModules)
+        if ($checkContent -match $regularExpression.ISAPIModules)
         {
             $match = 'Verify the "Allow unspecified ISAPI modules" check box is not checked'
             $splitWebConfigurationPropertyRules += @($webConfigurationPropertyRule + $match) -join "`r`n"

@@ -35,33 +35,33 @@ function Get-WindowsFeatureName
                 $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameEquals
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
             }
-            { $PSItem -match $RegularExpression.FeatureNameSpaceColon }
+            { $PSItem -match $regularExpression.FeatureNameSpaceColon }
             {
-                $matches = $checkContent | Select-String -Pattern $RegularExpression.FeatureNameSpaceColon -AllMatches
+                $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameSpaceColon -AllMatches
                 $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
             }
-            { $PSItem -match $RegularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
+            { $PSItem -match $regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
-                $matches = $checkContent | Select-String -Pattern $RegularExpression.IfTheApplicationExists
+                $matches = $checkContent | Select-String -Pattern $regularExpression.IfTheApplicationExists
                 $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern ([RegularExpression]::TextBetweenQuotes)).Matches.Value -replace '"').Trim()
             }
             { $PSItem -match 'telnet' }
             {
                 $windowsFeatureName += 'TelnetClient'
             }
-            { $PSItem -match $RegularExpression.WebDavPublishingFeature }
+            { $PSItem -match $regularExpression.WebDavPublishingFeature }
             {
                 $windowsFeatureName += 'Web-DAV-Publishing'
             }
-            { $PSItem -match $RegularExpression.SimpleTCP }
+            { $PSItem -match $regularExpression.SimpleTCP }
             {
                 $windowsFeatureName += 'SimpleTCP'
             }
-            { $PSItem -match $RegularExpression.IISHostableWebCore }
+            { $PSItem -match $regularExpression.IISHostableWebCore }
             {
                 $windowsFeatureName += 'IIS-HostableWebCore'
             }
-            { $PSItem -match $RegularExpression.IISWebserver }
+            { $PSItem -match $regularExpression.IISWebserver }
             {
                 $windowsFeatureName += 'IIS-WebServer'
             }

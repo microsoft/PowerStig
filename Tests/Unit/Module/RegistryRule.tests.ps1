@@ -1409,7 +1409,7 @@ try
             Context 'Blank String' {
 
                 It 'Should match "(Blank)" literal string' {
-                    "(Blank)" -Match $RegularExpression.blankString | Should Be $true
+                    "(Blank)" -Match $regularExpression.blankString | Should Be $true
                 }
             }
 
@@ -1418,7 +1418,7 @@ try
                 foreach ( $flag in ('Enabled','enabled','Disabled','disabled') )
                 {
                     It "Should match the exact string '$flag'" {
-                        $flag -Match $RegularExpression.enabledOrDisabled | Should Be $true
+                        $flag -Match $regularExpression.enabledOrDisabled | Should Be $true
                     }
                 }
             }
@@ -1426,26 +1426,26 @@ try
             Context 'Hex Code' {
 
                 It 'Should match a hexcode' {
-                    '0X00000000' -Match $RegularExpression.hexCode | Should Be $true
+                    '0X00000000' -Match $regularExpression.hexCode | Should Be $true
                 }
 
                 It 'Should NOT match nonhexcode' {
-                    '0X000000000' -Match $RegularExpression.hexCode | Should Be $false
+                    '0X000000000' -Match $regularExpression.hexCode | Should Be $false
                 }
             }
 
             Context 'Leading Integer Unbound' {
 
                 It 'Should match a leading integerUnbound' {
-                    '12' -Match $RegularExpression.leadingIntegerUnbound | Should Be $true
+                    '12' -Match $regularExpression.leadingIntegerUnbound | Should Be $true
                 }
 
                 It 'Should match a leading integer before hex' {
-                    '0 0X00000000' -Match $RegularExpression.leadingIntegerUnbound | Should Be $true
+                    '0 0X00000000' -Match $regularExpression.leadingIntegerUnbound | Should Be $true
                 }
 
                 It 'Should not match hex code' {
-                    '0X00000000' -Match $RegularExpression.leadingIntegerUnbound | Should Be $false
+                    '0X00000000' -Match $regularExpression.leadingIntegerUnbound | Should Be $false
                 }
             }
         }

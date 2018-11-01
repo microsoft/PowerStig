@@ -1,6 +1,14 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 # This is used to centralize the regEx patterns
+data regularExpressions
+{
+    ConvertFrom-StringData -stringdata @'
+    AuditPolicyLine  = (-|>)> (.*?) -
+    AuditPolicySplit = >>|->|-
+'@
+}
+
 data auditPolicySubcategories
 {
     ConvertFrom-StringData -stringdata @'
@@ -71,14 +79,5 @@ data auditPolicyFlags
     ConvertFrom-StringData -stringdata @'
         Success =
         Failure =
-'@
-}
-
-# This is used to centralize the regEx patterns
-data auditPolicyRegularExpressions
-{
-    ConvertFrom-StringData -stringdata @'
-    AuditPolicyLine  = (-|>)> (.*?) -
-    AuditPolicySplit = >>|->|-
 '@
 }

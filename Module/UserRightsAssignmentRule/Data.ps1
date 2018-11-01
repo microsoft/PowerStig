@@ -1,6 +1,6 @@
 
 # This is used to validate strings and return the internal windows constant
-data UserRightNameToConstant
+data userRightNameToConstant
 {
     ConvertFrom-StringData -stringdata @'
         Access Credential Manager as a trusted caller = SeTrustedCredManAccessPrivilege

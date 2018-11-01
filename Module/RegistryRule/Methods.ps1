@@ -66,7 +66,7 @@ function Get-RegistryHiveFromWindowsStig
     )
 
     # Get the second index of the list, which should be the hive and remove spaces.
-    $hive = ( ( $checkContent | Select-String -Pattern $script:registryRegularExpression.RegistryHive ) -split ":" )[1]
+    $hive = ( ( $checkContent | Select-String -Pattern $regularExpression.RegistryHive ) -split ":" )[1]
 
     if ( -not [string]::IsNullOrEmpty( $hive ) )
     {
@@ -104,7 +104,7 @@ function Get-RegistryPathFromWindowsStig
     )
 
     $result = @()
-    $paths = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryPath )
+    $paths = ( $checkContent | Select-String -Pattern $regularExpression.registryPath )
 
     if ( [string]::IsNullOrEmpty($paths) )
     {
@@ -172,13 +172,13 @@ function Get-RegistryValueType
         [string] $type = Get-RegistryValueTypeFromWindowsStig -CheckContent $checkContent
     }
 
-    [string] $DscRegistryValueType = $dscRegistryValueType.$type
+    [string] $dscRegistryValueType = $dscRegistryValueType.$type
     # Verify the registry type against the dscRegistryValueType data section.
-    if ( -not [string]::IsNullOrEmpty( $DscRegistryValueType ) )
+    if ( -not [string]::IsNullOrEmpty( $dscRegistryValueType ) )
     {
-        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]  Convert Type : $DscRegistryValueType "
+        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)]  Convert Type : $dscRegistryValueType "
         # Set the dsc format of the registry type
-        [string] $return = $DscRegistryValueType
+        [string] $return = $dscRegistryValueType
     }
     else
     {
@@ -242,7 +242,7 @@ function Get-RegistryValueTypeFromWindowsStig
         $CheckContent
     )
 
-    $type = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType ).Matches.Value
+    $type = ( $checkContent | Select-String -Pattern $regularExpression.registryEntryType ).Matches.Value
 
     if ( -not [string]::IsNullOrEmpty( $type ) )
     {
@@ -312,7 +312,7 @@ function Get-RegistryValueNameFromWindowsStig
 
     # Get the second index of the list, which should be the data type and remove spaces
     [string] $name = ( ( $checkContent |
-                Select-String -Pattern $script:registryRegularExpression.registryValueName ) -split ":" )[1]
+                Select-String -Pattern $regularExpression.registryValueName ) -split ":" )[1]
 
     if ( -not [string]::IsNullOrEmpty( $name ) )
     {
@@ -360,7 +360,7 @@ function Get-RegistryValueData
         }
         default
         {
-            $valueString = ( $checkContent | Select-String -Pattern $script:registryRegularExpression.registryValueData )
+            $valueString = ( $checkContent | Select-String -Pattern $regularExpression.registryValueData )
             return Get-RegistryValueDataFromWindowsStig -CheckContent $valueString
         }
     }
@@ -390,7 +390,7 @@ function Get-RegistryValueDataFromWindowsStig
         Get the second index of the list, which should be the data and remove spaces# Get the second
         index of the list, which should be the data and remove spaces.
     #>
-    [string] $initialData = ( $checkContent -replace $script:registryRegularExpression.registryValueData )
+    [string] $initialData = ( $checkContent -replace $regularExpression.registryValueData )
 
     if ( -not [string]::IsNullOrEmpty( $initialData ) )
     {
@@ -435,7 +435,7 @@ function Test-RegistryValueDataIsBlank
         There is an edge case that returns the string (Blank) with the expected return to be an
         empty string. No further processing is necessary, so simply return the empty string.
     #>
-    if ( $ValueDataString -Match $RegularExpression.blankString )
+    if ( $ValueDataString -Match $regularExpression.blankString )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -472,7 +472,7 @@ function Test-RegistryValueDataIsEnabledOrDisabled
         Here is an edge case that returns the string (Blank) with the expected return to be an
         empty string. No further processing is necessary, so simply return the empty string.
     #>
-    if ( $ValueDataString -Match $RegularExpression.enabledOrDisabled )
+    if ( $ValueDataString -Match $regularExpression.enabledOrDisabled )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -547,7 +547,7 @@ function Test-RegistryValueDataIsHexCode
         There is an edge case that returns the string (Blank) with the expected return to be an
         empty string. No further processing is necessary, so simply return the empty string.
     #>
-    if ( $ValueDataString -Match $RegularExpression.hexCode )
+    if ( $ValueDataString -Match $regularExpression.hexCode )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -581,7 +581,7 @@ function Get-IntegerFromHex
         $ValueDataString
     )
 
-    $ValueDataString -Match $RegularExpression.hexCode | Out-Null
+    $ValueDataString -Match $regularExpression.hexCode | Out-Null
 
     try
     {
@@ -615,8 +615,8 @@ function Test-RegistryValueDataIsInteger
         $ValueDataString
     )
 
-    if ( $ValueDataString -Match $RegularExpression.leadingIntegerUnbound -and
-            $ValueDataString -NotMatch $script:registryRegularExpression.hardenUncPathValues )
+    if ( $ValueDataString -Match $regularExpression.leadingIntegerUnbound -and
+            $ValueDataString -NotMatch $regularExpression.hardenUncPathValues )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true
@@ -647,7 +647,7 @@ function Get-NumberFromString
     )
 
     $string = Select-String -InputObject $ValueDataString `
-                            -Pattern $RegularExpression.leadingIntegerUnbound
+                            -Pattern $regularExpression.leadingIntegerUnbound
     if ($null -eq $string)
     {
         throw
@@ -695,7 +695,7 @@ function Test-RegistryValueDataContainsRange
     )
 
     # Is in a word boundary since it is a common pattern
-    if ( $ValueDataString -match $script:registryRegularExpression.registryValueRange -and
+    if ( $ValueDataString -match $regularExpression.registryValueRange -and
          $ValueDataString -notmatch 'does not exist' )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
@@ -758,7 +758,7 @@ function Get-MultiValueRegistryStringData
     )
 
     $multiStringEntries = [String]$CheckStrings |
-        Select-String -Pattern $script:registryRegularExpression.MultiStringNamedPipe -AllMatches
+        Select-String -Pattern $regularExpression.MultiStringNamedPipe -AllMatches
 
     $multiStringList = @()
     foreach ( $entry in $multiStringEntries.Matches )
@@ -860,7 +860,7 @@ function ConvertTo-ValidDword
         There is an edge case the puts the data in the '1 (Enabled)' format
         pull out the string and convert it to the integer.
     #>
-    $ValueData -Match $RegularExpression.enabledOrDisabled | Out-Null
+    $ValueData -Match $regularExpression.enabledOrDisabled | Out-Null
 
     $ValueData = $matches[0]
     if ( $null -ne $conversionTable.$ValueData )
@@ -916,16 +916,16 @@ function Test-MultipleRegistryEntries
     else
     {
         [int] $hiveCount = ($checkContent |
-                Select-String -Pattern $script:registryRegularExpression.registryHive ).Count
+                Select-String -Pattern $regularExpression.registryHive ).Count
 
         [int] $pathCount = ($checkContent |
-                Select-String -Pattern $script:registryRegularExpression.registryPath ).Count
+                Select-String -Pattern $regularExpression.registryPath ).Count
 
         [int] $valueCount = ($checkContent |
-                Select-String -Pattern $script:registryRegularExpression.registryValueData ).Count
+                Select-String -Pattern $regularExpression.registryValueData ).Count
 
         [int] $valueNameCount = ($checkContent |
-                Select-String -Pattern $script:registryRegularExpression.registryValueName ).Count
+                Select-String -Pattern $regularExpression.registryValueName ).Count
 
         if ( ( $hiveCount + $pathCount + $valueCount + $valueNameCount ) -gt 4 )
         {
@@ -1014,11 +1014,11 @@ function Split-MultipleRegistryEntries
     }
     else
     {
-        $hives  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryHive
-        $paths  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryPath
-        $types  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryEntryType
-        $names  = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryValueName
-        $values = $checkContent | Select-String -Pattern $script:registryRegularExpression.registryValueData
+        $hives  = $checkContent | Select-String -Pattern $regularExpression.registryHive
+        $paths  = $checkContent | Select-String -Pattern $regularExpression.registryPath
+        $types  = $checkContent | Select-String -Pattern $regularExpression.registryEntryType
+        $names  = $checkContent | Select-String -Pattern $regularExpression.registryValueName
+        $values = $checkContent | Select-String -Pattern $regularExpression.registryValueData
 
         # If a check contains a multiple registry hives, then reference each one that is discovered.
         if ( $hives.Count -gt 1 )

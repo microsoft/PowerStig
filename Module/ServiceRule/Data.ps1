@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # This is used to centralize the regEx patterns
-data RegularExpression
+data regularExpression
 {
     ConvertFrom-StringData -stringdata @'
         McAfee = McAfee Agent
@@ -12,7 +12,7 @@ data RegularExpression
 '@
 }
 
-data ServicesDisplayNameToName
+data servicesDisplayNameToName
 {
     ConvertFrom-StringData -stringdata @'
         Active Directory Domain Services = NTDS

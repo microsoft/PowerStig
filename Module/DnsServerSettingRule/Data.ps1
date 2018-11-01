@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 # This is used to centralize the regEx patterns
-data RegularExpression
+data regularExpression
 {
     ConvertFrom-StringData -stringdata @'
         allEvents = \\"All\\sevents\\"
@@ -11,7 +11,7 @@ data RegularExpression
 '@
 }
 
-data DnsServerSetting
+data dnsServerSetting
 {
     ConvertFrom-StringData @'
         Event Logging = EventLogLevel

@@ -19,7 +19,7 @@ function Get-Extension
         $CheckContent
     )
 
-    $mimeTypeMatch = $checkContent | Select-String -Pattern $RegularExpression.mimeType
+    $mimeTypeMatch = $checkContent | Select-String -Pattern $regularExpression.mimeType
 
     return $mimeTypeMatch.matches.groups.value
 }
@@ -93,7 +93,7 @@ function Get-Ensure
         $CheckContent
     )
 
-    if ($checkContent -match $RegularExpression.mimeTypeAbsent)
+    if ($checkContent -match $regularExpression.mimeTypeAbsent)
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Ensure Absent"
         return "Absent"
@@ -157,7 +157,7 @@ function Split-MultipleMimeTypeRule
 
     $splitMimeTypeRules = @()
 
-    $mimeTypeMatches = $checkContent | Select-String -Pattern $RegularExpression.mimeType
+    $mimeTypeMatches = $checkContent | Select-String -Pattern $regularExpression.mimeType
 
     $mimeTypes  = $mimeTypeMatches.matches.groups.value
 

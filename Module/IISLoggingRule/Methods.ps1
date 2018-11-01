@@ -20,14 +20,14 @@ function Get-LogCustomFieldEntry
         $CheckContent
     )
 
-    if ($checkContent -match $RegularExpression.customFieldSection)
+    if ($checkContent -match $regularExpression.customFieldSection)
     {
         $customFieldEntries = @()
-        [string[]] $customFieldMatch = $checkContent | Select-String -Pattern $RegularExpression.customFields -AllMatches
+        [string[]] $customFieldMatch = $checkContent | Select-String -Pattern $regularExpression.customFields -AllMatches
 
         foreach ($customField in $customFieldMatch)
         {
-            $customFieldEntry = ($customField -split $RegularExpression.customFields).trim()
+            $customFieldEntry = ($customField -split $regularExpression.customFields).trim()
             $customFieldEntries += @{
                 SourceType = $customFieldEntry[0] -replace ' ', ''
                 SourceName = $customFieldEntry[1]
@@ -60,15 +60,15 @@ function Get-LogFlag
 
     switch ($cleanCheckContent)
     {
-        { $PSItem -match $RegularExpression.logFlags }
+        { $PSItem -match $regularExpression.logFlags }
         {
-            $logFlagString = $cleanCheckContent | Select-String -Pattern $RegularExpression.logFlags -AllMatches
+            $logFlagString = $cleanCheckContent | Select-String -Pattern $regularExpression.logFlags -AllMatches
             $logFlagValue = Get-LogFlagValue -LogFlags ($logFlagString.Matches.groups.value -split ',')
         }
-        { $PSItem -match $RegularExpression.standardFields }
+        { $PSItem -match $regularExpression.standardFields }
         {
-            [string] $logFlagLine = $cleanCheckContent | Select-String -Pattern $RegularExpression.standardFields -AllMatches
-            $logFlagString = $logFlagLine | Select-String -Pattern $RegularExpression.standardFieldEntries -AllMatches
+            [string] $logFlagLine = $cleanCheckContent | Select-String -Pattern $regularExpression.standardFields -AllMatches
+            $logFlagString = $logFlagLine | Select-String -Pattern $regularExpression.standardFieldEntries -AllMatches
             $logFlagValue = Get-LogFlagValue -LogFlags ( $logFlagString.Matches.Groups.Where{$PSItem.name -eq 1}.value )
         }
     }
@@ -94,7 +94,7 @@ function Get-LogFormat
         $CheckContent
     )
 
-    [string] $logFormatLine = $checkContent | Select-String -Pattern $RegularExpression.logFormat -AllMatches
+    [string] $logFormatLine = $checkContent | Select-String -Pattern $regularExpression.logFormat -AllMatches
 
     if (-not [String]::IsNullOrEmpty( $logFormatLine ))
     {
@@ -128,7 +128,7 @@ function Get-LogPeriod
 
     switch ( $checkContent )
     {
-        { $PsItem -match $RegularExpression.logperiod }
+        { $PsItem -match $regularExpression.logperiod }
         {
             return 'daily'
         }
@@ -153,7 +153,7 @@ function Get-LogTargetW3C
         $CheckContent
     )
 
-    [string] $logTargetW3cLine = $checkContent | Select-String -Pattern $RegularExpression.logtargetw3c -AllMatches
+    [string] $logTargetW3cLine = $checkContent | Select-String -Pattern $regularExpression.logtargetw3c -AllMatches
 
     if (-not [String]::IsNullOrEmpty( $logTargetW3cLine ))
     {
@@ -197,7 +197,7 @@ function Get-LogFlagValue
 
     foreach ($flag in $LogFlags)
     {
-        $logFlagReturn += $script:logflagsConstant.($flag.trim())
+        $logFlagReturn += $logflagsConstant.($flag.trim())
     }
 
     return $logFlagReturn.where{ -not [string]::IsNullOrEmpty($PSItem) } -join ','

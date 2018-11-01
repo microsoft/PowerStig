@@ -81,7 +81,7 @@ function ConvertTo-PowerStigXml
 
             # Append as child to an existing node. DO NOT remove the [void]
             [void] $xmlRoot.appendChild( $xmlRuleType )
-            $XmlRuleType.SetAttribute( $xmlattribute.ruleDscResourceModule, $DscResourceModule.$ruleType )
+            $XmlRuleType.SetAttribute( $xmlattribute.ruleDscResourceModule, $dscResourceModule.$ruleType )
 
             # Get the rules for the current STIG type.
             $rules = $convertedStigObjects | Where-Object { $PSItem.GetType().ToString() -eq $ruleType }
@@ -606,7 +606,7 @@ function Split-BenchmarkId
         {
             $officeStig = ($id -split '_')
             $officeStig = $officeStig[1] + $officeStig[2]
-            $returnId = 'Windows_All_' + $officeStig 
+            $returnId = 'Windows_All_' + $officeStig
         }
         default
         {

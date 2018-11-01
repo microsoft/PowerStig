@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 # Account policy name fixes
-data PolicyNameFixes
+data policyNameFixes
 {
     ConvertFrom-StringData -stringdata @'
         Minimum password length,                   = Minimum password length

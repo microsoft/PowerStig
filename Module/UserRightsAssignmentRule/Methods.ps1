@@ -24,7 +24,7 @@ function Get-UserRightDisplayName
         Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
     [string[]] $userRightDisplayName = $userRightDisplayNameSearch.matches.Groups.Value |
-        Where-Object { $script:UserRightNameToConstant.Keys -contains $PSItem }
+        Where-Object { $userRightNameToConstant.Keys -contains $PSItem }
 
     if ( $null -ne $userRightDisplayName )
     {
@@ -54,7 +54,7 @@ function Get-UserRightConstant
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $userRightConstant = $script:UserRightNameToConstant.$UserRightDisplayName
+    $userRightConstant = $userRightNameToConstant.$UserRightDisplayName
 
     if ( $null -ne $userRightConstant )
     {

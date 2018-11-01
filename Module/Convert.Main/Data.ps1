@@ -29,7 +29,7 @@ data xmlElement
 '@
 }
 
-data DscResourceModule
+data dscResourceModule
 {
     ConvertFrom-StringData -stringdata @'
         AccountPolicyRule               = SecurityPolicyDsc

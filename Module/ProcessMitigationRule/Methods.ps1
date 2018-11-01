@@ -80,20 +80,20 @@ function Get-MitigationPolicyToEnable
         {
             switch ($line)
             {
-                { $PSItem -match $RegularExpression.IfTheStatusOf }
+                { $PSItem -match $regularExpression.IfTheStatusOf }
                 {
                     # Grab the line that has "If the status of" then grab the text inbetween " and :
                     #Check to see if the line was the word 'Enable' in it
                     if ($PSItem -match 'Enable')
                     {
-                        $result += ( ( $line | Select-String -Pattern $RegularExpression.TextBetweenDoubleQuoteAndColon ).Matches.Value -replace '"' -replace ':' ).Trim()
+                        $result += ( ( $line | Select-String -Pattern $regularExpression.TextBetweenDoubleQuoteAndColon ).Matches.Value -replace '"' -replace ':' ).Trim()
                     }
                     else
                     {
-                        $result += ( ( $line | Select-String -Pattern $RegularExpression.TextBetweenColonAndDoubleQuote ).Matches.Value -replace '"' -replace ':' ).Trim()
+                        $result += ( ( $line | Select-String -Pattern $regularExpression.TextBetweenColonAndDoubleQuote ).Matches.Value -replace '"' -replace ':' ).Trim()
                     }
                 }
-                { $PSItem -match $RegularExpression.ColonSpaceOn }
+                { $PSItem -match $regularExpression.ColonSpaceOn }
                 {
                     <#
                         This address the edge case where the mitigation is specified to be enabled on a seperate line example (DEP):
@@ -104,14 +104,14 @@ function Get-MitigationPolicyToEnable
                         BottomUp: ON
                         ForceRelocateImages: ON
                     #>
-                    if ( $line -match $RegularExpression.EnableColon )
+                    if ( $line -match $regularExpression.EnableColon )
                     {
                         $enableLineMatch = ( $checkContent | Select-String -Pattern $line ).LineNumber
                         $result += ( ( $checkContent[$enableLineMatch - 2] ) -replace ':' ).Trim()
                     }
                     else
                     {
-                        $result += ( $line -replace $RegularExpression.ColonSpaceOn ).Trim()
+                        $result += ( $line -replace $regularExpression.ColonSpaceOn ).Trim()
                     }
                 }
             }
@@ -150,12 +150,12 @@ function Test-PoliciesToEnable
 
     foreach ( $line in $checkContent )
     {
-        if ( $line -match $RegularExpression.IfTheStatusOfIsOff )
+        if ( $line -match $regularExpression.IfTheStatusOfIsOff )
         {
             return $true
         }
 
-        if ( $line -match $RegularExpression.NotHaveAStatusOfOn )
+        if ( $line -match $regularExpression.NotHaveAStatusOfOn )
         {
             return $true
         }

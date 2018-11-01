@@ -23,11 +23,11 @@ function Get-PermissionTargetPath
     {
         # Do not use $env: for environment variables. They will not be able to be converted to text for XML.
         # Get path for permissions that pertains to event logs
-        { $stigString -match $RegularExpression.WinEvtDirectory }
+        { $stigString -match $regularExpression.WinEvtDirectory }
         {
-            $parentheseMatch = $stigString | Select-String -Pattern $RegularExpression.eventLogName
+            $parentheseMatch = $stigString | Select-String -Pattern $regularExpression.eventLogName
 
-            if ( $stigString -match $RegularExpression.dnsServerLog )
+            if ( $stigString -match $regularExpression.dnsServerLog )
             {
                 $childPath = 'DNS Server.evtx'
             }
@@ -41,7 +41,7 @@ function Get-PermissionTargetPath
         }
 
         # Get path for permissions that pertains to eventvwr.exe
-        { $stigString -match $RegularExpression.eventViewer }
+        { $stigString -match $regularExpression.eventViewer }
         {
             $permissionTargetPath = '%windir%\SYSTEM32\eventvwr.exe'
             break
@@ -49,88 +49,88 @@ function Get-PermissionTargetPath
 
         # Get path that pertains to C:\
 
-        { $stigString -match $RegularExpression.cDrive }
+        { $stigString -match $regularExpression.cDrive }
         {
             $permissionTargetPath = '%SystemDrive%\'
             break
         }
 
         # Get path that pertains to Sysvol
-        { $stigString -match $RegularExpression.SysVol}
+        { $stigString -match $regularExpression.SysVol}
         {
             $permissionTargetPath = '%windir%\sysvol'
             break
         }
 
         # Get path that pertains to  C:\Windows
-        { $stigString -match $RegularExpression.systemRoot }
+        { $stigString -match $regularExpression.systemRoot }
         {
             $permissionTargetPath = '%windir%'
             break
         }
 
         # Get path that pertains to registry Installed Components key
-        { $stigString -match $RegularExpression.permissionRegistryInstalled }
+        { $stigString -match $regularExpression.permissionRegistryInstalled }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Installed Components\'
             break
         }
 
         # Get path that pertains to registry Winlogon key
-        { $stigString -match $RegularExpression.permissionRegistryWinlogon }
+        { $stigString -match $regularExpression.permissionRegistryWinlogon }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Winlogon\'
             break
         }
 
         # Get path that pertains to registry WinReg key
-        { $stigString -match $RegularExpression.permissionRegistryWinreg }
+        { $stigString -match $regularExpression.permissionRegistryWinreg }
         {
             $permissionTargetPath = 'HKLM:\SYSTEM\CurrentControlSet\Control\SecurePipeServers\winreg\'
             break
         }
 
         # Get path that pertains to registry NTDS key
-        { $stigString -match $RegularExpression.permissionRegistryNTDS }
+        { $stigString -match $regularExpression.permissionRegistryNTDS }
         {
             $permissionTargetPath = '%windir%\NTDS\*.*'
             break
         }
 
         # Get path that pertains to both program files directories
-        { $stigString -match $RegularExpression.programFiles }
+        { $stigString -match $regularExpression.programFiles }
         {
             $permissionTargetPath = '%ProgramFiles%;%ProgramFiles(x86)%'
             break
         }
 
         # Get crypto folder path
-        { $stigString -match $RegularExpression.cryptoFolder }
+        { $stigString -match $regularExpression.cryptoFolder }
         {
             $permissionTargetPath = '%ALLUSERSPROFILE%\Microsoft\Crypto\Keys'
             break
         }
 
         # Get path that pertains to Admin Shares
-        { $stigString -match $RegularExpression.adminShares }
+        { $stigString -match $regularExpression.adminShares }
         {
             $permissionTargetPath = $null
             break
         }
 
         # Get Active Directory Path
-        { $stigString -match $RegularExpression.ADAuditPath }
+        { $stigString -match $regularExpression.ADAuditPath }
         {
-            $ADPath = (Select-String -InputObject $stigString -Pattern $RegularExpression.ADAuditPath) -replace $RegularExpression.ADAuditPath, "" -replace " object.*", ""
-            $permissionTargetPath = $ADAuditPath.$($ADPath.Trim())
+            $ADPath = (Select-String -InputObject $stigString -Pattern $regularExpression.ADAuditPath) -replace $regularExpression.ADAuditPath, "" -replace " object.*", ""
+            $permissionTargetPath = $aDAuditPath.$($ADPath.Trim())
             break
         }
 
         # Get HKLM\Security path
         {
-            $stigString -match $RegularExpression.hklmSecurity -and
-            $stigString -match $RegularExpression.hklmSoftware -and
-            $stigString -match $RegularExpression.hklmSystem
+            $stigString -match $regularExpression.hklmSecurity -and
+            $stigString -match $regularExpression.hklmSoftware -and
+            $stigString -match $regularExpression.hklmSystem
         }
         {
             $permissionTargetPath = 'HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM'
@@ -138,56 +138,56 @@ function Get-PermissionTargetPath
         }
 
         # Get the individual HKLM paths
-        { $stigString -match $RegularExpression.hklmSecurity }
+        { $stigString -match $regularExpression.hklmSecurity }
         {
             $permissionTargetPath = 'HKLM:\SECURITY'
         }
 
-        { $stigString -match $RegularExpression.hklmSoftware }
+        { $stigString -match $regularExpression.hklmSoftware }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE'
         }
 
-        { $stigString -match $RegularExpression.hklmSystem }
+        { $stigString -match $regularExpression.hklmSystem }
         {
             $permissionTargetPath = 'HKLM:\SYSTEM'
         }
 
         # Get path for C:, Program file, and Windows
         {
-            $stigString -match $RegularExpression.rootOfC -and
-            $stigString -match $RegularExpression.winDir -and
-            $stigString -match $RegularExpression.programFilesWin10
+            $stigString -match $regularExpression.rootOfC -and
+            $stigString -match $regularExpression.winDir -and
+            $stigString -match $regularExpression.programFilesWin10
         }
         {
             $permissionTargetPath = '%SystemDrive%;%ProgramFiles%;%Windir%'
             break
         }
         {
-            $stigString -match $RegularExpression.rootOfC -and
-            $stigString -notmatch $RegularExpression.winDir -and
-            $stigString -notmatch $RegularExpression.programFileFolder
+            $stigString -match $regularExpression.rootOfC -and
+            $stigString -notmatch $regularExpression.winDir -and
+            $stigString -notmatch $regularExpression.programFileFolder
         }
         {
             $permissionTargetPath = '%SystemDrive%'
             break
         }
-        { $stigString -match $RegularExpression.winDir }
+        { $stigString -match $regularExpression.winDir }
         {
             $permissionTargetPath = '%Windir%'
             break
         }
-        {  $stigString -match $RegularExpression.programFileFolder }
+        {  $stigString -match $regularExpression.programFileFolder }
         {
             $permissionTargetPath = '%ProgramFiles%'
             break
         }
-        { $stigString -match $RegularExpression.programFiles86 }
+        { $stigString -match $regularExpression.programFiles86 }
         {
             $permissionTargetPath = '%ProgramFiles(x86)%'
             break
         }
-        { $stigString -match $RegularExpression.inetpub }
+        { $stigString -match $regularExpression.inetpub }
         {
             $permissionTargetPath = '%windir%\inetpub'
             break
@@ -221,7 +221,7 @@ function Get-PermissionAccessControlEntry
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     switch ($stigString)
     {
-        { $stigString -match $RegularExpression.permissionRegistryWinlogon }
+        { $stigString -match $regularExpression.permissionRegistryWinlogon }
         {
             <#
                 Permission rule that pertains to HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
@@ -231,23 +231,23 @@ function Get-PermissionAccessControlEntry
             return ConvertTo-AccessControlEntry -StigString $stigString -inheritanceInput 'This key and subkeys'
         }
 
-        { $stigString -match $RegularExpression.InheritancePermissionMap }
+        { $stigString -match $regularExpression.InheritancePermissionMap }
         {
             return ConvertTo-AccessControlEntryIF -StigString $stigString
         }
 
-        { $stigString -join " " -match $RegularExpression.TypePrincipalAccess }
+        { $stigString -join " " -match $regularExpression.TypePrincipalAccess }
         {
             return ConvertTo-AccessControlEntryGrouped -StigString $stigString
         }
 
-        { $stigString -match $RegularExpression.cryptoFolder }
+        { $stigString -match $regularExpression.cryptoFolder }
         {
             $cryptoFolderStigString = "SYSTEM, Administrators - Full Control - This folder, subfolders and files"
             return ConvertTo-AccessControlEntry -StigString $cryptoFolderStigString
         }
 
-        { $stigString -match $RegularExpression.inetpub }
+        { $stigString -match $regularExpression.inetpub }
         {
             # In IIS Server Stig rule V-76745 says creator/owner should have special permissions to subkeys so we ignore it. All rules that are properly documented are converted
             $inetpubFolderStigString = @()
@@ -344,7 +344,7 @@ function ConvertTo-AccessControlEntryGrouped
             Principal          = $principal
             ForcePrincipal     = Get-ForcePrincipal -StigString $stigString
             Rights             = Convert-RightsConstant -RightsString $rights
-            Inheritance        = $script:inheritanceConstant[[string]$inheritance.trim()]
+            Inheritance        = $inheritanceConstant[[string]$inheritance.trim()]
             Type               = $type
         }
     }
@@ -366,8 +366,8 @@ function ConvertTo-AccessControlEntryIF
         $StigString
     )
 
-    $accessControlEntryMatches = $stigString | Select-String -Pattern $RegularExpression.InheritancePermissionMap
-    $permissions = $stigString | Select-String -Pattern $RegularExpression.PermissionRuleMap
+    $accessControlEntryMatches = $stigString | Select-String -Pattern $regularExpression.InheritancePermissionMap
+    $permissions = $stigString | Select-String -Pattern $regularExpression.PermissionRuleMap
 
     foreach ($entry in $accessControlEntryMatches)
     {
@@ -379,15 +379,15 @@ function ConvertTo-AccessControlEntryIF
             $entry = $entry -replace $perm[0].Trim(), $perm[1].Trim()
         }
 
-        $principal, [string]$inheritance, $fileSystemRights = $entry -split $RegularExpression.spaceDashSpace
+        $principal, [string]$inheritance, $fileSystemRights = $entry -split $regularExpression.spaceDashSpace
 
-        if (-not $script:inheritanceConstant[[string]$inheritance.trim()])
+        if (-not $inheritanceConstant[[string]$inheritance.trim()])
         {
             $inheritance = ""
         }
         else
         {
-            $inheritance = $script:inheritanceConstant[[string]$inheritance.trim()]
+            $inheritance = $inheritanceConstant[[string]$inheritance.trim()]
         }
 
         $accessControlEntries += [pscustomobject[]]@{
@@ -421,7 +421,7 @@ function ConvertTo-AccessControlEntry
         $InheritanceInput
     )
 
-    $accessControlEntryMatches = $stigString | Select-String -Pattern $RegularExpression.spaceDashSpace
+    $accessControlEntryMatches = $stigString | Select-String -Pattern $regularExpression.spaceDashSpace
 
     foreach ( $entry in $accessControlEntryMatches )
     {
@@ -431,7 +431,7 @@ function ConvertTo-AccessControlEntry
                 Access control entries are commonly formatted like so: 'Principal - FileSystemRights - Inheritance
                 we will split on a regex pattern the represents space dash space ( - )
             #>
-            $principals, $fileSystemRights, [string]$inheritance = $entry -split $RegularExpression.spaceDashSpace
+            $principals, $fileSystemRights, [string]$inheritance = $entry -split $regularExpression.spaceDashSpace
 
             if ( $fileSystemRights -match ([RegularExpression]::TextBetweenParentheses) )
             {
@@ -441,7 +441,7 @@ function ConvertTo-AccessControlEntry
             }
 
             # There is an edge case V-63593 which states the rights should be 'Special' but it doesn't state what the special rights should be so we ignore it.
-            if ( $stigString -match $RegularExpression.hklmRootKeys -and $fileSystemRights.Trim() -eq 'Special')
+            if ( $stigString -match $regularExpression.hklmRootKeys -and $fileSystemRights.Trim() -eq 'Special')
             {
                 break
             }
@@ -461,7 +461,7 @@ function ConvertTo-AccessControlEntry
                     Principal      = $principal.trim()
                     ForcePrincipal = Get-ForcePrincipal -StigString $stigString
                     Rights         = Convert-RightsConstant -RightsString $fileSystemRights
-                    Inheritance    = $script:inheritanceConstant[[string]$inheritance.trim()]
+                    Inheritance    = $inheritanceConstant[[string]$inheritance.trim()]
                 }
             }
         }
@@ -506,19 +506,19 @@ function Convert-RightsConstant
             {
                 'ActiveDirectoryAuditRuleEntry'
                 {
-                    $values += $script:activeDirectoryRightsConstant[$right.trim()]
+                    $values += $activeDirectoryRightsConstant[$right.trim()]
                 }
                 'RegistryAccessEntry'
                 {
-                    $values += $script:registryRightsConstant[$right.trim()]
+                    $values += $registryRightsConstant[$right.trim()]
                 }
                 'NTFSAccessEntry'
                 {
-                    $values += $script:fileRightsConstant[$right.trim()]
+                    $values += $fileRightsConstant[$right.trim()]
                 }
                 '(blank)'
                 {
-                    $values += $script:activeDirectoryRightsConstant[$right.trim()]
+                    $values += $activeDirectoryRightsConstant[$right.trim()]
                 }
             }
         }
@@ -577,11 +577,11 @@ function Split-MultiplePermissionRule
     $result = @()
     [System.Collections.ArrayList]$contentRanges = @()
     # Test for multiple paths at HKLMRoot
-    if ( $checkContent -match $RegularExpression.hklmRootKeys )
+    if ( $checkContent -match $regularExpression.hklmRootKeys )
     {
-        $hklmSecurityMatch = $checkContent | Select-String -Pattern $RegularExpression.hklmSecurity
-        $hklmSoftwareMatch = $checkContent | Select-String -Pattern $RegularExpression.hklmSoftware
-        $hklmSystemMatch   = $checkContent | Select-String -Pattern $RegularExpression.hklmSystem
+        $hklmSecurityMatch = $checkContent | Select-String -Pattern $regularExpression.hklmSecurity
+        $hklmSoftwareMatch = $checkContent | Select-String -Pattern $regularExpression.hklmSoftware
+        $hklmSystemMatch   = $checkContent | Select-String -Pattern $regularExpression.hklmSystem
 
         [void]$contentRanges.Add(($hklmSecurityMatch.LineNumber - 1)..($hklmSoftwareMatch.LineNumber - 2))
         [void]$contentRanges.Add(($hklmSoftwareMatch.LineNumber - 1)..($hklmSystemMatch.LineNumber - 2))
@@ -590,14 +590,14 @@ function Split-MultiplePermissionRule
         $headerLineRange = 0..($hklmSecurityMatch.LineNumber - 2)
         $footerLineRange = ($checkContent.Length - 4)..($checkContent.Length + 1)
     }
-    elseIf ( $checkContent -match $RegularExpression.rootOfC -and
-        $checkContent -match $RegularExpression.programFilesWin10 -and
-        $checkContent -match $RegularExpression.winDir
+    elseIf ( $checkContent -match $regularExpression.rootOfC -and
+        $checkContent -match $regularExpression.programFilesWin10 -and
+        $checkContent -match $regularExpression.winDir
     )
     {
-        $rootOfCMatch = $checkContent | Select-String -Pattern $RegularExpression.rootOfC | Select-Object -First 1
-        $programFilesMatch = $checkContent | Select-String -Pattern $RegularExpression.programFileFolder
-        $windowsDirectoryMatch = $checkContent | Select-String -Pattern $RegularExpression.winDir
+        $rootOfCMatch = $checkContent | Select-String -Pattern $regularExpression.rootOfC | Select-Object -First 1
+        $programFilesMatch = $checkContent | Select-String -Pattern $regularExpression.programFileFolder
+        $windowsDirectoryMatch = $checkContent | Select-String -Pattern $regularExpression.winDir
         $icaclsMatch = $checkContent | Select-String -Pattern 'Alternately\suse\sicacls'
 
         [void]$contentRanges.Add(($rootOfCMatch.LineNumber - 1)..($programFilesMatch.LineNumber - 2))

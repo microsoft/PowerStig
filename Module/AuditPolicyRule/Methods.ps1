@@ -88,9 +88,9 @@ function Get-AuditPolicySubCategory
 
         Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-        $auditPolicyLine = $checkContent | Select-String -Pattern $auditPolicyRegularExpressions.AuditPolicyLine
+        $auditPolicyLine = $checkContent | Select-String -Pattern $regularExpressions.AuditPolicyLine
 
-        return $auditPolicyLine -split $auditPolicyRegularExpressions.AuditPolicySplit
+        return $auditPolicyLine -split $regularExpressions.AuditPolicySplit
     }
 #endregion
 
