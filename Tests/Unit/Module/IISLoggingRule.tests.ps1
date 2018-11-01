@@ -208,15 +208,7 @@ try
         }
         #endregion
         #region Function Tests
-        Describe "ConvertTo-IisLoggingRule" {
-            $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].checkContent -ReturnGroupOnly
-            $rule = ConvertTo-IisLoggingRule -StigRule $stigRule
-
-            It "Should return an IisLoggingRule object" {
-                $rule.GetType() | Should Be 'IisLoggingRule'
-            }
-        }
-
+       
         Describe 'Get-LogFlagValue' {
             $logFlags = @('User Agent','User Name','Referrer')
 
