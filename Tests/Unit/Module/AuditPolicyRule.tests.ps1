@@ -105,8 +105,7 @@ try
 
             [string[]] $dataSectionNameList = @(
                 'auditPolicySubcategories',
-                'auditPolicyFlags',
-                'auditPolicyRegularExpressions'
+                'auditPolicyFlags'
             )
 
             foreach ($dataSectionName in $dataSectionNameList)

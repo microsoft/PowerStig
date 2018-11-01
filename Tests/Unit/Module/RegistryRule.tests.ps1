@@ -1485,7 +1485,7 @@ try
                 foreach ($string in $hiveStrings)
                 {
                     It "Should match '$string'" {
-                        $string | Should Match $RegistryRegularExpression.registryHive
+                        $string | Should Match $regularExpression.registryHive
                     }
                 }
             }
@@ -1500,7 +1500,7 @@ try
                 foreach ($string in $pathStrings)
                 {
                     It "Should match '$string'" {
-                        $string | Should Match $RegistryRegularExpression.registryPath
+                        $string | Should Match $regularExpression.registryPath
                     }
                 }
             }
@@ -1519,7 +1519,7 @@ try
                 foreach ($string in $typeStrings)
                 {
                     It "Should match '$string'" {
-                        $string | Should Match $RegistryRegularExpression.registryEntryType
+                        $string | Should Match $regularExpression.registryEntryType
                     }
                 }
             }
@@ -1532,7 +1532,7 @@ try
                 foreach ($string in $valueNameStrings)
                 {
                     It "Should match '$string'" {
-                        $string | Should Match $RegistryRegularExpression.registryValueName
+                        $string | Should Match $regularExpression.registryValueName
                     }
                 }
             }
@@ -1545,7 +1545,7 @@ try
                 foreach ($string in $valueNameStrings)
                 {
                     It "Should match '$string'" {
-                        $string | Should Match $RegistryRegularExpression.registryValueData
+                        $string | Should Match $regularExpression.registryValueData
                     }
                 }
 
@@ -1556,7 +1556,7 @@ try
                 foreach ($string in $valueNameStringsToNotMatch)
                 {
                     It "Should not match '$string'" {
-                        $string | Should Not Match $RegistryRegularExpression.registryValueData
+                        $string | Should Not Match $regularExpression.registryValueData
                     }
                 }
             }
@@ -1570,7 +1570,7 @@ try
                 foreach ($string in $rangeStrings)
                 {
                     It "Should match '$string'" {
-                        $string | Should Match $RegistryRegularExpression.registryValueRange
+                        $string | Should Match $regularExpression.registryValueRange
                     }
                 }
             }

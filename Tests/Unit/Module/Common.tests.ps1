@@ -108,31 +108,6 @@ Describe 'RegularExpression Class' {
 
 #region Data Tests
 
-Describe 'rangeMatch Data Section' {
-
-    [string] $dataSectionName = 'rangeMatch'
-
-    It "Should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    <#
-    TO DO - Add rules
-    #>
-}
-
-Describe 'errorMessage Data Section' {
-
-    [string] $dataSectionName = 'errorMessage'
-
-    It "Should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    <#
-    TO DO - Add rules
-    #>
-}
 
 #endregion Tests
 #region Helper Tests
