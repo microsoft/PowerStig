@@ -1,35 +1,12 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
 using module .\..\Common\Common.psm1
-using module .\..\AccountPolicyRule\AccountPolicyRule.psm1
-using module .\..\AuditPolicyRule\AuditPolicyRule.psm1
-using module .\..\DocumentRule\DocumentRule.psm1
-using module .\..\DnsServerRootHintRule\DnsServerRootHintRule.psm1
-using module .\..\DnsServerSettingRule\DnsServerSettingRule.psm1
-using module .\..\FileContentRule\FileContentRule.psm1
-using module .\..\GroupRule\GroupRule.psm1
-using module .\..\IISLoggingRule\IISLoggingRule.psm1
-using module .\..\ManualRule\ManualRule.psm1
-using module .\..\MimeTypeRule\MimeTypeRule.psm1
-using module .\..\PermissionRule\PermissionRule.psm1
-using module .\..\ProcessMitigationRule\ProcessMitigationRule.psm1
-using module .\..\RegistryRule\RegistryRule.psm1
-using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
-using module .\..\ServiceRule\ServiceRule.psm1
-using module .\..\SqlScriptQueryRule\SqlScriptQueryRule.psm1
 using module .\..\Stig.StigException\Stig.StigException.psm1
 using module .\..\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
 using module .\..\Stig.SkippedRule\Stig.SkippedRule.psm1
 using module .\..\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
 using module .\..\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
-using module .\..\UserRightsAssignmentRule\UserRightsAssignmentRule.psm1
-using module .\..\WebAppPoolRule\WebAppPoolRule.psm1
-using module .\..\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
-using module .\..\WindowsFeatureRule\WindowsFeatureRule.psm1
-using module .\..\WinEventLogRule\WinEventLogRule.psm1
-using module .\..\WmiRule\WmiRule.psm1
 # Header
 
 <#
