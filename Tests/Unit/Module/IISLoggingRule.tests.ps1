@@ -208,7 +208,6 @@ try
         }
         #endregion
         #region Function Tests
-       
         Describe 'Get-LogFlagValue' {
             $logFlags = @('User Agent','User Name','Referrer')
 

@@ -143,7 +143,6 @@ try
         }
         #endregion
         #region Function Tests
-
         Describe 'Test-MultipleProcessMitigationRule'{
             
             foreach ($rule in $rulesToTest)
@@ -157,17 +156,17 @@ try
                 else 
                 {
                     It "Should return $false for non multiple rule" {
-                        Test-MultipleProcessMitigationRule -MitigationTarget $rule.MitigationTarget | Should Be $false                            
+                        Test-MultipleProcessMitigationRule -MitigationTarget $rule.MitigationTarget | Should Be $false
                     }
                 }
-            }        
+            }
         }
 
         Describe 'Test-PoliciesToEnable' {
             foreach ($rule in $rulesToTest)
             {
                 $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                
+
                 It "Should return $true" {
                     Test-PoliciesToEnable -CheckContent $checkContent | Should Be $true  
                 }
