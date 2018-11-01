@@ -29,6 +29,8 @@ Class FileContentRule : Rule
     [string] $Key
     [string] $Value
 
+    static [string] $OverrideValue = 'Value'
+
     <#
         .SYNOPSIS
             Default constructor

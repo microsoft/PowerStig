@@ -30,6 +30,7 @@ Class AccountPolicyRule : Rule
     [string] $PolicyName
     [string] $PolicyValue
 
+    static [string] $OverrideValue = 'PolicyValue'
     <#
         .SYNOPSIS
             Default constructor

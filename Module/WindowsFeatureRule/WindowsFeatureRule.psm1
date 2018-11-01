@@ -31,6 +31,8 @@ Class WindowsFeatureRule : Rule
     [string] $FeatureName
     [string] $InstallState
 
+    static [string] $OverrideValue = 'InstallState'
+
     <#
         .SYNOPSIS
             Default constructor

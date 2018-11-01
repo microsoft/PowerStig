@@ -40,6 +40,7 @@ Class IisLoggingRule : Rule
     [string] $LogPeriod
     [string] $LogTargetW3C
 
+    static [string] $OverrideValue = ''
     <#
         .SYNOPSIS
             Default constructor

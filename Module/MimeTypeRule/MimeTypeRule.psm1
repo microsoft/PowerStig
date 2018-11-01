@@ -33,7 +33,7 @@ Class MimeTypeRule : Rule
     [string] $MimeType
     [string] $Ensure
 
-
+    static [string] $OverrideValue = ''
     <#
         .SYNOPSIS
             Default constructor

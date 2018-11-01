@@ -29,6 +29,7 @@ Class SecurityOptionRule : Rule
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue
 
+    static [string] $OverrideValue = 'OptionValue'
     <#
         .SYNOPSIS
             Default constructor

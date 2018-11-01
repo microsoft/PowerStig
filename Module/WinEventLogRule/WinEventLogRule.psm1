@@ -31,6 +31,7 @@ Class WinEventLogRule : Rule
     [string] $LogName
     [bool] $IsEnabled
 
+    static [string] $OverrideValue = 'IsEnabled'
     <#
         .SYNOPSIS
             Default constructor

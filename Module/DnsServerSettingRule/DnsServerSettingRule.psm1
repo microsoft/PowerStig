@@ -31,6 +31,7 @@ Class DnsServerSettingRule : Rule
     [string] $PropertyName
     [string] $PropertyValue
 
+    static [string] $OverrideValue = 'PropertyValue'
     <#
         .SYNOPSIS
             Default constructor

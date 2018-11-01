@@ -34,6 +34,7 @@ Class ProcessMitigationRule : Rule
     [string] $Enable
     [string] $Disable
 
+    static [string] $OverrideValue = ''
     <#
         .SYNOPSIS
             Default constructor

@@ -35,6 +35,8 @@ Class ServiceRule : Rule
     [string] $StartupType
     [ensure] $Ensure
 
+    static [string] $OverrideValue = 'StartupType'
+
     <#
         .SYNOPSIS
             Default constructor

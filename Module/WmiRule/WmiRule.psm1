@@ -36,6 +36,7 @@ Class WmiRule : Rule
     [string] $Value
     [string] $Operator
 
+    static [string] $OverrideValue = ''
     <#
         .SYNOPSIS
             Default constructor

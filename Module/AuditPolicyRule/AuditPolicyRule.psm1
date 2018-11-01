@@ -33,6 +33,7 @@ Class AuditPolicyRule : Rule
     [string] $AuditFlag
     [string] $Ensure
 
+    static [string] $OverrideValue = 'Ensure'
     <#
         .SYNOPSIS
             Default constructor

@@ -39,6 +39,7 @@ Class RegistryRule : Rule
     [string] $ValueType
     [ensure] $Ensure
 
+    static [string] $OverrideValue = 'ValueData'
     <#
         .SYNOPSIS
             Default constructor

@@ -33,6 +33,7 @@ Class PermissionRule : Rule
     [object[]] $AccessControlEntry
     [bool] $Force
 
+    static [string] $OverrideValue = ''
     <#
         .SYNOPSIS
             Default constructor

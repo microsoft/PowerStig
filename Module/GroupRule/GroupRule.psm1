@@ -30,6 +30,7 @@ Class GroupRule : Rule
     [string] $GroupName
     [string[]] $MembersToExclude
 
+    static [string] $OverrideValue = ''
     <#
         .SYNOPSIS
             Default constructor
