@@ -2,9 +2,9 @@
 # Licensed under the MIT License.
 
 # This is used to centralize the regEx patterns
-data exclusionRuleList
+data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        V-73523 =
+        WinEventLogPath = Logs\\\\Microsoft\\\\Windows
 '@
 }
