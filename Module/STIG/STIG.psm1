@@ -1,23 +1,48 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+
 using module .\..\Common\Common.psm1
+using module .\..\AccountPolicyRule\AccountPolicyRule.psm1
+using module .\..\AuditPolicyRule\AuditPolicyRule.psm1
+using module .\..\DocumentRule\DocumentRule.psm1
+using module .\..\DnsServerRootHintRule\DnsServerRootHintRule.psm1
+using module .\..\DnsServerSettingRule\DnsServerSettingRule.psm1
+using module .\..\FileContentRule\FileContentRule.psm1
+using module .\..\GroupRule\GroupRule.psm1
+using module .\..\IISLoggingRule\IISLoggingRule.psm1
+using module .\..\ManualRule\ManualRule.psm1
+using module .\..\MimeTypeRule\MimeTypeRule.psm1
+using module .\..\PermissionRule\PermissionRule.psm1
+using module .\..\ProcessMitigationRule\ProcessMitigationRule.psm1
+using module .\..\RegistryRule\RegistryRule.psm1
+using module .\..\SecurityOptionRule\SecurityOptionRule.psm1
+using module .\..\ServiceRule\ServiceRule.psm1
+using module .\..\SqlScriptQueryRule\SqlScriptQueryRule.psm1
 using module .\..\Stig.StigException\Stig.StigException.psm1
 using module .\..\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
 using module .\..\Stig.SkippedRule\Stig.SkippedRule.psm1
 using module .\..\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
 using module .\..\Stig.TechnologyRole\Stig.TechnologyRole.psm1
 using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
+using module .\..\UserRightsAssignmentRule\UserRightsAssignmentRule.psm1
+using module .\..\WebAppPoolRule\WebAppPoolRule.psm1
+using module .\..\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
+using module .\..\WindowsFeatureRule\WindowsFeatureRule.psm1
+using module .\..\WinEventLogRule\WinEventLogRule.psm1
+using module .\..\WmiRule\WmiRule.psm1
 # Header
 
 <#
     .SYNOPSIS
-        This class describes a StigData
+        This class describes a STIG
 
     .DESCRIPTION
-        The StigData class describes a StigData, the collection of all Stig rules for a given technology that need to be implemented
-        in order to enforce the security posture those rules define. StigData takes in instances of many other classes that describe
-        the given technology and the implementing organizations specific settings, exceptions, and rules to skip. Upon creation of a
-        StigData instance, the resulting Xml is immediately available for those preconditions.
+        The STIG class describes a STIG, the collection of rules for a given
+        technology that need to be implemented in order to enforce the security
+        posture those rules define. STIG takes in instances of many other classes
+        that describe the given technology and the implementing organizations
+        specific settings, exceptions, and rules to skip. Upon creation of a
+        STIG instance, the resulting Xml is immediately available for those preconditions.
 
     .PARAMETER StigVersion
         The document/published version of the Stig to select
@@ -50,12 +75,13 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
         The file path to the Stig Xml file in the StigData directory
 
     .EXAMPLE
-        $stigData = [StigData]::new([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
+        $STIG = [STIG]::new([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
 
     .NOTES
         This class requires PowerShell v5 or above.
 #>
-Class StigData
+
+Class STIG
 {
     [Version] $StigVersion
     [OrganizationalSetting[]] $OrganizationalSettings
@@ -76,21 +102,21 @@ Class StigData
             DO NOT USE - For testing only
 
         .DESCRIPTION
-            A parameterless constructor for StigData. To be used only for
+            A parameterless constructor for STIG. To be used only for
             build/unit testing purposes as Pester currently requires it in order to test
             static methods on powershell classes
     #>
-    StigData ()
+    STIG ()
     {
         Write-Warning "This constructor is for build testing only."
     }
 
     <#
         .SYNOPSIS
-            A constructor for StigData. Returns a ready to use instance of StigData.
+            A constructor for STIG. Returns a ready to use instance of STIG.
 
         .DESCRIPTION
-            A constructor for StigData. Returns a ready to use instance of StigData.
+            A constructor for STIG. Returns a ready to use instance of STIG.
 
         .PARAMETER StigVersion
             The document/published version of the Stig to select
@@ -116,7 +142,7 @@ Class StigData
         .PARAMETER SkippedRules
             An array of Stig rules to skip and move into the SkipRule rule type
     #>
-    StigData ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
+    STIG ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
     {
         if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion))
         {
@@ -125,7 +151,7 @@ Class StigData
 
         if (!($StigVersion))
         {
-            $this.StigVersion = [StigData]::GetHighestStigVersion($Technology, $TechnologyRole, $TechnologyVersion)
+            $this.StigVersion = [STIG]::GetHighestStigVersion($Technology, $TechnologyRole, $TechnologyVersion)
         }
         else
         {
@@ -159,7 +185,7 @@ Class StigData
     #>
     [void] SetStigPath ()
     {
-        $path = "$([StigData]::GetRootPath())\$($this.Technology.ToString())-$($this.TechnologyVersion.Name)-$($this.TechnologyRole.Name)-$($this.StigVersion).xml"
+        $path = "$([STIG]::GetRootPath())\$($this.Technology.ToString())-$($this.TechnologyVersion.Name)-$($this.TechnologyRole.Name)-$($this.StigVersion).xml"
 
         if (Test-Path -Path $path)
         {
@@ -405,7 +431,7 @@ Class StigData
     #>
     static [Version] GetHighestStigVersion ([Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion)
     {
-        $highestStigVersionInTarget = (Get-ChildItem -Path $([StigData]::GetRootPath()) -Exclude "*org*").BaseName |
+        $highestStigVersionInTarget = (Get-ChildItem -Path $([STIG]::GetRootPath()) -Exclude "*org*").BaseName |
                                         Where-Object {$PSItem -like "*$($Technology.Name)-$($TechnologyVersion.Name)-$($TechnologyRole.Name)*"} |
                                             Foreach-Object {($PsItem -split "-")[3]} |
                                                 Select-Object -unique |
@@ -426,7 +452,7 @@ Class StigData
     static [PSObject[]] GetAvailableStigs ()
     {
         $childItemParameters = @{
-            Path = "$([StigData]::GetRootPath())"
+            Path = "$([STIG]::GetRootPath())"
             Exclude = "*.org.*"
             Include = "*.xml"
             File = $true

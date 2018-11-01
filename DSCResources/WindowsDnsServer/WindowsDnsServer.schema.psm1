@@ -101,7 +101,7 @@ Configuration WindowsDnsServer
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole    = [TechnologyRole]::New( "DNS", $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
     #### BEGIN DO NOT MODIFY ####
