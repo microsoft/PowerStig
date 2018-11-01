@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         ADAuditPath = Verify the auditing configuration for (the)?
         adminShares = (?=.*?\\bADMIN\\b\\$)(?=.*?\\bC\\b\\$)(?=.*?\\bIPC\\b\\$).*$
         cDrive = system drive's root directory

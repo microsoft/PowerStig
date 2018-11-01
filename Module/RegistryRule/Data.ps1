@@ -4,7 +4,7 @@
 # These are the registry types that are accepted by the registry DSC resource
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
 
         blankString = \\(Blank\\)
         enabledOrDisabled = Enable(d)?|Disable(d)?
@@ -41,7 +41,7 @@ data regularExpression
 
 data dscRegistryValueType
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         REG_SZ         = String
         REG_BINARY     = Binary
         REG_DWORD      = Dword

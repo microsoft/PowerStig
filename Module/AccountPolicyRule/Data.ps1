@@ -3,7 +3,7 @@
 # Account policy name fixes
 data policyNameFixes
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         Minimum password length,                   = Minimum password length
         Store password using reversible encryption = Store passwords using reversible encryption
 '@

@@ -4,7 +4,7 @@
 # This is used to centralize the regEx patterns
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         McAfee = McAfee Agent
         SmartCardRemovalPolicy = Smart Card Removal Policy
         SecondaryLogon = Secondary Logon
@@ -14,7 +14,7 @@ data regularExpression
 
 data servicesDisplayNameToName
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         Active Directory Domain Services = NTDS
         DFS Replication = DFSR
         DNS Client = Dnscache

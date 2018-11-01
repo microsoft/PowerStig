@@ -1,6 +1,6 @@
 data fileContentRegex
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         BetweenAllQuotes           = ({0}|"|{1})[\\s\\S]*?("|{0}|{1}|{2})
         RegexToRemove              = "|{0}|{1}|{2}
         TwoTo5CapitalLetters       = [A-Z]{2,5}

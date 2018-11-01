@@ -8,7 +8,7 @@
 #>
 data propertyMap
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
     AccountPolicyRule            = PolicyValue
     AuditPolicyRule              = Ensure
     RegistryRule                 = ValueData

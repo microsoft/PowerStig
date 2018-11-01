@@ -4,7 +4,7 @@
 # This is used to centralize the regEx patterns
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         allEvents = \\"All\\sevents\\"
         nonLetters = [^a-zA-Z ]
         textBetweenTheTab = the\\s(?s)(.*)tab\\.
@@ -13,7 +13,7 @@ data regularExpression
 
 data dnsServerSetting
 {
-    ConvertFrom-StringData @'
+    ConvertFrom-StringData -StringData @'
         Event Logging = EventLogLevel
         Forwarders    = NoRecursion
 '@

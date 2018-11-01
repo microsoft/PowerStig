@@ -3,7 +3,7 @@
 
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         customFields            = >>
         logFlags                = (?<=(")?Select Fields(")?, verify at a minimum the following fields are checked:).+(?=\.)
         logFormat               = Verify the "Format:" under "Log File" is configured to
@@ -16,7 +16,7 @@ data regularExpression
 
 data logflagsConstant
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         Client IP Address = ClientIP
         Date              = Date
         Method            = Method

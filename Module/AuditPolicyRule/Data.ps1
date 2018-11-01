@@ -3,7 +3,7 @@
 # This is used to centralize the regEx patterns
 data regularExpressions
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
     AuditPolicyLine  = (-|>)> (.*?) -
     AuditPolicySplit = >>|->|-
 '@
@@ -11,7 +11,7 @@ data regularExpressions
 
 data auditPolicySubcategories
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         Security System Extension =
         System Integrity =
         IPsec Driver =
@@ -76,7 +76,7 @@ data auditPolicySubcategories
 # Audit policy matches
 data auditPolicyFlags
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         Success =
         Failure =
 '@

@@ -4,7 +4,7 @@
 # This is used to centralize the regEx patterns
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         WinEventLogPath = Logs\\\\Microsoft\\\\Windows
 '@
 }

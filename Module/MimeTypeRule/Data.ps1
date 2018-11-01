@@ -3,7 +3,7 @@
 
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         mimeTypeAbsent  = verify MIME types for OS shell program extensions have been removed
         mimeType        = (?<=)^[.].+(?=)
 

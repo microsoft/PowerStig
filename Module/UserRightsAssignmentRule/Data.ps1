@@ -2,7 +2,7 @@
 # This is used to validate strings and return the internal windows constant
 data userRightNameToConstant
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         Access Credential Manager as a trusted caller = SeTrustedCredManAccessPrivilege
         Access this computer from the network = SeNetworkLogonRight
         Act as part of the operating system = SeTcbPrivilege

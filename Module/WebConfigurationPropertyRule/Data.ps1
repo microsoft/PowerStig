@@ -3,7 +3,7 @@
 
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         autoEncryptionMethod    = "Auto" is selected for the Encryption method
         CGIModules              = "Allow unspecified CGI modules"
         configSection           = (?<=\")system.+?(?=\")

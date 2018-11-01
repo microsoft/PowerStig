@@ -5,7 +5,7 @@
 
 data regularExpression
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         WindowsFeatureName = Get-WindowsFeature\\s-Name\\s*\\w+.\\w+
         FeatureNameEquals = FeatureName\\s-eq\\s*\\S*
         FeatureNameSpaceColon = FeatureName\\s\\:\\s\\S*
