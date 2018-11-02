@@ -400,14 +400,15 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
                 $CheckContent -NotMatch "For 32 bit production systems" -and
                 $CheckContent -NotMatch "For 32-bit applications"
+                $CheckContent -Notmatch "Review the Catalog"
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and
                 $CheckContent -Match "HKLM|HKCU"
             ) -or
             (
-                $CheckContent -match "HKLM|HKCU" -and
-                $CheckContent -match "REG_DWORD"
+                $CheckContent -Match "HKLM|HKCU" -and
+                $CheckContent -Match "REG_DWORD"
             )
         )
         {
