@@ -43,7 +43,7 @@ try
                     foreach ($hash in $OrgSettingHashtable.GetEnumerator())
                     {
                         $newOrgSetting = [OrganizationalSetting]::new($hash.Key, $hash.Value)
-                        $newOrgSetting.StigRuleId | Should Be $hash.Key
+                        $newOrgSetting.RuleId | Should Be $hash.Key
                         $newOrgSetting.Value | Should Be $hash.Value
                     }
                 }
@@ -55,8 +55,8 @@ try
 
                     foreach ($node in $OrgSettingXml.OrganizationalSettings.ChildNodes)
                     {
-                        $orgSetting = $orgSettingArray.Where( {$_.StigRuleId -eq $node.id})
-                        $orgSetting.StigRuleId | Should Be $node.id
+                        $orgSetting = $orgSettingArray.Where( {$_.RuleId -eq $node.id})
+                        $orgSetting.RuleId | Should Be $node.id
                         $orgSetting.Value | Should Be $node.value
                     }
                 }
@@ -66,8 +66,8 @@ try
 
                     foreach ($hash in $OrgSettingHashtable.GetEnumerator())
                     {
-                        $orgSetting = $orgSettingArray.Where( {$_.StigRuleId -eq $hash.Key})
-                        $orgSetting.StigRuleId | Should Be $hash.Key
+                        $orgSetting = $orgSettingArray.Where( {$_.RuleId -eq $hash.Key})
+                        $orgSetting.RuleId | Should Be $hash.Key
                         $orgSetting.Value | Should Be $hash.Value
                     }
                 }

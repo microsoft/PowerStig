@@ -89,8 +89,8 @@ try
                 # $organizationalSettings = $stigData.OrganizationalSettings
                 # foreach ($hash in $orgSettingHashtable.GetEnumerator())
                 # {
-                #     $orgSetting = $organizationalSettings.Where( {$_.StigRuleId -eq $hash.Key})
-                #     $orgSetting.StigRuleId | Should Be $hash.Key
+                #     $orgSetting = $organizationalSettings.Where( {$_.RuleId -eq $hash.Key})
+                #     $orgSetting.RuleId | Should Be $hash.Key
                 #     $orgSetting.Value | Should Be $hash.Value
                 # }
 
@@ -185,8 +185,8 @@ try
                     $organizationalSettings = $stigData.OrganizationalSettings
                     foreach ($hash in $orgSettingHashtable.GetEnumerator())
                     {
-                        $orgSetting = $organizationalSettings.Where( {$_.StigRuleId -eq $hash.Key})
-                        $orgSetting.StigRuleId | Should Be $hash.Key
+                        $orgSetting = $organizationalSettings.Where( {$_.RuleId -eq $hash.Key})
+                        $orgSetting.RuleId | Should Be $hash.Key
                         $orgSetting.Value | Should Be $hash.Value
                     }
                 }
@@ -198,7 +198,7 @@ try
 
                     foreach ($rule in $stigData.OrganizationalSettings)
                     {
-                        $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.StigRuleId )']" -ErrorAction Stop ).Node
+                        $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.RuleId )']" -ErrorAction Stop ).Node
 
                         if ($null -ne $ruleToCheck)
                         {

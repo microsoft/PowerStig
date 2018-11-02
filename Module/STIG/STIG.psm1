@@ -240,7 +240,7 @@ Class STIG
             {
                 foreach ($orgSetting in $mergedOrgSettings)
                 {
-                    $matchingOrgSetting = $this.OrganizationalSettings.Where({$PSItem.StigRuleId -eq $orgSetting.StigRuleId})
+                    $matchingOrgSetting = $this.OrganizationalSettings.Where({$PSItem.RuleId -eq $orgSetting.RuleId})
                     if ($matchingOrgSetting)
                     {
                         $orgSetting.Value = $matchingOrgSetting.Value
@@ -260,7 +260,7 @@ Class STIG
                 {
                     if ( $rule.OrganizationValueRequired -eq $true )
                     {
-                        $orgSetting = $this.OrganizationalSettings.where({$PSItem.StigRuleId -eq $rule.id})
+                        $orgSetting = $this.OrganizationalSettings.where({$PSItem.RuleId -eq $rule.id})
 
                         if ( -not $orgSetting )
                         {
