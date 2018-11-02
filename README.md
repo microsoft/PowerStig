@@ -124,3 +124,4 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
+* [@erjenkin](https://github.com/erjenkin) (Eric Jenkins)
