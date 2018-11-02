@@ -194,18 +194,16 @@ try
                 It 'MergeOrganizationalSettings: Should merge instance OrganizationalSettings into StigXml' {
                     $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
 
-                    $propertyMap = [OrganizationalSetting]::PropertyMap()
-
                     foreach ($rule in $stigData.OrganizationalSettings)
                     {
                         $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.RuleId )']" -ErrorAction Stop ).Node
 
                         if ($null -ne $ruleToCheck)
                         {
-                            $ParentNodeName = $ruleToCheck.ParentNode.Name
-                            if ($ParentNodeName -ne "SkipRule")
+                            $ruleType = $ruleToCheck.ParentNode.Name
+                            if ($ruleType -ne "SkipRule")
                             {
-                                $OverridePropertyName = $propertyMap.$ParentNodeName
+                                $OverridePropertyName = [scriptblock]::Create("[$ruleType]::OverrideValue").Invoke()
                                 $ruleToCheck.$OverridePropertyName | Should Be $rule.Value
                             }
                         }
