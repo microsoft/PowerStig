@@ -1001,7 +1001,14 @@ function Split-MultipleRegistryEntries
 
         if ($paths.Count -lt 2)
         {
+            if ( $paths -match " and the " )
+        {
+            $paths = $paths -split " and the "
+        }
+        else
+        {
             $paths = $paths -split " and "
+        }
         }
         foreach ($path in $paths)
         {
