@@ -397,15 +397,16 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "Permission(s|)" -and
                 $CheckContent -NotMatch "SupportedEncryptionTypes" -and
                 $CheckContent -NotMatch "Sql Server" -and
-                $CheckContent -NotMatch "v1607 of Windows 10"
+                $CheckContent -NotMatch "v1607 of Windows 10" -and
+                $CheckContent -Notmatch "Review the Catalog"
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and
                 $CheckContent -Match "HKLM|HKCU"
             ) -or
             (
-                $CheckContent -match "HKLM|HKCU" -and
-                $CheckContent -match "REG_DWORD"
+                $CheckContent -Match "HKLM|HKCU" -and
+                $CheckContent -Match "REG_DWORD"
             )
         )
         {
