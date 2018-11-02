@@ -1,6 +1,8 @@
 # Versions
 
 ## Unreleased
+* Added the following STIGs
+  * IIS Server 8.5 STIG V1R5
 
 * Added the following STIGs
   * IIS Server 8.5 STIG V1R5
