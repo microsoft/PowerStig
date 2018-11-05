@@ -115,7 +115,7 @@ Configuration IisSite
     $technology = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole = [TechnologyRole]::New( "IISSite", $technologyVersion )
-    $stigDataObject = [STIG]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
+    $stigDataObject = [StigData]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleType, $skipRule )
 
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
