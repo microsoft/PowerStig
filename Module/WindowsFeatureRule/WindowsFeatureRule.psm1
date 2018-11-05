@@ -160,7 +160,15 @@ Class WindowsFeatureRule : Rule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'WindowsOptionalFeature'
+        # Assigns the appropriate Windows Feature DSC Resource
+        if ($global:stigTitle -match 'Windows 10')
+        {
+            $this.DscResource = 'WindowsOptionalFeature'
+        }
+        else
+        {
+            $this.DscResource = 'WindowsFeature'
+        }
     }
     #endregion
 }
