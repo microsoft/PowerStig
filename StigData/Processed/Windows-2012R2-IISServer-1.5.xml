@@ -1,4 +1,4 @@
-<DISASTIG id="IIS_8-5_Server_STIG" version="1.5" created="11/2/2018">
+<DISASTIG id="IIS_8-5_Server_STIG" version="1.5" created="11/5/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -992,7 +992,7 @@ Verify the "Allow unspecified ISAPI modules" check box is not checked</RawString
     </Rule>
   </WebConfigurationPropertyRule>
   <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-76713" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsOptionalFeature">
+    <Rule id="V-76713" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsFeature">
       <FeatureName>Web-DAV-Publishing</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
