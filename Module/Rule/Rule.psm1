@@ -42,16 +42,16 @@ foreach ($supportFile in $supportFileList)
 #>
 Class Rule : ICloneable
 {
-    [String] $Id
-    [String] $Title
+    [string] $Id
+    [string] $Title
     [severity] $Severity
     [status] $ConversionStatus
-    [String] $RawString
+    [string] $RawString
     hidden [string[]] $SplitCheckContent
     [Boolean] $IsNullOrEmpty
     [Boolean] $OrganizationValueRequired
-    [String] $OrganizationValueTestString
-    [String] $DscResource
+    [string] $OrganizationValueTestString
+    hidden [string] $DscResource
 
     <#
         .SYNOPSIS
@@ -231,22 +231,6 @@ Class Rule : ICloneable
 
     <#
         .SYNOPSIS
-            Sets the Dsc resource that can use the object
-        .DESCRIPTION
-            Sets the Dsc resource that can use the object
-    #>
-    [void] SetStigRuleResource ()
-    {
-        $thisDscResource = Get-StigRuleResource -RuleType $this.GetType().ToString()
-
-        if ( -not $this.SetStatus( $thisDscResource ) )
-        {
-            $this.set_dscresource( $thisDscResource )
-        }
-    }
-
-    <#
-        .SYNOPSIS
             Splits the check-content element in the xccdf into an array
         .DESCRIPTION
             Splits the check-content element in the xccdf into an array
@@ -279,19 +263,6 @@ Class Rule : ICloneable
             ForEach-Object { $PSitem.ToString().Trim() }
 
         return $return
-    }
-
-    <#
-        .SYNOPSIS
-            Returns the rule type that is should be converted to
-        .DESCRIPTION
-            Looks at the check-content data and returns the rule type that is should be converted to.
-        .PARAMETER CheckContent
-            The rule text from the check-content element in the xccdf
-    #>
-    static [RuleType[]] GetRuleTypeMatchList ( [String] $CheckContent )
-    {
-        return Get-RuleTypeMatchList -CheckContent $CheckContent
     }
 
     <#
@@ -360,5 +331,9 @@ Class Rule : ICloneable
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
 
+    hidden [void] SetDscResource ()
+    {
+        throw 'SetDscResource must be implemented in the child class'
+    }
     #endregion
 }

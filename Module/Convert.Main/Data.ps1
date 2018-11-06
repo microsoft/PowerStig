@@ -3,7 +3,7 @@
 
 data xmlAttribute
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         stigId             = id
         stigVersion        = version
         stigConvertCreated = created
@@ -21,7 +21,7 @@ data xmlAttribute
 
 data xmlElement
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         stigConvertRoot = DISASTIG
 
         organizationalSettingRoot  = OrganizationalSettings
@@ -29,9 +29,9 @@ data xmlElement
 '@
 }
 
-data DscResourceModule
+data dscResourceModule
 {
-    ConvertFrom-StringData -stringdata @'
+    ConvertFrom-StringData -StringData @'
         AccountPolicyRule               = SecurityPolicyDsc
         AuditPolicyRule                 = AuditPolicyDsc
         DnsServerSettingRule            = xDnsServer
