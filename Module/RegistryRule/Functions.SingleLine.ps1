@@ -183,6 +183,10 @@ function Get-RegistryValueTypeFromSingleLineStig
     {
         if ($checkContent | Select-String -Pattern "does not exist, this is not a finding")
         {
+        else
+        }
+        if ($CheckContent | Select-String -Pattern "registry key exists, but with no entires, this is not a finding")
+        {
             return "Does Not Exist"
         }
         $valueType = ""

@@ -510,7 +510,7 @@ function Get-ValidEnabledOrDisabled
     )
     <#
         There is an edge case where Enabled|Disabled is used in place of the Dword int
-        Get the integer value for the string, otherwise leave the data valuse as is.
+        Get the integer value for the string, otherwise leave the data value as is.
     #>
     if ( $ValueType -eq 'Dword' -and -not (Test-IsValidDword -ValueData $ValueData) )
     {
@@ -1002,13 +1002,13 @@ function Split-MultipleRegistryEntries
         if ($paths.Count -lt 2)
         {
             if ( $paths -match " and the " )
-        {
-            $paths = $paths -split " and the "
-        }
-        else
-        {
-            $paths = $paths -split " and "
-        }
+            {
+                $paths = $paths -split " and the "
+            }
+            else
+            {
+                $paths = $paths -split " and "
+            }
         }
         foreach ($path in $paths)
         {
