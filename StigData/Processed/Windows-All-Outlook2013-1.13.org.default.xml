@@ -6,8 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings version="1.13">
-  <!-- Ensure 'V-17761.a' -match '30|132' -->
-  <OrganizationalSetting id="V-17761.a" value="132" />
-  <!-- Ensure 'V-17776' -match '4000|16384'-->
-  <OrganizationalSetting id="V-17776" value="4000" />
+  <!-- Ensure -->
+  <OrganizationalSetting id="V-17761.a" value="LOCAL_STIG_SETTING_HERE" />
 </OrganizationalSettings>

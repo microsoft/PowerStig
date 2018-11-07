@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/2/2018">
+<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/7/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -760,16 +760,16 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '30|132'</OrganizationValueTestString>
+      <OrganizationValueTestString />
       <RawString>Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)</RawString>
-      <ValueData>132</ValueData>
+      <ValueData></ValueData>
       <ValueName>PlainWrapLen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17761.b" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is “REG_DWORD = 1”, this is not a finding</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>value for HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is “REG_DWORD = 1”, this is not a finding.</RawString>
@@ -885,7 +885,7 @@ Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is
     <Rule id="V-17775" severity="medium" conversionstatus="pass" title="DTOO245 - Lvl 2 File Extensions" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\security\</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\security</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2013 &gt;&gt; Security &gt;&gt; Security Form Settings &gt;&gt; Attachment Security "Remove file extensions blocked as Level 2" is set to "Disabled".
@@ -904,8 +904,8 @@ Criteria: If the registry value “FileExtensionsRemoveLevel2” exists, this is
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\pubcal</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '4000|16384'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2013 -&gt; Outlook Options -&gt; Preferences -&gt; Calendar Options -&gt; Office.com Sharing Service "Restrict level of calendar details users can publish" is "Enabled (Disables 'Full details' and 'Limited details')".
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
@@ -913,7 +913,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\pubcal
 
 Criteria: If the value PublishCalendarDetailsPolicy is REG_DWORD = 4000 (hex) or 16384 (Decimal), this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>4000</ValueData>
       <ValueName>PublishCalendarDetailsPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1133,7 +1133,7 @@ HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\rss
 
 Criteria: If the REG_DWORD value for "Disable" is 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>Turn off RSS feature</ValueName>
+      <ValueName>Disable</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17812" severity="medium" conversionstatus="pass" title="DTOO231 - Unicode use when dragging Email " dscresource="cAdministrativeTemplate">

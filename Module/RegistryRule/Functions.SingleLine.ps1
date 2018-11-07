@@ -181,6 +181,11 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
+        $valueType = $checkContent | Select-String -Pattern '((?<=If the\s)(.*)(?<=DWORD))'
+    }
+
+    if (-not $valueType)
+    {
         if ($checkContent | Select-String -Pattern "does not exist, this is not a finding")
         {
             return "Does Not Exist"
@@ -243,12 +248,28 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
+        if ($checkContent -match 'If the REG_DWORD')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=for\s")(.*)(?<="))'
+        }
+    }
+
+    if (-not $valueName)
+    {
         $valueName = $checkContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
     }
 
     if (-not $valueName)
     {
         $valueName = $checkContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
+    }
+
+    if ($valueName)
+    {
+        if ($checkContent -match 'a value of between')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=gs\\)(.*)(?<=Len\s))'
+        }
     }
 
     if (-not $valueName)
@@ -262,6 +283,14 @@ function Get-RegistryValueNameFromSingleLineStig
     if (-not $valueName)
     {
         $valueName = $checkContent | Select-String -Pattern '((?<=for\s).*)'
+    }
+
+    if ($valueName)
+    {
+        if ($checkContent -match 'Message Plain Format')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=il\\)(.*)(?<=e\s))'
+        }
     }
 
     if (-not $valueName)
@@ -333,6 +362,14 @@ function Get-RegistryValueDataFromSingleStig
     if (-not $valueData)
     {
         $valueData = $checkContent | Select-String -Pattern "((?<=value\sof).*(?=for))"
+    }
+
+    if ($valueData)
+    {
+    if ($checkContent -match 'If the value PublishCalendarDetailsPolicy')
+        {
+            $valueData = $checkContent | Select-String -Pattern "((?<=is\s)(.*)(?=\sor))"
+        }
     }
 
     if (-not $valueData)
