@@ -15,6 +15,7 @@ foreach ($rule in $rules)
             KeyValueName = $rule.Key + '\' + $rule.ValueName
             Data         = $valueData
             Type         = $rule.ValueType
+            Ensure       = $rule.Ensure
         }
     }
 }
