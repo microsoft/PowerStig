@@ -43,7 +43,7 @@ Configuration Office
         $OfficeApp,
 
         [Parameter()]
-        [ValidateSet('1.6', '1.7', '1.12','1.13')]
+        [ValidateSet('1.6', '1.7', '1.12', '1.13')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
