@@ -186,7 +186,25 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
+        if ($checkContent | Select-String -Pattern "exists, this is a finding")
+        {
+            return "Does Not Exist"
+        }
+        $valueType = ""
+    }
+
+    if (-not $valueType)
+    {
         if ($checkContent | Select-String -Pattern "does not exist, this is not a finding")
+        {
+            return "Does Not Exist"
+        }
+        $valueType = ""
+    }
+
+    if (-not $valueType)
+    {
+        if ($checkContent | Select-String -Pattern "with entries, this is a finding")
         {
             return "Does Not Exist"
         }
@@ -274,7 +292,20 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
+        if ($checkContent -match 'FileExtensionsRemoveLevel')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=the registry value\s)(.*)(?<=1|2))'
+        }
+    }
+
+    if (-not $valueName)
+    {
         if ($checkContent -match 'the policy value')
+
+        {
+            $valueName = $checkContent | Select-String -Pattern '(?<=ty\\)(.*)(?<=)'
+        }
+        else
         {
             $valueName = $checkContent | Select-String -Pattern '(?<=")(.*)(?="\sis)'
         }
