@@ -1,6 +1,7 @@
 # Versions
 
 ## Unreleased
+  * DotNet Framework 4.0 STIG V1R6
 
 ## 2.2.0.0
   
@@ -12,7 +13,6 @@
   * Microsoft PowerPoint 2013 Stig V1R6
   * Microsoft Excel 2013 STIG V1R7
   * Microsoft Word 2013 STIG V1R6
-  * DotNet Framework 4.0 STIG V1R6
 
 * Added the following DSC Composite Resources
   * Microsoft Office 2013 STIGs

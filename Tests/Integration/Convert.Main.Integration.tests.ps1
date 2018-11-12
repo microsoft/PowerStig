@@ -392,7 +392,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_DotNet_Framework_4-0_STIG_V1R6_Manual-xccdf.xml' = @{
+        'U_Microsoft_DotNet_Framework4-0_STIG_V1R6_Manual-xccdf.xml' = @{
             AccountPolicyRule = $null
             AuditPolicyRule = $null
             DnsServerRootHintRule = $null
