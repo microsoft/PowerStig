@@ -294,7 +294,7 @@ function Get-RegistryValueNameFromSingleLineStig
     {
         if ($checkContent -match 'FileExtensionsRemoveLevel')
         {
-            $valueName = $checkContent | Select-String -Pattern '((?<=the registry value\s)(.*)(?<=1|2))'
+            $valueName = $checkContent | Select-String -Pattern '((?<=the registry value\s.)(.*)(?=.\We))'
         }
     }
 

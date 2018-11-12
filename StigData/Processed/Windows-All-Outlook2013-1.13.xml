@@ -879,7 +879,7 @@ Criteria: HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
 Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is a finding.
 </RawString>
       <ValueData></ValueData>
-      <ValueName>“FileExtensionsRemoveLevel1</ValueName>
+      <ValueName>FileExtensionsRemoveLevel1</ValueName>
       <ValueType />
     </Rule>
     <Rule id="V-17775" severity="medium" conversionstatus="pass" title="DTOO245 - Lvl 2 File Extensions" dscresource="cAdministrativeTemplate">
@@ -897,7 +897,7 @@ HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
 Criteria: If the registry value “FileExtensionsRemoveLevel2” exists, this is a finding.
 </RawString>
       <ValueData></ValueData>
-      <ValueName>“FileExtensionsRemoveLevel2</ValueName>
+      <ValueName>FileExtensionsRemoveLevel2</ValueName>
       <ValueType />
     </Rule>
     <Rule id="V-17776" severity="medium" conversionstatus="pass" title="DTOO218 - Calendar details published by users" dscresource="cAdministrativeTemplate">
