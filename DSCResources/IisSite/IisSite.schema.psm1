@@ -74,7 +74,7 @@ Configuration IisSite
         $OsVersion,
 
         [Parameter()]
-        [ValidateSet('1.2')]
+        [ValidateSet('1.2','1.5')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
