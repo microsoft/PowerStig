@@ -26,7 +26,7 @@ foreach ( $rule in $rules )
     }
     else
     {
-        if ( $rule.FeatureName -eq 'SMB1Protocol' )
+        if ($rule.FeatureName -eq 'SMB1Protocol')
         {
             $rule.FeatureName = 'FS-SMB1'
         }
