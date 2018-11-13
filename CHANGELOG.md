@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added the following STIGs
+  * Windows AD Domain V2R10
+
 ## 2.2.0.0
   
 * Added the following STIGs

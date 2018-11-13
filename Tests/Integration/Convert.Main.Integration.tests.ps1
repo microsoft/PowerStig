@@ -512,16 +512,16 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml'        = @{
+        'U_Active_Directory_Domain_STIG_V2R11_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            DocumentRule                 = 1
+            DocumentRule                 = 13
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 4
+            ManualRule                   = 23
             MimeTypeRule                 = $null
             PermissionRule               = $null
             ProcessMitigationRule        = $null
