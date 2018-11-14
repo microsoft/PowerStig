@@ -488,7 +488,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_MS_IIS_8-5_Server_STIG_V1R5_Manual-xccdf.xml'                 = @{
+        'U_MS_IIS_8-5_Server_STIG_V1R5_Manual-xccdf.xml'              = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -632,7 +632,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml'        = @{
+        'U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml'                  = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
