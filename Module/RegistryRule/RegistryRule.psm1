@@ -399,7 +399,8 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "Sql Server" -and
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
                 $CheckContent -NotMatch "For 32 bit production systems" -and
-                $CheckContent -NotMatch "For 32-bit applications"
+                $CheckContent -NotMatch "For 32-bit applications" -and
+                $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key'
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and

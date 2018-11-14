@@ -1,4 +1,4 @@
-<DISASTIG id="MS_Dot_Net_Framework" version="1.6" created="11/6/2018">
+<DISASTIG id="MS_Dot_Net_Framework" version="1.6" created="11/13/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-7055" severity="medium" conversionstatus="pass" title="APPNET0031 No Strong Name Verification" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
