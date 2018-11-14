@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Added the following STIGs
   * DotNet Framework 4.0 STIG V1R6
 
 ## 2.2.0.0
