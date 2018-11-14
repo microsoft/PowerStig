@@ -1,4 +1,4 @@
-<DISASTIG id="IIS_8-5_Site_STIG" version="1.5" created="11/9/2018">
+<DISASTIG id="IIS_8-5_Site_STIG" version="1.5" created="11/14/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
