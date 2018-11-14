@@ -43,7 +43,7 @@ Configuration DotNetFramework
         $FrameworkVersion,
 
         [Parameter()]
-        [ValidateSet('1.4','1.6')]
+        [ValidateSet('1.4')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
