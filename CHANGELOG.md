@@ -5,9 +5,6 @@
 * Added the following STIGs
   * IIS Server 8.5 STIG V1R5
 
-* Added the following STIGs
-  * IIS Server 8.5 STIG V1R5
-
 ## 2.2.0.0
   
 * Added the following STIGs
