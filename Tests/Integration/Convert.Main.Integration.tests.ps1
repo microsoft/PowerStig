@@ -392,30 +392,6 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MS_DotNet_Framework_4-0_STIG_V1R6_Manual-xccdf.xml' = @{
-            AccountPolicyRule = $null
-            AuditPolicyRule = $null
-            DnsServerRootHintRule = $null
-            DnsServerSettingRule = $null
-            DocumentRule = 4
-            FileContentRule = $null
-            GroupRule = $null
-            IisLoggingRule = $null
-            ManualRule = 12
-            MimeTypeRule = $null
-            PermissionRule = $null
-            ProcessMitigationRule = $null
-            RegistryRule = $null
-            SecurityOptionRule = $null
-            ServiceRule = $null
-            SqlScriptQueryRule = $null
-            UserRightRule = $null
-            WebAppPoolRule = $null
-            WebConfigurationPropertyRule = $null
-            WinEventLogRule = $null
-            WindowsFeatureRule = $null
-            WmiRule = $null
-            }            
         'U_Microsoft_DotNet_Framework_4-0_STIG_V1R4_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
