@@ -4,6 +4,7 @@
 
 * Added the following STIGs
   * DotNet Framework 4.0 STIG V1R6
+  * Windows Domain V2R11
 
 ## 2.2.0.0
   
