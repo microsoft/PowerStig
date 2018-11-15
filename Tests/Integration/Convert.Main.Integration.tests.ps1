@@ -368,7 +368,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml'                   = @{
+        'U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml'                = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
