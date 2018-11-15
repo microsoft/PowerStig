@@ -1,4 +1,4 @@
-<DISASTIG id="Active_Directory_Domain" version="2.11" created="11/13/2018">
+<DISASTIG id="Active_Directory_Domain" version="2.11" created="11/2/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-8521" severity="low" conversionstatus="pass" title="Object Ownership Delegation" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
