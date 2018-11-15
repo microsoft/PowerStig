@@ -206,7 +206,7 @@ function Get-RegistryValueTypeFromSingleLineStig
     {
         if ($checkContent | Select-String -Pattern "with entries, this is a finding")
         {
-            return "Does Not Exist"
+            return "Does Not Exist" 
         }
         $valueType = ""
     }
