@@ -415,7 +415,7 @@ try
             WinEventLogRule = $null
             WindowsFeatureRule = $null
             WmiRule = $null
-            }            
+        } 
         'U_MS_DotNet_Framework_4-0_STIG_V1R4_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
