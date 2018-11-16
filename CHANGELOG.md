@@ -4,7 +4,6 @@
 
 * Added the following STIGs
   * Windows Domain V2R11
-  
 
 ## 2.2.0.0
   
