@@ -464,7 +464,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'       = @{
+        'U_Active_Directory_Domain_STIG_V2R11_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
