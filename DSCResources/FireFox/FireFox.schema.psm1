@@ -39,7 +39,7 @@ Configuration FireFox
         $InstallDirectory = "$env:ProgramFiles\Mozilla Firefox",
 
         [Parameter()]
-        [ValidateSet('4.21','4.23')]
+        [ValidateSet('4.21', '4.23')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
