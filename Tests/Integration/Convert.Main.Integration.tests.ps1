@@ -536,6 +536,30 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
+        'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml'               = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 1
+            FileContentRule              = 23
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 5
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
         'U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml'          = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
