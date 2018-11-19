@@ -136,7 +136,7 @@ try
             Hive                        = 'HKEY_CURRENT_USER'
             Path                        = '\Software\Policies\Microsoft\Office\15.0\common\mailsettings'
             OrganizationValueRequired   = 'True'
-            OrganizationValueTestString = "{0} -ge '30' -and {0} -le '132'"
+            OrganizationValueTestString = "'{0}' -ge '30' -and '{0}' -le '132'"
             ValueData                   = $null
             ValueName                   = 'PlainWrapLen'
             ValueType                   = 'DWORD'
