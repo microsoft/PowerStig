@@ -111,7 +111,7 @@ Configuration SqlServer
     $technology        = [Technology]::SqlServer
     $technologyVersion = [TechnologyVersion]::New( $SqlVersion, $technology )
     $technologyRole    = [TechnologyRole]::New( $SqlRole, $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
     #### BEGIN DO NOT MODIFY ####
