@@ -397,7 +397,7 @@ function Get-RegistryValueDataFromSingleStig
 
     if ($valueData)
     {
-    if ($checkContent -match 'If the value PublishCalendarDetailsPolicy')
+        if ($checkContent -match 'If the value PublishCalendarDetailsPolicy')
         {
             $valueData = $checkContent | Select-String -Pattern "((?<=is\s)(.*)(?=\sor))"
         }

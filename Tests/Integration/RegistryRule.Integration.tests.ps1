@@ -9,7 +9,7 @@ try
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\Software\Policies\Microsoft\WindowsMediaPlayer'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = '1'
             ValueName                   = 'GroupPrivacyAcceptance'
             ValueType                   = 'DWORD'
@@ -55,7 +55,7 @@ try
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\System\CurrentControlSet\Control\Session Manager\Subsystems'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = ''
             ValueName                   = 'Optional'
             ValueType                   = 'MultiString'
@@ -95,7 +95,7 @@ try
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\System\CurrentControlSet\Control\Lsa\MSV1_0'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = '537395200'
             ValueName                   = 'NTLMMinServerSec'
             ValueType                   = 'DWORD'
@@ -115,7 +115,7 @@ try
             Hive                        = 'HKEY_CURRENT_USER'
             Path                        = '\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = '23C00'
             ValueName                   = 'State'
             ValueType                   = 'DWORD'
@@ -131,6 +131,19 @@ try
             HKCU\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing Criteria
 
             If the value "State" is "REG_DWORD = 23C00", this is not a finding.'
+        },
+        @{
+            Hive                        = 'HKEY_CURRENT_USER'
+            Path                        = '\Software\Policies\Microsoft\Office\15.0\common\mailsettings'
+            OrganizationValueRequired   = 'True'
+            OrganizationValueTestString = "{0} -ge '30' -and {0} -le '132'"
+            ValueData                   = $null
+            ValueName                   = 'PlainWrapLen'
+            ValueType                   = 'DWORD'
+            Ensure                      = 'Present'
+            DscResource                 = 'cAdministrativeTemplate'
+            CheckContent                = 'If the value for
+            HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
         }
     )
     #endregion
@@ -164,6 +177,9 @@ try
             }
             It 'Should set OrganizationValueRequired to true' {
                 $rule.OrganizationValueRequired | Should Be $registry.OrganizationValueRequired
+            }
+            It 'Should extract the correct OrganizationValueTestString' {
+                $rule.OrganizationValueTestString | Should Be $registry.OrganizationValueTestString
             }
             It 'Should set the correct DscResource' {
                 $rule.DscResource | Should Be $registry.DscResource
