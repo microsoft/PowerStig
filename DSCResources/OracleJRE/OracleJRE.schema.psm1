@@ -89,7 +89,7 @@ Configuration OracleJRE
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( "All", $technology )
     $technologyRole    = [TechnologyRole]::New( "OracleJRE8", $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $orgSettingsObject, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
     #### BEGIN DO NOT MODIFY ####
