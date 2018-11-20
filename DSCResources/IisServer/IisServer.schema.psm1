@@ -12,23 +12,23 @@ using module ..\..\PowerStig.psm1
         The version of the server operating system STIG to apply and monitor
 
     .PARAMETER LogPath
-        The path to store log information 
+        The path to store log information
 
     .PARAMETER StigVersion
         The version of the IIS Server STIG to apply and/or monitor
 
     .PARAMETER Exception
-        A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to 
-        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify 
+        A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
+        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
 
     .PARAMETER OrgSettings
-        The path to the xml file that contains the local organizations preferred settings for STIG 
+        The path to the xml file that contains the local organizations preferred settings for STIG
         items that have allowable ranges.
 
     .PARAMETER SkipRule
         The SkipRule Node is injected into the STIG data and applied to the taget node. The title
-        of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the 
+        of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
         data center when you centralize DSC log collection.
 
     .PARAMETER SkipRuleType
@@ -73,7 +73,7 @@ Configuration IisServer
         [ValidateNotNullOrEmpty()]
         [psobject]
         $Exception,
-        
+
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [psobject]
@@ -105,7 +105,7 @@ Configuration IisServer
     $technology = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole = [TechnologyRole]::New( 'IISServer', $technologyVersion )
-    $stigDataObject = [StigData]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
+    $stigDataObject = [STIG]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
 
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
@@ -120,13 +120,13 @@ Configuration IisServer
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
     . "$resourcePath\windows.AccessControl.ps1"
-    
+
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.WindowsFeature.ps1"
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
-    
+
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.WebConfigProperty.ps1"

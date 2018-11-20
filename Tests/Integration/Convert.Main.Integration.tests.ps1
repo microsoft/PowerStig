@@ -464,7 +464,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_MS_IIS_8-5_Server_STIG_V1R5_Manual-xccdf.xml'              = @{
+        'U_Active_Directory_Domain_STIG_V2R11_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -472,23 +472,23 @@ try
             DocumentRule                 = 13
             FileContentRule              = $null
             GroupRule                    = $null
-            IisLoggingRule               = 5
-            ManualRule                   = 15
-            MimeTypeRule                 = 5
-            PermissionRule               = 1
+            IisLoggingRule               = $null
+            ManualRule                   = 23
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
             ProcessMitigationRule        = $null
-            RegistryRule                 = 5
+            RegistryRule                 = $null
             SecurityOptionRule           = $null
             ServiceRule                  = $null
             SqlScriptQueryRule           = $null
             UserRightRule                = $null
             WebAppPoolRule               = $null
-            WebConfigurationPropertyRule = 8
+            WebConfigurationPropertyRule = $null
             WinEventLogRule              = $null
-            WindowsFeatureRule           = 1
+            WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'       = @{
+        'U_Active_Directory_Domain_V2R11_STIG_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
