@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/12/2018">
+<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/20/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -341,7 +341,8 @@ In some reported configurations, the registry key remains after disabling the se
 If the registry key exists, with entries, this is a finding.
 If the registry key exists, but with no entries, this is not a finding.
 </RawString>
-      <ValueData></ValueData>
+      <ValueData>
+      </ValueData>
       <ValueName>trustedaddins</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -632,9 +633,10 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\OutlookSecureTempFolder
 
 Criteria: If the registry key exists, this is a finding.</RawString>
-      <ValueData></ValueData>
+      <ValueData>
+      </ValueData>
       <ValueName>OutlookSecureTempFolder</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType />
     </Rule>
     <Rule id="V-17734" severity="medium" conversionstatus="pass" title="DTOO280 - Authentication w/Exchange Svr " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
@@ -758,18 +760,18 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
     <Rule id="V-17761.a" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\mailsettings</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -ge '30' -and '{0}' -le '132'</OrganizationValueTestString>
+      <OrganizationValueTestString />
       <RawString>Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)</RawString>
-      <ValueData></ValueData>
+      <ValueData />
       <ValueName>PlainWrapLen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-17761.b" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is “REG_DWORD = 1”, this is not a finding</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>value for HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\mail\Message Plain Format Mime is “REG_DWORD = 1”, this is not a finding.</RawString>
@@ -878,9 +880,10 @@ Criteria: HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
 
 Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is a finding.
 </RawString>
-      <ValueData></ValueData>
+      <ValueData>
+      </ValueData>
       <ValueName>FileExtensionsRemoveLevel1</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType />
     </Rule>
     <Rule id="V-17775" severity="medium" conversionstatus="pass" title="DTOO245 - Lvl 2 File Extensions" dscresource="cAdministrativeTemplate">
       <Ensure>Absent</Ensure>
@@ -896,9 +899,10 @@ HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
 
 Criteria: If the registry value “FileExtensionsRemoveLevel2” exists, this is a finding.
 </RawString>
-      <ValueData></ValueData>
+      <ValueData>
+      </ValueData>
       <ValueName>FileExtensionsRemoveLevel2</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType />
     </Rule>
     <Rule id="V-17776" severity="medium" conversionstatus="pass" title="DTOO218 - Calendar details published by users" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>

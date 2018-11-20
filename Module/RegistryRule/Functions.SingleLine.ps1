@@ -80,9 +80,9 @@ function Get-SingleLineRegistryPath
     {
         $fullRegistryPath = $fullRegistryPath[1].ToString() | Select-String -Pattern "((HKLM|HKCU).*\\security)"
     }
-    if ($fullRegistryPath.ToString() -match "the value for hkcu.*Message\sPlain\sFormat\sMime")
+    if ($fullRegistryPath.ToString() -match "(value for (HKLM|HKCU).*\sis)")
     {
-        $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=\sis))"
+        $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=\sis.*REG_DWORD))"
     }
 
     $fullRegistryPath = $fullRegistryPath.Matches.Value
@@ -279,15 +279,15 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
-        $valueName = $checkContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
-    }
-
-    if ($valueName)
-    {
         if ($checkContent -match 'a value of between')
         {
-            $valueName = $checkContent | Select-String -Pattern '((?<=gs\\)(.*)(?<=Len\s))'
+            $valueName = $checkContent | Select-String -Pattern '((?<=gs\\)(.*)(?<=Len))'
         }
+    }
+
+    if (-not $valueName)
+    {
+        $valueName = $checkContent | Select-String -Pattern '((?<=If the value\s)(.*)(?=is\sR))'
     }
 
     if (-not $valueName)
@@ -313,15 +313,15 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
-        $valueName = $checkContent | Select-String -Pattern '((?<=for\s).*)'
-    }
-
-    if ($valueName)
-    {
-        if ($checkContent -match 'Message Plain Format')
+        if ($checkContent -match 'Message Plain Format Mime')
         {
             $valueName = $checkContent | Select-String -Pattern '((?<=il\\)(.*)(?<=e\s))'
         }
+    }
+
+    if (-not $valueName)
+    {
+        $valueName = $checkContent | Select-String -Pattern '((?<=for\s).*)'
     }
 
     if (-not $valueName)
