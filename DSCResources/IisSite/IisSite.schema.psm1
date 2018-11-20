@@ -22,17 +22,17 @@ using module ..\..\PowerStig.psm1
         The version of the IIS Site STIG version to apply and monitor
 
     .PARAMETER Exception
-        A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to 
-        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify 
+        A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
+        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
 
     .PARAMETER OrgSettings
-        The path to the xml file that contains the local organizations preferred settings for STIG 
+        The path to the xml file that contains the local organizations preferred settings for STIG
         items that have allowable ranges.
 
     .PARAMETER SkipRule
         The SkipRule Node is injected into the STIG data and applied to the taget node. The title
-        of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the 
+        of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
         data center when you centralize DSC log collection.
 
     .PARAMETER SkipRuleType
@@ -115,7 +115,7 @@ Configuration IisSite
     $technology = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole = [TechnologyRole]::New( "IISSite", $technologyVersion )
-    $stigDataObject = [StigData]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
+    $stigDataObject = [STIG]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
 
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
