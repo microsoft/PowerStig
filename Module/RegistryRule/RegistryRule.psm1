@@ -398,7 +398,7 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "SupportedEncryptionTypes" -and
                 $CheckContent -NotMatch "Sql Server" -and
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
-                $CheckContent -Notmatch "Review the Catalog"
+                $CheckContent -NotMatch "Review the Catalog"
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and
