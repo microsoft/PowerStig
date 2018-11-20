@@ -204,7 +204,7 @@ Class IisLoggingRule : Rule
             $CheckContent -Match 'IIS 8\.5' -and
             $CheckContent -NotMatch 'review source IP' -and
             $CheckContent -NotMatch 'verify only authorized groups' -and
-            $CheckContent -NotMatch 'consult with the System Administrator to review' -and
+            $CheckContent -NotMatch 'Confirm|Consult with the System Administrator' -and
             $CheckContent -Notmatch 'If an account associated with roles other than auditors'
         )
         {
