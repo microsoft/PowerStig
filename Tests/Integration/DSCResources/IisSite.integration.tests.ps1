@@ -144,7 +144,6 @@ try
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -WebAppPool $WebAppPool `
                         -WebsiteName $websiteName `
                         -OsVersion $stig.TechnologyVersion `
                         -StigVersion $stig.StigVersion `
