@@ -373,10 +373,10 @@ try
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            DocumentRule                 = 15
+            DocumentRule                 = 16
             FileContentRule              = $null
             GroupRule                    = $null
-            IisLoggingRule               = 5
+            IisLoggingRule               = 4
             ManualRule                   = 12
             MimeTypeRule                 = 5
             PermissionRule               = $null
