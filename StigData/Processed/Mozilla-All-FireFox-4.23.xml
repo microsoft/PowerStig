@@ -1,4 +1,4 @@
-<DISASTIG id="Firefox" version="4.23" created="11/7/2018">
+<DISASTIG id="Firefox" version="4.23" created="11/20/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-15988" severity="medium" conversionstatus="pass" title="DTBF185 - JavaScript can change the status bar text Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -181,9 +181,9 @@ Criteria:  If the parameter is set incorrectly, then this is a finding.  If the 
 </RawString>
       <Value>true</Value>
     </Rule>
-    <Rule id="V-19741" severity="medium" conversionstatus="fail" title="DTBF080 - Firefox Preferences – Auto-update of Firefox" dscresource="ReplaceText">
+    <Rule id="V-19741" severity="medium" conversionstatus="pass" title="DTBF080 - Firefox Preferences – Auto-update of Firefox" dscresource="cJsonFile">
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key />
+      <Key>app.update.enabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Type "about:config" in the browser window.
@@ -197,7 +197,7 @@ Verify that:
 Criteria: If the parameter is set incorrectly, this is a finding.
 
 If this setting is not locked, this is a finding.</RawString>
-      <Value />
+      <Value>true</Value>
     </Rule>
     <Rule id="V-19742" severity="medium" conversionstatus="pass" title="DTBF090 - Firefox Preferences - Addons\ plugin updates" dscresource="ReplaceText">
       <IsNullOrEmpty>False</IsNullOrEmpty>
