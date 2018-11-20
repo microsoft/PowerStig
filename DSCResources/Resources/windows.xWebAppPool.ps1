@@ -3,25 +3,22 @@
 
 $rules = Get-RuleClassData -StigData $stigData -Name 'WebAppPoolRule'
 
-if ($rules)
+$stringBuilder = [System.Text.StringBuilder]::new()
+foreach ($rule in $rules)
 {
-    $stringBuilder = [System.Text.StringBuilder]::new()
-    foreach ($rule in $rules)
-    {
-        $null = $stringBuilder.AppendLine("$($rule.Key) = $($rule.Value)")
-    }
-    
-    foreach ($appPool in $WebAppPool)
-    {
-        $resourceTitle = "[$($rules.id -join ' ')]$appPool"
-        $scriptBlock = [scriptblock]::Create("
-            xWebAppPool '$resourceTitle'
-            {
-                Name = '$appPool'
-                $($stringBuilder.ToString())
-            }"
-        )
-    
-        & $scriptBlock
-    }
+    $null = $stringBuilder.AppendLine("$($rule.Key) = $($rule.Value)")
+}
+
+foreach ($appPool in $WebAppPool)
+{
+    $resourceTitle = "[$($rules.id -join ' ')]$appPool"
+    $scriptBlock = [scriptblock]::Create("
+        xWebAppPool '$resourceTitle'
+        {
+            Name = '$appPool'
+            $($stringBuilder.ToString())
+        }"
+    )
+
+    & $scriptBlock
 }
