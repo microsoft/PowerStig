@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/20/2018">
+<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/21/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -760,9 +760,9 @@ Criteria: If the value AdminSecurityMode is REG_DWORD = 3, this is not a finding
     <Rule id="V-17761.a" severity="medium" conversionstatus="pass" title="DTOO228 - Plain Text Options " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\mailsettings</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>'{0}' -ge '30' -and '{0}' -le '132'</OrganizationValueTestString>
       <RawString>Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)</RawString>
       <ValueData />
       <ValueName>PlainWrapLen</ValueName>

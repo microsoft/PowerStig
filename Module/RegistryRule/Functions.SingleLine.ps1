@@ -418,6 +418,14 @@ function Get-RegistryValueDataFromSingleStig
         $valueData = $checkContent | Select-String -Pattern "(?<=$($valueType)\s=).*"
     }
 
+    if ($valueData)
+    {
+        if ($checkContent -match 'a value of between')
+        {
+            $valueData = $checkContent | Select-String -Pattern "(?<=between\s)(.*)(?<=\s)"
+        }
+    }
+
     $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '')
 
     if ( -not [String]::IsNullOrEmpty( $valueData ) )

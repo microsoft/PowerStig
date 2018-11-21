@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings version="1.13">
-  <!-- Ensure "'V-17761.a' -ge '30' -and 'V-17761.a' -le '132'" -->
-  <OrganizationalSetting id="V-17761.a" value="132"/>
+  <!-- Ensure ''V-17761.a'' -ge '30' -and ''V-17761.a'' -le '132'-->
+  <OrganizationalSetting id="V-17761.a" value="132" />
 </OrganizationalSettings>
