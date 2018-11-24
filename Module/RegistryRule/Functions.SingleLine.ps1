@@ -426,7 +426,7 @@ function Get-RegistryValueDataFromSingleStig
         }
     }
 
-    $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '')
+    $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '').Replace('”', '')
 
     if ( -not [String]::IsNullOrEmpty( $valueData ) )
     {

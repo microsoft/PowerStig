@@ -131,10 +131,15 @@ Class RegistryRule : Rule
         if ([RegistryRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
             [string[]] $splitRules = [RegistryRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            [int] $byte = 97 # Lowercase A
             foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [RegistryRule]::New($StigRule)
+                $copyRule = $StigRule.Clone()
+                $copyRule.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
+                $byte ++
+
+                $copyRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [RegistryRule]::New($copyRule)
             }
         }
         else
