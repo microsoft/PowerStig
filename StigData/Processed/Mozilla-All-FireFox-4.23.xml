@@ -1,254 +1,4 @@
 <DISASTIG id="Firefox" version="4.23" created="11/27/2018">
-  <DocumentRule dscresourcemodule="None">
-    <Rule id="V-15988" severity="medium" conversionstatus="pass" title="DTBF185 - JavaScript can change the status bar text Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>In About:Config, verify that the preference “dom.disable_window_open_feature.status" is set and locked to “true”.
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-    </Rule>
-  </DocumentRule>
-  <FileContentRule dscresourcemodule="FileContentDsc">
-    <Rule id="V-15768" severity="medium" conversionstatus="pass" title="DTBF050 - FireFox Preferences – Verification" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.default_personal_cert</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
-
-Criteria: If the value of "security.default_personal_cert" is set incorrectly or is not locked, then this is a finding.
-</RawString>
-      <Value>Ask Every Time</Value>
-    </Rule>
-    <Rule id="V-15771" severity="medium" conversionstatus="pass" title="DTBF105 - FireFox Preferences – Shell Protocol" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>network.protocol-handler.external.shell</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Procedure: Open a browser window, type "about:config" in the address bar. 
-
-Criteria: If the value of "network.protocol-handler.external.shell" is not "false" or is not locked, then this is a finding. </RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-15772" severity="medium" conversionstatus="pass" title="DTBF110 - FireFox Preferences – Open Confirmation" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>plugin.disable_full_page_plugin_for_types</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open a browser window, type "about:config" in the address bar.
-
-Criteria:  If the “plugin.disable_full_page_plugin_for_types” value is not set to include the following external extensions and not locked, then this is a finding:
-
-PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT PPS, PPT, DOS, DOT, WKS, BAT, PS, EPS, WCH, WCM, WB1, WB3, RTF, DOC, MDB, MDE, WBK, WB1, WCH, WCM, AD, ADP.</RawString>
-      <Value>PDF,FDF,XFDF,LSL,LSO,LSS,IQY,RQY,XLK,XLS,XLT,POT,PPS,PPT,DOS,DOT,WKS,BAT,PS,EPS,WCH,WCM,WB1,WB3,RTF,DOC,MDB,MDE,WBK,WB1,WCH,WCM,AD,ADP</Value>
-    </Rule>
-    <Rule id="V-15774" severity="medium" conversionstatus="pass" title="DTBF140 - FireFox Preferences – Autofill forms" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>browser.formfill.enable</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.formfill.enable" is set to “false” and locked. 
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-15775" severity="medium" conversionstatus="pass" title="DTBF150 - FireFox Preferences – Autofill passwords" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>signon.prefillForms</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>In About:Config, verify that the preference name “signon.prefillForms“ is set to “false” and locked.
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-15776" severity="medium" conversionstatus="pass" title="DTBF160 - FireFox Preferences – Password store" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>signon.rememberSignons</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify that the preference name “signon.rememberSignons" is set and locked to “false”.
-
-Criteria: If the parameter is set incorrectly, then this is a finding.
-
-If the setting is not locked, then this is a finding.</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-15777" severity="medium" conversionstatus="pass" title="DTBF170 - FireFox Preferences - History" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>places.history.enabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar of the browser. Verify that the preference "places.history.enabled" is set to “true”, and locked.
-
-If the parameter for the history preference is set incorrectly, this is a finding. 
-
-If the setting is not locked, this is a finding.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15778" severity="medium" conversionstatus="pass" title="DTBF180 - Pop-up windows" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>dom.disable_window_open_feature.status</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>In About:Config, verify that the preference name “dom.disable_window_open_feature.status " is set to “true” and locked.
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15779" severity="medium" conversionstatus="pass" title="DTBF181 - JavaScript move or resize windows" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>dom.disable_window_move_resize</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>In About:Config, verify that the preference name “dom.disable_window_move_resize" is set and locked to “true”.
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15983.a" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.enable_tls</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify Preference Name "security.enable_tls" is set to the value "true" and locked.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15983.b" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.tls.version.min</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify Preference Name "security.tls.version.min" is set to the value "2" and locked.</RawString>
-      <Value>2</Value>
-    </Rule>
-    <Rule id="V-15983.c" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.tls.version.max</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify Preference Name "security.tls.version.max" is set to the value "3" and locked.</RawString>
-      <Value>3</Value>
-    </Rule>
-    <Rule id="V-15985" severity="medium" conversionstatus="pass" title="DTBF182 - JavaScript raise or lower windows" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>dom.disable_window_flip</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>In About:Config, verify that the preference name “dom.disable_window_flip" is set and locked to “true”.
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15986" severity="medium" conversionstatus="pass" title="DTBF183 - JavaScript Context Menus" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>dom.event.contextmenu.enabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar of the browser.
-
-Verify that the preferences "dom.event.contextmenu.enabled" is set and locked to "false".
-
-Criteria: If the parameter is set incorrectly, then this is a finding.
-
-If the setting is not locked, this is a finding.</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-15987" severity="medium" conversionstatus="pass" title="DTBF184 - JavaScript hiding or changing status bar" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>dom.disable_window_status_change</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar of the browser. Verify that the preference “dom.disable_window_status_change" is set and locked to “true”. 
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15989" severity="medium" conversionstatus="pass" title="DTBF130 - Non-secure Page Warning" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.warn_leaving_secure</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify that the preference name “security.warn_leaving_secure" is set to “true” and locked.
-
-Criteria:  If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-19741" severity="medium" conversionstatus="pass" title="DTBF080 - Firefox Preferences – Auto-update of Firefox" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>app.update.enabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window.
-
-Verify that:
-
-1. The preference name "app.update.enabled" is set to ”true” and locked.
-
-2. Verify that "app.update.url", "app.update.url.details", and "app.update.url.manual" contain url information that point to a trusted internal server or the default setting of “Mozilla.com” or “Mozilla.org”.
-
-Criteria: If the parameter is set incorrectly, this is a finding.
-
-If this setting is not locked, this is a finding.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-19742" severity="medium" conversionstatus="pass" title="DTBF090 - Firefox Preferences - Addons\ plugin updates" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>extensions.update.enabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify the preference “extensions.update.enabled” is set to "false" and locked. 
-
-Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding. 
-</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-19744" severity="medium" conversionstatus="pass" title="DTBF085 - Firefox Preferences – Search update" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>browser.search.update</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify the preference "browser.search.update”  is set to "false" and locked. 
-
-Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding. 
-</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-64891" severity="medium" conversionstatus="pass" title="DTBF186 - Extensions install disabled." dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>xpinstall.enabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open a browser window, type "about:config" in the address bar, then navigate to the setting for Preference Name "xpinstall.enabled" and set the value to “false” and locked.
-
-Criteria: If the value of “xpinstall.enabled” is “false”, this is not a finding.
-
-If the value is locked, this is not a finding.
-</RawString>
-      <Value>false</Value>
-    </Rule>
-    <Rule id="V-79053" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="ReplaceText">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>datareporting.policy.dataSubmissionEnabled</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar of the browser.
-
-Verify that the preferences "datareporting.policy.dataSubmissionEnabled" is set and locked to "false".
-
-Criteria: If the parameter is set incorrectly, this is a finding.
-
-If the setting is not locked, this is a finding.</RawString>
-      <Value>false</Value>
-    </Rule>
-  </FileContentRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-6318" severity="medium" conversionstatus="pass" title="DTBG010 - DoD Root Certificate is not installed" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -265,6 +15,15 @@ Verify the publishing organization is "US Government."
 If there are no entries for the DoD Root CA 2, DoD Root CA 3, and DoD Root CA 4, this is a finding.
 
 Note: In a Windows environment, use of policy setting "security.enterprise_roots.enabled=true" will point Firefox to the Windows Trusted Root Certification Authority Store, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-15768" severity="medium" conversionstatus="pass" title="DTBF050 - FireFox Preferences – Verification" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser address bar. Verify  Preference Name "security.default_personal_cert" is set to "Ask Every Time" and is locked to prevent the user from altering.
+
+Criteria: If the value of "security.default_personal_cert" is set incorrectly or is not locked, then this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-15770" severity="medium" conversionstatus="pass" title="DTBF100 - FireFox Preferences – auto-download actions" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -290,6 +49,24 @@ If the entry exists and the "Action" is 'Save File' or 'Always Ask',  then this 
 If an extension exists and the entry in the Action column is associated with an application that does/can execute the code, then this is a finding.
 </RawString>
     </Rule>
+    <Rule id="V-15771" severity="medium" conversionstatus="pass" title="DTBF105 - FireFox Preferences – Shell Protocol" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Procedure: Open a browser window, type "about:config" in the address bar. 
+
+Criteria: If the value of "network.protocol-handler.external.shell" is not "false" or is not locked, then this is a finding. </RawString>
+    </Rule>
+    <Rule id="V-15772" severity="medium" conversionstatus="pass" title="DTBF110 - FireFox Preferences – Open Confirmation" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a browser window, type "about:config" in the address bar.
+
+Criteria:  If the “plugin.disable_full_page_plugin_for_types” value is not set to include the following external extensions and not locked, then this is a finding:
+
+PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT PPS, PPT, DOS, DOT, WKS, BAT, PS, EPS, WCH, WCM, WB1, WB3, RTF, DOC, MDB, MDE, WBK, WB1, WCH, WCM, AD, ADP.</RawString>
+    </Rule>
     <Rule id="V-15773" severity="medium" conversionstatus="pass" title="DTBF120 - FireFox Preferences – ActiveX controls" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -297,6 +74,122 @@ If an extension exists and the entry in the Action column is associated with an 
       <RawString>Open a browser window, type "about:plugins" in the address bar.
 
 Criteria: If the Mozilla ActiveX control and plugin support is present and enabled, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-15774" severity="medium" conversionstatus="pass" title="DTBF140 - FireFox Preferences – Autofill forms" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar, verify that the preference name “browser.formfill.enable" is set to “false” and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-15775" severity="medium" conversionstatus="pass" title="DTBF150 - FireFox Preferences – Autofill passwords" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “signon.prefillForms“ is set to “false” and locked.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-15776" severity="medium" conversionstatus="pass" title="DTBF160 - FireFox Preferences – Password store" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify that the preference name “signon.rememberSignons" is set and locked to “false”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.
+
+If the setting is not locked, then this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-15777" severity="medium" conversionstatus="pass" title="DTBF170 - FireFox Preferences - History" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar of the browser. Verify that the preference "places.history.enabled" is set to “true”, and locked.
+
+If the parameter for the history preference is set incorrectly, this is a finding. 
+
+If the setting is not locked, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-15778" severity="medium" conversionstatus="pass" title="DTBF180 - Pop-up windows" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “dom.disable_window_open_feature.status " is set to “true” and locked.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-15779" severity="medium" conversionstatus="pass" title="DTBF181 - JavaScript move or resize windows" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “dom.disable_window_move_resize" is set and locked to “true”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-15983" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a browser window, type "about:config" in the address bar.
+
+Verify Preference Name "security.enable_tls" is set to the value "true" and locked.
+Verify Preference Name "security.tls.version.min" is set to the value "2" and locked.
+Verify Preference Name "security.tls.version.max" is set to the value "3" and locked.
+
+Criteria: If the parameters are set incorrectly, then this is a finding. 
+
+If the settings are not locked, then this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-15985" severity="medium" conversionstatus="pass" title="DTBF182 - JavaScript raise or lower windows" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference name “dom.disable_window_flip" is set and locked to “true”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-15986" severity="medium" conversionstatus="pass" title="DTBF183 - JavaScript Context Menus" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar of the browser.
+
+Verify that the preferences "dom.event.contextmenu.enabled" is set and locked to "false".
+
+Criteria: If the parameter is set incorrectly, then this is a finding.
+
+If the setting is not locked, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-15987" severity="medium" conversionstatus="pass" title="DTBF184 - JavaScript hiding or changing status bar" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar of the browser. Verify that the preference “dom.disable_window_status_change" is set and locked to “true”. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-15988" severity="medium" conversionstatus="pass" title="DTBF185 - JavaScript can change the status bar text" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In About:Config, verify that the preference “dom.disable_window_open_feature.status" is set and locked to “true”.
+
+Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-15989" severity="medium" conversionstatus="pass" title="DTBF130 - Non-secure Page Warning" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify that the preference name “security.warn_leaving_secure" is set to “true” and locked.
+
+Criteria:  If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
 </RawString>
     </Rule>
     <Rule id="V-17988" severity="high" conversionstatus="pass" title="DTBF003 - Installed version of Firefox not supported" dscresource="None">
@@ -309,6 +202,31 @@ HKLM\Software\Mozilla\Mozilla Firefox\CurrentVersion
 Method 2: Search for the firefox.exe file using the search feature of the operating system. Examine the files properties for the product version (not the file version. For Windows OS, determine the version of the file by examining navigating to Properties/Version/Product Version. Examine for all instances of firefox.exe that are present on the endpoint.
 
 Criteria: If the version number of the firefox.exe file is less than 50.1.x (or ESR 45.7.x), this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-19741" severity="medium" conversionstatus="pass" title="DTBF080 - Firefox Preferences – Auto-update of Firefox" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window.
+
+Verify that:
+
+1. The preference name "app.update.enabled" is set to ”true” and locked.
+
+2. Verify that "app.update.url", "app.update.url.details", and "app.update.url.manual" contain url information that point to a trusted internal server or the default setting of “Mozilla.com” or “Mozilla.org”.
+
+Criteria: If the parameter is set incorrectly, this is a finding.
+
+If this setting is not locked, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-19742" severity="medium" conversionstatus="pass" title="DTBF090 - Firefox Preferences - Addons\ plugin updates" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify the preference “extensions.update.enabled” is set to "false" and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding. 
+</RawString>
     </Rule>
     <Rule id="V-19743" severity="medium" conversionstatus="pass" title="DTBF070 - Firefox Preferences - Lock settings" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -343,6 +261,38 @@ lockPref("plugin.disable_full_page_plugin_for_types", "application/pdf,applicati
 lockPref("privacy.item.history", false)
 
 Note: Append line into local-settings.js file to include in the Mozilla config file.</RawString>
+    </Rule>
+    <Rule id="V-19744" severity="medium" conversionstatus="pass" title="DTBF085 - Firefox Preferences – Search update" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the browser window. Verify the preference "browser.search.update”  is set to "false" and locked. 
+
+Criteria: If the parameter is set incorrectly, then this is a finding. If the setting is not locked, then this is a finding. 
+</RawString>
+    </Rule>
+    <Rule id="V-64891" severity="medium" conversionstatus="pass" title="DTBF186 - Extensions install disabled." dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open a browser window, type "about:config" in the address bar, then navigate to the setting for Preference Name "xpinstall.enabled" and set the value to “false” and locked.
+
+Criteria: If the value of “xpinstall.enabled” is “false”, this is not a finding.
+
+If the value is locked, this is not a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-79053" severity="medium" conversionstatus="pass" title="DTBF190 - Background data submission" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Type "about:config" in the address bar of the browser.
+
+Verify that the preferences "datareporting.policy.dataSubmissionEnabled" is set and locked to "false".
+
+Criteria: If the parameter is set incorrectly, this is a finding.
+
+If the setting is not locked, this is a finding.</RawString>
     </Rule>
   </ManualRule>
 </DISASTIG>

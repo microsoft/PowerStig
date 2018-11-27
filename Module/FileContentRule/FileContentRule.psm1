@@ -135,7 +135,8 @@ Class FileContentRule : Rule
             ) -or
             (
                 $CheckContent -Match 'about:config' -and
-                $CheckContent -NotMatch 'Mozilla.cfg'
+                $CheckContent -NotMatch 'Mozilla.cfg' -and
+                $CheckContent -Match 'false'
             )
         )
         {
