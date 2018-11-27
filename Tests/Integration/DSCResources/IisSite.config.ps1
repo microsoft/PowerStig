@@ -2,7 +2,7 @@ Configuration IisSite_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [string[]]
         $WebAppPool,
 
@@ -33,7 +33,10 @@ Configuration IisSite_config
         & ([scriptblock]::Create("
             IisSite SiteConfiguration
             {
-                $( "WebAppPool = @($( ($WebAppPool | % {"'$_'"}) -join ',' ))`n" )
+                $(if ($null -ne $WebAppPool)
+                {
+                   "WebAppPool = @($( ($WebAppPool | % {"'$_'"}) -join ',' ))`n"
+                })
                 $( "WebSiteName = @($( ($WebSiteName | % {"'$_'"}) -join ',' ))`n" )
                 OsVersion = '$OsVersion'
                 StigVersion = '$StigVersion'
