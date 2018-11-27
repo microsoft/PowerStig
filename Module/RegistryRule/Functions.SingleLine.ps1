@@ -188,27 +188,24 @@ function Get-RegistryValueTypeFromSingleLineStig
     {
         if ($checkContent | Select-String -Pattern "exists, this is a finding")
         {
-            return "Does Not Exist"
+            $valueType = "Dword"
         }
-        $valueType = ""
     }
 
     if (-not $valueType)
     {
         if ($checkContent | Select-String -Pattern "does not exist, this is not a finding")
         {
-            return "Does Not Exist"
+            $valueType = "Dword"
         }
-        $valueType = ""
     }
 
     if (-not $valueType)
     {
         if ($checkContent | Select-String -Pattern "with entries, this is a finding")
         {
-            return "Does Not Exist"
+            $valueType = "Dword"
         }
-        $valueType = ""
     }
 
     if ($valueType -is [Microsoft.PowerShell.Commands.MatchInfo])
