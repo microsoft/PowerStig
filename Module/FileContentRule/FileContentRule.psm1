@@ -124,25 +124,45 @@ Class FileContentRule : Rule
         }
     }
 
-    static [bool] Match ([string] $CheckContent)
+   static [bool] Match ([string] $CheckContent)
     {
-        if
-        (
-            (
-                $CheckContent -Match 'deployment.properties' -and
-                $CheckContent -Match '=' -and
-                $CheckContent -NotMatch 'exception.sites'
-            ) -or
-            (
-                $CheckContent -Match 'about:config' -and
-                $CheckContent -NotMatch 'Mozilla.cfg' -and
-                $CheckContent -Match 'false'
-            )
-        )
+
+        $result = $false
+        switch ( $true )
         {
-            return $true
+            {
+                (
+                    $CheckContent -Match 'app.update.enabled' -and
+                    $CheckContent -NotMatch 'Mozilla.cfg' -and
+                    $CheckContent -NotMatch 'locked or'
+                )
+            }
+            {
+                $result = $false
+                break
+            }
+            {
+                (
+                    $CheckContent -Match 'deployment.properties' -and
+                    $CheckContent -Match '=' -and
+                    $CheckContent -NotMatch 'exception.sites'
+                ) -or
+                (
+                    $CheckContent -Match 'about:config' -and
+                    $CheckContent -NotMatch 'Mozilla.cfg'
+                )
+            }
+            {
+                $result = $true
+                break
+            }
+            default
+            {
+                $result = $false
+                break
+            }
         }
-        return $false
+        return $result
     }
 
     <#

@@ -40,19 +40,6 @@ try
             Criteria: If the parameter is set incorrectly, then this is a finding. If this setting is not locked, then this is a finding.'
         }
         @{
-            Key          = 'app.update.enabled'
-            Value        = 'true'
-            DscResource  = 'None'
-            ArchiveFile  = 'MozillaFirefox'
-            CheckContent = 'Type "about:config" in the browser window. Verify that:
-
-            1. The preference name "app.update.enabled" is set to ”true” and locked.
-
-            2. Verify that "app.update.url", "app.update.url.details", and "app.update.url.manual" contain url information that point to a trusted internal server or the default setting of “Mozilla.com” or “Mozilla.org”.
-
-            Criteria: If the parameter is set incorrectly, this is a finding.'
-        }
-        @{
             Key          = 'deployment.security.revocation.check'
             Value        = 'ALL_CERTIFICATES'
             DscResource  = 'KeyValuePairFile'
