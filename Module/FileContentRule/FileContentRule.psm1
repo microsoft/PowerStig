@@ -117,10 +117,6 @@ Class FileContentRule : Rule
             {
                 $this.DscResource = 'KeyValuePairFile'
             }
-            #{$PSItem -match 'app.update.enabled|datareporting.policy.dataSubmissionEnabled'}
-            #{
-            #    $this.DscResource = 'cJsonFile'
-            #}
             default
             {
                 $this.DscResource = 'ReplaceText'
