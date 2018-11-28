@@ -52,7 +52,8 @@ function Test-ValueDataIsHardCoded
         'V-63675', # Windows Client - Legal Notice Display
         'V-26359', # Windows Server - Legal Banner Dialog Box Title
         'V-63681', # Windows Client - Legal Banner Dialog Box Title
-        'V-21954', # Windows Server - Kerberos Supported Encryption Types
+        # The was updated in Server 2012 R2 V2R14
+        #'V-21954', # Windows Server - Kerberos Supported Encryption Types
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
         # resource does not use the Get-WindowsOptionalFeature cmdlet so this has to stay manual on
         # the desktop for now or else we have to move everything to a script resource.
