@@ -161,6 +161,10 @@ Class WindowsFeatureRule : Rule
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'WindowsOptionalFeature'
+
+        # <TODO>
+        # If the the STIG target is a  server the WindowsFeature resource needs to be used.
+        #$this.DscResource = 'WindowsFeature'
     }
     #endregion
 }
