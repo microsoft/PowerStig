@@ -28,7 +28,7 @@ try
         @{
             Key          = 'app.update.enabled'
             Value        = 'false'
-            DscResource  = 'cJsonFile'
+            DscResource  = 'ReplaceText'
             ArchiveFile  = 'MozillaFirefox'
             CheckContent = 'Type "about:config" in the browser window. Verify that
 

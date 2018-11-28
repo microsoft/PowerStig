@@ -8,6 +8,7 @@
   * DotNet Framework 4.0 STIG V1R6
   * IIS Site 8.5 STIG V1R5
   * Windows Domain V2R11
+  * FireFox 4.23 STIG
 
 ## 2.2.0.0
 
