@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-* Fixed registry paths in Windows Server 2012R2 V2R13
+* Windows Server 2012R2 Fixes
+    * V-36657 - Key path
+    * V-36681 - Key path
+    * V-1089 - text
 
 * Added the following STIGs
   * IIS Site 8.5 V1R5
