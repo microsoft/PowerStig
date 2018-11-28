@@ -4,6 +4,7 @@
 
 * Added the following STIGs
   * Microsoft Outlook 2013 STIG V1R13
+  * DotNet Framework 4.0 STIG V1R6
   * IIS Site 8.5 STIG V1R5
   * Windows Domain V2R11
 
