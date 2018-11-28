@@ -7641,6 +7641,29 @@ If the value for "Network security: Force logoff when logon hours expire" is not
     </Rule>
   </SecurityOptionRule>
   <ServiceRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-8327.a" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>NTDS</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
     <Rule id="V-8327.b" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -7822,29 +7845,6 @@ Verify the Startup Type for the following Windows services:
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
       <ServiceName>W32Time</ServiceName>
-      <ServiceState>Running</ServiceState>
-      <StartupType>Automatic</StartupType>
-    </Rule>
-    <Rule id="V-8327.a" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Run "services.msc" to display the Services console.
-
-Verify the Startup Type for the following Windows services:
-- Active Directory Domain Services
-- DFS Replication
-- DNS Client
-- DNS server
-- Group Policy Client
-- Intersite Messaging
-- Kerberos Key Distribution Center
-- NetLogon
-- Windows Time (not required if another time synchronization tool is implemented to start automatically)
-
-If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
-      <ServiceName>NTDS</ServiceName>
       <ServiceState>Running</ServiceState>
       <StartupType>Automatic</StartupType>
     </Rule>
