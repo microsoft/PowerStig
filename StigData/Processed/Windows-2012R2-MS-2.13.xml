@@ -5682,7 +5682,7 @@ This setting may cause issues with some network scanning tools if local administ
     <Rule id="V-36656" severity="medium" conversionstatus="pass" title="WINUC-000001" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\ControlPanel\Desktop</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Control Panel\Desktop</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
