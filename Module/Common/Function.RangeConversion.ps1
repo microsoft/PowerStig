@@ -47,7 +47,8 @@ function Get-OrganizationValueTestString
             (Test-StringIsGreaterThan -String $PSItem)              -or
             (Test-StringIsGreaterThanOrEqual -String $PSItem)       -or
             (Test-StringIsGreaterThanButNot -String $PSItem)        -or
-            (Test-StringIsGreaterThanOrEqualButNot -String $PSItem)
+            (Test-StringIsGreaterThanOrEqualButNot -String $PSItem) -or
+            (Test-StringIsBetweenTwoValues -String $PSItem)
         }
         {
             ConvertTo-TestString -String $PSItem
@@ -185,6 +186,10 @@ function ConvertTo-TestString
         'or less excluding'
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
+        }
+        'and'
+        {
+            return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
         }
     }
 }
@@ -485,7 +490,46 @@ function Test-StringIsGreaterThanButNot
         $false
     }
 }
+#endregion
+#region Between Two Values
+<#
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
+    .PARAMETER string
+        The String to test.
+
+    .EXAMPLE
+        This example returns $true
+
+        Test-StringIsBetweenTwoValues -String '30' and '132'
+
+    .NOTES
+        Sample STIG data
+#>
+function Test-StringIsBetweenTwoValues
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $String
+    )
+
+    if ($string -match "([3-8][0-9]|9[0-9]|1[0-2][0-9]|13[0-2])")
+    {
+        $true
+    }
+    else
+    {
+        $false
+    }
+}
+#endregion
+#region GreaterThanorEqual
 <#
     .SYNOPSIS
         Converts English textual representation of numeric ranges into PowerShell equivalent

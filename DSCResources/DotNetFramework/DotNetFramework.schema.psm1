@@ -43,7 +43,7 @@ Configuration DotNetFramework
         $FrameworkVersion,
 
         [Parameter()]
-        [ValidateSet('1.4')]
+        [ValidateSet('1.4', '1.6')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -83,7 +83,7 @@ Configuration DotNetFramework
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( "All", $technology )
     $technologyRole    = [TechnologyRole]::New( $FrameworkVersion, $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $orgSettingsObject, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $orgSettingsObject, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
     #### BEGIN DO NOT MODIFY ####

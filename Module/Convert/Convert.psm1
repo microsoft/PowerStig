@@ -1,3 +1,5 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 using module .\..\AccountPolicyRule\AccountPolicyRule.psm1
 using module .\..\AuditPolicyRule\AuditPolicyRule.psm1
@@ -21,6 +23,7 @@ using module .\..\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
 using module .\..\WindowsFeatureRule\WindowsFeatureRule.psm1
 using module .\..\WinEventLogRule\WinEventLogRule.psm1
 using module .\..\WmiRule\WmiRule.psm1
+# Header
 
 class ConvertFactory
 {

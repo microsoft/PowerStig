@@ -56,8 +56,9 @@ function Test-ValueDataIsHardCoded
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
         # resource does not use the Get-WindowsOptionalFeature cmdlet so this has to stay manual on
         # the desktop for now or else we have to move everything to a script resource.
-        'V-46477' # Internet Explorer - Publishers Certificate Revocation. The value s written as hex,
+        'V-46477', # Internet Explorer - Publishers Certificate Revocation. The value s written as hex,
         # but there is not other identifier.
+        'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
     if ($stigIds -contains $stigId)
@@ -145,7 +146,8 @@ function Get-HardCodedString
         'V-3472.b', # Windows Time Service - Configure NTP Client
         'V-8322.b', # Time Synchronization
         'V-14235', # UAC - Admin Elevation Prompt
-        'V-26359' # Windows Server - Legal Banner Dialog Box Title
+        'V-26359', # Windows Server - Legal Banner Dialog Box Title
+        'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
     if ($stigIds -contains $stigId)
@@ -198,6 +200,11 @@ function Get-HardCodedString
         {$PSItem -match 'V-26359'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
+            continue
+        }
+        {$PSItem -match 'V-17761'}
+        {
+            $hardCodedString = "'{0}' -ge '30' -and '{0}' -le '132'"
             continue
         }
     }

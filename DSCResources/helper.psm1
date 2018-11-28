@@ -138,7 +138,7 @@ function Get-UniqueString
 
     $return = $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) } | Select-Object -Unique
 
-    if ($return.count -eq 1)
+    if ($return.count -le 1)
     {
         return $return
     }
