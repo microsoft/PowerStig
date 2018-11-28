@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-* Renamed StigData class to STIG
 * Added the following STIGs
+  * IIS Site 8.5 STIG V1R5
   * Windows Domain V2R11
 
 ## 2.2.0.0
