@@ -584,6 +584,30 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
+        'U_Mozilla_Firefox_STIG_V4R23_Manual-xccdf.xml'               = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 1
+            FileContentRule              = 20
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 6
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
         'U_Mozilla_Firefox_STIG_V4R21_Manual-xccdf.xml'               = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
