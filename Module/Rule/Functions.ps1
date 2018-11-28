@@ -4,8 +4,7 @@
 #endregion
 #region Data
 # These are the registry strings that are not able to be automatically extracted from the xccdf.
-$script:legalNoticeText = '
-You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+$script:legalNoticeText = 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
