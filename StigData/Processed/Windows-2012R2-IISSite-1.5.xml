@@ -155,6 +155,28 @@ In the "Actions" pane, under "Manage Server", click on "Stop".
 
 If there are not documented procedures with, at a minimum, the mentioned steps for stopping a website, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-76845" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Access the IIS 8.5 web server IIS 8.5 Manager.
+
+Under "IIS" double-click on the "Logging" icon.
+
+In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
+
+Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
+
+Under "Log File Rollover", verify the "Do not create new log files" is not selected.
+
+Verify a schedule is configured to rollover log files on a regular basis.
+
+Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
+
+If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-76847" severity="medium" conversionstatus="pass" title="SRG-APP-000383-WSR-000175" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -439,33 +461,6 @@ Request Header &gt;&gt; Authorization
 Response Header &gt;&gt; Content-Type
 
 If any of the above fields are not selected, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-76845" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="XWebsite">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LogCustomFieldEntry />
-      <LogFlags />
-      <LogFormat />
-      <LogPeriod>daily</LogPeriod>
-      <LogTargetW3C />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Access the IIS 8.5 web server IIS 8.5 Manager.
-
-Under "IIS" double-click on the "Logging" icon.
-
-In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
-
-Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
-
-Under "Log File Rollover", verify the "Do not create new log files" is not selected.
-
-Verify a schedule is configured to rollover log files on a regular basis.
-
-Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
-
-If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
     </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
