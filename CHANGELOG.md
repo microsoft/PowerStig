@@ -4,10 +4,11 @@
 
 * Added the following STIGs
   * Microsoft Outlook 2013 STIG V1R13
+  * IIS Site 8.5 STIG V1R5
   * Windows Domain V2R11
 
 ## 2.2.0.0
-  
+
 * Added the following STIGs
   * IIS Site 8.5 STIG V1R2
   * IIS Site 8.5 STIG V1R3
