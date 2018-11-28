@@ -1,10 +1,10 @@
-<DISASTIG id="IIS_8-5_Site_STIG" version="1.2" created="3/24/2018">
+<DISASTIG id="IIS_8-5_Site_STIG" version="1.2" created="11/27/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: If the server being reviewed is a private IIS 8.5 web server, this is Not Applicable.
+      <RawString>Note: If the server being reviewed is a private IIS 8.5 web server, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
@@ -16,13 +16,13 @@ Double-click the "SSL Settings" icon.
 
 Verify "Require SSL" check box is selected.
 
-If the "Require SSL" check box is not selected, this is a finding.</rawString>
+If the "Require SSL" check box is not selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>For "Handler Mappings", the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Handler Mappings" in IIS 8.5. "Handler Mappings" at the site level take precedence over "Handler Mappings" at the server level.
+      <RawString>For "Handler Mappings", the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Handler Mappings" in IIS 8.5. "Handler Mappings" at the site level take precedence over "Handler Mappings" at the server level.
 
 Open the IIS 8.5 Manager.
 
@@ -30,13 +30,13 @@ Click the site name under review.
 
 Double-click "Handler Mappings".
 
-If any script file extensions from the black list are enabled, this is a finding.</rawString>
+If any script file extensions from the black list are enabled, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76801" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000083" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>For "Handler Mappings", the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Handler Mappings" in IIS 8.5. "Handler Mappings" at the site level take precedence over "Handler Mappings" at the server level.
+      <RawString>For "Handler Mappings", the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Handler Mappings" in IIS 8.5. "Handler Mappings" at the site level take precedence over "Handler Mappings" at the server level.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server: 
 
@@ -44,13 +44,13 @@ Open the IIS 8.5 Manager.
 
 Double-click "Request Filtering". 
 
-If any file name extensions from the black list have "Allowed" set to "True", this is a finding.</rawString>
+If any file name extensions from the black list have "Allowed" set to "True", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76809" severity="medium" conversionstatus="pass" title="SRG-APP-000172-WSR-000104 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
+      <RawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
@@ -60,13 +60,13 @@ Double-click the "SSL Settings" icon.
 
 Verify the "Clients Certificate Required" check box is selected.
 
-If the "Clients Certificate Required" check box is not selected, this is a finding.</rawString>
+If the "Clients Certificate Required" check box is not selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76813" severity="medium" conversionstatus="pass" title="SRG-APP-000224-WSR-000136 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -88,13 +88,13 @@ From the "Section:" drop-down list at the top of the configuration editor, locat
 
 Verify the "mode" reflects "InProc".
 
-If the "mode" is not set to "InProc", this is a finding.</rawString>
+If the "mode" is not set to "InProc", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76831" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000142" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: This requirement is only for each site's root directory.
+      <RawString>Note: This requirement is only for each site's root directory.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
@@ -110,13 +110,13 @@ If "Default Document" is "Enabled, review the document types.
 
 Click the "Content View" tab, click on each listed "Default Document" and click on "Explore" under the "Actions" pane. Verify there is a document of that type in the directory.
 
-If "Default Document" is "Enabled" but no listed document types are present in the "Content View", this is a finding.</rawString>
+If "Default Document" is "Enabled" but no listed document types are present in the "Content View", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76843" severity="medium" conversionstatus="pass" title="SRG-APP-000316-WSR-000170" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Interview the System Administrator and Web Manager.
+      <RawString>Interview the System Administrator and Web Manager.
 
 Ask for documentation for the IIS 8.5 web server administration.
 
@@ -136,13 +136,13 @@ If necessary, stop the IIS 8.5 web server by selecting the web server in the IIS
 
 In the "Actions" pane, under "Manage Server", click on "Stop".
 
-If there are not documented procedures with, at a minimum, the mentioned steps for stopping a website, this is a finding.</rawString>
+If there are not documented procedures with, at a minimum, the mentioned steps for stopping a website, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76847" severity="medium" conversionstatus="pass" title="SRG-APP-000383-WSR-000175" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Review the website to determine if HTTP and HTTPs (e.g., 80 and 443) are used in accordance with those ports and services registered and approved for use by the DoD PPSM. Any variation in PPS will be documented, registered, and approved by the PPSM.
+      <RawString>Review the website to determine if HTTP and HTTPs (e.g., 80 and 443) are used in accordance with those ports and services registered and approved for use by the DoD PPSM. Any variation in PPS will be documented, registered, and approved by the PPSM.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
@@ -150,15 +150,15 @@ Open the IIS 8.5 Manager.
 
 Click the site name under review.
 
-In the â€œActionâ€ Pane, click â€œBindingsâ€.
+In the “Action” Pane, click “Bindings”.
 
-Review the ports and protocols. If unknown ports or protocols are used, then this is a finding.</rawString>
+Review the ports and protocols. If unknown ports or protocols are used, then this is a finding.</RawString>
     </Rule>
     <Rule id="V-76851" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -172,7 +172,7 @@ Click the site under review.
 
 Select "Configuration Editor" under the "Management" section.
 
-From the "Section:" drop-down list at the top of the configuration editor, locate â€œsystem.webServer/security/accessâ€.
+From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
 
 The value for "sslFlags" set must include "ssl128".
 
@@ -180,13 +180,13 @@ If the "Require SSL" is not selected, this is a finding.
 
 If the "Client Certificates Required" is not selected, this is a finding.
 
-If the "sslFlags" is not set to "ssl128", this is a finding.</rawString>
+If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76853" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000151 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -200,7 +200,7 @@ Click the site under review.
 
 Under "Configuration Editor" under the "Management" section.
 
-From the "Section:" drop-down list at the top of the configuration editor, locate â€œsystem.webServer/security/accessâ€.
+From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
 
 The value for "sslFlags" should be ssl128.
 
@@ -208,27 +208,27 @@ If the "Require SSL" is not selected, this is a finding.
 
 If the "Client Certificates Required" is not selected, this is a finding.
 
-If the "sslFlags" is not set to "ssl128", this is a finding.</rawString>
+If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76859.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>From the "Section:" drop-down list, select "system.web/httpCookies".
-Verify the "require SSL" is set to "True".</rawString>
+      <RawString>From the "Section:" drop-down list, select "system.web/httpCookies".
+Verify the "require SSL" is set to "True".</RawString>
     </Rule>
     <Rule id="V-76859.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>From the "Section:" drop-down list, select "system.web/sessionState".
-Verify the "compressionEnabled" is set to "False".</rawString>
+      <RawString>From the "Section:" drop-down list, select "system.web/sessionState".
+Verify the "compressionEnabled" is set to "False".</RawString>
     </Rule>
     <Rule id="V-76861" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -242,7 +242,7 @@ Click the site under review.
 
 Select "Configuration Editor" under the "Management" section.
 
-From the "Section:" drop-down list at the top of the configuration editor, locate â€œsystem.webServer/security/accessâ€.
+From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
 
 The value for "sslFlags" should be ssl128.
 
@@ -250,13 +250,13 @@ If the "Require SSL" is not selected, this is a finding.
 
 If the "Client Certificates Required" is not selected, this is a finding.
 
-If the "sslFlags" is not set to "ssl128", this is a finding.</rawString>
+If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76863" severity="medium" conversionstatus="pass" title="SRG-APP-000442-WSR-000182 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -270,7 +270,7 @@ Click the site under review.
 
 Select "Configuration Editor" under the "Management" section.
 
-From the "Section:" drop-down list at the top of the configuration editor, locate â€œsystem.webServer/security/accessâ€.
+From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
 
 The values for "sslFlags" must include ssl128.
 
@@ -278,86 +278,86 @@ If the "Require SSL" is not selected, this is a finding.
 
 If the "Client Certificates Required" is not selected, this is a finding.
 
-If the "sslFlags" is not set to "ssl128", this is a finding.</rawString>
+If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76867" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO, this check can be downgraded to a Cat III.
+      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO, this check can be downgraded to a Cat III.
 
 Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
-Highlight an Application Pool and click "Advanced Settings" in the â€œActionâ€ Pane.
+Highlight an Application Pool and click "Advanced Settings" in the “Action” Pane.
 
 Scroll down to the "Recycling section" and verify the value for "Request Limit" is set to a value other than "0".
 
-If the "Request Limit" is set to a value of "0", this is a finding.</rawString>
+If the "Request Limit" is set to a value of "0", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76869" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, mitigation steps can be set, to include setting the â€œFixed number or requestsâ€, â€œSpecific timeâ€, and â€œPrivate memory usageâ€ in the recycling conditions lieu of the â€œVirtual memoryâ€ setting. If mitigation is used in lieu of this requirement, with supporting documentation from the ISSO, this check can be downgraded to a Cat III.
+      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, mitigation steps can be set, to include setting the “Fixed number or requests”, “Specific time”, and “Private memory usage” in the recycling conditions lieu of the “Virtual memory” setting. If mitigation is used in lieu of this requirement, with supporting documentation from the ISSO, this check can be downgraded to a Cat III.
 
 Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click on â€œApplication Poolsâ€.
+Click on “Application Pools”.
 
 Highlight an Application Pool and click "Advanced Settings" in the Action Pane.
 
 In the "Advanced Settings" dialog box scroll down to the "Recycling" section and verify the value for "Virtual Memory Limit" is not set to 0.
 
 If the value for "Virtual Memory Limit" is set to 0, this is a finding.
-</rawString>
+</RawString>
     </Rule>
     <Rule id="V-76871" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO this check can be downgraded to a Cat III.
+      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO this check can be downgraded to a Cat III.
 
 Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
-Highlight an Application Pool and click "Advanced Settings" in the â€œActionâ€ Pane.
+Highlight an Application Pool and click "Advanced Settings" in the “Action” Pane.
 
 Scroll down to the "Recycling" section and verify the value for "Private Memory Limit" is set to a value other than "0".
 
-If the "Private Memory Limit" is set to a value of "0", this is a finding.</rawString>
+If the "Private Memory Limit" is set to a value of "0", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76873" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO this check can be downgraded to a Cat III.
+      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO this check can be downgraded to a Cat III.
 
 Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
-Highlight an Application Pool and click "Advanced Settings" in the â€œActionâ€ Pane.
+Highlight an Application Pool and click "Advanced Settings" in the “Action” Pane.
 
 Scroll down to the "Recycling" section and expand the "Generate Recycle Event Log Entry" section.
 
 Verify both the "Regular time interval" and "Specific time" options are set to "True".
 
-If both the "Regular time interval" and "Specific time" options are not set to "True", this is a finding.</rawString>
+If both the "Regular time interval" and "Specific time" options are not set to "True", this is a finding.</RawString>
     </Rule>
   </DocumentRule>
   <IisLoggingRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-76783" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xWebSite">
+    <Rule id="V-76783" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="XWebsite">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
       <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer</LogFlags>
@@ -366,7 +366,7 @@ If both the "Regular time interval" and "Specific time" options are not set to "
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -376,11 +376,11 @@ Click the "Logging" icon.
 
 Under Format select "W3C".
 
-Click â€œSelect Fieldsâ€, verify at a minimum the following fields are checked: Date, Time, Client IP Address, User Name, Method, URI Query, Protocol Status, and Referrer.
+Click “Select Fields”, verify at a minimum the following fields are checked: Date, Time, Client IP Address, User Name, Method, URI Query, Protocol Status, and Referrer.
 
-If the "W3C" is not selected as the logging format OR any of the required fields are not selected, this is a finding.</rawString>
+If the "W3C" is not selected as the logging format OR any of the required fields are not selected, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76785" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="xWebSite">
+    <Rule id="V-76785" severity="medium" conversionstatus="pass" title="SRG-APP-000092-WSR-000055" dscresource="XWebsite">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
       <LogFlags />
@@ -389,7 +389,7 @@ If the "W3C" is not selected as the logging format OR any of the required fields
       <LogTargetW3C>File,ETW</LogTargetW3C>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -399,9 +399,9 @@ Click the "Logging" icon.
 
 Under Log Event Destination, verify the "Both log file and ETW event" radio button is selected.
 
-If the "Both log file and ETW event" radio button is not selected, this is a finding.</rawString>
+If the "Both log file and ETW event" radio button is not selected, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76789" severity="medium" conversionstatus="pass" title="SRG-APP-000099-WSR-000061" dscresource="xWebSite">
+    <Rule id="V-76789" severity="medium" conversionstatus="pass" title="SRG-APP-000099-WSR-000061" dscresource="XWebsite">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry>
         <Entry>
@@ -423,7 +423,7 @@ If the "Both log file and ETW event" radio button is not selected, this is a fin
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Select the website being reviewed.
 
@@ -441,9 +441,9 @@ Request Header &gt;&gt; Warning
 
 Server Variable &gt;&gt; HTTP_CONNECTION
 
-If any of the above fields are not selected, this is a finding.</rawString>
+If any of the above fields are not selected, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76791" severity="medium" conversionstatus="pass" title="SRG-APP-000100-WSR-000064" dscresource="xWebSite">
+    <Rule id="V-76791" severity="medium" conversionstatus="pass" title="SRG-APP-000100-WSR-000064" dscresource="XWebsite">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry>
         <Entry>
@@ -469,7 +469,7 @@ If any of the above fields are not selected, this is a finding.</rawString>
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Access the IIS 8.5 web server IIS 8.5 Manager.
 
@@ -491,9 +491,9 @@ Request Header &gt;&gt; Authorization
 
 Response Header &gt;&gt; Content-Type
 
-If any of the above fields are not selected, this is a finding.</rawString>
+If any of the above fields are not selected, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76845" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="xWebSite">
+    <Rule id="V-76845" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="XWebsite">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
       <LogFlags />
@@ -502,7 +502,7 @@ If any of the above fields are not selected, this is a finding.</rawString>
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Access the IIS 8.5 web server IIS 8.5 Manager.
 
@@ -518,7 +518,7 @@ Verify a schedule is configured to rollover log files on a regular basis.
 
 Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
 
-If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</rawString>
+If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
     </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
@@ -526,7 +526,7 @@ If the designated logging path device is not of sufficient space to maintain all
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Access the IIS 8.5 IIS Manager.
+      <RawString>Access the IIS 8.5 IIS Manager.
 
 Click the IIS 8.5 server.
 
@@ -539,13 +539,13 @@ Expand "limits".
 
 Review the results and verify the value is greater than zero for the "maxconnections" parameter.
 
-If the maxconnections parameter is set to zero, this is a finding.</rawString>
+If the maxconnections parameter is set to zero, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76787" severity="medium" conversionstatus="pass" title="SRG-APP-000098-WSR-000060" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Interview the System Administrator to review the configuration of the IIS 8.5 architecture and determine if inbound web traffic is passed through a proxy.
+      <RawString>Interview the System Administrator to review the configuration of the IIS 8.5 architecture and determine if inbound web traffic is passed through a proxy.
 
 If the IIS 8.5 is receiving inbound web traffic through a proxy, the audit logs must be reviewed to determine if correct source information is being passed through by the proxy server.
 
@@ -561,13 +561,13 @@ Click on "View log file" button.
 
 When log file is displaced, review source IP information in log entries and verify entries do not reflect the IP address of the proxy server.
 
-If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.</rawString>
+If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76793" severity="medium" conversionstatus="pass" title="SRG-APP-000119-WSR-000069" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -577,21 +577,21 @@ Click the "Logging" icon.
 
 Click "Browse" and navigate to the directory where the log files are stored.
 
-Right-click the log file name to review and click â€œPropertiesâ€.
+Right-click the log file name to review and click “Properties”.
 
-Click the â€œSecurityâ€ tab; verify only authorized groups are listed, if others are listed, this is a finding.
+Click the “Security” tab; verify only authorized groups are listed, if others are listed, this is a finding.
 
 Note: The log file should be restricted as follows:
 
 SYSTEM, Auditors group: Full
 SAs, web managers: Read
-</rawString>
+</RawString>
     </Rule>
     <Rule id="V-76795" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -601,67 +601,53 @@ Click the "Logging" icon.
 
 Click "Browse" and navigate to the directory where the log files are stored.
 
-Right-click the log file name to review and click â€œPropertiesâ€.
+Right-click the log file name to review and click “Properties”.
 
-Click the â€œSecurityâ€ tab; verify only authorized groups are listed, if others are listed, this is a finding.
+Click the “Security” tab; verify only authorized groups are listed, if others are listed, this is a finding.
 
 Note: The log file should be restricted as follows:
 
-SYSTEM, Auditors group: Full</rawString>
-    </Rule>
-    <Rule id="V-76803" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Select the IIS 8.5 website.
-
-Review the features listed under the "IIS" section.
-
-If the "WebDAV Authoring Rules" icon exists, this is a finding.</rawString>
+SYSTEM, Auditors group: Full</RawString>
     </Rule>
     <Rule id="V-76807" severity="medium" conversionstatus="pass" title="SRG-APP-000142-WSR-000089" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
 Right-click on the site name under review.
 
-Select â€œEdit Bindingsâ€.
+Select “Edit Bindings”.
 
 Verify there are hostname entries and unique IP addresses assigned to port 80 for HTTP and port 443 for HTTPS.
 
-If both hostname entries and unique IP addresses are not configure to port 80 for HTTP and port 443 for HTTPS, this is a finding.</rawString>
+If both hostname entries and unique IP addresses are not configure to port 80 for HTTP and port 443 for HTTPS, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76811" severity="high" conversionstatus="pass" title="SRG-APP-000211-WSR-000031" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Check the account used for anonymous access to the website.
+      <RawString>Check the account used for anonymous access to the website.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
-Double-click "Authentication" in the IIS section of the websiteâ€™s Home Pane.
+Double-click "Authentication" in the IIS section of the website’s Home Pane.
 
 If Anonymous access is disabled, this is Not a Finding.
 
-If enabled, click â€œAnonymous Authenticationâ€ and then click â€œEditâ€ in the "Actions" pane.
+If enabled, click “Anonymous Authentication” and then click “Edit” in the "Actions" pane.
 
-If the â€œSpecific userâ€ radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access.
+If the “Specific user” radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access.
 
 Check privileged groups that may allow the anonymous account inappropriate membership.
 
-Click â€œStartâ€ and then double-click â€œServer Managerâ€.
+Click “Start” and then double-click “Server Manager”.
 
-Expand Configuration; expand Local Users and Groups; and then click â€œGroupsâ€.
+Expand Configuration; expand Local Users and Groups; and then click “Groups”.
 
 Review group members.
 
@@ -682,13 +668,13 @@ Users
 
 Double-click each group and review its members.
 
-If the IUSR account or any account used for anonymous access is a member of any group with privileged access, this is a finding.</rawString>
+If the IUSR account or any account used for anonymous access is a member of any group with privileged access, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76815" severity="medium" conversionstatus="pass" title="SRG-APP-000233-WSR-000146" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -698,61 +684,61 @@ Click the "Advanced Settings" from the "Actions" pane.
 
 Review the Physical Path.
 
-If the Path is on the same partition as the OS, this is a finding.</rawString>
+If the Path is on the same partition as the OS, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76849" severity="medium" conversionstatus="pass" title="SRG-APP-000427-WSR-000186" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
 Click the site name under review.
 
-Click â€œBindingsâ€ in the â€œActionâ€ Pane.
+Click “Bindings” in the “Action” Pane.
 
-Click the â€œHTTPS typeâ€ from the box.
+Click the “HTTPS type” from the box.
 
-Click â€œEditâ€.
+Click “Edit”.
 
-Click â€œViewâ€ and then review and verify the certificate path.
+Click “View” and then review and verify the certificate path.
 
 If the list of CAs in the trust hierarchy does not lead to the DoD PKI Root CA, DoD-approved external certificate authority (ECA), or DoD-approved external partner, this is a finding.
 
-If HTTPS is not an available type under site bindings, this is a finding.</rawString>
+If HTTPS is not an available type under site bindings, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76865" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Open the IIS 8.5 Manager.
+      <RawString>Open the IIS 8.5 Manager.
 
 Click "Application Pools".
 
 In the list of Application Pools, review the "Applications" column and verify none show more than "1" application.
 
-If any Application Pools show being applied to more than 1 application, this is a finding.</rawString>
+If any Application Pools show being applied to more than 1 application, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76883" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
-Double-click â€œConfiguration Editorâ€.
+Double-click “Configuration Editor”.
 
-From the drop-down box select â€œsystem.webserver serverRuntimeâ€.
+From the drop-down box select “system.webserver serverRuntime”.
 
-If â€œalternateHostNameâ€ has no assigned value, this is a finding.</rawString>
+If “alternateHostName” has no assigned value, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76885" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000087" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx. If the website does not utilize CGI or ASP, this finding is Not Applicable.
+      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx. If the website does not utilize CGI or ASP, this finding is Not Applicable.
 
 All interactive programs must be placed in unique designated folders based on CGI or ASP script type.
 
@@ -762,13 +748,13 @@ Right-click the IIS 8.5 web site name and select Explore.
 
 Search for the listed script extensions. Each script type must be in its unique designated folder.
 
-If scripts are not segregated from web content and in their own unique folders, then this is a finding.</rawString>
+If scripts are not segregated from web content and in their own unique folders, then this is a finding.</RawString>
     </Rule>
     <Rule id="V-76887" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000087" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx.
+      <RawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx.
 
 If the website does not utilize CGI, this finding is Not Applicable.
 
@@ -776,7 +762,7 @@ All interactive programs must have restrictive permissions.
 
 Open the IIS 8.5 Manager.
 
-Right-click the IIS 8.5 web site name and select â€œExploreâ€.
+Right-click the IIS 8.5 web site name and select “Explore”.
 
 Search for the listed script extensions.
 
@@ -790,35 +776,35 @@ ApplicationPoolId: READ
 Custom Service Account: READ
 Users: READ
 
-If the permissions are less restrictive than listed above, this is a finding.</rawString>
+If the permissions are less restrictive than listed above, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76889" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000087" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx.
+      <RawString>Determine whether scripts are used on the web server for the subject website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx.
 
 If the website does not utilize CGI, this finding is Not Applicable.
 
 Open the IIS 8.5 Manager.
 
-Right-click the IIS 8.5 web site name and select â€œExploreâ€.
+Right-click the IIS 8.5 web site name and select “Explore”.
 
 Search for the listed script extensions
 
-Search for the following files: *.bak, *.old, *.temp, *.tmp, *.backup, or â€œcopy of...â€.
+Search for the following files: *.bak, *.old, *.temp, *.tmp, *.backup, or “copy of...”.
 
-If files with these extensions are found, this is a finding.</rawString>
+If files with these extensions are found, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76891" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: This requirement is only applicable for private DoD websites.
+      <RawString>Note: This requirement is only applicable for private DoD websites.
 
 If a banner is required, the following banner page must be in place: 
 
-â€œYou are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. 
+“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. 
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions: 
 
@@ -828,9 +814,9 @@ By using this IS (which includes any device attached to this IS), you consent to
 
 - Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. 
 
-- This IS includes security measures (e.g., authentication and access controls) to protect USG interestsâ€”not for your personal benefit or privacy. 
+- This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. 
 
-- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.â€ 
+- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” 
 
 OR 
 
@@ -840,7 +826,7 @@ If your system cannot meet the character limits to store this amount of text in 
 
 NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it does point to the RMF Knowledge Service for a copy of the required text. It is also noted that the banner is to be displayed only once when the individual enters the site and not for each page. 
 
-If the access-controlled website does not display this banner page before entry, this is a finding.</rawString>
+If the access-controlled website does not display this banner page before entry, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
@@ -851,14 +837,14 @@ If the access-controlled website does not display this banner page before entry,
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
 Click on the IIS 8.5 site.
-Under IIS, double-click the â€œMIME Typesâ€ icon.
+Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
-.exe</rawString>
+.exe</RawString>
     </Rule>
     <Rule id="V-76797.b" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
       <Ensure>Absent</Ensure>
@@ -867,14 +853,14 @@ If any OS shell MIME types are configured, this is a finding.
       <MimeType>application/x-msdownload</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
 Click on the IIS 8.5 site.
-Under IIS, double-click the â€œMIME Typesâ€ icon.
+Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
-.dll</rawString>
+.dll</RawString>
     </Rule>
     <Rule id="V-76797.c" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
       <Ensure>Absent</Ensure>
@@ -883,14 +869,14 @@ If any OS shell MIME types are configured, this is a finding.
       <MimeType>application/octet-stream</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
 Click on the IIS 8.5 site.
-Under IIS, double-click the â€œMIME Typesâ€ icon.
+Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
-.com</rawString>
+.com</RawString>
     </Rule>
     <Rule id="V-76797.d" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
       <Ensure>Absent</Ensure>
@@ -899,14 +885,14 @@ If any OS shell MIME types are configured, this is a finding.
       <MimeType>application/x-bat</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
 Click on the IIS 8.5 site.
-Under IIS, double-click the â€œMIME Typesâ€ icon.
+Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
-.bat</rawString>
+.bat</RawString>
     </Rule>
     <Rule id="V-76797.e" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000081" dscresource="xIisMimeTypeMapping">
       <Ensure>Absent</Ensure>
@@ -915,14 +901,14 @@ If any OS shell MIME types are configured, this is a finding.
       <MimeType>application/x-csh</MimeType>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
 Click on the IIS 8.5 site.
-Under IIS, double-click the â€œMIME Typesâ€ icon.
+Under IIS, double-click the “MIME Types” icon.
 From the "Group by:" drop-down list, select "Content Type".
 From the list of extensions under "Application", verify MIME types for OS shell program extensions have been removed, to include at a minimum, the following extensions:
 If any OS shell MIME types are configured, this is a finding.
-.csh</rawString>
+.csh</RawString>
     </Rule>
   </MimeTypeRule>
   <WebAppPoolRule dscresourcemodule="xWebAdministration">
@@ -931,7 +917,7 @@ If any OS shell MIME types are configured, this is a finding.
       <Key>idleTimeout</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -941,7 +927,7 @@ Highlight an Application Pool to review and click "Advanced Settings" in the "Ac
 
 Scroll down to the "Process Model" section and verify the value for "Idle Time-out" is set to "20".
 
-If the "Idle Time-out" is not set to "20" or less, this is a finding.</rawString>
+If the "Idle Time-out" is not set to "20" or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -950,17 +936,17 @@ If the "Idle Time-out" is not set to "20" or less, this is a finding.</rawString
       <Key>queueLength</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 1000</OrganizationValueTestString>
-      <rawString>Open the IIS 8.5 Manager.
+      <RawString>Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
 Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
 
 Scroll down to the "General" section and verify the value for "Queue Length" is set to 1000.
 
-If the "Queue Length" is set to "1000" or less, this is not a finding.</rawString>
+If the "Queue Length" is set to "1000" or less, this is not a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -969,9 +955,9 @@ If the "Queue Length" is set to "1000" or less, this is not a finding.</rawStrin
       <Key>pingingEnabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Open the Internet Information Services (IIS) Manager.
+      <RawString>Open the Internet Information Services (IIS) Manager.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
 Perform for each Application Pool.
 
@@ -979,7 +965,7 @@ Highlight an Application Pool to review and click "Advanced Settings" in the "Ac
 
 Scroll down to the "Process Model" section and verify the value for "Ping Enabled" is set to "True".
 
-If the value for "Ping Enabled" is not set to "True", this is a finding.</rawString>
+If the value for "Ping Enabled" is not set to "True", this is a finding.</RawString>
       <Value>$true</Value>
     </Rule>
     <Rule id="V-76879" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="xWebAppPool">
@@ -987,9 +973,9 @@ If the value for "Ping Enabled" is not set to "True", this is a finding.</rawStr
       <Key>rapidFailProtection</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Open the IIS 8.5 Manager.
+      <RawString>Open the IIS 8.5 Manager.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
 Perform for each Application Pool.
 
@@ -997,7 +983,7 @@ Highlight an Application Pool to review and click "Advanced Settings" in the "Ac
 
 Scroll down to the "Rapid Fail Protection" section and verify the value for "Enabled" is set to "True".
 
-If the "Rapid Fail Protection:Enabled" is not set to "True", this is a finding.</rawString>
+If the "Rapid Fail Protection:Enabled" is not set to "True", this is a finding.</RawString>
       <Value>$true</Value>
     </Rule>
     <Rule id="V-76881" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="xWebAppPool">
@@ -1005,9 +991,9 @@ If the "Rapid Fail Protection:Enabled" is not set to "True", this is a finding.<
       <Key>rapidFailProtectionInterval</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:05:00'</OrganizationValueTestString>
-      <rawString>Open the IIS 8.5 Manager.
+      <RawString>Open the IIS 8.5 Manager.
 
-Click the â€œApplication Poolsâ€.
+Click the “Application Pools”.
 
 Perform for each Application Pool.
 
@@ -1015,7 +1001,7 @@ Highlight an Application Pool to review and click "Advanced Settings" in the "Ac
 
 Scroll down to the "Rapid Fail Protection" section and verify the value for "Failure Interval" is set to "5".
 
-If the "Failure Interval" is not set to "5" or less, this is a finding.</rawString>
+If the "Failure Interval" is not set to "5" or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1027,7 +1013,7 @@ If the "Failure Interval" is not set to "5" or less, this is a finding.</rawStri
       <Key>mode</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1049,7 +1035,7 @@ From the "Section:" drop-down list at the top of the configuration editor, locat
 
 Verify the "mode" reflects "InProc".
 
-If the "mode" is not set to "InProc", this is a finding.</rawString>
+If the "mode" is not set to "InProc", this is a finding.</RawString>
       <Value>InProc</Value>
     </Rule>
     <Rule id="V-76777" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000002" dscresource="xWebConfigKeyValue">
@@ -1058,30 +1044,8 @@ If the "mode" is not set to "InProc", this is a finding.</rawString>
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click the site name.
-
-Under the "ASP.NET" section, select "Session State".
-
-Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.
-
-If the "Use Cookies" mode is selected, this is not a finding.
-
-Alternative method:
-
-Click the site name.
-
-Select "Configuration Editor" under the "Management" section.
-
-From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-
-Verify the "cookieless" is set to "UseCookies".
-
-If the "cookieless" is not set to "UseCookies", this is a finding.
-</rawString>
+      <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+Verify the "cookieless" is set to "UseCookies".</RawString>
       <Value>UseCookies</Value>
     </Rule>
     <Rule id="V-76779" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xWebConfigKeyValue">
@@ -1090,7 +1054,7 @@ If the "cookieless" is not set to "UseCookies", this is a finding.
       <Key>sslflags</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
+      <RawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
@@ -1102,7 +1066,7 @@ Double-click the "SSL Settings" icon.
 
 Verify "Require SSL" check box is selected.
 
-If the "Require SSL" check box is not selected, this is a finding.</rawString>
+If the "Require SSL" check box is not selected, this is a finding.</RawString>
       <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
     </Rule>
     <Rule id="V-76805" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000086" dscresource="xWebConfigKeyValue">
@@ -1111,7 +1075,7 @@ If the "Require SSL" check box is not selected, this is a finding.</rawString>
       <Key>level</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -cmatch '^(Full|High)$'</OrganizationValueTestString>
-      <rawString>Note: If the server being reviewed is a non-production website, this is Not Applicable.
+      <RawString>Note: If the server being reviewed is a non-production website, this is Not Applicable.
 
 Note: Setting a web application Trust Level to MEDIUM may deny some application permissions. If compatibility issues with applications require trust level to be less than "Medium", this check can be downgraded to a Cat III with supporting documentation from the ISSO,
 
@@ -1123,7 +1087,7 @@ Click the site name under review.
 
 Double-click the ".NET Trust Level" icon.
 
-If the ".NET Trust Level" is not set to Medium or less, this is a finding.</rawString>
+If the ".NET Trust Level" is not set to Medium or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1133,7 +1097,7 @@ If the ".NET Trust Level" is not set to Medium or less, this is a finding.</rawS
       <Key>maxUrl</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 4096</OrganizationValueTestString>
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1141,9 +1105,9 @@ Click on the site name.
 
 Double-click the "Request Filtering" icon.
 
-Click â€œEdit Feature Settingsâ€ in the "Actions" pane.
+Click “Edit Feature Settings” in the "Actions" pane.
 
-If the "maxUrl" value is not set to "4096" or less, this is a finding.</rawString>
+If the "maxUrl" value is not set to "4096" or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1153,7 +1117,7 @@ If the "maxUrl" value is not set to "4096" or less, this is a finding.</rawStrin
       <Key>maxAllowedContentLength</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 30000000</OrganizationValueTestString>
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1161,9 +1125,9 @@ Click on the site name.
 
 Double-click the "Request Filtering" icon.
 
-Click â€œEdit Feature Settingsâ€ in the "Actions" pane.
+Click “Edit Feature Settings” in the "Actions" pane.
 
-If the "maxAllowedContentLength" value is not set to "30000000" or less, this is a finding.</rawString>
+If the "maxAllowedContentLength" value is not set to "30000000" or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1173,7 +1137,7 @@ If the "maxAllowedContentLength" value is not set to "30000000" or less, this is
       <Key>maxQueryString</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -le 2048</OrganizationValueTestString>
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1181,9 +1145,9 @@ Click on the site name.
 
 Double-click the "Request Filtering" icon.
 
-Click â€œEdit Feature Settingsâ€ in the "Actions" pane.
+Click “Edit Feature Settings” in the "Actions" pane.
 
-If the "Maximum Query String" value is not set to "2048" or less, this is a finding.</rawString>
+If the "Maximum Query String" value is not set to "2048" or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1193,7 +1157,7 @@ If the "Maximum Query String" value is not set to "2048" or less, this is a find
       <Key>allowHighBitCharacters</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1201,9 +1165,9 @@ Click on the site name.
 
 Double-click the "Request Filtering" icon.
 
-Click â€œEdit Feature Settingsâ€ in the "Actions" pane.
+Click “Edit Feature Settings” in the "Actions" pane.
 
-If the "Allow high-bit characters" check box is checked, this is a finding.</rawString>
+If the "Allow high-bit characters" check box is checked, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76825" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="xWebConfigKeyValue">
@@ -1212,7 +1176,7 @@ If the "Allow high-bit characters" check box is checked, this is a finding.</raw
       <Key>allowDoubleEscaping</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1220,9 +1184,9 @@ Click on the site name.
 
 Double-click the "Request Filtering" icon.
 
-Click â€œEdit Feature Settingsâ€ in the "Actions" pane.
+Click “Edit Feature Settings” in the "Actions" pane.
 
-If the "Allow double escaping" check box is checked, this is a finding.</rawString>
+If the "Allow double escaping" check box is checked, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76827" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="xWebConfigKeyValue">
@@ -1231,7 +1195,7 @@ If the "Allow double escaping" check box is checked, this is a finding.</rawStri
       <Key>allowUnlisted</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1239,9 +1203,9 @@ Click on the site name.
 
 Double-click the "Request Filtering" icon.
 
-Click â€œEdit Feature Settingsâ€ in the "Actions" pane.
+Click “Edit Feature Settings” in the "Actions" pane.
 
-If "Allow unlisted file extensions" check box is checked, this is a finding.</rawString>
+If "Allow unlisted file extensions" check box is checked, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76829" severity="medium" conversionstatus="pass" title="SRG-APP-000251-WSR-000157" dscresource="xWebConfigKeyValue">
@@ -1250,7 +1214,7 @@ If "Allow unlisted file extensions" check box is checked, this is a finding.</ra
       <Key>enabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Click the Site.
 
@@ -1260,7 +1224,7 @@ If the "Directory Browsing" is not installed, this is Not Applicable.
 
 Under the "Actions" pane verify "Directory Browsing" is "Disabled".
 
-If "Directory Browsing" is not "Disabled", this is a finding.</rawString>
+If "Directory Browsing" is not "Disabled", this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76835" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000159" dscresource="xWebConfigKeyValue">
@@ -1269,7 +1233,7 @@ If "Directory Browsing" is not "Disabled", this is a finding.</rawString>
       <Key>errormode</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
@@ -1279,8 +1243,8 @@ Double-click the "Error Pages" icon.
 
 Click each error message and click "Edit Feature" setting from the "Actions" pane.
 
-If any error message is not set to â€œDetailed errors for local requests and custom error pages for remote requestsâ€, this is a finding.</rawString>
-      <Value>DetailedLocalOnly</Value>
+If any error message is not set to “Detailed errors for local requests and custom error pages for remote requests”, this is a finding.</RawString>
+      <Value>0</Value>
     </Rule>
     <Rule id="V-76837" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000160" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/compilation</ConfigSection>
@@ -1288,7 +1252,7 @@ If any error message is not set to â€œDetailed errors for local requests and
       <Key>debug</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Note: If the ".NET feature" is not installed, this check is Not Applicable.
+      <RawString>Note: If the ".NET feature" is not installed, this check is Not Applicable.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
@@ -1300,7 +1264,7 @@ Double-click ".NET Compilation".
 
 Scroll down to the "Behavior" section and verify the value for "Debug" is set to "False".
 
-If the "Debug" value is not set to "False", this is a finding.</rawString>
+If the "Debug" value is not set to "False", this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76841" severity="medium" conversionstatus="pass" title="SRG-APP-000295-WSR-000134" dscresource="xWebConfigKeyValue">
@@ -1309,23 +1273,22 @@ If the "Debug" value is not set to "False", this is a finding.</rawString>
       <Key>timeout</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
-      <rawString>
-        Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
-        Open the IIS 8.5 Manager.
+Open the IIS 8.5 Manager.
 
-        Click the site name.
+Click the site name.
 
-        Select "Configuration Editor" under the "Management" section.
+Select "Configuration Editor" under the "Management" section.
 
-        From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-        76837
-        Verify the "timeout" is set to "00:20:00 or lessâ€, using the lowest value possible depending upon the application.
-        Acceptable values are 5 minutes for high-value applications, 10 minutes for medium-value applications, and 20 minutes for low-value applications.
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
 
-        If "timeout" is not set to "00:20:00 or lessâ€, this is a finding.
+Verify the "timeout" is set to "00:20:00 or less”, using the lowest value possible depending upon the application.
+Acceptable values are 5 minutes for high-value applications, 10 minutes for medium-value applications, and 20 minutes for low-value applications.
 
-      </rawString>
+If "timeout" is not set to "00:20:00 or less”, this is a finding.
+
+</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1335,7 +1298,7 @@ If the "Debug" value is not set to "False", this is a finding.</rawString>
       <Key>keepSessionIdSecure</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Access the IIS 8.5 Manager.
 
@@ -1343,13 +1306,13 @@ Select the website being reviewed.
 
 Under "Management" section, double-click the "Configuration Editor" icon.
 
-From the "Section:" drop-down list, select â€œsystem.webServer/asp".
+From the "Section:" drop-down list, select “system.webServer/asp".
 
 Expand the "session" section.
 
 Verify the "keepSessionIdSecure" is set to "True".
 
-If the "keepSessionIdSecure" is not set to "True", this is a finding.</rawString>
+If the "keepSessionIdSecure" is not set to "True", this is a finding.</RawString>
       <Value>True</Value>
     </Rule>
     <Rule id="V-76857.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000153" dscresource="xWebConfigKeyValue">
@@ -1358,8 +1321,8 @@ If the "keepSessionIdSecure" is not set to "True", this is a finding.</rawString
       <Key>requireSSL</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>From the "Section:" drop-down list, select "system.web/httpCookies".
-Verify the "require SSL" is set to "True".</rawString>
+      <RawString>From the "Section:" drop-down list, select "system.web/httpCookies".
+Verify the "require SSL" is set to "True".</RawString>
       <Value>True</Value>
     </Rule>
     <Rule id="V-76857.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000153" dscresource="xWebConfigKeyValue">
@@ -1368,9 +1331,27 @@ Verify the "require SSL" is set to "True".</rawString>
       <Key>compressionEnabled</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>From the "Section:" drop-down list, select "system.web/sessionState".
-Verify the "compressionEnabled" is set to "False".</rawString>
+      <RawString>From the "Section:" drop-down list, select "system.web/sessionState".
+Verify the "compressionEnabled" is set to "False".</RawString>
       <Value>False</Value>
     </Rule>
   </WebConfigurationPropertyRule>
+  <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
+    <Rule id="V-76803" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsOptionalFeature">
+      <FeatureName>Web-DAV-Publishing</FeatureName>
+      <InstallState>Absent</InstallState>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Select the IIS 8.5 website.
+
+Review the features listed under the "IIS" section.
+
+If the "WebDAV Authoring Rules" icon exists, this is a finding.</RawString>
+    </Rule>
+  </WindowsFeatureRule>
 </DISASTIG>
