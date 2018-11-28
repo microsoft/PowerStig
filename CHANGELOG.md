@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Added the following STIGs
+  * DotNet Framework 4.0 STIG V1R6
   * IIS Site 8.5 STIG V1R5
   * Windows Domain V2R11
 
