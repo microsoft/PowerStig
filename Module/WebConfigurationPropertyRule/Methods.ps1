@@ -57,7 +57,7 @@ function Get-ConfigSection
         {
             $configSection = '/system.webServer/security/requestFiltering'
         }
-        { $cleanCheckContent -match 'Allow unlisted file extensions' }
+        { $cleanCheckContent -match 'Allow unlisted file' }
         {
             $configSection = '/system.webServer/security/requestFiltering/fileExtensions'
         }
@@ -153,7 +153,7 @@ function Get-KeyValuePair
             $key = 'allowDoubleEscaping'
             $value = 'false'
         }
-        { $checkContent -match 'Allow unlisted file extensions' }
+        { $checkContent -match 'Allow unlisted file' }
         {
             $key = 'allowUnlisted'
             $value = 'false'
