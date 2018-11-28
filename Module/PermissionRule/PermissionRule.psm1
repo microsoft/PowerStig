@@ -62,9 +62,14 @@ Class PermissionRule : Rule
         if ([PermissionRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
             [string[]] $splitRules = [PermissionRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            [int] $byte = 97 # Lowercase A
             foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $splitRule
+                $copyRule = $StigRule.Clone()
+                $copyRule.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
+                $byte ++
+
+                $copyRule.rule.Check.('check-content') = $splitRule
                 $ruleList += [PermissionRule]::New($StigRule)
             }
         }

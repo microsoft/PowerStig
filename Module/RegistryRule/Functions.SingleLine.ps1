@@ -80,9 +80,9 @@ function Get-SingleLineRegistryPath
     {
         $fullRegistryPath = $fullRegistryPath[1].ToString() | Select-String -Pattern "((HKLM|HKCU).*\\security)"
     }
-    if ($fullRegistryPath.ToString() -match "the value for hkcu.*Message\sPlain\sFormat\sMime")
+    if ($fullRegistryPath.ToString() -match "(value for (HKLM|HKCU).*\sis)")
     {
-        $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=\sis))"
+        $fullRegistryPath = $fullRegistryPath.ToString() | Select-String -Pattern "((HKLM|HKCU).*(?=\sis.*REG_DWORD))"
     }
 
     $fullRegistryPath = $fullRegistryPath.Matches.Value
@@ -181,11 +181,31 @@ function Get-RegistryValueTypeFromSingleLineStig
 
     if (-not $valueType)
     {
+        $valueType = $checkContent | Select-String -Pattern '((?<=If the\s)(.*)(?<=DWORD))'
+    }
+
+    if (-not $valueType)
+    {
+        if ($checkContent | Select-String -Pattern "exists, this is a finding")
+        {
+            $valueType = "Dword"
+        }
+    }
+
+    if (-not $valueType)
+    {
         if ($checkContent | Select-String -Pattern "does not exist, this is not a finding")
         {
-            return "Does Not Exist"
+            $valueType = "Dword"
         }
-        $valueType = ""
+    }
+
+    if (-not $valueType)
+    {
+        if ($checkContent | Select-String -Pattern "with entries, this is a finding")
+        {
+            $valueType = "Dword"
+        }
     }
 
     if ($valueType -is [Microsoft.PowerShell.Commands.MatchInfo])
@@ -243,7 +263,23 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
+        if ($checkContent -match 'If the REG_DWORD')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=for\s")(.*)(?<="))'
+        }
+    }
+
+    if (-not $valueName)
+    {
         $valueName = $checkContent | Select-String -Pattern '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
+    }
+
+    if (-not $valueName)
+    {
+        if ($checkContent -match 'a value of between')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=gs\\)(.*)(?<=Len))'
+        }
     }
 
     if (-not $valueName)
@@ -253,9 +289,30 @@ function Get-RegistryValueNameFromSingleLineStig
 
     if (-not $valueName)
     {
+        if ($checkContent -match 'FileExtensionsRemoveLevel')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=the registry value\s.)(.*)(?=.\We))'
+        }
+    }
+
+    if (-not $valueName)
+    {
         if ($checkContent -match 'the policy value')
+
+        {
+            $valueName = $checkContent | Select-String -Pattern '(?<=ty\\)(.*)(?<=)'
+        }
+        else
         {
             $valueName = $checkContent | Select-String -Pattern '(?<=")(.*)(?="\sis)'
+        }
+    }
+
+    if (-not $valueName)
+    {
+        if ($checkContent -match 'Message Plain Format Mime')
+        {
+            $valueName = $checkContent | Select-String -Pattern '((?<=il\\)(.*)(?<=e\s))'
         }
     }
 
@@ -335,6 +392,14 @@ function Get-RegistryValueDataFromSingleStig
         $valueData = $checkContent | Select-String -Pattern "((?<=value\sof).*(?=for))"
     }
 
+    if ($valueData)
+    {
+        if ($checkContent -match 'If the value PublishCalendarDetailsPolicy')
+        {
+            $valueData = $checkContent | Select-String -Pattern "((?<=is\s)(.*)(?=\sor))"
+        }
+    }
+
     if (-not $valueData)
     {
         $valueData = $checkContent | Select-String -Pattern "((?<=set\sto).*(?=\(true\)))"
@@ -350,7 +415,15 @@ function Get-RegistryValueDataFromSingleStig
         $valueData = $checkContent | Select-String -Pattern "(?<=$($valueType)\s=).*"
     }
 
-    $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '')
+    if ($valueData)
+    {
+        if ($checkContent -match 'a value of between')
+        {
+            $valueData = $checkContent | Select-String -Pattern "(?<=between\s)(.*)(?<=\s)"
+        }
+    }
+
+    $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '').Replace('”', '')
 
     if ( -not [String]::IsNullOrEmpty( $valueData ) )
     {
