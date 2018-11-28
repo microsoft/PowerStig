@@ -2,9 +2,13 @@
 
 ## Unreleased
 
+* Fixed registry paths in Windows Server 2012R2 V2R13
+
 * Added the following STIGs
-  * IIS Site 8.5 STIG V1R5
+  * IIS Site 8.5 V1R5
   * Windows Domain V2R11
+  * Windows Server 2012R2 DC V2R14
+  * Windows Server 2012R2 MS V2R14
 
 ## 2.2.0.0
 
