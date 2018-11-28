@@ -16,6 +16,9 @@
 
     .PARAMETER IncludeRawString
         Adds the check-content elemet content to the converted object.
+
+    .PARAMETER RuleIdFilter
+        Filters the list rules that are converted to simplify debugging the conversion process.
 #>
 function ConvertTo-PowerStigXml
 {
@@ -37,8 +40,13 @@ function ConvertTo-PowerStigXml
 
         [Parameter()]
         [switch]
-        $IncludeRawString
+        $IncludeRawString,
+
+        [Parameter()]
+        [string[]]
+        $RuleIdFilter
     )
+
     Begin
     {
         $CurrentVerbosePreference = $global:VerbosePreference
@@ -50,10 +58,10 @@ function ConvertTo-PowerStigXml
     }
     Process
     {
-        $convertedStigObjects = ConvertFrom-StigXccdf -Path $path -IncludeRawString:$IncludeRawString
+        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -IncludeRawString:$IncludeRawString -RuleIdFilter $RuleIdFilter
 
         # Get the raw xccdf xml to pull additional details from the root node.
-        [xml] $xccdfXml = Get-Content -Path $path -Encoding UTF8
+        [xml] $xccdfXml = Get-Content -Path $Path -Encoding UTF8
         [version] $stigVersionNumber = Get-StigVersionNumber -StigDetails $xccdfXml
 
         $ruleTypeList = Get-RuleTypeList -StigSettings $convertedStigObjects
@@ -586,7 +594,7 @@ function Split-BenchmarkId
         {$PSItem -match "Windows"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
-            $id = $id -replace '2012','2012R2'
+            $id = $id -replace '_2012_','_2012R2_'
             $returnId = $id -replace ($windowsVariations -join '|'), 'Windows'
             continue
         }
