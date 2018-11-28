@@ -127,7 +127,7 @@ Class FileContentRule : Rule
    static [bool] Match ([string] $CheckContent)
     {
 
-        $result = $false
+        #$result = $false
         switch ( $true )
         {
             {
@@ -162,7 +162,7 @@ Class FileContentRule : Rule
                 break
             }
         }
-        return $result
+        #return $result
     }
 
     <#
