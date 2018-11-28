@@ -5618,7 +5618,7 @@ Applications requiring continuous, real-time screen display (e.g., network manag
     <Rule id="V-36657" severity="medium" conversionstatus="pass" title="WINUC-000003" dscresource="Registry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\ControlPanel\Desktop</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Control Panel\Desktop</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
