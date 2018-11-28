@@ -2,8 +2,11 @@
 
 ## Unreleased
 
+* Added the following STIGs
+  * FireFox 4.23 STIG
+
 ## 2.2.0.0
-  
+
 * Added the following STIGs
   * IIS Site 8.5 STIG V1R2
   * IIS Site 8.5 STIG V1R3
@@ -12,7 +15,6 @@
   * Microsoft PowerPoint 2013 Stig V1R6
   * Microsoft Excel 2013 STIG V1R7
   * Microsoft Word 2013 STIG V1R6
-  * FireFox 4.23 STIG
 
 * Added the following DSC Composite Resources
   * Microsoft Office 2013 STIGs
