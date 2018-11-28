@@ -585,6 +585,8 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Windows"}
         {
+            # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
+            $id = $id -replace '2012','2012R2'
             $returnId = $id -replace ($windowsVariations -join '|'), 'Windows'
             continue
         }
