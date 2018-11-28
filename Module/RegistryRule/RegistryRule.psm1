@@ -398,7 +398,9 @@ Class RegistryRule : Rule
                 # removed for Server 2012R2 V2R14 change on rule id V-21954
                 #$CheckContent -NotMatch "SupportedEncryptionTypes" -and
                 $CheckContent -NotMatch "Sql Server" -and
-                $CheckContent -NotMatch "v1607 of Windows 10"
+                $CheckContent -NotMatch "v1607 of Windows 10" -and
+                $CheckContent -NotMatch "For 32.bit (production systems|applications)" -and
+                $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key'
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and

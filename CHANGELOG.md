@@ -8,6 +8,7 @@
     * V-1089 - text
 
 * Added the following STIGs
+  * DotNet Framework 4.0 V1R6
   * IIS Site 8.5 V1R5
   * Windows Domain V2R11
   * Windows Server 2012R2 DC V2R14
