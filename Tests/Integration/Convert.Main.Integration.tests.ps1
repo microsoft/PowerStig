@@ -518,10 +518,10 @@ try
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
             DocumentRule                 = 1
-            FileContentRule              = 21
+            FileContentRule              = 20
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 5
+            ManualRule                   = 6
             MimeTypeRule                 = $null
             PermissionRule               = $null
             ProcessMitigationRule        = $null
