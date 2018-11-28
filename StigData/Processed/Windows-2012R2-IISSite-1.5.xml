@@ -1,4 +1,4 @@
-<DISASTIG id="IIS_8-5_Site_STIG" version="1.2" created="11/27/2018">
+<DISASTIG id="IIS_8-5_Site_STIG" version="1.5" created="11/27/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -90,6 +90,23 @@ Verify the "mode" reflects "InProc".
 
 If the "mode" is not set to "InProc", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-76819" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Click on the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click “Edit Feature Settings” in the "Actions" pane.
+
+If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length documented and approved by the ISSO, this is a finding.
+</RawString>
+    </Rule>
     <Rule id="V-76831" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000142" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -138,6 +155,28 @@ In the "Actions" pane, under "Manage Server", click on "Stop".
 
 If there are not documented procedures with, at a minimum, the mentioned steps for stopping a website, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-76845" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Access the IIS 8.5 web server IIS 8.5 Manager.
+
+Under "IIS" double-click on the "Logging" icon.
+
+In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
+
+Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
+
+Under "Log File Rollover", verify the "Do not create new log files" is not selected.
+
+Verify a schedule is configured to rollover log files on a regular basis.
+
+Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
+
+If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-76847" severity="medium" conversionstatus="pass" title="SRG-APP-000383-WSR-000175" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -182,48 +221,6 @@ If the "Client Certificates Required" is not selected, this is a finding.
 
 If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76853" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000151 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Double-click the "SSL Settings" icon under the "IIS" section.
-
-Verify "Require SSL" is checked.
-
-Verify "Client Certificates Required" is selected.
-
-Click the site under review.
-
-Under "Configuration Editor" under the "Management" section.
-
-From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
-
-The value for "sslFlags" should be ssl128.
-
-If the "Require SSL" is not selected, this is a finding.
-
-If the "Client Certificates Required" is not selected, this is a finding.
-
-If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-76859.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>From the "Section:" drop-down list, select "system.web/httpCookies".
-Verify the "require SSL" is set to "True".</RawString>
-    </Rule>
-    <Rule id="V-76859.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>From the "Section:" drop-down list, select "system.web/sessionState".
-Verify the "compressionEnabled" is set to "False".</RawString>
-    </Rule>
     <Rule id="V-76861" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -245,34 +242,6 @@ Select "Configuration Editor" under the "Management" section.
 From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
 
 The value for "sslFlags" should be ssl128.
-
-If the "Require SSL" is not selected, this is a finding.
-
-If the "Client Certificates Required" is not selected, this is a finding.
-
-If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-76863" severity="medium" conversionstatus="pass" title="SRG-APP-000442-WSR-000182 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Double-click the "SSL Settings" icon under the "IIS" section.
-
-Verify "Require SSL" is checked.
-
-Verify "Client Certificates Required" is selected.
-
-Click the site under review.
-
-Select "Configuration Editor" under the "Management" section.
-
-From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
-
-The values for "sslFlags" must include ssl128.
 
 If the "Require SSL" is not selected, this is a finding.
 
@@ -493,33 +462,6 @@ Response Header &gt;&gt; Content-Type
 
 If any of the above fields are not selected, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76845" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="XWebsite">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LogCustomFieldEntry />
-      <LogFlags />
-      <LogFormat />
-      <LogPeriod>daily</LogPeriod>
-      <LogTargetW3C />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Access the IIS 8.5 web server IIS 8.5 Manager.
-
-Under "IIS" double-click on the "Logging" icon.
-
-In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
-
-Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
-
-Under "Log File Rollover", verify the "Do not create new log files" is not selected.
-
-Verify a schedule is configured to rollover log files on a regular basis.
-
-Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
-
-If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
-    </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-76773" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
@@ -561,31 +503,8 @@ Click on "View log file" button.
 
 When log file is displaced, review source IP information in log entries and verify entries do not reflect the IP address of the proxy server.
 
-If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-76793" severity="medium" conversionstatus="pass" title="SRG-APP-000119-WSR-000069" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click the site name.
-
-Click the "Logging" icon. 
-
-Click "Browse" and navigate to the directory where the log files are stored.
-
-Right-click the log file name to review and click “Properties”.
-
-Click the “Security” tab; verify only authorized groups are listed, if others are listed, this is a finding.
-
-Note: The log file should be restricted as follows:
-
-SYSTEM, Auditors group: Full
-SAs, web managers: Read
-</RawString>
+If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
+If the website is not behind a load balancer or proxy server, this is Not Applicable.</RawString>
     </Rule>
     <Rule id="V-76795" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -607,7 +526,10 @@ Click the “Security” tab; verify only authorized groups are listed, if other
 
 Note: The log file should be restricted as follows:
 
-SYSTEM, Auditors group: Full</RawString>
+SYSTEM, Auditors group: Full
+SA, web managers: Read
+
+</RawString>
     </Rule>
     <Rule id="V-76807" severity="medium" conversionstatus="pass" title="SRG-APP-000142-WSR-000089" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -632,26 +554,29 @@ If both hostname entries and unique IP addresses are not configure to port 80 fo
       <RawString>Check the account used for anonymous access to the website.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
 Open the IIS 8.5 Manager.
 
 Double-click "Authentication" in the IIS section of the website’s Home Pane.
 
 If Anonymous access is disabled, this is Not a Finding.
 
-If enabled, click “Anonymous Authentication” and then click “Edit” in the "Actions" pane.
+If Anonymous access is enabled, click “Anonymous Authentication”.
 
-If the “Specific user” radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access.
+Click “Edit” in the "Actions" pane.
 
-Check privileged groups that may allow the anonymous account inappropriate membership.
+If the “Specific user” radio button is enabled and an ID is specified in the adjacent control box, this is the ID being used for anonymous access. Note: account name.
 
-Click “Start” and then double-click “Server Manager”.
+Check privileged groups that may allow the anonymous account inappropriate membership:
+Open “Server Manager” on the machine.
 
-Expand Configuration; expand Local Users and Groups; and then click “Groups”.
+Expand Configuration.
 
-Review group members.
+Expand Local Users and Groups.
 
-Privileged Groups:
+Click “Groups”.
+
+Review members of any of the following privileged groups:
+
 Administrators
 Backup Operators
 Certificate Services (of any designation)
@@ -668,7 +593,7 @@ Users
 
 Double-click each group and review its members.
 
-If the IUSR account or any account used for anonymous access is a member of any group with privileged access, this is a finding.</RawString>
+If the IUSR account or any account noted above used for anonymous access is a member of any group with privileged access, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76815" severity="medium" conversionstatus="pass" title="SRG-APP-000233-WSR-000146" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -716,29 +641,16 @@ If HTTPS is not an available type under site bindings, this is a finding.</RawSt
 
 Click "Application Pools".
 
-In the list of Application Pools, review the "Applications" column and verify none show more than "1" application.
+In the list of Application Pools, review the "Applications" column and verify unique application pools for each website.
 
-If any Application Pools show being applied to more than 1 application, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-76883" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Double-click “Configuration Editor”.
-
-From the drop-down box select “system.webserver serverRuntime”.
-
-If “alternateHostName” has no assigned value, this is a finding.</RawString>
+If any Application Pools are being used for more than one website, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-76885" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000087" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx. If the website does not utilize CGI or ASP, this finding is Not Applicable.
+      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, .asp, and .aspx. 
 
 All interactive programs must be placed in unique designated folders based on CGI or ASP script type.
 
@@ -1077,8 +989,6 @@ If the "Require SSL" check box is not selected, this is a finding.</RawString>
       <OrganizationValueTestString>'{0}' -cmatch '^(Full|High)$'</OrganizationValueTestString>
       <RawString>Note: If the server being reviewed is a non-production website, this is Not Applicable.
 
-Note: Setting a web application Trust Level to MEDIUM may deny some application permissions. If compatibility issues with applications require trust level to be less than "Medium", this check can be downgraded to a Cat III with supporting documentation from the ISSO,
-
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
@@ -1087,7 +997,8 @@ Click the site name under review.
 
 Double-click the ".NET Trust Level" icon.
 
-If the ".NET Trust Level" is not set to Medium or less, this is a finding.</RawString>
+If the ".NET Trust Level" is not set to Full or less, this is a finding.
+</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1108,26 +1019,6 @@ Double-click the "Request Filtering" icon.
 Click “Edit Feature Settings” in the "Actions" pane.
 
 If the "maxUrl" value is not set to "4096" or less, this is a finding.</RawString>
-      <Value>
-      </Value>
-    </Rule>
-    <Rule id="V-76819" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="xWebConfigKeyValue">
-      <ConfigSection>/system.webServer/security/requestFiltering/requestlimits</ConfigSection>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>maxAllowedContentLength</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le 30000000</OrganizationValueTestString>
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click on the site name.
-
-Double-click the "Request Filtering" icon.
-
-Click “Edit Feature Settings” in the "Actions" pane.
-
-If the "maxAllowedContentLength" value is not set to "30000000" or less, this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -1205,7 +1096,7 @@ Double-click the "Request Filtering" icon.
 
 Click “Edit Feature Settings” in the "Actions" pane.
 
-If "Allow unlisted file extensions" check box is checked, this is a finding.</RawString>
+If "Allow unlisted file name extensions" check box is checked, this is a finding.</RawString>
       <Value>false</Value>
     </Rule>
     <Rule id="V-76829" severity="medium" conversionstatus="pass" title="SRG-APP-000251-WSR-000157" dscresource="xWebConfigKeyValue">
@@ -1315,7 +1206,7 @@ Verify the "keepSessionIdSecure" is set to "True".
 If the "keepSessionIdSecure" is not set to "True", this is a finding.</RawString>
       <Value>True</Value>
     </Rule>
-    <Rule id="V-76857.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000153" dscresource="xWebConfigKeyValue">
+    <Rule id="V-76859.a" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/httpCookies</ConfigSection>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>requireSSL</Key>
@@ -1325,7 +1216,7 @@ If the "keepSessionIdSecure" is not set to "True", this is a finding.</RawString
 Verify the "require SSL" is set to "True".</RawString>
       <Value>True</Value>
     </Rule>
-    <Rule id="V-76857.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000153" dscresource="xWebConfigKeyValue">
+    <Rule id="V-76859.b" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000154" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>compressionEnabled</Key>

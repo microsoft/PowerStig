@@ -349,10 +349,10 @@ try
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            DocumentRule                 = 18
+            DocumentRule                 = 19
             FileContentRule              = $null
             GroupRule                    = $null
-            IisLoggingRule               = 5
+            IisLoggingRule               = 4
             ManualRule                   = 14
             MimeTypeRule                 = 5
             PermissionRule               = $null
@@ -364,6 +364,30 @@ try
             UserRightRule                = $null
             WebAppPoolRule               = 5
             WebConfigurationPropertyRule = 17
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = 1
+            WmiRule                      = $null
+        }
+        'U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml'                = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 16
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = 4
+            ManualRule                   = 12
+            MimeTypeRule                 = 5
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = 5
+            WebConfigurationPropertyRule = 16
             WinEventLogRule              = $null
             WindowsFeatureRule           = 1
             WmiRule                      = $null
@@ -469,10 +493,10 @@ try
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            DocumentRule                 = 16
+            DocumentRule                 = 17
             FileContentRule              = $null
             GroupRule                    = $null
-            IisLoggingRule               = 5
+            IisLoggingRule               = 4
             ManualRule                   = 17
             MimeTypeRule                 = 5
             PermissionRule               = 1
@@ -488,7 +512,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_Active_Directory_Domain_V2R10_STIG_Manual-xccdf.xml'       = @{
+        'U_Active_Directory_Domain_STIG_V2R11_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
