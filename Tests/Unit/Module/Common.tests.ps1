@@ -311,6 +311,7 @@ Describe 'ConvertTo-TestString' {
         "30 (or less, but not 0)" = "{0} -le '30' -and {0} -gt '0'"
         "0x0000001e (30) (or less, but not 0)" = "{0} -le '30' -and {0} -gt '0'"
         "0x0000001e (30) (or less, excluding 0)" = "{0} -le '30' -and {0} -gt '0'"
+        '0x00000384 (900) (or less, excluding "0" which is effectively disabled)' = "{0} -le '900' -and {0} -gt '0'"
         "  0x0000000f (15) (or less)" = "{0} -le '15'"
         "0x00008000 (32768) (or greater)" = "{0} -ge '32768'"
     }

@@ -49,7 +49,11 @@ function ConvertFrom-StigXccdf
 
         [Parameter()]
         [switch]
-        $IncludeRawString
+        $IncludeRawString,
+
+        [Parameter()]
+        [string[]]
+        $RuleIdFilter
     )
 
     # Get the xml data from the file path provided.
@@ -73,8 +77,16 @@ function ConvertFrom-StigXccdf
     }
     # Read in the root stig data from the xml additional functions will dig in deeper
     $stigRuleParams = @{
-        StigGroups       = $stigBenchmarkXml.Group
         IncludeRawString = $IncludeRawString
+    }
+
+    if($RuleIdFilter)
+    {
+        $stigRuleParams.StigGroups = $stigBenchmarkXml.Group | Where-Object {$RuleIdFilter -contains $PSItem.Id}
+    }
+    else
+    {
+        $stigRuleParams.StigGroups = $stigBenchmarkXml.Group
     }
 
     # The benchmark title drives the rest of the function and must exist to continue.

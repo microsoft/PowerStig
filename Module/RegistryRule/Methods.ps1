@@ -360,8 +360,7 @@ function Get-RegistryValueData
         }
         default
         {
-            $valueString = ( $checkContent | Select-String -Pattern $regularExpression.registryValueData )
-            return Get-RegistryValueDataFromWindowsStig -CheckContent $valueString
+            return Get-RegistryValueDataFromWindowsStig -CheckContent $checkContent
         }
     }
 }
@@ -386,11 +385,11 @@ function Get-RegistryValueDataFromWindowsStig
         $CheckContent
     )
 
+    $valueString = ( $checkContent | Select-String -Pattern $regularExpression.registryValueData )
     <#
-        Get the second index of the list, which should be the data and remove spaces# Get the second
-        index of the list, which should be the data and remove spaces.
+        Get the second index of the list, which should be the data and remove spaces
     #>
-    [string] $initialData = ( $checkContent -replace $regularExpression.registryValueData )
+    [string] $initialData = ( $valueString -replace $regularExpression.registryValueData )
 
     if ( -not [string]::IsNullOrEmpty( $initialData ) )
     {

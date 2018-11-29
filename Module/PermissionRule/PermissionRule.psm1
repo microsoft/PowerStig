@@ -70,7 +70,7 @@ Class PermissionRule : Rule
                 $byte ++
 
                 $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [PermissionRule]::New($StigRule)
+                $ruleList += [PermissionRule]::New($copyRule)
             }
         }
         else

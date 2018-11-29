@@ -121,15 +121,6 @@ $checkContent = 'Security Option "Audit: Force audit policy subcategory settings
             $testResults = [ConvertFactory]::Rule( $rule )
             $testResults[0].GetType().Name | Should Not Be 'RegistryRule'
         }
-        It "Should Not return 'RegistryRule' when 'SupportedEncryptionTypes' is found" {
-            $checkContent = 'Registry Hive:  HKEY_LOCAL_MACHINE
-            Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-            Value Name:  SupportedEncryptionTypes
-            Type:  REG_DWORD'
-            $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name | Should Not Be 'RegistryRule'
-        }
     }
 
     Context 'SecurityOptionRule' {

@@ -327,6 +327,7 @@ try
                     'Value: 0x000dbba0 (900000) or less but not 0',
                     'Value: 0x0000001e (30) (or less, but not 0)',
                     'Value: 0x0000001e (30) (or less, excluding 0)',
+                    'Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)',
                     'Value: Possible values are NoSync,NTP,NT5DS, AllSync'
                 )
 

@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_2012_MS_STIG" version="2.13" created="11/29/2018">
+<DISASTIG id="Windows_2012_DC_STIG" version="2.14" created="11/29/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -156,6 +156,23 @@ Compare the AuditPol settings with the following.  If the system does not audit 
 
 Account Logon -&gt; Credential Validation - Failure</RawString>
       <Subcategory>Credential Validation</Subcategory>
+    </Rule>
+    <Rule id="V-26531" severity="medium" conversionstatus="pass" title="Audit - Computer Account Management - Success" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+-Open a Command Prompt with elevated privileges ("Run as Administrator").
+-Enter "AuditPol /get /category:*".
+
+Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
+
+Account Management &gt;&gt; Computer Account Management - Success</RawString>
+      <Subcategory>Computer Account Management</Subcategory>
     </Rule>
     <Rule id="V-26533" severity="medium" conversionstatus="pass" title="Audit - Other Account Management Events - Success" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
@@ -496,6 +513,74 @@ Compare the AuditPol settings with the following.  If the system does not audit 
 
 System -&gt; System Integrity - Failure</RawString>
       <Subcategory>System Integrity</Subcategory>
+    </Rule>
+    <Rule id="V-33663" severity="medium" conversionstatus="pass" title="Audit  Directory Service Access - Success" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+-Open a Command Prompt with elevated privileges ("Run as Administrator").
+-Enter "AuditPol /get /category:*".
+
+Compare the Auditpol settings with the following. If the system does not audit the following, this is a finding.
+
+DS Access -&gt; Directory Service Access - Success</RawString>
+      <Subcategory>Directory Service Access</Subcategory>
+    </Rule>
+    <Rule id="V-33664" severity="medium" conversionstatus="pass" title="Audit - Directory Service Access - Failure" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+-Open a Command Prompt with elevated privileges ("Run as Administrator").
+-Enter "AuditPol /get /category:*".
+
+Compare the Auditpol settings with the following. If the system does not audit the following, this is a finding.
+
+DS Access -&gt; Directory Service Access - Failure</RawString>
+      <Subcategory>Directory Service Access</Subcategory>
+    </Rule>
+    <Rule id="V-33665" severity="medium" conversionstatus="pass" title="Audit - Directory Service Changes - Success" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+-Open a Command Prompt with elevated privileges ("Run as Administrator").
+-Enter "AuditPol /get /category:*".
+
+Compare the Auditpol settings with the following. If the system does not audit the following, this is a finding.
+
+DS Access -&gt; Directory Service Changes - Success</RawString>
+      <Subcategory>Directory Service Changes</Subcategory>
+    </Rule>
+    <Rule id="V-33666" severity="medium" conversionstatus="pass" title="Audit - Directory Service Changes - Failure" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+
+Use the AuditPol tool to review the current Audit Policy configuration:
+-Open a Command Prompt with elevated privileges ("Run as Administrator").
+-Enter "AuditPol /get /category:*".
+
+Compare the Auditpol settings with the following. If the system does not audit the following, this is a finding.
+
+DS Access -&gt; Directory Service Changes - Failure</RawString>
+      <Subcategory>Directory Service Changes</Subcategory>
     </Rule>
     <Rule id="V-36667" severity="medium" conversionstatus="pass" title="WINAU-000016" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
@@ -957,6 +1042,18 @@ Wired AutoConfig - Manual
 WMI Performance Adapter - Manual
 Workstation - Automatic</RawString>
     </Rule>
+    <Rule id="V-14783" severity="medium" conversionstatus="pass" title="Replication Encryption – Classification Factor" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>With the assistance of the SA, NSO, or network reviewer as required, review the site network diagram(s) or documentation to determine the level of classification for the network(s) over which replication data is transmitted.
+
+Determine the classification level of the Windows domain controller.
+
+If the classification level of the Windows domain controller is higher than the level of the networks, review the site network diagram(s) and directory implementation documentation to determine if NSA-approved encryption is used to protect the replication network traffic.
+
+If the classification level of the Windows domain controller is higher than the level of the network traversed and NSA-approved encryption is not used, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-15823" severity="medium" conversionstatus="pass" title="Software Certificate Installation Files" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -966,6 +1063,32 @@ Workstation - Automatic</RawString>
 If any files with these extensions exist, this is a finding.
 
 This does not apply to server-based applications that have a requirement for certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
+    </Rule>
+    <Rule id="V-26683" severity="high" conversionstatus="pass" title="Directory PKI Certificate Source - Users" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "PowerShell" as Administrator.
+
+Enter "Get-ADUser -Filter * | FT Name, UserPrincipalName, Enabled -AutoSize".
+
+Review the User Principal Name (UPN) of user accounts, including administrators.
+
+Exclude the built-in accounts such as Administrator and Guest.
+
+If the User Principal Name (UPN) is not in the format of an individual's identifier for the certificate type and for the appropriate domain suffix, this is a finding.
+
+For standard NIPRNET certificates the individual's identifier is in the format of an Electronic Data Interchange - Personnel Identifier (EDI-PI).
+
+Alt Tokens and other certificates may use a different UPN format than the EDI-PI, which vary by organization.  Verify these with the organization.
+
+NIPRNET Example:
+Name - User Principal Name
+User1 - 1234567890@mil
+
+See PKE documentation for other network domain suffixes.
+
+If the mappings are to certificates issued by a CA authorized by the Component's CIO, this is a CAT II finding.</RawString>
     </Rule>
     <Rule id="V-32272" severity="medium" conversionstatus="pass" title="WINPK-000001" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1045,11 +1168,90 @@ DoD Root CA 5
 Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
 Valid to: Friday, June 14, 2041</RawString>
     </Rule>
+    <Rule id="V-33673" severity="high" conversionstatus="pass" title="Group Policy Objects Access Control" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the permissions on Group Policy objects.
+
+Open "Group Policy Management".  (Available from various menus or run "gpmc.msc".)
+Navigate to "Group Policy Objects" in the domain being reviewed (Forest &gt; Domains &gt; Domain).
+
+For each Group Policy object:
+Select the Group Policy object item in the left pane.
+Select the Delegation tab in the right pane.
+Select the Advanced button.
+
+If any standard user accounts or groups have greater than Allow permissions of Read and Apply group policy, this is a finding.
+
+Other access permissions that allow the objects to be updated are considered findings unless specifically documented by the ISSO.
+
+The default permissions noted below meet this requirement.
+
+The permissions shown are at the summary level.  More detailed permissions can be viewed by selecting the next Advanced button, selecting the desired Permission entry, and the Edit button.
+
+Authenticated Users - Read, Apply group policy, Special permissions
+
+The Special permissions for Authenticated Users are for Read type Properties.  If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+The Special permissions for the following default groups are not the focus of this requirement and may include a wide range of permissions and properties.
+
+CREATOR OWNER - Special permissions
+
+SYSTEM - Read, Write, Create all child objects, Delete all child objects, Special permissions
+
+Domain Admins - Read, Write, Create all child objects, Delete all child objects, Special permissions
+
+Enterprise Admins - Read, Write, Create all child objects, Delete all child objects, Special permissions
+
+ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
+
+The Domain Admins and Enterprise Admins will not have the "Delete all child objects" permission on the two default group policy objects: Default Domain Policy and Default Domain Controllers Policy.  They will have this permission on created group policy objects.
+
+The Anonymous Logon, Guests, or any group that contains those groups (in which users are not uniquely identified and authenticated) must not have any access permissions unless the group and justification is explicitly documented with the ISSO.</RawString>
+    </Rule>
     <Rule id="V-36658" severity="medium" conversionstatus="pass" title="WIN00-000005-01" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the necessary documentation that identifies the members of the Administrators group.  If a list of all users belonging to the Administrators group is not maintained with the ISSO, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-39333" severity="high" conversionstatus="pass" title="WINAD-000005-DC" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verifying the permissions on domain defined OUs.
+
+Open "Active Directory Users and Computers".  (Available from various menus or run "dsa.msc".)
+Ensure Advanced Features is selected in the View menu.
+
+For each OU that is defined (folder in folder icon) excluding the Domain Controllers OU:
+Right click the OU and select Properties.
+Select the Security tab.
+
+If the permissions on the OU are not at least as restrictive as those below, this is a finding.
+
+The permissions shown are at the summary level.  More detailed permissions can be viewed by selecting the next Advanced button, selecting the desired Permission entry and the Edit button.
+
+Self - Special permissions
+
+Authenticated Users - Read, Special permissions
+The Special permissions for Authenticated Users are Read type.  If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+SYSTEM - Full Control
+
+Domain Admins - Full Control
+
+Enterprise Admins - Full Control
+
+Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
+
+Pre-Windows 2000 Compatible Access - Special permissions
+The Special permissions for Pre-Windows 2000 Compatible Access are for Read types.  If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
+
+If an ISSO-approved distributed administration model (help desk or other user support staff) is implemented, permissions above Read may be allowed for groups documented by the ISSO.</RawString>
     </Rule>
     <Rule id="V-40173" severity="low" conversionstatus="pass" title="WN00-000017" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1117,15 +1319,11 @@ If the drop-down list box "Default operating system:" shows any operating system
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the local Administrators group.  Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
+      <RawString>Review the Administrators group. Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
 
-For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group.
+Standard user accounts must not be members of the local administrator group.
 
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.  AD admin platforms may use the Domain Admins group or a domain administrative group created specifically for AD admin platforms (see V-43711 in the Active Directory Domain STIG).
-
-Standard user accounts must not be members of the local Administrator group.
-
-If prohibited accounts are members of the local Administrators group, this is a finding.
+If prohibited accounts are members of the local administrators group, this is a finding.
 
 The built-in Administrator account or other required administrative accounts would not be a finding.</RawString>
     </Rule>
@@ -1158,6 +1356,76 @@ Select the Security tab.
 If any standard user accounts or groups have permissions other than "Print", this is a finding.
 Standard users will typically be given "Print" permission through the Everyone group.
 "All APPLICATION PACKAGES" and "CREATOR OWNER" are not considered standard user accounts for this requirement.</RawString>
+    </Rule>
+    <Rule id="V-2376" severity="medium" conversionstatus="pass" title="Kerberos-User Logon Restrictions" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2377" severity="medium" conversionstatus="pass" title="Kerberos-Service Ticket Lifetime" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the value for "Maximum lifetime for service ticket" is 0 or greater than 600 minutes, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2378" severity="medium" conversionstatus="pass" title="Kerberos - User Ticket Lifetime" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hours, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2379" severity="medium" conversionstatus="pass" title="Kerberos-User Ticket Renewal" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2380" severity="medium" conversionstatus="pass" title="Kerberos - Computer Clock Sync" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the "Maximum tolerance for computer clock synchronization" is greater than 5 minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2907" severity="medium" conversionstatus="pass" title="System File Changes" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1252,6 +1520,51 @@ Exclude disabled accounts (e.g., Guest).
 
 If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-8317" severity="medium" conversionstatus="pass" title="Directory Server Data File Locations" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Refer to the AD database location obtained in check V-8316.  Note the logical drive (e.g., C:) on which the files are located.
+
+Determine if the server is currently providing file sharing services to users with the following command.
+Enter "net share" at a command prompt.
+
+Note the logical drive(s) or file system partition for any site-created data shares.
+Ignore all system shares (e.g., Windows NETLOGON, SYSVOL, and administrative shares ending in $). User shares that are hidden (ending with $) should not be ignored.
+
+If user shares are located on the same logical partition as the directory server data files, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-8326" severity="medium" conversionstatus="pass" title="Directory Server Host Dedication" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the roles and services the domain controller is running.
+Run "services.msc" to display the Services console.
+
+Determine if any running services are application components.
+
+Examples of services indicating the presence of applications are:
+-DHCP Server for DHCP server
+-IIS Admin Service for IIS web server
+-Microsoft Exchange System Attendant for Exchange
+-MSSQLServer for SQL Server.
+
+If any application-related components have the "Started" status, this is a finding.
+
+Installed roles can be displayed by viewing Server Roles in the Add (or Remove) Roles and Features wizard.  (Cancel before any changes are made.)
+
+Determine if any additional server roles are installed.  A basic domain controller set up will include the following:
+-Active Directory Domain Services
+-DNS Server
+-File and Storage Services
+
+If any roles not requiring installation on a domain controller are installed, this is a finding.
+
+Supplemental Notes:
+A Domain Name System (DNS) server integrated with the directory server (e.g., AD-integrated DNS) is an acceptable application.  However, the DNS server must comply with the DNS STIG security requirements.
+
+Some directory servers utilize specialized web servers for administrative functions and databases for data management.  These web and database servers are permitted as long as they are dedicated to directory server support and only administrative users have access to them.</RawString>
+    </Rule>
     <Rule id="V-14225" severity="medium" conversionstatus="pass" title="Administrator Account Password Changes" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1275,6 +1588,123 @@ Enter 'Net User [account name] | Find /i "Password Last Set"', where [account na
 (The name of the built-in Administrator account must be changed to something other than "Administrator" per STIG requirements.)
 
 If the "PasswordLastSet" date is greater than one year old, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-14797" severity="low" conversionstatus="pass" title="Anonymous Access to Non-Public Root DSE Data" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>At this time, this is a finding for all Windows domain controllers for sensitive or classified levels as Windows Active Directory Domain Services (AD DS) does not provide a method to restrict anonymous access to the root DSE on domain controllers.
+
+The following can be used to verify anonymous access is allowed.
+
+Open a command prompt (not elevated).
+Run "ldp.exe".
+From the Connection menu, select Bind.
+Clear the User, Password, and Domain fields.
+Select Simple bind for the Bind type, Click OK.
+
+RootDSE attributes should display, such as various namingContexts.
+
+Confirmation of anonymous access will be displayed at the end:
+res = ldap_simple_bind_s
+Authenticated as: 'NT AUTHORITY\ANONYMOUS LOGON'</RawString>
+    </Rule>
+    <Rule id="V-14798" severity="high" conversionstatus="pass" title="Anonymous Access to Non-Public Data " dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify anonymous access is not allowed to the AD domain naming context.
+
+Open a command prompt (not elevated).
+Run "ldp.exe".
+From the Connection menu, select Bind.
+Clear the User, Password, and Domain fields.
+Select Simple bind for the Bind type, Click OK.
+
+Confirmation of anonymous access will be displayed at the end:
+res = ldap_simple_bind_s
+Authenticated as: 'NT AUTHORITY\ANONYMOUS LOGON'
+
+From the Browse menu, select Search.
+In the Search dialog, enter the DN of the domain naming context (generally something like "dc=disaost,dc=mil") in the Base DN field.
+Clear the Attributes field and select Run.
+
+Error messages should display related to bind and user not authenticated.
+
+If attribute data is displayed, anonymous access is enabled to the domain naming context and this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-14820" severity="high" conversionstatus="pass" title="Directory PKI Certificate Source - Server" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the source of the domain controller's server certificate.
+
+Run "mmc".
+Select "Add/Remove Snap-in" from the File menu.
+Select "Certificates" in the left pane and click the "Add &gt;" button.
+Select "Computer Account", click "Next".
+Select the appropriate option for "Select the computer you want this snap-in to manage.", click "Finish".
+Click "OK".
+Select and expand the Certificates (Local Computer) entry in the left pane.
+Select and expand the Personal entry in the left pane.
+Select the Certificates entry in the left pane.
+In the right pane, examine the Issued By field for the certificate to determine the issuing CA.
+
+If the Issued By field of the PKI certificate being used by the domain controller does not indicate the issuing Certificate Authority (CA) is part of the DoD PKI or an approved ECA, this is a finding.
+
+
+There are multiple sources from which lists of valid DoD CAs and approved ECAs can be obtained:
+
+The Global Directory Service (GDS) website provides an online source. The address for this site is https://crl.gds.disa.mil.
+
+DoD Public Key Enablement (PKE) Engineering Support maintains the InstallRoot utility to manage DoD supported root certificates on Windows computers which includes a list of authorized CAs.  The utility package can be downloaded from the PKI and PKE Tools page on IASE.
+http://iase.disa.mil/pki-pke/function_pages/tools.html</RawString>
+    </Rule>
+    <Rule id="V-14831" severity="low" conversionstatus="pass" title="Inactive Server Connections" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the value for MaxConnIdleTime.
+
+Open an elevated command prompt.
+Enter "ntdsutil".
+At the "ntdsutil:" prompt, enter "LDAP policies".
+At the "ldap policy:" prompt, enter "connections".
+At the "server connections:" prompt, enter "connect to server [host-name]".
+(Where [host-name] is the computer name of the domain controller.)
+At the "server connections:" prompt, enter "q".
+At the "ldap policy:" prompt, enter "show values".
+
+If the value for MaxConnIdleTime is greater than 300 (the value for five minutes) or it is not specified, this is a finding.
+
+Enter "q" at the "ldap policy:" and "ntdsutil:" prompts to exit.
+
+
+Alternately, Dsquery can be used to display MaxConnIdleTime:
+
+Open an elevated command prompt.
+Enter the following command (on a single line).
+dsquery * "cn=Default Query Policy,cn=Query-Policies,cn=Directory Service, cn=Windows NT,cn=Services,cn=Configuration,dc=[forest-name]" -attr LDAPAdminLimits
+The quotes are required and dc=[forest-name] is the fully qualified LDAP name of the domain being reviewed (e.g., dc=disaost,dc=mil).</RawString>
+    </Rule>
+    <Rule id="V-15488" severity="medium" conversionstatus="pass" title="PKI Authentication Req" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify active directory user accounts, including administrators, have "Smart card is required for interactive logon" selected.
+
+Run "PowerShell".
+Enter the following:
+"Get-ADUser -Filter {(Enabled -eq $True) -and (SmartcardLogonRequired -eq $False)} | FT Name"
+("DistinguishedName" may be substituted for "Name" for more detailed output.)
+If any user accounts are listed, this is a finding.
+
+Alternately:
+To view sample accounts in "Active Directory Users and Computers" (Available from various menus or run "dsa.msc"):
+Select the Organizational Unit (OU) where the User accounts are located.  (By default this is the Users node; however, accounts may be under other organization-defined OUs.)
+Right click the sample User account and select "Properties".
+Select the "Account" tab.
+If any User accounts do not have "Smart card is required for interactive logon" checked in the "Account Options" area, this is a finding.</RawString>
     </Rule>
     <Rule id="V-32274" severity="medium" conversionstatus="pass" title="WINPK-000003" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1451,6 +1881,66 @@ If the "Password Last Set" date is more than one year old, this is a finding.</R
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the system has software installed and running that provides certificate validation and revocation checking.  If it does not, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-39332" severity="high" conversionstatus="pass" title="WINAD-000004-DC" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the permissions on the Domain Controllers OU.
+
+Open "Active Directory Users and Computers". (Available from various menus or run "dsa.msc".)
+
+Select Advanced Features in the View menu if not previously selected.
+
+Navigate to the Domain Controllers OU (folder in folder icon).
+
+Right click the OU and select Properties.
+
+Select the Security tab.
+
+If the permissions on the Domain Controllers OU do not restrict changes to System, Domain Admins, Enterprise Admins and Administrators, this is a finding.
+
+The default permissions listed below satisfy this requirement.
+
+Domains supporting Microsoft Exchange will have additional Exchange related permissions on the Domain Controllers OU.  These may include some change related permissions and are not a finding.
+
+The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the Advanced button, selecting the desired Permission entry, and the Edit button.
+
+SELF - Special permissions
+
+Authenticated Users - Read, Special permissions
+The Special permissions for Authenticated Users are Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+SYSTEM - Full Control
+
+Domain Admins - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
+
+Enterprise Admins - Full Control
+
+Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
+
+Pre-Windows 2000 Compatible Access - Special permissions
+The Special permissions for Pre-Windows 2000 Compatible Access are Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
+    </Rule>
+    <Rule id="V-39334" severity="medium" conversionstatus="pass" title="WINPK-000005-DC" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the domain controller has a PKI server certificate.
+
+Run "mmc".
+Select "Add/Remove Snap-in" from the File menu.
+Select "Certificates" in the left pane and click the "Add &gt;" button.
+Select "Computer Account", click "Next".
+Select the appropriate option for "Select the computer you want this snap-in to manage.", click "Finish".
+Click "OK".
+Select and expand the Certificates (Local Computer) entry in the left pane.
+Select and expand the Personal entry in the left pane.
+Select the Certificates entry in the left pane.
+
+If no certificate for the domain controller exists in the right pane, this is a finding.</RawString>
     </Rule>
     <Rule id="V-40172" severity="low" conversionstatus="pass" title="WN00-000016" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1724,6 +2214,56 @@ Administrators - Full Control - This key and subkeys
 Backup Operators - Read - This key only
 LOCAL SERVICE - Read - This key and subkeys</RawString>
     </Rule>
+    <Rule id="V-8316" severity="high" conversionstatus="pass" title="Data File Access Permissions" dscresource="NTFSAccessEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>NT AUTHORITY\SYSTEM</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>BUILTIN\Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>%windir%\NTDS\*.*</Path>
+      <RawString>Verify the permissions on the content of the NTDS directory.
+
+Open the registry editor (regedit).
+Navigate to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters.
+Note the directory locations in the values for:
+Database log files path
+DSA Database file
+
+By default they will be \Windows\NTDS. If the locations are different, the following will need to be run for each.
+
+Open an elevated command prompt (Win+x, Command Prompt (Admin)).
+Navigate to the NTDS directory (\Windows\NTDS by default).
+Run "icacls *.*".
+
+If the permissions on each file are not at least as restrictive as the following, this is a finding.
+
+NT AUTHORITY\SYSTEM:(I)(F)
+BUILTIN\Administrators:(I)(F)
+
+(I) - permission inherited from parent container
+(F) - full access
+
+Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.</RawString>
+    </Rule>
     <Rule id="V-26070" severity="high" conversionstatus="pass" title="Winlogon Registry Permissions" dscresource="RegistryAccessEntry">
       <AccessControlEntry>
         <Entry>
@@ -1992,6 +2532,563 @@ Administrators - Full Control
 The default location is the "%SystemRoot%\SYSTEM32\WINEVT\LOGS" directory.  They may have been moved to another folder.
 
 If the permissions for these files are not as restrictive as the ACLs listed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-39325" severity="medium" conversionstatus="fail" title="WINAU-000207-DC" dscresource="">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Fail</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>
+          </Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>
+          </Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>
+          </Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path />
+      <RawString>Review the auditing configuration for all Group Policy objects.
+
+Open "Group Policy Management". (Available from various menus, or run "gpmc.msc".)
+
+Navigate to "Group Policy Objects" in the domain being reviewed (Forest &gt;&gt; Domains &gt;&gt; Domain).
+
+For each Group Policy object:
+
+Select the Group Policy Object item in the left pane.
+
+Select the "Delegation" tab in the right pane.
+
+Select the "Advanced" button.
+
+Select the "Advanced" button again and then the "Auditing" tab.
+
+If the audit settings for any Group Policy object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Applies to - This object and all descendant objects or Descendant groupPolicyContainer objects
+
+The three Success types listed below are defaults inherited from the Parent Object. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference.
+
+Type - Success
+Principal - Everyone
+Access - Special (Permissions: Write all properties, Modify permissions; Properties: all "Write" type selected)
+Inherited from - Parent Object
+Applies to - Descendant groupPolicyContainer objects
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - blank (Permissions: none selected; Properties: one instance - Write gPLink, one instance - Write gPOptions)
+Inherited from - Parent Object
+Applies to - Descendant Organization Unit Objects</RawString>
+    </Rule>
+    <Rule id="V-39326" severity="medium" conversionstatus="pass" title="WINAU-000208-DC" dscresource="ActiveDirectoryAuditRuleEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Fail</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>blank</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Domain Users</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>AllExtendedRights</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>AllExtendedRights</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>WriteallProperties,ModifyPermissions,ModifyOwner</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>{Domain}</Path>
+      <RawString>Verify the auditing configuration for the Domain object.
+
+Open "Active Directory Users and Computers".  (Available from various menus or run "dsa.msc".)
+Ensure Advanced Features is selected in the View menu.
+Select the domain being reviewed in the left pane.
+Right click the domain name and select Properties.
+Select the Security tab.
+Select the Advanced button and then the Auditing tab.
+
+If the audit settings on the Domain object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+Applies to - This object only
+
+The success types listed below are defaults.  Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference, various Properties selections may also exist by default.
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - None
+Applies to - Special
+
+Type - Success
+Principal - Domain Users
+Access - All extended rights
+Inherited from - None
+Applies to - This object only
+
+Type - Success
+Principal - Administrators
+Access - All extended rights
+Inherited from - None
+Applies to - This object only
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+Applies to - This object only
+(Access - Special = Permissions: Write all properties, Modify permissions, Modify owner)</RawString>
+    </Rule>
+    <Rule id="V-39327" severity="medium" conversionstatus="pass" title="WINAU-000209-DC" dscresource="ActiveDirectoryAuditRuleEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Fail</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>WriteallProperties,AllExtendedRights,ChangeInfrastructureMaster</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>blank</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>CN=Infrastructure,{Domain}</Path>
+      <RawString>Verify the auditing configuration for Infrastructure object.
+
+Open "Active Directory Users and Computers".  (Available from various menus or run "dsa.msc".)
+Ensure Advanced Features is selected in the View menu.
+Select the domain being reviewed in the left pane.
+Right click the Infrastructure object in the right pane and select Properties.
+Select the Security tab.
+Select the Advanced button and then the Auditing tab.
+
+If the audit settings on the Infrastructure object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+
+The success types listed below are defaults.  Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference, various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+(Access - Special = Permissions: Write all properties, All extended rights, Change infrastructure master)
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)</RawString>
+    </Rule>
+    <Rule id="V-39328" severity="medium" conversionstatus="pass" title="WINAU-000210-DC" dscresource="ActiveDirectoryAuditRuleEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Fail</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>Createallchildobjects,Delete,ModifyPermissions</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>WriteallProperties</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>blank</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>OU=Domain Controllers,{Domain}</Path>
+      <RawString>Verify the auditing configuration for the Domain Controller OU object.
+
+Open "Active Directory Users and Computers".  (Available from various menus or run "dsa.msc".)
+Ensure Advanced Features is selected in the View menu.
+Select the Domain Controllers OU under the domain being reviewed in the left pane.
+Right click the Domain Controllers OU object and select Properties.
+Select the Security tab.
+Select the Advanced button and then the Auditing tab.
+
+If the audit settings on the Domain Controllers OU object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+Applies to - This object and all descendant objects
+
+The success types listed below are defaults.  Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference, various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+Applies to - This object only
+(Access - Special = Permissions: all create, delete and modify permissions)
+
+Type - Success
+Principal - Everyone
+Access - Write all properties
+Inherited from - None
+Applies to - This object and all descendant objects
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)
+Applies to - Descendant Organizational Unit objects</RawString>
+    </Rule>
+    <Rule id="V-39329" severity="medium" conversionstatus="pass" title="WINAU-000211-DC" dscresource="ActiveDirectoryAuditRuleEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Fail</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>WriteallProperties,ModifyPermissions,ModifyOwner</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>blank</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>CN=AdminSDHolder,CN=System,{Domain}</Path>
+      <RawString>Verify the auditing configuration for the AdminSDHolder object.
+
+Open "Active Directory Users and Computers".  (Available from various menus or run "dsa.msc".)
+Ensure Advanced Features is selected in the View menu.
+Select System under the domain being reviewed in the left pane.
+Right click the AdminSDHolder object in the right pane and select Properties.
+Select the Security tab.
+Select the Advanced button and then the Auditing tab.
+
+If the audit settings on the AdminSDHolder object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+Applies to - This object only
+
+The success types listed below are defaults.  Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference, various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+Applies to - This object only
+(Access - Special = Write all properties, Modify permissions, Modify owner)
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)
+Applies to - Descendant Organizational Unit objects</RawString>
+    </Rule>
+    <Rule id="V-39330" severity="medium" conversionstatus="pass" title="WINAU-000212-DC" dscresource="ActiveDirectoryAuditRuleEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Fail</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>WriteallProperties,AllExtendedRights,ChangeRIDMaster</Rights>
+        </Entry>
+        <Entry>
+          <Type>Success</Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>blank</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>CN=RID Manager$,CN=System,{Domain}</Path>
+      <RawString>Verify the auditing configuration for the RID Manager$ object.
+
+Open "Active Directory Users and Computers".  (Available from various menus or run "dsa.msc".)
+Ensure Advanced Features is selected in the View menu.
+Select System under the domain being reviewed in the left pane.
+Right-click the RID Manager$ object in the right pane and select Properties.
+Select the Security tab.
+Select the Advanced button and then the Auditing tab.
+
+If the audit settings on the RID Manager$ object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+
+The success types listed below are defaults.  Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference, various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+ (Access - Special = Write all properties, All extended rights, Change RID master)
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)</RawString>
+    </Rule>
+    <Rule id="V-39331" severity="high" conversionstatus="pass" title="WINAD-000002-DC" dscresource="NTFSAccessEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Authenticated Users</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>ReadAndExecute</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Server Operators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>ReadAndExecute</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder only</Inheritance>
+          <Rights>AppendData,ChangePermissions,CreateDirectories,CreateFiles,Delete,DeleteSubdirectoriesAndFiles,ExecuteFile,ListDirectory,Modify,Read,ReadAndExecute,ReadAttributes,ReadData,ReadExtendedAttributes,ReadPermissions,Synchronize,TakeOwnership,Traverse,Write,WriteAttributes,WriteData,WriteExtendedAttributes</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>Allow</Type>
+          <Principal>SYSTEM</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>%windir%\sysvol</Path>
+      <RawString>Verify the permissions on the SYSVOL directory.
+
+Open a command prompt.
+Run "net share".
+Make note of the directory location of the SYSVOL share.
+
+By default this will be \Windows\SYSVOL\sysvol.  For this requirement, permissions will be verified at the first SYSVOL directory level.
+
+Open File Explorer.
+Navigate to \Windows\SYSVOL (or the directory noted previously if different).
+Right click the directory and select properties.
+Select the Security tab.
+Click Advanced.
+
+If any standard user accounts or groups have greater than read &amp; execute permissions, this is a finding. The default permissions noted below meet this requirement.
+
+Type - Allow
+Principal - Authenticated Users
+Access - Read &amp; execute
+Inherited from - None
+Applies to - This folder, subfolder and files
+
+Type - Allow
+Principal - Server Operators
+Access - Read &amp; execute
+Inherited from - None
+Applies to - This folder, subfolder and files
+
+Type - Allow
+Principal - Administrators
+Access - Special
+Inherited from - None
+Applies to - This folder only
+(Access - Special - Basic Permissions: all selected except Full control)
+
+Type - Allow
+Principal - CREATOR OWNER
+Access - Full control
+Inherited from - None
+Applies to - Subfolders and files only
+
+Type - Allow
+Principal - Administrators
+Access - Full control
+Inherited from - None
+Applies to - Subfolders and files only
+
+Type - Allow
+Principal - SYSTEM
+Access - Full control
+Inherited from - None
+Applies to - This folder, subfolders and files
+
+
+Alternately, use Icacls.exe to view the permissions of the SYSVOL directory.
+Open a command prompt.
+Run "icacls c:\Windows\SYSVOL
+The following results should be displayed:
+
+NT AUTHORITY\Authenticated Users:(RX)
+NT AUTHORITY\Authenticated Users:(OI)(CI)(IO)(GR,GE)
+BUILTIN\Server Operators:(RX)
+BUILTIN\Server Operators:(OI)(CI)(IO)(GR,GE)
+BUILTIN\Administrators:(M,WDAC,WO)
+BUILTIN\Administrators:(OI)(CI)(IO)(F)
+NT AUTHORITY\SYSTEM:(F)
+NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
+BUILTIN\Administrators:(M,WDAC,WO)
+CREATOR OWNER:(OI)(CI)(IO)(F)
+
+(RX) - Read &amp; execute
+Run "icacls /help" to view definitions of other permission codes.</RawString>
     </Rule>
     <Rule id="V-40177.a" severity="medium" conversionstatus="pass" title="WNGE-000007" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -2928,7 +4025,7 @@ Value: 0x000000ff (255)</RawString>
     </Rule>
     <Rule id="V-3338" severity="high" conversionstatus="pass" title="Anonymous Access to Named Pipes" dscresource="xRegistry">
       <Ensure>Present</Ensure>
-      <IsNullOrEmpty>True</IsNullOrEmpty>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\LanManServer\Parameters</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2940,11 +4037,12 @@ Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 Value Name: NullSessionPipes
 
 Value Type: REG_MULTI_SZ
-Value: (blank)
+Value: netlogon, samr, lsarpc
 
-Legitimate applications may add entries to this registry value. If an application requires these entries to function properly and is documented with the ISSO, this would not be a finding.  Documentation must contain supporting information from the vendor's instructions.</RawString>
-      <ValueData>
-      </ValueData>
+The default configuration of systems promoted to domain controllers may include a blank entry in the first line prior to "netlogon", "samr", and "lsarpc".  This will appear in the registry as a blank entry when viewing the registry key summary; however the value data for "NullSessionPipes" will contain the default entries.
+
+Legitimate applications may add entries to this registry value. If an application requires these entries to function properly and is documented with the ISSO, this would not be a finding. Documentation must contain supporting information from the vendor's instructions.</RawString>
+      <ValueData>netlogon;samr;lsarpc</ValueData>
       <ValueName>NullSessionPipes</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
@@ -3556,6 +4654,44 @@ Value:  1</RawString>
       <ValueName>NoNameReleaseOnDemand</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
+    <Rule id="V-4407" severity="medium" conversionstatus="pass" title="LDAP Signing Requirements" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \System\CurrentControlSet\Services\NTDS\Parameters\
+
+Value Name: LDAPServerIntegrity
+
+Value Type: REG_DWORD
+Value: 2</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>LDAPServerIntegrity</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-4408" severity="low" conversionstatus="pass" title="Computer Account Password Change" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\Netlogon\Parameters</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
+
+Value Name: RefusePasswordChange
+
+Value Type: REG_DWORD
+Value: 0</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>RefusePasswordChange</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
     <Rule id="V-4438" severity="low" conversionstatus="pass" title="TCP Data Retransmissions" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3759,6 +4895,59 @@ Value Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>RestrictNullSessAccess</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-8322.a" severity="medium" conversionstatus="pass" title="Time Synchronization" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\
+Type: REG_DWORD
+Value Name: Enabled
+Value: 1</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-8322.b" severity="medium" conversionstatus="pass" title="Time Synchronization" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '^(NoSync|NTP|NT5DS|AllSync)$'</OrganizationValueTestString>
+      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\
+Type: REG_SZ
+Value Name: Type
+Value: NT5DS (preferred), NTP or Allsync</RawString>
+      <ValueData />
+      <ValueName>Type</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-8324" severity="low" conversionstatus="pass" title="Time Synchronization Source Logging" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\Config</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
+      <RawString>Verify logging is configured to capture time source switches.
+
+If the Windows Time Service is used, verify the following registry value.  If it is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \System\CurrentControlSet\Services\W32Time\Config\
+
+Value Name: EventLogFlags
+
+Type: REG_DWORD
+Value: 2 or 3
+
+If another time synchronization tool is used, review the available configuration options and logs.  If the tool has time source logging capability and it is not enabled, this is a finding.</RawString>
+      <ValueData />
+      <ValueName>EventLogFlags</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-11806" severity="low" conversionstatus="pass" title="Display of Last User Name" dscresource="xRegistry">
@@ -4084,25 +5273,6 @@ Value: 1</RawString>
       <ValueName>fDisableCdm</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14253" severity="medium" conversionstatus="pass" title="RPC - Unauthenticated RPC Clients" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Rpc</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Policies\Microsoft\Windows NT\Rpc\
-
-Value Name:  RestrictRemoteClients
-
-Type:  REG_DWORD
-Value:  1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>RestrictRemoteClients</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-14259" severity="medium" conversionstatus="pass" title="Printing Over HTTP" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4291,27 +5461,6 @@ Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>NoInternetOpenWith</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-15680" severity="low" conversionstatus="pass" title="Classic Logon" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the system is a member of a domain, this is NA.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
-
-Value Name:  LogonType
-
-Type:  REG_DWORD
-Value:  0</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>LogonType</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15682" severity="medium" conversionstatus="pass" title="RSS Attachment Downloads" dscresource="xRegistry">
@@ -5131,32 +6280,18 @@ Value: 0</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify whether the registry key below exists.  If it does not exist or the value is "0", this is not a finding.
-If the registry key exists and contains a value other than "0", continue below.
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-The values are determined by the selection of encryption suites in the policy Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network Security: Configure encryption types allowed for Kerberos".
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
 
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-Value Name:  SupportedEncryptionTypes
-Type:  REG_DWORD
+Value Name: SupportedEncryptionTypes
 
-Due to the number of possible combinations that may include the DES encryption types, it is not possible to include all acceptable values as viewed directly in the registry.
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)
 
-If the registry key does exist, the value must be converted to binary to determine configuration of specific bits.  This will determine whether this is a finding.
-
-Note the value for the registry key.
-For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".
-
-Open the Windows calculator (Run/Search for "calc").
-Select "View", then "Programmer".
-Select "Dword" and either "Hex" or "Dec".
-Enter the appropriate form of the value found for the registry key (e.g., Hex - enter 0x7fffffff, Dec - enter 2147483647)
-Select "Bin".
-The returned value may vary in length, up to 32 characters.
-If the either of 2 right most characters are "1", this is a finding.
-If the both of 2 right most characters are "0", this is not a finding.</RawString>
-      <ValueData>0</ValueData>
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.</RawString>
+      <ValueData>2147483640</ValueData>
       <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -5668,28 +6803,6 @@ Value: 0</RawString>
       <ValueName>AlwaysInstallElevated</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36439" severity="medium" conversionstatus="pass" title="Local admin accounts filtered token policy enabled on domain systems." dscresource="xRegistry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the system is not a member of a domain, this is NA.
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
-
-Value Name: LocalAccountTokenFilterPolicy
-
-Type: REG_DWORD
-Value: 0x00000000 (0)
-
-This setting may cause issues with some network scanning tools if local administrative accounts are used remotely. Scans should use domain accounts where possible. If a local administrative account must be used, temporarily enabling the privileged token by configuring the registry value to 1 may be required.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>LocalAccountTokenFilterPolicy</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-36656" severity="medium" conversionstatus="pass" title="WINUC-000001" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6192,7 +7305,7 @@ Value: 1</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '900'</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -6201,7 +7314,7 @@ Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: InactivityTimeoutSecs
 
 Value Type: REG_DWORD
-Value: 0x00000384 (900) (or less)</RawString>
+Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</RawString>
       <ValueData />
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
@@ -6525,6 +7638,213 @@ If the value for "Network security: Force logoff when logon hours expire" is not
     </Rule>
   </SecurityOptionRule>
   <ServiceRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-8327.a" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>NTDS</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.b" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>DFSR</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.c" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>Dnscache</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.d" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>DNS</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.e" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>gpsvc</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.f" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>IsmServ</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.g" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>Kdc</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.h" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>NetLogon</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-8327.i" severity="medium" conversionstatus="pass" title="Prerequisite OS Services Startup" dscresource="xService">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "services.msc" to display the Services console.
+
+Verify the Startup Type for the following Windows services:
+- Active Directory Domain Services
+- DFS Replication
+- DNS Client
+- DNS server
+- Group Policy Client
+- Intersite Messaging
+- Kerberos Key Distribution Center
+- NetLogon
+- Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
+      <ServiceName>W32Time</ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>Automatic</StartupType>
+    </Rule>
     <Rule id="V-15505" severity="medium" conversionstatus="pass" title="HBSS McAfee Agent" dscresource="xService">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6646,39 +7966,37 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.</RawString>
+If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-1155" severity="medium" conversionstatus="pass" title="Deny Access from the Network" dscresource="UserRightsAssignment">
       <Constant>SeDenyNetworkLogonRight</Constant>
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
+Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
 
 If the following accounts or groups are not defined for the "Deny access to this computer from the network" user right, this is a finding:
 
-Domain Systems Only:
-Enterprise Admins group
-Domain Admins group
-"Local account and member of Administrators group" or "Local account" (see Note below)
-
-All Systems:
-Guests group
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
-
-Note: Windows Server 2012 R2 added new built-in security groups, "Local account" and "Local account and member of Administrators group". "Local account" is more restrictive but may cause issues on servers such as systems that provide Failover Clustering.
-Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.</RawString>
+Guests Group</RawString>
     </Rule>
     <Rule id="V-18010" severity="high" conversionstatus="pass" title="User Right - Debug Programs" dscresource="UserRightsAssignment">
       <Constant>SeDebugPrivilege</Constant>
@@ -6689,13 +8007,22 @@ Microsoft Security Advisory Patch 2871997 adds the new security groups to Window
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Debug programs" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26469" severity="medium" conversionstatus="pass" title="Access Credential Manager as a trusted caller" dscresource="UserRightsAssignment">
       <Constant>SeTrustedCredManAccessPrivilege</Constant>
@@ -6706,9 +8033,10 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Access Credential Manager as a trusted caller" user right, this is a finding.</RawString>
     </Rule>
@@ -6716,7 +8044,7 @@ If any accounts or groups are granted the "Access Credential Manager as a truste
       <Constant>SeNetworkLogonRight</Constant>
       <DisplayName>Access this computer from the network</DisplayName>
       <Force>True</Force>
-      <Identity>Administrators,Authenticated Users</Identity>
+      <Identity>Administrators,Authenticated Users,Enterprise Domain Controllers</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6725,12 +8053,11 @@ Run "gpedit.msc".
 
 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
 
-If any accounts or groups other than the following are granted the "Access this computer from the network" user right, this is a finding:
+If any accounts or groups other than the following are granted the "Access this computer from the network" right, this is a finding:
 
 Administrators
 Authenticated Users
-
-Systems dedicated to managing Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG), must only allow Administrators, removing the Authenticated Users group.</RawString>
+Enterprise Domain Controllers</RawString>
     </Rule>
     <Rule id="V-26472" severity="medium" conversionstatus="pass" title="Allow log on locally" dscresource="UserRightsAssignment">
       <Constant>SeInteractiveLogonRight</Constant>
@@ -6741,13 +8068,22 @@ Systems dedicated to managing Active Directory (AD admin platforms, see V-36436 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Allow log on locally" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26473" severity="medium" conversionstatus="pass" title="Allow log on through Remote Desktop Services" dscresource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
@@ -6764,11 +8100,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups other than the following are granted the "Allow log on through Remote Desktop Services" user right, this is a finding:
 
-Administrators
-
-If the system serves the Remote Desktop Services role, the Remote Desktop Users group or another more restrictive group may be included.
-
-Organizations may grant this to other groups, such as more restrictive groups with administrative or management functions, if required.  Remote Desktop Services access must be restricted to the accounts that require it.  This must be documented with the ISSO.</RawString>
+Administrators</RawString>
     </Rule>
     <Rule id="V-26474" severity="medium" conversionstatus="pass" title="Back up files and directories" dscresource="UserRightsAssignment">
       <Constant>SeBackupPrivilege</Constant>
@@ -6779,31 +8111,22 @@ Organizations may grant this to other groups, such as more restrictive groups wi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Back up files and directories" user right, this is a finding:
 
-Administrators</RawString>
-    </Rule>
-    <Rule id="V-26476" severity="medium" conversionstatus="pass" title="Change the system time" dscresource="UserRightsAssignment">
-      <Constant>SeSystemtimePrivilege</Constant>
-      <DisplayName>Change the system time</DisplayName>
-      <Force>True</Force>
-      <Identity>Administrators,Local Service</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Change the system time" user right, this is a finding:
-
 Administrators
-Local Service</RawString>
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26478" severity="medium" conversionstatus="pass" title="Create a pagefile" dscresource="UserRightsAssignment">
       <Constant>SeCreatePagefilePrivilege</Constant>
@@ -6814,9 +8137,10 @@ Local Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create a pagefile" user right, this is a finding:
 
@@ -6831,11 +8155,20 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Create a token object" user right, this is a finding.</RawString>
+If any accounts or groups are granted the "Create a token object" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26480" severity="medium" conversionstatus="pass" title="Create global objects" dscresource="UserRightsAssignment">
       <Constant>SeCreateGlobalPrivilege</Constant>
@@ -6846,16 +8179,25 @@ If any accounts or groups are granted the "Create a token object" user right, th
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create global objects" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26481" severity="medium" conversionstatus="pass" title="Create permanent shared objects" dscresource="UserRightsAssignment">
       <Constant>SeCreatePermanentPrivilege</Constant>
@@ -6866,9 +8208,10 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Create permanent shared objects" user right, this is a finding.</RawString>
     </Rule>
@@ -6881,6 +8224,7 @@ If any accounts or groups are granted the "Create permanent shared objects" user
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6895,7 +8239,7 @@ Systems that have the Hyper-V role will also have "Virtual Machines" given this 
       <Constant>SeDenyBatchLogonRight</Constant>
       <DisplayName>Deny log on as a batch job</DisplayName>
       <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Guests</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6906,88 +8250,11 @@ Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Set
 
 If the following accounts or groups are not defined for the "Deny log on as a batch job" user right, this is a finding:
 
-Domain Systems Only:
-Enterprise Admins Group
-Domain Admins Group
-
-All Systems:
 Guests Group</RawString>
     </Rule>
     <Rule id="V-26484" severity="medium" conversionstatus="pass" title="Deny log on as service " dscresource="UserRightsAssignment">
       <Constant>SeDenyServiceLogonRight</Constant>
       <DisplayName>Deny log on as a service</DisplayName>
-      <Force>True</Force>
-      <Identity>Enterprise Admins,Domain Admins</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on as a service" user right on domain-joined systems, this is a finding:
-
-Enterprise Admins Group
-Domain Admins Group
-
-If any accounts or groups are defined for the "Deny log on as a service" user right on non-domain-joined systems, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-26485" severity="medium" conversionstatus="pass" title="Deny log on locally" dscresource="UserRightsAssignment">
-      <Constant>SeDenyInteractiveLogonRight</Constant>
-      <DisplayName>Deny log on locally</DisplayName>
-      <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Guests</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on locally" user right, this is a finding:
-
-Domain Systems Only:
-Enterprise Admins Group
-Domain Admins Group
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.
-
-All Systems:
-Guests Group</RawString>
-    </Rule>
-    <Rule id="V-26486" severity="medium" conversionstatus="pass" title="Deny log on through Remote Desktop \ Terminal Services" dscresource="UserRightsAssignment">
-      <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
-      <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
-      <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
-
-If the following accounts or groups are not defined for the "Deny log on through Remote Desktop Services" user right, this is a finding:
-
-Domain Systems Only:
-Enterprise Admins group
-Domain Admins group
-Local account (see Note below)
-
-All Systems:
-Guests group
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
-
-Note: Windows Server 2012 R2 added new built-in security groups, including "Local account", for assigning permissions and rights to all local accounts.
-Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.</RawString>
-    </Rule>
-    <Rule id="V-26487" severity="medium" conversionstatus="pass" title="Enable accounts to be trusted for delegation" dscresource="UserRightsAssignment">
-      <Constant>SeEnableDelegationPrivilege</Constant>
-      <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6998,7 +8265,58 @@ Run "gpedit.msc".
 
 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Enable computer and user accounts to be trusted for delegation" user right, this is a finding.</RawString>
+If any accounts or groups are defined for the "Deny log on as a service" user right, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-26485" severity="medium" conversionstatus="pass" title="Deny log on locally" dscresource="UserRightsAssignment">
+      <Constant>SeDenyInteractiveLogonRight</Constant>
+      <DisplayName>Deny log on locally</DisplayName>
+      <Force>False</Force>
+      <Identity>Guests</Identity>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+
+If the following accounts or groups are not defined for the "Deny log on locally" user right, this is a finding:
+
+Guests Group</RawString>
+    </Rule>
+    <Rule id="V-26486" severity="medium" conversionstatus="pass" title="Deny log on through Remote Desktop \ Terminal Services" dscresource="UserRightsAssignment">
+      <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
+      <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
+      <Force>False</Force>
+      <Identity>Guests</Identity>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+
+If the following accounts or groups are not defined for the "Deny log on through Remote Desktop Services" user right, this is a finding:
+
+Guests Group</RawString>
+    </Rule>
+    <Rule id="V-26487" severity="medium" conversionstatus="pass" title="Enable accounts to be trusted for delegation" dscresource="UserRightsAssignment">
+      <Constant>SeEnableDelegationPrivilege</Constant>
+      <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
+      <Force>True</Force>
+      <Identity>Administrators</Identity>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+
+If any accounts or groups other than the following are granted the "Enable computer and user accounts to be trusted for delegation" user right, this is a finding:
+
+Administrators</RawString>
     </Rule>
     <Rule id="V-26488" severity="medium" conversionstatus="pass" title="Force shutdown from a remote system" dscresource="UserRightsAssignment">
       <Constant>SeRemoteShutdownPrivilege</Constant>
@@ -7009,9 +8327,10 @@ If any accounts or groups are granted the "Enable computer and user accounts to 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Force shutdown from a remote system" user right, this is a finding:
 
@@ -7026,14 +8345,23 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Generate security audits" user right, this is a finding:
 
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26490" severity="medium" conversionstatus="pass" title="Impersonate a client after authentication" dscresource="UserRightsAssignment">
       <Constant>SeImpersonatePrivilege</Constant>
@@ -7044,16 +8372,25 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Impersonate a client after authentication" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26492" severity="medium" conversionstatus="pass" title="Increase scheduling priority" dscresource="UserRightsAssignment">
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
@@ -7064,13 +8401,22 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Increase scheduling priority" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26493" severity="medium" conversionstatus="pass" title="Load and unload device drivers" dscresource="UserRightsAssignment">
       <Constant>SeLoadDriverPrivilege</Constant>
@@ -7081,9 +8427,10 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Load and unload device drivers" user right, this is a finding:
 
@@ -7098,11 +8445,20 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.</RawString>
+If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26496" severity="medium" conversionstatus="pass" title="Manage auditing and security log" dscresource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
@@ -7113,6 +8469,7 @@ If any accounts or groups are granted the "Lock pages in memory" user right, thi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -7124,24 +8481,12 @@ Administrators
 If the organization has an Auditors group, the assignment of this group to the user right would not be a finding.
 
 If an application requires this user right, this would not be a finding.
+
 Vendor documentation must support the requirement for having the user right.
+
 The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).</RawString>
-    </Rule>
-    <Rule id="V-26497" severity="medium" conversionstatus="pass" title="Modify an object label" dscresource="UserRightsAssignment">
-      <Constant>SeRelabelPrivilege</Constant>
-      <DisplayName>Modify an object label</DisplayName>
-      <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Modify an object label" user right, this is a finding.</RawString>
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26498" severity="medium" conversionstatus="pass" title="Modify firmware environment values" dscresource="UserRightsAssignment">
       <Constant>SeSystemEnvironmentPrivilege</Constant>
@@ -7152,9 +8497,10 @@ If any accounts or groups are granted the "Modify an object label" user right, t
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Modify firmware environment values" user right, this is a finding:
 
@@ -7169,9 +8515,10 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Perform volume maintenance tasks" user right, this is a finding:
 
@@ -7186,49 +8533,14 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Profile single process" user right, this is a finding:
 
 Administrators</RawString>
-    </Rule>
-    <Rule id="V-26501" severity="medium" conversionstatus="pass" title="Profile system performance" dscresource="UserRightsAssignment">
-      <Constant>SeSystemProfilePrivilege</Constant>
-      <DisplayName>Profile system performance</DisplayName>
-      <Force>True</Force>
-      <Identity>Administrators,NT Service\WdiServiceHost</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Profile system performance" user right, this is a finding:
-
-Administrators
-NT Service\WdiServiceHost</RawString>
-    </Rule>
-    <Rule id="V-26503" severity="medium" conversionstatus="pass" title="Replace a process level token" dscresource="UserRightsAssignment">
-      <Constant>SeAssignPrimaryTokenPrivilege</Constant>
-      <DisplayName>Replace a process level token</DisplayName>
-      <Force>True</Force>
-      <Identity>Local Service,Network Service</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Replace a process level token" user right, this is a finding:
-
-Local Service
-Network Service</RawString>
     </Rule>
     <Rule id="V-26504" severity="medium" conversionstatus="pass" title="Restore files and directories" dscresource="UserRightsAssignment">
       <Constant>SeRestorePrivilege</Constant>
@@ -7239,13 +8551,22 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Restore files and directories" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26506" severity="medium" conversionstatus="pass" title="Take ownership of files or other objects" dscresource="UserRightsAssignment">
       <Constant>SeTakeOwnershipPrivilege</Constant>
@@ -7256,11 +8577,37 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
+Run "gpedit.msc".
+
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
+
+If any accounts or groups other than the following are granted the "Take ownership of files or other objects" user right, this is a finding:
+
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
+    </Rule>
+    <Rule id="V-30016" severity="medium" conversionstatus="pass" title="Add workstations to domain" dscresource="UserRightsAssignment">
+      <Constant>SeMachineAccountPrivilege</Constant>
+      <DisplayName>Add workstations to domain</DisplayName>
+      <Force>True</Force>
+      <Identity>Administrators</Identity>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the effective setting in Local Group Policy Editor.
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
 
-If any accounts or groups other than the following are granted the "Take ownership of files or other objects" user right, this is a finding:
+If any accounts or groups other than the following are granted the "Add workstations to domain" right, this is a finding:
 
 Administrators</RawString>
     </Rule>
