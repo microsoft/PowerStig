@@ -173,8 +173,8 @@ function Split-StigXccdf
 
         $FilePath = "$Destination\$(Split-Path -Path $path -Leaf)"
 
-        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
-        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_SPLIT_STIG'))
+        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_STIG'))
+        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_STIG'))
     }
     End
     {
