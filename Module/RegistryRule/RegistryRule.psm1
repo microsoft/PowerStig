@@ -131,10 +131,15 @@ Class RegistryRule : Rule
         if ([RegistryRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
             [string[]] $splitRules = [RegistryRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            [int] $byte = 97 # Lowercase A
             foreach ($splitRule in $splitRules)
             {
-                $StigRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [RegistryRule]::New($StigRule)
+                $copyRule = $StigRule.Clone()
+                $copyRule.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
+                $byte ++
+
+                $copyRule.rule.Check.('check-content') = $splitRule
+                $ruleList += [RegistryRule]::New($copyRule)
             }
         }
         else
@@ -399,6 +404,7 @@ Class RegistryRule : Rule
                 #$CheckContent -NotMatch "SupportedEncryptionTypes" -and
                 $CheckContent -NotMatch "Sql Server" -and
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
+                $CheckContent -NotMatch "Review the Catalog" -and
                 $CheckContent -NotMatch "For 32.bit (production systems|applications)" -and
                 $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key'
             ) -or
@@ -407,8 +413,8 @@ Class RegistryRule : Rule
                 $CheckContent -Match "HKLM|HKCU"
             ) -or
             (
-                $CheckContent -match "HKLM|HKCU" -and
-                $CheckContent -match "REG_DWORD"
+                $CheckContent -Match "HKLM|HKCU" -and
+                $CheckContent -Match "REG_DWORD"
             )
         )
         {

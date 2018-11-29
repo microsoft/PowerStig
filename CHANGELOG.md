@@ -3,14 +3,17 @@
 ## Unreleased
 
 * Windows Server 2012R2 Fixes
-    * V-36657 - Key path
-    * V-36681 - Key path
-    * V-1089 - text
+  * V-36657 - Key path
+  * V-36681 - Key path
+  * V-1089 - text
 
 * Added the following STIGs
-  * DotNet Framework 4.0 V1R6
-  * IIS Site 8.5 V1R5
+  * IIS Server 8.5 STIG V1R5
+  * Microsoft Outlook 2013 STIG V1R13
+  * DotNet Framework 4.0 STIG V1R6
+  * IIS Site 8.5 STIG V1R5
   * Windows Domain V2R11
+  * FireFox 4.23 STIG
   * Windows Server 2012R2 DC V2R14
   * Windows Server 2012R2 MS V2R14
 

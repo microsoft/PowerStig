@@ -55,7 +55,7 @@ try
                 {
                     foreach ($setting in $dscXml)
                     {
-                        if (-not ($dscMof.ResourceID -match $setting.Id) )
+                        if (-not ($dscMof.ResourceID -match $setting.Id))
                         {
                             Write-Warning -Message "$website missing WebConfigurationPropertyRule Setting $($setting.Id)"
                             $hasAllSettings = $false
@@ -85,7 +85,7 @@ try
                 {
                     foreach ($setting in $dscXml)
                     {
-                        if (-not ($dscMof.ResourceID -match $setting.Id) )
+                        if (-not ($dscMof.ResourceID -match $setting.Id))
                         {
                             Write-Warning -Message "$website ,missing MimeTypeRule Setting $($setting.Id)"
                             $hasAllSettings = $false

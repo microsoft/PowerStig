@@ -6,10 +6,11 @@ try
     #region Test Setup
     $registriesToTest = @(
         @{
+            Id                          = 'Rule1'
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\Software\Policies\Microsoft\WindowsMediaPlayer'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = '1'
             ValueName                   = 'GroupPrivacyAcceptance'
             ValueType                   = 'DWORD'
@@ -28,6 +29,7 @@ try
                     Value: 1'
         },
         @{
+            Id                          = 'Rule2'
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\System\CurrentControlSet\Services\W32Time\Config'
             OrganizationValueRequired   = 'True'
@@ -52,10 +54,11 @@ try
                     If another time synchronization tool is used, review the available configuration options and logs.  If the tool has time source logging capability and it is not enabled, this is a finding.'
         },
         @{
+            Id                          = 'Rule3'
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\System\CurrentControlSet\Control\Session Manager\Subsystems'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = ''
             ValueName                   = 'Optional'
             ValueType                   = 'MultiString'
@@ -72,6 +75,7 @@ try
                     Value: (Blank)'
         },
         @{
+            Id                          = 'Rule4'
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
             OrganizationValueRequired   = 'True'
@@ -92,10 +96,11 @@ try
                     Value: 5 (or less)'
         },
         @{
+            Id                          = 'Rule5'
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\System\CurrentControlSet\Control\Lsa\MSV1_0'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = '537395200'
             ValueName                   = 'NTLMMinServerSec'
             ValueType                   = 'DWORD'
@@ -112,10 +117,11 @@ try
                     Value: 0x20080000 (537395200)'
         }
         @{
+            Id                          = 'Rule6'
             Hive                        = 'HKEY_CURRENT_USER'
             Path                        = '\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing'
             OrganizationValueRequired   = 'False'
-            OrganizationValueTestString = ''
+            OrganizationValueTestString = $null
             ValueData                   = '23C00'
             ValueName                   = 'State'
             ValueType                   = 'DWORD'
@@ -131,6 +137,19 @@ try
             HKCU\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing Criteria
 
             If the value "State" is "REG_DWORD = 23C00", this is not a finding.'
+        },
+        @{
+            Id                          = 'Rule7'
+            Hive                        = 'HKEY_CURRENT_USER'
+            Path                        = '\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen'
+            OrganizationValueRequired   = 'True'
+            OrganizationValueTestString = "{0} -ge '30' -and {0} -le '132'"
+            ValueData                   = $null
+            ValueName                   = 'PlainWrapLen'
+            ValueType                   = 'DWORD'
+            Ensure                      = 'Present'
+            DscResource                 = 'cAdministrativeTemplate'
+            CheckContent                = 'If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
         }
     )
     #endregion
@@ -139,37 +158,42 @@ try
 
         foreach ($registry in $registriesToTest)
         {
-            [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
-            $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $stigRule.Save( $TestFile )
-            $rule = ConvertFrom-StigXccdf -Path $TestFile
+            Context "$($registry.id)" {
+                [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
+                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save( $TestFile )
+                $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It 'Should return an RegistryRule Object' {
-                $rule.GetType() | Should Be 'RegistryRule'
-            }
-            It 'Should extract the correct key' {
-                $rule.key | Should Be $($registry.Hive + $registry.Path)
-            }
-            It 'Should extract the correct value name' {
-                $rule.valueName | Should Be $registry.ValueName
-            }
-            It 'Should extract the correct value data' {
-                $rule.valueData | Should Be $registry.ValueData
-            }
-            It 'Should extract the correct value type' {
-                $rule.valueType | Should Be $registry.ValueType
-            }
-            It 'Should set the ensure value' {
-                $rule.Ensure | Should Be $registry.Ensure
-            }
-            It 'Should set OrganizationValueRequired to true' {
-                $rule.OrganizationValueRequired | Should Be $registry.OrganizationValueRequired
-            }
-            It 'Should set the correct DscResource' {
-                $rule.DscResource | Should Be $registry.DscResource
-            }
-            It 'Should Set the status to pass' {
-                $rule.conversionstatus | Should Be 'pass'
+                It 'Should return an RegistryRule Object' {
+                    $rule.GetType() | Should Be 'RegistryRule'
+                }
+                It 'Should extract the correct key' {
+                    $rule.key | Should Be $($registry.Hive + $registry.Path)
+                }
+                It 'Should extract the correct value name' {
+                    $rule.valueName | Should Be $registry.ValueName
+                }
+                It 'Should extract the correct value data' {
+                    $rule.valueData | Should Be $registry.ValueData
+                }
+                It 'Should extract the correct value type' {
+                    $rule.valueType | Should Be $registry.ValueType
+                }
+                It 'Should set the ensure value' {
+                    $rule.Ensure | Should Be $registry.Ensure
+                }
+                It 'Should set OrganizationValueRequired to true' {
+                    $rule.OrganizationValueRequired | Should Be $registry.OrganizationValueRequired
+                }
+                It 'Should extract the correct OrganizationValueTestString' {
+                    $rule.OrganizationValueTestString | Should Be $registry.OrganizationValueTestString
+                }
+                It 'Should set the correct DscResource' {
+                    $rule.DscResource | Should Be $registry.DscResource
+                }
+                It 'Should Set the status to pass' {
+                    $rule.conversionstatus | Should Be 'pass'
+                }
             }
         }
     }

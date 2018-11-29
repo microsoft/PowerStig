@@ -14,7 +14,6 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
-
         Describe "IIS Server $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {

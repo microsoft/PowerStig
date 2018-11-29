@@ -61,11 +61,14 @@ Class ServiceRule : Rule
         if ($rule.HasMultipleRules())
         {
             [string[]] $splitRules = $rule.SplitMultipleRules()
+            [int] $byte = 97
             foreach ($splitRule in $splitRules)
             {
                 $ruleClone = $rule.Clone()
+                $ruleClone.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
                 $ruleClone.ServiceName = $splitRule
                 $ruleList += $ruleClone
+                $byte ++
             }
         }
         else
