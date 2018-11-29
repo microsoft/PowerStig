@@ -23,6 +23,9 @@
         This will add the 'Check-Content' from the xcccdf to the output for any additional validation
         or spot checking that may be needed.
 
+    .PARAMETER RuleIdFilter
+        Filters the list rules that are converted to simplify debugging the conversion process.
+
     .EXAMPLE
         ConvertFrom-StigXccdf -Path C:\Stig\U_Windows_2012_and_2012_R2_MS_STIG_V2R8_Manual-xccdf.xml
 
