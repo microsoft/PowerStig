@@ -4436,7 +4436,7 @@ Value: 1</RawString>
       <ValueName>DisableAutoupdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3481" severity="medium" conversionstatus="pass" title="Media Player - Prevent Codec Download" dscresource="xRegistry">
+    <Rule id="V-3481" severity="medium" conversionstatus="pass" title="Media Player - Prevent Codec Download" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\WindowsMediaPlayer</Key>
@@ -5266,7 +5266,7 @@ Value: 1</RawString>
       <ValueName>DontSearchWindowsUpdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14268" severity="medium" conversionstatus="pass" title="Attachment Mgr - Preserve Zone Info" dscresource="xRegistry">
+    <Rule id="V-14268" severity="medium" conversionstatus="pass" title="Attachment Mgr - Preserve Zone Info" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
@@ -5285,7 +5285,7 @@ Value: 2</RawString>
       <ValueName>SaveZoneInformation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14269" severity="medium" conversionstatus="pass" title="Attachment Mgr - Hide Mech to Remove Zone Info" dscresource="xRegistry">
+    <Rule id="V-14269" severity="medium" conversionstatus="pass" title="Attachment Mgr - Hide Mech to Remove Zone Info" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
@@ -5304,7 +5304,7 @@ Value: 1</RawString>
       <ValueName>HideZoneInfoOnProperties</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14270" severity="medium" conversionstatus="pass" title="Attachment Mgr - Scan with Antivirus" dscresource="xRegistry">
+    <Rule id="V-14270" severity="medium" conversionstatus="pass" title="Attachment Mgr - Scan with Antivirus" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
@@ -5940,7 +5940,7 @@ Value: 1</RawString>
       <ValueName>DisableOnline</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15727" severity="medium" conversionstatus="pass" title="User Network Sharing" dscresource="xRegistry">
+    <Rule id="V-15727" severity="medium" conversionstatus="pass" title="User Network Sharing" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -6096,7 +6096,7 @@ Value: 0</RawString>
       <ValueName>CEIPEnable</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-16021" severity="medium" conversionstatus="pass" title="Help Experience Improvement Program " dscresource="xRegistry">
+    <Rule id="V-16021" severity="medium" conversionstatus="pass" title="Help Experience Improvement Program " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Assistance\Client\1.0</Key>
@@ -6115,7 +6115,7 @@ Value: 1</RawString>
       <ValueName>NoImplicitFeedback</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-16048" severity="medium" conversionstatus="pass" title="Help Ratings" dscresource="xRegistry">
+    <Rule id="V-16048" severity="medium" conversionstatus="pass" title="Help Ratings" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Assistance\Client\1.0</Key>
@@ -6718,7 +6718,7 @@ Value: 0</RawString>
       <ValueName>AlwaysInstallElevated</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36656" severity="medium" conversionstatus="pass" title="WINUC-000001" dscresource="xRegistry">
+    <Rule id="V-36656" severity="medium" conversionstatus="pass" title="WINUC-000001" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Control Panel\Desktop</Key>
@@ -6742,7 +6742,7 @@ Applications requiring continuous, real-time screen display (e.g., network manag
       <ValueName>ScreenSaveActive</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-36657" severity="medium" conversionstatus="pass" title="WINUC-000003" dscresource="xRegistry">
+    <Rule id="V-36657" severity="medium" conversionstatus="pass" title="WINUC-000003" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Windows\Control Panel\Desktop</Key>
@@ -7233,7 +7233,7 @@ Value: 0x00000384 (900) (or less)</RawString>
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36776" severity="low" conversionstatus="pass" title="WINUC-000005" dscresource="xRegistry">
+    <Rule id="V-36776" severity="low" conversionstatus="pass" title="WINUC-000005" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications</Key>
@@ -7252,7 +7252,7 @@ Value: 1</RawString>
       <ValueName>NoCloudApplicationNotification</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36777" severity="low" conversionstatus="pass" title="WINUC-000006" dscresource="xRegistry">
+    <Rule id="V-36777" severity="low" conversionstatus="pass" title="WINUC-000006" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications</Key>
