@@ -129,7 +129,7 @@ If the value for the "Minimum password length," is less than "14" characters, th
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -146,7 +146,7 @@ Account Logon -&gt; Credential Validation - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -163,7 +163,7 @@ Account Logon -&gt; Credential Validation - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -180,7 +180,7 @@ Account Management &gt;&gt; Computer Account Management - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -197,7 +197,7 @@ Account Management -&gt; Other Account Management Events - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -214,7 +214,7 @@ Account Management -&gt; Security Group Management - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -231,7 +231,7 @@ Account Management -&gt; User Account Management - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -248,7 +248,7 @@ Account Management -&gt; User Account Management - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -265,7 +265,7 @@ Detailed Tracking -&gt; Process Creation - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -282,7 +282,7 @@ Logon/Logoff -&gt; Logoff - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -299,7 +299,7 @@ Logon/Logoff -&gt; Logon - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -316,7 +316,7 @@ Logon/Logoff -&gt; Logon - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -333,7 +333,7 @@ Logon/Logoff -&gt; Special Logon - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -350,7 +350,7 @@ Policy Change -&gt; Audit Policy Change - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -367,7 +367,7 @@ Policy Change -&gt; Audit Policy Change - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -384,7 +384,7 @@ Policy Change -&gt; Authentication Policy Change - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -401,7 +401,7 @@ Privilege Use -&gt; Sensitive Privilege Use - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -418,7 +418,7 @@ Privilege Use -&gt; Sensitive Privilege Use - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -435,7 +435,7 @@ System -&gt; IPsec Driver - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -452,7 +452,7 @@ System -&gt; IPsec Driver - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -469,7 +469,7 @@ System -&gt; Security State Change - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -486,7 +486,7 @@ System -&gt; Security System Extension - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -503,7 +503,7 @@ System -&gt; System Integrity - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -520,7 +520,7 @@ System -&gt; System Integrity - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -537,7 +537,7 @@ DS Access -&gt; Directory Service Access - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -554,7 +554,7 @@ DS Access -&gt; Directory Service Access - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -571,7 +571,7 @@ DS Access -&gt; Directory Service Changes - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -588,7 +588,7 @@ DS Access -&gt; Directory Service Changes - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -607,7 +607,7 @@ Virtual machines or systems that use network attached storage may generate exces
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -626,7 +626,7 @@ Virtual machines or systems that use network attached storage may generate exces
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -643,7 +643,7 @@ Object Access -&gt; Central Policy Staging - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -660,7 +660,7 @@ Object Access -&gt; Central Policy Staging - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -685,7 +685,7 @@ Open an elevated "Command Prompt" (run as administrator).
 
 Enter "AuditPol /get /category:*"
 
-Compare the AuditPol settings with the following. 
+Compare the AuditPol settings with the following.
 
 If the system does not audit the following, this is a finding.
 
@@ -746,7 +746,7 @@ Open an elevated "Command Prompt" (run as administrator).
 
 Enter "AuditPol /get /category:*".
 
-Compare the AuditPol settings with the following. 
+Compare the AuditPol settings with the following.
 
 If the system does not audit the following, this is a finding.
 
@@ -781,7 +781,7 @@ Copy or enter the lines below to the PowerShell window and enter. (Entering twic
  if ($lastLogin -eq $null) {
  $lastLogin = 'Never'
  }
- Write-Host $user.Name $lastLogin $enabled 
+ Write-Host $user.Name $lastLogin $enabled
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -857,7 +857,7 @@ For any sites that reference FTP, view the Binding information for IP address an
 
 Open a "Command Prompt".
 
-Access the FTP site and review accessible directories with the following commands: 
+Access the FTP site and review accessible directories with the following commands:
 
 Note: Returned results may vary depending on the FTP server software.
 
@@ -891,9 +891,9 @@ Any accounts that are members of the Backup Operators group, including applicati
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether there is a host-based Intrusion Detection System on each server. 
+      <RawString>Determine whether there is a host-based Intrusion Detection System on each server.
 
-If the HIPS component of HBSS is installed and active on the host and the Alerts of blocked activity are being logged and monitored, this will meet the requirement of this finding. 
+If the HIPS component of HBSS is installed and active on the host and the Alerts of blocked activity are being logged and monitored, this will meet the requirement of this finding.
 
 A HID device is not required on a system that has the role as the Network Intrusion Device (NID). However, this exception needs to be documented with the site ISSO.
 
@@ -1072,7 +1072,7 @@ This does not apply to server-based applications that have a requirement for cer
 
 Enter "Get-ADUser -Filter * | FT Name, UserPrincipalName, Enabled -AutoSize".
 
-Review the User Principal Name (UPN) of user accounts, including administrators. 
+Review the User Principal Name (UPN) of user accounts, including administrators.
 
 Exclude the built-in accounts such as Administrator and Guest.
 
@@ -1082,7 +1082,7 @@ For standard NIPRNET certificates the individual's identifier is in the format o
 
 Alt Tokens and other certificates may use a different UPN format than the EDI-PI, which vary by organization.  Verify these with the organization.
 
-NIPRNET Example: 
+NIPRNET Example:
 Name - User Principal Name
 User1 - 1234567890@mil
 
@@ -1104,7 +1104,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1175,18 +1175,18 @@ Valid to: Friday, June 14, 2041</RawString>
       <RawString>Verify the permissions on Group Policy objects.
 
 Open "Group Policy Management".  (Available from various menus or run "gpmc.msc".)
-Navigate to "Group Policy Objects" in the domain being reviewed (Forest &gt; Domains &gt; Domain). 
+Navigate to "Group Policy Objects" in the domain being reviewed (Forest &gt; Domains &gt; Domain).
 
-For each Group Policy object: 
+For each Group Policy object:
 Select the Group Policy object item in the left pane.
 Select the Delegation tab in the right pane.
 Select the Advanced button.
 
-If any standard user accounts or groups have greater than Allow permissions of Read and Apply group policy, this is a finding.  
+If any standard user accounts or groups have greater than Allow permissions of Read and Apply group policy, this is a finding.
 
 Other access permissions that allow the objects to be updated are considered findings unless specifically documented by the ISSO.
 
-The default permissions noted below meet this requirement. 
+The default permissions noted below meet this requirement.
 
 The permissions shown are at the summary level.  More detailed permissions can be viewed by selecting the next Advanced button, selecting the desired Permission entry, and the Edit button.
 
@@ -1305,13 +1305,13 @@ If there is no anti-virus solution installed on the system, this is a finding.</
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the local system boots directly into Windows.  
+      <RawString>Verify the local system boots directly into Windows.
 
 Open Control Panel.
 Select "System".
 Select the "Advanced System Settings" link.
 Select the "Advanced" tab.
-Click the "Startup and Recovery" Settings button.  
+Click the "Startup and Recovery" Settings button.
 
 If the drop-down list box "Default operating system:" shows any operating system other than Windows Server 2012, this is a finding.</RawString>
     </Rule>
@@ -1345,13 +1345,13 @@ If an alternate method is used to configure a system (e.g., manually using the D
 If there are no printers configured, this is NA.
 
 For each configured printer:
-Right click on the printer. 
-Select "Printer Properties". 
-Select the "Sharing" tab. 
-View whether "Share this printer" is checked. 
+Right click on the printer.
+Select "Printer Properties".
+Select the "Sharing" tab.
+View whether "Share this printer" is checked.
 
-For any printers with "Share this printer" selected: 
-Select the Security tab. 
+For any printers with "Share this printer" selected:
+Select the Security tab.
 
 If any standard user accounts or groups have permissions other than "Print", this is a finding.
 Standard users will typically be given "Print" permission through the Everyone group.
@@ -1364,7 +1364,7 @@ Standard users will typically be given "Print" permission through the Everyone g
       <RawString>Verify the following is configured in the Default Domain Policy.
 
 Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain). 
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
 Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
@@ -1378,7 +1378,7 @@ If the "Enforce user logon restrictions" is not set to "Enabled", this is a find
       <RawString>Verify the following is configured in the Default Domain Policy.
 
 Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain). 
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
 Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
@@ -1392,7 +1392,7 @@ If the value for "Maximum lifetime for service ticket" is 0 or greater than 600 
       <RawString>Verify the following is configured in the Default Domain Policy.
 
 Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain). 
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
 Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
@@ -1406,7 +1406,7 @@ If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hour
       <RawString>Verify the following is configured in the Default Domain Policy.
 
 Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain). 
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
 Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
@@ -1420,7 +1420,7 @@ If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this i
       <RawString>Verify the following is configured in the Default Domain Policy.
 
 Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain). 
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
 Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
@@ -1543,7 +1543,7 @@ Run "services.msc" to display the Services console.
 
 Determine if any running services are application components.
 
-Examples of services indicating the presence of applications are: 
+Examples of services indicating the presence of applications are:
 -DHCP Server for DHCP server
 -IIS Admin Service for IIS web server
 -Microsoft Exchange System Attendant for Exchange
@@ -1558,7 +1558,7 @@ Determine if any additional server roles are installed.  A basic domain controll
 -DNS Server
 -File and Storage Services
 
-If any roles not requiring installation on a domain controller are installed, this is a finding. 
+If any roles not requiring installation on a domain controller are installed, this is a finding.
 
 Supplemental Notes:
 A Domain Name System (DNS) server integrated with the directory server (e.g., AD-integrated DNS) is an acceptable application.  However, the DNS server must comply with the DNS STIG security requirements.
@@ -1653,11 +1653,11 @@ In the right pane, examine the Issued By field for the certificate to determine 
 If the Issued By field of the PKI certificate being used by the domain controller does not indicate the issuing Certificate Authority (CA) is part of the DoD PKI or an approved ECA, this is a finding.
 
 
-There are multiple sources from which lists of valid DoD CAs and approved ECAs can be obtained: 
+There are multiple sources from which lists of valid DoD CAs and approved ECAs can be obtained:
 
 The Global Directory Service (GDS) website provides an online source. The address for this site is https://crl.gds.disa.mil.
 
-DoD Public Key Enablement (PKE) Engineering Support maintains the InstallRoot utility to manage DoD supported root certificates on Windows computers which includes a list of authorized CAs.  The utility package can be downloaded from the PKI and PKE Tools page on IASE.  
+DoD Public Key Enablement (PKE) Engineering Support maintains the InstallRoot utility to manage DoD supported root certificates on Windows computers which includes a list of authorized CAs.  The utility package can be downloaded from the PKI and PKE Tools page on IASE.
 http://iase.disa.mil/pki-pke/function_pages/tools.html</RawString>
     </Rule>
     <Rule id="V-14831" severity="low" conversionstatus="pass" title="Inactive Server Connections" dscresource="None">
@@ -1673,7 +1673,7 @@ At the "ldap policy:" prompt, enter "connections".
 At the "server connections:" prompt, enter "connect to server [host-name]".
 (Where [host-name] is the computer name of the domain controller.)
 At the "server connections:" prompt, enter "q".
-At the "ldap policy:" prompt, enter "show values". 
+At the "ldap policy:" prompt, enter "show values".
 
 If the value for MaxConnIdleTime is greater than 300 (the value for five minutes) or it is not specified, this is a finding.
 
@@ -1684,7 +1684,7 @@ Alternately, Dsquery can be used to display MaxConnIdleTime:
 
 Open an elevated command prompt.
 Enter the following command (on a single line).
-dsquery * "cn=Default Query Policy,cn=Query-Policies,cn=Directory Service, cn=Windows NT,cn=Services,cn=Configuration,dc=[forest-name]" -attr LDAPAdminLimits 
+dsquery * "cn=Default Query Policy,cn=Query-Policies,cn=Directory Service, cn=Windows NT,cn=Services,cn=Configuration,dc=[forest-name]" -attr LDAPAdminLimits
 The quotes are required and dc=[forest-name] is the fully qualified LDAP name of the domain being reviewed (e.g., dc=disaost,dc=mil).</RawString>
     </Rule>
     <Rule id="V-15488" severity="medium" conversionstatus="pass" title="PKI Authentication Req" dscresource="None">
@@ -1718,7 +1718,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1788,7 +1788,7 @@ Valid to: Sunday, February 17, 2019</RawString>
 
 The organization must have a policy that prohibits administrative accounts from using applications that access the Internet, such as web browsers, or with potential Internet sources, such as email, except as necessary for local service administration.  The policy should define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.
 
-Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.  
+Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</RawString>
     </Rule>
@@ -1796,7 +1796,7 @@ If accounts with administrative privileges are not prevented from using applicat
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account. 
+      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account.
 
 If users with administrative privileges do not have separate accounts for administrative functions and standard user functions, this is a finding.</RawString>
     </Rule>
@@ -1899,7 +1899,7 @@ Right click the OU and select Properties.
 Select the Security tab.
 
 If the permissions on the Domain Controllers OU do not restrict changes to System, Domain Admins, Enterprise Admins and Administrators, this is a finding.
-	
+
 The default permissions listed below satisfy this requirement.
 
 Domains supporting Microsoft Exchange will have additional Exchange related permissions on the Domain Controllers OU.  These may include some change related permissions and are not a finding.
@@ -1968,7 +1968,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -2572,9 +2572,9 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
 
 Open "Group Policy Management". (Available from various menus, or run "gpmc.msc".)
 
-Navigate to "Group Policy Objects" in the domain being reviewed (Forest &gt;&gt; Domains &gt;&gt; Domain). 
+Navigate to "Group Policy Objects" in the domain being reviewed (Forest &gt;&gt; Domains &gt;&gt; Domain).
 
-For each Group Policy object: 
+For each Group Policy object:
 
 Select the Group Policy Object item in the left pane.
 
@@ -3021,7 +3021,7 @@ Inherited from - (CN of domain)</RawString>
 
 Open a command prompt.
 Run "net share".
-Make note of the directory location of the SYSVOL share.  
+Make note of the directory location of the SYSVOL share.
 
 By default this will be \Windows\SYSVOL\sysvol.  For this requirement, permissions will be verified at the first SYSVOL directory level.
 
@@ -3033,38 +3033,38 @@ Click Advanced.
 
 If any standard user accounts or groups have greater than read &amp; execute permissions, this is a finding. The default permissions noted below meet this requirement.
 
-Type - Allow 
+Type - Allow
 Principal - Authenticated Users
 Access - Read &amp; execute
 Inherited from - None
 Applies to - This folder, subfolder and files
 
-Type - Allow 
+Type - Allow
 Principal - Server Operators
 Access - Read &amp; execute
 Inherited from - None
 Applies to - This folder, subfolder and files
 
-Type - Allow 
+Type - Allow
 Principal - Administrators
 Access - Special
 Inherited from - None
 Applies to - This folder only
 (Access - Special - Basic Permissions: all selected except Full control)
 
-Type - Allow 
+Type - Allow
 Principal - CREATOR OWNER
 Access - Full control
 Inherited from - None
 Applies to - Subfolders and files only
 
-Type - Allow 
+Type - Allow
 Principal - Administrators
 Access - Full control
 Inherited from - None
 Applies to - Subfolders and files only
 
-Type - Allow 
+Type - Allow
 Principal - SYSTEM
 Access - Full control
 Inherited from - None
@@ -3087,7 +3087,7 @@ NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
 BUILTIN\Administrators:(M,WDAC,WO)
 CREATOR OWNER:(OI)(CI)(IO)(F)
 
-(RX) - Read &amp; execute 
+(RX) - Read &amp; execute
 Run "icacls /help" to view definitions of other permission codes.</RawString>
     </Rule>
     <Rule id="V-40177.a" severity="medium" conversionstatus="pass" title="WNGE-000007" dscresource="NTFSAccessEntry">
@@ -3598,7 +3598,7 @@ Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read &amp; Execute</Ra
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ShutdownWithoutLogon
@@ -3617,7 +3617,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeText
@@ -3683,7 +3683,7 @@ Value:  4 (or less)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymous
@@ -3702,7 +3702,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: EnableForcedLogoff
@@ -3759,7 +3759,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\
 
 Value Name: AddPrinterDrivers
@@ -3797,7 +3797,7 @@ Value: 5</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DisableCAD
@@ -3816,9 +3816,9 @@ Value: 0</RawString>
       <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
- 
+
 Value Name: SCRemoveOption
 
 Value Type: REG_SZ
@@ -3837,7 +3837,7 @@ If configuring this on servers causes issues such as terminating users' remote s
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -3898,7 +3898,7 @@ If the value for "Domain Member: Digitally encrypt or sign secure channel data (
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: DisablePasswordChange
@@ -3917,7 +3917,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -3936,7 +3936,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name: AllocateDASD
@@ -3955,7 +3955,7 @@ Value: 0</RawString>
       <OrganizationValueTestString>{0} -ge '14'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name: PasswordExpiryWarning
@@ -3974,7 +3974,7 @@ Value: 14 (or greater)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Session Manager\
 
 Value Name: ProtectionMode
@@ -4031,7 +4031,7 @@ Value: 0x000000ff (255)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: NullSessionPipes
@@ -4054,7 +4054,7 @@ Legitimate applications may add entries to this registry value. If an applicatio
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\
 
 Value Name: Machine
@@ -4062,8 +4062,8 @@ Value Name: Machine
 Value Type: REG_MULTI_SZ
 Value: see below
 
-System\CurrentControlSet\Control\ProductOptions 
-System\CurrentControlSet\Control\Server Applications 
+System\CurrentControlSet\Control\ProductOptions
+System\CurrentControlSet\Control\Server Applications
 Software\Microsoft\Windows NT\CurrentVersion
 
 Legitimate applications may add entries to this registry value.  If an application requires these entries to function properly and is documented with the ISSO, this would not be a finding. Documentation must contain supporting information from the vendor's instructions.</RawString>
@@ -4081,7 +4081,7 @@ Legitimate applications may add entries to this registry value.  If an applicati
 
 If the following registry value does exist and is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: NullSessionShares
@@ -4101,12 +4101,12 @@ Value: (Blank)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
-Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\ 
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
 
 Value Name: fAllowToGetHelp
- 
-Type: REG_DWORD 
+
+Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
       <ValueName>fAllowToGetHelp</ValueName>
@@ -4120,7 +4120,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: LimitBlankPasswordUse
@@ -4139,7 +4139,7 @@ Value: 1</RawString>
       <OrganizationValueTestString>{0} -le '30' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: MaximumPasswordAge
@@ -4158,14 +4158,14 @@ Value: 30 (or less, but not 0)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
@@ -4179,7 +4179,7 @@ This setting may prevent a system from being joined to a domain if not configure
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: DisableDomainCreds
@@ -4198,7 +4198,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: EveryoneIncludesAnonymous
@@ -4217,7 +4217,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: ForceGuest
@@ -4236,7 +4236,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: NoLMHash
@@ -4255,7 +4255,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LDAP\
 
 Value Name: LDAPClientIntegrity
@@ -4274,7 +4274,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinClientSec
@@ -4300,7 +4300,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms.  Both the browser and web server must be configured to use TLS, or the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -4314,7 +4314,7 @@ Warning: Clients with this setting enabled will not be able to communicate via d
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Session Manager\Kernel\
 
 Value Name: ObCaseInsensitive
@@ -4331,14 +4331,14 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
-Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\ 
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
 
-Value Name: fSingleSessionPerUser 
+Value Name: fSingleSessionPerUser
 
-Type: REG_DWORD 
+Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>fSingleSessionPerUser</ValueName>
@@ -4468,7 +4468,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Session Manager\
 
 Value Name: SafeDllSearchMode
@@ -4506,7 +4506,7 @@ Value: 1</RawString>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\WindowsMediaPlayer</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_CURRENT_USER
 Registry Path: \Software\Policies\Microsoft\WindowsMediaPlayer\
@@ -4527,7 +4527,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinServerSec
@@ -4548,7 +4548,7 @@ Value: 0x20080000 (537395200)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Eventlog\Security\
 
 Value Name: WarningLevel
@@ -4567,7 +4567,7 @@ Value: 90 (or less)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: DisableIPSourceRouting
@@ -4586,7 +4586,7 @@ Value: 2</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: EnableICMPRedirect
@@ -4605,7 +4605,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: PerformRouterDiscovery
@@ -4624,7 +4624,7 @@ Value: 0</RawString>
       <OrganizationValueTestString>{0} -le '300000'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: KeepAliveTime
@@ -4662,7 +4662,7 @@ Value:  1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\NTDS\Parameters\
 
 Value Name: LDAPServerIntegrity
@@ -4681,7 +4681,7 @@ Value: 2</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RefusePasswordChange
@@ -4719,7 +4719,7 @@ Value:  3 (or less)</RawString>
       <OrganizationValueTestString>{0} -le '5'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name: ScreenSaverGracePeriod
@@ -4738,7 +4738,7 @@ Value: 5 (or less)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\
 
 Value Name: Machine
@@ -4771,7 +4771,7 @@ Legitimate applications may add entries to this registry value. If an applicatio
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Session Manager\Subsystems\
 
 Value Name: Optional
@@ -4829,7 +4829,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireSignOrSeal
@@ -4848,7 +4848,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -4867,7 +4867,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -4886,7 +4886,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RestrictNullSessAccess
@@ -4958,7 +4958,7 @@ If another time synchronization tool is used, review the available configuration
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DontDisplayLastUserName
@@ -4977,7 +4977,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: AuditBaseObjects
@@ -4996,7 +4996,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: FullPrivilegeAuditing
@@ -5015,7 +5015,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: SCENoApplyLegacyAuditPolicy
@@ -5034,7 +5034,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\IPSEC\
 
 Value Name: NoDefaultExempt
@@ -5055,7 +5055,7 @@ Value: 3</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: FilterAdministratorToken
@@ -5076,7 +5076,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ConsentPromptBehaviorAdmin
@@ -5100,7 +5100,7 @@ Value: 4 (Prompt for consent)
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ConsentPromptBehaviorUser
@@ -5121,7 +5121,7 @@ Value: 0</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableInstallerDetection
@@ -5142,7 +5142,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableSecureUIAPaths
@@ -5163,7 +5163,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableLUA
@@ -5184,7 +5184,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: PromptOnSecureDesktop
@@ -5205,7 +5205,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableVirtualization
@@ -6033,7 +6033,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableUIADesktopToggle
@@ -6050,7 +6050,7 @@ Value: 0</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -6069,7 +6069,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -6088,7 +6088,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -6107,7 +6107,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -6130,7 +6130,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ValidateAdminCodeSignatures
@@ -6569,7 +6569,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymousSAM
@@ -6588,7 +6588,7 @@ Value: 1</RawString>
       <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeCaption
@@ -6596,7 +6596,7 @@ Value Name: LegalNoticeCaption
 Value Type: REG_SZ
 Value: See message title options below
 
-"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or a site-defined equivalent. 
+"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or a site-defined equivalent.
 
 If a site-defined title is used, it can in no case contravene or modify the language of the banner text required in V-1089.
 
@@ -6820,8 +6820,8 @@ Type: REG_SZ
 Value: 1
 
 Applications requiring continuous, real-time screen display (e.g., network management products) require the following and must be documented with the ISSO:
- 
--The logon session does not have administrator rights. 
+
+-The logon session does not have administrator rights.
 -The display station (e.g., keyboard, monitor, etc.) is located in a controlled access area.</RawString>
       <ValueData>1</ValueData>
       <ValueName>ScreenSaveActive</ValueName>
@@ -7308,7 +7308,7 @@ Value: 1</RawString>
       <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: InactivityTimeoutSecs
@@ -7363,7 +7363,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -7386,7 +7386,7 @@ Value: 1</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\Personalization\
 
 Value Name: NoLockScreenSlideshow
@@ -7407,7 +7407,7 @@ Value: 1</RawString>
 
 Verify the registry value below. If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -7428,7 +7428,7 @@ Value: 0x00000001 (1)</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 
 Value Name: DontDisplayNetworkSelectionUI
@@ -7449,7 +7449,7 @@ Value: 1</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
 
 Value Name: MSAOptional
@@ -7470,7 +7470,7 @@ Value: 1</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DisableAutomaticRestartSignOn
@@ -7552,7 +7552,7 @@ Value: 0x00000000 (0)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -7560,7 +7560,7 @@ Value Name: EnableScriptBlockLogging
 Value Type: REG_DWORD
 Value: 0x00000001 (1)
 
-PowerShell 4.0 requires the installation of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012. 
+PowerShell 4.0 requires the installation of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012.
 
 If the patch is not installed on systems with PowerShell 4.0, this is a finding.
 
@@ -7645,7 +7645,7 @@ If the value for "Network security: Force logoff when logon hours expire" is not
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7653,7 +7653,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7668,7 +7668,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7676,7 +7676,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7691,7 +7691,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7699,7 +7699,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7714,7 +7714,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7722,7 +7722,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7737,7 +7737,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7745,7 +7745,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7760,7 +7760,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7768,7 +7768,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7783,7 +7783,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7791,7 +7791,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7806,7 +7806,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7814,7 +7814,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7829,7 +7829,7 @@ If the Startup Type for any of these services is not Automatic, this is a findin
       <OrganizationValueTestString />
       <RawString>Run "services.msc" to display the Services console.
 
-Verify the Startup Type for the following Windows services: 
+Verify the Startup Type for the following Windows services:
 - Active Directory Domain Services
 - DFS Replication
 - DNS Client
@@ -7837,7 +7837,7 @@ Verify the Startup Type for the following Windows services:
 - Group Policy Client
 - Intersite Messaging
 - Kerberos Key Distribution Center
-- NetLogon 
+- NetLogon
 - Windows Time (not required if another time synchronization tool is implemented to start automatically)
 
 If the Startup Type for any of these services is not Automatic, this is a finding.</RawString>
@@ -7898,7 +7898,7 @@ If the "Microsoft FTP Service" (Service name: FTPSVC) is installed and not disab
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Peer Network Identity Manager (p2pimsvc) service is not installed or is disabled. 
+      <RawString>Verify the Peer Network Identity Manager (p2pimsvc) service is not installed or is disabled.
 
 Run "Services.msc".
 
@@ -7914,7 +7914,7 @@ Peer Networking Identity Manager (p2pimsvc)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Simple TCP/IP (simptcp) service is not installed or is disabled. 
+      <RawString>Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
 
 Run "Services.msc".
 
@@ -7930,7 +7930,7 @@ Simple TCP/IP Services (simptcp)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Telnet (tlntsvr) service is not installed or is disabled. 
+      <RawString>Verify the Telnet (tlntsvr) service is not installed or is disabled.
 
 Run "Services.msc".
 
@@ -7946,7 +7946,7 @@ Telnet (tlntsvr)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Smart Card Removal Policy service is configured to "Automatic". 
+      <RawString>Verify the Smart Card Removal Policy service is configured to "Automatic".
 
 Run "Services.msc".
 
@@ -8660,14 +8660,14 @@ An Installed State of "Available" or "Removed" is not a finding.</RawString>
       <OrganizationValueTestString />
       <Property>Version</Property>
       <Query>SELECT * FROM Win32_OperatingSystem</Query>
-      <RawString>Run "winver.exe". 
+      <RawString>Run "winver.exe".
 
-If the "About Windows" dialog box does not display 
-"Microsoft Windows Server 
+If the "About Windows" dialog box does not display
+"Microsoft Windows Server
 Version 6.2 (Build 9200)"
-or greater, this is a finding. 
-      
-No preview versions will be used in a production environment. 
+or greater, this is a finding.
+
+No preview versions will be used in a production environment.
 
 Unsupported Service Packs/Releases:
 Windows 2012 - any release candidates or versions prior to the initial release.</RawString>
