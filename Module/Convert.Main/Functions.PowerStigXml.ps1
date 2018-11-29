@@ -582,6 +582,8 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Domain_Name_System"}
         {
+             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
+            $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($dnsServerVariations -join '|'), 'DNS'
             $returnId = $returnId -replace ($windowsVariations -join '|'), 'Windows'
             continue
@@ -594,7 +596,7 @@ function Split-BenchmarkId
         {$PSItem -match "Windows"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
-            $id = $id -replace '_2012_','_2012R2_'
+            $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($windowsVariations -join '|'), 'Windows'
             continue
         }

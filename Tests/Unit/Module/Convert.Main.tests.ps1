@@ -64,7 +64,7 @@ try
             $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
                 -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901" `
                 -XccdfId "Windows_2012_DC_STIG"
-            $expectedName = "Windows-2012-DC-$majorVersionNumber.$minorVersionNumber.xml"
+            $expectedName = "Windows-2012R2-DC-$majorVersionNumber.$minorVersionNumber.xml"
             Context 'No Destination supplied' {
 
                 $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf
@@ -120,7 +120,7 @@ try
                     @{
                         'id'                = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
                         'Technology'        = 'Windows'
-                        'TechnologyVersion' = '2012'
+                        'TechnologyVersion' = '2012R2'
                         'TechnologyRole'    = 'DNS'
                     }
                 )
@@ -128,13 +128,13 @@ try
                     @{
                         'id'                = 'Windows_2012_DC_STIG'
                         'Technology'        = 'Windows'
-                        'TechnologyVersion' = '2012'
+                        'TechnologyVersion' = '2012R2'
                         'TechnologyRole'    = 'DC'
                     },
                     @{
                         'id'                = 'Windows_2012_MS_STIG'
                         'Technology'        = 'Windows'
-                        'TechnologyVersion' = '2012'
+                        'TechnologyVersion' = '2012R2'
                         'TechnologyRole'    = 'MS'
                     },
                     @{
