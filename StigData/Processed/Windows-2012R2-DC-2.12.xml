@@ -2187,7 +2187,7 @@ Do not use File Explorer to attempt to view permissions of the NTDS folder. Acce
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>HKLM:\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Winlogon\</Path>
+      <Path>HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\</Path>
       <RawString>Run "Regedit".
 Navigate to the following registry key:
 HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
