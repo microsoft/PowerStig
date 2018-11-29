@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Windows Server 2012R2 Fixes
+  * V-21954 - changed from manual to registry rule ## HIGH IMPACT CHANGE ##
   * V-36657 - Key path
   * V-36681 - Key path
   * V-1089 - text

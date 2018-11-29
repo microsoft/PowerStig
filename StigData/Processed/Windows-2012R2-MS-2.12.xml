@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_2012_MS_STIG" version="2.12" created="8/16/2018">
+<DISASTIG id="Windows_2012_MS_STIG" version="2.12" created="11/29/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1223,36 +1223,6 @@ Enter 'Net User [account name] | Find /i "Password Last Set"', where [account na
 (The name of the built-in Administrator account must be changed to something other than "Administrator" per STIG requirements.)
 
 If the "PasswordLastSet" date is greater than one year old, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-21954" severity="medium" conversionstatus="pass" title="Kerberos Encryption Types" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify whether the registry key below exists.  If it does not exist or the value is "0", this is not a finding.
-If the registry key exists and contains a value other than "0", continue below.
-
-The values are determined by the selection of encryption suites in the policy Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network Security: Configure encryption types allowed for Kerberos".
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-Value Name:  SupportedEncryptionTypes
-Type:  REG_DWORD
-
-Due to the number of possible combinations that may include the DES encryption types, it is not possible to include all acceptable values as viewed directly in the registry.
-
-If the registry key does exist, the value must be converted to binary to determine configuration of specific bits.  This will determine whether this is a finding.
-
-Note the value for the registry key.
-For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".
-
-Open the Windows calculator (Run/Search for "calc").
-Select "View", then "Programmer".
-Select "Dword" and either "Hex" or "Dec".
-Enter the appropriate form of the value found for the registry key (e.g., Hex - enter 0x7fffffff, Dec - enter 2147483647)
-Select "Bin".
-The returned value may vary in length, up to 32 characters.
-If the either of 2 right most characters are "1", this is a finding.
-If the both of 2 right most characters are "0", this is not a finding.</RawString>
     </Rule>
     <Rule id="V-32274" severity="medium" conversionstatus="pass" title="WINPK-000003" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5059,6 +5029,41 @@ Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowOnlineID</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-21954" severity="medium" conversionstatus="pass" title="Kerberos Encryption Types" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify whether the registry key below exists.  If it does not exist or the value is "0", this is not a finding.
+If the registry key exists and contains a value other than "0", continue below.
+
+The values are determined by the selection of encryption suites in the policy Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network Security: Configure encryption types allowed for Kerberos".
+
+Registry Hive:  HKEY_LOCAL_MACHINE
+Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
+Value Name:  SupportedEncryptionTypes
+Type:  REG_DWORD
+
+Due to the number of possible combinations that may include the DES encryption types, it is not possible to include all acceptable values as viewed directly in the registry.
+
+If the registry key does exist, the value must be converted to binary to determine configuration of specific bits.  This will determine whether this is a finding.
+
+Note the value for the registry key.
+For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".
+
+Open the Windows calculator (Run/Search for "calc").
+Select "View", then "Programmer".
+Select "Dword" and either "Hex" or "Dec".
+Enter the appropriate form of the value found for the registry key (e.g., Hex - enter 0x7fffffff, Dec - enter 2147483647)
+Select "Bin".
+The returned value may vary in length, up to 32 characters.
+If the either of 2 right most characters are "1", this is a finding.
+If the both of 2 right most characters are "0", this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21955" severity="low" conversionstatus="pass" title="IPv6 Source Routing" dscresource="xRegistry">

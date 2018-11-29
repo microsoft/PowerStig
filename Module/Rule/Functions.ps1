@@ -103,8 +103,7 @@ function Get-HardCodedString
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption
         }
-
-        {$PSItem -match 'V-(21954|30935)'}
+        {$PSItem -match 'V-30935'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SupportedEncryptionTypes : $true"
             return $script:supportedEncryptionTypes
