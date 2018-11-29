@@ -2563,7 +2563,7 @@ Value: 0</RawString>
     <Rule id="V-1151" severity="low" conversionstatus="pass" title="Secure Print Driver Installation" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan PrintServices\Servers</Key>
+      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
