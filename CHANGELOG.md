@@ -20,6 +20,7 @@
   * FireFox 4.23 STIG
   * Windows Server 2012R2 DC V2R14
   * Windows Server 2012R2 MS V2R14
+  * Windows 10 V1R15
 
 ## 2.2.0.0
 
