@@ -8,30 +8,6 @@ try
 
     # Building the baseline rule set values
     $stigs = [ordered]@{
-        'U_Windows_2012_and_2012_R2_MS_STIG_V2R9_Manual-xccdf.xml'    = @{
-            AccountPolicyRule            = 9
-            AuditPolicyRule              = 34
-            DnsServerRootHintRule        = $null
-            DnsServerSettingRule         = $null
-            DocumentRule                 = 12
-            FileContentRule              = $null
-            GroupRule                    = $null
-            IisLoggingRule               = $null
-            ManualRule                   = 38
-            MimeTypeRule                 = $null
-            PermissionRule               = 11
-            ProcessMitigationRule        = $null
-            RegistryRule                 = 205
-            SecurityOptionRule           = 5
-            ServiceRule                  = 7
-            SqlScriptQueryRule           = $null
-            UserRightRule                = 37
-            WebAppPoolRule               = $null
-            WebConfigurationPropertyRule = $null
-            WinEventLogRule              = $null
-            WindowsFeatureRule           = 1
-            WmiRule                      = 2
-        }
         'U_Windows_2012_and_2012_R2_MS_STIG_V2R12_Manual-xccdf.xml'   = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 31
@@ -78,30 +54,6 @@ try
             WebConfigurationPropertyRule = $null
             WinEventLogRule              = $null
             WindowsFeatureRule           = 2
-            WmiRule                      = 2
-        }
-        'U_Windows_2012_and_2012_R2_DC_STIG_V2R9_Manual-xccdf.xml'    = @{
-            AccountPolicyRule            = 9
-            AuditPolicyRule              = 38
-            DnsServerRootHintRule        = $null
-            DnsServerSettingRule         = $null
-            DocumentRule                 = 16
-            FileContentRule              = $null
-            GroupRule                    = $null
-            IisLoggingRule               = $null
-            ManualRule                   = 53
-            MimeTypeRule                 = $null
-            PermissionRule               = 18
-            ProcessMitigationRule        = $null
-            RegistryRule                 = 207
-            SecurityOptionRule           = 5
-            ServiceRule                  = 16
-            SqlScriptQueryRule           = $null
-            UserRightRule                = 39
-            WebAppPoolRule               = $null
-            WebConfigurationPropertyRule = $null
-            WinEventLogRule              = $null
-            WindowsFeatureRule           = 1
             WmiRule                      = 2
         }
         'U_Windows_2012_and_2012_R2_DC_STIG_V2R12_Manual-xccdf.xml'   = @{
@@ -439,7 +391,7 @@ try
             WinEventLogRule = $null
             WindowsFeatureRule = $null
             WmiRule = $null
-        } 
+        }
         'U_MS_DotNet_Framework_4-0_STIG_V1R4_Manual-xccdf.xml' = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
