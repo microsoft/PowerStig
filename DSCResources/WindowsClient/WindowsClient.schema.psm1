@@ -53,7 +53,7 @@ Configuration WindowsClient
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('1.14')]
+        [ValidateSet('1.14', '1.15')]
         [version]
         $StigVersion,
 
