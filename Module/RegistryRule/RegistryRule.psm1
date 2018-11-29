@@ -403,6 +403,7 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "SupportedEncryptionTypes" -and
                 $CheckContent -NotMatch "Sql Server" -and
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
+                $CheckContent -NotMatch "Review the Catalog" -and
                 $CheckContent -NotMatch "For 32.bit (production systems|applications)" -and
                 $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key'
             ) -or
@@ -411,8 +412,8 @@ Class RegistryRule : Rule
                 $CheckContent -Match "HKLM|HKCU"
             ) -or
             (
-                $CheckContent -match "HKLM|HKCU" -and
-                $CheckContent -match "REG_DWORD"
+                $CheckContent -Match "HKLM|HKCU" -and
+                $CheckContent -Match "REG_DWORD"
             )
         )
         {

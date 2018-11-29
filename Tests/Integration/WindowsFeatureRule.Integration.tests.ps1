@@ -64,11 +64,19 @@ try
             It "Should set OrganizationValueTestString to $($testString.OrganizationValueTestString)" {
                 $rule.OrganizationValueTestString | Should Be $testString.OrganizationValueTestString
             }
-            It 'Should set the correct DscResource' {
-                $rule.DscResource | Should Be 'WindowsOptionalFeature'
-            }
             It 'Should Set the status to pass' {
                 $rule.conversionstatus | Should Be 'pass'
+            }
+            It 'Should set the correct DscResource' {
+
+                if ($stigRule.Benchmark.title -match 'Windows 10')
+                {
+                    $rule.DscResource | Should Be 'WindowsOptionalFeature'
+                }
+                else
+                {
+                    $rule.DscResource | Should Be 'WindowsFeature'
+                }
             }
         }
     }
