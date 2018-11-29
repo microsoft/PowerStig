@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Windows 10 Fixes
+  * V-63795 - changed from manual to registry rule ## HIGH IMPACT CHANGE ##
+
 * Windows Server 2012R2 Fixes
   * V-21954 - changed from manual to registry rule ## HIGH IMPACT CHANGE ##
   * V-36657 - Key path
