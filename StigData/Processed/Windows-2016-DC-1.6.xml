@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="11/29/2018">
+<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="11/30/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2613,26 +2613,18 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>%ProgramFiles%;%ProgramFiles(x86)%</Path>
+      <Path>%ProgramFiles(x86)%</Path>
       <RawString>The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (WN16-SO-000290).
-
 Review the permissions for the program file directories (Program Files and Program Files [x86]). Non-privileged groups such as Users or Authenticated Users must not have greater than "Read &amp; execute" permissions. (Individual accounts must not be used to assign permissions.)
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Viewing in File Explorer:
-
 For each folder, view the Properties.
-
 Select the "Security" tab, and the "Advanced" button.
-
 Default permissions:
-\Program Files and \Program Files (x86)
+\Program Files (x86)
 Type - "Allow" for all
 Inherited from - "None" for all
-
 Principal - Access - Applies to
-
 TrustedInstaller - Full control - This folder and subfolders
 SYSTEM - Modify - This folder only
 SYSTEM - Full control - Subfolders and files only
@@ -2642,18 +2634,12 @@ Users - Read &amp; execute - This folder, subfolders and files
 CREATOR OWNER - Full control - Subfolders and files only
 ALL APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
 ALL RESTRICTED APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
-
 Alternately, use icacls:
-
 Open a Command prompt (admin).
-
 Enter "icacls" followed by the directory:
-
 'icacls "c:\program files"'
 'icacls "c:\program files (x86)"'
-
 The following results should be displayed for each when entered:
-
 c:\program files (c:\program files (x86))
 NT SERVICE\TrustedInstaller:(F)
 NT SERVICE\TrustedInstaller:(CI)(IO)(F)
@@ -2668,7 +2654,8 @@ APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
-Successfully processed 1 files; Failed processing 0 files</RawString>
+Successfully processed 1 files; Failed processing 0 files
+</RawString>
     </Rule>
     <Rule id="V-73251.b" severity="medium" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -2751,26 +2738,18 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>%ProgramFiles%;%ProgramFiles(x86)%</Path>
+      <Path>%ProgramFiles%</Path>
       <RawString>The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (WN16-SO-000290).
-
 Review the permissions for the program file directories (Program Files and Program Files [x86]). Non-privileged groups such as Users or Authenticated Users must not have greater than "Read &amp; execute" permissions. (Individual accounts must not be used to assign permissions.)
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Viewing in File Explorer:
-
 For each folder, view the Properties.
-
 Select the "Security" tab, and the "Advanced" button.
-
 Default permissions:
-\Program Files and \Program Files (x86)
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
-
 Principal - Access - Applies to
-
 TrustedInstaller - Full control - This folder and subfolders
 SYSTEM - Modify - This folder only
 SYSTEM - Full control - Subfolders and files only
@@ -2780,18 +2759,12 @@ Users - Read &amp; execute - This folder, subfolders and files
 CREATOR OWNER - Full control - Subfolders and files only
 ALL APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
 ALL RESTRICTED APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
-
 Alternately, use icacls:
-
 Open a Command prompt (admin).
-
 Enter "icacls" followed by the directory:
-
 'icacls "c:\program files"'
 'icacls "c:\program files (x86)"'
-
 The following results should be displayed for each when entered:
-
 c:\program files (c:\program files (x86))
 NT SERVICE\TrustedInstaller:(F)
 NT SERVICE\TrustedInstaller:(CI)(IO)(F)
@@ -2806,7 +2779,8 @@ APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
-Successfully processed 1 files; Failed processing 0 files</RawString>
+Successfully processed 1 files; Failed processing 0 files
+</RawString>
     </Rule>
     <Rule id="V-73253" severity="medium" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -2961,117 +2935,43 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM</Path>
+      <Path>HKLM:\SECURITY</Path>
       <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
-
 If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Run "Regedit".
-
 Right-click on the registry areas noted below.
-
 Select "Permissions..." and the "Advanced" button.
-
 HKEY_LOCAL_MACHINE\SECURITY
-
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SOFTWARE
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SYSTEM
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
-
-If the defaults have not been changed, these are not a finding.</RawString>
+If the defaults have not been changed, these are not a finding.
+</RawString>
     </Rule>
     <Rule id="V-73255.b" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="RegistryAccessEntry">
       <AccessControlEntry>
         <Entry>
           <Type>
           </Type>
-          <Principal>SYSTEM</Principal>
+          <Principal>Users</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
-      </AccessControlEntry>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path>HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM</Path>
-      <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
-
-If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
-
-If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
-Run "Regedit".
-
-Right-click on the registry areas noted below.
-
-Select "Permissions..." and the "Advanced" button.
-
-HKEY_LOCAL_MACHINE\SECURITY
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-SYSTEM - Full Control - This key and subkeys
-Administrators - Special - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SOFTWARE
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SYSTEM
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-
-Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
-
-If the defaults have not been changed, these are not a finding.</RawString>
-    </Rule>
-    <Rule id="V-73255.c" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="RegistryAccessEntry">
-      <AccessControlEntry>
         <Entry>
           <Type>
           </Type>
@@ -3080,34 +2980,51 @@ If the defaults have not been changed, these are not a finding.</RawString>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subkeys Only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
       </AccessControlEntry>
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM</Path>
+      <Path>HKLM:\SOFTWARE</Path>
       <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
-
 If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Run "Regedit".
-
 Right-click on the registry areas noted below.
-
 Select "Permissions..." and the "Advanced" button.
-
-HKEY_LOCAL_MACHINE\SECURITY
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-SYSTEM - Full Control - This key and subkeys
-Administrators - Special - This key and subkeys
-
 HKEY_LOCAL_MACHINE\SOFTWARE
-
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -3116,9 +3033,75 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-
+CREATOR OWNER - Full Control - Subkeys only
+ALL APPLICATION PACKAGES - Read - This key and subkeys
+Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
+If the defaults have not been changed, these are not a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-73255.c" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="RegistryAccessEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Users</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>SYSTEM</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subkeys Only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subkeys Only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>HKLM:\SYSTEM</Path>
+      <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
+If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
+If permissions are not as restrictive as the default permissions listed below, this is a finding.
+Run "Regedit".
+Right-click on the registry areas noted below.
+Select "Permissions..." and the "Advanced" button.
 HKEY_LOCAL_MACHINE\SYSTEM
-
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -3126,11 +3109,11 @@ Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
+CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
-
-If the defaults have not been changed, these are not a finding.</RawString>
+If the defaults have not been changed, these are not a finding.
+</RawString>
     </Rule>
     <Rule id="V-73369" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -5257,7 +5240,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowOnlineID</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-        <Rule id="V-73685" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="xRegistry">
+    <Rule id="V-73685" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
