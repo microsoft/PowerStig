@@ -182,6 +182,33 @@ try
 
                 All Systems:
                 Guests Group'
+            },
+            @{
+                DisplayName  = 'Access this computer from the network'
+                Constant     = 'SeNetworkLogonRight'
+                Identity     = @('Administrators', 'Authenticated Users', 'Enterprise Domain Controllers' )
+                ForceFlag    = $true
+                CheckContent = 'This applies to domain controllers. It is NA for other systems.
+
+                Verify the effective setting in Local Group Policy Editor.
+
+                Run "gpedit.msc".
+
+                Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
+
+                If any accounts or groups other than the following are granted the "Access this computer from the network" right, this is a finding.
+
+                - Administrators
+                - Authenticated Users
+                - Enterprise Domain Controllers
+
+                If an application requires this user right, this would not be a finding.
+
+                Vendor documentation must support the requirement for having the user right.
+
+                The requirement must be documented with the ISSO.
+
+                The application account must meet requirements for application account passwords, such as length (WN16-00-000060) and required frequency of changes (WN16-00-000070).'
             }
         )
 

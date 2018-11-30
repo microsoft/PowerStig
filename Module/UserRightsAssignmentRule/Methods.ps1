@@ -104,7 +104,17 @@ function Get-UserRightIdentity
 
         foreach ( $line in $checkContent[$startLine..-1] )
         {
-            if ( $line.Trim() -notmatch ":|^If|^Microsoft|^Organizations|^Vendor|^The|^(Systems|Workstations)\sDedicated" -and -not [string]::IsNullOrEmpty( $line.Trim() ) )
+            <#
+                The Windows Server 2016 STIG prepends each identity with a dash space (- )
+                that needs to be trimmed from the results before they are returned.
+            #>
+            $line = $line -replace '^\s*-\s*', ''
+
+            if
+            (
+                $line.Trim() -notmatch ":|^If|^Microsoft|^Organizations|^Vendor|^The|^(Systems|Workstations)\sDedicated" -and
+                -not [string]::IsNullOrEmpty( $line.Trim() )
+            )
             {
                 <#
                     There are a few entries that add the word 'group' to the end of the group name, so
