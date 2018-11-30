@@ -6127,7 +6127,7 @@ Passwords for application accounts with this user right must be protected as hig
       <Constant>SeDenyNetworkLogonRight</Constant>
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <Force>False</Force>
-      <Identity>- Guests Group</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6147,7 +6147,7 @@ If the following accounts or groups are not defined for the "Deny access to this
       <Constant>SeDenyBatchLogonRight</Constant>
       <DisplayName>Deny log on as a batch job</DisplayName>
       <Force>False</Force>
-      <Identity>- Guests Group</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6185,7 +6185,7 @@ If any accounts or groups are defined for the "Deny log on as a service" user ri
       <Constant>SeDenyInteractiveLogonRight</Constant>
       <DisplayName>Deny log on locally</DisplayName>
       <Force>False</Force>
-      <Identity>- Guests Group</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6205,7 +6205,7 @@ If the following accounts or groups are not defined for the "Deny log on locally
       <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
       <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
       <Force>False</Force>
-      <Identity>- Guests Group</Identity>
+      <Identity>Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
