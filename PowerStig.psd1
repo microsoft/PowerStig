@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.2.0.0'
+ModuleVersion = '2.3.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -97,33 +97,26 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Added the following STIGs
-  * IIS Site 8.5 STIG V1R2
-  * IIS Site 8.5 STIG V1R3
-  * Oracle JRE 8 STIG V1R5
-  * Microsoft Outlook 2013 STIG V1R12
-  * Microsoft PowerPoint 2013 Stig V1R6
-  * Microsoft Excel 2013 STIG V1R7
-  * Microsoft Word 2013 STIG V1R6
+        ReleaseNotes = '* Windows 10 Fixes
+  * V-63795 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
 
-* Added the following DSC Composite Resources
-  * Microsoft Office 2013 STIGs
-  * FireFox STIG
-  * IIS Site STIG
-  * IIS Server STIG
-  * Oracle JRE STIG
-  * Windows10 STIG
+* Windows Server 2012R2 Fixes
+  * V-1089 - Corrected text
+  * V-21954 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
+  * V-26070 - Corrected key path
+  * V-36657 - Corrected key path
+  * V-36681 - Corrected key path
 
-* Newly required modules
-  * PolicyFileEditor
-  * FileContentDsc
-  * WindowsDefenderDSC
-  * xWebAdministration
-  * xWinEventLog
-
-* Updated required module versions
-  * xDnsServer from 1.9.0.0 to 1.11.0.0
-  * SecurityPolicyDsc from 2.2.0.0 to 2.4.0.0'
+* Added the following STIGs
+  * IIS Server 8.5 STIG V1R5
+  * Microsoft Outlook 2013 STIG V1R13
+  * DotNet Framework 4.0 STIG V1R6
+  * IIS Site 8.5 STIG V1R5
+  * Windows Domain V2R11
+  * FireFox 4.23 STIG
+  * Windows Server 2012R2 DC V2R14
+  * Windows Server 2012R2 MS V2R14
+  * Windows 10 V1R15'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
