@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.3.0.0
+
 * Windows 10 Fixes
   * V-63795 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
 
