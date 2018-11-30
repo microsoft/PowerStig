@@ -4,8 +4,7 @@
 #endregion
 #region Data
 # These are the registry strings that are not able to be automatically extracted from the xccdf.
-$script:legalNoticeText = '
-You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+$script:legalNoticeText = 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
@@ -52,12 +51,14 @@ function Test-ValueDataIsHardCoded
         'V-63675', # Windows Client - Legal Notice Display
         'V-26359', # Windows Server - Legal Banner Dialog Box Title
         'V-63681', # Windows Client - Legal Banner Dialog Box Title
-        'V-21954', # Windows Server - Kerberos Supported Encryption Types
+        # The was updated in Server 2012 R2 V2R14
+        #'V-21954', # Windows Server - Kerberos Supported Encryption Types
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
         # resource does not use the Get-WindowsOptionalFeature cmdlet so this has to stay manual on
         # the desktop for now or else we have to move everything to a script resource.
-        'V-46477' # Internet Explorer - Publishers Certificate Revocation. The value s written as hex,
+        'V-46477', # Internet Explorer - Publishers Certificate Revocation. The value s written as hex,
         # but there is not other identifier.
+        'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
     if ($stigIds -contains $stigId)
@@ -102,8 +103,7 @@ function Get-HardCodedString
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption
         }
-
-        {$PSItem -match 'V-(21954|30935)'}
+        {$PSItem -match 'V-30935'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SupportedEncryptionTypes : $true"
             return $script:supportedEncryptionTypes
@@ -145,7 +145,8 @@ function Get-HardCodedString
         'V-3472.b', # Windows Time Service - Configure NTP Client
         'V-8322.b', # Time Synchronization
         'V-14235', # UAC - Admin Elevation Prompt
-        'V-26359' # Windows Server - Legal Banner Dialog Box Title
+        'V-26359', # Windows Server - Legal Banner Dialog Box Title
+        'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
     if ($stigIds -contains $stigId)
@@ -198,6 +199,11 @@ function Get-HardCodedString
         {$PSItem -match 'V-26359'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
+            continue
+        }
+        {$PSItem -match 'V-17761'}
+        {
+            $hardCodedString = "'{0}' -ge '30' -and '{0}' -le '132'"
             continue
         }
     }

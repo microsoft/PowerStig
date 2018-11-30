@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_10_STIG" version="1.14" created="9/26/2018">
+<DISASTIG id="Windows_10_STIG" version="1.14" created="11/29/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1369,20 +1369,6 @@ Value Name: EnableSmartScreen
 Value Type: REG_DWORD
 Value: 0x00000002 (2)</RawString>
     </Rule>
-    <Rule id="V-63795" severity="medium" conversionstatus="pass" title="WN10-SO-000190" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-
-Value Name: SupportedEncryptionTypes
-
-Value Type: REG_DWORD
-Value: 0x7ffffff8 (2147483640)</RawString>
-    </Rule>
     <Rule id="V-68845" severity="high" conversionstatus="pass" title="WN10-00-000145" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2054,7 +2040,7 @@ If the defaults have not been changed, these are not a finding.
 </RawString>
     </Rule>
   </PermissionRule>
-  <ProcessMitigationRule dscresourcemodule="ProcessMitigationDsc">
+  <ProcessMitigationRule dscresourcemodule="WindowsDefenderDsc">
     <Rule id="V-77091" severity="medium" conversionstatus="pass" title="WN10-EP-000020" dscresource="ProcessMitigation">
       <Disable />
       <Enable>DEP</Enable>
@@ -2470,6 +2456,38 @@ EnableRopSimExec: ON
 
 The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.</RawString>
     </Rule>
+    <Rule id="V-77223.a" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
+      <Disable />
+      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <MitigationTarget>java.exe</MitigationTarget>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is NA prior to v1709 of Windows 10.
+
+This is applicable to unclassified systems, for other systems this is NA.
+
+Run "Windows PowerShell" with elevated privileges (run as administrator).
+
+Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
+java.exe, javaw.exe, and javaws.exe
+(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+If the following mitigations do not have a status of "ON" for each, this is a finding:
+
+DEP:
+Enable: ON
+
+Payload:
+EnableExportAddressFilter: ON
+EnableExportAddressFilterPlus: ON
+EnableImportAddressFilter: ON
+EnableRopStackPivot: ON
+EnableRopCallerCheck: ON
+EnableRopSimExec: ON
+
+The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.</RawString>
+    </Rule>
     <Rule id="V-77223.b" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
       <Disable />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
@@ -2507,38 +2525,6 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>javaws.exe</MitigationTarget>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
-
-This is applicable to unclassified systems, for other systems this is NA.
-
-Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
-java.exe, javaw.exe, and javaws.exe
-(Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-If the following mitigations do not have a status of "ON" for each, this is a finding:
-
-DEP:
-Enable: ON
-
-Payload:
-EnableExportAddressFilter: ON
-EnableExportAddressFilterPlus: ON
-EnableImportAddressFilter: ON
-EnableRopStackPivot: ON
-EnableRopCallerCheck: ON
-EnableRopSimExec: ON
-
-The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.</RawString>
-    </Rule>
-    <Rule id="V-77223.a" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
-      <Disable />
-      <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MitigationTarget>java.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This is NA prior to v1709 of Windows 10.
@@ -4198,8 +4184,7 @@ By using this IS (which includes any device attached to this IS), you consent to
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</RawString>
-      <ValueData>
-You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+      <ValueData>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
@@ -5009,6 +4994,25 @@ Value Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowOnlineID</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-63795" severity="medium" conversionstatus="pass" title="WN10-SO-000190" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
+
+Value Name: SupportedEncryptionTypes
+
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)</RawString>
+      <ValueData>2147483640</ValueData>
+      <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63797" severity="high" conversionstatus="pass" title="WN10-SO-000195" dscresource="xRegistry">
@@ -6345,22 +6349,7 @@ Administrators</RawString>
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-63377.b" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsFeature">
-      <FeatureName>IIS-WebServer</FeatureName>
-      <InstallState>Absent</InstallState>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
-
-Run "Programs and Features".
-Select "Turn Windows features on or off".
-
-If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
-
-If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
-    </Rule>
-    <Rule id="V-63377.a" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsFeature">
+    <Rule id="V-63377.a" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsOptionalFeature">
       <FeatureName>IIS-HostableWebCore</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6375,7 +6364,22 @@ If the entries for "Internet Information Services" or "Internet Information Serv
 
 If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
     </Rule>
-    <Rule id="V-63381" severity="medium" conversionstatus="pass" title="WN10-00-000105" dscresource="WindowsFeature">
+    <Rule id="V-63377.b" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsOptionalFeature">
+      <FeatureName>IIS-WebServer</FeatureName>
+      <InstallState>Absent</InstallState>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
+
+Run "Programs and Features".
+Select "Turn Windows features on or off".
+
+If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
+
+If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
+    </Rule>
+    <Rule id="V-63381" severity="medium" conversionstatus="pass" title="WN10-00-000105" dscresource="WindowsOptionalFeature">
       <FeatureName>SNMP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6387,7 +6391,7 @@ Navigate to the Windows\System32 directory.
 
 If the "SNMP" application exists, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63383" severity="medium" conversionstatus="pass" title="WN10-00-000110" dscresource="WindowsFeature">
+    <Rule id="V-63383" severity="medium" conversionstatus="pass" title="WN10-00-000110" dscresource="WindowsOptionalFeature">
       <FeatureName>SimpleTCP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6399,7 +6403,7 @@ Run "Services.msc".
 
 If "Simple TCP/IP Services" is listed, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63385" severity="medium" conversionstatus="pass" title="WN10-00-000115" dscresource="WindowsFeature">
+    <Rule id="V-63385" severity="medium" conversionstatus="pass" title="WN10-00-000115" dscresource="WindowsOptionalFeature">
       <FeatureName>TelnetClient</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6411,7 +6415,7 @@ Navigate to the Windows\System32 directory.
 
 If the "telnet" application exists, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63389" severity="medium" conversionstatus="pass" title="WN10-00-000120" dscresource="WindowsFeature">
+    <Rule id="V-63389" severity="medium" conversionstatus="pass" title="WN10-00-000120" dscresource="WindowsOptionalFeature">
       <FeatureName>TFTP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6423,28 +6427,7 @@ Navigate to the Windows\System32 directory.
 
 If the "TFTP" application exists, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-70637.b" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsFeature">
-      <FeatureName>MicrosoftWindowsPowerShellV2Root</FeatureName>
-      <InstallState>Absent</InstallState>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
-Enter the following:
-Get-WindowsOptionalFeature -Online | Where -FeatureName -like *PowerShellv2*
-
-If either of the following have a "State" of "Enabled", this is a finding.
-FeatureName : MicrosoftWindowsPowerShellV2
-State : Enabled
-FeatureName : MicrosoftWindowsPowerShellV2Root
-State : Enabled
-
-Alternately:
-Search for "Features".
-Select "Turn Windows features on or off".
-If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-70637.a" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsFeature">
+    <Rule id="V-70637.a" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
       <FeatureName>MicrosoftWindowsPowerShellV2</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6465,7 +6448,28 @@ Search for "Features".
 Select "Turn Windows features on or off".
 If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-70639" severity="medium" conversionstatus="pass" title="WN10-00-000160" dscresource="WindowsFeature">
+    <Rule id="V-70637.b" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
+      <FeatureName>MicrosoftWindowsPowerShellV2Root</FeatureName>
+      <InstallState>Absent</InstallState>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
+Enter the following:
+Get-WindowsOptionalFeature -Online | Where -FeatureName -like *PowerShellv2*
+
+If either of the following have a "State" of "Enabled", this is a finding.
+FeatureName : MicrosoftWindowsPowerShellV2
+State : Enabled
+FeatureName : MicrosoftWindowsPowerShellV2Root
+State : Enabled
+
+Alternately:
+Search for "Features".
+Select "Turn Windows features on or off".
+If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-70639" severity="medium" conversionstatus="pass" title="WN10-00-000160" dscresource="WindowsOptionalFeature">
       <FeatureName>SMB1Protocol</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>

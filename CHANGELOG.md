@@ -2,8 +2,29 @@
 
 ## Unreleased
 
+* Windows 10 Fixes
+  * V-63795 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
+
+* Windows Server 2012R2 Fixes
+  * V-1089 - Corrected text
+  * V-21954 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
+  * V-26070 - Corrected key path
+  * V-36657 - Corrected key path
+  * V-36681 - Corrected key path
+
+* Added the following STIGs
+  * IIS Server 8.5 STIG V1R5
+  * Microsoft Outlook 2013 STIG V1R13
+  * DotNet Framework 4.0 STIG V1R6
+  * IIS Site 8.5 STIG V1R5
+  * Windows Domain V2R11
+  * FireFox 4.23 STIG
+  * Windows Server 2012R2 DC V2R14
+  * Windows Server 2012R2 MS V2R14
+  * Windows 10 V1R15
+
 ## 2.2.0.0
-  
+
 * Added the following STIGs
   * IIS Site 8.5 STIG V1R2
   * IIS Site 8.5 STIG V1R3

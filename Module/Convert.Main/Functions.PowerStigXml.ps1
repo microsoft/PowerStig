@@ -16,6 +16,9 @@
 
     .PARAMETER IncludeRawString
         Adds the check-content elemet content to the converted object.
+
+    .PARAMETER RuleIdFilter
+        Filters the list rules that are converted to simplify debugging the conversion process.
 #>
 function ConvertTo-PowerStigXml
 {
@@ -37,8 +40,13 @@ function ConvertTo-PowerStigXml
 
         [Parameter()]
         [switch]
-        $IncludeRawString
+        $IncludeRawString,
+
+        [Parameter()]
+        [string[]]
+        $RuleIdFilter
     )
+
     Begin
     {
         $CurrentVerbosePreference = $global:VerbosePreference
@@ -50,10 +58,10 @@ function ConvertTo-PowerStigXml
     }
     Process
     {
-        $convertedStigObjects = ConvertFrom-StigXccdf -Path $path -IncludeRawString:$IncludeRawString
+        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -IncludeRawString:$IncludeRawString -RuleIdFilter $RuleIdFilter
 
         # Get the raw xccdf xml to pull additional details from the root node.
-        [xml] $xccdfXml = Get-Content -Path $path -Encoding UTF8
+        [xml] $xccdfXml = Get-Content -Path $Path -Encoding UTF8
         [version] $stigVersionNumber = Get-StigVersionNumber -StigDetails $xccdfXml
 
         $ruleTypeList = Get-RuleTypeList -StigSettings $convertedStigObjects
@@ -81,7 +89,7 @@ function ConvertTo-PowerStigXml
 
             # Append as child to an existing node. DO NOT remove the [void]
             [void] $xmlRoot.appendChild( $xmlRuleType )
-            $XmlRuleType.SetAttribute( $xmlattribute.ruleDscResourceModule, $DscResourceModule.$ruleType )
+            $XmlRuleType.SetAttribute( $xmlattribute.ruleDscResourceModule, $dscResourceModule.$ruleType )
 
             # Get the rules for the current STIG type.
             $rules = $convertedStigObjects | Where-Object { $PSItem.GetType().ToString() -eq $ruleType }
@@ -574,6 +582,8 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Domain_Name_System"}
         {
+             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
+            $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($dnsServerVariations -join '|'), 'DNS'
             $returnId = $returnId -replace ($windowsVariations -join '|'), 'Windows'
             continue
@@ -585,6 +595,8 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Windows"}
         {
+            # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
+            $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($windowsVariations -join '|'), 'Windows'
             continue
         }
@@ -606,7 +618,7 @@ function Split-BenchmarkId
         {
             $officeStig = ($id -split '_')
             $officeStig = $officeStig[1] + $officeStig[2]
-            $returnId = 'Windows_All_' + $officeStig 
+            $returnId = 'Windows_All_' + $officeStig
         }
         default
         {

@@ -23,6 +23,9 @@
         This will add the 'Check-Content' from the xcccdf to the output for any additional validation
         or spot checking that may be needed.
 
+    .PARAMETER RuleIdFilter
+        Filters the list rules that are converted to simplify debugging the conversion process.
+
     .EXAMPLE
         ConvertFrom-StigXccdf -Path C:\Stig\U_Windows_2012_and_2012_R2_MS_STIG_V2R8_Manual-xccdf.xml
 
@@ -49,7 +52,11 @@ function ConvertFrom-StigXccdf
 
         [Parameter()]
         [switch]
-        $IncludeRawString
+        $IncludeRawString,
+
+        [Parameter()]
+        [string[]]
+        $RuleIdFilter
     )
 
     # Get the xml data from the file path provided.
@@ -73,8 +80,16 @@ function ConvertFrom-StigXccdf
     }
     # Read in the root stig data from the xml additional functions will dig in deeper
     $stigRuleParams = @{
-        StigGroups       = $stigBenchmarkXml.Group
         IncludeRawString = $IncludeRawString
+    }
+
+    if($RuleIdFilter)
+    {
+        $stigRuleParams.StigGroups = $stigBenchmarkXml.Group | Where-Object {$RuleIdFilter -contains $PSItem.Id}
+    }
+    else
+    {
+        $stigRuleParams.StigGroups = $stigBenchmarkXml.Group
     }
 
     # The benchmark title drives the rest of the function and must exist to continue.
@@ -231,25 +246,20 @@ function Get-StigRuleList
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 
-            $ruleTypes = [Rule]::GetRuleTypeMatchList( $stigRule.rule.Check.('check-content') )
-            foreach ( $ruleType in $ruleTypes )
-            {
-                $rules = & "ConvertTo-$ruleType" -StigRule $stigRule
+            $rules = [ConvertFactory]::Rule( $stigRule )
 
-                foreach ( $rule in $rules )
+            foreach ( $rule in $rules )
+            {
+                if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
                 {
-                    if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
-                    {
-                        [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
-                    }
-                    else
-                    {
-                        [void] $global:stigSettings.Add( $rule )
-                    }
+                    [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
                 }
-                # Increment the counter to update the console output
-                $stigProcessedCounter ++
+                else
+                {
+                    [void] $global:stigSettings.Add( $rule )
+                }
             }
+            $stigProcessedCounter ++
         }
     }
     end

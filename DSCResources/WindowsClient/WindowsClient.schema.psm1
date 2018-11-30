@@ -53,7 +53,7 @@ Configuration WindowsClient
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('1.14')]
+        [ValidateSet('1.14', '1.15')]
         [version]
         $StigVersion,
 
@@ -102,10 +102,10 @@ Configuration WindowsClient
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
     $technologyRole    = [TechnologyRole]::New( 'Client', $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
-    
+
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]

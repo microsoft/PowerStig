@@ -294,7 +294,7 @@ Function Get-StigList
     [OutputType([PSObject[]])]
     param ()
 
-    return [StigData]::GetAvailableStigs()
+    return [STIG]::ListAvailable()
 }
 
 #endregion
