@@ -4919,7 +4919,7 @@ This setting may prevent a system from being joined to a domain if not configure
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -6303,7 +6303,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If any accounts or groups other than the following are granted the "Impersonate a client after authentication" user right, this is a finding.
 
 - Administrators
-Service
+- Service
 - Local Service
 - Network Service
 
