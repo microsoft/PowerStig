@@ -1727,18 +1727,6 @@ TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 
 If a TPM is not found or is not ready for use, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-73239" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "Command Prompt".
-
-Enter "winver.exe".
-
-If the "About Windows" dialog box does not display "Microsoft Windows Server Version 1607 (Build 14393.xxx)" or greater, this is a finding.
-
-Preview versions must not be used in a production environment.</RawString>
-    </Rule>
     <Rule id="V-73241" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6648,6 +6636,22 @@ An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
   <WmiRule dscresourcemodule="PSDesiredStateConfiguration">
+    <Rule id="V-73239" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Script">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM Win32_OperatingSystem</Query>
+      <RawString>Open "Command Prompt".
+
+Enter "winver.exe".
+
+If the "About Windows" dialog box does not display "Microsoft Windows Server Version 1607 (Build 14393.xxx)" or greater, this is a finding.
+
+Preview versions must not be used in a production environment.</RawString>
+      <Value>10.0.14393</Value>
+    </Rule>
     <Rule id="V-73247" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="Script">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-match</Operator>
