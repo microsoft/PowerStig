@@ -24,7 +24,7 @@ try
             Split-StigXccdf -Path $sampleXccdfPath
 
             Context 'Member Server' {
-                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_MS_SPLIT'
+                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_MS'
                 It 'Should create an MS STIG file' {
                     Test-Path -Path $sampleXccdfSplitPath | Should Be $true
                 }
@@ -36,7 +36,7 @@ try
             }
 
             Context 'Domain Controller' {
-                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_DC_SPLIT'
+                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_DC'
                 It 'Should create an DC STIG file' {
                     Test-Path -Path $sampleXccdfSplitPath | Should Be $true
                 }

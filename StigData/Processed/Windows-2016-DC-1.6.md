@@ -82,7 +82,7 @@
     V-73231 +
     V-73235 +
     V-73237 +
-    V-73239 ---- Windows Version Microsoft Windows Server Version 1607 (Build 14393.xxx)
+    V-73239 + DONE Windows Version Microsoft Windows Server Version 1607 (Build 14393.xxx)
     V-73241 +
     V-73261 +
     V-73263 +
