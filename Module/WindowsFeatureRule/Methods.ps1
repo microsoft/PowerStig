@@ -25,10 +25,15 @@ function Get-WindowsFeatureName
     {
         switch ($checkContent)
         {
+            { $PSItem -match $regularExpression.WindowsFeatureNameServer2016 }
+            {
+                $matches = $checkContent | Select-String -Pattern $regularExpression.WindowsFeatureNameServer2016
+                $windowsFeatureName += $matches.Matches.Groups[2].value
+            }
             { $PSItem -match $regularExpression.WindowsFeatureName }
             {
                 $matches = $checkContent | Select-String -Pattern $regularExpression.WindowsFeatureName
-                $windowsFeatureName += ( $matches.Matches.Value -replace 'Get-WindowsFeature\s-Name' ).Trim()
+                $windowsFeatureName += $matches.Matches.Groups[2].value
             }
             { $PSItem -match $regularExpression.FeatureNameEquals }
             {

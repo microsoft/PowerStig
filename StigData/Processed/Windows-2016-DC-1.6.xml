@@ -6516,8 +6516,8 @@ If the organization has not documented the roles and features required for the s
 
 The PowerShell command "Get-WindowsFeature" will list all roles and features with an "Install State".</RawString>
     </Rule>
-    <Rule id="V-73287" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73287" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>Fax</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6530,8 +6530,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73289" severity="medium" conversionstatus="fail" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73289" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+      <FeatureName>Web-Ftp-Service</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6548,8 +6548,8 @@ An Installed State of "Available" or "Removed" is not a finding.
 
 If the system has the role of an FTP server, this must be documented with the ISSO.</RawString>
     </Rule>
-    <Rule id="V-73291" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73291" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>PNRP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6562,8 +6562,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73293" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73293" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>Simple-TCPIP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6576,7 +6576,21 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73295" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+    <Rule id="V-73295.a" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+      <FeatureName>Telnet-Client</FeatureName>
+      <InstallState>Absent</InstallState>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "PowerShell".
+
+Enter "Get-WindowsFeature | Where Name -eq Telnet-Client".
+
+If "Installed State" is "Installed", this is a finding.
+
+An Installed State of "Available" or "Removed" is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-73295.b" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
       <FeatureName>TelnetClient</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6590,8 +6604,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73297" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73297" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>TFTP-Client</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6620,8 +6634,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73301" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73301" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>PowerShell-v2</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>

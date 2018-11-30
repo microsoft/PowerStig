@@ -160,7 +160,7 @@
     V-73545   +
     V-73547   +
     V-73549   +
-    V-73551   = Should be Org setting
+    V-73551   - Should be Org setting
     V-73553   +
     V-73555   +
     V-73557   +
@@ -282,15 +282,15 @@
 
 ## WindowsFeatureRule
 
-    V-73277 - No role listed
-    V-73287 - No role listed
-    V-73289 - No role listed
-    V-73291 - No role listed
-    V-73293 - No role listed
-    V-73295 - No role listed
-    V-73297 - No role listed
+    V-73277 - Needs to be a document rule
+    V-73287 + DONE No role listed
+    V-73289 + DONE No role listed
+    V-73291 + DONE No role listed
+    V-73293 + DONE No role listed
+    V-73295 + DONE No role listed
+    V-73297 + DONE No role listed
     V-73299 +
-    V-73301 - No role listed
+    V-73301 + DONE No role listed
 
 ## WmiRule
 

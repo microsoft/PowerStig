@@ -24,7 +24,7 @@ try
             If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.'
         }
         @{
-            FeatureName  = 'Powershell-v2'
+            FeatureName = 'Powershell-v2'
             InstallState = 'Absent'
             OrganizationValueRequired = $false
             CheckContent = 'Windows PowerShell 2.0 is not installed by default.
@@ -32,6 +32,34 @@ try
             Open "Windows PowerShell".
 
             Enter "Get-WindowsFeature -Name PowerShell-v2".
+
+            If "Installed State" is "Installed", this is a finding.
+
+            An Installed State of "Available" or "Removed" is not a finding.'
+        },
+        @{
+            FeatureName = 'Web-Ftp-Service'
+            InstallState = 'Absent'
+            OrganizationValueRequired = $false
+            CheckContent = 'If the server has the role of an FTP server, this is NA.
+
+            Open "PowerShell".
+
+            Enter "Get-WindowsFeature | Where Name -eq Web-Ftp-Service".
+
+            If "Installed State" is "Installed", this is a finding.
+
+            An Installed State of "Available" or "Removed" is not a finding.
+
+            If the system has the role of an FTP server, this must be documented with the ISSO'
+        },
+        @{
+            FeatureName = 'PNRP'
+            InstallState = 'Absent'
+            OrganizationValueRequired = $false
+            CheckContent = 'Open "PowerShell".
+
+            Enter "Get-WindowsFeature | Where Name -eq PNRP".
 
             If "Installed State" is "Installed", this is a finding.
 
