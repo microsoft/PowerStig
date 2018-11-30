@@ -17,7 +17,7 @@ Configuration Browser_config
     {
         Browser InternetExplorer
         {
-            BrowserVersion = $BrowserVersion
+            BrowserVersion = $browserVersion
             Stigversion    = $StigVersion
         }
     }

@@ -39,7 +39,7 @@ Configuration FireFox
         $InstallDirectory = "$env:ProgramFiles\Mozilla Firefox",
 
         [Parameter()]
-        [ValidateSet('4.21')]
+        [ValidateSet('4.21', '4.23')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -76,7 +76,7 @@ Configuration FireFox
     $technology        = [Technology]::Mozilla
     $technologyVersion = [TechnologyVersion]::New( 'All', $technology )
     $technologyRole    = [TechnologyRole]::New( 'FireFox', $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
     #### BEGIN DO NOT MODIFY ####

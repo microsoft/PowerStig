@@ -26,7 +26,7 @@ function Get-OrganizationValueTestString
         $String
     )
 
-    switch ($String)
+    switch ($string)
     {
         {Test-StringIsNegativeOr -String $PSItem}
         {
@@ -47,7 +47,8 @@ function Get-OrganizationValueTestString
             (Test-StringIsGreaterThan -String $PSItem)              -or
             (Test-StringIsGreaterThanOrEqual -String $PSItem)       -or
             (Test-StringIsGreaterThanButNot -String $PSItem)        -or
-            (Test-StringIsGreaterThanOrEqualButNot -String $PSItem)
+            (Test-StringIsGreaterThanOrEqualButNot -String $PSItem) -or
+            (Test-StringIsBetweenTwoValues -String $PSItem)
         }
         {
             ConvertTo-TestString -String $PSItem
@@ -72,7 +73,14 @@ function Get-TestStringTokenNumbers
         $String
     )
 
-    $tokens = [System.Management.Automation.PSParser]::Tokenize($String, [ref]$null)
+    <#
+        Some strings contain double quotes around numbers. This causes the
+        PSParser to return them as a string vs a number, so the double quotes
+        are stripped out before being parsed.
+    #>
+    $string = $String -replace '"',''
+
+    $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
     $number = $tokens.Where({$PSItem.type -eq 'Number'}).Content
     <#
         There is an edge case where the hex and decimal values are provided inline, so pick
@@ -121,9 +129,9 @@ function Get-TestStringTokenList
         $StringTokens
     )
 
-    $tokens = [System.Management.Automation.PSParser]::Tokenize($String, [ref]$null)
+    $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
 
-    if($PSCmdlet.ParameterSetName -eq 'StringTokens')
+    if ($PSCmdlet.ParameterSetName -eq 'StringTokens')
     {
         return $tokens.Where({ $PSItem.type -eq 'String' }).Content
     }
@@ -145,8 +153,8 @@ function ConvertTo-TestString
         [string]
         $String
     )
-    $number    = Get-TestStringTokenNumbers -String $String
-    $operators = Get-TestStringTokenList -String $String -CommandTokens
+    $number    = Get-TestStringTokenNumbers -String $string
+    $operators = Get-TestStringTokenList -String $string -CommandTokens
 
     switch ($operators)
     {
@@ -182,9 +190,13 @@ function ConvertTo-TestString
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
         }
-        'or less excluding'
+        {$PSItem -match 'or less excluding'}
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
+        }
+        'and'
+        {
+            return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
         }
     }
 }
@@ -284,7 +296,7 @@ function Test-StringIsPositiveOr
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $string
+        $String
     )
 
     <#
@@ -485,7 +497,46 @@ function Test-StringIsGreaterThanButNot
         $false
     }
 }
+#endregion
+#region Between Two Values
+<#
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
 
+    .PARAMETER string
+        The String to test.
+
+    .EXAMPLE
+        This example returns $true
+
+        Test-StringIsBetweenTwoValues -String '30' and '132'
+
+    .NOTES
+        Sample STIG data
+#>
+function Test-StringIsBetweenTwoValues
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $String
+    )
+
+    if ($string -match "([3-8][0-9]|9[0-9]|1[0-2][0-9]|13[0-2])")
+    {
+        $true
+    }
+    else
+    {
+        $false
+    }
+}
+#endregion
+#region GreaterThanorEqual
 <#
     .SYNOPSIS
         Converts English textual representation of numeric ranges into PowerShell equivalent
@@ -548,7 +599,7 @@ function Test-StringIsLessThan
         $String
     )
 
-    if ($String -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
+    if ($string -match "^(\s*)less(\s*)than(\s*)(\d{1,})(\))?(\s*)$")
     {
         $true
     }
@@ -582,7 +633,7 @@ function Test-StringIsLessThanOrEqual
         $String
     )
     # Turn 0x00000384 (900) (or less) into '-le 900'
-    if ($String -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
+    if ($string -match "^((\s*)((0x[A-Fa-f0-9]{8}){1}))?(\s*)(\()?(\d{1,})(\))?(\s*)(\()?or(\s*)less(\))?(\s*)$")
     {
         $true
     }
@@ -764,7 +815,8 @@ function ConvertTo-MultipleValue
     param
     (
         [Parameter(Mandatory)]
-        [string[]] $String
+        [string[]]
+        $String
     )
 
     $values = [regex]::match( $string, "(?<=Possible values are ).*" ).groups.Value
@@ -794,7 +846,7 @@ function Get-SecurityPolicyString
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     $stringMatch = 'If the (value for (the)?)?|(value\s)'
-    $result = ( $CheckContent | Select-String -Pattern $stringMatch ) -replace $stringMatch, ''
+    $result = ( $checkContent | Select-String -Pattern $stringMatch ) -replace $stringMatch, ''
     # 'V-63427' (Win10) returns multiple matches. This is ensure the only the correct one is returned.
     $result = $result | Where-Object -FilterScript {$PSItem -notmatch 'site is using a password filter'}
     # V-73317 (WinSvr 2016) returns multiple matches, but we want both joined to calculate the range.
@@ -821,7 +873,7 @@ function Test-SecurityPolicyContainsRange
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $CheckContent
+    $string = Get-SecurityPolicyString -CheckContent $checkContent
     $string = Get-TestStringTokenList -String $string
 
     if ( $string -match '(?:is not set to )(?!(?:(a )other than)).*(?:this is a finding\.)' )
@@ -850,7 +902,7 @@ function Get-SecurityPolicyOrganizationValueTestString
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $stringBase = Get-SecurityPolicyString -CheckContent $CheckContent
+    $stringBase = Get-SecurityPolicyString -CheckContent $checkContent
     $string = Get-TestStringTokenList -String $stringBase -CommandTokens
     $settings = Get-TestStringTokenList -String $stringBase -StringTokens
 
@@ -869,7 +921,7 @@ function Get-SecurityPolicyOrganizationValueTestString
     # If not strongly typed, a single operator will return indexed characters.
     [string[]] $operators = @()
     # Some of the sentence structure is inverted, so this flag will realign the sentence structure so that that range operator
-    # is always before the eq|ne operators.
+    # Is always before the eq|ne operators.
     $invertAdjective = $false
     # Some of the ranges have exclusions, so the comparison operator should not be inverted and this flag controls that.
     $excludeSecondAdjective = $false
@@ -922,7 +974,7 @@ function Get-SecurityPolicyOrganizationValueTestString
     # Some settings are negated with the string 'this is a finding, so invert the comparison operators if the check is negated.
     if ($string -match 'this is a finding')
     {
-        # if a string contains and/or build that into the test string operators
+        # If a string contains and/or build that into the test string operators
         if ($operators.count -gt '1')
         {
             # Some settings have values that need to be excluded from a range, so do not invert that operator

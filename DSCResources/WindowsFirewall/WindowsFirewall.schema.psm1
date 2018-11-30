@@ -75,7 +75,7 @@ Configuration WindowsFirewall
     $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( "All", $technology )
     $technologyRole    = [TechnologyRole]::New( "FW", $technologyVersion )
-    $stigDataObject    = [StigData]::New( $StigVersion, $OrgSettings, $technology,
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
     #### BEGIN DO NOT MODIFY ####

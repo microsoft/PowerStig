@@ -39,11 +39,11 @@ Configuration WindowsServer_config
             WindowsServer BaseLineSettings
             {
                 OsVersion    = '$OsVersion'
-                OsRole       = '$OsRole'
+                OsRole       = '$osRole'
                 StigVersion  = '$StigVersion'
                 ForestName   = '$ForestName'
                 DomainName   = '$DomainName'
-                $(if($null -ne $SkipRule)
+                $(if ($null -ne $SkipRule)
                 {
                     "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
                 }

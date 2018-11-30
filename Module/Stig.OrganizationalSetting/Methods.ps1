@@ -1,5 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License.
+# userRightNameToConstant under the MIT License.
 #region Method Functions
 <#
     .SYNOPSIS
@@ -8,6 +8,6 @@
 #>
 function Get-PropertyMap
 {
-    return $PropertyMap
+    return $propertyMap
 }
 #endregion

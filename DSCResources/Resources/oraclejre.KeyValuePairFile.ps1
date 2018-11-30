@@ -1,22 +1,22 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name FileContentRule
+$rules = Get-RuleClassData -StigData $stigData -Name FileContentRule
 
 foreach ($rule in $rules)
 {
     if ($rule.Key -match "config")
     {
-        $Path = $ConfigPath
+        $path = $ConfigPath
     }
     else 
     {
-        $Path = $PropertiesPath
+        $path = $PropertiesPath
     }
 
     KeyValuePairFile "$(Get-ResourceTitle -Rule $rule)"
     {
-        Path   = $Path
+        Path   = $path
         Name   = $rule.Key
         Ensure = 'Present'
         Text   = $rule.Value

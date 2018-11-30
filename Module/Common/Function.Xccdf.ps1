@@ -19,18 +19,18 @@ function Get-StigXccdfBenchmarkContent
         $Path
     )
 
-    if (-not (Test-Path -Path $Path))
+    if (-not (Test-Path -Path $path))
     {
-        Throw "The file $Path was not found"
+        Throw "The file $path was not found"
     }
 
-    if ($Path -like "*.zip")
+    if ($path -like "*.zip")
     {
-        [xml] $xccdfXmlContent = Get-StigContentFromZip -Path $Path
+        [xml] $xccdfXmlContent = Get-StigContentFromZip -Path $path
     }
     else
     {
-        [xml] $xccdfXmlContent = Get-Content -Path $Path -Encoding UTF8
+        [xml] $xccdfXmlContent = Get-Content -Path $path -Encoding UTF8
     }
 
     $xccdfXmlContent.Benchmark
@@ -55,8 +55,8 @@ function Get-StigContentFromZip
     )
 
     # Create a unique path in the users temp directory to expand the files to.
-    $zipDestinationPath = "$((Split-Path -Path $Path -Leaf) -replace '.zip','').$((Get-Date).Ticks)"
-    Expand-Archive -LiteralPath $Path -DestinationPath $zipDestinationPath
+    $zipDestinationPath = "$((Split-Path -Path $path -Leaf) -replace '.zip','').$((Get-Date).Ticks)"
+    Expand-Archive -LiteralPath $path -DestinationPath $zipDestinationPath
     # Get the full path to the extracted xccdf file.
     $getChildItem = @{
         Path = $zipDestinationPath

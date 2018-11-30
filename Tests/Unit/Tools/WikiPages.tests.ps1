@@ -7,7 +7,7 @@ try
         Describe 'Format-HelpString' -Tag 'tools' {
 
             Context 'Multi-Line' {
-                It "Should Format the help string" {
+                It 'Should Format the help string' {
                     $testString = @{
                         sample = @(
                             'This is a multi line string. '
@@ -19,7 +19,7 @@ try
                     Format-HelpString -String $testString.sample |
                     Should Be $testString.result
                 }
-                It "Should return full sentences on each line." {
+                It 'Should return full sentences on each line.' {
                     $testString = @{
                         sample = @(
                             'This is a multi line'
@@ -36,7 +36,7 @@ try
 
             Context 'Single-Line' {
 
-                It "Should return multiple sentences on a singe line." {
+                It 'Should return multiple sentences on a singe line.' {
                     $testString = @{
                         sample = @(
                             'This is a multi line string. '

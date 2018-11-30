@@ -120,15 +120,15 @@ Class OrganizationalSetting
     #>
     static [OrganizationalSetting[]] ConvertFrom ([xml] $OrganizationalSettingsXml)
     {
-        [System.Collections.ArrayList] $orgSettings = @()
+        [System.Collections.ArrayList] $OrgSettings = @()
 
         foreach ($orgSetting in $OrganizationalSettingsXml.OrganizationalSettings.OrganizationalSetting)
         {
             $org = [OrganizationalSetting]::new($orgSetting.id, $orgSetting.Value)
-            $orgSettings.Add($org)
+            $OrgSettings.Add($org)
         }
 
-        return $orgSettings
+        return $OrgSettings
     }
 
     <#
@@ -159,15 +159,15 @@ Class OrganizationalSetting
     #>
     static [OrganizationalSetting[]] ConvertFrom ([hashtable] $OrganizationalSettingsHashtable)
     {
-        [System.Collections.ArrayList] $orgSettings = @()
+        [System.Collections.ArrayList] $OrgSettings = @()
 
         foreach ($orgSetting in $OrganizationalSettingsHashtable.Keys)
         {
             $org = [OrganizationalSetting]::new($orgSetting, $OrganizationalSettingsHashtable.$orgSetting)
-            $orgSettings.Add($org)
+            $OrgSettings.Add($org)
         }
 
-        return $orgSettings
+        return $OrgSettings
     }
 
     #endregion
@@ -175,7 +175,7 @@ Class OrganizationalSetting
 
 # Footer
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-Foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
+foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

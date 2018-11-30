@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name WebConfigurationPropertyRule
+$rules = Get-RuleClassData -StigData $stigData -Name WebConfigurationPropertyRule
 
 foreach ($website in $WebsiteName)
 {

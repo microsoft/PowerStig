@@ -1,6 +1,6 @@
-$rules = (Get-RuleClassData -StigData $StigData -Name FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
+$rules = (Get-RuleClassData -StigData $stigData -Name FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
 
-# assert FireFox install directory
+# Assert FireFox install directory
 
 if (-not(Test-Path -Path $InstallDirectory))
 {

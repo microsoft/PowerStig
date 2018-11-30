@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name WindowsFeatureRule
+$rules = Get-RuleClassData -StigData $stigData -Name WindowsFeatureRule
 
 $ensureMapping = @{
     Present = 'Enable'
@@ -16,9 +16,17 @@ foreach ( $rule in $rules )
         future if WindowsOptionalFeature is updated to allow it to run a on DC
         lines 17-31 can be removed.
     #>
-    if ( $StigData.DISASTIG.id -match 'MS|DC' )
+    if ($stigData.DISASTIG.id -match 'Windows_10')
     {
-        if ( $rule.FeatureName -eq 'SMB1Protocol' )
+        WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
+        {
+            Name   = $rule.FeatureName
+            Ensure = $ensureMapping.($rule.InstallState)
+        }
+    }
+    else
+    {
+        if ($rule.FeatureName -eq 'SMB1Protocol')
         {
             $rule.FeatureName = 'FS-SMB1'
         }
@@ -27,14 +35,6 @@ foreach ( $rule in $rules )
         {
             Name   = $rule.FeatureName
             Ensure = $rule.InstallState
-        }
-    }
-    else
-    {
-        WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
-        {
-            Name   = $rule.FeatureName
-            Ensure = $ensureMapping.($rule.InstallState)
         }
     }
 }

@@ -206,14 +206,14 @@ Function Get-StigBaseMethods
     if ( $Static )
     {
         $stigClassMethodNames = @('Equals', 'new', 'ReferenceEquals', 'SplitCheckContent',
-            'GetRuleTypeMatchList', 'GetFixText')
+            'GetFixText')
     }
     else
     {
         $objectClassMethodNames = @('Equals', 'GetHashCode', 'GetType', 'ToString')
         $stigClassMethodNames = @('Clone', 'IsDuplicateRule', 'SetDuplicateTitle', 'SetStatus',
             'SetIsNullOrEmpty', 'SetOrganizationValueRequired', 'GetOrganizationValueTestString',
-            'ConvertToHashTable', 'SetStigRuleResource', 'IsHardCoded', 'GetHardCodedString',
+            'ConvertToHashTable', 'IsHardCoded', 'GetHardCodedString',
             'IsHardCodedOrganizationValueTestString', 'GetHardCodedOrganizationValueTestString',
             'IsExistingRule')
 
@@ -250,7 +250,7 @@ function Format-RuleText
 function Get-RequiredStigDataVersion
 {
     [CmdletBinding()]
-    param()
+    param ()
 
     $Manifest = Import-PowerShellDataFile -Path "$relDirectory\$moduleName.psd1"
 

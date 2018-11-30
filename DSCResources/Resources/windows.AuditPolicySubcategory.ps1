@@ -1,9 +1,9 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name AuditPolicyRule
+$rules = Get-RuleClassData -StigData $stigData -Name AuditPolicyRule
 
-Foreach ( $rule in $rules )
+foreach ( $rule in $rules )
 {
     AuditPolicySubcategory (Get-ResourceTitle -Rule $rule)
     {

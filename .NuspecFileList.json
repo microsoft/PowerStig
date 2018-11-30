@@ -30,9 +30,5 @@
     {
         "src": "Module\\Stig*\\**",
         "target": "Module"
-    },
-    {
-        "src": "Module\\Document*\\**",
-        "target": "Module"
     }
 ]

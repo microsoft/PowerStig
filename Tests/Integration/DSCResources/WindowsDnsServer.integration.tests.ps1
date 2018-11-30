@@ -13,7 +13,7 @@ try
 
     #region Integration Tests
 
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) mof output" {
 
@@ -40,7 +40,7 @@ try
                 $dscMof   = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -60,7 +60,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xService\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -80,7 +80,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[AccountPolicy\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -100,7 +100,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[UserRightsAssignment\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -120,7 +120,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[SecurityOption\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -140,7 +140,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[WindowsFeature\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -160,7 +160,7 @@ try
                 $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xWinEventLog\]"}
 
-                Foreach ($setting in $dscXml)
+                foreach ($setting in $dscXml)
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -180,7 +180,7 @@ try
                 $dscMof   = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[script\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {
@@ -200,7 +200,7 @@ try
                 $dscMof   = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xDnsServerSetting\]"}
 
-                Foreach ( $setting in $dscXml )
+                foreach ( $setting in $dscXml )
                 {
                     If (-not ($dscMof.ResourceID -match $setting.Id) )
                     {

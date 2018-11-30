@@ -92,7 +92,7 @@ Function Get-DomainName
         Write-Warning "$($PSCmdlet.ParameterSetName) was not found."
     }
 
-    switch ($Format)
+    switch ($format)
     {
         'FQDN'
         {
@@ -253,7 +253,7 @@ Function Get-OrgSettingsObject
         {
             if (Test-Path -Path $OrgSettings)
             {
-                [xml] $orgSettingsXml = Get-Content -Path $orgSettings
+                [xml] $orgSettingsXml = Get-Content -Path $OrgSettings
                 $orgSettingsObject = [OrganizationalSetting]::ConvertFrom($orgSettingsXml)
             }
             else
@@ -294,7 +294,7 @@ Function Get-StigList
     [OutputType([PSObject[]])]
     param ()
 
-    return [StigData]::GetAvailableStigs()
+    return [STIG]::ListAvailable()
 }
 
 #endregion

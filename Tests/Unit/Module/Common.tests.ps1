@@ -1,150 +1,94 @@
 using module .\..\..\..\Module\Common\Common.psm1
-. $PSScriptRoot\.tests.Header.ps1
+. $PSScriptRoot\.tests.header.ps1
 # Header
 #region Enum Tests
-    <#
+<#
         a list of enums in the script that is used in a "burn down" manner. When an enum is processed
         it is removed from the list, The last test will be to verify that all of the enums have
         been tested
     #>
 $enumDiscovered = New-Object System.Collections.ArrayList
-# select each line that starts with enum to count the number of enum's in the file
+# Select each line that starts with enum to count the number of enum's in the file
 
 $enumListString = ( Get-Content $modulePath | Select-String "^Enum " )
-# add each enum that is found to the array
+# Add each enum that is found to the array
 $enumListString | Foreach-Object { $enumDiscovered.add( ( $_ -split " " )[1].ToString().ToLower() ) | Out-Null }
-# get a count to to use in a final test to validate enum test coverage
+# Get a count to to use in a final test to validate enum test coverage
 [int] $enumTestCount = $enumDiscovered.Count
 
 $enumTests = @{
-    'Process'  = 'auto|manual'
-    'Status'   = 'pass|warn|fail'
+    'Process' = 'auto|manual'
+    'Status' = 'pass|warn|fail'
     'Severity' = 'low|medium|high'
-    'Ensure'   = 'Present|Absent'
+    'Ensure' = 'Present|Absent'
     'RuleType' = 'AccountPolicyRule|AuditPolicyRule|DnsServerRootHintRule|DnsServerSettingRule|' +
-                 'DocumentRule|FileContentRule|GroupRule|IisLoggingRule|ManualRule|MimeTypeRule|' +
-                 'PermissionRule|ProcessMitigationRule|RegistryRule|SecurityOptionRule|ServiceRule|' +
-                 '|SkipRuleSqlScriptQueryRule|UserRightRule|WebConfigurationPropertyRule|'+
-                 '|WebAppPoolRuleWindowsFeatureRule|WinEventLogRule|WmiRule'
+    'DocumentRule|FileContentRule|GroupRule|IisLoggingRule|ManualRule|MimeTypeRule|' +
+    'PermissionRule|ProcessMitigationRule|RegistryRule|SecurityOptionRule|ServiceRule|' +
+    '|SkipRuleSqlScriptQueryRule|UserRightRule|WebConfigurationPropertyRule|' +
+    '|WebAppPoolRuleWindowsFeatureRule|WinEventLogRule|WmiRule'
     'Technology' = 'Windows|SQL|Mozilla'
 }
 
-foreach( $enum in $enumTests.GetEnumerator() )
+foreach ( $enum in $enumTests.GetEnumerator() )
 {
     Describe "$($enum.Key) Enumeration" {
 
         $enumDiscovered.Remove( $enum.Key.tolower() )
 
         # Dump the status enum and verify it is the expected list
-        #[process].GetEnumValues()
+        # [process].GetEnumValues()
         $EnumValues = [enum]::GetValues($enum.Key)
 
         foreach ( $value in $EnumValues )
         {
             It "$value should exist" {
-                $value | should match $enum.Value
+                $value | Should Match $enum.Value
             }
         }
     }
 }
 
-# final test to validate all enums habve been tested
+# Final test to validate all enums habve been tested
 Describe 'Enum coverage' {
 
     It "Should have tested $enumTestCount enum's" {
 
-        # if this test is failing verify that the $enumList.Remove('enum') line is in the
-        # describe statemetn for the enum.
+        <#
+            If this test is failing verify that the $enumList.Remove('enum') line is in the
+            describe statemetn for the enum.
+        #>
         ( $enumDiscovered.count - $enumTestCount ) * -1 | Should Be $enumTestCount
     }
 }
 #endregion Tests
-#region Data Tests
-Describe "RegularExpression Data Section" {
 
-    [string] $dataSectionName = 'RegularExpression'
-
-    It "Should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    Context 'Hex Code' {
-
-        It 'Should match a hexcode' {
-            '0X00000000' -Match $RegularExpression.hexCode | Should Be $true
-        }
-
-        It 'Should NOT match nonhexcode' {
-            '0X000000000' -Match $RegularExpression.hexCode | Should Be $false
-        }
-    }
-
-    Context 'Leading Integer Unbound' {
-
-    }
+#region Class
+Describe 'RegularExpression Class' {
 
     Context 'Text Between Quotes' {
 
-        It "Should match string with double quotes" {
-            'hello "this" test' -Match $RegularExpression.textBetweenQuotes | Should Be $true
+        It 'Should match string with double quotes' {
+            'hello "this" test' -Match ([RegularExpression]::TextBetweenQuotes) | Should Be $true
         }
 
-        It "Should match string with single quotes" {
-            "hello 'this' test" -Match $RegularExpression.textBetweenQuotes | Should Be $true
-        }
-    }
-
-    Context "Blank String" {
-
-        It "Should match '(Blank)' literal string" {
-            "(Blank)" -Match $RegularExpression.blankString | Should Be $true
+        It 'Should match string with single quotes' {
+            "hello 'this' test" -Match ([RegularExpression]::TextBetweenQuotes) | Should Be $true
         }
     }
 
-    Context 'Enabled or Disabled String' {
 
-        foreach ( $flag in ('Enabled','enabled','Disabled','disabled') )
-        {
-            It "Should match the exact string '$flag'" {
-                $flag -Match $RegularExpression.enabledOrDisabled | Should Be $true
-            }
-        }
-    }
-
-    Context 'Audit Policy' {
-
-        foreach ( $flag in ('Success','success','Failure','failure') )
-        {
-            It "Should match the exact string '$flag'" {
-                $flag -Match $RegularExpression.AuditFlag | Should Be $true
-            }
-        }
-
-        $audiPolicyStringFormats = @(
-            'Catagory -> Sub Category - Flag',
-            'Catagory >> Sub Category - Flag'
-        )
-
-        foreach ($audiPolicyStringFormat in $audiPolicyStringFormats)
-        {
-            It "Should match the string '$audiPolicyStringFormat'" {
-                $audiPolicyStringFormat -Match $RegularExpression.getAuditPolicy | Should Be $true
-            }
-        }
-    }
-
-    Context "TextBetweenParentheses string matches" {
+    Context 'TextBetweenParentheses string matches' {
 
         It 'Should match string inside parentheses' {
-            '(text inside parentheses)' -Match $RegularExpression.textBetweenParentheses | Should Be $true
+            '(text inside parentheses)' -Match ([RegularExpression]::TextBetweenParentheses) | Should Be $true
         }
 
         It 'Should NOT match text outside of parentheses' {
-            'text outside ()' -Match $RegularExpression.textBetweenParentheses | Should Be $false
+            'text outside ()' -Match ([RegularExpression]::TextBetweenParentheses) | Should Be $false
         }
 
         It 'Should NOT match text inside improperly written parentheses' {
-            ')text(' -Match $RegularExpression.textBetweenParentheses | Should Be $false
+            ')text(' -Match ([RegularExpression]::TextBetweenParentheses) | Should Be $false
         }
 
         It 'Should return text inside of parentheses when grabbing the last group' {
@@ -152,80 +96,19 @@ Describe "RegularExpression Data Section" {
             $unneededText = 'Unneeded text'
 
             $result = ( "$unneededText (" + $text + ") $unneededText" |
-                Select-String $RegularExpression.textBetweenParentheses ).matches.groups[-1].Value
+                    Select-String -Pattern ([RegularExpression]::TextBetweenParentheses) ).matches.groups[-1].Value
 
             $result | Should Be $text
         }
     }
 
-    <#
-    TO DO - Add rules
-    #>
 }
 
-Describe "rangeMatch Data Section" {
+#endregion
 
-    [string] $dataSectionName = 'rangeMatch'
+#region Data Tests
 
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
 
-    <#
-    TO DO - Add rules
-    #>
-}
-
-Describe "errorMessage Data Section" {
-
-    [string] $dataSectionName = 'errorMessage'
-
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    <#
-    TO DO - Add rules
-    #>
-}
-
-Describe "ADAuditPath Data Section" {
-
-    [string] $dataSectionName = 'ADAuditPath'
-
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    <#
-    TO DO - Add rules
-    #>
-}
-
-Describe "eventLogRegularExpression Data Section" {
-
-    [string] $dataSectionName = 'eventLogRegularExpression'
-    It "should have a data section called $dataSectionName" {
-        ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-    }
-
-    $namesToTest = @(
-        '(Application.evtx)',
-        '"Application.evtx"',
-        '''(System.evtx)''',
-        '''("System.evtx")'''
-    )
-    Context 'Name' {
-
-        foreach($name in $namesToTest)
-        {
-            It "Should match $name" {
-                $name -Match $eventLogRegularExpression.name | Should Be $true
-            }
-        }
-
-    }
-}
 #endregion Tests
 #region Helper Tests
 Describe 'Get-AvailableId' {
@@ -332,7 +215,7 @@ Describe 'Get-OrganizationValueTestString' {
     Context 'NegativeOr' {
         Mock Test-StringIsNegativeOr -MockWith { return $true  } -ModuleName Common
         Mock Test-StringIsPositiveOr -MockWith { return $false } -ModuleName Common
-        Mock ConvertTo-OrTestString  { return 'ConvertedString' } -ModuleName Common -ParameterFilter {$String -eq "";
+        Mock ConvertTo-OrTestString { return 'ConvertedString' } -ModuleName Common -ParameterFilter {$string -eq "";
             $Operator -eq 'Equal'}
         It 'Should return the correct string' {
             Get-OrganizationValueTestString -String "1 or 2 = a Finding" | Should Be "ConvertedString"
@@ -343,26 +226,26 @@ Describe 'Get-OrganizationValueTestString' {
 
 Describe 'Get-TestStringTokenNumbers' {
 
-    It "Should exist" {
+    It 'Should exist' {
         Get-Command Get-TestStringTokenNumbers | Should Not BeNullOrEmpty
     }
 
     $Strings = @{
-        'Greater than 30'                        = "30"
-        '30 (or greater)'                        = "30"
-        'Greater than 30 (but not 60)'           = "30", "60"
-        '30 (or greater, but not 60)'            = "30", "60"
-        'less than 30'                           = "30"
-        '30 (or less)'                           = "30"
-        "Less than 30 (but not 0)"               = "30", "0"
-        "0x0000001e (30) (or less, but not 0)"   = "30", "0"
+        'Greater than 30' = "30"
+        '30 (or greater)' = "30"
+        'Greater than 30 (but not 60)' = "30", "60"
+        '30 (or greater, but not 60)' = "30", "60"
+        'less than 30' = "30"
+        '30 (or less)' = "30"
+        "Less than 30 (but not 0)" = "30", "0"
+        "0x0000001e (30) (or less, but not 0)" = "30", "0"
         "0x0000001e (30) (or less, excluding 0)" = "30", "0"
-        "30 (or less, but not 0)"                = "30", "0"
-        "0x0000000f (15) (or less)"              = "15"
-        "0x00008000 (32768) (or greater)"        = "32768"
+        "30 (or less, but not 0)" = "30", "0"
+        "0x0000000f (15) (or less)" = "15"
+        "0x00008000 (32768) (or greater)" = "32768"
     }
 
-    Foreach ($string in $strings.GetEnumerator())
+    foreach ($string in $strings.GetEnumerator())
     {
         It "Should return '$($string.Value)' when given '$($string.Key)'" {
             Get-TestStringTokenNumbers -String $string.Key | Should Be $string.Value
@@ -372,27 +255,27 @@ Describe 'Get-TestStringTokenNumbers' {
 
 Describe 'Get-TestStringTokenList' {
 
-    It "Should exist" {
+    It 'Should exist' {
         Get-Command Get-TestStringTokenList | Should Not BeNullOrEmpty
     }
 
     Context 'CommandTokens ParameterSet' {
         $strings = @{
-            'Greater than 30'                        = "greater than"
-            '30 (or greater)'                        = "or greater"
-            'Greater than 30 (but not 60)'           = "greater than but not"
-            '30 (or greater, but not 60)'            = "or greater but not"
-            'less than 30'                           = "less than"
-            '30 (or less)'                           = "or less"
-            "Less than 30 (but not 0)"               = "less than but not"
-            "30 (or less, but not 0)"                = "or less but not"
-            "0x0000001e (30) (or less, but not 0)"   = "or less but not"
+            'Greater than 30' = "greater than"
+            '30 (or greater)' = "or greater"
+            'Greater than 30 (but not 60)' = "greater than but not"
+            '30 (or greater, but not 60)' = "or greater but not"
+            'less than 30' = "less than"
+            '30 (or less)' = "or less"
+            "Less than 30 (but not 0)" = "less than but not"
+            "30 (or less, but not 0)" = "or less but not"
+            "0x0000001e (30) (or less, but not 0)" = "or less but not"
             "0x0000001e (30) (or less, excluding 0)" = "or less excluding"
-            " 0x0000000f (15) (or less)"             = "or less"
-            "0x00008000 (32768) (or greater)"        = "or greater"
+            " 0x0000000f (15) (or less)" = "or less"
+            "0x00008000 (32768) (or greater)" = "or greater"
         }
 
-        Foreach ($string in $strings.GetEnumerator())
+        foreach ($string in $strings.GetEnumerator())
         {
             It "Should return '$($string.Value)' when given '$($string.Key)'" {
                 Get-TestStringTokenList -String $string.Key | Should Be $string.Value
@@ -403,11 +286,11 @@ Describe 'Get-TestStringTokenList' {
     Context 'StringTokens ParameterSet' {
         $strings = @{
             '"text1" is between quotes' = "text1"
-            '"text1" and "text2" are between quotes' = @('text1','text2')
-            '"text1" and "text2" but "text3" are between quotes' = @('text1','text2','text3')
+            '"text1" and "text2" are between quotes' = @('text1', 'text2')
+            '"text1" and "text2" but "text3" are between quotes' = @('text1', 'text2', 'text3')
         }
 
-        Foreach ($string in $strings.GetEnumerator())
+        foreach ($string in $strings.GetEnumerator())
         {
             It "Should return '$($string.Value)' when given '$($string.Key)'" {
                 Get-TestStringTokenList -String $string.Key -StringTokens | Should Be $string.Value
@@ -418,20 +301,21 @@ Describe 'Get-TestStringTokenList' {
 
 Describe 'ConvertTo-TestString' {
     $Strings = @{
-        'Greater than 30'                        = "{0} -gt '30'"
-        '30 (or greater)'                        = "{0} -ge '30'"
-        'Greater than 30 (but not 60)'           = "{0} -gt '30' -and {0} -lt '60'"
-        '30 (or greater, but not 60)'            = "{0} -ge '30' -and {0} -lt '60'"
-        'less than 30'                           = "{0} -lt '30'"
-        '30 (or less)'                           = "{0} -le '30'"
-        "Less than 30 (but not 0)"               = "{0} -lt '30' -and {0} -gt '0'"
-        "30 (or less, but not 0)"                = "{0} -le '30' -and {0} -gt '0'"
-        "0x0000001e (30) (or less, but not 0)"   = "{0} -le '30' -and {0} -gt '0'"
+        'Greater than 30' = "{0} -gt '30'"
+        '30 (or greater)' = "{0} -ge '30'"
+        'Greater than 30 (but not 60)' = "{0} -gt '30' -and {0} -lt '60'"
+        '30 (or greater, but not 60)' = "{0} -ge '30' -and {0} -lt '60'"
+        'less than 30' = "{0} -lt '30'"
+        '30 (or less)' = "{0} -le '30'"
+        "Less than 30 (but not 0)" = "{0} -lt '30' -and {0} -gt '0'"
+        "30 (or less, but not 0)" = "{0} -le '30' -and {0} -gt '0'"
+        "0x0000001e (30) (or less, but not 0)" = "{0} -le '30' -and {0} -gt '0'"
         "0x0000001e (30) (or less, excluding 0)" = "{0} -le '30' -and {0} -gt '0'"
-        "  0x0000000f (15) (or less)"            = "{0} -le '15'"
-        "0x00008000 (32768) (or greater)"        = "{0} -ge '32768'"
+        '0x00000384 (900) (or less, excluding "0" which is effectively disabled)' = "{0} -le '900' -and {0} -gt '0'"
+        "  0x0000000f (15) (or less)" = "{0} -le '15'"
+        "0x00008000 (32768) (or greater)" = "{0} -ge '32768'"
     }
-    Foreach ($string in $strings.GetEnumerator())
+    foreach ($string in $strings.GetEnumerator())
     {
         Mock -CommandName Get-TestStringTokenNumbers `
             -ParameterFilter {$string -eq $string.key} `
@@ -448,49 +332,49 @@ Describe 'ConvertTo-TestString' {
 }
 #endregion
 #region OR
-Describe "Test-StringIsNegativeOr" {
+Describe 'Test-StringIsNegativeOr' {
 
-        It "Verifies the function exists" {
-            Get-Command Test-StringIsNegativeOr | Should Not BeNullOrEmpty
+    It 'Verifies the function exists' {
+        Get-Command Test-StringIsNegativeOr | Should Not BeNullOrEmpty
+    }
+
+    $positiveMatchStrings = @(
+        "1 or 2 = a Finding",
+        "10 or 20 = a Finding",
+        " 1 or 2 = a Finding",
+        "1 or 2 = a Finding ",
+        " 1 or 2 = a Finding ",
+        "1  or  2  =  a  Finding",
+        "1or2 = a Finding",
+        "1or2=a Finding",
+        "1or2=aFinding"
+    )
+
+    foreach ($positiveMatchString in $positiveMatchStrings)
+    {
+        It "Should be true with '$positiveMatchString'" {
+            Test-StringIsNegativeOr -String $positiveMatchString | Should be $true
         }
+    }
 
-        $positiveMatchStrings = @(
-            "1 or 2 = a Finding",
-            "10 or 20 = a Finding",
-            " 1 or 2 = a Finding",
-            "1 or 2 = a Finding ",
-            " 1 or 2 = a Finding ",
-            "1  or  2  =  a  Finding",
-            "1or2 = a Finding",
-            "1or2=a Finding",
-            "1or2=aFinding"
-        )
+    $negativeMatchStrings = @(
+        "1 or 2 = is not a Finding",
+        "1 or 2",
+        "2",
+        "greater than 1"
+    )
 
-        Foreach($positiveMatchString in $positiveMatchStrings)
-        {
-            It "Should be true with '$positiveMatchString'" {
-                Test-StringIsNegativeOr -String $positiveMatchString | Should be $true
-            }
+    foreach ($negativeMatchString in $negativeMatchStrings)
+    {
+        It "Should be false with '$negativeMatchString'" {
+            Test-StringIsNegativeOr -String $negativeMatchString | Should be $false
         }
-
-        $negativeMatchStrings = @(
-            "1 or 2 = is not a Finding",
-            "1 or 2",
-            "2",
-            "greater than 1"
-        )
-
-        Foreach($negativeMatchString in $negativeMatchStrings)
-        {
-            It "Should be false with '$negativeMatchString'" {
-                Test-StringIsNegativeOr -String $negativeMatchString | Should be $false
-            }
-        }
+    }
 }
 
-Describe "Test-StringIsPositiveOr" {
+Describe 'Test-StringIsPositiveOr' {
 
-    It "Verifies the function exists" {
+    It 'Verifies the function exists' {
         Get-Command Test-StringIsPositiveOr | Should Not BeNullOrEmpty
     }
 
@@ -508,7 +392,7 @@ Describe "Test-StringIsPositiveOr" {
         "1 or 2 = is not a Finding"
     )
 
-    Foreach ($positiveMatchString in $positiveMatchStrings)
+    foreach ($positiveMatchString in $positiveMatchStrings)
     {
         It "Should be true with '$positiveMatchString'" {
             Test-StringIsPositiveOr -String $positiveMatchString | Should be $true
@@ -521,7 +405,7 @@ Describe "Test-StringIsPositiveOr" {
         "Less than 10"
     )
 
-    Foreach ($negativeMatchString in $negativeMatchStrings)
+    foreach ($negativeMatchString in $negativeMatchStrings)
     {
         It "Should be false with '$negativeMatchString'" {
             Test-StringIsPositiveOr -String $negativeMatchString | Should be $false
@@ -531,18 +415,18 @@ Describe "Test-StringIsPositiveOr" {
 
 Describe 'ConvertTo-OrTestString' {
 
-    It "Should exist" {
+    It 'Should exist' {
         Get-Command ConvertTo-OrTestString | Should Not BeNullOrEmpty
     }
 
     Context 'NotMatch' {
         $operator = "NotMatch"
         $positiveMatchStrings = @{
-            "1 or 2 = a Finding"   = "{0} -notmatch '1|2'"
+            "1 or 2 = a Finding" = "{0} -notmatch '1|2'"
             "10 or 20 = a Finding" = "{0} -notmatch '10|20'"
         }
 
-        Foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
+        foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
         {
             It "Should return '$($positiveMatchString.Value)' from '$($positiveMatchString.Key)'" {
                 ConvertTo-OrTestString -String $positiveMatchString.Key -Operator $operator |
@@ -558,12 +442,12 @@ Describe 'ConvertTo-OrTestString' {
     Context 'Match' {
         $operator = "Match"
         $positiveMatchStrings = @{
-            "1 or 2 "                                  = "{0} -match '1|2'"
-            "10 or 20 "                                = "{0} -match '10|20'"
+            "1 or 2 " = "{0} -match '1|2'"
+            "10 or 20 " = "{0} -match '10|20'"
             "1 (Lock Workstation) or 2 (Force Logoff)" = "{0} -match '1|2'"
         }
 
-        Foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
+        foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
         {
             It "Should return '$($positiveMatchString.Value)' from '$($positiveMatchString.Key)'" {
                 ConvertTo-OrTestString -String $positiveMatchString.Key -Operator $operator |
@@ -583,7 +467,7 @@ Describe 'Test-StringIsGreaterThan' {
         'Greater than 30'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThan -String $string | Should Be $true
@@ -604,7 +488,7 @@ Describe 'Test-StringIsGreaterThanOrEqual' {
         ' 0x0000000f (15) (or greater) '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThanOrEqual -String $string | Should Be $true
@@ -617,7 +501,7 @@ Describe 'Test-StringIsGreaterThanButNot' {
         'Greater than 30 (but not 100)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThanButNot -String $string | Should Be $true
@@ -630,7 +514,7 @@ Describe 'Test-StringIsGreaterThanOrEqualButNot' {
         '30 (or greater, but not 100)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsGreaterThanOrEqualButNot -String $string | Should Be $true
@@ -647,7 +531,7 @@ Describe 'Test-StringIsLessThan' {
         ' less than 90 '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThan -String $string | Should Be $true
@@ -669,7 +553,7 @@ Describe 'Test-StringIsLessThanOrEqual' {
         ' 0x0000000f (15) (or less) '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqual -String $string | Should Be $true
@@ -683,7 +567,7 @@ Describe 'Test-StringIsLessThanButNot' {
         'less than 30 (but not 0)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanButNot -String $string | Should Be $true
@@ -705,7 +589,7 @@ Describe 'Test-StringIsLessThanOrEqualButNot' {
         ' 0x0000001e (30) (or less, but not 0) '
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqualButNot -String $string | Should Be $true
@@ -720,7 +604,7 @@ Describe 'Test-StringIsLessThanOrEqualExcluding' {
         ' 0x0000001e (30) (or less, excluding 0)'
     )
 
-    Foreach ($string in $strings)
+    foreach ($string in $strings)
     {
         It "Should return $true when given '$string'" {
             Test-StringIsLessThanOrEqualExcluding -String $string | Should Be $true
@@ -731,23 +615,23 @@ Describe 'Test-StringIsLessThanOrEqualExcluding' {
 #region Multiple Values
 Describe 'Test-StringIsMultipleValue' {
 
-        $strings = @(
-            'Possible values are NoSync, NTP, NT5DS, AllSync'
-        )
+    $strings = @(
+        'Possible values are NoSync, NTP, NT5DS, AllSync'
+    )
 
-        Foreach ($string in $strings)
-        {
-            It "Should return $true when given '$string'" {
-                Test-StringIsMultipleValue -String $string | Should Be $true
-            }
+    foreach ($string in $strings)
+    {
+        It "Should return $true when given '$string'" {
+            Test-StringIsMultipleValue -String $string | Should Be $true
         }
     }
+}
 
 Describe 'ConvertTo-MultipleValue' {
     $Strings = @{
         'Possible values are orange, lemon, cherry' = "'{0}' -match '^(orange|lemon|cherry)$'"
     }
-    Foreach ($string in $strings.GetEnumerator())
+    foreach ($string in $strings.GetEnumerator())
     {
         It "Should return '$($string.Value)' when given '$($string.key)'" {
             ConvertTo-MultipleValue -String $string.key | Should Be $string.Value
@@ -781,7 +665,7 @@ Describe 'Get-SecurityPolicyString' {
         }
     )
 
-    foreach($checkString in $checkStrings)
+    foreach ($checkString in $checkStrings)
     {
         It 'Should return the second string in quotes' {
             $checkContent = (Split-TestStrings -CheckContent $checkString.checkContent)
@@ -818,7 +702,7 @@ Describe 'Test-SecurityPolicyContainsRange' {
         }
     }
 
-    Context "Not Match" {
+    Context 'Not Match' {
 
         $strings = @(
             'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',
@@ -845,10 +729,10 @@ Describe 'Get-SecurityPolicyOrganizationValueTestString' {
 
     {0}'
     $strings = @{
-        'If the "Reset account lockout counter after" value is less than "15" minutes , this is a finding.'                                                         = "'{0}' -ge '15'";
-        'If the value for the "Minimum password age" is set to "0" days ("Password can be changed immediately."), this is a finding.'                               = "'{0}' -ne '0'";
-        'If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.'                                                                   = "'{0}' -le '3' -and '{0}' -ne '0'";
-        'If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'                                                           = "'{0}' -ge '15' -or '{0}' -eq '0'";
+        'If the "Reset account lockout counter after" value is less than "15" minutes , this is a finding.' = "'{0}' -ge '15'";
+        'If the value for the "Minimum password age" is set to "0" days ("Password can be changed immediately."), this is a finding.' = "'{0}' -ne '0'";
+        'If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.' = "'{0}' -le '3' -and '{0}' -ne '0'";
+        'If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.' = "'{0}' -ge '15' -or '{0}' -eq '0'";
         'If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.' = "'{0}' -le '60' -and '{0}' -ne '0'"
     }
 

@@ -12,7 +12,7 @@ try
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    Foreach ($stig in $stigList)
+    foreach ($stig in $stigList)
     {
         Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 

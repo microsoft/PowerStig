@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $StigData -Name RegistryRule
+$rules = Get-RuleClassData -StigData $stigData -Name RegistryRule
 
 foreach ($rule in $rules)
 {
@@ -15,6 +15,7 @@ foreach ($rule in $rules)
             KeyValueName = $rule.Key + '\' + $rule.ValueName
             Data         = $valueData
             Type         = $rule.ValueType
+            Ensure       = $rule.Ensure
         }
     }
 }

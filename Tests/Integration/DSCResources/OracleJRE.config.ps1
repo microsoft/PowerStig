@@ -21,8 +21,8 @@ Configuration OracleJRE_config
     {
         OracleJRE OracleConfiguration
         {
-            ConfigPath     = $ConfigPath
-            PropertiesPath = $PropertiesPath
+            ConfigPath     = $configPath
+            PropertiesPath = $propertiesPath
             Stigversion    = $StigVersion
         }
     }

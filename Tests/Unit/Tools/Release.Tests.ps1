@@ -18,7 +18,7 @@ try
             Mock -CommandName Get-GitBranch -MockWith { 'dev' }
             Mock -CommandName Set-GitBranch -MockWith { } -ParameterFilter {$Branch -eq 'master'} -Verifiable
 
-            It "Should change to the master branch if not already in it" {
+            It 'Should change to the master branch if not already in it' {
                 $null = Test-ModuleVersion -ModuleVersion $moduleVersion -ManifestPath $manifestPath
                 Assert-VerifiableMock
             }
@@ -45,7 +45,7 @@ try
                 'Source' = 'C:\Program Files\Git\cmd\git.exe'
             }
 
-            It "Should Throw if Git is not installed" {
+            It 'Should Throw if Git is not installed' {
                 Mock -CommandName Get-Command -MockWith { return $null }
                 { Get-PowerStigRepository } | Should Throw
             }
@@ -76,18 +76,18 @@ try
                 Mock -CommandName Invoke-Git -MockWith { $repository.Name}
                 $PowerStigRepository = Get-PowerStigRepository
 
-                It "Should return the correct name" {
+                It 'Should return the correct name' {
                     $PowerStigRepository.name | Should Be $repository.Result.name
                 }
-                It "Should return the correct html URL" {
+                It 'Should return the correct html URL' {
                     $PowerStigRepository.html_url | Should Be $repository.Result.html_url
                 }
-                It "Should return the correct Api URL" {
+                It 'Should return the correct Api URL' {
                     $PowerStigRepository.api_url | Should Be $repository.Result.api_url
                 }
             }
 
-            It "Should throw an error if a non PowerStig project is suplied" {
+            It 'Should throw an error if a non PowerStig project is suplied' {
                 $repository = 'https://github.com/Microsoft/NotPowerStig.git'
                 Mock -CommandName Invoke-Git -MockWith { return $repository }
                 { Test-PowerStigRepository } | Should throw
@@ -119,7 +119,7 @@ try
             Context 'SkipPull' {
                 Mock -CommandName Get-GitBranch -MockWith { return $branch }
                 Mock -CommandName Invoke-Command -MockWith { return } -Verifiable
-                It "Should not invoke a pull when SkipPull is used" {
+                It 'Should not invoke a pull when SkipPull is used' {
                     Set-GitBranch -Branch $branch -SkipPull
                     Assert-MockCalled -CommandName Invoke-Command -ParameterFilter { $ScriptBlock.ToString() -match "git pull" } -Times 0
                 }
@@ -209,7 +209,7 @@ try
             Mock -CommandName Get-ChildItem -MockWith { return @{'FullName' = 'empty\path'} }
             Mock -CommandName Get-Content -MockWith { return $sampleReadme.ToString().Split("`n") }
 
-            It "Should return the unreleased notes trimmed of extra lines" {
+            It 'Should return the unreleased notes trimmed of extra lines' {
                 Get-UnreleasedNotes | Should Be ("Update 1`r`r`nUpdate 2" | Out-String).Trim()
             }
         }
@@ -234,7 +234,7 @@ try
 
             Context 'ReleaseNotes' {
 
-                It "Should correctly add the module version to the readme" {
+                It 'Should correctly add the module version to the readme' {
                     Update-Readme -ModuleVersion $moduleVersion
                     $null = $sampleReadme.Insert($unreleased, "`n### $moduleVersion`n")
                     $readmeContent = Get-Content -Path $sampleReadmePath
@@ -250,7 +250,7 @@ try
                     }
                 )
                 Mock -CommandName Get-ProjectContributorList -MockWith { $contributorList }
-                It "Should correctly add the contributors to the readme" {
+                It 'Should correctly add the contributors to the readme' {
                     Update-Readme -Repository @{}
                     $null = $sampleReadme.Insert($contributors,
                         "`n* [@$($contributorList.login)](https://github.com/$($contributorList.login)) ($($contributorList.Name))`n")
@@ -268,10 +268,10 @@ try
             Update-Manifest -ModuleVersion $moduleVersion -ReleaseNotes $releaseNotes -ManifestPath $manifestPath
             $manifest = Import-PowerShellDataFile -Path $manifestPath
 
-            It "Should update the manifest version number" {
+            It 'Should update the manifest version number' {
                 $manifest.ModuleVersion | Should Be $moduleVersion
             }
-            It "Should update the manifest release notes" {
+            It 'Should update the manifest release notes' {
                 $manifest.PrivateData.PSData.ReleaseNotes | Should Be $releaseNotes
             }
         }
@@ -297,10 +297,10 @@ try
             $appveyorValue = $appveyor.ToString() -replace [regex]::Escape($versionString), $newVersionString
             Mock -CommandName Set-Content -MockWith {} `
                 -ParameterFilter {
-                    $Path -eq $appveyorPath -and
+                    $path -eq $appveyorPath -and
                     $Value -eq $appveyorValue.TrimEnd()} -Verifiable
 
-            It "Should update the version number" {
+            It 'Should update the version number' {
                 Update-AppVeyorConfiguration -ModuleVersion $moduleVersion
                 Assert-VerifiableMock
             }
@@ -340,7 +340,7 @@ try
             It 'Should load the secure string from disk' {
                 Mock -CommandName Split-Path -MockWith { return } -Verifiable
                 Mock -CommandName Get-Content -MockWith { 'APIKeyMaterial' } `
-                    -ParameterFilter { $Path.EndsWith('PowerStigGitHubApi.txt')} -Verifiable
+                    -ParameterFilter { $path.EndsWith('PowerStigGitHubApi.txt')} -Verifiable
                 Mock -CommandName ConvertTo-SecureString -MockWith {} -Verifiable
                 Get-GitHubApiKey
                 Assert-VerifiableMock
@@ -349,7 +349,7 @@ try
             It 'Should load the file that is passed in' {
                 Mock -CommandName Test-Path -MockWith {return $true} -Verifiable
                 Mock -CommandName Get-Content -MockWith { 'APIKeyMaterial' } `
-                    -ParameterFilter { $Path.EndsWith('sampleFile.txt')} -Verifiable
+                    -ParameterFilter { $path.EndsWith('sampleFile.txt')} -Verifiable
                 Mock -CommandName ConvertTo-SecureString -MockWith {} -Verifiable
                 Get-GitHubApiKey -SecureFilePath "$Testdrive\sampleFile.txt"
                 Assert-VerifiableMock
@@ -361,7 +361,7 @@ try
             $stateList = @('pending', 'failure', 'success')
             $repository = @{}
 
-            Foreach ($state in $stateList)
+            foreach ($state in $stateList)
             {
                 It "Should return '$state' from rest API" {
                     Mock -CommandName Invoke-RestMethod -MockWith { return @{ state = $state } }
@@ -370,7 +370,7 @@ try
                 }
             }
 
-            It "Should throw after waiting 10 minutes for a task to complete" {
+            It 'Should throw after waiting 10 minutes for a task to complete' {
                 Mock -CommandName Invoke-RestMethod -MockWith { return @{ state = 'pending' } }
                 Mock -CommandName Start-Sleep -MockWith { continue } -Verifiable
                 { Get-GitHubRefStatus -Repository $repository -Name test -WaitForSuccess } | Should Throw
@@ -655,7 +655,7 @@ try
                 -ParameterFilter { $PullRequest -eq $PullRequest -and $MergeMethod -eq 'merge' } -Verifiable
             Mock -CommandName Get-ChildItem -MockWith { @{FullName = $testManifestPath } }
             Mock -CommandName Import-PowerShellDataFile -MockWith { return $powerShellDataFileObject } `
-                -ParameterFilter { $Path -eq $testManifestPath } -Verifiable
+                -ParameterFilter { $path -eq $testManifestPath } -Verifiable
             Mock -CommandName New-GitHubRelease -ParameterFilter { $Description -eq $testReleaseNotes } -Verifiable
             Mock -CommandName Remove-GitReleaseBranch -ParameterFilter { $BranchName -eq $testReleaseBranchName} -Verifiable
 

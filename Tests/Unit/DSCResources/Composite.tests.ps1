@@ -55,11 +55,11 @@ Describe 'Common Tests - Configuration Module Requirements' {
         Context "$script:DSCModuleName required modules" {
 
             It "Should find <ModuleName> : <ModuleVersion> in the PowerShell public gallery" -TestCases $Manifest.RequiredModules {
-                param ($ModuleName, $ModuleVersion)
+                param ($moduleName, $ModuleVersion)
 
-                $discoveredModule = Find-Module -Name $ModuleName -RequiredVersion $ModuleVersion -Repository 'PsGallery'
+                $discoveredModule = Find-Module -Name $moduleName -RequiredVersion $ModuleVersion -Repository 'PsGallery'
 
-                $discoveredModule.Name    | Should Be $ModuleName
+                $discoveredModule.Name    | Should Be $moduleName
                 $discoveredModule.Version | Should Be $ModuleVersion
             }
         }
@@ -91,7 +91,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
             FireFox          = 'FireFox'
         }
 
-        Foreach ($resource in $moduleDscResourceList)
+        foreach ($resource in $moduleDscResourceList)
         {
             Context "$resource Composite Resource" {
                 $compositeManifestPath = "$($script:moduleRoot)\DscResources\$resource\$resource.psd1"
@@ -114,7 +114,7 @@ Describe 'Common Tests - Configuration Module Requirements' {
                     $configurationName | Should Be $resource
                 }
 
-                It "Should match ValidateSet from PowerStig" {
+                It 'Should match ValidateSet from PowerStig' {
                     $validateSet = Get-StigVersionParameterValidateSet -FilePath $compositeSchemaPath
                     $availableStigVersions = Get-ValidStigVersionNumbers -TechnologyRoleFilter $TechnologyRoleFilter[$resource]
                     $validateSet | Should BeIn $availableStigVersions
