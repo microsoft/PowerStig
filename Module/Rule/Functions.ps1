@@ -47,10 +47,12 @@ function Test-ValueDataIsHardCoded
 
     $stigIds = @(
         'V-30935', # DotNet4 - Registry Setting
-        'V-1089', # Windows Server - Legal Notice Display
-        'V-63675', # Windows Client - Legal Notice Display
-        'V-26359', # Windows Server - Legal Banner Dialog Box Title
-        'V-63681', # Windows Client - Legal Banner Dialog Box Title
+        'V-1089', # Windows Server 2012R2 - Legal Notice Display
+        'V-73647', # Windows Server 2016  - Legal Notice Display
+        'V-63675', # Windows Client       - Legal Notice Display
+        'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
+        'V-73649', # Windows Server 2016   - Legal Banner Dialog Box Title
+        'V-63681', # Windows Client        - Legal Banner Dialog Box Title
         # The was updated in Server 2012 R2 V2R14
         #'V-21954', # Windows Server - Kerberos Supported Encryption Types
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
@@ -93,12 +95,12 @@ function Get-HardCodedString
 
     Switch ($stigId)
     {
-        {$PSItem -match 'V-(1089|63675)'}
+        {$PSItem -match 'V-(1089|63675|73647)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalNotice : $true"
             return $script:legalNoticeText
         }
-        {$PSItem -match 'V-(26359|63681)'}
+        {$PSItem -match 'V-(26359|63681|73649)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption

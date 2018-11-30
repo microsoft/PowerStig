@@ -112,7 +112,7 @@
     V-73611 +
     V-73613 +
     V-73617 +
-    V-73685 +           DONE SupportedEncryptionTypes (Should be registry rule)
+    V-73685 + DONE SupportedEncryptionTypes (Should be registry rule)
     V-78127 +
 
 ## PermissionRule
@@ -198,8 +198,8 @@
     V-73641   +
     V-73643   +
     V-73645   - OrganizationValueTestString is missing
-    V-73647   - Needs to be hard coded LegalNoticeText
-    V-73649   - needs hard coded LegalNoticeCaption
+    V-73647   + DONE Needs to be hard coded LegalNoticeText
+    V-73649   + DONE needs hard coded LegalNoticeCaption
     V-73653   +
     V-73655   +
     V-73657   +
@@ -249,36 +249,36 @@
 ## UserRightRule
 
     V-73729 +
-    V-73731 - Need to trim identities
+    V-73731 + DONE Need to trim identities
     V-73735 +
-    V-73737 - Need to trim identities
-    V-73739 - Need to trim identities
-    V-73741 - Need to trim identities
-    V-73743 - Need to trim identities
-    V-73745 - Need to trim identities
+    V-73737 + DONE Need to trim identities
+    V-73739 + DONE Need to trim identities
+    V-73741 + DONE Need to trim identities
+    V-73743 + DONE Need to trim identities
+    V-73745 + DONE Need to trim identities
     V-73747 +
-    V-73749 - Need to trim identities
+    V-73749 + DONE Need to trim identities
     V-73751 +
-    V-73753 - Need to trim identities
-    V-73755 - Need to trim identities
-    V-73757 - Need to trim identities
-    V-73761 - Need to trim identities
+    V-73753 + DONE Need to trim identities
+    V-73755 + DONE Need to trim identities
+    V-73757 + DONE Need to trim identities
+    V-73761 + DONE Need to trim identities
     V-73765 +
-    V-73769 - Need to trim identities
-    V-73773 - Need to trim identities
-    V-73777 - Need to trim identities
-    V-73781 - Need to trim identities
-    V-73783 - Need to trim identities
-    V-73785 - Need to trim identities
-    V-73787 - Need to trim identities
-    V-73789 - Need to trim identities
+    V-73769 + DONE Need to trim identities
+    V-73773 + DONE Need to trim identities
+    V-73777 + DONE Need to trim identities
+    V-73781 + DONE Need to trim identities
+    V-73783 + DONE Need to trim identities
+    V-73785 + DONE Need to trim identities
+    V-73787 + DONE Need to trim identities
+    V-73789 + DONE Need to trim identities
     V-73791 +
-    V-73793 - Need to trim identities
-    V-73795 - Need to trim identities
-    V-73797 - Need to trim identities
-    V-73799 - Need to trim identities
-    V-73801 - Need to trim identities
-    V-73803 - Need to trim identities
+    V-73793 + DONE Need to trim identities
+    V-73795 + DONE Need to trim identities
+    V-73797 + DONE Need to trim identities
+    V-73799 + DONE Need to trim identities
+    V-73801 + DONE Need to trim identities
+    V-73803 + DONE Need to trim identities
 
 ## WindowsFeatureRule
 
