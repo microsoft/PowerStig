@@ -5838,7 +5838,7 @@ If any accounts or groups are granted the "Access Credential Manager as a truste
       <Constant>SeNetworkLogonRight</Constant>
       <DisplayName>Access this computer from the network</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,- Authenticated Users,- Enterprise Domain Controllers</Identity>
+      <Identity>Administrators,Authenticated Users,Enterprise Domain Controllers</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5894,7 +5894,7 @@ Passwords for accounts with this user right must be protected as highly privileg
       <Constant>SeMachineAccountPrivilege</Constant>
       <DisplayName>Add workstations to domain</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5914,7 +5914,7 @@ If any accounts or groups other than the following are granted the "Add workstat
       <Constant>SeInteractiveLogonRight</Constant>
       <DisplayName>Allow log on locally</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5940,7 +5940,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeRemoteInteractiveLogonRight</Constant>
       <DisplayName>Allow log on through Remote Desktop Services</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5959,7 +5959,7 @@ If any accounts or groups other than the following are granted the "Allow log on
       <Constant>SeBackupPrivilege</Constant>
       <DisplayName>Back up files and directories</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5985,7 +5985,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeCreatePagefilePrivilege</Constant>
       <DisplayName>Create a pagefile</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6029,7 +6029,7 @@ Passwords for application accounts with this user right must be protected as hig
       <Constant>SeCreateGlobalPrivilege</Constant>
       <DisplayName>Create global objects</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,- Service,- Local Service,- Network Service</Identity>
+      <Identity>Administrators,Service,Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6074,10 +6074,10 @@ If any accounts or groups are granted the "Create permanent shared objects" user
       <Constant>SeCreateSymbolicLinkPrivilege</Constant>
       <DisplayName>Create symbolic links</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,{Hyper-V}</Identity>
+      <Identity>Administrators,{Hyper-V}</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '^(- Administrators,NT Virtual Machine\\Virtual Machines|- Administrators)$'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
@@ -6094,7 +6094,7 @@ Systems that have the Hyper-V role will also have "Virtual Machines" given this 
       <Constant>SeDebugPrivilege</Constant>
       <DisplayName>Debug programs</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,Passwords for application accounts with this user right must be protected as highly privileged accounts.</Identity>
+      <Identity>Administrators,Passwords for application accounts with this user right must be protected as highly privileged accounts.</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6220,7 +6220,7 @@ If the following accounts or groups are not defined for the "Deny log on through
       <Constant>SeEnableDelegationPrivilege</Constant>
       <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6240,7 +6240,7 @@ If any accounts or groups other than the following are granted the "Enable compu
       <Constant>SeRemoteShutdownPrivilege</Constant>
       <DisplayName>Force shutdown from a remote system</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6258,7 +6258,7 @@ If any accounts or groups other than the following are granted the "Force shutdo
       <Constant>SeAuditPrivilege</Constant>
       <DisplayName>Generate security audits</DisplayName>
       <Force>True</Force>
-      <Identity>- Local Service,- Network Service</Identity>
+      <Identity>Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6285,7 +6285,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeImpersonatePrivilege</Constant>
       <DisplayName>Impersonate a client after authentication</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,- Service,- Local Service,- Network Service</Identity>
+      <Identity>Administrators,Service,Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6298,7 +6298,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If any accounts or groups other than the following are granted the "Impersonate a client after authentication" user right, this is a finding.
 
 - Administrators
-- Service
+Service
 - Local Service
 - Network Service
 
@@ -6314,7 +6314,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
       <DisplayName>Increase scheduling priority</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6340,7 +6340,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeLoadDriverPrivilege</Constant>
       <DisplayName>Load and unload device drivers</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6382,7 +6382,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeSecurityPrivilege</Constant>
       <DisplayName>Manage auditing and security log</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6410,7 +6410,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeSystemEnvironmentPrivilege</Constant>
       <DisplayName>Modify firmware environment values</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6428,7 +6428,7 @@ If any accounts or groups other than the following are granted the "Modify firmw
       <Constant>SeManageVolumePrivilege</Constant>
       <DisplayName>Perform volume maintenance tasks</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6446,7 +6446,7 @@ If any accounts or groups other than the following are granted the "Perform volu
       <Constant>SeProfileSingleProcessPrivilege</Constant>
       <DisplayName>Profile single process</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6464,7 +6464,7 @@ If any accounts or groups other than the following are granted the "Profile sing
       <Constant>SeRestorePrivilege</Constant>
       <DisplayName>Restore files and directories</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -6490,7 +6490,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeTakeOwnershipPrivilege</Constant>
       <DisplayName>Take ownership of files or other objects</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
