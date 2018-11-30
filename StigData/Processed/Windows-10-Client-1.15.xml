@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_10_STIG" version="1.14" created="11/29/2018">
+<DISASTIG id="Windows_10_STIG" version="1.15" created="11/29/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -231,7 +231,7 @@ Account Management &gt;&gt; User Account Management - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -265,7 +265,7 @@ Detailed Tracking &gt;&gt; Process Creation - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -282,7 +282,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -524,7 +524,7 @@ System &gt;&gt; IPSec Driver - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -541,7 +541,7 @@ System &gt;&gt; Other System Events - Success</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -645,7 +645,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Failure</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -755,7 +755,7 @@ Copy the lines below to the PowerShell window and enter.
    if ($lastLogin -eq $null) {
       $lastLogin = 'Never'
    }
-   Write-Host $user.Name $lastLogin $enabled 
+   Write-Host $user.Name $lastLogin $enabled
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -797,7 +797,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -909,11 +909,11 @@ TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 
 If a TPM is not found or is not ready for use, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63337" severity="high" conversionstatus="pass" title="WN10-00-000030" dscresource="None">
+    <Rule id="V-63337" severity="medium" conversionstatus="pass" title="WN10-00-000030" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify mobile systems employ DoD-approved full disk encryption.
+      <RawString>Verify mobile systems such as laptops and tablets employ DoD-approved full disk encryption. The method will vary depending on the package used.
 
 If full disk encryption is not implemented, this is a finding.
 
@@ -968,19 +968,22 @@ If the "About Windows" dialog box does not display:
 
 or greater, this is a finding.
 
-Note: Microsoft has extended support for an additional 6 months with supplemental servicing for versions 1607, 1703, and 1709.  Supplemental servicing provides critical and important updates for Windows 10 Enterprise only.
+Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
 
 Currently supported Semi-Annual Channel versions:
-v1607 - Microsoft support is scheduled to end 9 October 2018.
-v1703 - Microsoft support is scheduled to end 9 April 2019.
-v1709 - Microsoft support is scheduled to end 8 October 2019.
-v1803 - Microsoft support tentatively scheduled to end October 2019.
+v1607 - Microsoft support is scheduled to end 09 April 2019.
+v1703 - Microsoft support is scheduled to end 08 October 2019.
+v1709 - Microsoft support is scheduled to end 14 April 2020.
+v1803 - Microsoft support is scheduled to end 10 November 2020.
+v1809 - Microsoft support is scheduled to end 13 April 2021.
 
 No preview versions will be used in a production environment.
 
-Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) must be at "Version 10.0 (OS Build 10240)" or greater. LTSC\B versions at Build 10240 or greater are not a finding.
+Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions, which are not a finding:
 
-Current LTSC\B versions are v1507 (Build 10240) and v1607 (Build 14393).</RawString>
+v1507 (Build 10240)
+v1607 (Build 14393)
+v1809 (Build 17763)</RawString>
     </Rule>
     <Rule id="V-63351" severity="high" conversionstatus="pass" title="WN10-00-000045" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1037,8 +1040,6 @@ Review the members of the Administrators group.
 Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
 
 For domain-joined workstations, the Domain Admins group must be replaced by a domain workstation administrator group.
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.  AD admin platforms may use the Domain Admins group or a domain administrative group created specifically for AD admin platforms (see V-43711 in the Active Directory Domain STIG).
 
 Standard user accounts must not be members of the local administrator group.
 
@@ -1117,7 +1118,7 @@ The configuration requirements will be determined by the applicable firewall STI
 If allowed inbound exceptions are not limited to authorized remote management hosts, this is a finding.
 
 Review inbound firewall exceptions.
-Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Inbound Rules (this link will be in the right pane) 
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Inbound Rules (this link will be in the right pane)
 
 For any inbound rules that allow connections view the Scope for Remote IP address.  This may be defined as an IP address, subnet, or range.  The rule must apply to all firewall profiles.
 
@@ -1135,7 +1136,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*ECA*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1195,7 +1196,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1269,7 +1270,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1415,7 +1416,9 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the system firmware is configured to run in UEFI mode, not Legacy BIOS.
+      <RawString>For virtual desktop implementations (VDIs) where the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
+
+Verify the system firmware is configured to run in UEFI mode, not Legacy BIOS.
 
 Run "System Information".
 
@@ -1425,7 +1428,9 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is finding.
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows 10 hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.  
+      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows 10 hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.
+
+For virtual desktop implementations (VDIs) where the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
 
 Run "System Information".
 
@@ -1439,7 +1444,7 @@ Under "System Summary", if "Secure Boot State" does not display "On", this is fi
 
 The organization must have a policy that prohibits administrative accounts from using applications that access the Internet, such as web browsers, or with potential Internet sources, such as email, except as necessary for local service administration. The policy should define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.
 
-Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet. 
+Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</RawString>
     </Rule>
@@ -3399,15 +3404,17 @@ Value:  1</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LanmanWorkstation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+      <RawString>Windows 10 v1507 LTSB version does not include this setting; it is NA for those systems.
 
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Policies\Microsoft\Windows\LanmanWorkstation\
+If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Value Name:  AllowInsecureGuestAuth
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\LanmanWorkstation\
 
-Type:  REG_DWORD
-Value:  0</RawString>
+Value Name: AllowInsecureGuestAuth
+
+Type: REG_DWORD
+Value: 0x00000000 (0)</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowInsecureGuestAuth</ValueName>
       <ValueType>Dword</ValueType>
@@ -3492,15 +3499,17 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+      <RawString>This is NA as of v1803 of Windows 10; Wi-Fi sense is no longer available.
 
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config\
+If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Value Name:  AutoConnectAllowedOEM
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config\
 
-Type:  REG_DWORD
-Value:  0</RawString>
+Value Name: AutoConnectAllowedOEM
+
+Type: REG_DWORD
+Value: 0x00000000 (0)</RawString>
       <ValueData>0</ValueData>
       <ValueName>AutoConnectAllowedOEM</ValueName>
       <ValueType>Dword</ValueType>
@@ -3584,7 +3593,7 @@ Run "System Information".
 Under "System Summary", verify the following:
 If "Device Guard Security Services Running" does not list "Credential Guard", this is finding.
 
-The policy settings referenced in the Fix section will configure the following registry value. However due to hardware requirements, the registry value alone does not ensure proper function.
+The policy settings referenced in the Fix section will configure the following registry value. However, due to hardware requirements, the registry value alone does not ensure proper function.
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\
@@ -3953,7 +3962,7 @@ Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\
 
 Value Name: fAllowToGetHelp
- 
+
 Value Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
@@ -4004,7 +4013,9 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+      <RawString>Windows 10 LTSC\B versions do not support the Microsoft Store and modern apps; this is NA for those systems.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
@@ -4012,7 +4023,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: MSAOptional
 
 Value Type: REG_DWORD
-Value: 1</RawString>
+Value: 0x00000001 (1)</RawString>
       <ValueData>1</ValueData>
       <ValueName>MSAOptional</ValueName>
       <ValueType>Dword</ValueType>
@@ -4072,7 +4083,7 @@ Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
@@ -4101,8 +4112,8 @@ Value: 1</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -4111,8 +4122,8 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: InactivityTimeoutSecs
 
 Value Type: REG_DWORD
-Value: 0x00000384 (900)</RawString>
-      <ValueData>900</ValueData>
+Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</RawString>
+      <ValueData />
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4170,7 +4181,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: LegalNoticeText
 
 Value Type: REG_SZ
-Value: 
+Value:
 You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
@@ -4206,7 +4217,9 @@ By using this IS (which includes any device attached to this IS), you consent to
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Biometrics\FacialFeatures</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>Windows 10 v1507 LTSB version does not include this setting; it is NA for those systems.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Biometrics\FacialFeatures\
@@ -4275,7 +4288,10 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
+Value: 0x00000000 (0) (Security)
+0x00000001 (1) (Basic)
+
+If an organization is using v1709 or later of Windows 10 this may be configured to "Enhanced" to support Windows Analytics. V-82145 must also be configured to limit the Enhanced diagnostic data to the minimum required by Windows Analytics. This registry value will then be 0x00000002 (2).</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
@@ -4290,7 +4306,7 @@ Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive:  HKEY_LOCAL_MACHINE 
+Registry Hive:  HKEY_LOCAL_MACHINE
 Registry Path:  \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name:  CachedLogonsCount
@@ -4570,25 +4586,6 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnabledV9</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-63715" severity="low" conversionstatus="pass" title="WN10-SO-000115" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '15'</OrganizationValueTestString>
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SYSTEM\CurrentControlSet\Services\LanManServer\Parameters\
-
-Value Name: autodisconnect
-
-Value Type:  REG_DWORD
-Value:  0x0000000f (15) (or less)</RawString>
-      <ValueData />
-      <ValueName>autodisconnect</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-63717" severity="medium" conversionstatus="pass" title="WN10-CC-000255" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4665,25 +4662,6 @@ Value Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>EnableSecuritySignature</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63725" severity="medium" conversionstatus="pass" title="WN10-CC-000265" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\OneDrive</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\OneDrive\
-
-Value Name: DisableFileSyncNGSC
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableFileSyncNGSC</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63729" severity="medium" conversionstatus="pass" title="WN10-CC-000270" dscresource="xRegistry">
@@ -4880,25 +4858,6 @@ Value Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowIndexingEncryptedStoresOrItems</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63753" severity="medium" conversionstatus="pass" title="WN10-SO-000155" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SYSTEM\CurrentControlSet\Control\Lsa\
-
-Value Name: DisableDomainCreds
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableDomainCreds</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63755" severity="medium" conversionstatus="pass" title="WN10-SO-000160" dscresource="xRegistry">
@@ -5125,7 +5084,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms.  Both the browser and web server must be configured to use TLS otherwise the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -5365,7 +5324,7 @@ Value: 0x00000000 (0) - Off</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -5384,7 +5343,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -5483,7 +5442,9 @@ Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>Windows 10 v1507 LTSB version does not include this setting; it is NA for those systems.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\CloudContent\
@@ -5581,7 +5542,9 @@ Value: NistP384 NistP256</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\ Privacy</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This setting is applicable starting with v1703 of Windows 10, it is NA for prior versions.
+      <RawString>This setting is applicable starting with v1703 of Windows 10; it is NA for prior versions.
+
+Windows 10 LTSC\B versions do not include Microsoft Edge; this is NA for those systems.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -5680,28 +5643,95 @@ Value: 0x00000004 (4)</RawString>
       <ValueName>Start</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-77025" severity="medium" conversionstatus="pass" title="WN10-EP-000010" dscresource="xRegistry">
+    <Rule id="V-82137" severity="medium" conversionstatus="pass" title="WN10-UC-000005" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender Security Center\App and Browser protection</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\OneDrive</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is NA prior to v1709 of Windows 10.
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-This is applicable to unclassified systems, for other systems this is NA.
+Registry Hive: HKEY_CURRENT_USER
+Registry Path: \Software\Policies\Microsoft\OneDrive\
 
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows Defender Security Center\App and Browser protection\
-
-Value Name: DisallowExploitProtectionOverride
+Value Name: DisablePersonalSync
 
 Value Type: REG_DWORD
 Value: 0x00000001 (1)</RawString>
       <ValueData>1</ValueData>
-      <ValueName>DisallowExploitProtectionOverride</ValueName>
+      <ValueName>DisablePersonalSync</ValueName>
       <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-82139" severity="medium" conversionstatus="pass" title="WN10-CC-000238" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Internet Settings</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1809 of Windows 10; it is NA for prior versions.
+
+Windows 10 LTSC\B versions do not include Microsoft Edge; this is NA for those systems.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\MicrosoftEdge\Internet Settings\
+
+Value Name: PreventCertErrorOverrides
+
+Type: REG_DWORD
+Value: 0x00000001 (1)</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>PreventCertErrorOverrides</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-82145" severity="medium" conversionstatus="pass" title="WN10-CC-000204" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting requires v1709 or later of Windows 10; it is NA for prior versions.
+
+If "Enhanced" level is enabled for telemetry, this must be configured. If "Security" or "Basic" are configured, this is NA. (See V-63683).
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
+
+Value Name: LimitEnhancedDiagnosticDataWindowsAnalytics
+
+Type: REG_DWORD
+Value: 0x00000001 (1)</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>LimitEnhancedDiagnosticDataWindowsAnalytics</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-88203" severity="medium" conversionstatus="pass" title="WN10-CC-000340" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\OneDrive\AllowTenantList</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the organization is using a DoD instance of OneDrive, verify synchronizing is only allowed to the organization's DoD instance.
+
+If the organization does not have an instance of OneDrive, verify this is configured with the noted dummy entry to prevent synchronizing with other instances.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\OneDrive\AllowTenantList\
+
+Value Name: Organization's Tenant GUID
+
+Value Type: REG_SZ
+Value: Organization's Tenant GUID
+
+If the organization does not have an instance of OneDrive the Value Name and Value must be 1111-2222-3333-4444, if not this is a finding.</RawString>
+      <ValueData>Organization's Tenant GUID</ValueData>
+      <ValueName>Organization's Tenant GUID</ValueName>
+      <ValueType>String</ValueType>
     </Rule>
   </RegistryRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
@@ -5853,6 +5883,7 @@ If any groups or accounts (to include administrators), are granted the "Act as p
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -5860,9 +5891,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If any groups or accounts other than the following are granted the "Allow log on locally" user right, this is a finding:
 
 Administrators
-Users
-
-Systems dedicated to managing Active Directory (AD admin platforms), must only allow Administrators, removing the Users group.</RawString>
+Users</RawString>
     </Rule>
     <Rule id="V-63853" severity="medium" conversionstatus="pass" title="WN10-UR-000030" dscresource="UserRightsAssignment">
       <Constant>SeBackupPrivilege</Constant>
@@ -6006,11 +6035,12 @@ Administrators</RawString>
       <Constant>SeDenyNetworkLogonRight</Constant>
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
+      <Identity>Enterprise Admins,Domain Admins,Local account,Guests,Privileged Access Workstations  dedicated to the management of Active Directory are exempt from denying the Enterprise Admins and Domain Admins groups.</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6025,7 +6055,7 @@ Local account (see Note below)
 All Systems:
 Guests group
 
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
+Privileged Access Workstations (PAWs) dedicated to the management of Active Directory are exempt from denying the Enterprise Admins and Domain Admins groups. (See the Windows Privileged Access Workstation STIG for PAW requirements.)
 
 Note: "Local account" is a built-in security group used to assign user rights and permissions to all local accounts.</RawString>
     </Rule>
@@ -6080,6 +6110,7 @@ Domain Admin Group</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6090,7 +6121,7 @@ Domain Systems Only:
 Enterprise Admins Group
 Domain Admins Group
 
-Workstations dedicated to the management of Active Directory (see V-36436 in the Active Directory Domain STIG) are exempt from this.
+Privileged Access Workstations (PAWs) dedicated to the management of Active Directory are exempt from denying the Enterprise Admins and Domain Admins groups. (See the Windows Privileged Access Workstation STIG for PAW requirements.)
 
 All Systems:
 Guests Group</RawString>
@@ -6104,6 +6135,7 @@ Guests Group</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6120,7 +6152,7 @@ Local account (see Note below)
 All Systems:
 Guests group
 
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
+Privileged Access Workstations (PAWs) dedicated to the management of Active Directory are exempt from denying the Enterprise Admins and Domain Admins groups. (See the Windows Privileged Access Workstation STIG for PAW requirements.)
 
 Note: "Local account" is a built-in security group used to assign user rights and permissions to all local accounts.</RawString>
     </Rule>

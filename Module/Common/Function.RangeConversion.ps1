@@ -73,6 +73,13 @@ function Get-TestStringTokenNumbers
         $String
     )
 
+    <#
+        Some strings contain double quotes around numbers. This causes the
+        PSParser to return them as a string vs a number, so the double quotes
+        are stripped out before being parsed.
+    #>
+    $string = $String -replace '"',''
+
     $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
     $number = $tokens.Where({$PSItem.type -eq 'Number'}).Content
     <#
@@ -183,7 +190,7 @@ function ConvertTo-TestString
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
         }
-        'or less excluding'
+        {$PSItem -match 'or less excluding'}
         {
             return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
         }
@@ -808,7 +815,7 @@ function ConvertTo-MultipleValue
     param
     (
         [Parameter(Mandatory)]
-        [string[]] 
+        [string[]]
         $String
     )
 

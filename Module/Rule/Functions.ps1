@@ -4,8 +4,7 @@
 #endregion
 #region Data
 # These are the registry strings that are not able to be automatically extracted from the xccdf.
-$script:legalNoticeText = '
-You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+$script:legalNoticeText = 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
@@ -52,7 +51,8 @@ function Test-ValueDataIsHardCoded
         'V-63675', # Windows Client - Legal Notice Display
         'V-26359', # Windows Server - Legal Banner Dialog Box Title
         'V-63681', # Windows Client - Legal Banner Dialog Box Title
-        'V-21954', # Windows Server - Kerberos Supported Encryption Types
+        # The was updated in Server 2012 R2 V2R14
+        #'V-21954', # Windows Server - Kerberos Supported Encryption Types
         'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
         # resource does not use the Get-WindowsOptionalFeature cmdlet so this has to stay manual on
         # the desktop for now or else we have to move everything to a script resource.
@@ -103,8 +103,7 @@ function Get-HardCodedString
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption
         }
-
-        {$PSItem -match 'V-(21954|30935)'}
+        {$PSItem -match 'V-30935'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] SupportedEncryptionTypes : $true"
             return $script:supportedEncryptionTypes

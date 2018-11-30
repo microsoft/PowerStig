@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_2012_MS_STIG" version="2.13" created="11/29/2018">
+<DISASTIG id="Windows_2012_MS_STIG" version="2.14" created="11/29/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1117,11 +1117,9 @@ If the drop-down list box "Default operating system:" shows any operating system
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the local Administrators group.  Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
+      <RawString>Review the local Administrators group. Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
 
 For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group.
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.  AD admin platforms may use the Domain Admins group or a domain administrative group created specifically for AD admin platforms (see V-43711 in the Active Directory Domain STIG).
 
 Standard user accounts must not be members of the local Administrator group.
 
@@ -5131,32 +5129,18 @@ Value: 0</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify whether the registry key below exists.  If it does not exist or the value is "0", this is not a finding.
-If the registry key exists and contains a value other than "0", continue below.
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-The values are determined by the selection of encryption suites in the policy Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network Security: Configure encryption types allowed for Kerberos".
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
 
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-Value Name:  SupportedEncryptionTypes
-Type:  REG_DWORD
+Value Name: SupportedEncryptionTypes
 
-Due to the number of possible combinations that may include the DES encryption types, it is not possible to include all acceptable values as viewed directly in the registry.
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)
 
-If the registry key does exist, the value must be converted to binary to determine configuration of specific bits.  This will determine whether this is a finding.
-
-Note the value for the registry key.
-For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".
-
-Open the Windows calculator (Run/Search for "calc").
-Select "View", then "Programmer".
-Select "Dword" and either "Hex" or "Dec".
-Enter the appropriate form of the value found for the registry key (e.g., Hex - enter 0x7fffffff, Dec - enter 2147483647)
-Select "Bin".
-The returned value may vary in length, up to 32 characters.
-If the either of 2 right most characters are "1", this is a finding.
-If the both of 2 right most characters are "0", this is not a finding.</RawString>
-      <ValueData>0</ValueData>
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.</RawString>
+      <ValueData>2147483640</ValueData>
       <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -6192,7 +6176,7 @@ Value: 1</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '900'</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -6201,7 +6185,7 @@ Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: InactivityTimeoutSecs
 
 Value Type: REG_DWORD
-Value: 0x00000384 (900) (or less)</RawString>
+Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</RawString>
       <ValueData />
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
@@ -6646,11 +6630,20 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.</RawString>
+If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-1155" severity="medium" conversionstatus="pass" title="Deny Access from the Network" dscresource="UserRightsAssignment">
       <Constant>SeDenyNetworkLogonRight</Constant>
@@ -6661,6 +6654,7 @@ If any accounts or groups (to include administrators), are granted the "Act as p
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6675,8 +6669,6 @@ Domain Admins group
 All Systems:
 Guests group
 
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
-
 Note: Windows Server 2012 R2 added new built-in security groups, "Local account" and "Local account and member of Administrators group". "Local account" is more restrictive but may cause issues on servers such as systems that provide Failover Clustering.
 Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.</RawString>
     </Rule>
@@ -6689,13 +6681,22 @@ Microsoft Security Advisory Patch 2871997 adds the new security groups to Window
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Debug programs" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26469" severity="medium" conversionstatus="pass" title="Access Credential Manager as a trusted caller" dscresource="UserRightsAssignment">
       <Constant>SeTrustedCredManAccessPrivilege</Constant>
@@ -6706,9 +6707,10 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Access Credential Manager as a trusted caller" user right, this is a finding.</RawString>
     </Rule>
@@ -6721,16 +6723,23 @@ If any accounts or groups are granted the "Access Credential Manager as a truste
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Access this computer from the network" user right, this is a finding:
 
 Administrators
 Authenticated Users
 
-Systems dedicated to managing Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG), must only allow Administrators, removing the Authenticated Users group.</RawString>
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).</RawString>
     </Rule>
     <Rule id="V-26472" severity="medium" conversionstatus="pass" title="Allow log on locally" dscresource="UserRightsAssignment">
       <Constant>SeInteractiveLogonRight</Constant>
@@ -6741,13 +6750,22 @@ Systems dedicated to managing Active Directory (AD admin platforms, see V-36436 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Allow log on locally" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26473" severity="medium" conversionstatus="pass" title="Allow log on through Remote Desktop Services" dscresource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
@@ -6779,31 +6797,22 @@ Organizations may grant this to other groups, such as more restrictive groups wi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Back up files and directories" user right, this is a finding:
 
-Administrators</RawString>
-    </Rule>
-    <Rule id="V-26476" severity="medium" conversionstatus="pass" title="Change the system time" dscresource="UserRightsAssignment">
-      <Constant>SeSystemtimePrivilege</Constant>
-      <DisplayName>Change the system time</DisplayName>
-      <Force>True</Force>
-      <Identity>Administrators,Local Service</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Change the system time" user right, this is a finding:
-
 Administrators
-Local Service</RawString>
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26478" severity="medium" conversionstatus="pass" title="Create a pagefile" dscresource="UserRightsAssignment">
       <Constant>SeCreatePagefilePrivilege</Constant>
@@ -6814,9 +6823,10 @@ Local Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create a pagefile" user right, this is a finding:
 
@@ -6831,11 +6841,20 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Create a token object" user right, this is a finding.</RawString>
+If any accounts or groups are granted the "Create a token object" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26480" severity="medium" conversionstatus="pass" title="Create global objects" dscresource="UserRightsAssignment">
       <Constant>SeCreateGlobalPrivilege</Constant>
@@ -6846,16 +6865,25 @@ If any accounts or groups are granted the "Create a token object" user right, th
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create global objects" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26481" severity="medium" conversionstatus="pass" title="Create permanent shared objects" dscresource="UserRightsAssignment">
       <Constant>SeCreatePermanentPrivilege</Constant>
@@ -6866,9 +6894,10 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Create permanent shared objects" user right, this is a finding.</RawString>
     </Rule>
@@ -6881,6 +6910,7 @@ If any accounts or groups are granted the "Create permanent shared objects" user
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6942,6 +6972,7 @@ If any accounts or groups are defined for the "Deny log on as a service" user ri
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
@@ -6951,8 +6982,6 @@ If the following accounts or groups are not defined for the "Deny log on locally
 Domain Systems Only:
 Enterprise Admins Group
 Domain Admins Group
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from this.
 
 All Systems:
 Guests Group</RawString>
@@ -6966,6 +6995,7 @@ Guests Group</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -6979,8 +7009,6 @@ Local account (see Note below)
 
 All Systems:
 Guests group
-
-Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
 
 Note: Windows Server 2012 R2 added new built-in security groups, including "Local account", for assigning permissions and rights to all local accounts.
 Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.</RawString>
@@ -7009,9 +7037,10 @@ If any accounts or groups are granted the "Enable computer and user accounts to 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Force shutdown from a remote system" user right, this is a finding:
 
@@ -7026,14 +7055,23 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Generate security audits" user right, this is a finding:
 
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26490" severity="medium" conversionstatus="pass" title="Impersonate a client after authentication" dscresource="UserRightsAssignment">
       <Constant>SeImpersonatePrivilege</Constant>
@@ -7044,16 +7082,25 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Impersonate a client after authentication" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26492" severity="medium" conversionstatus="pass" title="Increase scheduling priority" dscresource="UserRightsAssignment">
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
@@ -7064,13 +7111,22 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Increase scheduling priority" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26493" severity="medium" conversionstatus="pass" title="Load and unload device drivers" dscresource="UserRightsAssignment">
       <Constant>SeLoadDriverPrivilege</Constant>
@@ -7081,9 +7137,10 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Load and unload device drivers" user right, this is a finding:
 
@@ -7098,11 +7155,20 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.</RawString>
+If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26496" severity="medium" conversionstatus="pass" title="Manage auditing and security log" dscresource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
@@ -7113,6 +7179,7 @@ If any accounts or groups are granted the "Lock pages in memory" user right, thi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -7124,24 +7191,12 @@ Administrators
 If the organization has an Auditors group, the assignment of this group to the user right would not be a finding.
 
 If an application requires this user right, this would not be a finding.
+
 Vendor documentation must support the requirement for having the user right.
+
 The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).</RawString>
-    </Rule>
-    <Rule id="V-26497" severity="medium" conversionstatus="pass" title="Modify an object label" dscresource="UserRightsAssignment">
-      <Constant>SeRelabelPrivilege</Constant>
-      <DisplayName>Modify an object label</DisplayName>
-      <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Modify an object label" user right, this is a finding.</RawString>
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26498" severity="medium" conversionstatus="pass" title="Modify firmware environment values" dscresource="UserRightsAssignment">
       <Constant>SeSystemEnvironmentPrivilege</Constant>
@@ -7152,9 +7207,10 @@ If any accounts or groups are granted the "Modify an object label" user right, t
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Modify firmware environment values" user right, this is a finding:
 
@@ -7169,9 +7225,10 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Perform volume maintenance tasks" user right, this is a finding:
 
@@ -7186,49 +7243,14 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Profile single process" user right, this is a finding:
 
 Administrators</RawString>
-    </Rule>
-    <Rule id="V-26501" severity="medium" conversionstatus="pass" title="Profile system performance" dscresource="UserRightsAssignment">
-      <Constant>SeSystemProfilePrivilege</Constant>
-      <DisplayName>Profile system performance</DisplayName>
-      <Force>True</Force>
-      <Identity>Administrators,NT Service\WdiServiceHost</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Profile system performance" user right, this is a finding:
-
-Administrators
-NT Service\WdiServiceHost</RawString>
-    </Rule>
-    <Rule id="V-26503" severity="medium" conversionstatus="pass" title="Replace a process level token" dscresource="UserRightsAssignment">
-      <Constant>SeAssignPrimaryTokenPrivilege</Constant>
-      <DisplayName>Replace a process level token</DisplayName>
-      <Force>True</Force>
-      <Identity>Local Service,Network Service</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Replace a process level token" user right, this is a finding:
-
-Local Service
-Network Service</RawString>
     </Rule>
     <Rule id="V-26504" severity="medium" conversionstatus="pass" title="Restore files and directories" dscresource="UserRightsAssignment">
       <Constant>SeRestorePrivilege</Constant>
@@ -7239,13 +7261,22 @@ Network Service</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Restore files and directories" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26506" severity="medium" conversionstatus="pass" title="Take ownership of files or other objects" dscresource="UserRightsAssignment">
       <Constant>SeTakeOwnershipPrivilege</Constant>
@@ -7256,13 +7287,22 @@ Administrators</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Take ownership of files or other objects" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">

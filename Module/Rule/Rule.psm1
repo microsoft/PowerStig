@@ -215,7 +215,7 @@ Class Rule : ICloneable
     #>
     [String] GetOrganizationValueTestString ( [String] $TestString )
     {
-        return Get-OrganizationValueTestString -String $testString
+        return Get-OrganizationValueTestString -String $TestString
     }
 
     <#

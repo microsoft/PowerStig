@@ -400,7 +400,8 @@ Class RegistryRule : Rule
             (
                 $CheckContent -Match "HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER" -and
                 $CheckContent -NotMatch "Permission(s|)" -and
-                $CheckContent -NotMatch "SupportedEncryptionTypes" -and
+                # removed for Server 2012R2 V2R14 change on rule id V-21954
+                #$CheckContent -NotMatch "SupportedEncryptionTypes" -and
                 $CheckContent -NotMatch "Sql Server" -and
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
                 $CheckContent -NotMatch "Review the Catalog" -and
