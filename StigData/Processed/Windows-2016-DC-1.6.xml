@@ -2413,20 +2413,6 @@ Select the "Account" tab.
 
 If any user accounts, including administrators, do not have "Smart card is required for interactive logon" checked in the "Account Options" area, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-73685" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-
-Value Name: SupportedEncryptionTypes
-
-Value Type: REG_DWORD
-Value: 0x7ffffff8 (2147483640)</RawString>
-    </Rule>
     <Rule id="V-78127" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5269,6 +5255,25 @@ Type: REG_DWORD
 Value: 0x00000000 (0)</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowOnlineID</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+        <Rule id="V-73685" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
+
+Value Name: SupportedEncryptionTypes
+
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)</RawString>
+      <ValueData>2147483640</ValueData>
+      <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-73687" severity="high" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="xRegistry">
