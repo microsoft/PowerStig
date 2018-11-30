@@ -1,0 +1,51 @@
+<!--
+    The organizational settings file is used to define the local organizations
+    preferred setting within an allowed range of the STIG.
+
+    Each setting in this file is linked by STIG ID and the valid range is in an
+    associated comment.
+-->
+<OrganizationalSettings version="1.6">
+  <!-- Ensure ''V-73309'' -ge '15' -or ''V-73309'' -eq '0'-->
+  <OrganizationalSetting id="V-73309" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73311'' -le '3' -and ''V-73311'' -ne '0'-->
+  <OrganizationalSetting id="V-73311" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73313'' -ge '15'-->
+  <OrganizationalSetting id="V-73313" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73315'' -ge '24'-->
+  <OrganizationalSetting id="V-73315" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73317'' -le '60' -and ''V-73317'' -ne '0'-->
+  <OrganizationalSetting id="V-73317" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73319'' -ne '0'-->
+  <OrganizationalSetting id="V-73319" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73321'' -ge '14'-->
+  <OrganizationalSetting id="V-73321" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73513.b' -match '0x00000001|1|0x00000003|3'-->
+  <OrganizationalSetting id="V-73513.b" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73515' -match '0x00000001|1|0x00000002|2'-->
+  <OrganizationalSetting id="V-73515" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73517' -match '0x00000001|1|0x00000002|2'-->
+  <OrganizationalSetting id="V-73517" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73553' -ge '32768'-->
+  <OrganizationalSetting id="V-73553" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73555' -ge '196608'-->
+  <OrganizationalSetting id="V-73555" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73557' -ge '32768'-->
+  <OrganizationalSetting id="V-73557" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73623'' -ne 'Administrator'-->
+  <OrganizationalSetting id="V-73623" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73625'' -ne 'Guest'-->
+  <OrganizationalSetting id="V-73625" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73641' -le '30' -and 'V-73641' -gt '0'-->
+  <OrganizationalSetting id="V-73641" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure -->
+  <OrganizationalSetting id="V-73645" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73651' -le '4'-->
+  <OrganizationalSetting id="V-73651" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73659' -le '15'-->
+  <OrganizationalSetting id="V-73659" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure ''V-73753'' -match '^(- Administrators,NT Virtual Machine\\Virtual Machines|- Administrators)$'-->
+  <OrganizationalSetting id="V-73753" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-73807' -match '1|2'-->
+  <OrganizationalSetting id="V-73807" value="LOCAL_STIG_SETTING_HERE" />
+</OrganizationalSettings>
