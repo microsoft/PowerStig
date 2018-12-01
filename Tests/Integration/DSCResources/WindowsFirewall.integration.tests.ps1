@@ -14,7 +14,9 @@ try
     #region Integration Tests
 
     foreach ($stig in $stigList)
-    {
+    {   
+        [xml] $dscXml = Get-Content -Path $stig.Path
+        
         Describe "Windows Firewall $($stig.stigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
@@ -25,7 +27,7 @@ try
                 } | Should Not throw
             }
 
-            [xml] $dscXml = Get-Content -Path $stig.Path
+           # [xml] $dscXml = Get-Content -Path $stig.Path
 
             $configurationDocumentPath = "$TestDrive\localhost.mof"
 
@@ -35,7 +37,7 @@ try
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
                 $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
+                    Where-Object -FilterScript {$PSItem.ResourceID -match "\[xRegistry\]"} 
 
                 foreach ($setting in $dscXml)
                 {
@@ -50,6 +52,45 @@ try
                     $hasAllSettings | Should Be $true
                 }
             }
+        }
+
+        Describe "Windows Firewall $($stig.stigVersion) Single SkipRule/RuleType mof output"{
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $SkipRuleType = "Registry"
+
+            It 'Should compile the MOF without throwing' {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -StigVersion $stig.StigVersion `
+                        -OutputPath $TestDrive `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType 
+                } | Should not throw
+            }
+
+            #region Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+
+            Context 'Skip check' {
+
+                #region counts how many Skips there are and how many there should be.
+                $dscRegistryRuleXml = $dscXml.DISASTIG.RegistryRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
+                $ExpectedCount = ($($dscRegistryRuleXml.Count) + $($SkipRule.Count)) # - 1
+                #$dscXml = ($($dscXml.Count) + $($ManualRule.Count)+  $($SkipRule.Count))
+
+                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+
+                It "Should have $ExpectedCount Skipped settings" {
+                    $dscMof.count | Should Be $ExpectedCount
+                }
+            }
+        
+        
+        
+        
         }
     }
     #endregion Tests
