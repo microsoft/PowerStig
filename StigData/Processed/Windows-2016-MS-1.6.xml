@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="11/29/2018">
+<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/3/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1127,18 +1127,6 @@ TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 
 If a TPM is not found or is not ready for use, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-73239" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "Command Prompt".
-
-Enter "winver.exe".
-
-If the "About Windows" dialog box does not display "Microsoft Windows Server Version 1607 (Build 14393.xxx)" or greater, this is a finding.
-
-Preview versions must not be used in a production environment.</RawString>
-    </Rule>
     <Rule id="V-73241" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1519,20 +1507,6 @@ Issuer by: US DoD CCEB Interoperability Root CA 2
 Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
 Valid: Friday, September 27, 2019</RawString>
     </Rule>
-    <Rule id="V-73685" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-
-Value Name: SupportedEncryptionTypes
-
-Value Type: REG_DWORD
-Value: 0x7ffffff8 (2147483640)</RawString>
-    </Rule>
     <Rule id="V-78127" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1733,26 +1707,18 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>%ProgramFiles%;%ProgramFiles(x86)%</Path>
+      <Path>%ProgramFiles(x86)%</Path>
       <RawString>The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (WN16-SO-000290).
-
 Review the permissions for the program file directories (Program Files and Program Files [x86]). Non-privileged groups such as Users or Authenticated Users must not have greater than "Read &amp; execute" permissions. (Individual accounts must not be used to assign permissions.)
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Viewing in File Explorer:
-
 For each folder, view the Properties.
-
 Select the "Security" tab, and the "Advanced" button.
-
 Default permissions:
-\Program Files and \Program Files (x86)
+\Program Files (x86)
 Type - "Allow" for all
 Inherited from - "None" for all
-
 Principal - Access - Applies to
-
 TrustedInstaller - Full control - This folder and subfolders
 SYSTEM - Modify - This folder only
 SYSTEM - Full control - Subfolders and files only
@@ -1762,18 +1728,12 @@ Users - Read &amp; execute - This folder, subfolders and files
 CREATOR OWNER - Full control - Subfolders and files only
 ALL APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
 ALL RESTRICTED APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
-
 Alternately, use icacls:
-
 Open a Command prompt (admin).
-
 Enter "icacls" followed by the directory:
-
 'icacls "c:\program files"'
 'icacls "c:\program files (x86)"'
-
 The following results should be displayed for each when entered:
-
 c:\program files (c:\program files (x86))
 NT SERVICE\TrustedInstaller:(F)
 NT SERVICE\TrustedInstaller:(CI)(IO)(F)
@@ -1788,7 +1748,8 @@ APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
-Successfully processed 1 files; Failed processing 0 files</RawString>
+Successfully processed 1 files; Failed processing 0 files
+</RawString>
     </Rule>
     <Rule id="V-73251.b" severity="medium" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -1871,26 +1832,18 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>%ProgramFiles%;%ProgramFiles(x86)%</Path>
+      <Path>%ProgramFiles%</Path>
       <RawString>The default permissions are adequate when the Security Option "Network access: Let everyone permissions apply to anonymous users" is set to "Disabled" (WN16-SO-000290).
-
 Review the permissions for the program file directories (Program Files and Program Files [x86]). Non-privileged groups such as Users or Authenticated Users must not have greater than "Read &amp; execute" permissions. (Individual accounts must not be used to assign permissions.)
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Viewing in File Explorer:
-
 For each folder, view the Properties.
-
 Select the "Security" tab, and the "Advanced" button.
-
 Default permissions:
-\Program Files and \Program Files (x86)
+\Program Files 
 Type - "Allow" for all
 Inherited from - "None" for all
-
 Principal - Access - Applies to
-
 TrustedInstaller - Full control - This folder and subfolders
 SYSTEM - Modify - This folder only
 SYSTEM - Full control - Subfolders and files only
@@ -1900,18 +1853,12 @@ Users - Read &amp; execute - This folder, subfolders and files
 CREATOR OWNER - Full control - Subfolders and files only
 ALL APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
 ALL RESTRICTED APPLICATION PACKAGES - Read &amp; execute - This folder, subfolders, and files
-
 Alternately, use icacls:
-
 Open a Command prompt (admin).
-
 Enter "icacls" followed by the directory:
-
 'icacls "c:\program files"'
 'icacls "c:\program files (x86)"'
-
 The following results should be displayed for each when entered:
-
 c:\program files (c:\program files (x86))
 NT SERVICE\TrustedInstaller:(F)
 NT SERVICE\TrustedInstaller:(CI)(IO)(F)
@@ -1926,7 +1873,8 @@ APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
 APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
-Successfully processed 1 files; Failed processing 0 files</RawString>
+Successfully processed 1 files; Failed processing 0 files
+</RawString>
     </Rule>
     <Rule id="V-73253" severity="medium" conversionstatus="pass" title="SRG-OS-000312-GPOS-00122" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -2081,117 +2029,43 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM</Path>
+      <Path>HKLM:\SECURITY</Path>
       <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
-
 If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Run "Regedit".
-
 Right-click on the registry areas noted below.
-
 Select "Permissions..." and the "Advanced" button.
-
 HKEY_LOCAL_MACHINE\SECURITY
-
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SOFTWARE
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SYSTEM
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
-
-If the defaults have not been changed, these are not a finding.</RawString>
+If the defaults have not been changed, these are not a finding.
+</RawString>
     </Rule>
     <Rule id="V-73255.b" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="RegistryAccessEntry">
       <AccessControlEntry>
         <Entry>
           <Type>
           </Type>
-          <Principal>SYSTEM</Principal>
+          <Principal>Users</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
-      </AccessControlEntry>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path>HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM</Path>
-      <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
-
-If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
-
-If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
-Run "Regedit".
-
-Right-click on the registry areas noted below.
-
-Select "Permissions..." and the "Advanced" button.
-
-HKEY_LOCAL_MACHINE\SECURITY
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-SYSTEM - Full Control - This key and subkeys
-Administrators - Special - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SOFTWARE
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-
-HKEY_LOCAL_MACHINE\SYSTEM
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-Users - Read - This key and subkeys
-Administrators - Full Control - This key and subkeys
-SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-
-Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
-
-If the defaults have not been changed, these are not a finding.</RawString>
-    </Rule>
-    <Rule id="V-73255.c" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="RegistryAccessEntry">
-      <AccessControlEntry>
         <Entry>
           <Type>
           </Type>
@@ -2200,34 +2074,51 @@ If the defaults have not been changed, these are not a finding.</RawString>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subkeys Only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
       </AccessControlEntry>
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM</Path>
+      <Path>HKLM:\SOFTWARE</Path>
       <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
-
 If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
-
 If permissions are not as restrictive as the default permissions listed below, this is a finding.
-
 Run "Regedit".
-
 Right-click on the registry areas noted below.
-
 Select "Permissions..." and the "Advanced" button.
-
-HKEY_LOCAL_MACHINE\SECURITY
-
-Type - "Allow" for all
-Inherited from - "None" for all
-Principal - Access - Applies to
-SYSTEM - Full Control - This key and subkeys
-Administrators - Special - This key and subkeys
-
 HKEY_LOCAL_MACHINE\SOFTWARE
-
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -2236,9 +2127,75 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-
+CREATOR OWNER - Full Control - Subkeys only
+ALL APPLICATION PACKAGES - Read - This key and subkeys
+Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
+If the defaults have not been changed, these are not a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-73255.c" severity="medium" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="RegistryAccessEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Users</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>SYSTEM</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subkeys Only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subkeys Only</Inheritance>
+          <Rights>FullControl</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>ALL APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>ReadKey</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Force>True</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Path>HKLM:\SYSTEM</Path>
+      <RawString>Review the registry permissions for the keys of the HKEY_LOCAL_MACHINE hive noted below.
+If any non-privileged groups such as Everyone, Users, or Authenticated Users have greater than Read permission, this is a finding.
+If permissions are not as restrictive as the default permissions listed below, this is a finding.
+Run "Regedit".
+Right-click on the registry areas noted below.
+Select "Permissions..." and the "Advanced" button.
 HKEY_LOCAL_MACHINE\SYSTEM
-
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -2246,11 +2203,11 @@ Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - Subkeys only
+CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
-
-If the defaults have not been changed, these are not a finding.</RawString>
+If the defaults have not been changed, these are not a finding.
+</RawString>
     </Rule>
     <Rule id="V-73405" severity="medium" conversionstatus="pass" title="SRG-OS-000057-GPOS-00027" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
@@ -3769,7 +3726,7 @@ This setting may prevent a system from being joined to a domain if not configure
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3812,7 +3769,19 @@ By using this IS (which includes any device attached to this IS), you consent to
 -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 
 -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</RawString>
-      <ValueData>See message text below</ValueData>
+      <ValueData>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+
+-At any time, the USG may inspect and seize data stored on this IS.
+
+-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+
+-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+
+-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants.  Such communications and work product are private and confidential.  See User Agreement for details.</ValueData>
       <ValueName>LegalNoticeText</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -3837,7 +3806,7 @@ Value: See message title options below
 If an organization-defined title is used, it can in no case contravene or modify the language of the banner text required in WN16-SO-000150.
 
 Automated tools may only search for the titles defined above. If an organization-defined title is used, a manual review will be required.</RawString>
-      <ValueData>See message title options below</ValueData>
+      <ValueData>DoD Notice and Consent Banner</ValueData>
       <ValueName>LegalNoticeCaption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -4147,6 +4116,25 @@ Type: REG_DWORD
 Value: 0x00000000 (0)</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowOnlineID</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-73685" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
+
+Value Name: SupportedEncryptionTypes
+
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)</RawString>
+      <ValueData>2147483640</ValueData>
+      <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-73687" severity="high" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="xRegistry">
@@ -4716,7 +4704,7 @@ If any accounts or groups are granted the "Access Credential Manager as a truste
       <Constant>SeNetworkLogonRight</Constant>
       <DisplayName>Access this computer from the network</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,- Authenticated Users</Identity>
+      <Identity>Administrators,Authenticated Users</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4771,7 +4759,7 @@ Passwords for accounts with this user right must be protected as highly privileg
       <Constant>SeInteractiveLogonRight</Constant>
       <DisplayName>Allow log on locally</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4797,7 +4785,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeBackupPrivilege</Constant>
       <DisplayName>Back up files and directories</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4823,7 +4811,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeCreatePagefilePrivilege</Constant>
       <DisplayName>Create a pagefile</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4867,7 +4855,7 @@ Passwords for application accounts with this user right must be protected as hig
       <Constant>SeCreateGlobalPrivilege</Constant>
       <DisplayName>Create global objects</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,- Service,- Local Service,- Network Service</Identity>
+      <Identity>Administrators,Service,Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4912,10 +4900,10 @@ If any accounts or groups are granted the "Create permanent shared objects" user
       <Constant>SeCreateSymbolicLinkPrivilege</Constant>
       <DisplayName>Create symbolic links</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,{Hyper-V}</Identity>
+      <Identity>Administrators,{Hyper-V}</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '^(- Administrators,NT Virtual Machine\\Virtual Machines|- Administrators)$'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
@@ -4932,7 +4920,7 @@ Systems that have the Hyper-V role will also have "Virtual Machines" given this 
       <Constant>SeDebugPrivilege</Constant>
       <DisplayName>Debug programs</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,Passwords for application accounts with this user right must be protected as highly privileged accounts.</Identity>
+      <Identity>Administrators,Passwords for application accounts with this user right must be protected as highly privileged accounts.</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4960,7 +4948,7 @@ Passwords for application accounts with this user right must be protected as hig
       <Constant>SeDenyNetworkLogonRight</Constant>
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <Force>False</Force>
-      <Identity>- Enterprise Admins group,- Domain Admins group,Local account,- Guests group</Identity>
+      <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -4988,7 +4976,7 @@ Note: These are built-in security groups. "Local account" is more restrictive bu
       <Constant>SeDenyBatchLogonRight</Constant>
       <DisplayName>Deny log on as a batch job</DisplayName>
       <Force>False</Force>
-      <Identity>- Enterprise Admins Group,- Domain Admins Group,- Guests Group</Identity>
+      <Identity>Enterprise Admins,Domain Admins,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5013,7 +5001,7 @@ All Systems:
       <Constant>SeDenyServiceLogonRight</Constant>
       <DisplayName>Deny log on as a service</DisplayName>
       <Force>True</Force>
-      <Identity>- Enterprise Admins Group,- Domain Admins Group</Identity>
+      <Identity>Enterprise Admins,Domain Admins</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5036,7 +5024,7 @@ If any accounts or groups are defined for the "Deny log on as a service" user ri
       <Constant>SeDenyInteractiveLogonRight</Constant>
       <DisplayName>Deny log on locally</DisplayName>
       <Force>False</Force>
-      <Identity>- Enterprise Admins Group,- Domain Admins Group,- Guests Group</Identity>
+      <Identity>Enterprise Admins,Domain Admins,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5061,7 +5049,7 @@ All Systems:
       <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
       <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
       <Force>False</Force>
-      <Identity>- Enterprise Admins group,- Domain Admins group,- Local account,- Guests group</Identity>
+      <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5107,7 +5095,7 @@ If any accounts or groups are granted the "Enable computer and user accounts to 
       <Constant>SeRemoteShutdownPrivilege</Constant>
       <DisplayName>Force shutdown from a remote system</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5125,7 +5113,7 @@ If any accounts or groups other than the following are granted the "Force shutdo
       <Constant>SeAuditPrivilege</Constant>
       <DisplayName>Generate security audits</DisplayName>
       <Force>True</Force>
-      <Identity>- Local Service,- Network Service</Identity>
+      <Identity>Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5152,7 +5140,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeImpersonatePrivilege</Constant>
       <DisplayName>Impersonate a client after authentication</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators,- Service,- Local Service,- Network Service</Identity>
+      <Identity>Administrators,Service,Local Service,Network Service</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5181,7 +5169,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
       <DisplayName>Increase scheduling priority</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5207,7 +5195,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeLoadDriverPrivilege</Constant>
       <DisplayName>Load and unload device drivers</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5249,7 +5237,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeSecurityPrivilege</Constant>
       <DisplayName>Manage auditing and security log</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5277,7 +5265,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeSystemEnvironmentPrivilege</Constant>
       <DisplayName>Modify firmware environment values</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5295,7 +5283,7 @@ If any accounts or groups other than the following are granted the "Modify firmw
       <Constant>SeManageVolumePrivilege</Constant>
       <DisplayName>Perform volume maintenance tasks</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5313,7 +5301,7 @@ If any accounts or groups other than the following are granted the "Perform volu
       <Constant>SeProfileSingleProcessPrivilege</Constant>
       <DisplayName>Profile single process</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5331,7 +5319,7 @@ If any accounts or groups other than the following are granted the "Profile sing
       <Constant>SeRestorePrivilege</Constant>
       <DisplayName>Restore files and directories</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5357,7 +5345,7 @@ The application account must meet requirements for application account passwords
       <Constant>SeTakeOwnershipPrivilege</Constant>
       <DisplayName>Take ownership of files or other objects</DisplayName>
       <Force>True</Force>
-      <Identity>- Administrators</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -5395,8 +5383,8 @@ If the organization has not documented the roles and features required for the s
 
 The PowerShell command "Get-WindowsFeature" will list all roles and features with an "Install State".</RawString>
     </Rule>
-    <Rule id="V-73287" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73287" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>Fax</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5409,8 +5397,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73289" severity="medium" conversionstatus="fail" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73289" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+      <FeatureName>Web-Ftp-Service</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5427,8 +5415,8 @@ An Installed State of "Available" or "Removed" is not a finding.
 
 If the system has the role of an FTP server, this must be documented with the ISSO.</RawString>
     </Rule>
-    <Rule id="V-73291" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73291" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>PNRP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5441,8 +5429,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73293" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73293" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>Simple-TCPIP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5455,7 +5443,21 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73295" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+    <Rule id="V-73295.a" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+      <FeatureName>Telnet-Client</FeatureName>
+      <InstallState>Absent</InstallState>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open "PowerShell".
+
+Enter "Get-WindowsFeature | Where Name -eq Telnet-Client".
+
+If "Installed State" is "Installed", this is a finding.
+
+An Installed State of "Available" or "Removed" is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-73295.b" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
       <FeatureName>TelnetClient</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5469,8 +5471,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73297" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73297" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>TFTP-Client</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5499,8 +5501,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73301" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
+    <Rule id="V-73301" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
+      <FeatureName>PowerShell-v2</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5515,6 +5517,22 @@ An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
   <WmiRule dscresourcemodule="PSDesiredStateConfiguration">
+    <Rule id="V-73239" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Script">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM Win32_OperatingSystem</Query>
+      <RawString>Open "Command Prompt".
+
+Enter "winver.exe".
+
+If the "About Windows" dialog box does not display "Microsoft Windows Server Version 1607 (Build 14393.xxx)" or greater, this is a finding.
+
+Preview versions must not be used in a production environment.</RawString>
+      <Value>10.0.14393</Value>
+    </Rule>
     <Rule id="V-73247" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="Script">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-match</Operator>

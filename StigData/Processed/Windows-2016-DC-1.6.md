@@ -82,7 +82,6 @@
     V-73231 +
     V-73235 +
     V-73237 +
-    V-73239 + DONE Windows Version Microsoft Windows Server Version 1607 (Build 14393.xxx)
     V-73241 +
     V-73261 +
     V-73263 +
@@ -145,7 +144,7 @@
     V-73509.a +
     V-73509.b +
     V-73511
-    V-73513.a - Device Guard | org setting needs to be fixed
+    V-73513.a - Device Guard | org setting needs to be fixed These should be split into registry and script rules for complete coverage
     V-73513.b - Device Guard | org setting needs to be fixed
     V-73515   - Device Guard | org setting needs to be fixed
     V-73517   - Device Guard | org setting needs to be fixed
@@ -197,7 +196,7 @@
     V-73639   +
     V-73641   +
     V-73643   +
-    V-73645   - OrganizationValueTestString is missing
+    V-73645   + DONE OrganizationValueTestString is missing
     V-73647   + DONE Needs to be hard coded LegalNoticeText
     V-73649   + DONE needs hard coded LegalNoticeCaption
     V-73653   +
@@ -294,6 +293,7 @@
 
 ## WmiRule
 
+    V-73239 +
     V-73247 +
 
 ```powershell
