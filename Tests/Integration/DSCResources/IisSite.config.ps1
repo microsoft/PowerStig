@@ -46,7 +46,7 @@ Configuration IisSite_config
                 }
                 if ($null -ne $SkipRuleType)
                 {
-                    " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
                 })
             }")
         )
