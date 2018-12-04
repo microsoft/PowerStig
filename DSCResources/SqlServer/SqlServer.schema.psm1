@@ -6,7 +6,7 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the SQL STIG settings
+        A composite DSC resource to manage the SQL STIG settings.
 
     .PARAMETER SqlVersion
         The version of SQL being used E.g. 'Server2012'
