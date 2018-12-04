@@ -126,6 +126,6 @@ Configuration SqlServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '11.4.0.0'
-    . "$resourcePath\SqlServer.ScriptQuery.ps1"
+    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '12.1.0.0'
+    . "$resourcePath\windows.SqlScriptQuery.ps1"
 }
