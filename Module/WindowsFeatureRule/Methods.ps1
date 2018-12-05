@@ -50,7 +50,7 @@ function Get-WindowsFeatureName
                 $matches = $checkContent | Select-String -Pattern $regularExpression.IfTheApplicationExists
                 $windowsFeatureName += (($matches.Matches.Value | Select-String -Pattern ([RegularExpression]::TextBetweenQuotes)).Matches.Value -replace '"').Trim()
             }
-            { $PSItem -match 'telnet' }
+            { $PSItem -match 'Telnet Client' }
             {
                 $windowsFeatureName += 'TelnetClient'
             }

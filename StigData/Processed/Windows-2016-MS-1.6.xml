@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/3/2018">
+<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/5/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5443,22 +5443,8 @@ If "Installed State" is "Installed", this is a finding.
 
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
-    <Rule id="V-73295.a" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
+    <Rule id="V-73295" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
       <FeatureName>Telnet-Client</FeatureName>
-      <InstallState>Absent</InstallState>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "PowerShell".
-
-Enter "Get-WindowsFeature | Where Name -eq Telnet-Client".
-
-If "Installed State" is "Installed", this is a finding.
-
-An Installed State of "Available" or "Removed" is not a finding.</RawString>
-    </Rule>
-    <Rule id="V-73295.b" severity="medium" conversionstatus="pass" title="SRG-OS-000096-GPOS-00050" dscresource="WindowsFeature">
-      <FeatureName>TelnetClient</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
