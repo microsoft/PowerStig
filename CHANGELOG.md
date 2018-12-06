@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed Issue [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules
+
 ## 2.3.0.0
 
 * Windows 10 Fixes
