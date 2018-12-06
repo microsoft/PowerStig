@@ -76,15 +76,14 @@ try
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscRegistryRuleXml = $dscXml.DISASTIG.RegistryRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
-                $ExpectedCount = ($($dscRegistryRuleXml.Count) + $($SkipRule.Count)) # - 1
-                #$dscXml = ($($dscXml.Count) + $($ManualRule.Count)+  $($SkipRule.Count))
-
+                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
+                $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
+               
                 $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $ExpectedCount Skipped settings" {
-                    $dscMof.count | Should Be $ExpectedCount
+                It "Should have $dscXml Skipped settings" {
+                    $dscMof.count | Should Be $dscXml
                 }
             }
         
