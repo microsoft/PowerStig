@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added the following STIGS
+  * Windows Defender Antivirus V1R4
+
 ## 2.3.0.0
 
 * Windows 10 Fixes
