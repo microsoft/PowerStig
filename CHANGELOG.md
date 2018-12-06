@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed (#212) SDDL strings are incorrectly split in the xRegistry resource
+
 ## 2.3.0.0
 
 * Windows 10 Fixes
