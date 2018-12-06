@@ -7,16 +7,19 @@ foreach ( $rule in $rules )
 {
     if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
-        $valueData = $rule.ValueData.Split("{;}")
+        If ($rule.ValueType -eq 'MultiString')
+        {
+            $rule.ValueData = $rule.ValueData.Split("{;}")
+        }
 
         xRegistry (Get-ResourceTitle -Rule $rule)
         {
             Key       = $rule.Key
             ValueName = $rule.ValueName
-            ValueData = $valueData
+            ValueData = $rule.ValueData
             ValueType = $rule.ValueType
             Ensure    = $rule.Ensure
-            Force     = $true  
+            Force     = $true
         }
     }
 }
