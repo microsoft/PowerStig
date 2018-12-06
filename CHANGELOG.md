@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-* Fixed (#212) SDDL strings are incorrectly split in the xRegistry resource
+* Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
+* Fixed [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules
 
 ## 2.3.0.0
 
