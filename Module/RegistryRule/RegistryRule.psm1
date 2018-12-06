@@ -410,11 +410,15 @@ Class RegistryRule : Rule
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and
-                $CheckContent -Match "HKLM|HKCU"
+                $CheckContent -Match "HKLM|HKCU" -and
+                $CheckContent -NotMatch 'MpEngine' -and
+                $CheckContent -NotMatch 'applicable to unclassified systems'
             ) -or
             (
                 $CheckContent -Match "HKLM|HKCU" -and
-                $CheckContent -Match "REG_DWORD"
+                $CheckContent -Match "REG_DWORD" -and
+                $CheckContent -NotMatch 'MpEngine' -and
+                $CheckContent -NotMatch 'applicable to unclassified systems'
             )
         )
         {
