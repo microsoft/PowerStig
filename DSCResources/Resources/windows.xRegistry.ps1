@@ -9,18 +9,18 @@ foreach ( $rule in $rules )
     {
         If ($rule.ValueType -eq 'MultiString')
         {
-            $ValueData = $rule.ValueData.Split("{;}")
+            $valueData = $rule.ValueData.Split("{;}")
         }
         else
         {
-            $ValueData = $rule.ValueData
+            $valueData = $rule.ValueData
         }
 
         xRegistry (Get-ResourceTitle -Rule $rule)
         {
             Key       = $rule.Key
             ValueName = $rule.ValueName
-            ValueData = $ValueData
+            ValueData = $valueData
             ValueType = $rule.ValueType
             Ensure    = $rule.Ensure
             Force     = $true
