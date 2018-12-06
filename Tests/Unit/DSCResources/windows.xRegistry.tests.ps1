@@ -53,7 +53,6 @@ Describe 'xRegistry call' {
     {
         Context "$($testData.ValueType)" {
 
-            . $configFile
             function Get-RuleClassData {}
             Mock Get-RuleClassData -MockWith {$testData.testXml.Rule}
 
