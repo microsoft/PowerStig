@@ -12,20 +12,38 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         SqlServer Instance
         {
-            SqlVersion     = $SqlVersion
-            SqlRole        = $SqlRole
-            Stigversion    = $StigVersion
+            SqlVersion     = '$SqlVersion'
+            SqlRole        = '$SqlRole'
+            StigVersion  = '$StigVersion'
             ServerInstance = 'TestServer'
-        }
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }
 
@@ -43,20 +61,38 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         SqlServer Database
         {
-            SqlVersion     = $SqlVersion
-            SqlRole        = $SqlRole
-            Stigversion    = $StigVersion
+            SqlVersion     = '$SqlVersion'
+            SqlRole        = '$SqlRole'
+            StigVersion  = '$StigVersion'
             ServerInstance = 'TestServer'
             Database       = 'TestDataBase'
-        }
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }
