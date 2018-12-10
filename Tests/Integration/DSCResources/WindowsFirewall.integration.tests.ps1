@@ -56,7 +56,7 @@ try
 
         Describe "Windows Firewall $($stig.stigVersion) Single SkipRule/RuleType mof output"{
             $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $SkipRuleType = "Registry"
+            $SkipRuleType = "RegistryRule"
 
             It 'Should compile the MOF without throwing' {
                 {
