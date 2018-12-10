@@ -16,19 +16,37 @@ Configuration WindowsDnsServer_config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $DomainName
+        $DomainName,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         WindowsDnsServer BaseLineSettings
         {
-            OsVersion   = $OsVersion
-            StigVersion = $StigVersion
-            ForestName  = $ForestName
-            DomainName  = $DomainName
-        }
+            OsVersion  = '$OsVersion' 
+            StigVersion  = '$StigVersion'
+            ForestName  = '$ForestName'
+            DomainName  = '$DomainName'
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }

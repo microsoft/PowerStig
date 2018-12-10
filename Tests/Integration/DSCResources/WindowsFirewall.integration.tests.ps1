@@ -86,10 +86,6 @@ try
                     $dscMof.count | Should Be $dscXml
                 }
             }
-        
-        
-        
-        
         }
     }
     #endregion Tests
