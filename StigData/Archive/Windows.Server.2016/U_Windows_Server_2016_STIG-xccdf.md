@@ -11,3 +11,6 @@ RuleId::LineNumber(ZeroIndex)::Updated line
 ## V1R4
 
 ## V1R6
+
+* V-73509::
+* V-73591::3::Registry Path: \SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
