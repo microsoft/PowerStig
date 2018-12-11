@@ -4,16 +4,34 @@ Configuration Firefox_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         Firefox FirefoxConfiguration
         {
-            Stigversion = $StigVersion
-        }
+            Stigversion = '$StigVersion'
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }

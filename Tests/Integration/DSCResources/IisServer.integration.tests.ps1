@@ -14,6 +14,8 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
+        [xml] $dscXml = Get-Content -Path $stig.Path
+        
         Describe "IIS Server $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
@@ -67,7 +69,7 @@ try
 
 
                 It "Should have $($dscXml.Count) WebConfigurationPropertyRule settings" {
-                    $hasAllSettings | Should -Be $true
+                    $hasAllSettings | Should Be $true
                 }
             }
 
@@ -90,6 +92,45 @@ try
                 }
             }
         }
+        ######################
+        Describe "IIS Server $($stig.StigVersion) Single SkipRule/RuleType mof output" {
+
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id
+            $SkipRuleType = "MimeTypeRule"
+
+            It 'Should compile the MOF without throwing' {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                     -OsVersion $stig.TechnologyVersion  `
+                     -StigVersion $stig.StigVersion `
+                     -OutputPath $TestDrive `
+                     -LogPath $TestDrive `
+                     -SkipRule $SkipRule `
+                     -SkipRuleType $SkipRuleType
+                } | Should not throw
+            }
+
+            #region Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+
+            Context 'Skip check' {
+
+                #region counts how many Skips there are and how many there should be.
+                $dscXml = $dscXml.DISASTIG.MimeTypeRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
+                $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
+
+                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+
+                It "Should have $dscXml Skipped settings" {
+                    $dscMof.count | Should Be $dscXml
+                }
+            }
+        }
+##########################
+        
     }
 }
 #endregion Tests

@@ -59,7 +59,7 @@ try
         Describe "OracleJRE 8 $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
             $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
-            $SkipRuleType = "UserRightRule"
+            $SkipRuleType = "FileContentRule"
         
             It 'Should compile the MOF without throwing' {
                 {

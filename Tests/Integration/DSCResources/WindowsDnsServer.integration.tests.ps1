@@ -30,8 +30,6 @@ try
                 } | Should not throw
             }
 
-           # [xml] $dscXml = Get-Content -Path $stig.Path
-
             $configurationDocumentPath = "$TestDrive\localhost.mof"
 
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
@@ -219,8 +217,8 @@ try
 ######################
 Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-    $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.UserRightRule.Rule.id
-    $SkipRuleType = "UserRightRule"
+    $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
+    $SkipRuleType = "DnsServerSettingRule"
 
     It 'Should compile the MOF without throwing' {
         {
@@ -243,9 +241,8 @@ Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) Single Ski
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscXml = $dscXml.DISASTIG.UserRightRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
+                $dscXml = $dscXml.DISASTIG.DnsServerSettingRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
                 $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
-
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 

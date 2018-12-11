@@ -12,17 +12,35 @@ Configuration IisServer_Config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $LogPath
+        $LogPath,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType
     )
 
     Import-DscResource -ModuleName PowerStig
     Node localhost
     {
+        & ([scriptblock]::Create("
         IisServer ServerConfiguration
         {
-            OsVersion   = $OsVersion
-            StigVersion = $StigVersion
-            LogPath     = $LogPath
-        }
+            OsVersion   = '$OsVersion'
+            StigVersion = '$StigVersion'
+            LogPath     = '$LogPath'
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }
