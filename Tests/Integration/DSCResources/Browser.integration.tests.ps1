@@ -14,6 +14,8 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
+        [xml] $dscXml = Get-Content -Path $stig.Path
+
         Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
@@ -21,11 +23,9 @@ try
                     & "$($script:DSCCompositeResourceName)_config" `
                         -BrowserVersion $stig.TechnologyRole `
                         -StigVersion $stig.stigVersion `
-                    -OutputPath $TestDrive
+                        -OutputPath $TestDrive
                 } | Should not throw
             }
-
-            [xml] $dscXml = Get-Content -Path $stig.Path
 
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
@@ -47,6 +47,40 @@ try
 
                 It "Should have $($dscXml.Count) Registry settings" {
                     $hasAllSettings | Should Be $true
+                }
+            }
+        }
+
+        Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule mof output" {
+
+            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+
+            It 'Should compile the MOF without throwing' {
+                {
+                & "$($script:DSCCompositeResourceName)_config" `
+                -BrowserVersion $stig.TechnologyRole `
+                -StigVersion $stig.stigVersion `
+                -SkipRule $SkipRule `
+                -SkipRuleType $SkipRuleType `
+                -OutputPath $TestDrive
+                } | Should not throw
+            }       
+
+            #region Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+
+            Context 'Skip check' {
+
+                #region counts how many Skips there are and how many there should be.
+                $dscXml = $($SkipRule.Count)
+
+                [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+
+                It "Should have $dscXml Skipped settings" {
+                    $dscMof.count | Should Be $dscXml
                 }
             }
         }

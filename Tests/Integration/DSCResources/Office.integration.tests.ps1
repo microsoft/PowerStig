@@ -51,10 +51,9 @@ try
             }
         }
     }
-        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
+        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule mof output" {
 
             $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $SkipRuleType = "RegistryRule"
         
             It 'Should compile the MOF without throwing' {
                 {
@@ -75,10 +74,9 @@ try
                     Context 'Skip check' {
         
                         #region counts how many Skips there are and how many there should be.
-                        $dscXml = $dscXml.DISASTIG.RegistryRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
-                        $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
+                        $dscXml = $($SkipRule.Count)
         
-                        $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                        [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                         #endregion
         
                         It "Should have $dscXml Skipped settings" {
