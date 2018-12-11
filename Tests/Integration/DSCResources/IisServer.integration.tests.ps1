@@ -28,8 +28,6 @@ try
                 } | Should not throw
             }
 
-            [xml] $dscXml = Get-Content -Path $stig.Path
-
             $configurationDocumentPath = "$TestDrive\localhost.mof"
 
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
@@ -37,7 +35,7 @@ try
             Context 'IisLoggingRule' {
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.IisLoggingRule.Rule
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xIisLogging\]"}
+                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[xIisLogging\]"}
 
                 foreach ($setting in $dscXml)
                 {
@@ -92,11 +90,11 @@ try
                 }
             }
         }
-        ######################
+
         Describe "IIS Server $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
             $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id
-            $SkipRuleType = "MimeTypeRule"
+            $SkipRuleType = "WebConfigurationPropertyRule"
 
             It 'Should compile the MOF without throwing' {
                 {
@@ -118,7 +116,7 @@ try
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscXml = $dscXml.DISASTIG.MimeTypeRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
+                $dscXml = $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
                 $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
 
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
@@ -129,7 +127,6 @@ try
                 }
             }
         }
-##########################
         
     }
 }

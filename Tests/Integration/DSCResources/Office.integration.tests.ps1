@@ -18,39 +18,40 @@ try
         
         Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
-        It 'Should compile the MOF without throwing' {
-            {
-                & "$($script:DSCCompositeResourceName)_config" `
-                -OfficeApp $stig.TechnologyRole `
-                -StigVersion $stig.stigVersion `
-                -OutputPath $TestDrive
-            } | Should Not throw
-        }
+            It 'Should compile the MOF without throwing' {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                    -OfficeApp $stig.TechnologyRole `
+                    -StigVersion $stig.stigVersion `
+                    -OutputPath $TestDrive
+                } | Should Not throw
+            }
 
-        $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
 
-        $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-        Context 'Registry' {
-            $hasAllSettings = $true
-            $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
-            $dscMof = $instances |
+            Context 'Registry' {
+                $hasAllSettings = $true
+                $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
+                $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
 
-            foreach ($setting in $dscXml)
-            {
-                if (-not ($dscMof.ResourceID -match $setting.Id) )
-                {
-                    Write-Warning -Message "Missing registry Setting $($setting.Id)"
-                    $hasAllSettings = $false
+                foreach ($setting in $dscXml)
+                {   
+                     if (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing registry Setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
+                }
+
+                It "Should have $($dscXml.Count) Registry settings" {
+                    $hasAllSettings | Should Be $true
                 }
             }
-
-            It "Should have $($dscXml.Count) Registry settings" {
-                $hasAllSettings | Should Be $true
-            }
         }
-    }
+
         Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule mof output" {
 
             $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
@@ -83,7 +84,7 @@ try
                             $dscMof.count | Should Be $dscXml
                         }
                     }
-                }      
+        }      
     }
 
 #endregion Tests
