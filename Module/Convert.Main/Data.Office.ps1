@@ -29,7 +29,7 @@ $global:SingleLineRegistryValueName += [ordered]@{
           Select = '(.*(?<=ty\\)(.*)(?<=))'
      }
      Twelve   = @{
-          Match  = 'the value of between'
+          Match  = 'a value of between'
           Select = '((?<=gs\\)(.*)(?<=Len))'
      }
      Thirteen = @{
