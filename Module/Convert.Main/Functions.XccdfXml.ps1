@@ -111,15 +111,13 @@ function ConvertFrom-StigXccdf
         $spInclude += "*.Office.*"
     }
     # Remove-Variable SingleLine* -Scope Script
-    $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude
+    $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude | Sort-Object -Descending
     Clear-Variable SingleLine* -Scope Global
     foreach ($supportFile in $spSupportFileList)
     {
         Write-Verbose "Loading $($supportFile.FullName)"
         . $supportFile.FullName
-    }
-    Write-Debug 'Stopping to view variables'
-    
+    }    
 
     return Get-StigRuleList @stigRuleParams
 }
