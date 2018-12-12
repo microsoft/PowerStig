@@ -88,7 +88,6 @@ function Get-SLRegistryPath
     
     foreach ($i in $Hashtable.Keys) 
     {  
-
         if ($Hashtable.Item($i).GetType().Name -eq 'OrderedDictionary') 
         {
             $innerValue = Get-SLRegistryPath -CheckContent $fullRegistryPath -Hashtable $Hashtable.Item($i)
@@ -189,7 +188,8 @@ function Get-RegistryValueTypeFromSingleLineStig
         }
 
         $value
-    }   
+    } 
+
     return $value
 }
 
@@ -253,7 +253,7 @@ function Get-RegistryValueTypeFromSLStig
                 {
                     #$valueName = [regex]::Unescape($valueName)
                     $regEx =  $Hashtable.Item($i) -f [regex]::escape($valueName)
-                    $result = $CheckContent | Select-String -Pattern $regEx
+                    $result = Select-String -InputObject $CheckContent -Pattern $regEx
                 }
                
                 if (-not $result.Matches)
@@ -281,7 +281,7 @@ function Get-RegistryValueTypeFromSLStig
     {
         $valueType = $valueType.Replace('=', '').Replace('"', '')
     
-        if (-not [String]::IsNullOrWhiteSpace( $valueType.Trim()))
+        if (-not [String]::IsNullOrWhiteSpace($valueType.Trim()))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Type : $valueType"
 
@@ -458,7 +458,8 @@ function Get-RegistryValueDataFromSingleStig
         }
 
         $value
-    }   
+    } 
+    
     return $value
 }
 
