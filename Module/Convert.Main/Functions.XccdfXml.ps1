@@ -100,7 +100,6 @@ function ConvertFrom-StigXccdf
     }
     # Use $stigBenchmarkXml.id to determine the stig file
     $testing = Split-BenchmarkId $stigBenchmarkXml.id
-    Write-Debug $testing.TechnologyRole
 
     # Query TechnologyRole and map to file
     $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
