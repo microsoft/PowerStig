@@ -3,7 +3,6 @@
 $global:SingleLineRegistryPath += 
      [ordered]@{
          #     Five = [ordered]@{ Match = 'the policy value'; Select = '(?<=")(.*)(?="\sis)' };
-<<<<<<< HEAD
           Office1 = [ordered]@{
                Match='Configure trusted add-ins';
                Select='(.*(?<=ty\\)(.*)(?<=))'
@@ -26,7 +25,6 @@ $global:SingleLineRegistryPath +=
           }
      }
 }
-=======
 
          Office1 = [ordered]@{
             Match = 'Configure trusted add-ins';
@@ -49,7 +47,6 @@ $global:SingleLineRegistryPath +=
             Select = '(?<=the registry value\s.)(.*)(?=.\We)'
             }
     }
->>>>>>> b5aa2f5d3f7d51c7621e56379efb966b37dce543
 
 $global:SingleLineRegistryValueName +=
      [ordered]@{
