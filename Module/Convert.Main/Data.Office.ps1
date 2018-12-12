@@ -3,6 +3,7 @@
 $global:SingleLineRegistryPath += 
      [ordered]@{
          #     Five = [ordered]@{ Match = 'the policy value'; Select = '(?<=")(.*)(?="\sis)' };
+<<<<<<< HEAD
           Office1 = [ordered]@{
                Match='Configure trusted add-ins';
                Select='(.*(?<=ty\\)(.*)(?<=))'
@@ -25,6 +26,30 @@ $global:SingleLineRegistryPath +=
           }
      }
 }
+=======
+
+         Office1 = [ordered]@{
+            Match = 'Configure trusted add-ins';
+            Select = '(.*(?<=ty\\)(.*)(?<=))'
+            };
+            Office2 = [ordered]@{
+            Match = 'outlook\\security';
+            Select = '((HKLM|HKCU).*\\security)'
+            };
+            Office3 = [ordered]@{
+            Match = 'Message Plain Format Mime';
+            Select = '((?<=il\\)(.*)(?<=e\s))'
+            };
+            Office4 = [ordered]@{
+            Match = 'the value of between';
+            Select = '((?<=gs\\)(.*)(?<=Len))'
+            };
+            Office5 = [ordered]@{
+            Match = 'FileExtensionsRemoveLevel';
+            Select = '(?<=the registry value\s.)(.*)(?=.\We)'
+            }
+    }
+>>>>>>> b5aa2f5d3f7d51c7621e56379efb966b37dce543
 
 $global:SingleLineRegistryValueName +=
      [ordered]@{

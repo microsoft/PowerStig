@@ -1,5 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
+<<<<<<< HEAD
 $global:SingleLineRegistryPath += [ordered]@{
      Criteria = [ordered]@{ 
           Contains = 'Criteria:'
@@ -12,6 +13,26 @@ $global:SingleLineRegistryPath += [ordered]@{
                Select = '((HKLM|HKCU).*(?=\sis))'
           } 
      };
+=======
+$global:SingleLineRegistryPath += 
+     [ordered]@{
+<#         Office2 = [ordered]@{
+            Match = 'outlook\\security'; 
+            Select   = '((HKLM|HKCU).*\\security)' 
+        }; #>
+        Criteria = [ordered]@{ 
+                        Contains = 'Criteria:'; 
+                        After    = [ordered]@{ 
+                                        Match  = '((HKLM|HKCU).*(?=Criteria:))';
+                                        Select = '((HKLM|HKCU).*(?=Criteria:))'; 
+                                        
+                                    };
+                        Before   = [ordered]@{
+                                        Match = 'Criteria:.*(HKLM|HKCU)'
+                                        Select = '((HKLM|HKCU).*(?=\sis))'
+                                    } 
+                    };
+>>>>>>> b5aa2f5d3f7d51c7621e56379efb966b37dce543
 
      Root     = [ordered]@{ 
           Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE)\\'; 
@@ -28,7 +49,7 @@ $global:SingleLineRegistryValueName += [ordered]@{
      One = @{ Select = '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))' };
      Two = [ordered]@{ Match = 'If the.+(registry key does not exist)'; Select = '"[\s\S]*?"' };
      Three = @{ Select = '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)' };
-     Four = @{ Match = 'a value of between'; Select = '((?<=gs\\)(.*)(?<=Len))' };
+    #  Four = @{ Match = 'a value of between'; Select = '((?<=gs\\)(.*)(?<=Len))' };
      Five = @{ Select = '((?<=If the value\s)(.*)(?=is\sR))' };
      Six = [ordered]@{ Match = 'the policy value'; Select = '(?<=")(.*)(?="\sis)' };
      Seven = @{ Select = '((?<=for\s).*)' };
