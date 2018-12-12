@@ -51,10 +51,10 @@ try
                 }
             }
         }
- #########################       
+    
         Describe "SqlServer $($stig.TechnologyRole) $($stig.TechnologyVersion) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
             $SkipRuleType = "DocumentRule"
         
             It 'Should compile the MOF without throwing' {
@@ -79,7 +79,6 @@ try
                 #region counts how many Skips there are and how many there should be.
                 $dscXml = $dscXml.DISASTIG.DocumentRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
                 $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
-        
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
         
@@ -87,7 +86,43 @@ try
                     $dscMof.count | Should Be $dscXml
                 }
             }
-        }   
+        }
+
+        Describe "SqlServer $($stig.TechnologyRole) $($stig.TechnologyVersion) $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
+            
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id -Count 2
+            $SkipRuleType = @('DocumentRule')
+            
+            It 'Should compile the MOF without throwing' {
+                {
+                    & "$($script:DSCCompositeResourceName)$($stig.TechnologyRole)_config" `
+                        -SqlVersion $stig.TechnologyVersion `
+                        -SqlRole $stig.TechnologyRole`
+                        -StigVersion $stig.StigVersion `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
+                        -OutputPath $TestDrive
+                } | Should not throw
+            }
+            
+            #region Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+            
+            Context 'Skip check' {
+                
+                #region counts how many Skips there are and how many there should be.
+                $dscDocumentTypeRuleXml = $dscXml.DISASTIG.DocumentRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
+                $expectedSkipRuleCount = ($($dscDocumentTypeRuleXml.Count) + $($SkipRule.Count)) 
+                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+              
+                It "Should have $expectedSkipRuleCount Skipped settings" {
+                    $dscMof.count | Should Be $expectedSkipRuleCount
+                }
+            }
+        }
     }
     #endregion Tests
 }

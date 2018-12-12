@@ -27,8 +27,6 @@ try
                 } | Should Not throw
             }
 
-           # [xml] $dscXml = Get-Content -Path $stig.Path
-
             $configurationDocumentPath = "$TestDrive\localhost.mof"
 
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
@@ -55,7 +53,7 @@ try
         }
 
         Describe "Windows Firewall $($stig.stigVersion) Single SkipRule mof output"{
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
 
             It 'Should compile the MOF without throwing' {
                 {
@@ -76,12 +74,43 @@ try
 
                 #region counts how many Skips there are and how many there should be.
                 $dscXml = $($SkipRule.Count)
-               
                 [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"} 
                 #endregion
 
                 It "Should have $dscXml Skipped settings" {
                     $dscMof.count | Should Be $dscXml
+                }
+            }
+        }
+        
+        Describe "Windows Firewall $($stig.stigVersion) Multiple SkipRule mof output" {
+            
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            
+            It 'Should compile the MOF without throwing' {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -StigVersion $stig.StigVersion `
+                        -OutputPath $TestDrive `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType 
+                } | Should not throw
+            }
+            
+            #region Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+            
+            Context 'Skip check' {
+                
+                #region counts how many Skips there are and how many there should be.
+                $expectedSkipRuleCount = ($($SkipRule.Count))
+                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+                
+                It "Should have $expectedSkipRuleCount Skipped settings" {
+                    $dscMof.count | Should Be $expectedSkipRuleCount
                 }
             }
         }

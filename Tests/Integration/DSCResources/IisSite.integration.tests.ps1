@@ -99,70 +99,81 @@ try
             }
         }
         Describe "IIS Site $($stig.StigVersion) Single SkipRule/RuleType mof output" {
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
+            
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
             $SkipRuleType = "IisLoggingRule"
             
             It 'Should compile the MOF without throwing' {
-               {
-                   & "$($script:DSCCompositeResourceName)_config" `
-                       -WebAppPool $WebAppPool `
-                       -WebsiteName $websiteName `
-                       -OsVersion $stig.TechnologyVersion `
-                       -StigVersion $stig.StigVersion `
-                       -OutputPath $TestDrive `
-                       -SkipRule $SkipRule `
-                       -SkipRuleType $SkipRuleType `
-               } | Should not throw
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -WebAppPool $WebAppPool `
+                        -WebsiteName $websiteName `
+                        -OsVersion $stig.TechnologyVersion `
+                        -StigVersion $stig.StigVersion `
+                        -OutputPath $TestDrive `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
+                } | Should not throw
             }
+            
             #region Gets the mof content
-           $configurationDocumentPath = "$TestDrive\localhost.mof"
-           $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-           #endregion
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+            
             Context 'Skip check' {
+                
                 #region counts how many Skips there are and how many there should be.
-               $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
-               $expectedSkipRuleCount = ($($dscIisLoggingRuleXml.Count) + $($SkipRule.Count))
-               $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
-               #endregion
+                $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
+                $expectedSkipRuleCount = ($($dscIisLoggingRuleXml.Count) + $($SkipRule.Count))
+                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+                
                 It "Should have $expectedSkipRuleCount Skipped settings" {
-                   $dscMof.count | Should Be $expectedSkipRuleCount
+                    $dscMof.count | Should Be $expectedSkipRuleCount
                 }
             }
         }
         Describe "IIS Site $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id -Count 2
+            
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id -Count 2
             $SkipRuleType = @('WebAppPoolRule','IisLoggingRule')
+            
             It 'Should compile the MOF without throwing' {
                 {
-                   & "$($script:DSCCompositeResourceName)_config" `
-                       -WebsiteName $websiteName `
-                       -OsVersion $stig.TechnologyVersion `
-                       -StigVersion $stig.StigVersion `
-                       -OutputPath $TestDrive `
-                       -SkipRule $SkipRule `
-                       -SkipRuleType $SkipRuleType `
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -WebsiteName $websiteName `
+                        -OsVersion $stig.TechnologyVersion `
+                        -StigVersion $stig.StigVersion `
+                        -OutputPath $TestDrive `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
                 } | Should not throw
             }
+            
             #region Gets the mof content
-           $configurationDocumentPath = "$TestDrive\localhost.mof"
-           $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-           #endregion
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+            
             Context 'Skip check' {
+                
                 #region counts how many Skips there are and how many there should be.
                 $dscWebAppPoolRuleXml = $dscXml.DISASTIG.WebAppPoolRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
-                 $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
+                $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
                 $expectedSkipRuleCount = ($($dscWebAppPoolRuleXml.Count) + $($dscIisLoggingRuleXml.count) + $($SkipRule.Count))
                 $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
-               #endregion
+                #endregion
+                
                 It "Should have $expectedSkipRuleCount Skipped settings" {
-                   $dscMof.count | Should Be $expectedSkipRuleCount
+                    $dscMof.count | Should Be $expectedSkipRuleCount
                 }
             }
         }
     }
     #endregion Tests
 }
-finally 
+finally
 {
     #region FOOTER
     Restore-TestEnvironment -TestEnvironment $TestEnvironment

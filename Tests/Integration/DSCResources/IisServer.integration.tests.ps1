@@ -92,42 +92,75 @@ try
         }
 
         Describe "IIS Server $($stig.StigVersion) Single SkipRule/RuleType mof output" {
-
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id
-            $SkipRuleType = "WebConfigurationPropertyRule"
-
+            
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id
+            $SkipRuleType = "IisLoggingRule"
+            
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                     -OsVersion $stig.TechnologyVersion  `
-                     -StigVersion $stig.StigVersion `
-                     -OutputPath $TestDrive `
-                     -LogPath $TestDrive `
-                     -SkipRule $SkipRule `
-                     -SkipRuleType $SkipRuleType
+                        -OsVersion $stig.TechnologyVersion `
+                        -StigVersion $stig.StigVersion `
+                        -LogPath $TestDrive `
+                        -OutputPath $TestDrive `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
                 } | Should not throw
             }
-
+           
             #region Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
-
+           
             Context 'Skip check' {
-
                 #region counts how many Skips there are and how many there should be.
-                $dscXml = $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule | Where-Object {$_.ConversionStatus -eq "pass"}
-                $dscXml = ($($dscXml.Count) + $($SkipRule.Count))
-
-                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
+                $expectedSkipRuleCount = ($($dscIisLoggingRuleXml.Count) + $($SkipRule.Count))
+                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
-
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should Be $dscXml
+                It "Should have $expectedSkipRuleCount Skipped settings" {
+                    $dscMof.count | Should Be $expectedSkipRuleCount
                 }
             }
         }
         
+        Describe "IIS Server $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
+            
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
+            $SkipRuleType = @('MimeTypeRule','IisLoggingRule')
+           
+            It 'Should compile the MOF without throwing' {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -OsVersion $stig.TechnologyVersion `
+                        -StigVersion $stig.StigVersion `
+                        -LogPath $TestDrive `
+                        -OutputPath $TestDrive `
+                        -SkipRule $SkipRule `
+                        -SkipRuleType $SkipRuleType `
+                } | Should not throw
+            }
+            
+            #region Gets the mof content
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            #endregion
+            
+            Context 'Skip check' {
+               
+                #region counts how many Skips there are and how many there should be.
+                $dscMimeTypeRuleXml = $dscXml.DISASTIG.MimeTypeRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
+                $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
+                $expectedSkipRuleCount = ($($dscMimeTypeRuleXml.Count) + $($dscIisLoggingRuleXml.count) + $($SkipRule.Count))
+                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                #endregion
+                
+                It "Should have $expectedSkipRuleCount Skipped settings" {
+                    $dscMof.count | Should Be $expectedSkipRuleCount
+                }
+            }
+        }
     }
 }
 #endregion Tests
