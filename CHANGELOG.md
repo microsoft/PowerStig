@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Updated Integration tests to include SkipRule/RuleType and Multiple SkipRule/RuleType
+
 ## 2.3.0.0
 
 * Windows 10 Fixes
