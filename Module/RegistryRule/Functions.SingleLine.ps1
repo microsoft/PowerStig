@@ -93,8 +93,9 @@ function Get-SLRegistryPath
         if($innerValue)
         {
             return $innerValue
-            break
         }
+
+        continue
     } 
     else
     {
@@ -129,35 +130,35 @@ function Get-SLRegistryPath
                 
                 $regEx =  '{0}' -f $Hashtable.Item($i)
                 $result = $CheckContent | Select-String -Pattern $regEx
-                $fullRegistryPath = $result.Matches[0].Value
+                $matchedRegistryPath = $result.Matches[0].Value
             }
         }
     }
 }
-if ( -not [String]::IsNullOrEmpty( $fullRegistryPath ) )
+if ( -not [String]::IsNullOrEmpty( $matchedRegistryPath ) )
 {
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]   Found path : $true"
 
-    switch -Wildcard ($fullRegistryPath)
+    switch -Wildcard ($matchedRegistryPath)
     {
-        "*HKLM*" {$fullRegistryPath = $fullRegistryPath -replace "^HKLM", "HKEY_LOCAL_MACHINE"}
+        "*HKLM*" {$matchedRegistryPath = $matchedRegistryPath -replace "^HKLM", "HKEY_LOCAL_MACHINE"}
 
-        "*HKCU*" {$fullRegistryPath = $fullRegistryPath -replace "^HKCU", "HKEY_CURRENT_USER"}
+        "*HKCU*" {$matchedRegistryPath = $matchedRegistryPath -replace "^HKCU", "HKEY_CURRENT_USER"}
 
-        "*Software Publishing Criteria" {$fullRegistryPath = $fullRegistryPath -replace 'Software Publishing Criteria$','Software Publishing'}
+        "*Software Publishing Criteria" {$matchedRegistryPath = $matchedRegistryPath -replace 'Software Publishing Criteria$','Software Publishing'}
     }
 
-    $fullRegistryPath = $fullRegistryPath.ToString().trim(' ', '.')
+    $matchedRegistryPath = $matchedRegistryPath.ToString().trim(' ', '.')
 
-    Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed path : $fullRegistryPath"
+    Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed path : $matchedRegistryPath"
 }
 else
 {
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]   Found path : $false"
-    throw "Registry path was not found in check content."
+    Write-Verbose "Registry path was not found in check content."
 }
 
-return $fullRegistryPath
+return $matchedRegistryPath
 }
 #endregion
 #region Registry Type
