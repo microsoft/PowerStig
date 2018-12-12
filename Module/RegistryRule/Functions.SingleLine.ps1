@@ -250,7 +250,7 @@ function Get-RegistryValueTypeFromSLStig
             { 
                 if ($valueName)
                 {
-                    $valueName = [regex]::Unescape($valueName)
+                    #$valueName = [regex]::Unescape($valueName)
                     $regEx =  $Hashtable.Item($i) -f [regex]::escape($valueName)
                     $result = $CheckContent | Select-String -Pattern $regEx
                 }

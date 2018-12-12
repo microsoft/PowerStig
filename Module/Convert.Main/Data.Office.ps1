@@ -8,11 +8,11 @@ $global:SingleLineRegistryPath +=
                 Match = 'the policy value'; 
                 Select   = '(?<=ty\\)(.*)(?<=)' 
                 };
-        Office2 = [ordered]@{
+<#         Office2 = [ordered]@{
                     Match = 'outlook\\security'; 
                     Select   = '((HKLM|HKCU).*\\security)' 
                 };
-        Office3 = [ordered]@{
+ #>        Office3 = [ordered]@{
                     Match = 'the value for hkcu.*Message\sPlain\sFormat\sMime'; 
                     Select   = '((HKLM|HKCU).*(?=\sis))' 
                 };   
@@ -20,8 +20,8 @@ $global:SingleLineRegistryPath +=
 
 $global:SingleLineRegistryValueName +=
      [ordered]@{
-     Eight = @{ Match = 'If the REG_DWORD'; Select = '((?<=for\s")(.*)(?<="))'}; #Added for Outlook Stig - JJS
-     #Nine = @{ Match = '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))'; Select = '((?<=for\s).*)' };
+     Nine = @{ Match = 'If the REG_DWORD'; Select = '((?<=for\s")(.*)(?<="))'}; #Added for Outlook Stig - JJS
+     Ten = @{ Match = 'Message Plain Format Mime'; Select = '((?<=il\\)(.*)(?<=e\s))'};
      }
 
 $global:SingleLineRegistryValueType +=

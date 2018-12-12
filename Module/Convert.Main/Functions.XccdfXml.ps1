@@ -112,7 +112,7 @@ function ConvertFrom-StigXccdf
         $spInclude += "*.Office.*"
     }
     # Remove-Variable SingleLine* -Scope Script
-    $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude | Sort-Object -Descending
+    $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude
     Clear-Variable SingleLine* -Scope Global
     foreach ($supportFile in $spSupportFileList)
     {
