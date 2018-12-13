@@ -40,7 +40,7 @@
   <OrganizationalSetting id="V-2380" value="5" />
   <!-- Ensure 'V-3373' -le '30' -and 'V-3373' -gt '0'-->
   <OrganizationalSetting id="V-3373" value="30" />
-    <!-- Ensure ''V-3472.a'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
+  <!-- Ensure ''V-3472.a'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
   <OrganizationalSetting id="V-3472.a" value="NT5DS" />
   <!-- Ensure ''V-3472.b'' -notmatch 'time.windows.com'-->
   <OrganizationalSetting id="V-3472.b" value="time.{0}" />
@@ -78,6 +78,6 @@
   <OrganizationalSetting id="V-26582" value="32768" />
   <!-- Ensure 'V-36707' -match '1|2'-->
   <OrganizationalSetting id="V-36707" value="2" />
-  <!-- Ensure 'V-36773' -le '900' -and 'V-36773' -gt '0'-->
+  <!-- Ensure 'V-36773' -le '900'-->
   <OrganizationalSetting id="V-36773" value="900" />
 </OrganizationalSettings>
