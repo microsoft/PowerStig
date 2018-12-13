@@ -911,7 +911,7 @@ function Get-SecurityPolicyOrganizationValueTestString
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $stringBase = Get-SecurityPolicyString -CheckContent $checkContent
+    $stringBase = Get-SecurityPolicyString -CheckContent $CheckContent
     $string = Get-TestStringTokenList -String $stringBase -CommandTokens
     $settings = Get-TestStringTokenList -String $stringBase -StringTokens
 
@@ -958,7 +958,7 @@ function Get-SecurityPolicyOrganizationValueTestString
             $operators = 'gt', 'and', 'eq'; continue
         }
         # The InvertAdjective changes the string to read 'is more than or' to move the equal to the second position like everything else.
-        {$string -match '^is or more than'}
+        {$string -match '^is or (more|greater) than'}
         {
             $operators = 'gt', 'and', 'eq'; $invertAdjective = $true; continue
         }
