@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.3.0.0'
+ModuleVersion = '2.3.1.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -97,26 +97,8 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Windows 10 Fixes
-  * V-63795 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
-
-* Windows Server 2012R2 Fixes
-  * V-1089 - Corrected text
-  * V-21954 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
-  * V-26070 - Corrected key path
-  * V-36657 - Corrected key path
-  * V-36681 - Corrected key path
-
-* Added the following STIGs
-  * IIS Server 8.5 STIG V1R5
-  * Microsoft Outlook 2013 STIG V1R13
-  * DotNet Framework 4.0 STIG V1R6
-  * IIS Site 8.5 STIG V1R5
-  * Windows Domain V2R11
-  * FireFox 4.23 STIG
-  * Windows Server 2012R2 DC V2R14
-  * Windows Server 2012R2 MS V2R14
-  * Windows 10 V1R15'
+        ReleaseNotes = '* Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
+* Fixed [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

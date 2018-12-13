@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_2012_DC_STIG" version="2.12" created="11/29/2018">
+<DISASTIG id="Windows_2012_DC_STIG" version="2.12" created="12/13/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -107,6 +107,86 @@ Run "gpedit.msc".
 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Password Policy.
 
 If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2376" severity="medium" conversionstatus="pass" title="Kerberos-User Logon Restrictions" dscresource="AccountPolicy">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <PolicyName>Enforce user logon restrictions</PolicyName>
+      <PolicyValue>Enabled</PolicyValue>
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2377" severity="medium" conversionstatus="pass" title="Kerberos-Service Ticket Lifetime" dscresource="AccountPolicy">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '600' -and '{0}' -ne '0'</OrganizationValueTestString>
+      <PolicyName>Maximum lifetime for service ticket</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the value for "Maximum lifetime for service ticket" is "0" or greater than "600" minutes, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2378" severity="medium" conversionstatus="pass" title="Kerberos - User Ticket Lifetime" dscresource="AccountPolicy">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '10' -and '{0}' -ne '0'</OrganizationValueTestString>
+      <PolicyName>Maximum lifetime for user ticket</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the value for "Maximum lifetime for user ticket" is "0" or greater than "10" hours, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2379" severity="medium" conversionstatus="pass" title="Kerberos-User Ticket Renewal" dscresource="AccountPolicy">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '7'</OrganizationValueTestString>
+      <PolicyName>Maximum lifetime for user ticket renewal</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the "Maximum lifetime for user ticket renewal" is greater than "7" days, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-2380" severity="medium" conversionstatus="pass" title="Kerberos - Computer Clock Sync" dscresource="AccountPolicy">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '5'</OrganizationValueTestString>
+      <PolicyName>Maximum tolerance for computer clock synchronization</PolicyName>
+      <PolicyValue />
+      <RawString>Verify the following is configured in the Default Domain Policy.
+
+Open "Group Policy Management".
+Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
+Right click on the "Default Domain Policy".
+Select Edit.
+Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
+
+If the "Maximum tolerance for computer clock synchronization" is greater than "5" minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-6836" severity="medium" conversionstatus="pass" title="Minimum Password Length" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1320,76 +1400,6 @@ Select the Security tab.
 If any standard user accounts or groups have permissions other than "Print", this is a finding.
 Standard users will typically be given "Print" permission through the Everyone group.
 "All APPLICATION PACKAGES" and "CREATOR OWNER" are not considered standard user accounts for this requirement.</RawString>
-    </Rule>
-    <Rule id="V-2376" severity="medium" conversionstatus="pass" title="Kerberos-User Logon Restrictions" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the following is configured in the Default Domain Policy.
-
-Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
-Right click on the "Default Domain Policy".
-Select Edit.
-Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
-
-If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-2377" severity="medium" conversionstatus="pass" title="Kerberos-Service Ticket Lifetime" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the following is configured in the Default Domain Policy.
-
-Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
-Right click on the "Default Domain Policy".
-Select Edit.
-Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
-
-If the value for "Maximum lifetime for service ticket" is 0 or greater than 600 minutes, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-2378" severity="medium" conversionstatus="pass" title="Kerberos - User Ticket Lifetime" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the following is configured in the Default Domain Policy.
-
-Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
-Right click on the "Default Domain Policy".
-Select Edit.
-Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
-
-If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hours, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-2379" severity="medium" conversionstatus="pass" title="Kerberos-User Ticket Renewal" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the following is configured in the Default Domain Policy.
-
-Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
-Right click on the "Default Domain Policy".
-Select Edit.
-Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
-
-If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-2380" severity="medium" conversionstatus="pass" title="Kerberos - Computer Clock Sync" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the following is configured in the Default Domain Policy.
-
-Open "Group Policy Management".
-Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
-Right click on the "Default Domain Policy".
-Select Edit.
-Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
-
-If the "Maximum tolerance for computer clock synchronization" is greater than 5 minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2907" severity="medium" conversionstatus="pass" title="System File Changes" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>

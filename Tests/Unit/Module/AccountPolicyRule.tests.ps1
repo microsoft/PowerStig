@@ -9,7 +9,7 @@ try
         $checkContentBase = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
 
-        Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout Policy.
+        Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Account Lockout Policy.
 
         {0}'
 
@@ -47,36 +47,69 @@ try
                 PolicyName   = 'Account lockout duration'
                 PolicyValue  = '15'
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-        Run "gpedit.msc".
+                Run "gpedit.msc".
 
-        Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout
-        Policy.
+                Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Account Lockout
+                Policy.
 
-        If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
-            }
+                If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
+            },
             @{
                 PolicyName   = 'Password must meet complexity requirements'
                 PolicyValue  = 'Enabled'
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-        Run "gpedit.msc".
+                Run "gpedit.msc".
 
-        Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+                Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy.
 
-        If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.
+                If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.
 
-        If the site is using a password filter that requires this setting be set to "Disabled" for the filter to be used, this would not be considered a finding.'
-            }
+                If the site is using a password filter that requires this setting be set to "Disabled" for the filter to be used, this would not be considered a finding.'
+            },
             @{
                 PolicyName   = 'Store passwords using reversible encryption'
                 PolicyValue  = 'Disabled'
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
-        Run "gpedit.msc".
+                Run "gpedit.msc".
 
-        Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
+                Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy.
 
-        If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.'
+                If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.'
+            },
+            @{
+                PolicyName   = 'Minimum password length'
+                PolicyValue  = '14'
+                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+                Run "gpedit.msc".
+
+                Navigate to Local Computer Policy -> Computer Configuration -> Windows Settings -> Security Settings -> Account Policies -> Password Policy.
+
+                If the value for the "Minimum password length," is less than "14" characters, this is a finding.'
+            },
+            @{
+                PolicyName   = 'Enforce user logon restrictions'
+                PolicyValue  = 'Enabled'
+                CheckContent = 'Verify the following is configured in the Default Domain Policy.
+
+                Open "Group Policy Management".
+                Navigate to "Group Policy Objects" in the Domain being reviewed (Forest > Domains > Domain).
+                Right click on the "Default Domain Policy".
+                Select Edit.
+                Navigate to Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Kerberos Policy.
+
+                If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.'
             }
         )
+
+        Describe 'Static Match' {
+
+            Foreach($rule in $rulesToTest)
+            {
+                It 'Should Match the string' {
+                    [AccountPolicyRule]::Match($rule.checkContent) | Should Be $true
+                }
+            }
+        }
 
         Describe 'Get-AccountPolicyName' {
 
@@ -111,7 +144,9 @@ try
                     'If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.',
                     'If the value for the "Minimum password length," is less than "14" characters, this is a finding.',
                     'If the value for the "Minimum password age" is set to "0" days ("Password can be changed immediately."), this is a finding.',
-                    'If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.'
+                    'If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.',
+                    'If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hours, this is a finding.',
+                    'If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this is a finding.'
                 )
 
                 foreach ($checkContentString in $checkContentStrings)
