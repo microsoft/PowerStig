@@ -57,7 +57,7 @@ try
             WmiRule                      = 2
         }
         'U_Windows_2012_and_2012_R2_DC_STIG_V2R12_Manual-xccdf.xml'   = @{
-            AccountPolicyRule            = 9
+            AccountPolicyRule            = 14
             AuditPolicyRule              = 36
             DnsServerRootHintRule        = $n
             DnsServerSettingRule         = $null
@@ -65,7 +65,7 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 50
+            ManualRule                   = 45
             MimeTypeRule                 = $null
             PermissionRule               = 18
             ProcessMitigationRule        = $null
@@ -81,7 +81,7 @@ try
             WmiRule                      = 2
         }
         'U_Windows_2012_and_2012_R2_DC_STIG_V2R13_Manual-xccdf.xml'   = @{
-            AccountPolicyRule            = 9
+            AccountPolicyRule            = 14
             AuditPolicyRule              = 36
             DnsServerRootHintRule        = $n
             DnsServerSettingRule         = $null
@@ -89,7 +89,7 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 52
+            ManualRule                   = 47
             MimeTypeRule                 = $null
             PermissionRule               = 18
             ProcessMitigationRule        = $null
