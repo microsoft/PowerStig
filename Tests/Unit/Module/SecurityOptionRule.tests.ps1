@@ -42,6 +42,17 @@ try
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options.
 
                 If the value for "Network security: Force logoff when logon hours expire" is not set to "Enabled", this is a finding.'
+            },
+            @{
+                Name                        = 'System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing'
+                Value                       = 'Enabled'
+                OrganizationValueRequired   = $false
+                OrganizationValueTestString = ''
+                CheckContent                = 'Review system configuration to determine whether FIPS 140-2 support has been enabled
+                # Modification for SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
+                Run gpedit.msc.
+                Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
+                If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.'
             }
         )
 
