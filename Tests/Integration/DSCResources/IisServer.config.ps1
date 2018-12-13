@@ -20,17 +20,22 @@ Configuration IisServer_Config
 
         [Parameter()]
         [psobject]
+<<<<<<< HEAD
         $SkipRuleType,
 
         [Parameter()]
         [psobject]
         $Exception
+=======
+        $SkipRuleType
+>>>>>>> origin/2.4.0.0
     )
 
     Import-DscResource -ModuleName PowerStig
     Node localhost
     {
         & ([scriptblock]::Create("
+<<<<<<< HEAD
         IisServer ServerConfiguration
         {
             OsVersion   = '$OsVersion'
@@ -49,6 +54,22 @@ Configuration IisServer_Config
                 " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
+=======
+            IisServer ServerConfiguration
+            {
+                OsVersion   = '$OsVersion'
+                StigVersion = '$StigVersion'
+                LogPath     = '$LogPath'
+                $(if ($null -ne $SkipRule)
+                {
+                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                }
+                if ($null -ne $SkipRuleType)
+                {
+                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                })
+            }")
+>>>>>>> origin/2.4.0.0
         )
     }
 }

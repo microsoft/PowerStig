@@ -2,7 +2,14 @@
 
 ## Unreleased
 
+<<<<<<< HEAD
 * Updated Integration tests to include SkipRule/RuleType and Multiple SkipRule/RuleType
+=======
+## 2.3.1.0
+
+* Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
+* Fixed [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules
+>>>>>>> origin/2.4.0.0
 
 ## 2.3.0.0
 

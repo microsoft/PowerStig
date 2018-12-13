@@ -24,11 +24,15 @@ Configuration IisSite_config
 
         [Parameter()]
         [psobject]
+<<<<<<< HEAD
         $SkipRuleType,
 
         [Parameter()]
         [psobject]
         $Exception
+=======
+        $SkipRuleType
+>>>>>>> origin/2.4.0.0
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -44,10 +48,13 @@ Configuration IisSite_config
                 $( "WebSiteName = @($( ($WebSiteName | % {"'$_'"}) -join ',' ))`n" )
                 OsVersion = '$OsVersion'
                 StigVersion = '$StigVersion'
+<<<<<<< HEAD
                 $(if ($null -ne $Exception)
                 {
                     "Exception    = @{'$Exception'= @{'Value'='1234567'}}"
                 })
+=======
+>>>>>>> origin/2.4.0.0
                 $(if ($null -ne $SkipRule)
                 {
                     "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
