@@ -398,6 +398,11 @@ function Get-RegistryValueDataFromSingleStig
         {
             $valueData = $checkContent | Select-String -Pattern "((?<=is\s)(.*)(?=\sor))"
         }
+
+        if ($CheckContent -match 'ScheduleDay')
+        {
+            $valueData = $CheckContent | Select-String -Pattern "(\d[x]\d)\sthrough\s(\d[x]\d)"
+        }
     }
 
     if (-not $valueData)
@@ -424,6 +429,11 @@ function Get-RegistryValueDataFromSingleStig
     }
 
     $valueData = $valueData.Matches.Value.Replace(',', '').Replace('"', '').Replace('”', '')
+
+    if ($valueData -match 'Disabled')
+    {
+        $valueData = $($valueData -replace " o.*","").Trim()
+    }
 
     if ( -not [String]::IsNullOrEmpty( $valueData ) )
     {

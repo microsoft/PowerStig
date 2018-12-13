@@ -21,6 +21,7 @@ $script:legalNoticeCaption = 'DoD Notice and Consent Banner'
 $script:supportedEncryptionTypes = '0'
 $script:smb1FeatureName = 'FS-SMB1'
 $script:publishersCertificateRevocation = '146432'
+$script:scheduleDay = '0'
 #endregion
 #region Main Functions
 <#
@@ -59,6 +60,7 @@ function Test-ValueDataIsHardCoded
         'V-46477', # Internet Explorer - Publishers Certificate Revocation. The value s written as hex,
         # but there is not other identifier.
         'V-17761' # Outlook 2013 - OrgSetting Value
+        'V-75245' # Windows Defender - Signature Updates
     )
 
     if ($stigIds -contains $stigId)
@@ -119,6 +121,11 @@ function Get-HardCodedString
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] PublishersCertificateRevocation : $true"
             return $script:publishersCertificateRevocation
         }
+        {$PSItem -match 'V-75245'}
+        {
+            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] ScheduleDay : $true"
+            return $script:scheduleDay
+        }
     }
 }
 
@@ -146,7 +153,9 @@ function Get-HardCodedString
         'V-8322.b', # Time Synchronization
         'V-14235', # UAC - Admin Elevation Prompt
         'V-26359', # Windows Server - Legal Banner Dialog Box Title
-        'V-17761' # Outlook 2013 - OrgSetting Value
+        'V-17761', # Outlook 2013 - OrgSetting Value
+        'V-75241', # Windows Defender - ASSignatureDue
+        'V-75243' # Windows Defender - AVSignatureDue
     )
 
     if ($stigIds -contains $stigId)
@@ -205,6 +214,10 @@ function Get-HardCodedString
         {
             $hardCodedString = "'{0}' -ge '30' -and '{0}' -le '132'"
             continue
+        }
+        {$PSItem -match 'V-75241|V-75243'}
+        {
+            $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
         }
     }
 

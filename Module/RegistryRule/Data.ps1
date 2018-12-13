@@ -32,7 +32,7 @@ data regularExpression
         MultiStringNamedPipe = (?m)(^)(System|Software)(.+)$
 
         # Or is in a word boundary since it is a common pattern
-        registryValueRange = (?<![\\w\\d])but|\\bor\\b|and|Possible values(?![\\w\\d])
+        registryValueRange = (?<![\\w\\d])but|\\bor\\b|and|through|Possible values(?![\\w\\d])
 
         # This is need validate that a value is still a string even if it contains a number
         hardenUncPathValues = (RequireMutualAuthentication|RequireIntegrity)
