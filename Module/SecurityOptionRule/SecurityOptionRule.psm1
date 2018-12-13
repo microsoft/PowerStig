@@ -137,8 +137,14 @@ Class SecurityOptionRule : Rule
     {
         if
         (
-            $CheckContent -Match 'gpedit\.msc' -and
-            $CheckContent -match 'Security Options'
+            (
+                $CheckContent -Match 'gpedit.msc' -and
+                $CheckContent -Match 'Security Options'
+            )-or
+            (
+                $CheckContent -Match 'Local Security Policy' -and
+                $CheckContent -Match 'Security Options' -and
+                $CheckContent -Match 'If the value for'
         )
         {
             return $true

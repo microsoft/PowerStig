@@ -22,11 +22,20 @@ function Get-SecurityOptionName
     $Option = ( $checkContent |
             Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
-    If ( $Option )
+    If ($checkContent -match "Verify the effective setting in Local Group Policy Editor")
     {
         $Option = $Option.Matches.Groups[3].Value
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
-        return $option
+            $Option = $Option.Replace('"','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
+    }
+    # Used for converting SQL Server 2016 Instance Stig Rules
+    If ($checkContent -match "SQL Server 2016 Instance")
+    {
+        $Option = $Option.Matches.Groups[0].Value
+            $Option = $Option.Replace('"','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
     }
     else
     {
@@ -56,11 +65,20 @@ function Get-SecurityOptionValue
     $option = ( $checkContent |
             Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
-    if ( $option )
+    If ($checkContent -match "Verify the effective setting in Local Group Policy Editor")
     {
         $Option = $Option.Matches.Groups[5].Value
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $option "
-        return $option
+            $Option = $Option.Replace('"','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
+    }
+    # Used for converting SQL Server 2016 Instance Stig Rules
+    If ($checkContent -match "SQL Server 2016 Instance")
+    {
+        $Option = $Option.Matches.Groups[2].Value
+            $Option = $Option.Replace('"','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
     }
     else
     {
