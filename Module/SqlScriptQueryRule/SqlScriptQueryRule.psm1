@@ -169,30 +169,6 @@ Class SqlScriptQueryRule : Rule
         {
             return $true
         }
-        # SQL Server 2016 Instance V-79129 
-        if
-        (
-            $CheckContent -match "EXECUTE AS LOGIN = 'NT AUTHORITY\\SYSTEM'"
-        )
-        {
-            return $true
-        }
-        # SQL Server 2012+ Auditing
-        if
-        (
-            $CheckContent -Match "DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP"
-        )
-        {
-            return $true
-        }
-        # SQL Server 2016
-        if
-        (
-            $CheckContent -Match "principal_id"
-        )
-        {
-            return $true
-        }
         return $false
     }
 

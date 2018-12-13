@@ -25,7 +25,7 @@ function Get-DbExistGetScript
         $CheckContent
     )
 
-    $return = Get-Query -CheckContent $checkContent
+    $return = Get-SQLQuery -CheckContent $checkContent
 
     return $return
 }
@@ -54,7 +54,7 @@ function Get-DbExistTestScript
         $CheckContent
     )
 
-    $return = Get-Query -CheckContent $checkContent
+    $return = Get-SQLQuery -CheckContent $checkContent
 
     return $return
 }
@@ -224,7 +224,7 @@ function Get-PermissionGetScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $checkContent
+    $queries = Get-SQLQuery -CheckContent $CheckContent
 
     $return = $queries[0]
 
@@ -260,7 +260,7 @@ function Get-PermissionTestScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $checkContent
+    $queries = Get-SQLQuery -CheckContent $checkContent
 
     $return = $queries[0]
 
@@ -521,7 +521,6 @@ function Get-PlainSQLSetScript
     return $return
 }
 
-
 <#
     .SYNOPSIS Get-Query
         Returns all Queries found withing the 'CheckContent'
@@ -586,6 +585,20 @@ function Get-Query
     return $queries
 }
 
+<#
+    .SYNOPSIS Get-SQLQuery
+        Returns all Queries found withing the 'CheckContent'
+        This is an updated version of an older, simpler function called Get-Query.
+
+    .DESCRIPTION
+        This function parses the 'CheckContent' to find all queies and extract them
+        Not all queries may be used by later functions and will be separated then.
+        Some functions require variations of the queries returned thus the reason for
+        returning all queries found
+
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+#>
 function Get-SQLQuery
 {
     [CmdletBinding()]
@@ -600,12 +613,12 @@ function Get-SQLQuery
 
     $collection = @()
     $queries = @()
-    $bInitiated = $false
-    $bTerminated = $false
-    $bGroupClause = $false
-    $leftParenCount = 0 
-    $rightParenCount = 0
-    $iParenthesesOffset = 0
+    [boolean] $ScriptInitiated = $false
+    [boolean] $ScriptTerminated = $false
+    [boolean] $InScriptClause = $false
+    [int] $ParenthesesLeftCount = 0 
+    [int] $ParenthesesRightCount = 0
+    [int] $iParenthesesOffset = 0
 
     foreach ($line in $SearchContent)
     {
@@ -615,25 +628,25 @@ function Get-SQLQuery
         # Search for a SQL initiator if we haven't found one
         if ($line -match "^(select\s|use\s|alter\s|drop\s)")
         {
-            $bInitiated = $true
+            $ScriptInitiated = $true
             $collection += $line
             
             # Get the parentheses offset by accumulating match counters
             $leftParenResults = $line | Select-String '\(' -AllMatches
-            $leftParenCount += $leftParenResults.Matches.Count
+            $ParenthesesLeftCount += $leftParenResults.Matches.Count
             $rightParenResults = $line | Select-String '\)' -AllMatches
-            $rightParenCount += $rightParenResults.Matches.Count
-            $iParenthesesOffset = $leftParenCount - $rightParenCount
+            $ParenthesesRightCount += $rightParenResults.Matches.Count
+            $iParenthesesOffset = $ParenthesesLeftCount - $ParenthesesRightCount
         }
         # If a SQL script is started, let's see what we have to add to it, if anything 
-        elseif ($bInitiated)
+        elseif ($ScriptInitiated)
         { 
             # Get the parentheses offset by accumulating match counters
             $leftParenResults = $line | Select-String '\(' -AllMatches
-            $leftParenCount += $leftParenResults.Matches.Count
+            $ParenthesesLeftCount += $leftParenResults.Matches.Count
             $rightParenResults = $line | Select-String '\)' -AllMatches
-            $rightParenCount += $rightParenResults.Matches.Count
-            $iParenthesesOffset = $leftParenCount - $rightParenCount
+            $ParenthesesRightCount += $rightParenResults.Matches.Count
+            $iParenthesesOffset = $ParenthesesLeftCount - $ParenthesesRightCount
             
             # Look for SQL statement fragments
             if ($line -match "(from\s|\sas\s|join\s|where\s|^and\s|order\s|\s(in|IN)(\s\(|\())")
@@ -643,11 +656,11 @@ function Get-SQLQuery
                 if ($line -match "\sin(\s\(|\()")
                 {
                     # Start of a group IN clause
-                    $bGroupClause = $true
+                    $InScriptClause = $true
                 }
             } 
             # If we are inside of a group IN clause, we need to collect statements until the IN clause terminates
-            elseif ($bGroupClause)
+            elseif ($InScriptClause)
             {
                 $collection += $line
                 if ($line -match "\)")
@@ -655,27 +668,27 @@ function Get-SQLQuery
                     # If the parenthesis we just found closes all that have been opened, the group clause can be closed
                     if ($iParenthesesOffset % 2 -eq 0)
                     {
-                        $bGroupClause = $false
+                        $InScriptClause = $false
                     }
                 }
             }
             # If we are not in a clause, let's look for a termination for the script
-            if ($bGroupClause -eq $false)
+            if ($InScriptClause -eq $false)
             {
                 if ($line -notmatch "(select\s|use\s|alter\s|from\s|\sas\s|join\s|where\s|^and\s|order\s|\s(in|IN)(\s\(|\()|go|;|\))")
                 {
-                    $bTerminated = $true
+                    $ScriptTerminated = $true
                 }
             }
         }
         # If we found one (or more) criteria for terminating the SQL script, then build the query and add it to the queries collection
-        if ($bTerminated)
+        if ($ScriptTerminated)
         {
             $query = $collection -join " "
             $queries += $query
             $collection = @()
-            $bInitiated = $false
-            $bTerminated = $false
+            $ScriptInitiated = $false
+            $ScriptTerminated = $false
         }
     }
 
