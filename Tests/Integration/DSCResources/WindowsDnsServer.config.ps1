@@ -24,7 +24,11 @@ Configuration WindowsDnsServer_config
 
         [Parameter()]
         [psobject]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -38,6 +42,10 @@ Configuration WindowsDnsServer_config
             StigVersion  = '$StigVersion'
             ForestName  = '$ForestName'
             DomainName  = '$DomainName'
+            $(if ($null -ne $Exception)
+            {
+            "Exception    = @{'$Exception'= @{'PropertyValue'='1234567'}}"
+            })
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"

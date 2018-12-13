@@ -123,6 +123,27 @@ try
                 }
             }
         }
+
+        Describe "SqlServer $($stig.TechnologyRole) $($stig.TechnologyVersion) $($stig.StigVersion) Exception mof output"{
+            
+            If (-not $ExceptionRuleValueData)
+            {   
+                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.rule
+                $Exception = $ExceptionRule.ID
+                $ExceptionRuleValueData = $ExceptionRule.SetScript
+            }
+
+            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+                {
+                    & "$($script:DSCCompositeResourceName)$($stig.TechnologyRole)_config" `
+                        -SqlVersion $stig.TechnologyVersion `
+                        -SqlRole $stig.TechnologyRole`
+                        -StigVersion $stig.StigVersion `
+                        -OutputPath $TestDrive `
+                        -Exception $Exception
+                } | Should not throw
+            }
+        }
     }
     #endregion Tests
 }

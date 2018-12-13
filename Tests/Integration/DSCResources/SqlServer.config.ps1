@@ -20,7 +20,12 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [psobject]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception
+        
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -34,6 +39,10 @@ Configuration SqlServerInstance_config
             SqlRole        = '$SqlRole'
             StigVersion  = '$StigVersion'
             ServerInstance = 'TestServer'
+            $(if ($null -ne $Exception)
+            {
+                "Exception    = @{'$Exception'= @{'SetScript'='TestScript'}}"
+            })
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
@@ -69,7 +78,11 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [psobject]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -84,6 +97,10 @@ Configuration SqlServerDatabase_config
             StigVersion  = '$StigVersion'
             ServerInstance = 'TestServer'
             Database       = 'TestDataBase'
+            $(if ($null -ne $Exception)
+            {
+                "Exception    = @{'$Exception'= @{'SetScript'='TestScript'}}"
+            })
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"

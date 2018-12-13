@@ -15,7 +15,7 @@ Configuration WindowsClient_config
         $ForestName,
 
         [Parameter()]
-        [string]
+        [psobject]
         $Exception,
 
         [Parameter(Mandatory = $true)]
@@ -42,6 +42,10 @@ Configuration WindowsClient_config
                 StigVersion  = '$StigVersion'
                 ForestName   = '$ForestName'
                 DomainName   = '$DomainName'
+                $(if ($null -ne $Exception)
+                {
+                    "Exception    = @{'$Exception'= @{'ValueData'='1234567'}}"
+                })
                 $(if ($null -ne $SkipRule)
                 {
                     "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"

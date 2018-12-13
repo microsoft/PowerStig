@@ -289,6 +289,28 @@ try
                 }
             }
         }
+
+        Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) Exception mof output"{
+            
+            If (-not $ExceptionRuleValueData)
+            {   
+                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule
+                $Exception = $ExceptionRule.ID
+                $ExceptionRuleValueData = $ExceptionRule.PropertyValue
+            }
+
+            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -OsVersion $stig.TechnologyVersion  `
+                        -StigVersion $stig.StigVersion `
+                        -ForestName 'integration.test' `
+                        -DomainName 'integration.test' `
+                        -OutputPath $TestDrive `
+                        -Exception $Exception
+                } | Should not throw
+            }
+        }
     }
     #endregion Tests
 }

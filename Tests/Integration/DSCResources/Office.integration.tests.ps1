@@ -117,6 +117,26 @@ try
                 }
             }
         }
+
+        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output"{
+            
+            If (-not $ExceptionRuleValueData)
+            {   
+                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
+                $Exception = $ExceptionRule.ID
+                $ExceptionRuleValueData = $ExceptionRule.ValueData
+            }
+
+            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -OfficeApp $stig.TechnologyRole  `
+                        -StigVersion $stig.StigVersion `
+                        -OutputPath $TestDrive `
+                        -Exception $Exception
+                } | Should not throw
+            }
+        }
     }
 #endregion Tests
 }

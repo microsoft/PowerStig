@@ -116,6 +116,26 @@ try
                 }
             }
         }
+        
+        Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output"{
+            
+            If (-not $ExceptionRuleValueData)
+            {   
+                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
+                $Exception = $ExceptionRule.ID
+                $ExceptionRuleValueData = $ExceptionRule.ValueData
+            }
+
+            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -BrowserVersion $stig.TechnologyRole `
+                        -StigVersion $stig.stigVersion `
+                        -OutputPath $TestDrive `
+                        -Exception $Exception
+                } | Should not throw
+            }
+        }
     }
     #endregion Tests
 }

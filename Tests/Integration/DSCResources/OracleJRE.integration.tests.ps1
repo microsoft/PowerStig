@@ -124,6 +124,26 @@ try
                 }
             }
         }
+        Describe "OracleJRE 8 $($stig.StigVersion) Exception mof output"{
+            
+            If (-not $ExceptionRuleValueData)
+            {   
+                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule
+                $Exception = $ExceptionRule.ID
+                $ExceptionRuleValueData = $ExceptionRule.Value
+            }
+
+            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+                {
+                    & "$($script:DSCCompositeResourceName)_config" `
+                        -ConfigPath $configPath `
+                        -PropertiesPath $propertiesPath `
+                        -StigVersion $stig.stigVersion `
+                        -OutputPath $TestDrive `
+                        -Exception $Exception
+                } | Should not throw
+            }
+        }
     }
     #endregion Tests
 }

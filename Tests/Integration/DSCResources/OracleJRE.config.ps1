@@ -20,7 +20,11 @@ Configuration OracleJRE_config
 
         [Parameter()]
         [psobject]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -33,6 +37,10 @@ Configuration OracleJRE_config
             ConfigPath     = '$configPath'
             PropertiesPath = '$propertiesPath'
             Stigversion    =  '$StigVersion'
+            $(if ($null -ne $Exception)
+            {
+                "Exception    = @{'$Exception'= @{'Value'='ExceptionTest'}}"
+            })
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"

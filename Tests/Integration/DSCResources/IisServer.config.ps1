@@ -20,7 +20,11 @@ Configuration IisServer_Config
 
         [Parameter()]
         [psobject]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -32,6 +36,10 @@ Configuration IisServer_Config
             OsVersion   = '$OsVersion'
             StigVersion = '$StigVersion'
             LogPath     = '$LogPath'
+            $(if ($null -ne $Exception)
+            {
+                "Exception    = @{'$Exception'= @{'Value'='1234567'}}"
+            })
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
