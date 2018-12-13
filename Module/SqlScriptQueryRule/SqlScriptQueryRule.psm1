@@ -46,18 +46,25 @@ Class SqlScriptQueryRule : Rule
     {
         $this.InvokeClass($StigRule)
         $ruleType = $this.GetRuleType($this.splitCheckContent)
+        if ($ruleType -ne 'RuleTypeNotFound'){
 
-        $fixText = [SqlScriptQueryRule]::GetFixText($StigRule)
+            $fixText = [SqlScriptQueryRule]::GetFixText($StigRule)
 
-        $this.SetGetScript($ruleType)
-        $this.SetTestScript($ruleType)
-        $this.SetSetScript($ruleType, $fixText)
+            $this.SetGetScript($ruleType)
+            $this.SetTestScript($ruleType)
+            $this.SetSetScript($ruleType, $fixText)
+            $this.SetDscResource()
+
+        } else {
+            $thisid = $this.Id
+            write-verbose "$thisid parses as a SQL script rule but the SQL rule type could not be determined. Conversion status set to Fail for this rule."
+            $this.SetStatus($null)    # Will set the conversion status to = fail
+        }
 
         if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
         }
-        $this.SetDscResource()
     }
 
     #region Methods
@@ -148,6 +155,8 @@ Class SqlScriptQueryRule : Rule
 
     static [bool] Match ([string] $CheckContent)
     {
+        # Provide match criteria to validate that the rule is (or is not) a SQL rule.
+        # Standard match rules
         if
         (
             $CheckContent -Match "SELECT" -and
@@ -160,7 +169,32 @@ Class SqlScriptQueryRule : Rule
         {
             return $true
         }
+        # SQL Server 2016 Instance V-79129 
+        if
+        (
+            $CheckContent -match "EXECUTE AS LOGIN = 'NT AUTHORITY\\SYSTEM'"
+        )
+        {
+            return $true
+        }
+        # SQL Server 2012+ Auditing
+        if
+        (
+            $CheckContent -Match "DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP"
+        )
+        {
+            return $true
+        }
+        # SQL Server 2016
+        if
+        (
+            $CheckContent -Match "principal_id"
+        )
+        {
+            return $true
+        }
         return $false
     }
+
     #endregion
 }
