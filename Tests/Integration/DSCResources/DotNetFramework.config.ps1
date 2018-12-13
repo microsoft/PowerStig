@@ -11,7 +11,7 @@ Configuration DotNetFramework_config
         $StigVersion
     )
 
-    Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName PowerStig -moduleversion 2.3.1.0
 
     Node localhost
     {
