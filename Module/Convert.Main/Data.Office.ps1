@@ -48,6 +48,11 @@ $global:SingleLineRegistryValueData += [ordered]@{
      Six = @{
           Match = 'If the value PublishCalendarDetailsPolicy' 
           Select = '((?<=is\s)(.*)(?=\sor))'
-     } #Added for Outlook Stig - JJS
+     } 
+     Seven   = @{
+        Match  = 'a value of between'
+        Select = '(?<=between\s)(.*)(?<=\s)'
+   }
+#Added for Outlook Stig - JJS
 }
 # Five = [ordered]@{ Match = 'the policy value'; Select = '(?<=")(.*)(?="\sis)' };
