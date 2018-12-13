@@ -2,14 +2,15 @@
 
 ## Unreleased
 
-<<<<<<< HEAD
 * Updated Integration tests to include SkipRule/RuleType and Multiple SkipRule/RuleType
-=======
+* Windows Server 2012R2 Fixes
+  * V-36707 is now an org setting
+  * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
+
 ## 2.3.1.0
 
 * Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
 * Fixed [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules
->>>>>>> origin/2.4.0.0
 
 ## 2.3.0.0
 
