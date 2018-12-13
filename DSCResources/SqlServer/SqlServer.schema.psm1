@@ -127,5 +127,5 @@ Configuration SqlServer
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '12.1.0.0'
-    . "$resourcePath\windows.SqlScriptQuery.ps1"
+    . "$resourcePath\SqlServer.ScriptQuery.ps1"
 }
