@@ -13164,8 +13164,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 Value Name: EnableSmartScreen
 
 Type: REG_DWORD
-Value:  0x00000001 (1) (Give user a warning…)
-Or 0x00000002 (2) (Require approval…)</check-content>
+* V-36707::8::Value:  1 (Give user a warning…) Or 2 (Require approval…)</check-content>
             </check>
         </Rule>
     </Group>

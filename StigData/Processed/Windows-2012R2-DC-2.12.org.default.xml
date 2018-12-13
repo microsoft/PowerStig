@@ -30,9 +30,17 @@
   <OrganizationalSetting id="V-1172" value="14" />
   <!-- Ensure 'V-1174' -le '15'-->
   <OrganizationalSetting id="V-1174" value="15" />
+  <!-- Ensure ''V-2377'' -le '600' -and ''V-2377'' -ne '0'-->
+  <OrganizationalSetting id="V-2377" value="600" />
+  <!-- Ensure ''V-2378'' -le '10' -and ''V-2378'' -ne '0'-->
+  <OrganizationalSetting id="V-2378" value="10" />
+  <!-- Ensure ''V-2379'' -le '7'-->
+  <OrganizationalSetting id="V-2379" value="7" />
+  <!-- Ensure ''V-2380'' -le '5'-->
+  <OrganizationalSetting id="V-2380" value="5" />
   <!-- Ensure 'V-3373' -le '30' -and 'V-3373' -gt '0'-->
   <OrganizationalSetting id="V-3373" value="30" />
-  <!-- Ensure ''V-3472.a'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
+    <!-- Ensure ''V-3472.a'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
   <OrganizationalSetting id="V-3472.a" value="NT5DS" />
   <!-- Ensure ''V-3472.b'' -notmatch 'time.windows.com'-->
   <OrganizationalSetting id="V-3472.b" value="time.{0}" />

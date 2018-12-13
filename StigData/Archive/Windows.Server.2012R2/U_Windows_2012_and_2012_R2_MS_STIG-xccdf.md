@@ -14,6 +14,10 @@ V-2377::8::If the value for "Maximum lifetime for service ticket" is "0" or grea
 
 ## V2R14
 
+* V-36707::8::Value:  1 (Give user a warning…) Or 2 (Require approval…)
+
 ## V2R13
+
+* V-36707::8::Value:  1 (Give user a warning…) Or 2 (Require approval…)
 
 ## V2R12
