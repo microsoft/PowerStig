@@ -230,6 +230,25 @@ try
         }
         #endregion
         #region Method Tests
+
+        Describe 'Match Static method' {
+
+            $stringsToTest = @(
+                @{
+                    string = 'Navigate to "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters".
+
+                    Note the directory locations in the values for "DSA Database file".
+
+                    Open "Command Prompt".'
+                    match = $false
+                }
+            )
+
+            It 'Should not match the DSA Database file registry path' {
+                [RegistryRule]::Match($stringsToTest.string) | Should Be $false
+            }
+        }
+
         Describe 'Get-RegistryKey' {
 
             foreach ( $rule in $rulesToTest )

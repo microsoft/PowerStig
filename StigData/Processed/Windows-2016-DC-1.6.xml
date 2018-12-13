@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/6/2018">
+<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/13/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1114,62 +1114,6 @@ If any OU with improper permissions includes identification or authentication da
 
 If an OU with improper permissions does not include identification and authentication data used by systems to determine access control, the severity is CAT II (e.g., Workstation, Printer OUs).</RawString>
     </Rule>
-    <Rule id="V-73377" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the permissions on domain-defined OUs.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-For each OU that is defined (folder in folder icon) excluding the Domain Controllers OU:
-
-Right-click the OU and select "Properties".
-
-Select the "Security" tab.
-
-If the permissions on the OU are not at least as restrictive as those below, this is a finding.
-
-The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the "Advanced" button, the desired Permission entry, and the "Edit" or "View" button.
-
-Except where noted otherwise, the special permissions may include a wide range of permissions and properties and are acceptable for this requirement.
-
-CREATOR OWNER - Special permissions
-
-Self - Special permissions
-
-Authenticated Users - Read, Special permissions
-
-The Special permissions for Authenticated Users are Read type. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
-
-SYSTEM - Full Control
-
-Domain Admins - Full Control
-
-Enterprise Admins - Full Control
-
-Key Admins - Special permissions
-
-Enterprise Key Admins - Special permissions
-
-Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
-
-Pre-Windows 2000 Compatible Access - Special permissions
-
-The Special permissions for Pre-Windows 2000 Compatible Access are for Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
-
-ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
-
-If an ISSO-approved distributed administration model (help desk or other user support staff) is implemented, permissions above Read may be allowed for groups documented by the ISSO.
-
-If any OU with improper permissions includes identification or authentication data (e.g., accounts, passwords, or password hash data) used by systems to determine access control, the severity is CAT I (e.g., OUs that include user accounts, including service/application accounts).
-
-If an OU with improper permissions does not include identification and authentication data used by systems to determine access control, the severity is CAT II (e.g., Workstation, Printer OUs).</RawString>
-    </Rule>
     <Rule id="V-73383" severity="medium" conversionstatus="pass" title="SRG-OS-000396-GPOS-00176" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2052,6 +1996,28 @@ Select "Edit".
 Navigate to Computer Configuration &gt;&gt; Policies &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Kerberos Policy.
 
 If the "Maximum tolerance for computer clock synchronization" is greater than "5" minutes, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-73379" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Run "Regedit".
+
+Navigate to "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters".
+
+Note the directory locations in the values for "DSA Database file".
+
+Open "Command Prompt".
+
+Enter "net share".
+
+Note the logical drive(s) or file system partition for any organization-created data shares.
+
+Ignore system shares (e.g., NETLOGON, SYSVOL, and administrative shares ending in $). User shares that are hidden (ending with $) should not be ignored.
+
+If user shares are located on the same logical partition as the directory server data files, this is a finding.</RawString>
     </Rule>
     <Rule id="V-73381" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
