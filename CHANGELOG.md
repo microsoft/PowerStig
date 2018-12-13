@@ -5,6 +5,11 @@
 * Fixed Issue [#207](https://github.com/Microsoft/PowerStig/issues/207): SQL Server Database rules fail to apply
 * Fixed Issue [#208](https://github.com/Microsoft/PowerStig/issues/208): Update PowerSTIG to use SQLServerDsc 12.1.0.0
 
+## 2.3.1.0
+
+* Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
+* Fixed [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules
+
 ## 2.3.0.0
 
 * Windows 10 Fixes
