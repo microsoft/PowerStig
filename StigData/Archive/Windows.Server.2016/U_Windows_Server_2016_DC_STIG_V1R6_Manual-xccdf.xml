@@ -11615,8 +11615,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: ConsentPromptBehaviorAdmin
 
 Value Type: REG_DWORD
-Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
-0x00000001 (1) (Prompt for credentials on the secure desktop)</check-content>
+Value: 1 (Prompt for credentials on the secure desktop) or 2 (Prompt for consent on the secure desktop)</check-content>
       </check>
     </Rule>
   </Group>
