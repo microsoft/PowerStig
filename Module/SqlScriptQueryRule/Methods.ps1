@@ -652,7 +652,8 @@ function Get-saAccountGetScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $checkContent
+    #$return = Get-SQLQuery -CheckContent $checkContent
+    $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
 
     return $return
 }
@@ -682,7 +683,8 @@ function Get-saAccountTestScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $checkContent
+    #$return = Get-SQLQuery -CheckContent $checkContent
+    $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
 
     return $return
 }
@@ -719,7 +721,10 @@ function Get-saAccountSetScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $FixText
+    #$return = Get-SQLQuery -CheckContent $FixText
+    $return = "USE [master] DECLARE @saAccountName varchar(50) SET @saAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
+    $return += "IF @saAccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @saAccountName = 'old_sa' "
+    $return += "DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@saAccountName] DISABLE;"
 
     return $return
 }
@@ -956,7 +961,7 @@ function Get-SqlRuleType
         }
         # sa account rules
         {
-            $PSItem -Match 'principal_id \= 1'
+            $PSItem -Match '(\s|\[)principal_id(\s*|\]\s*)\=\s*1'
         }
         {
             $ruleType = 'saAccount'
