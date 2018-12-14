@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 #region Method Functions
+#region DbExist Functions
 <#
     .SYNOPSIS Get-DbExistGetScript
         Returns the query that checks to see if a DB exists.
@@ -103,8 +104,9 @@ function Get-DbExistSetScript {
 
     return $return
 }
+#endregion DbExist Functions
 
-
+#region Trace Functions
 <#
     .SYNOPSIS Get-TraceGetScript
         Returns a query that gets Trace ID's
@@ -204,6 +206,101 @@ function Get-TraceSetScript
     return "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) INSERT INTO #StigEvent (EventId) VALUES $($eventId) CREATE TABLE #Trace (TraceId INT) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0)ORDER BY TraceId DESC CREATE TABLE #TraceEvent (TraceId INT, EventId INT) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @currentTraceId INT FETCH NEXT FROM cursorTrace INTO @currentTraceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @currentTraceId, EventId FROM sys.fn_trace_geteventinfo(@currentTraceId) FETCH NEXT FROM cursorTrace INTO @currentTraceId END CLOSE cursorTrace DEALLOCATE cursorTrace DECLARE @missingStigEventCount INT SET @missingStigEventCount = (SELECT COUNT(*) FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL) IF @missingStigEventCount > 0 BEGIN DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 EXEC @returnCode = sp_trace_create @traceid = @newTraceId OUTPUT, @options = 2, @tracefile = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Log\PowerStig', @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; IF @returnCode = 0 BEGIN EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 0 DECLARE cursorMissingStigEvent CURSOR FOR SELECT DISTINCT SE.EventId FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL OPEN cursorMissingStigEvent DECLARE @currentStigEventId INT FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId WHILE @@FETCH_STATUS = 0 BEGIN EXEC sp_trace_setevent @traceid = @newTraceId, @eventid = @currentStigEventId, @columnid = NULL, @on = 1 FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId END CLOSE cursorMissingStigEvent DEALLOCATE cursorMissingStigEvent EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 1 END END END"
 }
 
+<#
+    .SYNOPSIS Get-TraceIdQuery
+        Returns a query that is used to obtain Trace ID's
+
+    .PARAMETER Query
+        An array of queries.
+#>
+function Get-TraceIdQuery
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $EventId
+    )
+
+    $return = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES $($EventId) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END"
+
+    return $return
+}
+
+<#
+    .SYNOPSIS Get-EventIdQuery
+        Returns a query that is used to obtain Event ID's
+
+    .PARAMETER Query
+        An array of queries.
+#>
+function Get-EventIdQuery
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $Query
+    )
+
+    foreach ($line in $query)
+    {
+        if ($line -match "eventid")
+        {
+            return $line
+        }
+    }
+}
+
+<#
+    .SYNOPSIS Get-EventIdData
+        Returns the Event ID's that are checked against
+
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the Data that will be returned
+#>
+function Get-EventIdData
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $array = @()
+
+    $eventData = $checkContent -join " "
+    $eventData = ($eventData -split "listed:")[1]
+    $eventData = ($eventData -split "\.")[0]
+
+    $eventId = $eventData.Trim()
+
+    $split = $eventId -split ', '
+
+    foreach ($line in $split)
+    {
+        $add = '(' + $line + ')'
+
+        $array += $add
+    }
+
+    $return = $array -join ','
+
+    return $return
+}
+
+#endregion Trace Functions
+
+#region Permission Functions
 <#
     .SYNOPSIS Get-PermissionGetScript
         Returns a query that will get a list of users who have access to a certain SQL Permission
@@ -314,7 +411,9 @@ function Get-PermissionSetScript
 
     return $return
 }
+#endregion Permission Functions
 
+#region Audit Functions
 <#
     .SYNOPSIS Get-AuditGetScript
         Returns a query that will get a list of audit events
@@ -428,7 +527,9 @@ function Get-AuditSetScript
     
     return $return
 }
+#endregion Audit Functions
 
+#region PlainSQL Functions
 <#
     .SYNOPSIS Get-PlainSQLGetScript
         Returns a plain SQL query from $checkContent
@@ -524,7 +625,107 @@ function Get-PlainSQLSetScript
 
     return $return
 }
+#endregion PlainSQL Functions
 
+#region saAccount Functions
+<#
+    .SYNOPSIS Get-saAccountGetScript
+        Returns a plain SQL query from $checkContent
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the GetScript block
+
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+#>
+function Get-saAccountGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $return = Get-SQLQuery -CheckContent $checkContent
+
+    return $return
+}
+
+
+<#
+    .SYNOPSIS Get-saAccountTestScript
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the TestScript block
+
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+#>
+function Get-saAccountTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $return = Get-SQLQuery -CheckContent $checkContent
+
+    return $return
+}
+
+<#
+    .SYNOPSIS Get-saAccountSetScript
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This functions returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-saAccountSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $return = Get-SQLQuery -CheckContent $FixText
+
+    return $return
+}
+#endregion saAccount Functions
+
+#region Helper Functions
 <#
     .SYNOPSIS Get-Query
         Returns all queries found withing the 'CheckContent'
@@ -705,98 +906,6 @@ function Get-SQLQuery
     return $queries
 }
 
-<#
-    .SYNOPSIS Get-TraceIdQuery
-        Returns a query that is used to obtain Trace ID's
-
-    .PARAMETER Query
-        An array of queries.
-#>
-function Get-TraceIdQuery
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $EventId
-    )
-
-    $return = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES $($EventId) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END"
-
-    return $return
-}
-
-<#
-    .SYNOPSIS Get-EventIdQuery
-        Returns a query that is used to obtain Event ID's
-
-    .PARAMETER Query
-        An array of queries.
-#>
-function Get-EventIdQuery
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [AllowEmptyString()]
-        [string[]]
-        $Query
-    )
-
-    foreach ($line in $query)
-    {
-        if ($line -match "eventid")
-        {
-            return $line
-        }
-    }
-}
-
-<#
-    .SYNOPSIS Get-EventIdData
-        Returns the Event ID's that are checked against
-
-    .PARAMETER CheckContent
-        This is the 'CheckContent' derived from the STIG raw string and holds the Data that will be returned
-#>
-function Get-EventIdData
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [AllowEmptyString()]
-        [string[]]
-        $CheckContent
-    )
-
-    $array = @()
-
-    $eventData = $checkContent -join " "
-    $eventData = ($eventData -split "listed:")[1]
-    $eventData = ($eventData -split "\.")[0]
-
-    $eventId = $eventData.Trim()
-
-    $split = $eventId -split ', '
-
-    foreach ($line in $split)
-    {
-        $add = '(' + $line + ')'
-
-        $array += $add
-    }
-
-    $return = $array -join ','
-
-    return $return
-}
-
 function Get-SqlRuleType
 {
     [CmdletBinding()]
@@ -838,13 +947,20 @@ function Get-SqlRuleType
         {
             $ruleType = 'Permission'
         }
-        # Audit rules for SQL Server 2012 and beyond
+        # Audit rules for SQL Server 2014 and beyond
         {
             $PSItem -Match 'DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'
         }
         {
             $ruleType = 'Audit'
         }
+        # sa account rules
+        {
+            $PSItem -Match 'principal_id \= 1'
+        }
+        {
+            $ruleType = 'saAccount'
+        }        
         # Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
         # These should be able to get, test, set via Get-Query cleanly
         default
@@ -855,4 +971,5 @@ function Get-SqlRuleType
 
     return $ruleType
 }
-#endregion
+#endregion Helper Functions
+#endregion Method Functions

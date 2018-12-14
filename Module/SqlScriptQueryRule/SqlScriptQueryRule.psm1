@@ -169,6 +169,14 @@ Class SqlScriptQueryRule : Rule
         {
             return $true
         }
+        # SQL Server 2016+ matches
+        if
+        (
+            $CheckContent -Match "principal_id = 1"
+        )
+        {
+            return $true
+        }
         return $false
     }
 
