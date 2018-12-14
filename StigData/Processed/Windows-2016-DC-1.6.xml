@@ -4130,8 +4130,8 @@ Value: 0x000000ff (255)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '0|1'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -4140,8 +4140,8 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
-      <ValueData>0</ValueData>
+Value: 0 (Security) or 1 (Basic)</RawString>
+      <ValueData />
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

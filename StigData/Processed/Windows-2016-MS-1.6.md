@@ -131,7 +131,7 @@
     V-73545   +
     V-73547   +
     V-73549   +
-    V-73551   - Should be orgsetting
+    V-73551   + DONE Should be orgsetting
     V-73553   +
     V-73555   +
     V-73557   +
@@ -168,7 +168,7 @@
     V-73643   +
     V-73645   +
     V-73647   +
-    V-73649   - Should be an orgsetting
+    V-73649   - Should be an orgsetting Banner title
     V-73651   +
     V-73653   +
     V-73655   +

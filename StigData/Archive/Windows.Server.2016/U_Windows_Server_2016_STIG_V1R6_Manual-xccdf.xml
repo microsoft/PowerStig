@@ -8928,7 +8928,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</check-content>
+Value: 0 (Security) or 1 (Basic)</check-content>
             </check>
         </Rule>
     </Group>

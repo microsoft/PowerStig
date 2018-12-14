@@ -26,6 +26,8 @@
   <OrganizationalSetting id="V-73515" value="2" />
   <!-- Ensure 'V-73517' -match '1|2'-->
   <OrganizationalSetting id="V-73517" value="2" />
+  <!-- Ensure 'V-73551' -match '0|1'-->
+  <OrganizationalSetting id="V-73551" value="0" />
   <!-- Ensure 'V-73553' -ge '32768'-->
   <OrganizationalSetting id="V-73553" value="32768" />
   <!-- Ensure 'V-73555' -ge '196608'-->
