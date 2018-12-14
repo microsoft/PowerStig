@@ -136,11 +136,7 @@ Class AccountPolicyRule : Rule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if
-        (
-            $CheckContent -Match 'gpedit\.msc' -and
-            $CheckContent -Match 'Account Policies'
-        )
+        if($CheckContent -Match 'Navigate to.+Windows Settings\s*(-|>)?>\s*Security Settings\s*(-|>)?>\s*Account Policies')
         {
             return $true
         }
