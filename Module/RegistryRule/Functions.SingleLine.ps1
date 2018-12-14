@@ -57,8 +57,7 @@ function Get-SingleLineRegistryPath
         { 
             break 
         }
-
-        $value
+        $value = $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}
     }   
     return $value
 }
@@ -128,7 +127,14 @@ function Get-SLRegistryPath
                 { 
                     $regEx =  '{0}' -f $Hashtable.Item($i)
                     $result = $CheckContent | Select-String -Pattern $regEx
-                    $matchedRegistryPath = $result.Matches[0].Value
+                    if([string]::IsNullOrEmpty($result))
+                    {
+                        $matchedRegistryPath = $result
+                    }
+                    else
+                    {
+                        $matchedRegistryPath = $result.Matches[0].Value
+                    }
                 }
             }
         }
