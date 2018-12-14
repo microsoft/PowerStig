@@ -39,11 +39,7 @@ $global:SingleLineRegistryValueName += [ordered]@{
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
-    Eight   = @{ 
-        Select = '({0}"?\sis (?!not))(.*=)' 
-        Group = 2 
-   } 
-     Nine = @{
+     Eight = @{
           Select = '((?<=If the\s)(.*)(?<=DWORD))'
      }
      Nine = @{ #Added for Outlook Stig V-17575
@@ -59,8 +55,5 @@ $global:SingleLineRegistryValueData += [ordered]@{
      Seven   = @{ #Added for Outlook Stig V-17761.a
           Match  = 'a value of between'
           Select = '(?<=between\s)(.*)(?<=\s)'
-     }
-     Eight = @{ #Added for Outlook Stig V-17575
-          Select = '(?<=\sto\s).*"'
      }
 }

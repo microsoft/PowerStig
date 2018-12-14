@@ -1,96 +1,96 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 $global:SingleLineRegistryPath += [ordered]@{
-     Criteria = [ordered]@{ 
+     Criteria = [ordered]@{
           Contains = 'Criteria:'
-          After    = [ordered]@{ 
+          After    = [ordered]@{
                Match  = '((HKLM|HKCU).*(?=Criteria:))'
-               Select = '((HKLM|HKCU).*(?=Criteria:))' 
+               Select = '((HKLM|HKCU).*(?=Criteria:))'
           }
           Before   = [ordered]@{
                Match = 'Criteria:.*(HKLM|HKCU)'
                Select = '((HKLM|HKCU).*(?=\sis))'
-          } 
+          }
      }
-     Root     = [ordered]@{ 
-          Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE)\\' 
-          Select   = '((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)' 
+     Root     = [ordered]@{
+          Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE)\\'
+          Select   = '((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)'
      }
-     Verify = [ordered]@{ 
+     Verify = [ordered]@{
           Contains = 'Verify'
           Select   = '((HKLM|HKCU).*(?=Verify))'
      }
 }
 
 $global:SingleLineRegistryValueName += [ordered]@{
-     One   = @{ 
-          Select = '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))' 
+     One   = @{
+          Select = '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=is.*R)|(?=does not exist))'
      }
-     Two   = [ordered]@{ 
+     Two   = [ordered]@{
           Match = 'If the.+(registry key does not exist)'
-          Select = '"[\s\S]*?"' 
+          Select = '"[\s\S]*?"'
      }
-     Three = @{ 
-          Select = '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)' 
+     Three = @{
+          Select = '(?<=If the value of\s")(.*)(?="\s.*R)|(?=does not exist)'
      }
-     Four  = @{ 
-          Match = 'a value of between' 
-          Select = '((?<=gs\\)(.*)(?<=Len))' 
+     Four  = @{
+          Match = 'a value of between'
+          Select = '((?<=gs\\)(.*)(?<=Len))'
      }
-     Five  = @{ 
+     Five  = @{
           Select = '((?<=If the value\s)(.*)(?=is\sR))'
      }
-     Six   = [ordered]@{ 
-          Match = 'the policy value' 
-          Select = '(?<=")(.*)(?="\sis)' 
+     Six   = [ordered]@{
+          Match = 'the policy value'
+          Select = '(?<=")(.*)(?="\sis)'
      }
-     Seven = @{ 
-          Select = '((?<=for\s).*)' 
+     Seven = @{
+          Select = '((?<=for\s).*)'
      }
-     Eight = @{ 
-          Select = '(?<=filevalidation\\).*(?=\sis\sset\sto)' 
+     Eight = @{
+          Select = '(?<=filevalidation\\).*(?=\sis\sset\sto)'
      }
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
-     One   = @{ 
-          Select = '(?<={0}(") is not).*=' 
+     One   = @{
+          Select = '(?<={0}(") is not).*='
      } #'(?<={0}(\"")? is not ).*=' #$([regex]::escape($myString))
-     Two   = @{ 
-          Select = '({0}"?\sis (?!not))(.*=)' 
-          Group = 2 
+     Two   = @{
+          Select = '({0}"?\sis (?!not))(.*=)'
+          Group = 2
      } #'(?<={0}(")\sis).*='}; #'(?<={0}(\"")?\s+is ).*=' }; #'(?<={0}(\"")?\s+is ).*=' };
-     Three = @{ 
+     Three = @{
           Select = '(?<=Verify\sa).*(?=value\sof)'
      }
-     Four  = @{ 
-          Select = 'registry key exists and the([\s\S]*?)value' 
-          Group = 1 
+     Four  = @{
+          Select = 'registry key exists and the([\s\S]*?)value'
+          Group = 1
      }
-     Five  = @{ 
+     Five  = @{
           Select = '(?<={0}" is set to ).*"'
      }
-     Six   = @{ 
+     Six   = @{
           Select = '((hkcu|hklm).*\sis\s(.*)=)'
-          Group = 3 
+          Group = 3
      }
 #Seven = @{ Select = 'does not exist, this is not a finding'; Return = 'Does Not Exist'}
 }
 
 $global:SingleLineRegistryValueData += [ordered]@{
-     One = @{ 
+     One = @{
           Select = '(?<={0})(\s*)?=.*(?=(,|\())'
      } #'(?<={0}(\s*)?=).*(?=(,|\())' };
-     Two = @{ 
-          Select = '((?<=value\sof).*(?=for))' 
+     Two = @{
+          Select = '((?<=value\sof).*(?=for))'
      }
-     Three = @{ 
+     Three = @{
           Select = '((?<=set\sto).*(?=\(true\)))' 
      }
-     Four = @{ 
+     Four = @{
           Select = "((?<=is\sset\sto\s)(`'|`")).*(?=(`'|`"))"
      }
-     Five = @{ 
+     Five = @{
           Select = "(?<={0}\s=).*"
      }
 }
