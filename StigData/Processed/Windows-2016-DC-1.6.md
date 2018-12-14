@@ -159,7 +159,7 @@
     V-73545   +
     V-73547   +
     V-73549   +
-    V-73551   - Should be Org setting
+    V-73551   + DONE Should be Org setting
     V-73553   +
     V-73555   +
     V-73557   +
@@ -224,7 +224,7 @@
     V-73705   +
     V-73707   +
     V-73709   +
-    V-73711   - Should be an Org Setting | ConsentPromptBehaviorAdmin
+    V-73711   + DONE Should be an Org Setting | ConsentPromptBehaviorAdmin
     V-73713   +
     V-73715   +
     V-73717   +
@@ -281,7 +281,7 @@
 
 ## WindowsFeatureRule
 
-    V-73277 - Needs to be a document rule
+    V-73277 + DONE Needs to be a document rule
     V-73287 + DONE No role listed
     V-73289 + DONE No role listed
     V-73291 + DONE No role listed
