@@ -25,7 +25,7 @@ function Get-DbExistGetScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $checkContent
+    $return = Get-SQLQuery -CheckContent $CheckContent
 
     return $return
 }
@@ -54,7 +54,7 @@ function Get-DbExistTestScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $checkContent
+    $return = Get-SQLQuery -CheckContent $CheckContent
 
     return $return
 }
@@ -90,12 +90,16 @@ function Get-DbExistSetScript {
         $CheckContent
     )
 
+    <#
     $return = $FixText[1].Trim()
 
     if ($return -notmatch ";$")
     {
         $return = $return + ";"
     }
+    #>
+
+    $return = Get-SQLQuery -CheckContent $CheckContent
 
     return $return
 }
@@ -224,7 +228,7 @@ function Get-PermissionGetScript
         $CheckContent
     )
 
-    $queries = Get-SQLQuery -CheckContent $CheckContent
+    $queries = Get-Query -CheckContent $CheckContent
 
     $return = $queries[0]
 
@@ -260,7 +264,7 @@ function Get-PermissionTestScript
         $CheckContent
     )
 
-    $queries = Get-SQLQuery -CheckContent $checkContent
+    $queries = Get-Query -CheckContent $checkContent
 
     $return = $queries[0]
 
@@ -335,7 +339,7 @@ function Get-AuditGetScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $checkContent
+    $queries = Get-SQLQuery -CheckContent $checkContent
 
     $return = $queries[0]
 
@@ -372,7 +376,7 @@ function Get-AuditTestScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $checkContent
+    $queries = Get-SQLQuery -CheckContent $checkContent
 
     $return = $queries[0]
 
@@ -523,13 +527,16 @@ function Get-PlainSQLSetScript
 
 <#
     .SYNOPSIS Get-Query
-        Returns all Queries found withing the 'CheckContent'
+        Returns all queries found withing the 'CheckContent'
 
     .DESCRIPTION
         This function parses the 'CheckContent' to find all queies and extract them
         Not all queries may be used by later functions and will be separated then.
         Some functions require variations of the queries returned thus the reason for
-        returning all queries found
+        returning all queries found.
+
+        Note that this function worked well for SQL Server 2012 STIGs. An upgraded version of this function is
+        available for more robust SQL handling: Get-SQLQuery.
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -588,13 +595,16 @@ function Get-Query
 <#
     .SYNOPSIS Get-SQLQuery
         Returns all Queries found withing the 'CheckContent'
-        This is an updated version of an older, simpler function called Get-Query.
+        This is an updated version of an older, simpler function called Get-Query, written for SQL Server 2012 STIGs.
 
     .DESCRIPTION
         This function parses the 'CheckContent' to find all queies and extract them
         Not all queries may be used by later functions and will be separated then.
         Some functions require variations of the queries returned thus the reason for
-        returning all queries found
+        returning all queries found.
+
+        This function is able to parse a large variety of common SQL queries including action queries and those with
+        parenthetical clauses such as IN clauses.
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -608,7 +618,7 @@ function Get-SQLQuery
         [Parameter(Mandatory = $true)]
         [AllowEmptyString()]
         [string[]]
-        $SearchContent
+        $CheckContent
     )
 
     $collection = @()
@@ -620,7 +630,7 @@ function Get-SQLQuery
     [int] $ParenthesesRightCount = 0
     [int] $iParenthesesOffset = 0
 
-    foreach ($line in $SearchContent)
+    foreach ($line in $CheckContent)
     {
         # Clean the line first
         $line = $line.Trim()
