@@ -106,6 +106,18 @@ try
                         'Technology'        = 'SQLServer'
                         'TechnologyVersion' = '2012'
                         'TechnologyRole'    = 'Instance'
+                    },
+                    @{
+                        'id'                = 'Microsoft_SQL_Server_2016_Database__Security_Technical_Implementation_Guide_NewBenchmark'
+                        'Technology'        = 'SQLServer'
+                        'TechnologyVersion' = '2016'
+                        'TechnologyRole'    = 'Database'
+                    },
+                    @{
+                        'id'                = 'Microsoft_SQL_Server_2016_Database_Instance_Security_Technical_Implementation_Guide'
+                        'Technology'        = 'SQLServer'
+                        'TechnologyVersion' = '2016'
+                        'TechnologyRole'    = 'Instance'
                     }
                 )
                 'Firewall' = @(

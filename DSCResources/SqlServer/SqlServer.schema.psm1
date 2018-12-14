@@ -51,7 +51,7 @@ Configuration SqlServer
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('2012')]
+        [ValidateSet('2012', '2016')]
         [string]
         $SqlVersion,
 
@@ -61,7 +61,7 @@ Configuration SqlServer
         $SqlRole,
 
         [Parameter()]
-        [ValidateSet('1.16', '1.17')]
+        [ValidateSet('1.3', '1.16', '1.17')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
