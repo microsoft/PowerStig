@@ -29,7 +29,7 @@ Configuration Firefox_config
             Stigversion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
-            "Exception    = @{'$Exception'= @{'Value'='1234567'}}"
+                "Exception = @{'$Exception'= @{'Value'='1234567'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -37,7 +37,7 @@ Configuration Firefox_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

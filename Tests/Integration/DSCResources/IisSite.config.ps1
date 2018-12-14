@@ -46,7 +46,7 @@ Configuration IisSite_config
                 StigVersion = '$StigVersion'
                 $(if ($null -ne $Exception)
                 {
-                    "Exception    = @{'$Exception'= @{'Value'='1234567'}}"
+                    "Exception = @{'$Exception'= @{'Value'='1234567'}}"
                 })
                 $(if ($null -ne $SkipRule)
                 {

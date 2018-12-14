@@ -31,10 +31,10 @@ Configuration Browser_config
         Browser InternetExplorer
         {
             BrowserVersion = '$browserVersion'
-            Stigversion    = '$StigVersion'
+            Stigversion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
-            "Exception    = @{'$Exception'= @{'ValueData'='1234567'}}"
+                "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -42,7 +42,7 @@ Configuration Browser_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

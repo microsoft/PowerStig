@@ -26,10 +26,10 @@ Configuration WindowsFirewall_config
         & ([scriptblock]::Create("
         WindowsFirewall BaseLineSettings
         {
-            StigVersion  = '$StigVersion'
+            StigVersion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
-            "Exception    = @{'$Exception'= @{'ValueData'='1234567'}}"
+                "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -37,7 +37,7 @@ Configuration WindowsFirewall_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

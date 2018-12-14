@@ -33,12 +33,12 @@ Configuration IisServer_Config
         & ([scriptblock]::Create("
         IisServer ServerConfiguration
         {
-            OsVersion   = '$OsVersion'
+            OsVersion = '$OsVersion'
             StigVersion = '$StigVersion'
-            LogPath     = '$LogPath'
+            LogPath = '$LogPath'
             $(if ($null -ne $Exception)
             {
-                "Exception    = @{'$Exception'= @{'Value'='1234567'}}"
+                "Exception = @{'$Exception'= @{'Value'='1234567'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -46,7 +46,7 @@ Configuration IisServer_Config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

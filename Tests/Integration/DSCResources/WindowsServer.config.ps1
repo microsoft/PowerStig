@@ -42,14 +42,14 @@ Configuration WindowsServer_config
         & ([scriptblock]::Create("
             WindowsServer BaseLineSettings
             {
-                OsVersion    = '$OsVersion'
-                OsRole       = '$osRole'
-                StigVersion  = '$StigVersion'
-                ForestName   = '$ForestName'
-                DomainName   = '$DomainName'
+                OsVersion = '$OsVersion'
+                OsRole = '$osRole'
+                StigVersion = '$StigVersion'
+                ForestName = '$ForestName'
+                DomainName = '$DomainName'
                 $(if ($null -ne $Exception)
                 {
-                "Exception    = @{'$Exception'= @{'ValueData'='1234567'}}"
+                    "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
                 })
                 $(if ($null -ne $SkipRule)
                 {
@@ -57,7 +57,7 @@ Configuration WindowsServer_config
                 }
                 if ($null -ne $SkipRuleType)
                 {
-                    " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
                 })
             }")
         )

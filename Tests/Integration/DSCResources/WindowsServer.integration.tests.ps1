@@ -36,8 +36,8 @@ try
 
             Context 'AuditPolicy' {
                 $hasAllSettings = $true
-                $dscXml         = $dscXml.DISASTIG.AuditPolicyRule.Rule
-                $dscMof         = $instances |
+                $dscXml = $dscXml.DISASTIG.AuditPolicyRule.Rule
+                $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}
 
                 foreach ( $setting in $dscXml )
@@ -84,8 +84,8 @@ try
 
             Context 'Registry' {
                 $hasAllSettings = $true
-                $dscXml   = $dscXml.DISASTIG.RegistryRule.Rule
-                $dscMof   = $instances |
+                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
 
                 foreach ( $setting in $dscXml )
@@ -104,8 +104,8 @@ try
 
             Context 'WMI' {
                 $hasAllSettings = $true
-                $dscXml    = $dscXml.DISASTIG.WmiRule.Rule
-                $dscMof   = $instances |
+                $dscXml = $dscXml.DISASTIG.WmiRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[script\]"}
 
                 foreach ( $setting in $dscXml )
@@ -225,13 +225,13 @@ try
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
             $SkipRuleType = "AuditPolicyRule"
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion  `
+                        -OsVersion $stig.TechnologyVersion `
                         -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
@@ -264,13 +264,13 @@ try
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
 
-            $SkipRule     = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
             $SkipRuleType = @('AuditPolicyRule','AccountPolicyRule')
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion  `
+                        -OsVersion $stig.TechnologyVersion `
                         -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
@@ -304,9 +304,9 @@ try
         }
 
         Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output"{
-            
+
             If (-not $ExceptionRuleValueData)
-            {   
+            {
                 $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
                 $Exception = $ExceptionRule.ID
                 $ExceptionRuleValueData = $ExceptionRule.ValueData
@@ -315,7 +315,7 @@ try
             It "Should compile the MOF with STIG exception $($Exception) without throwing" {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion  `
+                        -OsVersion $stig.TechnologyVersion `
                         -OsRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `

@@ -38,13 +38,13 @@ Configuration WindowsDnsServer_config
         & ([scriptblock]::Create("
         WindowsDnsServer BaseLineSettings
         {
-            OsVersion  = '$OsVersion' 
-            StigVersion  = '$StigVersion'
-            ForestName  = '$ForestName'
-            DomainName  = '$DomainName'
+            OsVersion = '$OsVersion'
+            StigVersion = '$StigVersion'
+            ForestName = '$ForestName'
+            DomainName = '$DomainName'
             $(if ($null -ne $Exception)
             {
-            "Exception    = @{'$Exception'= @{'PropertyValue'='1234567'}}"
+                "Exception = @{'$Exception'= @{'PropertyValue'='1234567'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -52,7 +52,7 @@ Configuration WindowsDnsServer_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

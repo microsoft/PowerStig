@@ -30,11 +30,11 @@ Configuration Office_config
         & ([scriptblock]::Create("
         Office BaseLineSettings
         {
-            OfficeApp   =  '$OfficeApp'
-            StigVersion  = '$StigVersion'
+            OfficeApp = '$OfficeApp'
+            StigVersion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
-            "Exception    = @{'$Exception'= @{'ValueData'='1234567'}}"
+                "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -42,7 +42,7 @@ Configuration Office_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

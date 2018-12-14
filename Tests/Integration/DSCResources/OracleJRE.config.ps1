@@ -34,12 +34,12 @@ Configuration OracleJRE_config
         & ([scriptblock]::Create("
         OracleJRE OracleConfiguration
         {
-            ConfigPath     = '$configPath'
+            ConfigPath = '$configPath'
             PropertiesPath = '$propertiesPath'
-            Stigversion    =  '$StigVersion'
+            Stigversion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
-                "Exception    = @{'$Exception'= @{'Value'='ExceptionTest'}}"
+                "Exception = @{'$Exception'= @{'Value'='ExceptionTest'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -47,7 +47,7 @@ Configuration OracleJRE_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

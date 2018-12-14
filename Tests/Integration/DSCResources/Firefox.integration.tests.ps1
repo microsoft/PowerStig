@@ -15,7 +15,7 @@ try
     foreach ($stig in $stigList)
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
-        
+
         Describe " $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
@@ -62,8 +62,8 @@ try
                         -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
-            }       
- 
+            }
+
             #region Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
@@ -83,9 +83,9 @@ try
         }
 
         Describe " $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule mof output" {
-            
+
             $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
-            
+
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
@@ -95,27 +95,27 @@ try
                         -OutputPath $TestDrive
                 } | Should not throw
             }
-            
+
             #region Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
-           
+
             Context 'Skip check' {
-                
+
                 #region counts how many Skips there are and how many there should be.
                 $expectedSkipRuleCount = ($($SkipRule.Count))
                 $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
-                
+
                 It "Should have $expectedSkipRuleCount Skipped settings" {
                     $dscMof.count | Should Be $expectedSkipRuleCount
                 }
             }
         }
-        
+
         Describe " $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output"{
-            
+
             If (-not $ExceptionRuleValueData)
             {   
                 $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule

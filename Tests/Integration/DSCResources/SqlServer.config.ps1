@@ -35,13 +35,13 @@ Configuration SqlServerInstance_config
         & ([scriptblock]::Create("
         SqlServer Instance
         {
-            SqlVersion     = '$SqlVersion'
-            SqlRole        = '$SqlRole'
-            StigVersion  = '$StigVersion'
+            SqlVersion = '$SqlVersion'
+            SqlRole = '$SqlRole'
+            StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
             $(if ($null -ne $Exception)
             {
-                "Exception    = @{'$Exception'= @{'SetScript'='TestScript'}}"
+                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -92,14 +92,14 @@ Configuration SqlServerDatabase_config
         & ([scriptblock]::Create("
         SqlServer Database
         {
-            SqlVersion     = '$SqlVersion'
-            SqlRole        = '$SqlRole'
-            StigVersion  = '$StigVersion'
+            SqlVersion = '$SqlVersion'
+            SqlRole = '$SqlRole'
+            StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
-            Database       = 'TestDataBase'
+            Database = 'TestDataBase'
             $(if ($null -ne $Exception)
             {
-                "Exception    = @{'$Exception'= @{'SetScript'='TestScript'}}"
+                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -107,7 +107,7 @@ Configuration SqlServerDatabase_config
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )

@@ -35,7 +35,7 @@ try
                 $hasAllSettings = $true
                 $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
                 $dscMof = $instances |
-                    Where-Object -FilterScript {$PSItem.ResourceID -match "\[xRegistry\]"} 
+                    Where-Object -FilterScript {$PSItem.ResourceID -match "\[xRegistry\]"}
 
                 foreach ($setting in $dscXml)
                 {
@@ -74,7 +74,7 @@ try
 
                 #region counts how many Skips there are and how many there should be.
                 $dscXml = $($SkipRule.Count)
-                [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"} 
+                [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
                 It "Should have $dscXml Skipped settings" {
@@ -82,11 +82,11 @@ try
                 }
             }
         }
-        
+
         Describe "Windows Firewall $($stig.stigVersion) Multiple SkipRule mof output" {
-            
+
             $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-            
+
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
@@ -96,29 +96,29 @@ try
                         -SkipRuleType $SkipRuleType 
                 } | Should not throw
             }
-            
+
             #region Gets the mof content
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
-            
+
             Context 'Skip check' {
-                
+
                 #region counts how many Skips there are and how many there should be.
                 $expectedSkipRuleCount = ($($SkipRule.Count))
                 $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
-                
+
                 It "Should have $expectedSkipRuleCount Skipped settings" {
                     $dscMof.count | Should Be $expectedSkipRuleCount
                 }
             }
         }
-   
+
         Describe "Windows Firewall $($stig.stigVersion) Exception mof output"{
-            
+
             If (-not $ExceptionRuleValueData)
-            {   
+            {
                 $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
                 $Exception = $ExceptionRule.ID
                 $ExceptionRuleValueData = $ExceptionRule.ValueData
