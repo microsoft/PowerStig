@@ -61,7 +61,6 @@ try
                         -BrowserVersion $stig.TechnologyRole `
                         -StigVersion $stig.stigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -94,7 +93,6 @@ try
                         -BrowserVersion $stig.TechnologyRole `
                         -StigVersion $stig.stigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }

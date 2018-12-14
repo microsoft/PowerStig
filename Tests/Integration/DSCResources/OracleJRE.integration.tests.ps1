@@ -68,7 +68,6 @@ try
                         -PropertiesPath $propertiesPath `
                         -StigVersion $stig.stigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -102,7 +101,6 @@ try
                         -PropertiesPath $propertiesPath `
                         -StigVersion $stig.stigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }

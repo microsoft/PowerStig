@@ -59,7 +59,6 @@ try
                     & "$($script:DSCCompositeResourceName)_config" `
                         -StigVersion $stig.StigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -91,7 +90,6 @@ try
                     & "$($script:DSCCompositeResourceName)_config" `
                         -StigVersion $stig.StigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }

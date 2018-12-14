@@ -62,7 +62,6 @@ try
                         -OfficeApp $stig.TechnologyRole  `
                         -StigVersion $stig.StigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }
@@ -95,7 +94,6 @@ try
                         -OfficeApp $stig.TechnologyRole  `
                         -StigVersion $stig.StigVersion `
                         -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
                         -OutputPath $TestDrive
                 } | Should not throw
             }

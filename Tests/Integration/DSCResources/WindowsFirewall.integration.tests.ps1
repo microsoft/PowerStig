@@ -53,6 +53,7 @@ try
         }
 
         Describe "Windows Firewall $($stig.stigVersion) Single SkipRule mof output"{
+
             $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
 
             It 'Should compile the MOF without throwing' {
@@ -60,8 +61,7 @@ try
                     & "$($script:DSCCompositeResourceName)_config" `
                         -StigVersion $stig.StigVersion `
                         -OutputPath $TestDrive `
-                        -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType 
+                        -SkipRule $SkipRule
                 } | Should not throw
             }
 
@@ -92,8 +92,7 @@ try
                     & "$($script:DSCCompositeResourceName)_config" `
                         -StigVersion $stig.StigVersion `
                         -OutputPath $TestDrive `
-                        -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType 
+                        -SkipRule $SkipRule
                 } | Should not throw
             }
 

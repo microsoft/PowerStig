@@ -39,10 +39,6 @@ Configuration Browser_config
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
-            }
-            if ($null -ne $SkipRuleType)
-            {
-                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
             })
         }")
         )
