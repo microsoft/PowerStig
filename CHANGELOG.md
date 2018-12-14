@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed [#215](https://github.com/Microsoft/PowerStig/issues/215): Org settings wont apply for DotNet STIG
+* Fixed [#216](https://github.com/Microsoft/PowerStig/issues/216): DotNet STIGs are misnamed
+
 ## 2.3.1.0
 
 * Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
