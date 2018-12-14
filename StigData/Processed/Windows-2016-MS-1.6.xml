@@ -4368,8 +4368,8 @@ Value: 0x00000000 (0)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
       <RawString>UAC requirements are NA for Server Core installations (this is default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -4380,9 +4380,8 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: ConsentPromptBehaviorAdmin
 
 Value Type: REG_DWORD
-Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
-0x00000001 (1) (Prompt for credentials on the secure desktop)</RawString>
-      <ValueData>2</ValueData>
+Value: 1 (Prompt for credentials on the secure desktop) or 2 (Prompt for consent on the secure desktop)</RawString>
+      <ValueData />
       <ValueName>ConsentPromptBehaviorAdmin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

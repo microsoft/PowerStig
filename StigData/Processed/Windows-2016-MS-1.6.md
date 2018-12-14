@@ -197,7 +197,7 @@
     V-73705   +
     V-73707   +
     V-73709   +
-    V-73711   - Should be OrgSetting
+    V-73711   + DONE Should be OrgSetting
     V-73713   +
     V-73715   +
     V-73717   +
@@ -252,16 +252,15 @@
 
 ## WindowsFeatureRule
 
-    V-73277   - Manual Rule
-    V-73287   +
-    V-73289   +
-    V-73291   +
-    V-73293   +
-    V-73295.a +
-    V-73295.b - Extra rule?
-    V-73297   +
-    V-73299   +
-    V-73301   +
+    V-73277 + DONE Manual Rule
+    V-73287 +
+    V-73289 +
+    V-73291 +
+    V-73293 +
+    V-73295 +
+    V-73297 +
+    V-73299 +
+    V-73301 +
 
 ## WmiRule
 

@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/13/2018">
+<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/14/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1109,6 +1109,18 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
 If any files with these extensions exist, this is a finding.
 
 This does not apply to server-based applications that have a requirement for certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
+    </Rule>
+    <Rule id="V-73277" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Required roles and features will vary based on the function of the individual system.
+
+Roles and features specifically required to be disabled per the STIG are identified in separate requirements.
+
+If the organization has not documented the roles and features required for the system(s), this is a finding.
+
+The PowerShell command "Get-WindowsFeature" will list all roles and features with an "Install State".</RawString>
     </Rule>
     <Rule id="V-73375" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125 Duplicate" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5454,8 +5466,8 @@ Value: 0x00000000 (0)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
       <RawString>UAC requirements are NA for Server Core installations (this is default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -5466,9 +5478,8 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: ConsentPromptBehaviorAdmin
 
 Value Type: REG_DWORD
-Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
-0x00000001 (1) (Prompt for credentials on the secure desktop)</RawString>
-      <ValueData>2</ValueData>
+Value: 1 (Prompt for credentials on the secure desktop) or 2 (Prompt for consent on the secure desktop)</RawString>
+      <ValueData />
       <ValueName>ConsentPromptBehaviorAdmin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -6478,20 +6489,6 @@ The application account must meet requirements for application account passwords
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-73277" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
-      <InstallState>Absent</InstallState>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Required roles and features will vary based on the function of the individual system.
-
-Roles and features specifically required to be disabled per the STIG are identified in separate requirements.
-
-If the organization has not documented the roles and features required for the system(s), this is a finding.
-
-The PowerShell command "Get-WindowsFeature" will list all roles and features with an "Install State".</RawString>
-    </Rule>
     <Rule id="V-73287" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
       <FeatureName>Fax</FeatureName>
       <InstallState>Absent</InstallState>
