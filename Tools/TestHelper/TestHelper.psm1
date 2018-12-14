@@ -437,7 +437,7 @@ function Get-ValidStigVersionNumbers
 <#
     .SYNOPSIS
         Tests whether a STIG has rule types besides Manual and Document Rules
-    
+
     .PARAMETER StigObject
         A STIG Object to test
 #>
