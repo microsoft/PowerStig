@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/5/2018">
+<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/14/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -884,6 +884,18 @@ Inactive accounts that have been reviewed and deemed to be required must be docu
 If any files with these extensions exist, this is a finding.
 
 This does not apply to server-based applications that have a requirement for certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
+    </Rule>
+    <Rule id="V-73277" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Required roles and features will vary based on the function of the individual system.
+
+Roles and features specifically required to be disabled per the STIG are identified in separate requirements.
+
+If the organization has not documented the roles and features required for the system(s), this is a finding.
+
+The PowerShell command "Get-WindowsFeature" will list all roles and features with an "Install State".</RawString>
     </Rule>
     <Rule id="V-73605" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5369,20 +5381,6 @@ The application account must meet requirements for application account passwords
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
-    <Rule id="V-73277" severity="medium" conversionstatus="fail" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
-      <FeatureName />
-      <InstallState>Absent</InstallState>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Required roles and features will vary based on the function of the individual system.
-
-Roles and features specifically required to be disabled per the STIG are identified in separate requirements.
-
-If the organization has not documented the roles and features required for the system(s), this is a finding.
-
-The PowerShell command "Get-WindowsFeature" will list all roles and features with an "Install State".</RawString>
-    </Rule>
     <Rule id="V-73287" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="WindowsFeature">
       <FeatureName>Fax</FeatureName>
       <InstallState>Absent</InstallState>
