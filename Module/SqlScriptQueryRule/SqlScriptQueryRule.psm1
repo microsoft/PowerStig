@@ -172,7 +172,7 @@ Class SqlScriptQueryRule : Rule
         # SQL Server 2016+ matches
         if
         (
-            $CheckContent -Match "principal_id = 1"
+            $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #saAccount rules
         )
         {
             return $true
