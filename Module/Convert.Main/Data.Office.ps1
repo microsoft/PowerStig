@@ -39,7 +39,11 @@ $global:SingleLineRegistryValueName += [ordered]@{
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
-     Eight = @{
+    Eight   = @{ 
+        Select = '({0}"?\sis (?!not))(.*=)' 
+        Group = 2 
+   } 
+     Nine = @{
           Select = '((?<=If the\s)(.*)(?<=DWORD))'
      } #Added for Outlook Stig - JJS
 }
