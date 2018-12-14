@@ -410,10 +410,10 @@ function Get-StigVersionParameterValidateSet
 
 <#
     .SYNOPSIS
-        Get a unique list of valid STIG versions from the StigData
+        Get a unique list of valid STIG versions from the StigData.
 
     .PARAMETER TechnologyRoleFilter
-        The technology role to filter the results
+        The technology role to filter the results.
 #>
 
 function Get-ValidStigVersionNumbers
