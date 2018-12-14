@@ -107,12 +107,7 @@ Configuration IisServer
     $technologyRole    = [TechnologyRole]::New( 'IISServer', $technologyVersion )
     $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
-                                          $SkipRuleType, $SkipRule )
-<<<<<<< HEAD
-                                          
-=======
-
->>>>>>> origin/2.4.0.0
+                                          $SkipRuleType, $SkipRule )                                       
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
