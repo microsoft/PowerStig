@@ -6726,7 +6726,7 @@ Registry Path: \SYSTEM\CurrentControlSet\Policies\EarlyLaunch\
 Value Name: DriverLoadPolicy
 
 Value Type: REG_DWORD
-Value: 0x00000001 (1), 0x00000003 (3), or 0x00000008 (8) (or if the Value Name does not exist)
+Value: 0x00000001 (1) or 0x00000003 (3) or 0x00000008 (8) (or if the Value Name does not exist)
 
 Possible values for this setting are:
 8 - Good only
