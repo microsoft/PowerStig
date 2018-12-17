@@ -2617,7 +2617,7 @@ If any do, determine whether these applications obfuscate authentication data; i
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-79197" severity="low" conversionstatus="pass" title="SRG-APP-000176-DB-000068" dscresource="SecurityOption">
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName>System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing</OptionName>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
       <OptionValue>Enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2626,13 +2626,13 @@ If any do, determine whether these applications obfuscate authentication data; i
 Review system configuration to determine whether FIPS 140-2 support has been enabled. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </RawString>
     </Rule>
     <Rule id="V-79199" severity="medium" conversionstatus="pass" title="SRG-APP-000179-DB-000114" dscresource="SecurityOption">
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName>System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing</OptionName>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
       <OptionValue>Enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2641,13 +2641,13 @@ If the value for "System cryptography: Use FIPS-compliant algorithms for encrypt
 Review system configuration to determine whether FIPS 140-2 support has been enabled. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </RawString>
     </Rule>
     <Rule id="V-79203" severity="medium" conversionstatus="pass" title="SRG-APP-000224-DB-000384" dscresource="SecurityOption">
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName>System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing</OptionName>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
       <OptionValue>Enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2656,13 +2656,13 @@ If the value for "System cryptography: Use FIPS-compliant algorithms for encrypt
 Verify that Windows is configured to require the use of FIPS compliant algorithms. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </RawString>
     </Rule>
     <Rule id="V-79305" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000381" dscresource="SecurityOption">
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName>System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing</OptionName>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
       <OptionValue>Enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2671,13 +2671,13 @@ If the value for "System cryptography: Use FIPS-compliant algorithms for encrypt
 Verify that Windows is configured to require the use of FIPS compliant algorithms. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </RawString>
     </Rule>
     <Rule id="V-79307" severity="high" conversionstatus="pass" title="SRG-APP-000514-DB-000382" dscresource="SecurityOption">
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName>System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing</OptionName>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
       <OptionValue>Enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -2686,7 +2686,7 @@ If the value for "System cryptography: Use FIPS-compliant algorithms for encrypt
 Verify that Windows is configured to require the use of FIPS 140-2 algorithms.
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </RawString>
     </Rule>

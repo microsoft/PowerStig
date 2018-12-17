@@ -145,6 +145,7 @@ Class SecurityOptionRule : Rule
                 $CheckContent -Match 'Local Security Policy' -and
                 $CheckContent -Match 'Security Options' -and
                 $CheckContent -Match 'If the value for'
+            )
         )
         {
             return $true
