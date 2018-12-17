@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide" version="1.17" created="12/13/2018">
+<DISASTIG id="Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide" version="1.17" created="12/14/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -1441,24 +1441,6 @@ RECONFIGURE WITH OVERRIDE;
 EXEC SP_CONFIGURE 'xp_cmdshell';
 
 If the value of config_value is 1, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-40936" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Check SQL Server settings to determine if the 'sa' (sysadmin) account has been disabled by executing the following query:
-
-USE MASTER
-GO
-SELECT name, is_disabled 
-FROM sys.sql_logins 
-WHERE principal_id = 1;
-
-Verify that the "name" column contains the current name of the sa database server account (see note).
-
-If the "is_disabled" column is not set to 1, this is a finding.
-
-Note:  If the 'sa' account name has been changed per SQL2-00-010200, its new name should appear in the query results.</RawString>
     </Rule>
     <Rule id="V-40938" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000091" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4220,6 +4202,27 @@ If the required audit settings are not configured, there is a risk that unauthor
     </Rule>
   </ManualRule>
   <SqlScriptQueryRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-40936" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="SqlScriptQuery">
+      <GetScript>USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled &lt;&gt; 1;</GetScript>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check SQL Server settings to determine if the 'sa' (sysadmin) account has been disabled by executing the following query:
+
+USE MASTER
+GO
+SELECT name, is_disabled 
+FROM sys.sql_logins 
+WHERE principal_id = 1;
+
+Verify that the "name" column contains the current name of the sa database server account (see note).
+
+If the "is_disabled" column is not set to 1, this is a finding.
+
+Note:  If the 'sa' account name has been changed per SQL2-00-010200, its new name should appear in the query results.</RawString>
+      <SetScript>USE [master] DECLARE @saAccountName varchar(50) SET @saAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) IF @saAccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @saAccountName = 'old_sa' DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled &lt;&gt; 1 ALTER LOGIN [@saAccountName] DISABLE;</SetScript>
+      <TestScript>USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled &lt;&gt; 1;</TestScript>
+    </Rule>
     <Rule id="V-40942" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="SqlScriptQuery">
       <GetScript>SELECT name from sysdatabases where name like 'AdventureWorks%';</GetScript>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4230,7 +4233,7 @@ If the required audit settings are not configured, there is a risk that unauthor
 SELECT name from sysdatabases where name like 'AdventureWorks%';
 
 If the "AdventureWorks" database is present, this is a finding.</RawString>
-      <SetScript>DROP DATABASE AdventureWorks;</SetScript>
+      <SetScript>SELECT name from sysdatabases where name like 'AdventureWorks%';</SetScript>
       <TestScript>SELECT name from sysdatabases where name like 'AdventureWorks%';</TestScript>
     </Rule>
     <Rule id="V-40943" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000090" dscresource="SqlScriptQuery">
@@ -4243,7 +4246,7 @@ If the "AdventureWorks" database is present, this is a finding.</RawString>
 SELECT name from sysdatabases where name like 'Northwind%';
 
 If the "Northwind" database is present, this is a finding.</RawString>
-      <SetScript>DROP DATABASE Northwind;</SetScript>
+      <SetScript>SELECT name from sysdatabases where name like 'Northwind%';</SetScript>
       <TestScript>SELECT name from sysdatabases where name like 'Northwind%';</TestScript>
     </Rule>
     <Rule id="V-41021" severity="medium" conversionstatus="pass" title="SRG-APP-000115-DB-000056" dscresource="SqlScriptQuery">
