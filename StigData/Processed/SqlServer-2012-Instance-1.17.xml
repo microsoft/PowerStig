@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide" version="1.17" created="8/22/2018">
+<DISASTIG id="Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide" version="1.17" created="12/13/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
