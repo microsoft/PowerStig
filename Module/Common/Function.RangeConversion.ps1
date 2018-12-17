@@ -198,6 +198,10 @@ function ConvertTo-TestString
         {
             return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
         }
+        {$PSItem -match 'or if the Value Name does not exist'}
+        {
+            return "{0} -match '$($number[0])|ShouldBeAbsent'"
+        }
     }
 }
 
@@ -376,8 +380,12 @@ function ConvertTo-OrTestString
     try
     {
         $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
-        $numbers = $tokens.Where( {$PSItem.type -eq 'Number' -and $PSItem.Content -notmatch '\dx\d{8}' }).Content
-        "{0} $($operatorString[$Operator]) '$($numbers -join "|")'"
+        $orgSettings = $tokens.Where( {$PSItem.type -eq 'Number' -and $PSItem.Content -notmatch '\dx\d{8}' }).Content
+        if($string -match 'or if the Value Name does not exist')
+        {
+            $orgSettings += 'ShouldBeAbsent'
+        }
+        "{0} $($operatorString[$Operator]) '$($orgSettings -join "|")'"
     }
     catch
     {
