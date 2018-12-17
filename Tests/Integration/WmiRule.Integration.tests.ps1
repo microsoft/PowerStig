@@ -6,10 +6,10 @@ try
     #region Test Setup
     $rulesToTest = @(
             @{
-                query         = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
-                property      = 'FileSystem'
-                value         = 'NTFS|ReFS'
-                operator      = '-match'
+                query        = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
+                property     = 'FileSystem'
+                value        = 'NTFS|ReFS'
+                operator     = '-match'
                 checkContent = 'Open the Computer Management Console.
     Expand the "Storage" object in the Tree window.
     Select the "Disk Management" object.

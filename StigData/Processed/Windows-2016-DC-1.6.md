@@ -295,9 +295,3 @@
 
     V-73239 +
     V-73247 +
-
-```powershell
-[xml]$xml = Get-Content 'C:\Users\adamh\source\repos\PowerSTIG\PowerStig\StigData\Processed\Windows-2016-DC-1.6.xml'
-
-$xml.DISASTIG.ManualRule.Rule | select id
-```
