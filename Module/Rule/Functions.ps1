@@ -147,7 +147,8 @@ function Get-HardCodedString
         'V-3472.b', # Windows Time Service - Configure NTP Client
         'V-8322.b', # Time Synchronization
         'V-14235', # UAC - Admin Elevation Prompt
-        'V-26359', # Windows Server - Legal Banner Dialog Box Title
+        'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
+        'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
         'V-17761' # Outlook 2013 - OrgSetting Value
     )
 
@@ -198,7 +199,7 @@ function Get-HardCodedString
             $hardCodedString = "'{0}' -le '4'"
             continue
         }
-        {$PSItem -match 'V-26359'}
+        {$PSItem -match 'V-26359|V-73649'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
             continue

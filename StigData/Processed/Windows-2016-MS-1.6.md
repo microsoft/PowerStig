@@ -168,7 +168,7 @@
     V-73643   +
     V-73645   +
     V-73647   +
-    V-73649   - Should be an orgsetting Banner title
+    V-73649   + DONE Should be an orgsetting Banner title
     V-73651   +
     V-73653   +
     V-73655   +
@@ -229,7 +229,7 @@
     V-73747 +
     V-73749 +
     V-73751 +
-    V-73753 - No org setting
+    V-73753 + DONE No org setting
     V-73755 - Trim ending String
     V-73759 +
     V-73763 +

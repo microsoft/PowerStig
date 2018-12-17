@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/14/2018">
+<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/17/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3801,8 +3801,8 @@ By using this IS (which includes any device attached to this IS), you consent to
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3818,7 +3818,7 @@ Value: See message title options below
 If an organization-defined title is used, it can in no case contravene or modify the language of the banner text required in WN16-SO-000150.
 
 Automated tools may only search for the titles defined above. If an organization-defined title is used, a manual review will be required.</RawString>
-      <ValueData>DoD Notice and Consent Banner</ValueData>
+      <ValueData />
       <ValueName>LegalNoticeCaption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
