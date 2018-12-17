@@ -144,11 +144,11 @@
     V-73509.a +
     V-73509.b +
     V-73511
-    V-73513.a - Device Guard | org setting needs to be fixed These should be split into registry and script rules for complete coverage
-    V-73513.b - Device Guard | org setting needs to be fixed
-    V-73515   - Device Guard | org setting needs to be fixed
-    V-73517   - Device Guard | org setting needs to be fixed
-    V-73521   - Should be org setting
+    V-73513.a + DONE Clean up orgsetting test
+    V-73513.b + DONE Clean up orgsetting test
+    V-73515   + DONE Device guard Check Needed
+    V-73517   + DONE Device guard Check Needed
+    V-73521   + DONE Should be org setting
     V-73525   +
     V-73527   +
     V-73529   +

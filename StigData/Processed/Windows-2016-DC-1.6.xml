@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/14/2018">
+<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/17/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3758,8 +3758,8 @@ Value: 0x00000000 (0)</RawString>
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\
 Value Type: REG_SZ
 Value Name: \\*\NETLOGON
-Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
-      <ValueData>RequireMutualAuthentication=1, RequireIntegrity=1</ValueData>
+Value: RequireMutualAuthentication=1,RequireIntegrity=1</RawString>
+      <ValueData>RequireMutualAuthentication=1,RequireIntegrity=1</ValueData>
       <ValueName>\\*\NETLOGON</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -3773,8 +3773,8 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\
 Value Type: REG_SZ
 Value Name: \\*\SYSVOL
-Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
-      <ValueData>RequireMutualAuthentication=1, RequireIntegrity=1</ValueData>
+Value: RequireMutualAuthentication=1,RequireIntegrity=1</RawString>
+      <ValueData>RequireMutualAuthentication=1,RequireIntegrity=1</ValueData>
       <ValueName>\\*\SYSVOL</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -3817,7 +3817,7 @@ Value: 0x00000001 (1)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0x00000001|1|0x00000003|3'</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -match '1|3'</OrganizationValueTestString>
       <RawString>Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\
 Value Type: REG_DWORD
@@ -3832,7 +3832,7 @@ Value: 0x00000001 (1) (Secure Boot only) or 0x00000003 (3) (Secure Boot and DMA 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0x00000001|1|0x00000002|2'</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
       <RawString>For domain controllers and standalone systems, this is NA.
 
 Current hardware and virtual environments may not support virtualization-based security features, including Credential Guard, due to specific supporting requirements, including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within a virtual machine.
@@ -3874,7 +3874,7 @@ https://docs.microsoft.com/en-us/windows/security/identity-protection/credential
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0x00000001|1|0x00000002|2'</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
       <RawString>For standalone systems, this is NA.
 
 Current hardware and virtual environments may not support virtualization-based security features, including Credential Guard, due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within a virtual machine.
@@ -3911,8 +3911,8 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\EarlyLaunch</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '1|3|8|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Early Launch Antimalware - Boot-Start Driver Initialization policy to enforce "Good, unknown and bad but critical" (preventing "bad").
 
 If the registry value name below does not exist, this is not a finding.
@@ -3925,14 +3925,14 @@ Registry Path: \SYSTEM\CurrentControlSet\Policies\EarlyLaunch\
 Value Name: DriverLoadPolicy
 
 Value Type: REG_DWORD
-Value: 0x00000001 (1), 0x00000003 (3), or 0x00000008 (8) (or if the Value Name does not exist)
+Value: 0x00000001 (1) or 0x00000003 (3) or 0x00000008 (8) (or if the Value Name does not exist)
 
 Possible values for this setting are:
 8 - Good only
 1 - Good and unknown
 3 - Good, unknown and bad but critical
 7 - All (which includes "bad" and would be a finding)</RawString>
-      <ValueData>1</ValueData>
+      <ValueData />
       <ValueName>DriverLoadPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4140,7 +4140,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0 (Security) or 1 (Basic)</RawString>
+Value: 0x00000000 (0) (Security) or 0x00000001 (1) (Basic)</RawString>
       <ValueData />
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
@@ -4231,8 +4231,8 @@ Value: 0x00000001 (1)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Data Execution Prevention to be turned on for File Explorer.
 
 If the registry value name below does not exist, this is not a finding.
@@ -4248,7 +4248,7 @@ Value Name: NoDataExecutionPrevention
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>NoDataExecutionPrevention</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4256,8 +4256,8 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for File Explorer heap termination on corruption to be enabled.
 
 If the registry Value Name below does not exist, this is not a finding.
@@ -4273,7 +4273,7 @@ Value Name: NoHeapTerminationOnCorruption
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>NoHeapTerminationOnCorruption</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4281,8 +4281,8 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for shell protected mode to be turned on for File Explorer.
 
 If the registry value name below does not exist, this is not a finding.
@@ -4298,7 +4298,7 @@ Value Name: PreXPSP2ShellProtocolBehavior
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>PreXPSP2ShellProtocolBehavior</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4420,8 +4420,8 @@ Value: 0x00000001 (1)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for the Windows RSS platform to not use Basic authentication over HTTP connections.
 
 If the registry value name below does not exist, this is not a finding.
@@ -4437,7 +4437,7 @@ Value Name: AllowBasicAuthInClear
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>AllowBasicAuthInClear</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4502,8 +4502,8 @@ Value: 0x00000000 (0)</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Internet Explorer to warn users and select whether to allow or refuse installation when a web-based program attempts to install software on the system.
 
 If the registry value name below does not exist, this is not a finding.
@@ -4519,7 +4519,7 @@ Value Name: SafeForScripting
 
 Value Type: REG_DWORD
 Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
-      <ValueData>0</ValueData>
+      <ValueData />
       <ValueName>SafeForScripting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -4941,8 +4941,8 @@ By using this IS (which includes any device attached to this IS), you consent to
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -4958,7 +4958,7 @@ Value: See message title options below
 If an organization-defined title is used, it can in no case contravene or modify the language of the banner text required in WN16-SO-000150.
 
 Automated tools may only search for the titles defined above. If an organization-defined title is used, a manual review will be required.</RawString>
-      <ValueData>DoD Notice and Consent Banner</ValueData>
+      <ValueData />
       <ValueName>LegalNoticeCaption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -5478,7 +5478,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: ConsentPromptBehaviorAdmin
 
 Value Type: REG_DWORD
-Value: 1 (Prompt for credentials on the secure desktop) or 2 (Prompt for consent on the secure desktop)</RawString>
+Value: 0x00000001 (1) (Prompt for credentials on the secure desktop) or 0x00000002 (2) (Prompt for consent on the secure desktop)</RawString>
       <ValueData />
       <ValueName>ConsentPromptBehaviorAdmin</ValueName>
       <ValueType>Dword</ValueType>
@@ -5635,8 +5635,8 @@ Value: 1</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '2|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Windows to mark file attachments with their zone information.
 
 If the registry Value Name below does not exist, this is not a finding.
@@ -5652,7 +5652,7 @@ Value Name: SaveZoneInformation
 
 Value Type: REG_DWORD
 Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
-      <ValueData>2</ValueData>
+      <ValueData />
       <ValueName>SaveZoneInformation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

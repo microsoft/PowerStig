@@ -2,7 +2,7 @@
 
 ## AccountPolicyRule
 
-    V-73309 - OrganizationValueTestString should be '{0}' -ge '15' -or '{0}'     -ne        '0'
+    V-73309 +
     V-73311 +
     V-73313 +
     V-73315 +
@@ -114,11 +114,11 @@
     V-73509.a - Needs to be further split into multipe value entries
     V-73509.b - Needs to be further split into multipe value entries
     V-73511   +
-    V-73513.a - Clean up orgsetting test
-    V-73513.b - Clean up orgsetting test
-    V-73515   - Device guard
-    V-73517   - Device guard
-    V-73521   - Should be an orgsetting
+    V-73513.a + DONE Clean up orgsetting test
+    V-73513.b + DONE Clean up orgsetting test
+    V-73515   + DONE Device guard Check Needed
+    V-73517   + DONE Device guard Check Needed
+    V-73521   + DONE Should be an orgsetting
     V-73525   +
     V-73527   +
     V-73529   +
