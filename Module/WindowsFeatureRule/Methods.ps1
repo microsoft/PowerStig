@@ -25,26 +25,30 @@ function Get-WindowsFeatureName
     {
         switch ($checkContent)
         {
-            { $PSItem -match $regularExpression.WindowsFeatureNameServer2016 }
-            {
-                $matches = $checkContent | Select-String -Pattern $regularExpression.WindowsFeatureNameServer2016
-                $windowsFeatureName += $matches.Matches.Groups[2].value
-            }
             { $PSItem -match $regularExpression.WindowsFeatureName }
             {
-                $matches = $checkContent | Select-String -Pattern $regularExpression.WindowsFeatureName
-                $windowsFeatureName += $matches.Matches.Groups[2].value
+                <#
+                    The regex returns and named capture group called 'featureName'
+                    that contains the feature name. $regularExpression.WindowsFeatureName
+                    has been updated to incorporate the patterns from
+                    $regularExpression.FeatureNameEquals and
+                    $regularExpression.FeatureNameSpaceColon. They are both
+                    commented out below for now case other STIGs stop parsing correctly.
+                    They will be removed as part of Issue #223
+                #>
+                $null = $PSItem -match $regularExpression.WindowsFeatureName
+                $windowsFeatureName += $Matches['featureName']
             }
-            { $PSItem -match $regularExpression.FeatureNameEquals }
-            {
-                $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameEquals
-                $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
-            }
-            { $PSItem -match $regularExpression.FeatureNameSpaceColon }
-            {
-                $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameSpaceColon -AllMatches
-                $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
-            }
+            # { $PSItem -match $regularExpression.FeatureNameEquals }
+            # {                                                     # rem from data files as well
+            #     $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameEquals
+            #     $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
+            # }
+            # { $PSItem -match $regularExpression.FeatureNameSpaceColon }
+            # { {                                                    # rem from data files as well
+            #     $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameSpaceColon -AllMatches
+            #     $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
+            # }
             { $PSItem -match $regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
                 $matches = $checkContent | Select-String -Pattern $regularExpression.IfTheApplicationExists
