@@ -376,7 +376,7 @@ function ConvertTo-OrTestString
     try
     {
         $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
-        $numbers = $tokens.Where( {$PSItem.type -eq 'Number'}).Content
+        $numbers = $tokens.Where( {$PSItem.type -eq 'Number' -and $PSItem.Content -notmatch '\dx\d{8}' }).Content
         "{0} $($operatorString[$Operator]) '$($numbers -join "|")'"
     }
     catch
