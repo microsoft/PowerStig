@@ -19,15 +19,15 @@ Configuration WindowsDnsServer_config
         $DomainName,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
     )
 

@@ -6,10 +6,10 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 try
 {
     #region Integration Tests
-    $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
-    . $configFile
+    $ConfigFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
+    . $ConfigFile
 
-    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    $StigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Test Setup
     $configPath = 'C:\Windows\Sun\Java\Deployment\deployment.config'
@@ -17,130 +17,126 @@ try
     #endregionTest Setup
 
     #region Integration Tests
-    foreach ($stig in $stigList)
+    foreach ($Stig in $StigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $DscXml = Get-Content -Path $Stig.Path
 
-        Describe "OracleJRE 8 $($stig.StigVersion) mof output" {
+        Describe "OracleJRE 8 $($Stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -ConfigPath $configPath `
                         -PropertiesPath $propertiesPath `
-                        -StigVersion $stig.stigVersion `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
 
             Context 'KeyValuePairRule' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.FileContentRule.Rule
-                $dscMof = $instances |
+                $HasAllSettings = $true
+                $DscXml = $DscXml.DISASTIG.FileContentRule.Rule
+                $DscMof = $Instances |
                     Where-Object {$PSItem.ResourceID -match "\[KeyValuePairFile\]"}
 
-                foreach ($setting in $dscXml)
+                foreach ($setting in $DscXml)
                 {
-                    if (-not ($dscMof.ResourceID -match $setting.Id) )
+                    if (-not ($DscMof.ResourceID -match $setting.Id) )
                     {
                         Write-Warning -Message "Missing KeyValuePairFile Setting $($setting.Id)"
-                        $hasAllSettings = $false
+                        $HasAllSettings = $false
                     }
                 }
 
-                It "Should have $($dscXml.Count) KeyValuePairFile settings" {
-                    $hasAllSettings | Should Be $true
+                It "Should have $($DscXml.Count) KeyValuePairFile settings" {
+                    $HasAllSettings | Should -Be $true
                 }
             }
         }
 
-        Describe "OracleJRE 8 $($stig.StigVersion) Single SkipRule mof output" {
+        Describe "OracleJRE 8 $($Stig.StigVersion) Single SkipRule mof output" {
 
-            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
+            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.FileContentRule.Rule.id
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -ConfigPath $configPath `
                         -PropertiesPath $propertiesPath `
-                        -StigVersion $stig.stigVersion `
+                        -StigVersion $Stig.StigVersion `
                         -SkipRule $SkipRule `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscXml = $($SkipRule.Count)
-                [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                $DscXml = $SkipRule.Count
+                $DscMof = @($Instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"})
                 #endregion
 
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should Be $dscXml
+                It "Should have $DscXml Skipped settings" {
+                    $DscMof.Count | Should -Be $DscXml
                 }
             }
         }
 
-        Describe "OracleJRE 8 $($stig.StigVersion) Multiple SkipRule mof output" {
+        Describe "OracleJRE 8 $($Stig.StigVersion) Multiple SkipRule mof output" {
 
-            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
+            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.FileContentRule.Rule.id -Count 2
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -ConfigPath $configPath `
                         -PropertiesPath $propertiesPath `
-                        -StigVersion $stig.stigVersion `
+                        -StigVersion $Stig.StigVersion `
                         -SkipRule $SkipRule `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $expectedSkipRuleCount = ($($SkipRule.Count))
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                $ExpectedSkipRuleCount = $SkipRule.Count
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should Be $expectedSkipRuleCount
+                It "Should have $ExpectedSkipRuleCount Skipped settings" {
+                    $DscMof.Count | Should -Be $ExpectedSkipRuleCount
                 }
             }
         }
 
-        Describe "OracleJRE 8 $($stig.StigVersion) Exception mof output"{
+        Describe "OracleJRE 8 $($Stig.StigVersion) Exception mof output" {
 
-            If (-not $ExceptionRuleValueData)
-            {
-                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule
-                $Exception = $ExceptionRule.ID
-                $ExceptionRuleValueData = $ExceptionRule.Value
-            }
+            $ExceptionRule = Get-Random -InputObject $DscXml.DISASTIG.FileContentRule.Rule
+            $Exception = $ExceptionRule.ID
 
             It "Should compile the MOF with STIG exception $($Exception) without throwing" {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -ConfigPath $configPath `
                         -PropertiesPath $propertiesPath `
-                        -StigVersion $stig.stigVersion `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive `
                         -Exception $Exception
-                } | Should not throw
+                } | Should -Not -Throw
             }
         }
     }

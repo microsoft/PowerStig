@@ -6,132 +6,128 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 try
 {
     #region Integration Tests
-    $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
-    . $configFile
+    $ConfigFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
+    . $ConfigFile
 
-    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    $StigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    foreach ($stig in $stigList)
+    foreach ($Stig in $StigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $DscXml = Get-Content -Path $Stig.Path
 
-        Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+        Describe "Browser $($Stig.TechnologyRole) $($Stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -BrowserVersion $stig.TechnologyRole `
-                        -StigVersion $stig.stigVersion `
+                        -BrowserVersion $Stig.TechnologyRole `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
 
             Context 'Registry' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
-                $dscMof = $instances |
+                $HasAllSettings = $true
+                $DscXml = $DscXml.DISASTIG.RegistryRule.Rule
+                $DscMof = $Instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
 
-                foreach ( $setting in $dscXml )
+                foreach ( $Setting in $DscXml )
                 {
-                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
                     {
-                        Write-Warning -Message "Missing registry Setting $($setting.Id)"
-                        $hasAllSettings = $false
+                        Write-Warning -Message "Missing registry Setting $($Setting.Id)"
+                        $HasAllSettings = $false
                     }
                 }
 
-                It "Should have $($dscXml.Count) Registry settings" {
-                    $hasAllSettings | Should Be $true
+                It "Should have $($DscXml.Count) Registry settings" {
+                    $HasAllSettings | Should -Be $true
                 }
             }
         }
 
-        Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule mof output" {
+        Describe "Browser $($Stig.TechnologyRole) $($Stig.StigVersion) Single SkipRule mof output" {
 
-            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.RegistryRule.Rule.id
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -BrowserVersion $stig.TechnologyRole `
-                        -StigVersion $stig.stigVersion `
+                        -BrowserVersion $Stig.TechnologyRole `
+                        -StigVersion $Stig.StigVersion `
                         -SkipRule $SkipRule `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscXml = $($SkipRule.Count)
-                [array] $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                $DscXml = $SkipRule.Count
+                $DscMof = @($Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
                 #endregion
 
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should Be $dscXml
+                It "Should have $DscXml Skipped settings" {
+                    $DscMof.Count | Should -Be $DscXml
                 }
             }
         }
 
-        Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule mof output" {
+        Describe "Browser $($Stig.TechnologyRole) $($Stig.StigVersion) Multiple SkipRule mof output" {
 
-            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -BrowserVersion $stig.TechnologyRole `
-                        -StigVersion $stig.stigVersion `
+                        -BrowserVersion $Stig.TechnologyRole `
+                        -StigVersion $Stig.StigVersion `
                         -SkipRule $SkipRule `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $expectedSkipRuleCount = ($($SkipRule.Count))
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                $ExpectedSkipRuleCount = $SkipRule.Count
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should Be $expectedSkipRuleCount
+                It "Should have $ExpectedSkipRuleCount Skipped settings" {
+                    $DscMof.Count | Should -Be $ExpectedSkipRuleCount
                 }
             }
         }
 
-        Describe "Browser $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output"{
+        Describe "Browser $($Stig.TechnologyRole) $($Stig.StigVersion) Exception mof output" {
 
-            If (-not $ExceptionRuleValueData)
-            {   
-                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
-                $Exception = $ExceptionRule.ID
-                $ExceptionRuleValueData = $ExceptionRule.ValueData
-            }
+            $ExceptionRule = Get-Random -InputObject $DscXml.DISASTIG.RegistryRule.Rule
+            $Exception = $ExceptionRule.ID
 
             It "Should compile the MOF with STIG exception $($Exception) without throwing" {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -BrowserVersion $stig.TechnologyRole `
-                        -StigVersion $stig.stigVersion `
+                        -BrowserVersion $Stig.TechnologyRole `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive `
                         -Exception $Exception
-                } | Should not throw
+                } | Should -Not -Throw
             }
         }
     }

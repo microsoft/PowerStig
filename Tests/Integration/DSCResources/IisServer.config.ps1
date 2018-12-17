@@ -15,15 +15,15 @@ Configuration IisServer_Config
         $LogPath,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
     )
 

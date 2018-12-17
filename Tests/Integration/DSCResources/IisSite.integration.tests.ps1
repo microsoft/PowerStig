@@ -9,186 +9,185 @@ try
     $ConfigFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $ConfigFile
 
-    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    $StigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Test Setup
-    $websiteName = @('WarioSite', 'DKSite')
-    $webAppPool = @('MushroomBeach', 'ToadHarbor')
+    $WebsiteName = @('WarioSite', 'DKSite')
+    $WebAppPool = @('MushroomBeach', 'ToadHarbor')
     #endregionTest Setup
 
     #region Tests
-    foreach ($stig in $stigList)
+    foreach ($Stig in $StigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $DscXml = Get-Content -Path $Stig.Path
 
-        Describe "IIS Site $($stig.StigVersion) mof output" {
+        Describe "IIS Site $($Stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -WebAppPool $WebAppPool `
-                        -WebsiteName $websiteName `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
+                        -WebsiteName $WebsiteName `
+                        -OsVersion $Stig.TechnologyVersion `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
 
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
 
             Context 'IisLoggingRule' {
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebSite\]"}
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebSite\]"}
 
-                It "Should have $($websiteName.count) xWebSite settings" {
-                    $dscMof.count | Should Be $websiteName.count
+                It "Should have $($WebsiteName.Count) xWebSite settings" {
+                    $DscMof.Count | Should -Be $WebsiteName.Count
                 }
             }
 
             Context 'WebConfigurationPropertyRule' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebConfigProperty\]"}
 
-                foreach ($website in $websiteName)
+                $HasAllSettings = $true
+                $DscXml = $DscXml.DISASTIG.WebConfigurationPropertyRule.Rule
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebConfigProperty\]"}
+
+                foreach ($Website in $WebsiteName)
                 {
-                    foreach ($setting in $dscXml)
+                    foreach ($Setting in $DscXml)
                     {
-                        if (-not ($dscMof.ResourceID -match $setting.Id))
+                        if (-not ($DscMof.ResourceID -match $Setting.Id))
                         {
-                            Write-Warning -Message "$website missing WebConfigurationPropertyRule Setting $($setting.Id)"
-                            $hasAllSettings = $false
+                            Write-Warning -Message "$Website missing WebConfigurationPropertyRule Setting $($Setting.Id)"
+                            $HasAllSettings = $false
                         }
                     }
                 }
 
-                It "Should have $($dscXml.Count) WebConfigurationPropertyRule settings" {
-                    $hasAllSettings | Should Be $true
+                It "Should have $($DscXml.Count) WebConfigurationPropertyRule settings" {
+                    $HasAllSettings | Should -Be $true
                 }
             }
 
             Context 'WebAppPoolRule' {
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebAppPool\]"}
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xWebAppPool\]"}
 
-                It "Should have $($websiteName.count) xWebAppPool settings" {
-                    $dscMof.count | Should Be $webAppPool.count
+                It "Should have $($WebsiteName.Count) xWebAppPool settings" {
+                    $DscMof.Count | Should -Be $WebAppPool.Count
                 }
             }
 
             Context 'MimeTypeRule' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.MimeTypeRule.Rule
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xIisMimeTypeMapping\]"}
+                $HasAllSettings = $true
+                $DscXml = $DscXml.DISASTIG.MimeTypeRule.Rule
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[xIisMimeTypeMapping\]"}
 
-                foreach ($website in $websiteName)
+                foreach ($Website in $WebsiteName)
                 {
-                    foreach ($setting in $dscXml)
+                    foreach ($Setting in $DscXml)
                     {
-                        if (-not ($dscMof.ResourceID -match $setting.Id))
+                        if (-not ($DscMof.ResourceID -match $Setting.Id))
                         {
-                            Write-Warning -Message "$website ,missing MimeTypeRule Setting $($setting.Id)"
-                            $hasAllSettings = $false
+                            Write-Warning -Message "$Website ,missing MimeTypeRule Setting $($Setting.Id)"
+                            $HasAllSettings = $false
                         }
                     }
                 }
 
-                It "Should have $($dscXml.Count) WebConfigurationPropertyRule settings" {
-                    $hasAllSettings | Should Be $true
+                It "Should have $($DscXml.Count) WebConfigurationPropertyRule settings" {
+                    $HasAllSettings | Should -Be $true
                 }
             }
         }
-        Describe "IIS Site $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
+        Describe "IIS Site $($Stig.StigVersion) Single SkipRule/RuleType mof output" {
+
+            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
             $SkipRuleType = "IisLoggingRule"
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
                         -WebAppPool $WebAppPool `
-                        -WebsiteName $websiteName `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
+                        -WebsiteName $WebsiteName `
+                        -OsVersion $Stig.TechnologyVersion `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive `
                         -SkipRule $SkipRule `
                         -SkipRuleType $SkipRuleType `
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "pass"}
-                $expectedSkipRuleCount = ($($dscIisLoggingRuleXml.Count) + $($SkipRule.Count))
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                $DscIisLoggingRuleXml = $DscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq 'pass'}
+                $ExpectedSkipRuleCount = ($($DscIisLoggingRuleXml.Count) + $($SkipRule.Count))
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should Be $expectedSkipRuleCount
+                It "Should have $ExpectedSkipRuleCount Skipped settings" {
+                    $DscMof.Count | Should -Be $ExpectedSkipRuleCount
                 }
             }
         }
-        Describe "IIS Site $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
 
-            $SkipRule = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id -Count 2
+        Describe "IIS Site $($Stig.StigVersion) Multiple SkipRule/RuleType mof output" {
+
+            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.MimeTypeRule.Rule.id -Count 2
             $SkipRuleType = @('WebAppPoolRule','IisLoggingRule')
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -WebsiteName $websiteName `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
+                        -WebsiteName $WebsiteName `
+                        -OsVersion $Stig.TechnologyVersion `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive `
                         -SkipRule $SkipRule `
                         -SkipRuleType $SkipRuleType `
-                } | Should not throw
+                } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscWebAppPoolRuleXml = $dscXml.DISASTIG.WebAppPoolRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
-                $dscIisLoggingRuleXml = $dscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
-                $expectedSkipRuleCount = ($($dscWebAppPoolRuleXml.Count) + $($dscIisLoggingRuleXml.count) + $($SkipRule.Count))
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                $DscWebAppPoolRuleXml = $DscXml.DISASTIG.WebAppPoolRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
+                $DscIisLoggingRuleXml = $DscXml.DISASTIG.IisLoggingRule.Rule | Where-Object -FilterScript {$_.ConversionStatus -eq "Pass"}
+                $ExpectedSkipRuleCount = ($($DscWebAppPoolRuleXml.Count) + $($DscIisLoggingRuleXml.Count) + $($SkipRule.Count))
+                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should Be $expectedSkipRuleCount
+                It "Should have $ExpectedSkipRuleCount Skipped settings" {
+                    $DscMof.Count | Should -Be $ExpectedSkipRuleCount
                 }
             }
         }
 
-        Describe "IIS Site $($stig.StigVersion) Exception mof output"{
+        Describe "IIS Site $($Stig.StigVersion) Exception mof output" {
 
-            If (-not $ExceptionRuleValueData)
-            {   
-                $ExceptionRule = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule
+                $ExceptionRule = Get-Random -InputObject $DscXml.DISASTIG.WebConfigurationPropertyRule.Rule
                 $Exception = $ExceptionRule.ID
-                $ExceptionRuleValueData = $ExceptionRule.Value
-            }
 
             It "Should compile the MOF with STIG exception $($Exception) without throwing" {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -WebsiteName $websiteName `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
+                        -WebsiteName $WebsiteName `
+                        -OsVersion $Stig.TechnologyVersion `
+                        -StigVersion $Stig.StigVersion `
                         -OutputPath $TestDrive `
                         -Exception $Exception
-                } | Should not throw
+                } | Should -Not -Throw
             }
         }
     }

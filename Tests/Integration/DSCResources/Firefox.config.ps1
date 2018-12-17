@@ -7,15 +7,15 @@ Configuration Firefox_config
         $StigVersion,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
     )
 

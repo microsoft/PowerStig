@@ -23,15 +23,15 @@ Configuration WindowsServer_config
         $DomainName,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
     )
 
@@ -43,7 +43,7 @@ Configuration WindowsServer_config
             WindowsServer BaseLineSettings
             {
                 OsVersion = '$OsVersion'
-                OsRole = '$osRole'
+                OsRole = '$OsRole'
                 StigVersion = '$StigVersion'
                 ForestName = '$ForestName'
                 DomainName = '$DomainName'

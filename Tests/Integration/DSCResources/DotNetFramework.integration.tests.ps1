@@ -6,48 +6,48 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 try
 {
     #region Integration Tests
-    $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
-    . $configFile
+    $ConfigFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
+    . $ConfigFile
 
-    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    $StigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    foreach ($stig in $stigList)
+    foreach ($Stig in $StigList)
     {
-        Describe "Framework $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+        Describe "Framework $($Stig.TechnologyRole) $($Stig.StigVersion) mof output" {
 
         It 'Should compile the MOF without throwing' {
             {
                 & "$($script:DSCCompositeResourceName)_config" `
-                -FrameworkVersion $stig.TechnologyRole `
-                -StigVersion $stig.stigVersion `
+                -FrameworkVersion $Stig.TechnologyRole `
+                -StigVersion $Stig.StigVersion `
                 -OutputPath $TestDrive
-            } | Should Not throw
+            } | Should -Not -Throw
         }
 
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $DscXml = Get-Content -Path $Stig.Path
 
-        $configurationDocumentPath = "$TestDrive\localhost.mof"
+        $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
 
-        $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+        $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
 
         Context 'Registry' {
-            $hasAllSettings = $true
-            $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
-            $dscMof = $instances |
+            $HasAllSettings = $true
+            $DscXml = @($DscXml.DISASTIG.RegistryRule.Rule)
+            $DscMof = $Instances |
                 Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
 
-            foreach ($setting in $dscXml)
+            foreach ($Setting in $DscXml)
             {
-                If (-not ($dscMof.ResourceID -match $setting.Id) )
+                If (-not ($DscMof.ResourceID -match $Setting.Id) )
                 {
-                    Write-Warning -Message "Missing registry Setting $($setting.Id)"
-                    $hasAllSettings = $false
+                    Write-Warning -Message "Missing registry Setting $($Setting.Id)"
+                    $HasAllSettings = $false
                 }
             }
 
-            It "Should have $($dscXml.Count) Registry settings" {
-                $hasAllSettings | Should Be $true
+            It "Should have $($DscXml.Count) Registry settings" {
+                $HasAllSettings | Should -Be $true
             }
         }
     }

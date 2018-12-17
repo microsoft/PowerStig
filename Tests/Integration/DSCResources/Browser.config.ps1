@@ -11,15 +11,15 @@ Configuration Browser_config
         $StigVersion,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
     )
 
@@ -30,8 +30,8 @@ Configuration Browser_config
         & ([scriptblock]::Create("
         Browser InternetExplorer
         {
-            BrowserVersion = '$browserVersion'
-            Stigversion = '$StigVersion'
+            BrowserVersion = '$BrowserVersion'
+            StigVersion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"

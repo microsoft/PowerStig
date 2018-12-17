@@ -15,15 +15,15 @@ Configuration OracleJRE_config
         $StigVersion,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
     )
 
@@ -34,9 +34,9 @@ Configuration OracleJRE_config
         & ([scriptblock]::Create("
         OracleJRE OracleConfiguration
         {
-            ConfigPath = '$configPath'
-            PropertiesPath = '$propertiesPath'
-            Stigversion = '$StigVersion'
+            ConfigPath = '$ConfigPath'
+            PropertiesPath = '$PropertiesPath'
+            StigVersion = '$StigVersion'
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'Value'='ExceptionTest'}}"

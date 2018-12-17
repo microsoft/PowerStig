@@ -15,7 +15,7 @@ Configuration WindowsClient_config
         $ForestName,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception,
 
         [Parameter(Mandatory = $true)]
@@ -23,11 +23,11 @@ Configuration WindowsClient_config
         $DomainName,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType
     )
 

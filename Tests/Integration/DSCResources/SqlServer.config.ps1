@@ -15,15 +15,15 @@ Configuration SqlServerInstance_config
         $StigVersion,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRuleType,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $Exception
         
     )
@@ -35,9 +35,9 @@ Configuration SqlServerInstance_config
         & ([scriptblock]::Create("
         SqlServer Instance
         {
-            SqlVersion = '$SqlVersion'
+            SqlVersion = $SqlVersion
             SqlRole = '$SqlRole'
-            StigVersion = '$StigVersion'
+            StigVersion = $StigVersion
             ServerInstance = 'TestServer'
             $(if ($null -ne $Exception)
             {
