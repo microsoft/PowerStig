@@ -44,11 +44,11 @@ function Get-WindowsFeatureName
             #     $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameEquals
             #     $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s-eq' ).Trim()
             # }
-            # { $PSItem -match $regularExpression.FeatureNameSpaceColon }
-            # { {                                                    # rem from data files as well
-            #     $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameSpaceColon -AllMatches
-            #     $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
-            # }
+            { $PSItem -match $regularExpression.FeatureNameSpaceColon }
+            {                                                     # rem from data files as well
+                $matches = $checkContent | Select-String -Pattern $regularExpression.FeatureNameSpaceColon -AllMatches
+                $windowsFeatureName += ( $matches.Matches.Value -replace 'FeatureName\s\:' ).Trim()
+            }
             { $PSItem -match $regularExpression.IfTheApplicationExists -and $PSItem -notmatch 'telnet' }
             {
                 $matches = $checkContent | Select-String -Pattern $regularExpression.IfTheApplicationExists
