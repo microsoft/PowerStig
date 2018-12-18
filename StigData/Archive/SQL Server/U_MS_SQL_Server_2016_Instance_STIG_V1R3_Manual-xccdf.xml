@@ -1337,7 +1337,7 @@ Click Enabled &gt;&gt; Apply.</fixtext><fix id="F-85949r1_fix" /><check system="
 Review system configuration to determine whether FIPS 140-2 support has been enabled. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </check-content></check></Rule></Group><Group id="V-79199"><title>SRG-APP-000179-DB-000114</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93905r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-008700</version><title>SQL Server must use NIST FIPS 140-2 validated cryptographic modules for cryptographic operations.</title><description>&lt;VulnDiscussion&gt;Use of weak or not validated cryptographic algorithms undermines the purposes of utilizing encryption and digital signatures to protect data.  Weak algorithms can be easily broken and not validated cryptographic modules may not implement algorithms correctly. Unapproved cryptographic modules or algorithms should not be relied on for authentication, confidentiality, or integrity. Weak cryptography could allow an attacker to gain access to and modify data stored in the database as well as the administration settings of SQL Server. 
  
@@ -1352,7 +1352,7 @@ In the dialog box that appears, if the radio buttons are active, click "Enabled"
 Review system configuration to determine whether FIPS 140-2 support has been enabled. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </check-content></check></Rule></Group><Group id="V-79201"><title>SRG-APP-000180-DB-000115</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93907r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-008800</version><title>SQL Server must uniquely identify and authenticate non-organizational users (or processes acting on behalf of non-organizational users).</title><description>&lt;VulnDiscussion&gt;Non-organizational users include all information system users other than organizational users, which include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors, guest researchers, individuals from allied nations). 
  
@@ -1381,7 +1381,7 @@ Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; 
 Verify that Windows is configured to require the use of FIPS compliant algorithms. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </check-content></check></Rule></Group><Group id="V-79205"><title>SRG-APP-000231-DB-000154</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-93911r1_rule" severity="high" weight="10.0"><version>SQL6-D0-009500</version><title>SQL Server must protect the confidentiality and integrity of all information at rest.</title><description>&lt;VulnDiscussion&gt;This control is intended to address the confidentiality and integrity of information at rest in non-mobile devices and covers user information and system information. Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive, tape drive) within an organizational information system. Applications and application users generate information throughout the course of their application use.  
  
@@ -3035,7 +3035,7 @@ In the right-side pane, double-click on "System cryptography: Use FIPS compliant
 Verify that Windows is configured to require the use of FIPS compliant algorithms. 
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </check-content></check></Rule></Group><Group id="V-79307"><title>SRG-APP-000514-DB-000382</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-94013r1_rule" severity="high" weight="10.0"><version>SQL6-D0-015700</version><title>SQL Server must implement NIST FIPS 140-2 validated cryptographic modules to generate and validate cryptographic hashes.</title><description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
  
@@ -3046,7 +3046,7 @@ Click Start &gt;&gt; Type "Local Security Policy" &gt;&gt; Press Enter &gt;&gt; 
 Verify that Windows is configured to require the use of FIPS 140-2 algorithms.
 # Modification for PowerStig SQL Server 2016 Instance SecurityPolicyDSC rule type conversion
 Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
-If the value for "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not set to "Enabled", this is a finding.
+If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not set to "Enabled", this is a finding.
 
 </check-content></check></Rule></Group><Group id="V-79309"><title>SRG-APP-000514-DB-000383</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-94015r1_rule" severity="medium" weight="10.0"><version>SQL6-D0-015800</version><title>SQL Server must implement NIST FIPS 140-2 validated cryptographic modules to protect unclassified information requiring confidentiality and cryptographic protection, in accordance with the data owners requirements.</title><description>&lt;VulnDiscussion&gt;Use of weak or untested encryption algorithms undermines the purposes of utilizing encryption to protect data. The application must implement cryptographic modules adhering to the higher standards approved by the federal government since this provides assurance they have been tested and validated. 
  

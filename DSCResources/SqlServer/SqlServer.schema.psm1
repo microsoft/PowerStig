@@ -128,4 +128,7 @@ Configuration SqlServer
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '11.4.0.0'
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
+    
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion '2.4.0.0'
+    . "$resourcePath\Windows.SecurityOption.ps1"
 }
