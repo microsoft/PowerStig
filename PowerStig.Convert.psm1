@@ -36,7 +36,7 @@ using module .\Module\WinEventLogRule\WinEventLogRule.psm1
 using module .\Module\WmiRule\WmiRule.psm1
 
 # load the public functions
-foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Convert.Main" -Filter '*.ps1' ) )
+foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Convert.Main" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

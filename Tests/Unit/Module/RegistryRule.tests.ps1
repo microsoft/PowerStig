@@ -1343,10 +1343,7 @@ try
             $registryValueData = '2'
             $registryValueInnerString = """$registryValueName"" is $registryValueType = $registryValueData"
             $registryValueString = "Criteria: If the value $registryValueInnerString, this is not a finding."
-            $checkContent = "
-    HKCU\Path\to\value
-
-    $registryValueString"
+            $checkContent = $registryValueString
 
             It 'Should return the correct full string' {
                 $checkContent = Split-TestStrings -CheckContent $checkContent

@@ -98,6 +98,30 @@ function ConvertFrom-StigXccdf
         Write-Error -Message 'The Benchmark title property is null. Unable to determine ruleset target.'
         return
     }
+    # Use $stigBenchmarkXml.id to determine the stig file
+    $testing = Split-BenchmarkId $stigBenchmarkXml.id
+    if([string]::IsNullOrEmpty($testing.TechnologyRole))
+    {
+        $testing.TechnologyRole = $stigBenchmarkXml.id
+    }
+
+    # Query TechnologyRole and map to file
+    $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
+    $spExclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
+    $spInclude = @('Data.Core.ps1')
+    $spResult = $null -ne ($officeApps | Where-Object { $testing.TechnologyRole -match $_ })  
+    if($spResult)
+    {
+        $spInclude += "*.Office.*"
+    }
+    # Remove-Variable SingleLine* -Scope Script
+    $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude | Sort-Object -Descending
+    Clear-Variable SingleLine* -Scope Global
+    foreach ($supportFile in $spSupportFileList)
+    {
+        Write-Verbose "Loading $($supportFile.FullName)"
+        . $supportFile.FullName
+    }    
 
     return Get-StigRuleList @stigRuleParams
 }

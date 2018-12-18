@@ -139,7 +139,7 @@ function Get-TestStringTokenList
     $commands = $tokens.Where({
             $PSItem.type -eq 'CommandArgument' -or
             $PSItem.type -eq 'Command' }).Content
-
+    Write-Debug $commands.count
     return ( $commands -join " " )
 }
 
@@ -196,6 +196,7 @@ function ConvertTo-TestString
         }
         'and'
         {
+            Write-Debug 'Checking for values'
             return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
         }
     }
