@@ -410,10 +410,10 @@ function Get-StigVersionParameterValidateSet
 
 <#
     .SYNOPSIS
-        Get a unique list of valid STIG versions from the StigData
+        Get a unique list of valid STIG versions from the StigData.
 
     .PARAMETER TechnologyRoleFilter
-        The technology role to filter the results
+        The technology role to filter the results.
 #>
 
 function Get-ValidStigVersionNumbers
@@ -434,6 +434,38 @@ function Get-ValidStigVersionNumbers
     return $versionNumbers
 }
 
+<#
+    .SYNOPSIS
+        Tests whether a STIG has rule types besides Manual and Document Rules
+
+    .PARAMETER StigObject
+        A STIG Object to test
+#>
+function Test-AutomatableRuleType
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [xml]
+        $StigObject
+    )
+
+    $stigRules = $StigObject.DISASTIG
+
+    $propertyNames = (Get-Member -InputObject $stigRules -MemberType 'Property' | Where-Object -FilterScript {$_.Name -match ".*Rule"}).Name
+
+    $automatableRules = $propertyNames | where-object {$_ -ne "ManualRule" -and $_ -ne "DocumentRule"}
+
+    if ($null -ne $automatableRules)
+    {
+        return $true
+    }
+    else
+    {
+        return $false
+    }
+}
+
 Export-ModuleMember -Function @(
     'Split-TestStrings',
     'Get-StigDataRootPath',
@@ -445,5 +477,6 @@ Export-ModuleMember -Function @(
     'Get-StigVersionTable',
     'Get-ConfigurationName',
     'Get-StigVersionParameterValidateSet',
-    'Get-ValidStigVersionNumbers'
+    'Get-ValidStigVersionNumbers',
+    'Test-AutomatableRuleType'
 )
