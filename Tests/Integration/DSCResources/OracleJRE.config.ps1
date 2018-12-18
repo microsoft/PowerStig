@@ -12,18 +12,40 @@ Configuration OracleJRE_config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         OracleJRE OracleConfiguration
         {
-            ConfigPath     = $configPath
-            PropertiesPath = $propertiesPath
-            Stigversion    = $StigVersion
-        }
+            ConfigPath = '$ConfigPath'
+            PropertiesPath = '$PropertiesPath'
+            StigVersion = '$StigVersion'
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{'$Exception'= @{'Value'='ExceptionTest'}}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }

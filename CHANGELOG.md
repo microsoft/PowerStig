@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Fixed [#201](https://github.com/Microsoft/PowerStig/issues/201): Update PowerStig integration tests to account for skips and exceptions.
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
