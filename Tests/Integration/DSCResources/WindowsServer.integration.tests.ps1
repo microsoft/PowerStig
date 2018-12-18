@@ -6,316 +6,316 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 try
 {
     #region Integration Tests
-    $ConfigFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
-    . $ConfigFile
+    $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
+    . $configFile
 
-    $StigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    foreach ($Stig in $StigList)
+    foreach ($stig in $stigList)
     {
-        [xml] $DscXml = Get-Content -Path $Stig.Path
+        [xml] $dscXml = Get-Content -Path $stig.Path
 
-        Describe "Windows $($Stig.TechnologyVersion) $($Stig.TechnologyRole) $($Stig.StigVersion) mof output" {
+        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $Stig.TechnologyVersion  `
-                        -OsRole $Stig.TechnologyRole `
-                        -StigVersion $Stig.StigVersion `
+                        -OsVersion $stig.TechnologyVersion  `
+                        -OsRole $stig.TechnologyRole `
+                        -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw
             }
 
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
 
-            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             Context 'AuditPolicy' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.AuditPolicyRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.AuditPolicyRule.Rule
+                $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing Audit Policy Setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing Audit Policy Setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) Audit Policy settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) Audit Policy settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'Permissions' {
-                $HasAllSettings = $true
+                $hasAllSettings = $true
                 <#
                     https://github.com/Microsoft/PowerStigDsc/issues/1
                     Once the Composite is updated to configure ActiveDirectoryAuditRuleEntry,
                     remove '-and $PSItem.dscResource -ne "ActiveDirectoryAuditRuleEntry"' from the
                     following where cmdlet
                 #>
-                $dscXmlPermissionPolicy = $DscXml.DISASTIG.PermissionRule.Rule |
+                $dscXmlPermissionPolicy = $dscXml.DISASTIG.PermissionRule.Rule |
                     Where-Object { $PSItem.conversionstatus -eq 'pass' -and
                                    $PSItem.dscResource -ne "ActiveDirectoryAuditRuleEntry"}
-                $dscMofPermissionPolicy = $Instances |
+                $dscMofPermissionPolicy = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[NTFSAccessEntry\]|\[RegistryAccessEntry\]"}
 
-                foreach ($Setting in $dscXmlPermissionPolicy)
+                foreach ($setting in $dscXmlPermissionPolicy)
                 {
-                    If (-not ($dscMofPermissionPolicy.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMofPermissionPolicy.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing permission setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing permission setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($dscXmlPermissionPolicy.Count) permission settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXmlPermissionPolicy.count) permission settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'Registry' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.RegistryRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing registry Setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing registry Setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) Registry settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) Registry settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'WMI' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.WmiRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.WmiRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[script\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing wmi setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing wmi setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) wmi settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) wmi settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'Services' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.ServiceRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.ServiceRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[xService\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing service setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing service setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) service settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) service settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'AccountPolicy' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.AccountPolicyRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.AccountPolicyRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[AccountPolicy\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing security setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing security setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) security settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) security settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'UserRightsAssignment' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.UserRightRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.UserRightRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[UserRightsAssignment\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing user right $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing user right $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) user rights settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) user rights settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'SecurityOption' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.SecurityOptionRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.SecurityOptionRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[SecurityOption\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing security setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing security setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) security settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) security settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
 
             Context 'Windows Feature' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.WindowsFeatureRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.WindowsFeatureRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[WindowsFeature\]"}
 
-                foreach ($Setting in $DscXml)
+                foreach ($setting in $dscXml)
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing windows feature $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing windows feature $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) windows feature settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) windows feature settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
         }
 
-        Describe "Windows $($Stig.TechnologyVersion) $($Stig.TechnologyRole) $($Stig.StigVersion) Single SkipRule/RuleType mof output" {
+        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
-            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.RegistryRule.Rule.id
-            $SkipRuleType = "AuditPolicyRule"
+            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+            $skipRuleType = "AuditPolicyRule"
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $Stig.TechnologyVersion `
-                        -OsRole $Stig.TechnologyRole `
-                        -StigVersion $Stig.StigVersion `
+                        -OsVersion $stig.TechnologyVersion `
+                        -OsRole $stig.TechnologyRole `
+                        -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
+                        -SkipRule $skipRule `
+                        -SkipRuleType $skipRuleType `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
-            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $DscXml = $DscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq 'pass'}
-                $DscXml = $DscXml.Count + $SkipRule.Count
+                $dscXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq 'pass'}
+                $dscXml = $dscXml.count + $skipRule.count
 
-                $DscMof = $Instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $DscXml Skipped settings" {
-                    $DscMof.Count | Should -Be $DscXml
+                It "Should have $dscXml Skipped settings" {
+                    $dscMof.count | Should -Be $dscXml
                 }
             }
         }
 
-        Describe "Windows $($Stig.TechnologyVersion) $($Stig.TechnologyRole) $($Stig.StigVersion) Multiple SkipRule/RuleType mof output" {
+        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
 
-            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-            $SkipRuleType = @('AuditPolicyRule','AccountPolicyRule')
+            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $skipRuleType = @('AuditPolicyRule','AccountPolicyRule')
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $Stig.TechnologyVersion `
-                        -OsRole $Stig.TechnologyRole `
-                        -StigVersion $Stig.StigVersion `
+                        -OsVersion $stig.TechnologyVersion `
+                        -OsRole $stig.TechnologyRole `
+                        -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -SkipRule $SkipRule `
-                        -SkipRuleType $SkipRuleType `
+                        -SkipRule $skipRule `
+                        -SkipRuleType $skipRuleType `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
-            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $dscAuditXml = $DscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
-                $dscPermissionXml = $DscXml.DISASTIG.AccountPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
+                $dscAuditXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
+                $dscPermissionXml = $dscXml.DISASTIG.AccountPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
 
-                $DscXml = $dscAuditXml.Count + $dscPermissionXml.Count + $SkipRule.Count
-                $DscMof = $Instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
+                $dscXml = $dscAuditXml.count + $dscPermissionXml.count + $skipRule.count
+                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $DscXml Skipped settings" {
-                    $DscMof.Count | Should -Be $DscXml
+                It "Should have $dscXml Skipped settings" {
+                    $dscMof.count | Should -Be $dscXml
                 }
             }
         }
 
-        Describe "Windows $($Stig.TechnologyVersion) $($Stig.TechnologyRole) $($Stig.StigVersion) Exception mof output" {
+        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output" {
 
-            $ExceptionRule = Get-Random -InputObject $DscXml.DISASTIG.RegistryRule.Rule
-            $Exception = $ExceptionRule.ID
+            $exceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
+            $exception = $exceptionRule.id
 
-            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+            It "Should compile the MOF with STIG exception $exception without throwing" {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $Stig.TechnologyVersion `
-                        -OsRole $Stig.TechnologyRole `
-                        -StigVersion $Stig.StigVersion `
+                        -OsVersion $stig.TechnologyVersion `
+                        -OsRole $stig.TechnologyRole `
+                        -StigVersion $stig.StigVersion `
                         -ForestName 'integration.test' `
                         -DomainName 'integration.test' `
-                        -Exception $Exception
+                        -Exception $exception
                 } | Should -Not -Throw
             }
         }

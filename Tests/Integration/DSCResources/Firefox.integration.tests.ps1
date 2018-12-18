@@ -6,123 +6,123 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 try
 {
     #region Integration Tests
-    $ConfigFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
-    . $ConfigFile
+    $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
+    . $configFile
 
-    $StigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
+    $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
     #region Integration Tests
-    foreach ($Stig in $StigList)
+    foreach ($stig in $stigList)
     {
-        [xml] $DscXml = Get-Content -Path $Stig.Path
+        [xml] $dscXml = Get-Content -Path $stig.Path
 
-        Describe " $($Stig.TechnologyRole) $($Stig.StigVersion) mof output" {
+        Describe " $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $Stig.StigVersion `
+                        -StigVersion $stig.StigVersion `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw
             }
 
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
-            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             Context 'FileContentRule' {
-                $HasAllSettings = $true
-                $DscXml = $DscXml.DISASTIG.FileContentRule.Rule
-                $DscMof = $Instances |
+                $hasAllSettings = $true
+                $dscXml = $dscXml.DISASTIG.FileContentRule.Rule
+                $dscMof = $instances |
                     Where-Object {$PSItem.ResourceID -match "\[ReplaceText\]"}
 
-                foreach ( $Setting in $DscXml )
+                foreach ( $setting in $dscXml )
                 {
-                    If (-not ($DscMof.ResourceID -match $Setting.Id) )
+                    If (-not ($dscMof.ResourceID -match $setting.id) )
                     {
-                        Write-Warning -Message "Missing FileContent Setting $($Setting.Id)"
-                        $HasAllSettings = $false
+                        Write-Warning -Message "Missing FileContent Setting $($setting.id)"
+                        $hasAllSettings = $false
                     }
                 }
 
-                It "Should have $($DscXml.Count) FileContent settings" {
-                    $HasAllSettings | Should -Be $true
+                It "Should have $($dscXml.count) FileContent settings" {
+                    $hasAllSettings | Should -Be $true
                 }
             }
         }
 
-        Describe " $($Stig.TechnologyRole) $($Stig.StigVersion) Single SkipRule mof output" {
+        Describe " $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule mof output" {
 
-            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.FileContentRule.Rule.id
+            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $Stig.StigVersion `
-                        -SkipRule $SkipRule `
+                        -StigVersion $stig.StigVersion `
+                        -SkipRule $skipRule `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
-            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $DscXml = $SkipRule.Count
-                $DscMof = @($Instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"})
+                $dscXml = $skipRule.count
+                $dscMof = @($instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"})
                 #endregion
 
-                It "Should have $DscXml Skipped settings" {
-                    $DscMof.Count | Should -Be $DscXml
+                It "Should have $dscXml Skipped settings" {
+                    $dscMof.count | Should -Be $dscXml
                 }
             }
         }
 
-        Describe " $($Stig.TechnologyRole) $($Stig.StigVersion) Multiple SkipRule mof output" {
+        Describe " $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule mof output" {
 
-            $SkipRule = Get-Random -InputObject $DscXml.DISASTIG.FileContentRule.Rule.id -Count 2
+            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
 
             It 'Should compile the MOF without throwing' {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $Stig.StigVersion `
-                        -SkipRule $SkipRule `
+                        -StigVersion $stig.StigVersion `
+                        -SkipRule $skipRule `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw
             }
 
             #region Gets the mof content
-            $ConfigurationDocumentPath = "$TestDrive\localhost.mof"
-            $Instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($ConfigurationDocumentPath, 4)
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             #endregion
 
             Context 'Skip check' {
 
                 #region counts how many Skips there are and how many there should be.
-                $ExpectedSkipRuleCount = $SkipRule.Count
-                $DscMof = $Instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+                $expectedSkipRuleCount = $skipRule.count
+                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
                 #endregion
 
-                It "Should have $ExpectedSkipRuleCount Skipped settings" {
-                    $DscMof.Count | Should -Be $ExpectedSkipRuleCount
+                It "Should have $expectedSkipRuleCount Skipped settings" {
+                    $dscMof.count | Should -Be $expectedSkipRuleCount
                 }
             }
         }
 
-        Describe " $($Stig.TechnologyRole) $($Stig.StigVersion) Exception mof output" {
+        Describe " $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output" {
 
-            $ExceptionRule = Get-Random -InputObject $DscXml.DISASTIG.FileContentRule.Rule
-            $Exception = $ExceptionRule.ID
+            $exceptionRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule
+            $exception = $exceptionRule.id
 
-            It "Should compile the MOF with STIG exception $($Exception) without throwing" {
+            It "Should compile the MOF with STIG exception $exception without throwing" {
                 {
                     & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $Stig.StigVersion `
+                        -StigVersion $stig.StigVersion `
                         -OutputPath $TestDrive `
-                        -Exception $Exception
+                        -Exception $exception
                 } | Should -Not -Throw
             }
         }
