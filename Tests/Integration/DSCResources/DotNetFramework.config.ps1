@@ -18,7 +18,7 @@ Configuration DotNetFramework_config
         DotNetFramework DotNetConfiguration
         {
             FrameworkVersion = $FrameworkVersion
-            StigVersion      = $StigVersion
+            StigVersion = $StigVersion
         }
     }
 }
