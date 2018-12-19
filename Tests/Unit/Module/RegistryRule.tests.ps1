@@ -1,6 +1,12 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
+$expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
+foreach ($supportFile in $expressionFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 #endregion
 try
 {
