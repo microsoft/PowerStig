@@ -27,27 +27,30 @@ try
 
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $configurationDocumentPath = "$TestDrive\localhost.mof"
+        if (Test-AutomatableRuleType -StigObject $dscXml)
+        {
+            $configurationDocumentPath = "$TestDrive\localhost.mof"
 
-        $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-        Context 'Registry' {
-            $hasAllSettings = $true
-            $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
-            $dscMof = $instances |
-                Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
+            Context 'Registry' {
+                $hasAllSettings = $true
+                $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
+                $dscMof = $instances |
+                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
 
-            foreach ($setting in $dscXml)
-            {
-                If (-not ($dscMof.ResourceID -match $setting.id) )
+                foreach ($setting in $dscXml)
                 {
-                    Write-Warning -Message "Missing registry Setting $($setting.id)"
-                    $hasAllSettings = $false
+                    If (-not ($dscMof.ResourceID -match $setting.Id) )
+                    {
+                        Write-Warning -Message "Missing registry Setting $($setting.Id)"
+                        $hasAllSettings = $false
+                    }
                 }
-            }
 
-            It "Should have $($dscXml.count) Registry settings" {
-                $hasAllSettings | Should -Be $true
+                It "Should have $($dscXml.Count) Registry settings" {
+                    $hasAllSettings | Should Be $true
+                }
             }
         }
     }
