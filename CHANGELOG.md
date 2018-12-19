@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.4.0.0
+
 * Added the following STIGS
   * Windows Defender Antivirus V1R4
 
