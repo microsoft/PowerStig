@@ -438,14 +438,9 @@ function Get-AuditGetScript
         $CheckContent
     )
 
-    $queries = Get-SQLQuery -CheckContent $checkContent
+    $auditEvents = Get-AuditEvents -CheckContent $checkContent
 
-    $return = $queries[0]
-
-    if ($return -notmatch ";$")
-    {
-        $return = $return + ";"
-    }
+    $return = "INSERT AUDIT CHECK SQL SCRIPT HERE"
 
     return $return
 }
@@ -475,14 +470,7 @@ function Get-AuditTestScript
         $CheckContent
     )
 
-    $queries = Get-SQLQuery -CheckContent $checkContent
-
-    $return = $queries[0]
-
-    if ($return -notmatch ";$")
-    {
-        $return = $return + ";"
-    }
+    $return = "INSERT AUDIT CHECK SQL SCRIPT HERE"
 
     return $return
 }
@@ -523,8 +511,51 @@ function Get-AuditSetScript
 
     #$return = "DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = '{0}' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc <> 'SERVER_ROLE' AND who.name <> 'sa'  AND what.permission_name = @permission OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );" -f $permission
 
-    $return = "CREATE AUDIT"
+    $return = "INSERT AUDIT CHECK SQL SCRIPT HERE"
     
+    return $return
+}
+<#
+    .SYNOPSIS Get-AuditEvents
+        Returns a string of the audit events found in CheckContent
+
+    .DESCRIPTION
+        This function returns the audit events found in CheckContent as a comma-delimited string, suitable for insertion into a SQL statement.
+
+    .PARAMETER FixText
+        String that was obtained from the 'CheckContent' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        The STIG content that contains possible audit events
+#>
+function Get-AuditEvents
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $collection = @()
+
+    foreach ($line in $CheckContent)
+    {
+        # Clean the line first
+        #$line = $line.Trim()
+
+        # Search for an audit event expression, preferably outside of a SQL statement
+        if ($line -match '([A-Z_]+)_CHANGE_GROUP(?=,\s|\s)')
+        {
+            $collection += $line
+        }
+    }
+
+    $return = $collection -join ','
+
     return $return
 }
 #endregion Audit Functions

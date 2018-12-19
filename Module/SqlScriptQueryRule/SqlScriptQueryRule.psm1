@@ -172,7 +172,8 @@ Class SqlScriptQueryRule : Rule
         # SQL Server 2016+ matches
         if
         (
-            $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #saAccount rules
+            $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" -or
+            $checkContent -Match "DATABASE_OBJECT_CHANGE_GROUP"
         )
         {
             return $true
