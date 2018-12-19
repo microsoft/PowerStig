@@ -620,6 +620,10 @@ function Split-BenchmarkId
             $officeStig = $officeStig[1] + $officeStig[2]
             $returnId = 'Windows_All_' + $officeStig
         }
+        {$PSItem -match 'Dot_Net'}
+        {
+            $returnId = 'Windows_All_DotNet4'
+        }
         default
         {
             $returnId = $id

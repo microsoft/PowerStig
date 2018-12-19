@@ -83,7 +83,7 @@ Configuration Browser
     $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
                                           $technologyRole, $technologyVersion, $Exception,
                                           $SkipRuleType, $SkipRule )
-    #### BEGIN DO NOT MODIFY ####
+    ##### BEGIN DO NOT MODIFY #####
     # $StigData is used in the resources that are dot sourced below
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
     $StigData = $StigDataObject.StigXml
