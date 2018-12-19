@@ -110,8 +110,10 @@ function ConvertFrom-StigXccdf
 
     .DESCRIPTION
         This function loads the regular expression sets to process registry rules in the xccdf file.
+
     .PARAMETER Path
         The path to the xccdf file to be processed.
+
     .PARAMETER StigBenchmarkXml
         The xml for the xccdf file to be processed.
 #>
@@ -127,20 +129,19 @@ function Get-RegistryRuleExpressions
         [Parameter(Mandatory = $true)]
         [object]
         $StigBenchmarkXml
-
     )
 
     Begin
     {
         # Use $stigBenchmarkXml.id to determine the stig file
-        $testing = Split-BenchmarkId $stigBenchmarkXml.id
-        if([string]::IsNullOrEmpty($testing.TechnologyRole))
+        $benchmarkId = Split-BenchmarkId $stigBenchmarkXml.id
+        if ([string]::IsNullOrEmpty($benchmarkId.TechnologyRole))
         {
-            $testing.TechnologyRole = $stigBenchmarkXml.id
+            $benchmarkId.TechnologyRole = $stigBenchmarkXml.id
         }
 
         # Handles testing and production
-        $xccdfFileName = Split-Path $Path -leaf
+        $xccdfFileName = Split-Path $Path -Leaf
         $spInclude = @('Data.Core.ps1')
         if ($xccdfFileName -eq 'TextData.xml')
         {
@@ -148,18 +149,19 @@ function Get-RegistryRuleExpressions
             $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
             $spExclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
 
-            switch ($testing.TechnologyRole) {
-            { $null -ne ($officeApps | Where-Object { $testing.TechnologyRole -match $_ }) }
-                {  
-                    $spInclude += "Data.Office.ps1"
-                }
+            switch ($benchmarkId.TechnologyRole) 
+            {
+                { $null -ne ($officeApps | Where-Object { $testing.TechnologyRole -match $_ }) }
+                    {  
+                        $spInclude += "Data.Office.ps1"
+                    }
             }
         }
         else 
         {
             # Query directory of xccdf file
             $spResult = Split-Path (Split-Path $Path -Parent) -Leaf
-            if($spResult)
+            if ($spResult)
             {
                 $spInclude += "Data."+ $spResult + ".ps1"
             }
@@ -168,7 +170,6 @@ function Get-RegistryRuleExpressions
 
     Process
     {
-
         # Load specific and core expression sets
         $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude | Sort-Object -Descending
         Clear-Variable SingleLine* -Scope Global
@@ -178,11 +179,6 @@ function Get-RegistryRuleExpressions
             . $supportFile.FullName
         }
     }
-    End 
-    {
-        
-    }    
-
 }
 
 <#

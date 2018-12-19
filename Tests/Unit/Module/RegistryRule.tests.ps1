@@ -1307,7 +1307,7 @@ try
                 $checkContent = 'HKCU\Path\To\Value'
                 $hashtable    =  [ordered]@{
                     Contains = 'Verify'
-                    Select   = '((HKLM|HKCU).*(?=Verify))'                          
+                    Select   = '((HKLM|HKCU).*(?=Verify))'
                 }            
                 $returnContent = $null
                 Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
@@ -1362,12 +1362,7 @@ try
             foreach ( $registryType in $registryTypes )
             {
                 $checkContent = "Criteria: If the value ""1001"" is $registryType = 3"
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_SZ'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_BINARY = 3'}  -ParameterFilter {$checkContent -match 'REG_BINARY'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_QWORD = 3'}  -ParameterFilter {$checkContent -match 'REG_QWORD'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_MULTI_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_MULTI_SZ'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is DWORD = 3'}  -ParameterFilter {$checkContent -match 'REG_DWORD'}
-                Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_EXPAND_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_EXPAND_SZ'}
+                Mock Get-RegistryValueStringFromSingleLineStig {return "Criteria: If the value ""1001"" is $registryType) = 3"}  -ParameterFilter {$checkContent -match 'REG_SZ'}
 
                 It "Should return '$registryType' from '$checkContent'" {
 
@@ -1406,6 +1401,7 @@ try
             $hashtable = @{
                 Select = '((?<=If the value\s)(.*)(?=is\sR))'
             }
+
             It "Should return '$valueName' from '$checkContent'" {
                 Get-RegistryValueNameFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $valueName
             }
@@ -1429,6 +1425,7 @@ try
             $hashtable = @{
                 Select = '(?<=REG_Type)(\s*)?=.*(?=(,|\())'
             }
+            
             It "Should return '$valueData' from '$checkContent'" {
                 $result = Get-RegistryValueDataFromSLStig -CheckContent $checkContent -Hashtable $hashtable
                 $result | Should Be $valueData
