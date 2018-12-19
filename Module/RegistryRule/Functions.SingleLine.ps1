@@ -55,13 +55,9 @@ function Get-SingleLineRegistryPath
         $value = Get-SLRegistryPath -CheckContent $CheckContent -Hashtable $item
         if ([String]::IsNullOrEmpty($value) -eq $false)
         { 
-            break 
+            return $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}
         }
-
-        $value = $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}
     }
-
-    return $value
 }
 
 <#
@@ -132,14 +128,14 @@ function Get-SLRegistryPath
                 Select 
                 { 
                     $regEx = '{0}' -f $Hashtable.Item($key)
-                    $result = $CheckContent | Select-String -Pattern $regEx
-                    if ([string]::IsNullOrEmpty($result))
+                    $selectedRegistryPath = $CheckContent | Select-String -Pattern $regEx
+                    if ([string]::IsNullOrEmpty($selectedRegistryPath))
                     {
-                        $matchedRegistryPath = $result
+                        $matchedRegistryPath = $selectedRegistryPath
                     }
                     else
                     {
-                        $matchedRegistryPath = $result.Matches[0].Value
+                        $matchedRegistryPath = $selectedRegistryPath.Matches[0].Value
                     }
                 }
             }
@@ -159,17 +155,17 @@ function Get-SLRegistryPath
             "*Software Publishing Criteria" {$matchedRegistryPath = $matchedRegistryPath -replace 'Software Publishing Criteria$','Software Publishing'}
         }
 
-        $matchedRegistryPath = $matchedRegistryPath.ToString().trim(' ', '.')
+        $result = $matchedRegistryPath.ToString().trim(' ', '.')
 
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed path : $matchedRegistryPath"
+        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed path : $result"
+        return $result
     }
     else
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found path : $false"
         Write-Verbose "Registry path was not found in check content."
+        return
     }
-
-    return $matchedRegistryPath
 }
 #endregion
 #region Registry Type
@@ -196,13 +192,9 @@ function Get-RegistryValueTypeFromSingleLineStig
         $value = Get-RegistryValueTypeFromSLStig -CheckContent $CheckContent -Hashtable $item
         if ([String]::IsNullOrEmpty($value) -eq $false)
         { 
-            break 
+            return $value
         }
-
-        $value
     } 
-
-    return $value
 }
 
 <#
@@ -231,7 +223,7 @@ function Get-RegistryValueTypeFromSLStig
     )
    
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
-    $valueType = $CheckContent
+    # $valueType = $CheckContent
 
     foreach ($key in $Hashtable.Keys) 
     {  
@@ -251,9 +243,9 @@ function Get-RegistryValueTypeFromSLStig
             Match 
             { 
                 $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
-                $result = [regex]::Matches($CheckContent.ToString(), $regEx)
+                $matchedValueType = [regex]::Matches($CheckContent.ToString(), $regEx)
 
-                if (-not $result)
+                if (-not $matchedValueType)
                 {
                     continue
                 }
@@ -267,19 +259,19 @@ function Get-RegistryValueTypeFromSLStig
                 if ($valueName)
                 {
                     $regEx =  $Hashtable.Item($key) -f [regex]::escape($valueName)
-                    $result = Select-String -InputObject $CheckContent -Pattern $regEx
+                    $selectedValueType = Select-String -InputObject $CheckContent -Pattern $regEx
                 }
                
-                if (-not $result.Matches)
+                if (-not $selectedValueType.Matches)
                 {
                     return
                 } 
                 else
                 {
-                    $valueType = $result.Matches[0].Value
+                    $valueType = $selectedValueType.Matches[0].Value
                     if ($Hashtable.Item('Group'))
                     {
-                        $valueType = $result.Matches.Groups[$Hashtable.Item('Group')].Value
+                        $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
                     }
                 }
             } 
@@ -330,13 +322,9 @@ function Get-RegistryValueNameFromSingleLineStig
         $value = Get-RegistryValueNameFromSLStig -CheckContent $CheckContent -Hashtable $item
         if ([String]::IsNullOrEmpty($value) -eq $false)
         { 
-            break 
+            return $value 
         }
-
-        $value
     } 
-
-    return $value
 }
 <#
     .SYNOPSIS
@@ -394,8 +382,7 @@ function Get-RegistryValueNameFromSLStig
             Select 
             { 
                 $regEx = '{0}' -f $Hashtable.Item($key)
-                $result = Select-String -InputObject $CheckContent -Pattern $regEx
-                $valueName = $result
+                $valueName = Select-String -InputObject $CheckContent -Pattern $regEx
             }
         } # Switch
     } # Foreach
@@ -408,11 +395,13 @@ function Get-RegistryValueNameFromSLStig
         {
             $valueName = $valueName[0]
         }
-
-        if (-not [String]::IsNullOrEmpty($valueName))
+        
+        $result = $valueName.trim()
+        
+        if (-not [String]::IsNullOrEmpty($result))
         {
-            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $valueName"
-            return $valueName.trim()
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
+            return $result
         }
         else
         {
