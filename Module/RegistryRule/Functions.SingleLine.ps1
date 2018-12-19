@@ -326,7 +326,7 @@ function Get-RegistryValueNameFromSingleLineStig
         $valueName = $checkContent | Select-String -Pattern "(?<=filevalidation\\).*(?=\sis\sset\sto)"
     }
 
-    $valueName = $valueName.Matches.Value.Replace('"', '')
+    $valueName = $valueName.Matches.Value -replace '["“”]', ''
 
     if ($valueName.Count -gt 1)
     {
