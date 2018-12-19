@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/17/2018">
+<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="12/19/2018">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2677,7 +2677,7 @@ Value: 0x00000001 (1)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '1|3'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|3'</OrganizationValueTestString>
       <RawString>Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DeviceGuard\
 Value Type: REG_DWORD
@@ -2692,7 +2692,7 @@ Value: 0x00000001 (1) (Secure Boot only) or 0x00000003 (3) (Secure Boot and DMA 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>For domain controllers and standalone systems, this is NA.
 
 Current hardware and virtual environments may not support virtualization-based security features, including Credential Guard, due to specific supporting requirements, including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within a virtual machine.
@@ -2734,7 +2734,7 @@ https://docs.microsoft.com/en-us/windows/security/identity-protection/credential
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>For standalone systems, this is NA.
 
 Current hardware and virtual environments may not support virtualization-based security features, including Credential Guard, due to specific supporting requirements including a TPM, UEFI with Secure Boot, and the capability to run the Hyper-V feature within a virtual machine.
@@ -2772,7 +2772,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\EarlyLaunch</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '1|3|8|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|3|8|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Early Launch Antimalware - Boot-Start Driver Initialization policy to enforce "Good, unknown and bad but critical" (preventing "bad").
 
 If the registry value name below does not exist, this is not a finding.
@@ -3033,7 +3033,7 @@ Value: 0x000000ff (255)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0|1'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '0|1'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3052,7 +3052,7 @@ Value: 0x00000000 (0) (Security) or 0x00000001 (1) (Basic)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -ge '32768'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -ge '32768'</OrganizationValueTestString>
       <RawString>If the system is configured to write events directly to an audit server, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -3073,7 +3073,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -ge '196608'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -ge '196608'</OrganizationValueTestString>
       <RawString>If the system is configured to write events directly to an audit server, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -3094,7 +3094,7 @@ Value: 0x00030000 (196608) (or greater)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -ge '32768'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -ge '32768'</OrganizationValueTestString>
       <RawString>If the system is configured to write events directly to an audit server, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -3134,7 +3134,7 @@ Value: 0x00000001 (1)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Data Execution Prevention to be turned on for File Explorer.
 
 If the registry value name below does not exist, this is not a finding.
@@ -3159,7 +3159,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for File Explorer heap termination on corruption to be enabled.
 
 If the registry Value Name below does not exist, this is not a finding.
@@ -3184,7 +3184,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for shell protected mode to be turned on for File Explorer.
 
 If the registry value name below does not exist, this is not a finding.
@@ -3323,7 +3323,7 @@ Value: 0x00000001 (1)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for the Windows RSS platform to not use Basic authentication over HTTP connections.
 
 If the registry value name below does not exist, this is not a finding.
@@ -3405,7 +3405,7 @@ Value: 0x00000000 (0)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '0|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '0|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Internet Explorer to warn users and select whether to allow or refuse installation when a web-based program attempts to install software on the system.
 
 If the registry value name below does not exist, this is not a finding.
@@ -3696,7 +3696,7 @@ Value: 0x00000000 (0)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '30' -and {0} -gt '0'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '30' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>This is the default configuration for this setting (30 days).
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -3738,7 +3738,7 @@ This setting may prevent a system from being joined to a domain if not configure
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '900' -and {0} -gt '0'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '900' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -3827,7 +3827,7 @@ Automated tools may only search for the titles defined above. If an organization
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '4'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '4'</OrganizationValueTestString>
       <RawString>This applies to member servers. For domain controllers and standalone systems, this is NA.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -3905,7 +3905,7 @@ Value:  0x00000000 (0)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -le '15'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '15'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive:  HKEY_LOCAL_MACHINE
@@ -4369,7 +4369,7 @@ Value: 0x00000000 (0)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>UAC requirements are NA for Server Core installations (this is default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -4538,7 +4538,7 @@ Value: 1</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '2|ShouldBeAbsent'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '2|ShouldBeAbsent'</OrganizationValueTestString>
       <RawString>The default behavior is for Windows to mark file attachments with their zone information.
 
 If the registry Value Name below does not exist, this is not a finding.
@@ -4563,7 +4563,7 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} -match '1|2'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE

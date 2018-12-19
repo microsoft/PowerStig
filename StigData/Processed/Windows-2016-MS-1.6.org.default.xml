@@ -20,53 +20,53 @@
   <OrganizationalSetting id="V-73319" value="1" />
   <!-- Ensure ''V-73321'' -ge '14'-->
   <OrganizationalSetting id="V-73321" value="14" />
-  <!-- Ensure 'V-73513.b' -match '1|3'-->
+  <!-- Ensure ''V-73513.b'' -match '1|3'-->
   <OrganizationalSetting id="V-73513.b" value="1" />
-  <!-- Ensure 'V-73515' -match '1|2'-->
+  <!-- Ensure ''V-73515'' -match '1|2'-->
   <OrganizationalSetting id="V-73515" value="2" />
-  <!-- Ensure 'V-73517' -match '1|2'-->
+  <!-- Ensure ''V-73517'' -match '1|2'-->
   <OrganizationalSetting id="V-73517" value="2" />
-  <!-- Ensure 'V-73521' -match '1|3|8|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73521'' -match '1|3|8|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73521" value="8" />
-  <!-- Ensure 'V-73551' -match '0|1'-->
+  <!-- Ensure ''V-73551'' -match '0|1'-->
   <OrganizationalSetting id="V-73551" value="0" />
-  <!-- Ensure 'V-73553' -ge '32768'-->
+  <!-- Ensure ''V-73553'' -ge '32768'-->
   <OrganizationalSetting id="V-73553" value="32768" />
-  <!-- Ensure 'V-73555' -ge '196608'-->
+  <!-- Ensure ''V-73555'' -ge '196608'-->
   <OrganizationalSetting id="V-73555" value="196608" />
-  <!-- Ensure 'V-73557' -ge '32768'-->
+  <!-- Ensure ''V-73557'' -ge '32768'-->
   <OrganizationalSetting id="V-73557" value="32768" />
-  <!-- Ensure 'V-73561' -match '0|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73561'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73561" value="0" />
-  <!-- Ensure 'V-73563' -match '0|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73563'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73563" value="0" />
-  <!-- Ensure 'V-73565' -match '0|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73565'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73565" value="0" />
-  <!-- Ensure 'V-73579' -match '0|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73579'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73579" value="0" />
-  <!-- Ensure 'V-73587' -match '0|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73587'' -match '0|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73587" value="0" />
   <!-- Ensure ''V-73623'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-73623" value="xAdministrator" />
   <!-- Ensure ''V-73625'' -ne 'Guest'-->
   <OrganizationalSetting id="V-73625" value="xGuest" />
-  <!-- Ensure 'V-73641' -le '30' -and 'V-73641' -gt '0'-->
+  <!-- Ensure ''V-73641'' -le '30' -and ''V-73641'' -gt '0'-->
   <OrganizationalSetting id="V-73641" value="30" />
-  <!-- Ensure 'V-73645' -le '900' -and 'V-73645' -gt '0'-->
+  <!-- Ensure ''V-73645'' -le '900' -and ''V-73645'' -gt '0'-->
   <OrganizationalSetting id="V-73645" value="900" />
   <!-- Ensure ''V-73649'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
   <OrganizationalSetting id="V-73649" value="DoD Notice and Consent Banner" />
-  <!-- Ensure 'V-73651' -le '4'-->
+  <!-- Ensure ''V-73651'' -le '4'-->
   <OrganizationalSetting id="V-73651" value="4" />
-  <!-- Ensure 'V-73659' -le '15'-->
+  <!-- Ensure ''V-73659'' -le '15'-->
   <OrganizationalSetting id="V-73659" value="15" />
-  <!-- Ensure 'V-73711' -match '1|2'-->
+  <!-- Ensure ''V-73711'' -match '1|2'-->
   <OrganizationalSetting id="V-73711" value="1" />
-  <!-- Ensure 'V-73727' -match '2|ShouldBeAbsent'-->
+  <!-- Ensure ''V-73727'' -match '2|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73727" value="2" />
   <!-- Ensure ''V-73753'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
   <OrganizationalSetting id="V-73753" value="Administrators" />
-  <!-- Ensure 'V-73807' -match '1|2'-->
+  <!-- Ensure ''V-73807'' -match '1|2'-->
   <OrganizationalSetting id="V-73807" value="1" />
 </OrganizationalSettings>
 
