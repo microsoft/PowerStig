@@ -151,7 +151,7 @@ function Get-RegistryRuleExpressions
 
             switch ($benchmarkId.TechnologyRole) 
             {
-                { $null -ne ($officeApps | Where-Object { $testing.TechnologyRole -match $_ }) }
+                { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
                     {  
                         $spInclude += "Data.Office.ps1"
                     }
