@@ -1,21 +1,10 @@
-<DISASTIG id="Windows_Defender_Antivirus" version="1.4" created="12/12/2018">
+<DISASTIG id="Windows_Defender_Antivirus" version="1.4" created="12/18/2018">
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; MS Security Guide -&gt; "Turn on Windows Defender protection against Potentially Unwanted Applications" is set to "Enabled".
-
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
-HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
-
-Criteria: If the value "MpEnablePus" is REG_DWORD = 1, this is not a finding.</RawString>
-    </Rule>
     <Rule id="V-75153" severity="high" conversionstatus="pass" title="SRG-APP-000278" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; "Turn off Windows Defender Antivirus" is set to “Not Configured”.
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; "Turn off Windows Defender Antivirus" is set to "Not Configured".
   
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender
@@ -80,6 +69,22 @@ Criteria: If the value "SubmitSamplesConsent" is REG_DWORD = 1, this is not a fi
     </Rule>
   </ManualRule>
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\MpEngine</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; MS Security Guide -&gt; "Turn on Windows Defender protection against Potentially Unwanted Applications" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
+
+Criteria: If the value "MpEnablePus" is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>MpEnablePus</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
     <Rule id="V-75151" severity="medium" conversionstatus="pass" title="SRG-APP-000279" dscresource="xRegistry">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -524,7 +529,7 @@ Criteria: If the value "ScheduleDay" is REG_DWORD = 0, this is not a finding.</R
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “5” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the "Show…" box option and verify the ‘Value name’ field contains a value of "5" and the ‘Value’ field  contains a "2".  A value of "3" in the ‘Value’ field is more restrictive and also an acceptable value.
   
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
@@ -543,16 +548,16 @@ Criteria: If the value "5" is REG_SZ = 2 (or 3), this is not a finding.
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550
 Value:  1
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550”</ValueName>
+      <ValueName>BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77967" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -563,16 +568,16 @@ Criteria: If the value “BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: D4F940AB-401B-4EFC-AADC-AD5F3C50688A
 Value:  1
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “D4F940AB-401B-4EFC-AADC-AD5F3C50688A” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "D4F940AB-401B-4EFC-AADC-AD5F3C50688A" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“D4F940AB-401B-4EFC-AADC-AD5F3C50688A”</ValueName>
+      <ValueName>D4F940AB-401B-4EFC-AADC-AD5F3C50688A</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77969" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -583,16 +588,16 @@ Criteria: If the value “D4F940AB-401B-4EFC-AADC-AD5F3C50688A” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: 3B576869-A4EC-4529-8536-B80A7769E899
 Value:  1
  
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “3B576869-A4EC-4529-8536-B80A7769E899” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "3B576869-A4EC-4529-8536-B80A7769E899" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“3B576869-A4EC-4529-8536-B80A7769E899”</ValueName>
+      <ValueName>3B576869-A4EC-4529-8536-B80A7769E899</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77971" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -603,16 +608,16 @@ Criteria: If the value “3B576869-A4EC-4529-8536-B80A7769E899” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: 75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84
 Value:  1
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84”</ValueName>
+      <ValueName>75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77973" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -623,16 +628,16 @@ Criteria: If the value “75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: D3E037E1-3EB8-44C8-A917-57927947596D 
 Value:  1
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “D3E037E1-3EB8-44C8-A917-57927947596D” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "D3E037E1-3EB8-44C8-A917-57927947596D" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“D3E037E1-3EB8-44C8-A917-57927947596D”</ValueName>
+      <ValueName>D3E037E1-3EB8-44C8-A917-57927947596D</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77975" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -643,16 +648,16 @@ Criteria: If the value “D3E037E1-3EB8-44C8-A917-57927947596D” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: 5BEB7EFE-FD9A-4556-801D-275E5FFC04CC
 Value:  1
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “5BEB7EFE-FD9A-4556-801D-275E5FFC04CC” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "5BEB7EFE-FD9A-4556-801D-275E5FFC04CC" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“5BEB7EFE-FD9A-4556-801D-275E5FFC04CC”</ValueName>
+      <ValueName>5BEB7EFE-FD9A-4556-801D-275E5FFC04CC</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77977" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -663,16 +668,16 @@ Criteria: If the value “5BEB7EFE-FD9A-4556-801D-275E5FFC04CC” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
-Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled".  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
 Value name: 92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B
 Value:  1
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
 
-Criteria: If the value “92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B” is REG_SZ = 1, this is not a finding.</RawString>
+Criteria: If the value "92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B" is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B”</ValueName>
+      <ValueName>92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77979" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -683,7 +688,7 @@ Criteria: If the value “92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B” is REG_SZ = 1,
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
 
- Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Network Protection -&gt; "Prevent users and apps from accessing dangerous websites" is set to "Enabled” and “Block" selected in the drop down box.
+ Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Network Protection -&gt; "Prevent users and apps from accessing dangerous websites" is set to "Enabled" and "Block" selected in the drop down box.
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection
@@ -699,7 +704,7 @@ Criteria: If the value "EnableNetworkProtection" is REG_DWORD = 1, this is not a
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “4” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the "Show…" box option and verify the ‘Value name’ field contains a value of "4" and the ‘Value’ field  contains a "2".  A value of "3" in the ‘Value’ field is more restrictive and also an acceptable value.
   
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
@@ -715,7 +720,7 @@ Criteria: If the value "4" is REG_SZ = 2 (or 3), this is not a finding. </RawStr
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “2” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the "Show…" box option and verify the ‘Value name’ field contains a value of "2" and the ‘Value’ field  contains a "2".  A value of "3" in the ‘Value’ field is more restrictive and also an acceptable value.
   
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
@@ -731,7 +736,7 @@ Criteria: If the value "2" is REG_SZ = 2 (or 3), this is not a finding.</RawStri
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “1” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the "Show…" box option and verify the ‘Value name’ field contains a value of "1" and the ‘Value’ field  contains a "2".  A value of "3" in the ‘Value’ field is more restrictive and also an acceptable value.
   
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
