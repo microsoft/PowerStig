@@ -411,14 +411,12 @@ Class RegistryRule : Rule
             (
                 $CheckContent -Match "Windows Registry Editor" -and
                 $CheckContent -Match "HKLM|HKCU" -and
-                $CheckContent -NotMatch 'MpEngine' -and
                 $CheckContent -NotMatch 'applicable to unclassified systems' -and
                 $CheckContent -NotMatch 'Turn off Windows Defender Antivirus'
             ) -or
             (
                 $CheckContent -Match "HKLM|HKCU" -and
                 $CheckContent -Match "REG_DWORD" -and
-                $CheckContent -NotMatch 'MpEngine' -and
                 $CheckContent -NotMatch 'applicable to unclassified systems'
             )
         )
