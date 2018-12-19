@@ -20,9 +20,9 @@ try
             {
                 & "$($script:DSCCompositeResourceName)_config" `
                 -FrameworkVersion $stig.TechnologyRole `
-                -StigVersion $stig.stigVersion `
+                -StigVersion $stig.StigVersion `
                 -OutputPath $TestDrive
-            } | Should Not throw
+            } | Should -Not -Throw
         }
 
         [xml] $dscXml = Get-Content -Path $stig.Path
@@ -39,15 +39,15 @@ try
 
             foreach ($setting in $dscXml)
             {
-                If (-not ($dscMof.ResourceID -match $setting.Id) )
+                If (-not ($dscMof.ResourceID -match $setting.id) )
                 {
-                    Write-Warning -Message "Missing registry Setting $($setting.Id)"
+                    Write-Warning -Message "Missing registry Setting $($setting.id)"
                     $hasAllSettings = $false
                 }
             }
 
-            It "Should have $($dscXml.Count) Registry settings" {
-                $hasAllSettings | Should Be $true
+            It "Should have $($dscXml.count) Registry settings" {
+                $hasAllSettings | Should -Be $true
             }
         }
     }
