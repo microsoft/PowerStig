@@ -98,12 +98,6 @@ function ConvertFrom-StigXccdf
         Write-Error -Message 'The Benchmark title property is null. Unable to determine ruleset target.'
         return
     }
-    # Use $stigBenchmarkXml.id to determine the stig file
-    $testing = Split-BenchmarkId $stigBenchmarkXml.id
-    if([string]::IsNullOrEmpty($testing.TechnologyRole))
-    {
-        $testing.TechnologyRole = $stigBenchmarkXml.id
-    }
 
     Get-RegistryRuleExpressions -Path $Path -StigBenchmarkXml $stigBenchmarkXml
 
@@ -139,7 +133,7 @@ function Get-RegistryRuleExpressions
     Begin
     {
         # Use $stigBenchmarkXml.id to determine the stig file
-        $testing = Split-BenchmarkId $StigBenchmarkXml.id
+        $testing = Split-BenchmarkId $stigBenchmarkXml.id
         if([string]::IsNullOrEmpty($testing.TechnologyRole))
         {
             $testing.TechnologyRole = $stigBenchmarkXml.id

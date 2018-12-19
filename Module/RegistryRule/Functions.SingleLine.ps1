@@ -57,16 +57,22 @@ function Get-SingleLineRegistryPath
         { 
             break 
         }
+
         $value = $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}
-    }   
+    }
+
     return $value
 }
+
 <#
     .SYNOPSIS
         Extract the registry path from an office STIG string.
 
     .Parameter CheckContent
         An array of the raw string data taken from the STIG setting.
+    
+    .Parameter Hashtable
+        The $SingleLineRegistryPath table taken from the Data.*.ps1 file(s).
 #>
 function Get-SLRegistryPath
 {
@@ -85,11 +91,11 @@ function Get-SLRegistryPath
 
     $fullRegistryPath = $CheckContent
     
-    foreach ($i in $Hashtable.Keys) 
+    foreach ($key in $Hashtable.Keys) 
     {  
-        if ($Hashtable.Item($i).GetType().Name -eq 'OrderedDictionary') 
+        if ($Hashtable.Item($key).GetType().Name -eq 'OrderedDictionary') 
         {
-            $innerValue = Get-SLRegistryPath -CheckContent $fullRegistryPath -Hashtable $Hashtable.Item($i)
+            $innerValue = Get-SLRegistryPath -CheckContent $fullRegistryPath -Hashtable $Hashtable.Item($key)
             if ($innerValue)
             {
                 return $innerValue
@@ -99,11 +105,11 @@ function Get-SLRegistryPath
         } 
         else
         {
-            switch ($i)
+            switch ($key)
             {
                 Contains
                 { 
-                    if (@($fullRegistryPath | Where-Object { $_.ToString().Contains($Hashtable.Item($i))}).Count -gt 0)
+                    if (@($fullRegistryPath | Where-Object { $_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0)
                     {
                         continue
                     }
@@ -114,7 +120,7 @@ function Get-SLRegistryPath
                 }
                 Match 
                 { 
-                    if ($fullRegistryPath -match $Hashtable.Item($i))
+                    if ($fullRegistryPath -match $Hashtable.Item($key))
                     {
                         continue
                     }
@@ -125,9 +131,9 @@ function Get-SLRegistryPath
                 }
                 Select 
                 { 
-                    $regEx =  '{0}' -f $Hashtable.Item($i)
+                    $regEx = '{0}' -f $Hashtable.Item($key)
                     $result = $CheckContent | Select-String -Pattern $regEx
-                    if([string]::IsNullOrEmpty($result))
+                    if ([string]::IsNullOrEmpty($result))
                     {
                         $matchedRegistryPath = $result
                     }
@@ -172,7 +178,7 @@ function Get-SLRegistryPath
         Extract the registry value type from an Office STIG string.
 
     .Parameter CheckContent
-        An array of the raw sting data taken from the STIG setting.
+        An array of the raw string data taken from the STIG setting.
 #>
 function Get-RegistryValueTypeFromSingleLineStig
 {
@@ -204,7 +210,10 @@ function Get-RegistryValueTypeFromSingleLineStig
         Extract the registry value type from an Office STIG string.
 
     .Parameter CheckContent
-        An array of the raw sting data taken from the STIG setting.
+        An array of the raw string data taken from the STIG setting.
+    
+    .Parameter Hashtable
+        The $SingleLineRegistryValueType table taken from the Data.*.ps1 file(s).
 #>
 function Get-RegistryValueTypeFromSLStig
 {
@@ -224,13 +233,13 @@ function Get-RegistryValueTypeFromSLStig
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
     $valueType = $CheckContent
 
-    foreach ($i in $Hashtable.Keys) 
+    foreach ($key in $Hashtable.Keys) 
     {  
-        switch ($i)
+        switch ($key)
         {
             Contains
             { 
-                if (@($fullRegistryPath | Where-Object {$_.ToString().Contains($Hashtable.Item($i))}).Count -gt 0) 
+                if (@($fullRegistryPath | Where-Object {$_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0) 
                 {
                     continue
                 }
@@ -241,7 +250,7 @@ function Get-RegistryValueTypeFromSLStig
             }
             Match 
             { 
-                $regEx = $Hashtable.Item($i) -f [regex]::escape($valueName)
+                $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
                 $result = [regex]::Matches($CheckContent.ToString(), $regEx)
 
                 if (-not $result)
@@ -257,14 +266,12 @@ function Get-RegistryValueTypeFromSLStig
             { 
                 if ($valueName)
                 {
-                    #$valueName = [regex]::Unescape($valueName)
-                    $regEx =  $Hashtable.Item($i) -f [regex]::escape($valueName)
+                    $regEx =  $Hashtable.Item($key) -f [regex]::escape($valueName)
                     $result = Select-String -InputObject $CheckContent -Pattern $regEx
                 }
                
                 if (-not $result.Matches)
                 {
-                    Write-Verbose -Message "I don't have a value"
                     return
                 } 
                 else
@@ -272,17 +279,12 @@ function Get-RegistryValueTypeFromSLStig
                     $valueType = $result.Matches[0].Value
                     if ($Hashtable.Item('Group'))
                     {
-                        Write-Verbose 'a group exists'
                         $valueType = $result.Matches.Groups[$Hashtable.Item('Group')].Value
                     }
                 }
             } 
-        } #Switch
-    }#Foreach
-    # if ($valueType -is [Microsoft.PowerShell.Commands.MatchInfo])
-    # {
-    #     $valueType = $valueType.Matches.Value.Replace('=', '').Replace('"', '')
-    # }
+        } # Switch
+    } # Foreach
     if ($valueType)
     {
         $valueType = $valueType.Replace('=', '').Replace('"', '')
@@ -292,22 +294,15 @@ function Get-RegistryValueTypeFromSLStig
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Type : $valueType"
 
             $valueType = Test-RegistryValueType -TestValueType $valueType
-            $return = $valueType.trim()
 
-            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed Type : $valueType"
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Converted Type : $valueType"
+            return $valueType.trim()
         }
         else
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Type : $false"
-            # If we get here, there is nothing to verify so return.
             return
         }
-
-        $return
-    }
-    else
-    {
-        return $valueType
     }
 }
 #endregion
@@ -349,6 +344,9 @@ function Get-RegistryValueNameFromSingleLineStig
 
     .Parameter CheckContent
         An array of the raw sting data taken from the STIG setting.
+
+    .Parameter Hashtable
+        The $SingleLineRegistryValueName table taken from the Data.*.ps1 file(s).
 #>
 function Get-RegistryValueNameFromSLStig
 {
@@ -367,13 +365,13 @@ function Get-RegistryValueNameFromSLStig
     
     $valueName = $CheckContent
     
-    foreach ($i in $Hashtable.Keys) 
+    foreach ($key in $Hashtable.Keys) 
     {  
-        switch ($i)
+        switch ($key)
         {
             Contains
             { 
-                if (@($CheckContent | Where-Object { $_.ToString().Contains($Hashtable.Item($i))}).Count -gt 0) 
+                if (@($CheckContent | Where-Object { $_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0) 
                 {
                     continue
                 }
@@ -384,7 +382,7 @@ function Get-RegistryValueNameFromSLStig
             }
             Match 
             { 
-                if ($CheckContent -match $Hashtable.Item($i))
+                if ($CheckContent -match $Hashtable.Item($key))
                 {
                   continue
                 }
@@ -395,14 +393,14 @@ function Get-RegistryValueNameFromSLStig
             }
             Select 
             { 
-                $regEx = '{0}' -f $Hashtable.Item($i)
+                $regEx = '{0}' -f $Hashtable.Item($key)
                 $result = Select-String -InputObject $CheckContent -Pattern $regEx
                 $valueName = $result
             }
-        } #Switch
-    }#Foreach
+        } # Switch
+    } # Foreach
 
-    if($valueName)
+    if ($valueName)
     {
         $valueName = $valueName.Matches.Value.Replace('"', '')
 
@@ -414,22 +412,13 @@ function Get-RegistryValueNameFromSLStig
         if (-not [String]::IsNullOrEmpty($valueName))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $valueName"
-
-            $return = $valueName.trim()
-
-            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed Name : $valueName"
+            return $valueName.trim()
         }
         else
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $false"
             return
         }
-
-        $return
-    }
-    else
-    {
-        return $valueName
     }
 }
 #endregion
@@ -459,14 +448,9 @@ function Get-RegistryValueDataFromSingleStig
         $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
         if ([String]::IsNullOrEmpty($value) -eq $false)
         { 
-            $value = $value.ToString().Trim(' ')
-            break 
+            return $value
         }
-
-        $value
-    } 
-    
-    return $value
+    }     
 }
 
 <#
@@ -477,6 +461,9 @@ function Get-RegistryValueDataFromSingleStig
 
     .Parameter CheckContent
         An array of the raw sting data taken from the STIG setting.
+
+    .Parameter Hashtable
+        The $SingleLineRegistryValueData table taken from the Data.*.ps1 file(s).
 #>
 function Get-RegistryValueDataFromSLStig
 {
@@ -500,13 +487,13 @@ function Get-RegistryValueDataFromSLStig
         return
     }
 
-    foreach ($i in $Hashtable.Keys) 
+    foreach ($key in $Hashtable.Keys) 
     {  
-        switch ($i)
+        switch ($key)
         {
             Contains
             { 
-                if (@($CheckContent | Where-Object { $_.ToString().Contains($Hashtable.Item($i))}).Count -gt 0) 
+                if (@($CheckContent | Where-Object { $_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0) 
                 {
                     continue
                 }
@@ -517,7 +504,7 @@ function Get-RegistryValueDataFromSLStig
             }
             Match 
             { 
-                if ($CheckContent -match $Hashtable.Item($i) )
+                if ($CheckContent -match $Hashtable.Item($key) )
                 {
                     continue
                 }
@@ -528,7 +515,7 @@ function Get-RegistryValueDataFromSLStig
             }
             Select 
             { 
-                $regEx =  $Hashtable.Item($i) -f [regex]::escape($valueType)
+                $regEx =  $Hashtable.Item($key) -f [regex]::escape($valueType)
                 $result = $CheckContent | Select-String -Pattern $regEx
 
                 if ($result.Count -gt 0)
@@ -536,33 +523,25 @@ function Get-RegistryValueDataFromSLStig
                     $valueData = $result[0]
                 }
             }
-        } #Switch
-    }#Foreach
+        } # Switch
+     } # Foreach
 
     if ($valueData.Matches)
     {
         $test = $valueData.Matches[0].Value.Replace('=', '').Replace('"', '')
         $valueData = $test.Replace(',', '').Replace('"', '')
+        $result = $valueData.ToString().Trim(' ')
 
-        if (-not [String]::IsNullOrEmpty( $valueData))
+        if (-not [String]::IsNullOrEmpty($result))
         {
-            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $valueData"
-
-            $return = $valueData
-
-            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed Name : $return"
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
+            return $result 
         }
         else
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $false"
             return
         }
-
-        $return
-    }
-    else
-    {
-        return $valueData
     }
 }
 #endregion
