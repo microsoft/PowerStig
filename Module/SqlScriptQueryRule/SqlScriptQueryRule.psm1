@@ -174,19 +174,16 @@ Class SqlScriptQueryRule : Rule
         if
         (
             (
-                $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #V-79317,79319
+                $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #saAccount
             ) -or
             (
-                $CheckContent -Match "if an audit is configured" -and #V-79141,79239,79267,79269,79279,79281,79289
-                $CheckContent -Notmatch "SCHEMA_OBJECT_ACCESS_GROUP"
-            ) -or
-            (
-                $CheckContent -Match "if an audit is configured" -and #V-79291,79293,79295,79297
-                $CheckContent -Match "APPLICATION_ROLE_CHANGE_PASSWORD_GROUP"
-            ) -or
-            (
-                $CheckContent -Match "Check the SQL Server Audit being used for the STIG compliant audit" #V-79259,79261,79263,79265,79275,79277
-            )
+                $CheckContent -Match "TRACE_CHANGE_GROUP" -or #V-79239,79291,79293,29295
+                $CheckContent -Match "DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP" -or #V-79259,79261,79263,79265,79275,79277
+                $CheckContent -Match "SCHEMA_OBJECT_CHANGE_GROUP" -or #V-79267,79269,79279,79281
+                $CheckContent -Match "SUCCESSFUL_LOGIN_GROUP" -or #V-79287,79297
+                $CheckContent -Match "FAILED_LOGIN_GROUP" -or #V-79289
+                $CheckContent -Match "status_desc = 'STARTED'" #V-79141
+            ) 
         )
         {
             return $true

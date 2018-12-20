@@ -1014,7 +1014,12 @@ function Get-SqlRuleType
         }
         # Audit rules for SQL Server 2014 and beyond
         {
-            $PSItem -Match 'DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP'
+            $PSItem -Match "TRACE_CHANGE_GROUP" -or #V-79239,79291,79293,29295
+            $PSItem -Match "DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP" -or #V-79259,79261,79263,79265,79275,79277
+            $PSItem -Match "SCHEMA_OBJECT_CHANGE_GROUP" -or #V-79267,79269,79279,79281
+            $PSItem -Match "SUCCESSFUL_LOGIN_GROUP" -or #V-79287,79297
+            $PSItem -Match "FAILED_LOGIN_GROUP" -or #V-79289
+            $PSItem -Match "status_desc = 'STARTED'" #V-79141
         }
         {
             $ruleType = 'Audit'
