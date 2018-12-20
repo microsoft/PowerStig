@@ -61,10 +61,11 @@ Class SqlScriptQueryRule : Rule
             $this.SetStatus($null)    # Will set the conversion status to = fail
         }
 
-        if ($this.IsDuplicateRule($global:stigSettings))
+        ### Temporarily turned off rule type duplication checks //Adam
+        <#if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
-        }
+        }#>
     }
 
     #region Methods
@@ -172,8 +173,20 @@ Class SqlScriptQueryRule : Rule
         # SQL Server 2016+ matches
         if
         (
-            $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" -or
-            $checkContent -Match "DATABASE_OBJECT_CHANGE_GROUP"
+            (
+                $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #V-79317,79319
+            ) -or
+            (
+                $CheckContent -Match "if an audit is configured" -and #V-79141,79239,79267,79269,79279,79281,79289
+                $CheckContent -Notmatch "SCHEMA_OBJECT_ACCESS_GROUP"
+            ) -or
+            (
+                $CheckContent -Match "if an audit is configured" -and #V-79291,79293,79295,79297
+                $CheckContent -Match "APPLICATION_ROLE_CHANGE_PASSWORD_GROUP"
+            ) -or
+            (
+                $CheckContent -Match "Check the SQL Server Audit being used for the STIG compliant audit" #V-79259,79261,79263,79265,79275,79277
+            )
         )
         {
             return $true
