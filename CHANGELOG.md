@@ -3,7 +3,6 @@
 ## Unreleased
 
 * Fixed [#160](https://github.com/Microsoft/PowerStig/issues/160): PowerStig.Convert needs to handle new registry rules without affecting existing code
-
 * Fixed [#201](https://github.com/Microsoft/PowerStig/issues/201): Update PowerStig integration tests to account for skips and exceptions.
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
@@ -21,7 +20,6 @@
 
 * Fixed [#212](https://github.com/Microsoft/PowerStig/issues/212): SDDL strings are incorrectly split in the xRegistry resource
 * Fixed [#180](https://github.com/Microsoft/PowerStig/issues/180): IisSite SkipRuleType and SkipRule fail to skip rules
-
 
 ## 2.3.0.0
 

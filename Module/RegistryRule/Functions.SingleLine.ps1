@@ -277,6 +277,7 @@ function Get-RegistryValueTypeFromSLStig
             } 
         } # Switch
     } # Foreach
+
     if ($valueType)
     {
         $valueType = $valueType.Replace('=', '').Replace('"', '')
@@ -513,7 +514,7 @@ function Get-RegistryValueDataFromSLStig
                 }
             }
         } # Switch
-     } # Foreach
+    } # Foreach
 
     if ($valueData.Matches)
     {
