@@ -438,25 +438,24 @@ function Get-AuditGetScript
         $CheckContent
     )
 
-    $auditEvents = Get-AuditEvents -CheckContent $checkContent
+    $auditEvents = Get-AuditEvents -CheckContent $CheckContent
 
     $SqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
-    $SqlScript += '-- Create a table for the events that we are looking for '
+    $SqlScript += '/* Create a table for the events that we are looking for */ '
     $SqlScript += 'CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ' + $auditEvents + ' '
-    $SqlScript += '-- Create a cursor to walk through all audits that are enabled at startup '
+    $SqlScript += '/* Create a cursor to walk through all audits that are enabled at startup */ '
     $SqlScript += 'DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; '
     $SqlScript += 'OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id '
     $SqlScript += 'WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 '
-    $SqlScript += '-- Does this specification have the needed events in it? '
+    $SqlScript += '/* Does this specification have the needed events in it? */ '
     $SqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) '
     $SqlScript += 'IF @MissingAuditCount = 0 SET @FoundCompliant = 1; '
     $SqlScript += 'FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents '
-    $SqlScript += '-- Produce output that works with DSC - records if we don't find the audit events we're looking for '
+    $SqlScript += '/* Produce output that works with DSC - records if we do not find the audit events we are looking for */ '
     $SqlScript += 'IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1'
 
-    return = $SqlScript
+    return $SqlScript
 }
-
 
 <#
     .SYNOPSIS Get-AuditTestScript
@@ -485,20 +484,20 @@ function Get-AuditTestScript
     $auditEvents = Get-AuditEvents -CheckContent $checkContent
 
     $SqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
-    $SqlScript += '-- Create a table for the events that we are looking for '
+    $SqlScript += '/* Create a table for the events that we are looking for */ '
     $SqlScript += 'CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ' + $auditEvents + ' '
-    $SqlScript += '-- Create a cursor to walk through all audits that are enabled at startup '
+    $SqlScript += '/* Create a cursor to walk through all audits that are enabled at startup */ '
     $SqlScript += 'DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; '
     $SqlScript += 'OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id '
     $SqlScript += 'WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 '
-    $SqlScript += '-- Does this specification have the needed events in it? '
+    $SqlScript += '/* Does this specification have the needed events in it? */ '
     $SqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) '
     $SqlScript += 'IF @MissingAuditCount = 0 SET @FoundCompliant = 1; '
     $SqlScript += 'FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents '
-    $SqlScript += '-- Produce output that works with DSC - records if we don't find the audit events we're looking for '
+    $SqlScript += '/* Produce output that works with DSC - records if we do not find the audit events we are looking for */ '
     $SqlScript += 'IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1'
 
-    return = $SqlScript
+    return $SqlScript
 }
 
 <#
@@ -537,9 +536,9 @@ function Get-AuditSetScript
 
     #$return = "DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = '{0}' DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who ON who.principal_id = what.grantee_principal_id WHERE who.name NOT LIKE '##MS%##' AND who.type_desc <> 'SERVER_ROLE' AND who.name <> 'sa'  AND what.permission_name = @permission OPEN c1 FETCH next FROM c1 INTO @name,@permission WHILE (@@FETCH_STATUS = 0) BEGIN SET @sqlstring1 = @sqlstring1 + 'REVOKE ' + @permission + ' FROM [' + @name + '];' FETCH next FROM c1 INTO @name,@permission END CLOSE c1 DEALLOCATE c1 EXEC ( @sqlstring1 );" -f $permission
 
-    $return = "INSERT AUDIT CHECK SQL SCRIPT HERE"
+    $SqlScript = "INSERT AUDIT CHECK SQL SCRIPT HERE"
     
-    return $return
+    return $SqlScript
 }
 <#
     .SYNOPSIS Get-AuditEvents
@@ -576,9 +575,7 @@ function Get-AuditEvents
         }
     }
     # Return a string that can be inserted into the Get/Test SQL script
-    $return = '(' + ($collection -join '),(') + ')'
-
-    return $return
+    return  '(' + ($collection -join '),(') + ')'
 }
 #endregion Audit Functions
 
