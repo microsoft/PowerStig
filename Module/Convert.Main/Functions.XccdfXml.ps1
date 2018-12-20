@@ -99,7 +99,86 @@ function ConvertFrom-StigXccdf
         return
     }
 
+    Get-RegistryRuleExpressions -Path $Path -StigBenchmarkXml $stigBenchmarkXml
+
     return Get-StigRuleList @stigRuleParams
+}
+
+<#
+    .SYNOPSIS
+        Loads the regular expressions files
+
+    .DESCRIPTION
+        This function loads the regular expression sets to process registry rules in the xccdf file.
+
+    .PARAMETER Path
+        The path to the xccdf file to be processed.
+
+    .PARAMETER StigBenchmarkXml
+        The xml for the xccdf file to be processed.
+#>
+function Get-RegistryRuleExpressions
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [object]
+        $StigBenchmarkXml
+    )
+
+    Begin
+    {
+        # Use $stigBenchmarkXml.id to determine the stig file
+        $benchmarkId = Split-BenchmarkId $stigBenchmarkXml.id
+        if ([string]::IsNullOrEmpty($benchmarkId.TechnologyRole))
+        {
+            $benchmarkId.TechnologyRole = $stigBenchmarkXml.id
+        }
+
+        # Handles testing and production
+        $xccdfFileName = Split-Path $Path -Leaf
+        $spInclude = @('Data.Core.ps1')
+        if ($xccdfFileName -eq 'TextData.xml')
+        {
+            # Query TechnologyRole and map to file
+            $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
+            $spExclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
+
+            switch ($benchmarkId.TechnologyRole) 
+            {
+                { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
+                    {  
+                        $spInclude += "Data.Office.ps1"
+                    }
+            }
+        }
+        else 
+        {
+            # Query directory of xccdf file
+            $spResult = Split-Path (Split-Path $Path -Parent) -Leaf
+            if ($spResult)
+            {
+                $spInclude += "Data."+ $spResult + ".ps1"
+            }
+        }
+    }
+
+    Process
+    {
+        # Load specific and core expression sets
+        $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude | Sort-Object -Descending
+        Clear-Variable SingleLine* -Scope Global
+        foreach ($supportFile in $spSupportFileList)
+        {
+            Write-Verbose "Loading $($supportFile.FullName)"
+            . $supportFile.FullName
+        }
+    }
 }
 
 <#
