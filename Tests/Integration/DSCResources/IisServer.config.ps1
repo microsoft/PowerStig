@@ -24,7 +24,11 @@ Configuration IisServer_Config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -36,6 +40,10 @@ Configuration IisServer_Config
             OsVersion = '$OsVersion'
             StigVersion = '$StigVersion'
             LogPath = '$LogPath'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'Value'='1234567'}}"

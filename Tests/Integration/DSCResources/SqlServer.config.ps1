@@ -24,7 +24,11 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings
         
     )
 
@@ -39,6 +43,10 @@ Configuration SqlServerInstance_config
             SqlRole = '$SqlRole'
             StigVersion = $StigVersion
             ServerInstance = 'TestServer'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"

@@ -16,7 +16,11 @@ Configuration WindowsFirewall_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -27,6 +31,10 @@ Configuration WindowsFirewall_config
         WindowsFirewall BaseLineSettings
         {
             StigVersion = '$StigVersion'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"

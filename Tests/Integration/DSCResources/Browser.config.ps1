@@ -20,7 +20,11 @@ Configuration Browser_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -32,6 +36,10 @@ Configuration Browser_config
         {
             BrowserVersion = '$BrowserVersion'
             StigVersion = '$StigVersion'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"

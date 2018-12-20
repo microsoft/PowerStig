@@ -16,7 +16,16 @@ Configuration Firefox_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $BrowserVersion
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -27,6 +36,10 @@ Configuration Firefox_config
         Firefox FirefoxConfiguration
         {
             Stigversion = '$StigVersion'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'Value'='1234567'}}"

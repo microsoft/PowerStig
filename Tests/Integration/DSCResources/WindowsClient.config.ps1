@@ -28,7 +28,11 @@ Configuration WindowsClient_config
 
         [Parameter()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -42,6 +46,10 @@ Configuration WindowsClient_config
                 StigVersion = '$StigVersion'
                 ForestName = '$ForestName'
                 DomainName = '$DomainName'
+                $(if ($null -ne $OrgSettings)
+                {
+                    "Orgsettings = '$OrgSettings'"
+                })
                 $(if ($null -ne $Exception)
                 {
                     "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"

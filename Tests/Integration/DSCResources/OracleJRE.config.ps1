@@ -24,7 +24,11 @@ Configuration OracleJRE_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -37,6 +41,10 @@ Configuration OracleJRE_config
             ConfigPath = '$ConfigPath'
             PropertiesPath = '$PropertiesPath'
             StigVersion = '$StigVersion'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'Value'='ExceptionTest'}}"
