@@ -7,7 +7,7 @@
     from MOST Restrive to LEAST Restrictive, similar to exception handling.  Also, ensure only
     UNIQUE Keys are used in each hashtable to prevent errors and conflicts.  Within each table there
     can be a single key for Contains, Match, and Select.  These keys match functions in the refactored
-    Functions.SingleLine.ps1 script in the RegistryRule module.
+    Functions.SingleLine.ps1 script in the RegistryRule module.  Example: See Data.Office.ps1
 #>
 $global:SingleLineRegistryPath += [ordered]@{
     Criteria = [ordered]@{
