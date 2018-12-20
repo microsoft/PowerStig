@@ -2,7 +2,7 @@ Configuration IisSite_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [string[]]
         $WebAppPool,
 
@@ -16,18 +16,47 @@ Configuration IisSite_config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
     Node localhost
     {
-        IisSite SiteConfiguration
-        {
-            WebAppPool  = $WebAppPool
-            WebSiteName = $WebSiteName
-            OsVersion   = $OsVersion
-            StigVersion = $StigVersion
-        }
+        & ([scriptblock]::Create("
+            IisSite SiteConfiguration
+            {
+                $(if ($null -ne $WebAppPool)
+                {
+                   "WebAppPool = @($( ($WebAppPool | % {"'$_'"}) -join ',' ))`n"
+                })
+                $( "WebSiteName = @($( ($WebSiteName | % {"'$_'"}) -join ',' ))`n" )
+                OsVersion = '$OsVersion'
+                StigVersion = '$StigVersion'
+                $(if ($null -ne $Exception)
+                {
+                    "Exception = @{'$Exception'= @{'Value'='1234567'}}"
+                })
+                $(if ($null -ne $SkipRule)
+                {
+                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                }
+                if ($null -ne $SkipRuleType)
+                {
+                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                })
+            }")
+        )
     }
 }

@@ -23,12 +23,16 @@ Configuration WindowsServer_config
         $DomainName,
 
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
-        $SkipRuleType
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -38,18 +42,22 @@ Configuration WindowsServer_config
         & ([scriptblock]::Create("
             WindowsServer BaseLineSettings
             {
-                OsVersion    = '$OsVersion'
-                OsRole       = '$osRole'
-                StigVersion  = '$StigVersion'
-                ForestName   = '$ForestName'
-                DomainName   = '$DomainName'
+                OsVersion = '$OsVersion'
+                OsRole = '$OsRole'
+                StigVersion = '$StigVersion'
+                ForestName = '$ForestName'
+                DomainName = '$DomainName'
+                $(if ($null -ne $Exception)
+                {
+                    "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
+                })
                 $(if ($null -ne $SkipRule)
                 {
                     "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
                 }
                 if ($null -ne $SkipRuleType)
                 {
-                    " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
                 })
             }")
         )

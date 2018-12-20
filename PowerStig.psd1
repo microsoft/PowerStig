@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.3.0.0'
+ModuleVersion = '2.3.2.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -41,11 +41,11 @@ RequiredModules  = @(
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
     @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
-    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '11.4.0.0'},
+    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '12.1.0.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.2.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.3.0.0'},
     @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
 )
 
@@ -97,26 +97,11 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Windows 10 Fixes
-  * V-63795 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
-
-* Windows Server 2012R2 Fixes
-  * V-1089 - Corrected text
-  * V-21954 - Changed from manual to registry rule ## HIGH IMPACT CHANGE ##
-  * V-26070 - Corrected key path
-  * V-36657 - Corrected key path
-  * V-36681 - Corrected key path
-
-* Added the following STIGs
-  * IIS Server 8.5 STIG V1R5
-  * Microsoft Outlook 2013 STIG V1R13
-  * DotNet Framework 4.0 STIG V1R6
-  * IIS Site 8.5 STIG V1R5
-  * Windows Domain V2R11
-  * FireFox 4.23 STIG
-  * Windows Server 2012R2 DC V2R14
-  * Windows Server 2012R2 MS V2R14
-  * Windows 10 V1R15'
+        ReleaseNotes = '* Fixed [#215](https://github.com/Microsoft/PowerStig/issues/215): Org settings wont apply for DotNet STIG
+* Fixed [#216](https://github.com/Microsoft/PowerStig/issues/216): DotNet STIGs are misnamed
+* Fixed [#207](https://github.com/Microsoft/PowerStig/issues/207): SQL Server Database rules fail to apply
+* Fixed [#208](https://github.com/Microsoft/PowerStig/issues/208): Update PowerSTIG to use SQLServerDsc 12.1.0.0
+* Fixed [#220](https://github.com/Microsoft/PowerStig/issues/220): Update PowerSTIG to use xWebAdministration 2.3.0.0'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

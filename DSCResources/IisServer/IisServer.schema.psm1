@@ -102,10 +102,12 @@ Configuration IisServer
     . $userSettingsPath
     ##### END DO NOT MODIFY #####
 
-    $technology = [Technology]::Windows
+    $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
-    $technologyRole = [TechnologyRole]::New( 'IISServer', $technologyVersion )
-    $stigDataObject = [STIG]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
+    $technologyRole    = [TechnologyRole]::New( 'IISServer', $technologyVersion )
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
+                                          $technologyRole, $technologyVersion, $Exception,
+                                          $SkipRuleType, $SkipRule )
 
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
@@ -127,7 +129,7 @@ Configuration IisServer
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.WebConfigProperty.ps1"
     . "$resourcePath\windows.xIisLogging.ps1"

@@ -570,7 +570,7 @@ function Get-GitHubRefStatus
     }
 
     [int] $i = 0
-    [int] $waitCounter = 20
+    [int] $waitCounter = 30
     [int] $waitSeconds = 30
     do
     {
@@ -850,7 +850,7 @@ function Start-PowerStigRelease
 
     Push-Location -Path $GitRepositoryPath
     $beginGitBranch = Get-GitBranch
-    $branchName = $script:ReleaseName -f $ModuleVersion
+    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
 
     try
     {
@@ -867,7 +867,7 @@ function Start-PowerStigRelease
                 throw "$ModuleVersion is not greater than currently released."
             }
 
-            New-GitReleaseBranch -BranchName $branchName
+            New-GitReleaseBranch -BranchName $releaseBranchName
 
             $releaseNotes = Get-UnreleasedNotes
 
@@ -883,7 +883,7 @@ function Start-PowerStigRelease
             Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
 
             # Push the release branch to GitHub
-            Push-GitBranch -Name $branchName -CommitMessage "Bumped version number to $ModuleVersion for release."
+            Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
         }
 
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
@@ -891,7 +891,7 @@ function Start-PowerStigRelease
         # Get the Dev Banch status. Wait until it is success or failure
         $gitHubRefStatusParam = [ordered]@{
             'Repository'     = $repository
-            'Name'           = $branchName
+            'Name'           = $releaseBranchName
             'WaitForSuccess' = $true
         }
         $gitHubReleaseBranchStatus = Get-GitHubRefStatus @gitHubRefStatusParam
@@ -901,7 +901,7 @@ function Start-PowerStigRelease
             $pullRequestParameters = @{
                 Repository    = $Repository
                 ModuleVersion = $ModuleVersion
-                BranchHead    = $branchName
+                BranchHead    = $releaseBranchName
             }
             $pullRequest = New-GitHubPullRequest @pullRequestParameters
 
@@ -914,7 +914,7 @@ function Start-PowerStigRelease
 
             if ($gitHubPullRequestStatus -eq 'success')
             {
-                Write-Output "Pull request for $branchName success."
+                Write-Output "Pull request for $releaseBranchName success."
             }
             else
             {
@@ -923,7 +923,7 @@ function Start-PowerStigRelease
         }
         else
         {
-            throw "$branchName is currently failing and cannot be merged into Master."
+            throw "$releaseBranchName is currently failing and cannot be merged into Master."
         }
     }
     finally
@@ -995,7 +995,9 @@ function Complete-PowerStigRelease
 
     Push-Location -Path $GitRepositoryPath
     $beginGitBranch = Get-GitBranch
-    $branchName = $script:ReleaseName -f $ModuleVersion
+    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
+
+    Set-GitBranch -Branch $releaseBranchName -SkipPull
 
     try
     {
@@ -1006,7 +1008,7 @@ function Complete-PowerStigRelease
         $pullRequestParam = @{
             Repository  = $repository
             BranchBase  = 'master'
-            BranchHead  = $branchName
+            BranchHead  = $releaseBranchName
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
@@ -1024,14 +1026,14 @@ function Complete-PowerStigRelease
 
         $gitHubReleaseParams = @{
             Repository  = $repository
-            TagName     = $branchName -replace 'Release', 'PSGallery'
-            Title       = "Release of version $(($branchName -Split '-')[0])"
+            TagName     = $releaseBranchName -replace 'Release', 'PSGallery'
+            Title       = "Release of version $(($releaseBranchName -Split '-')[0])"
             Description = $releaseNotes
         }
         # The GitHub release triggers the AppVeyor deployment to the Gallery.
         $null = New-GitHubRelease @gitHubReleaseParams
 
-        Remove-GitReleaseBranch -BranchName $branchName
+        Remove-GitReleaseBranch -BranchName $releaseBranchName
     }
     finally
     {

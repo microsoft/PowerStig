@@ -112,10 +112,12 @@ Configuration IisSite
     . $userSettingsPath
     ##### END DO NOT MODIFY #####
 
-    $technology = [Technology]::Windows
+    $technology        = [Technology]::Windows
     $technologyVersion = [TechnologyVersion]::New( $OsVersion, $technology )
-    $technologyRole = [TechnologyRole]::New( "IISSite", $technologyVersion )
-    $stigDataObject = [STIG]::New( $StigVersion, $orgSettingsObject, $technology, $technologyRole, $technologyVersion, $exceptionsObject , $skipRuleTypeObject, $skipRuleObject )
+    $technologyRole    = [TechnologyRole]::New( "IISSite", $technologyVersion )
+    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
+                                          $technologyRole, $technologyVersion, $Exception,
+                                          $SkipRuleType, $SkipRule )
 
     #### BEGIN DO NOT MODIFY ####
     # $StigData is used in the resources that are dot sourced below
@@ -129,7 +131,7 @@ Configuration IisSite
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.2.0.0
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.xWebSite.ps1"
     . "$resourcePath\windows.xWebAppPool.ps1"
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
