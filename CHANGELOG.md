@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 2.4.0.0
+* RegistryRules module updated
+ * Functions.SingleLine.ps1 refactored to use expressions 
+ * from Data.Core.ps1 in Convert.Main module
+
 ## 2.3.0.0
 
 * Windows 10 Fixes
