@@ -440,9 +440,21 @@ function Get-AuditGetScript
 
     $auditEvents = Get-AuditEvents -CheckContent $checkContent
 
-    $return = "INSERT AUDIT CHECK SQL SCRIPT HERE"
+    $SqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
+    $SqlScript += '-- Create a table for the events that we are looking for '
+    $SqlScript += 'CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ' + $auditEvents + ' '
+    $SqlScript += '-- Create a cursor to walk through all audits that are enabled at startup '
+    $SqlScript += 'DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; '
+    $SqlScript += 'OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id '
+    $SqlScript += 'WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 '
+    $SqlScript += '-- Does this specification have the needed events in it? '
+    $SqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) '
+    $SqlScript += 'IF @MissingAuditCount = 0 SET @FoundCompliant = 1; '
+    $SqlScript += 'FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents '
+    $SqlScript += '-- Produce output that works with DSC - records if we don't find the audit events we're looking for '
+    $SqlScript += 'IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1'
 
-    return $return
+    return = $SqlScript
 }
 
 
@@ -470,9 +482,23 @@ function Get-AuditTestScript
         $CheckContent
     )
 
-    $return = "INSERT AUDIT CHECK SQL SCRIPT HERE"
+    $auditEvents = Get-AuditEvents -CheckContent $checkContent
 
-    return $return
+    $SqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
+    $SqlScript += '-- Create a table for the events that we are looking for '
+    $SqlScript += 'CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES ' + $auditEvents + ' '
+    $SqlScript += '-- Create a cursor to walk through all audits that are enabled at startup '
+    $SqlScript += 'DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; '
+    $SqlScript += 'OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id '
+    $SqlScript += 'WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 '
+    $SqlScript += '-- Does this specification have the needed events in it? '
+    $SqlScript += 'BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) '
+    $SqlScript += 'IF @MissingAuditCount = 0 SET @FoundCompliant = 1; '
+    $SqlScript += 'FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents '
+    $SqlScript += '-- Produce output that works with DSC - records if we don't find the audit events we're looking for '
+    $SqlScript += 'IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1'
+
+    return = $SqlScript
 }
 
 <#
@@ -541,20 +567,16 @@ function Get-AuditEvents
     )
 
     $collection = @()
-
+    $pattern = '([A-Z_]+)_GROUP(?!\x27|\x22)'
     foreach ($line in $CheckContent)
     {
-        # Clean the line first
-        #$line = $line.Trim()
-
-        # Search for an audit event expression, preferably outside of a SQL statement
-        if ($line -match '([A-Z_]+)_CHANGE_GROUP(?=,\s|\s)')
-        {
-            $collection += $line
+        $auditEvents = $line | Select-String -Pattern $pattern -AllMatches
+        for ($i = 0; $i -lt $auditEvents.Count; $i++) {
+            $collection += $auditEvents.Matches[$i].Value
         }
     }
-
-    $return = $collection -join ','
+    # Return a string that can be inserted into the Get/Test SQL script
+    $return = '(' + ($collection -join '),(') + ')'
 
     return $return
 }
