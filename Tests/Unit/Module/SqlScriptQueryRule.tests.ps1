@@ -10,7 +10,7 @@ try
             DbExist    = @{
                 GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
                 TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-                SetScript    = "DROP DATABASE AdventureWorks;"
+                SetScript    = "DROP DATABASE AdventureWorks"
                 CheckContent = "Check SQL Server for the existence of the publicly available `"AdventureWorks`" database by performing the following query:
                 SELECT name from sysdatabases where name like 'AdventureWorks%';
                 If the `"AdventureWorks`" database is present, this is a finding."
@@ -126,6 +126,22 @@ try
                 USE master
                 REVOKE ALTER ANY ENDPOINT TO <'account name'>
                 GO"
+            }
+            saAccount    = @{
+                GetScript    = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
+                TestScript   = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
+                SetScript    = 'USE [master] DECLARE @saAccountName varchar(50) SET @saAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) IF @saAccountName = ''sa'' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @saAccountName = ''old_sa'' DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@saAccountName] DISABLE;'
+                CheckContent = "Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query: 
+                USE master; 
+                GO 
+                SELECT name, is_disabled 
+                FROM sys.sql_logins 
+                WHERE principal_id = 1; GO 
+                Verify that the `"name`" column contains the current name of the [sa] database server account (see note)."
+                FixText      = "Modify the SQL Server's [sa] (system administrator) account by running the following script:
+                USE master; 
+                GO 
+                ALTER LOGIN [sa] WITH NAME = <new name> GO"
             }
         }
 

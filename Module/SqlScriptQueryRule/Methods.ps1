@@ -91,16 +91,7 @@ function Get-DbExistSetScript {
         $CheckContent
     )
 
-    <#
-    $return = $FixText[1].Trim()
-
-    if ($return -notmatch ";$")
-    {
-        $return = $return + ";"
-    }
-    #>
-
-    $return = Get-SQLQuery -CheckContent $CheckContent
+    $return = Get-SQLQuery -CheckContent $FixText
 
     return $return
 }
@@ -438,7 +429,8 @@ function Get-AuditGetScript
         $CheckContent
     )
 
-    $auditEvents = Get-AuditEvents -CheckContent $CheckContent
+    $collection = Get-AuditEvents -CheckContent $checkContent
+    $auditEvents = '(' + ($collection -join '),(') + ')'
 
     $SqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
     $SqlScript += '/* Create a table for the events that we are looking for */ '
@@ -481,7 +473,8 @@ function Get-AuditTestScript
         $CheckContent
     )
 
-    $auditEvents = Get-AuditEvents -CheckContent $checkContent
+    $collection = Get-AuditEvents -CheckContent $checkContent
+    $auditEvents = '(' + ($collection -join '),(') + ')'
 
     $SqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
     $SqlScript += '/* Create a table for the events that we are looking for */ '
@@ -580,12 +573,15 @@ function Get-AuditEvents
     foreach ($line in $CheckContent)
     {
         $auditEvents = $line | Select-String -Pattern $pattern -AllMatches
-        for ($i = 0; $i -lt $auditEvents.Count; $i++) {
-            $collection += $auditEvents.Matches[$i].Value
+        if ($auditEvents.matches.count -gt 0)
+        {
+            for ($i = 0; $i -le $auditEvents.Count; $i++) {
+                $collection += $auditEvents.Matches[$i].Value
+            }   
         }
     }
-    # Return a string that can be inserted into the Get/Test SQL script
-    return  '(' + ($collection -join '),(') + ')'
+    # Return an array of found SQL audit events
+    return $collection
 }
 #endregion Audit Functions
 
@@ -835,10 +831,10 @@ function Get-Query
         {
             $collection += $line
         }
-        if ($line -match "^(Use|USE)")
+        <#if ($line -match "^(Use|USE)")
         {
             $collection += $line
-        }
+        }#>
     }
 
     foreach ($line in $collection)
@@ -966,6 +962,12 @@ function Get-SQLQuery
             $ScriptInitiated = $false
             $ScriptTerminated = $false
         }
+    }
+
+    # Was a script parsed but we reached the end of CheckContent before we closed it out?
+    if ($ScriptInitiated -and $ScriptTerminated -eq $false){
+        $query = $collection -join " "
+        $queries += $query
     }
 
     return $queries

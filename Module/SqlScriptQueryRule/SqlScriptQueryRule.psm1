@@ -62,10 +62,10 @@ Class SqlScriptQueryRule : Rule
         }
 
         ### Temporarily turned off rule type duplication checks //Adam
-        <#if ($this.IsDuplicateRule($global:stigSettings))
+        if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
-        }#>
+        }
     }
 
     #region Methods
