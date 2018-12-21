@@ -155,6 +155,16 @@ try
                 DATABASE_OWNERSHIP_CHANGE_GROUP
                 See the supplemental file `"SQL 2016 Audit.sql`". "
             }
+            PlainSQL    = @{
+                GetScript    = "SELECT * FROM MSysObjects WHERE 1=1;"
+                TestScript   = "SELECT * FROM MSysObjects WHERE 1=1;"
+                SetScript    = "DROP DATABASE AdventureWorks"
+                CheckContent = "This rule performs a check of records in a database by performing the following query:
+                SELECT * FROM MSysObjects WHERE 1=1;
+                If records are present, this is a finding."
+                FixText      = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
+                DROP DATABASE AdventureWorks"
+            }
         }
         $testStigRuleParam = @{
             CheckContent    = $sqlScriptQueryRule.DbExist.CheckContent
@@ -233,6 +243,16 @@ try
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
 
                 $query = Get-Query -CheckContent $checkContent
+
+                It 'Should return 3 queries' {
+                    $query.Count | Should be 3
+                }
+            }
+
+            Context 'Get-SQLQuery' {
+                $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
+
+                $query = Get-SQLQuery -CheckContent $checkContent
 
                 It 'Should return 3 queries' {
                     $query.Count | Should be 3
