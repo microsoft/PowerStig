@@ -67,10 +67,6 @@ Class SecurityOptionRule : Rule
         $thisName = Get-SecurityOptionName -CheckContent $this.SplitCheckContent
         if (-not $this.SetStatus($thisName))
         {
-            if ($thisName -Match 'FIPS')
-            {
-                $thisName = 'System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing'
-            }
             $this.set_OptionName($thisName)
         }
     }
