@@ -845,7 +845,7 @@ function Get-SecurityPolicyString
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
-    $stringMatch = 'If the (value for (the)?)?|(value\s)'
+    $stringMatch = '(If the (value for (the)?)?|(value\s))|(If.*".*" is )'
     $result = ( $checkContent | Select-String -Pattern $stringMatch ) -replace $stringMatch, ''
     # 'V-63427' (Win10) returns multiple matches. This is ensure the only the correct one is returned.
     $result = $result | Where-Object -FilterScript {$PSItem -notmatch 'site is using a password filter'}

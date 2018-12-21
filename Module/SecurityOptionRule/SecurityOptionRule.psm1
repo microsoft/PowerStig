@@ -67,6 +67,10 @@ Class SecurityOptionRule : Rule
         $thisName = Get-SecurityOptionName -CheckContent $this.SplitCheckContent
         if (-not $this.SetStatus($thisName))
         {
+            if ($thisName -Match 'FIPS')
+            {
+                $thisName = 'System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing'
+            }
             $this.set_OptionName($thisName)
         }
     }
@@ -141,10 +145,15 @@ Class SecurityOptionRule : Rule
                 $CheckContent -Match 'gpedit.msc' -and
                 $CheckContent -Match 'Security Options'
             )-or
-            (
+            # SQL 2016+ Stigs
+            ( #V-79197,79199
                 $CheckContent -Match 'Local Security Policy' -and
-                $CheckContent -Match 'Security Options' -and
-                $CheckContent -Match 'If the value for'
+                $CheckContent -Match 'System .ryptography: Use FIPS' 
+            ) -or
+            ( #V-79203,79305,79307
+                $CheckContent -Match 'Local Security Policy' -and
+                $CheckContent -Match 'Use FIPS compliant algorithms' -and
+                $CheckContent -Notmatch 'Review the server documentation'
             )
         )
         {

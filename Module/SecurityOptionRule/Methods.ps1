@@ -30,9 +30,23 @@ function Get-SecurityOptionName
             return $option
     }
     # Used for converting SQL Server 2016 Instance Stig Rules
-    If ($checkContent -match "SQL Server 2016 Instance")
+    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms")
     {
-        $Option = $Option.Matches.Groups[0].Value
+        $Option = $Option.Matches.Groups[1].Value
+            $Option = $Option.Replace('"','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
+    }
+    If ($checkContent -match "In the right-side pane")
+    {
+        $Option = $Option.Matches.Groups[1].Value
+            $Option = $Option.Replace('"','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
+    }
+    If ($checkContent -match "Use FIPS compliant algorithms")
+    {
+        $Option = $Option.Matches.Groups[6].Value
             $Option = $Option.Replace('"','')
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
             return $option
@@ -73,10 +87,23 @@ function Get-SecurityOptionValue
             return $option
     }
     # Used for converting SQL Server 2016 Instance Stig Rules
-    If ($checkContent -match "SQL Server 2016 Instance")
+    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms")
     {
-        $Option = $Option.Matches.Groups[2].Value
+        $Option = 'Disabled'
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
+    }
+    If ($checkContent -match "In the right-side pane")
+    {
+        $Option = $Option.Matches.Groups[5].Value
             $Option = $Option.Replace('"','')
+            $Option = $Option.Replace(',','')
+            Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+            return $option
+    }
+    If ($checkContent -match "Use FIPS compliant algorithms")
+    {
+        $Option = 'Disabled'
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
             return $option
     }
