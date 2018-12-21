@@ -2,13 +2,6 @@ Configuration OracleJRE_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ConfigPath,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $PropertiesPath,
 
         [Parameter(Mandatory = $true)]
         [string]
@@ -28,7 +21,38 @@ Configuration OracleJRE_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings
+        $OrgSettings,
+        ### Begin DO NOT REMOVE Required for Consolidated Integration Tests
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole
+         ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig

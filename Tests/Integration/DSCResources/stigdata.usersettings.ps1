@@ -1,12 +1,6 @@
 <#
-    This file is dot sourced into every composite. It processes the exceptions,
+    This file is dot sourced into every composite. It consolidates testing of exceptions,
     skipped rules, and organizational objects that were provided to the composite
-    and converts them into the approperate class for the StigData class constructor
-#>
-<#
-    This file is dot sourced into every composite. It processes the exceptions,
-    skipped rules, and organizational objects that were provided to the composite
-    and converts them into the approperate class for the StigData class constructor
 #>
 
 if($dscXml.DISASTIG.ChildNodes.ToString() -match "RegistryRule")
@@ -17,6 +11,11 @@ if($dscXml.DISASTIG.ChildNodes.ToString() -match "RegistryRule")
 if($dscXml.DISASTIG.ChildNodes.ToString() -match "FileContentRule")
 {
     $matchedRuleType = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule
+}
+
+if($dscXml.DISASTIG.ChildNodes.ToString() -match "SqlScriptQueryRule")
+{
+    $matchedRuleType = $dscXml.DISASTIG.SqlScriptQueryRule
 }
 
 Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
@@ -31,6 +30,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
                     -BrowserVersion $stig.TechnologyRole `
                     -StigVersion $stig.StigVersion `
                     -OutputPath $TestDrive `
+                    -OfficeApp $stig.TechnologyRole `
+                    -ConfigPath $configPath `
+                    -PropertiesPath $propertiesPath `
                     -Exception $exception `
             } | Should -Not -Throw
         }
@@ -45,6 +47,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
                     -BrowserVersion $stig.TechnologyRole `
                     -StigVersion $stig.StigVersion `
                     -OutputPath $TestDrive `
+                    -OfficeApp $stig.TechnologyRole `
+                    -ConfigPath $configPath `
+                    -PropertiesPath $propertiesPath `
                     -Exception $exception
             } | Should -Not -Throw
         }
@@ -63,6 +68,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRule" {
                     -BrowserVersion $stig.TechnologyRole `
                     -StigVersion $stig.StigVersion `
                     -SkipRule $skipRule `
+                    -OfficeApp $stig.TechnologyRole `
+                    -ConfigPath $configPath `
+                    -PropertiesPath $propertiesPath `
                     -OutputPath $TestDrive
             } | Should -Not -Throw
         }
@@ -93,6 +101,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRule" {
                     -BrowserVersion $stig.TechnologyRole `
                     -StigVersion $stig.StigVersion `
                     -SkipRule $skipRule `
+                    -OfficeApp $stig.TechnologyRole `
+                    -ConfigPath $configPath `
+                    -PropertiesPath $propertiesPath `
                     -OutputPath $TestDrive
             } | Should -Not -Throw
         }
@@ -132,6 +143,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) OrgSettings" {
                 -BrowserVersion $stig.TechnologyRole `
                 -StigVersion $stig.StigVersion `
                 -OutputPath $TestDrive `
+                -OfficeApp $stig.TechnologyRole `
+                -ConfigPath $configPath `
+                -PropertiesPath $propertiesPath `
                 -Orgsettings $orgSettings
         } | Should -Not -Throw
     }

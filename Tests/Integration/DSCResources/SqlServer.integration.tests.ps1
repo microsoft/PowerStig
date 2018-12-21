@@ -51,7 +51,10 @@ try
                 }
             }
         }
-
+        ### Begin DO NOT REMOVE Core Tests
+        #$userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
+        #. $userSettingsPath
+        ### End DO NOT REMOVE
         Describe "SqlServer $($stig.TechnologyRole) $($stig.TechnologyVersion) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
 
             $skipRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id

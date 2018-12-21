@@ -2,13 +2,6 @@ Configuration SqlServerInstance_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlRole,
 
         [Parameter()]
         [string]
@@ -28,8 +21,38 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings
-        
+        $OrgSettings,
+        ### Begin DO NOT REMOVE Required for Consolidated Integration Tests
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole
+         ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -68,13 +91,6 @@ Configuration SqlServerDatabase_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlRole,
 
         [Parameter()]
         [string]
@@ -90,7 +106,42 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [psobject]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+        ### Begin DO NOT REMOVE Required for Consolidated Integration Tests
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole
+         ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -105,6 +156,10 @@ Configuration SqlServerDatabase_config
             StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
             Database = 'TestDataBase'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
                 "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
