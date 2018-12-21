@@ -573,11 +573,9 @@ function Get-AuditEvents
     foreach ($line in $CheckContent)
     {
         $auditEvents = $line | Select-String -Pattern $pattern -AllMatches
-        if ($auditEvents.matches.count -gt 0)
+        foreach ($auditEvent in $auditEvents.Matches)
         {
-            for ($i = 0; $i -le $auditEvents.Count; $i++) {
-                $collection += $auditEvents.Matches[$i].Value
-            }   
+            $collection += $auditEvent
         }
     }
     # Return an array of found SQL audit events
