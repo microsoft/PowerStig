@@ -178,6 +178,14 @@ try
                         'TechnologyRole'    = 'IE11'
                     }
                 )
+                'Outlook2016' = @(
+                    @{
+                        'id'                = 'Windows_All_Outlook2016'
+                        'Technology'        = 'Windows'
+                        'TechnologyVersion' = 'All'
+                        'TechnologyRole'    = 'Outlook2016'
+                    }
+                )
                 'Outlook2013' = @(
                     @{
                         'id'                = 'Windows_All_Outlook2013'

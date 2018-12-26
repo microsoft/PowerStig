@@ -38,12 +38,12 @@ Configuration Office
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('Outlook2013', 'Excel2013', 'Word2013', 'PowerPoint2013')]
+        [ValidateSet('Outlook2016', 'Outlook2013', 'Excel2013', 'Word2013', 'PowerPoint2013')]
         [string]
         $OfficeApp,
 
         [Parameter()]
-        [ValidateSet('1.6', '1.7', '1.12', '1.13')]
+        [ValidateSet('1.2', '1.6', '1.7', '1.12', '1.13')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,

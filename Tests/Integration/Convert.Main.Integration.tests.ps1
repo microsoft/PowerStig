@@ -608,6 +608,30 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
+        'U_MicrosoftOutlook2016_STIG_V1R2_Manual-xccdf.xml'          = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 58
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
         'U_MicrosoftOutlook2013_STIG_V1R13_Manual-xccdf.xml'          = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
