@@ -7,6 +7,7 @@
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
+* Microsoft Outlook 2016 STIG V1R2
 
 ## 2.3.2.0
 
