@@ -52,9 +52,21 @@ try
             }
         }
         ### Begin DO NOT REMOVE Core Tests
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
+
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRuleType = $null
+        $expectedSkipRuleTypeCount = 0
+
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = $null
+        $expectedSkipRuleTypeMultipleCount = 0
+
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+
         $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath
-        ### End DO NOT REMOVE
+        ### End DO NOT REMOVE Core Tests
     }
 #endregion Tests
 }

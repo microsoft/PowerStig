@@ -2,25 +2,10 @@ Configuration WindowsServer_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $OsVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $OsRole,
 
         [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ForestName,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $DomainName,
 
         [Parameter()]
         [string[]]
@@ -36,7 +21,58 @@ Configuration WindowsServer_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings
+        $OrgSettings,
+        ### Begin DO NOT REMOVE Required for Consolidated Integration Tests
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+        
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole
+        ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig

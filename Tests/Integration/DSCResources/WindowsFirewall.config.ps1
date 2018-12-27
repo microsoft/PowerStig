@@ -50,7 +50,27 @@ Configuration WindowsFirewall_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $SqlRole
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+        
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole
         ### End DO NOT REMOVE
     )
 

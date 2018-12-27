@@ -51,8 +51,28 @@ Configuration SqlServerInstance_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $SqlRole
-         ### End DO NOT REMOVE
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+        
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole
+        ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -140,8 +160,28 @@ Configuration SqlServerDatabase_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $SqlRole
-         ### End DO NOT REMOVE
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+        
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole
+        ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig

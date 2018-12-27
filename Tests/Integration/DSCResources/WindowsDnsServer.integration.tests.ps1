@@ -214,99 +214,22 @@ try
                 }
             }
         }
+        #### Begin DO NOT REMOVE Core Tests
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-        Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
+        $skipRuleType = "PermissionRule"
+        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count
 
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
-            $skipRuleType = "PermissionRule"
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = @('PermissionRule','UserRightRule')
+        $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count + $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
-                        -ForestName 'integration.test' `
-                        -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
 
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $dscXml = $dscXml.DISASTIG.PermissionRule.Rule | Where-Object {$_.ConversionStatus -eq 'pass'}
-                $dscXml = $dscXml.count + $skipRule.count
-                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
-                #endregion
-
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should -Be $dscXml
-                }
-            }
-        }
-
-        Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) Multiple SkipRule/SkipType mof output" {
-
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
-            $skipRuleType = @('PermissionRule','UserRightRule')
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
-                        -ForestName 'integration.test' `
-                        -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
-
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $dscPermissionlRuleXml = $dscXml.DISASTIG.PermissionRule.Rule | Where-Object {$_.ConversionStatus -eq 'pass'}
-                $dscUserRightRuleXml = $dscXml.DISASTIG.UserRightRule.Rule | Where-Object {$_.ConversionStatus -eq 'pass'}
-                $expectedSkipRuleCount = $dscPermissionlRuleXml.count + $dscUserRightRuleXml.count + $skipRule.count
-                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
-                #endregion
-
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should -Be $expectedSkipRuleCount
-                }
-            }
-        }
-
-        Describe "Windows DNS $($stig.TechnologyVersion) $($stig.StigVersion) Exception mof output" {
-
-            $exceptionRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule
-            $exception = $exceptionRule.id
-
-            It "Should compile the MOF with STIG exception $exception without throwing" {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion `
-                        -StigVersion $stig.StigVersion `
-                        -ForestName 'integration.test' `
-                        -DomainName 'integration.test' `
-                        -OutputPath $TestDrive `
-                        -Exception $exception
-                } | Should -Not -Throw
-            }
-        }
+        $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
+        . $userSettingsPath
+        ### End DO NOT REMOVE Core Tests
     }
     #endregion Tests
 }

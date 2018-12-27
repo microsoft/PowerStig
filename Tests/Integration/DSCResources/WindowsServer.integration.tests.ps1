@@ -222,103 +222,22 @@ try
                 }
             }
         }
+        #### Begin DO NOT REMOVE Core Tests
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule/RuleType mof output" {
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRuleType = "AuditPolicyRule"
+        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.AuditPolicyRule.ChildNodes.Count
 
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $skipRuleType = "AuditPolicyRule"
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = @('AuditPolicyRule','AccountPolicyRule')
+        $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $dscXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion `
-                        -OsRole $stig.TechnologyRole `
-                        -StigVersion $stig.StigVersion `
-                        -ForestName 'integration.test' `
-                        -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
 
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $dscXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq 'pass'}
-                $dscXml = $dscXml.count + $skipRule.count
-
-                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
-                #endregion
-
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should -Be $dscXml
-                }
-            }
-        }
-
-        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule/RuleType mof output" {
-
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-            $skipRuleType = @('AuditPolicyRule','AccountPolicyRule')
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion `
-                        -OsRole $stig.TechnologyRole `
-                        -StigVersion $stig.StigVersion `
-                        -ForestName 'integration.test' `
-                        -DomainName 'integration.test' `
-                        -SkipRule $skipRule `
-                        -SkipRuleType $skipRuleType `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
-
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $dscAuditXml = $dscXml.DISASTIG.AuditPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
-                $dscPermissionXml = $dscXml.DISASTIG.AccountPolicyRule.Rule | Where-Object {$_.ConversionStatus -eq "Pass"}
-
-                $dscXml = $dscAuditXml.count + $dscPermissionXml.count + $skipRule.count
-                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
-                #endregion
-
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should -Be $dscXml
-                }
-            }
-        }
-
-        Describe "Windows $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output" {
-
-            $exceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
-            $exception = $exceptionRule.id
-
-            It "Should compile the MOF with STIG exception $exception without throwing" {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OsVersion $stig.TechnologyVersion `
-                        -OsRole $stig.TechnologyRole `
-                        -StigVersion $stig.StigVersion `
-                        -ForestName 'integration.test' `
-                        -DomainName 'integration.test' `
-                        -Exception $exception
-                } | Should -Not -Throw
-            }
-        }
+        $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
+        . $userSettingsPath
+        ### End DO NOT REMOVE Core Tests
     }
     #endregion Tests
 }
