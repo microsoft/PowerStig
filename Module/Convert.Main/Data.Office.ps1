@@ -13,7 +13,7 @@ $global:SingleLineRegistryPath += [ordered]@{
         Match  = 'outlook\\security'
         Select = '((HKLM|HKCU).*\\security)'
     }
-    # Added for Outlook Stig V-17761.b
+    # Added for Outlook 2013 Stig V-17761.b
     Office2 = [ordered]@{
         Match  = 'value for hkcu.*Message\sPlain\sFormat\sMime'
         Select = '(HKCU).*(?<=me)'
@@ -25,38 +25,39 @@ $global:SingleLineRegistryValueName += [ordered]@{
         Match  = 'If the REG_DWORD'
         Select = '((?<=for\s")(.*)(?<="))'
     }
-    # Added for Outlook Stig V-17761.b
+    # Added for Outlook 2013 Stig V-17761.b
     Office2 = @{
         Match  = 'Message Plain Format Mime'
         Select = '((?<=il\\)(.*)(?<=e\s))'
     }
-    # Added for Outlook Stig V-17575
+    # Added for Outlook 2013 Stig V-17575
     Office3 = @{
         Match  = 'Configure trusted add-ins'
         Select = '(?<=ty\\).*(?=\sIn)'
     }
-    # Added for Outlook Stig V-17761.a
+    # Added for Outlook 2016 Stig V-71193
     Office4 = @{
+        Match  = 'Configure trusted add-ins'
+        Select = '(?<=If the value\s)(.*)(?=does)'
+    }
+    # Added for Outlook 2013 Stig V-17761.a
+    Office5 = @{
         Match  = 'a value of between'
         Select = '((?<=gs\\)(.*)(?<=Len))'
     }
-    # Added for Outlook Stig V-17774 and V-17775
-    Office5 = @{ 
+    # Added for Outlook 2013 Stig V-17774 and V-17775
+    Office6 = @{
         Match  = 'FileExtensionsRemoveLevel'
         Select = '(?<=the registry value\s.)(.*)(?=.\We)'
     }
-    # Added for Outlook Stig V-17733
-    Office6 = [ordered]@{
+    # Added for Outlook 2013 Stig V-17733
+    Office7 = [ordered]@{
         Match  = 'If the.+(registry key exist)'
         Select = '(?<=ty\\).*(?=\sC)'
     }
-    # Added for Outlook 2016 Stig V-71113
-    Office7 = @{
-        Select = '(?<=If the value of\s)(.*)(?=is\s.*R)'
-    }
-    # Added for Outlook 2016 Stig V-71193
+    # Added for Outlook 2016 Stig V-71123
     Office8 = @{
-        Select = '(?<=If the value\s)(.*)(?=does)'
+        Select = '(?<=If the value of\s)(.*)(?=is\sR)'
     }
 }
 
@@ -64,7 +65,7 @@ $global:SingleLineRegistryValueType += [ordered]@{
     Office1 = @{
         Select = '((?<=If the\s)(.*)(?<=DWORD))'
     }
-    # Added for Outlook Stig V-17575
+    # Added for Outlook 2013 Stig V-17575
     Office2 = @{
         Select = '(?<=\sto\s).*"'
     }
@@ -80,7 +81,7 @@ $global:SingleLineRegistryValueData += [ordered]@{
     Office2 = @{
         Select = '((?<=is\s)(.*)(?=\sor))'
     }
-    # Added for Outlook Stig V-17761.a
+    # Added for Outlook 2013 Stig V-17761.a
     Office3 = @{
         Match  = 'a value of between'
         Select = '(?<=between\s)(.*)(?<=\s)'

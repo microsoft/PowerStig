@@ -93,7 +93,7 @@ $global:SingleLineRegistryValueData += [ordered]@{
         Select = '((?<=value\sof).*(?=for))'
     }
     Three = @{
-        Select = '((?<=set\sto).*(?=\(true\)))' 
+        Select = '((?<=set\sto).*(?=\(true\)))'
     }
     Four  = @{
         Select = "((?<=is\sset\sto\s)(`'|`")).*(?=(`'|`"))"
