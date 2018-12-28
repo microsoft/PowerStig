@@ -71,7 +71,22 @@ Configuration WindowsClient_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $OsRole
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
         ### End DO NOT REMOVE
     )
 
@@ -92,7 +107,7 @@ Configuration WindowsClient_config
                 })
                 $(if ($null -ne $Exception)
                 {
-                    "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
+                    "Exception = @{$( ($Exception | % {"'$_'= @{'ValueData'='1234567'}"}) -join "`n" )}"
                 })
                 $(if ($null -ne $SkipRule)
                 {

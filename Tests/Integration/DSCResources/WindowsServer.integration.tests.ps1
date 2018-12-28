@@ -234,6 +234,7 @@ try
         $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $dscXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
 
         $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
         $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath

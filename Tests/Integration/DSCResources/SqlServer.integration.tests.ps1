@@ -63,6 +63,7 @@ try
         $expectedSkipRuleTypeMultipleCount = 0
 
         $exception = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $exceptionMultiple = $null
 
         $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath

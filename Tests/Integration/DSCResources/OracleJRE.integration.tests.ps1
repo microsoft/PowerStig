@@ -68,6 +68,7 @@ try
         $expectedSkipRuleTypeMultipleCount = 0
 
         $exception = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
 
         $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath

@@ -71,7 +71,22 @@ Configuration OracleJRE_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $OsRole
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
         ### End DO NOT REMOVE
     )
 
@@ -91,7 +106,7 @@ Configuration OracleJRE_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'Value'='ExceptionTest'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'Value'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

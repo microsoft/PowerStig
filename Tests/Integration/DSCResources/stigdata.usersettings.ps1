@@ -24,6 +24,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
                     -OsRole $stig.TechnologyRole `
                     -SqlVersion $stig.TechnologyVersion `
                     -SqlRole $stig.TechnologyRole`
+                    -WebAppPool $WebAppPool `
+                    -WebsiteName $WebsiteName `
+                    -LogPath $TestDrive `
                     -Exception $exception
             } | Should -Not -Throw
         }
@@ -32,7 +35,7 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
 
         #$exceptionMulti = Get-Random -InputObject $matchedRuleType.Rule.id -count 2
 #need to fix multiple exception passing
-        It "Should compile the MOF with STIG exception $exception without throwing" {
+        It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
             {
                 & $technologyConfig `
                     -BrowserVersion $stig.TechnologyRole `
@@ -47,6 +50,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
                     -OsRole $stig.TechnologyRole `
                     -SqlVersion $stig.TechnologyVersion `
                     -SqlRole $stig.TechnologyRole`
+                    -WebAppPool $WebAppPool `
+                    -WebsiteName $WebsiteName `
+                    -LogPath $TestDrive `
                     -Exception $exceptionMultiple
             } | Should -Not -Throw
         }
@@ -74,6 +80,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRule" {
                     -OsRole $stig.TechnologyRole `
                     -SqlVersion $stig.TechnologyVersion `
                     -SqlRole $stig.TechnologyRole `
+                    -WebAppPool $WebAppPool `
+                    -WebsiteName $WebsiteName `
+                    -LogPath $TestDrive `
                     -OutputPath $TestDrive
             } | Should -Not -Throw
         }
@@ -113,6 +122,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRule" {
                     -OsRole $stig.TechnologyRole `
                     -SqlVersion $stig.TechnologyVersion `
                     -SqlRole $stig.TechnologyRole `
+                    -WebAppPool $WebAppPool `
+                    -WebsiteName $WebsiteName `
+                    -LogPath $TestDrive `
                     -OutputPath $TestDrive
             } | Should -Not -Throw
         }
@@ -151,6 +163,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRuleType" {
                     -OsRole $stig.TechnologyRole `
                     -SqlVersion $stig.TechnologyVersion `
                     -SqlRole $stig.TechnologyRole `
+                    -WebAppPool $WebAppPool `
+                    -WebsiteName $WebsiteName `
+                    -LogPath $TestDrive `
                     -SkipruleType $skipRuleType 
             } | Should -Not -Throw
         }
@@ -183,6 +198,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRuleType" {
                     -OsRole $stig.TechnologyRole `
                     -SqlVersion $stig.TechnologyVersion `
                     -SqlRole $stig.TechnologyRole `
+                    -WebAppPool $WebAppPool `
+                    -WebsiteName $WebsiteName `
+                    -LogPath $TestDrive `
                     -SkipruleType $skipRuleTypeMultiple 
             } | Should -Not -Throw
         }
@@ -221,6 +239,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) OrgSettings" {
                 -OsRole $stig.TechnologyRole `
                 -SqlVersion $stig.TechnologyVersion `
                 -SqlRole $stig.TechnologyRole`
+                -WebAppPool $WebAppPool `
+                -WebsiteName $WebsiteName `
+                -LogPath $TestDrive `
                 -Orgsettings $orgSettings
         } | Should -Not -Throw
     }

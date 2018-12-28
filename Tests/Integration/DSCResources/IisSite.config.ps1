@@ -2,17 +2,6 @@ Configuration IisSite_config
 {
     param
     (
-        [Parameter()]
-        [string[]]
-        $WebAppPool,
-
-        [Parameter(Mandatory = $true)]
-        [string[]]
-        $WebSiteName,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $OsVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
@@ -32,7 +21,73 @@ Configuration IisSite_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings
+        $OrgSettings,
+        ### Begin DO NOT REMOVE Required for Consolidated Integration Tests
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+        
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
+        ### End DO NOT REMOVE
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -54,7 +109,7 @@ Configuration IisSite_config
                 })
                 $(if ($null -ne $Exception)
                 {
-                    "Exception = @{'$Exception'= @{'Value'='1234567'}}"
+                    "Exception = @{$( ($Exception | % {"'$_'= @{'Value'='1234567'}"}) -join "`n" )}"
                 })
                 $(if ($null -ne $SkipRule)
                 {

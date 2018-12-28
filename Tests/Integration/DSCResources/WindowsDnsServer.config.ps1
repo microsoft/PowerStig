@@ -71,7 +71,22 @@ Configuration WindowsDnsServer_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $OsRole
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
         ### End DO NOT REMOVE
     )
 
@@ -92,7 +107,7 @@ Configuration WindowsDnsServer_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'PropertyValue'='1234567'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'PropertyValue'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

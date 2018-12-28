@@ -71,7 +71,22 @@ Configuration SqlServerInstance_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $OsRole
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
         ### End DO NOT REMOVE
     )
 
@@ -92,7 +107,7 @@ Configuration SqlServerInstance_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -180,7 +195,22 @@ Configuration SqlServerDatabase_config
         [Parameter()]
         [string]
         [AllowNull()]
-        $OsRole
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
         ### End DO NOT REMOVE
     )
 
@@ -202,7 +232,7 @@ Configuration SqlServerDatabase_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
