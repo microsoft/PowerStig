@@ -112,7 +112,7 @@ try
         $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.WebAppPoolRule.ChildNodes.Count + $dscXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
         $exception = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id -Count 2
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.WebAppPoolRule.Rule.id -Count 2
 
         $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath
