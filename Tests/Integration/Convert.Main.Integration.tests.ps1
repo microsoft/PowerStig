@@ -608,7 +608,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_MicrosoftOutlook2016_STIG_V1R2_Manual-xccdf.xml'          = @{
+        'U_Microsoft_Outlook_2016_STIG_V1R2_Manual-xccdf.xml'          = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
