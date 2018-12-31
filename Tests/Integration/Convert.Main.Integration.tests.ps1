@@ -349,13 +349,13 @@ try
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
             DnsServerSettingRule         = $null
-            DocumentRule                 = 89
+            DocumentRule                 = 90
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
             ManualRule                   = 18
             MimeTypeRule                 = $null
-            PermissionRule               = 1
+            PermissionRule               = $null
             ProcessMitigationRule        = $null
             RegistryRule                 = $null
             SecurityOptionRule           = 5
