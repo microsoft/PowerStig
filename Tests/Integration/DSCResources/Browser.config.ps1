@@ -62,7 +62,7 @@ Configuration Browser_config
         [string]
         [AllowNull()]
         $DomainName,
-        
+
         [Parameter()]
         [string]
         [AllowNull()]

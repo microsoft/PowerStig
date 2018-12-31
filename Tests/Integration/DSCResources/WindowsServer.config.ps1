@@ -62,7 +62,7 @@ Configuration WindowsServer_config
         [string]
         [AllowNull()]
         $DomainName,
-        
+
         [Parameter()]
         [string]
         [AllowNull()]

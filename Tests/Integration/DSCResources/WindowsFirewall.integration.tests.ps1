@@ -65,7 +65,7 @@ try
         $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
         $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-        $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
+        $userSettingsPath = "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath
         ### End DO NOT REMOVE Core Tests
     }

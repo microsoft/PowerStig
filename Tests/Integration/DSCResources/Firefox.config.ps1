@@ -61,7 +61,7 @@ Configuration Firefox_config
         [string]
         [AllowNull()]
         $DomainName,
-        
+
         [Parameter()]
         [string]
         [AllowNull()]

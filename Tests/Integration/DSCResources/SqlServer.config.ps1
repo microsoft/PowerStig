@@ -62,7 +62,7 @@ Configuration SqlServerInstance_config
         [string]
         [AllowNull()]
         $DomainName,
-        
+
         [Parameter()]
         [string]
         [AllowNull()]
@@ -186,7 +186,7 @@ Configuration SqlServerDatabase_config
         [string]
         [AllowNull()]
         $DomainName,
-        
+
         [Parameter()]
         [string]
         [AllowNull()]

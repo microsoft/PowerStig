@@ -65,7 +65,7 @@ try
         $exception = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
         $exceptionMultiple = $null
 
-        $userSettingsPath =  "$PSScriptRoot\stigdata.usersettings.ps1"
+        $userSettingsPath = "$PSScriptRoot\stigdata.usersettings.ps1"
         . $userSettingsPath
         ### End DO NOT REMOVE Core Tests
     }
