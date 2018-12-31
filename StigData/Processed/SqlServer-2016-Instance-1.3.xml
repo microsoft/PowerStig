@@ -1,4 +1,4 @@
-<DISASTIG id="MS_SQL_Server_2016_Instance_STIG" version="1.3" created="12/27/2018">
+<DISASTIG id="MS_SQL_Server_2016_Instance_STIG" version="1.3" created="12/31/2018">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-79119" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -116,6 +116,18 @@ MSSQLSvc/&lt;Fully Qualified Domain Name&gt;
 MSSQLSvc/&lt;Fully Qualified Domain Name&gt;:&lt;TCP Port&gt; 
  
 If the MSSQLSvc service is registered for any fully qualified domain names that do not match the current server, this may indicate the service account is shared across SQL Server instances. Review server documentation, if the sharing of service accounts across instances is not documented and authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-79125" severity="high" conversionstatus="pass" title="SRG-APP-000033-DB-000084" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the system documentation to determine the required levels of protection for DBMS server securables, by type of login.  
+ 
+Review the permissions actually in place on the server.  
+ 
+If the actual permissions do not match the documented requirements, this is a finding. 
+ 
+Use the supplemental file "Instance permissions assignments to logins and roles.sql."</RawString>
     </Rule>
     <Rule id="V-79127" severity="medium" conversionstatus="pass" title="SRG-APP-000080-DB-000063" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -708,13 +720,13 @@ For each of the directories returned by the above script, verify whether the cor
 4) Navigate to the "Security" tab.
 5) Review the listing of principals and permissions.
 
-Account Type			Directory Type		Permission
+Account Type                     Directory Type              Permission
 -----------------------------------------------------------------------------------------------
-Database Administrators      	ALL                   		Full Control
-SQL Server Service SID       	Data; Log; Backup;    	Full Control
-SQL Server Agent Service SID 	Backup                	Full Control
-SYSTEM                       		ALL                   		Full Control
-CREATOR OWNER                	ALL                   		Full Control
+Database Administrators          ALL                           Full Control
+SQL Server Service SID           Data; Log; Backup;        Full Control
+SQL Server Agent Service SID     Backup                    Full Control
+SYSTEM                               ALL                           Full Control
+CREATOR OWNER                    ALL                           Full Control
 
 For information on how to determine a "Service SID", go to:
 https://aka.ms/sql-service-sids
@@ -2376,23 +2388,6 @@ If any audits are configured to exclude administrative activities, this is a fin
 If any do, determine whether these applications obfuscate authentication data; if they do not, this is a finding.</RawString>
     </Rule>
   </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-79125" severity="high" conversionstatus="fail" title="SRG-APP-000033-DB-000084" dscresource="">
-      <AccessControlEntry />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Review the system documentation to determine the required levels of protection for DBMS server securables, by type of login.  
- 
-Review the permissions actually in place on the server.  
- 
-If the actual permissions do not match the documented requirements, this is a finding. 
- 
-Use the supplemental file "Instance permissions assignments to logins and roles.sql."</RawString>
-    </Rule>
-  </PermissionRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-79197" severity="low" conversionstatus="pass" title="SRG-APP-000176-DB-000068" dscresource="SecurityOption">
       <IsNullOrEmpty>False</IsNullOrEmpty>
