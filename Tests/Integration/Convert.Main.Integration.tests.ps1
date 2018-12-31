@@ -344,7 +344,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-        'U_SQL_Server_2016_Instance_STIG_V1R3_Manual-xccdf.xml'      = @{
+        'U_MS_SQL_Server_2016_Instance_STIG_V1R3_Manual-xccdf.xml'      = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
