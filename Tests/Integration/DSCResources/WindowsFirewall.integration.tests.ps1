@@ -14,9 +14,9 @@ try
     #region Integration Tests
 
     foreach ($stig in $stigList)
-    {   
+    {
         [xml] $dscXml = Get-Content -Path $stig.Path
-        
+
         Describe "Windows Firewall $($stig.StigVersion) mof output" {
 
             It 'Should compile the MOF without throwing' {

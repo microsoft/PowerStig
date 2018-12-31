@@ -22,7 +22,7 @@ try
                 {
                     & "$($script:DSCCompositeResourceName)$($stig.TechnologyRole)_config" `
                         -SqlVersion $stig.TechnologyVersion `
-                        -SqlRole $stig.TechnologyRole`
+                        -SqlRole $stig.TechnologyRole `
                         -StigVersion $stig.StigVersion `
                         -OutputPath $TestDrive
                 } | Should -Not -Throw

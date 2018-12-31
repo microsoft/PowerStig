@@ -7,8 +7,6 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
 
     Context 'Single Exception' {
 
-        #$exception = Get-Random -InputObject $matchedRuleType.Rule.id
-
         It "Should compile the MOF with STIG exception $exception without throwing" {
             {
                 & $technologyConfig `
@@ -33,8 +31,6 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
     }
     Context 'Multiple Exceptions' {
 
-        #$exceptionMulti = Get-Random -InputObject $matchedRuleType.Rule.id -count 2
-#need to fix multiple exception passing
         It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
             {
                 & $technologyConfig `
@@ -62,8 +58,6 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
 Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRule" {
 
     Context 'Single Rule' {
-
-        #$skipRule = Get-Random -InputObject $matchedRuleType.Rule.id
 
         It 'Should compile the MOF without throwing' {
             {
@@ -100,12 +94,9 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) SkipRule" {
         It "Should have $dscXml Skipped settings" {
             $dscMof.count | Should -Be $dscXml
         }
-        
     }
 
     Context 'Multiple Rules' {
-
-        #$skipRule = Get-Random -InputObject $matchedRuleType.Rule.id -Count 2
 
         It 'Should compile the MOF without throwing' {
             {
