@@ -12,20 +12,47 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception
+        
     )
 
     Import-DscResource -ModuleName PowerStig -ModuleVersion 2.3.1.0
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         SqlServer Instance
         {
-            SqlVersion     = $SqlVersion
-            SqlRole        = $SqlRole
-            Stigversion    = $StigVersion
+            SqlVersion = $SqlVersion
+            SqlRole = '$SqlRole'
+            StigVersion = $StigVersion
             ServerInstance = 'TestServer'
-        }
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }
 
@@ -43,20 +70,46 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig -ModuleVersion 2.3.1.0
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         SqlServer Database
         {
-            SqlVersion     = $SqlVersion
-            SqlRole        = $SqlRole
-            Stigversion    = $StigVersion
+            SqlVersion = '$SqlVersion'
+            SqlRole = '$SqlRole'
+            StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
-            Database       = 'TestDataBase'
-        }
+            Database = 'TestDataBase'
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }

@@ -222,6 +222,14 @@ try
                         'TechnologyRole'    = 'Word2013'
                     }
                 )
+                'DotNet4' = @(
+                    @{
+                        'id'                = 'MS_Dot_Net_Framework'
+                        'Technology'        = 'Windows'
+                        'TechnologyVersion' = 'All'
+                        'TechnologyRole'    = 'DotNet4'
+                    }
+                )
             }
             foreach ($sampleString in $sampleStrings.GetEnumerator())
             {

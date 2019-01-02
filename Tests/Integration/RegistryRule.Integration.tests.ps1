@@ -16,6 +16,7 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             DscResource                 = 'xRegistry'
+            TechnologyRole              = 'Technology_Target'
             CheckContent                = 'Windows Media Player is not installed by default.  If it is not installed, this is NA.
 
                     If the following registry value does not exist or is not configured as specified, this is a finding:
@@ -39,6 +40,7 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             DscResource                 = 'xRegistry'
+            TechnologyRole              = 'Technology_Target'
             CheckContent                = 'Verify logging is configured to capture time source switches.
 
                     If the Windows Time Service is used, verify the following registry value.  If it is not configured as specified, this is a finding.
@@ -64,6 +66,7 @@ try
             ValueType                   = 'MultiString'
             Ensure                      = 'Present'
             DscResource                 = 'xRegistry'
+            TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
                     Registry Hive: HKEY_LOCAL_MACHINE
@@ -85,6 +88,7 @@ try
             ValueType                   = 'String'
             Ensure                      = 'Present'
             DscResource                 = 'xRegistry'
+            TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
                     Registry Hive: HKEY_LOCAL_MACHINE
@@ -106,6 +110,7 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             DscResource                 = 'xRegistry'
+            TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
                     Registry Hive: HKEY_LOCAL_MACHINE
@@ -127,6 +132,7 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             DscResource                 = 'cAdministrativeTemplate'
+            TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the system is on the SIPRNet, this requirement is NA.
 
             Open Internet Explorer.
@@ -149,7 +155,8 @@ try
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
             DscResource                 = 'cAdministrativeTemplate'
-            CheckContent                = 'If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
+            TechnologyRole              = 'Outlook'
+            CheckContent                = 'Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
         }
     )
     #endregion
@@ -159,7 +166,7 @@ try
         foreach ($registry in $registriesToTest)
         {
             Context "$($registry.id)" {
-                [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows
+                [xml] $stigRule = Get-TestStigRule -CheckContent $registry.CheckContent -XccdfTitle Windows -XccdfId $registry.TechnologyRole
                 $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
                 $stigRule.Save( $TestFile )
                 $rule = ConvertFrom-StigXccdf -Path $TestFile
