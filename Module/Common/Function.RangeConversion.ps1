@@ -197,6 +197,10 @@ function ConvertTo-TestString
         {
             return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
         }
+        'through'
+        {
+            return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
+        }
     }
 }
 
@@ -526,6 +530,10 @@ function Test-StringIsBetweenTwoValues
     )
 
     if ($string -match "([3-8][0-9]|9[0-9]|1[0-2][0-9]|13[0-2])")
+    {
+        $true
+    }
+    if ($string -match "(0x[0-7])")
     {
         $true
     }
