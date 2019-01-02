@@ -48,12 +48,12 @@ try
                 Value                       = 'Enabled'
                 OrganizationValueRequired   = $false
                 OrganizationValueTestString = ''
-                CheckContent                = 'Review system configuration to determine whether FIPS 140-2 support has been enabled. 
+                CheckContent                = 'Review system configuration to determine whether FIPS 140-2 support has been enabled.
 
-                Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options 
-                
-                Ensure that "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is enabled. 
-                
+                Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
+
+                Ensure that "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is enabled.
+
                 If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.'
             }
         )

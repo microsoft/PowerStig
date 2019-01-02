@@ -30,19 +30,7 @@ function Get-SecurityOptionName
         return $option
     }
     # Used for converting SQL Server 2016 Instance Stig Rules
-    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms")
-    {
-        $Option = "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing"
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
-        return $option
-    }
-    If ($checkContent -match "In the right-side pane")
-    {
-        $Option = "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing"
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
-        return $option
-    }
-    If ($checkContent -match "Use FIPS compliant algorithms")
+    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms" -or "In the right-side pane" -or "Use FIPS compliant algorithms" )
     {
         $Option = "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing"
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
@@ -84,19 +72,7 @@ function Get-SecurityOptionValue
         return $option
     }
     # Used for converting SQL Server 2016 Instance Stig Rules
-    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms")
-    {
-        $Option = 'Enabled'
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
-        return $option
-    }
-    If ($checkContent -match "In the right-side pane")
-    {
-        $Option = 'Enabled'
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
-        return $option
-    }
-    If ($checkContent -match "Use FIPS compliant algorithms")
+    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms" -or "In the right-side pane" -or "Use FIPS compliant algorithms")
     {
         $Option = 'Enabled'
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "

@@ -144,7 +144,7 @@ Class SecurityOptionRule : Rule
             # SQL 2016+ Stigs
             ( #V-79197,79199
                 $CheckContent -Match 'Local Security Policy' -and
-                $CheckContent -Match 'System .ryptography: Use FIPS' 
+                $CheckContent -Match 'System (C|c)ryptography: Use FIPS' 
             ) -or
             ( #V-79203,79305,79307
                 $CheckContent -Match 'Local Security Policy' -and
