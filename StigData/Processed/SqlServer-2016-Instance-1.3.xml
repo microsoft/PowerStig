@@ -1,4 +1,4 @@
-<DISASTIG id="MS_SQL_Server_2016_Instance_STIG" version="1.3" created="12/31/2018">
+<DISASTIG id="MS_SQL_Server_2016_Instance_STIG" version="1.3" created="1/2/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-79119" severity="medium" conversionstatus="pass" title="SRG-APP-000001-DB-000031" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
