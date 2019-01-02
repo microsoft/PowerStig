@@ -390,7 +390,7 @@ function Get-RegistryValueNameFromSLStig
 
     if ($valueName)
     {
-        $valueName = $valueName.Matches.Value.Replace('"', '')
+        $valueName = $valueName.Matches.Value -replace '["“”]', ''
 
         if ($valueName.Count -gt 1)
         {
