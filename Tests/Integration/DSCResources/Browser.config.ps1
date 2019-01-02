@@ -8,17 +8,39 @@ Configuration Browser_config
 
         [Parameter(Mandatory = $true)]
         [string]
-        $StigVersion
+        $StigVersion,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         Browser InternetExplorer
         {
-            BrowserVersion = $browserVersion
-            Stigversion    = $StigVersion
-        }
+            BrowserVersion = '$BrowserVersion'
+            StigVersion = '$StigVersion'
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }

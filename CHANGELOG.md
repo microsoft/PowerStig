@@ -2,12 +2,21 @@
 
 ## Unreleased
 
+* Fixed [#160](https://github.com/Microsoft/PowerStig/issues/160): PowerStig.Convert needs to handle new registry rules without affecting existing code
+* Fixed [#201](https://github.com/Microsoft/PowerStig/issues/201): Update PowerStig integration tests to account for skips and exceptions.
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
-
 * Added the following STIGs
   * SQL Server 2016 Instance V1R3
+
+## 2.3.2.0
+
+* Fixed [#215](https://github.com/Microsoft/PowerStig/issues/215): Org settings wont apply for DotNet STIG
+* Fixed [#216](https://github.com/Microsoft/PowerStig/issues/216): DotNet STIGs are misnamed
+* Fixed [#207](https://github.com/Microsoft/PowerStig/issues/207): SQL Server Database rules fail to apply
+* Fixed [#208](https://github.com/Microsoft/PowerStig/issues/208): Update PowerSTIG to use SQLServerDsc 12.1.0.0
+* Fixed [#220](https://github.com/Microsoft/PowerStig/issues/220): Update PowerSTIG to use xWebAdministration 2.3.0.0
 
 ## 2.3.1.0
 
