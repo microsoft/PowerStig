@@ -48,7 +48,7 @@ Mozilla = All
                     $TechnologyVersion.Name | Should Be $TechnologyVersion3
                     $TechnologyVersion.Technology | Should Be $Technology2
                 }
-                
+
                 It 'Should create an TechnologyRole class instance using TechnologyRole2 and TechnologyVersion4 data' {
                     $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion4, $Technology2)
                     $TechnologyVersion.Name | Should Be $TechnologyVersion4

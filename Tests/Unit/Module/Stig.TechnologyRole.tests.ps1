@@ -56,7 +56,7 @@ All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013,
                     $technologyRole.Name | Should Be $technologyRole3
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion3
                 }
-                
+
                 It 'Should create an technologyRole class instance using technologyRole4 and technologyVersion4 data' {
                     $technologyRole = [technologyRole]::new($technologyRole4, $technologyVersion4)
                     $technologyRole.Name | Should Be $technologyRole4
