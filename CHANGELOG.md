@@ -7,11 +7,8 @@
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
-
-## 2.4.0.0
-
 * Added the following STIGS
-  * Windows Defender Antivirus V1R4
+  * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues): Update PowerSTIG to parse the Windows Defender STIG with new Registry Rule
 
 ## 2.3.2.0
 
