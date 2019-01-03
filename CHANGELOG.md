@@ -8,7 +8,7 @@
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
 * Added the following STIGs
-  * SQL Server 2016 Instance V1R3
+  * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186)
 
 ## 2.3.2.0
 

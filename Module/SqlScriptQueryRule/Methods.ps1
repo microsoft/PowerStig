@@ -564,7 +564,7 @@ function Get-AuditSetScript
     $sqlScript += 'ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), '
     $sqlScript += 'ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON); '
     $sqlScript += 'GO '
-    
+
     return $sqlScript
 }
 <#
@@ -731,7 +731,7 @@ function Get-saAccountGetScript
     )
 
     #$return = Get-SQLQuery -CheckContent $checkContent
-    $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
+    $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
 
     return $return
 }
@@ -762,7 +762,7 @@ function Get-saAccountTestScript
     )
 
     #$return = Get-SQLQuery -CheckContent $checkContent
-    $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
+    $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
 
     return $return
 }
@@ -1007,7 +1007,7 @@ function Get-SqlRuleType
 
     $content = $checkContent -join " "
 
-    switch ( $content )
+    switch ($content)
     {
         # Standard database existence parsers
         {
