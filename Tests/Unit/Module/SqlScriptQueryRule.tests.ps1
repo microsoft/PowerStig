@@ -132,8 +132,8 @@ try
                 GO"
             }
             saAccount    = @{
-                GetScript    = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
-                TestScript   = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND name = 'sa' AND is_disabled <> 1;"
+                GetScript    = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
+                TestScript   = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
                 SetScript    = 'USE [master] DECLARE @saAccountName varchar(50) SET @saAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) IF @saAccountName = ''sa'' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @saAccountName = ''old_sa'' DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@saAccountName] DISABLE;'
                 CheckContent = "Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
                 USE master; 
