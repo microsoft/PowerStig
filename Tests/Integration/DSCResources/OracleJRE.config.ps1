@@ -4,14 +4,6 @@ Configuration OracleJRE_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $ConfigPath,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $PropertiesPath,
-
-        [Parameter(Mandatory = $true)]
-        [string]
         $StigVersion,
 
         [Parameter()]
@@ -24,7 +16,76 @@ Configuration OracleJRE_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -37,9 +98,13 @@ Configuration OracleJRE_config
             ConfigPath = '$ConfigPath'
             PropertiesPath = '$PropertiesPath'
             StigVersion = '$StigVersion'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'Value'='ExceptionTest'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'Value'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

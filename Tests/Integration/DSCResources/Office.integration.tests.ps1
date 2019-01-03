@@ -51,86 +51,23 @@ try
                 }
             }
         }
+        ### Begin DO NOT REMOVE Core Tests
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Single SkipRule mof output" {
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRuleType = $null
+        $expectedSkipRuleTypeCount = 0
 
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = $null
+        $expectedSkipRuleTypeMultipleCount = 0
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OfficeApp $stig.TechnologyRole `
-                        -StigVersion $stig.StigVersion `
-                        -SkipRule $skipRule `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $dscXml = $skipRule.count
-                $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
-                #endregion
-
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should -Be $dscXml
-                }
-            }
-        }
-
-        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Multiple SkipRule mof output" {
-
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OfficeApp $stig.TechnologyRole `
-                        -StigVersion $stig.StigVersion `
-                        -SkipRule $skipRule `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
-
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $expectedSkipRuleCount = $skipRule.count
-                $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
-                #endregion
-
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should -Be $expectedSkipRuleCount
-                }
-            }
-        }
-
-        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) Exception mof output" {
-
-            $exceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
-            $exception = $exceptionRule.id
-
-            It "Should compile the MOF with STIG exception $exception without throwing" {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -OfficeApp $stig.TechnologyRole  `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive `
-                        -Exception $exception
-                } | Should -Not -Throw
-            }
-        }
+        $userSettingsPath = "$PSScriptRoot\stigdata.usersettings.ps1"
+        . $userSettingsPath
+        ### End DO NOT REMOVE Core Tests
     }
 #endregion Tests
 }

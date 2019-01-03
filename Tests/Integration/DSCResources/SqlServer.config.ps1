@@ -2,14 +2,6 @@ Configuration SqlServerInstance_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlRole,
-
         [Parameter()]
         [string]
         $StigVersion,
@@ -24,7 +16,76 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
         
     )
 
@@ -39,9 +100,13 @@ Configuration SqlServerInstance_config
             SqlRole = '$SqlRole'
             StigVersion = $StigVersion
             ServerInstance = 'TestServer'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -60,14 +125,6 @@ Configuration SqlServerDatabase_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $SqlRole,
-
         [Parameter()]
         [string]
         $StigVersion,
@@ -82,7 +139,76 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [psobject]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -97,9 +223,13 @@ Configuration SqlServerDatabase_config
             StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
             Database = 'TestDataBase'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'SetScript'='TestScript'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

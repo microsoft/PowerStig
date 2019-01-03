@@ -4,15 +4,7 @@ Configuration IisServer_Config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $OsVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
         $StigVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $LogPath,
 
         [Parameter()]
         [string[]]
@@ -24,7 +16,76 @@ Configuration IisServer_Config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -36,9 +97,13 @@ Configuration IisServer_Config
             OsVersion = '$OsVersion'
             StigVersion = '$StigVersion'
             LogPath = '$LogPath'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'Value'='1234567'}}"
+                "Exception = @{$( ($Exception | % {"'$_'= @{'Value'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

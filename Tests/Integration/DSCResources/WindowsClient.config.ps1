@@ -3,24 +3,12 @@ Configuration WindowsClient_config
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $OsVersion,
-
-        [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ForestName,
 
         [Parameter()]
         [string[]]
         $Exception,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $DomainName,
 
         [Parameter()]
         [string[]]
@@ -28,7 +16,76 @@ Configuration WindowsClient_config
 
         [Parameter()]
         [string[]]
-        $SkipRuleType
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $SqlRole,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -42,9 +99,13 @@ Configuration WindowsClient_config
                 StigVersion = '$StigVersion'
                 ForestName = '$ForestName'
                 DomainName = '$DomainName'
+                $(if ($null -ne $OrgSettings)
+                {
+                    "Orgsettings = '$OrgSettings'"
+                })
                 $(if ($null -ne $Exception)
                 {
-                    "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
+                    "Exception = @{$( ($Exception | % {"'$_'= @{'ValueData'='1234567'}"}) -join "`n" )}"
                 })
                 $(if ($null -ne $SkipRule)
                 {
