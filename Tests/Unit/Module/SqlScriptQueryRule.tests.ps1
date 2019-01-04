@@ -131,7 +131,7 @@ try
                 REVOKE ALTER ANY ENDPOINT TO <'account name'>
                 GO"
             }
-            saAccount    = @{
+            SysAdminAccount    = @{
                 GetScript    = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
                 TestScript   = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
                 SetScript    = 'USE [master] DECLARE @saAccountName varchar(50) SET @saAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) IF @saAccountName = ''sa'' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @saAccountName = ''old_sa'' DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@saAccountName] DISABLE;'
