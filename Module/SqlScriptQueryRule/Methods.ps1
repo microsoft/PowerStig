@@ -9,7 +9,7 @@
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the GetScript block
+        This function returns the query that will be used in the GetScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -38,7 +38,7 @@ function Get-DbExistGetScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the TestScript block
+        This function returns the query that will be used in the TestScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -67,7 +67,7 @@ function Get-DbExistTestScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the SetScript block
+        This function returns the query that will be used in the SetScript block
 
     .PARAMETER FixText
         String that was obtained from the 'Fix' element of the base STIG Rule
@@ -105,7 +105,7 @@ function Get-DbExistSetScript {
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the GetScript block
+        This function returns the query that will be used in the GetScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -122,7 +122,7 @@ function Get-TraceGetScript
         $CheckContent
     )
 
-    $eventId = Get-EventIdData -CheckContent $checkContent
+    $eventId = Get-EventIdData -CheckContent $CheckContent
 
     $return = Get-TraceIdQuery -EventId $eventID
 
@@ -136,7 +136,7 @@ function Get-TraceGetScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the TestScript block
+        This function returns the query that will be used in the TestScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -153,7 +153,7 @@ function Get-TraceTestScript
         $CheckContent
     )
 
-    $eventId = Get-EventIdData -CheckContent $checkContent
+    $eventId = Get-EventIdData -CheckContent $CheckContent
 
     $return = Get-TraceIdQuery -EventId $eventId
 
@@ -167,7 +167,7 @@ function Get-TraceTestScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the SetScript block
+        This function returns the query that will be used in the SetScript block
 
     .PARAMETER FixText
         String that was obtained from the 'Fix' element of the base STIG Rule
@@ -192,7 +192,7 @@ function Get-TraceSetScript
         $CheckContent
     )
 
-    $eventId = Get-EventIdData -CheckContent $checkContent
+    $eventId = Get-EventIdData -CheckContent $CheckContent
 
     $sqlScript = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END "
     $sqlScript += "IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) INSERT INTO #StigEvent (EventId) VALUES $($eventId) "
@@ -289,7 +289,7 @@ function Get-EventIdData
 
     $array = @()
 
-    $eventData = $checkContent -join " "
+    $eventData = $CheckContent -join " "
     $eventData = ($eventData -split "listed:")[1]
     $eventData = ($eventData -split "\.")[0]
 
@@ -319,7 +319,7 @@ function Get-EventIdData
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the GetScript block
+        This function returns the query that will be used in the GetScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -355,7 +355,7 @@ function Get-PermissionGetScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the TestScript block
+        This function returns the query that will be used in the TestScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -372,7 +372,7 @@ function Get-PermissionTestScript
         $CheckContent
     )
 
-    $queries = Get-Query -CheckContent $checkContent
+    $queries = Get-Query -CheckContent $CheckContent
 
     $return = $queries[0]
 
@@ -391,7 +391,7 @@ function Get-PermissionTestScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the SetScript block
+        This function returns the query that will be used in the SetScript block
 
     .PARAMETER FixText
         String that was obtained from the 'Fix' element of the base STIG Rule
@@ -416,7 +416,7 @@ function Get-PermissionSetScript
         $CheckContent
     )
 
-    $permission = ((Get-Query -CheckContent $checkContent)[0] -split "'")[1] #Get the permission that will be set
+    $permission = ((Get-Query -CheckContent $CheckContent)[0] -split "'")[1] #Get the permission that will be set
 
     $sqlScript = "DECLARE @name as varchar(512) DECLARE @permission as varchar(512) DECLARE @sqlstring1 as varchar(max) SET @sqlstring1 = 'use master;' SET @permission = '" + $permission + "' "
     $sqlScript += "DECLARE  c1 cursor  for  SELECT who.name AS [Principal Name], what.permission_name AS [Permission Name] FROM sys.server_permissions what INNER JOIN sys.server_principals who "
@@ -436,7 +436,7 @@ function Get-PermissionSetScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the GetScript block
+        This function returns the query that will be used in the GetScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -453,7 +453,7 @@ function Get-AuditGetScript
         $CheckContent
     )
 
-    $collection = Get-AuditEvents -CheckContent $checkContent
+    $collection = Get-AuditEvents -CheckContent $CheckContent
     $auditEvents = '(' + ($collection -join '),(') + ')'
 
     $sqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
@@ -480,7 +480,7 @@ function Get-AuditGetScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the TestScript block
+        This function returns the query that will be used in the TestScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -497,7 +497,7 @@ function Get-AuditTestScript
         $CheckContent
     )
 
-    $collection = Get-AuditEvents -CheckContent $checkContent
+    $collection = Get-AuditEvents -CheckContent $CheckContent
     $auditEvents = '(' + ($collection -join '),(') + ')'
 
     $sqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
@@ -524,7 +524,7 @@ function Get-AuditTestScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the SetScript block
+        This function returns the query that will be used in the SetScript block
 
     .PARAMETER FixText
         String that was obtained from the 'Fix' element of the base STIG Rule
@@ -610,12 +610,12 @@ function Get-AuditEvents
 #region PlainSQL Functions
 <#
     .SYNOPSIS Get-PlainSQLGetScript
-        Returns a plain SQL query from $checkContent
+        Returns a plain SQL query from $CheckContent
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the GetScript block
+        This function returns the query that will be used in the GetScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -632,11 +632,10 @@ function Get-PlainSQLGetScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $checkContent
+    $return = Get-SQLQuery -CheckContent $CheckContent
 
     return $return
 }
-
 
 <#
     .SYNOPSIS Get-PlainSQLTestScript
@@ -645,7 +644,7 @@ function Get-PlainSQLGetScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the TestScript block
+        This function returns the query that will be used in the TestScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
@@ -662,7 +661,7 @@ function Get-PlainSQLTestScript
         $CheckContent
     )
 
-    $return = Get-SQLQuery -CheckContent $checkContent
+    $return = Get-SQLQuery -CheckContent $CheckContent
 
     return $return
 }
@@ -674,7 +673,7 @@ function Get-PlainSQLTestScript
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the SetScript block
+        This function returns the query that will be used in the SetScript block
 
     .PARAMETER FixText
         String that was obtained from the 'Fix' element of the base STIG Rule
@@ -705,20 +704,20 @@ function Get-PlainSQLSetScript
 }
 #endregion PlainSQL Functions
 
-#region saAccount Functions
+#region SAaccount Functions
 <#
-    .SYNOPSIS Get-saAccountGetScript
-        Returns a plain SQL query from $checkContent
+    .SYNOPSIS Get-SAaccountGetScript
+        Returns a plain SQL query from $CheckContent
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the GetScript block
+        This function returns the query that will be used in the GetScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
-function Get-saAccountGetScript
+function Get-SAaccountGetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -730,7 +729,6 @@ function Get-saAccountGetScript
         $CheckContent
     )
 
-    #$return = Get-SQLQuery -CheckContent $checkContent
     $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
 
     return $return
@@ -738,18 +736,18 @@ function Get-saAccountGetScript
 
 
 <#
-    .SYNOPSIS Get-saAccountTestScript
+    .SYNOPSIS Get-SAaccountTestScript
         Returns a plain SQL query
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the TestScript block
+        This function returns the query that will be used in the TestScript block
 
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
-function Get-saAccountTestScript
+function Get-SAaccountTestScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -761,20 +759,20 @@ function Get-saAccountTestScript
         $CheckContent
     )
 
-    #$return = Get-SQLQuery -CheckContent $checkContent
+    #$return = Get-SQLQuery -CheckContent $CheckContent
     $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
 
     return $return
 }
 
 <#
-    .SYNOPSIS Get-saAccountSetScript
+    .SYNOPSIS Get-SAaccountSetScript
         Returns a plain SQL query
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
         The SQL STIG contains queries that will be placed in each of those blocks.
-        This functions returns the query that will be used in the SetScript block
+        This function returns the query that will be used in the SetScript block
 
     .PARAMETER FixText
         String that was obtained from the 'Fix' element of the base STIG Rule
@@ -782,7 +780,7 @@ function Get-saAccountTestScript
     .PARAMETER CheckContent
         Arbitrary in this function but is needed in Get-TraceSetScript
 #>
-function Get-saAccountSetScript
+function Get-SAaccountSetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -799,13 +797,13 @@ function Get-saAccountSetScript
         $CheckContent
     )
 
-    $return = "USE [master] DECLARE @saAccountName varchar(50) SET @saAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
-    $return += "IF @saAccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @saAccountName = 'old_sa' "
-    $return += "DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@saAccountName] DISABLE;"
+    $return = "USE [master] DECLARE @SAaccountName varchar(50) SET @SAaccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
+    $return += "IF @SAaccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @SAaccountName = 'old_sa' "
+    $return += "DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@SAaccountName] DISABLE;"
 
     return $return
 }
-#endregion saAccount Functions
+#endregion SAaccount Functions
 
 #region Helper Functions
 <#
@@ -839,12 +837,12 @@ function Get-Query
     $collection = @()
     $queries = @()
 
-    if ($checkContent.Count -gt 1)
+    if ($CheckContent.Count -gt 1)
     {
-        $checkContent = $checkContent -join ' '
+        $CheckContent = $CheckContent -join ' '
     }
 
-    $lines = $checkContent -split "(?=USE|SELECT)"
+    $lines = $CheckContent -split "(?=USE|SELECT)"
 
     foreach ($line in $lines)
     {
@@ -1005,7 +1003,7 @@ function Get-SqlRuleType
         $CheckContent
     )
 
-    $content = $checkContent -join " "
+    $content = $CheckContent -join " "
 
     switch ($content)
     {
@@ -1052,7 +1050,7 @@ function Get-SqlRuleType
             $PSItem -Match '(\s|\[)principal_id(\s*|\]\s*)\=\s*1'
         }
         {
-            $ruleType = 'saAccount'
+            $ruleType = 'SAaccount'
         }
         # Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
         # These should be able to get, test, set via Get-Query cleanly

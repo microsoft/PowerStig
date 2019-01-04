@@ -165,7 +165,7 @@ Class SqlScriptQueryRule : Rule
         if
         (
             (
-                $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #saAccount
+                $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #SAaccount
             ) -or
             (
                 $CheckContent -Match "TRACE_CHANGE_GROUP" -or #V-79239,79291,79293,29295
