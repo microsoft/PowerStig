@@ -8,6 +8,13 @@
     prevent errors and conflicts.
 #>
 
+$global:SingleLineRegistryValueName += [ordered]@{
+    # Added for Windows Defender Stig rule V-75153
+    Defender2 = @{
+        Select = '(?<=If the value\s")(.*)(?=does not exist)'
+    }
+}
+
 $global:SingleLineRegistryValueData += [ordered]@{
     # Added for Windows Defender Stig rule V-75237
     Defender1 = @{
