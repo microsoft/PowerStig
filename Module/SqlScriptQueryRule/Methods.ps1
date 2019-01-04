@@ -704,9 +704,9 @@ function Get-PlainSQLSetScript
 }
 #endregion PlainSQL Functions
 
-#region SAaccount Functions
+#region SysAdminAccount Functions
 <#
-    .SYNOPSIS Get-SAaccountGetScript
+    .SYNOPSIS Get-SysAdminAccountGetScript
         Returns a plain SQL query from $CheckContent
 
     .DESCRIPTION
@@ -717,7 +717,7 @@ function Get-PlainSQLSetScript
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
-function Get-SAaccountGetScript
+function Get-SysAdminAccountGetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -736,7 +736,7 @@ function Get-SAaccountGetScript
 
 
 <#
-    .SYNOPSIS Get-SAaccountTestScript
+    .SYNOPSIS Get-SysAdminAccountTestScript
         Returns a plain SQL query
 
     .DESCRIPTION
@@ -747,7 +747,7 @@ function Get-SAaccountGetScript
     .PARAMETER CheckContent
         This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
 #>
-function Get-SAaccountTestScript
+function Get-SysAdminAccountTestScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -766,7 +766,7 @@ function Get-SAaccountTestScript
 }
 
 <#
-    .SYNOPSIS Get-SAaccountSetScript
+    .SYNOPSIS Get-SysAdminAccountSetScript
         Returns a plain SQL query
 
     .DESCRIPTION
@@ -780,7 +780,7 @@ function Get-SAaccountTestScript
     .PARAMETER CheckContent
         Arbitrary in this function but is needed in Get-TraceSetScript
 #>
-function Get-SAaccountSetScript
+function Get-SysAdminAccountSetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -797,13 +797,13 @@ function Get-SAaccountSetScript
         $CheckContent
     )
 
-    $return = "USE [master] DECLARE @SAaccountName varchar(50) SET @SAaccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
-    $return += "IF @SAaccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @SAaccountName = 'old_sa' "
-    $return += "DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@SAaccountName] DISABLE;"
+    $return = "USE [master] DECLARE @SysAdminAccountName varchar(50) SET @SysAdminAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
+    $return += "IF @SysAdminAccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @SysAdminAccountName = 'old_sa' "
+    $return += "DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@SysAdminAccountName] DISABLE;"
 
     return $return
 }
-#endregion SAaccount Functions
+#endregion SysAdminAccount Functions
 
 #region Helper Functions
 <#
@@ -1050,7 +1050,7 @@ function Get-SqlRuleType
             $PSItem -Match '(\s|\[)principal_id(\s*|\]\s*)\=\s*1'
         }
         {
-            $ruleType = 'SAaccount'
+            $ruleType = 'SysAdminAccount'
         }
         # Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
         # These should be able to get, test, set via Get-Query cleanly
