@@ -10,21 +10,22 @@
 
 $global:SingleLineRegistryValueName += [ordered]@{
     # Added for Windows Defender Stig rule V-75153
-    Defender2 = @{
+    Defender1 = [ordered]@{
+        Match  = 'DisableAntiSpyware'
         Select = '(?<=If the value\s")(.*)(?=does not exist)'
     }
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
     # Added for Windows Defender Stig rule V-75153
-    Defender2 = @{
-        Select = '(?<=If the value\s.*)(does not exist)'
+    Defender1 = @{
+        Select = '(?<=DisableAntiSpyware"\s)(does not exist)'
     }
 }
 
 $global:SingleLineRegistryValueData += [ordered]@{
     # Added for Windows Defender Stig rule V-75237
-    Defender1 = @{
+    Defender1 = [ordered]@{
         Match  = 'ScheduleDay'
         Select = '(\d[x]\d)\sthrough\s(\d[x]\d)'
     }
