@@ -1,0 +1,774 @@
+<DISASTIG id="Windows_Defender_Antivirus" version="1.4" created="1/4/2019">
+  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
+    <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\MpEngine</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; MS Security Guide -&gt; "Turn on Windows Defender protection against Potentially Unwanted Applications" is set to "Enabled".
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
+
+Criteria: If the value "MpEnablePus" is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>MpEnablePus</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75151" severity="medium" conversionstatus="pass" title="SRG-APP-000279" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; "Turn off routine remediation" is set to "Disabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender
+
+Criteria: If the value "DisableRoutinelyTakingAction" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableRoutinelyTakingAction</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75153" severity="high" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; "Turn off Windows Defender Antivirus" is set to “Not Configured”.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender
+
+Criteria: If the value "DisableAntiSpyware" does not exist, this is not a finding.</RawString>
+      <ValueData>
+      </ValueData>
+      <ValueName>DisableAntiSpyware</ValueName>
+      <ValueType />
+    </Rule>
+    <Rule id="V-75155" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Exclusions -&gt; "Path Exclusions" is set to "Disabled" or "Not Configured.
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Exclusions
+ 
+Criteria: If the value "Exclusions_Paths" does not exist, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>Path Exclusions</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75157" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Exclusions -&gt; "Process Exclusions" is set to "Disabled" or "Not Configured".
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Exclusions
+
+Criteria: If the value "Exclusions_Processes" does not exist, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>Process Exclusions</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75159" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Exclusions -&gt; "Turn off Auto Exclusions" is set to "Disabled".
+     
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Exclusions
+
+Criteria: If the value "DisableAutoExclusions" is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableAutoExclusions</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75161" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; MAPS -&gt; "Configure local setting override for reporting to Microsoft MAPS" is set to "Disabled" or "Not Configured".
+     
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
+
+Criteria: If the value "LocalSettingOverrideSpynetReporting" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>LocalSettingOverrideSpynetReporting</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75163" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; MAPS -&gt; "Configure the 'Block at First Sight' feature" is set to "Enabled".
+     
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
+
+Criteria: If the value "DisableBlockAtFirstSeen" is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableBlockAtFirstSeen</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75167" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; MAPS -&gt; "Join Microsoft MAPS" is set to "Enabled" and "Advanced MAPS" selected from the drop down box.
+     
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
+
+Criteria: If the value "SpynetReporting" is REG_DWORD = 2, this is not a finding.</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>SpynetReporting</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75207" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; MAPS -&gt; "Send file samples when further analysis is required" is set to "Enabled" and "Send safe samples" selected from the drop down box.
+     
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
+
+Criteria: If the value "SubmitSamplesConsent" is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>SubmitSamplesConsent</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75209" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\NIS</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Network Inspection System -&gt; "Turn on protocol recognition" is set to "Enabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\Policies\Microsoft\Windows Defender\NIS
+
+Criteria: If the value "DisableProtocolRecognition" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableProtocolRecognition</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75211" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Configure local setting override for monitoring file and program activity on your computer" is set to "Disabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "LocalSettingOverrideDisableOnAccessProtection" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>LocalSettingOverrideDisableOnAccessProtection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75213" severity="medium" conversionstatus="pass" title="SRG-APP-000112" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Configure local setting override for monitoring for incoming and outgoing file activity" is set to "Disabled" or "Not Configure".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "LocalSettingOverrideRealtimeScanDirection" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>LocalSettingOverrideRealtimeScanDirection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75215" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Configure local setting override for scanning all downloaded files and attachments" is set to "Disabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "LocalSettingOverrideDisableIOAVProtection" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>LocalSettingOverrideDisableIOAVProtection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75217" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Configure local setting override for turn on behavior monitoring" is set to "Disabled" or "Not Configure".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "LocalSettingOverrideDisableBehaviorMonitoring" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>LocalSettingOverrideDisableBehaviorMonitoring</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75219" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Configure local setting override to turn on real-time protection" is set to "Disabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "LocalSettingOverrideDisableRealtimeMonitoring" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>LocalSettingOverrideDisableRealtimeMonitoring</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75221" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Configure monitoring for incoming and outgoing file and program activity" is set to "Disabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "RealtimeScanDirection" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1 or 2, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>RealtimeScanDirection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75223" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Monitor file and program activity on your computer to be scanned" is set to "Enabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "DisableOnAccessProtection" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableOnAccessProtection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75225" severity="medium" conversionstatus="pass" title="SRG-APP-000209" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Scan all downloaded files and attachments" is set to "Enabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "DisableIOAVProtection" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableIOAVProtection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75227" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Turn off real-time protection" is set to "Disabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "DisableRealtimeMonitoring" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableRealtimeMonitoring</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75229" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Turn on behavior monitoring" is set to "Enabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "DisableBehaviorMonitoring" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableBehaviorMonitoring</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75231" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Real-Time Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Real-time Protection -&gt; "Turn on process scanning whenever real-time protection is enabled" is set to "Enabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Real-Time Protection
+
+Criteria: If the value "DisableScanOnRealtimeEnable" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableScanOnRealtimeEnable</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75233" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Scan -&gt; "Scan archive files" is set to "Enabled" or "Not Configured".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "DisableArchiveScanning" is REG_DWORD = 0, this is not a finding.
+
+If the value does not exist, this is not a finding.
+
+If the value is 1, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableArchiveScanning</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75235" severity="medium" conversionstatus="pass" title="SRG-APP-000073" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Scan -&gt; "Scan removable drives" is set to "Enabled".
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "DisableRemovableDriveScanning" is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableRemovableDriveScanning</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75237" severity="medium" conversionstatus="pass" title="SRG-APP-000277" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -ge '0x0' -and {0} -le '0x7'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Scan -&gt; "Specify the day of the week to run a scheduled scan" is set to "Enabled" and anything other than "Never" selected in the drop down box.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "ScheduleDay" is REG_DWORD = 0x8, this is a finding.
+
+Values of 0x0 through 0x7 are acceptable and not a finding.</RawString>
+      <ValueData />
+      <ValueName>ScheduleDay</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75239" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Scan</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Scan -&gt; "Turn on e-mail scanning" is set to "Enabled".
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Scan
+
+Criteria: If the value "DisableEmailScanning" is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>DisableEmailScanning</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75241" severity="high" conversionstatus="pass" title="SRG-APP-000276" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -ge '1' -and {0} -le '7'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Signature Updates -&gt; "Define the number of days before spyware definitions are considered out of date" is set to "Enabled" and "7"or less selected in the drop down box (excluding "0", which is unacceptable).
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Signature Updates
+
+Criteria: If the value "ASSignatureDue" is REG_DWORD = 7, this is not a finding.
+
+A value of 1 - 6 is also acceptable and not a finding.
+
+A value of 0 is a finding.
+
+A value higher than 7 is a finding.</RawString>
+      <ValueData />
+      <ValueName>ASSignatureDue</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75243" severity="high" conversionstatus="pass" title="SRG-APP-000276" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Updates</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -ge '1' -and {0} -le '7'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Signature Updates -&gt; "Define the number of days before virus definitions are considered out of date" is set to "Enabled" and "7" or less selected in the drop down box (excluding "0", which is unacceptable).
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Signature Updates
+
+Criteria: If the value "AVSignatureDue" is REG_DWORD = 7, this is not a finding.
+
+A value of 1 - 6 is also acceptable and not a finding.
+
+A value of 0 is a finding.
+
+A value higher than 7 is a finding.</RawString>
+      <ValueData />
+      <ValueName>AVSignatureDue</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75245" severity="medium" conversionstatus="pass" title="SRG-APP-000261" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Signature Update</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Signature Updates -&gt; "Specify the day of the week to check for definition updates" is set to "Enabled" and "Every Day" is selected in the drop down box.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Signature Update
+
+Criteria: If the value "ScheduleDay" is REG_DWORD = 0, this is not a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>ScheduleDay</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-75247" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “5” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
+
+Criteria: If the value "5" is REG_SZ = 2 (or 3), this is not a finding.
+</RawString>
+      <ValueData />
+      <ValueName>5</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77965" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550
+Value:  1
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77967" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: D4F940AB-401B-4EFC-AADC-AD5F3C50688A
+Value:  1
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “D4F940AB-401B-4EFC-AADC-AD5F3C50688A” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“D4F940AB-401B-4EFC-AADC-AD5F3C50688A”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77969" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: 3B576869-A4EC-4529-8536-B80A7769E899
+Value:  1
+ 
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “3B576869-A4EC-4529-8536-B80A7769E899” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“3B576869-A4EC-4529-8536-B80A7769E899”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77971" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: 75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84
+Value:  1
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77973" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: D3E037E1-3EB8-44C8-A917-57927947596D 
+Value:  1
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “D3E037E1-3EB8-44C8-A917-57927947596D” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“D3E037E1-3EB8-44C8-A917-57927947596D”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77975" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: 5BEB7EFE-FD9A-4556-801D-275E5FFC04CC
+Value:  1
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “5BEB7EFE-FD9A-4556-801D-275E5FFC04CC” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“5BEB7EFE-FD9A-4556-801D-275E5FFC04CC”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77977" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Attack Surface Reduction -&gt; "Configure Attack Surface Reduction rules" is set to "Enabled”.  Click ‘Show...’.  Verify the rule ID in the Value name column and the desired state in the Value column is set as follows:
+Value name: 92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B
+Value:  1
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\ASR\Rules
+
+Criteria: If the value “92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B” is REG_SZ = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>“92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B”</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-77979" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This setting is applicable starting with v1709 of Windows 10, it is NA for prior versions.
+
+ Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Windows Defender Exploit Guard -&gt; Network Protection -&gt; "Prevent users and apps from accessing dangerous websites" is set to "Enabled” and “Block" selected in the drop down box.
+
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard\Network Protection
+
+Criteria: If the value "EnableNetworkProtection" is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>EnableNetworkProtection</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-79965" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “4” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
+
+Criteria: If the value "4" is REG_SZ = 2 (or 3), this is not a finding. </RawString>
+      <ValueData />
+      <ValueName>4</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-79967" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “2” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
+
+Criteria: If the value "2" is REG_SZ = 2 (or 3), this is not a finding.</RawString>
+      <ValueData />
+      <ValueName>2</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-79971" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="xRegistry">
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match '2|3'</OrganizationValueTestString>
+      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Windows Defender Antivirus -&gt; Threats -&gt; "Specify threat alert levels at which default action should not be taken when detected" is set to "Enabled".  Click the “Show…” box option and verify the ‘Value name’ field contains a value of “1” and the ‘Value’ field  contains a “2".  A value of “3” in the ‘Value’ field is more restrictive and also an acceptable value.
+  
+Procedure: Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\Policies\Microsoft\Windows Defender\Threats\ThreatSeverityDefaultAction
+
+Criteria: If the value "1" is REG_SZ = 2 (or 3), this is not a finding.</RawString>
+      <ValueData />
+      <ValueName>1</ValueName>
+      <ValueType>String</ValueType>
+    </Rule>
+  </RegistryRule>
+</DISASTIG>
