@@ -223,8 +223,7 @@ function Get-RegistryValueTypeFromSLStig
     )
    
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
-    # $valueType = $CheckContent
-
+    
     foreach ($key in $Hashtable.Keys) 
     {  
         switch ($key)
