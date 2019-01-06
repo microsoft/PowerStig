@@ -1,3 +1,5 @@
+using module .\helper.psm1
+
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
@@ -13,45 +15,9 @@ try
 
     #region Integration Tests
     foreach ($stig in $stigList)
-    {   
+    {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        Describe "Office $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                    -OfficeApp $stig.TechnologyRole `
-                    -StigVersion $stig.StigVersion `
-                    -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
-
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-
-            Context 'Registry' {
-                $hasAllSettings = $true
-                $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
-                $dscMof = $instances |
-                Where-Object {$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"}
-
-                foreach ($setting in $dscXml)
-                {   
-                     if (-not ($dscMof.ResourceID -match $setting.id) )
-                    {
-                        Write-Warning -Message "Missing registry Setting $($setting.id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.count) Registry settings" {
-                    $hasAllSettings | Should -Be $true
-                }
-            }
-        }
-        ### Begin DO NOT REMOVE Core Tests
         $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
@@ -65,9 +31,8 @@ try
         $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
         $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-        $userSettingsPath = "$PSScriptRoot\stigdata.usersettings.ps1"
+        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
         . $userSettingsPath
-        ### End DO NOT REMOVE Core Tests
     }
 #endregion Tests
 }

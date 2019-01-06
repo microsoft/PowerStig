@@ -105,15 +105,15 @@ Configuration WindowsClient_config
                 })
                 $(if ($null -ne $Exception)
                 {
-                    "Exception = @{$( ($Exception | % {"'$_'= @{'ValueData'='1234567'}"}) -join "`n" )}"
+                    "Exception = @{$( ($Exception | ForEach-Object {"'$_'= @{'ValueData'='1234567'}"}) -join "`n" )}"
                 })
                 $(if ($null -ne $SkipRule)
                 {
-                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$_'"}) -join ',' ))`n"
                 }
                 if ($null -ne $SkipRuleType)
                 {
-                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$_'"}) -join ',' ))`n"
                 })
             }")
         )

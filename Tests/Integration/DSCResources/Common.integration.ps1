@@ -2,6 +2,58 @@
     This file is dot sourced into every composite. It consolidates testing of exceptions,
     skipped rules, and organizational objects that were provided to the composite
 #>
+Describe "$($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+
+    It 'Should compile the MOF without throwing' {
+        {
+            & $technologyConfig `
+                -BrowserVersion $stig.TechnologyRole `
+                -StigVersion $stig.StigVersion `
+                -OutputPath $TestDrive `
+                -OfficeApp $stig.TechnologyRole `
+                -ConfigPath $configPath `
+                -PropertiesPath $propertiesPath `
+                -OsVersion $stig.TechnologyVersion `
+                -ForestName 'integration.test' `
+                -DomainName 'integration.test' `
+                -OsRole $stig.TechnologyRole `
+                -SqlVersion $stig.TechnologyVersion `
+                -SqlRole $stig.TechnologyRole`
+                -WebAppPool $WebAppPool `
+                -WebsiteName $WebsiteName `
+                -LogPath $TestDrive
+        } | Should -Not -Throw
+    }
+
+    $configurationDocumentPath = "$TestDrive\localhost.mof"
+    $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+
+    $ruleNames = (Get-Member -InputObject $DscXml.DISASTIG | 
+        Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne "DocumentRule" -and $_.Name -ne "ManualRule"}).Name
+
+    foreach ($ruleName in $ruleNames)
+    {
+        Context $ruleName {
+            $hasAllSettings = $true
+            $dscXml = @($dscXml.DISASTIG.$ruleName.Rule)
+            $dscMof = $instances |
+                Where-Object {Get-ResourceMatchStatement -ruleName $ruleName}
+
+            foreach ( $setting in $dscXml )
+            {
+                If (-not ($dscMof.ResourceID -match $setting.id) )
+                {
+                    Write-Warning -Message "Missing $ruleName Setting $($setting.id)"
+                    $hasAllSettings = $false
+                }
+            }
+
+            It "Should have $($dscXml.count) $ruleName settings" {
+                $hasAllSettings | Should -Be $true
+            }
+        }
+    }
+}
 
 Describe "$($stig.TechnologyRole) $($stig.StigVersion) Exception" {
 

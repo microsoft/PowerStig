@@ -1,3 +1,5 @@
+using module .\helper.psm1
+
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
@@ -21,42 +23,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        Describe "OracleJRE 8 $($stig.StigVersion) mof output" {
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -ConfigPath $configPath `
-                        -PropertiesPath $propertiesPath `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
-
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-
-            Context 'KeyValuePairRule' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.FileContentRule.Rule
-                $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[KeyValuePairFile\]"}
-
-                foreach ($setting in $dscXml)
-                {
-                    if (-not ($dscMof.ResourceID -match $setting.id) )
-                    {
-                        Write-Warning -Message "Missing KeyValuePairFile Setting $($setting.id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.count) KeyValuePairFile settings" {
-                    $hasAllSettings | Should -Be $true
-                }
-            }
-        }
-        ### Begin DO NOT REMOVE Core Tests
         $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
@@ -70,9 +36,8 @@ try
         $exception = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
         $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
 
-        $userSettingsPath = "$PSScriptRoot\stigdata.usersettings.ps1"
+        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
         . $userSettingsPath
-        ### End DO NOT REMOVE Core Tests
     }
     #endregion Tests
 }

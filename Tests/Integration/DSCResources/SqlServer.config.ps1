@@ -106,15 +106,15 @@ Configuration SqlServerInstance_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | % {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$_'"}) -join ',' ))`n"
             }
             if ($null -ne $SkipRuleType)
             {
-                " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                " SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$_'"}) -join ',' ))`n"
             })
         }")
         )
@@ -229,15 +229,15 @@ Configuration SqlServerDatabase_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | % {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$_'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$_'"}) -join ',' ))`n"
             }
             if ($null -ne $SkipRuleType)
             {
-                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$_'"}) -join ',' ))`n"
             })
         }")
         )
