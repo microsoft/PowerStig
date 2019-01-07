@@ -378,8 +378,6 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security
 
-Criteria: HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
-
 Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is a finding.
 </check-content></check></Rule></Group><Group id="V-17775"><title>DTOO245 - Lvl 2 File Extensions</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53989r2_rule" severity="medium" weight="10.0"><version>DTOO245</version><title>Level 2 file extensions must be blocked and not removed.</title><description>&lt;VulnDiscussion&gt;Malicious code is often spread through email. Some viruses have the ability to send copies of themselves to other people in the victim's Address Book or Contacts list, and such potentially harmful files can affect the computers of unwary recipients.
 Outlook uses two levels of security to restrict users' access to files attached to email messages or other items. Files with specific extensions can be categorized as Level 1 (users cannot view the file) or Level 2 (users can open the file after saving it to disk). Users can freely open files of types that are not categorized as Level 1 or Level 2.

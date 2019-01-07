@@ -1,6 +1,12 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
+$expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
+foreach ($supportFile in $expressionFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 #endregion
 try
 {
@@ -1297,6 +1303,35 @@ try
                 Get-SingleLineRegistryPath  -CheckContent $checkContent | Should Be $returnContent
             }
         }
+        Describe 'Get-SLRegistryPath ' {
+
+            It 'Should return null with empty hashtable' {
+                $checkContent = 'HKCU\Path\To\Value'
+                $hashtable = @{}
+                $returnContent = $null
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+            }
+
+            It 'Should return the full Local Machine registry path' {
+                $checkContent = 'HKLM\Path\To\Value'
+                $hashtable    =  [ordered]@{
+                    Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\'
+                    Select   = '((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)'
+                }            
+                $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+            }
+
+            It 'Should return null registry path with non-matching expression' {
+                $checkContent = 'HKCU\Path\To\Value'
+                $hashtable    =  [ordered]@{
+                    Contains = 'Verify'
+                    Select   = '((HKLM|HKCU).*(?=Verify))'
+                }            
+                $returnContent = $null
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+            }
+        }
 
         #########################################   Registry Type   ########################################
         Describe 'Get-RegistryValueTypeFromSingleLineStig' {
@@ -1330,6 +1365,42 @@ try
                 Get-RegistryValueTypeFromSingleLineStig -CheckContent 'Mocked data' | Should Be $null
             }
         }
+        Describe 'Get-RegistryValueTypeFromSLStig' {
+            <#
+                A list of the registry types in the STIG(key) to DSC(value) format
+                this is a seperate list to detect changes in the script
+            #>
+            $registryTypes = @(
+                'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
+            )
+            $hashtable = @{
+                Select = '({0}"?\sis (?!not))(.*=)'
+                Group  = 2
+            }
+
+            foreach ( $registryType in $registryTypes )
+            {
+                $checkContent = "Criteria: If the value ""1001"" is $registryType = 3"
+                Mock Get-RegistryValueStringFromSingleLineStig {return "Criteria: If the value ""1001"" is $registryType) = 3"}  -ParameterFilter {$checkContent -match 'REG_SZ'}
+
+                It "Should return '$registryType' from '$checkContent'" {
+
+                    $RegistryValueType = Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable
+                    $RegistryValueType | Should Be $registryType
+                }
+            }
+
+            It 'Should return "null" with invalid registry type' {
+
+                Get-RegistryValueTypeFromSLStig -CheckContent 'Mocked data' -Hashtable $hashtable | Should Be $null
+            }
+
+            It 'Should return "null" with empty hashtable' {
+                $checkContent = "Criteria: If the value ""1001"" is REG_SZ = 3"
+                $hashtable = @{}
+                Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $null
+            }
+        }
 
         #########################################   Registry Type   ########################################
         #########################################   Registry Name   ########################################
@@ -1339,6 +1410,19 @@ try
             $checkContent = "Criteria: If the value ""$valueName"" is REG_Type = 2, this is not a finding."
             It "Should return '$valueName' from '$checkContent'" {
                 Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent | Should Be $valueName
+            }
+        }
+
+        Describe 'Get-RegistryValueNameFromSLStig' {
+
+            $valueName = 'ValueName'
+            $checkContent = "Criteria: If the value ""$valueName"" is REG_Type = 2, this is not a finding."
+            $hashtable = @{
+                Select = '((?<=If the value\s)(.*)(?=is\sR))'
+            }
+
+            It "Should return '$valueName' from '$checkContent'" {
+                Get-RegistryValueNameFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $valueName
             }
         }
         #########################################   Registry Name   ########################################
@@ -1353,6 +1437,19 @@ try
                 $result | Should Be $valueData
             }
         }
+        Describe 'Get-RegistryValueDataFromSLStig' {
+
+            $valueData = '2'
+            $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
+            $hashtable = @{
+                Select = '(?<=REG_Type)(\s*)?=.*(?=(,|\())'
+            }
+            
+            It "Should return '$valueData' from '$checkContent'" {
+                $result = Get-RegistryValueDataFromSLStig -CheckContent $checkContent -Hashtable $hashtable
+                $result | Should Be $valueData
+            }
+        }
         #########################################   Registry Data   ########################################
         ######################################   Ancillary functions   #####################################
         Describe 'Get-RegistryValueStringFromSingleLineStig' {
@@ -1362,10 +1459,7 @@ try
             $registryValueData = '2'
             $registryValueInnerString = """$registryValueName"" is $registryValueType = $registryValueData"
             $registryValueString = "Criteria: If the value $registryValueInnerString, this is not a finding."
-            $checkContent = "
-    HKCU\Path\to\value
-
-    $registryValueString"
+            $checkContent = $registryValueString
 
             It 'Should return the correct full string' {
                 $checkContent = Split-TestStrings -CheckContent $checkContent

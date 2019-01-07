@@ -139,7 +139,6 @@ function Get-TestStringTokenList
     $commands = $tokens.Where({
             $PSItem.type -eq 'CommandArgument' -or
             $PSItem.type -eq 'Command' }).Content
-
     return ( $commands -join " " )
 }
 
