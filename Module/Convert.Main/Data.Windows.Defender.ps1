@@ -17,9 +17,9 @@ $global:SingleLineRegistryValueName += [ordered]@{
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
-    # Added for Windows Defender Stig rule V-75153
+    # Added for Windows Defender Stig rules V-75153 and V-75155
     Defender1 = @{
-        Select = '(?<=DisableAntiSpyware"\s)(does not exist)'
+        Select = '(?<={0}"\s)(does not exist)'
     }
 }
 
