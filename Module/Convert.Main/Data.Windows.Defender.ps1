@@ -17,7 +17,7 @@ $global:SingleLineRegistryValueName += [ordered]@{
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{
-    # Added for Windows Defender Stig rules V-75153 and V-75155
+    # Added for Windows Defender Stig rules V-75153, V-75155 and V-75157
     Defender1 = @{
         Select = '(?<={0}"\s)(does not exist)'
     }
