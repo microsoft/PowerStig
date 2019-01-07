@@ -83,6 +83,9 @@ $global:SingleLineRegistryValueType += [ordered]@{
         Select = '((hkcu|hklm).*\sis\s(.*)=)'
         Group  = 3
     }
+    Seven   = @{
+        Select = '(?<={0}"\s)(does not exist)'
+    }
 }
 
 $global:SingleLineRegistryValueData += [ordered]@{
