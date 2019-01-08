@@ -301,19 +301,19 @@ Describe 'Get-TestStringTokenList' {
 
 Describe 'ConvertTo-TestString' {
     $Strings = @{
-        'Greater than 30' = "{0} -gt '30'"
-        '30 (or greater)' = "{0} -ge '30'"
-        'Greater than 30 (but not 60)' = "{0} -gt '30' -and {0} -lt '60'"
-        '30 (or greater, but not 60)' = "{0} -ge '30' -and {0} -lt '60'"
-        'less than 30' = "{0} -lt '30'"
-        '30 (or less)' = "{0} -le '30'"
-        "Less than 30 (but not 0)" = "{0} -lt '30' -and {0} -gt '0'"
-        "30 (or less, but not 0)" = "{0} -le '30' -and {0} -gt '0'"
-        "0x0000001e (30) (or less, but not 0)" = "{0} -le '30' -and {0} -gt '0'"
-        "0x0000001e (30) (or less, excluding 0)" = "{0} -le '30' -and {0} -gt '0'"
-        '0x00000384 (900) (or less, excluding "0" which is effectively disabled)' = "{0} -le '900' -and {0} -gt '0'"
-        "  0x0000000f (15) (or less)" = "{0} -le '15'"
-        "0x00008000 (32768) (or greater)" = "{0} -ge '32768'"
+        'Greater than 30' = "'{0}' -gt '30'"
+        '30 (or greater)' = "'{0}' -ge '30'"
+        'Greater than 30 (but not 60)' = "'{0}' -gt '30' -and '{0}' -lt '60'"
+        '30 (or greater, but not 60)' = "'{0}' -ge '30' -and '{0}' -lt '60'"
+        'less than 30' = "'{0}' -lt '30'"
+        '30 (or less)' = "'{0}' -le '30'"
+        "Less than 30 (but not 0)" = "'{0}' -lt '30' -and '{0}' -gt '0'"
+        "30 (or less, but not 0)" = "'{0}' -le '30' -and '{0}' -gt '0'"
+        "0x0000001e (30) (or less, but not 0)" = "'{0}' -le '30' -and '{0}' -gt '0'"
+        "0x0000001e (30) (or less, excluding 0)" = "'{0}' -le '30' -and '{0}' -gt '0'"
+        '0x00000384 (900) (or less, excluding "0" which is effectively disabled)' = "'{0}' -le '900' -and '{0}' -gt '0'"
+        "  0x0000000f (15) (or less)" = "'{0}' -le '15'"
+        "0x00008000 (32768) (or greater)" = "'{0}' -ge '32768'"
     }
     foreach ($string in $strings.GetEnumerator())
     {
@@ -422,8 +422,8 @@ Describe 'ConvertTo-OrTestString' {
     Context 'NotMatch' {
         $operator = "NotMatch"
         $positiveMatchStrings = @{
-            "1 or 2 = a Finding" = "{0} -notmatch '1|2'"
-            "10 or 20 = a Finding" = "{0} -notmatch '10|20'"
+            "1 or 2 = a Finding" = "'{0}' -notmatch '1|2'"
+            "10 or 20 = a Finding" = "'{0}' -notmatch '10|20'"
         }
 
         foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
@@ -442,9 +442,9 @@ Describe 'ConvertTo-OrTestString' {
     Context 'Match' {
         $operator = "Match"
         $positiveMatchStrings = @{
-            "1 or 2 " = "{0} -match '1|2'"
-            "10 or 20 " = "{0} -match '10|20'"
-            "1 (Lock Workstation) or 2 (Force Logoff)" = "{0} -match '1|2'"
+            "1 or 2 " = "'{0}' -match '1|2'"
+            "10 or 20 " = "'{0}' -match '10|20'"
+            "1 (Lock Workstation) or 2 (Force Logoff)" = "'{0}' -match '1|2'"
         }
 
         foreach ($positiveMatchString in $positiveMatchStrings.GetEnumerator())
