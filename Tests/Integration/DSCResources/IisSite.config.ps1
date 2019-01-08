@@ -96,9 +96,9 @@ Configuration IisSite_config
             {
                 $(if ($null -ne $WebAppPool)
                 {
-                   "WebAppPool = @($( ($WebAppPool | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                   "WebAppPool = @($( ($WebAppPool | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
                 })
-                $( "WebSiteName = @($( ($WebSiteName | ForEach-Object {"'$_'"}) -join ',' ))`n" )
+                $( "WebSiteName = @($( ($WebSiteName | ForEach-Object {"'$PSItem'"}) -join ',' ))`n" )
                 OsVersion = '$OsVersion'
                 StigVersion = '$StigVersion'
                 $(if ($null -ne $OrgSettings)
@@ -107,15 +107,15 @@ Configuration IisSite_config
                 })
                 $(if ($null -ne $Exception)
                 {
-                    "Exception = @{$( ($Exception | ForEach-Object {"'$_'= @{'Value'='1234567'}"}) -join "`n" )}"
+                    "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'Value'='1234567'}"}) -join "`n" )}"
                 })
                 $(if ($null -ne $SkipRule)
                 {
-                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
                 }
                 if ($null -ne $SkipRuleType)
                 {
-                    "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                    "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
                 })
             }")
         )

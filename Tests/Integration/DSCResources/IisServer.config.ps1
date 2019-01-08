@@ -103,15 +103,15 @@ Configuration IisServer_Config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$_'= @{'Value'='1234567'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'Value'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             }
             if ($null -ne $SkipRuleType)
             {
-                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             })
         }")
         )

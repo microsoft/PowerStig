@@ -105,15 +105,15 @@ Configuration WindowsDnsServer_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$_'= @{'PropertyValue'='1234567'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'PropertyValue'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             }
             if ($null -ne $SkipRuleType)
             {
-                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             })
         }")
         )
