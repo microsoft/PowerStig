@@ -108,7 +108,7 @@ Configuration OracleJRE_config
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$$PSItem'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             })
         }")
         )
