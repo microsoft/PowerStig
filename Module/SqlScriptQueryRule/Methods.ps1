@@ -911,14 +911,6 @@ function Get-SqlRuleType
 
     switch ($content)
     {
-        <## Standard database existence parsers
-        {
-            #$PSItem -Match 'SELECT' -and
-            #$PSItem -Match 'existence.*publicly available.*(").*(")\s*(D|d)atabase'
-        }
-        {
-            $ruleType = 'DbExist'
-        }#>
         # Standard trace and event ID parsers
         {
             $PSItem -Match 'SELECT' -and
