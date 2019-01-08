@@ -1,102 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 #region Method Functions
-#region DbExist Functions
-<#
-    .SYNOPSIS Get-DbExistGetScript
-        Returns the query that checks to see if a DB exists.
-
-    .DESCRIPTION
-        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-        The SQL STIG contains queries that will be placed in each of those blocks.
-        This function returns the query that will be used in the GetScript block
-
-    .PARAMETER CheckContent
-        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
-#>
-function Get-DbExistGetScript
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [AllowEmptyString()]
-        [string[]]
-        $CheckContent
-    )
-
-    $return = Get-SQLQuery -CheckContent $CheckContent
-
-    return $return
-}
-
-<#
-    .SYNOPSIS Get-DbExistTestScript
-        Returns the query that checks to see if a DB exists.
-
-    .DESCRIPTION
-        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-        The SQL STIG contains queries that will be placed in each of those blocks.
-        This function returns the query that will be used in the TestScript block
-
-    .PARAMETER CheckContent
-        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
-#>
-function Get-DbExistTestScript
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [AllowEmptyString()]
-        [string[]]
-        $CheckContent
-    )
-
-    $return = Get-SQLQuery -CheckContent $CheckContent
-
-    return $return
-}
-
-<#
-    .SYNOPSIS Get-DbExistSetScript
-        Returns a SQL Statement that removes a DB
-
-    .DESCRIPTION
-        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
-        The SQL STIG contains queries that will be placed in each of those blocks.
-        This function returns the query that will be used in the SetScript block
-
-    .PARAMETER FixText
-        String that was obtained from the 'Fix' element of the base STIG Rule
-
-    .PARAMETER CheckContent
-        This is the 'CheckContent' derived from the STIG raw string and holds the event Ids that will be returned
-#>
-function Get-DbExistSetScript {
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter()]
-        [AllowEmptyString()]
-        [string[]]
-        $FixText,
-
-        [Parameter()]
-        [AllowEmptyString()]
-        [string[]]
-        $CheckContent
-    )
-
-    $return = Get-SQLQuery -CheckContent $FixText
-
-    return $return
-}
-#endregion DbExist Functions
-
 #region Trace Functions
 <#
     .SYNOPSIS Get-TraceGetScript
@@ -1007,14 +911,14 @@ function Get-SqlRuleType
 
     switch ($content)
     {
-        # Standard database existence parsers
+        <## Standard database existence parsers
         {
-            $PSItem -Match 'SELECT' -and
-            $PSItem -Match 'existence.*publicly available.*(").*(")\s*(D|d)atabase'
+            #$PSItem -Match 'SELECT' -and
+            #$PSItem -Match 'existence.*publicly available.*(").*(")\s*(D|d)atabase'
         }
         {
             $ruleType = 'DbExist'
-        }
+        }#>
         # Standard trace and event ID parsers
         {
             $PSItem -Match 'SELECT' -and

@@ -7,16 +7,6 @@ try
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
         $sqlScriptQueryRule = @{
-            DbExist    = @{
-                GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-                TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-                SetScript    = "DROP DATABASE AdventureWorks"
-                CheckContent = "Check SQL Server for the existence of the publicly available `"AdventureWorks`" database by performing the following query:
-                SELECT name from sysdatabases where name like 'AdventureWorks%';
-                If the `"AdventureWorks`" database is present, this is a finding."
-                FixText      = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
-                DROP DATABASE AdventureWorks"
-            }
             Trace      = @{
                 GetScript    = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END"
                 TestScript   = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END"
@@ -160,44 +150,14 @@ try
                 See the supplemental file `"SQL 2016 Audit.sql`". "
             }
             PlainSQL    = @{
-                GetScript    = "SELECT * FROM MSysObjects WHERE 1=1;"
-                TestScript   = "SELECT * FROM MSysObjects WHERE 1=1;"
+                GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
+                TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
                 SetScript    = "DROP DATABASE AdventureWorks"
-                CheckContent = "This rule performs a check of records in a database by performing the following query:
-                SELECT * FROM MSysObjects WHERE 1=1;
-                If records are present, this is a finding."
+                CheckContent = "Check SQL Server for the existence of the publicly available `"AdventureWorks`" database by performing the following query:
+                SELECT name from sysdatabases where name like 'AdventureWorks%';
+                If the `"AdventureWorks`" database is present, this is a finding."
                 FixText      = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
                 DROP DATABASE AdventureWorks"
-            }
-        }
-        $testStigRuleParam = @{
-            CheckContent    = $sqlScriptQueryRule.DbExist.CheckContent
-            FixText         = $sqlScriptQueryRule.DbExist.FixText
-            ReturnGroupOnly = $true
-        }
-        $stigRule = Get-TestStigRule @testStigRuleParam
-        $rule = [SqlScriptQueryRule]::new( $stigRule )
-        #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @("GetScript", "TestScript", "SetScript")
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
             }
         }
         #endregion
