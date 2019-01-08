@@ -56,17 +56,17 @@ function Get-ResourceMatchStatement
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[KeyValuePairFile\]"'
             break
        }
-       'SqlScriptQuery'
+       'SqlScriptQueryRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[SqlScriptQuery\]"'
             break
        }
-       'AccountPolicy'
+       'AccountPolicyRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[AccountPolicy\]"'
             break
        }
-       'AuditPolicy'
+       'AuditPolicyRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"'
             break
@@ -76,32 +76,32 @@ function Get-ResourceMatchStatement
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[Group\]"'
             break
        }
-       'ProcessMitigation'
+       'ProcessMitigationRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[ProcessMitigation\]"'
             break
        }
-       'SecurityOption'
+       'SecurityOptionRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[SecurityOption\]"'
             break
        }
-       'Service'
+       'ServiceRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[xService\]"'
             break
        }
-       'UserRightsAssignment'
+       'UserRightRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[UserRightsAssignment\]"'
             break
        }
-       'WMI'
+       'WmiRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[Script\]"'
             break
        }
-       'xWinEventLog'
+       'WinEventLogRule'
        {
             $resourceMatchStatement = '$PSItem.ResourceID -match "\[xWinEventLog\]"'
             break

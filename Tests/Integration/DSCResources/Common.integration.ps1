@@ -35,7 +35,8 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) mof output" {
     {
         Context $ruleName {
             $hasAllSettings = $true
-            $dscXml = @($dscXml.DISASTIG.$ruleName.Rule)
+            $dscXml = @($dscXml.DISASTIG.$ruleName.Rule) | 
+                Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne "ActiveDirectoryAuditRuleEntry"}
             $dscMof = $instances |
                 Where-Object {Get-ResourceMatchStatement -ruleName $ruleName}
 
