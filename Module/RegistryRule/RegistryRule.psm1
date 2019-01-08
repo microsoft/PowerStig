@@ -406,7 +406,8 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "v1607 of Windows 10" -and
                 $CheckContent -NotMatch "Review the Catalog" -and
                 $CheckContent -NotMatch "For 32.bit (production systems|applications)" -and
-                $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key'
+                $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key' -and
+                $CheckContent -NotMatch "N'HKEY_LOCAL_MACHINE'"
             ) -or
             (
                 $CheckContent -Match "Windows Registry Editor" -and

@@ -46,18 +46,17 @@ Class SqlScriptQueryRule : Rule
     {
         $this.InvokeClass($StigRule)
         $ruleType = $this.GetRuleType($this.splitCheckContent)
-
         $fixText = [SqlScriptQueryRule]::GetFixText($StigRule)
 
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
+        $this.SetDscResource()
 
         if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateTitle()
         }
-        $this.SetDscResource()
     }
 
     #region Methods
@@ -148,6 +147,8 @@ Class SqlScriptQueryRule : Rule
 
     static [bool] Match ([string] $CheckContent)
     {
+        # Provide match criteria to validate that the rule is (or is not) a SQL rule.
+        # Standard match rules
         if
         (
             $CheckContent -Match "SELECT" -and
@@ -160,7 +161,27 @@ Class SqlScriptQueryRule : Rule
         {
             return $true
         }
+        # SQL Server 2016+ matches
+        if
+        (
+            (
+                $CheckContent -Match "(\s|\[)principal_id(\s*|\]\s*)\=\s*1" #SysAdminAccount
+            ) -or
+            (
+                $CheckContent -Match "TRACE_CHANGE_GROUP" -or #V-79239,79291,79293,29295
+                $CheckContent -Match "DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP" -or #V-79259,79261,79263,79265,79275,79277
+                $CheckContent -Match "SCHEMA_OBJECT_CHANGE_GROUP" -or #V-79267,79269,79279,79281
+                $CheckContent -Match "SUCCESSFUL_LOGIN_GROUP" -or #V-79287,79297
+                $CheckContent -Match "FAILED_LOGIN_GROUP" -or #V-79289
+                $CheckContent -Match "status_desc = 'STARTED'" #V-79141
+            ) 
+        )
+        {
+            return $true
+        }
+        
         return $false
     }
+
     #endregion
 }

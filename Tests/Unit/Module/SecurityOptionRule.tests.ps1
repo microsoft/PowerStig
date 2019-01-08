@@ -42,6 +42,19 @@ try
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options.
 
                 If the value for "Network security: Force logoff when logon hours expire" is not set to "Enabled", this is a finding.'
+            },
+            @{
+                Name                        = 'System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing'
+                Value                       = 'Enabled'
+                OrganizationValueRequired   = $false
+                OrganizationValueTestString = ''
+                CheckContent                = 'Review system configuration to determine whether FIPS 140-2 support has been enabled.
+
+                Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
+
+                Ensure that "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is enabled.
+
+                If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.'
             }
         )
 

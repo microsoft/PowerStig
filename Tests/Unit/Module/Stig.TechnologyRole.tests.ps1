@@ -21,11 +21,13 @@ try
         $technologyVersion2 = [TechnologyVersion]::new('All', $Technology1)
         $technologyVersion3 = [TechnologyVersion]::new('2012', $Technology2)
         $technologyVersion4 = [TechnologyVersion]::new('All', $Technology3)
+        $technologyVersion5 = [TechnologyVersion]::new('2016', $Technology2)
 
         $TestValidateSet = @"
 2012R2 = DNS, DC, MS, IISSite, IISServer
 All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013, Word2013, PowerPoint2013, FireFox
 2012 = Instance, Database
+2016 = Instance, Database
 10 = Client
 "@
 
@@ -54,10 +56,17 @@ All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013,
                     $technologyRole.Name | Should Be $technologyRole3
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion3
                 }
+
                 It 'Should create an technologyRole class instance using technologyRole4 and technologyVersion4 data' {
                     $technologyRole = [technologyRole]::new($technologyRole4, $technologyVersion4)
                     $technologyRole.Name | Should Be $technologyRole4
                     $technologyRole.TechnologyVersion | Should Be $technologyVersion4
+                }
+
+                It 'Should create an technologyRole class instance using technologyRole3 and technologyVersion5 data' {
+                    $technologyRole = [technologyRole]::new($technologyRole3, $technologyVersion5)
+                    $technologyRole.Name | Should Be $technologyRole3
+                    $technologyRole.TechnologyVersion | Should Be $technologyVersion5
                 }
 
                 It 'Should throw an exception for technologyRole not being available for TechnologyVersion: 2012R2 -> ADDomain' {
