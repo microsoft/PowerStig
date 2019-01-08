@@ -23,68 +23,68 @@ Configuration Office_config
         $OrgSettings,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $BrowserVersion,
 
         [Parameter()]
-        [string[]]
         [AllowNull()]
+        [string[]]
         $OfficeApp,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $ConfigPath,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $PropertiesPath,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $SqlVersion,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $SqlRole,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $ForestName,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $DomainName,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $OsVersion,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $OsRole,
 
         [Parameter()]
-        [string[]]
         [AllowNull()]
+        [string[]]
         $WebAppPool,
 
         [Parameter()]
-        [string[]]
         [AllowNull()]
+        [string[]]
         $WebSiteName,
 
         [Parameter()]
-        [string]
         [AllowNull()]
+        [string]
         $LogPath
 
     )
