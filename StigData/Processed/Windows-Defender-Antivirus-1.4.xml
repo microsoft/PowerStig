@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Defender_Antivirus" version="1.4" created="1/4/2019">
+<DISASTIG id="Windows_Defender_Antivirus" version="1.4" created="1/8/2019">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -54,7 +54,7 @@ Criteria: If the value "DisableAntiSpyware" does not exist, this is not a findin
       <ValueType />
     </Rule>
     <Rule id="V-75155" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -65,12 +65,13 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Policies\Microsoft\Windows Defender\Exclusions
  
 Criteria: If the value "Exclusions_Paths" does not exist, this is not a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>Path Exclusions</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueData>
+      </ValueData>
+      <ValueName>Exclusions_Paths</ValueName>
+      <ValueType />
     </Rule>
     <Rule id="V-75157" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
-      <Ensure>Present</Ensure>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Exclusions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -81,9 +82,10 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Policies\Microsoft\Windows Defender\Exclusions
 
 Criteria: If the value "Exclusions_Processes" does not exist, this is not a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>Process Exclusions</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueData>
+      </ValueData>
+      <ValueName>Exclusions_Processes</ValueName>
+      <ValueType />
     </Rule>
     <Rule id="V-75159" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -581,7 +583,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550”</ValueName>
+      <ValueName>BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77967" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -601,7 +603,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “D4F940AB-401B-4EFC-AADC-AD5F3C50688A” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“D4F940AB-401B-4EFC-AADC-AD5F3C50688A”</ValueName>
+      <ValueName>D4F940AB-401B-4EFC-AADC-AD5F3C50688A</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77969" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -621,7 +623,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “3B576869-A4EC-4529-8536-B80A7769E899” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“3B576869-A4EC-4529-8536-B80A7769E899”</ValueName>
+      <ValueName>3B576869-A4EC-4529-8536-B80A7769E899</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77971" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -641,7 +643,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84”</ValueName>
+      <ValueName>75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77973" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -661,7 +663,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “D3E037E1-3EB8-44C8-A917-57927947596D” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“D3E037E1-3EB8-44C8-A917-57927947596D”</ValueName>
+      <ValueName>D3E037E1-3EB8-44C8-A917-57927947596D</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77975" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -681,7 +683,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “5BEB7EFE-FD9A-4556-801D-275E5FFC04CC” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“5BEB7EFE-FD9A-4556-801D-275E5FFC04CC”</ValueName>
+      <ValueName>5BEB7EFE-FD9A-4556-801D-275E5FFC04CC</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77977" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">
@@ -701,7 +703,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B”</ValueName>
+      <ValueName>92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77979" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="xRegistry">

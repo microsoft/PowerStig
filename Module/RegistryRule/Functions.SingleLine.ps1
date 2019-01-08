@@ -389,7 +389,7 @@ function Get-RegistryValueNameFromSLStig
 
     if ($valueName)
     {
-        $valueName = $valueName.Matches.Value -replace '["‚Äú‚Äù]', ''
+        $valueName = $valueName.Matches.Value -replace '["ìîù]', ''
 
         if ($valueName.Count -gt 1)
         {
