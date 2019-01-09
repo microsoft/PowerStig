@@ -88,13 +88,13 @@
 
 ## PermissionRule
 
-    V-73249   +
-    V-73251.a +
+    V-73249   - missing inheritance flags
+    V-73251.a - missing Inheritance flags
     V-73251.b +
     V-73253   +
-    V-73255.a +
+    V-73255.a - missing ACE (Administrator)
     V-73255.b +
-    V-73255.c +
+    V-73255.c - Duplicate Creator Owner Entry
     V-73405   +
     V-73407   +
     V-73409   +
@@ -231,7 +231,7 @@
     V-73751 +
     V-73753 + DONE No org setting
     V-73755 - Trim ending String
-    V-73759 +
+    V-73759 - Should be an Org Setting
     V-73763 +
     V-73767 +
     V-73771 +
