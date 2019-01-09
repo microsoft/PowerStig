@@ -727,7 +727,7 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = $null
             WmiRule                      = $null
-            }
+        }
         'U_MS_Word_2013_STIG_V1R6_Manual-xccdf.xml'                   = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
@@ -751,8 +751,32 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = $null
             WmiRule                      = $null
-            }
         }
+        'U_MS_Windows_Defender_Antivirus_STIG_V1R4_Manual-xccdf.xml'                   = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 41
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+    }
     #endregion
     #region Tests
     # Verify conversion report rule set values are equal to baseline values
