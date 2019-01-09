@@ -2,12 +2,14 @@
 
 ## Unreleased
 
+* Fixed [#225](https://github.com/Microsoft/PowerStig/issues/225): Update PowerStig integration tests to consolidate duplicate code.
 * Fixed [#160](https://github.com/Microsoft/PowerStig/issues/160): PowerStig.Convert needs to handle new registry rules without affecting existing code
 * Fixed [#201](https://github.com/Microsoft/PowerStig/issues/201): Update PowerStig integration tests to account for skips and exceptions.
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
-* Added the following STIGS
+* Added the following STIGs
+  * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186): Update PowerSTIG to parse the SQL Server 2016 Instance STIG - V1R3
   * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues): Update PowerSTIG to parse the Windows Defender STIG with new Registry Rule
 
 ## 2.3.2.0

@@ -7,16 +7,6 @@ try
     InModuleScope -ModuleName $script:moduleName {
         #region Test Setup
         $sqlScriptQueryRule = @{
-            DbExist    = @{
-                GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-                TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-                SetScript    = "DROP DATABASE AdventureWorks;"
-                CheckContent = "Check SQL Server for the existence of the publicly available `"AdventureWorks`" database by performing the following query:
-                SELECT name from sysdatabases where name like 'AdventureWorks%';
-                If the `"AdventureWorks`" database is present, this is a finding."
-                FixText      = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
-                DROP DATABASE AdventureWorks"
-            }
             Trace      = @{
                 GetScript    = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END"
                 TestScript   = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END"
@@ -40,13 +30,17 @@ try
                 If any of the audit event IDs required above is not listed, this is a finding.
                 Notes:
                 1. It is acceptable to have the required event IDs spread across multiple traces, provided all of the traces are always active, and the event IDs are grouped in a logical manner.
-                2. It is acceptable, from an auditing point of view, to include the same event IDs in multiple traces.  However, the effect of this redundancy on performance, storage, and the consolidation of audit logs into a central repository, should be taken into account.
+                2. It is acceptable, from an auditing point of view, to include the same event IDs in multiple traces.  However, the effect of this redundancy on performance, storage, and the consolidation `
+                of audit logs into a central repository, should be taken into account.
                 3. It is acceptable to trace additional event IDs. This is the minimum list.
-                4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include code to do this.)
+                4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include `
+                code to do this.)
                 Use the following query to obtain a list of all event IDs, and their meaning:
                 SELECT * FROM sys.trace_events;
-                5. Because this check procedure is designed to address multiple requirements/vulnerabilities, it may appear to exceed the needs of some individual requirements.  However, it does represent the aggregate of all such requirements.
-                6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.'
+                5. Because this check procedure is designed to address multiple requirements/vulnerabilities, it may appear to exceed the needs of some individual requirements.  However, it does represent `
+                the aggregate of all such requirements.
+                6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is `
+                Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.'
                 FixText      = 'This will not be used for this type of rule.'
                 EventId      = '(14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178)'
             }
@@ -127,36 +121,43 @@ try
                 REVOKE ALTER ANY ENDPOINT TO <'account name'>
                 GO"
             }
-        }
-
-        $testStigRuleParam = @{
-            CheckContent    = $sqlScriptQueryRule.DbExist.CheckContent
-            FixText         = $sqlScriptQueryRule.DbExist.FixText
-            ReturnGroupOnly = $true
-        }
-        $stigRule = Get-TestStigRule @testStigRuleParam
-        $rule = [SqlScriptQueryRule]::new( $stigRule )
-        #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
-                }
+            SysAdminAccount    = @{
+                GetScript    = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
+                TestScript   = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
+                SetScript    = 'USE [master] DECLARE @SysAdminAccountName varchar(50) SET @SysAdminAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) IF @SysAdminAccountName = ''sa'' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @SysAdminAccountName = ''old_sa'' DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@SysAdminAccountName] DISABLE;'
+                CheckContent = "Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
+                USE master; 
+                GO 
+                SELECT name, is_disabled 
+                FROM sys.sql_logins 
+                WHERE principal_id = 1; GO 
+                Verify that the `"name`" column contains the current name of the [sa] database server account (see note)."
+                FixText      = "Modify the SQL Server's [sa] (system administrator) account by running the following script:
+                USE master; 
+                GO
+                ALTER LOGIN [sa] WITH NAME = <new name> GO"
             }
-
-            Context 'Class Properties' {
-
-                $classProperties = @("GetScript", "TestScript", "SetScript")
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
+            Audit = @{
+                GetScript    = "USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP),(DATABASE_OBJECT_PERMISSION_CHANGE_GROUP),(DATABASE_OWNERSHIP_CHANGE_GROUP) /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) IF @MissingAuditCount = 0 SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1"
+                TestScript    = "USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 /* Create a table for the events that we are looking for */ CREATE TABLE #AuditEvents (AuditEvent varchar(100)) INSERT INTO #AuditEvents (AuditEvent) VALUES (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP),(DATABASE_OBJECT_PERMISSION_CHANGE_GROUP),(DATABASE_OWNERSHIP_CHANGE_GROUP) /* Create a cursor to walk through all audits that are enabled at startup */ DECLARE auditspec_cursor CURSOR FOR SELECT s.server_specification_id FROM sys.server_audits a INNER JOIN sys.server_audit_specifications s ON a.audit_guid = s.audit_guid WHERE a.is_state_enabled = 1; OPEN auditspec_cursor FETCH NEXT FROM auditspec_cursor INTO @server_specification_id WHILE @@FETCH_STATUS = 0 AND @FoundCompliant = 0 /* Does this specification have the needed events in it? */ BEGIN SET @MissingAuditCount = (SELECT Count(a.AuditEvent) AS MissingAuditCount FROM #AuditEvents a JOIN sys.server_audit_specification_details d ON a.AuditEvent = d.audit_action_name WHERE d.audit_action_name NOT IN (SELECT d2.audit_action_name FROM sys.server_audit_specification_details d2 WHERE d2.server_specification_id = @server_specification_id)) IF @MissingAuditCount = 0 SET @FoundCompliant = 1; FETCH NEXT FROM auditspec_cursor INTO @server_specification_id END CLOSE auditspec_cursor; DEALLOCATE auditspec_cursor; DROP TABLE #AuditEvents /* Produce output that works with DSC - records if we do not find the audit events we are looking for */ IF @FoundCompliant > 0 SELECT name FROM sys.sql_logins WHERE principal_id = -1; ELSE SELECT name FROM sys.sql_logins WHERE principal_id = 1"
+                SetScript    = '/* See STIG supplemental files for the annotated version of this script */ USE [master] IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') ALTER SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audit_specifications WHERE name = ''STIG_AUDIT_SERVER_SPECIFICATION'') DROP SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION; IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = OFF); IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') DROP SERVER AUDIT STIG_AUDIT; CREATE SERVER AUDIT STIG_AUDIT TO FILE (FILEPATH = ''C:\Audits'', MAXSIZE = 200MB, MAX_ROLLOVER_FILES = 50, RESERVE_DISK_SPACE = OFF) WITH (QUEUE_DELAY = 1000, ON_FAILURE = SHUTDOWN) IF EXISTS (SELECT 1 FROM sys.server_audits WHERE name = ''STIG_AUDIT'') ALTER SERVER AUDIT STIG_AUDIT WITH (STATE = ON); CREATE SERVER AUDIT SPECIFICATION STIG_AUDIT_SERVER_SPECIFICATION FOR SERVER AUDIT STIG_AUDIT ADD (APPLICATION_ROLE_CHANGE_PASSWORD_GROUP), ADD (AUDIT_CHANGE_GROUP), ADD (BACKUP_RESTORE_GROUP), ADD (DATABASE_CHANGE_GROUP), ADD (DATABASE_OBJECT_CHANGE_GROUP), ADD (DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_OBJECT_PERMISSION_CHANGE_GROUP), ADD (DATABASE_OPERATION_GROUP), ADD (DATABASE_OWNERSHIP_CHANGE_GROUP), ADD (DATABASE_PERMISSION_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_CHANGE_GROUP), ADD (DATABASE_PRINCIPAL_IMPERSONATION_GROUP), ADD (DATABASE_ROLE_MEMBER_CHANGE_GROUP), ADD (DBCC_GROUP), ADD (FAILED_LOGIN_GROUP), ADD (LOGIN_CHANGE_PASSWORD_GROUP), ADD (LOGOUT_GROUP), ADD (SCHEMA_OBJECT_CHANGE_GROUP), ADD (SCHEMA_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SCHEMA_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OBJECT_CHANGE_GROUP), ADD (SERVER_OBJECT_OWNERSHIP_CHANGE_GROUP), ADD (SERVER_OBJECT_PERMISSION_CHANGE_GROUP), ADD (SERVER_OPERATION_GROUP), ADD (SERVER_PERMISSION_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_CHANGE_GROUP), ADD (SERVER_PRINCIPAL_IMPERSONATION_GROUP), ADD (SERVER_ROLE_MEMBER_CHANGE_GROUP), ADD (SERVER_STATE_CHANGE_GROUP), ADD (SUCCESSFUL_LOGIN_GROUP), ADD (TRACE_CHANGE_GROUP) WITH (STATE = ON); GO '
+                CheckContent = "If the following events are not included, this is a finding. 
+                DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP DATABASE_OBJECT_PERMISSION_CHANGE_GROUP 
+                DATABASE_OWNERSHIP_CHANGE_GROUP"
+                FixText      = "Fix Text: Add the following events to the SQL Server Audit that is being used for the STIG compliant audit. 
+                DATABASE_OBJECT_OWNERSHIP_CHANGE_GROUP DATABASE_OBJECT_PERMISSION_CHANGE_GROUP 
+                DATABASE_OWNERSHIP_CHANGE_GROUP
+                See the supplemental file `"SQL 2016 Audit.sql`". "
+            }
+            PlainSQL    = @{
+                GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
+                TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
+                SetScript    = "DROP DATABASE AdventureWorks"
+                CheckContent = "Check SQL Server for the existence of the publicly available `"AdventureWorks`" database by performing the following query:
+                SELECT name from sysdatabases where name like 'AdventureWorks%';
+                If the `"AdventureWorks`" database is present, this is a finding."
+                FixText      = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
+                DROP DATABASE AdventureWorks"
             }
         }
         #endregion
@@ -206,6 +207,16 @@ try
                 $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
 
                 $query = Get-Query -CheckContent $checkContent
+
+                It 'Should return 3 queries' {
+                    $query.Count | Should be 3
+                }
+            }
+
+            Context 'Get-SQLQuery' {
+                $checkContent = Format-RuleText -RuleText $sqlScriptQueryRule.Trace.CheckContent
+
+                $query = Get-SQLQuery -CheckContent $checkContent
 
                 It 'Should return 3 queries' {
                     $query.Count | Should be 3

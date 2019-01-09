@@ -344,6 +344,30 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
+        'U_MS_SQL_Server_2016_Instance_STIG_V1R3_Manual-xccdf.xml'      = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 90
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 18
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = 5
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = 6
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
         'U_SQL_Server_2012_Instance_STIG_V1R16_Manual-xccdf.xml'      = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
@@ -353,14 +377,14 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 76
+            ManualRule                   = 75
             MimeTypeRule                 = $null
             PermissionRule               = $null
             ProcessMitigationRule        = $null
             RegistryRule                 = $null
             SecurityOptionRule           = $null
             ServiceRule                  = $null
-            SqlScriptQueryRule           = 32
+            SqlScriptQueryRule           = 33
             UserRightRule                = $null
             WebAppPoolRule               = $null
             WebConfigurationPropertyRule = $null
