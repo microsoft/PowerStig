@@ -694,7 +694,8 @@ function Test-RegistryValueDataContainsRange
     )
 
     # Is in a word boundary since it is a common pattern
-    if ( $ValueDataString -match $regularExpression.registryValueRange )
+    if ( $ValueDataString -match $regularExpression.registryValueRange -and
+         $ValueDataString -notmatch 'Disabled or' )
     {
         Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] $true"
         return $true

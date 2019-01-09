@@ -150,6 +150,8 @@ function Get-HardCodedString
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
         'V-17761' # Outlook 2013 - OrgSetting Value
+        'V-75241', # Windows Defender - ASSignatureDue
+        'V-75243' # Windows Defender - AVSignatureDue
     )
 
     if ($stigIds -contains $stigId)
@@ -208,6 +210,10 @@ function Get-HardCodedString
         {
             $hardCodedString = "'{0}' -ge '30' -and '{0}' -le '132'"
             continue
+        }
+        {$PSItem -match 'V-75241|V-75243'}
+        {
+            $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
         }
     }
 

@@ -223,8 +223,7 @@ function Get-RegistryValueTypeFromSLStig
     )
    
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
-    # $valueType = $CheckContent
-
+    
     foreach ($key in $Hashtable.Keys) 
     {  
         switch ($key)
@@ -390,7 +389,7 @@ function Get-RegistryValueNameFromSLStig
 
     if ($valueName)
     {
-        $valueName = $valueName.Matches.Value.Replace('"', '')
+        $valueName = $valueName.Matches.Value -replace '["ìîù]', ''
 
         if ($valueName.Count -gt 1)
         {

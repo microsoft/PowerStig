@@ -39,6 +39,7 @@ Class TechnologyRole
 2012R2 = DNS, DC, MS, IISSite, IISServer
 All = ADDomain, ADForest, FW, IE11, DotNet4, OracleJRE8, Outlook2013, Excel2013, Word2013, PowerPoint2013, FireFox
 2012 = Instance, Database
+2016 = Instance, Database
 10 = Client
 "@
 

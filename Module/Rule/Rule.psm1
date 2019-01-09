@@ -93,7 +93,7 @@ Class Rule : ICloneable
 
         <#
             This hidden property is used by all of the methods and passed to subfunctions instead of
-            splitting the sting in every function. The Select-String removes any blank lines, so
+            splitting the string in every function. The Select-String removes any blank lines, so
             that the Mandatory parameter validation does not fail and to prevent the need for a
             work around by allowing empty strings in mandatory parameters.
         #>
