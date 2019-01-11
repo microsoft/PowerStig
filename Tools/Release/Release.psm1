@@ -9,7 +9,7 @@ $script:markdownDataSection = DATA {
     Header          = # PowerSTIG File Hashes : Module Version **__modVer__**
     ContentSection1 = Hashes for **PowerSTIG** files are listed in the following table:
     TableHeader     = | File | __algorithm__ Hash | Size (bytes) |
-    TableFormat     = | ---- | ---- | --- |
+    TableFormat     = | :---- | ---- | ---: |
 '@
 }
 

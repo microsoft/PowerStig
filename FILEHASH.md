@@ -3,7 +3,7 @@
 Hashes for **PowerSTIG** files are listed in the following table:
 
 | File | SHA256 Hash | Size (bytes) |
-| ---- | ---- | --- |
+| :---- | ---- | ---: |
 | Mozilla-All-FireFox-4.21.org.default.xml | BC4E093A07E77444F03866016AA3F8D62F1D460DCB499DEBC618618C34BA78FF | 302 |
 | Mozilla-All-FireFox-4.21.xml | 5D1F1CAE9F056D8429B12EB7AE8C64277C3EE8D50480319F2BCF2822B8D91D2A | 22599 |
 | Mozilla-All-FireFox-4.23.org.default.xml | D8E45DC6E83499FF22CA90D417CD477A0DF4450F091117E766A57418BABA2CED | 302 |
