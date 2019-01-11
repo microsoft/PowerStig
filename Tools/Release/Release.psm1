@@ -3,6 +3,16 @@
 
 $script:ReleaseName = "{0}-Release"
 
+# Markdown file data section : used by Set-FileHashMarkdown
+$script:markdownDataSection = DATA {
+    ConvertFrom-StringData -StringData @'
+    Header          = # PowerSTIG File Hashes : Module Version **__modVer__**
+    ContentSection1 = Hashes for **PowerSTIG** files are listed in the following table:
+    TableHeader     = | File | __algorithm__ Hash | Size (bytes) |
+    TableFormat     = | ---- | ---- | --- |
+'@
+}
+
 <#
     .SYNOPSIS
         Validates that the supplied module version is greater than the current
@@ -69,11 +79,11 @@ function Get-PowerStigRepository
 
     $gitRemote = Invoke-Git -Command "remote get-url origin"
 
-    $baseUrl = $gitRemote -replace '\.git$',''
+    $baseUrl = $gitRemote -replace '\.git$', ''
     if ([string]::IsNullOrEmpty($gitRemote) -or
         $gitRemote -notmatch "^https://github.com/Microsoft/PowerStig")
     {
-       throw "$gitRemote is not a PowerStig Project. Please select a PowerStig project to release."
+        throw "$gitRemote is not a PowerStig Project. Please select a PowerStig project to release."
     }
     else
     {
@@ -253,11 +263,11 @@ function Get-UnreleasedNotes
     $unreleasedLine = $changelogContent | Select-String -Pattern $unreleasedHeader
 
     $latestedreleaseLine = ($changelogContent |
-        Select-String -Pattern $latestedreleaseHeader)[0]
+            Select-String -Pattern $latestedreleaseHeader)[0]
 
     $releaseNotes = $changelogContent[
-        ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
-            Out-String
+    ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
+        Out-String
 
     return $releaseNotes.Trim()
 }
@@ -341,7 +351,7 @@ function Update-Contributors
     $null = $contributorsMd.AppendLine('')
 
     $readmeContributorsRegEx = '(?<=### Contributors)[^#]+(?=#)'
-    $readmeContent = $readmeContent -replace $readmeContributorsRegEx,$contributorsMd.ToString()
+    $readmeContent = $readmeContent -replace $readmeContributorsRegEx, $contributorsMd.ToString()
 
     Set-Content -Path $readmePath -Value $readmeContent.Trim()
 }
@@ -381,12 +391,12 @@ function Update-Manifest
         $ManifestPath = (Get-ChildItem -Path $PWD -Filter "*.psd1").FullName
     }
 
-    $manifestContent    = Get-Content -Path $ManifestPath -Raw
+    $manifestContent = Get-Content -Path $ManifestPath -Raw
     $moduleVersionRegex = '(?<=ModuleVersion\s*=\s*'')(?<ModuleVersion>.*)(?=''(?!(\s*)}))'
-    $manifestContent    = $manifestContent -replace $moduleVersionRegex, $ModuleVersion
+    $manifestContent = $manifestContent -replace $moduleVersionRegex, $ModuleVersion
 
     $releaseNotesRegEx = "(?<=ReleaseNotes\s*=\s*')[^']+(?=')"
-    $manifestContent   = $manifestContent -replace $releaseNotesRegEx, $ReleaseNotes
+    $manifestContent = $manifestContent -replace $releaseNotesRegEx, $ReleaseNotes
 
     Set-Content -Path $ManifestPath -Value $manifestContent.TrimEnd()
 }
@@ -415,7 +425,7 @@ function Update-AppVeyorConfiguration
     $appveyorContent = Get-Content -Path $appveyorPath
     $regex = 'version\:\s\d\.\d\.\d\.\{build\}'
     $appveyorContent = $appveyorContent -replace $regex,
-        "version: $($moduleVersion.major).$($moduleVersion.Minor).$($moduleVersion.Build).{build}"
+    "version: $($moduleVersion.major).$($moduleVersion.Minor).$($moduleVersion.Build).{build}"
 
     Set-Content -Path $appveyorPath -Value $appveyorContent.TrimEnd()
 }
@@ -445,12 +455,12 @@ function Get-ProjectContributorList
     # https://developer.github.com/v3/pulls/#list-pull-requests
     $gitHubReleaseParam = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/pulls"
-        Method = 'Get'
-        Body = [ordered]@{
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/pulls"
+        Method         = 'Get'
+        Body           = [ordered]@{
             state = 'closed'
-            base = 'dev'
+            base  = 'dev'
         }
     }
     $pulls = Invoke-RestMethod @gitHubReleaseParam
@@ -460,8 +470,8 @@ function Get-ProjectContributorList
     # There were several contributors before this project was moved to GitHub, so
     # make sure they are given credit along side the contributions from GitHub.
     $preGitHubContributors = @{
-        PowerStig    = @('jcwalker','regedit32','bgouldman','mcollera')
-        PowerStigDsc = @('jcwalker','regedit32','bgouldman','mcollera')
+        PowerStig    = @('jcwalker', 'regedit32', 'bgouldman', 'mcollera')
+        PowerStigDsc = @('jcwalker', 'regedit32', 'bgouldman', 'mcollera')
     }
 
     foreach ($user in $preGitHubContributors.($Repository.name))
@@ -478,9 +488,9 @@ function Get-ProjectContributorList
         # https://developer.github.com/v3/users/#get-a-single-user
         $gitHubReleaseParam = [ordered]@{
             Authentication = 'OAuth'
-            Token = $script:GitHubApiKeySecure
-            Uri = "https://api.github.com/users/$user"
-            Method = 'Get'
+            Token          = $script:GitHubApiKeySecure
+            Uri            = "https://api.github.com/users/$user"
+            Method         = 'Get'
         }
         # The GitHub release triggers the AppVeyor deployment to the Gallery.
         $userDetails = Invoke-RestMethod @gitHubReleaseParam
@@ -517,7 +527,7 @@ function Get-GitHubApiKey
     try
     {
         [System.Security.SecureString] $GitHubKeySecure =
-            Get-Content -Path $SecureFilePath | ConvertTo-SecureString
+        Get-Content -Path $SecureFilePath | ConvertTo-SecureString
     }
     catch
     {
@@ -563,10 +573,10 @@ function Get-GitHubRefStatus
     # https://developer.github.com/v3/repos/statuses/#list-statuses-for-a-specific-ref
     $restParameters = [ordered]@{
         'Authentication' = 'OAuth'
-        'Token' = $script:GitHubApiKeySecure
-        'Uri' = "$($Repository.api_url)/commits/$Name/status"
-        'Method' = 'Get'
-        'Verbose' = $false
+        'Token'          = $script:GitHubApiKeySecure
+        'Uri'            = "$($Repository.api_url)/commits/$Name/status"
+        'Method'         = 'Get'
+        'Verbose'        = $false
     }
 
     [int] $i = 0
@@ -632,10 +642,10 @@ function New-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#create-a-pull-request
     $restMethodParamList = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/pulls"
-        Method = 'Post'
-        Body = [ordered]@{
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/pulls"
+        Method         = 'Post'
+        Body           = [ordered]@{
             title = "Release of version $ModuleVersion."
             body  = "Releasing version $ModuleVersion."
             head  = $BranchName
@@ -672,9 +682,9 @@ function Get-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#list-pull-requests
     $pullRequestParams = @{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Method = 'Get'
-        Uri = "$($Repository.api_url)/pulls"
+        Token          = $script:GitHubApiKeySecure
+        Method         = 'Get'
+        Uri            = "$($Repository.api_url)/pulls"
     }
 
     If ($PSCmdlet.ParameterSetName -eq 'one')
@@ -710,7 +720,7 @@ function Approve-GitHubPullRequest
         $CommitMessage,
 
         [Parameter()]
-        [ValidateSet('merge','squash','rebase')]
+        [ValidateSet('merge', 'squash', 'rebase')]
         [string]
         $MergeMethod = 'merge'
     )
@@ -718,14 +728,14 @@ function Approve-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#merge-a-pull-request-merge-button
     $restMethodParam = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($PullRequest.url)/merge"
-        Method = 'Put'
-        Body = [ordered]@{
-            commit_title = $CommitTitle
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($PullRequest.url)/merge"
+        Method         = 'Put'
+        Body           = [ordered]@{
+            commit_title   = $CommitTitle
             commit_message = $CommitMessage
-            sha = $PullRequest.head.sha
-            merge_method = $MergeMethod.ToLower()
+            sha            = $PullRequest.head.sha
+            merge_method   = $MergeMethod.ToLower()
         } | ConvertTo-Json
     }
 
@@ -765,16 +775,16 @@ function New-GitHubRelease
     # https://developer.github.com/v3/repos/releases/#create-a-release
     $restMethodParam = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/releases"
-        Method = 'Post'
-        Body = [ordered]@{
-            tag_name = $TagName
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/releases"
+        Method         = 'Post'
+        Body           = [ordered]@{
+            tag_name         = $TagName
             target_commitish = 'master'
-            name = $Title
-            body = $Description
-            draft = $Draft
-            prerelease = $Prerelease
+            name             = $Title
+            body             = $Description
+            draft            = $Draft
+            prerelease       = $Prerelease
         } | ConvertTo-Json
     }
 
@@ -881,6 +891,14 @@ function Start-PowerStigRelease
             Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
 
             Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
+
+            $setFileHashMarkdownParams = @{
+                FileHashPath  = "$PSScriptRoot\..\..\StigData\Processed\*.xml"
+                MarkdownPath  = "$PSScriptRoot\..\..\FILEHASH.md"
+                Algorithm     = 'SHA256'
+                ModuleVersion = $ModuleVersion
+            }
+            Set-FileHashMarkdown @setFileHashMarkdownParams
 
             # Push the release branch to GitHub
             Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
@@ -1006,9 +1024,9 @@ function Complete-PowerStigRelease
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         $pullRequestParam = @{
-            Repository  = $repository
-            BranchBase  = 'master'
-            BranchHead  = $releaseBranchName
+            Repository = $repository
+            BranchBase = 'master'
+            BranchHead = $releaseBranchName
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
@@ -1103,8 +1121,8 @@ function Complete-PowerStigDevMerge
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         $pullRequestParam = @{
-            Repository  = $repository
-            Number      = $PullRequestNumber
+            Repository = $repository
+            Number     = $PullRequestNumber
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
@@ -1126,6 +1144,78 @@ function Complete-PowerStigDevMerge
     {
         Pop-Location
     }
+}
+
+<#
+    .SYNOPSIS
+        Sets a markdown file which contains PowerSTIG file hashes.
+
+    .DESCRIPTION
+        Used to set a markdown file with file hashes for PowerSTIG
+        module files, such as Processed STIG Data, etc.
+
+    .PARAMETER FileHashPath
+        Specifies the path to one or more files as an array to generate file
+        hash data. Wildcard characters are permitted.
+
+    .PARAMETER MarkdownPath
+        Specifies the path for the markdown file.
+
+    .PARAMETER Algorithm
+        Specifies the cryptographic hash function to use for computing the hash
+        value of the contents of the specified file. A cryptographic hash function
+        includes the property that it is not possible to find two distinct inputs
+        that generate the same hash values. Hash functions are commonly used with
+        digital signatures and for data integrity.
+
+        The acceptable values for this parameter are:
+        'SHA256', 'SHA384' or 'SHA512'
+#>
+function Set-FileHashMarkdown
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $FileHashPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $MarkdownPath,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('SHA256', 'SHA384', 'SHA512')]
+        [string]
+        $Algorithm,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion
+    )
+
+    $fileHash = Get-FileHash -Path $FileHashPath -Algorithm $Algorithm
+
+    # String builder to set the markdown file
+    $fileHashMarkdownFileContent = New-Object System.Text.StringBuilder
+    $null = $fileHashMarkdownFileContent.AppendLine($($script:markdownDataSection.Header -replace '__modVer__', $ModuleVersion))
+    $null = $fileHashMarkdownFileContent.AppendLine()
+    $null = $fileHashMarkdownFileContent.AppendLine($script:markdownDataSection.ContentSection1)
+    $null = $fileHashMarkdownFileContent.AppendLine()
+    $null = $fileHashMarkdownFileContent.AppendLine($($script:markdownDataSection.TableHeader -replace '__algorithm__', $Algorithm))
+    $null = $fileHashMarkdownFileContent.AppendLine($script:markdownDataSection.TableFormat)
+
+    foreach ($file in $fileHash)
+    {
+        $fileHashWithSize = '| {0} | {1} | {2} |' -f
+            $(Split-Path -Path $file.Path -Leaf),
+            $($file.Hash),
+            $((Get-Item -Path $file.Path).Length)
+        $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
+    }
+
+    $null = $fileHashMarkdownFileContent.AppendLine()
+
+    Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
 }
 
 Export-ModuleMember -Function '*-PowerStigRelease', '*-PowerStigDevMerge'
