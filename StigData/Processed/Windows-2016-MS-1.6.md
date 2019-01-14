@@ -231,7 +231,7 @@
     V-73751 +
     V-73753 + DONE No org setting
     V-73755 + Trim ending String
-    V-73759 - Should be an Org Setting
+    V-73759 + Should be an Org Setting
     V-73763 +
     V-73767 +
     V-73771 +

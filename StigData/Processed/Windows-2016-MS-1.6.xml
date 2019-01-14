@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="1/10/2019">
+<DISASTIG id="Windows_Server_2016_MS_STIG" version="1.6" created="1/14/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4928,10 +4928,10 @@ Passwords for application accounts with this user right must be protected as hig
       <Constant>SeDenyNetworkLogonRight</Constant>
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
+      <Identity>Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'</OrganizationValueTestString>
       <RawString>This applies to member servers and standalone systems. A separate version applies to domain controllers.
 
 Verify the effective setting in Local Group Policy Editor.

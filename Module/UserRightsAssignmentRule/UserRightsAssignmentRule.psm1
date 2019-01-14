@@ -150,7 +150,7 @@ Class UserRightRule : Rule
                 $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
             }
-            elseif ($thisIdentity -join "," -match "(Local account and member of Administrators group|Local account)")
+            elseif ($thisIdentity -contains "(Local account and member of Administrators group|Local account)")
             {
                 $this.SetOrganizationValueRequired()
                 $this.set_OrganizationValueTestString("'{0}' -match '$($thisIdentity -join ",")'")
@@ -159,7 +159,6 @@ Class UserRightRule : Rule
 
         # add the results reguardless so they are easier to update
         $this.Identity = $thisIdentity -Join ","
-        #return $return
     }
 
     <#
