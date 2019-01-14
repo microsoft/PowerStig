@@ -2032,7 +2032,7 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
           <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>Special</Rights>
+          <Rights>ReadPermissions,ChangePermissions</Rights>
         </Entry>
       </AccessControlEntry>
       <Force>True</Force>
