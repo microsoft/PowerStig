@@ -3189,7 +3189,7 @@ For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 
 Default permissions:
-\Program Files and \Program Files (x86)
+C:\Program Files and C:\Program Files (x86)
 Type - "Allow" for all
 Inherited from - "None" for all
 
@@ -3286,7 +3286,7 @@ For each folder, view the Properties.
 Select the "Security" tab and the "Advanced" button.
 
 Default permissions:
-\Windows
+C:\Windows
 Type - "Allow" for all
 Inherited from - "None" for all
 

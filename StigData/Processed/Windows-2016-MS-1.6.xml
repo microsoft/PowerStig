@@ -1845,7 +1845,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -2026,6 +2026,14 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Administrators</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>This Key and Subkeys</Inheritance>
+          <Rights>Special</Rights>
+        </Entry>
       </AccessControlEntry>
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2044,8 +2052,6 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
-ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -2092,22 +2098,6 @@ If the defaults have not been changed, these are not a finding.
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>Subkeys Only</Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>ALL APPLICATION PACKAGES</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>ReadKey</Rights>
-        </Entry>
       </AccessControlEntry>
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2128,8 +2118,6 @@ Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
@@ -2172,14 +2160,6 @@ If the defaults have not been changed, these are not a finding.
         <Entry>
           <Type>
           </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>Subkeys Only</Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
@@ -2204,7 +2184,6 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
@@ -4921,7 +4900,7 @@ Systems that have the Hyper-V role will also have "Virtual Machines" given this 
       <Constant>SeDebugPrivilege</Constant>
       <DisplayName>Debug programs</DisplayName>
       <Force>True</Force>
-      <Identity>Administrators,Passwords for application accounts with this user right must be protected as highly privileged accounts.</Identity>
+      <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />

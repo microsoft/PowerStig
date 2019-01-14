@@ -88,13 +88,13 @@
 
 ## PermissionRule
 
-    V-73249   - missing inheritance flags
-    V-73251.a - missing Inheritance flags
-    V-73251.b +
-    V-73253   +
-    V-73255.a - missing ACE (Administrator)
+    V-73249   + DONE missing inheritance flags
+    V-73251.a + DONE missing Inheritance flags
+    V-73251.b + DONE missing Inheritance flags
+    V-73253   + DONE missing Inheritance flags
+    V-73255.a + DONE missing ACE (Administrator)
     V-73255.b +
-    V-73255.c - Duplicate Creator Owner Entry
+    V-73255.c + Duplicate Creator Owner Entry
     V-73405   +
     V-73407   +
     V-73409   +
@@ -111,8 +111,8 @@
     V-73503   +
     V-73505   +
     V-73507   +
-    V-73509.a - Needs to be further split into multipe value entries
-    V-73509.b - Needs to be further split into multipe value entries
+    V-73509.a + DONE Needs to be further split into multipe value entries
+    V-73509.b + DONE Needs to be further split into multipe value entries
     V-73511   +
     V-73513.a + DONE Clean up orgsetting test
     V-73513.b + DONE Clean up orgsetting test
@@ -230,7 +230,7 @@
     V-73749 +
     V-73751 +
     V-73753 + DONE No org setting
-    V-73755 - Trim ending String
+    V-73755 + Trim ending String
     V-73759 - Should be an Org Setting
     V-73763 +
     V-73767 +
