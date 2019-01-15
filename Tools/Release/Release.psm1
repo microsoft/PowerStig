@@ -266,8 +266,8 @@ function Get-UnreleasedNotes
             Select-String -Pattern $latestedreleaseHeader)[0]
 
     $releaseNotes = $changelogContent[
-    ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
-        Out-String
+        ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
+            Out-String
 
     return $releaseNotes.Trim()
 }
@@ -425,7 +425,7 @@ function Update-AppVeyorConfiguration
     $appveyorContent = Get-Content -Path $appveyorPath
     $regex = 'version\:\s\d\.\d\.\d\.\{build\}'
     $appveyorContent = $appveyorContent -replace $regex,
-    "version: $($moduleVersion.major).$($moduleVersion.Minor).$($moduleVersion.Build).{build}"
+        "version: $($moduleVersion.major).$($moduleVersion.Minor).$($moduleVersion.Build).{build}"
 
     Set-Content -Path $appveyorPath -Value $appveyorContent.TrimEnd()
 }
@@ -527,7 +527,7 @@ function Get-GitHubApiKey
     try
     {
         [System.Security.SecureString] $GitHubKeySecure =
-        Get-Content -Path $SecureFilePath | ConvertTo-SecureString
+            Get-Content -Path $SecureFilePath | ConvertTo-SecureString
     }
     catch
     {

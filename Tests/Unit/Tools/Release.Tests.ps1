@@ -689,7 +689,7 @@ try
             $testPullRequestNumber = 488
             $repository = @{
                 name = 'PowerStig'
-                url = 'https://api.github.com'
+                url  = 'https://api.github.com'
             }
             $pullRequest = @{
                 head = @{
@@ -736,6 +736,40 @@ try
             }
             It 'Should push the dev branch to GitHub' {
                 Assert-MockCalled -CommandName Push-GitBranch
+            }
+        }
+
+        Describe 'Set-FileHashMarkdown' -Tag 'tools' {
+            Mock -CommandName Get-FileHash -MockWith {
+                return @{
+                    Algorithm = 'SHA256'
+                    Hash      = '832A2A0F2EFF192EDB189E577753691143A50B674B14B68961FC08761F1DE81E'
+                    Path      = 'c:\dev\project\StigTestFile.xml'
+                }
+            }
+            Mock -CommandName Get-Item -MockWith {
+                return @{
+                    Mode   = '-a----'
+                    Length = 8414
+                    Name   = 'StigTestFile.xml'
+                }
+            }
+
+            It 'Should insert StigTestFile.xml file hash data in FILEHASH.md' {
+                $setFileHashMarkdownParams = @{
+                    FileHashPath  = 'c:\dev\project\StigTestFile.xml'
+                    MarkdownPath  = 'TestDrive:\FILEHASH.md'
+                    Algorithm     = 'SHA256'
+                    ModuleVersion = '2.0.0.0'
+                }
+
+                Set-FileHashMarkdown @setFileHashMarkdownParams
+                $fileInfo = Get-ChildItem -Path 'TestDrive:\FILEHASH.md'
+                $fileContent = Get-Content -Path 'TestDrive:\FILEHASH.md'
+                $shouldBeContent = 'StigTestFile.xml | 832A2A0F2EFF192EDB189E577753691143A50B674B14B68961FC08761F1DE81E | 8414 |'
+
+                $fileInfo.Name | Should Be 'FILEHASH.md'
+                $fileContent -contains $shouldBeContent | Should Be $true
             }
         }
     }
