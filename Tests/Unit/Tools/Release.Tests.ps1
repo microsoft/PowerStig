@@ -766,7 +766,6 @@ try
                 Set-FileHashMarkdown @setFileHashMarkdownParams
                 $fileInfo = Get-ChildItem -Path 'TestDrive:\FILEHASH.md'
                 $fileContent = Get-Content -Path 'TestDrive:\FILEHASH.md'
-                $fileContent | Out-File -Path C:\dev\fileHash.md
                 $shouldBeContent = '| StigTestFile.xml | 832A2A0F2EFF192EDB189E577753691143A50B674B14B68961FC08761F1DE81E | 8414 |'
 
                 $fileInfo.Name | Should Be 'FILEHASH.md'
