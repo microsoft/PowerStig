@@ -747,6 +747,7 @@ try
                     Path      = 'c:\dev\project\StigTestFile.xml'
                 }
             }
+
             Mock -CommandName Get-Item -MockWith {
                 return @{
                     Mode   = '-a----'
@@ -767,7 +768,6 @@ try
                 $fileInfo = Get-ChildItem -Path 'TestDrive:\FILEHASH.md'
                 $fileContent = Get-Content -Path 'TestDrive:\FILEHASH.md'
                 $shouldBeContent = '| StigTestFile.xml | 832A2A0F2EFF192EDB189E577753691143A50B674B14B68961FC08761F1DE81E | 8414 |'
-
                 $fileInfo.Name | Should Be 'FILEHASH.md'
                 $fileContent -contains $shouldBeContent | Should Be $true
             }
