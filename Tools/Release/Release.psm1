@@ -893,8 +893,8 @@ function Start-PowerStigRelease
             Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
 
             $setFileHashMarkdownParams = @{
-                FileHashPath  = "$PSScriptRoot\..\..\StigData\Processed\*.xml"
-                MarkdownPath  = "$PSScriptRoot\..\..\FILEHASH.md"
+                FileHashPath  = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml')
+                MarkdownPath  = (Join-Path -Path $PWD -ChildPath '\FILEHASH.md')
                 Algorithm     = 'SHA256'
                 ModuleVersion = $ModuleVersion
             }
