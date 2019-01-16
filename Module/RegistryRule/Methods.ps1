@@ -1141,4 +1141,96 @@ function Split-MultipleRegistryEntries
 
     return $registryEntries
 }
+<#
+    .SYNOPSIS
+        Splits multiple registry entries from a single check into individual check strings.
+
+    .NOTES
+        General notes
+#>
+function Set-RegistryPatternLog
+{
+    [CmdletBinding()]
+    [OutputType([Object])]
+    param
+    (
+        [Parameter()]
+        [string]
+        $Pattern, 
+
+        [Parameter()]
+        [string]
+        $Rule
+    )
+    
+    #Load table with patterns from Core data file.
+<#     #Build the in-memory table of patterns
+    If(-not $global:patternTable)
+    {
+        $nonesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }
+        $nesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
+
+        $regPathTable = $nonesteditems.GetEnumerator() | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        $regPathTable += $nesteditems.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
+        $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
+        $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }| ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
+
+        $global:patternTable = $regPathTable + $regValueTypeTable + $regValueNameTable + $regValueDataTable
+    }
+ #>
+    #Find pattern in table and increment count
+    $searchResult = $global:patternTable | Where-Object { $_.Pattern -eq $Pattern}
+    $searchResult.Count ++
+}
+
+function Get-RegistryPatternLog
+{
+    [CmdletBinding()]
+    [OutputType([Object])]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+    #If $Path is a directory then get all files contained in it
+    $isFolder = Test-Path $Path -pathType Container
+    if($isFolder)
+    {
+        $files = Get-ChildItem -Path $Path -Filter '*.xml'
+        foreach ($file in $files)
+        {
+            #Setup, check $file for Processed
+            [xml]$XmlDocument = Get-Content -Path $file.FullName
+            $id = $XmlDocument.Benchmark | Select-Object id
+            $version = $file.ToString() | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
+                                                                                                                    -replace "R","\." }
+            $hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+            if ($hasConversion)
+            {
+                ConvertFrom-StigXccdf -Path $file.FullName | Out-Null
+            }
+        }
+    }
+    
+    #If $Path is a file then process it
+    $isFile = Test-Path $Path -pathType Leaf
+    if($isFile)
+    {
+        #Setup, check $Path for Processed
+        [xml]$XmlDocument = Get-Content -Path $Path
+        $id = $XmlDocument.Benchmark | Select-Object id
+        $version = $Path.ToString() | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
+                                                                                                                -replace "R","." }
+        $hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+        if ($hasConversion)
+        {
+            ConvertFrom-StigXccdf -Path $Path | Out-Null
+        }
+    }
+
+    #Write-Host $global:patternTable
+    #return Format-Table $global:patternTable -AutoSize
+    return $global:patternTable
+}
 #endregion

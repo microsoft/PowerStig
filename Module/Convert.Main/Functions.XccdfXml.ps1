@@ -179,6 +179,23 @@ function Get-RegistryRuleExpressions
             . $supportFile.FullName
         }
     }
+    End
+    {
+        #Build the in-memory table of patterns
+        If(-not $global:patternTable)
+        {
+            $nonesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }
+            $nesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
+
+            $regPathTable = $nonesteditems.GetEnumerator() | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+            $regPathTable += $nesteditems.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+            $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
+            $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
+            $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }| ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
+
+            $global:patternTable = $regPathTable + $regValueTypeTable + $regValueNameTable + $regValueDataTable
+        }
+    }
 }
 
 <#

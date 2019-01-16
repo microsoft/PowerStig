@@ -1496,6 +1496,34 @@ try
                 Test-SingleLineStigFormat -CheckContent $checkContent | Should Be $false
             }
         }
+
+        <#Describe "Get-RegistryPatternLog" {
+            $folderPath = Resolve-Path -Path ..\..\..\StigData\Archive
+            $filePath = Resolve-Path -Path ..\..\..\StigData\Archive\Windows.Server.2016\U_Windows_Server_2016_STIG_V1R6_Manual-xccdf.xml
+    
+            Context 'Path is directory' {
+
+                It "Shoud return valid table with updated counts" {
+                    $result = Get-RegistryPatternLog -Path $folderPath
+                    $result.GetType() | Should Be 'System.Object[]'
+                }
+            }
+            Context 'Path is file' {
+
+                It "Shoud return valid table with updated counts" {
+                    $result = Get-RegistryPatternLog -Path $filePath
+                    $result.GetType() | Should Be 'System.Object[]'
+                }
+            }
+            Context 'Path is null' {
+
+                It "Shoud return error" {
+                    $result = Get-RegistryPatternLog -Path $null
+                    $result | Should Throw 
+                }
+            }
+
+        }#>
         #endregion
         #region Data Tests
 

@@ -145,7 +145,7 @@ function Get-SLRegistryPath
     if (-not [String]::IsNullOrEmpty($matchedRegistryPath))
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found path : $true"
-
+        Set-RegistryPatternLog -Pattern $regEx
         switch -Wildcard ($matchedRegistryPath)
         {
             "*HKLM*" {$matchedRegistryPath = $matchedRegistryPath -replace "^HKLM", "HKEY_LOCAL_MACHINE"}
@@ -268,6 +268,7 @@ function Get-RegistryValueTypeFromSLStig
                 } 
                 else
                 {
+                    Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
                     $valueType = $selectedValueType.Matches[0].Value
                     if ($Hashtable.Item('Group'))
                     {
@@ -402,6 +403,7 @@ function Get-RegistryValueNameFromSLStig
         if (-not [String]::IsNullOrEmpty($result))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
+            #Set-RegistryPatternLog -Pattern $regEx
             return $result
         }
         else
@@ -525,6 +527,7 @@ function Get-RegistryValueDataFromSLStig
         if (-not [String]::IsNullOrEmpty($result))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
+            #Set-RegistryPatternLog -Pattern $regEx
             return $result 
         }
         else
