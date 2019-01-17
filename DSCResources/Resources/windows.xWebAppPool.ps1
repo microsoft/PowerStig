@@ -7,16 +7,12 @@ $stringBuilder = [System.Text.StringBuilder]::new()
 foreach ($rule in $rules)
 {
     # Strings need to be enclosed in quotes.
-    if($rule.Value -match '^\$')
+    if($rule.Value -notmatch '^\$')
     {
-        $value = $rule.Value
-    }
-    else
-    {
-        $value = "'$($rule.Value)'"
+        $rule.Value = "'$($rule.Value)'"
     }
 
-    $null = $stringBuilder.AppendLine("$($rule.Key) = $value")
+    $null = $stringBuilder.AppendLine("$($rule.Key) = $($rule.Value)")
 }
 
 foreach ($appPool in $WebAppPool)
