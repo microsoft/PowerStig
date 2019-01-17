@@ -44,7 +44,11 @@ function ConvertTo-PowerStigXml
 
         [Parameter()]
         [string[]]
-        $RuleIdFilter
+        $RuleIdFilter,
+
+        [Parameter()]
+        [switch]
+        $DoNotExportDescription
     )
 
     Begin
@@ -114,6 +118,19 @@ function ConvertTo-PowerStigXml
                 operator to filter and return the proper case
             #>
             $propertiesToRemove = $properties | Where-Object -FilterScript {$PSItem -in $propertiesToRemove}
+
+            ### [TODO] ###
+            <#
+                Remove the Description if explicited requested. Once all PowerSTIG
+                data files are updated with the description attribute, this and
+                the $DoNotExportDescription can be removed from the function. This
+                field is used to automatically generate a populated STIG checklist.
+            #>
+            if ($DoNotExportDescription)
+            {
+                $propertiesToRemove += 'Description'
+            }
+            ### END TODO ###
 
             # Remove the raw string from the output if it was not requested.
             if ( -not $IncludeRawString )
