@@ -12,9 +12,9 @@ foreach ($supportFile in $expressionFileList)
 Import-Module .\PowerStig.Convert.psm1
 #Import-Module .\Module\RegistryRule\RegistryRule.psm1
 #TESTING DIRECTORY
-Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archive\browser"
+#Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archive\browser"
 #TESTING FILE
-#Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml"
+Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml"
 
 
 

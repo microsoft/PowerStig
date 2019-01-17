@@ -1195,18 +1195,12 @@ function Get-RegistryPatternLog
     )
     #If $Path is a directory then get all files contained in it
     $isFolder = Test-Path $Path -pathType Container
-    if($isFolder)
+    if ($isFolder)
     {
         $files = Get-ChildItem -Path $Path -Filter '*.xml'
         foreach ($file in $files)
         {
-            #Setup, check $file for Processed
-            [xml]$XmlDocument = Get-Content -Path $file.FullName
-            $id = $XmlDocument.Benchmark | Select-Object id
-            $version = $file.ToString() | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
-                                                                                                                    -replace "R","\." }
-            $hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
-            if ($hasConversion)
+            if (Test-StigProcessed $file.FullName)
             {
                 ConvertFrom-StigXccdf -Path $file.FullName | Out-Null
             }
@@ -1217,13 +1211,7 @@ function Get-RegistryPatternLog
     $isFile = Test-Path $Path -pathType Leaf
     if($isFile)
     {
-        #Setup, check $Path for Processed
-        [xml]$XmlDocument = Get-Content -Path $Path
-        $id = $XmlDocument.Benchmark | Select-Object id
-        $version = $Path.ToString() | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
-                                                                                                                -replace "R","." }
-        $hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
-        if ($hasConversion)
+        if (Test-StigProcessed $Path)
         {
             ConvertFrom-StigXccdf -Path $Path | Out-Null
         }
@@ -1232,5 +1220,42 @@ function Get-RegistryPatternLog
     #Write-Host $global:patternTable
     #return Format-Table $global:patternTable -AutoSize
     return $global:patternTable
+}
+<#
+    .SYNOPSIS
+        Test if the check-content contains mitigations polices to enable.
+
+    .PARAMETER Path
+        Specifies the check-content element in the xccdf
+
+    .Notes
+        Currently all rules in the STIG state the policies referenced need to be enabled.
+        However that could change in the future or in other STIGs so we need to check for both conditions (Enabled|Disabled)
+#>
+function Test-StigProcessed
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $Path
+    )
+    #Setup, check $Path for Processed
+    [xml]$XmlDocument = Get-Content -Path $Path
+    $id = $XmlDocument.Benchmark | Select-Object id
+    $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
+                                                                                                            -replace "R","\." }
+    $hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+    
+    if ($hasConversion)
+    {
+        return $true
+    }
+    else 
+    {  
+        return $false      
+    }
 }
 #endregion
