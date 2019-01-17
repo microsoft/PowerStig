@@ -51,7 +51,9 @@ Class Rule : ICloneable
     [Boolean] $IsNullOrEmpty
     [Boolean] $OrganizationValueRequired
     [string] $OrganizationValueTestString
+    [string] $Description
     hidden [string] $DscResource
+
 
     <#
         .SYNOPSIS
@@ -79,7 +81,7 @@ Class Rule : ICloneable
         $this.Id = $StigRule.id
         $this.Severity = $StigRule.rule.severity
         $this.Title = $StigRule.title
-
+        $this.Description = $StigRule.rule.description
         # Since the string comes from XML, we have to assume that it is encoded for html.
         # This will decode it back into the normal string characters we are looking for.
         if ( Test-HtmlEncoding -CheckString  $StigRule.rule.Check.('check-content') )

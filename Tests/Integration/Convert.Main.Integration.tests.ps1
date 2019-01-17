@@ -281,7 +281,7 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 27
+            ManualRule                   = 26
             MimeTypeRule                 = $null
             PermissionRule               = 9
             ProcessMitigationRule        = 31
@@ -294,7 +294,7 @@ try
             WebConfigurationPropertyRule = $null
             WinEventLogRule              = $null
             WindowsFeatureRule           = 9
-            WmiRule                      = 1
+            WmiRule                      = 2
         }
         'U_IIS_8-5_Site_STIG_V1R2_Manual-xccdf.xml'                   = @{
             AccountPolicyRule            = $null
@@ -812,7 +812,7 @@ try
 
     Describe 'PowerStig output' {
 
-        $path = (Get-ChildItem -Path $filePath -File -Recurse)[0].FullName
+        $path = (Get-ChildItem -Path $filePath -File -Exclude '*.md' -Recurse)[0].FullName
 
         It 'Should not throw an error when a STIG is converted' {
             {ConvertTo-PowerStigXml -Path $path -Destination $TestDrive} |

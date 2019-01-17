@@ -159,43 +159,47 @@ function ConvertTo-TestString
     {
         'greater than'
         {
-            return "{0} -gt '$number'"
+            return "'{0}' -gt '$number'"
         }
         'or greater'
         {
-            return "{0} -ge '$number'"
+            return "'{0}' -ge '$number'"
         }
         'greater than but not'
         {
-            return "{0} -gt '$($number[0])' -and {0} -lt '$($number[1])'"
+            return "'{0}' -gt '$($number[0])' -and '{0}' -lt '$($number[1])'"
         }
         'or greater but not'
         {
-            return "{0} -ge '$($number[0])' -and {0} -lt '$($number[1])'"
+            return "'{0}' -ge '$($number[0])' -and '{0}' -lt '$($number[1])'"
         }
         'less than'
         {
-            return "{0} -lt '$number'"
+            return "'{0}' -lt '$number'"
         }
         'or less'
         {
-            return "{0} -le '$number'"
+            return "'{0}' -le '$number'"
         }
         'less than but not'
         {
-            return "{0} -lt '$($number[0])' -and {0} -gt '$($number[1])'"
+            return "'{0}' -lt '$($number[0])' -and '{0}' -gt '$($number[1])'"
         }
         'or less but not'
         {
-            return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
+            return "'{0}' -le '$($number[0])' -and '{0}' -gt '$($number[1])'"
         }
         {$PSItem -match 'or less excluding'}
         {
-            return "{0} -le '$($number[0])' -and {0} -gt '$($number[1])'"
+            return "'{0}' -le '$($number[0])' -and '{0}' -gt '$($number[1])'"
         }
         'and'
         {
-            return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
+            return "'{0}' -ge '$($number[0])' -and '{0}' -le '$($number[1])'"
+        }
+        {$PSItem -match 'or if the Value Name does not exist'}
+        {
+            return "'{0}' -match '$($number[0])|ShouldBeAbsent'"
         }
         'through'
         {
@@ -379,8 +383,12 @@ function ConvertTo-OrTestString
     try
     {
         $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
-        $numbers = $tokens.Where( {$PSItem.type -eq 'Number'}).Content
-        "{0} $($operatorString[$Operator]) '$($numbers -join "|")'"
+        $orgSettings = $tokens.Where( {$PSItem.type -eq 'Number' -and $PSItem.Content -notmatch '\dx\d{8}' }).Content
+        if($string -match 'or if the Value Name does not exist')
+        {
+            $orgSettings += 'ShouldBeAbsent'
+        }
+        "'{0}' $($operatorString[$Operator]) '$($orgSettings -join "|")'"
     }
     catch
     {

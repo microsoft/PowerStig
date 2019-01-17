@@ -14,11 +14,14 @@
     .PARAMETER CreateOrgSettingsFile
         Creates the orginazational settings files associated with the version of the STIG.
 
-    .PARAMETER IncludeRawString
-        Adds the check-content elemet content to the converted object.
+    .PARAMETER DoNotExportRawString
+        Excludes the check-content elemet content from the converted object.
 
     .PARAMETER RuleIdFilter
         Filters the list rules that are converted to simplify debugging the conversion process.
+
+    .PARAMETER DoNotExportDescription
+        Excludes the Description elemet content from the converted object.
 #>
 function ConvertTo-PowerStigXml
 {
@@ -40,11 +43,15 @@ function ConvertTo-PowerStigXml
 
         [Parameter()]
         [switch]
-        $IncludeRawString,
+        $DoNotExportRawString,
 
         [Parameter()]
         [string[]]
-        $RuleIdFilter
+        $RuleIdFilter,
+
+        [Parameter()]
+        [switch]
+        $DoNotExportDescription
     )
 
     Begin
@@ -58,7 +65,7 @@ function ConvertTo-PowerStigXml
     }
     Process
     {
-        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -IncludeRawString:$IncludeRawString -RuleIdFilter $RuleIdFilter
+        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -RuleIdFilter $RuleIdFilter
 
         # Get the raw xccdf xml to pull additional details from the root node.
         [xml] $xccdfXml = Get-Content -Path $Path -Encoding UTF8
@@ -115,8 +122,21 @@ function ConvertTo-PowerStigXml
             #>
             $propertiesToRemove = $properties | Where-Object -FilterScript {$PSItem -in $propertiesToRemove}
 
+            ### [TODO] ###
+            <#
+                Remove the Description if explicited requested. Once all PowerSTIG
+                data files are updated with the description attribute, this and
+                the $DoNotExportDescription can be removed from the function. This
+                field is used to automatically generate a populated STIG checklist.
+            #>
+            if ( $DoNotExportDescription )
+            {
+                $propertiesToRemove += 'Description'
+            }
+            ### END TODO ###
+
             # Remove the raw string from the output if it was not requested.
-            if ( -not $IncludeRawString )
+            if ( $DoNotExportRawString )
             {
                 $propertiesToRemove += 'RawString'
             }

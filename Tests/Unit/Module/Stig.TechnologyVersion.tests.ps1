@@ -17,7 +17,7 @@ try
         $Technology2 = [Technology]::SqlServer
 
         $TestValidateSet = @"
-Windows = All, 2012R2, 10
+Windows = All, 2012R2, 2016, 10
 SqlServer = 2012, 2016
 Mozilla = All
 "@

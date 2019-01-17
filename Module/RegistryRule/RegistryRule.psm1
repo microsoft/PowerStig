@@ -407,6 +407,7 @@ Class RegistryRule : Rule
                 $CheckContent -NotMatch "Review the Catalog" -and
                 $CheckContent -NotMatch "For 32.bit (production systems|applications)" -and
                 $CheckContent -NotMatch 'If the "AllowStrongNameBypass" registry key' -and
+                $CheckContent -NotMatch 'DSA Database file' -and
                 $CheckContent -NotMatch "N'HKEY_LOCAL_MACHINE'"
             ) -or
             (

@@ -209,24 +209,6 @@ $checkContent = 'Security Option "Audit: Force audit policy subcategory settings
         }
     }
 
-    Context 'WmiRule' {
-        It "Should return 'WmiRule' when 'Disk Management' is found" {
-            $checkContent = 'Disk Management'
-            $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name | Should Be 'WmiRule'
-        }
-        It "Should return 'WmiRule' when 'Service Pack' is found" {
-            $checkContent = 'Service Pack If the "About Windows" dialog box does not display
-            "Microsoft Windows Server
-            Version 6.2 (Build 9200)"
-            or greater, this is a finding. '
-            $rule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-            $testResults = [ConvertFactory]::Rule( $rule )
-            $testResults[0].GetType().Name | Should Be 'WmiRule'
-        }
-    }
-
     Context 'WinEventLogRule' {
         It "Should return 'WinEventLogRule' when 'eventvwr.msc and Logs\Microsoft' is found" {
             $checkContent = 'eventvwr.msc applications and Services Logs\Microsoft\Windows\DNS Server'

@@ -155,7 +155,7 @@ try
             @{
                 Hive                      = 'HKEY_CURRENT_USER'
                 Path                      = '\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments'
-                OrganizationValueRequired = 'False'
+                OrganizationValueRequired = 'True'
                 ValueName                 = 'SaveZoneInformation'
                 ValueData                 = '2'
                 ValueType                 = 'Dword'
@@ -236,6 +236,25 @@ try
         }
         #endregion
         #region Method Tests
+
+        Describe 'Match Static method' {
+
+            $stringsToTest = @(
+                @{
+                    string = 'Navigate to "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters".
+
+                    Note the directory locations in the values for "DSA Database file".
+
+                    Open "Command Prompt".'
+                    match = $false
+                }
+            )
+
+            It 'Should not match the DSA Database file registry path' {
+                [RegistryRule]::Match($stringsToTest.string) | Should Be $false
+            }
+        }
+
         Describe 'Get-RegistryKey' {
 
             foreach ( $rule in $rulesToTest )
@@ -334,7 +353,8 @@ try
                     'Value: 0x0000001e (30) (or less, but not 0)',
                     'Value: 0x0000001e (30) (or less, excluding 0)',
                     'Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)',
-                    'Value: Possible values are NoSync,NTP,NT5DS, AllSync'
+                    'Value: Possible values are NoSync,NTP,NT5DS, AllSync',
+                    'Value: 0x00000002 (2) (or if the Value Name does not exist)'
                 )
 
                 foreach ($string in $rangeStrings)
@@ -352,8 +372,7 @@ try
                     'Value: Enabled',
                     'Value: Disabled',
                     'Value: 0x0000000a (10)',
-                    'Value: 10',
-                    'Value: 0x00000002 (2) (or if the Value Name does not exist)'
+                    'Value: 10'
                 )
 
                 foreach ($string in $rangeStrings)
