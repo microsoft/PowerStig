@@ -1,8 +1,8 @@
 <!--
-    The organizational settings file is used to define the local organizations  
+    The organizational settings file is used to define the local organizations
     preferred setting within an allowed range of the STIG.
 
-    Each setting in this file is linked by STIG ID and the valid range is in an 
+    Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
 <OrganizationalSettings version="1.2">
@@ -15,11 +15,11 @@
   <!-- Ensure 'V-76821' -le 2048-->
   <OrganizationalSetting id="V-76821" value="2048" />
   <!-- Ensure [TimeSpan]'V-76839' -le [TimeSpan]'00:20:00'-->
-  <OrganizationalSetting id="V-76839" value="'00:20:00'" />
+  <OrganizationalSetting id="V-76839" value="00:20:00" />
   <!-- Ensure [TimeSpan]'V-76841' -le [TimeSpan]'00:20:00'-->
-  <OrganizationalSetting id="V-76841" value="'00:20:00'" />
+  <OrganizationalSetting id="V-76841" value="00:20:00" />
   <!-- Ensure 'V-76875' -le 1000-->
   <OrganizationalSetting id="V-76875" value="1000" />
   <!-- Ensure [TimeSpan]'V-76881' -le [TimeSpan]'00:05:00'-->
-  <OrganizationalSetting id="V-76881" value="'00:05:00'" />
+  <OrganizationalSetting id="V-76881" value="00:05:00" />
 </OrganizationalSettings>

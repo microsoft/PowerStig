@@ -38,11 +38,11 @@ If any script file extensions from the black list are enabled, this is a finding
       <OrganizationValueTestString />
       <RawString>For "Handler Mappings", the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Handler Mappings" in IIS 8.5. "Handler Mappings" at the site level take precedence over "Handler Mappings" at the server level.
 
-Follow the procedures below for each site hosted on the IIS 8.5 web server: 
+Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
 
-Double-click "Request Filtering". 
+Double-click "Request Filtering".
 
 If any file name extensions from the black list have "Allowed" set to "True", this is a finding.</RawString>
     </Rule>
@@ -102,7 +102,7 @@ Click the site name under review.
 
 Double-click "Default Document".
 
-In the "Actions" pane, verify the "Default Document" feature is enabled. 
+In the "Actions" pane, verify the "Default Document" feature is enabled.
 
 If an "Enable" option is listed under the "Actions" pane, the "Default Document" feature is not enabled and this is a finding.
 
@@ -481,7 +481,7 @@ Select the "Fields" button.
 
 Under "Standard Fields", verify "User Agent", "User Name" and "Referrer" are selected.
 
-Under "Custom Fields", verify the following fields have been configured: 
+Under "Custom Fields", verify the following fields have been configured:
 
 Server Variable &gt;&gt; HTTP_USER_AGENT
 
@@ -573,7 +573,7 @@ Open the IIS 8.5 Manager.
 
 Click the site name.
 
-Click the "Logging" icon. 
+Click the "Logging" icon.
 
 Click "Browse" and navigate to the directory where the log files are stored.
 
@@ -802,29 +802,29 @@ If files with these extensions are found, this is a finding.</RawString>
       <OrganizationValueTestString />
       <RawString>Note: This requirement is only applicable for private DoD websites.
 
-If a banner is required, the following banner page must be in place: 
+If a banner is required, the following banner page must be in place:
 
-“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. 
+“You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
-By using this IS (which includes any device attached to this IS), you consent to the following conditions: 
+By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. 
+-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
 
-- At any time, the USG may inspect and seize data stored on this IS. 
+- At any time, the USG may inspect and seize data stored on this IS.
 
-- Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. 
+- Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
 
-- This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy. 
+- This IS includes security measures (e.g., authentication and access controls) to protect USG interests—not for your personal benefit or privacy.
 
-- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.” 
+- Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.”
 
-OR 
+OR
 
-If your system cannot meet the character limits to store this amount of text in the banner, the following is another option for the warning banner: 
+If your system cannot meet the character limits to store this amount of text in the banner, the following is another option for the warning banner:
 
-"I've read &amp; consent to terms in IS user agreem't." 
+"I've read &amp; consent to terms in IS user agreem't."
 
-NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it does point to the RMF Knowledge Service for a copy of the required text. It is also noted that the banner is to be displayed only once when the individual enters the site and not for each page. 
+NOTE: While DoDI 8500.01 does not contain a copy of the banner to be used, it does point to the RMF Knowledge Service for a copy of the required text. It is also noted that the banner is to be displayed only once when the individual enters the site and not for each page.
 
 If the access-controlled website does not display this banner page before entry, this is a finding.</RawString>
     </Rule>
@@ -916,7 +916,7 @@ If any OS shell MIME types are configured, this is a finding.
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>idleTimeout</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>[TimeSpan]'{0}' -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
@@ -990,7 +990,7 @@ If the "Rapid Fail Protection:Enabled" is not set to "True", this is a finding.<
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>rapidFailProtectionInterval</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:05:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>[TimeSpan]'{0}' -le [TimeSpan]'00:05:00'</OrganizationValueTestString>
       <RawString>Open the IIS 8.5 Manager.
 
 Click the “Application Pools”.
@@ -1272,7 +1272,7 @@ If the "Debug" value is not set to "False", this is a finding.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>timeout</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>[TimeSpan]'{0}' -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
