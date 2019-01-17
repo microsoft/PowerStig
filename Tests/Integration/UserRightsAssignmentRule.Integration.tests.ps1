@@ -35,8 +35,8 @@ try
         }
         @{
             displayName = 'Deny access to this computer from the network'
-            constant = 'SeDenyNetworkLogonRight'
-            Identity = 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'
+            constant    = 'SeDenyNetworkLogonRight'
+            Identity    = 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'
             organizationValueRequired = $true
             organizationValueTestString = "'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'"
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.

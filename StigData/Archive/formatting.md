@@ -30,8 +30,3 @@ Value: 0x00000000 (0) (Off)
 Value: 0 - No peering (HTTP Only)
 Should Be
 Value: 0 (No peering HTTP Only)
-
-Adam Haynes | Principal Consultant | US DOD EMEA
-Mobile: +49 (173) 312-5069
-Skype for Business:  +49 (6172) 661252 X252
-Email: adam.haynes@microsoft.com
