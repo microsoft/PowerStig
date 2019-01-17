@@ -1,4 +1,4 @@
-<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="12/19/2018">
+<DISASTIG id="Windows_Server_2016_DC_STIG" version="1.6" created="1/17/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2411,8 +2411,7 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
           </Type>
           <Principal>SYSTEM</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
         <Entry>
@@ -2420,8 +2419,7 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
           </Type>
           <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
         <Entry>
@@ -2429,8 +2427,7 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
           </Type>
           <Principal>Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -2571,8 +2568,7 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
           </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -2580,8 +2576,7 @@ Successfully processed 1 files; Failed processing 0 files</RawString>
           </Type>
           <Principal>ALL RESTRICTED APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
       </AccessControlEntry>
@@ -2696,8 +2691,7 @@ Successfully processed 1 files; Failed processing 0 files
           </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -2705,8 +2699,7 @@ Successfully processed 1 files; Failed processing 0 files
           </Type>
           <Principal>ALL RESTRICTED APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
       </AccessControlEntry>
@@ -2805,8 +2798,7 @@ Successfully processed 1 files; Failed processing 0 files
           </Type>
           <Principal>Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -2822,8 +2814,7 @@ Successfully processed 1 files; Failed processing 0 files
           </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -2831,8 +2822,7 @@ Successfully processed 1 files; Failed processing 0 files
           </Type>
           <Principal>ALL RESTRICTED APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
       </AccessControlEntry>
@@ -3206,8 +3196,7 @@ BUILTIN\Administrators:(I)(F)
           </Type>
           <Principal>SYSTEM</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>

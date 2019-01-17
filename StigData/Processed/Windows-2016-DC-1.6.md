@@ -125,7 +125,7 @@
     V-73255.c + DONE  path HKLM:\SECURITY;HKLM:\SOFTWARE;HKLM:\SYSTEM
     V-73369   +
     V-73371   +
-    V-73373   - no path
+    V-73373   - no path Should be a manual RUle
     V-73405   +
     V-73407   +
     V-73409   +
