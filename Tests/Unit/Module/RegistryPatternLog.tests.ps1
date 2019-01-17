@@ -1,33 +1,20 @@
 #region Header
+using module .\..\..\..\PowerStig.Convert.psm1
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
-$expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
-foreach ($supportFile in $expressionFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
 #endregion
 
-Import-Module .\PowerStig.Convert.psm1
-#Import-Module .\Module\RegistryRule\RegistryRule.psm1
-#TESTING DIRECTORY
-#Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archive\browser"
-#TESTING FILE
-Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml"
-
-
-
-<# try
+try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "RegistryRule" {
         #region Test Setup
-        $folderPath = ..\..\StigData\Archive
-        $filePath = ..\..\StigData\Archive\Windows.Client\U_Windows_10_STIG_V1R14_Manual-xccdf.xml
+        $folderPath = Resolve-Path -Path '..\..\..\StigData\Archive\browser' -Relative
+        $filePath = Resolve-Path -Path '..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml' -Relative
         #endregion
-        #region Class Tests
 
+        #region Class Tests
         #endregion
+
         #region Method Tests
         Describe "Get-RegistryPatternLog" {
 
@@ -35,28 +22,26 @@ Get-RegistryPatternLog "C:\Users\ladillon\Source\Repos\PowerStig\StigData\Archiv
 
                 It "Shoud return valid table with updated counts" {
                     $result = Get-RegistryPatternLog -Path $folderPath
-                    $result.GetType() | Should Be 'System.Collection.Specialized.OrderedDictionary'
+                    $result.GetType() | Should Be 'System.Object[]'
                 }
             }
             Context 'Path is file' {
 
                 It "Shoud return valid table with updated counts" {
                     $result = Get-RegistryPatternLog -Path $filePath
-                    $result.GetType() | Should Be 'System.Collection.Specialized.OrderedDictionary'
+                    $result.GetType() | Should Be 'System.Object[]'
                 }
             }
             Context 'Path is null' {
 
-                It "Shoud return null" {
-                    $result = Get-RegistryPatternLog -Path $null
-                    $result | Should Be $null
+                It "Shoud throw if path is null" {
+                { Get-RegistryPatternLog -Path $null } | Should Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
                 }
             }
-
         }
         #endregion
-        #region Data Tests
 
+        #region Data Tests
         #endregion
     }
 }
@@ -64,4 +49,3 @@ finally
 {
     . $PSScriptRoot\.tests.footer.ps1
 }
- #>

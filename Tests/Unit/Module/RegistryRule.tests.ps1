@@ -1,7 +1,9 @@
 #region Header
+using module .\..\..\..\PowerStig.Convert.psm1
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 $expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
+Clear-Variable SingleLine* -Scope Global
 foreach ($supportFile in $expressionFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
@@ -1497,10 +1499,11 @@ try
             }
         }
 
-        <#Describe "Get-RegistryPatternLog" {
-            $folderPath = Resolve-Path -Path ..\..\..\StigData\Archive
-            $filePath = Resolve-Path -Path ..\..\..\StigData\Archive\Windows.Server.2016\U_Windows_Server_2016_STIG_V1R6_Manual-xccdf.xml
-    
+        Describe "Get-RegistryPatternLog" {
+            
+            $folderPath = Resolve-Path -Path '..\..\..\StigData\Archive\browser' -Relative
+            $filePath = Resolve-Path -Path '..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml' -Relative    
+            
             Context 'Path is directory' {
 
                 It "Shoud return valid table with updated counts" {
@@ -1517,13 +1520,11 @@ try
             }
             Context 'Path is null' {
 
-                It "Shoud return error" {
-                    $result = Get-RegistryPatternLog -Path $null
-                    $result | Should Throw 
+                It "Shoud throw if path is null" {
+                { Get-RegistryPatternLog -Path $null } | Should Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
                 }
             }
-
-        }#>
+        }
         #endregion
         #region Data Tests
 

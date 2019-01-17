@@ -1164,7 +1164,7 @@ function Set-RegistryPatternLog
     )
     
     #Load table with patterns from Core data file.
-<#     #Build the in-memory table of patterns
+    #Build the in-memory table of patterns
     If(-not $global:patternTable)
     {
         $nonesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }
@@ -1178,7 +1178,7 @@ function Set-RegistryPatternLog
 
         $global:patternTable = $regPathTable + $regValueTypeTable + $regValueNameTable + $regValueDataTable
     }
- #>
+
     #Find pattern in table and increment count
     $searchResult = $global:patternTable | Where-Object { $_.Pattern -eq $Pattern}
     $searchResult.Count ++
@@ -1193,32 +1193,42 @@ function Get-RegistryPatternLog
         [string]
         $Path
     )
-    #If $Path is a directory then get all files contained in it
-    $isFolder = Test-Path $Path -pathType Container
-    if ($isFolder)
+    try
     {
-        $files = Get-ChildItem -Path $Path -Filter '*.xml'
-        foreach ($file in $files)
+        #If $Path is a directory, get all files contained in it
+        $isFolder = Test-Path $Path -pathType Container
+        if ($isFolder)
         {
-            if (Test-StigProcessed $file.FullName)
+            $files = Get-ChildItem -Path $Path -Filter '*.xml'
+            foreach ($file in $files)
             {
-                ConvertFrom-StigXccdf -Path $file.FullName | Out-Null
+                if (Test-StigProcessed $file.FullName)
+                {
+                    ConvertFrom-StigXccdf -Path $file.FullName | Out-Null
+                }
+            }
+        }
+        
+        #If $Path is a file, process it
+        $isFile = Test-Path $Path -pathType Leaf
+        if ($isFile)
+        {
+            if (Test-StigProcessed $Path)
+            {
+                ConvertFrom-StigXccdf -Path $Path | Out-Null
             }
         }
     }
-    
-    #If $Path is a file then process it
-    $isFile = Test-Path $Path -pathType Leaf
-    if($isFile)
+    catch [System.IO.DirectoryNotFoundException],[System.IO.FileNotFoundException]
     {
-        if (Test-StigProcessed $Path)
-        {
-            ConvertFrom-StigXccdf -Path $Path | Out-Null
-        }
+        Write-Output "The path or file was not found: [$Path]"
+    }
+    catch [System.IO.IOException]
+    {
+        Write-Output "Error accessing path or file at: [$Path]"
     }
 
-    #Write-Host $global:patternTable
-    #return Format-Table $global:patternTable -AutoSize
+    #Return patterns table with counts
     return $global:patternTable
 }
 <#
