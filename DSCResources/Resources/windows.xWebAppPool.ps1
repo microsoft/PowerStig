@@ -6,7 +6,17 @@ $rules = Get-RuleClassData -StigData $stigData -Name 'WebAppPoolRule'
 $stringBuilder = [System.Text.StringBuilder]::new()
 foreach ($rule in $rules)
 {
-    $null = $stringBuilder.AppendLine("$($rule.Key) = $($rule.Value)")
+    # Strings need to be enclosed in quotes.
+    if($rule.Value -match '^\$')
+    {
+        $value = $rule.Value
+    }
+    else
+    {
+        $value = "'$($rule.Value)'"
+    }
+
+    $null = $stringBuilder.AppendLine("$($rule.Key) = $value")
 }
 
 foreach ($appPool in $WebAppPool)
