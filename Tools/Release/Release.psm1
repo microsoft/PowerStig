@@ -3,16 +3,6 @@
 
 $script:ReleaseName = "{0}-Release"
 
-# Markdown file data section : used by Set-FileHashMarkdown
-$script:markdownDataSection = DATA {
-    ConvertFrom-StringData -StringData @'
-    Header          = # PowerSTIG File Hashes : Module Version **__modVer__**
-    ContentSection1 = Hashes for **PowerSTIG** files are listed in the following table:
-    TableHeader     = | File | __algorithm__ Hash | Size (bytes) |
-    TableFormat     = | :---- | ---- | ---: |
-'@
-}
-
 <#
     .SYNOPSIS
         Validates that the supplied module version is greater than the current
@@ -892,13 +882,7 @@ function Start-PowerStigRelease
 
             Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
 
-            $setFileHashMarkdownParams = @{
-                FileHashPath  = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml')
-                MarkdownPath  = (Join-Path -Path $PWD -ChildPath '\FILEHASH.md')
-                Algorithm     = 'SHA256'
-                ModuleVersion = $ModuleVersion
-            }
-            Set-FileHashMarkdown @setFileHashMarkdownParams
+            Set-FileHashMarkdown -ModuleVersion $ModuleVersion
 
             # Push the release branch to GitHub
             Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
@@ -1175,34 +1159,38 @@ function Set-FileHashMarkdown
 {
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [string[]]
-        $FileHashPath,
+        $FileHashPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
 
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [string]
-        $MarkdownPath,
+        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\FILEHASH.md'),
 
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [ValidateSet('SHA256', 'SHA384', 'SHA512')]
         [string]
-        $Algorithm,
+        $Algorithm = 'SHA256',
 
         [Parameter(Mandatory = $true)]
         [string]
         $ModuleVersion
     )
 
+    # Markdown header for file hash information table
+    $markdownHeader = @'
+# PowerSTIG File Hashes : Module Version {0}
+
+Hashes for **PowerSTIG** files are listed in the following table:
+| File | {1} Hash | Size (bytes) |
+| :---- | ---- | ---: |
+'@ -f $ModuleVersion, $Algorithm
+
     $fileHash = Get-FileHash -Path $FileHashPath -Algorithm $Algorithm
 
     # String builder to set the markdown file
     $fileHashMarkdownFileContent = New-Object System.Text.StringBuilder
-    $null = $fileHashMarkdownFileContent.AppendLine($($script:markdownDataSection.Header -replace '__modVer__', $ModuleVersion))
-    $null = $fileHashMarkdownFileContent.AppendLine()
-    $null = $fileHashMarkdownFileContent.AppendLine($script:markdownDataSection.ContentSection1)
-    $null = $fileHashMarkdownFileContent.AppendLine()
-    $null = $fileHashMarkdownFileContent.AppendLine($($script:markdownDataSection.TableHeader -replace '__algorithm__', $Algorithm))
-    $null = $fileHashMarkdownFileContent.AppendLine($script:markdownDataSection.TableFormat)
+    $null = $fileHashMarkdownFileContent.AppendLine($markdownHeader)
 
     foreach ($file in $fileHash)
     {
@@ -1212,8 +1200,6 @@ function Set-FileHashMarkdown
             $((Get-Item -Path $file.Path).Length)
         $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
     }
-
-    $null = $fileHashMarkdownFileContent.AppendLine()
 
     Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
 }

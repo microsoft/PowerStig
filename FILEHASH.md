@@ -1,7 +1,6 @@
-# PowerSTIG File Hashes
+# PowerSTIG File Hashes : Module Version Unreleased
 
 Hashes for **PowerSTIG** files are listed in the following table:
-
 | File | SHA256 Hash | Size (bytes) |
 | :---- | ---- | ---: |
 | Mozilla-All-FireFox-4.21.org.default.xml | BC4E093A07E77444F03866016AA3F8D62F1D460DCB499DEBC618618C34BA78FF | 302 |
