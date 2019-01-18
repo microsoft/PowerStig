@@ -23,13 +23,13 @@ if ($WebsiteName)
 }
 else
 {
-    foreach ($rule in $rules)
+    foreach ($website in $WebsiteName) 
     {
         if ($rule.ConfigSection -match '/system.web')
         {
             $psPath = 'MACHINE/WEBROOT'
         }
-        else 
+        else
         {
             $psPath = 'MACHINE/WEBROOT/APPHOST'
         }
