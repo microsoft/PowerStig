@@ -176,7 +176,7 @@ function Get-KeyValuePair
         { $checkContent -match 'Error Pages' }
         {
             $key = 'errormode'
-            $value = '0'
+            $value = 'DetailedLocalOnly'
         }
         { $checkContent -match '\.NET Trust Level' }
         {
