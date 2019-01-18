@@ -18,7 +18,6 @@ if ($rules)
             LogPath         = '$LogPath'
             LogFlags        = @($logFlags)
             LogFormat       = '$logFormat'
-            LogPeriod       = '$logPeriod'
             LogCustomFields = @($logCustomField)
         }"
     )

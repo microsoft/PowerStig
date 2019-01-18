@@ -1,4 +1,4 @@
-<DISASTIG id="IIS_8-5_Server_STIG" version="1.5" created="11/5/2018">
+<DISASTIG id="IIS_8-5_Server_STIG" version="1.5" created="1/18/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -155,6 +155,28 @@ If necessary, stop the IIS 8.5 web server by selecting the web server in the IIS
 In the "Actions" pane, under "Manage Server", click on "Stop".
 
 If the web server is not capable of or cannot be configured to disconnect or disable remote access to the hosted applications when necessary, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-76747" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open the IIS 8.5 Manager.
+
+Click the IIS 8.5 web server name.
+
+Under "IIS" double-click on the "Logging" icon.
+
+In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
+
+Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
+
+Under "Log File Rollover", verify the "Do not create new log files" is not selected.
+
+Verify a schedule is configured to rollover log files on a regular basis.
+
+Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
+
+If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76749" severity="medium" conversionstatus="pass" title="SRG-APP-000380-WSR-000072" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -375,33 +397,6 @@ Response Header &gt;&gt; Content-Type
 
 If any of the above fields are not selected, this is a finding.
 </RawString>
-    </Rule>
-    <Rule id="V-76747" severity="medium" conversionstatus="pass" title="SRG-APP-000357-WSR-000150" dscresource="xIISLogging">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <LogCustomFieldEntry />
-      <LogFlags />
-      <LogFormat />
-      <LogPeriod>daily</LogPeriod>
-      <LogTargetW3C />
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
-
-Click the IIS 8.5 web server name.
-
-Under "IIS" double-click on the "Logging" icon.
-
-In the "Logging" configuration box, determine the "Directory:" to which the "W3C" logging is being written.
-
-Confirm with the System Administrator that the designated log path is of sufficient size to maintain the logging.
-
-Under "Log File Rollover", verify the "Do not create new log files" is not selected.
-
-Verify a schedule is configured to rollover log files on a regular basis.
-
-Consult with the System Administrator to determine if there is a documented process for moving the log files off of the IIS 8.5 web server to another logging device.
-
-If the designated logging path device is not of sufficient space to maintain all log files and there is not a schedule to rollover files on a regular basis, this is a finding.</RawString>
     </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
@@ -882,7 +877,7 @@ Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mod
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>timeout</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>[TimeSpan]{0} -le [TimeSpan]'00:20:00'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '00:20:00'</OrganizationValueTestString>
       <RawString>Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under the "ASP.NET" section, select "Session State".
