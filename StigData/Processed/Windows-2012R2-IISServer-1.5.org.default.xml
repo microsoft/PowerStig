@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings version="1.5">
-  <!-- Ensure [TimeSpan]'V-76727.b' -le [TimeSpan]'00:20:00'-->
-  <OrganizationalSetting id="V-76727.b" value="'00:20:00'" />
+  <!-- Ensure ''V-76727.b'' -le '00:20:00'-->
+  <OrganizationalSetting id="V-76727.b" value='00:13:00' />
 </OrganizationalSettings>
