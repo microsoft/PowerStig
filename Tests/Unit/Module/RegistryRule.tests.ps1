@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\PowerStig.Convert.psm1
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
 $expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
@@ -9,6 +8,7 @@ foreach ($supportFile in $expressionFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
+Import-Module .\..\..\..\PowerStig.Convert.psm1
 #endregion
 try
 {
