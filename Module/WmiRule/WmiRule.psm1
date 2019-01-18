@@ -49,18 +49,24 @@ Class WmiRule : Rule
         $this.InvokeClass($StigRule)
         Switch ($this.rawString)
         {
-            {$PSItem -Match "Service Pack" }
+            {$PSItem -Match "winver\.exe" }
             {
                 Write-Verbose "[$($MyInvocation.MyCommand.Name)] Service Pack"
                 $this.Query = 'SELECT * FROM Win32_OperatingSystem'
                 $this.Property = 'Version'
                 $this.Operator = '-ge'
 
-                $this.rawString -match "\d\.\d" | Out-Null
-                $osMajMin = $matches[0]
+                $this.rawString -match "(?:Version\s*)(\d+(\.\d+)?)" | Out-Null
 
-                ($this.rawString -match "\(Build\s\d{1,}\)" | Out-Null)
-                $osBuild = $matches[0] -replace "\(|\)|Build|\s", ""
+                $osMajMin = $matches[1]
+
+                if ([int]$osMajMin -gt 6.3)
+                {
+                    [string]$osMajMin = '10.0'
+                }
+
+                $this.rawString -match "(?:Build\s*)(\d+)?" | Out-Null
+                $osBuild = $matches[1]
 
                 $this.Value = "$osMajMin.$osBuild"
                 continue
@@ -88,7 +94,7 @@ Class WmiRule : Rule
         if
         (
             $CheckContent -Match "Disk Management" -or
-            $CheckContent -Match "Service Pack"
+            $CheckContent -Match "winver\.exe"
         )
         {
             return $true

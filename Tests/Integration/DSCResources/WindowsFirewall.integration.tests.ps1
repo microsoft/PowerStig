@@ -1,3 +1,5 @@
+using module .\helper.psm1
+
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
@@ -14,120 +16,24 @@ try
     #region Integration Tests
 
     foreach ($stig in $stigList)
-    {   
+    {
         [xml] $dscXml = Get-Content -Path $stig.Path
-        
-        Describe "Windows Firewall $($stig.StigVersion) mof output" {
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive
-                } | Should -Not -Throw
-            }
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRuleType = $null
+        $expectedSkipRuleTypeCount = 0
 
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = $null
+        $expectedSkipRuleTypeMultipleCount = 0
 
-            Context 'Registry' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
-                $dscMof = $instances |
-                    Where-Object -FilterScript {$PSItem.ResourceID -match "\[xRegistry\]"}
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-                foreach ($setting in $dscXml)
-                {
-                    If (-not ($dscMof.ResourceID -match $setting.id) )
-                    {
-                        Write-Warning -Message "Missing registry Setting $($setting.id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.count) Registry settings" {
-                    $hasAllSettings | Should -Be $true
-                }
-            }
-        }
-
-        Describe "Windows Firewall $($stig.StigVersion) Single SkipRule mof output"{
-
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive `
-                        -SkipRule $skipRule
-                } | Should -Not -Throw
-            }
-
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $dscXml = $skipRule.count
-                $dscMof = @($instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"})
-                #endregion
-
-                It "Should have $dscXml Skipped settings" {
-                    $dscMof.count | Should -Be $dscXml
-                }
-            }
-        }
-
-        Describe "Windows Firewall $($stig.StigVersion) Multiple SkipRule mof output" {
-
-            $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive `
-                        -SkipRule $skipRule
-                } | Should -Not -Throw
-            }
-
-            #region Gets the mof content
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            #endregion
-
-            Context 'Skip check' {
-
-                #region counts how many Skips there are and how many there should be.
-                $expectedSkipRuleCount = $skipRule.count
-                $dscMof = $instances | Where-Object {$PSItem.ResourceID -match "\[Skip\]"}
-                #endregion
-
-                It "Should have $expectedSkipRuleCount Skipped settings" {
-                    $dscMof.count | Should -Be $expectedSkipRuleCount
-                }
-            }
-        }
-
-        Describe "Windows Firewall $($stig.StigVersion) Exception mof output" {
-
-            $exceptionRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule
-            $exception = $exceptionRule.id
-
-            It "Should compile the MOF with STIG exception $exception without throwing" {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive `
-                        -Exception $exception
-                } | Should -Not -Throw
-            }
-        }
+        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
+        . $userSettingsPath
     }
     #endregion Tests
 }

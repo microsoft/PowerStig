@@ -3189,7 +3189,7 @@ For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 
 Default permissions:
-\Program Files and \Program Files (x86)
+C:\Program Files and C:\Program Files (x86)
 Type - "Allow" for all
 Inherited from - "None" for all
 
@@ -3286,7 +3286,7 @@ For each folder, view the Properties.
 Select the "Security" tab and the "Advanced" button.
 
 Default permissions:
-\Windows
+C:\Windows
 Type - "Allow" for all
 Inherited from - "None" for all
 
@@ -8251,11 +8251,11 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPath
 
 Value Name: \\*\NETLOGON
 Value Type: REG_SZ
-Value: RequireMutualAuthentication=1, RequireIntegrity=1
+Value: RequireMutualAuthentication=1,RequireIntegrity=1
 
 Value Name: \\*\SYSVOL
 Value Type: REG_SZ
-Value: RequireMutualAuthentication=1, RequireIntegrity=1
+Value: RequireMutualAuthentication=1,RequireIntegrity=1
 
 Additional entries would not be a finding.</check-content>
             </check>
@@ -8509,7 +8509,7 @@ Registry Path: \SYSTEM\CurrentControlSet\Policies\EarlyLaunch\
 Value Name: DriverLoadPolicy
 
 Value Type: REG_DWORD
-Value: 0x00000001 (1), 0x00000003 (3), or 0x00000008 (8) (or if the Value Name does not exist)
+Value: 0x00000001 (1) or 0x00000003 (3) or 0x00000008 (8) (or if the Value Name does not exist)
 
 Possible values for this setting are:
 8 - Good only
@@ -8928,7 +8928,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\DataCollection\
 Value Name: AllowTelemetry
 
 Type: REG_DWORD
-Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</check-content>
+Value: 0x00000000 (0) (Security) or 0x00000001 (1) (Basic)</check-content>
             </check>
         </Rule>
     </Group>
@@ -11850,8 +11850,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: ConsentPromptBehaviorAdmin
 
 Value Type: REG_DWORD
-Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
-0x00000001 (1) (Prompt for credentials on the secure desktop)</check-content>
+Value: 0x00000001 (1) (Prompt for credentials on the secure desktop) or 0x00000002 (2) (Prompt for consent on the secure desktop)</check-content>
             </check>
         </Rule>
     </Group>

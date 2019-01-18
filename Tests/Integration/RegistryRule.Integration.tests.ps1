@@ -34,7 +34,7 @@ try
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\System\CurrentControlSet\Services\W32Time\Config'
             OrganizationValueRequired   = 'True'
-            OrganizationValueTestString = "{0} -match '2|3'"
+            OrganizationValueTestString = "'{0}' -match '2|3'"
             ValueData                   = $null
             ValueName                   = 'EventLogFlags'
             ValueType                   = 'DWORD'
@@ -82,7 +82,7 @@ try
             Hive                        = 'HKEY_LOCAL_MACHINE'
             Path                        = '\Software\Microsoft\Windows NT\CurrentVersion\Winlogon'
             OrganizationValueRequired   = 'True'
-            OrganizationValueTestString = "{0} -le '5'"
+            OrganizationValueTestString = "'{0}' -le '5'"
             ValueData                   = $null
             ValueName                   = 'ScreenSaverGracePeriod'
             ValueType                   = 'String'
@@ -149,7 +149,7 @@ try
             Hive                        = 'HKEY_CURRENT_USER'
             Path                        = '\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen'
             OrganizationValueRequired   = 'True'
-            OrganizationValueTestString = "{0} -ge '30' -and {0} -le '132'"
+            OrganizationValueTestString = "'{0}' -ge '30' -and '{0}' -le '132'"
             ValueData                   = $null
             ValueName                   = 'PlainWrapLen'
             ValueType                   = 'DWORD'
