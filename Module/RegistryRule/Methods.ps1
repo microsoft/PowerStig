@@ -1143,10 +1143,17 @@ function Split-MultipleRegistryEntries
 }
 <#
     .SYNOPSIS
-        Splits multiple registry entries from a single check into individual check strings.
+        Splits multiple registry entries from a single check into individual check strings
+
+    .PARAMETER Pattern
+        A registry rule pattern that has been applied
+
+    .PARAMETER Rule
+        Specifies a rule to include in output
 
     .NOTES
-        General notes
+        Rules are not currently being captured in the resutls
+        It is an optional parameter that can be included in the future
 #>
 function Set-RegistryPatternLog
 {
@@ -1154,7 +1161,7 @@ function Set-RegistryPatternLog
     [OutputType([Object])]
     param
     (
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
         [string]
         $Pattern, 
 
@@ -1184,6 +1191,17 @@ function Set-RegistryPatternLog
     $searchResult.Count ++
 }
 
+<#
+    .SYNOPSIS
+        Lists registry rule patterns along with counts for the number of rules that use each pattern.
+
+    .PARAMETER Path
+        Specifies a path to a directory with (unprocessed) xccdf.xml files or a specific xccdf.xml file.
+        Path should be StigData\Archive\{Directory Name} or StigData\Archive\{DirectoryName}\{*.xccdf.xml} 
+
+    .Notes
+        Expression patterns are only for Registry Rules, this could change in the future
+#>
 function Get-RegistryPatternLog
 {
     [CmdletBinding()]
