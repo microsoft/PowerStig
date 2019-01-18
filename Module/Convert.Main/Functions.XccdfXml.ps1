@@ -51,10 +51,6 @@ function ConvertFrom-StigXccdf
         $Path,
 
         [Parameter()]
-        [switch]
-        $IncludeRawString,
-
-        [Parameter()]
         [string[]]
         $RuleIdFilter
     )
@@ -79,9 +75,7 @@ function ConvertFrom-StigXccdf
         }
     }
     # Read in the root stig data from the xml additional functions will dig in deeper
-    $stigRuleParams = @{
-        IncludeRawString = $IncludeRawString
-    }
+    $stigRuleParams = @{}
 
     if($RuleIdFilter)
     {
@@ -149,15 +143,15 @@ function Get-RegistryRuleExpressions
             $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
             $spExclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
 
-            switch ($benchmarkId.TechnologyRole) 
+            switch ($benchmarkId.TechnologyRole)
             {
                 { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
-                    {  
+                    {
                         $spInclude += "Data.Office.ps1"
                     }
             }
         }
-        else 
+        else
         {
             # Query directory of xccdf file
             $spResult = Split-Path (Split-Path $Path -Parent) -Leaf
@@ -267,8 +261,8 @@ function Split-StigXccdf
 
         $FilePath = "$Destination\$(Split-Path -Path $path -Leaf)"
 
-        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
-        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_SPLIT_STIG'))
+        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_STIG'))
+        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_STIG'))
     }
     End
     {
@@ -303,11 +297,7 @@ function Get-StigRuleList
     (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [psobject]
-        $StigGroups,
-
-        [Parameter()]
-        [switch]
-        $IncludeRawString
+        $StigGroups
     )
 
     begin

@@ -281,7 +281,7 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 27
+            ManualRule                   = 26
             MimeTypeRule                 = $null
             PermissionRule               = 9
             ProcessMitigationRule        = 31
@@ -294,7 +294,7 @@ try
             WebConfigurationPropertyRule = $null
             WinEventLogRule              = $null
             WindowsFeatureRule           = 9
-            WmiRule                      = 1
+            WmiRule                      = 2
         }
         'U_IIS_8-5_Site_STIG_V1R2_Manual-xccdf.xml'                   = @{
             AccountPolicyRule            = $null
@@ -344,6 +344,30 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
+        'U_MS_SQL_Server_2016_Instance_STIG_V1R3_Manual-xccdf.xml'      = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 90
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 18
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = 5
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = 6
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
         'U_SQL_Server_2012_Instance_STIG_V1R16_Manual-xccdf.xml'      = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
@@ -353,14 +377,14 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 76
+            ManualRule                   = 75
             MimeTypeRule                 = $null
             PermissionRule               = $null
             ProcessMitigationRule        = $null
             RegistryRule                 = $null
             SecurityOptionRule           = $null
             ServiceRule                  = $null
-            SqlScriptQueryRule           = 32
+            SqlScriptQueryRule           = 33
             UserRightRule                = $null
             WebAppPoolRule               = $null
             WebConfigurationPropertyRule = $null
@@ -703,7 +727,7 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = $null
             WmiRule                      = $null
-            }
+        }
         'U_MS_Word_2013_STIG_V1R6_Manual-xccdf.xml'                   = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
@@ -727,8 +751,32 @@ try
             WinEventLogRule              = $null
             WindowsFeatureRule           = $null
             WmiRule                      = $null
-            }
         }
+        'U_MS_Windows_Defender_Antivirus_STIG_V1R4_Manual-xccdf.xml'                   = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = $null
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = $null
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 41
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+    }
     #endregion
     #region Tests
     # Verify conversion report rule set values are equal to baseline values
@@ -764,7 +812,7 @@ try
 
     Describe 'PowerStig output' {
 
-        $path = (Get-ChildItem -Path $filePath -File -Recurse)[0].FullName
+        $path = (Get-ChildItem -Path $filePath -File -Exclude '*.md' -Recurse)[0].FullName
 
         It 'Should not throw an error when a STIG is converted' {
             {ConvertTo-PowerStigXml -Path $path -Destination $TestDrive} |

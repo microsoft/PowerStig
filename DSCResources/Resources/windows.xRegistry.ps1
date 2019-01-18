@@ -16,6 +16,11 @@ foreach ( $rule in $rules )
             $valueData = $rule.ValueData
         }
 
+        if( $valueData -eq 'ShouldBeAbsent')
+        {
+            $rule.Ensure = 'Absent'
+        }
+
         xRegistry (Get-ResourceTitle -Rule $rule)
         {
             Key       = $rule.Key

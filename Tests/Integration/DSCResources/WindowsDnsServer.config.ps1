@@ -3,20 +3,8 @@ Configuration WindowsDnsServer_config
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $OsVersion,
-
-        [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ForestName,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $DomainName,
 
         [Parameter()]
         [string[]]
@@ -28,7 +16,76 @@ Configuration WindowsDnsServer_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $BrowserVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $OfficeApp,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ConfigPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $PropertiesPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ForestName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $DomainName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebAppPool,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebSiteName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -42,17 +99,21 @@ Configuration WindowsDnsServer_config
             StigVersion = '$StigVersion'
             ForestName = '$ForestName'
             DomainName = '$DomainName'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'PropertyValue'='1234567'}}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'PropertyValue'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             }
             if ($null -ne $SkipRuleType)
             {
-                "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             })
         }")
         )

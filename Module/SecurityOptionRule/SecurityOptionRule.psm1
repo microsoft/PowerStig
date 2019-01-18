@@ -137,8 +137,20 @@ Class SecurityOptionRule : Rule
     {
         if
         (
-            $CheckContent -Match 'gpedit\.msc' -and
-            $CheckContent -match 'Security Options'
+            (
+                $CheckContent -Match 'gpedit.msc' -and
+                $CheckContent -Match 'Security Options'
+            )-or
+            # SQL 2016+ Stigs
+            ( #V-79197,79199
+                $CheckContent -Match 'Local Security Policy' -and
+                $CheckContent -Match 'System (C|c)ryptography: Use FIPS' 
+            ) -or
+            ( #V-79203,79305,79307
+                $CheckContent -Match 'Local Security Policy' -and
+                $CheckContent -Match 'Use FIPS compliant algorithms' -and
+                $CheckContent -Notmatch 'Review the server documentation'
+            )
         )
         {
             return $true

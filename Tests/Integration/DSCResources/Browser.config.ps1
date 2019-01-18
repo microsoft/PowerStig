@@ -4,10 +4,6 @@ Configuration Browser_config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $BrowserVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
         $StigVersion,
 
         [Parameter()]
@@ -20,7 +16,76 @@ Configuration Browser_config
 
         [Parameter()]
         [string[]]
-        $Exception
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $BrowserVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $OfficeApp,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ConfigPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $PropertiesPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ForestName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $DomainName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebAppPool,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebSiteName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -32,13 +97,17 @@ Configuration Browser_config
         {
             BrowserVersion = '$BrowserVersion'
             StigVersion = '$StigVersion'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{'$Exception'= @{'ValueData'='1234567'}}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'ValueData'='1234567'}"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
-                "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
             })
         }")
         )

@@ -51,7 +51,9 @@ Class Rule : ICloneable
     [Boolean] $IsNullOrEmpty
     [Boolean] $OrganizationValueRequired
     [string] $OrganizationValueTestString
+    [string] $Description
     hidden [string] $DscResource
+
 
     <#
         .SYNOPSIS
@@ -79,7 +81,7 @@ Class Rule : ICloneable
         $this.Id = $StigRule.id
         $this.Severity = $StigRule.rule.severity
         $this.Title = $StigRule.title
-
+        $this.Description = $StigRule.rule.description
         # Since the string comes from XML, we have to assume that it is encoded for html.
         # This will decode it back into the normal string characters we are looking for.
         if ( Test-HtmlEncoding -CheckString  $StigRule.rule.Check.('check-content') )
@@ -93,7 +95,7 @@ Class Rule : ICloneable
 
         <#
             This hidden property is used by all of the methods and passed to subfunctions instead of
-            splitting the sting in every function. The Select-String removes any blank lines, so
+            splitting the string in every function. The Select-String removes any blank lines, so
             that the Mandatory parameter validation does not fail and to prevent the need for a
             work around by allowing empty strings in mandatory parameters.
         #>
