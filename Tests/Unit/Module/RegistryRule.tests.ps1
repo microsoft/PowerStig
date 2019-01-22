@@ -1,7 +1,7 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
-$expressionFileList = Get-Item ..\Module\Convert.Main\Data.*.ps1
+$expressionFileList = Get-Item .\Module\Convert.Main\Data.*.ps1
 Clear-Variable SingleLine* -Scope Global
 foreach ($supportFile in $expressionFileList)
 {
