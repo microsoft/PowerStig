@@ -1141,6 +1141,7 @@ function Split-MultipleRegistryEntries
 
     return $registryEntries
 }
+
 <#
     .SYNOPSIS
         Splits multiple registry entries from a single check into individual check strings
@@ -1152,7 +1153,7 @@ function Split-MultipleRegistryEntries
         Specifies a rule to include in output
 
     .NOTES
-        Rules are not currently being captured in the resutls
+        Rules are not currently being captured in the results
         It is an optional parameter that can be included in the future
 #>
 function Set-RegistryPatternLog
@@ -1170,15 +1171,15 @@ function Set-RegistryPatternLog
         $Rule
     )
     
-    #Load table with patterns from Core data file.
-    #Build the in-memory table of patterns
+    # Load table with patterns from Core data file.
+    # Build the in-memory table of patterns
     If(-not $global:patternTable)
     {
-        $nonesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }
-        $nesteditems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
+        $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }
+        $nestedItems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
 
-        $regPathTable = $nonesteditems.GetEnumerator() | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
-        $regPathTable += $nesteditems.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        $regPathTable = $nonestedItems.GetEnumerator() | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        $regPathTable += $nestedItems.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
         $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
         $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
         $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }| ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
@@ -1186,7 +1187,7 @@ function Set-RegistryPatternLog
         $global:patternTable = $regPathTable + $regValueTypeTable + $regValueNameTable + $regValueDataTable
     }
 
-    #Find pattern in table and increment count
+    # Find pattern in table and increment count
     $searchResult = $global:patternTable | Where-Object { $_.Pattern -eq $Pattern}
     $searchResult.Count ++
 }
@@ -1213,7 +1214,7 @@ function Get-RegistryPatternLog
     )
     try
     {
-        #If $Path is a directory, get all files contained in it
+        # If $Path is a directory, get all files contained in it
         $isFolder = Test-Path $Path -pathType Container
         if ($isFolder)
         {
@@ -1227,7 +1228,7 @@ function Get-RegistryPatternLog
             }
         }
         
-        #If $Path is a file, process it
+        # If $Path is a file, process it
         $isFile = Test-Path $Path -pathType Leaf
         if ($isFile)
         {
@@ -1246,9 +1247,10 @@ function Get-RegistryPatternLog
         Write-Output "Error accessing path or file at: [$Path]"
     }
 
-    #Return patterns table with counts
+    # Return patterns table with counts
     return $global:patternTable
 }
+
 <#
     .SYNOPSIS
         Test if the check-content contains mitigations polices to enable.
@@ -1270,7 +1272,7 @@ function Test-StigProcessed
         [string[]]
         $Path
     )
-    #Setup, check $Path for Processed
+    # Setup, check $Path for Processed
     [xml]$XmlDocument = Get-Content -Path $Path
     $id = $XmlDocument.Benchmark | Select-Object id
     $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `

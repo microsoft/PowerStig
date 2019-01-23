@@ -49,12 +49,12 @@ function Get-SingleLineRegistryPath
         [psobject]
         $CheckContent
     )
-    
+
     foreach ($item in $global:SingleLineRegistryPath.Values)
     {
         $value = Get-SLRegistryPath -CheckContent $CheckContent -Hashtable $item
         if ([String]::IsNullOrEmpty($value) -eq $false)
-        { 
+        {
             return $value | where-object {[string]::IsNullOrEmpty($_) -eq $false}
         }
     }
@@ -221,9 +221,9 @@ function Get-RegistryValueTypeFromSLStig
         [psobject]
         $Hashtable
     )
-   
+
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
-    
+
     foreach ($key in $Hashtable.Keys) 
     {  
         switch ($key)
@@ -260,7 +260,7 @@ function Get-RegistryValueTypeFromSLStig
                     $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
                     $selectedValueType = Select-String -InputObject $CheckContent -Pattern $regEx
                 }
-               
+
                 if (-not $selectedValueType.Matches)
                 {
                     return
@@ -351,9 +351,9 @@ function Get-RegistryValueNameFromSLStig
         [psobject]
         $Hashtable
     )
-    
+
     $valueName = $CheckContent
-    
+
     foreach ($key in $Hashtable.Keys) 
     {  
         switch ($key)
@@ -384,25 +384,25 @@ function Get-RegistryValueNameFromSLStig
             {
                 $regEx = '{0}' -f $Hashtable.Item($key)
                 $valueName = Select-String -InputObject $CheckContent -Pattern $regEx
-            }
+                Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
+        }
         } # Switch
     } # Foreach
 
     if ($valueName)
     {
-        $valueName = $valueName.Matches.Value -replace '["ìîù]', ''
+        $valueName = $valueName.Matches.Value -replace '["ÔøΩÔøΩÔøΩ]', ''
 
         if ($valueName.Count -gt 1)
         {
             $valueName = $valueName[0]
         }
-        
+
         $result = $valueName.trim()
-        
+
         if (-not [String]::IsNullOrEmpty($result))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
-            #Set-RegistryPatternLog -Pattern $regEx
             return $result
         }
         else
@@ -441,7 +441,7 @@ function Get-RegistryValueDataFromSingleStig
         {
             return $value
         }
-    }     
+    }
 }
 
 <#
@@ -472,7 +472,7 @@ function Get-RegistryValueDataFromSLStig
     )
 
     $valueType = Get-RegistryValueTypeFromSingleLineStig -CheckContent $CheckContent
-    
+
     if ($valueType -eq "Does Not Exist")
     {
         return
@@ -526,7 +526,7 @@ function Get-RegistryValueDataFromSLStig
         if (-not [String]::IsNullOrEmpty($result))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
-            #Set-RegistryPatternLog -Pattern $regEx
+            Set-RegistryPatternLog -Pattern $regEx
             return $result 
         }
         else
