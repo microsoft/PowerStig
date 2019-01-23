@@ -1,7 +1,8 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
-$expressionFileList = Get-Item .\Module\Convert.Main\Data.*.ps1
+#$expressionFileList = Get-Item .\Module\Convert.Main\Data.*.ps1
+$expressionFileList = Get-Item "$($PSScriptRoot).\..\..\..\Module\Convert.Main\Data.*.ps1"
 Clear-Variable SingleLine* -Scope Global
 foreach ($supportFile in $expressionFileList)
 {
@@ -1517,7 +1518,7 @@ try
             }
         }
 
-<#         Describe "Get-RegistryPatternLog" {
+        Describe "Get-RegistryPatternLog" {
             
             Import-Module .\..\..\..\PowerStig.Convert.psm1
             $folderPath = Resolve-Path -Path '..\..\..\StigData\Archive\browser' -Relative
@@ -1544,7 +1545,7 @@ try
                 }
             }
         }
- #>        #endregion
+        #endregion
         #region Data Tests
 
         Describe 'RegularExpression Data Section' {
