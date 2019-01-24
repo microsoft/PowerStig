@@ -15,19 +15,19 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER PolicyValue
         The value the account policy should be set to.
 #>
-Class AccountPolicy : Rule
+Class AccountPolicyRule : Rule
 {
     [string] $PolicyName
     [string] $PolicyValue <#(ExceptionValue)#>
 
-    AccountPolicy () {}
+    AccountPolicyRule () {}
 
-    AccountPolicy ([xml.xmlelement] $Rule) : Base ($Rule)
+    AccountPolicyRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
         $this.PolicyName  = $Rule.PolicyName
         $this.PolicyValue = $Rule.PolicyValue
     }
-    AccountPolicy ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
+    AccountPolicyRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
     {
         $this.PolicyName  = $Rule.PolicyName
         $this.PolicyValue = $Rule.PolicyValue

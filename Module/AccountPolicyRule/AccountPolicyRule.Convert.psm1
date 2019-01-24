@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-using module .\AccountPolicy.psm1
+using module .\AccountPolicyRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -25,7 +25,7 @@ foreach ($supportFile in $supportFileList)
     .PARAMETER PolicyValue
         The value the account policy should be set to.
 #>
-Class AccountPolicyConvert : AccountPolicy
+Class AccountPolicyConvert : AccountPolicyRule
 {
     <#
         .SYNOPSIS

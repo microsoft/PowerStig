@@ -65,6 +65,13 @@ Class Rule : ICloneable
     {
     }
 
+    <#
+        .SYNOPSIS
+            PowerSTIG XML constructor
+        .DESCRIPTION
+            This is the base class constructor that laods the base properties from
+            the PowerSTIG XML
+    #>
     Rule ([xml.xmlelement] $Rule)
     {
         # Load PowerSTIG xml mode
@@ -78,6 +85,12 @@ Class Rule : ICloneable
         $this.DscResource = $rule.DscResource
     }
 
+    <#
+        .SYNOPSIS
+            XCCDF XML constructor
+        .DESCRIPTION
+            This is the base class constructor
+    #>
     Rule ([xml.xmlelement] $Rule, [switch] $Convert)
     {
         # This is the current InvokeClass method
