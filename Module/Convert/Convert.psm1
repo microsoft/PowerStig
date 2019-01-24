@@ -33,9 +33,9 @@ class ConvertFactory
 
         switch ($Rule.rule.check.'check-content')
         {
-            {[AccountPolicyRule]::Match($PSItem)}
+            {[AccountPolicyRuleConvert]::Match($PSItem)}
             {
-                $null = $ruleTypeList.Add([AccountPolicyRule]::new($Rule))
+                $null = $ruleTypeList.Add([AccountPolicyRuleConvert]::new($Rule))
             }
             {[AuditPolicyRule]::Match($PSItem)}
             {

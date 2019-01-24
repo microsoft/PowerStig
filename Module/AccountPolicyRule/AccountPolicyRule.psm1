@@ -37,6 +37,4 @@ Class AccountPolicy : Rule
     {
         return ([Rule]$this).GetExceptionHelp("{0} = 1")
     }
-
-
 }
