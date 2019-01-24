@@ -20,14 +20,14 @@ Class AccountPolicy : Rule
     [string] $PolicyName
     [string] $PolicyValue <#(ExceptionValue)#>
 
-    AccountPolicyRule () {}
+    AccountPolicy () {}
 
-    AccountPolicyRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    AccountPolicy ([xml.xmlelement] $Rule) : Base ($Rule)
     {
         $this.PolicyName  = $Rule.PolicyName
         $this.PolicyValue = $Rule.PolicyValue
     }
-    AccountPolicyRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
+    AccountPolicy ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
     {
         $this.PolicyName  = $Rule.PolicyName
         $this.PolicyValue = $Rule.PolicyValue
