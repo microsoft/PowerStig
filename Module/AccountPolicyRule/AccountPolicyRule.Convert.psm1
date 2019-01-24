@@ -25,7 +25,7 @@ foreach ($supportFile in $supportFileList)
     .PARAMETER PolicyValue
         The value the account policy should be set to.
 #>
-Class AccountPolicyConvert : AccountPolicyRule
+Class AccountPolicyRuleConvert : AccountPolicyRule
 {
     <#
         .SYNOPSIS
@@ -35,7 +35,7 @@ Class AccountPolicyConvert : AccountPolicyRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    AccountPolicyConvert ([xml.xmlelement] $StigRule)
+    AccountPolicyRuleConvert ([xml.xmlelement] $StigRule)
     {
         $this.InvokeClass($StigRule)
         $this.SetPolicyName()
