@@ -11,7 +11,7 @@
 #>
 using module .\Module\Common\Common.psm1
 using module .\Module\Convert\Convert.psm1
-using module .\Module\AccountPolicyRule\AccountPolicyRule.psm1
+using module .\Module\AccountPolicyRule\AccountPolicyRule.Convert.psm1
 using module .\Module\AuditPolicyRule\AuditPolicyRule.psm1
 using module .\Module\DnsServerRootHintRule\DnsServerRootHintRule.psm1
 using module .\Module\DnsServerSettingRule\DnsServerSettingRule.psm1

@@ -65,6 +65,41 @@ Class Rule : ICloneable
     {
     }
 
+    Rule ([xml.xmlelement] $Rule)
+    {
+        # Load PowerSTIG xml mode
+        $this.Id = $Rule.Id
+        $this.Title = $Rule.Title
+        $this.Severity = $Rule.Severity
+        $this.Description = $Rule.Description
+        # When a bool is evaluated if anything exists it is true, so we need provide a bool
+        $this.OrganizationValueRequired = ($Rule.OrganizationValueRequired -eq 'true')
+        $this.OrganizationValueTestString = $Rule.OrganizationValueTestString
+        $this.DscResource = $rule.DscResource
+    }
+
+    Rule ([xml.xmlelement] $Rule, [switch] $Convert)
+    {
+        # This is the current InvokeClass method
+        $this.Id = $Rule.Id
+        $this.Title = $Rule.Title
+        $this.Severity = $Rule.rule.severity
+        $this.Description = $Rule.rule.description
+        if ( Test-HtmlEncoding -CheckString  $Rule.rule.Check.('check-content') )
+        {
+            $this.RawString = ( ConvertFrom-HtmlEncoding -CheckString $Rule.rule.Check.('check-content') )
+        }
+        else
+        {
+            $this.RawString = $Rule.rule.Check.('check-content')
+        }
+
+        $this.SplitCheckContent = [Rule]::SplitCheckContent( $this.rawString )
+
+        $this.IsNullOrEmpty = $false
+        $this.OrganizationValueRequired = $false
+    }
+
     #region Methods
 
     <#
