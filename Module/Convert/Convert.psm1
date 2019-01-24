@@ -35,7 +35,10 @@ class ConvertFactory
         {
             {[AccountPolicyRuleConvert]::Match($PSItem)}
             {
-                $null = $ruleTypeList.Add([AccountPolicyRuleConvert]::new($Rule))
+                $null = $ruleTypeList.Add(
+                    [AccountPolicyRuleConvert]::new($Rule).AsRule()
+                    # Not sure on the method name. Maybe AsParent() ?
+                )
             }
             {[AuditPolicyRule]::Match($PSItem)}
             {

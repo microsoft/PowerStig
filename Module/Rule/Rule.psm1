@@ -116,6 +116,22 @@ Class Rule : ICloneable
     #region Methods
 
     <#
+        This method is needed in each convert class for a couple of reasons.
+        1. PSTypeConverter has to be implemented at a .NET type, which might cause issues with customers that use constrained language mode.
+        2. The parent class modules cannot load the child class modules (load loop)
+    #>
+    [psobject] AsRule([psobject]$Rule)
+    {
+        $propertyList = $this | Get-Member -MemberType Properties
+
+        foreach ($property in $propertyList)
+        {
+            $Rule.($property.Name) = $this.($property.Name)
+        }
+        return $Rule
+    }
+
+    <#
         .SYNOPSIS
             The class initializer
         .DESCRIPTION

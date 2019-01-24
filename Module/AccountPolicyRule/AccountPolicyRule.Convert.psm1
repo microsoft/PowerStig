@@ -52,6 +52,11 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
 
     #region Methods
 
+    [AccountRule] AsRule()
+    {
+        return ([Rule]$this).ToParent([AccountRule]::new())
+    }
+
     <#
         .SYNOPSIS
             Gets the account policy name from the xccdf content and sets the Policy Name.
