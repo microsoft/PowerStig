@@ -52,9 +52,9 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
 
     #region Methods
 
-    [AccountRule] AsRule()
+    [AccountPolicyRule] AsRule()
     {
-        return ([Rule]$this).ToParent([AccountRule]::new())
+        return ([Rule]$this).ToParent([AccountPolicyRule]::new())
     }
 
     <#
