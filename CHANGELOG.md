@@ -4,6 +4,7 @@
 
 * Added the following STIGs
   * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
+  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
 
 * Fixed [#246](https://github.com/Microsoft/PowerStig/issues/246): IIS Server rule V-76737 contains an incorrect value
 * Fixed [#225](https://github.com/Microsoft/PowerStig/issues/225): Update PowerStig integration tests to consolidate duplicate code.
