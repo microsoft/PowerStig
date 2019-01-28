@@ -337,7 +337,6 @@ Class STIG
     <#
         .SYNOPSIS
             Merges SkippedRules property into StigXml
-
         .DESCRIPTION
             This method merges the SkippedRules property into StigXml. All Stig rules within
             the SkippedRules array will be moved from their associated Stig rule type into

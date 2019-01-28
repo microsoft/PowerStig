@@ -397,9 +397,12 @@ Class Rule : ICloneable
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
 
+    <# <(Remove)>
+
     hidden [void] SetDscResource ()
     {
         throw 'SetDscResource must be implemented in the child class'
     }
+    #>
     #endregion
 }
