@@ -7812,7 +7812,7 @@ Enabling PowerShell script block logging will record detailed information from t
         <check-content>If the following registry value does not exist or is not configured as specified, this is a finding.
 
 Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
 
