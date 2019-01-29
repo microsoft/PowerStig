@@ -83,8 +83,8 @@ Describe 'xRegistry call' {
         Context "$($rule.ValueType)" {
 
             It 'Should not throw' {
-                function Get-RuleClassData {}
-                Mock Get-RuleClassData -MockWith {$rule.testXml.Rule}
+                function Select-Rule {}
+                Mock Select-Rule -MockWith {$rule.testXml.Rule}
                 { & xRegistry_config -OutputPath $TestDrive } | Should Not Throw
             }
 
