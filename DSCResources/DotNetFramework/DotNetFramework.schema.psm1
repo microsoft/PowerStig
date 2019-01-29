@@ -38,12 +38,10 @@ Configuration DotNetFramework
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('DotNet4')]
         [string]
         $FrameworkVersion,
 
         [Parameter()]
-        [ValidateSet('1.4', '1.6')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
