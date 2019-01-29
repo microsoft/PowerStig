@@ -1,13 +1,10 @@
 $script:DSCModuleName = 'PowerStig'
-# Header
-
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 Import-Module (Join-Path -Path $moduleRoot -ChildPath 'Tools\TestHelper\TestHelper.psm1') -Force
+$manifestPath = "$script:moduleRoot\$script:DSCModuleName.psd1"
+$Manifest = Import-PowerShellDataFile -Path $manifestPath
 
 Describe 'Common Tests - Configuration Module Requirements' {
-
-    $manifestPath = "$script:moduleRoot\$script:DSCModuleName.psd1"
-    $Manifest = Import-PowerShellDataFile -Path $manifestPath
 
     Context "$script:DSCModuleName module manifest properties" {
 
@@ -64,62 +61,63 @@ Describe 'Common Tests - Configuration Module Requirements' {
             }
         }
     }
+}
+Describe 'Composite Resources' {
 
-    Describe 'Composite Resources' {
+    $manifestDscResourceList = $Manifest.DscResourcesToExport
 
-        $manifestDscResourceList = $Manifest.DscResourcesToExport
+    $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
+                        Select-Object -Property BaseName -ExpandProperty BaseName
 
-        $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
-                            Select-Object -Property BaseName -ExpandProperty BaseName
+    It 'Should have all module resources listed in the manifest' {
+        $manifestDscResourceList | Should Be $moduleDscResourceList
+    }
 
-        It 'Should have all module resources listed in the manifest' {
-            $manifestDscResourceList | Should Be $moduleDscResourceList
-        }
+    $TechnologyRoleFilter = @{
+        Browser          = 'IE'
+        DotNetFramework  = 'DotNet'
+        IisServer        = 'IISServer'
+        IisSite          = 'IISSite'
+        OracleJRE        = 'OracleJRE'
+        SqlServer        = 'Database|Instance'
+        WindowsDnsServer = 'DNS'
+        WindowsFirewall  = 'FW'
+        WindowsServer    = 'DC|MS'
+        Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
+        WindowsClient    = 'Client'
+        FireFox          = 'FireFox'
+    }
 
-        $TechnologyRoleFilter = @{
-            Browser          = 'IE'
-            DotNetFramework  = 'DotNet'
-            IisServer        = 'IISServer'
-            IisSite          = 'IISSite'
-            OracleJRE        = 'OracleJRE'
-            SqlServer        = 'Database|Instance'
-            WindowsDnsServer = 'DNS'
-            WindowsFirewall  = 'FW'
-            WindowsServer    = 'DC|MS'
-            Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
-            WindowsClient    = 'Client'
-            FireFox          = 'FireFox'
-        }
+    foreach ($resource in $moduleDscResourceList)
+    {
+        Context "$resource Composite Resource" {
+            $compositeManifestPath = "$($script:moduleRoot)\DscResources\$resource\$resource.psd1"
+            $compositeSchemaPath = "$($script:moduleRoot)\DscResources\$resource\$resource.schema.psm1"
 
-        foreach ($resource in $moduleDscResourceList)
-        {
-            Context "$resource Composite Resource" {
-                $compositeManifestPath = "$($script:moduleRoot)\DscResources\$resource\$resource.psd1"
-                $compositeSchemaPath   = "$($script:moduleRoot)\DscResources\$resource\$resource.schema.psm1"
-
-                It "Should have a $resource Composite Resource" {
-                    $manifestDscResourceList.Where( {$PSItem -eq $resource}) | Should Not BeNullOrEmpty
-                }
-
-                It 'Should be a valid manifest' {
-                    {Test-ModuleManifest -Path $compositeManifestPath} | Should Not Throw
-                }
-
-                It 'Should contain a schema module' {
-                    Test-Path -Path $compositeSchemaPath | Should Be $true
-                }
-
-                It 'Should contain a correctly named configuration' {
-                    $configurationName = Get-ConfigurationName -FilePath $compositeSchemaPath
-                    $configurationName | Should Be $resource
-                }
-
-                It 'Should match ValidateSet from PowerStig' {
-                    $validateSet = Get-StigVersionParameterValidateSet -FilePath $compositeSchemaPath
-                    $availableStigVersions = Get-ValidStigVersionNumbers -TechnologyRoleFilter $TechnologyRoleFilter[$resource]
-                    $validateSet | Should BeIn $availableStigVersions
-                }
+            It "Should have a $resource Composite Resource" {
+                $manifestDscResourceList.Where( {$PSItem -eq $resource}) | Should Not BeNullOrEmpty
             }
+
+            It 'Should be a valid manifest' {
+                {Test-ModuleManifest -Path $compositeManifestPath} | Should Not Throw
+            }
+
+            It 'Should contain a schema module' {
+                Test-Path -Path $compositeSchemaPath | Should Be $true
+            }
+
+            It 'Should contain a correctly named configuration' {
+                $configurationName = Get-ConfigurationName -FilePath $compositeSchemaPath
+                $configurationName | Should Be $resource
+            }
+
+            <#{TODO}#> <# This functionality is moved to the STIG class and no longer used in the composite
+            It 'Should match ValidateSet from PowerStig' {
+                $validateSet = Get-StigVersionParameterValidateSet -FilePath $compositeSchemaPath
+                $availableStigVersions = Get-ValidStigVersionNumbers -TechnologyRoleFilter $TechnologyRoleFilter[$resource]
+                $validateSet | Should BeIn $availableStigVersions
+            }
+            #>
         }
     }
 }
