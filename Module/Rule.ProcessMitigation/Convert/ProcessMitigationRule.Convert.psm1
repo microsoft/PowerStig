@@ -52,7 +52,7 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
     static [ProcessMitigationRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
     {
         $ruleList = @()
-        $rule = [ProcessMitigationRule]::new($StigRule)
+        $rule = [ProcessMitigationRuleConvert]::new($StigRule)
         if ($rule.HasMultipleRules())
         {
             [string[]] $splitRules = $rule.SplitMultipleRules()
@@ -60,12 +60,12 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
             {
                 $ruleClone = $rule.Clone()
                 $ruleClone.MitigationTarget = $splitRule
-                $ruleList += $ruleClone
+                $ruleList += $ruleClone.AsRule()
             }
         }
         else
         {
-            $ruleList += $rule
+            $ruleList += $rule.AsRule()
         }
 
         return $ruleList

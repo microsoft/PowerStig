@@ -61,7 +61,9 @@ Class Rule : ICloneable
         .DESCRIPTION
             This is the base class constructor
     #>
-    Rule () {}
+    Rule ()
+    {
+    }
 
     <#
         .SYNOPSIS
@@ -118,7 +120,7 @@ Class Rule : ICloneable
         1. PSTypeConverter has to be implemented at a .NET type, which might cause issues with customers that use constrained language mode.
         2. The parent class modules cannot load the child class modules (load loop)
     #>
-    [psobject] AsRule()
+    hidden [psobject] AsRule()
     {
         # Create an instance of the convert rule parent class
         $parentRule = $this.GetType().BaseType::new()
@@ -173,6 +175,7 @@ Class Rule : ICloneable
         .PARAMETER StigRule
             The STIG rule to convert
     #>
+    <#{TODO}#> # remove from here and clean up tests
     hidden [void] InvokeClass ( [xml.xmlelement] $StigRule )
     {
         $this.Id = $StigRule.id
@@ -209,7 +212,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Creates a shallow copy of the current
     #>
-    [Object] Clone ()
+    hidden [Object] Clone ()
     {
         return $this.MemberwiseClone()
     }
@@ -222,7 +225,7 @@ Class Rule : ICloneable
         .PARAMETER ReferenceObject
             The existing converted rules
     #>
-    [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
+    hidden [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
     {
         return Test-DuplicateRule -ReferenceObject $ReferenceObject -DifferenceObject $this
     }
@@ -233,7 +236,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Is a rule is a duplicate, tag the title for easy filtering and reporting
     #>
-    [void] SetDuplicateTitle ()
+    hidden [void] SetDuplicateTitle ()
     {
         $this.title = $this.title + ' Duplicate'
     }
@@ -246,7 +249,7 @@ Class Rule : ICloneable
         .PARAMETER Value
             The value to be tested
     #>
-    [Boolean] SetStatus ( [String] $Value )
+    hidden [Boolean] SetStatus ( [String] $Value )
     {
         if ( [String]::IsNullOrEmpty( $Value ) )
         {
@@ -269,7 +272,7 @@ Class Rule : ICloneable
         .PARAMETER AllowNullOrEmpty
             A flag to allow blank values
     #>
-    [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
+    hidden [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
     {
         if ( [String]::IsNullOrEmpty( $Value ) -and -not $AllowNullOrEmpty )
         {
@@ -288,7 +291,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Sets the IsNullOrEmpty value to true
     #>
-    [void] SetIsNullOrEmpty ()
+    hidden [void] SetIsNullOrEmpty ()
     {
         $this.IsNullOrEmpty = $true
     }
@@ -299,7 +302,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Sets the OrganizationValueRequired value to true
     #>
-    [void] SetOrganizationValueRequired ()
+    hidden [void] SetOrganizationValueRequired ()
     {
         $this.OrganizationValueRequired = $true
     }
@@ -312,7 +315,7 @@ Class Rule : ICloneable
         .PARAMETER TestString
             The string to extract the
     #>
-    [String] GetOrganizationValueTestString ( [String] $TestString )
+    hidden [string] GetOrganizationValueTestString ( [String] $TestString )
     {
         return Get-OrganizationValueTestString -String $TestString
     }
@@ -323,7 +326,8 @@ Class Rule : ICloneable
         .DESCRIPTION
             Converts the object into a hashtable
     #>
-    [hashtable] ConvertToHashTable ()
+    <#{TODO}#> # remove and cleanup testhelper.psm1
+    hidden [hashtable] ConvertToHashTable ()
     {
         return ConvertTo-HashTable -InputObject $this
     }
@@ -336,7 +340,7 @@ Class Rule : ICloneable
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitCheckContent ( [String] $CheckContent )
+    hidden static [string[]] SplitCheckContent ( [String] $CheckContent )
     {
         return (
             $CheckContent -split '\n' |
@@ -353,7 +357,7 @@ Class Rule : ICloneable
         .PARAMETER StigRule
             The StigRule to extract the fix text from
     #>
-    static [string[]] GetFixText ( [xml.xmlelement] $StigRule )
+    hidden static [string[]] GetFixText ( [xml.xmlelement] $StigRule )
     {
         $fullFix = $StigRule.Rule.fixtext.'#text'
 
@@ -372,7 +376,7 @@ Class Rule : ICloneable
         .PARAMETER RuleCollection
             The global rule collection
     #>
-    [Boolean] IsExistingRule ( [object] $RuleCollection )
+    hidden [bool] IsExistingRule ( [object] $RuleCollection )
     {
         return Test-ExistingRule -RuleCollection $RuleCollection $this
     }
@@ -389,7 +393,7 @@ Class Rule : ICloneable
             much more help in a few of the cases, so the STIG Id's for these
             checks are hardcoded here to force a fixed value to be returned.
     #>
-    [Boolean] IsHardCoded ()
+    hidden [bool] IsHardCoded ()
     {
         return Test-ValueDataIsHardCoded -StigId $this.id
     }
@@ -400,7 +404,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Returns a hard coded conversion value
     #>
-    [String] GetHardCodedString ()
+    hidden [string] GetHardCodedString ()
     {
         return Get-HardCodedString -StigId $this.id
     }
@@ -414,7 +418,7 @@ Class Rule : ICloneable
             much more help in a few of the cases, so the STIG Id's for these
             checks are hardcoded here to force a fixed value to be returned.
     #>
-    [Boolean] IsHardCodedOrganizationValueTestString ()
+    hidden [bool] IsHardCodedOrganizationValueTestString ()
     {
         return Test-IsHardCodedOrganizationValueTestString -StigId $this.id
     }
@@ -425,12 +429,12 @@ Class Rule : ICloneable
         .DESCRIPTION
             Returns a hard coded org value
     #>
-    [String] GetHardCodedOrganizationValueTestString ()
+    hidden [string] GetHardCodedOrganizationValueTestString ()
     {
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
 
-    <# <(Remove)>
+    <#{TODO}#> <#Remove
 
     hidden [void] SetDscResource ()
     {

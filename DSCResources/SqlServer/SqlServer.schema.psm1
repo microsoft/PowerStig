@@ -95,7 +95,7 @@ Configuration SqlServer
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('SqlServer',  $SqlVersion, $SqlRole, $StigVersion)
+    $stig = [STIG]::New('SqlServer', $SqlVersion, $SqlRole, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header

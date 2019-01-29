@@ -163,7 +163,7 @@ Class FileContentRuleConvert : FileContentRule
     <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        $keyValuePairs = Get-KeyValuePair -CheckContent ([FileContentType]::SplitCheckContent($CheckContent))
+        $keyValuePairs = Get-KeyValuePair -CheckContent ([FileContentRule]::SplitCheckContent($CheckContent))
         return (Test-MultipleFileContentRule -KeyValuePair $keyValuePairs)
     }
 
@@ -179,6 +179,6 @@ Class FileContentRuleConvert : FileContentRule
     #>
     static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([FileContentType]::SplitCheckContent($CheckContent)))
+        return (Get-KeyValuePair -SplitCheckContent -CheckContent ([FileContentRule]::SplitCheckContent($CheckContent)))
     }
 }

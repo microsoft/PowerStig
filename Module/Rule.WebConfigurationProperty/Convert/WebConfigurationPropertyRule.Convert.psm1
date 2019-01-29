@@ -59,18 +59,18 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
     static [WebConfigurationPropertyRule[]] ConvertFromXccdf ($StigRule)
     {
         $ruleList = @()
-        if ([WebConfigurationPropertyRule]::HasMultipleRules($StigRule.rule.Check.'check-content'))
+        if ([WebConfigurationPropertyRuleConvert]::HasMultipleRules($StigRule.rule.Check.'check-content'))
         {
-            [string[]] $splitRules = [WebConfigurationPropertyRule]::SplitMultipleRules($StigRule.rule.Check.'check-content')
+            [string[]] $splitRules = [WebConfigurationPropertyRuleConvert]::SplitMultipleRules($StigRule.rule.Check.'check-content')
             foreach ($splitRule in $splitRules)
             {
                 $StigRule.rule.Check.'check-content' = $splitRule
-                $ruleList += [WebConfigurationPropertyRule]::New($StigRule)
+                $ruleList += [WebConfigurationPropertyRuleConvert]::New($StigRule).AsRule()
             }
         }
         else
         {
-            $ruleList += [WebConfigurationPropertyRule]::New($StigRule)
+            $ruleList += [WebConfigurationPropertyRuleConvert]::New($StigRule).AsRule()
         }
         return $ruleList
     }
