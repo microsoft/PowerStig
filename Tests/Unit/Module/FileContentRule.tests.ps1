@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\FileContentRule\FileContentRule.psm1
+using module .\..\..\..\Module\Rule.FileContent\Convert\FileContentRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $rulesToTest = @(
             @{
@@ -58,7 +58,7 @@ try
        )
 
        $stigRule = Get-TestStigRule -ReturnGroupOnly
-       $rule = [FileContentRule]::new( $stigRule)
+       $rule = [FileContentRuleConvert]::new( $stigRule)
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -66,7 +66,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'FileContentRule'
                 }
             }
 
@@ -116,7 +116,6 @@ try
 
                     <# 'Enable' property of $rule is missing causing empty string output #>
                     It "Should have Enable equal to: '$($rule.Enable)'" {
-
                         $result | Should Be $true
                     }
                 }

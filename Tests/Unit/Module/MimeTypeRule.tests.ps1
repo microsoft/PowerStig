@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\MimeTypeRule\MimeTypeRule.psm1
+using module .\..\..\..\Module\Rule.MimeType\Convert\MimeTypeRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $mimeTypeRule = @{
             Ensure       = 'absent'
@@ -59,7 +59,7 @@ try
         }
 
         $stigRule = Get-TestStigRule -CheckContent $mimeTypeRule.CheckContent -ReturnGroupOnly
-        $rule = [MimeTypeRule]::new( $stigRule )
+        $rule = [MimeTypeRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class"{
@@ -67,7 +67,7 @@ try
             Context 'Base Class'{
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'MimeTypeRule'
                 }
             }
 

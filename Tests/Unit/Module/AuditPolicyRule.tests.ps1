@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\AuditPolicyRule\AuditPolicyRule.psm1
+using module .\..\..\..\Module\Rule.AuditPolicy\Convert\AuditPolicyRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $checkContentBase = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
@@ -18,7 +18,7 @@ try
 
         $checkContentString = 'Account Management -&gt; Computer Account Management - Success'
         $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
-        $rule = [AuditPolicyRule]::new( $stigRule )
+        $rule = [AuditPolicyRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -26,7 +26,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'AuditPolicyRule'
                 }
             }
 
@@ -100,7 +100,9 @@ try
         }
         #endregion
 
-        #region Data Tests
+        <#{TODO}#> <#Rem Struct test#>
+        <#region Data Tests
+
         Describe 'Audit Policy Data Variables' {
 
             [string[]] $dataSectionNameList = @(
@@ -115,7 +117,7 @@ try
                 }
             }
         }
-        #endregion
+        #endregion #>
     }
 }
 finally

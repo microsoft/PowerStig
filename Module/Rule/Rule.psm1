@@ -2,8 +2,8 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.md', '*.psm1')
+$supportFileList = Get-ChildItem -Path $PSScriptRoot -Recurse -File -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
@@ -46,14 +46,14 @@ Class Rule : ICloneable
     [string] $Title
     [severity] $Severity
     [status] $ConversionStatus
-    [string] $RawString
-    hidden [string[]] $SplitCheckContent
+    [string] $DscResource
+    [string] $DuplicateOf
+    [string] $Description
     [Boolean] $IsNullOrEmpty
     [Boolean] $OrganizationValueRequired
     [string] $OrganizationValueTestString
-    [string] $Description
-    hidden [string] $DscResource
-
+    [string] $RawString
+    hidden [string[]] $SplitCheckContent
 
     <#
         .SYNOPSIS
@@ -61,13 +61,11 @@ Class Rule : ICloneable
         .DESCRIPTION
             This is the base class constructor
     #>
-    Rule ()
-    {
-    }
+    Rule () {}
 
     <#
         .SYNOPSIS
-            PowerSTIG XML constructor
+            PowerSTIG XML deserialze constructor
         .DESCRIPTION
             This is the base class constructor that laods the base properties from
             the PowerSTIG XML
@@ -93,7 +91,7 @@ Class Rule : ICloneable
     #>
     Rule ([xml.xmlelement] $Rule, [switch] $Convert)
     {
-        # This is the current InvokeClass method
+        # This relaces the current InvokeClass method
         $this.Id = $Rule.Id
         $this.Title = $Rule.Title
         $this.Severity = $Rule.rule.severity
@@ -120,16 +118,51 @@ Class Rule : ICloneable
         1. PSTypeConverter has to be implemented at a .NET type, which might cause issues with customers that use constrained language mode.
         2. The parent class modules cannot load the child class modules (load loop)
     #>
-    [psobject] AsRule([psobject]$Rule)
+    [psobject] AsRule()
     {
+        # Create an instance of the convert rule parent class
+        $parentRule = $this.GetType().BaseType::new()
+        # Get the property list from the convert rule
         $propertyList = $this | Get-Member -MemberType Properties
-
+        # Copy the convert properties to the parent properties
         foreach ($property in $propertyList)
         {
-            $Rule.($property.Name) = $this.($property.Name)
+            if ( $null -ne $this.($property.Name) )
+            {
+                $parentRule.($property.Name) = $this.($property.Name)
+            }
         }
-        return $Rule
+        return $parentRule
     }
+
+    # NEW Override functionali
+    hidden [string] GetOverrideValue()
+    {
+        # The path that is returned from GetType contains wierd backslashes that I can't figure out how to use.
+        $moduleName = $this.GetType().Name -replace 'Rule', ''
+        $baseclassPath = Resolve-Path -Path "$PSScriptRoot\..\Rule.$moduleName\$($this.GetType().Name).psm1"
+        # Exception property tag is used in the base class to identify the property that is to be overridden
+        # the patteren is as follows
+        # [type] $Name <#(ExceptionValue)#>
+        $exceptionPropertyTag = '\s+(?:\[\w+(?:\[\s*\])?\])\s\$(?<ExceptionValue>\w+)\s+<#\(ExceptionValue\)#>'
+        $exceptionProperty = [regex]::Matches(
+            (Get-Content -path $baseclassPath -raw), $exceptionPropertyTag
+        ).Groups.Where( {$_.Name -eq 'ExceptionValue'}).Value
+
+        return $exceptionProperty
+    }
+    [void] AddOrgSetting ([string] $Value)
+    {
+        $this.($this.GetOverrideValue()) = $Value
+    }
+    [void] AddExceptionToPolicy ([string] $Value)
+    {
+        $this.Title = "[Exception] " + $this.title
+        $this.($this.GetOverrideValue()) = $Value
+    }
+
+
+    # end NEW Override functionality
 
     <#
         .SYNOPSIS

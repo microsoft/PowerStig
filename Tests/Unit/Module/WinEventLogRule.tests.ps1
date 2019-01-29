@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\WinEventLogRule\WinEventLogRule.psm1
+using module .\..\..\..\Module\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $rulesToTest = @(
             @{
@@ -48,7 +48,7 @@ try
         )
 
         $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [WinEventLogRule]::new( $stigRule )
+        $rule = [WinEventLogRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -56,7 +56,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'WinEventLogRule'
                 }
             }
 

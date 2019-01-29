@@ -1,16 +1,16 @@
 #region Header
-using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
+using module .\..\..\..\Module\Rule.Registry\Convert\RegistryRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
-$expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
-foreach ($supportFile in $expressionFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
+# $expressionFileList = Get-Item .\..\..\..\Module\Rule\Convert\Data.*.ps1
+# foreach ($supportFile in $expressionFileList)
+# {
+#     Write-Verbose "Loading $($supportFile.FullName)"
+#     . $supportFile.FullName
+#}
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $rulesToTest = @(
             @{
@@ -211,14 +211,14 @@ try
             }
         )
         $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [RegistryRule]::new( $stigRule )
+        $rule = [RegistryRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
 
             Context 'Base Class' {
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'RegistryRule'
                 }
             }
 
@@ -251,7 +251,7 @@ try
             )
 
             It 'Should not match the DSA Database file registry path' {
-                [RegistryRule]::Match($stringsToTest.string) | Should Be $false
+                [RegistryRuleConvert]::Match($stringsToTest.string) | Should Be $false
             }
         }
 
@@ -1317,7 +1317,7 @@ try
                 $hashtable    =  [ordered]@{
                     Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\'
                     Select   = '((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)'
-                }            
+                }
                 $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
                 Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
             }
@@ -1327,7 +1327,7 @@ try
                 $hashtable    =  [ordered]@{
                     Contains = 'Verify'
                     Select   = '((HKLM|HKCU).*(?=Verify))'
-                }            
+                }
                 $returnContent = $null
                 Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
             }
@@ -1444,7 +1444,7 @@ try
             $hashtable = @{
                 Select = '(?<=REG_Type)(\s*)?=.*(?=(,|\())'
             }
-            
+
             It "Should return '$valueData' from '$checkContent'" {
                 $result = Get-RegistryValueDataFromSLStig -CheckContent $checkContent -Hashtable $hashtable
                 $result | Should Be $valueData

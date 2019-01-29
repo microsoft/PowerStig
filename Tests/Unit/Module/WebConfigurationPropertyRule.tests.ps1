@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
+using module .\..\..\..\Module\Rule.WebConfigurationProperty\Convert\WebConfigurationPropertyRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $rulesToTest = @(
             @{
@@ -77,7 +77,7 @@ try
         }
 
         $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [WebConfigurationPropertyRule]::new( $stigRule )
+        $rule = [WebConfigurationPropertyRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -85,7 +85,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'WebConfigurationPropertyRule'
                 }
             }
 

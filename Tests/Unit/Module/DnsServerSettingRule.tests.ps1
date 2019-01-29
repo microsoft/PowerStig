@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\DnsServerSettingRule\DnsServerSettingRule.psm1
+using module .\..\..\..\Module\Rule.DnsServerSetting\Convert\DnsServerSettingRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $rulesToTest = @(
             @{
@@ -25,7 +25,7 @@ try
         )
 
         $stigRule = Get-TestStigRule -ReturnGroupOnly
-        $rule = [DnsServerSettingRule]::new( $stigRule )
+        $rule = [DnsServerSettingRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -33,7 +33,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'DnsServerSettingRule'
                 }
             }
 
@@ -73,7 +73,10 @@ try
             }
         }
         #endregion
-        #region Function Tests
+
+        <#{TODO}#> <#Rem structural tests. This is testing a specifc vraible name
+        and can be moved to the $rulesToTest above#>
+        <#region Function Tests
         Describe 'Private DnsServerSetting Rule tests' {
 
             # Regular expression tests
@@ -106,7 +109,7 @@ try
 
         #region Data Tests
 
-        #endregion
+        #endregion #>
     }
 }
 finally

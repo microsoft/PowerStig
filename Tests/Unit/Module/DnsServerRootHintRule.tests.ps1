@@ -1,12 +1,12 @@
 #region Header
-using module .\..\..\..\Module\DnsServerRootHintRule\DnsServerRootHintRule.psm1
+using module .\..\..\..\Module\Rule.DnsServerRootHint\Convert\DnsServerRootHintRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
-        $rule = [DnsServerRootHintRule]::new( (Get-TestStigRule -ReturnGroupOnly) )
+        $rule = [DnsServerRootHintRuleConvert]::new( (Get-TestStigRule -ReturnGroupOnly) )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -14,7 +14,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'DnsServerRootHintRule'
                 }
             }
 

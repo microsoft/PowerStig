@@ -1,13 +1,13 @@
 #region Header
-using module .\..\..\..\Module\DocumentRule\DocumentRule.psm1
+using module .\..\..\..\Module\Rule.Document\Convert\DocumentRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $stigRule = Get-TestStigRule -ReturnGroupOnly
-        $rule = [DocumentRule]::new( $stigRule )
+        $rule = [DocumentRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -15,7 +15,7 @@ try
             Context 'Base Class' {
 
                 It "Shoud have a BaseType of Rule" {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'DocumentRule'
                 }
             }
         }

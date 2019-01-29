@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\IISLoggingRule\IISLoggingRule.psm1
+using module .\..\..\..\Module\Rule.IISLogging\Convert\IISLoggingRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $rulesToTest = @(
             @{
@@ -141,7 +141,7 @@ try
             }
         )
         $stigRule = Get-TestStigRule -ReturnGroupOnly
-        $rule = [IisLoggingRule]::new( $stigRule )
+        $rule = [IisLoggingRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -149,7 +149,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'IISLoggingRule'
                 }
             }
 

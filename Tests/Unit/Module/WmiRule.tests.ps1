@@ -1,10 +1,10 @@
 #region Header
-using module .\..\..\..\Module\WmiRule\WmiRule.psm1
+using module .\..\..\..\Module\Rule.Wmi\Convert\WmiRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
         $checkContent = 'Open the Computer Management Console.
         Expand the "Storage" object in the Tree window.
@@ -16,7 +16,7 @@ try
         must be documented with the ISSO.'
 
         $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-        $rule = [WmiRule]::new( $stigRule )
+        $rule = [WmiRuleConvert]::new( $stigRule )
         #endregion
         #region Class Tests
         Describe "$($rule.GetType().Name) Child Class" {
@@ -24,7 +24,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
+                    $rule.GetType().BaseType.ToString() | Should Be 'WmiRule'
                 }
             }
 
