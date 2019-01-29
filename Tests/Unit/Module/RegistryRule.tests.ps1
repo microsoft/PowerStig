@@ -219,7 +219,7 @@ try
         Describe "$($rule.GetType().Name) Child Class" {
 
             Context 'Base Class' {
-                It 'Shoud have a BaseType of STIG' {
+                It 'Should have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -1519,28 +1519,25 @@ try
         }
 
         Describe "Get-RegistryPatternLog" {
-            
+
             Import-Module "$($PSScriptRoot).\..\..\..\PowerStig.Convert.psm1"
             $folderPath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser" -Relative
             $filePath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml" -Relative    
             
             Context 'Path is directory' {
-
-                It "Shoud return valid table with updated counts" {
+                It "Should return valid table with updated counts" {
                     $result = Get-RegistryPatternLog -Path $folderPath
                     $result.GetType() | Should Be 'System.Object[]'
                 }
             }
             Context 'Path is file' {
-
-                It "Shoud return valid table with updated counts" {
+                It "Should return valid table with updated counts" {
                     $result = Get-RegistryPatternLog -Path $filePath
                     $result.GetType() | Should Be 'System.Object[]'
                 }
             }
             Context 'Path is null' {
-
-                It "Shoud throw if path is null" {
+                It "Should throw if path is null" {
                 { Get-RegistryPatternLog -Path $null } | Should Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
                 }
             }

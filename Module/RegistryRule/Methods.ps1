@@ -1144,7 +1144,7 @@ function Split-MultipleRegistryEntries
 
 <#
     .SYNOPSIS
-        Splits multiple registry entries from a single check into individual check strings
+        Creates a registry pattern table and increments the pattern count from the single line functions
 
     .PARAMETER Pattern
         A registry rule pattern that has been applied
@@ -1175,21 +1175,52 @@ function Set-RegistryPatternLog
     # Build the in-memory table of patterns
     If(-not $global:patternTable)
     {
-        $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }
-        $nestedItems = $global:SingleLineRegistryPath.GetEnumerator() | Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
+        $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null }
+        
+        $nestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
 
-        $regPathTable = $nonestedItems.GetEnumerator() | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
-        $regPathTable += $nestedItems.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
-        $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
-        $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null } | ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
-        $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | Where-Object { $_.Value['Select'] -ne $null }| ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
+        $regPathTable = $nonestedItems.GetEnumerator() | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        
+        $regPathTable += $nestedItems.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        
+        $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
+        
+        $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
+        
+        $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
+        
+        $valueTypeTable = $regValueTypeTable | 
+        Group-Object -Property "Pattern" | 
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
+        
+        $valueNameTable = $regValueNameTable | 
+        Group-Object -Property "Pattern" | 
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
 
-        $global:patternTable = $regPathTable + $regValueTypeTable + $regValueNameTable + $regValueDataTable
+        $valueDataTable = $regValueDataTable | 
+        Group-Object -Property "Pattern" | 
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
+        
+        $global:patternTable = $regPathTable + $valueTypeTable + $valueNameTable + $valueDataTable
     }
 
     # Find pattern in table and increment count
     $searchResult = $global:patternTable | Where-Object { $_.Pattern -eq $Pattern}
-    $searchResult.Count ++
+    if ($searchResult)
+    {
+        $searchResult.Count ++
+    }
 }
 
 <#
@@ -1277,7 +1308,10 @@ function Test-StigProcessed
     $id = $XmlDocument.Benchmark | Select-Object id
     $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
                                                                                                             -replace "R","\." }
-    $hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+    $conversionPath = Get-Item "$($PSScriptRoot)..\..\..\StigData\Processed"
+    #Write-Host $testPath
+    $hasConversion = Get-ChildItem -Path $conversionPath -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+    #$hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
     
     if ($hasConversion)
     {

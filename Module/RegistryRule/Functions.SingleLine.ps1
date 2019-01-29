@@ -145,7 +145,6 @@ function Get-SLRegistryPath
     if (-not [String]::IsNullOrEmpty($matchedRegistryPath))
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found path : $true"
-        Set-RegistryPatternLog -Pattern $regEx
         switch -Wildcard ($matchedRegistryPath)
         {
             "*HKLM*" {$matchedRegistryPath = $matchedRegistryPath -replace "^HKLM", "HKEY_LOCAL_MACHINE"}
@@ -158,6 +157,7 @@ function Get-SLRegistryPath
         $result = $matchedRegistryPath.ToString().trim(' ', '.')
 
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Trimmed path : $result"
+        Set-RegistryPatternLog -Pattern $regEx
         return $result
     }
     else
@@ -267,12 +267,12 @@ function Get-RegistryValueTypeFromSLStig
                 } 
                 else
                 {
-                    Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
                     $valueType = $selectedValueType.Matches[0].Value
                     if ($Hashtable.Item('Group'))
                     {
                         $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
                     }
+                    Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
                 }
             } 
         } # Switch
@@ -384,8 +384,7 @@ function Get-RegistryValueNameFromSLStig
             {
                 $regEx = '{0}' -f $Hashtable.Item($key)
                 $valueName = Select-String -InputObject $CheckContent -Pattern $regEx
-                Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
-        }
+            }
         } # Switch
     } # Foreach
 
@@ -399,6 +398,7 @@ function Get-RegistryValueNameFromSLStig
         }
 
         $result = $valueName.trim()
+        Set-RegistryPatternLog -Pattern $regEx
 
         if (-not [String]::IsNullOrEmpty($result))
         {
@@ -512,6 +512,7 @@ function Get-RegistryValueDataFromSLStig
                 if ($result.Count -gt 0)
                 {
                     $valueData = $result[0]
+                    Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
                 }
             }
         } # Switch
@@ -526,7 +527,6 @@ function Get-RegistryValueDataFromSLStig
         if (-not [String]::IsNullOrEmpty($result))
         {
             Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found Name : $result"
-            Set-RegistryPatternLog -Pattern $regEx
             return $result 
         }
         else
