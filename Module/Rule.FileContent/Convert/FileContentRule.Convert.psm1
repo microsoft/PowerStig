@@ -42,7 +42,7 @@ Class FileContentRuleConvert : FileContentRule
             }
         }
         $this.DscResource = $(
-            if ($this.Key-match 'deployment.')
+            if ($this.Key -match 'deployment.')
             {
                 'KeyValuePairFile'
             }
@@ -110,7 +110,7 @@ Class FileContentRuleConvert : FileContentRule
         }
     }
 
-   static [bool] Match ([string] $CheckContent)
+    static [bool] Match ([string] $CheckContent)
     {
 
         $result = $false
@@ -160,6 +160,7 @@ Class FileContentRuleConvert : FileContentRule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
         $keyValuePairs = Get-KeyValuePair -CheckContent ([FileContentType]::SplitCheckContent($CheckContent))

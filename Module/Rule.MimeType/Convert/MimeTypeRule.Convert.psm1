@@ -128,6 +128,7 @@ Class MimeTypeRuleConvert : MimeTypeRule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
         return Test-MultipleMimeTypeRule -CheckContent ([MimeTypeRule]::SplitCheckContent($CheckContent))

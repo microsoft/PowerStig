@@ -50,7 +50,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
     #region Methods
     <#{TODO}#> <#This method is not alighed to the otehr methods and might be
     centralized in the Ruel base class#>
-    static [WindowsFeatureRuleConvert[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
+    static [WindowsFeatureRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
     {
         $ruleList = @()
         $rule = [WindowsFeatureRuleConvert]::new($StigRule)
@@ -130,6 +130,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
             The feature name from the rule text from the check-content element
             in the xccdf
     #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     [bool] HasMultipleRules ()
     {
         return (Test-MultipleWindowsFeatureRule -FeatureName $this.FeatureName)

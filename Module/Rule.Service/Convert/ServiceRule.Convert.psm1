@@ -43,7 +43,7 @@ Class ServiceRuleConvert : ServiceRule
     static [ServiceRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
     {
         $ruleList = @()
-        $rule = [ServiceRule]::new($StigRule)
+        $rule = [ServiceRuleConvert]::new($StigRule)
         if ($rule.HasMultipleRules())
         {
             [string[]] $splitRules = $rule.SplitMultipleRules()
@@ -145,6 +145,7 @@ Class ServiceRuleConvert : ServiceRule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     [bool] HasMultipleRules ()
     {
         return (Test-MultipleServiceRule -ServiceName $this.Servicename)

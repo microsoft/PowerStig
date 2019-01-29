@@ -55,9 +55,9 @@ Class UserRightRuleConvert : UserRightRule
     static [UserRightRule[]] ConvertFromXccdf ($StigRule)
     {
         $ruleList = @()
-        if ([UserRightRule]::HasMultipleRules($StigRule.rule.Check.'check-content'))
+        if ([UserRightRuleConvert]::HasMultipleRules($StigRule.rule.Check.'check-content'))
         {
-            [string[]] $splitRules = [UserRightRule]::SplitMultipleRules($StigRule.rule.Check.'check-content')
+            [string[]] $splitRules = [UserRightRuleConvert]::SplitMultipleRules($StigRule.rule.Check.'check-content')
             [int] $byte = 97 # Lowercase A
             foreach ($splitRule in $splitRules)
             {
@@ -66,12 +66,12 @@ Class UserRightRuleConvert : UserRightRule
                 $byte ++
 
                 $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [UserRightRule]::New($StigRule).AsRule()
+                $ruleList += [UserRightRuleConvert]::New($StigRule).AsRule()
             }
         }
         else
         {
-            $ruleList += [UserRightRule]::New($StigRule).AsRule()
+            $ruleList += [UserRightRuleConvert]::New($StigRule).AsRule()
         }
         return $ruleList
     }
@@ -193,7 +193,7 @@ Class UserRightRuleConvert : UserRightRule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
         if (Test-MultipleUserRightsAssignment -CheckContent ([UserRightRule]::SplitCheckContent($CheckContent)))

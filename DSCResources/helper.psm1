@@ -62,7 +62,7 @@ function Select-Rule
 
     process
     {
-        return $RuleList.Where({$_.GetType().ToString() -eq $Type})
+        return $RuleList.Where( {$_.GetType().ToString() -eq $Type})
     }
 }
 
@@ -89,7 +89,7 @@ function Get-UniqueStringArray
         [Parameter()]
         [switch]
         $AsString
-   )
+    )
 
     $return = @()
 
@@ -170,7 +170,7 @@ function Get-LogCustomField
         $LogCustomField,
 
         [Parameter(Mandatory = $true)]
-        [ValidateSet('xIisLogging','xWebSite')]
+        [ValidateSet('xIisLogging', 'xWebSite')]
         [string]
         $Resource
     )
@@ -206,6 +206,7 @@ function Get-LogCustomField
 #endregion
 
 #region FireFox
+
 <#
     .SYNOPSIS
         Formats the value of a FireFox configuration preference. The FireFox.cfg
@@ -242,7 +243,7 @@ function Format-FireFoxPreference
 #end region
 
 Export-ModuleMember -Function @(
-    'Get-ResourceTitle','Get-RuleClassData','Select-Rule','Get-UniqueString',
-    'Get-UniqueStringArray','Get-LogCustomField','Format-FireFoxPreference'
-    )`
+    'Get-ResourceTitle', 'Get-RuleClassData', 'Select-Rule', 'Get-UniqueString',
+    'Get-UniqueStringArray', 'Get-LogCustomField', 'Format-FireFoxPreference'
+)`
     -Variable 'resourcePath'

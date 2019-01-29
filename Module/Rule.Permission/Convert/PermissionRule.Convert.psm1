@@ -48,9 +48,9 @@ Class PermissionRuleConvert : PermissionRule
     static [PermissionRule[]] ConvertFromXccdf ($StigRule)
     {
         $ruleList = @()
-        if ([PermissionRule]::HasMultipleRules($StigRule.rule.Check.('check-content')))
+        if ([PermissionRuleConvert]::HasMultipleRules($StigRule.rule.Check.('check-content')))
         {
-            [string[]] $splitRules = [PermissionRule]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
+            [string[]] $splitRules = [PermissionRuleConvert]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
             [int] $byte = 97 # Lowercase A
             foreach ($splitRule in $splitRules)
             {
@@ -59,12 +59,12 @@ Class PermissionRuleConvert : PermissionRule
                 $byte ++
 
                 $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [PermissionRule]::New($copyRule).AsRule()
+                $ruleList += [PermissionRuleConvert]::New($copyRule).AsRule()
             }
         }
         else
         {
-            $ruleList += [PermissionRule]::New($StigRule).AsRule()
+            $ruleList += [PermissionRuleConvert]::New($StigRule).AsRule()
         }
         return $ruleList
     }
@@ -191,6 +191,7 @@ Class PermissionRuleConvert : PermissionRule
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
         $permissionPaths = Get-PermissionTargetPath -StigString ([PermissionRule]::SplitCheckContent($CheckContent))

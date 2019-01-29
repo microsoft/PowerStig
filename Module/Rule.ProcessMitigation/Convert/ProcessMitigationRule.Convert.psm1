@@ -115,6 +115,7 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
         .PARAMETER MitigationTarget
             The object the mitigation applies to
     #>
+    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     [bool] HasMultipleRules ()
     {
         return (Test-MultipleProcessMitigationRule -MitigationTarget $this.MitigationTarget)
