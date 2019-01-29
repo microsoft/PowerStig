@@ -75,18 +75,25 @@ function ConvertTo-PowerStigXml
 
         # Start the XML doc and add the root element
         $xmlDocument = [System.XML.XMLDocument]::New()
-        [System.XML.XMLElement] $xmlRoot = $xmlDocument.CreateElement( $xmlElement.stigConvertRoot )
+        [System.XML.XMLElement] $xmlRoot = $xmlDocument.CreateElement( 'DISASTIG' )
 
         <#
             Append as child to an existing node. This method will 'leak' an object out of the function
             so DO NOT remove the [void]
         #>
         [void] $xmlDocument.appendChild( $xmlRoot )
-        $xmlRoot.SetAttribute( $xmlAttribute.stigId , $xccdfXml.Benchmark.ID )
-
-        # Set the version and creation attributes in the output file.
-        $xmlRoot.SetAttribute( $xmlAttribute.stigVersion, $stigVersionNumber )
-        $xmlRoot.SetAttribute( $xmlAttribute.stigConvertCreated, $(Get-Date).ToShortDateString() )
+        $xmlRoot.SetAttribute( 'version' , $xccdfXml.Benchmark.version )
+        $xmlRoot.SetAttribute( 'classification', 'UNCLASSIFIED' )
+        $xmlRoot.SetAttribute( 'customname' , '' )
+        $xmlRoot.SetAttribute( 'stigid' , $xccdfXml.Benchmark.ID )
+        $xmlRoot.SetAttribute( 'description' , $xccdfXml.Benchmark.description )
+        $xmlRoot.SetAttribute( 'filename' , (Split-Path -Path $Path -Leaf) )
+        $xmlRoot.SetAttribute( 'releaseinfo' , $xccdfXml.Benchmark.'plain-text'.InnerText )
+        $xmlRoot.SetAttribute( 'title' , $xccdfXml.Benchmark.title )
+        $xmlRoot.SetAttribute( 'notice' , $xccdfXml.Benchmark.notice.Id )
+        $xmlRoot.SetAttribute( 'source' , $xccdfXml.Benchmark.reference.source )
+        $xmlRoot.SetAttribute( 'fullversion', $stigVersionNumber )
+        $xmlRoot.SetAttribute( 'created', $(Get-Date).ToShortDateString() )
 
         # Add the STIG types as child elements
         foreach ( $ruleType in $ruleTypeList )
@@ -429,11 +436,10 @@ function New-OrganizationalSettingsXmlFile
     $xmlDocument = [System.XML.XMLDocument]::New()
 
     ##############################   Root object   ###################################
-    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement(
-        $xmlElement.organizationalSettingRoot )
+    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement( 'OrganizationalSettings' )
 
     [void] $xmlDocument.appendChild( $xmlRootElement )
-    [void] $xmlRootElement.SetAttribute( $xmlAttribute.stigVersion, $StigVersionNumber )
+    [void] $xmlRootElement.SetAttribute( 'fullversion', $StigVersionNumber )
 
     $rootComment = $xmlDocument.CreateComment( $organizationalSettingRootComment )
     [void] $xmlDocument.InsertBefore( $rootComment, $xmlRootElement )
@@ -443,8 +449,7 @@ function New-OrganizationalSettingsXmlFile
 
     foreach ( $orgSetting in $OrgSettings)
     {
-        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement(
-            $xmlElement.organizationalSettingChild )
+        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement( 'OrganizationalSetting' )
 
         [void] $xmlRootElement.appendChild( $xmlSettingChildElement )
 
