@@ -64,7 +64,7 @@ Configuration IisServer
         $LogPath,
 
         [Parameter()]
-        [ValidateSet('1.3', '1.5')]
+        [ValidateSet('1.3', '1.5', '1.6')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
