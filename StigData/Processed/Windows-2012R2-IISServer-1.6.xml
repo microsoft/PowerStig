@@ -1,4 +1,4 @@
-<DISASTIG id="IIS_8-5_Server_STIG" version="1.3" created="1/29/2019">
+<DISASTIG id="IIS_8-5_Server_STIG" version="1.6" created="1/29/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -74,33 +74,6 @@ If undocumented privileged accounts are found, this is a finding.
 
 If undocumented non-administrator access to shell scripts and operating system functions are found, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76725.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000011 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
-Click the IIS 8.5 web server name.
-Under "ASP.Net", double-click on the "Session State" icon.
-Under "Cookie Settings", verify the "Mode" has "Use Cookies" selected from the drop-down list.</RawString>
-    </Rule>
-    <Rule id="V-76725.b" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000011 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
-Click the IIS 8.5 web server name.
-Under "ASP.Net", double-click on the "Session State" icon.
-Verify the "Regenerate expired session ID" check box is selected.</RawString>
-    </Rule>
-    <Rule id="V-76727.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145 Duplicate" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
-Click the IIS 8.5 web server name.
-Under the "ASP.NET" section, select "Session State".
-Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.</RawString>
-    </Rule>
     <Rule id="V-76729" severity="medium" conversionstatus="pass" title="SRG-APP-000225-WSR-000074" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -119,11 +92,15 @@ If documentation for a disaster recovery has not been established, this is a fin
 
 Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
 
-Navigate to KEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ContentIndex\Catalogs\.
+Navigate to HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ContentIndex\Catalogs\.
 
-If this key exists then indexing is enabled; if the key does not exist then this check is Not Applicable.
+If this key exists, then indexing is enabled. 
 
-Review the Catalogs keys to determine if directories other than web document directories are being indexed. If so, this is a finding.</RawString>
+If the key does not exist, this check is Not Applicable.
+
+Review the Catalog keys to determine if directories other than web document directories are being indexed.
+
+If so, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76739" severity="high" conversionstatus="pass" title="SRG-APP-000315-WSR-000003" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -266,7 +243,7 @@ Verify, at a minimum, the following tuning settings in the registry.
 
 Access the IIS 8.5 web server registry.
 
-Verify the following keys are present and configured. The required setting depends upon the requirements of the application.
+Verify the following keys are present and configured. The required setting depends upon the requirements of the application. 
 
 Recommended settings are not provided as these settings have to be explicitly configured to show a conscientious tuning has been made.
 
@@ -445,57 +422,22 @@ When the log file is displayed, review source IP information in log entries and 
 
 If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76691" severity="medium" conversionstatus="pass" title="SRG-APP-000118-WSR-000068" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Query the SA to determine who has update access to the web server log files.
-
-The role of auditor and the role of SA should be distinctly separate. An individual functioning as an auditor should not also serve as an SA due to a conflict of interest.
-
-Only management authorized individuals with a privileged ID or group ID associated with an auditor role will have access permission to log files that are greater than read on web servers he or she has been authorized to audit.
-
-Only management authorized individuals with a privileged ID or group ID associated with either an SA or web administrator role may have read authority to log files for the web servers he or she has been authorized to administer.
-
-No other individuals may access log files.
-
-If an account associated with roles other than auditors, SAs, or web administrators have any access to log files, this is a finding.
-
-If an account with roles other than auditor has greater than read authority to the log files, this is a finding.
-
-This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files.
-</RawString>
-    </Rule>
-    <Rule id="V-76693" severity="medium" conversionstatus="pass" title="SRG-APP-000119-WSR-000069" dscresource="None">
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
-
-Click the IIS 8.5 web server name.
-
-Click the "Logging" icon.
-
-Click the "Browse" button and navigate to the directory where the log files are stored.
-
-Right-click the log file name to review and click “Properties”.
-
-Click the "Security" tab.
-
-Verify only authorized groups are listed, if others are listed, this is a finding.
-
-If an account associated with roles other than auditors, SAs, or web administrators have any access to log files, this is a finding.
-
-If an account with roles other than auditor has greater than read authority to the log files, this is a finding.
-
-This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files.
-</RawString>
-    </Rule>
     <Rule id="V-76695" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Open the IIS 8.5 Manager.
+      <RawString>Query the SA to determine who has update access to the web server log files. 
+
+The role of auditor and the role of SA should be distinctly separate. An individual functioning as an auditor should not also serve as an SA due to a conflict of interest. 
+
+Only management authorized individuals with a privileged ID or group ID associated with an auditor role will have access permission to log files that are greater than read on web servers he or she has been authorized to audit. 
+
+Only management authorized individuals with a privileged ID or group ID associated with either an SA or web administrator role may have read authority to log files for the web servers he or she has been authorized to administer. 
+
+If an account with roles other than auditor has greater than read authority to the log files, this is a finding. 
+
+This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files. 
+Open the IIS 8.5 Manager.
 
 Click the IIS 8.5 web server name.
 
@@ -634,7 +576,7 @@ If the IIS 8.5 web server management and the application's management functional
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: The Management Tools must be installed in order to validate this requirement.
+      <RawString>Note:  This requirement applies to the Web Management Service. If the Web Management Service is not installed, this is Not Applicable.
 
 Open the IIS 8.5 Manager.
 
@@ -693,7 +635,7 @@ Access Apps menu. Under Administrative Tools, select Computer Management.
 
 In left pane, expand "Local Users and Groups" and click on "Users".
 
-Review the local users listed in the middle pane.
+Review the local users listed in the middle pane. 
 
 If any local accounts are present and are used by IIS 8.5 verify with System Administrator that default passwords have been changed.
 
@@ -711,6 +653,15 @@ Double-click the “Authorization Rules” icon.
 
 If any user other than “Administrator” is listed, this is a finding.
 </RawString>
+    </Rule>
+    <Rule id="V-91207" severity="medium" conversionstatus="pass" title="SRG-APP-000243" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>1. From a command prompt, type "net share" and press “Enter” to provide a list of available shares (including printers).
+2. To display the permissions assigned to the shares type "net share" followed by the share name found in the previous step.
+If any private assets are assigned permissions to the share, this is a finding.
+If any printers are shared, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
@@ -918,25 +869,17 @@ Creator/Owner: Special permissions to subkeys</RawString>
     </Rule>
   </RegistryRule>
   <WebConfigurationPropertyRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-76723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000220-WSR-000201" dscresource="xWebConfigKeyValue">
+    <Rule id="V-76727.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-Verify "cookieless" is set to "UseCookies".</RawString>
+      <RawString>Open the IIS 8.5 Manager.
+Click the IIS 8.5 web server name.
+Under the "ASP.NET" section, select "Session State".
+Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.</RawString>
       <Value>UseCookies</Value>
-    </Rule>
-    <Rule id="V-76723.b" severity="medium" conversionstatus="pass" title="SRG-APP-000220-WSR-000201" dscresource="xWebConfigKeyValue">
-      <ConfigSection>/system.web/sessionState</ConfigSection>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>regenerateExpiredSessionID</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-Verify the "regenerateExpiredSessionID" is set to "True".</RawString>
-      <Value>True</Value>
     </Rule>
     <Rule id="V-76727.b" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.web/sessionState</ConfigSection>
@@ -1001,8 +944,8 @@ Double-click the "Error Pages" icon.
 
 Click each error message and click "Edit Feature Setting" from the "Actions" Pane.
 
-If any error message is not set to “Detailed errors for local requests and custom error pages for remote requests”, this is a finding.</rawString>
-      <Value>DetailedLocalOnly</Value>
+If any error message is not set to “Detailed errors for local requests and custom error pages for remote requests”, this is a finding.</RawString>
+      <Value>0</Value>
     </Rule>
     <Rule id="V-76757" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000152" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.webServer/asp/session</ConfigSection>
