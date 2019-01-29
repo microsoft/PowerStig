@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $stigData -Name FileContentRule
+$rules = $stig.RuleList | Select-Rule -Type FileContentRule
 
 foreach ($rule in $rules)
 {
@@ -9,7 +9,7 @@ foreach ($rule in $rules)
     {
         $path = $ConfigPath
     }
-    else 
+    else
     {
         $path = $PropertiesPath
     }

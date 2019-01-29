@@ -28,7 +28,7 @@ using module .\Module\Rule.Registry\Convert\RegistryRule.Convert.psm1
 using module .\Module\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
 using module .\Module\Rule.Service\Convert\ServiceRule.Convert.psm1
 using module .\Module\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
-using module .\Module\Rule.UserRightsAssignment\Convert\UserRightsAssignmentRule.Convert.psm1
+using module .\Module\Rule.UserRight\Convert\UserRightRule.Convert.psm1
 using module .\Module\Rule.WebAppPool\Convert\WebAppPoolRule.Convert.psm1
 using module .\Module\Rule.WebConfigurationProperty\Convert\WebConfigurationPropertyRule.Convert.psm1
 using module .\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1

@@ -43,7 +43,6 @@ Configuration Office
         $OfficeApp,
 
         [Parameter()]
-        [ValidateSet('1.6', '1.7', '1.12', '1.13')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -70,30 +69,11 @@ Configuration Office
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    <#
-        The exception, skipped rule, and organizational settings functionality
-        is universal across all composites, so the code to process it is in a
-        central file that is dot sourced into each composite.
-    #>
-    $dscResourcesPath = Split-Path -Path $PSScriptRoot -Parent
-    $userSettingsPath = Join-Path -Path $dscResourcesPath -ChildPath 'stigdata.usersettings.ps1'
-    . $userSettingsPath
-    ##### END DO NOT MODIFY #####
-
-    $technology        = [Technology]::Windows
-    $technologyVersion = [TechnologyVersion]::New( "All", $technology )
-    $technologyRole    = [TechnologyRole]::New( $OfficeApp, $technologyVersion )
-    $stigDataObject    = [STIG]::New( $StigVersion, $OrgSettings, $technology,
-                                          $technologyRole, $technologyVersion, $Exception,
-                                          $SkipRuleType, $SkipRule )
-    #### BEGIN DO NOT MODIFY ####
-    # $StigData is used in the resources that are dot sourced below
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseDeclaredVarsMoreThanAssignments",'')]
-    $StigData = $StigDataObject.StigXml
+    $stig = [STIG]::New('Office', $OfficeApp, $StigVersion)
+    $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header
-
-    # This is required to process Skipped rules
+    # Process Skipped rules
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####

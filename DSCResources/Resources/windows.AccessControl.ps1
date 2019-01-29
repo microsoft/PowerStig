@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $stigData -Name PermissionRule
+$rules = $stig.RuleList | Select-Rule -Type PermissionRule
 
 foreach ( $rule in $rules )
 {

@@ -4,7 +4,7 @@ using module .\..\..\Common\Common.psm1
 using module .\..\FileContentRule.psm1
 using module .\FileContentType\FileContentType.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.psm1')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -File -Recurse -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {

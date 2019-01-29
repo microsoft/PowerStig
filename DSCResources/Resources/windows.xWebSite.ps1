@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $stigData -Name IisLoggingRule
+$rules = $stig.RuleList | Select-Rule -Type IisLoggingRule
 
 if ($rules)
 {
@@ -13,7 +13,7 @@ if ($rules)
     foreach ($website in $WebsiteName)
     {
         $resourceTitle = "[$($rules.id -join ' ')]$website"
-        
+
         if ($null -eq $logPeriod)
         {
             $scriptBlock = [scriptblock]::Create("
@@ -39,7 +39,7 @@ if ($rules)
                 }"
             )
         }
-        
+
         & $scriptBlock
     }
 }

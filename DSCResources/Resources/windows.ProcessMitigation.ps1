@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $stigData -Name ProcessMitigationRule
+$rules = $stig.RuleList | Select-Rule -Type ProcessMitigationRule
 $mitigationTargets = $rules.MitigationTarget | Select-Object -Unique
 
 foreach ($target in $mitigationTargets)
@@ -12,14 +12,14 @@ foreach ($target in $mitigationTargets)
     $idValue = @()
 
     foreach ($rule in $targetrules)
-    {   
+    {
         if ($rule.enable)
         {
             $enableValue  += $rule.enable
         }
         if ($rule.disable)
         {
-            $disableValue += $rule.disable    
+            $disableValue += $rule.disable
         }
 
         $idValue += $rule.id
@@ -31,6 +31,6 @@ foreach ($target in $mitigationTargets)
     {
         MitigationTarget = $target
         Enable           = $enableValue
-        Disable          = $disableValue  
+        Disable          = $disableValue
     }
 }

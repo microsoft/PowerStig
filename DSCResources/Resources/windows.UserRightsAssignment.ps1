@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 
 #region Header
-$rules = Get-RuleClassData -StigData $stigData -Name UserRightRule
+$rules = $stig.RuleList | Select-Rule -Type UserRightRule
 
 $domainGroupTranslation = @{
     'Administrators'            = 'Builtin\Administrators'

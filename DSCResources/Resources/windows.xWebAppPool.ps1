@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $stigData -Name 'WebAppPoolRule'
+$rules = $stig.RuleList | Select-Rule -Type 'WebAppPoolRule'
 
 $stringBuilder = [System.Text.StringBuilder]::new()
 foreach ($rule in $rules)

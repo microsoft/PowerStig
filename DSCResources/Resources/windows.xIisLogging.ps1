@@ -1,8 +1,8 @@
-#region Header
-$rules = Get-RuleClassData -StigData $stigData -Name IisLoggingRule
-#endregion Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
 
-#region Resource
+$rules = $stig.RuleList | Select-Rule -Type IisLoggingRule
+
 if ($rules)
 {
     $logFlags = Get-UniqueStringArray -InputObject $rules.LogFlags -AsString
@@ -25,4 +25,3 @@ if ($rules)
 
     & $scriptBlock
 }
-#endregion Resource

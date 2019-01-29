@@ -1,4 +1,7 @@
-$rules = (Get-RuleClassData -StigData $stigData -Name FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+$rules = ($stig.RuleList | Select-Rule -Type FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
 
 # Assert FireFox install directory
 
@@ -26,7 +29,7 @@ ReplaceText DoNotObscureFile
 }
 
 <#
-    The second file to create is called firefox.cfg and it is placed at the top level of the Firefox directory. It should always begin with a commented line, such as: 
+    The second file to create is called firefox.cfg and it is placed at the top level of the Firefox directory. It should always begin with a commented line, such as:
     // IMPORTANT: Start your code on the 2nd line
 #>
 ReplaceText BeginFileWithComment
