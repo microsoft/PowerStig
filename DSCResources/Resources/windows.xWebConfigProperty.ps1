@@ -22,7 +22,7 @@ else
 {
     foreach ( $rule in $rules )
     {
-        if ($rule.ConfigSection -match '/system.web/sessionState')
+        if ($rule.ConfigSection -match '/system.web')
         {
             $psPath = 'MACHINE/WEBROOT'
         }
