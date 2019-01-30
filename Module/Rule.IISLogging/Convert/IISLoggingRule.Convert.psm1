@@ -157,7 +157,7 @@ Class IisLoggingRuleConvert : IisLoggingRule
     #>
     [void] SetStatus ()
     {
-        $baseRule = [IISLoggingRule]::New()
+        $baseRule = $this.GetType().BaseType.BaseType::New()
         $referenceProperties = ($baseRule | Get-Member -MemberType Property).Name
         $differenceProperties = ($this | Get-Member -MemberType Property).Name
         $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
