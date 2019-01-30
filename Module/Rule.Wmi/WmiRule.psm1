@@ -34,7 +34,7 @@ Class WmiRule : Rule
     {
         $this.Query      = $Rule.Query
         $this.Property   = $Rule.Property
-        $this.QueValuery = $Rule.Value
+        $this.Value      = $Rule.Value
         $this.Operator   = $Rule.Operator
     }
 
