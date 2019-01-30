@@ -58,12 +58,12 @@ Class MimeTypeRuleConvert : MimeTypeRule
             foreach ($splitRule in $splitRules)
             {
                 $StigRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [MimeTypeRule]::New($StigRule).AsRule()
+                $ruleList += [MimeTypeRuleConvert]::New($StigRule).AsRule()
             }
         }
         else
         {
-            $ruleList += [MimeTypeRule]::New($StigRule).AsRule()
+            $ruleList += [MimeTypeRuleConvert]::New($StigRule).AsRule()
         }
         return $ruleList
     }
