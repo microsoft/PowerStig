@@ -316,11 +316,11 @@ function Get-StigVersionTable
         $Filter
     )
 
-    $include = Import-PowerShellDataFile -Path $PSScriptRoot\CompositeResourceFilter.psd1
+    #$include = Import-PowerShellDataFile -Path $PSScriptRoot\CompositeResourceFilter.psd1
 
     $path = "$(Get-StigDataRootPath)\Processed"
 
-    $versions = Get-ChildItem -Path $path -Exclude '*.org.*', '*.xsd', '*.md' -Include $include.$CompositeResourceName -File -Recurse
+    $versions = Get-ChildItem -Path $path -Exclude '*.org.*', '*.xsd', '*.md' -Include "$($CompositeResourceName)-*" -File -Recurse
 
     $versionTable = @()
     foreach ($version in $versions)
