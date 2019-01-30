@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
+
 ## 2.3.2.0
 
 * Fixed [#215](https://github.com/Microsoft/PowerStig/issues/215): Org settings wont apply for DotNet STIG
