@@ -75,8 +75,16 @@ Class STIG
             $ruleFileString += "-$TechnologyRole"
         }
 
-        $this.Version = $Version
-        $ruleFileString += "-$Version"
+        if ($null -eq $Version)
+        {
+            $this.Version = $this.GetLatest()
+        }
+        else
+        {
+            $this.Version = $Version
+        }
+
+        $ruleFileString += "-$($this.Version)"
 
         $this.RuleFile = [STIG]::DataPath + "\$ruleFileString`.xml"
 
@@ -87,10 +95,22 @@ Class STIG
 
         return $this
     }
+    # STIG specification w/o role, return latest version or list available
+    STIG ([string] $Technology, [string] $TechnologyVersion)
+    {
+        $this._STIG($Technology, $TechnologyVersion, $null, $null)
+    }
+    # Full STIG specification w/o role
     STIG ([string] $Technology, [string] $TechnologyVersion, [Version] $Version)
     {
         $this._STIG($Technology, $TechnologyVersion, $null, $Version)
     }
+    # STIG specification w/ role, return latest version or list available
+    STIG ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole)
+    {
+        $this._STIG($Technology, $TechnologyVersion, $TechnologyRole, $null)
+    }
+    # Full STIG specification w/ role
     STIG ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole, [Version] $Version)
     {
         $this._STIG($Technology, $TechnologyVersion, $TechnologyRole, $Version)
@@ -112,7 +132,7 @@ Class STIG
 
     #region List Available
 
-    static hidden [STIG[]] _ListAvailable ([string] $Technology)
+    static hidden [STIG[]] _ListAvailable ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole)
     {
         $params = @{
             Path = [STIG]::DataPath
@@ -123,9 +143,21 @@ Class STIG
         {
             # The trailing \* is needed for the Include paramter to work
             $params.Path = "$($params.Path)\*"
-            $params.Add('Include', "$Technology-*")
+            $params.Add('Include', "$Technology-")
         }
 
+        if (-not [string]::IsNullOrEmpty($TechnologyVersion))
+        {
+            $params.Include = "$($params.Include)$TechnologyVersion-"
+        }
+
+        if (-not [string]::IsNullOrEmpty($TechnologyRole))
+        {
+            $params.Include = "$($params.Include)$TechnologyRole-"
+        }
+
+        # add the trailing wildcard to the include file name
+        $params.Include = "$($params.Include)*"
         $stigRuleFileList = Get-ChildItem @params
 
         $return = [System.Collections.ArrayList]@()
@@ -147,11 +179,19 @@ Class STIG
     }
     static [STIG[]] ListAvailable ()
     {
-        return [STIG]::_ListAvailable($null)
+        return [STIG]::_ListAvailable($null, $null, $null)
     }
     static [STIG[]] ListAvailable ([string] $Technology)
     {
-        return [STIG]::_ListAvailable($Technology)
+        return [STIG]::_ListAvailable($Technology, $null, $null)
+    }
+    static [STIG[]] ListAvailable ([string] $Technology, [string] $TechnologyVersion)
+    {
+        return [STIG]::_ListAvailable($Technology, $TechnologyVersion, $null)
+    }
+    static [STIG[]] ListAvailable ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole)
+    {
+        return [STIG]::_ListAvailable($Technology, $TechnologyVersion, $TechnologyRole)
     }
     #endregion
 
@@ -245,7 +285,16 @@ Class STIG
 
     [string] GetExceptionHelp ([string] $RuleId)
     {
-        $moduleVersion = (Split-Path -Path $psscriptRoot\..\..\ -Leaf)
+        # Get the module version from the manifest to inject into the help example
+        $moduleVersion = (
+            Import-PowerShellDataFile -Path $PSScriptRoot\..\..\PowerStig.psd1
+        ).ModuleVersion
+
+        # load the STIG rules if they are not already laoded
+        if($this.RuleList.Count -le 0)
+        {
+            $this.LoadRules()
+        }
 
         try
         {
@@ -290,6 +339,23 @@ Class STIG
     }
 
     #endregion
+
+    <#
+        .SYNOPSIS
+            Returns the highest available Stig version
+        .DESCRIPTION
+            Returns the highest available Stig version for a given Technology, TechnologyVersion, and TechnologyRole
+    #>
+    [version] GetLatest ()
+    {
+        $stigList = [STIG]::ListAvailable(
+            $this.Technology, $this.TechnologyVersion, $this.TechnologyRole)
+
+        $maximumStigVersion = (
+            $stigList | Measure-Object -Maximum -Property Version).Maximum
+
+        return [version]::new($maximumStigVersion)
+    }
 }
 
 # Footer
