@@ -305,6 +305,11 @@ function Get-StigRuleList
         [System.Collections.ArrayList] $global:stigSettings = @()
         [int] $stigGroupCount = @($StigGroups).Count
         [int] $stigProcessedCounter = 1
+        if (-not $exclusionRuleList)
+        {
+            . "$($PSScriptRoot).\..\..\..\Module\Common\Data.ps1"
+        }
+
     }
     process
     {

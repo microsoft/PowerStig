@@ -1520,7 +1520,6 @@ try
 
         Describe "Get-RegistryPatternLog" {
 
-            . "$($PSScriptRoot).\..\..\..\Module\Common\Data.ps1"
             Import-Module "$($PSScriptRoot).\..\..\..\PowerStig.Convert.psm1"
             $folderPath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser" -Relative
             $filePath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml" -Relative    
