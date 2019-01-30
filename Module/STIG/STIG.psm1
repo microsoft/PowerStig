@@ -207,8 +207,13 @@ Class STIG
         {
             [xml] $settings = Get-Content -Path $OrgSettings
         }
-        $settings.OrganizationalSettings.OrganizationalSetting |
-                Foreach-Object {$overRideValues[$_.Id] = $_.Value}
+
+        # If there are no org settings to merge, skip over that
+        if($null -ne $settings.OrganizationalSettings.OrganizationalSetting)
+        {
+            $settings.OrganizationalSettings.OrganizationalSetting |
+            Foreach-Object {$overRideValues[$_.Id] = $_.Value}
+        }
         #endregion
 
         foreach ($type in $rules.DISASTIG.ChildNodes.GetEnumerator())

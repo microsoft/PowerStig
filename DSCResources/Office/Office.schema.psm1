@@ -32,7 +32,6 @@ Configuration Office
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('Outlook2013', 'Excel2013', 'Word2013', 'PowerPoint2013')]
         [string]
         $OfficeApp,
 

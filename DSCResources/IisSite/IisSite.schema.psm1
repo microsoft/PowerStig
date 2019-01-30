@@ -45,6 +45,11 @@ Configuration IisSite
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [version]
+        $IisVersion,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
+        [version]
         $StigVersion,
 
         [Parameter()]
@@ -69,7 +74,7 @@ Configuration IisSite
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('IISSite', '8.5', $StigVersion)
+    $stig = [STIG]::New('IISSite', $IisVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header

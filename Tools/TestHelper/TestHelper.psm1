@@ -316,8 +316,6 @@ function Get-StigVersionTable
         $Filter
     )
 
-    #$include = Import-PowerShellDataFile -Path $PSScriptRoot\CompositeResourceFilter.psd1
-
     $path = "$(Get-StigDataRootPath)\Processed"
 
     $versions = Get-ChildItem -Path $path -Exclude '*.org.*', '*.xsd', '*.md' -Include "$($CompositeResourceName)-*" -File -Recurse
@@ -329,13 +327,24 @@ function Get-StigVersionTable
         {
             $stigDetails = $version.BaseName -Split "-"
 
-            $versionTable += @{
-                'Technology'        = $stigDetails[0]
+            $currentVersion = @{
+                'Technology' = $stigDetails[0]
                 'TechnologyVersion' = $stigDetails[1]
-                'TechnologyRole'    = $stigDetails[2]
-                'StigVersion'       = $stigDetails[3]
-                'Path'              = $version.fullname
-           }
+                'Path' = $version.fullname
+            }
+
+            if ($stigDetails.count -eq 3)
+            {
+                $currentVersion.Add('TechnologyRole', '')
+                $currentVersion.Add('StigVersion', $stigDetails[2])
+            }
+            elseif ($stigDetails.Count -eq 4)
+            {
+                $currentVersion.Add('TechnologyRole', $stigDetails[2])
+                $currentVersion.Add('StigVersion', $stigDetails[3])
+            }
+
+            $versionTable += $currentVersion
         }
     }
 

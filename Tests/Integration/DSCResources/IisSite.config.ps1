@@ -99,7 +99,7 @@ Configuration IisSite_config
                    "WebAppPool = @($( ($WebAppPool | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
                 })
                 $( "WebSiteName = @($( ($WebSiteName | ForEach-Object {"'$PSItem'"}) -join ',' ))`n" )
-                OsVersion = '$OsVersion'
+                IisVersion = '$OsVersion'
                 StigVersion = '$StigVersion'
                 $(if ($null -ne $OrgSettings)
                 {

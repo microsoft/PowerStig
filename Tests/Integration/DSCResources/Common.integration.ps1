@@ -7,7 +7,7 @@ Describe "$($stig.TechnologyRole) $($stig.StigVersion) mof output" {
         BrowserVersion = $stig.TechnologyRole
         StigVersion = $stig.StigVersion
         OutputPath = $TestDrive
-        OfficeApp = $stig.TechnologyRole
+        OfficeApp = $stig.TechnologyVersion
         ConfigPath = $configPath
         PropertiesPath = $propertiesPath
         OsVersion = $stig.TechnologyVersion

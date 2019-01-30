@@ -14,12 +14,12 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
-        Describe "Framework $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+        Describe "Framework $($stig.TechnologyVersion) $($stig.StigVersion) mof output" {
 
         It 'Should compile the MOF without throwing' {
             {
                 & "$($script:DSCCompositeResourceName)_config" `
-                -FrameworkVersion $stig.TechnologyRole `
+                -FrameworkVersion $stig.TechnologyVersion `
                 -StigVersion $stig.StigVersion `
                 -OutputPath $TestDrive
             } | Should -Not -Throw
