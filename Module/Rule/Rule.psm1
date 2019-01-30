@@ -137,7 +137,10 @@ Class Rule : ICloneable
         return $parentRule
     }
 
-    # NEW Override functionali
+    <#
+        .SYNOPSIS
+            Returns the rule property to override based on the override tag
+    #>
     hidden [string] GetOverrideValue()
     {
         # The path that is returned from GetType contains wierd backslashes that I can't figure out how to use.
@@ -153,63 +156,27 @@ Class Rule : ICloneable
 
         return $exceptionProperty
     }
+
+    <#
+        .SYNOPSIS
+            Applies an org setting to a rule
+    #>
     [void] AddOrgSetting ([string] $Value)
     {
         $this.($this.GetOverrideValue()) = $Value
     }
+    <#
+        .SYNOPSIS
+            Applies an exception to a rule
+    #>
     [void] AddExceptionToPolicy ([string] $Value)
     {
         $this.Title = "[Exception] " + $this.title
         $this.($this.GetOverrideValue()) = $Value
     }
 
-
-    # end NEW Override functionality
-
     <#
         .SYNOPSIS
-            The class initializer
-        .DESCRIPTION
-            Extracts all of the settings from the xccdf rule that are needed to
-            instantiate the base class
-        .PARAMETER StigRule
-            The STIG rule to convert
-    #>
-    <#{TODO}#> # remove from here and clean up tests
-    hidden [void] InvokeClass ( [xml.xmlelement] $StigRule )
-    {
-        $this.Id = $StigRule.id
-        $this.Severity = $StigRule.rule.severity
-        $this.Title = $StigRule.title
-        $this.Description = $StigRule.rule.description
-        # Since the string comes from XML, we have to assume that it is encoded for html.
-        # This will decode it back into the normal string characters we are looking for.
-        if ( Test-HtmlEncoding -CheckString  $StigRule.rule.Check.('check-content') )
-        {
-            $this.RawString = ( ConvertFrom-HtmlEncoding -CheckString $StigRule.rule.Check.('check-content') )
-        }
-        else
-        {
-            $this.RawString = $StigRule.rule.Check.('check-content')
-        }
-
-        <#
-            This hidden property is used by all of the methods and passed to subfunctions instead of
-            splitting the string in every function. The Select-String removes any blank lines, so
-            that the Mandatory parameter validation does not fail and to prevent the need for a
-            work around by allowing empty strings in mandatory parameters.
-        #>
-        $this.SplitCheckContent = [Rule]::SplitCheckContent( $this.rawString )
-
-        # Default Flags
-        $this.IsNullOrEmpty = $false
-        $this.OrganizationValueRequired = $false
-    }
-
-    <#
-        .SYNOPSIS
-            Creates a shallow copy of the current
-        .DESCRIPTION
             Creates a shallow copy of the current
     #>
     hidden [Object] Clone ()
