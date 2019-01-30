@@ -41,22 +41,22 @@ Configuration WindowsFirewall
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [psobject]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [psobject]
+        [string]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [psobject]
+        [string[]]
         $SkipRuleType
     )
 

@@ -32,8 +32,7 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-<#{TODO}#> <#Rename to InternetExplorer#>
-Configuration Browser
+Configuration InternetExplorer
 {
     [CmdletBinding()]
     param
@@ -45,19 +44,22 @@ Configuration Browser
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [psobject]
+        [hashtable]
         $Exception,
 
         [Parameter()]
-        [psobject]
+        [ValidateNotNullOrEmpty()]
+        [string]
         $OrgSettings,
 
         [Parameter()]
-        [psobject]
+        [ValidateNotNullOrEmpty()]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [ValidateNotNullOrEmpty()]
+        [string[]]
         $SkipRuleType
     )
 

@@ -45,19 +45,22 @@ Configuration FireFox
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [psobject]
+        [hashtable]
         $Exception,
 
         [Parameter()]
-        [psobject]
+        [ValidateNotNullOrEmpty()]
+        [string]
         $OrgSettings,
 
         [Parameter()]
-        [psobject]
+        [ValidateNotNullOrEmpty()]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
+        [ValidateNotNullOrEmpty()]
+        [string[]]
         $SkipRuleType
     )
 

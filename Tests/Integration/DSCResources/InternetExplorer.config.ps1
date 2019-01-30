@@ -1,4 +1,4 @@
-Configuration Browser_config
+Configuration InternetExplorer_config
 {
     param
     (
@@ -93,7 +93,7 @@ Configuration Browser_config
     Node localhost
     {
         & ([scriptblock]::Create("
-        Browser InternetExplorer
+        InternetExplorer STIG
         {
             BrowserVersion = '$BrowserVersion'
             StigVersion = '$StigVersion'
