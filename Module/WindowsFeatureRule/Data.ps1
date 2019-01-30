@@ -6,7 +6,7 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        WindowsFeatureName = Get-WindowsFeature\\s-Name\\s*\\w+.\\w+
+        WindowsFeatureName = Get-Windows(?:Optional)?Feature\\s*(?:-Online\\s*)?(?:-Name|\\|\\s*Where\\s*(?:Feature)?Name\\s*-eq)\\s*(?'featureName'(\\w*(-?))+)
         FeatureNameEquals = FeatureName\\s-eq\\s*\\S*
         FeatureNameSpaceColon = FeatureName\\s\\:\\s\\S*
         IfTheApplicationExists = If the [\\s\\S]*?application exists

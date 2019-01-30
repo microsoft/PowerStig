@@ -147,14 +147,18 @@ Class UserRightRule : Rule
             {
                 $this.SetOrganizationValueRequired()
                 $HyperVIdentity = $thisIdentity -join "," -replace "{Hyper-V}", "NT Virtual Machine\\Virtual Machines"
-                $NoHyperVIdentity = $thisIdentity.Where({$PSItem -ne "{Hyper-V}"}) -join ","
+                $NoHyperVIdentity = $thisIdentity.Where( {$PSItem -ne "{Hyper-V}"}) -join ","
                 $this.set_OrganizationValueTestString("'{0}' -match '^($HyperVIdentity|$NoHyperVIdentity)$'")
+            }
+            elseif ($thisIdentity -contains "(Local account and member of Administrators group|Local account)")
+            {
+                $this.SetOrganizationValueRequired()
+                $this.set_OrganizationValueTestString("'{0}' -match '$($thisIdentity -join ",")'")
             }
         }
 
         # add the results reguardless so they are easier to update
         $this.Identity = $thisIdentity -Join ","
-        #return $return
     }
 
     <#

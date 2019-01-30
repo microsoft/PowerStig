@@ -11,13 +11,14 @@ try
         $TechnologyVersion1 = 'All'
         $TechnologyVersion2 = '2012R2'
         $TechnologyVersion3 = '2012'
+        $TechnologyVersion4 = '2016'
 
         $Technology1 = [Technology]::Windows
         $Technology2 = [Technology]::SqlServer
 
         $TestValidateSet = @"
-Windows = All, 2012R2, 10
-SqlServer = 2012
+Windows = All, 2012R2, 2016, 10
+SqlServer = 2012, 2016
 Mozilla = All
 "@
 
@@ -45,6 +46,12 @@ Mozilla = All
                 It 'Should create an TechnologyRole class instance using TechnologyRole3 and TechnologyVersion3 data' {
                     $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion3, $Technology2)
                     $TechnologyVersion.Name | Should Be $TechnologyVersion3
+                    $TechnologyVersion.Technology | Should Be $Technology2
+                }
+
+                It 'Should create an TechnologyRole class instance using TechnologyRole2 and TechnologyVersion4 data' {
+                    $TechnologyVersion = [TechnologyVersion]::new($TechnologyVersion4, $Technology2)
+                    $TechnologyVersion.Name | Should Be $TechnologyVersion4
                     $TechnologyVersion.Technology | Should Be $Technology2
                 }
 

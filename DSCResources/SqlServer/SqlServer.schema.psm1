@@ -51,7 +51,7 @@ Configuration SqlServer
     param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateSet('2012')]
+        [ValidateSet('2012', '2016')]
         [string]
         $SqlVersion,
 
@@ -61,7 +61,7 @@ Configuration SqlServer
         $SqlRole,
 
         [Parameter()]
-        [ValidateSet('1.16', '1.17')]
+        [ValidateSet('1.3', '1.15', '1.16', '1.17')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -128,4 +128,7 @@ Configuration SqlServer
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '12.1.0.0'
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
+
+    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion '2.4.0.0'
+    . "$resourcePath\Windows.SecurityOption.ps1"
 }

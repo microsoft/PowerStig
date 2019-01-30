@@ -3,32 +3,89 @@ Configuration WindowsClient_config
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $OsVersion,
-
-        [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
+        [string[]]
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $BrowserVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $OfficeApp,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ConfigPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $PropertiesPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlRole,
+
+        [Parameter()]
+        [AllowNull()]
         [string]
         $ForestName,
 
         [Parameter()]
-        [string]
-        $Exception,
-
-        [Parameter(Mandatory = $true)]
+        [AllowNull()]
         [string]
         $DomainName,
 
         [Parameter()]
-        [psobject]
-        $SkipRule,
+        [AllowNull()]
+        [string]
+        $OsVersion,
 
         [Parameter()]
-        [psobject]
-        $SkipRuleType
+        [AllowNull()]
+        [string]
+        $OsRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebAppPool,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebSiteName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -38,23 +95,31 @@ Configuration WindowsClient_config
         & ([scriptblock]::Create("
             WindowsClient BaseLineSettings
             {
-                OsVersion    = '$OsVersion'
-                StigVersion  = '$StigVersion'
-                ForestName   = '$ForestName'
-                DomainName   = '$DomainName'
+                OsVersion = '$OsVersion'
+                StigVersion = '$StigVersion'
+                ForestName = '$ForestName'
+                DomainName = '$DomainName'
+                $(if ($null -ne $OrgSettings)
+                {
+                    "Orgsettings = '$OrgSettings'"
+                })
+                $(if ($null -ne $Exception)
+                {
+                    "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'ValueData'='1234567'}"}) -join "`n" )}"
+                })
                 $(if ($null -ne $SkipRule)
                 {
-                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
                 }
                 if ($null -ne $SkipRuleType)
                 {
-                    " SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
+                    "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
                 })
             }")
         )
 
         <#
-            This is a little hacky becasue the scriptblock "flattens" the array of rules to skip.
+            This is a little hacky because the scriptblock "flattens" the array of rules to skip.
             This just rebuilds the array text in the scriptblock.
         #>
     }

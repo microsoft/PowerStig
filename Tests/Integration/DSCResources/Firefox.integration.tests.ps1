@@ -1,3 +1,5 @@
+using module .\helper.psm1
+
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
@@ -14,41 +16,23 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
-        Describe " $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+        [xml] $dscXml = Get-Content -Path $stig.Path
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $stig.stigVersion `
-                    -OutputPath $TestDrive
-                } | Should not throw
-            }
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-            [xml] $dscXml = Get-Content -Path $stig.Path
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
+        $skipRuleType = $null
+        $expectedSkipRuleTypeCount = 0
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = $null
+        $expectedSkipRuleTypeMultipleCount = 0
 
-            Context 'FileContentRule' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.FileContentRule.Rule
-                $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[ReplaceText\]"}
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id -Count 2
 
-                foreach ( $setting in $dscXml )
-                {
-                    If (-not ($dscMof.ResourceID -match $setting.Id) )
-                    {
-                        Write-Warning -Message "Missing FileContent Setting $($setting.Id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.Count) FileContent settings" {
-                    $hasAllSettings | Should Be $true
-                }
-            }
-        }
+        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
+        . $userSettingsPath
     }
     #endregion Tests
 }

@@ -1,3 +1,5 @@
+using module .\helper.psm1
+
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
@@ -15,42 +17,23 @@ try
 
     foreach ($stig in $stigList)
     {
-        Describe "Windows Firewall $($stig.stigVersion) mof output" {
+        [xml] $dscXml = Get-Content -Path $stig.Path
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)_config" `
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive
-                } | Should Not throw
-            }
+        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-            [xml] $dscXml = Get-Content -Path $stig.Path
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRuleType = $null
+        $expectedSkipRuleTypeCount = 0
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = $null
+        $expectedSkipRuleTypeMultipleCount = 0
 
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-            Context 'Registry' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.RegistryRule.Rule
-                $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[xRegistry\]"}
-
-                foreach ($setting in $dscXml)
-                {
-                    If (-not ($dscMof.ResourceID -match $setting.Id) )
-                    {
-                        Write-Warning -Message "Missing registry Setting $($setting.Id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.Count) Registry settings" {
-                    $hasAllSettings | Should Be $true
-                }
-            }
-        }
+        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
+        . $userSettingsPath
     }
     #endregion Tests
 }

@@ -98,6 +98,7 @@ data inheritanceConstant
         This folder and subfolders              = This folder and subfolders
         This folder only                        = This folder only
         Subfolders and files only               = Subfolders and files only
+        This folder, subfolders, and files      = This folder subfolders and files
         This folder, subfolders and files       = This folder subfolders and files
         This folder, subfolder and files        = This folder subfolders and files
         Subfolders only                         = Subfolders only

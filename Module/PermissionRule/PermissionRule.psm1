@@ -186,6 +186,7 @@ Class PermissionRule : Rule
             $CheckContent -NotMatch "InetMgr\.exe" -and
             $CheckContent -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""." -and
             $CheckContent -NotMatch 'If any private assets'
+            $CheckContent -NotMatch "roles.sql"
         )
         {
             return $true
