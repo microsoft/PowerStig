@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 #region Header
 $rules = Get-RuleClassData -StigData $stigData -Name WebConfigurationPropertyRule
 #endregion Header
