@@ -33,7 +33,7 @@ else
         {
             $psPath = 'MACHINE/WEBROOT/APPHOST'
         }
-        
+
         xWebConfigProperty "$(Get-ResourceTitle -Rule $rule)"
         {
             WebsitePath     = $psPath
