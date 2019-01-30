@@ -23,7 +23,7 @@ if ($WebsiteName)
 }
 else
 {
-    foreach ( $rule in $rules )
+    foreach ($rule in $rules)
     {
         if ($rule.ConfigSection -match '/system.web')
         {
