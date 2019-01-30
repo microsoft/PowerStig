@@ -526,7 +526,7 @@ function Get-PowerStigFileList
     }
     else
     {
-        $Destination = "$(Split-Path -Path (Split-Path -Path $PSScriptRoot))\StigData\Processed"
+        $Destination = "$(Split-Path -Path (Split-Path -Path (Split-Path -Path $PSScriptRoot)))\StigData\Processed"
     }
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)] Destination: $Destination"
