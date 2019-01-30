@@ -1,9 +1,9 @@
 # Versions
 
 ## Unreleased
+
 * Added the following STIGs
   * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
-
 
 * Fixed [#238](https://github.com/Microsoft/PowerStig/issues/238): Update PowerStig to track Regex Usage
 * Fixed [#246](https://github.com/Microsoft/PowerStig/issues/246): IIS Server rule V-76737 contains an incorrect value
