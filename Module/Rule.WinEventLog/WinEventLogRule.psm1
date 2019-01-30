@@ -19,17 +19,14 @@ Class WinEventLogRule : Rule
     [string] $LogName
     [bool] $IsEnabled <#(ExceptionValue)#>
 
-    WinEventLogRule ()
-    {
-    }
+    WinEventLogRule () {}
 
-    WinEventLogRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
-    {
-    }
+    WinEventLogRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
 
     WinEventLogRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.X = $Rule.X
+        $this.LogName = $Rule.LogName
+        $this.IsEnabled = $Rule.IsEnabled
     }
 
     [PSObject] GetExceptionHelp()

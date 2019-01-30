@@ -13,20 +13,11 @@ using module .\..\Rule\Rule.psm1
 #>
 Class DocumentRule : Rule
 {
-     <#(ExceptionValue)#>
+    DocumentRule () {}
 
-    DocumentRule ()
-    {
-    }
+    DocumentRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
 
-    DocumentRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
-    {
-    }
-
-    DocumentRule ([xml.xmlelement] $Rule) : Base ($Rule)
-    {
-        $this.X = $Rule.X
-    }
+    DocumentRule ([xml.xmlelement] $Rule) : Base ($Rule) {}
 
     [PSObject] GetExceptionHelp()
     {

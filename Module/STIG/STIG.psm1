@@ -46,21 +46,6 @@ Class STIG
     static $DataPath = (Resolve-Path -Path "$($script:PSScriptRoot)\..\..\StigData\Processed").Path
 
     #region Constructor
-
-    <#
-        .SYNOPSIS
-            DO NOT USE - For testing only
-
-        .DESCRIPTION
-            A parameterless constructor for STIG. To be used only for
-            build/unit testing purposes as Pester currently requires it in order to test
-            static methods on powershell classes
-    #>
-    STIG ()
-    {
-        Write-Warning "This constructor is for build testing only."
-    }
-
     hidden [STIG] _STIG ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole, [Version] $Version)
     {
         $this.Technology = $Technology
@@ -95,6 +80,19 @@ Class STIG
 
         return $this
     }
+    <#
+        .SYNOPSIS
+            DO NOT USE - For testing only
+
+        .DESCRIPTION
+            A parameterless constructor for STIG. To be used only for
+            build/unit testing purposes as Pester currently requires it in order to test
+            static methods on powershell classes
+    #>
+    STIG ()
+    {
+        Write-Warning "This constructor is for build testing only."
+    }
     # STIG specification w/o role, return latest version or list available
     STIG ([string] $Technology, [string] $TechnologyVersion)
     {
@@ -116,8 +114,6 @@ Class STIG
         $this._STIG($Technology, $TechnologyVersion, $TechnologyRole, $Version)
     }
 
-    #endregion
-
     <#
         The validate method is used to test that the rule file exists
     #>
@@ -129,6 +125,7 @@ Class STIG
         }
         return $false
     }
+    #endregion
 
     #region List Available
 
@@ -196,33 +193,26 @@ Class STIG
     #endregion
 
     #region Load Rules
-    hidden [void] _LoadRules([hashtable] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    hidden [void] _LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
     {
         [xml]$rules = [xml](Get-Content -Path $this.RuleFile)
         $overRideValues = @{}
 
         #region Org Settings
-        if ($null -eq $OrgSettings)
+        if ([string]::IsNullOrEmpty($OrgSettings))
         {
             [xml] $settings = (Get-Content -Path ($this.RuleFile -replace '.xml', '.org.default.xml') )
-            $settings.OrganizationalSettings.OrganizationalSetting |
-                Foreach-Object {$overRideValues[$_.Id] = $_.Value}
         }
         else
         {
-            $OrgSettings | Foreach-Object {$overRideValues[$_.Id] = $_.Value}
+            [xml] $settings = Get-Content -Path $OrgSettings
         }
+        $settings.OrganizationalSettings.OrganizationalSetting |
+                Foreach-Object {$overRideValues[$_.Id] = $_.Value}
         #endregion
 
         foreach ($type in $rules.DISASTIG.ChildNodes.GetEnumerator())
         {
-            # remove after migration is done
-            if ($type.Name -notmatch 'AccountPolicyRule|AuditPolicyRule|RegistryRule')
-            {
-                continue
-            }
-            # remove after migration is done
-
             foreach ($rule in $type.Rule)
             {
                 if ( @($SkipRules) -contains $rule.Id -or $type.Name -eq $SkipRuleType )
@@ -263,19 +253,19 @@ Class STIG
     {
         $this._LoadRules($null, $null, $null, $null)
     }
-    [void] LoadRules([hashtable] $OrgSettings)
+    [void] LoadRules([string] $OrgSettings)
     {
         $this._LoadRules($OrgSettings, $null, $null, $null)
     }
-    [void] LoadRules([hashtable] $OrgSettings, [hashtable] $Exceptions)
+    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions)
     {
         $this._LoadRules($OrgSettings, $Exceptions, $null, $null)
     }
-    [void] LoadRules([hashtable] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules)
+    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules)
     {
         $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $null)
     }
-    [void] LoadRules([hashtable] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
     {
         $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType)
     }

@@ -19,14 +19,25 @@ Class SecurityOptionRule : Rule
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue <#(ExceptionValue)#>
 
-    SecurityOptionRule () {}
+    SecurityOptionRule ()
+    {
+    }
 
-    SecurityOptionRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
+    SecurityOptionRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
+    {
+    }
 
+    <#
+        .SYNOPSIS
+            Loads PowerSTIG rule from serialized data
+    #>
     SecurityOptionRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
         $this.OptionName = $Rule.OptionName
-        $this.OptionValue = $Rule.OptionValue
+        if ($Rule.OptionValue)
+        {
+            $this.OptionValue = $Rule.OptionValue
+        }
     }
 
     [PSObject] GetExceptionHelp()
