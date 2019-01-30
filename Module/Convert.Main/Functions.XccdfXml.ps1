@@ -307,7 +307,8 @@ function Get-StigRuleList
         [int] $stigProcessedCounter = 1
         if (-not $exclusionRuleList)
         {
-            . "$($PSScriptRoot).\..\..\..\Module\Common\Data.ps1"
+            $exclusionFile = Resolve-Path -Path $PSScriptRoot\..\Common\Data.ps1 
+            . $exclusionFile
         }
 
     }
