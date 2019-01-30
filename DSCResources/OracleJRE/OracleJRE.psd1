@@ -19,7 +19,7 @@
     CompanyName       = 'Microsoft Corporation'
 
     # Copyright statement for this module
-    Copyright         = '(c) 2018 Microsoft. All rights reserved.'
+    Copyright         = '(c) 2019 Microsoft Corporation. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description       = 'Module for managing the OracleJRE 8 DISA STIGs'

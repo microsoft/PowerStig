@@ -19,10 +19,10 @@ Author = 'Microsoft Corporation'
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Wade Baker. All rights reserved.'
+Copyright = '(c) 2019 Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
-Description = 'Composite DSC Resource for managing InternetExplorer related DISA STIGs'
+Description = 'Composite DSC Resource for managing Internet Explorer related DISA STIGs'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @('InternetExplorer')

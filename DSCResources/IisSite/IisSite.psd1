@@ -16,7 +16,7 @@
     CompanyName = 'Microsoft Corporation'
 
     # Copyright statement for this module
-    Copyright = '(c) 2017 Microsoft Corporation. All rights reserved.'
+    Copyright = '(c) 2019 Microsoft Corporation. All rights reserved.'
 
     # Description of the functionality provided by this module
     Description = 'Module for managing the IIS 8.5 Site DISA STIGs'

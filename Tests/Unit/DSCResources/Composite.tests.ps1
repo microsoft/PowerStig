@@ -73,21 +73,6 @@ Describe 'Composite Resources' {
         $manifestDscResourceList | Should Be $moduleDscResourceList
     }
 
-    $TechnologyRoleFilter = @{
-        Browser          = 'IE'
-        DotNetFramework  = 'DotNet'
-        IisServer        = 'IISServer'
-        IisSite          = 'IISSite'
-        OracleJRE        = 'OracleJRE'
-        SqlServer        = 'Database|Instance'
-        WindowsDnsServer = 'DNS'
-        WindowsFirewall  = 'FW'
-        WindowsServer    = 'DC|MS'
-        Office           = 'Outlook2013|Excel2013|PowerPoint2013|Word2013'
-        WindowsClient    = 'Client'
-        FireFox          = 'FireFox'
-    }
-
     foreach ($resource in $moduleDscResourceList)
     {
         Context "$resource Composite Resource" {
@@ -110,14 +95,6 @@ Describe 'Composite Resources' {
                 $configurationName = Get-ConfigurationName -FilePath $compositeSchemaPath
                 $configurationName | Should Be $resource
             }
-
-            <#{TODO}#> <# This functionality is moved to the STIG class and no longer used in the composite
-            It 'Should match ValidateSet from PowerStig' {
-                $validateSet = Get-StigVersionParameterValidateSet -FilePath $compositeSchemaPath
-                $availableStigVersions = Get-ValidStigVersionNumbers -TechnologyRoleFilter $TechnologyRoleFilter[$resource]
-                $validateSet | Should BeIn $availableStigVersions
-            }
-            #>
         }
     }
 }

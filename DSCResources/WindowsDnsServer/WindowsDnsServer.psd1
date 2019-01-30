@@ -13,13 +13,13 @@ ModuleVersion = '1.0.0.0'
 GUID = '7b0fecb8-39c6-4e8d-909e-5dd7ffce8c42'
 
 # Author of this module
-Author = 'Reggie Gibson'
+Author = 'Microsoft Corporation'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Reggie Gibson. All rights reserved.'
+Copyright = '(c) 2019 Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'Composite DSC Resource for managing the Windows Server DNS DISA STIGs'

@@ -13,13 +13,13 @@ ModuleVersion = '1.0.0.0'
 GUID = '37cf1202-1111-4b58-bf11-0158a35b8b54'
 
 # Author of this module
-Author = 'Drew Taylor'
+Author = 'Microsoft Corporation'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2018 Drew Taylor. All rights reserved.'
+Copyright = '(c) 2019 Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'Composite DSC Resource for managing the Windows 10 Client DISA STIGs'

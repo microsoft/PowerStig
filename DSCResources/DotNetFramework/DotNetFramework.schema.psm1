@@ -7,27 +7,21 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the DotNetFramework 4.0 STIG settings
-
     .PARAMETER FrameworkVersion
         The version of .NET the STIG applies to
-
     .PARAMETER StigVersion
         The version of the DotNetFramework STIG to apply and/or monitor
-
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
         the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
-
     .PARAMETER OrgSettings
         The path to the xml file that contains the local organizations preferred settings for STIG
         items that have allowable ranges.
-
     .PARAMETER SkipRule
         The SkipRule Node is injected into the STIG data and applied to the taget node. The title
         of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
         data center when you centralize DSC log collection.
-
     .PARAMETER SkipRuleType
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
@@ -68,7 +62,7 @@ Configuration DotNetFramework
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('DotNetFramework', '4', $StigVersion)
+    $stig = [STIG]::New('DotNetFramework', $FrameworkVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header

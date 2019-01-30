@@ -13,13 +13,13 @@ ModuleVersion = '1.0.0.0'
 GUID = '260c648b-5f3e-4b4b-a3e1-0fabb5554992'
 
 # Author of this module
-Author = 'Adam Haynes'
+Author = 'Microsoft Corporation'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Adam Haynes. All rights reserved.'
+Copyright = '(c) 2019 Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'Composite DSC Resource for managing the Windows Firewall DISA STIGs'

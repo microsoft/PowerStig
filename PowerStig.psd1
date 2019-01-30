@@ -51,15 +51,15 @@ RequiredModules  = @(
 
 # DSC resources to export from this module
 DscResourcesToExport = @(
-    'Browser',
     'DotNetFramework',
     'FireFox',
     'IisServer',
     'IisSite',
+    'InternetExplorer',
     'Office',
     'OracleJRE',
     'SqlServer',
-    'WindowsClient'
+    'WindowsClient',
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer'
