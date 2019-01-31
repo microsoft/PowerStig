@@ -122,7 +122,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -182,7 +182,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -212,7 +212,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -242,7 +242,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
+
 Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
@@ -272,8 +272,8 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
- 
-Run eventvwr.msc at an elevated command prompt. 
+
+Run eventvwr.msc at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
 
@@ -323,7 +323,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
 From the expanded list, click to select the zone.
- 
+
 Confirm with the DNS administrator that the hosts defined in the zone files do not resolve to hosts in another zone with its fully qualified domain name.
 
 The exceptions are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms. In the case of third-party CDNs or cloud offerings, an approved mission need must be demonstrated. Additional exceptions are CNAME records in a multi-domain Active Directory environment pointing to hosts in other internal domains in the same multi-domain environment.
@@ -501,10 +501,10 @@ Open an elevated Windows PowerShell prompt on a DNS server using the Domain Admi
 Use the “Get-DnsServerDiagnostics” cmdlet to view the status of individual diagnostic events.
 
 Verify following diagnostic events are set to "True":
-Queries, Answers, Notifications, Update, QuestionTransactions, UnmatcheResponse, SendPackets, ReceivePackets, TcpPackets, UdpPackets, FullPackets, UseSystemEventLog 
-Also set to “True” should be: 
+Queries, Answers, Notifications, Update, QuestionTransactions, UnmatcheResponse, SendPackets, ReceivePackets, TcpPackets, UdpPackets, FullPackets, UseSystemEventLog
+Also set to “True” should be:
 EnableLoggingForLocalLookupEvent
-EnableLoggingForPluginDLLEvent 
+EnableLoggingForPluginDLLEvent
 EnableLoggingForRecursiveLookupEvent
 EnableLoggingForRemoteServerEvent
 EnableLoggingForRemoteServerEvent
@@ -583,9 +583,9 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
-View the validity period for the DS Resource Record. 
+View the validity period for the DS Resource Record.
 
 If the validity period for the DS Resource Record for the child domain is less than two days (48 hours) or more than one week (168 hours), this is a finding.</rawString>
     </Rule>
@@ -593,7 +593,7 @@ If the validity period for the DS Resource Record for the child domain is less t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <rawString>Windows 2008 DNS Servers that are Active Directory integrated must be located where required to meet the Active Directory services. 
+      <rawString>Windows 2008 DNS Servers that are Active Directory integrated must be located where required to meet the Active Directory services.
 
 If all of the Windows 2008 DNS Servers are AD integrated, this check is Not Applicable.
 
@@ -685,9 +685,9 @@ Right-click the zone and select DNSSEC, Properties.
 
 Select the KSK Tab.
 
-Verify the "DNSKEY signature validity period (hours):” is set to at least 48 hours and no more than 168 hours. 
+Verify the "DNSKEY signature validity period (hours):” is set to at least 48 hours and no more than 168 hours.
 
-Select the ZSK Tab. 
+Select the ZSK Tab.
 Verify the "DNSKEY signature validity period (hours):" is set to at least 48 hours and no more than 168 hours.
 
 If either the KSK or ZSK Tab "DNSKEY signature validity period (hours):" values are set to less than 48 hours or more than 168 hours, this is a finding.
@@ -703,7 +703,7 @@ Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
 Open an elevated Windows PowerShell prompt on a DNS server using the Domain Admin or Enterprise Admin account.
 
-Type the following command: 
+Type the following command:
 
 PS C:\&gt; Get-DnsServerResourceRecord -ZoneName example.com &lt;enter&gt;
 
@@ -737,10 +737,10 @@ At a command prompt on any system, type:
 
 nslookup &lt;enter&gt;;
 
-At the nslookup prompt, type: 
+At the nslookup prompt, type:
 
 server=###.###.###.### &lt;enter&gt;;
-(where the ###.###.###.### is replaced by the IP of each NS record) 
+(where the ###.###.###.### is replaced by the IP of each NS record)
 
 Enter a FQDN for a known host record in the zone.
 
@@ -776,7 +776,7 @@ From the expanded list, click to select the zone.
 Review the SOA information for the zone and obtain the Serial Number.
 
 Access each secondary name server for the same zone and review the SOA information.
- 
+
 Verify the Serial Number is the same on all authoritative name servers.
 
 If the Serial Number is not the same on one or more authoritative name servers, this is a finding.</rawString>
@@ -794,8 +794,8 @@ Press Windows Key + R, execute dnsmgmt.msc.
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
 From the expanded list, click to select each zone.
- 
-Review the RRs for each zone and verify all of the DNSEC record types are included for the zone. 
+
+Review the RRs for each zone and verify all of the DNSEC record types are included for the zone.
 
 NOTE: The DS (Delegation Signer)record should also exist but the requirement for it is validated under WDNS-SC-000011.
 
@@ -817,7 +817,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
 Review the zone's RRs in the right window pane.
 
@@ -1065,7 +1065,7 @@ Click “Connection Security Rules”.
 
 Confirm at least one rule is configured for TCP 53.
 
-Double-click on each Rule to verify the following: 
+Double-click on each Rule to verify the following:
 
 On the “Authentication” tab, "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
 
@@ -1203,7 +1203,7 @@ If the results do not show the RRSIG and signature information, this is a findin
       <OrganizationValueTestString />
       <rawString>Access Services on the Windows DNS Server and locate the DNS Server Service.
 
-Determine the account under which the DNS Server Service is running. 
+Determine the account under which the DNS Server Service is running.
 
 Access Windows Explorer.
 
@@ -1245,7 +1245,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS Server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
 Review the zone's RRs in the right window pane.
 
@@ -1525,7 +1525,7 @@ Press Windows Key + R, execute dnsmgmt.msc.
 
 On the opened DNS Manager snap-in from the left pane, expand the server name for the DNS server, and then expand Forward Lookup Zones.
 
-From the expanded list, click to select the zone. 
+From the expanded list, click to select the zone.
 
 Review the records for the zone and ensure the complete RRSet of records are present: RRSIG, NSEC3, DNSKEY, indicating DNSSEC compliance.
 
@@ -1804,7 +1804,7 @@ If the results do not show the RRSIG and signature information, this is a findin
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <rawString>NOTE: This requirement applies to any Windows 2012 DNS Servers which host non-AD-integrated zones (file based) even if the DNS servers host AD-integrated zones, too.
- 
+
 If the Windows 2012 DNS Servers only host AD-integrated zones, this requirement is not applicable.
 
 To protect authenticity of zone transfers between Windows 2012 DNS Servers with file based zones, IPsec must be configured on each pair of name servers in a zone transfer transaction for those zones.
@@ -1828,7 +1828,7 @@ If Rules exist, double-click on each Rule to verify the following:
 For the "Authentication:" tab, click on the "Customize..." button.
 
 On the Authentication tab, verify "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
- 
+
 Confirm the "Signing Algorithm" is set to "RSA (default)".
 
 Under "Method", ensure the "Advanced:" radio button is selected.
@@ -1940,7 +1940,7 @@ Fix Text: Sign, or re-sign, the hosted zone(s) on the DNS server being validated
 
 In the DNS Manager console tree on the DNS server being validated, navigate to Forward Lookup Zones.
 
-Right-click the zone (repeat for each hosted zone), point to DNSSEC, and then click Sign the Zone, either using saved parameters or custom parameters.  
+Right-click the zone (repeat for each hosted zone), point to DNSSEC, and then click Sign the Zone, either using saved parameters or custom parameters.
 </rawString>
     </Rule>
     <Rule id="V-58691" severity="medium" conversionstatus="pass" title="SRG-APP-000427-DNS-000060" dscresource="None">
@@ -1969,7 +1969,7 @@ Double-click on each Rule to verify the following:
 For the "Authentication:" tab, click on the "Customize..." button.
 
 On the Authentication tab, verify "Authentication mode:" is set to "Request authentication for inbound and outbound connections".
- 
+
 Confirm the "Signing Algorithm" is set to "RSA (default)".
 
 Under "Method", ensure the "Advanced:" radio button is selected. Click on the "Customize" button.
@@ -1988,7 +1988,7 @@ If the certificate used does not meet the requirements, this is a finding.</rawS
       <OrganizationValueTestString />
       <rawString>To ensure the cryptographic keys are protected after being backed up to another medium (tape, disk, SAN, etc.), consult with the System Administrator to determine the backup policy in place for the DNS Server.
 
-Determine how and where backed up data is being stored. 
+Determine how and where backed up data is being stored.
 
 Verify the protection of the backup medium is secured to the same level, or higher, as the server itself.
 
@@ -2428,13 +2428,13 @@ If any option other than "Errors and warnings" or "All events" is selected, this
 
 For Windows 2012 R2 DNS Server, the Enhanced DNS logging and diagnostics in Windows Server 2012 R2 must also be enabled.
 
-Run “eventvwr.msc” at an elevated command prompt. 
+Run “eventvwr.msc” at an elevated command prompt.
 
 In the Event viewer, navigate to the applications and Services Logs\Microsoft\Windows\DNS Server.
 
 Right-click on the DNS Server, point to View, and then click "Show Analytic and Debug Logs".
 
-Right-click on Analytical and then click “Properties”. 
+Right-click on Analytical and then click “Properties”.
 
 Confirm the "Enable logging" check box is selected.
 

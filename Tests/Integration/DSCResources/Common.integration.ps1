@@ -2,24 +2,24 @@
     This file is dot sourced into every composite. It consolidates testing of exceptions,
     skipped rules, and organizational objects that were provided to the composite
 #>
-Describe "$($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
     $testhash = @{
-        BrowserVersion = $stig.TechnologyRole
-        StigVersion = $stig.StigVersion
-        OutputPath = $TestDrive
-        OfficeApp = $stig.TechnologyVersion
-        ConfigPath = $configPath
-        PropertiesPath = $propertiesPath
-        OsVersion = $stig.TechnologyVersion
-        ForestName = 'integration.test'
-        DomainName = 'integration.test'
-        OsRole = $stig.TechnologyRole
-        SqlVersion = $stig.TechnologyVersion
-        SqlRole = $stig.TechnologyRole
-        WebAppPool = $WebAppPool
-        WebsiteName = $WebsiteName
-        LogPath = $TestDrive
-        Exception = $exception
+        StigVersion     = $stig.StigVersion
+        BrowserVersion  = $stig.TechnologyVersion
+        OfficeApp       = $stig.TechnologyVersion
+        OsVersion       = $stig.TechnologyVersion
+        SqlVersion      = $stig.TechnologyVersion
+        OsRole          = $stig.TechnologyRole
+        SqlRole         = $stig.TechnologyRole
+        ForestName      = 'integration.test'
+        DomainName      = 'integration.test'
+        Exception       = $exception
+        ConfigPath      = $configPath
+        OutputPath      = $TestDrive
+        PropertiesPath  = $propertiesPath
+        WebAppPool      = $WebAppPool
+        WebsiteName     = $WebsiteName
+        LogPath         = $TestDrive
     }
 
     It 'Should compile the MOF without throwing' {

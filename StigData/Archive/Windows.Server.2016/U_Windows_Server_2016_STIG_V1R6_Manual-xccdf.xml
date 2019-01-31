@@ -5001,7 +5001,7 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 
 Authenticated Users - Read &amp; execute - This folder, subfolder, and files
-Server Operators - Read &amp; execute- This folder, subfolder, and files
+Server Operators - Read &amp; execute - This folder, subfolder, and files
 Administrators - Special - This folder only (Special = Basic Permissions: all selected except Full control)
 CREATOR OWNER - Full control - Subfolders and files only
 Administrators - Full control - Subfolders and files only

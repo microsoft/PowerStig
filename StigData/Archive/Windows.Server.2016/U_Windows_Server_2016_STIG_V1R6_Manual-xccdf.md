@@ -25,6 +25,7 @@ foreach($change in $changes)
 
 ## Changes
 
+V-73371::Server Operators - Read &amp; execute- This folder, subfolder, and files::Server Operators - Read &amp; execute - This folder, subfolder, and files
 V-73509::RequireMutualAuthentication=1, RequireIntegrity=1::RequireMutualAuthentication=1,RequireIntegrity=1
 V-73509::RequireMutualAuthentication=1, RequireIntegrity=1::RequireMutualAuthentication=1,RequireIntegrity=1
 V-73521::0x00000001 (1), 0x00000003 (3), or 0x00000008 (8)::0x00000001 (1) or 0x00000003 (3) or 0x00000008 (8)

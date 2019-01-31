@@ -29,6 +29,11 @@ Configuration InternetExplorer
     [CmdletBinding()]
     param
     (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [int]
+        $BrowserVersion,
+
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [version]
@@ -56,7 +61,7 @@ Configuration InternetExplorer
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('InternetExplorer', '11', $StigVersion)
+    $stig = [STIG]::New('InternetExplorer', $BrowserVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header
