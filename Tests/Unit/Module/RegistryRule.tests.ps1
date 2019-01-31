@@ -1,7 +1,6 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
-#$expressionFileList = Get-Item .\Module\Convert.Main\Data.*.ps1
 $expressionFileList = Get-Item "$($PSScriptRoot).\..\..\..\Module\Convert.Main\Data.*.ps1"
 Clear-Variable SingleLine* -Scope Global
 foreach ($supportFile in $expressionFileList)
@@ -1527,18 +1526,18 @@ try
             Context 'Path is directory' {
                 It "Should return valid table with updated counts" {
                     $result = Get-RegistryPatternLog -Path $folderPath
-                    $result.GetType() | Should Be 'System.Object[]'
+                    $result.GetType() | Should -Be 'System.Object[]'
                 }
             }
             Context 'Path is file' {
                 It "Should return valid table with updated counts" {
                     $result = Get-RegistryPatternLog -Path $filePath
-                    $result.GetType() | Should Be 'System.Object[]'
+                    $result.GetType() | Should -Be 'System.Object[]'
                 }
             }
             Context 'Path is null' {
                 It "Should throw if path is null" {
-                { Get-RegistryPatternLog -Path $null } | Should Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
+                    { Get-RegistryPatternLog -Path $null } | Should -Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
                 }
             }
         }

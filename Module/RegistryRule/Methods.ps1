@@ -1173,7 +1173,7 @@ function Set-RegistryPatternLog
     
     # Load table with patterns from Core data file.
     # Build the in-memory table of patterns
-    If(-not $global:patternTable)
+    if(-not $global:patternTable)
     {
         $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
         Where-Object { $_.Value['Select'] -ne $null }
@@ -1243,6 +1243,7 @@ function Get-RegistryPatternLog
         [string]
         $Path
     )
+
     try
     {
         # If $Path is a directory, get all files contained in it
@@ -1306,8 +1307,10 @@ function Test-StigProcessed
     # Setup, check $Path for Processed
     [xml]$XmlDocument = Get-Content -Path $Path
     $id = $XmlDocument.Benchmark | Select-Object id
-    $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | ForEach-Object { $_.Matches[0] -replace "V", "" `
-                                                                                                            -replace "R","\." }
+    
+    $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | 
+    ForEach-Object { $_.Matches[0] -replace "V", "" -replace "R","\." }
+
     $conversionPath = Get-Item "$($PSScriptRoot)..\..\..\StigData\Processed"
     #Write-Host $testPath
     $hasConversion = Get-ChildItem -Path $conversionPath -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
