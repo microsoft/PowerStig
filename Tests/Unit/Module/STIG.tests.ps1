@@ -72,10 +72,9 @@ try
             }
         }
 
-
         Context 'Destination supplied' {
-            Mock -CommandName Resolve-Path -MockWith {return "C:\Test\Path"}
-            $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf -Destination ".\Path"
+            Mock -CommandName Resolve-Path -MockWith {return 'C:\Test\Path'}
+            $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf -Destination 'C:\Test\Path'
 
             It 'Should return the full path of the supplied destination' {
                 $powerStigFileList.Settings.FullName | Should Be "C:\Test\Path\$expectedName"
