@@ -1238,7 +1238,8 @@ function Get-RegistryPatternLog
 {
     [CmdletBinding()]
     [OutputType([Object])]
-    param(
+    param
+    (
         [Parameter(Mandatory = $true)]
         [string]
         $Path
