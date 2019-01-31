@@ -4,10 +4,6 @@
 data xmlAttribute
 {
     ConvertFrom-StringData -StringData @'
-        stigId             = id
-        stigVersion        = version
-        stigConvertCreated = created
-
         ruleId                = id
         ruleSeverity          = severity
         ruleConversionStatus  = conversionstatus
@@ -16,16 +12,6 @@ data xmlAttribute
         ruleDscResourceModule = dscresourcemodule
 
         organizationalSettingValue = value
-'@
-}
-
-data xmlElement
-{
-    ConvertFrom-StringData -StringData @'
-        stigConvertRoot = DISASTIG
-
-        organizationalSettingRoot  = OrganizationalSettings
-        organizationalSettingChild = OrganizationalSetting
 '@
 }
 
