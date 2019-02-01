@@ -12,6 +12,8 @@
   * Windows Server 2012R2 Fixes
     * V-36707 is now an org setting
     * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
+  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
+
 * Added the following STIGs
   * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186): Update PowerSTIG to parse the SQL Server 2016 Instance STIG - V1R3
   * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues): Update PowerSTIG to parse the Windows Defender STIG with new Registry Rule
