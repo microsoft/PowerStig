@@ -1,0 +1,578 @@
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_Database_Instance_STIG" description="The Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Jan 2019" title="Microsoft SQL Server 2012 Database Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.18" created="2/1/2019">
+  <DocumentRule dscresourcemodule="None">
+    <Rule id="V-41389" severity="medium" conversionstatus="pass" title="SRG-APP-000006-DB-000183" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
+If the labeling of sensitive data is not required, this is NA.
+
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool. Spot check data and ensure the appropriate labels have been applied to stored data.   
+
+If the labeling of sensitive data is required and is not being performed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41391" severity="medium" conversionstatus="pass" title="SRG-APP-000007-DB-000184" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
+
+If the labeling of sensitive data is not required, this is NA.
+
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.  
+
+If the labeling of sensitive information in process is not being performed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41392" severity="medium" conversionstatus="pass" title="SRG-APP-000008-DB-000185" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
+If the labeling of sensitive data is not required, this is NA.
+
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.  
+
+If the labeling of sensitive data in transmission is not being performed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41393" severity="medium" conversionstatus="pass" title="SRG-APP-000012-DB-000192" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
+If the labeling of sensitive data is not required, this is NA.
+
+Obtain system configuration setting to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool. Determine how authorized users associate security information to data. If authorized users are not able to associate security labels to data, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41394" severity="medium" conversionstatus="pass" title="SRG-APP-000085-DB-000038" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check for rights propagation assignment to database permissions by running the following query:
+
+USE &lt;name of database being reviewed&gt;;
+SELECT * 
+FROM sys.database_permissions
+WHERE state_desc = 'GRANT_WITH_GRANT_OPTION';
+
+If any of the permissions listed have not been documented and approved as requiring GRANT_WITH_GRANT_OPTION, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41396" severity="medium" conversionstatus="pass" title="SRG-APP-000062-DB-000015" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Identify whether SQL Server contains both development and production databases from the system documentation.
+
+If SQL Server is not hosting both production and development databases, this is NA.
+
+
+If SQL Server is hosting both development and production databases, but this is not clearly documented in the system documentation, this is a finding.
+Check the list of SQL Server users against the list of developer accounts by running the following SQL Server query:
+
+SELECT name AS 'Account Name'
+     , create_date AS 'Account Create Date'
+     , LOGINPROPERTY(name, 'PasswordLastSetTime') AS 'Password Last Set on'
+  FROM sys.server_principals
+ WHERE NOT TYPE IN ('C', 'R', 'U') -- ('C', 'G', 'K', 'R', 'S', 'U')
+  AND NOT name IN ('##MS_PolicyEventProcessingLogin##', '##MS_PolicyTsqlExecutionLogin##')
+  AND sid &lt;&gt; CONVERT(VARBINARY(85), 0x01) -- no 'sa' account
+  AND is_disabled &lt;&gt; 1
+ ORDER BY name
+
+
+If no developer user account is listed, this is not a finding.
+
+Check each developer user account privilege listed above.
+
+Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; right click &lt;'developer account name'&gt; &gt;&gt; Properties &gt;&gt; User &gt;&gt; Securables.
+
+If any item in the 'Permission' listing, for each highlighted item that exists in the 'Securables' listing, grants production privileges, this is a finding.
+
+Navigate from 'Securables' to 'Server Roles'.
+
+If any 'Server roles' are checked that grant production privileges, this is a finding.
+
+Navigate from 'Server Roles' to 'Users mapped to the login'.
+
+If any checked 'Database role membership' of each highlighted and checked 'Database' are determined to be granting production privileges, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41399" severity="medium" conversionstatus="pass" title="SRG-APP-999999-DB-000209" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check system documentation for procedures that are regularly implemented in an effort to detect unauthorized SQL Server job submissions.
+
+If procedures that are regularly implemented are not documented in the system documentation, this is a finding.
+
+If the procedures are not implemented regularly or do not detect for unauthorized SQL Server job submissions, this is a finding.
+
+Review Stored Procedures that are able to automatically execute jobs scheduled to start automatically at system startup by running the following query:
+SELECT name
+  FROM master.sys.procedures
+ WHERE is_auto_executed = 1
+
+If any Stored Procedures listed are not documented as authorized, this is a finding.  
+
+Review the SQL Server job history by running the following query:
+
+SELECT *   FROM msdb.dbo.sysjobhistory 
+
+
+If any jobs listed are not documented as authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41407" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000200" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to identify SQL Server accounts authorized to own database objects.
+
+If the SQL Server database ownership list does not exist or needs to be updated, this is a finding.
+
+Run the following SQL query to determine SQL Server ownership of all database objects:
+SELECT name AS 'Database name'
+     , SUSER_SNAME(owner_sid) AS 'Database Owner'
+     , state_desc AS 'Database state'
+  FROM sys.databases
+</RawString>
+    </Rule>
+    <Rule id="V-41409" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000091" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the list of components or optional features installed with SQL Server.
+If optional features or components are NOT installed, this is not a finding.
+
+If unused components or features of SQL Server are installed, then review the system documentation to verify unused components or features are documented and authorized.
+
+If any are not documented and authorized, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41417" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>In a query tool:
+USE &lt;database name&gt;;
+GO
+SELECT s.name, k.crypt_type_desc
+FROM sys.symmetric_keys s, sys.key_encryptions k
+WHERE s.symmetric_key_id = k.key_id
+AND s.name &lt;&gt; '##MS_DatabaseMasterKey##'
+AND k.crypt_type IN ('ESKP', 'ESKS')
+ORDER BY s.name, k.crypt_type_desc;
+GO
+
+Review any symmetric keys that have been defined against the System Security Plan.
+
+If any keys are defined that are not documented in the System Security Plan, this is a finding.
+
+Review the System Security Plan to review the encryption mechanism specified for each symmetric key. If the method does not indicate use of certificates, this is a finding.
+
+If the certificate specified is not a DoD PKI certificate, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41421" severity="medium" conversionstatus="pass" title="SRG-APP-000243-DB-000128" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify there are proper procedures in place for the transfer of development/test data from production. Review any scripts or code that exists for the movement of production data to development/test and verify copies of production data are not left in unprotected locations.
+
+If there is no documented procedure for data movement from production to development/test, this is a finding.
+
+If data movement code that copies from production to development/test does exist and leaves any copies of production data in unprotected locations, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-60671" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000200" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the database is owned by an account that is directly or indirectly a member of a fixed (built-in) server role, this is not applicable (NA).
+
+Run the query:
+USE &lt;database name&gt;;
+GO
+SELECT 
+       DB_NAME()                  AS [Database], 
+       SUSER_SNAME(D.owner_sid)   AS [Database Owner], 
+       CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
+                                  AS [Trustworthy]
+FROM
+       sys.databases D 
+WHERE
+       D.[name] = DB_NAME()
+AND    DB_NAME() &lt;&gt; 'msdb'
+AND    D.is_trustworthy_on = 1;
+GO
+If the query returns a row indicating that the TRUSTWORTHY setting is OFF, or returns no rows, this is not a finding. 
+
+Review the system security plan to determine whether the need for TRUSTWORTHY is documented and approved.  If not, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-70627" severity="low" conversionstatus="pass" title=" SRG-APP-000144-DB-000101" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation and/or organizational procedures to determine the threshold value for the storage used by the transaction log, above which staff must be alerted.  The threshold may be expressed as an absolute quantity, or a percentage of total available space.
+
+If this threshold has not been defined, this is a finding.
+
+If monitoring software is in use, and has been configured to alert system and database administrators when the threshold is exceeded, this is not a finding.
+
+If manual procedures exist for frequently checking the space used and alerting system and database administrators, and there is evidence that the procedures are adhered to, this is not a finding.
+
+Otherwise, this is a finding.</RawString>
+    </Rule>
+  </DocumentRule>
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-40911" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the application owner and Authorizing Official have determined that encryption of data at rest is NOT required, this is not a finding.
+
+If the application owner and Authorizing Official have determined that encryption of data at rest is required, 
+ensure the data on secondary devices is encrypted. If full-disk encryption is being used, this is not a finding.
+
+If DBMS data encryption is required, ensure the data is encrypted before being put on the secondary device by executing:
+
+SELECT 
+	d.name AS [Database Name],
+	CASE e.encryption_state 
+		WHEN 0 THEN 'No database encryption key present, no encryption' 
+		WHEN 1 THEN 'Unencrypted' 
+		WHEN 2 THEN 'Encryption in progress' 
+		WHEN 3 THEN 'Encrypted' 
+		WHEN 4 THEN 'Key change in progress' 
+		WHEN 5 THEN 'Decryption in progress' 
+		WHEN 6 THEN 'Protection change in progress' 
+	END AS [Encryption State]
+FROM sys.dm_database_encryption_keys e 
+RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name 
+WHERE d.name NOT IN ('master','model','msdb')
+ORDER BY 1
+;
+
+For each user database where encryption is required, verify that encryption is in effect. If not, this is a finding.
+
+Verify that there are physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s).  If not, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41395" severity="medium" conversionstatus="pass" title="SRG-APP-000062-DB-000014" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check the list of SQL Server users against the list of developer accounts by running the following SQL Server query:
+
+SELECT name AS 'Account Name'
+     , create_date AS 'Account Create Date'
+     , LOGINPROPERTY(name, 'PasswordLastSetTime') AS 'Password Last Set on'
+FROM sys.server_principals
+WHERE NOT TYPE IN ('C', 'R', 'U') 
+AND NOT name IN ('##MS_PolicyEventProcessingLogin##', '##MS_PolicyTsqlExecutionLogin##')
+AND sid &lt;&gt; CONVERT(VARBINARY(85), 0x01) -- no 'sa' account
+AND is_disabled &lt;&gt; 1
+ORDER BY name; 
+
+For each developer account found on a production machine, verify if the developer account can change or alter database objects or data in the production database. If any developer account can change or alter database objects or data in a production database, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41397" severity="medium" conversionstatus="pass" title="SRG-APP-000062-DB-000034" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check administrative accounts for direct database role membership:
+
+Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; right click &lt;'administrator account name'&gt; &gt;&gt; Properties &gt;&gt; User Mapping &gt;&gt; &lt;'highlight database'&gt; &gt;&gt; review 'Database role membership' for each database.
+
+If any administration accounts have a direct privilege to any 'Database role membership' that is part of the SQL Server system, this is a finding.
+
+Check administrative accounts for direct server role membership:
+
+Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; right click &lt;'administrator account name'&gt; &gt;&gt; Properties &gt;&gt; Server Roles.
+
+If any administration accounts have direct access to any 'Server roles' privilege that is part of the SQL Server system, this is a finding.
+
+The special database principal [dbo] is an exception.  It is mapped to the server login that is the database owner.  Some roles cannot be mapped to it or unmapped from it.  These role assignments are not a finding.
+
+The built-in server role "sysadmin" is a partial exception.  See the Vulnerability Discussion.</RawString>
+    </Rule>
+    <Rule id="V-41403" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000179" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check the SQL Server configuration for a timed job that automatically checks all system and user-defined Functions for being modified by running the following SQL Server query:
+EXEC msdb.dbo.sp_help_job  @job_name = '&lt;enter . . . job name&gt;';
+
+(Alternatively, in SQL Server Management Studio, navigate to SQL Server Agent and examine the job from there.)
+
+If a timed job or some other method is not implemented to check for Functions being modified, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41404" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000179" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check the SQL Server configuration for the timed job that automatically checks all system and user-defined Triggers for being modified by running the following SQL Server query:
+EXEC msdb.dbo.sp_help_job  @job_name = '&lt;enter . . . job name&gt;';
+
+(Alternatively, in SQL Server Management Studio, navigate to SQL Server Agent and examine the job from there.)
+
+If such a job, or an alternative method of monitoring triggers for modification, does not exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41406" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000179" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check for the existence of a job to monitor for changes to stored procedures:
+EXEC msdb.dbo.sp_help_job  @job_name = '&lt;enter . . . job name&gt;';
+
+(Alternatively, in SQL Server Management Studio, navigate to SQL Server Agent and examine the job from there.)
+
+If such a job, or an alternative method of monitoring stored procedures for modification, does not exist, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41411" severity="medium" conversionstatus="pass" title="SRG-APP-000188-DB-000121" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review SQL Server's cryptographic settings to determine whether data stored in databases is encrypted according to organizational requirements and the system owner.
+
+If all of the data on SQL Server is unclassified and encryption of information is not required, this requirement is NA.
+
+Ensure the data is encrypted by executing:
+USE &lt;databse name&gt;;
+IF NOT EXISTS
+      (
+      SELECT 1
+      FROM sys.dm_database_encryption_keys
+      WHERE DB_NAME(database_id) = DB_NAME()
+      )
+      SELECT
+            DB_NAME() AS [Database Name],
+            'No database encryption key present, no encryption' AS [Encryption State]
+ELSE
+      SELECT
+            DB_NAME(database_id) AS [Database Name],
+            CASE encryption_state
+                  WHEN 0 THEN 'No database encryption key present, no encryption'
+                  WHEN 1 THEN 'Unencrypted'
+                  WHEN 2 THEN 'Encryption in progress'
+                  WHEN 3 THEN 'Encrypted'
+                  WHEN 4 THEN 'Key change in progress'
+                  WHEN 5 THEN 'Decryption in progress'
+                  WHEN 6 THEN 'Protection change in progress'
+            END AS [Encryption State]
+      FROM sys.dm_database_encryption_keys
+      WHERE DB_NAME(database_id) = DB_NAME()
+;
+
+If any database that is supposed to have encryption enabled is not listed as such, this is a finding.
+
+If encryption is required by the information owner and an approved, NIST-certified cryptography is not used to encrypt stored sensitive information, this is a finding.
+
+Verify all sensitive information is encrypted: entire database, tables, columns and/or data elements, as required by the organization and the system owner.</RawString>
+    </Rule>
+    <Rule id="V-41412" severity="medium" conversionstatus="pass" title="SRG-APP-000196-DB-000140" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If encryption is not required for this database, this is not a finding.
+
+Run the following SQL queries to review SQL Server's cryptographic settings for the database:
+
+USE &lt;database name&gt; ;
+IF NOT EXISTS
+       (
+       SELECT 1 
+       FROM sys.dm_database_encryption_keys
+       WHERE DB_NAME(database_id) = DB_NAME()
+       )
+       SELECT 
+             DB_NAME() AS [Database Name],
+             'No database encryption key present, no encryption' AS [Encryption State],
+                     NULL AS [Algorithm],
+                     NULL AS [Key Length]
+ELSE
+       SELECT
+             DB_NAME(database_id) AS [Database Name],
+             CASE encryption_state 
+                   WHEN 0 THEN 'No database encryption key present, no encryption' 
+                   WHEN 1 THEN 'Unencrypted' 
+                   WHEN 2 THEN 'Encryption in progress' 
+                   WHEN 3 THEN 'Encrypted' 
+                   WHEN 4 THEN 'Key change in progress' 
+                   WHEN 5 THEN 'Decryption in progress' 
+                   WHEN 6 THEN 'Protection change in progress' 
+             END AS [Encryption State],
+                     key_algorithm AS [Algorithm],
+                     key_length AS [Key Length]
+       FROM sys.dm_database_encryption_keys
+       WHERE DB_NAME(database_id) = DB_NAME()
+
+SELECT DB_NAME() AS [Database], name, algorithm_desc 
+FROM sys.symmetric_keys 
+ORDER BY name, algorithm_desc;
+
+Note:  The acceptable algorithms are:  "AES 128", "AES 192", "AES 256" and "Triple DES".
+
+If SQL Server cryptographic algorithms are not listed or are found not to be compliant with applicable federal laws, Executive Orders, directives, policies, regulations, standards and guidance, this is a finding.
+
+If the encryption state indicates that the database is unencrypted, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41415" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the query prompt:
+SELECT name
+FROM [master].sys.databases
+WHERE is_master_key_encrypted_by_server = 1
+AND owner_sid &lt;&gt; 1
+AND state = 0
+If no databases are returned, this is not a finding.
+For any databases returned, verify in the System Security Plan that encryption of the Database
+Master Key using the Service Master Key is acceptable and approved by the Information Owner, and the encrypted data does not require additional protections to deter or detect DBA access. If not approved, this is a finding.
+
+If approved and additional protections are required, then verify the additional requirements are in place in accordance with the System Security Plan. These may include additional auditing on access of the Database Master Key with alerts or other automated monitoring.
+
+If the additional requirements are not in place, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41416" severity="medium" conversionstatus="pass" title="SRG-APP-000231-DB-000154" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the query prompt:
+SELECT COUNT(credential_id)
+FROM [master].sys.master_key_passwords
+
+If count is not 0, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41420" severity="medium" conversionstatus="pass" title="SRG-APP-000232-DB-000155" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If this is a system database (master, msdb, resource, tempdb or model), this is not applicable (NA).
+
+If the application owner and authorizing official have determined that the database does not require encryption, this is not a finding.
+
+Ensure the data is encrypted by executing:
+USE &lt;database name&gt;;
+IF NOT EXISTS
+	(
+	SELECT 1 
+	FROM sys.dm_database_encryption_keys
+	WHERE DB_NAME(database_id) = DB_NAME()
+	)
+	SELECT 
+		DB_NAME() AS [Database Name],
+		'No database encryption key present, no encryption' AS [Encryption State]
+ELSE
+	SELECT
+		DB_NAME(database_id)  AS [Database Name],
+		CASE encryption_state 
+			WHEN 0 THEN 'No database encryption key present, no encryption' 
+			WHEN 1 THEN 'Unencrypted' 
+			WHEN 2 THEN 'Encryption in progress' 
+			WHEN 3 THEN 'Encrypted' 
+			WHEN 4 THEN 'Key change in progress' 
+			WHEN 5 THEN 'Decryption in progress' 
+			WHEN 6 THEN 'Protection change in progress' 
+		END AS [Encryption State] 
+	FROM sys.dm_database_encryption_keys
+	WHERE DB_NAME(database_id) = DB_NAME()
+;
+
+For each user database, ensure that encryption is in effect.  If not, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41422" severity="medium" conversionstatus="pass" title="SRG-APP-000245-DB-000132" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check SQL Server settings for the number of concurrent Check SQL Server settings for the number of concurrent sessions by running the following script:
+
+USE MASTER
+GO
+
+EXEC sys.sp_configure N'show advanced options', N'1'  RECONFIGURE WITH OVERRIDE
+GO
+EXEC sys.sp_configure N'user connections'
+EXEC sys.sp_configure N'show advanced options', N'0'  RECONFIGURE WITH OVERRIDE
+GO
+
+If SQL Server settings for concurrent sessions is not lower than or equal to the organization-defined maximum number of sessions, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41424" severity="medium" conversionstatus="pass" title="SRG-APP-000251-DB-000160" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review SQL Server field definitions, constraints, and foreign keys to determine whether or not data being input into the database is valid.
+If field definitions are not reflective of the data, this is a finding.
+
+If column data types are not assigned correctly where required within the database, this is a finding.
+
+If columns do not contain reasonable constraints based on column use, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-60781" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000200" dscresource="None">
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>USE &lt;database name&gt;;
+GO
+WITH FixedServerRoles(RoleName) AS
+(
+	SELECT 'sysadmin'
+	UNION SELECT 'securityadmin'
+	UNION SELECT 'serveradmin'
+	UNION SELECT 'setupadmin'
+	UNION SELECT 'processadmin'
+	UNION SELECT 'diskadmin'
+	UNION SELECT 'dbcreator'
+	UNION SELECT 'bulkadmin'
+)
+SELECT 
+	DB_NAME() AS [Database], 
+	SUSER_SNAME(D.owner_sid) AS [Database Owner], 
+	F.RoleName AS [Fixed Server Role],
+	CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
+		AS [Trustworthy]	
+FROM
+	FixedServerRoles F
+	INNER JOIN sys.databases D ON D.Name = DB_NAME()
+WHERE 
+	IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
+AND	DB_NAME()  &lt;&gt;  'msdb'
+AND	D.is_trustworthy_on = 1;
+GO
+If the query returns any rows, this is a finding.  </RawString>
+    </Rule>
+  </ManualRule>
+  <SqlScriptQueryRule dscresourcemodule="SqlServerDsc">
+    <Rule id="V-41402" severity="medium" conversionstatus="pass" title="SRG-APP-000089-DB-000064" dscresource="SqlScriptQuery">
+      <GetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</GetScript>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check to see that all required events are being audited.
+From the query prompt:
+     SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
+All currently defined traces for the SQL server instance will be listed. If no traces are returned, this is a finding.
+
+Determine the trace(s) being used for the auditing requirement. 
+In the following, replace # with a trace ID being used for the auditing requirements.
+From the query prompt:
+     SELECT DISTINCT(eventid) FROM sys.fn_trace_geteventinfo(#);
+The following required event IDs should be listed:
+     14, 15, 18, 20, 
+     102, 103, 104, 105, 106, 107, 108, 109, 110, 
+     111, 112, 113, 115, 116, 117, 118, 
+     128, 129, 130, 
+     131, 132, 133, 134, 135, 
+     152, 153, 
+     170, 171, 172, 173, 175, 176, 177, 178.
+If any of the audit event IDs required above is not listed, this is a finding.
+
+Notes:
+1. It is acceptable to have the required event IDs spread across multiple traces, provided all of the traces are always active, and the event IDs are grouped in a logical manner.
+2. It is acceptable, from an auditing point of view, to include the same event IDs in multiple traces.  However, the effect of this redundancy on performance, storage, and the consolidation of audit logs into a central repository, should be taken into account.
+3. It is acceptable to trace additional event IDs. This is the minimum list.
+4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include code to do this.)  
+Use the following query to obtain a list of all event IDs, and their meaning:
+     SELECT * FROM sys.trace_events; 
+5. Because this check procedure is designed to address multiple requirements/vulnerabilities, it may appear to exceed the needs of some individual requirements.  However, it does represent the aggregate of all such requirements.
+6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.</RawString>
+      <SetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) CREATE TABLE #Trace (TraceId INT) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0)ORDER BY TraceId DESC CREATE TABLE #TraceEvent (TraceId INT, EventId INT) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @currentTraceId INT FETCH NEXT FROM cursorTrace INTO @currentTraceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @currentTraceId, EventId FROM sys.fn_trace_geteventinfo(@currentTraceId) FETCH NEXT FROM cursorTrace INTO @currentTraceId END CLOSE cursorTrace DEALLOCATE cursorTrace DECLARE @missingStigEventCount INT SET @missingStigEventCount = (SELECT COUNT(*) FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL) IF @missingStigEventCount &gt; 0 BEGIN DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 EXEC @returnCode = sp_trace_create @traceid = @newTraceId OUTPUT, @options = 2, @tracefile = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Log\PowerStig', @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; IF @returnCode = 0 BEGIN EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 0 DECLARE cursorMissingStigEvent CURSOR FOR SELECT DISTINCT SE.EventId FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL OPEN cursorMissingStigEvent DECLARE @currentStigEventId INT FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId WHILE @@FETCH_STATUS = 0 BEGIN EXEC sp_trace_setevent @traceid = @newTraceId, @eventid = @currentStigEventId, @columnid = NULL, @on = 1 FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId END CLOSE cursorMissingStigEvent DEALLOCATE cursorMissingStigEvent EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 1 END END END</SetScript>
+      <TestScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</TestScript>
+    </Rule>
+  </SqlScriptQueryRule>
+</DISASTIG>

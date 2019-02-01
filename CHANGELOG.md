@@ -16,6 +16,7 @@
 * Added the following STIGs
   * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186): Update PowerSTIG to parse the SQL Server 2016 Instance STIG - V1R3
   * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues): Update PowerSTIG to parse the Windows Defender STIG with new Registry Rule
+  * SQL Server 2012 Database V1R8 [#263](https://github.com/Microsoft/PowerStig/issues/263): Update PowerSTIG to parse the SQL Server 2012 Database STIG - V1R8
 
 ## 2.3.2.0
 
