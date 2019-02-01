@@ -1,7 +1,9 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
-$expressionFileList = Get-Item .\..\..\..\Module\Convert.Main\Data.*.ps1
+# Singleline Vars need to be cleared or an error with catch in build testing.
+Clear-Variable SingleLine* -Scope Global
+$expressionFileList = Get-Item -Path "$script:moduleRoot\Module\Convert.Main\Data.*.ps1"
 foreach ($supportFile in $expressionFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
