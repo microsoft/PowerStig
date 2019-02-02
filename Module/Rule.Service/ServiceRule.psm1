@@ -22,8 +22,8 @@ Class ServiceRule : Rule
 {
     [string] $ServiceName
     [string] $ServiceState
-    [string] $StartupType
-    [ensure] $Ensure <#(ExceptionValue)#>
+    [string] $StartupType <#(ExceptionValue)#>
+    [ensure] $Ensure
 
     ServiceRule () {}
 

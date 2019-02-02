@@ -7,6 +7,8 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the Browser STIG settings
+    .PARAMETER BrowserVersion
+        The version of the Browser the STIG applies to
     .PARAMETER StigVersion
         The version of the STIG to apply and monitor
     .PARAMETER Exception

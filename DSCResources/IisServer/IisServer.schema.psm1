@@ -7,6 +7,8 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the IIS Server STIG settings
+    .PARAMETER IisVersion
+        The version of the IIS Stig to apply
     .PARAMETER LogPath
         The path to store log information
     .PARAMETER StigVersion
@@ -32,13 +34,13 @@ Configuration IisServer
     Param
     (
         [Parameter(Mandatory = $true)]
-        [string]
-        $LogPath,
-
-        [Parameter()]
         [ValidateNotNullOrEmpty()]
         [version]
         $IisVersion,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $LogPath,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]

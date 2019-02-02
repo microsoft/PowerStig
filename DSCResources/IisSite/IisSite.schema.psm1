@@ -8,6 +8,8 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the IIS Site STIG settings
+    .PARAMETER IisVersion
+        The version of the IIS Stig to apply
     .PARAMETER WebsiteName
         Array of website names used for MimeTypeRule, WebConfigurationPropertyRule, and IisLoggingRule.
     .PARAMETER WebAppPool
@@ -35,17 +37,17 @@ Configuration IisSite
     Param
     (
         [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [version]
+        $IisVersion,
+
+        [Parameter(Mandatory = $true)]
         [string[]]
         $WebsiteName,
 
         [Parameter()]
         [string[]]
         $WebAppPool,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [version]
-        $IisVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
