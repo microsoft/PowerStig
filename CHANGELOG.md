@@ -5,6 +5,7 @@
 * Added the following STIGs
   * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
   * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
+  * SQL Server 2012 Database V1R18 [#263](https://github.com/Microsoft/PowerStig/issues/263)
 
 * Fixed [#246](https://github.com/Microsoft/PowerStig/issues/246): IIS Server rule V-76737 contains an incorrect value
 * Fixed [#225](https://github.com/Microsoft/PowerStig/issues/225): Update PowerStig integration tests to consolidate duplicate code.
@@ -18,7 +19,6 @@
   * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186): Update PowerSTIG to parse the SQL Server 2016 Instance STIG - V1R3
   * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues): Update PowerSTIG to parse the Windows Defender STIG with new Registry Rule
   * Mozilla Firefox V4R24 [#261](https://github.com/Microsoft/PowerStig/issues/261): Add support for Mozilla Firefox 4.24 STIG
-  * SQL Server 2012 Database V1R8 [#263](https://github.com/Microsoft/PowerStig/issues/263): Update PowerSTIG to parse the SQL Server 2012 Database STIG - V1R8
 
 ## 2.3.2.0
 
