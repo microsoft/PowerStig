@@ -2,10 +2,6 @@
 
 ## Unreleased
 
-* Added the following STIGs
-  * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
-  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
-
 * Fixed [#246](https://github.com/Microsoft/PowerStig/issues/246): IIS Server rule V-76737 contains an incorrect value
 * Fixed [#225](https://github.com/Microsoft/PowerStig/issues/225): Update PowerStig integration tests to consolidate duplicate code.
 * Fixed [#160](https://github.com/Microsoft/PowerStig/issues/160): PowerStig.Convert needs to handle new registry rules without affecting existing code
@@ -16,10 +12,11 @@
   * V-36707 is now an org setting
   * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
 * Added the following STIGs
-  * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186): Update PowerSTIG to parse the SQL Server 2016 Instance STIG - V1R3
-  * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues): Update PowerSTIG to parse the Windows Defender STIG with new Registry Rule
-  * Mozilla Firefox V4R24 [#261](https://github.com/Microsoft/PowerStig/issues/261): Add support for Mozilla Firefox 4.24 STIG
-  * Windows Server 2012R2 DNS V1R11 [#265](https://github.com/Microsoft/PowerStig/issues/265): Update PowerSTIG to parse the Windows Server 2012R2 DNS V1R11 STIG
+  * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186)
+  * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues/236)
+  * Mozilla Firefox V4R24 [#261](https://github.com/Microsoft/PowerStig/issues/261)
+  * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
+  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
 
 ## 2.3.2.0
 
