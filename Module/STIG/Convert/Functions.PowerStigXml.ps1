@@ -623,7 +623,7 @@ function Split-BenchmarkId
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
-            $returnId = $id -replace ($windowsVariations -join '|'), 'Windows'
+            $returnId = $id -replace ($windowsVariations -join '|'), 'WindowsServer'
             continue
         }
         {$PSItem -match "Active_Directory"}
