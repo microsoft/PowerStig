@@ -29,7 +29,7 @@ else
         {
             $psPath = 'MACHINE/WEBROOT'
         }
-        else
+        else 
         {
             $psPath = 'MACHINE/WEBROOT/APPHOST'
         }
