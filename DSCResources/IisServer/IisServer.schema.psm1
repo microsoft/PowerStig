@@ -88,11 +88,6 @@ Configuration IisServer
         [ValidateNotNullOrEmpty()]
         [psobject]
         $SkipRuleType
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [psobject]
-        $LogPeriod = 'MaxSize'
     )
 
     ##### BEGIN DO NOT MODIFY #####
