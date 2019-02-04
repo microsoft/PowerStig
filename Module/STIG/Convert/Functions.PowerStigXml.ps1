@@ -4,22 +4,16 @@
 <#
     .SYNOPSIS
         This function generates a new xml file based on the convert objects from ConvertFrom-StigXccdf.
-
     .PARAMETER Path
         The full path to the xccdf to convert.
-
     .PARAMETER Destination
         The full path to save the converted xml to.
-
     .PARAMETER CreateOrgSettingsFile
         Creates the orginazational settings files associated with the version of the STIG.
-
     .PARAMETER DoNotExportRawString
         Excludes the check-content elemet content from the converted object.
-
     .PARAMETER RuleIdFilter
         Filters the list rules that are converted to simplify debugging the conversion process.
-
     .PARAMETER DoNotExportDescription
         Excludes the Description elemet content from the converted object.
 #>
@@ -274,10 +268,8 @@ function ConvertTo-PowerStigXml
 <#
     .SYNOPSIS
         Compares the converted xml files from ConvertFrom-StigXccdf.
-
     .PARAMETER OldStigPath
         The full path to the previous PowerStigXml file to convert.
-
     .PARAMETER NewStigPath
         The full path to the current PowerStigXml file to convert.
 #>
@@ -402,13 +394,10 @@ $organizationalSettingRootComment = @'
 <#
     .SYNOPSIS
         Creates the Organizational settings file that accompanies the converted STIG data.
-
     .PARAMETER convertedStigObjects
         The Converted Stig Objects to sort through
-
     .PARAMETER StigVersionNumber
         The version number of the xccdf that is being processed.
-
     .PARAMETER Destination
         The path to store the output file.
 #>
@@ -470,10 +459,8 @@ function New-OrganizationalSettingsXmlFile
 <#
     .SYNOPSIS
         Creates a version number from the xccdf benchmark element details.
-
     .PARAMETER stigDetails
         A reference to the in memory xml document.
-
     .NOTES
         This function should only be called from the public ConvertTo-DscStigXml function.
 #>
@@ -498,10 +485,8 @@ function Get-StigVersionNumber
 <#
     .SYNOPSIS
         Creates the file name to create from the xccdf content
-
     .PARAMETER StigDetails
         A reference to the in memory xml document.
-
     .NOTES
         This function should only be called from the public ConvertTo-DscStigXml function.
 #>
@@ -603,7 +588,7 @@ function Split-BenchmarkId
         }
         {$PSItem -match "_Firewall"}
         {
-            $returnId = $id -replace 'Firewall', 'All_FW'
+            $returnId = $id -replace 'Firewall', 'WindowsFirewall'
             continue
         }
         {$PSItem -match "Domain_Name_System"}
@@ -611,12 +596,12 @@ function Split-BenchmarkId
              # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($dnsServerVariations -join '|'), 'DNS'
-            $returnId = $returnId -replace ($windowsVariations -join '|'), 'Windows'
+            $returnId = $returnId -replace ($windowsVariations -join '|'), 'WindowsClient'
             continue
         }
         {$PSItem -match "Windows_10"}
         {
-            $returnId = $id + '_Client'
+            $returnId = $id + 'WindowsClient'
             continue
         }
         {$PSItem -match "Windows"}
@@ -628,27 +613,27 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Active_Directory"}
         {
-            $returnId = $id -replace ($activeDirectoryVariations -join '|'), 'Windows_All'
+            $returnId = $id -replace ($activeDirectoryVariations -join '|'), 'ActiveDirectory'
             continue
         }
         {$PSItem -match "IE_"}
         {
-            $returnId = "Windows_All_" + -join ($id -split '_')
+            $returnId = "InternetExplorer"
             continue
         }
         {$PSItem -match 'FireFox'}
         {
-            $returnId = "Mozilla_All_FireFox"
+            $returnId = "FireFox_All"
         }
         {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word'}
         {
             $officeStig = ($id -split '_')
             $officeStig = $officeStig[1] + $officeStig[2]
-            $returnId = 'Windows_All_' + $officeStig
+            $returnId = 'Office_' + $officeStig
         }
         {$PSItem -match 'Dot_Net'}
         {
-            $returnId = 'Windows_All_DotNet4'
+            $returnId = 'DotNetFramework'
         }
         default
         {
@@ -668,10 +653,8 @@ function Split-BenchmarkId
 <#
     .SYNOPSIS
         Filters the list of STIG objects and returns anything that requires an organizational decision.
-
     .PARAMETER convertedStigObjects
         A reference to the object that contains the converted stig data.
-
     .NOTES
         This function should only be called from the public ConvertTo-DscStigXml function.
 #>

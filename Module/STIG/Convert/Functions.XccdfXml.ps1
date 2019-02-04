@@ -64,26 +64,28 @@ function ConvertFrom-StigXccdf
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
     switch ($true)
     {
-        {$global:stigXccdfName -and -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1,2)) -eq ''}
+        {$global:stigXccdfName -and -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2)) -eq ''}
         {
             break;
         }
-        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1,2))}
+        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2))}
         {
-            $global:stigXccdfName = -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1,2))
+            $global:stigXccdfName = -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2))
             break;
         }
     }
     # Read in the root stig data from the xml additional functions will dig in deeper
-    $stigRuleParams = @{}
+    $stigRuleParams = @{
+        StigGroupListChangeLog = Get-RuleChangeLog -Path $Path
+    }
 
-    if($RuleIdFilter)
+    if ($RuleIdFilter)
     {
-        $stigRuleParams.StigGroups = $stigBenchmarkXml.Group | Where-Object {$RuleIdFilter -contains $PSItem.Id}
+        $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group | Where-Object {$RuleIdFilter -contains $PSItem.Id}
     }
     else
     {
-        $stigRuleParams.StigGroups = $stigBenchmarkXml.Group
+        $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group
     }
 
     # The benchmark title drives the rest of the function and must exist to continue.
@@ -141,14 +143,14 @@ function Get-RegistryRuleExpressions
         {
             # Query TechnologyRole and map to file
             $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
-            $spExclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
+            $spExclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
 
             switch ($benchmarkId.TechnologyRole)
             {
                 { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
-                    {
-                        $spInclude += "Data.Office.ps1"
-                    }
+                {
+                    $spInclude += "Data.Office.ps1"
+                }
             }
         }
         else
@@ -157,7 +159,7 @@ function Get-RegistryRuleExpressions
             $spResult = Split-Path (Split-Path $Path -Parent) -Leaf
             if ($spResult)
             {
-                $spInclude += "Data."+ $spResult + ".ps1"
+                $spInclude += "Data." + $spResult + ".ps1"
             }
         }
     }
@@ -282,7 +284,7 @@ function Split-StigXccdf
         of object it should create. For example if the check content has the string HKEY, it assumes
         that the setting is a registry object and sends the check to the registry sub functions to
         further break down the string into a registry object.
-    .PARAMETER StigGroups
+    .PARAMETER StigGroupList
         An array of the child STIG Group elements from the parent Benchmark element in the xccdf.
     .PARAMETER IncludeRawString
         A flag that returns the unaltered Check-Content with the converted object.
@@ -297,28 +299,49 @@ function Get-StigRuleList
     (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [psobject]
-        $StigGroups
+        $StigGroupList,
+
+        [Parameter()]
+        [hashtable]
+        $StigGroupListChangeLog
     )
 
     begin
     {
         [System.Collections.ArrayList] $global:stigSettings = @()
-        [int] $stigGroupCount = @($StigGroups).Count
+        [int] $stigGroupCount = @($StigGroupList).Count
         [int] $stigProcessedCounter = 1
     }
     process
     {
-        foreach ( $stigRule in $StigGroups )
+        foreach ( $stigRule in $StigGroupList )
         {
             # Global added so that the stig rule can be referenced later
             $global:stigRuleGlobal = $stigRule
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 
+            foreach ($correction in $StigGroupListChangeLog[$stigRule.Id])
+            {
+                $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content') -replace [regex]::Escape($correction.oldText), $correction.newText
+            }
             $rules = [ConvertFactory]::Rule( $stigRule )
 
             foreach ( $rule in $rules )
             {
+                <#
+                    At this point the original rule could be split into multiple
+                    rules and we would not be sure what original text went where.
+                    So we simply unwind the changes we made earlier so that any
+                    new text we added is removed by reversing the regex match.
+                #>
+
+                # Trim the unique char from split rules if they exist
+                foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
+                {
+                    $rule.RawString = $rule.RawString -replace [regex]::Escape($correction.newText), $correction.oldText
+                }
+
                 if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
                 {
                     [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
@@ -338,3 +361,65 @@ function Get-StigRuleList
 }
 
 #endregion
+
+<#
+    .SYNOPSIS
+        Looks up the change log for a given xccdf file and loads the changes
+#>
+function Get-RuleChangeLog
+{
+    [CmdletBinding()]
+    [OutputType([hashtable])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+
+    $path = $Path -replace '\.xml', '.log'
+
+    try
+    {
+        $updateLog = Get-Content -Path $path -Raw -ErrorAction Stop
+    }
+    catch
+    {
+        Write-Warning "$path not found. Please create it if needed."
+        return @{}
+    }
+
+    # regex matches is used to capture the log content directly to the changes variable
+    $changeList = [regex]::Matches(
+        $updateLog, '(?<id>V-\d+)(?:::)(?<oldText>.+)(?:::)(?<newText>.+)'
+    )
+
+    # The function returns a hastable
+    $updateList = @{}
+    foreach ($change in $changeList)
+    {
+        $id = $change.Groups.Item('id').value
+        $oldText = $change.Groups.Item('oldText').value
+        # The trim removes any potential CRLF enties that will show up in a regex escape sequence.
+        $newText = $change.Groups.Item('newText').value.Trim()
+
+        $changeObject = [pscustomobject] @{
+            OldText = $oldText;
+            NewText = $newText
+        }
+
+        # Some rule have multiple changes that need to be made, so if a ruel already
+        # has a change, then add the next change to the value (array)
+        if ($updateList.ContainsKey($id))
+        {
+            $null = $updateList[$id] += $changeObject
+        }
+        else
+        {
+            $null = $updateList.Add($id, @($changeObject))
+        }
+    }
+
+    $updateList
+}
+
