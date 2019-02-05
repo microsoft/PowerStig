@@ -20,7 +20,6 @@ try
         [hashtable] $orgSettingHashtable = @{
             "V-1114"   = "xGuest";
             "V-1115"   = "xAdministrator";
-            "V-3472.a" = "NT5DS";
             "V-4108"   = "90";
             "V-4113"   = "300000";
             "V-8322.b" = "NT5DS";
@@ -59,7 +58,6 @@ try
         [string[]] $skippedRuleArray = @(
             "V-1114",
             "V-1115",
-            "V-3472.a",
             "V-4108",
             "V-4113",
             "V-8322.b",

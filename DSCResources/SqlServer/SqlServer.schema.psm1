@@ -61,7 +61,7 @@ Configuration SqlServer
         $SqlRole,
 
         [Parameter()]
-        [ValidateSet('1.3', '1.15', '1.16', '1.17', '1.18')]
+        [ValidateSet('1.3', '1.16', '1.17', '1.18')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
