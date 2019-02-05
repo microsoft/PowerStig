@@ -7,9 +7,9 @@ $rules = Get-RuleClassData -StigData $stigData -Name WebConfigurationPropertyRul
 #region Resource
 if ($WebsiteName)
 {
-    foreach ($website in $WebsiteName) 
+    foreach ($website in $WebsiteName)
     {
-        foreach ($rule in $rules) 
+        foreach ($rule in $rules)
         {
             xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
             {
@@ -23,13 +23,13 @@ if ($WebsiteName)
 }
 else
 {
-    foreach ($website in $WebsiteName) 
+    foreach ($rule in $rules)
     {
         if ($rule.ConfigSection -match '/system.web')
         {
             $psPath = 'MACHINE/WEBROOT'
         }
-        else 
+        else
         {
             $psPath = 'MACHINE/WEBROOT/APPHOST'
         }
