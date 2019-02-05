@@ -19,6 +19,7 @@
   * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
   * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
   * Windows Server 2012R2 DC V2R15 [#267](https://github.com/Microsoft/PowerStig/issues/267)
+  * Windows 10 V1R16 [#269](https://github.com/Microsoft/PowerStig/issues/269)
 
 ## 2.3.2.0
 
