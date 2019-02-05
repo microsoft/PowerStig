@@ -43,7 +43,7 @@ try
             IisLoggingRule               = $null
             ManualRule                   = 48
             MimeTypeRule                 = $null
-            PermissionRule               = 19
+            PermissionRule               = 18
             ProcessMitigationRule        = $null
             RegistryRule                 = 205
             SecurityOptionRule           = 5
