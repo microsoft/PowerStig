@@ -464,6 +464,30 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
+        'U_IIS_8-5_Server_STIG_V1R3_Manual-xccdf.xml'              = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 17
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = 4
+            ManualRule                   = 17
+            MimeTypeRule                 = 5
+            PermissionRule               = 1
+            ProcessMitigationRule        = $null
+            RegistryRule                 = 5
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = $null
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = 9
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = 1
+            WmiRule                      = $null
+        }
         'U_MS_IIS_8-5_Server_STIG_V1R5_Manual-xccdf.xml'              = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
