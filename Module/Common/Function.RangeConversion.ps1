@@ -48,7 +48,8 @@ function Get-OrganizationValueTestString
             (Test-StringIsGreaterThanOrEqual -String $PSItem)       -or
             (Test-StringIsGreaterThanButNot -String $PSItem)        -or
             (Test-StringIsGreaterThanOrEqualButNot -String $PSItem) -or
-            (Test-StringIsBetweenTwoValues -String $PSItem)
+            (Test-StringIsBetweenTwoValues -String $PSItem)         -or
+            (Test-StringHasOneValueOrDoesntExist -String $PSItem)
         }
         {
             ConvertTo-TestString -String $PSItem
@@ -521,7 +522,7 @@ function Test-StringIsGreaterThanButNot
     .EXAMPLE
         This example returns $true
 
-        Test-StringIsBetweenTwoValues -String '30' and '132'
+        Test-StringIsBetweenTwoValues -String '1' and '132'
 
     .NOTES
         Sample STIG data
@@ -542,6 +543,42 @@ function Test-StringIsBetweenTwoValues
         $true
     }
     if ($string -match "(0x[0-7])")
+    {
+        $true
+    }
+    else
+    {
+        $false
+    }
+}
+<#
+    .SYNOPSIS
+        Converts English textual representation of numeric ranges into PowerShell equivalent
+        comparison statements.
+
+    .PARAMETER string
+        The String to test.
+
+    .EXAMPLE
+        This example returns $true
+
+        Test-StringHasOneValueOrDoesntExist -String '30' or 'or if the Value Name does not exist'
+
+    .NOTES
+        Sample STIG data
+#>
+function Test-StringHasOneValueOrDoesntExist
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $String
+    )
+
+    if ($string -match "^[0-9] \(or if the Value Name does not exist\)")
     {
         $true
     }
