@@ -272,7 +272,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Windows_10_STIG_V1R14_Manual-xccdf.xml'                    = @{
+        'U_Windows_10_STIG_V1R16_Manual-xccdf.xml'                    = @{
             AccountPolicyRule            = 9
             AuditPolicyRule              = 35
             DnsServerRootHintRule        = $null
@@ -441,6 +441,30 @@ try
             WmiRule                      = $null
         }
         'U_SQL_Server_2012_Database_STIG_V1R17_Manual-xccdf.xml'      = @{
+            AccountPolicyRule            = $null
+            AuditPolicyRule              = $null
+            DnsServerRootHintRule        = $null
+            DnsServerSettingRule         = $null
+            DocumentRule                 = 13
+            FileContentRule              = $null
+            GroupRule                    = $null
+            IisLoggingRule               = $null
+            ManualRule                   = 14
+            MimeTypeRule                 = $null
+            PermissionRule               = $null
+            ProcessMitigationRule        = $null
+            RegistryRule                 = $null
+            SecurityOptionRule           = $null
+            ServiceRule                  = $null
+            SqlScriptQueryRule           = 1
+            UserRightRule                = $null
+            WebAppPoolRule               = $null
+            WebConfigurationPropertyRule = $null
+            WinEventLogRule              = $null
+            WindowsFeatureRule           = $null
+            WmiRule                      = $null
+        }
+        'U_MS_SQL_Server_2012_Database_STIG_V1R18_Manual-xccdf.xml'      = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
