@@ -588,20 +588,20 @@ function Split-BenchmarkId
         }
         {$PSItem -match "_Firewall"}
         {
-            $returnId = $id -replace 'Firewall', 'WindowsFirewall'
+            $returnId = 'WindowsFirewall_All'
             continue
         }
         {$PSItem -match "Domain_Name_System"}
         {
-             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
+            # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
             $returnId = $id -replace ($dnsServerVariations -join '|'), 'DNS'
-            $returnId = $returnId -replace ($windowsVariations -join '|'), 'WindowsClient'
+            $returnId = $returnId -replace ($windowsVariations -join '|'), 'WindowsServer'
             continue
         }
         {$PSItem -match "Windows_10"}
         {
-            $returnId = $id + 'WindowsClient'
+            $returnId = $id -Replace "Windows", 'WindowsClient'
             continue
         }
         {$PSItem -match "Windows"}
@@ -613,27 +613,31 @@ function Split-BenchmarkId
         }
         {$PSItem -match "Active_Directory"}
         {
-            $returnId = $id -replace ($activeDirectoryVariations -join '|'), 'ActiveDirectory'
+            $role = ($id -split '_')[-1]
+            $returnId = "ActiveDirectory_All_$role"
             continue
         }
         {$PSItem -match "IE_"}
         {
-            $returnId = "InternetExplorer"
+            $returnId = "InternetExplorer_11"
             continue
         }
         {$PSItem -match 'FireFox'}
         {
             $returnId = "FireFox_All"
+            continue
         }
         {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word'}
         {
             $officeStig = ($id -split '_')
             $officeStig = $officeStig[1] + $officeStig[2]
             $returnId = 'Office_' + $officeStig
+            continue
         }
         {$PSItem -match 'Dot_Net'}
         {
-            $returnId = 'DotNetFramework'
+            $returnId = 'DotNetFramework_4'
+            continue
         }
         default
         {
