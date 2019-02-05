@@ -56,7 +56,7 @@ try
         $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
             -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901" `
             -XccdfId "Windows_2012_DC_STIG"
-        $expectedName = "Windows-2012R2-DC-$majorVersionNumber.$minorVersionNumber.xml"
+        $expectedName = "WindowsServer-2012R2-DC-$majorVersionNumber.$minorVersionNumber.xml"
         Context 'No Destination supplied' {
 
             $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf
@@ -116,15 +116,15 @@ try
             'Firewall' = @(
                 @{
                     'id' = 'Windows_Firewall'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsFirewall'
                     'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'FW'
+                    'TechnologyRole' = $null
                 }
             )
             'DNS' = @(
                 @{
                     'id' = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsServer'
                     'TechnologyVersion' = '2012R2'
                     'TechnologyRole' = 'DNS'
                 }
@@ -132,45 +132,45 @@ try
             'Windows' = @(
                 @{
                     'id' = 'Windows_2012_DC_STIG'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsServer'
                     'TechnologyVersion' = '2012R2'
                     'TechnologyRole' = 'DC'
                 },
                 @{
                     'id' = 'Windows_2012_MS_STIG'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsServer'
                     'TechnologyVersion' = '2012R2'
                     'TechnologyRole' = 'MS'
                 },
                 @{
                     'id' = 'Windows_Server_2016_DC_STIG'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsServer'
                     'TechnologyVersion' = '2016'
                     'TechnologyRole' = 'DC'
                 },
                 @{
                     'id' = 'Windows_Server_2016_MS_STIG'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsServer'
                     'TechnologyVersion' = '2016'
                     'TechnologyRole' = 'MS'
                 },
                 @{
                     'id' = 'Windows_10'
-                    'Technology' = 'Windows'
+                    'Technology' = 'WindowsClient'
                     'TechnologyVersion' = '10'
-                    'TechnologyRole' = 'Client'
+                    'TechnologyRole' = $null
                 }
             )
             'Active_Directory' = @(
                 @{
                     'id' = 'Active_Directory_Domain'
-                    'Technology' = 'Windows'
+                    'Technology' = 'ActiveDirectory'
                     'TechnologyVersion' = 'All'
                     'TechnologyRole' = 'Domain'
                 },
                 @{
                     'id' = 'Active_Directory_Forest'
-                    'Technology' = 'Windows'
+                    'Technology' = 'ActiveDirectory'
                     'TechnologyVersion' = 'All'
                     'TechnologyRole' = 'Forest'
                 }
@@ -178,49 +178,49 @@ try
             'IE' = @(
                 @{
                     'id' = 'IE_11_STIG'
-                    'Technology' = 'Windows'
-                    'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'IE11'
+                    'Technology' = 'InternetExplorer'
+                    'TechnologyVersion' = '11'
+                    'TechnologyRole' = $null
                 }
             )
             'Outlook2013' = @(
                 @{
-                    'id' = 'Windows_All_Outlook2013'
-                    'Technology' = 'Windows'
-                    'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'Outlook2013'
+                    'id' = 'Microsoft_Outlook_2013'
+                    'Technology' = 'Office'
+                    'TechnologyVersion' = 'Outlook2013'
+                    'TechnologyRole' = $null
                 }
             )
             'PowerPoint2013' = @(
                 @{
-                    'id' = 'Windows_All_PowerPoint2013'
-                    'Technology' = 'Windows'
-                    'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'PowerPoint2013'
+                    'id'                = 'Microsoft_PowerPoint_2013'
+                    'Technology'        = 'Office'
+                    'TechnologyVersion' = 'PowerPoint2013'
+                    'TechnologyRole'    = $null
                 }
             )
             'Excel2013' = @(
                 @{
-                    'id' = 'Windows_All_Excel2013'
-                    'Technology' = 'Windows'
-                    'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'Excel2013'
+                    'id'                = 'Microsoft_Excel_2013'
+                    'Technology'        = 'Office'
+                    'TechnologyVersion' = 'Excel2013'
+                    'TechnologyRole'    = $null
                 }
             )
             'Word2013' = @(
                 @{
-                    'id' = 'Windows_All_Word2013'
-                    'Technology' = 'Windows'
-                    'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'Word2013'
+                    'id'                = 'Microsoft_Word_2013'
+                    'Technology'        = 'Office'
+                    'TechnologyVersion' = 'Word2013'
+                    'TechnologyRole'    = $null
                 }
             )
             'DotNet4' = @(
                 @{
                     'id' = 'MS_Dot_Net_Framework'
-                    'Technology' = 'Windows'
-                    'TechnologyVersion' = 'All'
-                    'TechnologyRole' = 'DotNet4'
+                    'Technology'        = 'DotNetFramework'
+                    'TechnologyVersion' = '4'
+                    'TechnologyRole'    = $null
                 }
             )
         }
