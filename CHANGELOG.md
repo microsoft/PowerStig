@@ -17,6 +17,7 @@
   * Mozilla Firefox V4R24 [#261](https://github.com/Microsoft/PowerStig/issues/261)
   * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
   * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
+  * Windows 10 V1R16 [#269](https://github.com/Microsoft/PowerStig/issues/269)
 
 ## 2.3.2.0
 
