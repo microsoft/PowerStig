@@ -536,7 +536,7 @@ try
             WindowsFeatureRule           = $null
             WmiRule                      = $null
         }
-        'U_Active_Directory_Domain_V2R11_STIG_Manual-xccdf.xml'       = @{
+        'U_Active_Directory_Domain_STIG_V2R12_Manual-xccdf.xml'       = @{
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
@@ -545,7 +545,7 @@ try
             FileContentRule              = $null
             GroupRule                    = $null
             IisLoggingRule               = $null
-            ManualRule                   = 23
+            ManualRule                   = 22
             MimeTypeRule                 = $null
             PermissionRule               = $null
             ProcessMitigationRule        = $null

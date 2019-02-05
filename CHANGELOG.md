@@ -20,6 +20,7 @@
   * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
   * Windows Server 2012R2 DC V2R15 [#267](https://github.com/Microsoft/PowerStig/issues/267)
   * Windows 10 V1R16 [#269](https://github.com/Microsoft/PowerStig/issues/269)
+  * AD Domain V2R12 [#270](https://github.com/Microsoft/PowerStig/issues/270)
 
 ## 2.3.2.0
 
