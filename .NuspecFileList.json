@@ -24,11 +24,8 @@
         "target": "StigData\\Processed"
     },
     {
-        "src": "Module\\Common*\\**",
-        "target": "Module"
-    },
-    {
-        "src": "Module\\Stig*\\**",
-        "target": "Module"
+        "src": "Module\\**\\*.*",
+        "target": "Module",
+        "exclude": "**\\Convert\\**"
     }
 ]
