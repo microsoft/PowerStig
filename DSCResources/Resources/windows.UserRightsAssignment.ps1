@@ -57,5 +57,6 @@ foreach ($rule in $rules)
     {
         Policy   = ($rule.DisplayName -replace " ", "_")
         Identity = $identityList
+        Force    = [bool]$rule.Force
     }
 }
