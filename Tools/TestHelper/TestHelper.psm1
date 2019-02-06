@@ -436,7 +436,7 @@ function Get-ValidStigVersionNumbers
         $TechnologyRoleFilter
     )
 
-    $versionNumbers = (Get-Stiglist |
+    $versionNumbers = (Get-Stig -ListAvailable |
         Where-Object {$PSItem.TechnologyRole -match $TechnologyRoleFilter} |
             Select-Object StigVersion -ExpandProperty StigVersion -Unique )
 

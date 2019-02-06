@@ -9,29 +9,22 @@
         Enforces the behavior of getting the domain name.
         If a domain name is provided, it will be used.
         If a domain name is not provided, the domain name of the generating system will be used.
-
     .PARAMETER DomainName
         The FQDN of the domain the configuration will be running on.
-
     .PARAMETER ForestName
         The FQDN of the forest the configuration will be running on.
-
     .PARAMETER Format
         Determines the format in which to convert the FQDN provided into and return back
-
     .OUTPUTS
         string
-
     .EXAMPLE
         Get-DomainName -DomainName "contoso.com" -Format FQDN
 
         Returns "contoso.com"
-
     .EXAMPLE
         Get-DomainName -DomainName "contoso.com" -Format NetbiosName
 
         Returns "contoso"
-
     .EXAMPLE
         Get-DomainName -ForestName "contoso.com" -Format DistinguishedName
 
@@ -110,8 +103,8 @@ Function Get-DomainName
 }
 
 <#
- .SYNOPSIS
-  returns $env:USERDNSDOMAIN to support mocking in unit tests
+    .SYNOPSIS
+        Returns $env:USERDNSDOMAIN to support mocking in unit tests
 #>
 Function Get-DomainFQDN
 {
@@ -124,8 +117,8 @@ Function Get-DomainFQDN
 }
 
 <#
- .SYNOPSIS
-  Calls ADSI to discover the forest root (DN) and converts it to an FQDN.
+    .SYNOPSIS
+        Calls ADSI to discover the forest root (DN) and converts it to an FQDN.
 #>
 Function Get-ForestFQDN
 {
@@ -219,24 +212,57 @@ Function Get-DomainParts
 }
 #endregion
 
-#region Get-StigList
-
 <#
     .SYNOPSIS
-        Returns an array of all available STIGs with the associated Technology, TechnologyVersion, TechnologyRole, and StigVersion.
-        This function is a wrapper of the StigData class, and the return of this function call will provide you with the values needed
-        to create a default StigData object.
-
+        Returns an array of available STIGs with the associated Technology,
+        TechnologyVersion, TechnologyRole, and StigVersion. This function is a
+        wrapper for the STIG class. The return of this function call will
+        provide you with the values needed to generate the STIG ruleset.
+    .PARAMETER Technology
+        The STIG technology target
+    .PARAMETER ListAvailable
+        A switch that returns all of the STIG's in the module.
     .EXAMPLE
-        Get-StigList
+        Get-Stig -ListAvailable
+    .EXAMPLE
+        Get-Stig -Technology WindowsServer
 #>
-Function Get-StigList
+Function Get-Stig
 {
     [CmdletBinding()]
     [OutputType([PSObject[]])]
-    param ()
+    param
+    (
+        [Parameter(ParameterSetName = 'All')]
+        [switch]
+        $ListAvailable
+    )
 
-    return [STIG]::ListAvailable()
+    dynamicparam
+    {
+        $parameterName = 'Technology'
+        $attributes = new-object System.Management.Automation.ParameterAttribute
+        $attributes.ParameterSetName = "__Technology"
+        $attributes.Mandatory = $false
+        $attributeCollection = new-object -Type System.Collections.ObjectModel.Collection[System.Attribute]
+        $attributeCollection.Add($attributes)
+        $values = [Stig]::ListAvailable($null) | Select-Object -Unique Technology -ExpandProperty Technology
+        $ValidateSet = new-object System.Management.Automation.ValidateSetAttribute($values)
+        $attributeCollection.Add($ValidateSet)
+
+        $Technology = new-object -Type System.Management.Automation.RuntimeDefinedParameter($parameterName, [string], $attributeCollection)
+        $paramDictionary = new-object -Type System.Management.Automation.RuntimeDefinedParameterDictionary
+        $paramDictionary.Add($parameterName, $Technology)
+        return $paramDictionary
+    }
+
+    process
+    {
+        <#
+            The ListAvailable switch is only used to prevent the $Technology
+            parameter from being entered, so that the List available method is
+            passed a null filter.
+        #>
+        return [STIG]::ListAvailable($Technology.Value)
+    }
 }
-
-#endregion
