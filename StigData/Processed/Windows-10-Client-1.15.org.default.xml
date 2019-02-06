@@ -5,9 +5,11 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="1.15">
+<OrganizationalSettings fullversion="1.15">
+  <!-- Ensure ''V-63329'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63329" value="0" />
   <!-- Ensure ''V-63405'' -ge '15' -or ''V-63405'' -eq '0'-->
-  <OrganizationalSetting id="V-63405" value="15" />
+  <OrganizationalSetting id="V-63405" value="0" />
   <!-- Ensure ''V-63409'' -le '3' -and ''V-63409'' -ne '0'-->
   <OrganizationalSetting id="V-63409" value="3" />
   <!-- Ensure ''V-63413'' -ge '15'-->
@@ -15,33 +17,49 @@
   <!-- Ensure ''V-63415'' -ge '24'-->
   <OrganizationalSetting id="V-63415" value="24" />
   <!-- Ensure ''V-63419'' -le '60' -and ''V-63419'' -ne '0'-->
-  <OrganizationalSetting id="V-63419" value="60" />
+  <OrganizationalSetting id="V-63419" value="30" />
   <!-- Ensure ''V-63421'' -ge '1'-->
   <OrganizationalSetting id="V-63421" value="1" />
   <!-- Ensure ''V-63423'' -ge '14'-->
   <OrganizationalSetting id="V-63423" value="14" />
-  <!-- Ensure 'V-63519' -ge '32768'-->
+  <!-- Ensure ''V-63519'' -ge '32768'-->
   <OrganizationalSetting id="V-63519" value="32768" />
-  <!-- Ensure 'V-63523' -ge '1024000'-->
+  <!-- Ensure ''V-63523'' -ge '1024000'-->
   <OrganizationalSetting id="V-63523" value="1024000" />
-  <!-- Ensure 'V-63527' -ge '32768'-->
+  <!-- Ensure ''V-63527'' -ge '32768'-->
   <OrganizationalSetting id="V-63527" value="32768" />
-  <!-- Ensure 'V-63595.b' -match '1|3'-->
+  <!-- Ensure ''V-63581'' -match '1|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63581" value="1" />
+  <!-- Ensure ''V-63595.b'' -match '1|3'-->
   <OrganizationalSetting id="V-63595.b" value="1" />
-  <!-- Ensure 'V-63603' -match '0x00000001|1|0x00000002|2'-->
+  <!-- Ensure ''V-63603'' -match '1|2'-->
   <OrganizationalSetting id="V-63603" value="1" />
+  <!-- Ensure ''V-63607'' -match '1|3|8|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63607" value="1" />
   <!-- Ensure ''V-63619'' -ne 'Administrator'-->
-  <OrganizationalSetting id="V-63619" value="xAdministrator" />
+  <OrganizationalSetting id="V-63619" value="testadmin" />
   <!-- Ensure ''V-63625'' -ne 'Guest'-->
-  <OrganizationalSetting id="V-63625" value="xGuest" />
-  <!-- Ensure 'V-63661' -le '30' -and 'V-63661' -gt '0'-->
-  <OrganizationalSetting id="V-63661" value="30" />
-  <!-- Ensure 'V-63669' -le '900' -and 'V-63669' -gt '0'-->
-  <OrganizationalSetting id="V-63669" value="900" />
-  <!-- Ensure 'V-63687' -le '10'-->
+  <OrganizationalSetting id="V-63625" value="testguest" />
+  <!-- Ensure ''V-63627'' -match '1|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63627" value="1" />
+  <!-- Ensure ''V-63661'' -le '30' -and ''V-63661'' -gt '0'-->
+  <OrganizationalSetting id="V-63661" value="15" />
+  <!-- Ensure ''V-63669'' -le '900' -and ''V-63669'' -gt '0'-->
+  <OrganizationalSetting id="V-63669" value="450" />
+  <!-- Ensure ''V-63687'' -le '10'-->
   <OrganizationalSetting id="V-63687" value="10" />
-  <!-- Ensure 'V-63697' -match '1|2'-->
+  <!-- Ensure ''V-63689'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63689" value="0" />
+  <!-- Ensure ''V-63691'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63691" value="0" />
+  <!-- Ensure ''V-63695'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63695" value="0" />
+  <!-- Ensure ''V-63697'' -match '1|2'-->
   <OrganizationalSetting id="V-63697" value="1" />
-  <!-- Ensure 'V-63721' -ge '6'-->
+  <!-- Ensure ''V-63721'' -ge '6'-->
   <OrganizationalSetting id="V-63721" value="6" />
+  <!-- Ensure ''V-63747'' -match '0|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63747" value="0" />
+  <!-- Ensure ''V-63841'' -match '2|ShouldBeAbsent'-->
+  <OrganizationalSetting id="V-63841" value="2" />
 </OrganizationalSettings>

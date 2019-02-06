@@ -62,7 +62,7 @@ Configuration WindowsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('2.12', '2.13', '2.14', '1.6', '1.7')]
+        [ValidateSet('2.13', '2.14', '2.15', '1.6', '1.7')]
         [version]
         $StigVersion,
 
