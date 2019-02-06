@@ -440,11 +440,7 @@ try
             WindowsFeatureRule           = 1
             WmiRule                      = $null
         }
-<<<<<<< HEAD
         'U_Active_Directory_Domain_STIG_V2R12_Manual-xccdf.xml'       = @{
-=======
-        'U_Active_Directory_Domain_STIG_V2R11_Manual-xccdf.xml'       = @{
->>>>>>> origin/2.4.0.0
             AccountPolicyRule            = $null
             AuditPolicyRule              = $null
             DnsServerRootHintRule        = $null
