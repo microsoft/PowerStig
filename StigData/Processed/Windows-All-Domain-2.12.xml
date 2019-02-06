@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Active_Directory_Domain" description="This STIG provides focused security requirements for the AD or Active Directory Domain Services (AD DS) element for Windows Servers operating systems.  These requirements apply to the domain and can typically be reviewed once per AD domain.  The separate Active Directory Forest STIG contains forest level requirements.  Systems must also be reviewed using the applicable Windows STIG.   Comments or proposed revisions to this document should be sent via e-mail to the following address:  disa.stig_spt@mail.mil. " filename="U_Active_Directory_Domain_STIG_V2R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 25 Jan 2019" title="Active Directory Domain Security Technical Implementation Guide (STIG)" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.12" created="2/5/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Active_Directory_Domain" description="This STIG provides focused security requirements for the AD or Active Directory Domain Services (AD DS) element for Windows Servers operating systems.  These requirements apply to the domain and can typically be reviewed once per AD domain.  The separate Active Directory Forest STIG contains forest level requirements.  Systems must also be reviewed using the applicable Windows STIG.   Comments or proposed revisions to this document should be sent via e-mail to the following address:  disa.stig_spt@mail.mil. " filename="U_Active_Directory_Domain_STIG_V2R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 25 Jan 2019" title="Active Directory Domain Security Technical Implementation Guide (STIG)" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.12" created="2/6/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-8521" severity="low" conversionstatus="pass" title="Object Ownership Delegation" dscresource="None">
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -56,7 +56,7 @@ Select the "Trusts" tab.
 
 For each outbound and inbound external, forest, and realm trust, record the name of the other party (domain name), the trust type, transitivity, and the trust direction. (Keep this trust information for use in subsequent checks.)
 
-Compare the list of trusts identified with documentation maintained by the ISSO.  
+Compare the list of trusts identified with documentation maintained by the ISSO.
 
 For each trust, the documentation must contain the following:
 Type (external, forest, or realm)
@@ -76,9 +76,9 @@ If an identified trust is not listed in the documentation or if any of the requi
       <OrganizationValueTestString />
       <RawString>1. Before performing this check, perform V-8530  which validates the trusts within the documentation are current within AD.
 
-2. Obtain documentation of the site's approved trusts from the site representative.  
+2. Obtain documentation of the site's approved trusts from the site representative.
 
-3. For each of the identified trusts, verify that the documentation includes a justification or explanation of the need-to-know basis of the trust. 
+3. For each of the identified trusts, verify that the documentation includes a justification or explanation of the need-to-know basis of the trust.
 
 4. If the need for the trust is not documented, then this is a finding.</RawString>
     </Rule>
@@ -135,7 +135,7 @@ It is possible to move some system-defined groups from their default locations. 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the Enterprise Admins group in Active Directory Users and Computers.  Any accounts that are members of the Enterprise Admins group must be documented with the IAO.  Each Enterprise Administrator must have a separate unique account specifically for managing the Active Directory forest.  
+      <RawString>Review the Enterprise Admins group in Active Directory Users and Computers.  Any accounts that are members of the Enterprise Admins group must be documented with the IAO.  Each Enterprise Administrator must have a separate unique account specifically for managing the Active Directory forest.
 
 If any account listed in the Enterprise Admins group is a member of other administrator groups including the Domain Admins group, domain member server administrators groups, or domain workstation administrators groups, this is a finding.</RawString>
     </Rule>
@@ -143,7 +143,7 @@ If any account listed in the Enterprise Admins group is a member of other admini
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the Domain Admins group in Active Directory Users and Computers.  Any accounts that are members of the Domain Admins group must be documented with the IAO.  Each Domain Administrator must have a separate unique account specifically for managing the Active Directory domain and domain controllers.  
+      <RawString>Review the Domain Admins group in Active Directory Users and Computers.  Any accounts that are members of the Domain Admins group must be documented with the IAO.  Each Domain Administrator must have a separate unique account specifically for managing the Active Directory domain and domain controllers.
 
 If any account listed in the Domain Admins group is a member of other administrator groups including the Enterprise Admins group, domain member server administrators groups, or domain workstation administrators groups, this is a finding.</RawString>
     </Rule>
@@ -151,7 +151,7 @@ If any account listed in the Domain Admins group is a member of other administra
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain member server administrators. Domain member server administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each member server administrator must have a separate unique account specifically for managing member servers.  
+      <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain member server administrators. Domain member server administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each member server administrator must have a separate unique account specifically for managing member servers.
 
 If any account listed in a domain member server administrator group is a member of other administrator groups including the Enterprise Admins group, the Domain Admins group, or domain workstation administrator groups, this is a finding.</RawString>
     </Rule>
@@ -159,7 +159,7 @@ If any account listed in a domain member server administrator group is a member 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain workstation administrators. Domain workstation administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each domain workstation administrator must have a separate unique account specifically for managing domain workstations.  
+      <RawString>Review the membership groups in Active Directory Users and Computers.  Membership groups must be designated at the domain level specifically for domain workstation administrators. Domain workstation administrator groups and any accounts that are members of the groups must be documented with the IAO.  Each domain workstation administrator must have a separate unique account specifically for managing domain workstations.
 
 If any account listed in a domain workstation administrator group is a member of other administrator groups including the Enterprise Admins group, the Domain Admins group, or domain member server administrator groups, this is a finding.</RawString>
     </Rule>
@@ -195,7 +195,7 @@ If a critical function requires Internet access, this must be documented and app
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>1. Interview the site representative. Ask about the location of the domain controllers. 
+      <RawString>1. Interview the site representative. Ask about the location of the domain controllers.
 
 2. If domain controllers are not located in multiple enclaves, then this check is not applicable.
 
@@ -230,7 +230,7 @@ If no trusts exist, this is NA.
 
 If the trust type is External, run the following command on the trusting domain:
 "netdom trust &lt;trusting domain&gt; /d:&lt;trusted domain&gt; /quarantine"
-If the result does not specify "SID filtering is enabled for this trust.  Only SIDs from the trusted domain will be accepted for authorization data returned during authentication.  SIDs from other domains will be removed.", this is a finding. 
+If the result does not specify "SID filtering is enabled for this trust.  Only SIDs from the trusted domain will be accepted for authorization data returned during authentication.  SIDs from other domains will be removed.", this is a finding.
 
 If the trust type is Forest, run the following command on the trusting domain:
 "netdom trust &lt;trusting domain&gt; /d:&lt;trusted domain&gt; /enablesidhistory"
@@ -268,7 +268,7 @@ If the "Anonymous Logon" or "Everyone" groups are members, this is a finding.
 
 2. Select and expand the left pane item that matches the name of the domain being reviewed.
 
-3. Select the Built-in container. 
+3. Select the Built-in container.
 a. If the Incoming Forest Trust Builders group is defined, double-click on the group, and select the Members tab
 b. Examine the defined accounts to see if they are from a domain that is not in the forest being reviewed.
 
@@ -345,7 +345,7 @@ If DSRM passwords are not changed at least annually, this is a finding.</RawStri
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>1. Verify that the site has applied the Network Infrastucture STIG to configure the VPN and IPSec. 
+      <RawString>1. Verify that the site has applied the Network Infrastucture STIG to configure the VPN and IPSec.
 
 2. Verify that IPSec and other communications and security configurations for the management and replication of the RODC will be managed by use of the minimum required Group Policy Objects (GPOs).
 
@@ -483,9 +483,9 @@ If the "Domain functional level:" is "Windows Server 2016" and "Enable rolling o
 
 Active Directory domains with a domain functional level below Windows Server 2016:
 
-Verify the organization rotates the NT hash for smart card-enforced accounts every 60 days.  
+Verify the organization rotates the NT hash for smart card-enforced accounts every 60 days.
 
-This can be accomplished with the use of scripts.  
+This can be accomplished with the use of scripts.
 
 DoD PKI-PKE has provided a script under PKI and PKE Tools at http://iase.disa.mil/pki-pke/Pages/tools.aspx.  See the User Guide for additional information.
 
@@ -505,7 +505,7 @@ Open "Windows PowerShell".
 
 Enter "Get-ADDomain | FL DomainMode" to determine the domain functional level.
 
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc"). 
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
 
 Compare membership of the Protected Users group to membership of the following groups. By default, the groups are under the node referenced; however, it is possible to move those under "Users" to another location.
 Enterprise Admins (Users node)
