@@ -1085,7 +1085,7 @@ Double-click the "Error Pages" icon.
 Click each error message and click "Edit Feature Setting" from the "Actions" Pane.
 
 If any error message is not set to “Detailed errors for local requests and custom error pages for remote requests”, this is a finding.</RawString>
-      <Value>DetailedLocalOnly</Value>
+      <Value>0</Value>
     </Rule>
     <Rule id="V-76757" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000152" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.webServer/asp/session</ConfigSection>
