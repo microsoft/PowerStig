@@ -176,7 +176,7 @@ function Get-KeyValuePair
         { $checkContent -match 'Error Pages' }
         {
             $key = 'errormode'
-            $value = 'DetailedLocalOnly'
+            $value = '0'
         }
         { $checkContent -match '\.NET Trust Level' }
         {
@@ -453,7 +453,7 @@ function Get-OrganizationValueTestString
         }
         { $PsItem -match 'timeout' }
         {
-            return "[TimeSpan]{0} -le [TimeSpan]'00:20:00'"
+            return "'{0}' -le '00:20:00'"
         }
         default
         {

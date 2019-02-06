@@ -1,9 +1,8 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
-# Singleline Vars need to be cleared or an error with catch in build testing.
+$expressionFileList = Get-Item "$($PSScriptRoot).\..\..\..\Module\Convert.Main\Data.*.ps1"
 Clear-Variable SingleLine* -Scope Global
-$expressionFileList = Get-Item -Path "$script:moduleRoot\Module\Convert.Main\Data.*.ps1"
 foreach ($supportFile in $expressionFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
@@ -219,7 +218,7 @@ try
         Describe "$($rule.GetType().Name) Child Class" {
 
             Context 'Base Class' {
-                It 'Shoud have a BaseType of STIG' {
+                It 'Should have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -1515,6 +1514,31 @@ try
             "Registry Path:  \Path\To\Value"
             It "Should return $false when not match Office foramt" {
                 Test-SingleLineStigFormat -CheckContent $checkContent | Should Be $false
+            }
+        }
+
+        Describe "Get-RegistryPatternLog" {
+
+            Import-Module "$($PSScriptRoot).\..\..\..\PowerStig.Convert.psm1"
+            $folderPath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser" -Relative
+            $filePath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml" -Relative    
+            
+            Context 'Path is directory' {
+                It "Should return valid table with updated counts" {
+                    $result = Get-RegistryPatternLog -Path $folderPath
+                    $result.GetType() | Should -Be 'System.Object[]'
+                }
+            }
+            Context 'Path is file' {
+                It "Should return valid table with updated counts" {
+                    $result = Get-RegistryPatternLog -Path $filePath
+                    $result.GetType() | Should -Be 'System.Object[]'
+                }
+            }
+            Context 'Path is null' {
+                It "Should throw if path is null" {
+                    { Get-RegistryPatternLog -Path $null } | Should -Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
+                }
             }
         }
         #endregion
