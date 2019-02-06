@@ -12,6 +12,7 @@
 * Fixed [#265](https://github.com/Microsoft/PowerStig/issues/265): Fixed UserRightsAssignment split rule bug.
 * Fixed [#267](https://github.com/Microsoft/PowerStig/issues/267): Fixed winlogon registry path parser bug.
 * Fixed [#238](https://github.com/Microsoft/PowerStig/issues/238): Adds regex tracker for RegistryRule regex's.
+* Fixed [#274](https://github.com/Microsoft/PowerStig/issues/274): UserRightsAssignment composite resource does not leverage the Force Parameter.
 
 * Windows Server 2012R2 Fixes
   * V-36707 is now an org setting
@@ -26,9 +27,10 @@
   * SQL Server 2012 Database V1R18 [#263](https://github.com/Microsoft/PowerStig/issues/263)
   * Windows Server 2012R2 DC V2R15 [#267](https://github.com/Microsoft/PowerStig/issues/267)
   * Windows 10 V1R16 [#269](https://github.com/Microsoft/PowerStig/issues/269)
-  * IIS Server 8.5 V1R6 [#256](https://github.com/Microsoft/PowerStig/issues/266): Update PowerSTIG to parse the IIS 8.5 Server STIG - V1R6
+  * IIS Server 8.5 V1R6 [#256](https://github.com/Microsoft/PowerStig/issues/266)
   * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
   * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
+  * Windows Server 2012R2 DNS V1R11 STIG [#265](https://github.com/Microsoft/PowerStig/issues/265)
 
 ## 2.3.2.0
 
