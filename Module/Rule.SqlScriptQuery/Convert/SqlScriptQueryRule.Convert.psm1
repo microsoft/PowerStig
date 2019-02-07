@@ -35,7 +35,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
     SqlScriptQueryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $ruleType = $this.GetRuleType($this.splitCheckContent)
-        $fixText = [SqlScriptQueryRule]::GetFixText($StigRule)
+        $fixText = [SqlScriptQueryRule]::GetFixText($XccdfRule)
 
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
