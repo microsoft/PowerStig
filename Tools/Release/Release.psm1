@@ -837,6 +837,7 @@ function Set-FileHashMarkdown
 # PowerSTIG File Hashes : Module Version {0}
 
 Hashes for **PowerSTIG** files are listed in the following table:
+
 | File | {1} Hash | Size (bytes) |
 | :---- | ---- | ---: |
 '@ -f $ModuleVersion, $Algorithm
@@ -1169,20 +1170,20 @@ function Start-PowerStigDevMerge
     Set-FileHashMarkdown -ModuleVersion $ModuleVersion
 
     # Push the release branch to GitHub
-    #Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
+    Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
 
-    # $repository = Get-PowerStigRepository
+    $repository = Get-PowerStigRepository
 
-    # Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
+    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
-    # $pullRequestParameters = @{
-    #     Repository = $Repository
-    #     ModuleVersion = $ModuleVersion
-    #     BranchHead = $releaseBranchName
-    # }
-    # $pullRequest = New-GitHubPullRequest @pullRequestParameters
+    $pullRequestParameters = @{
+        Repository = $Repository
+        ModuleVersion = $ModuleVersion
+        BranchHead = $releaseBranchName
+    }
+    $pullRequest = New-GitHubPullRequest @pullRequestParameters
 
-    # return $pullRequest
+    return $pullRequest
 }
 
 <#
