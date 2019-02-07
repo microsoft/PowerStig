@@ -620,6 +620,14 @@ function New-GitHubPullRequest
         [version]
         $ModuleVersion,
 
+        [Parameter()]
+        [string]
+        $Title = "Release of version $ModuleVersion.",
+
+        [Parameter()]
+        [string]
+        $Body = "Release version $ModuleVersion.",
+
         [Parameter(Mandatory = $true)]
         [string]
         $BranchHead,
@@ -632,13 +640,13 @@ function New-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#create-a-pull-request
     $restMethodParamList = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/pulls"
-        Method = 'Post'
-        Body = [ordered]@{
-            title = "Release of version $ModuleVersion."
-            body  = "Releasing version $ModuleVersion."
-            head  = $BranchName
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/pulls"
+        Method         = 'Post'
+        Body           = [ordered]@{
+            title = $Title
+            body  = $Body
+            head  = $BranchHead
             base  = $BranchBase
         } | ConvertTo-Json
     }
@@ -783,197 +791,19 @@ function New-GitHubRelease
 
 #endregion
 
-<#
-    .SYNOPSIS
-        Starts the PowerStig release process for a given module
+#region DevMerge
 
-    .DESCRIPTION
-        Applies a standard process and comment structure to the release process
-        for a given module. At a high level, this function will:
-
-        1. Validate that you are trying to deploy and PowerStig module
-        2. Validate that you are trying to release a higher version number than
-           is currently released.
-        3. Create a release branch from dev and update the module version number
-           in all of the appropriate places.
-        4. Push the release branch to GitHub and create a pull request into the
-           master branch.
-
-    .PARAMETER GitRepositoryPath
-        The path to the git repository on your local machine. If this path is
-        not a valid git repository, this function will throw an error.
-        Additionally, if the repository remote origin is not a PowerStig project,
-        this function will throw an error
-
-    .PARAMETER ModuleVersion
-        The version number that is injected to the different areas of the
-        release process. Specifically the module manifest, AppVeyor build config,
-        and readme release notes.
-
-    .PARAMETER GitHubApiSecureFilePath
-        The path to the secured GitHub API key. If you have a file named
-        PowerStigGitHubApi.txt in $profile, it will automatically be loaded.
-        Running the following command will prompt you for your GitHub API key
-        and create the file for you so that you can skip this parameter.
-
-        Read-Host "Enter Password" -AsSecureString |
-            ConvertFrom-SecureString |
-                Out-File "$(Split-Path $profile)\PowerStigGitHubApi.txt"
-#>
-function Start-PowerStigRelease
+function Start-PowerStigDevMerge
 {
+    [OutputType([int])]
     [CmdletBinding()]
     param
     (
         [Parameter(Mandatory = $true)]
+        [ValidateSet('Feature', 'Hotfix')]
         [string]
-        $GitRepositoryPath,
+        $Type,
 
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ModuleVersion,
-
-        [Parameter()]
-        [string]
-        $GitHubApiSecureFilePath,
-
-        [Parameter()]
-        [switch]
-        $Continue
-    )
-
-    # Convert GitRepositoryPath into an absolute path if it is relative
-    if (-not ([System.IO.Path]::IsPathRooted($GitRepositoryPath)))
-    {
-        $GitRepositoryPath = Resolve-Path -Path $GitRepositoryPath
-    }
-
-    Push-Location -Path $GitRepositoryPath
-    $beginGitBranch = Get-GitBranch
-    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
-
-    try
-    {
-        $repository = Get-PowerStigRepository
-
-        if (-not $Continue)
-        {
-            if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
-            {
-                Write-Verbose -Message "$ModuleVersion is greater than currently released."
-            }
-            else
-            {
-                throw "$ModuleVersion is not greater than currently released."
-            }
-
-            New-GitReleaseBranch -BranchName $releaseBranchName
-
-            $releaseNotes = Get-UnreleasedNotes
-
-            if ([string]::IsNullOrEmpty($releaseNotes))
-            {
-                throw 'There are no release notes for this release.'
-            }
-
-            Update-ReleaseNotes -ModuleVersion $ModuleVersion
-
-            Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
-
-            Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
-
-            # Push the release branch to GitHub
-            Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
-        }
-
-        Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
-
-        # Get the Dev Banch status. Wait until it is success or failure
-        $gitHubRefStatusParam = [ordered]@{
-            'Repository'     = $repository
-            'Name'           = $releaseBranchName
-            'WaitForSuccess' = $true
-        }
-        $gitHubReleaseBranchStatus = Get-GitHubRefStatus @gitHubRefStatusParam
-
-        if ($gitHubReleaseBranchStatus -eq 'success')
-        {
-            $pullRequestParameters = @{
-                Repository    = $Repository
-                ModuleVersion = $ModuleVersion
-                BranchHead    = $releaseBranchName
-            }
-            $pullRequest = New-GitHubPullRequest @pullRequestParameters
-
-            $gitHubRefStatusParam = [ordered]@{
-                Repository     = $repository
-                Name           = $pullRequest.head.sha
-                WaitForSuccess = $true
-            }
-            $gitHubPullRequestStatus = Get-GitHubRefStatus @gitHubRefStatusParam
-
-            if ($gitHubPullRequestStatus -eq 'success')
-            {
-                Write-Output "Pull request for $releaseBranchName success."
-            }
-            else
-            {
-                throw 'Pull Request build failed, Aborting release'
-            }
-        }
-        else
-        {
-            throw "$releaseBranchName is currently failing and cannot be merged into Master."
-        }
-    }
-    finally
-    {
-        Write-Verbose -Message 'Reverting to initial location'
-        Pop-Location
-        Write-Verbose -Message 'Reverting to initial branch'
-        Set-GitBranch -Branch $beginGitBranch -SkipPull
-    }
-}
-
-<#
-    .SYNOPSIS
-        Completes the PowerStig release process for a given module that was
-        created using the Start-PowerStigRelease function.
-
-    .DESCRIPTION
-        Applies a standard process and comment structure to the release process
-        for a given module. At a high level, this function will:
-
-        1. Validate that you are trying to deploy and PowerStig module
-        2. Approve the pull request on GitHub
-        3. Create a GitHub Release (Triggers an AppVeyor deployment)
-        4. Cleans up the release branch from the local and remote repository
-
-    .PARAMETER GitRepositoryPath
-        The path to the git repository on your local machine. If this path is
-        not a valid git repository, this function will throw an error.
-        Additionally, if the repository remote origin is not a PowerStig project,
-        this function will throw an error
-
-    .PARAMETER ModuleVersion
-        The version number that is injected to the different areas of the
-        release process. Specifically the module manifest, AppVeyor build config,
-        and readme release notes.
-
-    .PARAMETER GitHubApiSecureFilePath
-        The path to the secured GitHub API key. If you have a file named
-        PowerStigGitHubApi.txt in $profile, it will automatically be loaded.
-        Running the following command will prompt you for your GitHub API key
-        and create the file for you so that you can skip this parameter.
-
-        Read-Host "Enter Password" -AsSecureString |
-            ConvertFrom-SecureString |
-                Out-File "$(Split-Path $profile)\PowerStigGitHubApi.txt"
-#>
-function Complete-PowerStigRelease
-{
-    param
-    (
         [Parameter(Mandatory = $true)]
         [string]
         $GitRepositoryPath,
@@ -987,6 +817,10 @@ function Complete-PowerStigRelease
         $GitHubApiSecureFilePath
     )
 
+    $repository = Get-PowerStigRepository
+    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
+    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
+
     # Convert GitRepositoryPath into an absolute path if it is relative
     if (-not ([System.IO.Path]::IsPathRooted($GitRepositoryPath)))
     {
@@ -994,73 +828,77 @@ function Complete-PowerStigRelease
     }
 
     Push-Location -Path $GitRepositoryPath
-    $beginGitBranch = Get-GitBranch
-    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
 
-    Set-GitBranch -Branch $releaseBranchName -SkipPull
-
-    try
+    if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
     {
-        $repository = Get-PowerStigRepository
-
-        Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
-
-        $pullRequestParam = @{
-            Repository  = $repository
-            BranchBase  = 'master'
-            BranchHead  = $releaseBranchName
-        }
-        $pullRequest = Get-GitHubPullRequest @pullRequestParam
-
-        $approvePullRequestParam = [ordered]@{
-            PullRequest   = $pullRequest
-            CommitTitle   = 'Release'
-            CommitMessage = 'This PR is automatically completed.'
-            MergeMethod   = 'merge'
-        }
-        $null = Approve-GitHubPullRequest @approvePullRequestParam
-
-        # Get the manifest release notes to add to release
-        $manifestPath = (Get-ChildItem -Path $PWD -Filter "*.psd1").FullName
-        $releaseNotes = (Import-PowerShellDataFile -Path $manifestPath).PrivateData.PSData.ReleaseNotes
-
-        $gitHubReleaseParams = @{
-            Repository  = $repository
-            TagName     = $releaseBranchName -replace 'Release', 'PSGallery'
-            Title       = "Release of version $(($releaseBranchName -Split '-')[0])"
-            Description = $releaseNotes
-        }
-        # The GitHub release triggers the AppVeyor deployment to the Gallery.
-        $null = New-GitHubRelease @gitHubReleaseParams
-
-        Remove-GitReleaseBranch -BranchName $releaseBranchName
+        Write-Verbose -Message "$ModuleVersion is greater than currently released."
     }
-    finally
+    else
     {
-        Write-Verbose -Message 'Reverting to initial location'
-        Pop-Location -Verbose
-        Write-Verbose -Message 'Reverting to initial branch'
-        Set-GitBranch -Branch $beginGitBranch -SkipPull
+        throw "$ModuleVersion is not greater than currently released."
     }
+
+    if ($Type -eq 'Hotfix')
+    {
+        New-GitReleaseBranch -BranchName $releaseBranchName
+    }
+    else
+    {
+        try
+        {
+            Set-GitBranch -Branch $ModuleVersion -SkipPull
+            $releaseBranchName = $ModuleVersion
+        }
+        catch
+        {
+            throw "Git branch $ModuleVersion was not found"
+        }
+    }
+
+    $releaseNotes = Get-UnreleasedNotes
+
+    if ([string]::IsNullOrEmpty($releaseNotes))
+    {
+        throw 'There are no release notes for this release.'
+    }
+
+    Update-ReleaseNotes -ModuleVersion $ModuleVersion
+
+    Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
+
+    Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
+
+    Update-Contributors -Repository $repository
+
+    Update-FileHashMarkdown -ModuleVersion $ModuleVersion
+
+    # Push the release changes to GitHub
+    Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
+
+    $pullRequestParameters = @{
+        Repository    = $Repository
+        ModuleVersion = $ModuleVersion
+        BranchHead    = $releaseBranchName
+        BranchBase    = 'dev'
+    }
+    $pullRequest = New-GitHubPullRequest @pullRequestParameters
+
+    $null = Set-GitBranch -Branch 'dev'
+    return $pullRequest.number
 }
 
 <#
     .SYNOPSIS
         Completes the PowerStig release process for a given module that was
-        created using the Start-PowerStigRelease function.
-
+        created using the New-PowerStigRelease function.
     .DESCRIPTION
-
-
     .PARAMETER GitRepositoryPath
         The path to the git repository on your local machine. If this path is
         not a valid git repository, this function will throw an error.
         Additionally, if the repository remote origin is not a PowerStig project,
         this function will throw an error
-
     .PARAMETER PullRequestNumber
         The pull request number to complete.
-
     .PARAMETER GitHubApiSecureFilePath
         The path to the secured GitHub API key. If you have a file named
         PowerStigGitHubApi.txt in $profile, it will automatically be loaded.
@@ -1103,28 +941,204 @@ function Complete-PowerStigDevMerge
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         $pullRequestParam = @{
-            Repository  = $repository
-            Number      = $PullRequestNumber
+            Repository = $repository
+            Number     = $PullRequestNumber
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
         $approvePullRequestParam = [ordered]@{
             PullRequest   = $pullRequest
-            CommitTitle   = 'Merged into dev'
+            CommitTitle   = 'Merged dev for release.'
             CommitMessage = 'Accepted PR'
             MergeMethod   = 'squash'
         }
         $pullRequest = Approve-GitHubPullRequest @approvePullRequestParam
 
-        Set-GitBranch -Branch dev
-
-        Update-Contributors -Repository $repository
-
-        Push-GitBranch -Name 'dev' -CommitMessage "Updated contributor list"
+        # remove branch locally and remotely
     }
     catch
     {
         Pop-Location
+    }
+}
+
+#endregion
+<#
+    .SYNOPSIS
+        Starts the PowerStig release process for a given module
+    .DESCRIPTION
+        Applies a standard process and comment structure to the release process
+        for a given module. At a high level, this function will:
+
+        1. Validate that you are trying to deploy and PowerStig module
+        2. Validate that you are trying to release a higher version number than
+           is currently released.
+        3. Create a release branch from dev and update the module version number
+           in all of the appropriate places.
+        4. Push the release branch to GitHub and create a pull request into the
+           master branch.
+    .PARAMETER GitRepositoryPath
+        The path to the git repository on your local machine. If this path is
+        not a valid git repository, this function will throw an error.
+        Additionally, if the repository remote origin is not a PowerStig project,
+        this function will throw an error
+    .PARAMETER ModuleVersion
+        The version number that is injected to the different areas of the
+        release process. Specifically the module manifest, AppVeyor build config,
+        and readme release notes.
+    .PARAMETER GitHubApiSecureFilePath
+        The path to the secured GitHub API key. If you have a file named
+        PowerStigGitHubApi.txt in $profile, it will automatically be loaded.
+        Running the following command will prompt you for your GitHub API key
+        and create the file for you so that you can skip this parameter.
+
+        Read-Host "Enter Password" -AsSecureString |
+            ConvertFrom-SecureString |
+                Out-File "$(Split-Path $profile)\PowerStigGitHubApi.txt"
+#>
+function Start-PowerStigRelease
+{
+    [OutputType([int])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion,
+
+        [Parameter()]
+        [string]
+        $GitHubApiSecureFilePath
+    )
+
+    $repository = Get-PowerStigRepository
+
+    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
+
+    # Get the Dev Banch status. Wait until it is success or failure
+    $gitHubRefStatusParam = [ordered]@{
+        'Repository' = $repository
+        'Name' = 'dev'
+        'WaitForSuccess' = $false
+    }
+    $gitHubReleaseBranchStatus = Get-GitHubRefStatus @gitHubRefStatusParam
+
+    if ($gitHubReleaseBranchStatus -eq 'success')
+    {
+        $pullRequestParameters = @{
+            Repository    = $Repository
+            ModuleVersion = $ModuleVersion
+            BranchHead    = 'dev'
+            BranchBase    = 'master'
+        }
+        $pullRequest = New-GitHubPullRequest @pullRequestParameters
+
+        return $pullRequest.number
+    }
+    else
+    {
+        throw "dev is currently $gitHubReleaseBranchStatus and cannot be merged into Master."
+    }
+}
+
+<#
+    .SYNOPSIS
+        Completes the PowerStig release process for a given module that was
+        created using the New-PowerStigRelease function.
+    .DESCRIPTION
+        Applies a standard process and comment structure to the release process
+        for a given module. At a high level, this function will:
+
+        1. Validate that you are trying to deploy and PowerStig module
+        2. Approve the pull request on GitHub
+        3. Create a GitHub Release (Triggers an AppVeyor deployment)
+        4. Cleans up the release branch from the local and remote repository
+    .PARAMETER GitRepositoryPath
+        The path to the git repository on your local machine. If this path is
+        not a valid git repository, this function will throw an error.
+        Additionally, if the repository remote origin is not a PowerStig project,
+        this function will throw an error
+    .PARAMETER ModuleVersion
+        The version number that is injected to the different areas of the
+        release process. Specifically the module manifest, AppVeyor build config,
+        and readme release notes.
+    .PARAMETER GitHubApiSecureFilePath
+        The path to the secured GitHub API key. If you have a file named
+        PowerStigGitHubApi.txt in $profile, it will automatically be loaded.
+        Running the following command will prompt you for your GitHub API key
+        and create the file for you so that you can skip this parameter.
+
+        Read-Host "Enter Password" -AsSecureString |
+            ConvertFrom-SecureString |
+                Out-File "$(Split-Path $profile)\PowerStigGitHubApi.txt"
+#>
+function Complete-PowerStigRelease
+{
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $GitRepositoryPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion,
+
+        [Parameter()]
+        [string]
+        $GitHubApiSecureFilePath
+    )
+
+    # Convert GitRepositoryPath into an absolute path if it is relative
+    if (-not ([System.IO.Path]::IsPathRooted($GitRepositoryPath)))
+    {
+        $GitRepositoryPath = Resolve-Path -Path $GitRepositoryPath
+    }
+
+    Set-GitBranch -Branch 'dev' -SkipPull
+
+    try
+    {
+        $repository = Get-PowerStigRepository
+
+        Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
+
+        $pullRequestParam = @{
+            Repository = $repository
+            BranchHead = 'dev'
+            BranchBase = 'master'
+        }
+        $pullRequest = Get-GitHubPullRequest @pullRequestParam
+
+        $approvePullRequestParam = [ordered]@{
+            PullRequest   = $pullRequest
+            CommitTitle   = 'Release'
+            CommitMessage = 'This PR is automatically completed.'
+            MergeMethod   = 'merge'
+        }
+        $null = Approve-GitHubPullRequest @approvePullRequestParam
+
+        # Get the manifest release notes to add to release
+        $manifestPath = (Get-ChildItem -Path $PWD -Filter "*.psd1").FullName
+        $releaseNotes = (Import-PowerShellDataFile -Path $manifestPath).PrivateData.PSData.ReleaseNotes
+
+        $gitHubReleaseParams = @{
+            Repository  = $repository
+            TagName     = $releaseBranchName -replace 'Release', 'PSGallery'
+            Title       = "Release of version $(($releaseBranchName -Split '-')[0])"
+            Description = $releaseNotes
+        }
+        # The GitHub release triggers the AppVeyor deployment to the Gallery.
+        $null = New-GitHubRelease @gitHubReleaseParams
+
+        Remove-GitReleaseBranch -BranchName $releaseBranchName
+    }
+    finally
+    {
+        Write-Verbose -Message 'Reverting to initial location'
+        Pop-Location -Verbose
+        Write-Verbose -Message 'Reverting to initial branch'
+        Set-GitBranch -Branch $beginGitBranch -SkipPull
     }
 }
 
