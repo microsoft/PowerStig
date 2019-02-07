@@ -16,7 +16,7 @@ foreach ( $rule in $rules )
         future if WindowsOptionalFeature is updated to allow it to run a on DC
         lines 17-31 can be removed.
     #>
-    if ($stigData.DISASTIG.id -match 'Windows_10')
+    if ($stigData.DISASTIG.stigid -match 'Windows_10')
     {
         WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
         {

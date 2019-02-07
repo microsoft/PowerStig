@@ -14,11 +14,14 @@
     .PARAMETER CreateOrgSettingsFile
         Creates the orginazational settings files associated with the version of the STIG.
 
-    .PARAMETER IncludeRawString
-        Adds the check-content elemet content to the converted object.
+    .PARAMETER DoNotExportRawString
+        Excludes the check-content elemet content from the converted object.
 
     .PARAMETER RuleIdFilter
         Filters the list rules that are converted to simplify debugging the conversion process.
+
+    .PARAMETER DoNotExportDescription
+        Excludes the Description elemet content from the converted object.
 #>
 function ConvertTo-PowerStigXml
 {
@@ -40,11 +43,15 @@ function ConvertTo-PowerStigXml
 
         [Parameter()]
         [switch]
-        $IncludeRawString,
+        $DoNotExportRawString,
 
         [Parameter()]
         [string[]]
-        $RuleIdFilter
+        $RuleIdFilter,
+
+        [Parameter()]
+        [switch]
+        $DoNotExportDescription
     )
 
     Begin
@@ -58,7 +65,7 @@ function ConvertTo-PowerStigXml
     }
     Process
     {
-        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -IncludeRawString:$IncludeRawString -RuleIdFilter $RuleIdFilter
+        $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -RuleIdFilter $RuleIdFilter
 
         # Get the raw xccdf xml to pull additional details from the root node.
         [xml] $xccdfXml = Get-Content -Path $Path -Encoding UTF8
@@ -68,18 +75,25 @@ function ConvertTo-PowerStigXml
 
         # Start the XML doc and add the root element
         $xmlDocument = [System.XML.XMLDocument]::New()
-        [System.XML.XMLElement] $xmlRoot = $xmlDocument.CreateElement( $xmlElement.stigConvertRoot )
+        [System.XML.XMLElement] $xmlRoot = $xmlDocument.CreateElement( 'DISASTIG' )
 
         <#
             Append as child to an existing node. This method will 'leak' an object out of the function
             so DO NOT remove the [void]
         #>
         [void] $xmlDocument.appendChild( $xmlRoot )
-        $xmlRoot.SetAttribute( $xmlAttribute.stigId , $xccdfXml.Benchmark.ID )
-
-        # Set the version and creation attributes in the output file.
-        $xmlRoot.SetAttribute( $xmlAttribute.stigVersion, $stigVersionNumber )
-        $xmlRoot.SetAttribute( $xmlAttribute.stigConvertCreated, $(Get-Date).ToShortDateString() )
+        $xmlRoot.SetAttribute( 'version' , $xccdfXml.Benchmark.version )
+        $xmlRoot.SetAttribute( 'classification', 'UNCLASSIFIED' )
+        $xmlRoot.SetAttribute( 'customname' , '' )
+        $xmlRoot.SetAttribute( 'stigid' , $xccdfXml.Benchmark.ID )
+        $xmlRoot.SetAttribute( 'description' , $xccdfXml.Benchmark.description )
+        $xmlRoot.SetAttribute( 'filename' , (Split-Path -Path $Path -Leaf) )
+        $xmlRoot.SetAttribute( 'releaseinfo' , $xccdfXml.Benchmark.'plain-text'.InnerText )
+        $xmlRoot.SetAttribute( 'title' , $xccdfXml.Benchmark.title )
+        $xmlRoot.SetAttribute( 'notice' , $xccdfXml.Benchmark.notice.Id )
+        $xmlRoot.SetAttribute( 'source' , $xccdfXml.Benchmark.reference.source )
+        $xmlRoot.SetAttribute( 'fullversion', $stigVersionNumber )
+        $xmlRoot.SetAttribute( 'created', $(Get-Date).ToShortDateString() )
 
         # Add the STIG types as child elements
         foreach ( $ruleType in $ruleTypeList )
@@ -115,8 +129,21 @@ function ConvertTo-PowerStigXml
             #>
             $propertiesToRemove = $properties | Where-Object -FilterScript {$PSItem -in $propertiesToRemove}
 
+            ### [TODO] ###
+            <#
+                Remove the Description if explicited requested. Once all PowerSTIG
+                data files are updated with the description attribute, this and
+                the $DoNotExportDescription can be removed from the function. This
+                field is used to automatically generate a populated STIG checklist.
+            #>
+            if ( $DoNotExportDescription )
+            {
+                $propertiesToRemove += 'Description'
+            }
+            ### END TODO ###
+
             # Remove the raw string from the output if it was not requested.
-            if ( -not $IncludeRawString )
+            if ( $DoNotExportRawString )
             {
                 $propertiesToRemove += 'RawString'
             }
@@ -409,11 +436,10 @@ function New-OrganizationalSettingsXmlFile
     $xmlDocument = [System.XML.XMLDocument]::New()
 
     ##############################   Root object   ###################################
-    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement(
-        $xmlElement.organizationalSettingRoot )
+    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement( 'OrganizationalSettings' )
 
     [void] $xmlDocument.appendChild( $xmlRootElement )
-    [void] $xmlRootElement.SetAttribute( $xmlAttribute.stigVersion, $StigVersionNumber )
+    [void] $xmlRootElement.SetAttribute( 'fullversion', $StigVersionNumber )
 
     $rootComment = $xmlDocument.CreateComment( $organizationalSettingRootComment )
     [void] $xmlDocument.InsertBefore( $rootComment, $xmlRootElement )
@@ -423,8 +449,7 @@ function New-OrganizationalSettingsXmlFile
 
     foreach ( $orgSetting in $OrgSettings)
     {
-        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement(
-            $xmlElement.organizationalSettingChild )
+        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement( 'OrganizationalSetting' )
 
         [void] $xmlRootElement.appendChild( $xmlSettingChildElement )
 
@@ -541,7 +566,8 @@ function Split-BenchmarkId
         '(_+)Security_Technical_Implementation_Guide'
     )
     $sqlServerVariations = @(
-        'Microsoft_SQL_Server'
+        'Microsoft_SQL_Server',
+        'MS_SQL_Server'
     )
     $sqlServerInstanceVariations = @(
         'Database_Instance'

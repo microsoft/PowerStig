@@ -2,30 +2,122 @@ Configuration SqlServerInstance_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [string]
+        $StigVersion,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $BrowserVersion,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $OfficeApp,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $ConfigPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $PropertiesPath,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
         $SqlVersion,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
         [string]
+        [AllowNull()]
         $SqlRole,
 
         [Parameter()]
         [string]
-        $StigVersion
+        [AllowNull()]
+        $ForestName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $DomainName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsVersion,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $OsRole,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebAppPool,
+
+        [Parameter()]
+        [string[]]
+        [AllowNull()]
+        $WebSiteName,
+
+        [Parameter()]
+        [string]
+        [AllowNull()]
+        $LogPath
+        
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         SqlServer Instance
         {
-            SqlVersion     = $SqlVersion
-            SqlRole        = $SqlRole
-            Stigversion    = $StigVersion
+            SqlVersion = $SqlVersion
+            SqlRole = '$SqlRole'
+            StigVersion = $StigVersion
             ServerInstance = 'TestServer'
-        }
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{$( ($Exception | ForEach-Object {"'$$PSItem'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                " SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }
 
@@ -33,30 +125,121 @@ Configuration SqlServerDatabase_config
 {
     param
     (
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
+        [string]
+        $StigVersion,
+
+        [Parameter()]
+        [psobject]
+        $SkipRule,
+
+        [Parameter()]
+        [psobject]
+        $SkipRuleType,
+
+        [Parameter()]
+        [psobject]
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $BrowserVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $OfficeApp,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ConfigPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $PropertiesPath,
+
+        [Parameter()]
+        [AllowNull()]
         [string]
         $SqlVersion,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter()]
+        [AllowNull()]
         [string]
         $SqlRole,
 
         [Parameter()]
+        [AllowNull()]
         [string]
-        $StigVersion
+        $ForestName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $DomainName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebAppPool,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebSiteName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
 
     Node localhost
     {
+        & ([scriptblock]::Create("
         SqlServer Database
         {
-            SqlVersion     = $SqlVersion
-            SqlRole        = $SqlRole
-            Stigversion    = $StigVersion
+            SqlVersion = '$SqlVersion'
+            SqlRole = '$SqlRole'
+            StigVersion = '$StigVersion'
             ServerInstance = 'TestServer'
-            Database       = 'TestDataBase'
-        }
+            Database = 'TestDataBase'
+            $(if ($null -ne $OrgSettings)
+            {
+                "Orgsettings = '$OrgSettings'"
+            })
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+            })
+        }")
+        )
     }
 }

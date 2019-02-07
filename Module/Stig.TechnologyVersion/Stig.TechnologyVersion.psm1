@@ -31,8 +31,8 @@ Class TechnologyVersion
 
     # The available versions for each technology currently in PowerStig
     static $ValidateSet = @"
-Windows = All, 2012R2, 10
-SqlServer = 2012
+Windows = All, 2012R2, 2016, 10
+SqlServer = 2012, 2016
 Mozilla = All
 "@
 

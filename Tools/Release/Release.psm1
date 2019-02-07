@@ -386,6 +386,10 @@ function Update-Manifest
     $manifestContent = $manifestContent -replace $moduleVersionRegex, $ModuleVersion
 
     $releaseNotesRegEx = "(?<=ReleaseNotes\s*=\s*')[^']+(?=')"
+
+    # If any single quotes are in the release notes, they need to be escaped with another single quote
+    $ReleaseNotes = $ReleaseNotes -replace "'","''"
+
     $manifestContent = $manifestContent -replace $releaseNotesRegEx, $ReleaseNotes
 
     Set-Content -Path $ManifestPath -Value $manifestContent.TrimEnd()
@@ -638,7 +642,7 @@ function New-GitHubPullRequest
         Body           = [ordered]@{
             title = "Release of version $ModuleVersion."
             body  = "Releasing version $ModuleVersion."
-            head  = $BranchName
+            head  = $BranchHead
             base  = $BranchBase
         } | ConvertTo-Json
     }
@@ -781,6 +785,81 @@ function New-GitHubRelease
     Invoke-RestMethod @restMethodParam
 }
 
+<#
+    .SYNOPSIS
+        Sets a markdown file which contains PowerSTIG file hashes.
+
+    .DESCRIPTION
+        Used to set a markdown file with file hashes for PowerSTIG
+        module files, such as Processed STIG Data, etc.
+
+    .PARAMETER FileHashPath
+        Specifies the path to one or more files as an array to generate file
+        hash data. Wildcard characters are permitted.
+
+    .PARAMETER MarkdownPath
+        Specifies the path for the markdown file.
+
+    .PARAMETER Algorithm
+        Specifies the cryptographic hash function to use for computing the hash
+        value of the contents of the specified file. A cryptographic hash function
+        includes the property that it is not possible to find two distinct inputs
+        that generate the same hash values. Hash functions are commonly used with
+        digital signatures and for data integrity.
+
+        The acceptable values for this parameter are:
+        'SHA256', 'SHA384' or 'SHA512'
+#>
+function Update-FileHashMarkdown
+{
+    param
+    (
+        [Parameter()]
+        [string[]]
+        $FileHashPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
+
+        [Parameter()]
+        [string]
+        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\FILEHASH.md'),
+
+        [Parameter()]
+        [ValidateSet('SHA256', 'SHA384', 'SHA512')]
+        [string]
+        $Algorithm = 'SHA256',
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion
+    )
+
+    # Markdown header for file hash information table
+    $markdownHeader = @'
+# PowerSTIG File Hashes : Module Version {0}
+
+Hashes for **PowerSTIG** files are listed in the following table:
+
+| File | {1} Hash | Size (bytes) |
+| :---- | ---- | ---: |
+'@ -f $ModuleVersion, $Algorithm
+
+    $fileHash = Get-FileHash -Path $FileHashPath -Algorithm $Algorithm
+
+    # String builder to set the markdown file
+    $fileHashMarkdownFileContent = New-Object System.Text.StringBuilder
+    $null = $fileHashMarkdownFileContent.AppendLine($markdownHeader)
+
+    foreach ($file in $fileHash)
+    {
+        $fileHashWithSize = '| {0} | {1} | {2} |' -f
+        $(Split-Path -Path $file.Path -Leaf),
+        $($file.Hash),
+        $((Get-Item -Path $file.Path).Length)
+        $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
+    }
+
+    Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
+}
+
 #endregion
 
 <#
@@ -820,11 +899,16 @@ function New-GitHubRelease
             ConvertFrom-SecureString |
                 Out-File "$(Split-Path $profile)\PowerStigGitHubApi.txt"
 #>
-function Start-PowerStigRelease
+function New-PowerStigRelease
 {
     [CmdletBinding()]
     param
     (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('Feature','Hotfix')]
+        [string]
+        $Type,
+
         [Parameter(Mandatory = $true)]
         [string]
         $GitRepositoryPath,
@@ -835,11 +919,7 @@ function Start-PowerStigRelease
 
         [Parameter()]
         [string]
-        $GitHubApiSecureFilePath,
-
-        [Parameter()]
-        [switch]
-        $Continue
+        $GitHubApiSecureFilePat
     )
 
     # Convert GitRepositoryPath into an absolute path if it is relative
@@ -850,66 +930,28 @@ function Start-PowerStigRelease
 
     Push-Location -Path $GitRepositoryPath
     $beginGitBranch = Get-GitBranch
+
     $releaseBranchName = $script:ReleaseName -f $ModuleVersion
 
     try
     {
         $repository = Get-PowerStigRepository
 
-        if (-not $Continue)
-        {
-            if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
-            {
-                Write-Verbose -Message "$ModuleVersion is greater than currently released."
-            }
-            else
-            {
-                throw "$ModuleVersion is not greater than currently released."
-            }
-
-            New-GitReleaseBranch -BranchName $releaseBranchName
-
-            $releaseNotes = Get-UnreleasedNotes
-
-            if ([string]::IsNullOrEmpty($releaseNotes))
-            {
-                throw 'There are no release notes for this release.'
-            }
-
-            Update-ReleaseNotes -ModuleVersion $ModuleVersion
-
-            Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
-
-            Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
-
-            Set-FileHashMarkdown -ModuleVersion $ModuleVersion
-
-            # Push the release branch to GitHub
-            Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
-        }
-
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         # Get the Dev Banch status. Wait until it is success or failure
         $gitHubRefStatusParam = [ordered]@{
-            'Repository'     = $repository
-            'Name'           = $releaseBranchName
+            'Repository' = $repository
+            'Name' = $releaseBranchName
             'WaitForSuccess' = $true
         }
         $gitHubReleaseBranchStatus = Get-GitHubRefStatus @gitHubRefStatusParam
 
         if ($gitHubReleaseBranchStatus -eq 'success')
         {
-            $pullRequestParameters = @{
-                Repository    = $Repository
-                ModuleVersion = $ModuleVersion
-                BranchHead    = $releaseBranchName
-            }
-            $pullRequest = New-GitHubPullRequest @pullRequestParameters
-
             $gitHubRefStatusParam = [ordered]@{
-                Repository     = $repository
-                Name           = $pullRequest.head.sha
+                Repository = $repository
+                Name = $pullRequest.head.sha
                 WaitForSuccess = $true
             }
             $gitHubPullRequestStatus = Get-GitHubRefStatus @gitHubRefStatusParam
@@ -940,7 +982,7 @@ function Start-PowerStigRelease
 <#
     .SYNOPSIS
         Completes the PowerStig release process for a given module that was
-        created using the Start-PowerStigRelease function.
+        created using the New-PowerStigRelease function.
 
     .DESCRIPTION
         Applies a standard process and comment structure to the release process
@@ -1046,10 +1088,106 @@ function Complete-PowerStigRelease
     }
 }
 
+
+function Start-PowerStigDevMerge
+{
+    [OutputType([int])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('Feature', 'Hotfix')]
+        [string]
+        $Type,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $GitRepositoryPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion,
+
+        [Parameter()]
+        [string]
+        $GitHubApiSecureFilePath
+    )
+
+    $repository = Get-PowerStigRepository
+    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
+    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
+
+    # Convert GitRepositoryPath into an absolute path if it is relative
+    if (-not ([System.IO.Path]::IsPathRooted($GitRepositoryPath)))
+    {
+        $GitRepositoryPath = Resolve-Path -Path $GitRepositoryPath
+    }
+
+    Push-Location -Path $GitRepositoryPath
+
+    if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
+    {
+        Write-Verbose -Message "$ModuleVersion is greater than currently released."
+    }
+    else
+    {
+        throw "$ModuleVersion is not greater than currently released."
+    }
+
+    if ($Type -eq 'Hotfix')
+    {
+        New-GitReleaseBranch -BranchName $releaseBranchName
+    }
+    else
+    {
+        try
+        {
+            Set-GitBranch -Branch $ModuleVersion -SkipPull
+            $releaseBranchName = $ModuleVersion
+        }
+        catch
+        {
+            throw "Git branch $ModuleVersion was not found"
+        }
+    }
+
+    # $releaseNotes = Get-UnreleasedNotes
+
+    # if ([string]::IsNullOrEmpty($releaseNotes))
+    # {
+    #     throw 'There are no release notes for this release.'
+    # }
+
+    #Update-ReleaseNotes -ModuleVersion $ModuleVersion
+
+    #Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
+
+    Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
+
+    Update-Contributors -Repository $repository
+
+    Update-FileHashMarkdown -ModuleVersion $ModuleVersion
+
+    # Push the release branch to GitHub
+    Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
+
+    $repository = Get-PowerStigRepository
+
+    $pullRequestParameters = @{
+        Repository    = $Repository
+        ModuleVersion = $ModuleVersion
+        BranchHead    = $releaseBranchName
+        BranchBase    = 'dev'
+    }
+    #$pullRequest = New-GitHubPullRequest @pullRequestParameters
+
+    return $pullRequest.number
+}
+
 <#
     .SYNOPSIS
         Completes the PowerStig release process for a given module that was
-        created using the Start-PowerStigRelease function.
+        created using the New-PowerStigRelease function.
 
     .DESCRIPTION
 
@@ -1117,91 +1255,11 @@ function Complete-PowerStigDevMerge
             MergeMethod   = 'squash'
         }
         $pullRequest = Approve-GitHubPullRequest @approvePullRequestParam
-
-        Set-GitBranch -Branch dev
-
-        Update-Contributors -Repository $repository
-
-        Push-GitBranch -Name 'dev' -CommitMessage "Updated contributor list"
     }
     catch
     {
         Pop-Location
     }
-}
-
-<#
-    .SYNOPSIS
-        Sets a markdown file which contains PowerSTIG file hashes.
-
-    .DESCRIPTION
-        Used to set a markdown file with file hashes for PowerSTIG
-        module files, such as Processed STIG Data, etc.
-
-    .PARAMETER FileHashPath
-        Specifies the path to one or more files as an array to generate file
-        hash data. Wildcard characters are permitted.
-
-    .PARAMETER MarkdownPath
-        Specifies the path for the markdown file.
-
-    .PARAMETER Algorithm
-        Specifies the cryptographic hash function to use for computing the hash
-        value of the contents of the specified file. A cryptographic hash function
-        includes the property that it is not possible to find two distinct inputs
-        that generate the same hash values. Hash functions are commonly used with
-        digital signatures and for data integrity.
-
-        The acceptable values for this parameter are:
-        'SHA256', 'SHA384' or 'SHA512'
-#>
-function Set-FileHashMarkdown
-{
-    param
-    (
-        [Parameter()]
-        [string[]]
-        $FileHashPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
-
-        [Parameter()]
-        [string]
-        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\FILEHASH.md'),
-
-        [Parameter()]
-        [ValidateSet('SHA256', 'SHA384', 'SHA512')]
-        [string]
-        $Algorithm = 'SHA256',
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ModuleVersion
-    )
-
-    # Markdown header for file hash information table
-    $markdownHeader = @'
-# PowerSTIG File Hashes : Module Version {0}
-
-Hashes for **PowerSTIG** files are listed in the following table:
-| File | {1} Hash | Size (bytes) |
-| :---- | ---- | ---: |
-'@ -f $ModuleVersion, $Algorithm
-
-    $fileHash = Get-FileHash -Path $FileHashPath -Algorithm $Algorithm
-
-    # String builder to set the markdown file
-    $fileHashMarkdownFileContent = New-Object System.Text.StringBuilder
-    $null = $fileHashMarkdownFileContent.AppendLine($markdownHeader)
-
-    foreach ($file in $fileHash)
-    {
-        $fileHashWithSize = '| {0} | {1} | {2} |' -f
-            $(Split-Path -Path $file.Path -Leaf),
-            $($file.Hash),
-            $((Get-Item -Path $file.Path).Length)
-        $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
-    }
-
-    Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
 }
 
 Export-ModuleMember -Function '*-PowerStigRelease', '*-PowerStigDevMerge'

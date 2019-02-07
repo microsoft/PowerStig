@@ -24,7 +24,7 @@ try
             Split-StigXccdf -Path $sampleXccdfPath
 
             Context 'Member Server' {
-                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_MS_SPLIT'
+                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_MS'
                 It 'Should create an MS STIG file' {
                     Test-Path -Path $sampleXccdfSplitPath | Should Be $true
                 }
@@ -36,7 +36,7 @@ try
             }
 
             Context 'Domain Controller' {
-                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_DC_SPLIT'
+                $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_DC'
                 It 'Should create an DC STIG file' {
                     Test-Path -Path $sampleXccdfSplitPath | Should Be $true
                 }
@@ -105,6 +105,18 @@ try
                         'id'                = 'Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide'
                         'Technology'        = 'SQLServer'
                         'TechnologyVersion' = '2012'
+                        'TechnologyRole'    = 'Instance'
+                    },
+                    @{
+                        'id'                = 'Microsoft_SQL_Server_2016_Database__Security_Technical_Implementation_Guide_NewBenchmark'
+                        'Technology'        = 'SQLServer'
+                        'TechnologyVersion' = '2016'
+                        'TechnologyRole'    = 'Database'
+                    },
+                    @{
+                        'id'                = 'Microsoft_SQL_Server_2016_Database_Instance_Security_Technical_Implementation_Guide'
+                        'Technology'        = 'SQLServer'
+                        'TechnologyVersion' = '2016'
                         'TechnologyRole'    = 'Instance'
                     }
                 )

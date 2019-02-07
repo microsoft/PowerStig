@@ -1,6 +1,13 @@
 #region Header
 using module .\..\..\..\Module\RegistryRule\RegistryRule.psm1
 . $PSScriptRoot\.tests.header.ps1
+$expressionFileList = Get-Item "$($PSScriptRoot).\..\..\..\Module\Convert.Main\Data.*.ps1"
+Clear-Variable SingleLine* -Scope Global
+foreach ($supportFile in $expressionFileList)
+{
+    Write-Verbose "Loading $($supportFile.FullName)"
+    . $supportFile.FullName
+}
 #endregion
 try
 {
@@ -149,7 +156,7 @@ try
             @{
                 Hive                      = 'HKEY_CURRENT_USER'
                 Path                      = '\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments'
-                OrganizationValueRequired = 'False'
+                OrganizationValueRequired = 'True'
                 ValueName                 = 'SaveZoneInformation'
                 ValueData                 = '2'
                 ValueType                 = 'Dword'
@@ -211,7 +218,7 @@ try
         Describe "$($rule.GetType().Name) Child Class" {
 
             Context 'Base Class' {
-                It 'Shoud have a BaseType of STIG' {
+                It 'Should have a BaseType of STIG' {
                     $rule.GetType().BaseType.ToString() | Should Be 'Rule'
                 }
             }
@@ -230,6 +237,25 @@ try
         }
         #endregion
         #region Method Tests
+
+        Describe 'Match Static method' {
+
+            $stringsToTest = @(
+                @{
+                    string = 'Navigate to "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters".
+
+                    Note the directory locations in the values for "DSA Database file".
+
+                    Open "Command Prompt".'
+                    match = $false
+                }
+            )
+
+            It 'Should not match the DSA Database file registry path' {
+                [RegistryRule]::Match($stringsToTest.string) | Should Be $false
+            }
+        }
+
         Describe 'Get-RegistryKey' {
 
             foreach ( $rule in $rulesToTest )
@@ -328,7 +354,8 @@ try
                     'Value: 0x0000001e (30) (or less, but not 0)',
                     'Value: 0x0000001e (30) (or less, excluding 0)',
                     'Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)',
-                    'Value: Possible values are NoSync,NTP,NT5DS, AllSync'
+                    'Value: Possible values are NoSync,NTP,NT5DS, AllSync',
+                    'Value: 0x00000002 (2) (or if the Value Name does not exist)'
                 )
 
                 foreach ($string in $rangeStrings)
@@ -346,8 +373,7 @@ try
                     'Value: Enabled',
                     'Value: Disabled',
                     'Value: 0x0000000a (10)',
-                    'Value: 10',
-                    'Value: 0x00000002 (2) (or if the Value Name does not exist)'
+                    'Value: 10'
                 )
 
                 foreach ($string in $rangeStrings)
@@ -1278,6 +1304,35 @@ try
                 Get-SingleLineRegistryPath  -CheckContent $checkContent | Should Be $returnContent
             }
         }
+        Describe 'Get-SLRegistryPath ' {
+
+            It 'Should return null with empty hashtable' {
+                $checkContent = 'HKCU\Path\To\Value'
+                $hashtable = @{}
+                $returnContent = $null
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+            }
+
+            It 'Should return the full Local Machine registry path' {
+                $checkContent = 'HKLM\Path\To\Value'
+                $hashtable    =  [ordered]@{
+                    Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\'
+                    Select   = '((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)'
+                }            
+                $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+            }
+
+            It 'Should return null registry path with non-matching expression' {
+                $checkContent = 'HKCU\Path\To\Value'
+                $hashtable    =  [ordered]@{
+                    Contains = 'Verify'
+                    Select   = '((HKLM|HKCU).*(?=Verify))'
+                }            
+                $returnContent = $null
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+            }
+        }
 
         #########################################   Registry Type   ########################################
         Describe 'Get-RegistryValueTypeFromSingleLineStig' {
@@ -1311,6 +1366,42 @@ try
                 Get-RegistryValueTypeFromSingleLineStig -CheckContent 'Mocked data' | Should Be $null
             }
         }
+        Describe 'Get-RegistryValueTypeFromSLStig' {
+            <#
+                A list of the registry types in the STIG(key) to DSC(value) format
+                this is a seperate list to detect changes in the script
+            #>
+            $registryTypes = @(
+                'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
+            )
+            $hashtable = @{
+                Select = '({0}"?\sis (?!not))(.*=)'
+                Group  = 2
+            }
+
+            foreach ( $registryType in $registryTypes )
+            {
+                $checkContent = "Criteria: If the value ""1001"" is $registryType = 3"
+                Mock Get-RegistryValueStringFromSingleLineStig {return "Criteria: If the value ""1001"" is $registryType) = 3"}  -ParameterFilter {$checkContent -match 'REG_SZ'}
+
+                It "Should return '$registryType' from '$checkContent'" {
+
+                    $RegistryValueType = Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable
+                    $RegistryValueType | Should Be $registryType
+                }
+            }
+
+            It 'Should return "null" with invalid registry type' {
+
+                Get-RegistryValueTypeFromSLStig -CheckContent 'Mocked data' -Hashtable $hashtable | Should Be $null
+            }
+
+            It 'Should return "null" with empty hashtable' {
+                $checkContent = "Criteria: If the value ""1001"" is REG_SZ = 3"
+                $hashtable = @{}
+                Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $null
+            }
+        }
 
         #########################################   Registry Type   ########################################
         #########################################   Registry Name   ########################################
@@ -1320,6 +1411,19 @@ try
             $checkContent = "Criteria: If the value ""$valueName"" is REG_Type = 2, this is not a finding."
             It "Should return '$valueName' from '$checkContent'" {
                 Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent | Should Be $valueName
+            }
+        }
+
+        Describe 'Get-RegistryValueNameFromSLStig' {
+
+            $valueName = 'ValueName'
+            $checkContent = "Criteria: If the value ""$valueName"" is REG_Type = 2, this is not a finding."
+            $hashtable = @{
+                Select = '((?<=If the value\s)(.*)(?=is\sR))'
+            }
+
+            It "Should return '$valueName' from '$checkContent'" {
+                Get-RegistryValueNameFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $valueName
             }
         }
         #########################################   Registry Name   ########################################
@@ -1334,6 +1438,19 @@ try
                 $result | Should Be $valueData
             }
         }
+        Describe 'Get-RegistryValueDataFromSLStig' {
+
+            $valueData = '2'
+            $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
+            $hashtable = @{
+                Select = '(?<=REG_Type)(\s*)?=.*(?=(,|\())'
+            }
+            
+            It "Should return '$valueData' from '$checkContent'" {
+                $result = Get-RegistryValueDataFromSLStig -CheckContent $checkContent -Hashtable $hashtable
+                $result | Should Be $valueData
+            }
+        }
         #########################################   Registry Data   ########################################
         ######################################   Ancillary functions   #####################################
         Describe 'Get-RegistryValueStringFromSingleLineStig' {
@@ -1343,10 +1460,7 @@ try
             $registryValueData = '2'
             $registryValueInnerString = """$registryValueName"" is $registryValueType = $registryValueData"
             $registryValueString = "Criteria: If the value $registryValueInnerString, this is not a finding."
-            $checkContent = "
-    HKCU\Path\to\value
-
-    $registryValueString"
+            $checkContent = $registryValueString
 
             It 'Should return the correct full string' {
                 $checkContent = Split-TestStrings -CheckContent $checkContent
@@ -1400,6 +1514,31 @@ try
             "Registry Path:  \Path\To\Value"
             It "Should return $false when not match Office foramt" {
                 Test-SingleLineStigFormat -CheckContent $checkContent | Should Be $false
+            }
+        }
+
+        Describe "Get-RegistryPatternLog" {
+
+            Import-Module "$($PSScriptRoot).\..\..\..\PowerStig.Convert.psm1"
+            $folderPath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser" -Relative
+            $filePath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml" -Relative    
+            
+            Context 'Path is directory' {
+                It "Should return valid table with updated counts" {
+                    $result = Get-RegistryPatternLog -Path $folderPath
+                    $result.GetType() | Should -Be 'System.Object[]'
+                }
+            }
+            Context 'Path is file' {
+                It "Should return valid table with updated counts" {
+                    $result = Get-RegistryPatternLog -Path $filePath
+                    $result.GetType() | Should -Be 'System.Object[]'
+                }
+            }
+            Context 'Path is null' {
+                It "Should throw if path is null" {
+                    { Get-RegistryPatternLog -Path $null } | Should -Throw "Cannot bind argument to parameter 'Path' because it is an empty string."
+                }
             }
         }
         #endregion

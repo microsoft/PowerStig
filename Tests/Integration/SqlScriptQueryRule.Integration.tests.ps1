@@ -6,11 +6,11 @@ try
     #region Test Setup
     $stigRulesToTest = @(
         @{
-            GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-            TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%';"
-            SetScript    = "DROP DATABASE AdventureWorks;"
+            GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%'"
+            TestScript   = "SELECT name from sysdatabases where name like 'AdventureWorks%'"
+            SetScript    = "DROP DATABASE AdventureWorks"
             CheckContent = "Check SQL Server for the existence of the publicly available `"AdventureWorks`" database by performing the following query:
-            SELECT name from sysdatabases where name like 'AdventureWorks%';
+            SELECT name from sysdatabases where name like 'AdventureWorks%'
             If the `"AdventureWorks`" database is present, this is a finding."
             FixText      = "Remove the publicly available `"AdventureWorks`" database from SQL Server by running the following query:
             DROP DATABASE AdventureWorks"

@@ -20,9 +20,9 @@ try
             {
                 & "$($script:DSCCompositeResourceName)_config" `
                 -FrameworkVersion $stig.TechnologyRole `
-                -StigVersion $stig.stigVersion `
+                -StigVersion $stig.StigVersion `
                 -OutputPath $TestDrive
-            } | Should Not throw
+            } | Should -Not -Throw
         }
 
         [xml] $dscXml = Get-Content -Path $stig.Path

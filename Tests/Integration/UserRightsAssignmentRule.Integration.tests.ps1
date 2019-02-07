@@ -9,6 +9,8 @@ try
             displayName  = 'Act as part of the operating system'
             constant     = 'SeTcbPrivilege'
             Identity     = 'NULL'
+            organizationValueRequired = $false
+            organizationValueTestString = $null
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
@@ -20,6 +22,8 @@ try
             displayName  = 'Take ownership of files or other objects'
             constant     = 'SeTakeOwnershipPrivilege'
             Identity     = 'Administrators'
+            organizationValueRequired = $false
+            organizationValueTestString = $null
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
@@ -30,9 +34,11 @@ try
             Administrators'
         }
         @{
-            displayName  = 'Deny access to this computer from the network'
-            constant     = 'SeDenyNetworkLogonRight'
-            Identity     = 'Enterprise Admins,Domain Admins,Local account,Guests'
+            displayName = 'Deny access to this computer from the network'
+            constant    = 'SeDenyNetworkLogonRight'
+            Identity    = 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'
+            organizationValueRequired = $true
+            organizationValueTestString = "'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'"
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".
 
@@ -44,6 +50,32 @@ try
             Enterprise Admins group
             Domain Admins group
             "Local account and member of Administrators group" or "Local account" (see Note below)
+
+            All Systems:
+            Guests group
+
+            Systems dedicated to the management of Active Directory (AD admin platforms, see V-36436 in the Active Directory Domain STIG) are exempt from denying the Enterprise Admins and Domain Admins groups.
+
+            Note: Windows Server 2012 R2 added new built-in security groups, "Local account" and "Local account and member of Administrators group". "Local account" is more restrictive but may cause issues on servers such as systems that provide Failover Clustering.
+            Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.'
+        }
+        @{
+            displayName  = 'Deny access to this computer from the network'
+            constant     = 'SeDenyNetworkLogonRight'
+            Identity     = 'Enterprise Admins,Domain Admins,Local account,Guests'
+            organizationValueRequired = $false
+            organizationValueTestString = $null
+            CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+            Run "gpedit.msc".
+
+            Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> User Rights Assignment.
+
+            If the following accounts or groups are not defined for the "Deny access to this computer from the network" user right, this is a finding:
+
+            Domain Systems Only:
+            Enterprise Admins group
+            Domain Admins group
+            Local account (see Note below)
 
             All Systems:
             Guests group
@@ -78,10 +110,10 @@ try
                 $rule.Identity | Should Be $testRule.Identity
             }
             It 'Should not have OrganizationValueRequired set' {
-                $rule.OrganizationValueRequired | Should Be $false
+                $rule.OrganizationValueRequired | Should Be $testRule.organizationValueRequired
             }
-            It 'Should have emtpty test string' {
-                $rule.OrganizationValueTestString | Should BeNullOrEmpty
+            It 'Should have the correct test string' {
+                $rule.OrganizationValueTestString | Should Be $testRule.organizationValueTestString
             }
             It "Should set the correct DscResource" {
                 $rule.DscResource | Should Be 'UserRightsAssignment'
