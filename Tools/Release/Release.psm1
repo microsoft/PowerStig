@@ -642,7 +642,7 @@ function New-GitHubPullRequest
         Body           = [ordered]@{
             title = "Release of version $ModuleVersion."
             body  = "Releasing version $ModuleVersion."
-            head  = $BranchName
+            head  = $BranchHead
             base  = $BranchBase
         } | ConvertTo-Json
     }
@@ -810,7 +810,7 @@ function New-GitHubRelease
         The acceptable values for this parameter are:
         'SHA256', 'SHA384' or 'SHA512'
 #>
-function Set-FileHashMarkdown
+function Update-FileHashMarkdown
 {
     param
     (
@@ -1116,6 +1116,7 @@ function Start-PowerStigDevMerge
         $GitHubApiSecureFilePath
     )
 
+    $repository = Get-PowerStigRepository
     $releaseBranchName = $script:ReleaseName -f $ModuleVersion
 
     # Convert GitRepositoryPath into an absolute path if it is relative
@@ -1163,9 +1164,11 @@ function Start-PowerStigDevMerge
 
     #Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
 
-    #Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
+    Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
 
-    #Set-FileHashMarkdown -ModuleVersion $ModuleVersion
+    Update-Contributors -Repository $repository
+
+    Update-FileHashMarkdown -ModuleVersion $ModuleVersion
 
     # Push the release branch to GitHub
     Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
@@ -1175,13 +1178,14 @@ function Start-PowerStigDevMerge
     Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
     $pullRequestParameters = @{
-        Repository = $Repository
+        Repository    = $Repository
         ModuleVersion = $ModuleVersion
-        BranchHead = $releaseBranchName
+        BranchHead    = $releaseBranchName
+        BranchBase    = 'dev'
     }
     $pullRequest = New-GitHubPullRequest @pullRequestParameters
 
-    return $pullRequest
+    return $pullRequest.number
 }
 
 <#
@@ -1255,12 +1259,6 @@ function Complete-PowerStigDevMerge
             MergeMethod   = 'squash'
         }
         $pullRequest = Approve-GitHubPullRequest @approvePullRequestParam
-
-        Set-GitBranch -Branch dev
-
-        Update-Contributors -Repository $repository
-
-        Push-GitBranch -Name 'dev' -CommitMessage "Updated contributor list"
     }
     catch
     {
