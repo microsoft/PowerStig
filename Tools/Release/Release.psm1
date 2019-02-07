@@ -1152,20 +1152,20 @@ function Start-PowerStigDevMerge
         }
     }
 
-    $releaseNotes = Get-UnreleasedNotes
+    # $releaseNotes = Get-UnreleasedNotes
 
-    if ([string]::IsNullOrEmpty($releaseNotes))
-    {
-        throw 'There are no release notes for this release.'
-    }
+    # if ([string]::IsNullOrEmpty($releaseNotes))
+    # {
+    #     throw 'There are no release notes for this release.'
+    # }
 
-    Update-ReleaseNotes -ModuleVersion $ModuleVersion
+    #Update-ReleaseNotes -ModuleVersion $ModuleVersion
 
-    Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
+    #Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
 
-    Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
+    #Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
 
-    Set-FileHashMarkdown -ModuleVersion $ModuleVersion
+    #Set-FileHashMarkdown -ModuleVersion $ModuleVersion
 
     # Push the release branch to GitHub
     Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
