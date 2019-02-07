@@ -837,10 +837,7 @@ function Update-FileHashMarkdown
 # PowerSTIG File Hashes : Module Version {0}
 
 Hashes for **PowerSTIG** files are listed in the following table:
-<<<<<<< HEAD
 
-=======
->>>>>>> f9ce42aa74718706b33ce90e0772e6e8a93a30f6
 | File | {1} Hash | Size (bytes) |
 | :---- | ---- | ---: |
 '@ -f $ModuleVersion, $Algorithm
@@ -1117,6 +1114,7 @@ function Start-PowerStigDevMerge
     )
 
     $repository = Get-PowerStigRepository
+    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
     $releaseBranchName = $script:ReleaseName -f $ModuleVersion
 
     # Convert GitRepositoryPath into an absolute path if it is relative
@@ -1175,15 +1173,13 @@ function Start-PowerStigDevMerge
 
     $repository = Get-PowerStigRepository
 
-    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
-
     $pullRequestParameters = @{
         Repository    = $Repository
         ModuleVersion = $ModuleVersion
         BranchHead    = $releaseBranchName
         BranchBase    = 'dev'
     }
-    $pullRequest = New-GitHubPullRequest @pullRequestParameters
+    #$pullRequest = New-GitHubPullRequest @pullRequestParameters
 
     return $pullRequest.number
 }

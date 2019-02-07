@@ -1,10 +1,7 @@
 # PowerSTIG File Hashes : Module Version 2.4.0.0
 
 Hashes for **PowerSTIG** files are listed in the following table:
-<<<<<<< HEAD
 
-=======
->>>>>>> f9ce42aa74718706b33ce90e0772e6e8a93a30f6
 | File | SHA256 Hash | Size (bytes) |
 | :---- | ---- | ---: |
 | Mozilla-All-FireFox-4.23.org.default.xml | D8E45DC6E83499FF22CA90D417CD477A0DF4450F091117E766A57418BABA2CED | 302 |
