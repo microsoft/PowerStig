@@ -26,7 +26,7 @@ Describe "$moduleName module" {
             }
         }
 
-    It 'Should not have more commands than are tested' {
+        It 'Should not have more commands than are tested' {
             $compare = Compare-Object -ReferenceObject $commands -DifferenceObject $exportedCommands
             $compare.Count | Should Be 0
         }

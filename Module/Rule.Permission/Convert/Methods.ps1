@@ -79,7 +79,7 @@ function Get-PermissionTargetPath
         # Get path that pertains to registry Winlogon key
         { $stigString -match $regularExpression.permissionRegistryWinlogon }
         {
-            $permissionTargetPath = 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\Active Setup\Winlogon\'
+            $permissionTargetPath = 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\'
             break
         }
 
