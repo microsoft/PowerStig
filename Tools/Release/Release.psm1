@@ -837,7 +837,10 @@ function Set-FileHashMarkdown
 # PowerSTIG File Hashes : Module Version {0}
 
 Hashes for **PowerSTIG** files are listed in the following table:
+<<<<<<< HEAD
 
+=======
+>>>>>>> f9ce42aa74718706b33ce90e0772e6e8a93a30f6
 | File | {1} Hash | Size (bytes) |
 | :---- | ---- | ---: |
 '@ -f $ModuleVersion, $Algorithm
@@ -919,11 +922,7 @@ function New-PowerStigRelease
 
         [Parameter()]
         [string]
-        $GitHubApiSecureFilePath,
-
-        [Parameter()]
-        [switch]
-        $Continue
+        $GitHubApiSecureFilePat
     )
 
     # Convert GitRepositoryPath into an absolute path if it is relative
@@ -953,7 +952,6 @@ function New-PowerStigRelease
 
         if ($gitHubReleaseBranchStatus -eq 'success')
         {
-
             $gitHubRefStatusParam = [ordered]@{
                 Repository = $repository
                 Name = $pullRequest.head.sha
