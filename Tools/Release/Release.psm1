@@ -170,7 +170,7 @@ function New-GitReleaseBranch
     }
 }
 
-function Remove-GitReleaseBranch
+function Remove-GitBranch
 {
     [CmdletBinding()]
     param
@@ -188,10 +188,10 @@ function Remove-GitReleaseBranch
         Set-GitBranch -Branch dev
     }
 
-    Invoke-Git -Command "merge $branchName"
+    #Invoke-Git -Command "merge $branchName"
     # Push dev to GitHub
-    Invoke-Git -Command "push"
-    # Delete the release branch (Locally and remotely)
+    #Invoke-Git -Command "push"
+    # Delete the branch Locally
     Invoke-Git -Command "branch -d $branchName"
     # Push the delete to GitHub
     Invoke-Git -Command "push origin -d $branchName"
@@ -950,11 +950,8 @@ function Complete-PowerStigDevMerge
             PullRequest   = $pullRequest
             CommitTitle   = 'Merged dev for release.'
             CommitMessage = 'Accepted PR'
-            MergeMethod   = 'squash'
         }
         $pullRequest = Approve-GitHubPullRequest @approvePullRequestParam
-
-        # remove branch locally and remotely
     }
     catch
     {
@@ -1081,6 +1078,10 @@ function Complete-PowerStigRelease
         $GitRepositoryPath,
 
         [Parameter(Mandatory = $true)]
+        [int]
+        $PullRequestNumber,
+
+        [Parameter(Mandatory = $true)]
         [string]
         $ModuleVersion,
 
@@ -1094,8 +1095,11 @@ function Complete-PowerStigRelease
     {
         $GitRepositoryPath = Resolve-Path -Path $GitRepositoryPath
     }
+    Push-Location -Path $GitRepositoryPath
 
-    Set-GitBranch -Branch 'dev' -SkipPull
+    $currentGitBranch = Get-GitBranch
+    # make sure we pull the release notes from the dev branch
+    Set-GitBranch -Branch 'dev'
 
     try
     {
@@ -1105,16 +1109,15 @@ function Complete-PowerStigRelease
 
         $pullRequestParam = @{
             Repository = $repository
-            BranchHead = 'dev'
-            BranchBase = 'master'
+            Number = $PullRequestNumber
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
         $approvePullRequestParam = [ordered]@{
-            PullRequest   = $pullRequest
-            CommitTitle   = 'Release'
+            PullRequest = $pullRequest
+            CommitTitle = 'Release'
             CommitMessage = 'This PR is automatically completed.'
-            MergeMethod   = 'merge'
+            MergeMethod = 'merge'
         }
         $null = Approve-GitHubPullRequest @approvePullRequestParam
 
@@ -1123,22 +1126,22 @@ function Complete-PowerStigRelease
         $releaseNotes = (Import-PowerShellDataFile -Path $manifestPath).PrivateData.PSData.ReleaseNotes
 
         $gitHubReleaseParams = @{
-            Repository  = $repository
-            TagName     = $releaseBranchName -replace 'Release', 'PSGallery'
-            Title       = "Release of version $(($releaseBranchName -Split '-')[0])"
+            Repository = $repository
+            TagName = $ModuleVersion + '-PSGallery'
+            Title = "Release of version $(($ModuleVersion -Split '-')[0])"
             Description = $releaseNotes
         }
         # The GitHub release triggers the AppVeyor deployment to the Gallery.
         $null = New-GitHubRelease @gitHubReleaseParams
 
-        Remove-GitReleaseBranch -BranchName $releaseBranchName
+        Remove-GitBranch -BranchName $ModuleVersion
     }
     finally
     {
         Write-Verbose -Message 'Reverting to initial location'
         Pop-Location -Verbose
         Write-Verbose -Message 'Reverting to initial branch'
-        Set-GitBranch -Branch $beginGitBranch -SkipPull
+        Set-GitBranch -Branch $currentGitBranch -SkipPull
     }
 }
 
