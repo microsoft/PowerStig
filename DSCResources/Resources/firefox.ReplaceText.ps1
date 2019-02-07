@@ -26,13 +26,13 @@ ReplaceText DoNotObscureFile
 }
 
 <#
-    The second file to create is called firefox.cfg and it is placed at the top level of the Firefox directory. It should always begin with a commented line, such as: 
+    The second file to create is called firefox.cfg and it is placed at the top level of the Firefox directory. It should always begin with a commented line, such as:
     // IMPORTANT: Start your code on the 2nd line
 #>
 ReplaceText BeginFileWithComment
 {
     Path        = "$InstallDirectory\firefox.cfg"
-    Search      = '// FireFox preference file'
+    Search      = ('// FireFox preference file' + "`r")
     Type        = 'Text'
     Text        = ('// FireFox preference file' + "`r")
 }
@@ -44,7 +44,7 @@ foreach ( $rule in $rules )
         Path        = "$InstallDirectory\FireFox.cfg"
         Search      = 'lockPref\("{0}", (.*)\);' -f $rule.Key
         Type        = 'Text'
-        Text        = ("`r`n" + 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value))
+        Text        = 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value)
         AllowAppend = $true
     }
 }

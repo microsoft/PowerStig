@@ -36,6 +36,34 @@ try
             If "Installed State" is "Installed", this is a finding.
 
             An Installed State of "Available" or "Removed" is not a finding.'
+        },
+        @{
+            FeatureName  = 'Web-Ftp-Service'
+            InstallState = 'Absent'
+            OrganizationValueRequired = $false
+            CheckContent = 'If the server has the role of an FTP server, this is NA.
+
+            Open "PowerShell".
+
+            Enter "Get-WindowsFeature | Where Name -eq Web-Ftp-Service".
+
+            If "Installed State" is "Installed", this is a finding.
+
+            An Installed State of "Available" or "Removed" is not a finding.
+
+            If the system has the role of an FTP server, this must be documented with the ISSO'
+        },
+        @{
+            FeatureName  = 'PNRP'
+            InstallState = 'Absent'
+            OrganizationValueRequired = $false
+            CheckContent = 'Open "PowerShell".
+
+            Enter "Get-WindowsFeature | Where Name -eq PNRP".
+
+            If "Installed State" is "Installed", this is a finding.
+
+            An Installed State of "Available" or "Removed" is not a finding.'
         }
     )
     #endregion

@@ -69,11 +69,11 @@ function Get-PowerStigRepository
 
     $gitRemote = Invoke-Git -Command "remote get-url origin"
 
-    $baseUrl = $gitRemote -replace '\.git$',''
+    $baseUrl = $gitRemote -replace '\.git$', ''
     if ([string]::IsNullOrEmpty($gitRemote) -or
         $gitRemote -notmatch "^https://github.com/Microsoft/PowerStig")
     {
-       throw "$gitRemote is not a PowerStig Project. Please select a PowerStig project to release."
+        throw "$gitRemote is not a PowerStig Project. Please select a PowerStig project to release."
     }
     else
     {
@@ -253,7 +253,7 @@ function Get-UnreleasedNotes
     $unreleasedLine = $changelogContent | Select-String -Pattern $unreleasedHeader
 
     $latestedreleaseLine = ($changelogContent |
-        Select-String -Pattern $latestedreleaseHeader)[0]
+            Select-String -Pattern $latestedreleaseHeader)[0]
 
     $releaseNotes = $changelogContent[
         ($unreleasedLine.LineNumber)..($latestedreleaseLine.LineNumber - 2)] |
@@ -341,7 +341,7 @@ function Update-Contributors
     $null = $contributorsMd.AppendLine('')
 
     $readmeContributorsRegEx = '(?<=### Contributors)[^#]+(?=#)'
-    $readmeContent = $readmeContent -replace $readmeContributorsRegEx,$contributorsMd.ToString()
+    $readmeContent = $readmeContent -replace $readmeContributorsRegEx, $contributorsMd.ToString()
 
     Set-Content -Path $readmePath -Value $readmeContent.Trim()
 }
@@ -381,12 +381,16 @@ function Update-Manifest
         $ManifestPath = (Get-ChildItem -Path $PWD -Filter "*.psd1").FullName
     }
 
-    $manifestContent    = Get-Content -Path $ManifestPath -Raw
+    $manifestContent = Get-Content -Path $ManifestPath -Raw
     $moduleVersionRegex = '(?<=ModuleVersion\s*=\s*'')(?<ModuleVersion>.*)(?=''(?!(\s*)}))'
-    $manifestContent    = $manifestContent -replace $moduleVersionRegex, $ModuleVersion
+    $manifestContent = $manifestContent -replace $moduleVersionRegex, $ModuleVersion
 
     $releaseNotesRegEx = "(?<=ReleaseNotes\s*=\s*')[^']+(?=')"
-    $manifestContent   = $manifestContent -replace $releaseNotesRegEx, $ReleaseNotes
+
+    # If any single quotes are in the release notes, they need to be escaped with another single quote
+    $ReleaseNotes = $ReleaseNotes -replace "'","''"
+
+    $manifestContent = $manifestContent -replace $releaseNotesRegEx, $ReleaseNotes
 
     Set-Content -Path $ManifestPath -Value $manifestContent.TrimEnd()
 }
@@ -445,12 +449,12 @@ function Get-ProjectContributorList
     # https://developer.github.com/v3/pulls/#list-pull-requests
     $gitHubReleaseParam = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/pulls"
-        Method = 'Get'
-        Body = [ordered]@{
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/pulls"
+        Method         = 'Get'
+        Body           = [ordered]@{
             state = 'closed'
-            base = 'dev'
+            base  = 'dev'
         }
     }
     $pulls = Invoke-RestMethod @gitHubReleaseParam
@@ -460,8 +464,8 @@ function Get-ProjectContributorList
     # There were several contributors before this project was moved to GitHub, so
     # make sure they are given credit along side the contributions from GitHub.
     $preGitHubContributors = @{
-        PowerStig    = @('jcwalker','regedit32','bgouldman','mcollera')
-        PowerStigDsc = @('jcwalker','regedit32','bgouldman','mcollera')
+        PowerStig    = @('jcwalker', 'regedit32', 'bgouldman', 'mcollera')
+        PowerStigDsc = @('jcwalker', 'regedit32', 'bgouldman', 'mcollera')
     }
 
     foreach ($user in $preGitHubContributors.($Repository.name))
@@ -478,9 +482,9 @@ function Get-ProjectContributorList
         # https://developer.github.com/v3/users/#get-a-single-user
         $gitHubReleaseParam = [ordered]@{
             Authentication = 'OAuth'
-            Token = $script:GitHubApiKeySecure
-            Uri = "https://api.github.com/users/$user"
-            Method = 'Get'
+            Token          = $script:GitHubApiKeySecure
+            Uri            = "https://api.github.com/users/$user"
+            Method         = 'Get'
         }
         # The GitHub release triggers the AppVeyor deployment to the Gallery.
         $userDetails = Invoke-RestMethod @gitHubReleaseParam
@@ -563,10 +567,10 @@ function Get-GitHubRefStatus
     # https://developer.github.com/v3/repos/statuses/#list-statuses-for-a-specific-ref
     $restParameters = [ordered]@{
         'Authentication' = 'OAuth'
-        'Token' = $script:GitHubApiKeySecure
-        'Uri' = "$($Repository.api_url)/commits/$Name/status"
-        'Method' = 'Get'
-        'Verbose' = $false
+        'Token'          = $script:GitHubApiKeySecure
+        'Uri'            = "$($Repository.api_url)/commits/$Name/status"
+        'Method'         = 'Get'
+        'Verbose'        = $false
     }
 
     [int] $i = 0
@@ -632,13 +636,13 @@ function New-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#create-a-pull-request
     $restMethodParamList = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/pulls"
-        Method = 'Post'
-        Body = [ordered]@{
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/pulls"
+        Method         = 'Post'
+        Body           = [ordered]@{
             title = "Release of version $ModuleVersion."
             body  = "Releasing version $ModuleVersion."
-            head  = $BranchName
+            head  = $BranchHead
             base  = $BranchBase
         } | ConvertTo-Json
     }
@@ -672,9 +676,9 @@ function Get-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#list-pull-requests
     $pullRequestParams = @{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Method = 'Get'
-        Uri = "$($Repository.api_url)/pulls"
+        Token          = $script:GitHubApiKeySecure
+        Method         = 'Get'
+        Uri            = "$($Repository.api_url)/pulls"
     }
 
     If ($PSCmdlet.ParameterSetName -eq 'one')
@@ -710,7 +714,7 @@ function Approve-GitHubPullRequest
         $CommitMessage,
 
         [Parameter()]
-        [ValidateSet('merge','squash','rebase')]
+        [ValidateSet('merge', 'squash', 'rebase')]
         [string]
         $MergeMethod = 'merge'
     )
@@ -718,14 +722,14 @@ function Approve-GitHubPullRequest
     # https://developer.github.com/v3/pulls/#merge-a-pull-request-merge-button
     $restMethodParam = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($PullRequest.url)/merge"
-        Method = 'Put'
-        Body = [ordered]@{
-            commit_title = $CommitTitle
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($PullRequest.url)/merge"
+        Method         = 'Put'
+        Body           = [ordered]@{
+            commit_title   = $CommitTitle
             commit_message = $CommitMessage
-            sha = $PullRequest.head.sha
-            merge_method = $MergeMethod.ToLower()
+            sha            = $PullRequest.head.sha
+            merge_method   = $MergeMethod.ToLower()
         } | ConvertTo-Json
     }
 
@@ -765,20 +769,95 @@ function New-GitHubRelease
     # https://developer.github.com/v3/repos/releases/#create-a-release
     $restMethodParam = [ordered]@{
         Authentication = 'OAuth'
-        Token = $script:GitHubApiKeySecure
-        Uri = "$($Repository.api_url)/releases"
-        Method = 'Post'
-        Body = [ordered]@{
-            tag_name = $TagName
+        Token          = $script:GitHubApiKeySecure
+        Uri            = "$($Repository.api_url)/releases"
+        Method         = 'Post'
+        Body           = [ordered]@{
+            tag_name         = $TagName
             target_commitish = 'master'
-            name = $Title
-            body = $Description
-            draft = $Draft
-            prerelease = $Prerelease
+            name             = $Title
+            body             = $Description
+            draft            = $Draft
+            prerelease       = $Prerelease
         } | ConvertTo-Json
     }
 
     Invoke-RestMethod @restMethodParam
+}
+
+<#
+    .SYNOPSIS
+        Sets a markdown file which contains PowerSTIG file hashes.
+
+    .DESCRIPTION
+        Used to set a markdown file with file hashes for PowerSTIG
+        module files, such as Processed STIG Data, etc.
+
+    .PARAMETER FileHashPath
+        Specifies the path to one or more files as an array to generate file
+        hash data. Wildcard characters are permitted.
+
+    .PARAMETER MarkdownPath
+        Specifies the path for the markdown file.
+
+    .PARAMETER Algorithm
+        Specifies the cryptographic hash function to use for computing the hash
+        value of the contents of the specified file. A cryptographic hash function
+        includes the property that it is not possible to find two distinct inputs
+        that generate the same hash values. Hash functions are commonly used with
+        digital signatures and for data integrity.
+
+        The acceptable values for this parameter are:
+        'SHA256', 'SHA384' or 'SHA512'
+#>
+function Update-FileHashMarkdown
+{
+    param
+    (
+        [Parameter()]
+        [string[]]
+        $FileHashPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
+
+        [Parameter()]
+        [string]
+        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\FILEHASH.md'),
+
+        [Parameter()]
+        [ValidateSet('SHA256', 'SHA384', 'SHA512')]
+        [string]
+        $Algorithm = 'SHA256',
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion
+    )
+
+    # Markdown header for file hash information table
+    $markdownHeader = @'
+# PowerSTIG File Hashes : Module Version {0}
+
+Hashes for **PowerSTIG** files are listed in the following table:
+
+| File | {1} Hash | Size (bytes) |
+| :---- | ---- | ---: |
+'@ -f $ModuleVersion, $Algorithm
+
+    $fileHash = Get-FileHash -Path $FileHashPath -Algorithm $Algorithm
+
+    # String builder to set the markdown file
+    $fileHashMarkdownFileContent = New-Object System.Text.StringBuilder
+    $null = $fileHashMarkdownFileContent.AppendLine($markdownHeader)
+
+    foreach ($file in $fileHash)
+    {
+        $fileHashWithSize = '| {0} | {1} | {2} |' -f
+        $(Split-Path -Path $file.Path -Leaf),
+        $($file.Hash),
+        $((Get-Item -Path $file.Path).Length)
+        $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
+    }
+
+    Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
 }
 
 #endregion
@@ -820,11 +899,16 @@ function New-GitHubRelease
             ConvertFrom-SecureString |
                 Out-File "$(Split-Path $profile)\PowerStigGitHubApi.txt"
 #>
-function Start-PowerStigRelease
+function New-PowerStigRelease
 {
     [CmdletBinding()]
     param
     (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('Feature','Hotfix')]
+        [string]
+        $Type,
+
         [Parameter(Mandatory = $true)]
         [string]
         $GitRepositoryPath,
@@ -835,11 +919,7 @@ function Start-PowerStigRelease
 
         [Parameter()]
         [string]
-        $GitHubApiSecureFilePath,
-
-        [Parameter()]
-        [switch]
-        $Continue
+        $GitHubApiSecureFilePat
     )
 
     # Convert GitRepositoryPath into an absolute path if it is relative
@@ -850,64 +930,28 @@ function Start-PowerStigRelease
 
     Push-Location -Path $GitRepositoryPath
     $beginGitBranch = Get-GitBranch
+
     $releaseBranchName = $script:ReleaseName -f $ModuleVersion
 
     try
     {
         $repository = Get-PowerStigRepository
 
-        if (-not $Continue)
-        {
-            if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
-            {
-                Write-Verbose -Message "$ModuleVersion is greater than currently released."
-            }
-            else
-            {
-                throw "$ModuleVersion is not greater than currently released."
-            }
-
-            New-GitReleaseBranch -BranchName $releaseBranchName
-
-            $releaseNotes = Get-UnreleasedNotes
-
-            if ([string]::IsNullOrEmpty($releaseNotes))
-            {
-                throw 'There are no release notes for this release.'
-            }
-
-            Update-ReleaseNotes -ModuleVersion $ModuleVersion
-
-            Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
-
-            Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
-
-            # Push the release branch to GitHub
-            Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
-        }
-
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         # Get the Dev Banch status. Wait until it is success or failure
         $gitHubRefStatusParam = [ordered]@{
-            'Repository'     = $repository
-            'Name'           = $releaseBranchName
+            'Repository' = $repository
+            'Name' = $releaseBranchName
             'WaitForSuccess' = $true
         }
         $gitHubReleaseBranchStatus = Get-GitHubRefStatus @gitHubRefStatusParam
 
         if ($gitHubReleaseBranchStatus -eq 'success')
         {
-            $pullRequestParameters = @{
-                Repository    = $Repository
-                ModuleVersion = $ModuleVersion
-                BranchHead    = $releaseBranchName
-            }
-            $pullRequest = New-GitHubPullRequest @pullRequestParameters
-
             $gitHubRefStatusParam = [ordered]@{
-                Repository     = $repository
-                Name           = $pullRequest.head.sha
+                Repository = $repository
+                Name = $pullRequest.head.sha
                 WaitForSuccess = $true
             }
             $gitHubPullRequestStatus = Get-GitHubRefStatus @gitHubRefStatusParam
@@ -938,7 +982,7 @@ function Start-PowerStigRelease
 <#
     .SYNOPSIS
         Completes the PowerStig release process for a given module that was
-        created using the Start-PowerStigRelease function.
+        created using the New-PowerStigRelease function.
 
     .DESCRIPTION
         Applies a standard process and comment structure to the release process
@@ -1006,9 +1050,9 @@ function Complete-PowerStigRelease
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         $pullRequestParam = @{
-            Repository  = $repository
-            BranchBase  = 'master'
-            BranchHead  = $releaseBranchName
+            Repository = $repository
+            BranchBase = 'master'
+            BranchHead = $releaseBranchName
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
@@ -1044,10 +1088,106 @@ function Complete-PowerStigRelease
     }
 }
 
+
+function Start-PowerStigDevMerge
+{
+    [OutputType([int])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateSet('Feature', 'Hotfix')]
+        [string]
+        $Type,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $GitRepositoryPath,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $ModuleVersion,
+
+        [Parameter()]
+        [string]
+        $GitHubApiSecureFilePath
+    )
+
+    $repository = Get-PowerStigRepository
+    Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
+    $releaseBranchName = $script:ReleaseName -f $ModuleVersion
+
+    # Convert GitRepositoryPath into an absolute path if it is relative
+    if (-not ([System.IO.Path]::IsPathRooted($GitRepositoryPath)))
+    {
+        $GitRepositoryPath = Resolve-Path -Path $GitRepositoryPath
+    }
+
+    Push-Location -Path $GitRepositoryPath
+
+    if (Test-ModuleVersion -ModuleVersion $ModuleVersion)
+    {
+        Write-Verbose -Message "$ModuleVersion is greater than currently released."
+    }
+    else
+    {
+        throw "$ModuleVersion is not greater than currently released."
+    }
+
+    if ($Type -eq 'Hotfix')
+    {
+        New-GitReleaseBranch -BranchName $releaseBranchName
+    }
+    else
+    {
+        try
+        {
+            Set-GitBranch -Branch $ModuleVersion -SkipPull
+            $releaseBranchName = $ModuleVersion
+        }
+        catch
+        {
+            throw "Git branch $ModuleVersion was not found"
+        }
+    }
+
+    # $releaseNotes = Get-UnreleasedNotes
+
+    # if ([string]::IsNullOrEmpty($releaseNotes))
+    # {
+    #     throw 'There are no release notes for this release.'
+    # }
+
+    #Update-ReleaseNotes -ModuleVersion $ModuleVersion
+
+    #Update-Manifest -ModuleVersion $ModuleVersion -ReleaseNotes $releaseNotes
+
+    Update-AppVeyorConfiguration -ModuleVersion $ModuleVersion
+
+    Update-Contributors -Repository $repository
+
+    Update-FileHashMarkdown -ModuleVersion $ModuleVersion
+
+    # Push the release branch to GitHub
+    Push-GitBranch -Name $releaseBranchName -CommitMessage "Bumped version number to $ModuleVersion for release."
+
+    $repository = Get-PowerStigRepository
+
+    $pullRequestParameters = @{
+        Repository    = $Repository
+        ModuleVersion = $ModuleVersion
+        BranchHead    = $releaseBranchName
+        BranchBase    = 'dev'
+    }
+    #$pullRequest = New-GitHubPullRequest @pullRequestParameters
+
+    return $pullRequest.number
+}
+
 <#
     .SYNOPSIS
         Completes the PowerStig release process for a given module that was
-        created using the Start-PowerStigRelease function.
+        created using the New-PowerStigRelease function.
 
     .DESCRIPTION
 
@@ -1103,8 +1243,8 @@ function Complete-PowerStigDevMerge
         Get-GitHubApiKey -SecureFilePath $GitHubApiSecureFilePath
 
         $pullRequestParam = @{
-            Repository  = $repository
-            Number      = $PullRequestNumber
+            Repository = $repository
+            Number     = $PullRequestNumber
         }
         $pullRequest = Get-GitHubPullRequest @pullRequestParam
 
@@ -1115,12 +1255,6 @@ function Complete-PowerStigDevMerge
             MergeMethod   = 'squash'
         }
         $pullRequest = Approve-GitHubPullRequest @approvePullRequestParam
-
-        Set-GitBranch -Branch dev
-
-        Update-Contributors -Repository $repository
-
-        Push-GitBranch -Name 'dev' -CommitMessage "Updated contributor list"
     }
     catch
     {

@@ -22,9 +22,17 @@ function Get-SecurityOptionName
     $Option = ( $checkContent |
             Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
-    If ( $Option )
+    If ($checkContent -match "Verify the effective setting in Local Group Policy Editor")
     {
         $Option = $Option.Matches.Groups[3].Value
+        $Option = $Option.Replace('"','')
+        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+        return $option
+    }
+    # Used for converting SQL Server 2016 Instance Stig Rules
+    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms" -or "In the right-side pane" -or "Use FIPS compliant algorithms" )
+    {
+        $Option = "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing"
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
         return $option
     }
@@ -56,10 +64,18 @@ function Get-SecurityOptionValue
     $option = ( $checkContent |
             Select-String -Pattern ([RegularExpression]::TextBetweenQuotes) -AllMatches )
 
-    if ( $option )
+    If ($checkContent -match "Verify the effective setting in Local Group Policy Editor")
     {
         $Option = $Option.Matches.Groups[5].Value
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $option "
+        $Option = $Option.Replace('"','')
+        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
+        return $option
+    }
+    # Used for converting SQL Server 2016 Instance Stig Rules
+    If ($checkContent -match "System cryptography: Use FIPS-compliant algorithms" -or "In the right-side pane" -or "Use FIPS compliant algorithms")
+    {
+        $Option = 'Enabled'
+        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Security Option : $Option "
         return $option
     }
     else

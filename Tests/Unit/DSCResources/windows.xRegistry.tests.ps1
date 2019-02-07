@@ -41,6 +41,35 @@ $ruleList = @(
         ValueData = @('123', 'ABC')
         ValueName = 'MultiStringValueName'
         ValueType = 'MultiString'
+    },
+    @{
+        testXml = [xml]'<Rule id="V-1000" severity="low" title="Empty MultiString Test">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>
+        </ValueData>
+        <ValueName>MultiStringValueName</ValueName>
+        <ValueType>MultiString</ValueType>
+      </Rule>'
+      Ensure = 'Present'
+      Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
+      ValueData = ''
+      ValueName = 'MultiStringValueName'
+      ValueType = 'MultiString'
+    },
+    @{
+      testXml = [xml]'<Rule id="V-1000" severity="low" title="Absent value Test">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>ShouldBeAbsent</ValueData>
+        <ValueName>OptionalAbsent</ValueName>
+        <ValueType>Dword</ValueType>
+      </Rule>'
+      Ensure = 'Absent'
+      Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
+      ValueData = 'ShouldBeAbsent'
+      ValueName = 'OptionalAbsent'
+      ValueType = 'Dword'
     }
 )
 

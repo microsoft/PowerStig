@@ -53,7 +53,7 @@ Configuration WindowsClient
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('1.14', '1.15')]
+        [ValidateSet('1.15', '1.16')]
         [version]
         $StigVersion,
 
@@ -118,7 +118,7 @@ Configuration WindowsClient
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName AuditPolicyDsc -ModuleVersion 1.2.0.0

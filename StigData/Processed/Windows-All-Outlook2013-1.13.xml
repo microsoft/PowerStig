@@ -1,4 +1,4 @@
-<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="11/27/2018">
+<DISASTIG id="Microsoft_Outlook_2013" version="1.13" created="12/14/2018">
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="xRegistry">
       <Ensure>Present</Ensure>
@@ -327,7 +327,7 @@ Criteria: If the value PromptOOMSend is REG_DWORD = 0, this is not a finding.</R
     <Rule id="V-17575" severity="medium" conversionstatus="pass" title="DTOO256 - Trusted Add-Ins Security" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\Outlook\security\trustedaddins</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\Outlook\security</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2013 -&gt; Security -&gt; Security Form Settings -&gt; Programmatic Security -&gt; Trusted Add-ins "Configure trusted add-ins" is set to "Disabled".
@@ -622,7 +622,7 @@ Criteria: If the value Disable is REG_DWORD = 1, this is not a finding.</RawStri
     <Rule id="V-17733" severity="medium" conversionstatus="pass" title="DTOO269 - Attachments to Secure Temporary Folder " dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\security\OutlookSecureTempFolder</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\security</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2013 -&gt; Security -&gt; Cryptography -&gt; Signature Status dialog box "Attachment Secure Temporary Folder" is set to "Disabled".
@@ -874,8 +874,6 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 
 HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security
 
-Criteria: HKCU\Software\Policies\Microsoft\Office\15.0\outlook\security\
-
 Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is a finding.
 </RawString>
       <ValueData>0</ValueData>
@@ -885,7 +883,7 @@ Criteria: If the registry value “FileExtensionsRemoveLevel1” exists, this is
     <Rule id="V-17775" severity="medium" conversionstatus="pass" title="DTOO245 - Lvl 2 File Extensions" dscresource="cAdministrativeTemplate">
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\security\</Key>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\15.0\outlook\security</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration &gt;&gt; Administrative Templates &gt;&gt; Microsoft Outlook 2013 &gt;&gt; Security &gt;&gt; Security Form Settings &gt;&gt; Attachment Security "Remove file extensions blocked as Level 2" is set to "Disabled".

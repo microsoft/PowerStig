@@ -7,7 +7,20 @@ foreach ($rule in $rules)
 {
     if ($rule.Key -match "^HKEY_CURRENT_USER")
     {
-        $valueData = $rule.ValueData.Split("{;}")
+        $rule.Key = $rule.Key -replace 'HKEY_CURRENT_USER', ''
+        if ($rule.ValueType -eq 'MultiString')
+        {
+            $valueData = $rule.ValueData.Split("{;}")
+        }
+        else
+        {
+            $valueData = $rule.ValueData
+        }
+
+        if ($valueData -eq 'ShouldBeAbsent')
+        {
+            $rule.Ensure = 'Absent'
+        }
 
         cAdministrativeTemplateSetting (Get-ResourceTitle -Rule $rule)
         {

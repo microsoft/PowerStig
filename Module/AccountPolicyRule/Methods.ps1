@@ -19,12 +19,12 @@ function Get-AccountPolicyName
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
 
-    $string = Get-SecurityPolicyString -CheckContent $checkContent
+    $string = Get-SecurityPolicyString -CheckContent $CheckContent
 
     try
     {
         # Pull the Account Policy string from between the quotes in the string
-        $accountPolicyName = (Get-TestStringTokenList -String ($string -join ',') -StringTokens)[0]
+        $accountPolicyName = @(Get-TestStringTokenList -String ($string -join ',') -StringTokens)[0]
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Account Policy : $accountPolicyName "
         if ($policyNameFixes.$accountPolicyName)
         {

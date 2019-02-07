@@ -320,7 +320,7 @@ function Get-StigVersionTable
 
     $path = "$(Get-StigDataRootPath)\Processed"
 
-    $versions = Get-ChildItem -Path $path -Exclude "*.org.*", "*.xsd" -Include $include.$CompositeResourceName -File -Recurse
+    $versions = Get-ChildItem -Path $path -Exclude '*.org.*', '*.xsd', '*.md' -Include $include.$CompositeResourceName -File -Recurse
 
     $versionTable = @()
     foreach ($version in $versions)

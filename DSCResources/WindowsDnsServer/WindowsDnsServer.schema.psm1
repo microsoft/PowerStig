@@ -51,7 +51,7 @@ Configuration WindowsDnsServer
         $OsVersion,
 
         [Parameter()]
-        [ValidateSet('1.7', '1.9', '1.10')]
+        [ValidateSet('1.10', '1.11')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -116,7 +116,7 @@ Configuration WindowsDnsServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1

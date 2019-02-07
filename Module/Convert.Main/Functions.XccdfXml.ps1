@@ -51,10 +51,6 @@ function ConvertFrom-StigXccdf
         $Path,
 
         [Parameter()]
-        [switch]
-        $IncludeRawString,
-
-        [Parameter()]
         [string[]]
         $RuleIdFilter
     )
@@ -79,9 +75,7 @@ function ConvertFrom-StigXccdf
         }
     }
     # Read in the root stig data from the xml additional functions will dig in deeper
-    $stigRuleParams = @{
-        IncludeRawString = $IncludeRawString
-    }
+    $stigRuleParams = @{}
 
     if($RuleIdFilter)
     {
@@ -99,7 +93,86 @@ function ConvertFrom-StigXccdf
         return
     }
 
+    Get-RegistryRuleExpressions -Path $Path -StigBenchmarkXml $stigBenchmarkXml
+
     return Get-StigRuleList @stigRuleParams
+}
+
+<#
+    .SYNOPSIS
+        Loads the regular expressions files
+
+    .DESCRIPTION
+        This function loads the regular expression sets to process registry rules in the xccdf file.
+
+    .PARAMETER Path
+        The path to the xccdf file to be processed.
+
+    .PARAMETER StigBenchmarkXml
+        The xml for the xccdf file to be processed.
+#>
+function Get-RegistryRuleExpressions
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [object]
+        $StigBenchmarkXml
+    )
+
+    Begin
+    {
+        # Use $stigBenchmarkXml.id to determine the stig file
+        $benchmarkId = Split-BenchmarkId $stigBenchmarkXml.id
+        if ([string]::IsNullOrEmpty($benchmarkId.TechnologyRole))
+        {
+            $benchmarkId.TechnologyRole = $stigBenchmarkXml.id
+        }
+
+        # Handles testing and production
+        $xccdfFileName = Split-Path $Path -Leaf
+        $spInclude = @('Data.Core.ps1')
+        if ($xccdfFileName -eq 'TextData.xml')
+        {
+            # Query TechnologyRole and map to file
+            $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
+            $spExclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
+
+            switch ($benchmarkId.TechnologyRole)
+            {
+                { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
+                    {
+                        $spInclude += "Data.Office.ps1"
+                    }
+            }
+        }
+        else
+        {
+            # Query directory of xccdf file
+            $spResult = Split-Path (Split-Path $Path -Parent) -Leaf
+            if ($spResult)
+            {
+                $spInclude += "Data."+ $spResult + ".ps1"
+            }
+        }
+    }
+
+    Process
+    {
+        # Load specific and core expression sets
+        $spSupportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $spExclude -Recurse -Include $spInclude | Sort-Object -Descending
+        Clear-Variable SingleLine* -Scope Global
+        foreach ($supportFile in $spSupportFileList)
+        {
+            Write-Verbose "Loading $($supportFile.FullName)"
+            . $supportFile.FullName
+        }
+    }
 }
 
 <#
@@ -188,8 +261,8 @@ function Split-StigXccdf
 
         $FilePath = "$Destination\$(Split-Path -Path $path -Leaf)"
 
-        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_SPLIT_STIG'))
-        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_SPLIT_STIG'))
+        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_STIG'))
+        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_STIG'))
     }
     End
     {
@@ -224,11 +297,7 @@ function Get-StigRuleList
     (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
         [psobject]
-        $StigGroups,
-
-        [Parameter()]
-        [switch]
-        $IncludeRawString
+        $StigGroups
     )
 
     begin
@@ -236,6 +305,14 @@ function Get-StigRuleList
         [System.Collections.ArrayList] $global:stigSettings = @()
         [int] $stigGroupCount = @($StigGroups).Count
         [int] $stigProcessedCounter = 1
+        
+        # Global added so that the stig rule can be referenced later
+        if (-not $exclusionRuleList)
+        {
+            $exclusionFile = Resolve-Path -Path $PSScriptRoot\..\Common\Data.ps1 
+            . $exclusionFile
+        }
+
     }
     process
     {

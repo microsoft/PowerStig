@@ -1,3 +1,5 @@
+using module .\helper.psm1
+
 $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
@@ -14,43 +16,23 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
-        Describe "SqlServer $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+        [xml] $dscXml = Get-Content -Path $stig.Path
 
-            It 'Should compile the MOF without throwing' {
-                {
-                    & "$($script:DSCCompositeResourceName)$($stig.TechnologyRole)_config" `
-                        -SqlVersion $stig.TechnologyVersion `
-                        -SqlRole $stig.TechnologyRole`
-                        -StigVersion $stig.StigVersion `
-                        -OutputPath $TestDrive
-                } | Should not throw
-            }
+        $technologyConfig = "$($script:DSCCompositeResourceName)$($stig.TechnologyRole)_config"
 
-            [xml] $dscXml = Get-Content -Path $stig.Path
+        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $skipRuleType = "DocumentRule"
+        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.DocumentRule.ChildNodes.Count
 
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
+        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.DocumentRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = $null
+        $expectedSkipRuleTypeMultipleCount = 0
 
-            Context 'SqlScriptQuery' {
-                $hasAllSettings = $true
-                $dscXml = $dscXml.DISASTIG.SqlScriptQueryRule.Rule
-                $dscMof = $instances |
-                    Where-Object {$PSItem.ResourceID -match "\[SqlScriptQuery\]"}
+        $exception = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $exceptionMultiple = $null
 
-                foreach ( $setting in $dscXml )
-                {
-                    If (-not ($dscMof.ResourceID -match $setting.Id) )
-                    {
-                        Write-Warning -Message "Missing SqlScriptQuery $($setting.Id)"
-                        $hasAllSettings = $false
-                    }
-                }
-
-                It "Should have $($dscXml.Id.Count) SqlScriptQueryRule settings" {
-                    $hasAllSettings | Should Be $true
-                }
-            }
-        }
+        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
+        . $userSettingsPath
     }
     #endregion Tests
 }

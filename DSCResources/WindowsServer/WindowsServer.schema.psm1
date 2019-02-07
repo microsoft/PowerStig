@@ -62,7 +62,7 @@ Configuration WindowsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [ValidateSet('2.12', '2.13', '2.14')]
+        [ValidateSet('2.13', '2.14', '2.15', '1.6', '1.7')]
         [version]
         $StigVersion,
 
@@ -126,7 +126,7 @@ Configuration WindowsServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName AuditPolicyDsc -ModuleVersion 1.2.0.0

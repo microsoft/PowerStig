@@ -4,43 +4,116 @@ Configuration IisServer_Config
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $OsVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string]
         $StigVersion,
 
-        [Parameter(Mandatory = $true)]
-        [string]
-        $LogPath,
-
         [Parameter()]
-        [psobject]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
-        [psobject]
-        $SkipRuleType
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string[]]
+        $Exception,
+
+        [Parameter()]
+        [string[]]
+        $OrgSettings,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $BrowserVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $OfficeApp,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ConfigPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $PropertiesPath,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $SqlRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $ForestName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $DomainName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $OsRole,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebAppPool,
+
+        [Parameter()]
+        [AllowNull()]
+        [string[]]
+        $WebSiteName,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $LogPath
     )
 
     Import-DscResource -ModuleName PowerStig
     Node localhost
     {
         & ([scriptblock]::Create("
-            IisServer ServerConfiguration
+        IisServer ServerConfiguration
+        {
+            OsVersion = '$OsVersion'
+            StigVersion = '$StigVersion'
+            LogPath = '$LogPath'
+            $(if ($null -ne $OrgSettings)
             {
-                OsVersion   = '$OsVersion'
-                StigVersion = '$StigVersion'
-                LogPath     = '$LogPath'
-                $(if ($null -ne $SkipRule)
-                {
-                    "SkipRule = @($( ($SkipRule | % {"'$_'"}) -join ',' ))`n"
-                }
-                if ($null -ne $SkipRuleType)
-                {
-                    "SkipRuleType = @($( ($SkipRuleType | % {"'$_'"}) -join ',' ))`n"
-                })
-            }")
+                "Orgsettings = '$OrgSettings'"
+            })
+            $(if ($null -ne $Exception)
+            {
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'Value'='1234567'}"}) -join "`n" )}"
+            })
+            $(if ($null -ne $SkipRule)
+            {
+                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+            }
+            if ($null -ne $SkipRuleType)
+            {
+                "SkipRuleType = @($( ($SkipRuleType | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+            })
+        }")
         )
     }
 }

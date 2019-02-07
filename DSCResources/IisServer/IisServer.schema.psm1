@@ -64,7 +64,7 @@ Configuration IisServer
         $LogPath,
 
         [Parameter()]
-        [ValidateSet('1.3','1.5')]
+        [ValidateSet('1.5', '1.6')]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
@@ -120,7 +120,7 @@ Configuration IisServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.1.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
@@ -131,7 +131,7 @@ Configuration IisServer
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
-    . "$resourcePath\windows.WebConfigProperty.ps1"
+    . "$resourcePath\windows.xWebConfigProperty.ps1"
     . "$resourcePath\windows.xIisLogging.ps1"
 }
 #endregion Composite
