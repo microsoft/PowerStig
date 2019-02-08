@@ -507,7 +507,14 @@ function Get-PowerStigFileList
 
     $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id
 
-    $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)-$($id.TechnologyRole)"
+    $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
+
+    # If there is a technology role add it to the output name
+    if($id.TechnologyRole)
+    {
+        $fileNameBase = $fileNameBase + "-$($id.TechnologyRole)"
+    }
+
     $fileNameBase = $fileNameBase + "-$(Get-StigVersionNumber -StigDetails $StigDetails)"
 
     if ($Destination)
