@@ -55,6 +55,7 @@ Class Rule : ICloneable
     [string] $RawString
     hidden [string[]] $SplitCheckContent
 
+
     <#
         .SYNOPSIS
             Default constructor

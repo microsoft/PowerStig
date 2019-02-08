@@ -1134,4 +1134,189 @@ function Split-MultipleRegistryEntries
 
     return $registryEntries
 }
+
+<#
+    .SYNOPSIS
+        Creates a registry pattern table and increments the pattern count from the single line functions
+
+    .PARAMETER Pattern
+        A registry rule pattern that has been applied
+
+    .PARAMETER Rule
+        Specifies a rule to include in output
+
+    .NOTES
+        Rules are not currently being captured in the results
+        It is an optional parameter that can be included in the future
+#>
+function Set-RegistryPatternLog
+{
+    [CmdletBinding()]
+    [OutputType([Object])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Pattern, 
+
+        [Parameter()]
+        [string]
+        $Rule
+    )
+    
+    # Load table with patterns from Core data file.
+    # Build the in-memory table of patterns
+    if(-not $global:patternTable)
+    {
+        $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null }
+        
+        $nestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
+
+        $regPathTable = $nonestedItems.GetEnumerator() | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        
+        $regPathTable += $nestedItems.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
+        
+        $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
+        
+        $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
+        
+        $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | 
+        Where-Object { $_.Value['Select'] -ne $null } | 
+        ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
+        
+        $valueTypeTable = $regValueTypeTable | 
+        Group-Object -Property "Pattern" | 
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
+        
+        $valueNameTable = $regValueNameTable | 
+        Group-Object -Property "Pattern" | 
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
+
+        $valueDataTable = $regValueDataTable | 
+        Group-Object -Property "Pattern" | 
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
+        
+        $global:patternTable = $regPathTable + $valueTypeTable + $valueNameTable + $valueDataTable
+    }
+
+    # Find pattern in table and increment count
+    $searchResult = $global:patternTable | Where-Object { $_.Pattern -eq $Pattern}
+    if ($searchResult)
+    {
+        $searchResult.Count ++
+    }
+}
+
+<#
+    .SYNOPSIS
+        Lists registry rule patterns along with counts for the number of rules that use each pattern.
+
+    .PARAMETER Path
+        Specifies a path to a directory with (unprocessed) xccdf.xml files or a specific xccdf.xml file.
+        Path should be StigData\Archive\{Directory Name} or StigData\Archive\{DirectoryName}\{*.xccdf.xml} 
+
+    .Notes
+        Expression patterns are only for Registry Rules, this could change in the future
+#>
+function Get-RegistryPatternLog
+{
+    [CmdletBinding()]
+    [OutputType([Object])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+
+    try
+    {
+        # If $Path is a directory, get all files contained in it
+        $isFolder = Test-Path $Path -pathType Container
+        if ($isFolder)
+        {
+            $files = Get-ChildItem -Path $Path -Filter '*.xml'
+            foreach ($file in $files)
+            {
+                if (Test-StigProcessed $file.FullName)
+                {
+                    ConvertFrom-StigXccdf -Path $file.FullName | Out-Null
+                }
+            }
+        }
+        
+        # If $Path is a file, process it
+        $isFile = Test-Path $Path -pathType Leaf
+        if ($isFile)
+        {
+            if (Test-StigProcessed $Path)
+            {
+                ConvertFrom-StigXccdf -Path $Path | Out-Null
+            }
+        }
+    }
+    catch [System.IO.DirectoryNotFoundException],[System.IO.FileNotFoundException]
+    {
+        Write-Output "The path or file was not found: [$Path]"
+    }
+    catch [System.IO.IOException]
+    {
+        Write-Output "Error accessing path or file at: [$Path]"
+    }
+
+    # Return patterns table with counts
+    return $global:patternTable
+}
+
+<#
+    .SYNOPSIS
+        Test if the check-content contains mitigations polices to enable.
+
+    .PARAMETER Path
+        Specifies the check-content element in the xccdf
+
+    .Notes
+        Currently all rules in the STIG state the policies referenced need to be enabled.
+        However that could change in the future or in other STIGs so we need to check for both conditions (Enabled|Disabled)
+#>
+function Test-StigProcessed
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string[]]
+        $Path
+    )
+    # Setup, check $Path for Processed
+    [xml]$XmlDocument = Get-Content -Path $Path
+    $id = $XmlDocument.Benchmark | Select-Object id
+    
+    $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | 
+    ForEach-Object { $_.Matches[0] -replace "V", "" -replace "R","\." }
+
+    $conversionPath = Get-Item "$($PSScriptRoot)..\..\..\StigData\Processed"
+    #Write-Host $testPath
+    $hasConversion = Get-ChildItem -Path $conversionPath -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+    #$hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
+    
+    if ($hasConversion)
+    {
+        return $true
+    }
+    else 
+    {  
+        return $false      
+    }
+}
 #endregion

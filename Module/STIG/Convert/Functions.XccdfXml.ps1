@@ -311,6 +311,14 @@ function Get-StigRuleList
         [System.Collections.ArrayList] $global:stigSettings = @()
         [int] $stigGroupCount = @($StigGroupList).Count
         [int] $stigProcessedCounter = 1
+
+        # Global added so that the stig rule can be referenced later
+        if (-not $exclusionRuleList)
+        {
+            $exclusionFile = Resolve-Path -Path $PSScriptRoot\..\Common\Data.ps1
+            . $exclusionFile
+        }
+
     }
     process
     {
