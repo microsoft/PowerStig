@@ -218,7 +218,7 @@ try
 
             Context 'Base Class' {
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'RegistryRule'
+                    $rule.GetType().BaseType.ToString() | Should -Be 'RegistryRule'
                 }
             }
 
@@ -229,7 +229,7 @@ try
                 foreach ( $property in $classProperties )
                 {
                     It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
+                        ( $rule | Get-Member -Name $property ).Name | Should -Be $property
                     }
                 }
             }
@@ -251,7 +251,7 @@ try
             )
 
             It 'Should not match the DSA Database file registry path' {
-                [RegistryRuleConvert]::Match($stringsToTest.string) | Should Be $false
+                [RegistryRuleConvert]::Match($stringsToTest.string) | Should -Be $false
             }
         }
 
@@ -267,7 +267,7 @@ try
                 {
                     It "Should return '$($rule.Hive + $expectedPath)'" {
                         $result = $registryKey | Where-Object -FilterScript { $PSItem -like "*$expectedPath" }
-                        $result | Should Be ($rule.Hive + $expectedPath)
+                        $result | Should -Be ($rule.Hive + $expectedPath)
                     }
                 }
 
@@ -281,7 +281,7 @@ try
                 It "Should return '$($rule.ValueType)'" {
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $registryKey = Get-RegistryValueType -CheckContent $checkContent
-                    $registryKey | Should Be ($rule.ValueType)
+                    $registryKey | Should -Be ($rule.ValueType)
                 }
             }
         }
@@ -293,7 +293,7 @@ try
                 It "Should return '$($rule.ValueName)'" {
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $registryKey = Get-RegistryValueName -CheckContent $checkContent
-                    $registryKey | Should Be ($rule.ValueName)
+                    $registryKey | Should -Be ($rule.ValueName)
                 }
             }
         }
@@ -308,7 +308,7 @@ try
                         $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                         $registryKey = Get-RegistryValueData -CheckContent $checkContent
                         $result = $registryKey -match "$($rule.ValueData)|Blank" -or $registryKey -eq $rule.ValueData
-                        $result | Should Be $true
+                        $result | Should -Be $true
                     }
                 }
             }
@@ -321,7 +321,7 @@ try
                 It "Should return '$($rule.Hive)'" {
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $registryKey = Get-RegistryHiveFromWindowsStig -CheckContent $checkContent
-                    $registryKey | Should Be ($rule.Hive)
+                    $registryKey | Should -Be ($rule.Hive)
                 }
             }
         }
@@ -335,7 +335,7 @@ try
                     $registryKey = Get-RegistryPathFromWindowsStig -CheckContent $checkContent
                     foreach ( $key in $registryKey )
                     {
-                        $key -in $rule.Path | Should Be $true
+                        $key -in $rule.Path | Should -Be $true
                     }
                 }
             }
@@ -361,7 +361,7 @@ try
                 {
                     It "Should return true when given '$string'" {
                         $containsRange = Test-RegistryValueDataContainsRange -ValueDataString $string
-                        $containsRange | Should Be $true
+                        $containsRange | Should -Be $true
                     }
                 }
             }
@@ -379,7 +379,7 @@ try
                 {
                     It "Should return false when given '$string'" {
                         $containsRange = Test-RegistryValueDataContainsRange -ValueDataString $string
-                        $containsRange | Should Be $false
+                        $containsRange | Should -Be $false
                     }
                 }
             }
@@ -390,7 +390,7 @@ try
                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
                     $registryData = Get-RegistryValueData -CheckContent $checkContent
                     $registryKey = Test-RegistryValueDataContainsRange -ValueDataString ($registryData)
-                    $registryKey | Should Be ($rule.OrganizationValueRequired)
+                    $registryKey | Should -Be ($rule.OrganizationValueRequired)
                 }
             }
         }
@@ -412,7 +412,7 @@ try
 
                 It "Should return '$($result)'" {
                     $registryKey = Test-RegistryValueDataIsBlank -ValueDataString $registryData
-                    $registryKey | Should Be $result
+                    $registryKey | Should -Be $result
                 }
             }
         }
@@ -435,7 +435,7 @@ try
 
                 It "Should return '$($result)'" {
                     $registryKey = Test-IsValidDword -ValueData ($registryData)
-                    $registryKey | Should Be ($result)
+                    $registryKey | Should -Be ($result)
                 }
             }
         }
@@ -457,7 +457,7 @@ try
 
                 It "Should return '$($result)'" {
                     $registryKey = Test-RegistryValueDataIsInteger -ValueDataString ($registryData)
-                    $registryKey | Should Be ($result)
+                    $registryKey | Should -Be ($result)
                 }
             }
         }
@@ -474,7 +474,7 @@ try
                     {
                         It "Should return '$($rule.ValueData)'" {
                             $registryKey = Get-NumberFromString -ValueDataString ($registryData)
-                            $registryKey | Should Be ($rule.ValueData)
+                            $registryKey | Should -Be ($rule.ValueData)
                         }
                     }
                 }
@@ -504,7 +504,7 @@ try
 
                 It "Should return '$($result)'" {
                     $registryKey = Test-RegistryValueDataIsHexCode -ValueDataString ($registryData)
-                    $registryKey | Should Be ($result)
+                    $registryKey | Should -Be ($result)
                 }
             }
         }
@@ -528,7 +528,7 @@ try
                 {
                     It "Should return '$($rule.ValueData)'" {
                         $registryKey = Get-IntegerFromHex -ValueDataString ($registryData)
-                        $registryKey | Should Be ($rule.ValueData)
+                        $registryKey | Should -Be ($rule.ValueData)
                     }
                 }
                 else
@@ -558,7 +558,7 @@ try
                 It 'Should return the correct path' {
                     $checkContent = Split-TestStrings -CheckContent $checkContent
                     $correctPath = Get-RegistryKey -CheckContent $checkContent
-                    $correctPath | Should Be "$hive$path"
+                    $correctPath | Should -Be "$hive$path"
                     Assert-VerifiableMock
                 }
             }
@@ -574,7 +574,7 @@ try
                         "",
                         "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.")
                     Mock Get-SingleLineRegistryPath {return $fullPath}
-                    Get-RegistryKey -CheckContent $checkContent | Should Be $fullPath
+                    Get-RegistryKey -CheckContent $checkContent | Should -Be $fullPath
                 }
                 It 'Should return the correct HKLM path' {
                     $fullPath = "HKEY_LOCAL_MACHINE\Path\To\Value"
@@ -583,7 +583,7 @@ try
                         "",
                         "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.")
                     Mock Get-SingleLineRegistryPath {return $fullPath}
-                    Get-RegistryKey -CheckContent $checkContent | Should Be $fullPath
+                    Get-RegistryKey -CheckContent $checkContent | Should -Be $fullPath
                 }
             }
         }
@@ -603,7 +603,7 @@ try
                 $checkContent = $string -f $hive
 
                 It " Should return '$hive' from '$checkContent'" {
-                    Get-RegistryHiveFromWindowsStig -CheckContent $checkContent | Should Be $hive
+                    Get-RegistryHiveFromWindowsStig -CheckContent $checkContent | Should -Be $hive
                 }
             }
 
@@ -627,7 +627,7 @@ try
             foreach ( $path in $goodStrings )
             {
                 It "Should return '\$pathToExtract' from '$path'" {
-                    Get-RegistryPathFromWindowsStig -CheckContent $path | Should Be "\$pathToExtract"
+                    Get-RegistryPathFromWindowsStig -CheckContent $path | Should -Be "\$pathToExtract"
                 }
             }
             # Test for an edge case where the intern at DISA added a space between 'SOFTWARE\ Polices'
@@ -637,7 +637,7 @@ try
                 $expected = '\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
                 $result = Get-RegistryPathFromWindowsStig -CheckContent $typoString
 
-                $result | Should Be $expected
+                $result | Should -Be $expected
             }
             # Fuzz testing the regex
             $badStrings = @(
@@ -695,13 +695,13 @@ try
                         Mock Get-RegistryValueTypeFromWindowsStig {return 'Enabled'}  -ParameterFilter {$checkContent -match 'Enabled'}
 
                         $RegistryValueType = Get-RegistryValueType -CheckContent "Type: $($item.Key)"
-                        $RegistryValueType | Should Be $registryTypeForDSC
+                        $RegistryValueType | Should -Be $registryTypeForDSC
                     }
                 }
 
                 It "Should return 'null' with invalid registry type" {
                     Mock Get-RegistryValueTypeFromWindowsStig {return 'Invalid'}
-                    Get-RegistryValueType -CheckContent 'Mocked data' | Should Be $null
+                    Get-RegistryValueType -CheckContent 'Mocked data' | Should -Be $null
                 }
             }
 
@@ -733,7 +733,7 @@ try
                 [string] $registryTypeFromSTIG = $item.Key
                 It "Should return '$registryTypeFromSTIG'" {
                     $RegistryValueType = Test-RegistryValueType -TestValueType "Type: $($item.Key)"
-                    $RegistryValueType | Should Be $registryTypeFromSTIG
+                    $RegistryValueType | Should -Be $registryTypeFromSTIG
                 }
             }
         }
@@ -744,7 +744,7 @@ try
             $RegistryValueType = Get-RegistryValueTypeFromWindowsStig -CheckContent $checkContent
 
             It "Should return 'REG_Type' from '$checkContent'" {
-                $RegistryValueType | Should Be 'REG_SZ'
+                $RegistryValueType | Should -Be 'REG_SZ'
             }
         }
         #endregion
@@ -760,7 +760,7 @@ try
                 It 'Should return ValueName' {
                     Mock Get-RegistryValueNameFromWindowsStig {return 'ValueName'}
                     $RegistryValueName = Get-RegistryValueName -CheckContent "Name: $valueName"
-                    $RegistryValueName | Should Be 'ValueName'
+                    $RegistryValueName | Should -Be 'ValueName'
                 }
             }
 
@@ -772,7 +772,7 @@ try
                 It 'Should return ValueName' {
                     Mock Get-RegistryValueNameFromSingleLineStig {return 'ValueName' }
                     $RegistryValueName = Get-RegistryValueName -CheckContent $checkContent
-                    $RegistryValueName | Should Be $valueName
+                    $RegistryValueName | Should -Be $valueName
                 }
             }
         }
@@ -791,7 +791,7 @@ try
                 $valueName = 'ValueName'
                 $checkContent = "$string $valueName"
                 It "Should return '$valueName' from '$checkContent'" {
-                    Get-RegistryValueNameFromWindowsStig -CheckContent $checkContent | Should Be $valueName
+                    Get-RegistryValueNameFromWindowsStig -CheckContent $checkContent | Should -Be $valueName
                 }
             }
         }
@@ -865,7 +865,7 @@ try
             {
                 It "Should return '$($testValue.value)' from '$($testValue.key)'" {
                     $RegistryValueDataFromWindowsStig = Get-RegistryValueDataFromWindowsStig -CheckContent $testValue.key
-                    $RegistryValueDataFromWindowsStig | Should Be $testValue.value
+                    $RegistryValueDataFromWindowsStig | Should -Be $testValue.value
                 }
             }
         }
@@ -874,11 +874,11 @@ try
         Describe 'Test-RegistryValueDataIsBlank' {
 
             It "Should return True when given '(Blank)'" {
-                Test-RegistryValueDataIsBlank -ValueDataString "(Blank)" | Should BeExactly $true
+                Test-RegistryValueDataIsBlank -ValueDataString "(Blank)" | Should -BeExactly $true
             }
 
             It "Should return False when not given '(Blank)'" {
-                Test-RegistryValueDataIsBlank -ValueDataString "Anything else" | Should BeExactly $false
+                Test-RegistryValueDataIsBlank -ValueDataString "Anything else" | Should -BeExactly $false
             }
         }
 
@@ -888,41 +888,37 @@ try
             foreach ($test in $passTests)
             {
                 It "Should return True when given '$test'" {
-                    Test-RegistryValueDataIsEnabledOrDisabled -ValueDataString $test | Should BeExactly $true
+                    Test-RegistryValueDataIsEnabledOrDisabled -ValueDataString $test | Should -BeExactly $true
                 }
             }
             It 'Should return False when not given enabled ro disabled' {
-                Test-RegistryValueDataIsEnabledOrDisabled -ValueDataString "Anything else" | Should BeExactly $false
+                Test-RegistryValueDataIsEnabledOrDisabled -ValueDataString "Anything else" | Should -BeExactly $false
             }
         }
 
         Describe 'Get-ValidEnabledOrDisabled' {
 
             Context 'Valid Dword' {
-
                 Mock Test-IsValidDword {return $false}
                 Mock ConvertTo-ValidDword {return '1'}  -ParameterFilter {$valueData -match 'Enable'}
                 Mock ConvertTo-ValidDword {return '0'}  -ParameterFilter {$valueData -match 'Disable'}
 
                 It 'Should Convert Enable into 1 with Type Dword' {
-                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Enabled" | Should Be "1"
+                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Enabled" | Should -Be "1"
                 }
-
                 It 'Should Convert Disabled into 1 with Type Dword' {
-                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Disable" | Should Be "0"
+                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Disable" | Should -Be "0"
                 }
             }
 
             Context 'Invalid Dword' {
-
                 Mock Test-IsValidDword {return $true}
 
                 It 'Should return Enable when not a Dword' {
-                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Enabled" | Should Be "Enabled"
+                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Enabled" | Should -Be "Enabled"
                 }
-
                 It 'Should return Disable when not a Dword' {
-                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Disable" | Should Be "Disable"
+                    Get-ValidEnabledOrDisabled -ValueType 'Dword' -ValueData "Disable" | Should -Be "Disable"
                 }
             }
         }
@@ -939,17 +935,16 @@ try
                 foreach ($testValue in $testValues.GetEnumerator())
                 {
                     It "Should return True when given '$($testValue.key)'" {
-                        Test-RegistryValueDataIsHexCode -ValueDataString $testValue.key | Should Be $true
+                        Test-RegistryValueDataIsHexCode -ValueDataString $testValue.key | Should -Be $true
                     }
                 }
 
                 It 'Should return False when not given a hex code' {
-                    Test-RegistryValueDataIsHexCode -ValueDataString "Anything else" | Should Be $false
+                    Test-RegistryValueDataIsHexCode -ValueDataString "Anything else" | Should -Be $false
                 }
             }
 
             Context 'Get-IntegerFromHex' {
-
                 It 'Should thow an error if a hex code is not found' {
                     {Get-IntegerFromHex -ValueDataString 'No Hex code here'} | Should Throw
                 }
@@ -957,16 +952,14 @@ try
                 foreach ($testValue in $testValues.GetEnumerator())
                 {
                     It "Should return '$($testValue.value)' from '$($testValue.key)'" {
-                        Get-IntegerFromHex -ValueDataString $testValue.Key | Should Be $testValue.Value
+                        Get-IntegerFromHex -ValueDataString $testValue.Key | Should -Be $testValue.Value
                     }
                 }
             }
         }
 
         Describe 'Integer Tasks' {
-
             $testValues = [ordered] @{
-
                 # Integers with different leading and trailing spaces
                 'Value: 1 (Enabled)'            = '1'
                 'Value: 1'                      = '1'
@@ -983,21 +976,19 @@ try
             }
 
             Context 'Test-RegistryValueDataIsInteger' {
-
                 foreach ($test in $testValues.GetEnumerator())
                 {
                     It "Should return True when given '$($test.Key)'" {
-                        Test-RegistryValueDataIsInteger -ValueDataString $test.key | Should BeExactly $true
+                        Test-RegistryValueDataIsInteger -ValueDataString $test.key | Should -BeExactly $true
                     }
                 }
 
                 It 'Should return False when not given a hex code' {
-                    Test-RegistryValueDataIsInteger -ValueDataString "Anything else" | Should BeExactly $false
+                    Test-RegistryValueDataIsInteger -ValueDataString "Anything else" | Should -BeExactly $false
                 }
             }
 
             Context 'Get-NumberFromString' {
-
                 It 'Should thow an error if a integer is not found' {
                     {Get-NumberFromString -ValueDataString 'No Integers here'} | Should Throw
                 }
@@ -1005,31 +996,28 @@ try
                 foreach ($string in $testValues.GetEnumerator())
                 {
                     It "Should return '$($string.value)' from '$($string.key)'" {
-                        Get-NumberFromString -ValueDataString $string.Key | Should Be $string.Value
+                        Get-NumberFromString -ValueDataString $string.Key | Should -Be $string.Value
                     }
                 }
             }
         }
 
         Describe 'Format-MultiStringRegistryData' {
-
             It "Should return a multi line string from 'One Two Three'" {
                 $MultiStringRegistryData = Format-MultiStringRegistryData -ValueDataString "One Two Three"
-                ($MultiStringRegistryData -split ";")[0] | Should Be "One"
-                ($MultiStringRegistryData -split ";")[1] | Should Be "Two"
-                ($MultiStringRegistryData -split ";")[2] | Should Be "Three"
+                ($MultiStringRegistryData -split ";")[0] | Should -Be "One"
+                ($MultiStringRegistryData -split ";")[1] | Should -Be "Two"
+                ($MultiStringRegistryData -split ";")[2] | Should -Be "Three"
             }
-
             It "Should return a multi line string from 'Four, Five, Six'" {
                 $MultiStringRegistryData = Format-MultiStringRegistryData -ValueDataString "Four, Five, Six"
-                ($MultiStringRegistryData -split ";")[0] | Should Be "Four"
-                ($MultiStringRegistryData -split ";")[1] | Should Be "Five"
-                ($MultiStringRegistryData -split ";")[2] | Should Be "Six"
+                ($MultiStringRegistryData -split ";")[0] | Should -Be "Four"
+                ($MultiStringRegistryData -split ";")[1] | Should -Be "Five"
+                ($MultiStringRegistryData -split ";")[2] | Should -Be "Six"
             }
         }
 
         Describe 'Get-MultiValueRegistryStringData' {
-
             $checkStrings = "Value: see below`n`n" +
             "System\Path\One`n" +
             "System\Path\Two`n" +
@@ -1039,26 +1027,23 @@ try
             $MultiValueRegistryStringData = Get-MultiValueRegistryStringData -CheckStrings $checkStrings
 
             It 'Should return a string of semicolon delimited values.' {
-                ($MultiValueRegistryStringData -split ";")[0] | Should Be "System\Path\One"
-                ($MultiValueRegistryStringData -split ";")[1] | Should Be "System\Path\Two"
-                ($MultiValueRegistryStringData -split ";")[2] | Should Be "Software\Path\Three"
+                ($MultiValueRegistryStringData -split ";")[0] | Should -Be "System\Path\One"
+                ($MultiValueRegistryStringData -split ";")[1] | Should -Be "System\Path\Two"
+                ($MultiValueRegistryStringData -split ";")[2] | Should -Be "Software\Path\Three"
             }
         }
 
         Describe 'Test-IsValidDword' {
             It "Should return $true when given an integer '3'" {
-                Test-IsValidDword -ValueData "3" | Should Be $true
+                Test-IsValidDword -ValueData "3" | Should -Be $true
             }
-
             It "Should return $false when given a string 'Three'" {
-                Test-IsValidDword -ValueData "Three" | Should Be $false
+                Test-IsValidDword -ValueData "Three" | Should -Be $false
             }
         }
 
         Describe 'ConvertTo-ValidDword' {
-
             $testValues = [ordered] @{
-
                 # Integers with different leading and trailing spaces
                 '1 (Enabled)'  = '1'
                 'Enabled'      = '1'
@@ -1069,7 +1054,7 @@ try
             foreach ($testValue in $testValues.GetEnumerator())
             {
                 It "Should return '$($testValue.value)' when given '$($testValue.key)'" {
-                    ConvertTo-ValidDword -ValueData $testValue.key | Should Be $testValue.value
+                    ConvertTo-ValidDword -ValueData $testValue.key | Should -Be $testValue.value
                 }
             }
 
@@ -1182,14 +1167,14 @@ try
                 It "Should return $true when multiple registry settings are found" {
                     $checkContent = Split-TestStrings -CheckContent $checkContent
                     $hasMultipleEntries = Test-MultipleRegistryEntries -CheckContent $checkContent
-                    $hasMultipleEntries | Should Be $true
+                    $hasMultipleEntries | Should -Be $true
                 }
             }
 
             It "Should return $false when multiple registry settings are not found" {
                 $checkContent = Split-TestStrings -CheckContent $singleRegistryString
                 $hasMultipleEntries = Test-MultipleRegistryEntries -CheckContent $checkContent
-                $hasMultipleEntries | Should Be $false
+                $hasMultipleEntries | Should -Be $false
             }
         }
 
@@ -1200,17 +1185,16 @@ try
                 $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
                 It 'Should not return the second registry entry in the first object' {
-                    $registryEntries[0] -notmatch '\\Path\\ToTheSecondValue\\To\\Set\\' | Should Be $true
-                    $registryEntries[0] -notmatch 'SettingTwoName' | Should Be $true
-                    $registryEntries[0] -notmatch 'REG_DWORD' | Should Be $true
-                    $registryEntries[0] -notmatch 'ValueTwo' | Should Be $true
+                    $registryEntries[0] -notmatch '\\Path\\ToTheSecondValue\\To\\Set\\' | Should -Be $true
+                    $registryEntries[0] -notmatch 'SettingTwoName' | Should -Be $true
+                    $registryEntries[0] -notmatch 'REG_DWORD' | Should -Be $true
+                    $registryEntries[0] -notmatch 'ValueTwo' | Should -Be $true
                 }
-
                 It 'Should not return the first registry entry in the second object' {
-                    $registryEntries[1] -notmatch '\\Path\\ToTheFirstalue\\To\\Set\\' | Should Be $true
-                    $registryEntries[1] -notmatch 'SettingOneName' | Should Be $true
-                    $registryEntries[1] -notmatch 'REG_SZ' | Should Be $true
-                    $registryEntries[1] -notmatch 'ValueOne' | Should Be $true
+                    $registryEntries[1] -notmatch '\\Path\\ToTheFirstalue\\To\\Set\\' | Should -Be $true
+                    $registryEntries[1] -notmatch 'SettingOneName' | Should -Be $true
+                    $registryEntries[1] -notmatch 'REG_SZ' | Should -Be $true
+                    $registryEntries[1] -notmatch 'ValueOne' | Should -Be $true
                 }
             }
 
@@ -1219,19 +1203,18 @@ try
                 $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
                 It 'Should not return the second registry entry in the first object, but have the same Hive' {
-                    $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
-                    $registryEntries[0] -notmatch '\\Path\\ToTheSecondValue\\To\\Set\\' | Should Be $true
-                    $registryEntries[0] -notmatch 'SettingTwoName' | Should Be $true
-                    $registryEntries[0] -notmatch 'REG_DWORD' | Should Be $true
-                    $registryEntries[0] -notmatch 'ValueTwo' | Should Be $true
+                    $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should -Be $true
+                    $registryEntries[0] -notmatch '\\Path\\ToTheSecondValue\\To\\Set\\' | Should -Be $true
+                    $registryEntries[0] -notmatch 'SettingTwoName' | Should -Be $true
+                    $registryEntries[0] -notmatch 'REG_DWORD' | Should -Be $true
+                    $registryEntries[0] -notmatch 'ValueTwo' | Should -Be $true
                 }
-
                 It 'Should not return the first registry entry in the second object, but have the same Hive' {
-                    $registryEntries[1] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
-                    $registryEntries[1] -notmatch '\\Path\\ToTheFirstalue\\To\\Set\\' | Should Be $true
-                    $registryEntries[1] -notmatch 'SettingOneName' | Should Be $true
-                    $registryEntries[1] -notmatch 'REG_SZ' | Should Be $true
-                    $registryEntries[1] -notmatch 'ValueOne' | Should Be $true
+                    $registryEntries[1] -match 'HKEY_LOCAL_MACHINE' | Should -Be $true
+                    $registryEntries[1] -notmatch '\\Path\\ToTheFirstalue\\To\\Set\\' | Should -Be $true
+                    $registryEntries[1] -notmatch 'SettingOneName' | Should -Be $true
+                    $registryEntries[1] -notmatch 'REG_SZ' | Should -Be $true
+                    $registryEntries[1] -notmatch 'ValueOne' | Should -Be $true
                 }
             }
 
@@ -1240,96 +1223,86 @@ try
                 $registryEntries = Split-MultipleRegistryEntries -CheckContent $checkContent
 
                 It 'Should not return the second registry entry in the first object, but have the same hive and path' {
-                    $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
-                    $registryEntries[0] -match '\\Path\\ToTheFirstValue\\To\\Set\\' | Should Be $true
-                    $registryEntries[0] -notmatch 'SettingTwoName' | Should Be $true
-                    $registryEntries[0] -notmatch 'REG_DWORD' | Should Be $true
-                    $registryEntries[0] -notmatch 'ValueTwo' | Should Be $true
+                    $registryEntries[0] -match 'HKEY_LOCAL_MACHINE' | Should -Be $true
+                    $registryEntries[0] -match '\\Path\\ToTheFirstValue\\To\\Set\\' | Should -Be $true
+                    $registryEntries[0] -notmatch 'SettingTwoName' | Should -Be $true
+                    $registryEntries[0] -notmatch 'REG_DWORD' | Should -Be $true
+                    $registryEntries[0] -notmatch 'ValueTwo' | Should -Be $true
                 }
-
                 It 'Should not return the first registry entry in the second object, but have the same hive and path' {
-                    $registryEntries[1] -match 'HKEY_LOCAL_MACHINE' | Should Be $true
-                    $registryEntries[1] -match '\\Path\\ToTheFirstValue\\To\\Set\\' | Should Be $true
-                    $registryEntries[1] -notmatch 'SettingOneName' | Should Be $true
-                    $registryEntries[1] -notmatch 'REG_SZ' | Should Be $true
-                    $registryEntries[1] -notmatch 'ValueOne' | Should Be $true
+                    $registryEntries[1] -match 'HKEY_LOCAL_MACHINE' | Should -Be $true
+                    $registryEntries[1] -match '\\Path\\ToTheFirstValue\\To\\Set\\' | Should -Be $true
+                    $registryEntries[1] -notmatch 'SettingOneName' | Should -Be $true
+                    $registryEntries[1] -notmatch 'REG_SZ' | Should -Be $true
+                    $registryEntries[1] -notmatch 'ValueOne' | Should -Be $true
                 }
             }
         }
         #endregion
         #region Function Tests - Single Line
         Describe 'Test-SingleLineRegistryRule' {
-
             It 'Should exist' {
                 Get-Command Test-SingleLineRegistryRule | Should Not BeNullOrEmpty
             }
-
             It "Should return $true when 'HKCU\' is found" {
-                Test-SingleLineRegistryRule -CheckContent "HKCU\" | Should Be $true
+                Test-SingleLineRegistryRule -CheckContent "HKCU\" | Should -Be $true
             }
-
             It "Should return $true when 'HKLM\' is found" {
-                Test-SingleLineRegistryRule -CheckContent "HKLM\" | Should Be $true
+                Test-SingleLineRegistryRule -CheckContent "HKLM\" | Should -Be $true
             }
-
             It "Should return $false when 'Permission' is found" {
-                Test-SingleLineRegistryRule -CheckContent "Permission" | Should Be $false
+                Test-SingleLineRegistryRule -CheckContent "Permission" | Should -Be $false
             }
         }
 
         Describe 'Get-SingleLineRegistryPath ' {
-
             It 'Should return the full Current User registry path' {
                 $checkContent = 'HKCU\Path\To\Value'
                 $returnContent = 'HKEY_CURRENT_USER\Path\To\Value'
-                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should Be $returnContent
+                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should -Be $returnContent
             }
-
             It 'Should return the full Local Machine registry path' {
                 $checkContent = 'HKLM\Path\To\Value'
                 $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
-                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should Be $returnContent
+                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should -Be $returnContent
             }
-
             It 'Should return the full Current User registry path without a trailing period' {
                 $checkContent = 'HKCU\Path\To\Value.'
                 $returnContent = 'HKEY_CURRENT_USER\Path\To\Value'
-                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should Be $returnContent
+                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should -Be $returnContent
             }
-
             It 'Should return the full Local Machine registry path without a trailing period' {
                 $checkContent = 'HKLM\Path\To\Value.'
                 $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
-                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should Be $returnContent
+                Get-SingleLineRegistryPath  -CheckContent $checkContent | Should -Be $returnContent
             }
         }
         Describe 'Get-SLRegistryPath ' {
-
             It 'Should return null with empty hashtable' {
                 $checkContent = 'HKCU\Path\To\Value'
                 $hashtable = @{}
                 $returnContent = $null
-                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+                Get-SLRegistryPath -CheckContent $checkContent -Hashtable $hashtable | Should -Be $returnContent
             }
-
             It 'Should return the full Local Machine registry path' {
                 $checkContent = 'HKLM\Path\To\Value'
                 $hashtable    =  [ordered]@{
                     Match    = '(HKCU|HKLM|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER)\\'
                     Select   = '((HKLM|HKCU|HKEY_LOCAL_MACHINE|HKEY_CURRENT_USER).*)'
                 }
-                $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
-                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
-            }
 
+                $returnContent = 'HKEY_LOCAL_MACHINE\Path\To\Value'
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should -Be $returnContent
+            }
             It 'Should return null registry path with non-matching expression' {
                 $checkContent = 'HKCU\Path\To\Value'
                 $hashtable    =  [ordered]@{
                     Contains = 'Verify'
                     Select   = '((HKLM|HKCU).*(?=Verify))'
                 }
+
                 $returnContent = $null
-                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should Be $returnContent
+                Get-SLRegistryPath  -CheckContent $checkContent -Hashtable $hashtable | Should -Be $returnContent
             }
         }
 
@@ -1343,7 +1316,7 @@ try
                 'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
             )
 
-            foreach ( $registryType in $registryTypes )
+            foreach ($registryType in $registryTypes)
             {
                 $checkContent = "Criteria: If the value ""1001"" is $registryType = 3"
                 Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_SZ'}
@@ -1354,15 +1327,13 @@ try
                 Mock Get-RegistryValueStringFromSingleLineStig {return 'Criteria: If the value ""1001"" is REG_EXPAND_SZ = 3'}  -ParameterFilter {$checkContent -match 'REG_EXPAND_SZ'}
 
                 It "Should return '$registryType' from '$checkContent'" {
-
                     $RegistryValueType = Get-RegistryValueTypeFromSingleLineStig -CheckContent $checkContent
-                    $RegistryValueType | Should Be $registryType
+                    $RegistryValueType | Should -Be $registryType
                 }
             }
 
             It 'Should return "null" with invalid registry type' {
-
-                Get-RegistryValueTypeFromSingleLineStig -CheckContent 'Mocked data' | Should Be $null
+                Get-RegistryValueTypeFromSingleLineStig -CheckContent 'Mocked data' | Should -Be $null
             }
         }
         Describe 'Get-RegistryValueTypeFromSLStig' {
@@ -1373,6 +1344,7 @@ try
             $registryTypes = @(
                 'REG_SZ', 'REG_BINARY', 'REG_DWORD', 'REG_QWORD', 'REG_MULTI_SZ', 'REG_EXPAND_SZ'
             )
+
             $hashtable = @{
                 Select = '({0}"?\sis (?!not))(.*=)'
                 Group  = 2
@@ -1386,35 +1358,30 @@ try
                 It "Should return '$registryType' from '$checkContent'" {
 
                     $RegistryValueType = Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable
-                    $RegistryValueType | Should Be $registryType
+                    $RegistryValueType | Should -Be $registryType
                 }
             }
-
             It 'Should return "null" with invalid registry type' {
-
-                Get-RegistryValueTypeFromSLStig -CheckContent 'Mocked data' -Hashtable $hashtable | Should Be $null
+                Get-RegistryValueTypeFromSLStig -CheckContent 'Mocked data' -Hashtable $hashtable | Should -Be $null
             }
-
             It 'Should return "null" with empty hashtable' {
                 $checkContent = "Criteria: If the value ""1001"" is REG_SZ = 3"
                 $hashtable = @{}
-                Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $null
+                Get-RegistryValueTypeFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should -Be $null
             }
         }
 
         #########################################   Registry Type   ########################################
         #########################################   Registry Name   ########################################
         Describe 'Get-RegistryValueNameFromSingleLineStig' {
-
             $valueName = 'ValueName'
             $checkContent = "Criteria: If the value ""$valueName"" is REG_Type = 2, this is not a finding."
             It "Should return '$valueName' from '$checkContent'" {
-                Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent | Should Be $valueName
+                Get-RegistryValueNameFromSingleLineStig -CheckContent $checkContent | Should -Be $valueName
             }
         }
 
         Describe 'Get-RegistryValueNameFromSLStig' {
-
             $valueName = 'ValueName'
             $checkContent = "Criteria: If the value ""$valueName"" is REG_Type = 2, this is not a finding."
             $hashtable = @{
@@ -1422,37 +1389,35 @@ try
             }
 
             It "Should return '$valueName' from '$checkContent'" {
-                Get-RegistryValueNameFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should Be $valueName
+                Get-RegistryValueNameFromSLStig -CheckContent $checkContent -Hashtable $hashtable | Should -Be $valueName
             }
         }
         #########################################   Registry Name   ########################################
         #########################################   Registry Data   ########################################
         Describe 'Get-RegistryValueDataFromSingleStig' {
-
             $valueData = '2'
             $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
 
             It "Should return '$valueData' from '$checkContent'" {
                 $result = Get-RegistryValueDataFromSingleStig -CheckContent $checkContent
-                $result | Should Be $valueData
+                $result | Should -Be $valueData
             }
         }
         Describe 'Get-RegistryValueDataFromSLStig' {
-
             $valueData = '2'
             $checkContent = "Criteria: If the value ""ValueName"" is REG_Type = $valueData, this is not a finding."
             $hashtable = @{
                 Select = '(?<=REG_Type)(\s*)?=.*(?=(,|\())'
             }
+
             It "Should return '$valueData' from '$checkContent'" {
                 $result = Get-RegistryValueDataFromSLStig -CheckContent $checkContent -Hashtable $hashtable
-                $result | Should Be $valueData
+                $result | Should -Be $valueData
             }
         }
         #########################################   Registry Data   ########################################
         ######################################   Ancillary functions   #####################################
         Describe 'Get-RegistryValueStringFromSingleLineStig' {
-
             $registryValueName = 'XL4Workbooks'
             $registryValueType = 'REG_DWORD'
             $registryValueData = '2'
@@ -1463,7 +1428,7 @@ try
             It 'Should return the correct full string' {
                 $checkContent = Split-TestStrings -CheckContent $checkContent
                 $fullString = Get-RegistryValueStringFromSingleLineStig -CheckContent $checkContent
-                $fullString | Should Be $registryValueString
+                $fullString | Should -Be $registryValueString
             }
 
             <#
@@ -1480,11 +1445,12 @@ try
                 "Criteria: If the value of $registryValueInnerString, this is not a finding.",
                 "Criteria: If the value $registryValueInnerString, this is not a finding."
             )
+
             foreach ($stringFormat in $stringFormats)
             {
                 It 'Should return the correct trimmed string' {
                     $trimmedString = Get-RegistryValueStringFromSingleLineStig -CheckContent $stringFormat -Trim
-                    $trimmedString | Should Be $registryValueInnerString
+                    $trimmedString | Should -Be $registryValueInnerString
                 }
             }
 
@@ -1493,7 +1459,7 @@ try
                 $checkContent = "Criteria: If   the value  XL4Workbooks  is REG_DWORD = 2, this is not a finding."
 
                 $trimmedString = Get-RegistryValueStringFromSingleLineStig -CheckContent $checkContent
-                $trimmedString | Should Be "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding."
+                $trimmedString | Should -Be "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding."
             }
 
         }
@@ -1505,21 +1471,20 @@ try
             "Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding."
 
             It "Should return $true when match Office format" {
-                Test-SingleLineStigFormat -CheckContent $checkContent | Should Be $true
+                Test-SingleLineStigFormat -CheckContent $checkContent | Should -Be $true
             }
-
             $checkContent = "Registry Hive: HKEY_LOCAL_MACHINE" +
             "Registry Path:  \Path\To\Value"
             It "Should return $false when not match Office foramt" {
-                Test-SingleLineStigFormat -CheckContent $checkContent | Should Be $false
+                Test-SingleLineStigFormat -CheckContent $checkContent | Should -Be $false
             }
         }
-
+<# ###
+TODO### These tests need to be rewritten to use mocks correctly and isolate tests to functions. 
         Describe "Get-RegistryPatternLog" {
-
-            Import-Module "$($PSScriptRoot).\..\..\..\PowerStig.Convert.psm1"
-            $folderPath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser" -Relative
-            $filePath = Resolve-Path -Path "$($PSScriptRoot).\..\..\..\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml" -Relative
+            Import-Module "$moduleRoot\PowerStig.Convert.psm1"
+            $folderPath = Resolve-Path -Path "$ModuleRoot\StigData\Archive\browser"
+            $filePath = Resolve-Path -Path "$ModuleRoot\StigData\Archive\browser\U_MS_IE11_STIG_V1R13_Manual-xccdf.xml"
 
             Context 'Path is directory' {
                 It "Should return valid table with updated counts" {
@@ -1543,53 +1508,41 @@ try
         #region Data Tests
 
         Describe 'RegularExpression Data Section' {
-
             Context 'Blank String' {
-
                 It 'Should match "(Blank)" literal string' {
-                    "(Blank)" -Match $regularExpression.blankString | Should Be $true
+                    "(Blank)" -Match $regularExpression.blankString | Should -Be $true
                 }
             }
-
             Context 'Enabled or Disabled String' {
-
                 foreach ( $flag in ('Enabled','enabled','Disabled','disabled') )
                 {
                     It "Should match the exact string '$flag'" {
-                        $flag -Match $regularExpression.enabledOrDisabled | Should Be $true
+                        $flag -Match $regularExpression.enabledOrDisabled | Should -Be $true
                     }
                 }
             }
-
             Context 'Hex Code' {
-
                 It 'Should match a hexcode' {
-                    '0X00000000' -Match $regularExpression.hexCode | Should Be $true
+                    '0X00000000' -Match $regularExpression.hexCode | Should -Be $true
                 }
-
                 It 'Should NOT match nonhexcode' {
-                    '0X000000000' -Match $regularExpression.hexCode | Should Be $false
+                    '0X000000000' -Match $regularExpression.hexCode | Should -Be $false
                 }
             }
-
             Context 'Leading Integer Unbound' {
-
                 It 'Should match a leading integerUnbound' {
-                    '12' -Match $regularExpression.leadingIntegerUnbound | Should Be $true
+                    '12' -Match $regularExpression.leadingIntegerUnbound | Should -Be $true
                 }
-
                 It 'Should match a leading integer before hex' {
-                    '0 0X00000000' -Match $regularExpression.leadingIntegerUnbound | Should Be $true
+                    '0 0X00000000' -Match $regularExpression.leadingIntegerUnbound | Should -Be $true
                 }
-
                 It 'Should not match hex code' {
-                    '0X00000000' -Match $regularExpression.leadingIntegerUnbound | Should Be $false
+                    '0X00000000' -Match $regularExpression.leadingIntegerUnbound | Should -Be $false
                 }
             }
         }
 
         Describe 'DscRegistryValueType Data Section' {
-
             # Validate the static data section to convert the registry value types
             $registryTypes = @{
                 'REG_SZ'         = 'String'
@@ -1604,15 +1557,13 @@ try
             foreach ($registryType in $registryTypes.GetEnumerator())
             {
                 It "'$($registryType.Key)' should exist and return '$($registryType.Value)'" {
-                    $dscRegistryValueType.($registryType.Key) | Should Be $registryType.Value
+                    $dscRegistryValueType.($registryType.Key) | Should -Be $registryType.Value
                 }
             }
         }
 
         Describe 'RegistryRegularExpression Data Section' {
-
             Context 'Hive Match' {
-
                 $hiveStrings = @(
                     'Hive: HKEY_LOCAL_MACHINE',
                     'Hive: HKEY_LOCAL_MACHINE',
@@ -1627,9 +1578,7 @@ try
                     }
                 }
             }
-
             Context 'Path Match' {
-
                 $pathStrings = @(
                     'SubKey : \Path\To\RegistryValue',
                     'Registry Path :\Path\To\RegistryValue'
@@ -1644,7 +1593,6 @@ try
             }
 
             Context 'Type Match' {
-
                 $typeStrings = @(
                     'Type: REG_SZ',
                     'Type: REG_BINARY',
@@ -1661,7 +1609,6 @@ try
                     }
                 }
             }
-
             Context 'ValueName Match' {
                 $valueNameStrings = @(
                     'Value Name : SettingName'
@@ -1674,7 +1621,6 @@ try
                     }
                 }
             }
-
             Context 'ValueData Match' {
                 $valueNameStrings = @(
                     'Value : 1'
@@ -1698,9 +1644,7 @@ try
                     }
                 }
             }
-
             Context 'Value Data Range Match' {
-
                 $rangeStrings = @(
                     'Possible values are'
                 )
@@ -1713,6 +1657,7 @@ try
                 }
             }
         }
+        #>
         #endregion
     }
 }
