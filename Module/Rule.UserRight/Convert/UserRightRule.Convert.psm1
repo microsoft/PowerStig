@@ -66,7 +66,7 @@ Class UserRightRuleConvert : UserRightRule
                 $byte ++
 
                 $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [UserRightRuleConvert]::New($StigRule).AsRule()
+                $ruleList += [UserRightRuleConvert]::New($copyRule).AsRule()
             }
         }
         else

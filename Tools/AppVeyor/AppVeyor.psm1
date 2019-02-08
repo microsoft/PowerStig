@@ -247,7 +247,7 @@ function New-Nuspec
 
         foreach ($file in $fileList)
         {
-            $null = $nuspecFileContent.AppendLine("    <file src=""$($file.src)"" target=""$($file.target)"" />")
+            $null = $nuspecFileContent.AppendLine("    <file src=""$($file.src)"" target=""$($file.target)"" $(if($file.exclude){"exclude='$($file.exclude)'"})/>")
         }
         $null = $nuspecFileContent.AppendLine("  </files>")
     }

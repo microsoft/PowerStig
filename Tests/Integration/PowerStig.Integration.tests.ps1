@@ -17,7 +17,7 @@ Describe "$moduleName module" {
     Context 'Exported Commands' {
 
         $commands = (Get-Command -Module $moduleName).Name
-        $exportedCommands = @('Get-DomainName', 'Get-StigList', 'New-StigCheckList')
+        $exportedCommands = @('Get-DomainName', 'Get-Stig', 'New-StigCheckList')
 
         foreach ($export in $exportedCommands)
         {
@@ -26,7 +26,7 @@ Describe "$moduleName module" {
             }
         }
 
-    It 'Should not have more commands than are tested' {
+        It 'Should not have more commands than are tested' {
             $compare = Compare-Object -ReferenceObject $commands -DifferenceObject $exportedCommands
             $compare.Count | Should Be 0
         }

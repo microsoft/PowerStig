@@ -168,7 +168,6 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         {
             return $true
         }
-
         return $false
     }
 

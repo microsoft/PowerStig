@@ -811,7 +811,7 @@ function Get-SQLQuery
     [boolean] $scriptInitiated = $false
     [boolean] $scriptTerminated = $false
     [boolean] $inScriptClause = $false
-    [int] $parenthesesLeftCount = 0 
+    [int] $parenthesesLeftCount = 0
     [int] $parenthesesRightCount = 0
     [int] $iParenthesesOffset = 0
 
@@ -825,7 +825,7 @@ function Get-SQLQuery
         {
             $scriptInitiated = $true
             $collection += $line
-            
+
             # Get the parentheses offset by accumulating match counters
             $leftParenResults = $line | Select-String '\(' -AllMatches
             $parenthesesLeftCount += $leftParenResults.Matches.Count
@@ -833,9 +833,9 @@ function Get-SQLQuery
             $parenthesesRightCount += $rightParenResults.Matches.Count
             $iParenthesesOffset = $parenthesesLeftCount - $parenthesesRightCount
         }
-        # If a SQL script is started, let's see what we have to add to it, if anything 
+        # If a SQL script is started, let's see what we have to add to it, if anything
         elseif ($scriptInitiated)
-        { 
+        {
             # Get the parentheses offset by accumulating match counters
             $leftParenResults = $line | Select-String '\(' -AllMatches
             $parenthesesLeftCount += $leftParenResults.Matches.Count
@@ -853,7 +853,7 @@ function Get-SQLQuery
                     # Start of a group IN clause
                     $inScriptClause = $true
                 }
-            } 
+            }
             # If we are inside of a group IN clause, we need to collect statements until the IN clause terminates
             elseif ($inScriptClause)
             {
