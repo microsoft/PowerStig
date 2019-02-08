@@ -137,7 +137,7 @@ function Get-RegistryPathFromWindowsStig
             {
                 $path = $path -replace '\\\sP', '\P'
             }
-            
+
             $result += $path
         }
     }
