@@ -1479,7 +1479,7 @@ try
                 Test-SingleLineStigFormat -CheckContent $checkContent | Should -Be $false
             }
         }
-<# ###TODO### These tests need to be rewritten to use mocks correctly and isolate tests to functions. #>
+<# ###TODO### These tests need to be rewritten to use mocks correctly and isolate tests to functions.
         Describe "Get-RegistryPatternLog" {
             Import-Module "$moduleRoot\PowerStig.Convert.psm1"
             $folderPath = Resolve-Path -Path "$ModuleRoot\StigData\Archive\browser"
@@ -1655,7 +1655,7 @@ try
                     }
                 }
             }
-        }
+        }#>
         #endregion
     }
 }
