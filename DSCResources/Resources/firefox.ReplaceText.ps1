@@ -35,7 +35,7 @@ ReplaceText DoNotObscureFile
 ReplaceText BeginFileWithComment
 {
     Path        = "$InstallDirectory\firefox.cfg"
-    Search      = '// FireFox preference file'
+    Search      = ('// FireFox preference file' + "`r")
     Type        = 'Text'
     Text        = ('// FireFox preference file' + "`r")
 }
@@ -47,7 +47,7 @@ foreach ( $rule in $rules )
         Path        = "$InstallDirectory\FireFox.cfg"
         Search      = 'lockPref\("{0}", (.*)\);' -f $rule.Key
         Type        = 'Text'
-        Text        = ("`r`n" + 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value))
+        Text        = 'lockPref("{0}", {1});' -f $rule.Key, (Format-FireFoxPreference -Value $rule.Value)
         AllowAppend = $true
     }
 }

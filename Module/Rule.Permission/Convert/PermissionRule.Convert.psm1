@@ -174,6 +174,7 @@ Class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch "Interview the IAM" -and
             $CheckContent -NotMatch "InetMgr\.exe" -and
             $CheckContent -NotMatch "Register the required DLL module by typing the following at a command line ""regsvr32 schmmgmt.dll""." -and
+            $CheckContent -NotMatch 'If any private assets' -and
             $CheckContent -NotMatch "roles.sql"
         )
         {

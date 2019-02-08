@@ -243,7 +243,7 @@ function Format-FireFoxPreference
 #end region
 
 Export-ModuleMember -Function @(
-    'Get-ResourceTitle', 'Get-RuleClassData', 'Select-Rule', 'Get-UniqueString',
+    'Get-ResourceTitle', 'Select-Rule', 'Get-UniqueString',
     'Get-UniqueStringArray', 'Get-LogCustomField', 'Format-FireFoxPreference'
 )`
     -Variable 'resourcePath'
