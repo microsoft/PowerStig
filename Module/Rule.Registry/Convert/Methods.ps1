@@ -133,7 +133,7 @@ function Get-RegistryPathFromWindowsStig
             }
         }
     }
-    $result
+    $path
 }
 
 <#
