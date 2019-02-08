@@ -16,6 +16,10 @@
 
 * Fixed [243](https://github.com/Microsoft/PowerStig/issues/243): [V-46515] Windows-All-IE11-1.15 Rawstring typo
 
+Removed STIG
+
+* Internet Explorer 1.13
+
 ## 2.4.0.0
 
 * Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
