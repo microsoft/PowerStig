@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+* Introduces class support for each rule type
+* The STIG class now contains an array of rule objects vs xml elements
+* Orgsettings, Exceptions, and Rule skips are all supported by the Rule base class
+* Rule help is provided for any loaded rule.
+  * See the wiki for more information.
+* Major code refactor to simplify maintenance and usage
+* [Breaking Change] The STIG class constructor no longer accepts Orgsettings, Exceptions, or Rule skips
+  * That functionality has move to the load rule method
+* DSC compsoite resource parameter valdation for version numbers has been removed
+  * The STIG class validates all input and will throw an error if invalid data is provided.
+* The Get-StigList has be updated and renamed to Get-Stig to return the STIG class
+
 ## 2.4.0.0
 
 * Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
@@ -31,8 +43,6 @@
   * Windows Server 2012R2 DC V2R15 [#267](https://github.com/Microsoft/PowerStig/issues/267)
   * Windows 10 V1R16 [#269](https://github.com/Microsoft/PowerStig/issues/269)
   * IIS Server 8.5 V1R6 [#256](https://github.com/Microsoft/PowerStig/issues/266)
-  * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
-  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
   * Windows Server 2012R2 DNS V1R11 STIG [#265](https://github.com/Microsoft/PowerStig/issues/265)
   * AD Domain V2R12 [#270](https://github.com/Microsoft/PowerStig/issues/270)
 

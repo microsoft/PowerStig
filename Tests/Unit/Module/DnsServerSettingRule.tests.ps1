@@ -74,7 +74,7 @@ try
         }
         #endregion
 
-        <#{TODO}#> <#Rem structural tests. This is testing a specifc vraible name
+        <#{TODO}#> <#Rem structural tests. This is testing a specific variable name
         and can be moved to the $rulesToTest above#>
         <#region Function Tests
         Describe 'Private DnsServerSetting Rule tests' {
