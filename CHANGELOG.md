@@ -14,6 +14,8 @@
   * The STIG class validates all input and will throw an error if invalid data is provided.
 * The Get-StigList has be updated and renamed to Get-Stig to return the STIG class
 
+* Fixed [243](https://github.com/Microsoft/PowerStig/issues/243): [V-46515] Windows-All-IE11-1.15 Rawstring typo
+
 ## 2.4.0.0
 
 * Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
