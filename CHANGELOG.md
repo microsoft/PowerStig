@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
+
 * Introduces class support for each rule type
 * The STIG class now contains an array of rule objects vs xml elements
 * Orgsettings, Exceptions, and Rule skips are all supported by the Rule base class
