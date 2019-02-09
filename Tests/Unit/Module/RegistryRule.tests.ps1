@@ -613,15 +613,6 @@ try
                     Get-RegistryPathFromWindowsStig -CheckContent $path | Should -Be "\$pathToExtract"
                 }
             }
-            # Test for an edge case where the intern at DISA added a space between 'SOFTWARE\ Polices'
-
-            It 'Should return path with typo and formated correctly' {
-                $typoString = 'Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
-                $expected = '\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
-                $result = Get-RegistryPathFromWindowsStig -CheckContent $typoString
-
-                $result | Should -Be $expected
-            }
             # Fuzz testing the regex
             $badStrings = @(
                 'Registry Path: SYSTEM', 'Registry Path: \SYSTEM', 'Registry Path: \SYSTEM\',
