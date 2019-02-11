@@ -17,6 +17,7 @@
 * The Get-StigList has be updated and renamed to Get-Stig to return the STIG class
 
 * Fixed [284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
+* Fixed [290](https://github.com/Microsoft/PowerStig/issues/290): [V-76731] IIS Server STIG V-76731 fails to properly set STIG guidance because rule is not split 
 
 ## 2.4.0.0
 
