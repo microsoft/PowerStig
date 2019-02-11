@@ -7,17 +7,17 @@
 -->
 <OrganizationalSettings fullversion="1.6">
   <!-- Ensure ''V-76805'' -cmatch '^(Full|High)$'-->
-  <OrganizationalSetting id="V-76805" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76805" value="Full" />
   <!-- Ensure 'V-76817' -le 4096-->
-  <OrganizationalSetting id="V-76817" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76817" value="4096" />
   <!-- Ensure 'V-76821' -le 2048-->
-  <OrganizationalSetting id="V-76821" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76821" value="2048" />
   <!-- Ensure [TimeSpan]'V-76839' -le [TimeSpan]'00:20:00'-->
-  <OrganizationalSetting id="V-76839" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76839" value="00:20:00" />
   <!-- Ensure [TimeSpan]'V-76841' -le [TimeSpan]'00:20:00'-->
-  <OrganizationalSetting id="V-76841" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76841" value="00:20:00" />
   <!-- Ensure 'V-76875' -le 1000-->
-  <OrganizationalSetting id="V-76875" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76875" value="1000" />
   <!-- Ensure [TimeSpan]'V-76881' -le [TimeSpan]'00:05:00'-->
-  <OrganizationalSetting id="V-76881" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-76881" value="00:05:00" />
 </OrganizationalSettings>
