@@ -32,12 +32,12 @@ Install-Module -Name PowerStig -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
-The Get-StigList function queries the StigData and returns a full list.
+The Get-Stig function queries the StigData and returns a full list.
 This will give you an idea of what you can target in your environment.
 
 ```powershell
 Import-Module PowerStig
-Get-StigList
+Get-Stig
 ```
 
 To update a previously installed module use this command:
@@ -66,7 +66,7 @@ The PowerStig.Data classes provide methods to:
 1. Exclude a rule if it is already defined in another STIG (de-duplication) and automatically document the exception to policy
 1. Exclude an entire class of rules (intended for testing and integration) and automatically document the exception to policy
 
-For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig)
+For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig).  For STIG xml file hashes please refer to [File Hashes](https://github.com/Microsoft/PowerStig/FILEHASH.md).
 
 ## PowerStig.DSC
 

@@ -38,29 +38,6 @@ Class DocumentRuleConvert : DocumentRule
 
     <#
         .SYNOPSIS
-            Constructor that fully populates the required properties
-        .DESCRIPTION
-            Constructor that fully populates the required properties
-        .PARAMETER Id
-            The STIG ID
-        .PARAMETER Severity
-            The STIG Severity
-        .PARAMETER Title
-            The STIG Title
-        .PARAMETER RawString
-            The chcek-content element of the STIG xccdf
-    #>
-    DocumentRule ([string] $Id, [severity] $Severity, [string] $Title, [string] $RawString)
-    {
-        $this.Id = $Id
-        $this.severity = $Severity
-        $this.title = $Title
-        $this.rawString = $RawString
-        $this.DscResource = 'None'
-    }
-
-    <#
-        .SYNOPSIS
             Converts an existing rule into a document rule
         .DESCRIPTION
             Provides a way to convert stig rules that have already been parsed

@@ -112,7 +112,7 @@ function Get-UserRightIdentity
 
             if
             (
-                $line.Trim() -notmatch ":|^If|^Microsoft|^Organizations|^Vendor|^The|^(Systems|Workstations)\sDedicated" -and
+                $line.Trim() -notmatch ":|^If|^Microsoft|^Organizations|^Vendor|^The|^(Systems|Workstations)\sDedicated|Privileged Access" -and
                 -not [string]::IsNullOrEmpty( $line.Trim() )
             )
             {

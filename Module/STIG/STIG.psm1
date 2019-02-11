@@ -164,7 +164,7 @@ Class STIG
 
             if ($propertyList.count -eq 3)
             {
-                $null = $return.Add([STIG]::new($propertyList[0], $propertyList[1], $propertyList[2]))
+                $null = $return.Add([STIG]::new($propertyList[0], $propertyList[1], [version]$propertyList[2]))
             }
             elseif ($propertyList.Count -eq 4)
             {

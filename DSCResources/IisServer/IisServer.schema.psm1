@@ -89,7 +89,7 @@ Configuration IisServer
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.3.0.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
-    . "$resourcePath\windows.WebConfigProperty.ps1"
+    . "$resourcePath\windows.xWebConfigProperty.ps1"
     . "$resourcePath\windows.xIisLogging.ps1"
 }
 #endregion Composite

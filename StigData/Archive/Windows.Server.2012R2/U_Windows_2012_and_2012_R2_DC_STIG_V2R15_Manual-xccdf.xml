@@ -5,7 +5,7 @@
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     xmlns:dc="http://purl.org/dc/elements/1.1/" id="Windows_2012_DC_STIG" xml:lang="en" xsi:schemaLocation="http://checklists.nist.gov/xccdf/1.1 http://nvd.nist.gov/schema/xccdf-1.1.4.xsd http://cpe.mitre.org/dictionary/2.0 http://cpe.mitre.org/files/cpe-dictionary_2.1.xsd"
     xmlns="http://checklists.nist.gov/xccdf/1.1">
-    <status date="2018-03-07">accepted</status>
+    <status date="2019-01-16">accepted</status>
     <title>Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide</title>
     <description>The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.</description>
     <notice id="terms-of-use" xml:lang="en">Developed_by_DISA_for_the_DoD</notice>
@@ -13,7 +13,7 @@
         <dc:publisher>DISA</dc:publisher>
         <dc:source>STIG.DOD.MIL</dc:source>
     </reference>
-    <plain-text id="release-info">Release: 12 Benchmark Date: 27 Apr 2018</plain-text>
+    <plain-text id="release-info">Release: 15 Benchmark Date: 08 Feb 2019</plain-text>
     <version>2</version>
     <Profile id="MAC-1_Classified">
         <title>I - Mission Critical Classified</title>
@@ -133,7 +133,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -226,7 +225,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -244,12 +242,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -391,6 +386,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-1_Public">
         <title>I - Mission Critical Public</title>
@@ -510,7 +509,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -602,7 +600,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -620,12 +617,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -767,6 +761,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-1_Sensitive">
         <title>I - Mission Critical Sensitive</title>
@@ -886,7 +884,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -979,7 +976,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -997,12 +993,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -1144,6 +1137,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-2_Classified">
         <title>II - Mission Support Classified</title>
@@ -1263,7 +1260,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -1356,7 +1352,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -1374,12 +1369,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -1521,6 +1513,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-2_Public">
         <title>II - Mission Support Public</title>
@@ -1640,7 +1636,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -1732,7 +1727,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -1750,12 +1744,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -1897,6 +1888,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-2_Sensitive">
         <title>II - Mission Support Sensitive</title>
@@ -2016,7 +2011,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -2109,7 +2103,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -2127,12 +2120,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -2274,6 +2264,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-3_Classified">
         <title>III - Administrative Classified</title>
@@ -2392,7 +2386,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -2485,7 +2478,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -2503,12 +2495,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -2650,6 +2639,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-3_Public">
         <title>III - Administrative Public</title>
@@ -2768,7 +2761,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -2860,7 +2852,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -2878,12 +2869,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -3025,6 +3013,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Profile id="MAC-3_Sensitive">
         <title>III - Administrative Sensitive</title>
@@ -3143,7 +3135,6 @@
         <select idref="V-8326" selected="true" />
         <select idref="V-8327" selected="true" />
         <select idref="V-11806" selected="true" />
-        <select idref="V-12780" selected="true" />
         <select idref="V-14225" selected="true" />
         <select idref="V-14228" selected="true" />
         <select idref="V-14229" selected="true" />
@@ -3236,7 +3227,6 @@
         <select idref="V-26472" selected="true" />
         <select idref="V-26473" selected="true" />
         <select idref="V-26474" selected="true" />
-        <select idref="V-26476" selected="true" />
         <select idref="V-26478" selected="true" />
         <select idref="V-26479" selected="true" />
         <select idref="V-26480" selected="true" />
@@ -3254,12 +3244,9 @@
         <select idref="V-26493" selected="true" />
         <select idref="V-26494" selected="true" />
         <select idref="V-26496" selected="true" />
-        <select idref="V-26497" selected="true" />
         <select idref="V-26498" selected="true" />
         <select idref="V-26499" selected="true" />
         <select idref="V-26500" selected="true" />
-        <select idref="V-26501" selected="true" />
-        <select idref="V-26503" selected="true" />
         <select idref="V-26504" selected="true" />
         <select idref="V-26506" selected="true" />
         <select idref="V-26529" selected="true" />
@@ -3401,6 +3388,10 @@
         <select idref="V-78059" selected="true" />
         <select idref="V-78061" selected="true" />
         <select idref="V-78063" selected="true" />
+        <select idref="V-80473" selected="true" />
+        <select idref="V-80475" selected="true" />
+        <select idref="V-80477" selected="true" />
+        <select idref="V-91777" selected="true" />
     </Profile>
     <Group id="V-1070">
         <title>Physical security</title>
@@ -3831,15 +3822,12 @@ Configuring this to "0", requiring an administrator to unlock the account, is mo
     <Group id="V-1102">
         <title>User Right - Act as part of OS</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52108r2_rule" severity="high" weight="10.0">
+        <Rule id="SV-52108r3_rule" severity="high" weight="10.0">
             <version>WN12-UR-000003</version>
-            <title>Unauthorized accounts must not have the Act as part of the operating system user right.</title>
+            <title>The Act as part of the operating system user right must not be assigned to any groups or accounts.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Act as part of the operating system" user right can assume the identity of any user and gain access to resources that user is authorized to access.  Any accounts with this right can take complete control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to a CAT III if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Act as part of the operating system" user right can assume the identity of any user and gain access to resources that user is authorized to access.  Any accounts with this right can take complete control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -3849,16 +3837,25 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-25043-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45133r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Act as part of the operating system" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-45133r1_fix" />
-            <check system="C-46925r1_chk">
+            <fixtext fixref="F-45133r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Act as part of the operating system" to be defined but containing no entries (blank).</fixtext>
+            <fix id="F-45133r2_fix" />
+            <check system="C-80901r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.</check-content>
+If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
@@ -6115,9 +6112,9 @@ Value: 0</check-content>
     <Group id="V-3472">
         <title>Windows Time Service - Configure NTP Client</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52919r2_rule" severity="low" weight="10.0">
+        <Rule id="SV-52919r3_rule" severity="low" weight="10.0">
             <version>WN12-CC-000069</version>
-            <title>If the time service is configured, it must use an authorized time server.</title>
+            <title>The time service must synchronize with an appropriate DoD time source.</title>
             <description>&lt;VulnDiscussion&gt;The Windows Time Service controls time synchronization settings.  Time synchronization is essential for authentication and auditing purposes.  If the Windows Time Service is used, it must synchronize with a secure, authorized time source.   Domain-joined systems are automatically configured to synchronize with domain controllers.  If an NTP server is configured, it must synchronize with a secure, authorized time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
@@ -6128,36 +6125,23 @@ Value: 0</check-content>
             </reference>
             <ident system="http://cce.mitre.org">CCE-23563-0</ident>
             <ident system="http://iase.disa.mil/cci">CCI-001891</ident>
-            <fixtext fixref="F-45845r1_fix">If the system needs to be configured to an NTP server, configure the system to point to an authorized time server by setting the policy value for Computer Configuration -&gt; Administrative Templates -&gt; System -&gt; Windows Time Service -&gt; Time Providers -&gt; "Configure Windows NTP Client" to "Enabled", and configure the "NtpServer" field to point to an authorized time server.</fixtext>
-            <fix id="F-45845r1_fix" />
-            <check system="C-47224r3_chk">
+            <fixtext fixref="F-87335r1_fix">If the system needs to be configured to an NTP server, configure the system to point to an authorized time server by setting the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; System &gt;&gt; Windows Time Service &gt;&gt; Time Providers &gt;&gt; "Configure Windows NTP Client" to "Enabled", and configure the "NtpServer" field to point to an authorized time server.
+
+The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</fixtext>
+            <fix id="F-87335r1_fix" />
+            <check system="C-80215r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Review the following registry values:
+                <check-content>Open "Windows PowerShell" or an elevated "Command Prompt" (run as administrator).
 
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \Software\Policies\Microsoft\W32time\Parameters\
+Enter "W32tm /query /configuration".
 
-Value Name: Type
-Type: REG_SZ
-Value: Possible values are NoSync, NTP, NT5DS, AllSync
+Domain-joined systems are automatically configured with a "Type" of "NT5DS" to synchronize with domain controllers and would not be a finding.
 
-and
+If systems are configured with a "Type" of "NTP", including standalone systems and the forest root domain controller with the PDC Emulator role, and do not have a DoD time server defined for "NTPServer", this is a finding. (See V-8557 in the Active Directory Forest STIG for the time source requirement of the forest root domain PDC emulator.)
 
-Value Name: NTPServer
-Type: REG_SZ
-Value: "address of the time server"
+If an alternate time synchronization tool is used and is not enabled or not configured to synchronize with a DoD time source, this is a finding.
 
-If the following, this is a finding:
-"Type" has a value of "NTP" or "Allsync" AND the "NTPServer" value is set to "time.windows.com" or other unauthorized server.
-
-If the following, this not a finding:
-The referenced registry values do not exist.
-"Type" has a value of "NoSync" or "NT5DS".
-"Type" has a value of "NTP" or "Allsync" AND the "NTPServer" is blank or configured to an authorized time server.
-
-For DoD organizations, the US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.
-
-Domain-joined systems are automatically configured to synchronize with domain controllers, and it would not be a finding unless this is changed.</check-content>
+The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</check-content>
             </check>
         </Rule>
     </Group>
@@ -7503,35 +7487,6 @@ Value Name: DontDisplayLastUserName
 
 Value Type: REG_DWORD
 Value: 1</check-content>
-            </check>
-        </Rule>
-    </Group>
-    <Group id="V-12780">
-        <title>Synchronize Directory Service Data </title>
-        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-51150r2_rule" severity="high" weight="10.0">
-            <version>WN12-UR-000043-DC</version>
-            <title>The Synchronize directory service data user right must be configured to include no accounts or groups (blank).</title>
-            <description>&lt;VulnDiscussion&gt;A Windows account with the "Synchronize directory service data" right has the ability to read all information in the AD database.  This bypasses the object access permissions that would otherwise restrict access to the data.  The scope of access granted by this right is too broad for secure usage.  Specific object permissions or other group membership assignments could be used to provide access on an appropriate scale.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECAN-1, ECCD-1, ECCD-2, ECLP-1&lt;/IAControls&gt;</description>
-            <reference>
-                <dc:title>DPMS Target Windows 2012</dc:title>
-                <dc:publisher>DISA</dc:publisher>
-                <dc:type>DPMS Target</dc:type>
-                <dc:subject>Windows 2012</dc:subject>
-                <dc:identifier>2350</dc:identifier>
-            </reference>
-            <ident system="http://cce.mitre.org">CCE-25408-6</ident>
-            <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-44307r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Synchronize directory service data" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-44307r1_fix" />
-            <check system="C-46584r1_chk">
-                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Synchronize directory service data" user right, this is a finding.</check-content>
             </check>
         </Rule>
     </Group>
@@ -9786,15 +9741,12 @@ Value: 1</check-content>
     <Group id="V-18010">
         <title>User Right - Debug Programs</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52115r2_rule" severity="high" weight="10.0">
+        <Rule id="SV-52115r3_rule" severity="high" weight="10.0">
             <version>WN12-UR-000016</version>
-            <title>Unauthorized accounts must not have the Debug programs user right.</title>
+            <title>The Debug programs user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Debug programs" user right can attach a debugger to any process or to the kernel, providing complete access to sensitive and critical operating system components.  This right is given to Administrators in the default configuration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to a CAT III if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Debug programs" user right can attach a debugger to any process or to the kernel, providing complete access to sensitive and critical operating system components.  This right is given to Administrators in the default configuration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -9804,20 +9756,29 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-23648-9</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45140r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Debug programs" to only include the following accounts or groups:
+            <fixtext fixref="F-45140r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Debug programs" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45140r1_fix" />
-            <check system="C-46932r1_chk">
+            <fix id="F-45140r2_fix" />
+            <check system="C-80905r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Debug programs" user right, this is a finding:
 
-Administrators</check-content>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
@@ -9952,10 +9913,12 @@ Value: 0</check-content>
     <Group id="V-21954">
         <title>Kerberos Encryption Types</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53179r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53179r4_rule" severity="medium" weight="10.0">
             <version>WN12-SO-000064</version>
-            <title>The use of DES encryption suites must not be allowed for Kerberos encryption.</title>
-            <description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  By default, Windows 2012/R2 does not use the DES encryption suites.  If the configuration of allowed Kerberos encryption suites is needed, the DES encryption suites must not be included.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <title>Kerberos encryption types must be configured to prevent the use of DES and RC4 encryption suites.</title>
+            <description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure. The DES and RC4 encryption suites must not be used for Kerberos encryption.
+
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -9965,45 +9928,27 @@ Value: 0</check-content>
             </reference>
             <ident system="http://cce.mitre.org">CCE-24147-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-000803</ident>
-            <fixtext fixref="F-66513r3_fix">The default system configuration does not use DES encryption for Kerberos and supports this requirement.  If Kerberos encryption types must be configured, ensure the following are not selected:
+            <fixtext fixref="F-97093r4_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network security: Configure encryption types allowed for Kerberos" to "Enabled" with only the following selected:
 
-DES_CBC_CRC
-DES_CBC_MD5
-
-If the policy for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network security: Configure encryption types allowed for Kerberos" is configured, only the following selections are allowed:
-
-RC4_HMAC_MD5
 AES128_HMAC_SHA1
 AES256_HMAC_SHA1
-Future encryption types</fixtext>
-            <fix id="F-66513r3_fix" />
-            <check system="C-61749r2_chk">
+Future encryption types
+
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.</fixtext>
+            <fix id="F-97093r4_fix" />
+            <check system="C-90047r3_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Verify whether the registry key below exists.  If it does not exist or the value is "0", this is not a finding.
-If the registry key exists and contains a value other than "0", continue below.
+                <check-content>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-The values are determined by the selection of encryption suites in the policy Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network Security: Configure encryption types allowed for Kerberos".
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
 
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-Value Name:  SupportedEncryptionTypes
-Type:  REG_DWORD
+Value Name: SupportedEncryptionTypes
 
-Due to the number of possible combinations that may include the DES encryption types, it is not possible to include all acceptable values as viewed directly in the registry.
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)
 
-If the registry key does exist, the value must be converted to binary to determine configuration of specific bits.  This will determine whether this is a finding.
-
-Note the value for the registry key.
-For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".
-
-Open the Windows calculator (Run/Search for "calc").
-Select "View", then "Programmer".
-Select "Dword" and either "Hex" or "Dec".
-Enter the appropriate form of the value found for the registry key (e.g., Hex - enter 0x7fffffff, Dec - enter 2147483647)
-Select "Bin".
-The returned value may vary in length, up to 32 characters.
-If the either of 2 right most characters are "1", this is a finding.
-If the both of 2 right most characters are "0", this is not a finding.</check-content>
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.</check-content>
             </check>
         </Rule>
     </Group>
@@ -10602,9 +10547,9 @@ Automated tools may only search for the titles defined above. If a site-defined 
     <Group id="V-26469">
         <title>Access Credential Manager as a trusted caller</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53120r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53120r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000001</version>
-            <title>Unauthorized accounts must not have the Access Credential Manager as a trusted caller user right.</title>
+            <title>The Access Credential Manager as a trusted caller user right must not be assigned to any groups or accounts.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Access Credential Manager as a trusted caller" user right may be able to retrieve the credentials of other accounts from Credential Manager.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10617,14 +10562,15 @@ Accounts with the "Access Credential Manager as a trusted caller" user right may
             </reference>
             <ident system="http://cce.mitre.org">CCE-25683-4</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-46046r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Access Credential Manager as a trusted caller" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-46046r1_fix" />
-            <check system="C-47426r1_chk">
+            <fixtext fixref="F-46046r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Access Credential Manager as a trusted caller" to be defined but containing no entries (blank).</fixtext>
+            <fix id="F-46046r2_fix" />
+            <check system="C-47426r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Access Credential Manager as a trusted caller" user right, this is a finding.</check-content>
             </check>
@@ -10674,15 +10620,12 @@ Enterprise Domain Controllers</check-content>
     <Group id="V-26472">
         <title>Allow log on locally</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52110r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52110r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000005</version>
-            <title>Unauthorized accounts must not have the Allow log on locally user right.</title>
+            <title>The Allow log on locally user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Allow log on locally" user right can log on interactively to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Allow log on locally" user right can log on interactively to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -10692,20 +10635,29 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-25228-8</ident>
             <ident system="http://iase.disa.mil/cci">CCI-000213</ident>
-            <fixtext fixref="F-45135r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Allow log on locally" to only include the following accounts or groups:
+            <fixtext fixref="F-45135r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Allow log on locally" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45135r1_fix" />
-            <check system="C-46927r1_chk">
+            <fix id="F-45135r2_fix" />
+            <check system="C-80907r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Allow log on locally" user right, this is a finding:
 
-Administrators</check-content>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
@@ -10746,15 +10698,12 @@ Administrators</check-content>
     <Group id="V-26474">
         <title>Back up files and directories</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52111r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52111r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000007</version>
-            <title>Unauthorized accounts must not have the back up files and directories user right.</title>
+            <title>The Back up files and directories user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Back up files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Back up files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -10764,66 +10713,38 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-25380-7</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45136r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Back up files and directories" to only include the following accounts or groups:
+            <fixtext fixref="F-45136r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Back up files and directories" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45136r1_fix" />
-            <check system="C-46928r1_chk">
+            <fix id="F-45136r2_fix" />
+            <check system="C-80909r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Back up files and directories" user right, this is a finding:
 
-Administrators</check-content>
-            </check>
-        </Rule>
-    </Group>
-    <Group id="V-26476">
-        <title>Change the system time</title>
-        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53118r1_rule" severity="medium" weight="10.0">
-            <version>WN12-UR-000009</version>
-            <title>Unauthorized accounts must not have the Change the system time user right.</title>
-            <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-Accounts with the "Change the system time" user right can change the system time, which can impact authentication, as well as affect time stamps on event log entries.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-            <reference>
-                <dc:title>DPMS Target Windows 2012</dc:title>
-                <dc:publisher>DISA</dc:publisher>
-                <dc:type>DPMS Target</dc:type>
-                <dc:subject>Windows 2012</dc:subject>
-                <dc:identifier>2350</dc:identifier>
-            </reference>
-            <ident system="http://cce.mitre.org">CCE-24185-1</ident>
-            <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-46044r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Change the system time" to only include the following accounts or groups:
-
 Administrators
-Local Service</fixtext>
-            <fix id="F-46044r1_fix" />
-            <check system="C-47424r1_chk">
-                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+If an application requires this user right, this would not be a finding.
 
-If any accounts or groups other than the following are granted the "Change the system time" user right, this is a finding:
+Vendor documentation must support the requirement for having the user right.
 
-Administrators
-Local Service</check-content>
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26478">
         <title>Create a pagefile</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53063r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53063r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000011</version>
-            <title>Unauthorized accounts must not have the Create a pagefile user right.</title>
+            <title>The Create a pagefile user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Create a pagefile" user right can change the size of a pagefile, which could affect system performance.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10836,16 +10757,17 @@ Accounts with the "Create a pagefile" user right can change the size of a pagefi
             </reference>
             <ident system="http://cce.mitre.org">CCE-23972-3</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45989r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Create a pagefile" to only include the following accounts or groups:
+            <fixtext fixref="F-45989r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Create a pagefile" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45989r1_fix" />
-            <check system="C-47369r1_chk">
+            <fix id="F-45989r2_fix" />
+            <check system="C-47369r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create a pagefile" user right, this is a finding:
 
@@ -10856,15 +10778,12 @@ Administrators</check-content>
     <Group id="V-26479">
         <title>Create a token object</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52113r2_rule" severity="high" weight="10.0">
+        <Rule id="SV-52113r3_rule" severity="high" weight="10.0">
             <version>WN12-UR-000012</version>
-            <title>Unauthorized accounts must not have the Create a token object user right.</title>
+            <title>The Create a token object user right must not be assigned to any groups or accounts.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Create a token object" user right allows a process to create an access token. This could be used to provide elevated rights and compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to a CAT III if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+The "Create a token object" user right allows a process to create an access token. This could be used to provide elevated rights and compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -10874,31 +10793,37 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-23939-2</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45138r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Create a token object" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-45138r1_fix" />
-            <check system="C-46930r1_chk">
+            <fixtext fixref="F-45138r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Create a token object" to be defined but containing no entries (blank).</fixtext>
+            <fix id="F-45138r2_fix" />
+            <check system="C-80913r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Create a token object" user right, this is a finding.</check-content>
+If any accounts or groups are granted the "Create a token object" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26480">
         <title>Create global objects</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52114r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52114r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000013</version>
-            <title>Unauthorized accounts must not have the Create global objects user right.</title>
+            <title>The Create global objects user right must only be assigned to Administrators, Service, Local Service, and Network Service.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Create global objects" user right can create objects that are available to all sessions, which could affect processes in other users' sessions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Create global objects" user right can create objects that are available to all sessions, which could affect processes in other users' sessions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -10908,35 +10833,44 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-23850-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45139r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Create global objects" to only include the following accounts or groups:
+            <fixtext fixref="F-45139r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Create global objects" to only include the following accounts or groups:
 
 Administrators
 Service
 Local Service
 Network Service</fixtext>
-            <fix id="F-45139r1_fix" />
-            <check system="C-46931r1_chk">
+            <fix id="F-45139r2_fix" />
+            <check system="C-80915r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create global objects" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</check-content>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26481">
         <title>Create permanent shared objects</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53059r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53059r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000014</version>
-            <title>Unauthorized accounts must not have the Create permanent shared objects user right.</title>
+            <title>The Create permanent shared objects user right must not be assigned to any groups or accounts.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Create permanent shared objects" user right could expose sensitive data by creating shared objects.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10949,14 +10883,15 @@ Accounts with the "Create permanent shared objects" user right could expose sens
             </reference>
             <ident system="http://cce.mitre.org">CCE-23723-0</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45985r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Create permanent shared objects" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-45985r1_fix" />
-            <check system="C-47365r1_chk">
+            <fixtext fixref="F-45985r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Create permanent shared objects" to be defined but containing no entries (blank).</fixtext>
+            <fix id="F-45985r2_fix" />
+            <check system="C-47365r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Create permanent shared objects" user right, this is a finding.</check-content>
             </check>
@@ -10965,9 +10900,9 @@ If any accounts or groups are granted the "Create permanent shared objects" user
     <Group id="V-26482">
         <title>Create symbolic links</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53054r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53054r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000015</version>
-            <title>Unauthorized accounts must not have the Create symbolic links user right.</title>
+            <title>The Create symbolic links user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Create symbolic links" user right can create pointers to other objects, which could potentially expose the system to attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -10986,9 +10921,10 @@ Administrators
 
 Systems that have the Hyper-V role will also have "Virtual Machines" given this user right.  If this needs to be added manually, enter it as "NT Virtual Machine\Virtual Machines".</fixtext>
             <fix id="F-66511r1_fix" />
-            <check system="C-61747r1_chk">
+            <check system="C-61747r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -11178,9 +11114,9 @@ Administrators</check-content>
     <Group id="V-26488">
         <title>Force shutdown from a remote system</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53050r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53050r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000023</version>
-            <title>Unauthorized accounts must not have the Force shutdown from a remote system user right.</title>
+            <title>The Force shutdown from a remote system user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Force shutdown from a remote system" user right can remotely shut down a system, which could result in a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11193,16 +11129,17 @@ Accounts with the "Force shutdown from a remote system" user right can remotely 
             </reference>
             <ident system="http://cce.mitre.org">CCE-24734-6</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45976r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Force shutdown from a remote system" to only include the following accounts or groups:
+            <fixtext fixref="F-45976r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Force shutdown from a remote system" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45976r1_fix" />
-            <check system="C-47356r1_chk">
+            <fix id="F-45976r2_fix" />
+            <check system="C-47356r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Force shutdown from a remote system" user right, this is a finding:
 
@@ -11213,15 +11150,12 @@ Administrators</check-content>
     <Group id="V-26489">
         <title>Generate security audits</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52116r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52116r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000024</version>
-            <title>Unauthorized accounts must not have the Generate security audits user right.</title>
+            <title>The Generate security audits user right must only be assigned to Local Service and Network Service.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Generate security audits" user right specifies users and processes that can generate Security Log audit records, which must only be the system service accounts defined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+The "Generate security audits" user right specifies users and processes that can generate Security Log audit records, which must only be the system service accounts defined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -11231,37 +11165,43 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-24048-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45141r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Generate security audits" to only include the following accounts or groups:
+            <fixtext fixref="F-45141r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Generate security audits" to only include the following accounts or groups:
 
 Local Service
 Network Service</fixtext>
-            <fix id="F-45141r1_fix" />
-            <check system="C-46933r1_chk">
+            <fix id="F-45141r2_fix" />
+            <check system="C-80917r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Generate security audits" user right, this is a finding:
 
 Local Service
-Network Service</check-content>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26490">
         <title>Impersonate a client after authentication</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52117r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52117r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000025</version>
-            <title>Unauthorized accounts must not have the Impersonate a client after authentication user right.</title>
+            <title>The Impersonate a client after authentication user right must only be assigned to Administrators, Service, Local Service, and Network Service.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Impersonate a client after authentication" user right allows a program to impersonate another user or account to run on their behalf.  An attacker could potentially use this to elevate privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+The "Impersonate a client after authentication" user right allows a program to impersonate another user or account to run on their behalf.  An attacker could potentially use this to elevate privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -11271,41 +11211,47 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-24477-2</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45142r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Impersonate a client after authentication" to only include the following accounts or groups:
+            <fixtext fixref="F-45142r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Impersonate a client after authentication" to only include the following accounts or groups:
 
 Administrators
 Service
 Local Service
 Network Service</fixtext>
-            <fix id="F-45142r1_fix" />
-            <check system="C-46934r1_chk">
+            <fix id="F-45142r2_fix" />
+            <check system="C-80937r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Impersonate a client after authentication" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</check-content>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26492">
         <title>Increase scheduling priority</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52118r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52118r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000027</version>
-            <title>Unauthorized accounts must not have the Increase scheduling priority user right.</title>
+            <title>The Increase scheduling priority user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Increase scheduling priority" user right can change a scheduling priority causing performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Increase scheduling priority" user right can change a scheduling priority causing performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -11315,29 +11261,38 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-24911-0</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45143r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Increase scheduling priority" to only include the following accounts or groups:
+            <fixtext fixref="F-45143r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Increase scheduling priority" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45143r1_fix" />
-            <check system="C-46936r1_chk">
+            <fix id="F-45143r2_fix" />
+            <check system="C-80939r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Increase scheduling priority" user right, this is a finding:
 
-Administrators</check-content>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26493">
         <title>Load and unload device drivers</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53043r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53043r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000028</version>
-            <title>Unauthorized accounts must not have the Load and unload device drivers user right.</title>
+            <title>The Load and unload device drivers user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 The "Load and unload device drivers" user right allows device drivers to dynamically be loaded on a system by a user.  This could potentially be used to install malicious code by an attacker.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11350,16 +11305,17 @@ The "Load and unload device drivers" user right allows device drivers to dynamic
             </reference>
             <ident system="http://cce.mitre.org">CCE-24779-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45969r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Load and unload device drivers" to only include the following accounts or groups:
+            <fixtext fixref="F-45969r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Load and unload device drivers" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45969r1_fix" />
-            <check system="C-47349r1_chk">
+            <fix id="F-45969r2_fix" />
+            <check system="C-47349r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Load and unload device drivers" user right, this is a finding:
 
@@ -11370,15 +11326,12 @@ Administrators</check-content>
     <Group id="V-26494">
         <title>Lock pages in memory</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52119r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52119r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000029</version>
-            <title>Unauthorized accounts must not have the Lock pages in memory user right.</title>
+            <title>The Lock pages in memory user right must not be assigned to any groups or accounts.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Lock pages in memory" user right allows physical memory to be assigned to processes, which could cause performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+The "Lock pages in memory" user right allows physical memory to be assigned to processes, which could cause performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -11388,25 +11341,34 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-23829-5</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45144r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Lock pages in memory" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-45144r1_fix" />
-            <check system="C-46937r1_chk">
+            <fixtext fixref="F-45144r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Lock pages in memory" to be defined but containing no entries (blank).</fixtext>
+            <fix id="F-45144r2_fix" />
+            <check system="C-80941r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.</check-content>
+If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26496">
         <title>Manage auditing and security log</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53039r3_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53039r4_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000032</version>
-            <title>Unauthorized accounts must not have the Manage auditing and security log user right.</title>
+            <title>The Manage auditing and security log user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Manage auditing and security log" user right can manage the security log and change auditing configurations.  This could be used to clear evidence of tampering.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11427,9 +11389,10 @@ Accounts with the "Manage auditing and security log" user right can manage the s
 
 Administrators</fixtext>
             <fix id="F-45965r2_fix" />
-            <check system="C-72731r2_chk">
+            <check system="C-72731r3_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -11441,49 +11404,21 @@ Administrators
 If the organization has an Auditors group, the assignment of this group to the user right would not be a finding.
 
 If an application requires this user right, this would not be a finding.
+
 Vendor documentation must support the requirement for having the user right.
+
 The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).</check-content>
-            </check>
-        </Rule>
-    </Group>
-    <Group id="V-26497">
-        <title>Modify an object label</title>
-        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53033r1_rule" severity="medium" weight="10.0">
-            <version>WN12-UR-000033</version>
-            <title>Unauthorized accounts must not have the Modify an object label user right.</title>
-            <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Modify an object label" user right can change the integrity label of an object.  This could potentially be used to execute code at a higher privilege.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-            <reference>
-                <dc:title>DPMS Target Windows 2012</dc:title>
-                <dc:publisher>DISA</dc:publisher>
-                <dc:type>DPMS Target</dc:type>
-                <dc:subject>Windows 2012</dc:subject>
-                <dc:identifier>2350</dc:identifier>
-            </reference>
-            <ident system="http://cce.mitre.org">CCE-24682-7</ident>
-            <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45958r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Modify an object label" to be defined but containing no entries (blank).</fixtext>
-            <fix id="F-45958r1_fix" />
-            <check system="C-47338r1_chk">
-                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Modify an object label" user right, this is a finding.</check-content>
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26498">
         <title>Modify firmware environment values</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53029r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53029r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000034</version>
-            <title>Unauthorized accounts must not have the Modify firmware environment values user right.</title>
+            <title>The Modify firmware environment values user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Modify firmware environment values" user right can change hardware configuration environment variables.  This could result in hardware failures or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11496,16 +11431,18 @@ Accounts with the "Modify firmware environment values" user right can change har
             </reference>
             <ident system="http://cce.mitre.org">CCE-25533-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45955r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Modify firmware environment values" to only include the following accounts or groups:
+            <fixtext fixref="F-45955r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Modify firmware environment values" to only include the following accounts or groups:
 
-Administrators</fixtext>
-            <fix id="F-45955r1_fix" />
-            <check system="C-47334r1_chk">
+Administrators
+            </fixtext>
+            <fix id="F-45955r2_fix" />
+            <check system="C-47334r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Modify firmware environment values" user right, this is a finding:
 
@@ -11516,9 +11453,9 @@ Administrators</check-content>
     <Group id="V-26499">
         <title>Perform volume maintenance tasks</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53025r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53025r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000035</version>
-            <title>Unauthorized accounts must not have the Perform volume maintenance tasks user right.</title>
+            <title>The Perform volume maintenance tasks user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Perform volume maintenance tasks" user right can manage volume and disk configurations.  They could potentially delete volumes, resulting in data loss or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11531,16 +11468,17 @@ Accounts with the "Perform volume maintenance tasks" user right can manage volum
             </reference>
             <ident system="http://cce.mitre.org">CCE-25070-4</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45951r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Perform volume maintenance tasks" to only include the following accounts or groups:
+            <fixtext fixref="F-45951r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Perform volume maintenance tasks" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45951r1_fix" />
-            <check system="C-47330r1_chk">
+            <fix id="F-45951r2_fix" />
+            <check system="C-47330r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Perform volume maintenance tasks" user right, this is a finding:
 
@@ -11551,9 +11489,9 @@ Administrators</check-content>
     <Group id="V-26500">
         <title>Profile single process</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53022r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-53022r2_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000036</version>
-            <title>Unauthorized accounts must not have the Profile single process user right.</title>
+            <title>The Profile single process user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
 Accounts with the "Profile single process" user right can monitor nonsystem processes performance.  An attacker could potentially use this to identify processes to attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -11566,16 +11504,17 @@ Accounts with the "Profile single process" user right can monitor nonsystem proc
             </reference>
             <ident system="http://cce.mitre.org">CCE-23844-4</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45948r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Profile single process" to only include the following accounts or groups:
+            <fixtext fixref="F-45948r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Profile single process" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45948r1_fix" />
-            <check system="C-47328r1_chk">
+            <fix id="F-45948r2_fix" />
+            <check system="C-47328r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Profile single process" user right, this is a finding:
 
@@ -11583,95 +11522,15 @@ Administrators</check-content>
             </check>
         </Rule>
     </Group>
-    <Group id="V-26501">
-        <title>Profile system performance</title>
-        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-53019r1_rule" severity="medium" weight="10.0">
-            <version>WN12-UR-000037</version>
-            <title>Unauthorized accounts must not have the Profile system performance user right.</title>
-            <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-Accounts with the "Profile system performance" user right can monitor system processes performance.  An attacker could potentially use this to identify processes to attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-            <reference>
-                <dc:title>DPMS Target Windows 2012</dc:title>
-                <dc:publisher>DISA</dc:publisher>
-                <dc:type>DPMS Target</dc:type>
-                <dc:subject>Windows 2012</dc:subject>
-                <dc:identifier>2350</dc:identifier>
-            </reference>
-            <ident system="http://cce.mitre.org">CCE-23802-2</ident>
-            <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45945r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Profile system performance" to only include the following accounts or groups:
-
-Administrators
-NT Service\WdiServiceHost</fixtext>
-            <fix id="F-45945r1_fix" />
-            <check system="C-47325r1_chk">
-                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Profile system performance" user right, this is a finding:
-
-Administrators
-NT Service\WdiServiceHost</check-content>
-            </check>
-        </Rule>
-    </Group>
-    <Group id="V-26503">
-        <title>Replace a process level token</title>
-        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52121r2_rule" severity="medium" weight="10.0">
-            <version>WN12-UR-000039</version>
-            <title>Unauthorized accounts must not have the Replace a process level token user right.</title>
-            <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Replace a process level token" user right allows one process or service to start another process or service with a different security access token.  A user with this right could use this to impersonate another account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-            <reference>
-                <dc:title>DPMS Target Windows 2012</dc:title>
-                <dc:publisher>DISA</dc:publisher>
-                <dc:type>DPMS Target</dc:type>
-                <dc:subject>Windows 2012</dc:subject>
-                <dc:identifier>2350</dc:identifier>
-            </reference>
-            <ident system="http://cce.mitre.org">CCE-24555-5</ident>
-            <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45146r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Replace a process level token" to only include the following accounts or groups:
-
-Local Service
-Network Service</fixtext>
-            <fix id="F-45146r1_fix" />
-            <check system="C-46939r1_chk">
-                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Replace a process level token" user right, this is a finding:
-
-Local Service
-Network Service</check-content>
-            </check>
-        </Rule>
-    </Group>
     <Group id="V-26504">
         <title>Restore files and directories</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52122r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52122r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000040</version>
-            <title>Unauthorized accounts must not have the Restore files and directories user right.</title>
+            <title>The Restore files and directories user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Restore files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.  It could also be used to overwrite more current data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Restore files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.  It could also be used to overwrite more current data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -11681,35 +11540,41 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-25518-2</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45147r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Restore files and directories" to only include the following accounts or groups:
+            <fixtext fixref="F-45147r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Restore files and directories" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45147r1_fix" />
-            <check system="C-46940r1_chk">
+            <fix id="F-45147r2_fix" />
+            <check system="C-80943r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Restore files and directories" user right, this is a finding:
 
-Administrators</check-content>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-26506">
         <title>Take ownership of files or other objects</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52123r2_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52123r3_rule" severity="medium" weight="10.0">
             <version>WN12-UR-000042</version>
-            <title>Unauthorized accounts must not have the Take ownership of files or other objects user right.</title>
+            <title>The Take ownership of files or other objects user right must only be assigned to the Administrators group.</title>
             <description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Take ownership of files or other objects" user right can take ownership of objects and make changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+Accounts with the "Take ownership of files or other objects" user right can take ownership of objects and make changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -11719,20 +11584,29 @@ The application account must meet requirements for application account passwords
             </reference>
             <ident system="http://cce.mitre.org">CCE-25585-1</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002235</ident>
-            <fixtext fixref="F-45148r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment -&gt; "Take ownership of files or other objects" to only include the following accounts or groups:
+            <fixtext fixref="F-45148r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment &gt;&gt; "Take ownership of files or other objects" to only include the following accounts or groups:
 
 Administrators</fixtext>
-            <fix id="F-45148r1_fix" />
-            <check system="C-46941r1_chk">
+            <fix id="F-45148r2_fix" />
+            <check system="C-80945r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Take ownership of files or other objects" user right, this is a finding:
 
-Administrators</check-content>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</check-content>
             </check>
         </Rule>
     </Group>
@@ -13063,7 +12937,7 @@ Administrators</check-content>
     <Group id="V-32272">
         <title>WINPK-000001</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52961r5_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52961r6_rule" severity="medium" weight="10.0">
             <version>WN12-PK-000001</version>
             <title>The DoD Root CA certificates must be installed in the Trusted Root Store.</title>
             <description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -13076,59 +12950,96 @@ Administrators</check-content>
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000185</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002470</ident>
-            <fixtext fixref="F-76901r2_fix">Install the DoD Root CA certificates.
+            <fixtext fixref="F-87317r1_fix">Install the DoD Root CA certificates.
 DoD Root CA 2
 DoD Root CA 3
 DoD Root CA 4
+DoD Root CA 5
 
 The InstallRoot tool is available on IASE at http://iase.disa.mil/pki-pke/Pages/tools.aspx.</fixtext>
-            <fix id="F-76901r2_fix" />
-            <check system="C-71055r3_chk">
+            <fix id="F-87317r1_fix" />
+            <check system="C-80189r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the DoD Root CA certificates are installed as Trusted Root Certification Authorities.
 
 The certificates and thumbprints referenced below apply to unclassified systems; see PKE documentation for other networks.
 
 Run "PowerShell" as an administrator.
+
 Execute the following command:
-Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint
-If the following information is not displayed, this is finding.
+
+Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
+
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
+
+If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
 Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: 8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561
+NotAfter: 12/5/2029
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: D73CA91102A2204A36459ED32213B467D7CE97FB
+NotAfter: 12/30/2029
 
 Subject: CN=DoD Root CA 4, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: B8269F25DBD937ECAFD4C35A9838571723F2D026
+NotAfter: 7/25/2032
+
+Subject: CN=DoD Root CA 5, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
+NotAfter: 6/14/2041
 
 Alternately use the Certificates MMC snap-in:
-Run "MMC".
-Select "File", "Add/Remove Snap-in".
-Select "Certificates", click "Add".
-Select "Computer account", click "Next".
-Select "Local computer: (the computer this console is running on)", click "Finish".
-Click "OK".
-Expand "Certificates" and navigate to "Trusted Root Certification Authorities &gt;&gt; Certificates".
-If there are no entries for "DoD Root CA 2", "DoD Root CA 3", and "DoD Root CA 4", this is a finding.
 
-For each of the DoD Root CA certificates noted above:
-Right click on the certificate and select "Open".
+Run "MMC".
+
+Select "File", "Add/Remove Snap-in".
+
+Select "Certificates", click "Add".
+
+Select "Computer account", click "Next".
+
+Select "Local computer: (the computer this console is running on)", click "Finish".
+
+Click "OK".
+
+Expand "Certificates" and navigate to "Trusted Root Certification Authorities &gt;&gt; Certificates".
+
+For each of the DoD Root CA certificates noted below:
+
+Right-click on the certificate and select "Open".
+
 Select the "Details" Tab.
+
 Scroll to the bottom and select "Thumbprint".
 
-If the value for the "Thumbprint" field is not as noted below, this is a finding.
-DoD Root CA 2 - 8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561
-DoD Root CA 3 - D73CA91102A2204A36459ED32213B467D7CE97FB
-DoD Root CA 4 - B8269F25DBD937ECAFD4C35A9838571723F2D026</check-content>
+If the DoD Root CA certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
+
+If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
+
+DoD Root CA 2
+Thumbprint: 8C941B34EA1EA6ED9AE2BC54CF687252B4C9B561
+Valid to: Wednesday, December 5, 2029
+
+DoD Root CA 3
+Thumbprint: D73CA91102A2204A36459ED32213B467D7CE97FB
+Valid to: Sunday, December 30, 2029
+
+DoD Root CA 4
+Thumbprint: B8269F25DBD937ECAFD4C35A9838571723F2D026
+Valid to: Sunday, July 25, 2032
+
+DoD Root CA 5
+Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
+Valid to: Friday, June 14, 2041</check-content>
             </check>
         </Rule>
     </Group>
     <Group id="V-32274">
         <title>WINPK-000003</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52957r5_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52957r6_rule" severity="medium" weight="10.0">
             <version>WN12-PK-000003</version>
             <title>The DoD Interoperability Root CA cross-certificates must be installed into the Untrusted Certificates Store on unclassified systems.</title>
             <description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the DoD Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
@@ -13141,58 +13052,90 @@ DoD Root CA 4 - B8269F25DBD937ECAFD4C35A9838571723F2D026</check-content>
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000185</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002470</ident>
-            <fixtext fixref="F-78949r1_fix">Install the DoD Interoperability Root CA cross-certificates on unclassified systems.
+            <fixtext fixref="F-78949r2_fix">Install the DoD Interoperability Root CA cross-certificates on unclassified systems.
 
 Issued To - Issued By - Thumbprint
 DoD Root CA 2 - DoD Interoperability Root CA 1 - 22BBE981F0694D246CC1472ED2B021DC8540A22F
+
 DoD Root CA 3 - DoD Interoperability Root CA 2 - FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
+
 DoD Root CA 3 - DoD Interoperability Root CA 2 - FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
 
 Administrators should run the Federal Bridge Certification Authority (FBCA) Cross-Certificate Removal Tool once as an administrator and once as the current user.
 
 The FBCA Cross-Certificate Remover tool and user guide is available on IASE at http://iase.disa.mil/pki-pke/Pages/tools.aspx.</fixtext>
-            <fix id="F-78949r1_fix" />
-            <check system="C-72757r1_chk">
+            <fix id="F-78949r2_fix" />
+            <check system="C-80191r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the DoD Interoperability cross-certificates are installed on unclassified systems as Untrusted Certificates.
 
 Run "PowerShell" as an administrator.
+
 Execute the following command:
-Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint
-If the following information is not displayed, this is finding.
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+
+If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
 Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: 22BBE981F0694D246CC1472ED2B021DC8540A22F
+NotAfter: 9/6/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
+NotAfter: 9/23/2018
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
+NotAfter: 2/17/2019
 
 Alternately use the Certificates MMC snap-in:
+
 Run "MMC".
+
 Select "File", "Add/Remove Snap-in".
+
 Select "Certificates", click "Add".
+
 Select "Computer account", click "Next".
+
 Select "Local computer: (the computer this console is running on)", click "Finish".
+
 Click "OK".
+
 Expand "Certificates" and navigate to "Untrusted Certificates &gt;&gt; Certificates".
 
 For each certificate with "DoD Root CA…" under "Issued To" and "DoD Interoperability Root CA…" under "Issued By":
-Right click on the certificate and select "Open".
+
+Right-click on the certificate and select "Open".
+
 Select the "Details" Tab.
+
 Scroll to the bottom and select "Thumbprint".
 
 If the certificates below are not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
-Issued To - Issued By - Thumbprint
-DoD Root CA 2 - DoD Interoperability Root CA 1 - 22BBE981F0694D246CC1472ED2B021DC8540A22F
-DoD Root CA 3 - DoD Interoperability Root CA 2 - FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-DoD Root CA 3 - DoD Interoperability Root CA 2 - FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4</check-content>
+If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
+
+Issued To: DoD Root CA 2
+Issued By: DoD Interoperability Root CA 1
+Thumbprint: 22BBE981F0694D246CC1472ED2B021DC8540A22F
+Valid to: Friday, September 6, 2019
+
+Issued To: DoD Root CA 3
+Issued By: DoD Interoperability Root CA 2
+Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
+Valid to: Sunday, September 23, 2018
+
+Issued To: DoD Root CA 3
+Issued By: DoD Interoperability Root CA 2
+Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
+Valid to: Sunday, February 17, 2019</check-content>
             </check>
         </Rule>
     </Group>
@@ -14269,10 +14212,10 @@ Value: 1</check-content>
     <Group id="V-36707">
         <title>WINCC-000088</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-51747r3_rule" severity="medium" weight="10.0">
+        <Rule id="SV-51747r4_rule" severity="medium" weight="10.0">
             <version>WN12-CC-000088</version>
-            <title>Windows SmartScreen must be configured to require approval from an administrator before running downloaded unknown software on Windows 2012/2012 R2.</title>
-            <description>&lt;VulnDiscussion&gt;Windows SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Requiring administrator approval before running unknown software will prevent potentially malicious programs from executing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <title>Windows SmartScreen must be enabled on Windows 2012/2012 R2.</title>
+            <description>&lt;VulnDiscussion&gt;Windows SmartScreen helps protect systems from programs downloaded from the Internet that may be malicious. Warning a user before running downloaded unknown software, at minimum, will help prevent potentially malicious programs from executing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -14282,9 +14225,15 @@ Value: 1</check-content>
             </reference>
             <ident system="http://cce.mitre.org">CCE-23531-7</ident>
             <ident system="http://iase.disa.mil/cci">CCI-000381</ident>
-            <fixtext fixref="F-85265r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; File Explorer &gt;&gt; "Configure Windows SmartScreen" to "Enabled" with "Require approval from an administrator before running downloaded unknown software" selected.</fixtext>
-            <fix id="F-85265r2_fix" />
-            <check system="C-78099r1_chk">
+            <fixtext fixref="F-87297r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; File Explorer &gt;&gt; "Configure Windows SmartScreen" to "Enabled" with either "Give user a warning before running downloaded unknown software" or "Require approval from an administrator before running downloaded unknown software" selected.
+
+Microsoft has changed this setting several times in the Windows 10 administrative templates, which will affect group policies in a domain if later templates are used.
+
+v1607 of Windows 10 and Windows Server 2016 changed the setting to only Enabled or Disabled without additional selections.  Enabled is effectively "Give user a warning…".
+
+v1703 of Windows 10 or later administrative templates changed the policy name to "Configure Windows Defender SmartScreen", and the selectable options are "Warn" and "Warn and prevent bypass". When either of these are applied to a Windows 2012/2012 R2 system, it will configure the registry equivalent of "Give user a warning…").</fixtext>
+            <fix id="F-87297r2_fix" />
+            <check system="C-80165r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -14294,7 +14243,7 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 Value Name: EnableSmartScreen
 
 Type: REG_DWORD
-Value: 0x00000002 (2)</check-content>
+Value:  1 (Give user a warning…) Or 2 (Require approval…)</check-content>
             </check>
         </Rule>
     </Group>
@@ -14867,10 +14816,10 @@ Backups shall be consistent with organizational recovery time and recovery point
     <Group id="V-36773">
         <title>WINSO-000021</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-51596r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-51596r2_rule" severity="medium" weight="10.0">
             <version>WN12-SO-000021</version>
             <title>The machine inactivity limit must be set to 15 minutes, locking the system with the screensaver.</title>
-            <description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and should be locked when unattended.  The screen saver should be set at a maximum of 15 minutes and be password protected.  This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;PESL-1&lt;/IAControls&gt;</description>
+            <description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and should be locked when unattended.  The screen saver should be set at a maximum of 15 minutes and be password protected.  This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -14880,9 +14829,9 @@ Backups shall be consistent with organizational recovery time and recovery point
             </reference>
             <ident system="http://cce.mitre.org">CCE-23043-3</ident>
             <ident system="http://iase.disa.mil/cci">CCI-000057</ident>
-            <fixtext fixref="F-44717r1_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options -&gt; "Interactive logon: Machine inactivity limit" to "900" seconds" or less.</fixtext>
-            <fix id="F-44717r1_fix" />
-            <check system="C-46851r1_chk">
+            <fixtext fixref="F-44717r2_fix">Configure the policy value for Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options -&gt; "Interactive logon: Machine inactivity limit" to "900" seconds" or less, excluding "0" which is effectively disabled.</fixtext>
+            <fix id="F-44717r2_fix" />
+            <check system="C-46851r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -14892,7 +14841,7 @@ Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: InactivityTimeoutSecs
 
 Value Type: REG_DWORD
-Value: 0x00000384 (900) (or less)</check-content>
+Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</check-content>
             </check>
         </Rule>
     </Group>
@@ -16259,10 +16208,10 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
     <Group id="V-40237">
         <title>WINPK-000004</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-52196r4_rule" severity="medium" weight="10.0">
+        <Rule id="SV-52196r5_rule" severity="medium" weight="10.0">
             <version>WN12-PK-000004</version>
-            <title>The US DoD CCEB Interoperability Root CA cross-certificate must be installed into the Untrusted Certificates Store on unclassified systems.</title>
-            <description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificate must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <title>The US DoD CCEB Interoperability Root CA cross-certificates must be installed into the Untrusted Certificates Store on unclassified systems.</title>
+            <description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
             <reference>
                 <dc:title>DPMS Target Windows 2012</dc:title>
                 <dc:publisher>DISA</dc:publisher>
@@ -16272,46 +16221,78 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000185</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002470</ident>
-            <fixtext fixref="F-76905r2_fix">Install the US DoD CCEB Interoperability Root CA cross-certificate on unclassified systems.
+            <fixtext fixref="F-87319r1_fix">Install the US DoD CCEB Interoperability Root CA cross-certificate on unclassified systems.
 
 Issued To - Issued By - Thumbprint
 DoD Root CA 2 - US DoD CCEB Interoperability Root CA 1 - DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
 
+DoD Root CA 3 - US DoD CCEB Interoperability Root CA 2 - 929BF3196896994C0A201DF4A5B71F603FEFBF2E
+
 Administrators should run the Federal Bridge Certification Authority (FBCA) Cross-Certificate Removal Tool once as an administrator and once as the current user.
 
 The FBCA Cross-Certificate Remover tool and user guide is available on IASE at http://iase.disa.mil/pki-pke/Pages/tools.aspx.</fixtext>
-            <fix id="F-76905r2_fix" />
-            <check system="C-71059r2_chk">
+            <fix id="F-87319r1_fix" />
+            <check system="C-80193r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Verify the US DoD CCEB Interoperability Root CA cross-certificate is installed on unclassified systems as an Untrusted Certificate.
 
 Run "PowerShell" as an administrator.
+
 Execute the following command:
-Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint
-If the following information is not displayed, this is finding.
+
+Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
+
+If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+
+If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
 Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
+NotAfter: 3/9/2019
+
+Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
+Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
+NotAfter: 9/27/2019
 
 Alternately use the Certificates MMC snap-in:
+
 Run "MMC".
+
 Select "File", "Add/Remove Snap-in".
+
 Select "Certificates", click "Add".
+
 Select "Computer account", click "Next".
+
 Select "Local computer: (the computer this console is running on)", click "Finish".
+
 Click "OK".
+
 Expand "Certificates" and navigate to "Untrusted Certificates &gt;&gt; Certificates".
 
 For each certificate with "US DoD CCEB Interoperability Root CA …" under "Issued By":
-Right click on the certificate and select "Open".
+
+Right-click on the certificate and select "Open".
+
 Select the "Details" Tab.
+
 Scroll to the bottom and select "Thumbprint".
 
 If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
-Issued To - Issued By - Thumbprint
-DoD Root CA 2 - US DoD CCEB Interoperability Root CA 1 - DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3</check-content>
+If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
+
+Issued To: DoD Root CA 2
+Issued By: US DoD CCEB Interoperability Root CA 1
+Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
+Valid to: Saturday, March 9, 2019
+
+Issued To: DoD Root CA 3
+Issuer by: US DoD CCEB Interoperability Root CA 2
+Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
+Valid: Friday, September 27, 2019</check-content>
             </check>
         </Rule>
     </Group>
@@ -16551,7 +16532,7 @@ Policy Change -&gt; Authorization Policy Change - Success</check-content>
     <Group id="V-57637">
         <title>WIN00-000018</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-72047r4_rule" severity="medium" weight="10.0">
+        <Rule id="SV-72047r5_rule" severity="medium" weight="10.0">
             <version>WN12-00-000018</version>
             <title>The operating system must employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.</title>
             <description>&lt;VulnDiscussion&gt;Utilizing a whitelist provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
@@ -16565,21 +16546,19 @@ The organization must identify authorized software programs and only permit exec
                 <dc:identifier>2350</dc:identifier>
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-001774</ident>
-            <fixtext fixref="F-66567r4_fix">This is applicable to unclassified systems, for other systems this is NA.
-
-Configure an application whitelisting program to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
+            <fixtext fixref="F-66567r6_fix">Configure an application whitelisting program to employ a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
 
 Configuration of whitelisting applications will vary by the program.  AppLocker is a whitelisting application built into Windows Server 2012.
 
 If AppLocker is used, it is configured through group policy in Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Application Control Policies &gt;&gt; AppLocker.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" under the Microsoft Windows section of the following link:
+Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
 
-https://www.nsa.gov/ia/mitigation_guidance/security_configuration_guides/operating_systems.shtml</fixtext>
-            <fix id="F-66567r4_fix" />
-            <check system="C-69283r2_chk">
+https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</fixtext>
+            <fix id="F-66567r6_fix" />
+            <check system="C-69283r4_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
-                <check-content>This is applicable to unclassified systems, for other systems this is NA.
+                <check-content>This is applicable to unclassified systems; for other systems this is NA.
 
 Verify the operating system employs a deny-all, permit-by-exception policy to allow the execution of authorized software programs.
 
@@ -16600,9 +16579,9 @@ Get-AppLockerPolicy -Effective -XML &gt; c:\temp\file.xml
 
 This will produce an xml file with the effective settings that can be viewed in a browser or opened in a program such as Excel for review.
 
-Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" under the Microsoft Windows section of the following link:
+Implementation guidance for AppLocker is available in the NSA paper "Application Whitelisting using Microsoft AppLocker" at the following link:
 
-https://www.nsa.gov/ia/mitigation_guidance/security_configuration_guides/operating_systems.shtml</check-content>
+https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</check-content>
             </check>
         </Rule>
     </Group>
@@ -17090,7 +17069,7 @@ If any unresolved SIDs exist and are not for currently valid accounts or groups,
     <Group id="V-78057">
         <title>WINAU-000501</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-92765r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-92765r2_rule" severity="medium" weight="10.0">
             <version>WN12-AU-000030</version>
             <title>Windows Server 2012/2012 R2 must be configured to audit Logon/Logoff - Account Lockout successes.</title>
             <description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -17106,8 +17085,8 @@ Account Lockout events can be used to identify potentially malicious logon attem
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
             <ident system="http://iase.disa.mil/cci">CCI-001404</ident>
-            <fixtext fixref="F-84781r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Logon/Logoff &gt;&gt; "Audit Account Lockout" with "Success" selected.</fixtext>
-            <fix id="F-84781r1_fix" />
+            <fixtext fixref="F-84781r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Logon/Logoff &gt;&gt; "Audit Account Lockout" with "Success" selected.</fixtext>
+            <fix id="F-84781r2_fix" />
             <check system="C-77633r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
@@ -17129,7 +17108,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Success</check-content>
     <Group id="V-78059">
         <title>WINAU-000502</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-92769r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-92769r2_rule" severity="medium" weight="10.0">
             <version>WN12-AU-000031</version>
             <title>Windows Server 2012/2012 R2 must be configured to audit Logon/Logoff - Account Lockout failures.</title>
             <description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -17144,8 +17123,8 @@ Account Lockout events can be used to identify potentially malicious logon attem
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
             <ident system="http://iase.disa.mil/cci">CCI-001404</ident>
-            <fixtext fixref="F-84787r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Logon/Logoff &gt;&gt; "Audit Account Lockout" with "Failure" selected.</fixtext>
-            <fix id="F-84787r1_fix" />
+            <fixtext fixref="F-84787r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; Logon/Logoff &gt;&gt; "Audit Account Lockout" with "Failure" selected.</fixtext>
+            <fix id="F-84787r2_fix" />
             <check system="C-77639r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
@@ -17165,7 +17144,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Failure</check-content>
     <Group id="V-78061">
         <title>WINAU-000907</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-92773r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-92773r2_rule" severity="medium" weight="10.0">
             <version>WN12-AU-000105</version>
             <title>Windows Server 2012/2012 R2 must be configured to audit System - Other System Events successes.</title>
             <description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -17180,8 +17159,8 @@ Audit Other System Events records information related to cryptographic key opera
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002234</ident>
-            <fixtext fixref="F-84791r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; System &gt;&gt; "Audit Other System Events" with "Success" selected.</fixtext>
-            <fix id="F-84791r1_fix" />
+            <fixtext fixref="F-84791r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; System &gt;&gt; "Audit Other System Events" with "Success" selected.</fixtext>
+            <fix id="F-84791r2_fix" />
             <check system="C-77643r1_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
@@ -17203,7 +17182,7 @@ System &gt;&gt; Other System Events - Success</check-content>
     <Group id="V-78063">
         <title>WINAU-000908</title>
         <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-        <Rule id="SV-92781r1_rule" severity="medium" weight="10.0">
+        <Rule id="SV-92781r2_rule" severity="medium" weight="10.0">
             <version>WN12-AU-000106</version>
             <title>Windows Server 2012/2012 R2 must be configured to audit System - Other System Events failures.</title>
             <description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
@@ -17218,8 +17197,8 @@ Audit Other System Events records information related to cryptographic key opera
             </reference>
             <ident system="http://iase.disa.mil/cci">CCI-000172</ident>
             <ident system="http://iase.disa.mil/cci">CCI-002234</ident>
-            <fixtext fixref="F-84799r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; System &gt;&gt; "Audit Other System Events" with "Failure" selected.</fixtext>
-            <fix id="F-84799r1_fix" />
+            <fixtext fixref="F-84799r2_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Advanced Audit Policy Configuration &gt;&gt; System Audit Policies &gt;&gt; System &gt;&gt; "Audit Other System Events" with "Failure" selected.</fixtext>
+            <fix id="F-84799r2_fix" />
             <check system="C-77651r2_chk">
                 <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
                 <check-content>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
@@ -17235,6 +17214,207 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; Other System Events - Failure</check-content>
+            </check>
+        </Rule>
+    </Group>
+    <Group id="V-80473">
+        <title>WIN00-000200</title>
+        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+        <Rule id="SV-95179r1_rule" severity="medium" weight="10.0">
+            <version>WN12-00-000200</version>
+            <title>Windows PowerShell must be updated to a version that supports script block logging on Windows 2012/2012 R2.</title>
+            <description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
+
+PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
+
+Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
+
+WMF 4.0:
+Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
+
+WMF 5.0:
+https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
+
+WMF 5.1:
+https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <reference>
+                <dc:title>DPMS Target Windows 2012</dc:title>
+                <dc:publisher>DISA</dc:publisher>
+                <dc:type>DPMS Target</dc:type>
+                <dc:subject>Windows 2012</dc:subject>
+                <dc:identifier>2350</dc:identifier>
+            </reference>
+            <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+            <fixtext fixref="F-87281r2_fix">Update Windows PowerShell to version 4.0 or 5.x.
+
+Windows 2012 R2 includes PowerShell 4.0 by default. It may be updated with the installation of Windows Management Framework (WMF) 5.0 or 5.1.
+
+Windows 2012 requires the installation of Windows Management Framework (WMF) 4.0, 5.0, or 5.1.
+
+Updating to a later PowerShell version may have compatibility issues with some applications. The following links should be reviewed and updates tested before applying to a production environment.
+
+WMF 4.0:
+Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
+
+WMF 5.0:
+https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
+
+WMF 5.1:
+https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat</fixtext>
+            <fix id="F-87281r2_fix" />
+            <check system="C-80147r3_chk">
+                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
+                <check-content>Open "Windows PowerShell".
+
+Enter "$PSVersionTable".
+
+If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
+
+Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</check-content>
+            </check>
+        </Rule>
+    </Group>
+    <Group id="V-80475">
+        <title>WIN00-000210</title>
+        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+        <Rule id="SV-95183r1_rule" severity="medium" weight="10.0">
+            <version>WN12-00-000210</version>
+            <title>PowerShell script block logging must be enabled on Windows 2012/2012 R2.</title>
+            <description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+
+Enabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts. This can provide additional detail when malware has run on a system.
+
+PowerShell 5.x supports script block logging. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds support for script block logging.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <reference>
+                <dc:title>DPMS Target Windows 2012</dc:title>
+                <dc:publisher>DISA</dc:publisher>
+                <dc:type>DPMS Target</dc:type>
+                <dc:subject>Windows 2012</dc:subject>
+                <dc:identifier>2350</dc:identifier>
+            </reference>
+            <ident system="http://iase.disa.mil/cci">CCI-000135</ident>
+            <fixtext fixref="F-87285r2_fix">Configure the following registry value as specified.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+
+Value Name: EnableScriptBlockLogging
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)
+
+Administrative templates from later versions of Windows include a group policy setting for this.  Configure the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows PowerShell &gt;&gt; "Turn on PowerShell Script Block Logging" to "Enabled".
+
+Install patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 on systems with PowerShell 4.0.
+
+PowerShell 5.x does not require the installation of an additional patch.</fixtext>
+            <fix id="F-87285r2_fix" />
+            <check system="C-80151r2_chk">
+                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
+                <check-content>If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
+
+Value Name: EnableScriptBlockLogging
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)
+
+PowerShell 4.0 requires the installation of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012.
+
+If the patch is not installed on systems with PowerShell 4.0, this is a finding.
+
+PowerShell 5.x does not require the installation of an additional patch.</check-content>
+            </check>
+        </Rule>
+    </Group>
+    <Group id="V-80477">
+        <title>WIN00-000220</title>
+        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+        <Rule id="SV-95185r1_rule" severity="medium" weight="10.0">
+            <version>WN12-00-000220</version>
+            <title>Windows PowerShell 2.0 must not be installed on Windows 2012/2012 R2.</title>
+            <description>&lt;VulnDiscussion&gt;Windows PowerShell versions 4.0 (with a patch) and 5.x add advanced logging features that can provide additional detail when malware has been run on a system. Ensuring Windows PowerShell 2.0 is not installed as well mitigates against a downgrade attack that evades the advanced logging features of later Windows PowerShell versions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <reference>
+                <dc:title>DPMS Target Windows 2012</dc:title>
+                <dc:publisher>DISA</dc:publisher>
+                <dc:type>DPMS Target</dc:type>
+                <dc:subject>Windows 2012</dc:subject>
+                <dc:identifier>2350</dc:identifier>
+            </reference>
+            <ident system="http://iase.disa.mil/cci">CCI-000381</ident>
+            <fixtext fixref="F-87287r3_fix">Windows PowerShell 2.0 is not installed by default.
+
+Uninstall it if it has been installed.
+
+Open "Windows PowerShell".
+
+Enter "Uninstall-WindowsFeature -Name PowerShell-v2".
+
+Alternately:
+
+Use the "Remove Roles and Features Wizard" and deselect "Windows PowerShell 2.0 Engine" under "Windows PowerShell".</fixtext>
+            <fix id="F-87287r3_fix" />
+            <check system="C-80153r1_chk">
+                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
+                <check-content>Windows PowerShell 2.0 is not installed by default.
+
+Open "Windows PowerShell".
+
+Enter "Get-WindowsFeature -Name PowerShell-v2".
+
+If "Installed State" is "Installed", this is a finding.
+
+An Installed State of "Available" or "Removed" is not a finding.</check-content>
+            </check>
+        </Rule>
+    </Group>
+    <Group id="V-91777">
+        <title>WINAD-000015-DC</title>
+        <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+        <Rule id="SV-101879r1_rule" severity="medium" weight="10.0">
+            <version>WN12-AD-000015-DC</version>
+            <title>The password for the krbtgt account on a domain must be reset at least every 180 days.</title>
+            <description>&lt;VulnDiscussion&gt;The krbtgt account acts as a service account for the Kerberos Key Distribution Center (KDC) service. The account and password are created when a domain is created and the password is typically not changed. If the krbtgt account is compromised, attackers can create valid Kerberos Ticket Granting Tickets (TGT).
+
+The password must be changed twice to effectively remove the password history. Changing once, waiting for replication to complete and changing again reduces the risk of issues. Changing twice in rapid succession forces clients to re-authenticate (including application services) but is desired if a compromise is suspected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+            <reference>
+                <dc:title>DPMS Target Windows 2012</dc:title>
+                <dc:publisher>DISA</dc:publisher>
+                <dc:type>DPMS Target</dc:type>
+                <dc:subject>Windows 2012</dc:subject>
+                <dc:identifier>2350</dc:identifier>
+            </reference>
+            <ident system="http://iase.disa.mil/cci">CCI-000366</ident>
+            <fixtext fixref="F-97979r1_fix">Reset the password for the krbtgt account a least every 180 days. The password must be changed twice to effectively remove the password history. Changing once, waiting for replication to complete and changing again reduces the risk of issues. Changing twice in rapid succession forces clients to re-authenticate (including application services) but is desired if a compromise is suspected.
+
+PowerShell scripts are available to accomplish this such as at the following link:
+https://gallery.technet.microsoft.com/Reset-the-krbtgt-account-581a9e51
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Select "Advanced Features" in the "View" menu if not previously selected.
+
+Select the "Users" node.
+
+Right click on the krbtgt account and select "Reset password".
+
+Enter a password that meets password complexity requirements.
+
+Clear the "User must change password at next logon" check box.
+
+The system will automatically change this to a system generated complex password.</fixtext>
+            <fix id="F-97979r1_fix" />
+            <check system="C-90935r1_chk">
+                <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_2012_DC_STIG.xml" />
+                <check-content>This requirement is applicable to domain controllers; it is NA for other systems.
+
+Open "Windows PowerShell".
+
+Enter "Get-ADUser krbtgt -Property PasswordLastSet".
+
+If the "PasswordLastSet" date is more than 180 days old, this is a finding.</check-content>
             </check>
         </Rule>
     </Group>

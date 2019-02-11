@@ -13,6 +13,6 @@ foreach ($supportFile in (Get-ChildItem -Path $pathList -File -Filter '*.ps1'))
 
 Export-ModuleMember -Function @(
     'Get-DomainName',
-    'Get-StigList',
+    'Get-Stig',
     'New-StigCheckList'
 )
