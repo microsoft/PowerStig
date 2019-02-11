@@ -19,5 +19,5 @@
   <!-- Ensure 'V-76875' -le 1000-->
   <OrganizationalSetting id="V-76875" value="1000" />
   <!-- Ensure [TimeSpan]'V-76881' -le [TimeSpan]'00:05:00'-->
-  <OrganizationalSetting id="V-76881" value="00:05:00" />
+  <OrganizationalSetting id="V-76881" value="'00:05:00'" />
 </OrganizationalSettings>
