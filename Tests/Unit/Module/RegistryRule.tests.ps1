@@ -177,23 +177,6 @@ try
             },
             @{
                 Hive                      = 'HKEY_LOCAL_MACHINE'
-                Path                      = '\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
-                OrganizationValueRequired = 'False'
-                ValueName                 = 'EnableScriptBlockLogging'
-                ValueData                 = '1'
-                ValueType                 = 'Dword'
-                CheckContent              = 'If the following registry value does not exist or is not configured as specified, this is a finding.
-
-                Registry Hive: HKEY_LOCAL_MACHINE
-                Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
-
-                Value Name: EnableScriptBlockLogging
-
-                Value Type: REG_DWORD
-                Value: 1'
-            },
-            @{
-                Hive                      = 'HKEY_LOCAL_MACHINE'
                 Path                      = '\System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers'
                 OrganizationValueRequired = 'False'
                 ValueName                 = 'AddPrinterDrivers'
@@ -629,15 +612,6 @@ try
                 It "Should return '\$pathToExtract' from '$path'" {
                     Get-RegistryPathFromWindowsStig -CheckContent $path | Should -Be "\$pathToExtract"
                 }
-            }
-            # Test for an edge case where the intern at DISA added a space between 'SOFTWARE\ Polices'
-
-            It 'Should return path with typo and formated correctly' {
-                $typoString = 'Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
-                $expected = '\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging'
-                $result = Get-RegistryPathFromWindowsStig -CheckContent $typoString
-
-                $result | Should -Be $expected
             }
             # Fuzz testing the regex
             $badStrings = @(
