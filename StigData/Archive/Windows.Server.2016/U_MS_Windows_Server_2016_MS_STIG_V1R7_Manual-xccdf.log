@@ -5,4 +5,3 @@ V-73551::Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)::Value: 0x0000
 V-73711::Value: 0x00000002 (2) (Prompt for consent on the secure desktop)::Value: 1 or 2
 V-73251::\Program Files and \Program Files (x86)::C:\Program Files and C:\Program Files (x86)
 V-73253::\Windows::C:\Windows
-V-73371::Server Operators - Read &amp; execute- This folder, subfolder, and files::Server Operators - Read &amp; execute - This folder, subfolder, and files
