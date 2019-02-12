@@ -1,6 +1,7 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="2/4/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="2/8/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '15' -or '{0}' -eq '0'</OrganizationValueTestString>
@@ -16,6 +17,7 @@ If the "Account lockout duration" is less than "15" minutes (excluding "0"), thi
 Configuring this to "0", requiring an administrator to unlock the account, is more restrictive and is not a finding.</RawString>
     </Rule>
     <Rule id="V-63409" severity="medium" conversionstatus="pass" title="WN10-AC-000010" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '3' -and '{0}' -ne '0'</OrganizationValueTestString>
@@ -29,6 +31,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63413" severity="medium" conversionstatus="pass" title="WN10-AC-000015" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '15'</OrganizationValueTestString>
@@ -42,6 +45,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63415" severity="medium" conversionstatus="pass" title="WN10-AC-000020" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '24'</OrganizationValueTestString>
@@ -55,6 +59,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for "Enforce password history" is less than "24" passwords remembered, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63419" severity="medium" conversionstatus="pass" title="WN10-AC-000025" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '60' -and '{0}' -ne '0'</OrganizationValueTestString>
@@ -68,6 +73,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.</RawString>
     </Rule>
     <Rule id="V-63421" severity="medium" conversionstatus="pass" title="WN10-AC-000030" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '1'</OrganizationValueTestString>
@@ -81,6 +87,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for the "Minimum password age" is less than "1" day, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63423" severity="medium" conversionstatus="pass" title="WN10-AC-000035" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '14'</OrganizationValueTestString>
@@ -94,6 +101,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for the "Minimum password length," is less than "14" characters, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63427" severity="medium" conversionstatus="pass" title="WN10-AC-000040" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -109,6 +117,7 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
 If the site is using a password filter that requires this setting be set to "Disabled" for the filter to be used, this would not be considered a finding.</RawString>
     </Rule>
     <Rule id="V-63429" severity="high" conversionstatus="pass" title="WN10-AC-000045" dscresource="AccountPolicy">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -125,6 +134,7 @@ If the value for "Store password using reversible encryption" is not set to "Dis
   <AuditPolicyRule dscresourcemodule="AuditPolicyDsc">
     <Rule id="V-63431" severity="medium" conversionstatus="pass" title="WN10-AU-000005" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -142,6 +152,7 @@ Account Logon &gt;&gt; Credential Validation - Failure</RawString>
     </Rule>
     <Rule id="V-63435" severity="medium" conversionstatus="pass" title="WN10-AU-000010" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -159,6 +170,7 @@ Account Logon &gt;&gt; Credential Validation - Success</RawString>
     </Rule>
     <Rule id="V-63441" severity="medium" conversionstatus="pass" title="WN10-AU-000020" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -176,6 +188,7 @@ Account Management &gt;&gt; Other Account Management Events - Success</RawString
     </Rule>
     <Rule id="V-63445" severity="medium" conversionstatus="pass" title="WN10-AU-000030" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -193,6 +206,7 @@ Account Management &gt;&gt; Security Group Management - Success</RawString>
     </Rule>
     <Rule id="V-63447" severity="medium" conversionstatus="pass" title="WN10-AU-000035" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -210,6 +224,7 @@ Account Management &gt;&gt; User Account Management - Failure</RawString>
     </Rule>
     <Rule id="V-63449" severity="medium" conversionstatus="pass" title="WN10-AU-000040" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -227,6 +242,7 @@ Account Management &gt;&gt; User Account Management - Success</RawString>
     </Rule>
     <Rule id="V-63451" severity="medium" conversionstatus="pass" title="WN10-AU-000045" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -244,6 +260,7 @@ Detailed Tracking &gt;&gt; Plug and Play Events - Success</RawString>
     </Rule>
     <Rule id="V-63453" severity="medium" conversionstatus="pass" title="WN10-AU-000050" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -261,6 +278,7 @@ Detailed Tracking &gt;&gt; Process Creation - Success</RawString>
     </Rule>
     <Rule id="V-63455" severity="medium" conversionstatus="pass" title="WN10-AU-000055" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -278,6 +296,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Success</RawString>
     </Rule>
     <Rule id="V-63457" severity="medium" conversionstatus="pass" title="WN10-AU-000060" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -295,6 +314,7 @@ Logon/Logoff &gt;&gt; Group Membership - Success</RawString>
     </Rule>
     <Rule id="V-63459" severity="medium" conversionstatus="pass" title="WN10-AU-000065" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -312,6 +332,7 @@ Logon/Logoff &gt;&gt; Logoff - Success</RawString>
     </Rule>
     <Rule id="V-63463" severity="medium" conversionstatus="pass" title="WN10-AU-000070" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -329,6 +350,7 @@ Logon/Logoff &gt;&gt; Logon - Failure</RawString>
     </Rule>
     <Rule id="V-63467" severity="medium" conversionstatus="pass" title="WN10-AU-000075" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -346,6 +368,7 @@ Logon/Logoff &gt;&gt; Logon - Success</RawString>
     </Rule>
     <Rule id="V-63469" severity="medium" conversionstatus="pass" title="WN10-AU-000080" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -363,6 +386,7 @@ Logon/Logoff &gt;&gt; Special Logon - Success</RawString>
     </Rule>
     <Rule id="V-63471" severity="medium" conversionstatus="pass" title="WN10-AU-000085" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -382,6 +406,7 @@ Some virtual machines may generate excessive audit events for access to the virt
     </Rule>
     <Rule id="V-63473" severity="medium" conversionstatus="pass" title="WN10-AU-000090" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -401,6 +426,7 @@ Some virtual machines may generate excessive audit events for access to the virt
     </Rule>
     <Rule id="V-63475" severity="medium" conversionstatus="pass" title="WN10-AU-000095" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -418,6 +444,7 @@ Policy Change &gt;&gt; Audit Policy Change - Failure</RawString>
     </Rule>
     <Rule id="V-63479" severity="medium" conversionstatus="pass" title="WN10-AU-000100" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -435,6 +462,7 @@ Policy Change &gt;&gt; Audit Policy Change - Success</RawString>
     </Rule>
     <Rule id="V-63481" severity="medium" conversionstatus="pass" title="WN10-AU-000105" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -452,6 +480,7 @@ Policy Change &gt;&gt; Authentication Policy Change - Success</RawString>
     </Rule>
     <Rule id="V-63483" severity="medium" conversionstatus="pass" title="WN10-AU-000110" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -469,6 +498,7 @@ Privilege Use &gt;&gt; Sensitive Privilege Use - Failure</RawString>
     </Rule>
     <Rule id="V-63487" severity="medium" conversionstatus="pass" title="WN10-AU-000115" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -486,6 +516,7 @@ Privilege Use &gt;&gt; Sensitive Privilege Use - Success</RawString>
     </Rule>
     <Rule id="V-63491" severity="medium" conversionstatus="pass" title="WN10-AU-000120" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -503,6 +534,7 @@ System &gt;&gt; IPSec Driver - Failure</RawString>
     </Rule>
     <Rule id="V-63495" severity="medium" conversionstatus="pass" title="WN10-AU-000125" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -520,6 +552,7 @@ System &gt;&gt; IPSec Driver - Success</RawString>
     </Rule>
     <Rule id="V-63499" severity="medium" conversionstatus="pass" title="WN10-AU-000130" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -537,6 +570,7 @@ System &gt;&gt; Other System Events - Success</RawString>
     </Rule>
     <Rule id="V-63503" severity="medium" conversionstatus="pass" title="WN10-AU-000135" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -554,6 +588,7 @@ System &gt;&gt; Other System Events - Failure</RawString>
     </Rule>
     <Rule id="V-63507" severity="medium" conversionstatus="pass" title="WN10-AU-000140" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -571,6 +606,7 @@ System &gt;&gt; Security State Change - Success</RawString>
     </Rule>
     <Rule id="V-63513" severity="medium" conversionstatus="pass" title="WN10-AU-000150" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -588,6 +624,7 @@ System &gt;&gt; Security System Extension - Success</RawString>
     </Rule>
     <Rule id="V-63515" severity="medium" conversionstatus="pass" title="WN10-AU-000155" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -605,6 +642,7 @@ System &gt;&gt; System Integrity - Failure</RawString>
     </Rule>
     <Rule id="V-63517" severity="medium" conversionstatus="pass" title="WN10-AU-000160" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -622,6 +660,7 @@ System &gt;&gt; System Integrity - Success</RawString>
     </Rule>
     <Rule id="V-71759" severity="medium" conversionstatus="pass" title="WN10-AU-000054" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -641,6 +680,7 @@ Logon/Logoff &gt;&gt; Account Lockout - Failure</RawString>
     </Rule>
     <Rule id="V-71761" severity="medium" conversionstatus="pass" title="WN10-AU-000107" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -658,6 +698,7 @@ Policy Change &gt;&gt; Authorization Policy Change - Success</RawString>
     </Rule>
     <Rule id="V-74409" severity="medium" conversionstatus="pass" title="WN10-AU-000084" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -679,6 +720,7 @@ If the system does not audit the above, this is a finding.</RawString>
     </Rule>
     <Rule id="V-74411" severity="medium" conversionstatus="pass" title="WN10-AU-000083" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -700,6 +742,7 @@ If the system does not audit the above, this is a finding.</RawString>
     </Rule>
     <Rule id="V-74721" severity="medium" conversionstatus="pass" title="WN10-AU-000082" dscresource="AuditPolicySubcategory">
       <AuditFlag>Success</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -720,6 +763,7 @@ If the system does not audit the above, this is a finding.</RawString>
     </Rule>
     <Rule id="V-75027" severity="medium" conversionstatus="pass" title="WN10-AU-000081" dscresource="AuditPolicySubcategory">
       <AuditFlag>Failure</AuditFlag>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -742,6 +786,7 @@ If the system does not audit the above, this is a finding.</RawString>
   </AuditPolicyRule>
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-63359" severity="low" conversionstatus="pass" title="WN10-00-000065" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -774,6 +819,7 @@ If any enabled accounts have not been logged on to within the past 35 days, this
 Inactive accounts that have been reviewed and deemed to be required must be documented with the ISSO.</RawString>
     </Rule>
     <Rule id="V-63393" severity="medium" conversionstatus="pass" title="WN10-00-000130" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -784,6 +830,7 @@ If any files with these extensions exist, this is a finding.
 This does not apply to server-based applications that have a requirement for .p12 certificate files (e.g., Oracle Wallet Manager).  Some applications create files with extensions of .p12 that are NOT certificate installation files.  Removal of non-certificate installation files from systems is not required.  These must be documented with the ISSO.</RawString>
     </Rule>
     <Rule id="V-63579" severity="medium" conversionstatus="pass" title="WN10-PK-000005" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -862,6 +909,7 @@ Thumbprint: 4ECB5CC3095670454DA1CBD410FC921F46B8564B
 Valid to: Friday, June 14, 2041</RawString>
     </Rule>
     <Rule id="V-72765" severity="medium" conversionstatus="pass" title="WN10-00-000210" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -874,6 +922,7 @@ Approval must be documented with the ISSO.</RawString>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
     <Rule id="V-63319" severity="medium" conversionstatus="pass" title="WN10-00-000005" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -890,6 +939,7 @@ If "Edition" is not "Windows 10 Enterprise", this is a finding.
 If "System type" is not "64-bit operating system…", this is a finding.</RawString>
     </Rule>
     <Rule id="V-63323" severity="low" conversionstatus="pass" title="WN10-00-000010" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -910,6 +960,7 @@ TPM Manufacturer Information - Specific Version = 2.0 or 1.2
 If a TPM is not found or is not ready for use, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63337" severity="medium" conversionstatus="pass" title="WN10-00-000030" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -924,6 +975,7 @@ Open "BitLocker Drive Encryption" from the Control Panel.
 If the operating system drive or any fixed data drives have "Turn on BitLocker", this is a finding.</RawString>
     </Rule>
     <Rule id="V-63343" severity="medium" conversionstatus="pass" title="WN10-00-000025" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -932,6 +984,7 @@ If the operating system drive or any fixed data drives have "Turn on BitLocker",
 If no such tool is installed on the system, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63345" severity="medium" conversionstatus="pass" title="WN10-00-000035" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -958,6 +1011,7 @@ Implementation guidance for AppLocker is available in the NSA paper "Application
 https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting-using-microsoft-applocker.cfm</RawString>
     </Rule>
     <Rule id="V-63351" severity="high" conversionstatus="pass" title="WN10-00-000045" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -966,6 +1020,7 @@ https://www.iad.gov/iad/library/ia-guidance/tech-briefs/application-whitelisting
 If there is no anti-virus solution installed on the system, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63355" severity="medium" conversionstatus="pass" title="WN10-00-000055" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -978,6 +1033,7 @@ Click the "Settings" button in the "Startup and Recovery" section.
 If the drop-down list box "Default operating system:" shows any operating system other than Windows 10, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63357" severity="medium" conversionstatus="pass" title="WN10-00-000060" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1003,6 +1059,7 @@ Select the "Security" tab.
 If the NTFS permissions have not been reconfigured to restrict permissions to the specific groups or accounts that require access, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63361" severity="high" conversionstatus="pass" title="WN10-00-000070" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1020,6 +1077,7 @@ If prohibited accounts are members of the local administrators group, this is a 
 The built-in Administrator account or other required administrative accounts would not be a finding.</RawString>
     </Rule>
     <Rule id="V-63363" severity="medium" conversionstatus="pass" title="WN10-00-000075" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1034,6 +1092,7 @@ If the group contains any accounts, the accounts must be specifically for backup
 If the group contains any standard user accounts used for performing normal user tasks, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63365" severity="medium" conversionstatus="pass" title="WN10-00-000080" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1046,6 +1105,7 @@ If any groups or user accounts are listed in "Members:", this is a finding.
 If the workstation has an approved use of Hyper-V, such as being used as a dedicated admin workstation using Hyper-V to separate administration and standard user functions, the account(s) needed to access the virtual machine is not a finding.</RawString>
     </Rule>
     <Rule id="V-63367" severity="low" conversionstatus="pass" title="WN10-00-000085" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1064,6 +1124,7 @@ Local administrator account(s)
 All of the built-in accounts may not exist on a system, depending on the Windows 10 version.</RawString>
     </Rule>
     <Rule id="V-63371" severity="medium" conversionstatus="pass" title="WN10-00-000090" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1074,6 +1135,7 @@ Double click each active account.
 If "Password never expires" is selected for any account, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63399" severity="medium" conversionstatus="pass" title="WN10-00-000135" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1082,6 +1144,7 @@ If "Password never expires" is selected for any account, this is a finding.</Raw
 The configuration requirements will be determined by the applicable firewall STIG.</RawString>
     </Rule>
     <Rule id="V-63403" severity="medium" conversionstatus="pass" title="WN10-00-000140" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1097,6 +1160,7 @@ For any inbound rules that allow connections view the Scope for Remote IP addres
 If a third-party firewall is used, ensure comparable settings are in place.</RawString>
     </Rule>
     <Rule id="V-63583" severity="medium" conversionstatus="pass" title="WN10-PK-000010" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1157,6 +1221,7 @@ Thumbprint: 73E8BB08E337D6A5A6AEF90CFFDD97D9176CB582
 Valid to: Sunday, December 30, 2029</RawString>
     </Rule>
     <Rule id="V-63587" severity="medium" conversionstatus="pass" title="WN10-PK-000015" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1231,6 +1296,7 @@ Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
 Valid to: Sunday, February 17, 2019</RawString>
     </Rule>
     <Rule id="V-63589" severity="medium" conversionstatus="pass" title="WN10-PK-000020" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1295,6 +1361,7 @@ Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
 Valid: Friday, September 27, 2019</RawString>
     </Rule>
     <Rule id="V-63685" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1343,6 +1410,7 @@ Value Type: REG_DWORD
 Value: 0x00000002 (2)</RawString>
     </Rule>
     <Rule id="V-68845" severity="high" conversionstatus="pass" title="WN10-00-000145" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1353,6 +1421,7 @@ If the value for "nx" is not "OptOut", this is a finding.
 (The more restrictive configuration of "AlwaysOn" would not be a finding.)</RawString>
     </Rule>
     <Rule id="V-72767" severity="medium" conversionstatus="pass" title="WN10-00-000220" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1361,6 +1430,7 @@ If the value for "nx" is not "OptOut", this is a finding.
 Verify the organization has a policy to turn off Bluetooth when not in use and personnel are trained. If it does not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72769" severity="medium" conversionstatus="pass" title="WN10-00-000230" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1372,6 +1442,7 @@ Select "More Bluetooth Options"
 If "Alert me when a new Bluetooth device wants to connect" is not checked, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76505" severity="medium" conversionstatus="pass" title="WN10-00-000190" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1385,6 +1456,7 @@ Review each User Right listed for any unresolved SIDs to determine whether they 
 If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.</RawString>
     </Rule>
     <Rule id="V-77083" severity="medium" conversionstatus="pass" title="WN10-00-000015" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1397,6 +1469,7 @@ Run "System Information".
 Under "System Summary", if "BIOS Mode" does not display "UEFI", this is finding.</RawString>
     </Rule>
     <Rule id="V-77085" severity="low" conversionstatus="pass" title="WN10-00-000020" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1409,6 +1482,7 @@ Run "System Information".
 Under "System Summary", if "Secure Boot State" does not display "On", this is finding.</RawString>
     </Rule>
     <Rule id="V-78129" severity="high" conversionstatus="pass" title="WN10-00-000240" dscresource="None">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -1465,6 +1539,7 @@ If accounts with administrative privileges are not prevented from using applicat
           <Rights>CreateDirectories,AppendData</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1562,6 +1637,7 @@ Alternately use icacls.
           <Rights>ReadAndExecute</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1663,6 +1739,7 @@ Alternately use icacls.
           <Rights>ReadAndExecute</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1719,6 +1796,7 @@ Alternately use icacls.
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1764,6 +1842,7 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1809,6 +1888,7 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1835,6 +1915,7 @@ If the permissions for these files are not as restrictive as the ACLs listed, th
           <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1916,6 +1997,7 @@ If the defaults have not been changed, these are not a finding.
           <Rights>ReadKey</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1992,6 +2074,7 @@ If the defaults have not been changed, these are not a finding.
           <Rights>ReadKey</Rights>
         </Entry>
       </AccessControlEntry>
+      <DuplicateOf />
       <Force>True</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2020,6 +2103,7 @@ If the defaults have not been changed, these are not a finding.
   <ProcessMitigationRule dscresourcemodule="WindowsDefenderDsc">
     <Rule id="V-77091" severity="medium" conversionstatus="pass" title="WN10-EP-000020" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>System</MitigationTarget>
@@ -2043,6 +2127,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77095" severity="medium" conversionstatus="pass" title="WN10-EP-000030" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>BottomUp</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>System</MitigationTarget>
@@ -2066,6 +2151,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77097" severity="medium" conversionstatus="pass" title="WN10-EP-000040" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>CFG</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>System</MitigationTarget>
@@ -2089,6 +2175,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77101" severity="medium" conversionstatus="pass" title="WN10-EP-000050" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>SEHOP</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>System</MitigationTarget>
@@ -2112,6 +2199,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77103" severity="medium" conversionstatus="pass" title="WN10-EP-000060" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>TerminateOnError</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>System</MitigationTarget>
@@ -2135,6 +2223,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77189" severity="medium" conversionstatus="pass" title="WN10-EP-000070" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,BottomUp,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>Acrobat.exe</MitigationTarget>
@@ -2170,6 +2259,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77191" severity="medium" conversionstatus="pass" title="WN10-EP-000080" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,BottomUp,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>AcroRd32.exe</MitigationTarget>
@@ -2205,6 +2295,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77195" severity="medium" conversionstatus="pass" title="WN10-EP-000090" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>chrome.exe</MitigationTarget>
@@ -2228,6 +2319,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77201" severity="medium" conversionstatus="pass" title="WN10-EP-000100" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>EXCEL.EXE</MitigationTarget>
@@ -2262,6 +2354,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77205" severity="medium" conversionstatus="pass" title="WN10-EP-000110" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,BottomUp,ForceRelocateImages</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>firefox.exe</MitigationTarget>
@@ -2289,6 +2382,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77209" severity="medium" conversionstatus="pass" title="WN10-EP-000120" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,BlockRemoteImageLoads,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec,DisallowChildProcessCreation</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>FLTLDR.EXE</MitigationTarget>
@@ -2326,6 +2420,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77213" severity="medium" conversionstatus="pass" title="WN10-EP-000130" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,BlockRemoteImageLoads,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec,DisallowChildProcessCreation</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>GROOVE.EXE</MitigationTarget>
@@ -2366,6 +2461,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77217" severity="medium" conversionstatus="pass" title="WN10-EP-000140" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,BottomUp,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>iexplore.exe</MitigationTarget>
@@ -2401,6 +2497,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77221" severity="medium" conversionstatus="pass" title="WN10-EP-000150" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>INFOPATH.EXE</MitigationTarget>
@@ -2435,6 +2532,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77223.a" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>java.exe</MitigationTarget>
@@ -2467,6 +2565,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77223.b" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>javaw.exe</MitigationTarget>
@@ -2499,6 +2598,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77223.c" severity="medium" conversionstatus="pass" title="WN10-EP-000160" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>javaws.exe</MitigationTarget>
@@ -2531,6 +2631,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77227" severity="medium" conversionstatus="pass" title="WN10-EP-000170" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>lync.exe</MitigationTarget>
@@ -2565,6 +2666,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77231" severity="medium" conversionstatus="pass" title="WN10-EP-000180" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>MSACCESS.EXE</MitigationTarget>
@@ -2599,6 +2701,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77233" severity="medium" conversionstatus="pass" title="WN10-EP-000190" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>MSPUB.EXE</MitigationTarget>
@@ -2633,6 +2736,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77235" severity="medium" conversionstatus="pass" title="WN10-EP-000210" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,BlockRemoteImageLoads,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>OneDrive.exe</MitigationTarget>
@@ -2670,6 +2774,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77239" severity="medium" conversionstatus="pass" title="WN10-EP-000200" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>OIS.EXE</MitigationTarget>
@@ -2701,6 +2806,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77243" severity="medium" conversionstatus="pass" title="WN10-EP-000220" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>OUTLOOK.EXE</MitigationTarget>
@@ -2735,6 +2841,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>plugin-container.exe</MitigationTarget>
@@ -2766,6 +2873,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77247" severity="medium" conversionstatus="pass" title="WN10-EP-000240" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>POWERPNT.EXE</MitigationTarget>
@@ -2800,6 +2908,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77249" severity="medium" conversionstatus="pass" title="WN10-EP-000250" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>PPTVIEW.EXE</MitigationTarget>
@@ -2834,6 +2943,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77255" severity="medium" conversionstatus="pass" title="WN10-EP-000260" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>VISIO.EXE</MitigationTarget>
@@ -2868,6 +2978,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77259" severity="medium" conversionstatus="pass" title="WN10-EP-000270" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>VPREVIEW.EXE</MitigationTarget>
@@ -2902,6 +3013,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77263" severity="medium" conversionstatus="pass" title="WN10-EP-000280" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,ForceRelocateImages,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>WINWORD.EXE</MitigationTarget>
@@ -2936,6 +3048,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77267" severity="medium" conversionstatus="pass" title="WN10-EP-000290" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>wmplayer.exe</MitigationTarget>
@@ -2964,6 +3077,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77269" severity="medium" conversionstatus="pass" title="WN10-EP-000300" dscresource="ProcessMitigation">
       <Disable />
+      <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>wordpad.exe</MitigationTarget>
@@ -2996,6 +3110,7 @@ The PowerShell command produces a list of mitigations; only those with a require
   </ProcessMitigationRule>
   <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-63321" severity="medium" conversionstatus="pass" title="WN10-CC-000310" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
@@ -3015,6 +3130,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63325" severity="high" conversionstatus="pass" title="WN10-CC-000315" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
@@ -3034,6 +3150,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63329" severity="medium" conversionstatus="pass" title="WN10-CC-000320" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Installer</Key>
@@ -3059,6 +3176,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63333" severity="medium" conversionstatus="pass" title="WN10-CC-000325" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -3078,6 +3196,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63335" severity="high" conversionstatus="pass" title="WN10-CC-000330" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client</Key>
@@ -3097,6 +3216,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63339" severity="medium" conversionstatus="pass" title="WN10-CC-000335" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client</Key>
@@ -3116,6 +3236,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63341" severity="medium" conversionstatus="pass" title="WN10-CC-000340" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Client</Key>
@@ -3135,6 +3256,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63347" severity="high" conversionstatus="pass" title="WN10-CC-000345" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service</Key>
@@ -3154,6 +3276,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63369" severity="medium" conversionstatus="pass" title="WN10-CC-000350" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service</Key>
@@ -3173,6 +3296,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63375" severity="medium" conversionstatus="pass" title="WN10-CC-000355" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WinRM\Service</Key>
@@ -3192,6 +3316,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63519" severity="medium" conversionstatus="pass" title="WN10-AU-000500" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Application</Key>
@@ -3213,6 +3338,7 @@ Value:  0x00008000 (32768) (or greater)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63523" severity="medium" conversionstatus="pass" title="WN10-AU-000505" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\Security</Key>
@@ -3234,6 +3360,7 @@ Value: 0x000fa000 (1024000) (or greater)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63527" severity="medium" conversionstatus="pass" title="WN10-AU-000510" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\EventLog\System</Key>
@@ -3255,6 +3382,7 @@ Value:  0x00008000 (32768) (or greater)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63545" severity="medium" conversionstatus="pass" title="WN10-CC-000005" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization</Key>
@@ -3276,6 +3404,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63549" severity="medium" conversionstatus="pass" title="WN10-CC-000010" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Personalization</Key>
@@ -3295,6 +3424,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63555" severity="medium" conversionstatus="pass" title="WN10-CC-000020" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</Key>
@@ -3314,6 +3444,7 @@ Value: 2</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63559" severity="medium" conversionstatus="pass" title="WN10-CC-000025" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters</Key>
@@ -3333,6 +3464,7 @@ Value: 2</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63563" severity="low" conversionstatus="pass" title="WN10-CC-000030" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters</Key>
@@ -3352,6 +3484,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63567" severity="low" conversionstatus="pass" title="WN10-CC-000035" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netbt\Parameters</Key>
@@ -3371,6 +3504,7 @@ Value:  1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63569" severity="medium" conversionstatus="pass" title="WN10-CC-000040" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\LanmanWorkstation</Key>
@@ -3392,6 +3526,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63577.a" severity="medium" conversionstatus="pass" title="WN10-CC-000050" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths</Key>
@@ -3407,6 +3542,7 @@ Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63577.b" severity="medium" conversionstatus="pass" title="WN10-CC-000050" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths</Key>
@@ -3422,6 +3558,7 @@ Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63581" severity="medium" conversionstatus="pass" title="WN10-CC-000055" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy</Key>
@@ -3447,6 +3584,7 @@ Value: 1 (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63585" severity="medium" conversionstatus="pass" title="WN10-CC-000060" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WcmSvc\GroupPolicy</Key>
@@ -3466,6 +3604,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63591" severity="medium" conversionstatus="pass" title="WN10-CC-000065" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WcmSvc\wifinetworkmanager\config</Key>
@@ -3487,6 +3626,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63595.a" severity="low" conversionstatus="pass" title="WN10-CC-000070" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3502,6 +3642,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63595.b" severity="low" conversionstatus="pass" title="WN10-CC-000070" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3517,6 +3658,7 @@ Value: 1 (Secure Boot only) or 3 (Secure Boot and DMA Protection)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63597" severity="medium" conversionstatus="pass" title="WN10-CC-000037" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -3538,6 +3680,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63599" severity="low" conversionstatus="pass" title="WN10-CC-000075" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3578,6 +3721,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63603" severity="low" conversionstatus="pass" title="WN10-CC-000080" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeviceGuard</Key>
@@ -3619,6 +3763,7 @@ This setting is "Enabled Virtualization Based Protection of Code Integrity" (wit
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63607" severity="medium" conversionstatus="pass" title="WN10-CC-000085" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Policies\EarlyLaunch</Key>
@@ -3648,6 +3793,7 @@ Possible values for this setting are:
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63609" severity="medium" conversionstatus="pass" title="WN10-CC-000090" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Group Policy\{35378EAC-683F-11D2-A89A-00C04FBBCFA2}</Key>
@@ -3667,6 +3813,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63615" severity="medium" conversionstatus="pass" title="WN10-CC-000100" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers</Key>
@@ -3686,6 +3833,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63617" severity="medium" conversionstatus="pass" title="WN10-SO-000015" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -3705,6 +3853,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63621" severity="medium" conversionstatus="pass" title="WN10-CC-000105" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -3724,6 +3873,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63623" severity="medium" conversionstatus="pass" title="WN10-CC-000110" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Printers</Key>
@@ -3743,6 +3893,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63627" severity="medium" conversionstatus="pass" title="WN10-CC-000115" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
@@ -3769,6 +3920,7 @@ Value:  1 (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63629" severity="medium" conversionstatus="pass" title="WN10-CC-000120" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
@@ -3788,6 +3940,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63633" severity="medium" conversionstatus="pass" title="WN10-CC-000130" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
@@ -3809,6 +3962,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63635" severity="medium" conversionstatus="pass" title="WN10-SO-000030" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -3828,6 +3982,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63639" severity="medium" conversionstatus="pass" title="WN10-SO-000035" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3847,6 +4002,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63643" severity="medium" conversionstatus="pass" title="WN10-SO-000040" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3866,6 +4022,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63645" severity="medium" conversionstatus="pass" title="WN10-CC-000145" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51</Key>
@@ -3885,6 +4042,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63647" severity="medium" conversionstatus="pass" title="WN10-SO-000045" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3904,6 +4062,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63649" severity="medium" conversionstatus="pass" title="WN10-CC-000150" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Power\PowerSettings\0e796bdb-100d-47d6-a2d5-f7d2daa51f51</Key>
@@ -3923,6 +4082,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63651" severity="high" conversionstatus="pass" title="WN10-CC-000155" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -3942,6 +4102,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63653" severity="low" conversionstatus="pass" title="WN10-SO-000050" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -3961,6 +4122,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63657" severity="medium" conversionstatus="pass" title="WN10-CC-000165" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Rpc</Key>
@@ -3980,6 +4142,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63659" severity="low" conversionstatus="pass" title="WN10-CC-000170" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4001,6 +4164,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63661" severity="low" conversionstatus="pass" title="WN10-SO-000055" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -4022,6 +4186,7 @@ Value: 0x0000001e (30)  (or less, excluding 0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63663" severity="low" conversionstatus="pass" title="WN10-CC-000175" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppCompat</Key>
@@ -4041,6 +4206,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63665" severity="medium" conversionstatus="pass" title="WN10-SO-000060" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Netlogon\Parameters</Key>
@@ -4062,6 +4228,7 @@ Warning: This setting may prevent a system from being joined to a domain if not 
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63667" severity="high" conversionstatus="pass" title="WN10-CC-000180" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
@@ -4081,6 +4248,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63669" severity="medium" conversionstatus="pass" title="WN10-SO-000070" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4100,6 +4268,7 @@ Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63671" severity="high" conversionstatus="pass" title="WN10-CC-000185" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -4119,6 +4288,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63673" severity="high" conversionstatus="pass" title="WN10-CC-000190" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\policies\Explorer</Key>
@@ -4140,6 +4310,7 @@ Note: If the value for NoDriveTypeAutorun is entered manually, it must be entere
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63675" severity="medium" conversionstatus="pass" title="WN10-SO-000075" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4184,6 +4355,7 @@ By using this IS (which includes any device attached to this IS), you consent to
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63677" severity="medium" conversionstatus="pass" title="WN10-CC-000195" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Biometrics\FacialFeatures</Key>
@@ -4205,6 +4377,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63679" severity="medium" conversionstatus="pass" title="WN10-CC-000200" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\CredUI</Key>
@@ -4224,6 +4397,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63681" severity="low" conversionstatus="pass" title="WN10-SO-000080" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -4247,6 +4421,7 @@ If a site-defined title is used, it can in no case contravene or modify the lang
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63683" severity="medium" conversionstatus="pass" title="WN10-CC-000205" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
@@ -4269,6 +4444,7 @@ If an organization is using v1709 or later of Windows 10 this may be configured 
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63687" severity="low" conversionstatus="pass" title="WN10-SO-000085" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
@@ -4292,6 +4468,7 @@ This setting only applies to domain-joined systems, however, it is configured by
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63689" severity="medium" conversionstatus="pass" title="WN10-CC-000215" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
@@ -4317,6 +4494,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63691" severity="low" conversionstatus="pass" title="WN10-CC-000220" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Explorer</Key>
@@ -4342,6 +4520,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63695" severity="medium" conversionstatus="pass" title="WN10-CC-000225" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer</Key>
@@ -4367,6 +4546,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63697" severity="medium" conversionstatus="pass" title="WN10-SO-000095" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon</Key>
@@ -4391,6 +4571,7 @@ This can be left not configured or set to "No action" on workstations with the f
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63699" severity="medium" conversionstatus="pass" title="WN10-CC-000230" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter</Key>
@@ -4414,6 +4595,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63701" severity="medium" conversionstatus="pass" title="WN10-CC-000235" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter</Key>
@@ -4437,6 +4619,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63703" severity="medium" conversionstatus="pass" title="WN10-SO-000100" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
@@ -4456,6 +4639,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63705" severity="medium" conversionstatus="pass" title="WN10-CC-000240" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main</Key>
@@ -4477,6 +4661,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63707" severity="medium" conversionstatus="pass" title="WN10-SO-000105" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
@@ -4496,6 +4681,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63709" severity="medium" conversionstatus="pass" title="WN10-CC-000245" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main</Key>
@@ -4517,6 +4703,7 @@ Value: no</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-63711" severity="medium" conversionstatus="pass" title="WN10-SO-000110" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</Key>
@@ -4536,6 +4723,7 @@ Value:  0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63713" severity="medium" conversionstatus="pass" title="WN10-CC-000250" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\PhishingFilter</Key>
@@ -4559,6 +4747,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63717" severity="medium" conversionstatus="pass" title="WN10-CC-000255" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PassportForWork</Key>
@@ -4580,6 +4769,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63719" severity="medium" conversionstatus="pass" title="WN10-SO-000120" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4599,6 +4789,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63721" severity="medium" conversionstatus="pass" title="WN10-CC-000260" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\PassportForWork\PINComplexity</Key>
@@ -4618,6 +4809,7 @@ Value:  6 (or greater)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63723" severity="medium" conversionstatus="pass" title="WN10-SO-000125" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4637,6 +4829,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63729" severity="medium" conversionstatus="pass" title="WN10-CC-000270" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4656,6 +4849,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63731" severity="medium" conversionstatus="pass" title="WN10-CC-000275" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4675,6 +4869,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63733" severity="medium" conversionstatus="pass" title="WN10-CC-000280" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4694,6 +4889,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63737" severity="medium" conversionstatus="pass" title="WN10-CC-000285" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4713,6 +4909,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63741" severity="medium" conversionstatus="pass" title="WN10-CC-000290" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services</Key>
@@ -4732,6 +4929,7 @@ Value: 3</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63743" severity="medium" conversionstatus="pass" title="WN10-CC-000295" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
@@ -4751,6 +4949,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63745" severity="high" conversionstatus="pass" title="WN10-SO-000145" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4770,6 +4969,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63747" severity="medium" conversionstatus="pass" title="WN10-CC-000300" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Internet Explorer\Feeds</Key>
@@ -4795,6 +4995,7 @@ Value: 0 (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63749" severity="high" conversionstatus="pass" title="WN10-SO-000150" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4814,6 +5015,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63751" severity="medium" conversionstatus="pass" title="WN10-CC-000305" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Search</Key>
@@ -4833,6 +5035,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63755" severity="medium" conversionstatus="pass" title="WN10-SO-000160" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4852,6 +5055,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63759" severity="high" conversionstatus="pass" title="WN10-SO-000165" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanManServer\Parameters</Key>
@@ -4871,6 +5075,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63763" severity="medium" conversionstatus="pass" title="WN10-SO-000175" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA</Key>
@@ -4890,6 +5095,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63765" severity="medium" conversionstatus="pass" title="WN10-SO-000180" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\MSV1_0</Key>
@@ -4909,6 +5115,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63767" severity="medium" conversionstatus="pass" title="WN10-SO-000185" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\LSA\pku2u</Key>
@@ -4928,6 +5135,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63795" severity="medium" conversionstatus="pass" title="WN10-SO-000190" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
@@ -4947,6 +5155,7 @@ Value: 0x7ffffff8 (2147483640)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63797" severity="high" conversionstatus="pass" title="WN10-SO-000195" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4966,6 +5175,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63801" severity="high" conversionstatus="pass" title="WN10-SO-000205" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -4985,6 +5195,7 @@ Value: 5</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63803" severity="medium" conversionstatus="pass" title="WN10-SO-000210" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LDAP</Key>
@@ -5004,6 +5215,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63805" severity="medium" conversionstatus="pass" title="WN10-SO-000215" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0</Key>
@@ -5023,6 +5235,7 @@ Value: 0x20080000 (537395200)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63807" severity="medium" conversionstatus="pass" title="WN10-SO-000220" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\MSV1_0</Key>
@@ -5042,6 +5255,7 @@ Value: 0x20080000 (537395200)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63811" severity="medium" conversionstatus="pass" title="WN10-SO-000230" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa\FIPSAlgorithmPolicy</Key>
@@ -5063,6 +5277,7 @@ Warning: Clients with this setting enabled will not be able to communicate via d
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63815" severity="low" conversionstatus="pass" title="WN10-SO-000240" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager</Key>
@@ -5082,6 +5297,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63817" severity="medium" conversionstatus="pass" title="WN10-SO-000245" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5101,6 +5317,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63819" severity="medium" conversionstatus="pass" title="WN10-SO-000250" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5120,6 +5337,7 @@ Value: 2 (Prompt for consent on the secure desktop)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63821" severity="medium" conversionstatus="pass" title="WN10-SO-000255" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5139,6 +5357,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63825" severity="medium" conversionstatus="pass" title="WN10-SO-000260" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5158,6 +5377,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63827" severity="medium" conversionstatus="pass" title="WN10-SO-000265" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5177,6 +5397,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63829" severity="medium" conversionstatus="pass" title="WN10-SO-000270" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5196,6 +5417,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63831" severity="medium" conversionstatus="pass" title="WN10-SO-000275" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
@@ -5215,6 +5437,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63839" severity="low" conversionstatus="pass" title="WN10-UC-000015" dscresource="cAdministrativeTemplate">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Policies\Microsoft\Windows\CurrentVersion\PushNotifications</Key>
@@ -5234,6 +5457,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63841" severity="medium" conversionstatus="pass" title="WN10-UC-000020" dscresource="cAdministrativeTemplate">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Attachments</Key>
@@ -5259,6 +5483,7 @@ Value: 0x00000002 (2) (or if the Value Name does not exist)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-65681.a" severity="low" conversionstatus="pass" title="WN10-CC-000206" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization</Key>
@@ -5274,6 +5499,7 @@ Value: 0x00000000 (0) - No peering (HTTP Only)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-65681.b" severity="low" conversionstatus="pass" title="WN10-CC-000206" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config</Key>
@@ -5289,6 +5515,7 @@ Value: 0x00000000 (0) - Off</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-68817" severity="medium" conversionstatus="pass" title="WN10-CC-000066" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit</Key>
@@ -5308,6 +5535,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-68819" severity="medium" conversionstatus="pass" title="WN10-CC-000326" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging</Key>
@@ -5327,6 +5555,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-68849" severity="high" conversionstatus="pass" title="WN10-00-000150" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel</Key>
@@ -5350,6 +5579,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-71763" severity="medium" conversionstatus="pass" title="WN10-CC-000038" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\Wdigest</Key>
@@ -5369,6 +5599,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-71765" severity="medium" conversionstatus="pass" title="WN10-CC-000044" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Network Connections</Key>
@@ -5388,6 +5619,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-71769" severity="medium" conversionstatus="pass" title="WN10-SO-000167" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Lsa</Key>
@@ -5409,6 +5641,7 @@ Value: O:BAG:BAD:(A;;RC;;;BA)</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-71771" severity="low" conversionstatus="pass" title="WN10-CC-000197" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CloudContent</Key>
@@ -5430,6 +5663,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-72329.a" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\batfile\shell\runasuser</Key>
@@ -5445,6 +5679,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-72329.b" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\cmdfile\shell\runasuser</Key>
@@ -5460,6 +5695,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-72329.c" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\exefile\shell\runasuser</Key>
@@ -5475,6 +5711,7 @@ Value:  0x00001000 (4096)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-72329.d" severity="medium" conversionstatus="pass" title="WN10-CC-000039" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Classes\mscfile\shell\runasuser</Key>
@@ -5490,9 +5727,10 @@ Value:  0x00001000 (4096)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-74413" severity="medium" conversionstatus="pass" title="WN10-CC-000052" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\ Cryptography\Configuration\SSL\00010002</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
@@ -5509,9 +5747,10 @@ Value: NistP384 NistP256</RawString>
       <ValueType>MultiString</ValueType>
     </Rule>
     <Rule id="V-74415" severity="medium" conversionstatus="pass" title="WN10-CC-000228" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\ Privacy</Key>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Privacy</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This setting is applicable starting with v1703 of Windows 10; it is NA for prior versions.
@@ -5532,6 +5771,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-74417" severity="medium" conversionstatus="pass" title="WN10-CC-000252" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR</Key>
@@ -5553,6 +5793,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-74699" severity="medium" conversionstatus="pass" title="WN10-CC-000068" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation</Key>
@@ -5574,6 +5815,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-74723" severity="medium" conversionstatus="pass" title="WN10-00-000165" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters</Key>
@@ -5595,6 +5837,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-74725" severity="medium" conversionstatus="pass" title="WN10-00-000170" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\mrxsmb10</Key>
@@ -5616,6 +5859,7 @@ Value: 0x00000004 (4)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-82137" severity="medium" conversionstatus="pass" title="WN10-UC-000005" dscresource="cAdministrativeTemplate">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\OneDrive</Key>
@@ -5635,6 +5879,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-82139" severity="medium" conversionstatus="pass" title="WN10-CC-000238" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Internet Settings</Key>
@@ -5658,6 +5903,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-82145" severity="medium" conversionstatus="pass" title="WN10-CC-000204" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection</Key>
@@ -5681,6 +5927,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-88203" severity="medium" conversionstatus="pass" title="WN10-CC-000340" dscresource="xRegistry">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\OneDrive\AllowTenantList</Key>
@@ -5708,6 +5955,7 @@ If the organization does not have an instance of OneDrive the Value Name and Val
   </RegistryRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63601" severity="medium" conversionstatus="pass" title="WN10-SO-000005" dscresource="SecurityOption">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OptionName>Accounts: Administrator account status</OptionName>
       <OptionValue>Disabled</OptionValue>
@@ -5721,6 +5969,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for "Accounts: Administrator account status" is not set to "Disabled", this is a finding.</RawString>
     </Rule>
     <Rule id="V-63611" severity="medium" conversionstatus="pass" title="WN10-SO-000010" dscresource="SecurityOption">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OptionName>Accounts: Guest account status</OptionName>
       <OptionValue>Disabled</OptionValue>
@@ -5734,6 +5983,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for "Accounts: Guest account status" is not set to "Disabled", this is a finding.</RawString>
     </Rule>
     <Rule id="V-63619" severity="medium" conversionstatus="pass" title="WN10-SO-000020" dscresource="SecurityOption">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OptionName>Accounts: Rename administrator account</OptionName>
       <OptionValue />
@@ -5747,6 +5997,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for "Accounts: Rename administrator account" is set to "Administrator", this is a finding.</RawString>
     </Rule>
     <Rule id="V-63625" severity="medium" conversionstatus="pass" title="WN10-SO-000025" dscresource="SecurityOption">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OptionName>Accounts: Rename guest account</OptionName>
       <OptionValue />
@@ -5760,6 +6011,7 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for "Accounts: Rename guest account" is set to "Guest", this is a finding.</RawString>
     </Rule>
     <Rule id="V-63739" severity="high" conversionstatus="pass" title="WN10-SO-000140" dscresource="SecurityOption">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OptionName>Network access: Allow anonymous SID/Name translation</OptionName>
       <OptionValue>Disabled</OptionValue>
@@ -5775,6 +6027,7 @@ If the value for "Network access: Allow anonymous SID/Name translation" is not s
   </SecurityOptionRule>
   <ServiceRule dscresourcemodule="xPSDesiredStateConfiguration">
     <Rule id="V-74719" severity="medium" conversionstatus="pass" title="WN10-00-000175" dscresource="xService">
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -5793,6 +6046,7 @@ If the "Startup Type" is not "Disabled", this is a finding.</RawString>
     <Rule id="V-63843" severity="medium" conversionstatus="pass" title="WN10-UR-000005" dscresource="UserRightsAssignment">
       <Constant>SeTrustedCredManAccessPrivilege</Constant>
       <DisplayName>Access Credential Manager as a trusted caller</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5808,6 +6062,7 @@ If any groups or accounts are granted the "Access Credential Manager as a truste
     <Rule id="V-63845" severity="medium" conversionstatus="pass" title="WN10-UR-000010" dscresource="UserRightsAssignment">
       <Constant>SeNetworkLogonRight</Constant>
       <DisplayName>Access this computer from the network</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators,Remote Desktop Users</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5834,6 +6089,7 @@ The application account, managed at the domain level, must meet requirements for
     <Rule id="V-63847" severity="high" conversionstatus="pass" title="WN10-UR-000015" dscresource="UserRightsAssignment">
       <Constant>SeTcbPrivilege</Constant>
       <DisplayName>Act as part of the operating system</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5849,6 +6105,7 @@ If any groups or accounts (to include administrators), are granted the "Act as p
     <Rule id="V-63851" severity="medium" conversionstatus="pass" title="WN10-UR-000025" dscresource="UserRightsAssignment">
       <Constant>SeInteractiveLogonRight</Constant>
       <DisplayName>Allow log on locally</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators,Users</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5868,6 +6125,7 @@ Users</RawString>
     <Rule id="V-63853" severity="medium" conversionstatus="pass" title="WN10-UR-000030" dscresource="UserRightsAssignment">
       <Constant>SeBackupPrivilege</Constant>
       <DisplayName>Back up files and directories</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5885,6 +6143,7 @@ Administrators</RawString>
     <Rule id="V-63855" severity="medium" conversionstatus="pass" title="WN10-UR-000035" dscresource="UserRightsAssignment">
       <Constant>SeSystemtimePrivilege</Constant>
       <DisplayName>Change the system time</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators,LOCAL SERVICE</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5903,6 +6162,7 @@ LOCAL SERVICE</RawString>
     <Rule id="V-63857" severity="medium" conversionstatus="pass" title="WN10-UR-000040" dscresource="UserRightsAssignment">
       <Constant>SeCreatePagefilePrivilege</Constant>
       <DisplayName>Create a pagefile</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5920,6 +6180,7 @@ Administrators</RawString>
     <Rule id="V-63859" severity="high" conversionstatus="pass" title="WN10-UR-000045" dscresource="UserRightsAssignment">
       <Constant>SeCreateTokenPrivilege</Constant>
       <DisplayName>Create a token object</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5935,6 +6196,7 @@ If any groups or accounts are granted the "Create a token object" user right, th
     <Rule id="V-63861" severity="medium" conversionstatus="pass" title="WN10-UR-000050" dscresource="UserRightsAssignment">
       <Constant>SeCreateGlobalPrivilege</Constant>
       <DisplayName>Create global objects</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators,LOCAL SERVICE,NETWORK SERVICE,SERVICE</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5955,6 +6217,7 @@ SERVICE</RawString>
     <Rule id="V-63863" severity="medium" conversionstatus="pass" title="WN10-UR-000055" dscresource="UserRightsAssignment">
       <Constant>SeCreatePermanentPrivilege</Constant>
       <DisplayName>Create permanent shared objects</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5970,6 +6233,7 @@ If any groups or accounts are granted the "Create permanent shared objects" user
     <Rule id="V-63865" severity="medium" conversionstatus="pass" title="WN10-UR-000060" dscresource="UserRightsAssignment">
       <Constant>SeCreateSymbolicLinkPrivilege</Constant>
       <DisplayName>Create symbolic links</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -5989,6 +6253,7 @@ If the workstation has an approved use of Hyper-V, such as being used as a dedic
     <Rule id="V-63869" severity="high" conversionstatus="pass" title="WN10-UR-000065" dscresource="UserRightsAssignment">
       <Constant>SeDebugPrivilege</Constant>
       <DisplayName>Debug Programs</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6006,6 +6271,7 @@ Administrators</RawString>
     <Rule id="V-63871" severity="medium" conversionstatus="pass" title="WN10-UR-000070" dscresource="UserRightsAssignment">
       <Constant>SeDenyNetworkLogonRight</Constant>
       <DisplayName>Deny access to this computer from the network</DisplayName>
+      <DuplicateOf />
       <Force>False</Force>
       <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6034,6 +6300,7 @@ Note: "Local account" is a built-in security group used to assign user rights an
     <Rule id="V-63873" severity="medium" conversionstatus="pass" title="WN10-UR-000075" dscresource="UserRightsAssignment">
       <Constant>SeDenyBatchLogonRight</Constant>
       <DisplayName>Deny log on as a batch job</DisplayName>
+      <DuplicateOf />
       <Force>False</Force>
       <Identity>Enterprise Admins,Domain Admins</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6055,6 +6322,7 @@ Domain Admin Group</RawString>
     <Rule id="V-63875" severity="medium" conversionstatus="pass" title="WN10-UR-000080" dscresource="UserRightsAssignment">
       <Constant>SeDenyServiceLogonRight</Constant>
       <DisplayName>Deny log on as a service</DisplayName>
+      <DuplicateOf />
       <Force>False</Force>
       <Identity>Enterprise Admins,Domain Admins</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6076,6 +6344,7 @@ Domain Admin Group</RawString>
     <Rule id="V-63877" severity="medium" conversionstatus="pass" title="WN10-UR-000085" dscresource="UserRightsAssignment">
       <Constant>SeDenyInteractiveLogonRight</Constant>
       <DisplayName>Deny log on locally</DisplayName>
+      <DuplicateOf />
       <Force>False</Force>
       <Identity>Enterprise Admins,Domain Admins,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6101,6 +6370,7 @@ Guests Group</RawString>
     <Rule id="V-63879" severity="medium" conversionstatus="pass" title="WN10-UR-000090" dscresource="UserRightsAssignment">
       <Constant>SeDenyRemoteInteractiveLogonRight</Constant>
       <DisplayName>Deny log on through Remote Desktop Services</DisplayName>
+      <DuplicateOf />
       <Force>False</Force>
       <Identity>Enterprise Admins,Domain Admins,Local account,Guests</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6131,6 +6401,7 @@ Note: "Local account" is a built-in security group used to assign user rights an
     <Rule id="V-63881" severity="medium" conversionstatus="pass" title="WN10-UR-000095" dscresource="UserRightsAssignment">
       <Constant>SeEnableDelegationPrivilege</Constant>
       <DisplayName>Enable computer and user accounts to be trusted for delegation</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6146,6 +6417,7 @@ If any groups or accounts are granted the "Enable computer and user accounts to 
     <Rule id="V-63883" severity="medium" conversionstatus="pass" title="WN10-UR-000100" dscresource="UserRightsAssignment">
       <Constant>SeRemoteShutdownPrivilege</Constant>
       <DisplayName>Force shutdown from a remote system</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6163,6 +6435,7 @@ Administrators</RawString>
     <Rule id="V-63887" severity="medium" conversionstatus="pass" title="WN10-UR-000105" dscresource="UserRightsAssignment">
       <Constant>SeAuditPrivilege</Constant>
       <DisplayName>Generate security audits</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>LOCAL SERVICE,NETWORK SERVICE</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6181,6 +6454,7 @@ NETWORK SERVICE</RawString>
     <Rule id="V-63889" severity="medium" conversionstatus="pass" title="WN10-UR-000110" dscresource="UserRightsAssignment">
       <Constant>SeImpersonatePrivilege</Constant>
       <DisplayName>Impersonate a client after authentication</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators,LOCAL SERVICE,NETWORK SERVICE,SERVICE</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6201,6 +6475,7 @@ SERVICE</RawString>
     <Rule id="V-63891" severity="medium" conversionstatus="pass" title="WN10-UR-000115" dscresource="UserRightsAssignment">
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
       <DisplayName>Increase scheduling priority</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6218,6 +6493,7 @@ Administrators</RawString>
     <Rule id="V-63917" severity="medium" conversionstatus="pass" title="WN10-UR-000120" dscresource="UserRightsAssignment">
       <Constant>SeLoadDriverPrivilege</Constant>
       <DisplayName>Load and unload device drivers</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6235,6 +6511,7 @@ Administrators</RawString>
     <Rule id="V-63925" severity="medium" conversionstatus="pass" title="WN10-UR-000125" dscresource="UserRightsAssignment">
       <Constant>SeLockMemoryPrivilege</Constant>
       <DisplayName>Lock pages in memory</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>NULL</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6250,6 +6527,7 @@ If any groups or accounts are granted the "Lock pages in memory" user right, thi
     <Rule id="V-63927" severity="medium" conversionstatus="pass" title="WN10-UR-000130" dscresource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
       <DisplayName>Manage auditing and security log</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6269,6 +6547,7 @@ If the organization has an "Auditors" group the assignment of this group to the 
     <Rule id="V-63931" severity="medium" conversionstatus="pass" title="WN10-UR-000140" dscresource="UserRightsAssignment">
       <Constant>SeSystemEnvironmentPrivilege</Constant>
       <DisplayName>Modify firmware environment values</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6286,6 +6565,7 @@ Administrators</RawString>
     <Rule id="V-63933" severity="medium" conversionstatus="pass" title="WN10-UR-000145" dscresource="UserRightsAssignment">
       <Constant>SeManageVolumePrivilege</Constant>
       <DisplayName>Perform volume maintenance tasks</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6303,6 +6583,7 @@ Administrators</RawString>
     <Rule id="V-63935" severity="medium" conversionstatus="pass" title="WN10-UR-000150" dscresource="UserRightsAssignment">
       <Constant>SeProfileSingleProcessPrivilege</Constant>
       <DisplayName>Profile single process</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6320,6 +6601,7 @@ Administrators</RawString>
     <Rule id="V-63939" severity="medium" conversionstatus="pass" title="WN10-UR-000160" dscresource="UserRightsAssignment">
       <Constant>SeRestorePrivilege</Constant>
       <DisplayName>Restore files and directories</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6337,6 +6619,7 @@ Administrators</RawString>
     <Rule id="V-63941" severity="medium" conversionstatus="pass" title="WN10-UR-000165" dscresource="UserRightsAssignment">
       <Constant>SeTakeOwnershipPrivilege</Constant>
       <DisplayName>Take ownership of files or other objects</DisplayName>
+      <DuplicateOf />
       <Force>True</Force>
       <Identity>Administrators</Identity>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6354,6 +6637,7 @@ Administrators</RawString>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
     <Rule id="V-63377.a" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>IIS-HostableWebCore</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6369,6 +6653,7 @@ If the entries for "Internet Information Services" or "Internet Information Serv
 If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
     </Rule>
     <Rule id="V-63377.b" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>IIS-WebServer</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6384,6 +6669,7 @@ If the entries for "Internet Information Services" or "Internet Information Serv
 If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.</RawString>
     </Rule>
     <Rule id="V-63381" severity="medium" conversionstatus="pass" title="WN10-00-000105" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>SNMP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6396,6 +6682,7 @@ Navigate to the Windows\System32 directory.
 If the "SNMP" application exists, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63383" severity="medium" conversionstatus="pass" title="WN10-00-000110" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>SimpleTCP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6408,6 +6695,7 @@ Run "Services.msc".
 If "Simple TCP/IP Services" is listed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63385" severity="medium" conversionstatus="pass" title="WN10-00-000115" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>TelnetClient</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6420,6 +6708,7 @@ Navigate to the Windows\System32 directory.
 If the "telnet" application exists, this is a finding.</RawString>
     </Rule>
     <Rule id="V-63389" severity="medium" conversionstatus="pass" title="WN10-00-000120" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>TFTP</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6432,6 +6721,7 @@ Navigate to the Windows\System32 directory.
 If the "TFTP" application exists, this is a finding.</RawString>
     </Rule>
     <Rule id="V-70637.a" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>MicrosoftWindowsPowerShellV2</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6453,6 +6743,7 @@ Select "Turn Windows features on or off".
 If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-70637.b" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>MicrosoftWindowsPowerShellV2Root</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6474,6 +6765,7 @@ Select "Turn Windows features on or off".
 If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-70639" severity="medium" conversionstatus="pass" title="WN10-00-000160" dscresource="WindowsOptionalFeature">
+      <DuplicateOf />
       <FeatureName>SMB1Protocol</FeatureName>
       <InstallState>Absent</InstallState>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -6498,6 +6790,7 @@ If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.</RawStrin
   </WindowsFeatureRule>
   <WmiRule dscresourcemodule="PSDesiredStateConfiguration">
     <Rule id="V-63349" severity="high" conversionstatus="pass" title="WN10-00-000040" dscresource="Script">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-ge</Operator>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6531,6 +6824,7 @@ v1809 (Build 17763)</RawString>
       <Value>10.0.14393</Value>
     </Rule>
     <Rule id="V-63353" severity="high" conversionstatus="pass" title="WN10-00-000050" dscresource="Script">
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-match</Operator>
       <OrganizationValueRequired>False</OrganizationValueRequired>
