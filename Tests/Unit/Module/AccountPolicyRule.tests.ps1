@@ -6,46 +6,11 @@ try
 {
     InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
-        $checkContentBase = 'Verify the effective setting in Local Group Policy Editor.
-        Run "gpedit.msc".
-
-        Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Account Lockout Policy.
-
-        {0}'
-
-        $checkContentString = 'If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.'
-        $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
-        $rule = [AccountPolicyRuleConvert]::new( $stigRule )
-        #endregion
-        #region Class Tests
-
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'AccountPolicyRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('PolicyName', 'PolicyValue')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
-        }
-        #endregion
-        #region Method Tests
         $rulesToTest = @(
             @{
                 PolicyName = 'Account lockout duration'
-                PolicyValue = '15'
+                PolicyValue = $null
+                OrganizationValueRequired = $true
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
@@ -57,6 +22,7 @@ try
             @{
                 PolicyName = 'Password must meet complexity requirements'
                 PolicyValue = 'Enabled'
+                OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
@@ -69,26 +35,29 @@ try
             @{
                 PolicyName = 'Store passwords using reversible encryption'
                 PolicyValue = 'Disabled'
+                OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
                 Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy.
 
-                If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.'
+                If the value for "Store passwords using reversible encryption" is not set to "Disabled", this is a finding.'
             },
             @{
                 PolicyName = 'Minimum password length'
-                PolicyValue = '14'
+                PolicyValue = $null
+                OrganizationValueRequired = $true
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
                 Navigate to Local Computer Policy -> Computer Configuration -> Windows Settings -> Security Settings -> Account Policies -> Password Policy.
 
-                If the value for the "Minimum password length," is less than "14" characters, this is a finding.'
+                If the value for the "Minimum password length" is less than "14" characters, this is a finding.'
             },
             @{
                 PolicyName = 'Enforce user logon restrictions'
                 PolicyValue = 'Enabled'
+                OrganizationValueRequired = $false
                 CheckContent = 'Verify the following is configured in the Default Domain Policy.
 
                 Open "Group Policy Management".
@@ -100,95 +69,61 @@ try
                 If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.'
             }
         )
+        #endregion
 
-        Describe 'Static Match' {
+        [int]$count = 0
+        Foreach ($rule in $rulesToTest)
+        {
+            $stigRule = Get-TestStigRule -CheckContent $rule.checkContent -ReturnGroupOnly
+            $convertedRule = [AccountPolicyRuleConvert]::new( $stigRule )
 
-            Foreach ($rule in $rulesToTest)
+            If ($count -le 0)
             {
+                Describe "$($convertedRule.GetType().Name) Child Class" {
+
+                    Context 'Base Class' {
+
+                        It 'Shoud have a BaseType of STIG' {
+                            $convertedRule.GetType().BaseType.ToString() | Should Be 'AccountPolicyRule'
+                        }
+                    }
+
+                    Context 'Class Properties' {
+
+                        $classProperties = @('PolicyName', 'PolicyValue')
+
+                        foreach ( $property in $classProperties )
+                        {
+                            It "Should have a property named '$property'" {
+                                ( $convertedRule | Get-Member -Name $property ).Name | Should Be $property
+                            }
+                        }
+                    }
+                }
+
+                $count ++
+            }
+
+            Describe 'Class Instance' {
+
+                It "Should return the Policy Name" {
+                    $convertedRule.PolicyName | Should Be $rule.PolicyName
+                }
+                It "Should return the Policy Value" {
+                    $convertedRule.PolicyValue | Should Be $rule.PolicyValue
+                }
+                It "Should return the Organization Value Required flag" {
+                    $convertedRule.OrganizationValueRequired | Should Be $rule.OrganizationValueRequired
+                }
+            }
+
+            Describe 'Static Match' {
+
                 It 'Should Match the string' {
                     [AccountPolicyRuleConvert]::Match($rule.checkContent) | Should Be $true
                 }
             }
         }
-
-        Describe 'Get-AccountPolicyName' {
-
-            foreach ($rule in $rulesToTest)
-            {
-                It "Should return '$($rule.PolicyName)'" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    Get-AccountPolicyName -CheckContent $checkContent | Should Be $rule.PolicyName
-                }
-            }
-        }
-
-        Describe 'Get-AccountPolicyValue' {
-
-            foreach ($rule in $rulesToTest)
-            {
-                It "Should return '$($rule.PolicyValue)'" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    Get-AccountPolicyValue -CheckContent $checkContent | Should Be $rule.PolicyValue
-                }
-            }
-        }
-
-        Describe 'Test-SecurityPolicyContainsRange' {
-
-            Context 'Match' {
-
-                $checkContentStrings = @(
-                    'If the "Reset account lockout counter after" value is less than "15" minutes, this is a finding.',
-                    'If the value for "Enforce password history" is less than "24" passwords remembered, this is a finding.',
-                    'If the "Account lockout threshold" is "0" or more than "3" attempts, this is a finding.',
-                    'If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.',
-                    'If the value for the "Minimum password length," is less than "14" characters, this is a finding.',
-                    'If the value for the "Minimum password age" is set to "0" days ("Password can be changed immediately."), this is a finding.',
-                    'If the value for the "Maximum password age" is greater than "60" days, this is a finding.  If the value is set to "0" (never expires), this is a finding.',
-                    'If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hours, this is a finding.',
-                    'If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this is a finding.'
-                )
-
-                foreach ($checkContentString in $checkContentStrings)
-                {
-                    It "Should return true from '$checkContentString'" {
-                        $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
-                        Test-SecurityPolicyContainsRange -CheckContent $checkContent| Should Be $true
-                    }
-                }
-            }
-
-            Context 'Not Match' {
-
-                $checkContentStrings = @(
-                    'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',
-                    'If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.',
-                    'If the "Account lockout duration" is not set to "0", requiring an administrator to unlock the account, this is a finding.'
-                )
-
-                foreach ($checkContentString in $checkContentStrings)
-                {
-                    It "Should return false from '$checkContentString'" {
-                        $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
-                        Test-SecurityPolicyContainsRange -CheckContent $checkContent | Should Be $false
-                    }
-                }
-            }
-        }
-        #endregion
-
-        <#{TODO}#> <#Rem Struct test#>
-        <#region Data Tests
-
-        Describe 'PolicyNameFixes Data Section' {
-
-            [string] $dataSectionName = 'PolicyNameFixes'
-
-            It "Should have a data section called $dataSectionName" {
-                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-            }
-        }
-        #endregion#>
     }
 }
 finally
