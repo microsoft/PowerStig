@@ -5,4 +5,4 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="1.16" />
+<OrganizationalSettings fullversion="1.16" />
