@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="2/11/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="2/12/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3273,24 +3273,14 @@ BUILTIN\Administrators:(I)(F)
 (I) - permission inherited from parent container
 (F) - full access</RawString>
     </Rule>
-    <Rule id="V-73371" severity="high" conversionstatus="fail" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
+    <Rule id="V-73371" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>(RX)</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>ReadAndExecute</Rights>
-        </Entry>
         <Entry>
           <Type>
           </Type>
           <Principal>Authenticated Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -3298,8 +3288,7 @@ BUILTIN\Administrators:(I)(F)
           </Type>
           <Principal>Server Operators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
+          <Inheritance>This folder subfolders and files</Inheritance>
           <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
@@ -3307,10 +3296,8 @@ BUILTIN\Administrators:(I)(F)
           </Type>
           <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
+          <Inheritance>This folder only</Inheritance>
+          <Rights>AppendData,ChangePermissions,CreateDirectories,CreateFiles,Delete,DeleteSubdirectoriesAndFiles,ExecuteFile,ListDirectory,Modify,Read,ReadAndExecute,ReadAttributes,ReadData,ReadExtendedAttributes,ReadPermissions,Synchronize,TakeOwnership,Traverse,Write,WriteAttributes,WriteData,WriteExtendedAttributes</Rights>
         </Entry>
         <Entry>
           <Type>
