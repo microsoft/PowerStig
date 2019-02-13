@@ -67,8 +67,12 @@ Class RegistryRule : Rule
             Creates the class specifc help content and passes it to the base class
             method to create the help content
     #>
-    [string] GetExceptionHelpString()
+    [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        $return = @{
+            Value = "1"
+            Notes = "This registry value type is $($this.ValueType). Ensure the exception data matches the value type."
+        }
+        return $return
     }
 }

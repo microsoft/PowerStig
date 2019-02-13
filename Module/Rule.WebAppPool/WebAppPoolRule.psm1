@@ -31,6 +31,10 @@ Class WebAppPoolRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        $return = @{
+            Value = "15"
+            Notes = $null
+        }
+        return $return
     }
 }

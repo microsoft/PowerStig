@@ -12,7 +12,6 @@ try
     . $configFile
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
-
     #region Integration Tests
     foreach ($stig in $stigList)
     {
@@ -30,6 +29,10 @@ try
             $expectedSkipRuleTypeCount  = $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
             $skipRuleTypeMultiple               = @('PermissionRule', 'UserRightRule')
             $expectedSkipRuleTypeMultipleCount  = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count + $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
+        }
+        elseif ($stig.TechnologyRole -eq 'Domain')
+        {
+            continue
         }
         else
         {

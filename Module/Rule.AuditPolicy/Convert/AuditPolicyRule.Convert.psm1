@@ -2,30 +2,12 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\AuditPolicyRule.psm1
-
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
+using namespace System.Text
 # Header
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into an Audit Policy object
-    .DESCRIPTION
-        The AuditPolicyRule class is used to extract the Audit Policy Settings
-        from the check-content of the xccdf. Once a STIG rule is identified as an
-        Audit Policy rule, it is passed to the AuditPolicyRule class for parsing
-        and validation.
-    .PARAMETER Subcategory
-        The name of the subcategory to configure
-    .PARAMETER AuditFlag
-        The Success or failure flag
-    .PARAMETER Ensure
-        A present or absent flag
+        Converts the xccdf check-content element into an audit policy object.
 #>
 Class AuditPolicyRuleConvert : AuditPolicyRule
 {
@@ -34,48 +16,63 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
             Default constructor
         .DESCRIPTION
             Converts an xccdf stig rule element into a AuditPolicyRule
-        .PARAMETER StigRule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     AuditPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetSubcategory()
-        $this.SetAuditFlag()
-        $this.SetEnsureFlag([Ensure]::Present)
-        $this.SetDscResource()
+        $tokens = $this.Extract()
+        $this.SetSubcategory($tokens)
+        $this.SetAuditFlag($tokens)
+        $this.Ensure = [Ensure]::Present
+        $this.DscResource = 'AuditPolicySubcategory'
     }
-
-    #region Methods
 
     <#
         .SYNOPSIS
-            Extracts the subcategory name from the check-content and sets the value
-        .DESCRIPTION
-            Gets the audit policy subcategory from the xccdf content and sets the
-            value. If the audit policy subcategory that is returned is not a
-            valid subcategory, the parser status is set to fail.
+            Returns the named audit policy settings from the check-content
     #>
-    [void] SetSubcategory ()
+    [RegularExpressions.MatchCollection] Extract ()
     {
-        $thisSubcategory = Get-AuditPolicySubCategory -CheckContent $this.SplitCheckContent
+        $regex = [regex]::Matches(
+            $this.RawString,
+            '(?:(?:\w+(?:\s|\/))+(?:(?:>|-)>(?:\s+)?))(?<subcategory>(?:\w+\s)+)(?:-(?:\s+)?)(?<auditflag>(?:\w+)+)'
+        )
+
+        return $regex
+    }
+
+    <#
+        .SYNOPSIS
+            Set the subcategory name
+        .DESCRIPTION
+            Set the subcategory value. If the returned audit policy subcategory
+            is not valid, the parser status is set to fail.
+    #>
+    [void] SetSubcategory ([RegularExpressions.MatchCollection] $Regex)
+    {
+        $thisSubcategory = $regex.Groups.Where(
+            {$_.Name -eq 'subcategory'}
+        ).Value
 
         if (-not $this.SetStatus($thisSubcategory))
         {
-            $this.set_Subcategory($thisSubcategory)
+            $this.set_Subcategory($thisSubcategory.trim())
         }
     }
 
     <#
         .SYNOPSIS
-            Extracts the subcategory flag from the check-content and sets the value
+            Set the subcategory flag
         .DESCRIPTION
-            Gets the audit policy flag from the xccdf content and sets the value.
-            If the audit policy flag that is returned is not a valid flag, the
-            parser status is set to fail.
+            Set the subcategory flag. If the returned audit policy subcategory
+            is not valid, the parser status is set to fail.
     #>
-    [void] SetAuditFlag ()
+    [void] SetAuditFlag ([RegularExpressions.MatchCollection] $Regex)
     {
-        $thisAuditFlag = Get-AuditPolicyFlag -CheckContent $this.SplitCheckContent
+        $thisAuditFlag = $Regex.Groups.Where(
+            {$_.Name -eq 'auditflag'}
+        ).Value
 
         if (-not $this.SetStatus($thisAuditFlag))
         {
@@ -85,22 +82,8 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
 
     <#
         .SYNOPSIS
-            Sets the ensure flag to the provided value
-        .DESCRIPTION
-            Sets the ensure flag to the provided value
-        .PARAMETER EnsureFlag
-            The value the Ensure flag should be set to
+            Checks if a rule matches an audit policy setting.
     #>
-    [void] SetEnsureFlag ([Ensure] $EnsureFlag)
-    {
-        $this.Ensure = $EnsureFlag
-    }
-
-    hidden [void] SetDscResource ()
-    {
-        $this.DscResource = 'AuditPolicySubcategory'
-    }
-
     static [bool] Match ([string] $CheckContent)
     {
         if
@@ -113,5 +96,4 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         }
         return $false
     }
-    #endregion
 }
