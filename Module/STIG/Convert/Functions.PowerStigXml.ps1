@@ -510,7 +510,7 @@ function Get-PowerStigFileList
     $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
 
     # If there is a technology role add it to the output name
-    if($id.TechnologyRole)
+    if ($id.TechnologyRole)
     {
         $fileNameBase = $fileNameBase + "-$($id.TechnologyRole)"
     }
