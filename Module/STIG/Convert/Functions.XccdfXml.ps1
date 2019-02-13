@@ -322,7 +322,7 @@ function Get-StigRuleList
     }
     process
     {
-        foreach ( $stigRule in $StigGroupList )
+        foreach ($stigRule in $StigGroupList)
         {
             # Global added so that the stig rule can be referenced later
             $global:stigRuleGlobal = $stigRule
@@ -333,9 +333,9 @@ function Get-StigRuleList
             {
                 $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content') -replace [regex]::Escape($correction.oldText), $correction.newText
             }
-            $rules = [ConvertFactory]::Rule( $stigRule )
+            $rules = [ConvertFactory]::Rule($stigRule)
 
-            foreach ( $rule in $rules )
+            foreach ($rule in $rules)
             {
                 <#
                     At this point the original rule could be split into multiple
@@ -350,13 +350,13 @@ function Get-StigRuleList
                     $rule.RawString = $rule.RawString -replace [regex]::Escape($correction.newText), $correction.oldText
                 }
 
-                if ( $rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]) )
+                if ($rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]))
                 {
-                    [void] $global:stigSettings.Add( ( [DocumentRule]::ConvertFrom( $rule ) ) )
+                    [void] $global:stigSettings.Add(([DocumentRuleConvert]::ConvertFrom($rule)))
                 }
                 else
                 {
-                    [void] $global:stigSettings.Add( $rule )
+                    [void] $global:stigSettings.Add($rule)
                 }
             }
             $stigProcessedCounter ++
