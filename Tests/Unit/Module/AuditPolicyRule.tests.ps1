@@ -8,13 +8,14 @@ try
         #region Test Setup
         $checkContentBase = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
-        Use the AuditPol tool to review the current Audit Policy configuration:
-        -Open a Command Prompt with elevated privileges ("Run as Administrator").
-        -Enter "AuditPol /get /category:*".
+Use the AuditPol tool to review the current Audit Policy configuration:
+-Open a Command Prompt with elevated privileges ("Run as Administrator").
+-Enter "AuditPol /get /category:*".
 
-        Compare the AuditPol settings with the following.  If the system does not audit the following, this is a finding.
+Compare the AuditPol settings with the following.
+If the system does not audit the following, this is a finding.
 
-        {0}'
+{0}'
 
         $checkContentString = 'Account Management -&gt; Computer Account Management - Success'
         $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
@@ -26,7 +27,7 @@ try
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'AuditPolicyRule'
+                    $rule.GetType().BaseType.ToString() | Should -Be 'AuditPolicyRule'
                 }
             }
 
@@ -37,87 +38,57 @@ try
                 foreach ( $property in $classProperties )
                 {
                     It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
+                        ( $rule | Get-Member -Name $property ).Name | Should -Be $property
                     }
                 }
             }
         }
         #endregion
         #region Method Tests
-        $checkContentString = 'Account Management -> Computer Account Management - Success'
-
-        Describe 'Get-AuditPolicySettings' {
+        Describe 'Conversion' {
 
             Context 'Data format "->"' {
+                $checkContentString = 'Account Management -> Computer Account Management - Success'
+                $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
+                $rule = [AuditPolicyRuleConvert]::new( $stigRule )
 
-                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
-                $settings = Get-AuditPolicySettings -CheckContent $checkContent
-
-                It 'Should return the Category in the first index' {
-                    $settings[0] | Should Match '(\s)*Account Management(\s)*'
+                It 'Should return the SubCategory' {
+                    $rule.Subcategory | Should -Be 'Computer Account Management'
                 }
-                It 'Should return the SubCategory in the second index' {
-                    $settings[1] | Should Match '(\s)*Computer Account Management(\s)*'
-                }
-                It 'Should return the audit flag in the third index' {
-                    $settings[2] | Should Match '(\s)*Success(\s)*'
+                It 'Should return the audit flag' {
+                    $rule.AuditFlag | Should -Be 'Success'
                 }
             }
 
             Context 'Data format ">>"' {
 
-                $checkContentString = 'Account Management >> Computer Account Management - Success'
-                $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
-                $settings = Get-AuditPolicySettings -CheckContent $checkContent
+                $checkContentString = 'Account Management &gt;&gt; Computer Account Management - Success'
+                $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
+                $rule = [AuditPolicyRuleConvert]::new( $stigRule )
 
-                It 'Should return the Category in the first index' {
-                    $settings[0] | Should Match '(\s)*Account Management(\s)*'
+                It 'Should return the SubCategory' {
+                    $rule.Subcategory | Should -Be 'Computer Account Management'
                 }
-                It 'Should return the SubCategory in the second index' {
-                    $settings[1] | Should Match '(\s)*Computer Account Management(\s)*'
+                It 'Should return the audit flag' {
+                    $rule.AuditFlag | Should -Be 'Success'
                 }
-                It 'Should return the audit flag in the third index' {
-                    $settings[2] | Should Match '(\s)*Success(\s)*'
+            }
+            Context 'forward slash in subcategory' {
+
+                $checkContentString = 'Logon/Logoff &gt;&gt; Account Lockout - Success'
+                $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
+                $rule = [AuditPolicyRuleConvert]::new( $stigRule )
+
+                It 'Should return the SubCategory' {
+                    $rule.Subcategory | Should -Be 'Account Lockout'
+                }
+                It 'Should return the audit flag' {
+                    $rule.AuditFlag | Should -Be 'Success'
                 }
             }
         }
 
-        Describe 'Get-AuditPolicySubCategory' {
-
-            #Mock -CommandName Get-AuditPolicySettings -MockWith { @('Category ', ' Subcategory ', ' Flag') }
-            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
-            It 'Should return the second string in quotes' {
-                Get-AuditPolicySubCategory -CheckContent $checkContent | Should Be 'Computer Account Management'
-            }
-        }
-
-        Describe 'Get-AuditPolicyFlag' {
-
-            $checkContent = Split-TestStrings -CheckContent ($checkContentBase -f $checkContentString)
-            It 'Should return the audit policy flag' {
-                Get-AuditPolicyFlag -CheckContent $checkContent | Should Be 'Success'
-            }
-        }
         #endregion
-
-        <#{TODO}#> <#Rem Struct test#>
-        <#region Data Tests
-
-        Describe 'Audit Policy Data Variables' {
-
-            [string[]] $dataSectionNameList = @(
-                'auditPolicySubcategories',
-                'auditPolicyFlags'
-            )
-
-            foreach ($dataSectionName in $dataSectionNameList)
-            {
-                It "Should have a data section '$dataSectionName'" {
-                    ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-                }
-            }
-        }
-        #endregion #>
     }
 }
 finally
