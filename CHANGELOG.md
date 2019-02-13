@@ -2,13 +2,13 @@
 
 ## Unreleased
 
-* Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
+NEW
 
 * Introduces class support for each rule type
 * The STIG class now contains an array of rule objects vs xml elements
 * Orgsettings, Exceptions, and Rule skips are all supported by the Rule base class
 * Rule help is provided for any loaded rule.
-  * See the wiki for more information.
+  * See the [wiki](https://github.com/Microsoft/PowerStig/wiki/GettingRuleHelp) for more information.
 * Major code refactor to simplify maintenance and usage
 * [Breaking Change] The STIG class constructor no longer accepts Orgsettings, Exceptions, or Rule skips
   * That functionality has move to the load rule method
@@ -16,7 +16,10 @@
   * The STIG class validates all input and will throw an error if invalid data is provided.
 * The Get-StigList has be updated and renamed to Get-Stig to return the STIG class
 
-* Fixed [284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
+UPDATES
+
+* Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
+* Fixed [#284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
 
 ## 2.4.0.0
 
