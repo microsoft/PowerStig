@@ -27,7 +27,7 @@ If the system does not audit the following, this is a finding.
             Context 'Base Class' {
 
                 It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'AuditPolicyRule'
+                    $rule.GetType().BaseType.ToString() | Should -Be 'AuditPolicyRule'
                 }
             }
 
@@ -38,7 +38,7 @@ If the system does not audit the following, this is a finding.
                 foreach ( $property in $classProperties )
                 {
                     It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
+                        ( $rule | Get-Member -Name $property ).Name | Should -Be $property
                     }
                 }
             }
@@ -53,10 +53,10 @@ If the system does not audit the following, this is a finding.
                 $rule = [AuditPolicyRuleConvert]::new( $stigRule )
 
                 It 'Should return the SubCategory' {
-                    $rule.Subcategory | Should Be 'Computer Account Management'
+                    $rule.Subcategory | Should -Be 'Computer Account Management'
                 }
                 It 'Should return the audit flag' {
-                    $rule.AuditFlag | Should Be  'Success'
+                    $rule.AuditFlag | Should -Be 'Success'
                 }
             }
 
@@ -67,10 +67,10 @@ If the system does not audit the following, this is a finding.
                 $rule = [AuditPolicyRuleConvert]::new( $stigRule )
 
                 It 'Should return the SubCategory' {
-                    $rule.Subcategory | Should Be 'Computer Account Management'
+                    $rule.Subcategory | Should -Be 'Computer Account Management'
                 }
                 It 'Should return the audit flag' {
-                    $rule.AuditFlag | Should Be  'Success'
+                    $rule.AuditFlag | Should -Be 'Success'
                 }
             }
             Context 'forward slash in subcategory' {
@@ -80,10 +80,10 @@ If the system does not audit the following, this is a finding.
                 $rule = [AuditPolicyRuleConvert]::new( $stigRule )
 
                 It 'Should return the SubCategory' {
-                    $rule.Subcategory | Should Be 'Account Lockout'
+                    $rule.Subcategory | Should -Be 'Account Lockout'
                 }
                 It 'Should return the audit flag' {
-                    $rule.AuditFlag | Should Be  'Success'
+                    $rule.AuditFlag | Should -Be 'Success'
                 }
             }
         }
