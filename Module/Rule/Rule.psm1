@@ -176,6 +176,9 @@ Class Rule : ICloneable
         $this.($this.GetOverrideValue()) = $Value
     }
 
+
+
+
     <#
         .SYNOPSIS
             Creates a shallow copy of the current

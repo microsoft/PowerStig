@@ -39,6 +39,10 @@ Class UserRightRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        $return = @{
+            Value = "Administrators"
+            Notes = $null
+        }
+        return $return
     }
 }
