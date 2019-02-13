@@ -2,14 +2,7 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\AccountPolicyRule.psm1
-
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
+using namespace System.Text
 # Header
 
 <#
@@ -20,10 +13,6 @@ foreach ($supportFile in $supportFileList)
         from the check-content of the xccdf. Once a STIG rule is identifed as an
         Account Policy rule, it is passed to the AccountPolicyRule class for parsing
         and validation.
-    .PARAMETER PolicyName
-        The name of the account policy
-    .PARAMETER PolicyValue
-        The value the account policy should be set to.
 #>
 Class AccountPolicyRuleConvert : AccountPolicyRule
 {
@@ -37,19 +26,34 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
     #>
     AccountPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetPolicyName()
+
+        $tokens = $this.Extract()
+        $this.SetPolicyName($tokens)
         if ($this.TestPolicyValueForRange())
         {
             $this.SetPolicyValueRange()
         }
         else
         {
-            $this.SetPolicyValue()
+            $this.SetPolicyValue($tokens)
         }
-        $this.SetDscResource()
+        $this.DscResource = 'AccountPolicy'
     }
 
     #region Methods
+
+    <#
+        .SYNOPSIS
+            Returns the named account policy settings from the check-content
+    #>
+    [RegularExpressions.MatchCollection] Extract ()
+    {
+        $SecurityPolicyString = Get-SecurityPolicyString -CheckContent $this.SplitCheckContent
+        $regex = [regex]::Matches(
+            '(?:")(?<policyName>[^"]+)(?:")[^"]+(?:")(?<policyValue>[^"]+)(?:")', $SecurityPolicyString
+        )
+        return $regex
+    }
 
     <#
         .SYNOPSIS
@@ -59,9 +63,11 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
             If the account policy that is returned is not a valid account policy Name, the
             parser status is set to fail.
     #>
-    [void] SetPolicyName ()
+    [void] SetPolicyName ([RegularExpressions.MatchCollection] $Regex)
     {
-        $thisPolicyName = Get-AccountPolicyName -CheckContent $this.SplitCheckContent
+        $thisPolicyName = $Regex.Groups.Where(
+            {$_.Name -eq 'policyName'}
+        ).Value
 
         if (-not $this.SetStatus($thisPolicyName))
         {
@@ -82,10 +88,7 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
         {
             return $true
         }
-        else
-        {
-            return $false
-        }
+        return $false
     }
 
     <#
@@ -95,9 +98,11 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
             Gets the account policy value from the xccdf content and sets the Policy value.
             If the value is determined to be invalid, it sets the parser status to failed.
     #>
-    [void] SetPolicyValue ()
+    [void] SetPolicyValue ([RegularExpressions.MatchCollection] $Regex)
     {
-        $thisPolicyValue = Get-AccountPolicyValue -CheckContent $this.SplitCheckContent
+        $thisPolicyValue = $Regex.Groups.Where(
+            {$_.Name -eq 'policyName'}
+        ).Value
 
         if (-not $this.SetStatus($thisPolicyValue))
         {
@@ -127,7 +132,7 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'AccountPolicy'
+        $this.DscResource
     }
 
     static [bool] Match ([string] $CheckContent)
