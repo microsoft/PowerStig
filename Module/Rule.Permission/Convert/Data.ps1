@@ -101,6 +101,7 @@ data inheritanceConstant
         This folder, subfolders, and files      = This folder subfolders and files
         This folder, subfolders and files       = This folder subfolders and files
         This folder, subfolder and files        = This folder subfolders and files
+        This folder, subfolder, and files       = This folder subfolders and files
         Subfolders only                         = Subfolders only
 '@
 }
