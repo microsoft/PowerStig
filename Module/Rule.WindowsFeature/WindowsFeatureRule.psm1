@@ -31,6 +31,19 @@ Class WindowsFeatureRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        if($this.InstallState -eq 'Present')
+        {
+            $thisInstallState = 'Absent'
+        }
+        else
+        {
+            $thisInstallState = 'Present'
+        }
+
+        $return = @{
+            Value = $thisInstallState
+            Notes = "'Present' and 'Absent' are the only valid values."
+        }
+        return $return
     }
 }

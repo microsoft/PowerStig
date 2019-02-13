@@ -19,8 +19,8 @@ using module .\..\Rule\Rule.psm1
 Class PermissionRule : Rule
 {
     [string] $Path
-    [object[]] $AccessControlEntry
-    [bool] $Force <#(ExceptionValue)#>
+    [object[]] $AccessControlEntry <#(ExceptionValue)#>
+    [bool] $Force
 
     PermissionRule () {}
 
@@ -35,6 +35,10 @@ Class PermissionRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        $return = @{
+            Value = "15"
+            Notes = $null
+        }
+        return $return
     }
 }

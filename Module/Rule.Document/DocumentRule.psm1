@@ -35,7 +35,7 @@ Class DocumentRule : Rule
         $this.rawString = $RawString
         $this.DscResource = 'None'
     }
-    
+
     DocumentRule () {}
 
     DocumentRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
@@ -44,6 +44,10 @@ Class DocumentRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        $return = @{
+            Value = "15"
+            Notes = $null
+        }
+        return $return
     }
 }
