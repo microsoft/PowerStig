@@ -48,11 +48,19 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
     #>
     [RegularExpressions.MatchCollection] Extract ()
     {
-        $SecurityPolicyString = Get-SecurityPolicyString -CheckContent $this.SplitCheckContent
-        $regex = [regex]::Matches(
-            '(?:")(?<policyName>[^"]+)(?:")[^"]+(?:")(?<policyValue>[^"]+)(?:")', $SecurityPolicyString
+        <#
+            This match looks for the following patterns
+            1. If the "PolicyName" * "Value"
+            2. If the value for "PolicyName" * "Value"
+            3. If the value for the "PolicyName" * "Value"
+
+            If any rule do not match this pattern, please update the change log
+            file to align to one of these options.
+        #>
+        return [regex]::Matches(
+            $this.RawString,
+            '(?:If the (?:value for (?:the )?)?")(?<policyName>[^"]+)(?:")[^"]+(?:")(?<policyValue>[^"]+)(?:")'
         )
-        return $regex
     }
 
     <#
@@ -101,7 +109,7 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
     [void] SetPolicyValue ([RegularExpressions.MatchCollection] $Regex)
     {
         $thisPolicyValue = $Regex.Groups.Where(
-            {$_.Name -eq 'policyName'}
+            {$_.Name -eq 'policyValue'}
         ).Value
 
         if (-not $this.SetStatus($thisPolicyValue))
