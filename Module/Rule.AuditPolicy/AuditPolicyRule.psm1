@@ -56,13 +56,21 @@ Class AuditPolicyRule : Rule
             Creates the class specifc help content and passes it to the base class
             method to create the help content
     #>
-    [string] GetExceptionHelpString()
+    [PSObject] GetExceptionHelp()
     {
-        if($this.Ensure -eq 'Absent')
+        if ($this.Ensure -eq 'Absent')
         {
-            return 'Present'
+            $value = 'Present'
+        }
+        else
+        {
+            $value = 'Absent'
         }
 
-        return 'Absent'
+        $return = @{
+            Value = $value
+            Notes = "'Present' and 'Absent' are the only valid values"
+        }
+        return $return
     }
 }

@@ -300,19 +300,23 @@ Class STIG
             throw "$ruleId was not found in the currently loaded STIG."
         }
 
+        $exceptionHelp = $rule.GetExceptionHelp()
         $return = [System.Text.StringBuilder]::new()
         $null = $return.AppendLine('')
-        $null = $return.AppendLine('Rule Type')
+        $null = $return.AppendLine('RULE TYPE')
         $null = $return.AppendLine("   $($rule.GetType().ToString())")
         $null = $return.AppendLine('')
-        $null = $return.AppendLine('Description')
+        $null = $return.AppendLine('DESCRIPTION')
         $null = $return.AppendLine("   The $($rule.GetType().ToString()) property '$($rule.GetOverrideValue())' can be overridden ")
         $null = $return.AppendLine('   with an exception using the syntax below.')
         $null = $return.AppendLine('')
-        $null = $return.AppendLine('SYNTAX')
-        $null = $return.AppendLine("   $($this.rule)")
-        $null = $return.AppendLine('')
-        $null = $return.AppendLine('Sample Configuration')
+        if($null -ne $exceptionHelp.Notes)
+        {
+            $null = $return.AppendLine('NOTES')
+            $null = $return.AppendLine("   $($exceptionHelp.Notes)")
+            $null = $return.AppendLine('')
+        }
+        $null = $return.AppendLine('SAMPLE CONFIGURATION')
         $null = $return.AppendLine('')
         $null = $return.AppendLine('configuration Sample')
         $null = $return.AppendLine('{')
@@ -325,7 +329,7 @@ Class STIG
         $null = $return.AppendLine("            OsVersion   = '$($this.TechnologyVersion)'")
         $null = $return.AppendLine("            OsRole      = '$($this.TechnologyRole)'")
         $null = $return.AppendLine("            StigVersion = '$($this.Version)'")
-        $null = $return.AppendLine("            Exception   = @{'$($rule.id)' = '$($rule.GetExceptionHelpString())'}")
+        $null = $return.AppendLine("            Exception   = @{'$($rule.id)' = '$($exceptionHelp.value)'}")
         $null = $return.AppendLine('        }')
         $null = $return.AppendLine('    }')
         $null = $return.AppendLine('}')

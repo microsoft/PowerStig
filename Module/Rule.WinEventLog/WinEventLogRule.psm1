@@ -8,7 +8,7 @@ using module .\..\Rule\Rule.psm1
     .SYNOPSIS
         An Account Policy Rule object
     .DESCRIPTION
-        The WinEventLogRule class is used to maange the Account Policy Settings.
+        The WinEventLogRule class is used to manage the Account Policy Settings.
     .PARAMETER LogName
         The name of the log
     .PARAMETER IsEnabled
@@ -31,6 +31,18 @@ Class WinEventLogRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        return ([Rule]$this).GetExceptionHelp("{0} = 1")
+        if ($this.IsEnabled -eq 'True')
+        {
+            $thisIsEnabled = 'False'
+        }
+        else
+        {
+            $thisIsEnabled = 'True'
+        }
+        $return = @{
+            Value = $thisIsEnabled
+            Notes = "'True' and 'False' are the only valid values"
+        }
+        return $return
     }
 }
