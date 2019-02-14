@@ -80,18 +80,14 @@ try
             If ($count -le 0)
             {
                 Describe "$($convertedRule.GetType().Name) Child Class" {
-
                     Context 'Base Class' {
-
-                        It 'Shoud have a BaseType of STIG' {
+                        It 'Shoud have a BaseType of AccountPolicyRule' {
                             $convertedRule.GetType().BaseType.ToString() | Should Be 'AccountPolicyRule'
                         }
                     }
 
                     Context 'Class Properties' {
-
                         $classProperties = @('PolicyName', 'PolicyValue')
-
                         foreach ( $property in $classProperties )
                         {
                             It "Should have a property named '$property'" {
@@ -100,12 +96,10 @@ try
                         }
                     }
                 }
-
                 $count ++
             }
 
             Describe 'Class Instance' {
-
                 It "Should return the Policy Name" {
                     $convertedRule.PolicyName | Should Be $rule.PolicyName
                 }
@@ -118,7 +112,6 @@ try
             }
 
             Describe 'Static Match' {
-
                 It 'Should Match the string' {
                     [AccountPolicyRuleConvert]::Match($rule.checkContent) | Should Be $true
                 }
