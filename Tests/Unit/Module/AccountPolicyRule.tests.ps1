@@ -14,7 +14,7 @@ try
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
-                Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Account Lockout
+                Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Account Lockout
                 Policy.
 
                 If the "Account lockout duration" is less than "15" minutes (excluding "0"), this is a finding.'
@@ -26,7 +26,7 @@ try
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
-                Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy.
+                Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
 
                 If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.
 
@@ -39,7 +39,7 @@ try
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
-                Navigate to Local Computer Policy >> Computer Configuration >> Windows Settings >> Security Settings >> Account Policies >> Password Policy.
+                Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Account Policies &gt;&gt; Password Policy.
 
                 If the value for "Store passwords using reversible encryption" is not set to "Disabled", this is a finding.'
             },
@@ -50,7 +50,7 @@ try
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
-                Navigate to Local Computer Policy -> Computer Configuration -> Windows Settings -> Security Settings -> Account Policies -> Password Policy.
+                Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Account Policies -&gt; Password Policy.
 
                 If the value for the "Minimum password length" is less than "14" characters, this is a finding.'
             },
@@ -61,10 +61,10 @@ try
                 CheckContent = 'Verify the following is configured in the Default Domain Policy.
 
                 Open "Group Policy Management".
-                Navigate to "Group Policy Objects" in the Domain being reviewed (Forest > Domains > Domain).
+                Navigate to "Group Policy Objects" in the Domain being reviewed (Forest &gt; Domains &gt; Domain).
                 Right click on the "Default Domain Policy".
                 Select Edit.
-                Navigate to Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Kerberos Policy.
+                Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
                 If the "Enforce user logon restrictions" is not set to "Enabled", this is a finding.'
             }
@@ -77,6 +77,7 @@ try
             $stigRule = Get-TestStigRule -CheckContent $rule.checkContent -ReturnGroupOnly
             $convertedRule = [AccountPolicyRuleConvert]::new( $stigRule )
 
+            # Only run the base class tests once
             If ($count -le 0)
             {
                 Describe "$($convertedRule.GetType().Name) Child Class" {
@@ -111,9 +112,17 @@ try
                 }
             }
 
+            <#
+                When the xccdf xml is loaded, the xml parser decodes html
+                elements. The Match method is expecting decoded strings
+                so to keep the test data consistent with the xccdf xml
+                content it needs to be decoded before testing.
+            #>
             Describe 'Static Match' {
                 It 'Should Match the string' {
-                    [AccountPolicyRuleConvert]::Match($rule.checkContent) | Should Be $true
+                    [AccountPolicyRuleConvert]::Match(
+                        [System.Web.HttpUtility]::HtmlDecode( $rule.checkContent )
+                     ) | Should Be $true
                 }
             }
         }
