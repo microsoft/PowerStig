@@ -63,6 +63,12 @@ try
         Foreach ($rule in $rulesToTest)
         {
             $stigRule = Get-TestStigRule -CheckContent $rule.checkContent -ReturnGroupOnly
+            <#
+                When the xccdf xml is loaded, the xml parser decodes html elements.
+                The Match method is expecting decoded strings. To keep the test data
+                consistent with the xccdf xml it needs to be decoded before testing.
+            #>
+            $rule.checkContent = [System.Web.HttpUtility]::HtmlDecode( $rule.checkContent )
             $convertedRule = [SecurityOptionRuleConvert]::new( $stigRule )
 
             # Only run the base class tests once
@@ -104,15 +110,7 @@ try
 
             Describe 'Static Match' {
                 It 'Should Match the string' {
-                    <#
-                        When the xccdf xml is loaded, the xml parser decodes html
-                        elements. The Match method is expecting decoded strings
-                        so to keep the test data consistent with the xccdf xml
-                        content it needs to be decoded before testing.
-                    #>
-                    [SecurityOptionRuleConvert]::Match(
-                        [System.Web.HttpUtility]::HtmlDecode( $rule.checkContent )
-                    ) | Should Be $true
+                    [SecurityOptionRuleConvert]::Match( $rule.checkContent ) | Should Be $true
                 }
             }
         }
