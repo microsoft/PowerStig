@@ -24,6 +24,9 @@ UPDATES
 * Removed: Internet Explorer 1.13
 * Fixed [290](https://github.com/Microsoft/PowerStig/issues/290): [V-76731] IIS Server STIG V-76731 fails to properly set STIG guidance because rule is not split
 
+* Added the following STIGs
+  * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)
+
 ## 2.4.0.0
 
 * Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
