@@ -224,17 +224,13 @@ class ConvertFactory
             {[DocumentRuleConvert]::Match($PSItem) -and $ruleTypeList.Count -eq 0}
             {
                 $null = $ruleTypeList.Add(
-                    [SplitFactory]::Rule(
-                        [DocumentRuleConvert]::new($Rule)
-                    )
+                    [DocumentRuleConvert]::new($Rule).AsRule()
                 )
             }
             default
             {
                 $null = $ruleTypeList.Add(
-                    [SplitFactory]::Rule(
-                        [ManualRuleConvert]::new($Rule)
-                    )
+                    [ManualRuleConvert]::new($Rule).AsRule()
                 )
             }
         }
