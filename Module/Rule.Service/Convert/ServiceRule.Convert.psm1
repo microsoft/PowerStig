@@ -25,12 +25,20 @@ Class ServiceRuleConvert : ServiceRule
     <#
         .SYNOPSIS
             Default constructor
+    #>
+    ServiceRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Default constructor
         .DESCRIPTION
             Converts a xccdf STIG rule element into a ServiceRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden ServiceRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    ServiceRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetServiceName()
         $this.SetServiceState()
@@ -39,31 +47,6 @@ Class ServiceRuleConvert : ServiceRule
     }
 
     #region Methods
-
-    static [ServiceRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
-    {
-        $ruleList = @()
-        $rule = [ServiceRuleConvert]::new($StigRule)
-        if ($rule.HasMultipleRules())
-        {
-            [string[]] $splitRules = $rule.SplitMultipleRules()
-            [int] $byte = 97
-            foreach ($splitRule in $splitRules)
-            {
-                $ruleClone = $rule.Clone()
-                $ruleClone.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
-                $ruleClone.ServiceName = $splitRule
-                $ruleList += $ruleClone.AsRule()
-                $byte ++
-            }
-        }
-        else
-        {
-            $ruleList += $rule.AsRule()
-        }
-
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

@@ -28,6 +28,14 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
     <#
         .SYNOPSIS
             Default constructor
+    #>
+    ProcessMitigationRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Default constructor
         .DESCRIPTION
             Converts a xccdf stig rule element into a ProcessMitigationRule
         .PARAMETER StigRule
@@ -48,28 +56,6 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
     }
 
     #region Methods
-
-    static [ProcessMitigationRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
-    {
-        $ruleList = @()
-        $rule = [ProcessMitigationRuleConvert]::new($StigRule)
-        if ($rule.HasMultipleRules())
-        {
-            [string[]] $splitRules = $rule.SplitMultipleRules()
-            foreach ($splitRule in $splitRules)
-            {
-                $ruleClone = $rule.Clone()
-                $ruleClone.MitigationTarget = $splitRule
-                $ruleList += $ruleClone.AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += $rule.AsRule()
-        }
-
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

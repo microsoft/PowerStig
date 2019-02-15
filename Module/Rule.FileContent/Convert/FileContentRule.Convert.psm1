@@ -25,12 +25,20 @@ Class FileContentRuleConvert : FileContentRule
     <#
         .SYNOPSIS
             Default constructor
+    #>
+    FileContentRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Default constructor
         .DESCRIPTION
             Converts a xccdf stig rule element into a FileContentRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetKeyName()
         $this.SetValue()
@@ -54,25 +62,6 @@ Class FileContentRuleConvert : FileContentRule
     }
 
     #region Methods
-
-    static [FileContentRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([FileContentRuleConvert]::HasMultipleRules($StigRule.rule.Check.('check-content')))
-        {
-            [string[]] $splitRules = [FileContentRuleConvert]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
-            foreach ($splitRule in $splitRules)
-            {
-                $StigRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [FileContentRuleConvert]::New($StigRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [FileContentRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS
@@ -112,7 +101,6 @@ Class FileContentRuleConvert : FileContentRule
 
     static [bool] Match ([string] $CheckContent)
     {
-
         $result = $false
         switch ( $true )
         {
@@ -157,10 +145,9 @@ Class FileContentRuleConvert : FileContentRule
         .DESCRIPTION
             Gets the policy setting in the rule from the xccdf content and then
             checks for the existance of multiple entries.
-        .PARAMETER CheckContent
+            .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
         $keyValuePairs = Get-KeyValuePair -CheckContent ([FileContentRule]::SplitCheckContent($CheckContent))
@@ -174,7 +161,7 @@ Class FileContentRuleConvert : FileContentRule
             When CheckContent is identified as containing multiple rules
             this method will break the CheckContent out into multiple
             CheckContent strings that contain single rules.
-        .PARAMETER CheckContent
+            .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
     static [string[]] SplitMultipleRules ([string] $CheckContent)

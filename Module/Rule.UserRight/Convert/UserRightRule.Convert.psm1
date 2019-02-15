@@ -26,12 +26,20 @@ Class UserRightRuleConvert : UserRightRule
     <#
         .SYNOPSIS
             Default constructor
+    #>
+    UserRightRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Default constructor
         .DESCRIPTION
             Converts a xccdf STIG rule element into a UserRightRule
         .PARAMETER StigRule
             The STIG rule to convert
     #>
-    hidden UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetDisplayName()
         $this.SetConstant()
@@ -51,30 +59,6 @@ Class UserRightRuleConvert : UserRightRule
     }
 
     #region Methods
-
-    static [UserRightRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([UserRightRuleConvert]::HasMultipleRules($StigRule.rule.Check.'check-content'))
-        {
-            [string[]] $splitRules = [UserRightRuleConvert]::SplitMultipleRules($StigRule.rule.Check.'check-content')
-            [int] $byte = 97 # Lowercase A
-            foreach ($splitRule in $splitRules)
-            {
-                $copyRule = $StigRule.Clone()
-                $copyRule.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
-                $byte ++
-
-                $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [UserRightRuleConvert]::New($copyRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [UserRightRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

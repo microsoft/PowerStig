@@ -24,7 +24,13 @@ foreach ($supportFile in $supportFileList)
 #>
 Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 {
-
+    <#
+        .SYNOPSIS
+            Default constructor
+    #>
+    WebConfigurationPropertyRuleConvert ()
+    {
+    }
 
     <#
         .SYNOPSIS
@@ -55,25 +61,6 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
     }
 
     #region Methods
-
-    static [WebConfigurationPropertyRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([WebConfigurationPropertyRuleConvert]::HasMultipleRules($StigRule.rule.Check.'check-content'))
-        {
-            [string[]] $splitRules = [WebConfigurationPropertyRuleConvert]::SplitMultipleRules($StigRule.rule.Check.'check-content')
-            foreach ($splitRule in $splitRules)
-            {
-                $StigRule.rule.Check.'check-content' = $splitRule
-                $ruleList += [WebConfigurationPropertyRuleConvert]::New($StigRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [WebConfigurationPropertyRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS
