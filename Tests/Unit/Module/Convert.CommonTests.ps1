@@ -24,7 +24,6 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
             $convertedRule.GetType().BaseType.ToString() | Should Be $moduleName
         }
         $count ++
-
         <#
             Get the List of properties on the Rule base class so that we don't
             test them over and over in the child class tests.
@@ -80,7 +79,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
     $checkContent = [System.Web.HttpUtility]::HtmlDecode( $testRule.checkContent )
     <#
         To dynamically call a static method, we have to get the static method
-        from the current runtime and invoke it with the test data.
+        from the current runtime and then invoke it with its expected parameters.
     #>
     $match = $convertedRule.GetType().GetMethod('Match')
     # Test the required convert module static method
