@@ -8,7 +8,7 @@ data regularExpression
         CGIModules              = "Allow unspecified CGI modules"
         configSection           = (?<=\")system.+?(?=\")
         expiredSession          = Regenerate expired session ID
-        HMACSHA256              = Verify "HMACSHA256" is selected for the Validation method
+        HMACSHA256              = Verify "HMACSHA256"
         ISAPIModules            = "Allow unspecified ISAPI modules"
         keyValuePairLine        = Verify.+?(reflects|is set to)
         useCookies              = (Use Cookies|UseCookies)

@@ -191,7 +191,7 @@ function Get-KeyValuePair
         { $checkContent -match $regularExpression.HMACSHA256 }
         {
             $key = 'validation'
-            $value = '4'
+            $value = 'HMACSHA256'
         }
         { $checkContent -match $regularExpression.autoEncryptionMethod }
         {
