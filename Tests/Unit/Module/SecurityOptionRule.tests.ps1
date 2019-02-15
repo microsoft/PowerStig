@@ -4,7 +4,7 @@ using module .\..\..\..\Module\Rule.SecurityOption\Convert\SecurityOptionRule.Co
 #endregion
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
         $testRuleList = @(
             @{
