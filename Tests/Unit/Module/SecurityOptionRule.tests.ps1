@@ -6,7 +6,7 @@ try
 {
     InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
                 OptionName = 'Accounts: Guest account status'
                 OptionValue = 'Disabled'
@@ -58,62 +58,14 @@ try
             }
         )
         #endregion
-
-        [int]$count = 0
-        Foreach ($rule in $rulesToTest)
+        Foreach ($testRule in $testRuleList)
         {
-            $stigRule = Get-TestStigRule -CheckContent $rule.checkContent -ReturnGroupOnly
-            <#
-                When the xccdf xml is loaded, the xml parser decodes html elements.
-                The Match method is expecting decoded strings. To keep the test data
-                consistent with the xccdf xml it needs to be decoded before testing.
-            #>
-            $rule.checkContent = [System.Web.HttpUtility]::HtmlDecode( $rule.checkContent )
-            $convertedRule = [SecurityOptionRuleConvert]::new( $stigRule )
-
-            # Only run the base class tests once
-            If ($count -le 0)
-            {
-                Describe "$($convertedRule.GetType().Name) Child Class" {
-                    Context 'Base Class' {
-                        It 'Shoud have a BaseType of SecurityOptionRule' {
-                            $convertedRule.GetType().BaseType.ToString() | Should Be 'SecurityOptionRule'
-                        }
-                    }
-
-                    Context 'Class Properties' {
-                        $classProperties = @('OptionName', 'OptionValue')
-                        foreach ( $property in $classProperties )
-                        {
-                            It "Should have a property named '$property'" {
-                                ( $convertedRule | Get-Member -Name $property ).Name | Should Be $property
-                            }
-                        }
-                    }
-                }
-                $count ++
-            }
-            Describe 'Class Instance' {
-                It "Should return the Option Name" {
-                    $convertedRule.OptionName | Should Be $rule.OptionName
-                }
-                It "Should return the Option Value" {
-                    $convertedRule.OptionValue | Should Be $rule.OptionValue
-                }
-                It "Should return the Organization Value Required flag" {
-                    $convertedRule.OrganizationValueRequired | Should Be $rule.OrganizationValueRequired
-                }
-                It "Should return the correct Organization Value test string" {
-                    $convertedRule.OrganizationValueTestString | Should Be $rule.OrganizationValueTestString
-                }
-            }
-
-            Describe 'Static Match' {
-                It 'Should Match the string' {
-                    [SecurityOptionRuleConvert]::Match( $rule.checkContent ) | Should Be $true
-                }
-            }
+            . .\Convert.CommonTests.ps1
         }
+
+        #region Add Custom Tests Here
+
+        #endregion
     }
 }
 finally
