@@ -26,6 +26,9 @@ UPDATES
 * Added the following STIGs
   * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)
 
+* Removed the following STIGs
+  * Windows Server 2012 R2 DC 2.12
+
 ## 2.4.0.0
 
 * Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
