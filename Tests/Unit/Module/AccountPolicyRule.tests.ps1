@@ -4,7 +4,7 @@ using module .\..\..\..\Module\Rule.AccountPolicy\Convert\AccountPolicyRule.Conv
 #endregion
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
         $testRuleList = @(
             @{
