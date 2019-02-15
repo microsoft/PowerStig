@@ -37,6 +37,20 @@ try
 
             If the "Allow double escaping" check box is checked, this is a finding.'
         }
+        @{
+            ConfigSection = '/system.web/machineKey'
+            Key           = 'validation'
+            Value         = 'HMACSHA256'
+            CheckContent  = 'Open the IIS 8.5 Manager.
+
+            Click the IIS 8.5 web server name.
+
+            Double-click the "Machine Key" icon in the website Home Pane.
+
+            If "HMACSHA256" or stronger encryption is not selected for the Validation method and/or "Auto" is not selected for the Encryption method, this is a finding.
+
+            Verify "HMACSHA256"'
+        }
     )
     #endregion
     #region Tests
