@@ -6,11 +6,12 @@ try
 {
     InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
                 PolicyName = 'Account lockout duration'
                 PolicyValue = $null
                 OrganizationValueRequired = $true
+                OrganizationValueTestString = "'{0}' -ge '15' -or '{0}' -eq '0'"
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
@@ -47,6 +48,7 @@ try
                 PolicyName = 'Minimum password length'
                 PolicyValue = $null
                 OrganizationValueRequired = $true
+                OrganizationValueTestString = "'{0}' -ge '14'"
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
@@ -70,60 +72,14 @@ try
             }
         )
         #endregion
-
-        [int]$count = 0
-        Foreach ($rule in $rulesToTest)
+        Foreach ($testRule in $testRuleList)
         {
-            $stigRule = Get-TestStigRule -CheckContent $rule.checkContent -ReturnGroupOnly
-            <#
-                When the xccdf xml is loaded, the xml parser decodes html elements.
-                The Match method is expecting decoded strings. To keep the test data
-                consistent with the xccdf xml it needs to be decoded before testing.
-            #>
-            $rule.checkContent = [System.Web.HttpUtility]::HtmlDecode( $rule.checkContent )
-            $convertedRule = [AccountPolicyRuleConvert]::new( $stigRule )
-
-            # Only run the base class tests once
-            If ($count -le 0)
-            {
-                Describe "$($convertedRule.GetType().Name) Child Class" {
-                    Context 'Base Class' {
-                        It 'Shoud have a BaseType of AccountPolicyRule' {
-                            $convertedRule.GetType().BaseType.ToString() | Should Be 'AccountPolicyRule'
-                        }
-                    }
-
-                    Context 'Class Properties' {
-                        $classProperties = @('PolicyName', 'PolicyValue')
-                        foreach ( $property in $classProperties )
-                        {
-                            It "Should have a property named '$property'" {
-                                ( $convertedRule | Get-Member -Name $property ).Name | Should Be $property
-                            }
-                        }
-                    }
-                }
-                $count ++
-            }
-
-            Describe 'Class Instance' {
-                It "Should return the Policy Name" {
-                    $convertedRule.PolicyName | Should Be $rule.PolicyName
-                }
-                It "Should return the Policy Value" {
-                    $convertedRule.PolicyValue | Should Be $rule.PolicyValue
-                }
-                It "Should return the Organization Value Required flag" {
-                    $convertedRule.OrganizationValueRequired | Should Be $rule.OrganizationValueRequired
-                }
-            }
-
-            Describe 'Static Match' {
-                It 'Should Match the string' {
-                    [AccountPolicyRuleConvert]::Match( $rule.checkContent ) | Should Be $true
-                }
-            }
+            . .\Convert.CommonTests.ps1
         }
+
+        #region Add Custom Tests Here
+
+        #endregion
     }
 }
 finally
