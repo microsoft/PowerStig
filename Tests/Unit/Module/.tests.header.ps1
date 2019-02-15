@@ -1,6 +1,6 @@
 
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
-$script:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', ''
+$global:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', ''
 $script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$script:moduleName\$($script:moduleName).psm1"
 
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath 'Tools\TestHelper\TestHelper.psm1') -Force -Global

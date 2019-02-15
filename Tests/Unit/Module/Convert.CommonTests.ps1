@@ -14,7 +14,7 @@ using module .\..\..\..\Module\Rule\Rule.psm1
 # Get the rule element with the checkContent injected into it
 $stigRule = Get-TestStigRule -CheckContent $testRule.checkContent -ReturnGroupOnly
 # Create an instance of the convert class that is currently being tested
-$convertedRule = New-Object -TypeName ($moduleName + 'Convert') -ArgumentList $stigRule
+$convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
 
 Describe "$($convertedRule.GetType().Name) Class Instance" {
     # Only run the base class test once
