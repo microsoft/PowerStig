@@ -74,7 +74,7 @@ try
         #endregion
         Foreach ($testRule in $testRuleList)
         {
-            . .\Convert.CommonTests.ps1
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
 
         #region Add Custom Tests Here
