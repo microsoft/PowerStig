@@ -7,7 +7,7 @@ foreach ( $rule in $rules )
 {
     <#
         SMB1Protocol is referenced in many STIG's using the WindowsOptionalFeature
-        cmdlet all server resrouces are processed with the WindowsFeature
+        cmdlet all server resources are processed with the WindowsFeature
         cmdlet, so the Feature name needs to be updated at compile time.
     #>
     if ($rule.FeatureName -eq 'SMB1Protocol')
