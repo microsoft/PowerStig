@@ -928,7 +928,15 @@ function Test-SecurityPolicyContainsRange
     $string = Get-SecurityPolicyString -CheckContent $checkContent
     $string = Get-TestStringTokenList -String $string
 
-    if ( $string -match '((?:is not set to )(?!(?:(a )other than)).*(?:this is a finding\.)|(the value is .*this is a finding)|((enabled|not enabled) this is a finding)|((column .*)|(for this option .*)this is a finding))' )
+    # This array is joined into an or '|' before being evaluated
+    $matchList = @(
+        '(?:is not set to )(?!(?:(a )other than)).*(?:this is a finding\.)',
+        '(the value is .*this is a finding)',
+        '((enabled|not(?: enabled)?) this is a finding)',
+        '((column .*)|(for this option .*)this is a finding)'
+    )
+
+    if ( $string -match ($matchList -join '|') )
     {
         return $false
     }
