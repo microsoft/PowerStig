@@ -18,6 +18,7 @@ NEW
 
 UPDATES
 
+* Fixed [#241](https://github.com/Microsoft/PowerStig/issues/241) :[WindowsFeatureRule] PsDesiredStateConfiguration\WindowsOptionalFeature doesn't properly handle features that return $null
 * Fixed [#243](https://github.com/Microsoft/PowerStig/issues/243): [V-46515] Windows-All-IE11-1.15 Rawstring typo
 * Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
 * Fixed [#284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
