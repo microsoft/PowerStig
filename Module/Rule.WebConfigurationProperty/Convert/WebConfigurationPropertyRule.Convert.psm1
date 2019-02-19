@@ -24,14 +24,18 @@ foreach ($supportFile in $supportFileList)
 #>
 Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 {
-
+    <#
+        .SYNOPSIS
+            Empty constructor for SplitFactory
+    #>
+    WebConfigurationPropertyRuleConvert ()
+    {
+    }
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WebConfigurationPropertyRule
-        .PARAMETER StigRule
+            Converts a xccdf STIG rule element into a Web Configuration Property Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     WebConfigurationPropertyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
@@ -55,25 +59,6 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
     }
 
     #region Methods
-
-    static [WebConfigurationPropertyRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([WebConfigurationPropertyRuleConvert]::HasMultipleRules($StigRule.rule.Check.'check-content'))
-        {
-            [string[]] $splitRules = [WebConfigurationPropertyRuleConvert]::SplitMultipleRules($StigRule.rule.Check.'check-content')
-            foreach ($splitRule in $splitRules)
-            {
-                $StigRule.rule.Check.'check-content' = $splitRule
-                $ruleList += [WebConfigurationPropertyRuleConvert]::New($StigRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [WebConfigurationPropertyRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

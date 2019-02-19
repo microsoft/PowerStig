@@ -25,13 +25,19 @@ Class PermissionRuleConvert : PermissionRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts an xccdf stig rule element into a PermissionRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    PermissionRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts an xccdf stig rule element into a Permission Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    hidden PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetPath()
         $this.SetDscResource()
@@ -44,30 +50,6 @@ Class PermissionRuleConvert : PermissionRule
     }
 
     # Methods
-
-    static [PermissionRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([PermissionRuleConvert]::HasMultipleRules($StigRule.rule.Check.('check-content')))
-        {
-            [string[]] $splitRules = [PermissionRuleConvert]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
-            [int] $byte = 97 # Lowercase A
-            foreach ($splitRule in $splitRules)
-            {
-                $copyRule = $StigRule.Clone()
-                $copyRule.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
-                $byte ++
-
-                $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [PermissionRuleConvert]::New($copyRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [PermissionRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

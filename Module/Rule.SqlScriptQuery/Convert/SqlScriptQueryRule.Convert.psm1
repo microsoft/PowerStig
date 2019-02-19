@@ -26,10 +26,16 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a SqlScriptQueryRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    SqlScriptQueryRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf STIG rule element into a Sql Script Query Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     SqlScriptQueryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

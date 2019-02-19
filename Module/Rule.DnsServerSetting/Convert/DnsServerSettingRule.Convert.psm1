@@ -27,10 +27,16 @@ Class DnsServerSettingRuleConvert : DnsServerSettingRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a DnsServerSettingRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    DnsServerSettingRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Dns Server Setting Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     DnsServerSettingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

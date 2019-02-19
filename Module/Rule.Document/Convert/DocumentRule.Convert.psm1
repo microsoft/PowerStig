@@ -25,10 +25,16 @@ Class DocumentRuleConvert : DocumentRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a DocumentRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    DocumentRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Document Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     DocumentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

@@ -24,10 +24,16 @@ Class ManualRuleConvert : ManualRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a ManualRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    ManualRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Manual Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     ManualRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

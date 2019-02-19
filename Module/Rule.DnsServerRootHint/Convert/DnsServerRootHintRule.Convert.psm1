@@ -30,10 +30,16 @@ Class DnsServerRootHintRuleConvert : DnsServerRootHintRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a DnsServerRootHintRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    DnsServerRootHintRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Dns Server Root Hint Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     DnsServerRootHintRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

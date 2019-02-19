@@ -166,6 +166,7 @@ Class Rule : ICloneable
     {
         $this.($this.GetOverrideValue()) = $Value
     }
+
     <#
         .SYNOPSIS
             Applies an exception to a rule
@@ -176,12 +177,9 @@ Class Rule : ICloneable
         $this.($this.GetOverrideValue()) = $Value
     }
 
-
-
-
     <#
         .SYNOPSIS
-            Creates a shallow copy of the current
+            Creates a shallow copy of the current object
     #>
     hidden [Object] Clone ()
     {

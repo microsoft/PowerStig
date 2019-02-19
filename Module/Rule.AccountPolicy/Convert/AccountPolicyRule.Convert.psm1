@@ -18,7 +18,15 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
+    #>
+    AccountPolicyRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts an xccdf stig rule element into a Account Policy Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>

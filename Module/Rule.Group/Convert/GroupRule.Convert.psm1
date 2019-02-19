@@ -25,10 +25,16 @@ Class GroupRuleConvert : GroupRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a GroupRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    GroupRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Group Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     GroupRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

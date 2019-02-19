@@ -27,10 +27,16 @@ Class WinEventLogRuleConvert : WinEventLogRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WinEventLogRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    WinEventLogRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf STIG rule element into a Win EventLog Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     WinEventLogRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
