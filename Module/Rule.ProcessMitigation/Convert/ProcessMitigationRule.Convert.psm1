@@ -27,7 +27,7 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     ProcessMitigationRuleConvert ()
     {
@@ -35,10 +35,8 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a ProcessMitigationRule
-        .PARAMETER StigRule
+            Converts a xccdf stig rule element into a Process Mitigation Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     hidden ProcessMitigationRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

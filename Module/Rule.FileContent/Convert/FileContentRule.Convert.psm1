@@ -24,7 +24,7 @@ Class FileContentRuleConvert : FileContentRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     FileContentRuleConvert ()
     {
@@ -32,10 +32,8 @@ Class FileContentRuleConvert : FileContentRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a FileContentRule
-        .PARAMETER StigRule
+            Converts a xccdf stig rule element into a File Content Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

@@ -25,7 +25,7 @@ Class PermissionRuleConvert : PermissionRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     PermissionRuleConvert ()
     {
@@ -33,10 +33,8 @@ Class PermissionRuleConvert : PermissionRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts an xccdf stig rule element into a PermissionRule
-        .PARAMETER StigRule
+            Converts an xccdf stig rule element into a Permission Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

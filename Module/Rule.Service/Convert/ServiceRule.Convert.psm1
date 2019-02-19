@@ -24,7 +24,7 @@ Class ServiceRuleConvert : ServiceRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     ServiceRuleConvert ()
     {
@@ -32,10 +32,8 @@ Class ServiceRuleConvert : ServiceRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a ServiceRule
-        .PARAMETER StigRule
+            Converts a xccdf STIG rule element into a Service Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     ServiceRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

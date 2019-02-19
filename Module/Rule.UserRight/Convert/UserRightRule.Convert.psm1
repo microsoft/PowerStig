@@ -25,7 +25,7 @@ Class UserRightRuleConvert : UserRightRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     UserRightRuleConvert ()
     {
@@ -33,10 +33,8 @@ Class UserRightRuleConvert : UserRightRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a UserRightRule
-        .PARAMETER StigRule
+            Converts a xccdf STIG rule element into a User Right Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

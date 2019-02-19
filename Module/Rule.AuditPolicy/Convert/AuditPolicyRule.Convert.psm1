@@ -13,9 +13,15 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts an xccdf stig rule element into a AuditPolicyRule
+            Empty constructor for SplitFactory
+    #>
+    AuditPolicyRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts an xccdf stig rule element into a Audit Policy Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>

@@ -27,10 +27,16 @@ Class IisLoggingRuleConvert : IisLoggingRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a IisLoggingRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    IisLoggingRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Iis Logging Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     IisLoggingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

@@ -25,10 +25,16 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WebAppPoolRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    WebAppPoolRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf STIG rule element into a Web App Pool Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     WebAppPoolRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

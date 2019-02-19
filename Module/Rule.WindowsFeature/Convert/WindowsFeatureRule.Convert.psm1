@@ -27,7 +27,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     WindowsFeatureRuleConvert ()
     {
@@ -35,10 +35,8 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WindowsFeatureRuleConvert
-        .PARAMETER StigRule
+            Converts a xccdf STIG rule element into a Windows Feature Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     WindowsFeatureRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

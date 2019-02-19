@@ -26,7 +26,7 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     WebConfigurationPropertyRuleConvert ()
     {
@@ -34,10 +34,8 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WebConfigurationPropertyRule
-        .PARAMETER StigRule
+            Converts a xccdf STIG rule element into a Web Configuration Property Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     WebConfigurationPropertyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

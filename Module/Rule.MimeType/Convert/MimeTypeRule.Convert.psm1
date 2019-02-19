@@ -26,7 +26,7 @@ Class MimeTypeRuleConvert : MimeTypeRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     MimeTypeRuleConvert ()
     {
@@ -34,10 +34,8 @@ Class MimeTypeRuleConvert : MimeTypeRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a MimeTypeRule
-        .PARAMETER StigRule
+            Converts a xccdf stig rule element into a Mime Type Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     MimeTypeRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

@@ -26,7 +26,7 @@ Class RegistryRuleConvert : RegistryRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
     #>
     RegistryRuleConvert ()
     {
@@ -34,10 +34,8 @@ Class RegistryRuleConvert : RegistryRule
 
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a RegistryRule
-        .PARAMETER StigRule
+            Converts a xccdf stig rule element into a Registry Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
