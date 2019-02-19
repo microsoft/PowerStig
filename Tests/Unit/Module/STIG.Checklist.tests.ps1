@@ -1,5 +1,4 @@
-. .\..\..\..\Module\STIG\Functions.Checklist.ps1
-
+. $PSScriptRoot\..\..\..\Module\STIG\Functions.Checklist.ps1
 
 Describe 'New-StigCheckList' {
 
