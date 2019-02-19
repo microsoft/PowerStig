@@ -53,15 +53,21 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         Write-Warning "The OrganizationValueRequired property is set to $true in the test data,
         but the OrganizationValueTestString is empty. Please add it to the test data hashtable."
     }
-    # Test that each property was properly extracted from the test checkContent
-    foreach ($property in $propertyList)
+
+    # The Document Rule does not have any properies to test
+    if($convertedRule.GetType().Name -ne 'DocumentRuleConvert')
     {
-        It "Should return the $Property" {
-            $convertedRule.$property | Should Be $testRule.$property
+        # Test that each property was properly extracted from the test checkContent
+        foreach ($property in $propertyList)
+        {
+            It "Should return the $Property" {
+                $convertedRule.$property | Should Be $testRule.$property
+            }
+            # Remove the property from the list of tested properties
+            $ruleClassPropertyTestList.Remove($property)
         }
-        # Remove the property from the list of tested properties
-        $ruleClassPropertyTestList.Remove($property)
     }
+
     <#
         After looping through the properties, provide a notification if any
         properties were not tested.

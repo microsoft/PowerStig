@@ -72,6 +72,7 @@ try
             }
         )
         #endregion
+
         Foreach ($testRule in $testRuleList)
         {
             . $PSScriptRoot\Convert.CommonTests.ps1

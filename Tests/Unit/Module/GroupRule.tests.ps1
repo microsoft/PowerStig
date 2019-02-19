@@ -6,9 +6,12 @@ try
 {
     InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
                 GroupName = 'Backup Operators'
+                Members = $null
+                MembersToExclude = $null
+                OrganizationValueRequired = $false
                 CheckContent = 'Run "Computer Management".
             Navigate to System Tools >> Local Users and Groups >> Groups.
             Review the members of the Backup Operators group.
@@ -21,7 +24,9 @@ try
             }
             @{
                 GroupName = 'Administrators'
-                Members = 'Domain Admins'
+                Members = $null
+                MembersToExclude = 'Domain Admins'
+                OrganizationValueRequired = $false
                 CheckContent = 'Run "Computer Management".
             Navigate to System Tools >> Local Users and Groups >> Groups.
             Review the members of the Administrators group.
@@ -39,6 +44,9 @@ try
             }
             @{
                 GroupName = 'Hyper-V Administrators'
+                Members = $null
+                MembersToExclude = $null
+                OrganizationValueRequired = $false
                 CheckContent = 'Run "Computer Management".
             Navigate to System Tools >> Local Users and Groups >> Groups.
             Double click on "Hyper-V Administrators".
@@ -49,63 +57,74 @@ try
             }
         )
 
-        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [GroupRuleConvert]::new( $StigRule )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
 
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'GroupRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('GroupName', 'MembersToExclude')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
+        Foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
-        #endregion
-        #region Method Tests
-        Describe 'Get-GroupDetail' {
-            Context 'Test correct GroupName is returned' {
-                foreach ( $rule in $rulesToTest )
-                {
-                    It "Should be a GroupName of '$($rule.GroupName)'" {
-                        $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                        $result = Get-GroupDetail -CheckContent $checkContent
-                        $result.GroupName | Should Be $rule.GroupName
-                    }
-                }
-            }
 
-            Context 'Test correct Members is returned' {
-                foreach ( $rule in $rulesToTest )
-                {
-                    if ($rule.Members)
-                    {
-                        It "Should be Members '$($rule.Members)'" {
-                            $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                            $result = Get-GroupDetail -CheckContent $checkContent
-                            $result.Members | Should Be $rule.Members
-                        }
-                    }
-                }
-            }
-        }
-        #endregion
-        #region Data Tests
+        #region Add Custom Tests Here
 
         #endregion
+
+        # $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        # $rule = [GroupRuleConvert]::new( $StigRule )
+        # #endregion
+        # #region Class Tests
+        # Describe "$($rule.GetType().Name) Child Class" {
+
+        #     Context 'Base Class' {
+
+        #         It 'Shoud have a BaseType of STIG' {
+        #             $rule.GetType().BaseType.ToString() | Should Be 'GroupRule'
+        #         }
+        #     }
+
+        #     Context 'Class Properties' {
+
+        #         $classProperties = @('GroupName', 'MembersToExclude')
+
+        #         foreach ( $property in $classProperties )
+        #         {
+        #             It "Should have a property named '$property'" {
+        #                 ( $rule | Get-Member -Name $property ).Name | Should Be $property
+        #             }
+        #         }
+        #     }
+        # }
+        # #endregion
+        # #region Method Tests
+        # Describe 'Get-GroupDetail' {
+        #     Context 'Test correct GroupName is returned' {
+        #         foreach ( $rule in $rulesToTest )
+        #         {
+        #             It "Should be a GroupName of '$($rule.GroupName)'" {
+        #                 $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+        #                 $result = Get-GroupDetail -CheckContent $checkContent
+        #                 $result.GroupName | Should Be $rule.GroupName
+        #             }
+        #         }
+        #     }
+
+        #     Context 'Test correct Members is returned' {
+        #         foreach ( $rule in $rulesToTest )
+        #         {
+        #             if ($rule.Members)
+        #             {
+        #                 It "Should be Members '$($rule.Members)'" {
+        #                     $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+        #                     $result = Get-GroupDetail -CheckContent $checkContent
+        #                     $result.Members | Should Be $rule.Members
+        #                 }
+        #             }
+        #         }
+        #     }
+        # }
+        # #endregion
+        # #region Data Tests
+
+        # #endregion
     }
 }
 finally
