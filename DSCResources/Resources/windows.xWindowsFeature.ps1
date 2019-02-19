@@ -6,10 +6,9 @@ $rules = $stig.RuleList | Select-Rule -Type WindowsFeatureRule
 foreach ( $rule in $rules )
 {
     <#
-        This is here to address the issue that WindowsOptionalFeature is writen
-        to not run on a DC, and WindowsFeature does not run on client OS. In the
-        future if WindowsOptionalFeature is updated to allow it to run a on DC
-        lines 17-31 can be removed.
+        SMB1Protocol is referenced in many STIG's using the WindowsOptionalFeature
+        cmdlet all server resrouces are processed with the WindowsFeature
+        cmdlet, so the Feature name needs to be updated at compile time.
     #>
     if ($rule.FeatureName -eq 'SMB1Protocol')
     {
