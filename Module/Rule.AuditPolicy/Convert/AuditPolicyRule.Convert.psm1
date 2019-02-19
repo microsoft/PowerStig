@@ -47,12 +47,10 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
     #>
     [RegularExpressions.MatchCollection] ExtractProperties ()
     {
-        $regex = [regex]::Matches(
+        return [regex]::Matches(
             $this.RawString,
             '(?:(?:\w+(?:\s|\/))+(?:(?:>|-)>(?:\s+)?))(?<subcategory>(?:\w+\s)+)(?:-(?:\s+)?)(?<auditflag>(?:\w+)+)'
         )
-
-        return $regex
     }
 
     <#

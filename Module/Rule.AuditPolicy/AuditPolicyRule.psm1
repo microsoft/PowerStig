@@ -67,10 +67,9 @@ Class AuditPolicyRule : Rule
             $value = 'Absent'
         }
 
-        $return = @{
+        return @{
             Value = $value
             Notes = "'Present' and 'Absent' are the only valid values"
         }
-        return $return
     }
 }
