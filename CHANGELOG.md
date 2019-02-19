@@ -29,6 +29,10 @@ UPDATES
 
 * Removed the following STIGs
   * Windows Server 2012 R2 DC 2.12
+  * Windows Server 2012 R2 DSN 1.7
+  * Active Directory Domain 2.9
+  * IIS Server 8.5 1.3
+  * IIS Site 8.5 1.2
 
 ## 2.4.0.0
 
