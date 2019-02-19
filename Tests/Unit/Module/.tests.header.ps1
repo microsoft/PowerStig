@@ -1,6 +1,7 @@
 
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 $global:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', ''
+# TODO $script:moduleName can be removed after all tests are migrated to global
 $script:moduleName = (Get-PSCallStack)[1].Command -replace '\.tests\.ps1', ''
 $script:modulePath = "$($script:moduleRoot)$(($PSScriptRoot -split 'Unit')[1])\$global:moduleName\$($global:moduleName).psm1"
 

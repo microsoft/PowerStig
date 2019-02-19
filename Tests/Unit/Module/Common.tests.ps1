@@ -688,7 +688,8 @@ Describe 'Test-SecurityPolicyContainsRange' {
         $strings = @(
             'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',
             'If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.',
-            'If the "Account lockout duration" is not set to "0", requiring an administrator to unlock the account, this is a finding.'
+            'If the "Account lockout duration" is not set to "0", requiring an administrator to unlock the account, this is a finding.',
+            'If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not "enabled", this is a finding.'
         )
 
         foreach ( $string in $strings )

@@ -2,113 +2,126 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\SecurityOptionRule.psm1
-
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
+using namespace System.Text
 # Header
 
 <#
     .SYNOPSIS
-        Extracts the security option from the check-content and sets the value
+        Identifies and extracts the Security Option details from an xccdf rule.
     .DESCRIPTION
-        Gets the security option from the xccdf content and sets the value. If
-        the security option that is returned is not valid, the parser status is
-        set to fail.
+        The class is used to convert the rule check-content element into an
+        Security Option object. The rule content is parsed to identify it as a
+        Security Option rule. The configuration details are then extracted and
+        validated before returning the object.
 #>
 Class SecurityOptionRuleConvert : SecurityOptionRule
 {
     <#
         .SYNOPSIS
             Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a SecurityOptionRule
-        .PARAMETER StigRule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     SecurityOptionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetOptionName()
-        if ($this.TestOptionValueForRange())
-        {
-            $this.SetOptionValueRange()
-        }
-        else
-        {
-            $this.SetOptionValue()
-        }
-        $this.SetDscResource()
+        [RegularExpressions.MatchCollection] $tokens = $this.ExtractProperties()
+        $this.SetOptionName($tokens)
+        $this.SetOptionValue($tokens)
+        $this.DscResource = 'SecurityOption'
     }
 
     #region Methods
 
     <#
         .SYNOPSIS
-            Extracts the security option name from the check-content and sets the value
+            Extracts and returns the Security Option settings from the check-content.
         .DESCRIPTION
-            Gets the security option name from the xccdf content and sets the
-            value. If the name that is returned is not valid, the parser status
-            is set to fail.
+            This match looks for the following patterns
+            1. If "OptionName" * "Value"
+            2. If the value for "OptionName" * "Value"
+                This has only been found in the SQL instance STIG
+        .NOTES
+            If any rule does not match this pattern, please update the xccdf
+            change log file to align to one of these options.
     #>
-    [void] SetOptionName ()
+    [RegularExpressions.MatchCollection] ExtractProperties ()
     {
-        $thisName = Get-SecurityOptionName -CheckContent $this.SplitCheckContent
-        if (-not $this.SetStatus($thisName))
+        return [regex]::Matches(
+            $this.RawString,
+            '(?:If\s(?:the\svalue\sfor\s)?")(?<optionName>[^"]+)(?:")[^"]+(?:")(?<optionValue>[^"]+)(?:")'
+        )
+    }
+
+    <#
+        .SYNOPSIS
+            Sets the Security Option name that was extracted from the xccdf.
+        .DESCRIPTION
+            Gets the Security Option name token from the regular expression match
+            group and sets the policy Name. If the named group is null, the
+            convert status is set to fail.
+    #>
+    [void] SetOptionName ([RegularExpressions.MatchCollection] $Regex)
+    {
+        $thisOptionName = $Regex.Groups.Where( {$_.Name -eq 'OptionName'}).Value
+
+        if (-not $this.SetStatus($thisOptionName))
         {
-            $this.set_OptionName($thisName)
+            $this.set_OptionName($thisOptionName)
         }
     }
 
     <#
         .SYNOPSIS
-            Checks the string for text that indicates a range of acceptable
-            acceptable values are allowed by the STIG.
+            Sets the Security Option value that was extracted from the xccdf.
         .DESCRIPTION
-            Checks the string for text that indicates a range of acceptable
-            acceptable values are allowed by the STIG.
+            Gets the Security Option value token from the regular expression match
+            group and sets the policy value. If the named group is null, the
+            convert status is set to fail.
     #>
-    [bool] TestOptionValueForRange ()
+    [void] SetOptionValue ([RegularExpressions.MatchCollection] $Regex)
+    {
+        if ($this.OptionValueContainsRange())
+        {
+            $this.SetOptionOrganizationValue()
+        }
+        else
+        {
+            $thisOptionValue = $Regex.Groups.Where( {$_.Name -eq 'OptionValue'}).Value
+            if (-not $this.SetStatus($thisOptionValue))
+            {
+                $this.set_OptionValue($thisOptionValue)
+            }
+        }
+    }
+
+    <#
+        .SYNOPSIS
+            Looks for a range of values defined in the rule.
+        .DESCRIPTION
+            A regular expression is applied to the rule to look for key words
+            and sentence structures that define a list of valid values. If a
+            range is detected the test returns true and false if not.
+    #>
+    [bool] OptionValueContainsRange ()
     {
         if (Test-SecurityPolicyContainsRange -CheckContent $this.SplitCheckContent)
         {
             return $true
         }
-
         return $false
     }
-
     <#
         .SYNOPSIS
-            Extracts the security option value from the check-content and sets the value
+            Sets the organizational value with the correct range.
         .DESCRIPTION
-            Gets the security option value from the xccdf content and sets the
-            value. If the value that is returned is not valid, the parser status
-            is set to fail.
+            The range of valid values is enforced in the organizational settings
+            with a PowerShell expression. The range of values are extracted and
+            converted into a PS expression that is evaluated when the rule is
+            loaded. For example, if a value is allowed to be between 1 and 3,
+            the user provided org setting will be evaluated to ensure that they
+            are within policy guide lines and throw an error if not.
     #>
-    [void] SetOptionValue ()
-    {
-        $thisValue = Get-SecurityOptionValue -CheckContent $this.SplitCheckContent
-
-        if (-not $this.SetStatus($thisValue))
-        {
-            $this.set_OptionValue($thisValue)
-        }
-    }
-
-    <#
-        .SYNOPSIS
-            Extracts the security option value range from the check-content and
-            sets the organizational test string
-        .DESCRIPTION
-            Gets the security option value range from the xccdf content and sets
-            the organizational test string. If the organizational value that is
-            returned is not valid, the parser status is set to fail.
-    #>
-    [void] SetOptionValueRange ()
+    [void] SetOptionOrganizationValue ()
     {
         $this.set_OrganizationValueRequired($true)
 
@@ -120,30 +133,15 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
         }
     }
 
-    hidden [void] SetDscResource ()
-    {
-        $this.DscResource = 'SecurityOption'
-    }
 
+    <#
+        .SYNOPSIS
+            looks for the Security Option path to determine if the rule
+            is configuring an Security Option.
+    #>
     static [bool] Match ([string] $CheckContent)
     {
-        if
-        (
-            (
-                $CheckContent -Match 'gpedit.msc' -and
-                $CheckContent -Match 'Security Options'
-            )-or
-            # SQL 2016+ Stigs
-            ( #V-79197,79199
-                $CheckContent -Match 'Local Security Policy' -and
-                $CheckContent -Match 'System (C|c)ryptography: Use FIPS'
-            ) -or
-            ( #V-79203,79305,79307
-                $CheckContent -Match 'Local Security Policy' -and
-                $CheckContent -Match 'Use FIPS compliant algorithms' -and
-                $CheckContent -Notmatch 'Review the server documentation'
-            )
-        )
+        if ( $CheckContent -Match '(?:Local Security Policy >> |Security Settings -> )Local Policies (?:(?:-|>)>) Security Options')
         {
             return $true
         }

@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="1.3">
-  <!-- Ensure [TimeSpan]'V-76727.b' -le [TimeSpan]'00:20:00'-->
-  <OrganizationalSetting id= 'V-76727.b' value= "'00:20:00'" />
+<OrganizationalSettings fullversion="1.3">
+  <!-- Ensure ''V-76727.b'' -le '00:20:00'-->
+  <OrganizationalSetting id="V-76727.b" value='00:20:00' />
 </OrganizationalSettings>
