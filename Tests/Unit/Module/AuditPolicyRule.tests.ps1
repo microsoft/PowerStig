@@ -4,89 +4,51 @@ using module .\..\..\..\Module\Rule.AuditPolicy\Convert\AuditPolicyRule.Convert.
 #endregion
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $checkContentBase = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+        $testRuleList = @(
+            @{
+                Subcategory = 'Computer Account Management'
+                AuditFlag = 'Success'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
+                OrganizationValueTestString = $null
+                CheckContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
-Use the AuditPol tool to review the current Audit Policy configuration:
--Open a Command Prompt with elevated privileges ("Run as Administrator").
--Enter "AuditPol /get /category:*".
+                Use the AuditPol tool to review the current Audit Policy configuration:
+                -Open a Command Prompt with elevated privileges ("Run as Administrator").
+                -Enter "AuditPol /get /category:*".
 
-Compare the AuditPol settings with the following.
-If the system does not audit the following, this is a finding.
+                Compare the AuditPol settings with the following.
+                If the system does not audit the following, this is a finding.
 
-{0}'
+                Account Management -&gt; Computer Account Management - Success'
+            },
+            @{
+                Subcategory = 'Account Lockout'
+                AuditFlag = 'Success'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
+                OrganizationValueTestString = $null
+                CheckContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
-        $checkContentString = 'Account Management -&gt; Computer Account Management - Success'
-        $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
-        $rule = [AuditPolicyRuleConvert]::new( $stigRule )
+                Use the AuditPol tool to review the current Audit Policy configuration:
+                -Open a Command Prompt with elevated privileges ("Run as Administrator").
+                -Enter "AuditPol /get /category:*".
+
+                Compare the AuditPol settings with the following.
+                If the system does not audit the following, this is a finding.
+
+                Logon/Logoff &gt;&gt; Account Lockout - Success'
+            }
+        )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should -Be 'AuditPolicyRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('Subcategory', 'AuditFlag', 'Ensure')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should -Be $property
-                    }
-                }
-            }
+        Foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
-        #endregion
-        #region Method Tests
-        Describe 'Conversion' {
 
-            Context 'Data format "->"' {
-                $checkContentString = 'Account Management -> Computer Account Management - Success'
-                $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
-                $rule = [AuditPolicyRuleConvert]::new( $stigRule )
-
-                It 'Should return the SubCategory' {
-                    $rule.Subcategory | Should -Be 'Computer Account Management'
-                }
-                It 'Should return the audit flag' {
-                    $rule.AuditFlag | Should -Be 'Success'
-                }
-            }
-
-            Context 'Data format ">>"' {
-
-                $checkContentString = 'Account Management &gt;&gt; Computer Account Management - Success'
-                $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
-                $rule = [AuditPolicyRuleConvert]::new( $stigRule )
-
-                It 'Should return the SubCategory' {
-                    $rule.Subcategory | Should -Be 'Computer Account Management'
-                }
-                It 'Should return the audit flag' {
-                    $rule.AuditFlag | Should -Be 'Success'
-                }
-            }
-            Context 'forward slash in subcategory' {
-
-                $checkContentString = 'Logon/Logoff &gt;&gt; Account Lockout - Success'
-                $stigRule = Get-TestStigRule -CheckContent ($checkContentBase -f $checkContentString) -ReturnGroupOnly
-                $rule = [AuditPolicyRuleConvert]::new( $stigRule )
-
-                It 'Should return the SubCategory' {
-                    $rule.Subcategory | Should -Be 'Account Lockout'
-                }
-                It 'Should return the audit flag' {
-                    $rule.AuditFlag | Should -Be 'Success'
-                }
-            }
-        }
+        #region Add Custom Tests Here
 
         #endregion
     }
