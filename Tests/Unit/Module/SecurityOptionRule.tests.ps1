@@ -4,15 +4,15 @@ using module .\..\..\..\Module\Rule.SecurityOption\Convert\SecurityOptionRule.Co
 #endregion
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
-                Name                        = 'Accounts: Guest account status'
-                Value                       = 'Disabled'
-                OrganizationValueRequired   = $false
-                OrganizationValueTestString = ''
-                CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
+                OptionName = 'Accounts: Guest account status'
+                OptionValue = 'Disabled'
+                OrganizationValueRequired = $false
+                OrganizationValueTestString = $null
+                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options.
@@ -20,11 +20,11 @@ try
                 If the value for "Accounts: Guest account status" is not set to "Disabled", this is a finding.'
             },
             @{
-                Name                        = 'Accounts: Rename guest account'
-                Value                       = 'Guest'
-                OrganizationValueRequired   = $true
-                OrganizationValueTestString = "{0} -notmatch 'Guest'"
-                CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
+                OptionName = 'Accounts: Rename guest account'
+                OptionValue = $null
+                OrganizationValueRequired = $true
+                OrganizationValueTestString = "'{0}' -ne 'Guest'"
+                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options.
@@ -32,11 +32,11 @@ try
                 If the value for "Accounts: Rename guest account" is not set to a value other than "Guest", this is a finding.'
             },
             @{
-                Name                        = 'Network security: Force logoff when logon hours expire'
-                Value                       = 'Enabled'
-                OrganizationValueRequired   = $false
-                OrganizationValueTestString = ''
-                CheckContent                = 'Verify the effective setting in Local Group Policy Editor.
+                OptionName = 'Network security: Force logoff when logon hours expire'
+                OptionValue = 'Enabled'
+                OrganizationValueRequired = $false
+                OrganizationValueTestString = $null
+                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
                 Run "gpedit.msc".
 
                 Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; Security Options.
@@ -44,70 +44,26 @@ try
                 If the value for "Network security: Force logoff when logon hours expire" is not set to "Enabled", this is a finding.'
             },
             @{
-                Name                        = 'System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing'
-                Value                       = 'Enabled'
-                OrganizationValueRequired   = $false
-                OrganizationValueTestString = ''
-                CheckContent                = 'Review system configuration to determine whether FIPS 140-2 support has been enabled.
+                OptionName = 'System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing'
+                OptionValue = 'Enabled'
+                OrganizationValueRequired = $false
+                OrganizationValueTestString = $null
+                CheckContent = 'Review system configuration to determine whether FIPS 140-2 support has been enabled.
 
-                Start >> Control Panel >> Administrative Tools >> Local Security Policy >> Local Policies >> Security Options
+                Start &gt;&gt; Control Panel &gt;&gt; Administrative Tools &gt;&gt; Local Security Policy &gt;&gt; Local Policies &gt;&gt; Security Options
 
                 Ensure that "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is enabled.
 
-                If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding.'
+                If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not "enabled", this is a finding.'
             }
         )
-
-        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [SecurityOptionRuleConvert]::new( $stigRule )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'SecurityOptionRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('OptionName', 'OptionValue')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
-        }
-        #endregion
-        #region Method Tests
-        Describe 'Get-SecurityOptionName' {
-
-            foreach ( $string in $rulesToTest )
-            {
-                It "Should return '$($string.Name)'" {
-                    $checkContent = Split-TestStrings -CheckContent $string.CheckContent
-                    Get-SecurityOptionName -CheckContent $checkContent | Should Be $string.Name
-                }
-            }
+        Foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
 
-        Describe 'Get-SecurityOptionValue' {
-
-            foreach ( $string in $rulesToTest )
-            {
-                It "Should return '$($string.Value)'" {
-                    $checkContent = Split-TestStrings -CheckContent $string.CheckContent
-                    Get-SecurityOptionValue -CheckContent $checkContent | Should Be $string.Value
-                }
-            }
-        }
-        #endregion
-        #region Data Tests
+        #region Add Custom Tests Here
 
         #endregion
     }
