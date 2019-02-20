@@ -4,12 +4,13 @@ using module .\..\..\..\Module\Rule.WinEventLog\Convert\WinEventLogRule.Convert.
 #endregion
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
-                LogName  = 'Microsoft-Windows-DnsServer/Analytical'
+                LogName = 'Microsoft-Windows-DnsServer/Analytical'
                 IsEnabled = 'True'
+                OrganizationValueRequired = $false
                 CheckContent = 'Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
                 Press Windows Key + R, execute dnsmgmt.msc.
@@ -46,46 +47,14 @@ try
                 If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.'
             }
         )
-
-        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [WinEventLogRuleConvert]::new( $stigRule )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
 
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'WinEventLogRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('LogName', 'IsEnabled')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
+        Foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
-        #endregion
-        #region Method Tests
-        Describe 'Get-DnsServerWinEventLogName' {
 
-            foreach ( $rule in $rulesToTest )
-            {
-                It "Should return '$($rule.LogName)'" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    Get-DnsServerWinEventLogName -StigString $checkContent | Should Be $rule.LogName
-                }
-            }
-        }
-        #endregion
-        #region Data Tests
+        #region Add Custom Tests Here
 
         #endregion
     }

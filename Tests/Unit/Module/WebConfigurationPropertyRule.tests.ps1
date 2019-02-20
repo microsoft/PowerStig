@@ -4,13 +4,14 @@ using module .\..\..\..\Module\Rule.WebConfigurationProperty\Convert\WebConfigur
 #endregion
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
                 ConfigSection = '/system.webServer/directoryBrowse'
                 Key           = 'enabled'
                 Value         = 'false'
+                OrganizationValueRequired = $false
                 CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
                 Click the Site.
@@ -22,11 +23,12 @@ try
                 Under the "Actions" pane verify "Directory Browsing" is "Disabled".
 
                 If "Directory Browsing" is not "Disabled", this is a finding.'
-            }
+            },
             @{
                 ConfigSection = '/system.web/sessionState'
                 Key           = 'cookieless'
                 Value         = 'UseURI'
+                OrganizationValueRequired = $false
                 CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
                 Open the IIS 8.5 Manager.
@@ -50,93 +52,76 @@ try
                 Verify the "cookieless" is set to "UseURI".
 
                 If the "cookieless" is not set to "UseURI", this is a finding.'
+            },
+            @{
+                ConfigSection = '/system.web/sessionState'
+                Key           = 'cookieless'
+                Value         = 'UseURI'
+                OrganizationValueRequired = $true
+                CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+                Open the IIS 8.5 Manager.
+
+                Click on the site name.
+
+                Double-click the "Request Filtering" icon.
+
+                Click “Edit Feature Settings” in the "Actions" pane.
+
+                If the "maxUrl" value is not set to "4096" or less, this is a finding.'
             }
         )
 
+        #endregion
+
+        Foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
+        }
+
+        #region Add Custom Tests Here
+
+        #endregion
+
+
+        # Describe 'Test-MultipleWebConfigurationPropertyRule' {
+        #     foreach ( $rule in $rulesToTest )
+        #     {
+        #         It "Should return $false" {
+        #             $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
+        #             $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
+        #             $multipleRule | Should Be $false
+        #         }
+        #     }
+
+        #     It "Should return $true" {
+        #         $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
+        #         $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
+        #         $multipleRule | Should Be $true
+        #     }
+        # }
+
         $splitwebConfigurationPropertyRule = @{
-                CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+            CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
-                Access the IIS 8.5 Manager.
+            Access the IIS 8.5 Manager.
 
-                Under "Management" section, double-click the "Configuration Editor" icon.
+            Under "Management" section, double-click the "Configuration Editor" icon.
 
-                From the "Section:" drop-down list, select "system.web/httpCookies".
+            From the "Section:" drop-down list, select "system.web/httpCookies".
 
-                Verify the "require SSL" is set to "True".
+            Verify the "require SSL" is set to "True".
 
-                From the "Section:" drop-down list, select "system.web/sessionState".
+            From the "Section:" drop-down list, select "system.web/sessionState".
 
-                Verify the "compressionEnabled" is set to "False".
+            Verify the "compressionEnabled" is set to "False".
 
-                If both the "system.web/httpCookies:require SSL" is set to "True" and the "system.web/sessionState:compressionEnabled" is set to "False", this is not a finding.'
+            If both the "system.web/httpCookies:require SSL" is set to "True" and the "system.web/sessionState:compressionEnabled" is set to "False", this is not a finding.'
         }
 
         $OrganizationValueTestString = @{
-            key        = 'maxUrl'
+            key = 'maxUrl'
             TestString = '{0} -le 4096'
-        }
-
-        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [WebConfigurationPropertyRuleConvert]::new( $stigRule )
-        #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'WebConfigurationPropertyRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('ConfigSection', 'Key', 'Value')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
-        }
-        #endregion
-        #region Method Tests
-        foreach ( $rule in $rulesToTest )
-        {
-            Describe 'Get-ConfigSection' {
-                It "Should return $($rule.ConfigSection)" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    Get-ConfigSection -CheckContent $checkContent | Should Be $rule.ConfigSection
-                }
-            }
-
-            Describe 'Get-KeyValuePair' {
-                It "Should return $($rule.Key) and $($rule.Value)" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    $KeyValuePair = Get-KeyValuePair -CheckContent $checkContent
-                    $KeyValuePair.Key | Should Be $rule.Key
-                    $KeyValuePair.Value | Should Be $rule.Value
-                }
-            }
-        }
-
-        Describe 'Test-MultipleWebConfigurationPropertyRule' {
-            foreach ( $rule in $rulesToTest )
-            {
-                It "Should return $false" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
-                    $multipleRule | Should Be $false
-                }
-            }
-
-            It "Should return $true" {
-                $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
-                $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
-                $multipleRule | Should Be $true
-            }
         }
 
         Describe 'Split-MultipleWebConfigurationPropertyRule' {
@@ -153,9 +138,6 @@ try
                 $testString | Should Be $OrganizationValueTestString.TestString
             }
         }
-        #endregion
-        #region Data Tests
-
         #endregion
     }
 }

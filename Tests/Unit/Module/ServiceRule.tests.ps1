@@ -6,11 +6,13 @@ try
 {
     InModuleScope -ModuleName "$($script:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
                 ServiceName = 'masvc'
                 ServiceState = 'Running'
                 StartupType = 'Automatic'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
                 CheckContent = 'Run "Services.msc".
 
                 Verify the McAfee Agent service is running, depending on the version installed.
@@ -25,6 +27,8 @@ try
                 ServiceName = 'SCPolicySvc'
                 ServiceState = 'Running'
                 StartupType = 'Automatic'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
                 CheckContent = 'Verify the Smart Card Removal Policy service is configured to "Automatic".
 
                 Run "Services.msc".
@@ -35,6 +39,8 @@ try
                 ServiceName = 'simptcp'
                 ServiceState = 'Stopped'
                 StartupType = 'Disabled'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
                 CheckContent = 'Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
 
                 Run "Services.msc".
@@ -47,6 +53,8 @@ try
                 ServiceName = 'FTPSVC'
                 ServiceState = 'Stopped'
                 StartupType = 'Disabled'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
                 CheckContent = 'If the server has the role of an FTP server, this is NA.
                 Run "Services.msc".
 
@@ -56,6 +64,8 @@ try
                 ServiceName = $null
                 ServiceState = 'Stopped'
                 StartupType = 'Disabled'
+                Ensure = 'Present'
+                OrganizationValueRequired = $false
                 CheckContent = 'If the server has the role of a server, this is NA.
                 Run "Services.msc".
 
@@ -63,96 +73,107 @@ try
             }
         )
 
-        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [ServiceRuleConvert]::new( $stigRule )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
 
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'ServiceRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('ServiceName', 'ServiceState', 'StartupType', 'Ensure')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
+        Foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
+
+        #region Add Custom Tests Here
+
         #endregion
-        #region Method Tests
-        Describe 'Get-ServiceName' {
 
-            foreach ( $service in $rulesToTest )
-            {
-                It "Should return '$($service.ServiceName)'" {
-                    $checkContent = Split-TestStrings -CheckContent $service.CheckContent
-                    Get-ServiceName -CheckContent $checkContent | Should Be $service.ServiceName
-                }
-            }
-        }
+        # $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
+        # $rule = [ServiceRuleConvert]::new( $stigRule )
+        # #endregion
+        # #region Class Tests
+        # Describe "$($rule.GetType().Name) Child Class" {
 
-        Describe 'Get-ServiceState' {
+        #     Context 'Base Class' {
 
-            foreach ( $service in $rulesToTest )
-            {
-                It "Should return '$($service.ServiceState)' from '$($service.ServiceName)'" {
-                    $checkContent = Split-TestStrings -CheckContent $service.CheckContent
-                    Get-ServiceState -CheckContent $checkContent | Should Be $service.ServiceState
-                }
-            }
-        }
+        #         It 'Shoud have a BaseType of STIG' {
+        #             $rule.GetType().BaseType.ToString() | Should Be 'ServiceRule'
+        #         }
+        #     }
 
-        Describe 'Get-ServiceStartupType' {
+        #     Context 'Class Properties' {
 
-            foreach ( $service in $rulesToTest )
-            {
-                It "Should return '$($service.StartupType)' from '$($service.ServiceName)'" {
-                    $checkContent = Split-TestStrings -CheckContent $service.CheckContent
-                    Get-ServiceStartupType -CheckContent $checkContent | Should Be $service.StartupType
-                }
-            }
-        }
+        #         $classProperties = @('ServiceName', 'ServiceState', 'StartupType', 'Ensure')
 
-        Describe 'Test-MultipleServiceRule' {
+        #         foreach ( $property in $classProperties )
+        #         {
+        #             It "Should have a property named '$property'" {
+        #                 ( $rule | Get-Member -Name $property ).Name | Should Be $property
+        #             }
+        #         }
+        #     }
+        # }
+        # #endregion
+        # #region Method Tests
+        # Describe 'Get-ServiceName' {
 
-            It "Should return $true if Multiple Services are found" {
-                Test-MultipleServiceRule -ServiceName "NTDS,DFSR,DNS,W32Time" | Should Be $true
-            }
-            It "Should return $false if a comma is not found" {
-                Test-MultipleServiceRule -ServiceName "service" | Should Be $false
-            }
-            It "Should return $false if a null value is passed" {
-                Test-MultipleServiceRule -ServiceName $null | Should Be $false
-            }
-            It 'Should not thrown an error if a null value is passed' {
-                {Test-MultipleServiceRule -ServiceName $null} | Should Not Throw
-            }
-        }
-        #endregion
-        #region Data Tests
-        Describe 'ServicesDisplayNameToName Data Section' {
+        #     foreach ( $service in $rulesToTest )
+        #     {
+        #         It "Should return '$($service.ServiceName)'" {
+        #             $checkContent = Split-TestStrings -CheckContent $service.CheckContent
+        #             Get-ServiceName -CheckContent $checkContent | Should Be $service.ServiceName
+        #         }
+        #     }
+        # }
 
-            [string] $dataSectionName = 'ServicesDisplayNameToName'
+        # Describe 'Get-ServiceState' {
 
-            It "Should have a data section called $dataSectionName" {
-                ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-            }
+        #     foreach ( $service in $rulesToTest )
+        #     {
+        #         It "Should return '$($service.ServiceState)' from '$($service.ServiceName)'" {
+        #             $checkContent = Split-TestStrings -CheckContent $service.CheckContent
+        #             Get-ServiceState -CheckContent $checkContent | Should Be $service.ServiceState
+        #         }
+        #     }
+        # }
 
-            <#
-            TO DO - Add rules
-            #>
-        }
-        #endregion
+        # Describe 'Get-ServiceStartupType' {
+
+        #     foreach ( $service in $rulesToTest )
+        #     {
+        #         It "Should return '$($service.StartupType)' from '$($service.ServiceName)'" {
+        #             $checkContent = Split-TestStrings -CheckContent $service.CheckContent
+        #             Get-ServiceStartupType -CheckContent $checkContent | Should Be $service.StartupType
+        #         }
+        #     }
+        # }
+
+        # Describe 'Test-MultipleServiceRule' {
+
+        #     It "Should return $true if Multiple Services are found" {
+        #         Test-MultipleServiceRule -ServiceName "NTDS,DFSR,DNS,W32Time" | Should Be $true
+        #     }
+        #     It "Should return $false if a comma is not found" {
+        #         Test-MultipleServiceRule -ServiceName "service" | Should Be $false
+        #     }
+        #     It "Should return $false if a null value is passed" {
+        #         Test-MultipleServiceRule -ServiceName $null | Should Be $false
+        #     }
+        #     It 'Should not thrown an error if a null value is passed' {
+        #         {Test-MultipleServiceRule -ServiceName $null} | Should Not Throw
+        #     }
+        # }
+        # #endregion
+        # #region Data Tests
+        # Describe 'ServicesDisplayNameToName Data Section' {
+
+        #     [string] $dataSectionName = 'ServicesDisplayNameToName'
+
+        #     It "Should have a data section called $dataSectionName" {
+        #         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
+        #     }
+
+        #     <#
+        #     TO DO - Add rules
+        #     #>
+        # }
+        # #endregion
     }
 }
 finally
