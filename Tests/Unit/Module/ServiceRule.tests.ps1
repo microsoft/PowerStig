@@ -2,9 +2,10 @@
 using module .\..\..\..\Module\Rule.Service\Convert\ServiceRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
         $testRuleList = @(
             @{
@@ -72,7 +73,6 @@ try
                 If A string without parentheses is installed and not disabled, this is a finding.'
             }
         )
-
         #endregion
 
         Foreach ($testRule in $testRuleList)
@@ -81,99 +81,44 @@ try
         }
 
         #region Add Custom Tests Here
+        Describe 'MultipleRules' {
+            # TODO move this to the CommonTests
+            $testRuleList = @(
+                @{
+                    Count = 9
+                    CheckContent = 'Run "services.msc" to display the Services console.
 
+                    Verify the Startup Type for the following Windows services:
+                    - Active Directory Domain Services
+                    - DFS Replication
+                    - DNS Client
+                    - DNS server
+                    - Group Policy Client
+                    - Intersite Messaging
+                    - Kerberos Key Distribution Center
+                    - NetLogon
+                    - Windows Time (not required if another time synchronization tool is implemented to start automatically)
+
+                    If the Startup Type for any of these services is not Automatic, this is a finding.'
+                }
+            )
+
+            foreach ($testRule in $testRuleList)
+            {
+                # Get the rule element with the checkContent injected into it
+                $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly
+                # Create an instance of the convert class that is currently being tested
+                $convertedRule = [ServiceRuleConvert]::new($stigRule)
+                It "Should return $true" {
+                    $convertedRule.HasMultipleRules() | Should Be $true
+                }
+                It "Should return $($testRule.Count) rules" {
+                    $multipleRule = $convertedRule.SplitMultipleRules()
+                    $multipleRule.count | Should -Be $testRule.Count
+                }
+            }
+        }
         #endregion
-
-        # $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        # $rule = [ServiceRuleConvert]::new( $stigRule )
-        # #endregion
-        # #region Class Tests
-        # Describe "$($rule.GetType().Name) Child Class" {
-
-        #     Context 'Base Class' {
-
-        #         It 'Shoud have a BaseType of STIG' {
-        #             $rule.GetType().BaseType.ToString() | Should Be 'ServiceRule'
-        #         }
-        #     }
-
-        #     Context 'Class Properties' {
-
-        #         $classProperties = @('ServiceName', 'ServiceState', 'StartupType', 'Ensure')
-
-        #         foreach ( $property in $classProperties )
-        #         {
-        #             It "Should have a property named '$property'" {
-        #                 ( $rule | Get-Member -Name $property ).Name | Should Be $property
-        #             }
-        #         }
-        #     }
-        # }
-        # #endregion
-        # #region Method Tests
-        # Describe 'Get-ServiceName' {
-
-        #     foreach ( $service in $rulesToTest )
-        #     {
-        #         It "Should return '$($service.ServiceName)'" {
-        #             $checkContent = Split-TestStrings -CheckContent $service.CheckContent
-        #             Get-ServiceName -CheckContent $checkContent | Should Be $service.ServiceName
-        #         }
-        #     }
-        # }
-
-        # Describe 'Get-ServiceState' {
-
-        #     foreach ( $service in $rulesToTest )
-        #     {
-        #         It "Should return '$($service.ServiceState)' from '$($service.ServiceName)'" {
-        #             $checkContent = Split-TestStrings -CheckContent $service.CheckContent
-        #             Get-ServiceState -CheckContent $checkContent | Should Be $service.ServiceState
-        #         }
-        #     }
-        # }
-
-        # Describe 'Get-ServiceStartupType' {
-
-        #     foreach ( $service in $rulesToTest )
-        #     {
-        #         It "Should return '$($service.StartupType)' from '$($service.ServiceName)'" {
-        #             $checkContent = Split-TestStrings -CheckContent $service.CheckContent
-        #             Get-ServiceStartupType -CheckContent $checkContent | Should Be $service.StartupType
-        #         }
-        #     }
-        # }
-
-        # Describe 'Test-MultipleServiceRule' {
-
-        #     It "Should return $true if Multiple Services are found" {
-        #         Test-MultipleServiceRule -ServiceName "NTDS,DFSR,DNS,W32Time" | Should Be $true
-        #     }
-        #     It "Should return $false if a comma is not found" {
-        #         Test-MultipleServiceRule -ServiceName "service" | Should Be $false
-        #     }
-        #     It "Should return $false if a null value is passed" {
-        #         Test-MultipleServiceRule -ServiceName $null | Should Be $false
-        #     }
-        #     It 'Should not thrown an error if a null value is passed' {
-        #         {Test-MultipleServiceRule -ServiceName $null} | Should Not Throw
-        #     }
-        # }
-        # #endregion
-        # #region Data Tests
-        # Describe 'ServicesDisplayNameToName Data Section' {
-
-        #     [string] $dataSectionName = 'ServicesDisplayNameToName'
-
-        #     It "Should have a data section called $dataSectionName" {
-        #         ( Get-Variable -Name $dataSectionName ).Name | Should Be $dataSectionName
-        #     }
-
-        #     <#
-        #     TO DO - Add rules
-        #     #>
-        # }
-        # #endregion
     }
 }
 finally

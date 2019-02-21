@@ -2,6 +2,7 @@
 using module .\..\..\..\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     InModuleScope -ModuleName "$($global:moduleName).Convert" {
@@ -38,19 +39,6 @@ try
                 Run "Services.msc".
 
                 If "Simple TCP/IP Services" is listed, this is a finding.'
-            },
-            @{
-                FeatureName = 'IIS-HostableWebCore,IIS-WebServer'
-                InstallState = 'Absent'
-                OrganizationValueRequired = $false
-                CheckContent = 'IIS is not installed by default.  Verify it has not been installed on the system.
-
-                Run "Programs and Features".
-                Select "Turn Windows features on or off".
-
-                If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
-
-                If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.'
             },
             @{
                 FeatureName = 'SMB1Protocol'
@@ -107,44 +95,37 @@ try
         }
 
         #region Add Custom Tests Here
+        Describe 'MultipleRules' {
+            # TODO move this to the CommonTests
+            $testRuleList = @(
+                @{
+                    Count = 2
+                    CheckContent = 'IIS is not installed by default.  Verify it has not been installed on the system.
 
+                    Run "Programs and Features".
+                    Select "Turn Windows features on or off".
+
+                    If the entries for "Internet Information Services" or "Internet Information Services Hostable Web Core" are selected, this is a finding.
+
+                    If an application requires IIS or a subset to be installed to function, this needs be documented with the ISSO.  In addition, any applicable requirements from the IIS STIG must be addressed.'
+                }
+            )
+            foreach ($testRule in $testRuleList)
+            {
+                # Get the rule element with the checkContent injected into it
+                $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly
+                # Create an instance of the convert class that is currently being tested
+                $convertedRule = [WindowsFeatureRuleConvert]::new($stigRule)
+                It "Should return $true" {
+                    $convertedRule.HasMultipleRules() | Should Be $true
+                }
+                It "Should return $($testRule.Count) rules" {
+                    $multipleRule = $convertedRule.SplitMultipleRules()
+                    $multipleRule.count | Should Be $testRule.Count
+                }
+            }
+        }
         #endregion
-
-
-    # InModuleScope -ModuleName "$($script:moduleName).Convert" {
-    #     #region Test Setup
-    #     $stigRule = Get-TestStigRule -ReturnGroupOnly
-    #     $rule = [WindowsFeatureRuleConvert]::new( $stigRule )
-    #     #endregion
-    #     #region Class Tests
-    #     Describe "$($rule.GetType().Name) Child Class" {
-
-    #         Context 'Base Class' {
-
-    #             It 'Shoud have a BaseType of Rule' {
-    #                 $rule.GetType().BaseType.ToString() | Should Be 'WindowsFeatureRule'
-    #             }
-    #         }
-
-    #         Context 'Class Properties' {
-
-    #             $classProperties = @('FeatureName', 'InstallState')
-
-    #             foreach ( $property in $classProperties )
-    #             {
-    #                 It "Should have a property named '$property'" {
-    #                     ( $rule | Get-Member -Name $property ).Name | Should Be $property
-    #                 }
-    #             }
-    #         }
-    #     }
-    #     #endregion
-    #     #region Method Tests
-
-    #     #endregion
-    #     #region Data Tests
-
-    #     #endregion
     }
 }
 finally

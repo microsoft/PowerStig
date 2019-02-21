@@ -1,7 +1,8 @@
-using module .\..\..\..\Module\Rule.AccountPolicy\Convert\AccountPolicyRule.Convert.psm1
 #region Header
+using module .\..\..\..\Module\Rule.AccountPolicy\Convert\AccountPolicyRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     InModuleScope -ModuleName "$($global:moduleName).Convert" {

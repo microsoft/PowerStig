@@ -54,27 +54,36 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         but the OrganizationValueTestString is empty. Please add it to the test data hashtable."
     }
 
-    # The Document Rule does not have any properies to test
-    if($convertedRule.GetType().Name -ne 'DocumentRuleConvert')
+    # The Document and Manual rules do not have any properies to test
+    if ($convertedRule.GetType().Name -notmatch 'DocumentRuleConvert|ManualRuleConvert')
     {
         # Test that each property was properly extracted from the test checkContent
         foreach ($property in $propertyList)
         {
             It "Should return the $Property" {
+                # Can't test a null property type, only that the property is null
+                if ($null -ne $testRule.$property)
+                {
+                    # Some properties are complex types that need to be serialized for comparison
+                    if ($testRule.$property.GetTYpe().BaseType.Name -eq 'Array')
+                    {
+                        $convertedRule.$property = $convertedRule.$property | ConvertTo-Json
+                        $testRule.$property = $testRule.$property | ConvertTo-Json
+                    }
+                }
                 $convertedRule.$property | Should Be $testRule.$property
             }
             # Remove the property from the list of tested properties
             $ruleClassPropertyTestList.Remove($property)
         }
     }
-
     <#
         After looping through the properties, provide a notification if any
         properties were not tested.
     #>
-    if ($ruleClassPropertyTestList.Count -ne 0)
+    ForEach($ruleClassProperty in $ruleClassPropertyTestList)
     {
-        Write-Warning "$ruleClassPropertyTestList is not currently tested"
+        Write-Warning "$ruleClassProperty is not currently tested"
     }
     <#
         When the xccdf xml is loaded by System.Xml.XmlDocument in the module,
@@ -83,15 +92,20 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         needs to be decoded before testing.
     #>
     $checkContent = [System.Web.HttpUtility]::HtmlDecode( $testRule.checkContent )
-    <#
-        To dynamically call a static method, we have to get the static method
-        from the current runtime and then invoke it with its expected parameters.
-    #>
-    $match = $convertedRule.GetType().GetMethod('Match')
-    # Test the required convert module static method
-    Describe 'Static Match' {
-        It 'Should Match the string' {
-            $match.Invoke($convertedRule, $checkContent) | Should Be $true
+
+    # The manual rule is the default and does not contain a match method.
+    if ($convertedRule.GetType().Name -notmatch 'ManualRuleConvert')
+    {
+        <#
+            To dynamically call a static method, we have to get the static method
+            from the current runtime and then invoke it with its expected parameters.
+        #>
+        $match = $convertedRule.GetType().GetMethod('Match')
+        # Test the required convert module static method
+        Describe 'Static Match' {
+            It 'Should Match the string' {
+                $match.Invoke($convertedRule, $checkContent) | Should Be $true
+            }
         }
     }
 }

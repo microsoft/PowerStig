@@ -2,6 +2,7 @@
 using module .\..\..\..\Module\Rule.WebConfigurationProperty\Convert\WebConfigurationPropertyRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     InModuleScope -ModuleName "$($global:moduleName).Convert" {
@@ -9,10 +10,10 @@ try
         $testRuleList = @(
             @{
                 ConfigSection = '/system.webServer/directoryBrowse'
-                Key           = 'enabled'
-                Value         = 'false'
+                Key = 'enabled'
+                Value = 'false'
                 OrganizationValueRequired = $false
-                CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+                CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
                 Click the Site.
 
@@ -26,10 +27,10 @@ try
             },
             @{
                 ConfigSection = '/system.web/sessionState'
-                Key           = 'cookieless'
-                Value         = 'UseURI'
+                Key = 'cookieless'
+                Value = 'UseURI'
                 OrganizationValueRequired = $false
-                CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+                CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
                 Open the IIS 8.5 Manager.
 
@@ -54,11 +55,12 @@ try
                 If the "cookieless" is not set to "UseURI", this is a finding.'
             },
             @{
-                ConfigSection = '/system.web/sessionState'
-                Key           = 'cookieless'
-                Value         = 'UseURI'
+                ConfigSection = '/system.webServer/security/requestFiltering/requestlimits'
+                Key = 'maxUrl'
+                Value = ''
                 OrganizationValueRequired = $true
-                CheckContent  = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+                OrganizationValueTestString = '{0} -le 4096'
+                CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
                 Open the IIS 8.5 Manager.
 
@@ -70,8 +72,8 @@ try
 
                 If the "maxUrl" value is not set to "4096" or less, this is a finding.'
             }
+            # TODO There are many switch options in Get-ConfigSection that are not tested in Test data
         )
-
         #endregion
 
         Foreach ($testRule in $testRuleList)
@@ -80,62 +82,38 @@ try
         }
 
         #region Add Custom Tests Here
+        Describe 'MultipleRules' {
+            # TODO move this to the CommonTests
+            $testRuleList = @(
+                @{
+                    Count = 2
+                    CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
-        #endregion
+                    Access the IIS 8.5 Manager.
 
+                    Under "Management" section, double-click the "Configuration Editor" icon.
 
-        # Describe 'Test-MultipleWebConfigurationPropertyRule' {
-        #     foreach ( $rule in $rulesToTest )
-        #     {
-        #         It "Should return $false" {
-        #             $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-        #             $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
-        #             $multipleRule | Should Be $false
-        #         }
-        #     }
+                    From the "Section:" drop-down list, select "system.web/httpCookies".
 
-        #     It "Should return $true" {
-        #         $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
-        #         $multipleRule = Test-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
-        #         $multipleRule | Should Be $true
-        #     }
-        # }
+                    Verify the "require SSL" is set to "True".
 
-        $splitwebConfigurationPropertyRule = @{
-            CheckContent = 'Follow the procedures below for each site hosted on the IIS 8.5 web server:
+                    From the "Section:" drop-down list, select "system.web/sessionState".
 
-            Access the IIS 8.5 Manager.
+                    Verify the "compressionEnabled" is set to "False".
 
-            Under "Management" section, double-click the "Configuration Editor" icon.
-
-            From the "Section:" drop-down list, select "system.web/httpCookies".
-
-            Verify the "require SSL" is set to "True".
-
-            From the "Section:" drop-down list, select "system.web/sessionState".
-
-            Verify the "compressionEnabled" is set to "False".
-
-            If both the "system.web/httpCookies:require SSL" is set to "True" and the "system.web/sessionState:compressionEnabled" is set to "False", this is not a finding.'
-        }
-
-        $OrganizationValueTestString = @{
-            key = 'maxUrl'
-            TestString = '{0} -le 4096'
-        }
-
-        Describe 'Split-MultipleWebConfigurationPropertyRule' {
-            It 'Should return two rules' {
-                $checkContent = Split-TestStrings -CheckContent $splitwebConfigurationPropertyRule.CheckContent
-                $multipleRule = Split-MultipleWebConfigurationPropertyRule -CheckContent $checkContent
-                $multipleRule.count | Should Be 2
-            }
-        }
-
-        Describe 'Get-OrganizationValueTestString' {
-            It 'Should return two rules' {
-                $testString = Get-OrganizationValueTestString -Key $OrganizationValueTestString.Key
-                $testString | Should Be $OrganizationValueTestString.TestString
+                    If both the "system.web/httpCookies:require SSL" is set to "True" and the "system.web/sessionState:compressionEnabled" is set to "False", this is not a finding.'
+                }
+            )
+            foreach($testRule in $testRuleList)
+            {
+                It "Should return $true" {
+                    $multipleRule = [WebConfigurationPropertyRuleConvert]::HasMultipleRules($testRule.CheckContent)
+                    $multipleRule | Should -Be $true
+                }
+                It "Should return $($testRule.Count) rules" {
+                    $multipleRule = [WebConfigurationPropertyRuleConvert]::SplitMultipleRules($testRule.CheckContent)
+                    $multipleRule.count | Should -Be $testRule.Count
+                }
             }
         }
         #endregion

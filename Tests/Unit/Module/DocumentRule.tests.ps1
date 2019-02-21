@@ -2,6 +2,7 @@
 using module .\..\..\..\Module\Rule.Document\Convert\DocumentRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     InModuleScope -ModuleName "$($global:moduleName).Convert" {
