@@ -23,7 +23,7 @@ UPDATES
 * Fixed [#284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
 * Removed: Internet Explorer 1.13
 * Fixed [290](https://github.com/Microsoft/PowerStig/issues/290): [V-76731] IIS Server STIG V-76731 fails to properly set STIG guidance because rule is not split.
-* Fixed [341](https://github.com/Microsoft/PowerStig/issues/341): Update PowerSTIG to Utilize LogTargetW3C parameter in xWebAdministration 2.5.0.0
+* Fixed [314](https://github.com/Microsoft/PowerStig/issues/314): Update PowerSTIG to Utilize LogTargetW3C parameter in xWebAdministration 2.5.0.0
 
 * Added the following STIGs
   * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)
