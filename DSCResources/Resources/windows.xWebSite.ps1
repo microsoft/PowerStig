@@ -8,6 +8,7 @@ if ($rules)
     $logFlags = Get-UniqueStringArray -InputObject $rules.LogFlags -AsString
     $logFormat = Get-UniqueString -InputObject $rules.LogFormat
     $logPeriod = Get-UniqueString -InputObject $rules.LogPeriod
+    $logTargetW3C = Get-UniqueString -InputObject $rules.LogTargetW3C
     $logCustomField = Get-LogCustomField -LogCustomField $rules.LogCustomFieldEntry.Entry -Resource 'xWebSite'
 
     foreach ($website in $WebsiteName)
@@ -22,6 +23,7 @@ if ($rules)
                     Name            = '$website'
                     LogFlags        = @($logFlags)
                     LogFormat       = '$logFormat'
+                    LogTargetW3C    = '$logTargetW3C'
                     LogCustomFields = @($logCustomField)
                 }"
             )
@@ -35,6 +37,7 @@ if ($rules)
                     LogFlags        = @($logFlags)
                     LogFormat       = '$logFormat'
                     LogPeriod       = '$logPeriod'
+                    LogTargetW3C    = '$logTargetW3C'
                     LogCustomFields = @($logCustomField)
                 }"
             )
