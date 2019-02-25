@@ -25,3 +25,4 @@ if ($rules)
 
     & $scriptBlock
 }
+ 
