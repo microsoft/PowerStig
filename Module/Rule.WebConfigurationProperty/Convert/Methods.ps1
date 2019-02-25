@@ -133,7 +133,17 @@ function Get-KeyValuePair
             $key = 'enabled'
             $value = 'false'
         }
-        { $checkContent -match 'SSL Settings' }
+        { $checkContent -match 'Verify the "Clients Certificate Required"' }
+        {
+            $key = 'sslflags'
+            $value = 'SslRequireCert'
+        }
+        { $checkContent -match 'If the "Require SSL"' }
+        {
+            $key = 'sslflags'
+            $value = 'Ssl'
+        }
+        { ($checkContent -match 'Client Certificates Required') -and ($checkcontent -match 'set to "ssl128"') -and ($checkcontent -match 'If the "Require SSL"') }
         {
             $key = 'sslflags'
             $value = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'

@@ -9,13 +9,20 @@ if ($WebsiteName)
     {
         foreach ($rule in $rules)
         {
-            xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
-            {
-                WebsitePath     = "IIS:\Sites\$website"
-                Filter          = $rule.ConfigSection
-                PropertyName    = $rule.Key
-                Value           = $rule.Value
-            }
+            $key = Get-UniqueString -InputObject $rules.Key
+            $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+
+            $resourceTitle = "[$($rules.id -join ' ')]$website"
+
+            $scriptBlock = [scriptblock]::Create("
+                xWebConfigProperty '$resourceTitle'
+                {
+                    WebsitePath     = 'IIS:\Sites\$website'
+                    Filter          = '$rule.ConfigSection'
+                    PropertyName    = '$key'
+                    Value           = @($value)
+                }"
+            )
         }
     }
 }
@@ -31,13 +38,21 @@ else
         {
             $psPath = 'MACHINE/WEBROOT/APPHOST'
         }
+        
+        $key = Get-UniqueString -InputObject $rules.Key
+        $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
 
-        xWebConfigProperty "$(Get-ResourceTitle -Rule $rule)"
-        {
-            WebsitePath     = $psPath
-            Filter          = $rule.ConfigSection
-            PropertyName    = $rule.Key
-            Value           = $rule.Value
-        }
+        $resourceTitle = "[$($rules.id -join ' ')]$website"
+
+        $scriptBlock = [scriptblock]::Create("
+            xWebConfigProperty '$resourceTitle'
+            {
+                WebsitePath     = '$psPath'
+                Filter          = '$rule.ConfigSection'
+                PropertyName    = '$key'
+                Value           = @($value)
+            }"
+        )
     }
 }
+& $scriptBlock
