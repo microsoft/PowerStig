@@ -29,22 +29,45 @@ function New-StigCheckList
     [OutputType([xml])]
     param
     (
+        [Parameter(Mandatory = $true, ParameterSetName = 'STIG')]
+        [string]
+        $Technology, # this is aligned to a DSC composite resource.
+
+        [Parameter(ParameterSetName = 'STIG')]
+        [string]
+        $TechnologyRole, # this is DC, MS, Database, Instance, etc.
+
+        [Parameter(Mandatory = $true, ParameterSetName = 'STIG')]
+        [string]
+        $TechnologyVersion, # this is 2012R2, 2016, etc.
+
+        [Parameter(Mandatory = $true, ParameterSetName = 'STIG')]
+        [Version]
+        $STIGVersion,
+
+        [string]
+        $ComputerName,
+
         [Parameter(Mandatory = $true, ParameterSetName = 'mof')]
         [string]
         $ReferenceConfiguration,
 
-        [Parameter(Mandatory = $true, ParameterSetName = 'result')]
+        [Parameter(ParameterSetName = 'STIG')]
         [System.Collections.ArrayList]
         $DscResult,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ParameterSetName = 'xccdf')]
         [string]
         $XccdfPath,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $true, ParameterSetName = 'STIG')]
         [System.IO.FileInfo]
         $OutputPath
     )
+
+    $stig = [stig]::new($Technology, $TechnologyVersion, $TechnologyRole, $STIGVersion)
+
+    $stig.loadRules()
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
     {

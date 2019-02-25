@@ -73,9 +73,13 @@ Class STIG
 
         $this.RuleFile = [STIG]::DataPath + "\$ruleFileString`.xml"
 
-        if (-not $this.Validate())
+        try
         {
-            throw "$ruleFileString was not found. Please run [Stig]::ListAvailable() to view the list of avalable STIG's."
+            $this.Validate()
+        }
+        catch
+        {
+            "$ruleFileString was not found. Please run [Stig]::ListAvailable() to view the list of avalable STIG's."
         }
 
         return $this
@@ -117,13 +121,12 @@ Class STIG
     <#
         The validate method is used to test that the rule file exists
     #>
-    [bool] Validate()
+    [void] Validate()
     {
-        if ( Test-Path -Path $this.RuleFile )
+        if ( -not (Test-Path -Path $this.RuleFile) )
         {
-            return $true
+            throw [System.IO.FileNotFoundException]::new()
         }
-        return $false
     }
     #endregion
 
@@ -246,7 +249,6 @@ Class STIG
                     {
                         $importRule.AddExceptionToPolicy($Exceptions[$rule.Id])
                     }
-
                 }
 
                 $ruleListIndex = $this.RuleList.Add($importRule)
