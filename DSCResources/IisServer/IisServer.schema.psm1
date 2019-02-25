@@ -87,7 +87,7 @@ Configuration IisServer
     . "$resourcePath\windows.xRegistry.ps1"
     . "$resourcePath\windows.xWindowsFeature.ps1"
 
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.3.0.0
+    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.xWebConfigProperty.ps1"
     . "$resourcePath\windows.xIisLogging.ps1"
