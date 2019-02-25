@@ -18,7 +18,15 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
 {
     <#
         .SYNOPSIS
-            Default constructor
+            Empty constructor for SplitFactory
+    #>
+    SecurityOptionRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Security Option Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>

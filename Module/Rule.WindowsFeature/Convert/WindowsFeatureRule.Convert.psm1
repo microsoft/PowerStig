@@ -27,13 +27,19 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WindowsFeatureRuleConvert
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    WindowsFeatureRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf STIG rule element into a Windows Feature Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    hidden WindowsFeatureRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    WindowsFeatureRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetFeatureName()
         $this.SetFeatureInstallState()
@@ -48,29 +54,6 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
     }
 
     #region Methods
-    <#{TODO}#> <#This method is not alighed to the otehr methods and might be
-    centralized in the Ruel base class#>
-    static [WindowsFeatureRule[]] ConvertFromXccdf ([xml.xmlelement] $StigRule)
-    {
-        $ruleList = @()
-        $rule = [WindowsFeatureRuleConvert]::new($StigRule)
-        if ($rule.HasMultipleRules())
-        {
-            [string[]] $splitRules = $rule.SplitMultipleRules()
-            foreach ($splitRule in $splitRules)
-            {
-                $ruleClone = $rule.Clone()
-                $ruleClone.FeatureName = $splitRule
-                $ruleList += $ruleClone.AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += $rule.AsRule()
-        }
-
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

@@ -26,10 +26,16 @@ Class WmiRuleConvert : WmiRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf STIG rule element into a WmiRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    WmiRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf STIG rule element into a Wmi Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     WmiRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)

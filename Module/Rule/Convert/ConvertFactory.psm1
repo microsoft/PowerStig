@@ -25,6 +25,68 @@ using module .\..\..\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\..\..\Rule.Wmi\Convert\WmiRule.Convert.psm1
 # Header
 
+class SplitFactory
+{
+    <#
+        .SYNOPSIS
+            Static method split
+    #>
+    static [System.Collections.ArrayList] XccdfRule ([xml.xmlelement] $Rule, [string] $TypeName)
+    {
+        [System.Collections.ArrayList] $ruleList = @()
+
+        $instance = New-Object -TypeName $TypeName
+        $hasMultipleRules = $instance.GetType().GetMethod('HasMultipleRules')
+
+        if (-not $hasMultipleRules.IsStatic)
+        {
+            throw "$TypeName does not have a static HasMultipleRules method"
+        }
+
+        if ($HasMultipleRules.Invoke($HasMultipleRules, $Rule.rule.Check.'check-content'))
+        {
+            $splitMultipleRules = $instance.GetType().GetMethod('SplitMultipleRules')
+            [string[]] $splitRules = $splitMultipleRules.Invoke($splitMultipleRules, $Rule.rule.Check.'check-content')
+            foreach ($splitRule in $splitRules)
+            {
+                $Rule.rule.Check.'check-content' = $splitRule
+                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
+            }
+        }
+        else
+        {
+            $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
+        }
+        return $ruleList
+    }
+
+    <#
+        .SYNOPSIS
+            Instance method split
+    #>
+    static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
+    {
+        [System.Collections.ArrayList] $ruleList = @()
+
+        $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
+        if ($instance.HasMultipleRules())
+        {
+            [string[]] $splitRules = $instance.SplitMultipleRules()
+            foreach ($splitRule in $splitRules)
+            {
+                $ruleClone = $instance.Clone()
+                $ruleClone.$Property = $splitRule
+                $ruleList += $ruleClone.AsRule()
+            }
+        }
+        else
+        {
+            $ruleList += $instance.AsRule()
+        }
+        return $ruleList
+    }
+}
+
 class ConvertFactory
 {
     static [System.Collections.ArrayList] Rule ([xml.xmlelement] $Rule)
@@ -60,7 +122,7 @@ class ConvertFactory
             {[FileContentRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [FileContentRuleConvert]::ConvertFromXccdf($Rule)
+                        [SplitFactory]::XccdfRule($Rule, 'FileContentRuleConvert')
                 )
             }
             {[GroupRuleConvert]::Match($PSItem)}
@@ -78,25 +140,25 @@ class ConvertFactory
             {[MimeTypeRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [MimeTypeRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'MimeTypeRuleConvert')
                 )
             }
             {[PermissionRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [PermissionRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'PermissionRuleConvert')
                 )
             }
             {[ProcessMitigationRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [ProcessMitigationRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'ProcessMitigationRuleConvert', 'MitigationTarget')
                 )
             }
             {[RegistryRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [RegistryRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'RegistryRuleConvert')
                 )
             }
             {[SecurityOptionRuleConvert]::Match($PSItem)}
@@ -108,7 +170,7 @@ class ConvertFactory
             {[ServiceRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [ServiceRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'ServiceRuleConvert', 'ServiceName')
                 )
             }
             {[SqlScriptQueryRuleConvert]::Match($PSItem)}
@@ -120,7 +182,7 @@ class ConvertFactory
             {[UserRightRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [UserRightRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'UserRightRuleConvert')
                 )
             }
             {[WebAppPoolRuleConvert]::Match($PSItem)}
@@ -132,13 +194,13 @@ class ConvertFactory
             {[WebConfigurationPropertyRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [WebConfigurationPropertyRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'WebConfigurationPropertyRuleConvert')
                 )
             }
             {[WindowsFeatureRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [WindowsFeatureRuleConvert]::ConvertFromXccdf($Rule)
+                    [SplitFactory]::XccdfRule($Rule, 'WindowsFeatureRuleConvert', 'FeatureName')
                 )
             }
             {[WinEventLogRuleConvert]::Match($PSItem)}
@@ -176,7 +238,9 @@ class ConvertFactory
         # Rules can be split into multiple rules of multiple types, so the list
         # of Id's needs to be validated to be unique.
         $ruleCount = ($ruleTypeList | Measure-Object).count
-        $uniqueRuleCount = ($ruleTypeList | Select-Object -Property Id -Unique | Measure-Object).count
+        $uniqueRuleCount = ($ruleTypeList |
+            Select-Object -Property Id -Unique |
+                Measure-Object).count
 
         if ($uniqueRuleCount -ne $ruleCount)
         {

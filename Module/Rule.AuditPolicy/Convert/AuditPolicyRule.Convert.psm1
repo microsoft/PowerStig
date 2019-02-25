@@ -13,15 +13,21 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts an xccdf stig rule element into a AuditPolicyRule
+            Empty constructor for SplitFactory
+    #>
+    AuditPolicyRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts an xccdf stig rule element into a Audit Policy Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
     AuditPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $tokens = $this.Extract()
+        $tokens = $this.ExtractProperties()
         $this.SetSubcategory($tokens)
         $this.SetAuditFlag($tokens)
         $this.Ensure = [Ensure]::Present
@@ -30,9 +36,16 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
 
     <#
         .SYNOPSIS
-            Returns the named audit policy settings from the check-content
+            Extracts and returns the audit policy settings from the check-content.
+        .DESCRIPTION
+            This match looks for the following patterns
+            1. Category >> Subcategory - AuditFlag
+            2. Category -> Subcategory - AuditFlag
+        .NOTES
+            If any rule does not match this pattern, please update the xccdf
+            change log file to align to one of these options.
     #>
-    [RegularExpressions.MatchCollection] Extract ()
+    [RegularExpressions.MatchCollection] ExtractProperties ()
     {
         $regex = [regex]::Matches(
             $this.RawString,

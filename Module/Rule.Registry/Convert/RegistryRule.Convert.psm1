@@ -26,13 +26,19 @@ Class RegistryRuleConvert : RegistryRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a RegistryRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    RegistryRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Registry Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    hidden RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetKey()
         $this.SetValueName()
@@ -108,30 +114,6 @@ Class RegistryRuleConvert : RegistryRule
     }
 
     #region Methods
-
-    static [RegistryRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([RegistryRuleConvert]::HasMultipleRules($StigRule.rule.Check.('check-content')))
-        {
-            [string[]] $splitRules = [RegistryRuleConvert]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
-            [int] $byte = 97 # Lowercase A
-            foreach ($splitRule in $splitRules)
-            {
-                $copyRule = $StigRule.Clone()
-                $copyRule.id = "$($StigRule.id).$([CHAR][BYTE]$byte)"
-                $byte ++
-
-                $copyRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [RegistryRuleConvert]::New($copyRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [RegistryRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS

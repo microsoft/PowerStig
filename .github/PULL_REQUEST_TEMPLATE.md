@@ -16,7 +16,7 @@ This fixes #
 
 **Task list:**
 
-- [ ] Change details added to Unreleased section of README.md (Not required for Convert modules)?
+- [ ] Change details added to Unreleased section of CHANGELOG.md (Not required for Convert modules)?
 - [ ] Added/updated documentation, comment-based help and descriptions where appropriate?
 - [ ] Examples appropriately updated?
 - [ ] New/changed code adheres to [Style Guidelines](https://github.com/PowerShell/DscResources/blob/master/StyleGuidelines.md)?

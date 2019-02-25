@@ -26,13 +26,19 @@ Class MimeTypeRuleConvert : MimeTypeRule
 {
     <#
         .SYNOPSIS
-            Default constructor
-        .DESCRIPTION
-            Converts a xccdf stig rule element into a MimeTypeRule
-        .PARAMETER StigRule
+            Empty constructor for SplitFactory
+    #>
+    MimeTypeRuleConvert ()
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Converts a xccdf stig rule element into a Mime Type Rule
+        .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    hidden MimeTypeRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    MimeTypeRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetExtension()
         $this.SetMimeType()
@@ -48,25 +54,6 @@ Class MimeTypeRuleConvert : MimeTypeRule
     }
 
     #region Methods
-
-    static [MimeTypeRule[]] ConvertFromXccdf ($StigRule)
-    {
-        $ruleList = @()
-        if ([MimeTypeRuleConvert]::HasMultipleRules($StigRule.rule.Check.('check-content')))
-        {
-            [string[]] $splitRules = [MimeTypeRuleConvert]::SplitMultipleRules($StigRule.rule.Check.('check-content'))
-            foreach ($splitRule in $splitRules)
-            {
-                $StigRule.rule.Check.('check-content') = $splitRule
-                $ruleList += [MimeTypeRuleConvert]::New($StigRule).AsRule()
-            }
-        }
-        else
-        {
-            $ruleList += [MimeTypeRuleConvert]::New($StigRule).AsRule()
-        }
-        return $ruleList
-    }
 
     <#
         .SYNOPSIS
