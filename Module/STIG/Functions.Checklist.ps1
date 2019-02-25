@@ -42,15 +42,25 @@ function New-StigCheckList
         $XccdfPath,
 
         [Parameter(Mandatory = $true)]
-        [string]
+        [System.IO.FileInfo]
         $OutputPath
     )
+
+    if (-not (Test-Path -Path $OutputPath.DirectoryName))
+    {
+        throw "$($OutputPath.DirectoryName) is not a valid directory. Please provide a valid directory."
+    }
+
+    if ($OutputPath.Extension -ne '.ckl')
+    {
+        throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
+    }
 
     $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()
     $xmlWriterSettings.Indent = $true
     $xmlWriterSettings.IndentChars = "`t"
     $xmlWriterSettings.NewLineChars = "`n"
-    $writer = [System.Xml.XmlWriter]::Create($outputPath, $xmlWriterSettings)
+    $writer = [System.Xml.XmlWriter]::Create($OutputPath.FullName, $xmlWriterSettings)
 
     $writer.WriteStartElement('CHECKLIST')
 
@@ -94,17 +104,17 @@ function New-StigCheckList
     $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $xccdfPath
 
     $stigInfoElements = [ordered] @{
-        'version'        = $xccdfBenchmarkContent.version
+        'version' = $xccdfBenchmarkContent.version
         'classification' = 'UNCLASSIFIED'
-        'customname'     = ''
-        'stigid'         = $xccdfBenchmarkContent.id
-        'description'    = $xccdfBenchmarkContent.description
-        'filename'       = Split-Path -Path $xccdfPath -Leaf
-        'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
-        'title'          = $xccdfBenchmarkContent.title
-        'uuid'           = (New-Guid).Guid
-        'notice'         = $xccdfBenchmarkContent.notice.InnerText
-        'source'         = $xccdfBenchmarkContent.reference.source
+        'customname' = ''
+        'stigid' = $xccdfBenchmarkContent.id
+        'description' = $xccdfBenchmarkContent.description
+        'filename' = Split-Path -Path $xccdfPath -Leaf
+        'releaseinfo' = $xccdfBenchmarkContent.'plain-text'.InnerText
+        'title' = $xccdfBenchmarkContent.title
+        'uuid' = (New-Guid).Guid
+        'notice' = $xccdfBenchmarkContent.notice.InnerText
+        'source' = $xccdfBenchmarkContent.reference.source
     }
 
     foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
@@ -134,7 +144,7 @@ function New-StigCheckList
 
         foreach ($attribute in $vulnerability.GetEnumerator())
         {
-            $status   = $null
+            $status = $null
             $comments = $null
 
             if ($attribute.Name -eq 'Vuln_Num')
