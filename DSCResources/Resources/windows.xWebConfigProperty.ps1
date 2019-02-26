@@ -9,28 +9,12 @@ if ($WebsiteName)
     {
         foreach ($rule in $rules)
         {
-            if ($rule.Key = 'sslFlags')
+            xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
             {
-                $sslFlagValues += $rule.value
-                $value = Get-UniqueStringArray -InputObject $sslFlagValues -asString
-
-                xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
-                {
                 WebsitePath     = "IIS:\Sites\$website"
                 Filter          = $rule.ConfigSection
                 PropertyName    = $rule.Key
-                Value           = $value
-                }
-            }
-            else
-            {
-                xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
-                {
-                WebsitePath     = "IIS:\Sites\$website"
-                Filter          = $rule.ConfigSection
-                PropertyName    = $rule.Key
-                Value           = $value
-                }
+                Value           = $rule.Value
             }
         }
     }
