@@ -5,24 +5,20 @@ $rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule
 
 if ($WebsiteName)
 {
+
+    $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+
     foreach ($website in $WebsiteName)
     {
         foreach ($rule in $rules)
         {
-            $key = Get-UniqueString -InputObject $rules.Key
-            $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
-
-            $resourceTitle = "[$($rules.id -join ' ')]$website"
-
-            $scriptBlock = [scriptblock]::Create("
-                xWebConfigProperty '$resourceTitle'
-                {
-                    WebsitePath     = 'IIS:\Sites\$website'
-                    Filter          = '$rule.ConfigSection'
-                    PropertyName    = '$key'
-                    Value           = @($value)
-                }"
-            )
+            xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
+            {
+                WebsitePath     = "IIS:\Sites\$website"
+                Filter          = $rule.ConfigSection
+                PropertyName    = $rule.Key
+                Value           = $value
+            }
         }
     }
 }
@@ -38,21 +34,13 @@ else
         {
             $psPath = 'MACHINE/WEBROOT/APPHOST'
         }
-        
-        $key = Get-UniqueString -InputObject $rules.Key
-        $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
 
-        $resourceTitle = "[$($rules.id -join ' ')]$website"
-
-        $scriptBlock = [scriptblock]::Create("
-            xWebConfigProperty '$resourceTitle'
-            {
-                WebsitePath     = '$psPath'
-                Filter          = '$rule.ConfigSection'
-                PropertyName    = '$key'
-                Value           = @($value)
-            }"
-        )
+        xWebConfigProperty "$(Get-ResourceTitle -Rule $rule)"
+        {
+            WebsitePath     = $psPath
+            Filter          = $rule.ConfigSection
+            PropertyName    = $rule.Key
+            Value           = $rule.Value
+        }
     }
 }
-& $scriptBlock
