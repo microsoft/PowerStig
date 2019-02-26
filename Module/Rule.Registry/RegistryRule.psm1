@@ -43,7 +43,7 @@ Class RegistryRule : Rule
         .PARAMETER Rule
             The STIG rule to convert
         .PARAMETER Convert
-            A simple bool falg to create a unique constructor signature
+            A simple bool flag to create a unique constructor signature
     #>
     RegistryRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
 

@@ -123,7 +123,7 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
     #>
     [void] SetOrganizationValueTestString ()
     {
-        $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
+        $thisOrganizationValueTestString = Get-WebConfigOrganizationValueTestString -Key $this.key
 
         if (-not $this.SetStatus($thisOrganizationValueTestString))
         {

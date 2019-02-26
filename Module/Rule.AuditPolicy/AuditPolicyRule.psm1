@@ -34,7 +34,7 @@ Class AuditPolicyRule : Rule
         .PARAMETER Rule
             The STIG rule to convert
         .PARAMETER Convert
-            A simple bool falg to create a unique constructor signature
+            A simple bool flag to create a unique constructor signature
     #>
     AuditPolicyRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
 
@@ -67,10 +67,9 @@ Class AuditPolicyRule : Rule
             $value = 'Absent'
         }
 
-        $return = @{
+        return @{
             Value = $value
             Notes = "'Present' and 'Absent' are the only valid values"
         }
-        return $return
     }
 }

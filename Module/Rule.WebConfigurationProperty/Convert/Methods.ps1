@@ -432,7 +432,7 @@ function Split-MultipleWebConfigurationPropertyRule
     .PARAMETER Key
         Key property from the WebConfigurationPropertyRule.
 #>
-function Get-OrganizationValueTestString
+function Get-WebConfigOrganizationValueTestString
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -442,7 +442,7 @@ function Get-OrganizationValueTestString
         [string]
         $Key
     )
-
+    # TO DO - This should not be a static list
     switch ( $Key )
     {
         { $PsItem -match 'maxUrl' }
