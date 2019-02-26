@@ -1,2 +1,2 @@
 # Integration test footer
-Remove-Module $moduleName
+Remove-Module $script:moduleName

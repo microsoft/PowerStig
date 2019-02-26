@@ -6,9 +6,9 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Account Policy Rule object
+        An Document Rule object
     .DESCRIPTION
-        The DocumentRule class is used to maange the Account Policy Settings.
+        The DocumentRule class is used to maange the Document Settings.
 
 #>
 Class DocumentRule : Rule

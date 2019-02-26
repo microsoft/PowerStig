@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.md', '*.psm1')
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.md', '*.psm1', 'data.*.ps1')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Recurse -File -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
@@ -54,7 +54,6 @@ Class Rule : ICloneable
     [string] $OrganizationValueTestString
     [string] $RawString
     hidden [string[]] $SplitCheckContent
-
 
     <#
         .SYNOPSIS

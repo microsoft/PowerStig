@@ -39,9 +39,9 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    hidden ProcessMitigationRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    ProcessMitigationRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetMitigationTargetName()
+        $this.SetMitigationTarget()
         $this.SetMitigationToEnable()
         if ($this.conversionstatus -eq 'pass')
         {
@@ -64,13 +64,13 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
             value. If the mitigation target name that is returned is not valid,
             the parser status is set to fail
     #>
-    [void] SetMitigationTargetName ()
+    [void] SetMitigationTarget ()
     {
-        $thisMitigationTargetName = Get-MitigationTargetName -CheckContent $this.SplitCheckContent
+        $thisMitigationTarget = Get-MitigationTargetName -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisMitigationTargetName))
+        if (-not $this.SetStatus($thisMitigationTarget))
         {
-            $this.set_MitigationTarget($thisMitigationTargetName)
+            $this.set_MitigationTarget($thisMitigationTarget)
         }
     }
 

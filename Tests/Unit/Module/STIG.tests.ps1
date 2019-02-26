@@ -4,7 +4,6 @@ using module .\..\..\..\Module\STIG\Convert\Convert.Main.psm1
 #endregion
 try
 {
-
     #region Functions
 
     Describe 'Split-StigXccdf' {
@@ -49,7 +48,6 @@ try
                 Should Be "$majorVersionNumber.$minorVersionNumber"
         }
     }
-
     Describe 'Get-PowerStigFileList' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -83,7 +81,6 @@ try
         }
         #>
     }
-
     Describe 'Split-BenchmarkId' {
 
         $sampleStrings = [ordered]@{
@@ -247,7 +244,6 @@ try
         }
     }
     #endregion
-
 }
 finally
 {

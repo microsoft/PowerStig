@@ -19,10 +19,28 @@ Class AccountPolicyRule : Rule
     [string] $PolicyName
     [string] $PolicyValue <#(ExceptionValue)#>
 
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
     AccountPolicyRule () {}
 
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
     AccountPolicyRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
     AccountPolicyRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
         $this.PolicyName  = $Rule.PolicyName

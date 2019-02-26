@@ -2,49 +2,36 @@
 using module .\..\..\..\Module\Rule.Wmi\Convert\WmiRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    InModuleScope -ModuleName "$($script:moduleName).Convert" {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $checkContent = 'Open the Computer Management Console.
-        Expand the "Storage" object in the Tree window.
-        Select the "Disk Management" object.
+        $testRuleList = @(
+            @{
+                Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
+                Property = 'FileSystem'
+                Value = 'NTFS|ReFS'
+                Operator = '-match'
+                OrganizationValueRequired = $false
+                CheckContent = 'Open the Computer Management Console.
+                Expand the "Storage" object in the Tree window.
+                Select the "Disk Management" object.
 
-        If the file system column does not indicate "NTFS" as the file system for each local hard drive, this is a finding.
+                If the file system column does not indicate "NTFS" as the file system for each local hard drive, this is a finding.
 
-        Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
-        must be documented with the ISSO.'
-
-        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-        $rule = [WmiRuleConvert]::new( $stigRule )
+                Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
+                must be documented with the ISSO.'
+            }
+        )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
 
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'WmiRule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('Query', 'Property', 'Value', 'Operator')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
+        foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
-        #endregion
-        #region Method Tests
 
-        #endregion
-        #region Data Tests
+        #region Add Custom Tests Here
 
         #endregion
     }

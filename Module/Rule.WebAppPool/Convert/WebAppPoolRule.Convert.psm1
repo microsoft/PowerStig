@@ -102,7 +102,7 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
     #>
     [void] SetOrganizationValueTestString ()
     {
-        $thisOrganizationValueTestString = Get-OrganizationValueTestString -Key $this.key
+        $thisOrganizationValueTestString = Get-WebAppPoolOrganizationValueTestString -Key $this.key
 
         if (-not $this.SetStatus($thisOrganizationValueTestString))
         {
