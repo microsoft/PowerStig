@@ -5,14 +5,6 @@ $rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule
 
 if ($WebsiteName)
 {
-
-    if ($rule.Key = 'sslFlags')
-    {
-        $sslFlagValues += $value
-        $value = Get-UniqueStringArray -InputObject $sslFlagValues -asString
-    }
-
-
     foreach ($website in $WebsiteName)
     {
         foreach ($rule in $rules)
