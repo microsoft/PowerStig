@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 
 @{
+
     # Script module or binary module file associated with this manifest.
     RootModule        = 'FireFox.schema.psm1'
 
@@ -43,4 +44,5 @@
         } # End of PSData hashtable
 
     } # End of PrivateData
+
 }

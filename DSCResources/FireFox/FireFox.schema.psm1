@@ -30,32 +30,32 @@ Configuration FireFox
     param
     (
         [Parameter()]
-        [string]
+        [String]
         $InstallDirectory = "$env:ProgramFiles\Mozilla Firefox",
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [version]
+        [Version]
         $StigVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable]
+        [Hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string]
+        [String]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $SkipRuleType
     )
 

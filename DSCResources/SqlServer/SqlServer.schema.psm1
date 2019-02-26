@@ -42,46 +42,46 @@ Configuration SqlServer
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $SqlVersion,
 
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $SqlRole,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [version]
+        [Version]
         $StigVersion,
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $ServerInstance,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $Database,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable]
+        [Hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string]
+        [String]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $SkipRuleType
     )
 

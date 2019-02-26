@@ -35,36 +35,36 @@ Configuration IisServer
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [version]
+        [Version]
         $IisVersion,
 
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $LogPath,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [version]
+        [Version]
         $StigVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [hashtable]
+        [Hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string]
+        [String]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string[]]
+        [String[]]
         $SkipRuleType
     )
 

@@ -4,7 +4,7 @@
 using namespace system.xml
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
-[string] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Resources).Path
+[String] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Resources).Path
 
 <#
     .SYNOPSIS
@@ -17,15 +17,15 @@ using namespace system.xml
 function Get-ResourceTitle
 {
     [CmdletBinding()]
-    [OutputType([string])]
+    [OutputType([String])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [psobject]
+        [PSObject]
         $Rule,
 
         [Parameter()]
-        [string]
+        [String]
         $Instance
     )
 
@@ -48,15 +48,15 @@ function Get-ResourceTitle
 function Select-Rule
 {
     [CmdletBinding()]
-    [OutputType([psobject])]
+    [OutputType([PSObject])]
     param
     (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [psobject[]]
+        [PSObject[]]
         $RuleList,
 
         [Parameter(Mandatory = $true)]
-        [string]
+        [String]
         $Type
     )
 
@@ -79,21 +79,21 @@ function Select-Rule
 function Get-UniqueStringArray
 {
     [CmdletBinding()]
-    [OutputType([object[]])]
+    [OutputType([Object[]])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [object[]]
+        [Object[]]
         $InputObject,
 
         [Parameter()]
-        [switch]
+        [Switch]
         $AsString
     )
 
     $return = @()
 
-    foreach ($item in $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) })
+    foreach ($item in $InputObject.Where{ -not [String]::IsNullOrWhiteSpace($PSItem) })
     {
         $splitItems = $item -Split ','
 
@@ -127,15 +127,15 @@ function Get-UniqueStringArray
 function Get-UniqueString
 {
     [CmdletBinding()]
-    [OutputType([string])]
+    [OutputType([String])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [object[]]
+        [Object[]]
         $InputObject
     )
 
-    $return = $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) } |
+    $return = $InputObject.Where{ -not [String]::IsNullOrWhiteSpace($PSItem) } |
         Select-Object -Unique
 
     if ($return.count -le 1)
@@ -162,16 +162,16 @@ function Get-UniqueString
 function Get-LogCustomField
 {
     [CmdletBinding()]
-    [OutputType([object[]])]
+    [OutputType([Object[]])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [object[]]
+        [Object[]]
         $LogCustomField,
 
         [Parameter(Mandatory = $true)]
         [ValidateSet('xIisLogging', 'xWebSite')]
-        [string]
+        [String]
         $Resource
     )
 
@@ -219,17 +219,17 @@ function Format-FireFoxPreference
     param
     (
         [Parameter()]
-        [string]
+        [String]
         $Value
     )
 
     switch ($value)
     {
-        {[bool]::TryParse($value, [ref]$null) }
+        {[Bool]::TryParse($value, [Ref]$null) }
         {
             $result = $value; break
         }
-        { [int]::TryParse($value, [ref]$null) }
+        { [Int]::TryParse($value, [Ref]$null) }
         {
             $result = $value; break
         }
