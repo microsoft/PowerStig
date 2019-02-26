@@ -173,6 +173,7 @@ function Get-RegistryRuleExpressions
             Include = $spInclude
             Recurse = $true
         }
+
         $spSupportFileList = Get-ChildItem @childItemParams | Sort-Object -Descending
         Clear-Variable SingleLine* -Scope Global
         foreach ($supportFile in $spSupportFileList)

@@ -59,7 +59,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             <# TODO uncomment when ready to parse group rules
             . $PSScriptRoot\Convert.CommonTests.ps1

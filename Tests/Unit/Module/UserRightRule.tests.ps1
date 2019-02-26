@@ -25,7 +25,7 @@ try
             @{
                 DisplayName = 'Access this computer from the network'
                 Constant = 'SeNetworkLogonRight'
-                Identity = @('Administrators', 'Authenticated Users', 'Enterprise Domain Controllers' ) -join ','
+                Identity = 'Administrators,Authenticated Users,Enterprise Domain Controllers'
                 Force = $true
                 OrganizationValueRequired = $false
                 CheckContent = 'Run "gpedit.msc".
@@ -149,7 +149,7 @@ try
             @{
                 DisplayName = 'Deny log on through Remote Desktop Services'
                 Constant = 'SeDenyRemoteInteractiveLogonRight'
-                Identity = @('Enterprise Admins', 'Domain Admins', 'Local account', 'Guests') -join ','
+                Identity = 'Enterprise Admins,Domain Admins,Local account,Guests'
                 Force = $false
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
@@ -176,7 +176,7 @@ try
             @{
                 DisplayName = 'Deny log on locally'
                 Constant = 'SeDenyInteractiveLogonRight'
-                Identity = @('Enterprise Admins', 'Domain Admins', 'Guests') -join ','
+                Identity = 'Enterprise Admins,Domain Admins,Guests'
                 Force = $false
                 OrganizationValueRequired = $false
                 CheckContent = 'Verify the effective setting in Local Group Policy Editor.
@@ -198,7 +198,7 @@ try
             @{
                 DisplayName = 'Access this computer from the network'
                 Constant = 'SeNetworkLogonRight'
-                Identity = @('Administrators', 'Authenticated Users', 'Enterprise Domain Controllers' ) -join ','
+                Identity = 'Administrators,Authenticated Users,Enterprise Domain Controllers'
                 Force = $true
                 OrganizationValueRequired = $false
                 CheckContent = 'This applies to domain controllers. It is NA for other systems.
@@ -226,7 +226,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
@@ -257,7 +257,7 @@ try
                     Guests Group'
                 }
             )
-            foreach($testRule in $testRuleList)
+            foreach ($testRule in $testRuleList)
             {
                 It "Should return $true if multiple policies settings are found" {
                     $checkContent = $testRule.CheckContent -f $testRule.FirstUserRightsAssignment, $testRule.SecondUserRightsAssignment

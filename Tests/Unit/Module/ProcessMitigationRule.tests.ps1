@@ -72,7 +72,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
@@ -108,7 +108,7 @@ try
                 }
             )
 
-            foreach($testRule in $testRuleList)
+            foreach ($testRule in $testRuleList)
             {
                 # Get the rule element with the checkContent injected into it
                 $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly

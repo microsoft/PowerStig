@@ -34,7 +34,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             $global:stigXccdfName = $testRule.ArchiveFile
             # The ArchiveFile is a control flag and not a property of the class.

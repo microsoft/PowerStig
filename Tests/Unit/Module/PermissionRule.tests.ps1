@@ -123,7 +123,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }

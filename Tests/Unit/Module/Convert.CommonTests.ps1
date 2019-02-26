@@ -65,7 +65,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
                 if ($null -ne $testRule.$property)
                 {
                     # Some properties are complex types that need to be serialized for comparison
-                    if ($testRule.$property.GetTYpe().BaseType.Name -eq 'Array')
+                    if ($testRule.$property.GetType().BaseType.Name -eq 'Array')
                     {
                         $convertedRule.$property = $convertedRule.$property | ConvertTo-Json
                         $testRule.$property = $testRule.$property | ConvertTo-Json
@@ -81,7 +81,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         After looping through the properties, provide a notification if any
         properties were not tested.
     #>
-    ForEach($ruleClassProperty in $ruleClassPropertyTestList)
+    foreach ($ruleClassProperty in $ruleClassPropertyTestList)
     {
         Write-Warning "$ruleClassProperty is not currently tested"
     }

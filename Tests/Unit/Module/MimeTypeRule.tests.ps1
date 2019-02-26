@@ -32,7 +32,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
@@ -64,7 +64,7 @@ try
                     If any OS shell MIME types are configured, this is a finding.'
                 }
             )
-            foreach($testRule in $testRuleList)
+            foreach ($testRule in $testRuleList)
             {
                 It "Should return $true" {
                     $multipleRule = [MimeTypeRuleConvert]::HasMultipleRules($testRule.CheckContent)

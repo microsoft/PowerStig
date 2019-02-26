@@ -76,7 +76,7 @@ try
         )
         #endregion
 
-        Foreach ($testRule in $testRuleList)
+        foreach ($testRule in $testRuleList)
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
@@ -104,7 +104,7 @@ try
                     If both the "system.web/httpCookies:require SSL" is set to "True" and the "system.web/sessionState:compressionEnabled" is set to "False", this is not a finding.'
                 }
             )
-            foreach($testRule in $testRuleList)
+            foreach ($testRule in $testRuleList)
             {
                 It "Should return $true" {
                     $multipleRule = [WebConfigurationPropertyRuleConvert]::HasMultipleRules($testRule.CheckContent)
