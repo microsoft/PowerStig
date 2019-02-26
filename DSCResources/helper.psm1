@@ -204,62 +204,6 @@ function Get-LogCustomField
     return $return
 }
 #endregion
-<#
-    .SYNOPSIS
-        The IIS Site STIG has multiple rules that specify SSL entries,
-        but those need to be combined into one resource block and formatted as
-        a single string. This function will gather
-        all those entries and return it in the format DSC requires.
-    .PARAMETER LogCustomField
-        An array of LogCustomField entries.
-    .PARAMETER Resource
-        Name of resource to use
-#>
-function Get-UniqueSslFlags
-{
-    [CmdletBinding()]
-    [OutputType([object[]])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [object[]]
-        $LogCustomField,
-
-        [Parameter(Mandatory = $true)]
-        [ValidateSet('xIisLogging', 'xWebSite')]
-        [string]
-        $Resource
-    )
-
-    $return = @()
-
-    foreach ($entry in $LogCustomField)
-    {
-        $classInstance = [System.Text.StringBuilder]::new()
-
-        switch ($Resource)
-        {
-            'xIisLogging'
-            {
-                $null = $classInstance.AppendLine("MSFT_xLogCustomField")
-                break
-            }
-            'xWebSite'
-            {
-                $null = $classInstance.AppendLine("MSFT_xLogCustomFieldInformation")
-                break
-            }
-        }
-        $null = $classInstance.AppendLine("{")
-        $null = $classInstance.AppendLine("LogFieldName = '$($entry.SourceName)'")
-        $null = $classInstance.AppendLine("SourceName   = '$($entry.SourceName)'")
-        $null = $classInstance.AppendLine("SourceType   = '$($entry.SourceType)'")
-        $null = $classInstance.AppendLine("};")
-        $return += $classInstance.ToString()
-    }
-    return $return
-}
-#endregion
 #region FireFox
 
 <#
