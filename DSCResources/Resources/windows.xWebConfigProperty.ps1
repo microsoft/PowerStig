@@ -6,18 +6,39 @@ $rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule
 if ($WebsiteName)
 {
 
-    $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+    if ($rule.Key = 'sslFlags')
+    {
+        $sslFlagValues += $value
+        $value = Get-UniqueStringArray -InputObject $sslFlagValues -asString
+    }
+
 
     foreach ($website in $WebsiteName)
     {
         foreach ($rule in $rules)
         {
-            xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
+            if ($rule.Key = 'sslFlags')
             {
+                $sslFlagValues += $rule.value
+                $value = Get-UniqueStringArray -InputObject $sslFlagValues -asString
+
+                xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
+                {
                 WebsitePath     = "IIS:\Sites\$website"
                 Filter          = $rule.ConfigSection
                 PropertyName    = $rule.Key
                 Value           = $value
+                }
+            }
+            else
+            {
+                xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
+                {
+                WebsitePath     = "IIS:\Sites\$website"
+                Filter          = $rule.ConfigSection
+                PropertyName    = $rule.Key
+                Value           = $value
+                }
             }
         }
     }
