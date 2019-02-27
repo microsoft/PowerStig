@@ -23,6 +23,8 @@ using module .\..\..\Rule.WebConfigurationProperty\Convert\WebConfigurationPrope
 using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 using module .\..\..\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\..\..\Rule.Wmi\Convert\WmiRule.Convert.psm1
+using module .\..\..\Rule.SslSetting\Convert\SslSettingRule.Convert.psm1
+
 # Header
 
 class SplitFactory
@@ -213,6 +215,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [WmiRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[SslSettingRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SslSettingRuleConvert]::new($Rule).AsRule()
                 )
             }
             <#

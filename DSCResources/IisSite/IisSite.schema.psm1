@@ -93,6 +93,7 @@ Configuration IisSite
     . "$resourcePath\windows.xWebAppPool.ps1"
     . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
     . "$resourcePath\windows.xWebConfigProperty.ps1"
+    . "$resourcePath\windows.xSslSetting.ps1"
 }
 
 #endregion Composite

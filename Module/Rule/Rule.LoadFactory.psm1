@@ -20,6 +20,7 @@ using module .\..\Rule.WebConfigurationProperty\WebConfigurationPropertyRule.psm
 using module .\..\Rule.WindowsFeature\WindowsFeatureRule.psm1
 using module .\..\Rule.WinEventLog\WinEventLogRule.psm1
 using module .\..\Rule.Wmi\WmiRule.psm1
+using module .\..\Rule.SslSetting\Convert\SslSettingRule.Convert.psm1
 #header
 
 class LoadFactory
@@ -51,6 +52,7 @@ class LoadFactory
             'WindowsFeatureRule'            {$return = [WindowsFeatureRule]::new($Rule)}
             'WinEventLogRule'               {$return = [WinEventLogRule]::new($Rule)}
             'WmiRule'                       {$return = [WmiRule]::new($Rule)}
+            'SslSettingRule'                {$return = [SslSettingRule]::new($Rule)}
         }
 
         return $return
