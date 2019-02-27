@@ -151,7 +151,7 @@ Class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
             $CheckContent -NotMatch 'Query the SA' -and
             $CheckContent -NotMatch "caspol\.exe" -and
-            $CheckContent -NotMatch "Select the Group Policy object in the left pane" -and
+            $CheckContent -NotMatch "Select the Group Policy Object item in the left pane" -and
             $CheckContent -NotMatch "Deny log on through Remote Desktop Services" -and
             $CheckContent -NotMatch "Interview the IAM" -and
             $CheckContent -NotMatch "InetMgr\.exe" -and
