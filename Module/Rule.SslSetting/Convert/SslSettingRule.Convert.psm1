@@ -101,9 +101,7 @@ Class SslSettingRuleConvert : SslSettingRule
     {
         if
         (
-            $CheckContent -Match 'SSL Settings' #-and
-            #$CheckContent -NotMatch 'Get-WebConfigurationProperty'
-
+            $CheckContent -Match 'SSL Settings' 
         )
         {
             return $true
