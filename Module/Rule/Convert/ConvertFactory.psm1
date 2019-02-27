@@ -217,10 +217,10 @@ class ConvertFactory
                     [WmiRuleConvert]::new($Rule).AsRule()
                 )
             }
-            {[SslSettingRuleConvert]::Match($PSItem)}
+            {[SslSettingsRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [SslSettingRuleConvert]::new($Rule).AsRule()
+                    [SslSettingsRuleConvert]::new($Rule).AsRule()
                 )
             }
             <#

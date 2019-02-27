@@ -16,17 +16,17 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Value
         The value the web.config key should be set to
 #>
-Class SslSettingRule : Rule
+Class SslSettingsRule : Rule
 {
     [string] $ConfigSection
     [string] $Key
     [string] $Value <#(ExceptionValue)#>
 
-    SslSettingRule () {}
+    SslSettingsRule () {}
 
-    SslSettingRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
+    SslSettingsRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
 
-    SslSettingRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SslSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
         $this.ConfigSection = $Rule.ConfigSection
         $this.Key           = $Rule.Key

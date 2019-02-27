@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
-using module .\..\SslSettingRule.psm1
+using module .\..\SslSettingsRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -22,7 +22,7 @@ foreach ($supportFile in $supportFileList)
         rule is identified as a web configuration property rule, it is passed
         to the WebConfigurationPropertyRule class for parsing and validation.
 #>
-Class SslSettingRuleConvert : SslSettingRule
+Class SslSettingRuleConvert : SslSettingsRule
 {
     <#
         .SYNOPSIS
@@ -38,7 +38,7 @@ Class SslSettingRuleConvert : SslSettingRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SslSettingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SslSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetConfigSection()
         $this.SetKeyValuePair()
@@ -94,7 +94,7 @@ Class SslSettingRuleConvert : SslSettingRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xSslSetting'
+        $this.DscResource = 'xSslSettings'
     }
 
     static [bool] Match ([string] $CheckContent)
