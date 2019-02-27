@@ -7,15 +7,15 @@
 -->
 <OrganizationalSettings fullversion="1.7">
   <!-- Ensure ''V-17425.a'' -ge '16384'-->
-  <OrganizationalSetting id="V-17425.a" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-17425.a" value="16384" />
   <!-- Ensure ''V-17425.b'' -ge '16384'-->
-  <OrganizationalSetting id="V-17425.b" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-17425.b" value="16384" />
   <!-- Ensure ''V-17435.a'' -ge '16384'-->
-  <OrganizationalSetting id="V-17435.a" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-17435.a" value="16384" />
   <!-- Ensure ''V-17435.b'' -ge '16384'-->
-  <OrganizationalSetting id="V-17435.b" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-17435.b" value="16384" />
   <!-- Ensure ''V-17445.a'' -ge '16384'-->
-  <OrganizationalSetting id="V-17445.a" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-17445.a" value="16384" />
   <!-- Ensure ''V-17445.b'' -ge '16384'-->
-  <OrganizationalSetting id="V-17445.b" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-17445.b" value="16384" />
 </OrganizationalSettings>
