@@ -149,10 +149,13 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
     #>
     static [bool] Match ([string] $CheckContent)
     {
+        <#
+            .Net does not appear to support regex subroutines, so we add and
+            expand a variable before the match is evaluated.
+        #>
         $delimiter = '(?:(?:-|>)>)'
-
         return ($CheckContent -Match
-                "(?:Local Security Policy $delimiter |Security Settings $delimiter )Local Policies $delimiter Security Options" )
+            "(?:Local Security Policy|Security Settings) $delimiter Local Policies $delimiter Security Options" )
     }
     #endregion
 }
