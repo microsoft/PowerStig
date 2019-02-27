@@ -22,13 +22,13 @@ foreach ($supportFile in $supportFileList)
         rule is identified as a web configuration property rule, it is passed
         to the WebConfigurationPropertyRule class for parsing and validation.
 #>
-Class SslSettingRuleConvert : SslSettingsRule
+Class SslSettingsRuleConvert : SslSettingsRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SslSettingRuleConvert ()
+    SslSettingsRuleConvert ()
     {
     }
 
