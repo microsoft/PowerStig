@@ -28,7 +28,7 @@ UPDATES
 
 * Added the following STIGs
   * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)
-  * Windows Firewall STIG to version V1R7 [#319](https://github.com/Microsoft/PowerStig/issues/319)
+  * Windows Firewall STIG V1R7 [#319](https://github.com/Microsoft/PowerStig/issues/319)
 
 * Removed the following STIGs
   * Windows Server 2012 R2 DC 2.12
