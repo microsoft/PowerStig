@@ -7,37 +7,33 @@ if ($WebsiteName)
 {
     foreach ($website in $WebsiteName)
     {
-        foreach ($rule in $rules)
-        {
             $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+            [array] $value = $value.Split(',') -replace "'",''
 
             xSslSettings "$(Get-ResourceTitle -Rule $rule -Instance $website)"
             {
                 Name          = "IIS:\Sites\$website"
                 Bindings      = $value
             }
-        }
     }
 }
 else
 {
-    foreach ($rule in $rules)
+    if ($rule.ConfigSection -match '/system.web')
     {
-        if ($rule.ConfigSection -match '/system.web')
-        {
-            $psPath = 'MACHINE/WEBROOT'
-        }
-        else
-        {
-            $psPath = 'MACHINE/WEBROOT/APPHOST'
-        }
+        $psPath = 'MACHINE/WEBROOT'
+    }
+    else
+    {
+        $psPath = 'MACHINE/WEBROOT/APPHOST'
+    }
 
-        $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+    $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+    $value = $value.Split(',') -replace "'",''
 
-        xSslSettings "$(Get-ResourceTitle -Rule $rule)"
-        {
-            Name            = $psPath
-            Bindings         = $value
-        }
+    xSslSettings "$(Get-ResourceTitle -Rule $rule)"
+    {
+        Name      = $psPath
+        Bindings  = $value
     }
 }

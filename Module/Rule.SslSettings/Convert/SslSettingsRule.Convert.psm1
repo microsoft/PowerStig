@@ -40,8 +40,8 @@ Class SslSettingsRuleConvert : SslSettingsRule
     #>
     SslSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-##        $this.SetConfigSection()
-<##>        $this.SetSslValue()
+
+        $this.SetSslValue()
 
         if ($this.conversionstatus -eq 'pass')
         {
@@ -54,25 +54,6 @@ Class SslSettingsRuleConvert : SslSettingsRule
     }
 
     #region Methods
-
-    <#
-        .SYNOPSIS
-            Extracts the config section from the check-content and sets the value
-        .DESCRIPTION
-            Gets the config section from the xccdf content and sets the value.
-            If the section that is returned is not valid, the parser status is
-            set to fail.
-    #>
-#    [void] SetConfigSection ()
-#    {
- #       $thisConfigSection = Get-ConfigSection -CheckContent $this.SplitCheckContent
-
- #       if (-not $this.SetStatus($thisConfigSection))
-  #      {
-  #          $this.set_ConfigSection($thisConfigSection)
-  #      }
-  #  }
-
     <#
         .SYNOPSIS
             Extracts the key value pair from the check-content and sets the value

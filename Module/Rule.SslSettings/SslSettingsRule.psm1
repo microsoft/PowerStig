@@ -6,15 +6,12 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Account Policy Rule object
+        An Ssl Setting Rule object
     .DESCRIPTION
-        The WebConfigurationPropertyRule class is used to maange the Account Policy Settings.
-    .PARAMETER ConfigSection
-        The section of the web.config to evaluate
-    .PARAMETER Key
-        The key in the web.config to evaluate
+        The SslSettingsRule class is used to maange the IIS Site SSL Settings.
+
     .PARAMETER Value
-        The value the web.config key should be set to
+        The value the bindings should be set to
 #>
 Class SslSettingsRule : Rule
 {

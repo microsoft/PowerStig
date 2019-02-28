@@ -3,43 +3,6 @@
 #region Method Functions
 <#
     .SYNOPSIS
-        Returns the ConfigSection property for the STIG rule.
-
-    .Parameter CheckContent
-        An array of the raw string data taken from the STIG setting.
-#>
-function Get-ConfigSection
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [psobject]
-        $CheckContent
-    )
-
-    $cleanCheckContent = $checkContent -replace [RegularExpression]::ExcludeExtendedAscii, '"'
-
-    if ($cleanCheckContent -match 'SSL Settings')
-    {
-        $configSection = '/system.webServer/security/access'
-    }
-
-    if ($null -ne $configSection)
-    {
-        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Found ConfigSection: $($configSection)"
-        return $configSection
-    }
-    else
-    {
-        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] ConfigSection not found"
-        return $null
-    }
-}
-
-<#
-    .SYNOPSIS
         Returns the key and value properties for the STIG rule.
 
     .Parameter CheckContent
