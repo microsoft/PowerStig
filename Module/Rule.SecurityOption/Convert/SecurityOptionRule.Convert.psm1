@@ -32,7 +32,7 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
     #>
     SecurityOptionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        [RegularExpressions.MatchCollection] $tokens = $this.ExtractProperties()
+        [System.Text.RegularExpressions.Match] $tokens = $this.ExtractProperties()
         $this.SetOptionName($tokens)
         $this.SetOptionValue($tokens)
         $this.DscResource = 'SecurityOption'
@@ -52,9 +52,9 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
             If any rule does not match this pattern, please update the xccdf
             change log file to align to one of these options.
     #>
-    [RegularExpressions.MatchCollection] ExtractProperties ()
+    [System.Text.RegularExpressions.Match] ExtractProperties ()
     {
-        return [regex]::Matches(
+        return [regex]::Match(
             $this.RawString,
             '(?:If\s(?:the\svalue\sfor\s)?")(?<optionName>[^"]+)(?:")[^"]+(?:")(?<optionValue>[^"]+)(?:")'
         )
@@ -68,7 +68,7 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
             group and sets the policy Name. If the named group is null, the
             convert status is set to fail.
     #>
-    [void] SetOptionName ([RegularExpressions.MatchCollection] $Regex)
+    [void] SetOptionName ([System.Text.RegularExpressions.Match] $Regex)
     {
         $thisOptionName = $Regex.Groups.Where( {$_.Name -eq 'OptionName'}).Value
 
@@ -86,7 +86,7 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
             group and sets the policy value. If the named group is null, the
             convert status is set to fail.
     #>
-    [void] SetOptionValue ([RegularExpressions.MatchCollection] $Regex)
+    [void] SetOptionValue ([System.Text.RegularExpressions.Match] $Regex)
     {
         if ($this.OptionValueContainsRange())
         {
@@ -149,11 +149,13 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
     #>
     static [bool] Match ([string] $CheckContent)
     {
-        if ( $CheckContent -Match '(?:Local Security Policy >> |Security Settings -> )Local Policies (?:(?:-|>)>) Security Options')
-        {
-            return $true
-        }
-        return $false
+        <#
+            .Net does not appear to support regex subroutines, so we add and
+            expand a variable before the match is evaluated.
+        #>
+        $delimiter = '(?:(?:-|>)>)'
+        return ($CheckContent -Match
+            "(?:Local Security Policy|Security Settings) $delimiter Local Policies $delimiter Security Options" )
     }
     #endregion
 }

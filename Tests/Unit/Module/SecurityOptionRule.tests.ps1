@@ -56,6 +56,25 @@ try
                 Ensure that "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is enabled.
 
                 If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not "enabled", this is a finding.'
+            },
+            @{
+                OptionName = 'Network access: Allow anonymous SID/Name translation'
+                OptionValue = 'Disabled'
+                OrganizationValueRequired = $false
+                OrganizationValueTestString = $null
+                CheckContent = 'Verify the effective setting in Local Group Policy Editor.
+
+                Run "gpedit.msc".
+
+                Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options.
+
+                If the value for "Network access: Allow anonymous SID/Name translation" is not set to "Disabled", this is a finding.
+
+                For server core installations, run the following command:
+
+                Secedit /Export /Areas SecurityPolicy /CFG C:\Path\FileName.Txt
+
+                If "LSAAnonymousNameLookup" equals "1" in the file, this is a finding.'
             }
         )
         #endregion
