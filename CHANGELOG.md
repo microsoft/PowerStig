@@ -18,7 +18,7 @@ NEW
 
 UPDATES
 
-* Fixed [#241](https://github.com/Microsoft/PowerStig/issues/241) :[WindowsFeatureRule] PsDesiredStateConfiguration\WindowsOptionalFeature doesn't properly handle features that return $null
+* Fixed [#241](https://github.com/Microsoft/PowerStig/issues/241): [WindowsFeatureRule] PsDesiredStateConfiguration\WindowsOptionalFeature doesn't properly handle features that return $null
 * Fixed [#258](https://github.com/Microsoft/PowerStig/issues/258): New-StigChecklist will not accept a path without an explicit filename
 * Fixed [#243](https://github.com/Microsoft/PowerStig/issues/243): [V-46515] Windows-All-IE11-1.15 Rawstring typo
 * Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
@@ -29,6 +29,7 @@ UPDATES
 
 * Added the following STIGs
   * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)
+  * Windows Firewall STIG V1R7 [#319](https://github.com/Microsoft/PowerStig/issues/319)
 
 * Removed the following STIGs
   * Windows Server 2012 R2 DC 2.12
