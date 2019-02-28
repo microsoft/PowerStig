@@ -22,6 +22,7 @@ $script:supportedEncryptionTypes = '0'
 $script:smb1FeatureName = 'FS-SMB1'
 $script:publishersCertificateRevocation = '146432'
 #endregion
+
 #region Main Functions
 <#
     .SYNOPSIS

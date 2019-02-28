@@ -5,7 +5,7 @@
     .SYNOPSIS
         Returns the key and value properties for the STIG rule.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-KeyValuePair

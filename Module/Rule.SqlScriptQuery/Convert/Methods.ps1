@@ -638,7 +638,6 @@ function Get-SysAdminAccountGetScript
     return $return
 }
 
-
 <#
     .SYNOPSIS Get-SysAdminAccountTestScript
         Returns a plain SQL query
@@ -948,8 +947,10 @@ function Get-SqlRuleType
         {
             $ruleType = 'SysAdminAccount'
         }
-        # Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
-        # These should be able to get, test, set via Get-Query cleanly
+        <# 
+            Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
+            These should be able to get, test, set via Get-Query cleanly
+        #>
         default
         {
             $ruleType = 'PlainSQL'

@@ -5,7 +5,7 @@
     .SYNOPSIS
         Returns the ConfigSection property for the STIG rule.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-ConfigSection
@@ -103,7 +103,7 @@ function Get-ConfigSection
     .SYNOPSIS
         Returns the key and value properties for the STIG rule.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-KeyValuePair
@@ -245,7 +245,7 @@ function Get-KeyValuePair
     .SYNOPSIS
         Tests to see if the stig rule needs to be split into multiples.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Test-MultipleWebConfigurationPropertyRule
@@ -311,7 +311,7 @@ function Test-MultipleWebConfigurationPropertyRule
     .SYNOPSIS
         Splits a STIG setting into multiple rules when necessary.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Split-MultipleWebConfigurationPropertyRule

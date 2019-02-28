@@ -5,7 +5,7 @@
 .SYNOPSIS
     Returns the Extension for the STIG rule.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-Extension
@@ -28,7 +28,7 @@ function Get-Extension
 .SYNOPSIS
     Returns the MimeType for the STIG rule.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-MimeType
@@ -79,7 +79,7 @@ function Get-MimeType
 .SYNOPSIS
     Returns the Extension for the STIG rule.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-Ensure
@@ -109,7 +109,7 @@ function Get-Ensure
 .SYNOPSIS
     Tests to see if the stig rule needs to be split into multiples.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Test-MultipleMimeTypeRule
@@ -141,7 +141,7 @@ function Test-MultipleMimeTypeRule
 .SYNOPSIS
     Splits a STIG setting into multiple rules when necessary.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Split-MultipleMimeTypeRule

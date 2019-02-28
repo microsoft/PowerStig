@@ -143,7 +143,7 @@ Class FileContentRuleConvert : FileContentRule
         .DESCRIPTION
             Gets the policy setting in the rule from the xccdf content and then
             checks for the existance of multiple entries.
-            .PARAMETER CheckContent
+        .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
     static [bool] HasMultipleRules ([string] $CheckContent)
@@ -159,7 +159,7 @@ Class FileContentRuleConvert : FileContentRule
             When CheckContent is identified as containing multiple rules
             this method will break the CheckContent out into multiple
             CheckContent strings that contain single rules.
-            .PARAMETER CheckContent
+        .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
     static [string[]] SplitMultipleRules ([string] $CheckContent)

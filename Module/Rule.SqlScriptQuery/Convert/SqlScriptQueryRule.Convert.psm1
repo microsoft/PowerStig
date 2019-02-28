@@ -142,8 +142,10 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        # Provide match criteria to validate that the rule is (or is not) a SQL rule.
-        # Standard match rules
+        <# 
+            Provide match criteria to validate that the rule is (or is not) a SQL rule.
+            Standard match rules
+        #>
         if
         (
             $CheckContent -Match "SELECT" -and

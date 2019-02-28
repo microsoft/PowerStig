@@ -36,7 +36,7 @@ function Test-SingleLineRegistryRule
     .SYNOPSIS
         Extract the registry path from an office STIG string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-SingleLineRegistryPath
@@ -64,10 +64,10 @@ function Get-SingleLineRegistryPath
     .SYNOPSIS
         Extract the registry path from an office STIG string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 
-    .Parameter Hashtable
+    .PARAMETER Hashtable
         The $SingleLineRegistryPath table taken from the Data.*.ps1 file(s).
 #>
 function Get-SLRegistryPath
@@ -173,7 +173,7 @@ function Get-SLRegistryPath
     .SYNOPSIS
         Extract the registry value type from an Office STIG string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-RegistryValueTypeFromSingleLineStig
@@ -201,10 +201,10 @@ function Get-RegistryValueTypeFromSingleLineStig
     .SYNOPSIS
         Extract the registry value type from an Office STIG string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 
-    .Parameter Hashtable
+    .PARAMETER Hashtable
         The $SingleLineRegistryValueType table taken from the Data.*.ps1 file(s).
 #>
 function Get-RegistryValueTypeFromSLStig
@@ -304,7 +304,7 @@ function Get-RegistryValueTypeFromSLStig
     .SYNOPSIS
         Extract the registry value type from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueNameFromSingleLineStig
@@ -331,10 +331,10 @@ function Get-RegistryValueNameFromSingleLineStig
     .SYNOPSIS
         Extract the registry value type from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 
-    .Parameter Hashtable
+    .PARAMETER Hashtable
         The $SingleLineRegistryValueName table taken from the Data.*.ps1 file(s).
 #>
 function Get-RegistryValueNameFromSLStig
@@ -420,7 +420,7 @@ function Get-RegistryValueNameFromSLStig
         if additional processing is required. For example if an allowable range detected, additional
         functions need to be called to convert the text into powershell operators.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueDataFromSingleStig
@@ -450,10 +450,10 @@ function Get-RegistryValueDataFromSingleStig
         if additional processing is required. For example if an allowable range detected, additional
         functions need to be called to convert the text into powershell operators.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 
-    .Parameter Hashtable
+    .PARAMETER Hashtable
         The $SingleLineRegistryValueData table taken from the Data.*.ps1 file(s).
 #>
 function Get-RegistryValueDataFromSLStig
@@ -542,10 +542,10 @@ function Get-RegistryValueDataFromSLStig
     .SYNOPSIS
         Get the registry value string from the Office STIG format.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 
-    .Parameter Trim
+    .PARAMETER Trim
         Trims the leading a trailing parts of the string that are not registry specific
 #>
 function Get-RegistryValueStringFromSingleLineStig
@@ -600,7 +600,7 @@ function Get-RegistryValueStringFromSingleLineStig
     .SYNOPSIS
         Checks the registry string format to determine if it is in the Office STIG format.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Test-SingleLineStigFormat

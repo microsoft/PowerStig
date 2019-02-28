@@ -423,8 +423,10 @@ function Get-RuleChangeLog
             NewText = $newText
         }
 
-        # Some rule have multiple changes that need to be made, so if a ruel already
-        # has a change, then add the next change to the value (array)
+        <# 
+           Some rule have multiple changes that need to be made, so if a ruel already
+           has a change, then add the next change to the value (array)
+        #>
         if ($updateList.ContainsKey($id))
         {
             $null = $updateList[$id] += $changeObject

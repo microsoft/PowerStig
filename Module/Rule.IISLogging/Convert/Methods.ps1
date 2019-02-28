@@ -42,7 +42,7 @@ function Get-LogCustomFieldEntry
 .SYNOPSIS
     Returns the log flags.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-LogFlag
@@ -80,7 +80,7 @@ function Get-LogFlag
 .SYNOPSIS
     Returns the log format.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-LogFormat
@@ -112,7 +112,7 @@ function Get-LogFormat
 .SYNOPSIS
     Returns the log roll over period.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-LogPeriod
@@ -139,7 +139,7 @@ function Get-LogPeriod
 .SYNOPSIS
     Returns the log event target.
 
-.Parameter CheckContent
+.PARAMETER CheckContent
     An array of the raw string data taken from the STIG setting.
 #>
 function Get-LogTargetW3C

@@ -39,8 +39,8 @@ enum process
 
 enum ensure
 {
-    Present
-    Absent
+    present
+    absent
 }
 
 #endregion

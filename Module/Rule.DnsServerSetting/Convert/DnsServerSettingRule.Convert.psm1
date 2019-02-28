@@ -8,7 +8,7 @@ $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
+    $supportFile.FullName
 }
 # Header
 
