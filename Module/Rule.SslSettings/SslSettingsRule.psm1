@@ -18,8 +18,6 @@ using module .\..\Rule\Rule.psm1
 #>
 Class SslSettingsRule : Rule
 {
-    [string] $ConfigSection
-    [string] $Key
     [string] $Value <#(ExceptionValue)#>
 
     SslSettingsRule () {}
@@ -28,8 +26,6 @@ Class SslSettingsRule : Rule
 
     SslSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.ConfigSection = $Rule.ConfigSection
-        $this.Key           = $Rule.Key
         $this.Value         = $Rule.Value
     }
 

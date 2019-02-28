@@ -45,7 +45,7 @@ function Get-ConfigSection
     .Parameter CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
-function Get-KeyValuePair
+function Get-SslValue
 {
     [CmdletBinding()]
     [OutputType([object])]
@@ -60,27 +60,23 @@ function Get-KeyValuePair
     {
         { $checkContent -match 'Verify the "Clients Certificate Required"' }
         {
-            $key = 'sslflags'
             $value = 'SslRequireCert'
         }
         { $checkContent -match 'If the "Require SSL"' }
         {
-            $key = 'sslflags'
             $value = 'Ssl'
         }
         { ($checkContent -match 'Client Certificates Required') -and ($checkcontent -match 'set to "ssl128"') -and ($checkcontent -match 'If the "Require SSL"') }
         {
-            $key = 'sslflags'
             $value = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'
         }
     }
 
-    if ($null -ne $key)
+    if ($null -ne $value)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Key: {0}, value: {1}" -f $key, $value)
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found value: {0}"  -f $value)
 
         return @{
-            key   = $key
             value = $value
         }
     }

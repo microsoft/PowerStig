@@ -13,10 +13,8 @@ if ($WebsiteName)
 
             xSslSettings "$(Get-ResourceTitle -Rule $rule -Instance $website)"
             {
-                PSPath          = "IIS:\Sites\$website"
-                Filter          = $rule.ConfigSection
-                Name            = $rule.Key
-                Binding         = $value
+                Name          = "IIS:\Sites\$website"
+                Bindings      = $value
             }
         }
     }
@@ -38,10 +36,8 @@ else
 
         xSslSettings "$(Get-ResourceTitle -Rule $rule)"
         {
-            PSPath          = $psPath
-            Filter          = $rule.ConfigSection
-            Name            = $rule.Key
-            Binding         = $value
+            Name            = $psPath
+            Bindings         = $value
         }
     }
 }

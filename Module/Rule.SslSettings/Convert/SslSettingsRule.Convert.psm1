@@ -40,8 +40,8 @@ Class SslSettingsRuleConvert : SslSettingsRule
     #>
     SslSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetConfigSection()
-        $this.SetKeyValuePair()
+##        $this.SetConfigSection()
+<##>        $this.SetSslValue()
 
         if ($this.conversionstatus -eq 'pass')
         {
@@ -63,15 +63,15 @@ Class SslSettingsRuleConvert : SslSettingsRule
             If the section that is returned is not valid, the parser status is
             set to fail.
     #>
-    [void] SetConfigSection ()
-    {
-        $thisConfigSection = Get-ConfigSection -CheckContent $this.SplitCheckContent
+#    [void] SetConfigSection ()
+#    {
+ #       $thisConfigSection = Get-ConfigSection -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisConfigSection))
-        {
-            $this.set_ConfigSection($thisConfigSection)
-        }
-    }
+ #       if (-not $this.SetStatus($thisConfigSection))
+  #      {
+  #          $this.set_ConfigSection($thisConfigSection)
+  #      }
+  #  }
 
     <#
         .SYNOPSIS
@@ -81,14 +81,13 @@ Class SslSettingsRuleConvert : SslSettingsRule
             If the value that is returned is not valid, the parser status is
             set to fail.
     #>
-    [void] SetKeyValuePair ()
+    [void] SetSslValue ()
     {
-        $thisKeyValuePair = Get-KeyValuePair -CheckContent $this.SplitCheckContent
+        $thisSslValue = Get-SslValue -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisKeyValuePair))
+        if (-not $this.SetStatus($thisSslValue))
         {
-            $this.set_Key($thisKeyValuePair.Key)
-            $this.set_Value($thisKeyValuePair.Value)
+            $this.set_Value($thisSslValue.Value)
         }
     }
 

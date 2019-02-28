@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Oct 2018" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="2/26/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Oct 2018" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="2/27/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
@@ -833,15 +833,13 @@ If any OS shell MIME types are configured, this is a finding.
 .csh</RawString>
     </Rule>
   </MimeTypeRule>
-  <SslSettingRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-76779" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSetting">
-      <ConfigSection>/system.webServer/security/access</ConfigSection>
+  <SslSettingsRule dscresourcemodule="xWebAdministration">
+    <Rule id="V-76779" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>sslflags</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
@@ -859,14 +857,12 @@ Verify "Require SSL" check box is selected.
 If the "Require SSL" check box is not selected, this is a finding.</RawString>
       <Value>Ssl</Value>
     </Rule>
-    <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSetting">
-      <ConfigSection>/system.webServer/security/access</ConfigSection>
+    <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>sslflags</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a private IIS 8.5 web server, this is Not Applicable.
@@ -884,14 +880,12 @@ Verify "Require SSL" check box is selected.
 If the "Require SSL" check box is not selected, this is a finding.</RawString>
       <Value>Ssl</Value>
     </Rule>
-    <Rule id="V-76809" severity="medium" conversionstatus="pass" title="SRG-APP-000172-WSR-000104" dscresource="xSslSetting">
-      <ConfigSection>/system.webServer/security/access</ConfigSection>
+    <Rule id="V-76809" severity="medium" conversionstatus="pass" title="SRG-APP-000172-WSR-000104" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;A DoD private website must utilize PKI as an authentication mechanism for web users. Information systems residing behind web servers requiring authorization based on individual identity must use the identity provided by certificate-based authentication to support access control decisions. Not using client certificates allows an attacker unauthenticated access to private websites.
 
 Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-WSR-000186&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>sslflags</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
@@ -907,8 +901,7 @@ Verify the "Clients Certificate Required" check box is selected.
 If the "Clients Certificate Required" check box is not selected, this is a finding.</RawString>
       <Value>SslRequireCert</Value>
     </Rule>
-    <Rule id="V-76851" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSetting">
-      <ConfigSection>/system.webServer/security/access</ConfigSection>
+    <Rule id="V-76851" severity="medium" conversionstatus="pass" title="SRG-APP-000429-WSR-000113" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;When data is written to digital media, such as hard drives, mobile computers, external/removable hard drives, personal digital assistants, flash/thumb drives, etc., there is risk of data loss and data compromise. User identities and passwords stored on the hard drive of the hosting hardware must be encrypted to protect the data from easily being discovered and used by an unauthorized user to access the hosted applications. The cryptographic libraries and functionality used to store and retrieve the user identifiers and passwords must be part of the web server.
 
 Preventing the disclosure of transmitted information requires that the web server take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS). 
@@ -920,7 +913,6 @@ If data is transmitted unencrypted, the data then becomes vulnerable to disclosu
 Also satisfies: SRG-APP-000439-WSR-000151&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>sslflags</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
@@ -948,8 +940,7 @@ If the "Client Certificates Required" is not selected, this is a finding.
 If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
       <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
     </Rule>
-    <Rule id="V-76861" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181" dscresource="xSslSetting">
-      <ConfigSection>/system.webServer/security/access</ConfigSection>
+    <Rule id="V-76861" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;Information can be either unintentionally or maliciously disclosed or modified during preparation for transmission, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information.
 
 An example of this would be an SMTP queue. This queue may be added to a web server through an SMTP module to enhance error reporting or to allow developers to add SMTP functionality to their applications. 
@@ -965,7 +956,6 @@ The web server must utilize approved encryption when receiving transmitted data.
 Also satisfies: SRG-APP-000442-WSR-000182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>sslflags</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
@@ -993,7 +983,7 @@ If the "Client Certificates Required" is not selected, this is a finding.
 If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
       <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
     </Rule>
-  </SslSettingRule>
+  </SslSettingsRule>
   <WebAppPoolRule dscresourcemodule="xWebAdministration">
     <Rule id="V-76839" severity="medium" conversionstatus="pass" title="SRG-APP-000295-WSR-000012" dscresource="xWebAppPool">
       <Description>&lt;VulnDiscussion&gt;The idle time-out attribute controls the amount of time a worker process will remain idle before it shuts down. A worker process is idle if it is not processing requests and no new requests are received.
