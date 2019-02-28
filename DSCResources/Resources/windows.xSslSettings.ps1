@@ -19,21 +19,12 @@ if ($WebsiteName)
 }
 else
 {
-    if ($rule.ConfigSection -match '/system.web')
-    {
-        $psPath = 'MACHINE/WEBROOT'
-    }
-    else
-    {
-        $psPath = 'MACHINE/WEBROOT/APPHOST'
-    }
-
     $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
     $value = $value.Split(',') -replace "'",''
 
     xSslSettings "$(Get-ResourceTitle -Rule $rule)"
     {
-        Name      = $psPath
+        Name      = 'MACHINE/WEBROOT/APPHOST'
         Bindings  = $value
     }
 }
