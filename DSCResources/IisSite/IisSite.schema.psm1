@@ -38,40 +38,40 @@ Configuration IisSite
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [Version]
+        [version]
         $IisVersion,
 
         [Parameter(Mandatory = $true)]
-        [String[]]
+        [string[]]
         $WebsiteName,
 
         [Parameter()]
-        [String[]]
+        [string[]]
         $WebAppPool,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Version]
+        [version]
         $StigVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Hashtable]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String]
+        [string]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRuleType
     )
 

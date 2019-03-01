@@ -32,32 +32,32 @@ Configuration DotNetFramework
     param
     (
         [Parameter(Mandatory = $true)]
-        [String]
+        [string]
         $FrameworkVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Version]
+        [sersion]
         $StigVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Hashtable]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String]
+        [string]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRuleType
     )
 

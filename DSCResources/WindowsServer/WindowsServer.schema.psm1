@@ -42,46 +42,46 @@ Configuration WindowsServer
     param
     (
         [Parameter(Mandatory = $true)]
-        [String]
+        [string]
         $OsVersion,
 
         [Parameter(Mandatory = $true)]
-        [String]
+        [string]
         $OsRole,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Version]
+        [version]
         $StigVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String]
+        [string]
         $ForestName,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String]
+        [string]
         $DomainName,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Hashtable]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String]
+        [string]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRuleType
     )
 

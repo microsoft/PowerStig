@@ -33,32 +33,32 @@ Configuration InternetExplorer
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [Int]
+        [int]
         $BrowserVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Version]
+        [version]
         $StigVersion,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [Hashtable]
+        [hashtable]
         $Exception,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String]
+        [string]
         $OrgSettings,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRule,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [String[]]
+        [string[]]
         $SkipRuleType
     )
 

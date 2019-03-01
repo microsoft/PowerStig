@@ -17,15 +17,15 @@ using namespace system.xml
 function Get-ResourceTitle
 {
     [CmdletBinding()]
-    [OutputType([String])]
+    [OutputType([string])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [PSObject]
+        [psobject]
         $Rule,
 
         [Parameter()]
-        [String]
+        [string]
         $Instance
     )
 
@@ -44,19 +44,18 @@ function Get-ResourceTitle
     .PARAMETER Type
         The name of the rule type to return.
 #>
-
 function Select-Rule
 {
     [CmdletBinding()]
-    [OutputType([PSObject])]
+    [OutputType([psobject])]
     param
     (
         [Parameter(Mandatory = $true, ValueFromPipeline = $true)]
-        [PSObject[]]
+        [psobject[]]
         $RuleList,
 
         [Parameter(Mandatory = $true)]
-        [String]
+        [string]
         $Type
     )
 
@@ -79,15 +78,15 @@ function Select-Rule
 function Get-UniqueStringArray
 {
     [CmdletBinding()]
-    [OutputType([Object[]])]
+    [OutputType([object[]])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [Object[]]
+        [object[]]
         $InputObject,
 
         [Parameter()]
-        [Switch]
+        [switch]
         $AsString
     )
 
@@ -127,11 +126,11 @@ function Get-UniqueStringArray
 function Get-UniqueString
 {
     [CmdletBinding()]
-    [OutputType([String])]
+    [OutputType([string])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [Object[]]
+        [object[]]
         $InputObject
     )
 
@@ -162,16 +161,16 @@ function Get-UniqueString
 function Get-LogCustomField
 {
     [CmdletBinding()]
-    [OutputType([Object[]])]
+    [OutputType([object[]])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [Object[]]
+        [object[]]
         $LogCustomField,
 
         [Parameter(Mandatory = $true)]
         [ValidateSet('xIisLogging', 'xWebSite')]
-        [String]
+        [string]
         $Resource
     )
 
@@ -219,7 +218,7 @@ function Format-FireFoxPreference
     param
     (
         [Parameter()]
-        [String]
+        [string]
         $Value
     )
 
