@@ -2,16 +2,7 @@
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
 using module .\..\SslSettingsRule.psm1
-
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
-foreach ($supportFile in $supportFileList)
-{
-    Write-Verbose "Loading $($supportFile.FullName)"
-    . $supportFile.FullName
-}
 # Header
-
 <#
     .SYNOPSIS
         Convert the contents of an xccdf check-content element into a
@@ -55,35 +46,32 @@ Class SslSettingsRuleConvert : SslSettingsRule
     #region Methods
     <#
         .SYNOPSIS
-            Extracts the key value pair from the check-content and sets the value
+            Extracts the value from the check-content and sets the value
         .DESCRIPTION
-            Gets the key value pair from the xccdf content and sets the value.
-            If the value that is returned is not valid, the parser status is
-            set to fail.
+            Gets the value from the xccdf content based on known matches and
+            sets the value accordingly
     #>
     [void] SetSslValue ()
     {
         $thisValue = [string]
-        [string] $CheckContent = $this.splitcheckContent
-        switch ($CheckContent)
+        switch ($this.rawstring)
         {
-            { $PSItem -match 'Verify the "Clients Certificate Required"' }
+            {$PSItem -match 'Verify the "Clients Certificate Required"'}
             {
                 $thisValue = 'SslRequireCert'
                 break
             }
-            { ($PSItem -match 'Client Certificates Required') -and ($PSItem -match 'set to "ssl128"') -and ($PSItem -match 'If the "Require SSL"') }
+            {($PSItem -match 'Client Certificates Required') -and ($PSItem -match 'set to "ssl128"') -and ($PSItem -match 'If the "Require SSL"')}
             {
                 $thisValue = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'
                 break
             }
-            { $PSItem -match 'If the "Require SSL"' }
+            {$PSItem -match 'If the "Require SSL"'}
             {
                 $thisValue = 'Ssl'
             }
-            
         }
-    
+
         if ($null -ne $thisValue)
         {
             Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found value: {0}"  -f $thisValue)
@@ -94,7 +82,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
             }
         }
         else
-        {   
+        {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] No Key or Value found"
         }
     }
@@ -106,13 +94,11 @@ Class SslSettingsRuleConvert : SslSettingsRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if
-        (
-            $CheckContent -Match 'SSL Settings' 
-        )
+        if ($CheckContent -Match 'SSL Settings')
         {
             return $true
         }
+        
         return $false
     }
 
