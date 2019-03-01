@@ -98,7 +98,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
         {
             return $true
         }
-        
+
         return $false
     }
 
