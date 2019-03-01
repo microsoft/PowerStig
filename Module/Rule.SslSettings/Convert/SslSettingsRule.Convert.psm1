@@ -40,7 +40,6 @@ Class SslSettingsRuleConvert : SslSettingsRule
     #>
     SslSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-
         $this.SetSslValue()
 
         if ($this.conversionstatus -eq 'pass')
@@ -64,11 +63,38 @@ Class SslSettingsRuleConvert : SslSettingsRule
     #>
     [void] SetSslValue ()
     {
-        $thisSslValue = Get-SslValue -CheckContent $this.SplitCheckContent
-
-        if (-not $this.SetStatus($thisSslValue))
+        switch ( $this.splitcheckContent )
         {
-            $this.set_Value($thisSslValue.Value)
+            { $PSItem -match 'Verify the "Clients Certificate Required"' }
+            {
+                $value = 'SslRequireCert'
+            }
+            { $PSItem -match 'If the "Require SSL"' }
+            {
+                $value = 'Ssl'
+            }
+            { ($PSItem -match 'Client Certificates Required') -and ($PSItem -match 'set to "ssl128"') -and ($PSItem -match 'If the "Require SSL"') }
+            {
+                $value = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'
+            }
+        }
+    
+        if ($null -ne $value)
+        {
+            Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found value: {0}"  -f $value)
+    
+            $thisSslValue = @{
+                value = $value
+            }
+
+            if (-not $this.SetStatus($thisSslValue))
+            {
+                $this.set_Value($thisSslValue.Value)
+            }
+        }
+        else
+        {   
+            Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] No Key or Value found"
         }
     }
 
