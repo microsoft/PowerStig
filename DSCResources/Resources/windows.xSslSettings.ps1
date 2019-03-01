@@ -3,28 +3,15 @@
 #region Header
 $rules = $stig.RuleList | Select-Rule -Type SslSettingsRule
 
-if ($WebsiteName)
-{
-    foreach ($website in $WebsiteName)
-    {
-        $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
-        [array] $value = $value.Split(',') -replace "'",''
-
-        xSslSettings "$(Get-ResourceTitle -Rule $rule -Instance $website)"
-        {
-            Name          = "IIS:\Sites\$website"
-            Bindings      = $value
-        }
-    }
-}
-else
+foreach ($website in $WebsiteName)
 {
     $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
-    $value = $value.Split(',') -replace "'",''
+    [array] $value = $value.Split(',') -replace "'",''
 
-    xSslSettings "$(Get-ResourceTitle -Rule $rule)"
+    xSslSettings "$(Get-ResourceTitle -Rule $rule -Instance $website)"
     {
-        Name      = 'MACHINE/WEBROOT/APPHOST'
-        Bindings  = $value
+        Name          = "IIS:\Sites\$website"
+        Bindings      = $value
     }
 }
+
