@@ -1,31 +1,26 @@
 #region Header
-using module .\..\..\..\Module\ManualRule\ManualRule.psm1
+using module .\..\..\..\Module\Rule.Manual\Convert\ManualRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $checkContent = 'Verify servers are located in controlled access areas that are accessible only to authorized personnel.  If systems are not adequately protected, this is a finding.'
-        $stigRule = Get-TestStigRule -CheckContent $checkContent -ReturnGroupOnly
-
-        $rule = [ManualRule]::new( $stigRule )
-        #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
-
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of Rule' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
-                }
+        $testRuleList = @(
+            @{
+                OrganizationValueRequired = $false
+                CheckContent = 'Verify servers are located in controlled access areas that are accessible only to authorized personnel.  If systems are not adequately protected, this is a finding.'
             }
-        }
+        )
         #endregion
-        #region Method Tests
 
-        #endregion
-        #region Data Tests
+        foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
+        }
+
+        #region Add Custom Tests Here
 
         #endregion
     }

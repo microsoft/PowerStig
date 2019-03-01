@@ -1,8 +1,8 @@
-#region Header
-$rules = Get-RuleClassData -StigData $stigData -Name MimeTypeRule
-#endregion Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
 
-#region Resource
+$rules = $stig.RuleList | Select-Rule -Type MimeTypeRule
+
 if ($WebsiteName)
 {
     foreach ($website in $WebsiteName)
@@ -17,9 +17,9 @@ if ($WebsiteName)
                 Ensure            = $rule.Ensure
             }
         }
-    }    
+    }
 }
-else 
+else
 {
     foreach ($rule in $rules)
     {
@@ -32,4 +32,3 @@ else
         }
     }
 }
-#endregion Resource

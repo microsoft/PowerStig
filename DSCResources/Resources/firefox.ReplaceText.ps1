@@ -1,4 +1,7 @@
-$rules = (Get-RuleClassData -StigData $stigData -Name FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+$rules = ($stig.RuleList | Select-Rule -Type FileContentRule).Where({ $PSItem.dscresource -eq 'ReplaceText' })
 
 # Assert FireFox install directory
 

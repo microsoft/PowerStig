@@ -32,12 +32,12 @@ Install-Module -Name PowerStig -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
-The Get-StigList function queries the StigData and returns a full list.
+The Get-Stig function queries the StigData and returns a full list.
 This will give you an idea of what you can target in your environment.
 
 ```powershell
 Import-Module PowerStig
-Get-StigList
+Get-Stig
 ```
 
 To update a previously installed module use this command:
@@ -66,7 +66,7 @@ The PowerStig.Data classes provide methods to:
 1. Exclude a rule if it is already defined in another STIG (de-duplication) and automatically document the exception to policy
 1. Exclude an entire class of rules (intended for testing and integration) and automatically document the exception to policy
 
-For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig).  For STIG xml file hashes please refer to [File Hashes](https://github.com/Microsoft/PowerStig/FILEHASH.md).
+For detailed information, please see the [StigData Wiki](https://github.com/Microsoft/PowerStig/wiki/Stig).  For STIG xml file hashes please refer to [File Hashes](https://github.com/Microsoft/PowerStig/blob/dev/FILEHASH.md).
 
 ## PowerStig.DSC
 
@@ -110,17 +110,23 @@ We are especially thankful for those who have contributed pull requests to the c
 
 ### Contributors
 
+* [@ALichtenberg](https://github.com/ALichtenberg) (ALichtenberg)
 * [@athaynes](https://github.com/athaynes) (Adam Haynes)
+* [@bcwilhite](https://github.com/bcwilhite) (Brian Wilhite)
 * [@bgouldman](https://github.com/bgouldman) (Brian Gouldman)
-* [@camusicjunkie](https://github.com/camusicjunkie)
+* [@camusicjunkie](https://github.com/camusicjunkie) (John Steele)
 * [@chasewilson](https://github.com/chasewilson) (Chase Wilson)
 * [@clcaldwell](https://github.com/clcaldwell) (Coby Caldwell)
-* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
-* [@JakeDean3631](https://github.com/JakeDean3631) (Jake Dean)
+* [@davbowman](https://github.com/davbowman)
+* [@erjenkin](https://github.com/erjenkin) (Eric Jenkins)
+* [@JakeDean3631](https://github.com/JakeDean3631)
+* [@japatton](https://github.com/japatton)
 * [@jcwalker](https://github.com/jcwalker) (Jason Walker)
-* [@jesal858](https://github.com/jesal858) (Jeff Salas)
-* [@ldillonel](https://github.com/ldillonel)
-* [@llansey](https://github.com/llansey) (La'Neice Lansey)
+* [@jesal858](https://github.com/jesal858)
+* [@ldillonel](https://github.com/ldillonel) (LaNika Dillon)
+* [@LLansey](https://github.com/LLansey) (La'Neice Lansey)
 * [@mcollera](https://github.com/mcollera)
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
+* [@stevehose](https://github.com/stevehose) (Steve Hose)
+* [@winthrop28](https://github.com/winthrop28) (Drew Taylor)

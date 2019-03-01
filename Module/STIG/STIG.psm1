@@ -1,18 +1,13 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
-using module .\..\Stig.StigException\Stig.StigException.psm1
-using module .\..\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
-using module .\..\Stig.SkippedRule\Stig.SkippedRule.psm1
-using module .\..\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
-using module .\..\Stig.TechnologyRole\Stig.TechnologyRole.psm1
-using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
+using module .\..\Rule\Rule.LoadFactory.psm1
+using module .\..\Rule.Skip\Skip.psm1
 # Header
 
 <#
     .SYNOPSIS
         This class describes a STIG
-
     .DESCRIPTION
         The STIG class describes a STIG, the collection of rules for a given
         technology that need to be implemented in order to enforce the security
@@ -20,39 +15,19 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
         that describe the given technology and the implementing organizations
         specific settings, exceptions, and rules to skip. Upon creation of a
         STIG instance, the resulting Xml is immediately available for those preconditions.
-
     .PARAMETER StigVersion
         The document/published version of the Stig to select
-
-    .PARAMETER OrganizationalSettings
-        An array of settings/values specific to an organization to apply to specific rules
-
     .PARAMETER Technology
         The type of the technology of the Stig to select
-
     .PARAMETER TechnologyRole
         The role of the technology of the Stig to select
-
     .PARAMETER TechnologyVersion
         The version of the technology of the Stig to select
-
-    .PARAMETER StigExceptions
-        An array of names of Stig exceptions to apply to specific rules
-
-    .PARAMETER SkippedRuleTypes
-        An array of names of rule types to skip all rules of
-
-    .PARAMETER SkippedRules
-        An array of Stig rules to skip and move into the SkipRule rule type
-
     .PARAMETER StigXml
         The loaded Xml document of the Stig loaded from StigPath
-
     .PARAMETER StigPath
         The file path to the Stig Xml file in the StigData directory
-
     .EXAMPLE
-        $STIG = [STIG]::new([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
 
     .NOTES
         This class requires PowerShell v5 or above.
@@ -60,20 +35,51 @@ using module .\..\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
 
 Class STIG
 {
-    [Version] $StigVersion
-    [OrganizationalSetting[]] $OrganizationalSettings
-    [Technology] $Technology
-    [TechnologyRole] $TechnologyRole
-    [TechnologyVersion] $TechnologyVersion
-    [StigException[]] $StigExceptions
-    [SkippedRuleType[]] $SkippedRuleTypes
-    [SkippedRule[]] $SkippedRules
-    [xml] $StigXml
-    [string] $StigPath
+    [string] $Technology # this is aligned to a DSC composite resource.
+    [string] $TechnologyVersion # this is 2012R2, 2016, etc.
+    [string] $TechnologyRole # this is DC, MS, Database, Instance, etc.
+    [Version] $Version # this is the version of the STIG
+    hidden [string] $RuleFile # the file name of the processed rule file
+    [System.Collections.ArrayList] $RuleList = @() # the STIG Rules
+    hidden [hashtable] $RuleIdIndex = @{} # an index into $RuleList
 
+    static $DataPath = (Resolve-Path -Path "$($script:PSScriptRoot)\..\..\StigData\Processed").Path
 
     #region Constructor
+    hidden [STIG] _STIG ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole, [Version] $Version)
+    {
+        $this.Technology = $Technology
+        $ruleFileString = $Technology
 
+        $this.TechnologyVersion = $TechnologyVersion
+        $ruleFileString += "-$TechnologyVersion"
+
+        if (-not [string]::IsNullOrEmpty($TechnologyRole))
+        {
+            $this.TechnologyRole = $TechnologyRole
+            $ruleFileString += "-$TechnologyRole"
+        }
+
+        if ($null -eq $Version)
+        {
+            $this.Version = $this.GetLatest()
+        }
+        else
+        {
+            $this.Version = $Version
+        }
+
+        $ruleFileString += "-$($this.Version)"
+
+        $this.RuleFile = [STIG]::DataPath + "\$ruleFileString`.xml"
+
+        if (-not $this.Validate())
+        {
+            throw "$ruleFileString was not found. Please run [Stig]::ListAvailable() to view the list of avalable STIG's."
+        }
+
+        return $this
+    }
     <#
         .SYNOPSIS
             DO NOT USE - For testing only
@@ -87,383 +93,276 @@ Class STIG
     {
         Write-Warning "This constructor is for build testing only."
     }
+    # STIG specification w/o role, return latest version or list available
+    STIG ([string] $Technology, [string] $TechnologyVersion)
+    {
+        $this._STIG($Technology, $TechnologyVersion, $null, $null)
+    }
+    # Full STIG specification w/o role
+    STIG ([string] $Technology, [string] $TechnologyVersion, [Version] $Version)
+    {
+        $this._STIG($Technology, $TechnologyVersion, $null, $Version)
+    }
+    # STIG specification w/ role, return latest version or list available
+    STIG ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole)
+    {
+        $this._STIG($Technology, $TechnologyVersion, $TechnologyRole, $null)
+    }
+    # Full STIG specification w/ role
+    STIG ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole, [Version] $Version)
+    {
+        $this._STIG($Technology, $TechnologyVersion, $TechnologyRole, $Version)
+    }
 
     <#
-        .SYNOPSIS
-            A constructor for STIG. Returns a ready to use instance of STIG.
-
-        .DESCRIPTION
-            A constructor for STIG. Returns a ready to use instance of STIG.
-
-        .PARAMETER StigVersion
-            The document/published version of the Stig to select
-
-        .PARAMETER OrganizationalSettings
-            An array of settings/values specific to an organization to apply to specific rules
-
-        .PARAMETER Technology
-            The type of the technology of the Stig to select
-
-        .PARAMETER TechnologyRole
-            The role of the technology of the Stig to select
-
-        .PARAMETER TechnologyVersion
-            The version of the technology of the Stig to select
-
-        .PARAMETER StigExceptions
-            An array of names of Stig exceptions to apply to specific rules
-
-        .PARAMETER SkippedRuleTypes
-            An array of names of rule types to skip all rules of
-
-        .PARAMETER SkippedRules
-            An array of Stig rules to skip and move into the SkipRule rule type
+        The validate method is used to test that the rule file exists
     #>
-    STIG ([string] $StigVersion, [OrganizationalSetting[]] $OrganizationalSettings, [Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion, [StigException[]] $StigExceptions, [SkippedRuleType[]] $SkippedRuleTypes, [SkippedRule[]] $SkippedRules)
+    [bool] Validate()
     {
-        if (($null -eq $Technology) -or !($TechnologyRole) -or !($TechnologyVersion))
+        if ( Test-Path -Path $this.RuleFile )
         {
-            throw("Technology, TechnologyVersion, and TechnologyRole must be provided.")
+            return $true
+        }
+        return $false
+    }
+    #endregion
+
+    #region List Available
+
+    static hidden [STIG[]] _ListAvailable ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole)
+    {
+        $params = @{
+            Path = [STIG]::DataPath
+            Exclude = "*.org.default.xml"
         }
 
-        if (!($StigVersion))
+        if (-not [string]::IsNullOrEmpty($Technology))
         {
-            $this.StigVersion = [STIG]::GetHighestStigVersion($Technology, $TechnologyRole, $TechnologyVersion)
+            # The trailing \* is needed for the Include paramter to work
+            $params.Path = "$($params.Path)\*"
+            $params.Add('Include', "$Technology-")
+        }
+
+        if (-not [string]::IsNullOrEmpty($TechnologyVersion))
+        {
+            $params.Include = "$($params.Include)$TechnologyVersion-"
+        }
+
+        if (-not [string]::IsNullOrEmpty($TechnologyRole))
+        {
+            $params.Include = "$($params.Include)$TechnologyRole-"
+        }
+
+        # add the trailing wildcard to the include file name
+        $params.Include = "$($params.Include)*"
+        $stigRuleFileList = Get-ChildItem @params
+
+        $return = [System.Collections.ArrayList]@()
+        foreach ($stigRuleFile in $stigRuleFileList)
+        {
+            $propertyList = $stigRuleFile.BaseName -split "-"
+
+            if ($propertyList.count -eq 3)
+            {
+                $null = $return.Add([STIG]::new($propertyList[0], $propertyList[1], [version]$propertyList[2]))
+            }
+            elseif ($propertyList.Count -eq 4)
+            {
+                $null = $return.Add([STIG]::new($propertyList[0], $propertyList[1], $propertyList[2], $propertyList[3]))
+            }
+        }
+
+        return $return
+    }
+    static [STIG[]] ListAvailable ()
+    {
+        return [STIG]::_ListAvailable($null, $null, $null)
+    }
+    static [STIG[]] ListAvailable ([string] $Technology)
+    {
+        return [STIG]::_ListAvailable($Technology, $null, $null)
+    }
+    static [STIG[]] ListAvailable ([string] $Technology, [string] $TechnologyVersion)
+    {
+        return [STIG]::_ListAvailable($Technology, $TechnologyVersion, $null)
+    }
+    static [STIG[]] ListAvailable ([string] $Technology, [string] $TechnologyVersion, [string] $TechnologyRole)
+    {
+        return [STIG]::_ListAvailable($Technology, $TechnologyVersion, $TechnologyRole)
+    }
+    #endregion
+
+    #region Load Rules
+    hidden [void] _LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    {
+        [xml]$rules = [xml](Get-Content -Path $this.RuleFile)
+        $overRideValues = @{}
+
+        #region Org Settings
+        if ([string]::IsNullOrEmpty($OrgSettings))
+        {
+            [xml] $settings = (Get-Content -Path ($this.RuleFile -replace '.xml', '.org.default.xml') )
         }
         else
         {
-            $this.StigVersion = $StigVersion
+            [xml] $settings = Get-Content -Path $OrgSettings
         }
 
-        $this.Technology = $Technology
-        $this.TechnologyRole = $TechnologyRole
-        $this.TechnologyVersion = $TechnologyVersion
-
-        $this.OrganizationalSettings = $OrganizationalSettings
-        $this.StigExceptions = $StigExceptions
-        $this.SkippedRuleTypes = $SkippedRuleTypes
-        $this.SkippedRules = $SkippedRules
-
-        $this.SetStigPath()
-        $this.ProcessStigData()
-    }
-
-    #endregion
-    #region Methods
-
-    <#
-        .SYNOPSIS
-            Determines and sets the StigPath
-
-        .DESCRIPTION
-            This method determines the value of Stig path given the passed in
-            StigVersion, Technology, TechnologyVersion, and TechnologyRole. It
-            also validates that a file exists at that determined path.
-    #>
-    [void] SetStigPath ()
-    {
-        $path = "$([STIG]::GetRootPath())\$($this.Technology.ToString())-$($this.TechnologyVersion.Name)-$($this.TechnologyRole.Name)-$($this.StigVersion).xml"
-
-        if (Test-Path -Path $path)
+        # If there are no org settings to merge, skip over that
+        if($null -ne $settings.OrganizationalSettings.OrganizationalSetting)
         {
-            $this.StigPath = $path
+            $settings.OrganizationalSettings.OrganizationalSetting |
+            Foreach-Object {$overRideValues[$_.Id] = $_.Value}
         }
-        else
+        #endregion
+
+        foreach ($type in $rules.DISASTIG.ChildNodes.GetEnumerator())
         {
-            throw("No STIG exists matching the supplied Technology, TechnologyRole, and TechnologyVersion. Please check configuration and try again.")
-        }
-    }
-
-    <#
-        .SYNOPSIS
-            Processes properties into Stig Xml
-
-        .DESCRIPTION
-            This method processes all the class properties and merges them into the default Stig
-    #>
-    [void] ProcessStigData ()
-    {
-        $this.StigXml = [xml] (Get-Content -Path $this.StigPath -Raw)
-
-        $this.MergeOrganizationalSettings()
-        $this.MergeStigExceptions()
-        $this.ProcessSkippedRuleTypes()
-        $this.MergeSkippedRules()
-    }
-
-    <#
-        .SYNOPSIS
-            Merges OrganizationalSetting property into StigXml
-
-        .DESCRIPTION
-            This method merges the OrganizationalSettings property into StigXml. If OrganizationalSettings
-            are null it will load in the associated default OrganizationalSettings from the default
-            file stored in PowerStig. A partial or complete OrganizationalSettings property will be
-            merged with the defaults prior to being merged into StigXml.
-    #>
-    [void] MergeOrganizationalSettings ()
-    {
-        $propertyMap = [OrganizationalSetting]::PropertyMap()
-
-        # Check if default Org Settings exists for STIG
-        $orgSettingPath = $this.StigPath -replace "\.xml", ".org.default.xml"
-        $orgSettingsExists = Test-Path -Path $orgSettingPath
-
-        # Check if STIG has Org Settings
-        if ($orgSettingsExists)
-        {
-            [xml] $orgSettingsXml = Get-Content -Path $orgSettingPath -Raw
-            $mergedOrgSettings = [OrganizationalSetting]::ConvertFrom($orgSettingsXml)
-
-            # Merge default Org Settings with passed in Org Settings
-            if ($this.OrganizationalSettings)
+            foreach ($rule in $type.Rule)
             {
-                foreach ($orgSetting in $mergedOrgSettings)
+                if ( @($SkipRules) -contains $rule.Id -or $type.Name -eq $SkipRuleType )
                 {
-                    $matchingOrgSetting = $this.OrganizationalSettings.Where({$PSItem.StigRuleId -eq $orgSetting.StigRuleId})
-                    if ($matchingOrgSetting)
-                    {
-                        $orgSetting.Value = $matchingOrgSetting.Value
-                    }
-                }
-            }
-
-            $this.OrganizationalSettings = $mergedOrgSettings
-
-            # Merge Org Settings into StigXml
-
-            foreach ( $node in $this.StigXml.DISASTIG.ChildNodes.Name )
-            {
-                # Get the list of STIG settings for the current type
-
-                foreach ( $rule in $this.StigXml.DISASTIG.$node.Rule )
-                {
-                    if ( $rule.OrganizationValueRequired -eq $true )
-                    {
-                        $orgSetting = $this.OrganizationalSettings.where({$PSItem.StigRuleId -eq $rule.id})
-
-                        if ( -not $orgSetting )
-                        {
-                            Write-Warning "An organizational setting was not found for $( $rule.id )."
-                        }
-
-                        if ( -not ( & ( [Scriptblock]::Create( "$($rule.OrganizationValueTestString)" -f $orgSetting.Value.ToString() ) ) ) )
-                        {
-                            Write-Warning "The local setting ($($orgSetting.Value.ToString())) for $($rule.id) is not within the specified range ($($rule.OrganizationValueTestString))
-                            Please check and update the Organizational Setting array passed in."
-                        }
-
-                        $propertyToOverride = $propertyMap.$node
-                        $rule.$propertyToOverride = $orgSetting.Value
-                    }
-                }
-            }
-        }
-    }
-
-    <#
-        .SYNOPSIS
-            Merges StigExceptions property into StigXml
-
-        .DESCRIPTION
-            This method merges the StigExceptions property into StigXml. If StigExceptions
-            are null it will skip any additional execution.
-    #>
-    [void] MergeStigExceptions ()
-    {
-        if ($this.StigExceptions)
-        {
-            foreach ($Exception in $this.StigExceptions)
-            {
-                # Lookup the STIG Id in the data
-                $ruleToOverride = ( $this.StigXml.DISASTIG |
-                                Select-Xml -XPath "//Rule[@id='$( $Exception.StigRuleId )']" -ErrorAction Stop ).Node
-
-                # If an Id is not found we can continue, but notify the user.
-                if ($null -eq $ruleToOverride)
-                {
-                    Write-warning "$($Exception.StigRuleId) was not found"
-                    continue
-                }
-
-                # Append [Exception] to the STIG title
-                $ruleToOverride.title = "[Exception]" + $ruleToOverride.title
-                # Select and Update the property to override
-                $propertiesToOverride = $Exception.Properties
-                foreach ($property in $propertiesToOverride)
-                {
-                    $propertyToOverride = $property.Name
-                    $ruleToOverride.$propertyToOverride = $property.Value.ToString()
-                }
-            }
-        }
-    }
-
-    <#
-        .SYNOPSIS
-            Processes SkippedRuleTypes property into SkippedRules
-
-        .DESCRIPTION
-            This method processes the SkippedRuleTypes and adds the individual rules
-            for each type into the SkippedRules property.
-    #>
-    [void] ProcessSkippedRuleTypes ()
-    {
-        if ($this.SkippedRuleTypes)
-        {
-            foreach ($ruleType in $this.SkippedRuleTypes)
-            {
-                # Collects the Id's of the rules of the RuleType
-                $ruleToOverride = $this.StigXml.DISASTIG.$($RuleType.StigRuleType).rule.id
-
-                # If an Id is not found we can continue, but notify the user.
-                if ($null -eq $ruleToOverride)
-                {
-                    Write-Warning "SkippedRuleType of $($ruleType.StigRuleType) was not found"
-                    continue
+                    $importRule = [SkippedRule]::new($rule.Id)
                 }
                 else
                 {
-                    foreach ($rule in $ruleToOverride)
+                    $importRule = [LoadFactory]::Rule($rule)
+
+                    # OrgSettings
+                    if ($importRule.OrganizationValueRequired)
                     {
-                        $newSkipRule = [SkippedRule]::new($rule)
-                        $this.SkippedRules += $newSkipRule
+                        if ($overRideValues.ContainsKey($rule.Id))
+                        {
+                            $importRule.AddOrgSetting($overRideValues[$rule.Id])
+                        }
+                        else
+                        {
+                            throw "Org Setting not found for $($rule.Id)"
+                        }
                     }
+
+                    # Exceptions Need to apply after org settings
+                    if ( $null -ne $Exceptions -and $Exceptions.ContainsKey($rule.Id))
+                    {
+                        $importRule.AddExceptionToPolicy($Exceptions[$rule.Id])
+                    }
+
                 }
+
+                $ruleListIndex = $this.RuleList.Add($importRule)
+                $this.RuleIdIndex.Add($importRule.Id, $ruleListIndex)
             }
         }
     }
-
-    <#
-        .SYNOPSIS
-            Merges SkippedRules property into StigXml
-
-        .DESCRIPTION
-            This method merges the SkippedRules property into StigXml. All Stig rules within
-            the SkippedRules array will be moved from their associated Stig rule type into
-            a new 'SkipRule' Stig rule type within StigXml.
-    #>
-    [void] MergeSkippedRules ()
+    [void] LoadRules()
     {
-        if ($this.SkippedRules)
+        $this._LoadRules($null, $null, $null, $null)
+    }
+    [void] LoadRules([string] $OrgSettings)
+    {
+        $this._LoadRules($OrgSettings, $null, $null, $null)
+    }
+    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions)
+    {
+        $this._LoadRules($OrgSettings, $Exceptions, $null, $null)
+    }
+    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules)
+    {
+        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $null)
+    }
+    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    {
+        $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType)
+    }
+    #endregion
+
+    #region Help
+
+    [string] GetExceptionHelp ([string] $RuleId)
+    {
+        # Get the module version from the manifest to inject into the help example
+        $moduleVersion = (
+            Import-PowerShellDataFile -Path $PSScriptRoot\..\..\PowerStig.psd1
+        ).ModuleVersion
+
+        # load the STIG rules if they are not already laoded
+        if($this.RuleList.Count -le 0)
         {
-            # This creates a Skip rule XML element and appends it to $stigContent
-            [System.XML.XMLElement] $skipNode = $this.StigXml.CreateElement("SkipRule")
-            [void] $this.StigXml.DISASTIG.AppendChild($skipNode)
-
-            foreach ($rule in $this.SkippedRules)
-            {
-                # Lookup the STIG Id in the data
-                $ruleToOverride = ( $this.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.StigRuleId )']" -ErrorAction Stop ).Node
-
-                # If an Id is not found we can continue, but notify the user.
-                if ($null -eq $ruleToOverride)
-                {
-                    Write-Warning "STIG rule with Id '$($rule.StigRuleId)' was not found"
-                    continue
-                }
-                else
-                {
-                    $ruleToOverride.title = "[Skip]" + $ruleToOverride.title
-                    [void] $this.StigXml.SelectSingleNode("//SkipRule").AppendChild($ruleToOverride)
-                }
-            }
+            $this.LoadRules()
         }
+
+        try
+        {
+            $rule = $this.RuleList[$this.RuleIdIndex[$RuleId]]
+        }
+        catch
+        {
+            throw "$ruleId was not found in the currently loaded STIG."
+        }
+
+        $exceptionHelp = $rule.GetExceptionHelp()
+        $return = [System.Text.StringBuilder]::new()
+        $null = $return.AppendLine('')
+        $null = $return.AppendLine('RULE TYPE')
+        $null = $return.AppendLine("   $($rule.GetType().ToString())")
+        $null = $return.AppendLine('')
+        $null = $return.AppendLine('DESCRIPTION')
+        $null = $return.AppendLine("   The $($rule.GetType().ToString()) property '$($rule.GetOverrideValue())' can be overridden ")
+        $null = $return.AppendLine('   with an exception using the syntax below.')
+        $null = $return.AppendLine('')
+        if($null -ne $exceptionHelp.Notes)
+        {
+            $null = $return.AppendLine('NOTES')
+            $null = $return.AppendLine("   $($exceptionHelp.Notes)")
+            $null = $return.AppendLine('')
+        }
+        $null = $return.AppendLine('SAMPLE CONFIGURATION')
+        $null = $return.AppendLine('')
+        $null = $return.AppendLine('configuration Sample')
+        $null = $return.AppendLine('{')
+        $null = $return.AppendLine("    Import-DscResource -ModuleName PowerStig -ModuleVersion $moduleVersion")
+        $null = $return.AppendLine('')
+        $null = $return.AppendLine('    Node $NodeName')
+        $null = $return.AppendLine('    {')
+        $null = $return.AppendLine("        $($this.Technology) BaseLine")
+        $null = $return.AppendLine('        {')
+        $null = $return.AppendLine("            OsVersion   = '$($this.TechnologyVersion)'")
+        $null = $return.AppendLine("            OsRole      = '$($this.TechnologyRole)'")
+        $null = $return.AppendLine("            StigVersion = '$($this.Version)'")
+        $null = $return.AppendLine("            Exception   = @{'$($rule.id)' = '$($exceptionHelp.value)'}")
+        $null = $return.AppendLine('        }')
+        $null = $return.AppendLine('    }')
+        $null = $return.AppendLine('}')
+
+        return $return.ToString()
     }
 
     #endregion
-    #region Static Methods
-
-    <#
-        .SYNOPSIS
-            Returns the root path to the StigData directory
-
-        .DESCRIPTION
-            Returns the root path to the StigData directory which contains all the Stig XML files
-            currently available for PowerStig
-    #>
-    static [string] GetRootPath ()
-    {
-        # The path needs to take into account the version folder that changes with each release
-        $rootPath = (Resolve-Path -Path $PSScriptRoot\..\..).Path
-
-        return (Join-Path -Path $rootPath -ChildPath 'StigData\Processed')
-    }
 
     <#
         .SYNOPSIS
             Returns the highest available Stig version
-
         .DESCRIPTION
             Returns the highest available Stig version for a given Technology, TechnologyVersion, and TechnologyRole
-
-        .PARAMETER Technology
-            The type of the technology of the Stig to select
-
-        .PARAMETER TechnologyRole
-            The role of the technology of the Stig to select
-
-        .PARAMETER TechnologyVersion
-            The version of the technology of the Stig to select
     #>
-    static [Version] GetHighestStigVersion ([Technology] $Technology, [TechnologyRole] $TechnologyRole, [TechnologyVersion] $TechnologyVersion)
+    [version] GetLatest ()
     {
-        $highestStigVersionInTarget = (Get-ChildItem -Path $([STIG]::GetRootPath()) -Exclude "*org*").BaseName |
-                                        Where-Object {$PSItem -like "*$($Technology.Name)-$($TechnologyVersion.Name)-$($TechnologyRole.Name)*"} |
-                                            Foreach-Object {($PsItem -split "-")[3]} |
-                                                Select-Object -unique |
-                                                    Sort-Object |
-                                                        Select-Object -First 1
+        $stigList = [STIG]::ListAvailable(
+            $this.Technology, $this.TechnologyVersion, $this.TechnologyRole)
 
-        return [Version]::new($highestStigVersionInTarget)
+        $maximumStigVersion = (
+            $stigList | Measure-Object -Maximum -Property Version).Maximum
+
+        return [version]::new($maximumStigVersion)
     }
-
-    <#
-        .SYNOPSIS
-            Returns all available Stigs
-
-        .DESCRIPTION
-            Returns all of the currently available for PowerStig along with their
-            associated Technology, TechnologyVersion, TechnologyRole, and StigVersion
-    #>
-    static [PSObject[]] ListAvailable ()
-    {
-        $childItemParameters = @{
-            Path = "$([STIG]::GetRootPath())"
-            Exclude = "*.org.*"
-            Include = "*.xml"
-            File = $true
-            Recurse = $true
-        }
-
-        $stigList = Get-ChildItem @childItemParameters
-
-        [System.Collections.ArrayList] $returnList = @()
-
-        foreach ($stig in $stigList)
-        {
-            $stigProperties = $stig.BaseName -Split "-"
-
-            $stigPropertyList = New-Object PSObject
-            $stigPropertyList | Add-Member -MemberType NoteProperty -Name 'Technology' -Value $stigProperties[-4]
-            $stigPropertyList | Add-Member -MemberType NoteProperty -Name 'TechnologyVersion' -Value $stigProperties[-3]
-            $stigPropertyList | Add-Member -MemberType NoteProperty -Name 'TechnologyRole' -Value $stigProperties[-2]
-            $stigPropertyList | Add-Member -MemberType NoteProperty -Name 'StigVersion' -Value $stigProperties[-1]
-
-            [void] $ReturnList.Add($stigPropertyList)
-        }
-
-        return $returnList
-    }
-
-    #endregion
 }
 
 # Footer
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -Exclude $exclude)
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.md')
+foreach ($supportFile in Get-ChildItem -Path $PSScriptRoot -File -Exclude $exclude)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
 Export-ModuleMember -Function '*' -Variable '*'
+

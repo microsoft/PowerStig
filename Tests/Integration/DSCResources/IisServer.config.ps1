@@ -94,7 +94,7 @@ Configuration IisServer_Config
         & ([scriptblock]::Create("
         IisServer ServerConfiguration
         {
-            OsVersion = '$OsVersion'
+            IisVersion = '$OsVersion'
             StigVersion = '$StigVersion'
             LogPath = '$LogPath'
             $(if ($null -ne $OrgSettings)

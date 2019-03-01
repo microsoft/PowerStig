@@ -1,281 +1,249 @@
 #region Header
-using module .\..\..\..\Module\Common\Common.psm1
-using module .\..\..\..\Module\Stig.StigException\Stig.StigException.psm1
-using module .\..\..\..\Module\Stig.StigProperty\Stig.StigProperty.psm1
-using module .\..\..\..\Module\Stig.SkippedRuleType\Stig.SkippedRuleType.psm1
-using module .\..\..\..\Module\Stig.SkippedRule\Stig.SkippedRule.psm1
-using module .\..\..\..\Module\Stig.OrganizationalSetting\Stig.OrganizationalSetting.psm1
-using module .\..\..\..\Module\Stig.TechnologyRole\Stig.TechnologyRole.psm1
-using module .\..\..\..\Module\Stig.TechnologyVersion\Stig.TechnologyVersion.psm1
-using module .\..\..\..\Module\STIG\STIG.psm1
+using module .\..\..\..\Module\STIG\Convert\Convert.Main.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
-        #region Test Setup
-        $schemaFile = Join-Path -Path (Resolve-Path $PSScriptRoot\..\..\..\).Path `
-                                -ChildPath "\StigData\Schema\PowerStig.xsd"
+    #region Functions
 
-        [hashtable] $orgSettingHashtable = @{
-            "V-1114"   = "xGuest";
-            "V-1115"   = "xAdministrator";
-            "V-4108"   = "90";
-            "V-4113"   = "300000";
-            "V-8322.b" = "NT5DS";
-            "V-26482"  = "Administrators";
-            "V-26579"  = "32768";
-            "V-26580"  = "196608";
-            "V-26581"  = "32768"
-        }
+    Describe 'Split-StigXccdf' {
 
-        $OrgSettings = [OrganizationalSetting]::ConvertFrom($orgSettingHashtable)
+        $sampleXccdfFileName = 'U_Windows_Server_2016{0}_STIG_V1R1_Manual-xccdf.xml'
+        $sampleXccdfId = 'Windows_Server_2016{0}_STIG'
+        $sampleXccdfPath = "$TestDrive\$sampleXccdfFileName" -f ''
+        (Get-TestStigRule -XccdfId ($sampleXccdfId -f '')).Save($sampleXccdfPath)
+        Split-StigXccdf -Path $sampleXccdfPath
 
-        $technologyVersionName = '2012R2';
-        $technologyRoleName = 'DC';
-
-        $technology = [Technology]::Windows
-        $technologyVersion = [TechnologyVersion]::new($technologyVersionName, $technology)
-        $technologyRole = [TechnologyRole]::new($technologyRoleName, $technologyVersion)
-
-        $StigVersion = [STIG]::GetHighestStigVersion($technology, $technologyRole, $technologyVersion)
-
-        [hashtable] $stigExceptionHashtable = @{
-            "V-26606" = @{'ServiceState' = 'Running';
-                          'StartupType'  = 'Automatic'};
-            "V-15683" = @{'ValueData' = '1'};
-            "V-26477" = @{'Identity' = 'Administrators'};
-        }
-
-        $stigExceptions = [StigException]::ConvertFrom($stigExceptionHashtable)
-
-        [string[]] $skippedRuleTypeArray = @(
-            "AccountPolicyRule"
-        )
-
-        $skippedRuleTypes = [SkippedRuleType]::ConvertFrom($skippedRuleTypeArray)
-
-        [string[]] $skippedRuleArray = @(
-            "V-1114",
-            "V-1115",
-            "V-4108",
-            "V-4113",
-            "V-8322.b",
-            "V-26482",
-            "V-26579",
-            "V-26580",
-            "V-26581"
-        )
-
-        $skippedRules = [SkippedRule]::ConvertFrom($skippedRuleArray)
-        #endregion StigData1 Test Data
-        #region Class Tests
-        Describe 'STIG Class' {
-
-            Context 'Constructor' {
-
-                It 'Should create an STIG class instance using STIG1 data' {
-                    {$script:stigData = [STIG]::new($StigVersion, $OrgSettings,
-                            $technology, $technologyRole, $technologyVersion,
-                            $stigExceptions, $skippedRuleTypes, $skippedRules)} |
-                        Should Not Throw
-                }
-                It 'Should return the Stig Version' {
-                    $script:stigData.StigVersion | Should Be $StigVersion
-                }
-
-                # $organizationalSettings = $stigData.OrganizationalSettings
-                # foreach ($hash in $orgSettingHashtable.GetEnumerator())
-                # {
-                #     $orgSetting = $organizationalSettings.Where( {$_.StigRuleId -eq $hash.Key})
-                #     $orgSetting.StigRuleId | Should Be $hash.Key
-                #     $orgSetting.Value | Should Be $hash.Value
-                # }
-
-                It 'Should return the Stig Technology' {
-                    $script:stigData.Technology.Name | Should Be $technology.Name
-                }
-                It 'Should return the Stig Technology Version' {
-                    $script:stigData.TechnologyVersion.Name | Should Be $technologyVersion.Name
-                }
-                It 'Should return the Stig Technology Role' {
-                    $stigData.TechnologyRole.Name | Should Be $technologyRole.Name
-                }
-                It 'Should return a list of Stig Exceptions' {
-                    $stigExceptions = $stigData.StigExceptions
-                    foreach ($hash in $stigExceptionHashtable.GetEnumerator())
-                    {
-                        $stigException = $stigExceptions.Where({$_.StigRuleId -eq $hash.Key})
-                        $stigException.StigRuleId | Should Be $hash.Key
-
-                        foreach ($property in $hash.Value.GetEnumerator())
-                        {
-                            $stigProperty = $stigException.Properties.Where({$_.Name -eq $property.Key})
-                            $stigProperty.Name | Should Be $property.Key
-                            $stigProperty.Value | Should Be $property.Value
-                        }
-                    }
-                }
-                It 'Should return a list of skipped rule types' {
-                    $skippedRuleTypes = $stigData.SkippedRuleTypes
-                    foreach ($type in $skippedRuleTypeArray)
-                    {
-                        $skippedRuleType = $skippedRuleTypes.Where( {$_.StigRuleType.ToString() -eq $type})
-                        $skippedRuleType.StigRuleType | Should Be $type
-                    }
-                }
-                It 'Should return a list of skipped rules' {
-                    $skippedRules = $stigData.SkippedRules
-                    foreach ($rule in $skippedRuleArray)
-                    {
-                        $skippedRule = $skippedRules.Where( {$_.StigRuleId -eq $rule})
-                        $skippedRule.StigRuleId | Should Be $rule
-                    }
-                }
-
-                It 'Should create an StigData class with the highest available version because no StigVersion was provided' {
-                    $stigData = [STIG]::new($null, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-                    $stigData.StigVersion | Should Not Be $null
-                }
-
-                It 'Should throw an exception when Technology is Null' {
-                    { [STIG]::new($StigVersion, $OrgSettings, $null, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
-                        | Should Throw
-                }
-
-                It 'Should throw an exception when TechnologyVersion is Null' {
-                    { [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $null, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
-                        | Should Throw
-                }
-
-                It 'Should throw an exception when TechnologyRole is Null' {
-                    { [STIG]::new($StigVersion, $OrgSettings, $technology, $null, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules) } `
-                        | Should Throw
-                }
+        Context 'Member Server' {
+            $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_MS'
+            It 'Should create an MS STIG file' {
+                Test-Path -Path $sampleXccdfSplitPath | Should Be $true
             }
 
-            Context 'Instance Methods' {
-                It 'SetStigPath: Should be able to determine the StigPath for the provided valid set of Technology, TechnologyVersion, TechnologyRole, and StigVersion' {
-                    $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-                    $stigData.SetStigPath()
-                    $stigData.StigPath | Should Be "$([STIG]::GetRootPath())\$($technology.ToString())-$($technologyVersion.Name)-$($technologyRole.Name)-$($StigVersion).xml"
-                }
-
-                It 'ProcessStigData: Should load the Stig Xml document from the filesystem into the StigXml property' {
-                    $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-                    $stigData.StigXml | Should Not Be $null
-                }
-
-                It 'SetStigPath: Should throw an exception if it is unable to find a matching Stig for the provided Technology, TechnologyVersion, TechnologyRole, and StigVersion' {
-                    { [STIG]::new('111.222', $OrgSettings, $technology, $technologyRole, $technologyVersion,
-                            $stigExceptions, $skippedRuleTypes, $skippedRules) } | Should Throw
-                }
-
-                It 'MergeOrganizationalSettings: Should merge the default organizational settings into instance OrganizationalSettings when no OrganizationalSettings is provided for a Stig that requires them' {
-                    $stigData = [STIG]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-                    $stigData.OrganizationalSettings | Should Not Be $null
-                    $stigData.OrganizationalSettings.Length | Should BeGreaterThan 0
-                }
-
-                It 'MergeOrganizationalSettings: Should merge provided settings into instance OrganizationalSettings for a Stig that requires them' {
-                    $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-
-                    $organizationalSettings = $stigData.OrganizationalSettings
-                    foreach ($hash in $orgSettingHashtable.GetEnumerator())
-                    {
-                        $orgSetting = $organizationalSettings.Where( {$_.StigRuleId -eq $hash.Key})
-                        $orgSetting.StigRuleId | Should Be $hash.Key
-                        $orgSetting.Value | Should Be $hash.Value
-                    }
-                }
-
-                It 'MergeOrganizationalSettings: Should merge instance OrganizationalSettings into StigXml' {
-                    $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-
-                    $propertyMap = [OrganizationalSetting]::PropertyMap()
-
-                    foreach ($rule in $stigData.OrganizationalSettings)
-                    {
-                        $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $rule.StigRuleId )']" -ErrorAction Stop ).Node
-
-                        if ($null -ne $ruleToCheck)
-                        {
-                            $ParentNodeName = $ruleToCheck.ParentNode.Name
-                            if ($ParentNodeName -ne "SkipRule")
-                            {
-                                $OverridePropertyName = $propertyMap.$ParentNodeName
-                                $ruleToCheck.$OverridePropertyName | Should Be $rule.Value
-                            }
-                        }
-                    }
-                }
-
-                It 'MergeOrganizationalSettings: Should pass schema testing after organizational settings have been merged' {
-                    $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $null, $null, $null)
-
-                    { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
-                }
-
-                It 'MergeStigExceptions: Should merge the supplied stig exceptions when StigExceptions is not Null' {
-                    $stigData = [STIG]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
-
-                    foreach ($Exception in $stigData.StigExceptions)
-                    {
-                        $ruleToCheck = ( $stigData.StigXml.DISASTIG | Select-Xml -XPath "//Rule[@id='$( $Exception.StigRuleId )']" -ErrorAction Stop ).Node
-
-                        if ($null -ne $ruleToCheck)
-                        {
-                            $ParentNodeName = $ruleToCheck.ParentNode.Name
-                            if ($ParentNodeName -ne "SkipRule")
-                            {
-                                foreach ($property in $Exception.Properties)
-                                {
-                                    $ruleToCheck.$($property.Name) | Should Be $property.Value
-                                }
-                            }
-                        }
-                    }
-                }
-
-                It 'MergeStigExceptions: Should pass schema testing after stig exceptions have been merged' {
-                    $stigData = [STIG]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $stigExceptions, $null, $null)
-
-                    { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
-                }
-
-                It 'ProcessSkippedRuleTypes: Should process the supplied skipped rule types when SkippedRuleTypes is not Null' {
-                    $stigData = [STIG]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $null)
-
-                    $stigData.SkippedRules | Should Not Be $null
-                    $stigData.SkippedRules.Length | Should BeGreaterThan 0
-                }
-
-                It 'MergeSkippedRules: Should merge the supplied skipped rules when SkippedRules is not Null' {
-                    $stigData = [STIG]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
-
-                    foreach ($skippedRule in $stigData.SkippedRules)
-                    {
-                        $ruleToCheck = ( $stigData.StigXml.DISASTIG.SkipRule | Select-Xml -XPath "//Rule[@id='$( $skippedRule.StigRuleId )']" -ErrorAction Stop ).Node
-
-                        $ruleToCheck | Should Not Be $null
-                    }
-                }
-
-                It 'MergeSkippedRules: Should pass schema testing after skipped rules have been merged' {
-                    $stigData = [STIG]::new($StigVersion, $null, $technology, $technologyRole, $technologyVersion, $null, $skippedRuleTypes, $skippedRules)
-
-                    { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
-                }
-
-                It 'Should pass schema testing after with values passed in to all parameters' {
-                    $stigData = [STIG]::new($StigVersion, $OrgSettings, $technology, $technologyRole, $technologyVersion, $stigExceptions, $skippedRuleTypes, $skippedRules)
-
-                    { Test-Xml -Xml $stigData.StigXml -SchemaFile $schemaFile } | Should Not Throw
-                }
+            It 'Should have MS in the benchmark ID' {
+                [xml] $sampleXccdfSplitContent = Get-Content $sampleXccdfSplitPath -Encoding UTF8 -Raw
+                $sampleXccdfSplitContent.Benchmark.id | Should Be ($sampleXccdfId -f '_MS')
             }
         }
-        #endregion
+
+        Context 'Domain Controller' {
+            $sampleXccdfSplitPath = "$TestDrive\$sampleXccdfFileName" -f '_DC'
+            It 'Should create an DC STIG file' {
+                Test-Path -Path $sampleXccdfSplitPath | Should Be $true
+            }
+            It 'Should have DC in the benchmark ID' {
+                [xml] $sampleXccdfSplitContent = Get-Content $sampleXccdfSplitPath -Encoding UTF8 -Raw
+                $sampleXccdfSplitContent.Benchmark.id | Should Be ($sampleXccdfId -f '_DC')
+            }
+        }
     }
+    Describe 'Get-StigVersionNumber' {
+        $majorVersionNumber = '1'
+        $minorVersionNumber = '5'
+        $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
+            -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901"
+
+        It 'Should extract the version number from the xccdf' {
+            Get-StigVersionNumber -StigDetails $sampleXccdf |
+                Should Be "$majorVersionNumber.$minorVersionNumber"
+        }
+    }
+    Describe 'Get-PowerStigFileList' {
+        $majorVersionNumber = '1'
+        $minorVersionNumber = '5'
+        $sampleXccdf = Get-TestStigRule -XccdfVersion $majorVersionNumber `
+            -XccdfRelease "Release: $minorVersionNumber Benchmark Date: 01 Jan 1901" `
+            -XccdfId "Windows_2012_DC_STIG"
+        $expectedName = "WindowsServer-2012R2-DC-$majorVersionNumber.$minorVersionNumber.xml"
+        Context 'No Destination supplied' {
+
+            $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf
+
+            It 'Should return a fileInfo Object' {
+                $powerStigFileList.Settings.GetType().ToString() | Should Be 'System.IO.FileInfo'
+            }
+            It 'Should return the file name' {
+                $powerStigFileList.Settings.Name | Should Be $expectedName
+            }
+            It 'Should return the full path' {
+                $powerStigFileList.Settings.FullName | Should Be "$script:moduleRoot\StigData\Processed\$expectedName"
+            }
+        }
+
+        <#{TODO}#> <# The Resolve-Path mock isn't working in AppVeyor for some reason
+        Context 'Destination supplied' {
+            Mock -CommandName Resolve-Path -MockWith {return 'C:\Test\Path'}
+            $powerStigFileList = Get-PowerStigFileList -StigDetails $sampleXccdf -Destination '.\Path'
+
+            It 'Should return the full path of the supplied destination' {
+                $powerStigFileList.Settings.FullName | Should Be "C:\Test\Path\$expectedName"
+            }
+        }
+        #>
+    }
+    Describe 'Split-BenchmarkId' {
+
+        $sampleStrings = [ordered]@{
+            'SQLServer' = @(
+                @{
+                    'id' = 'Microsoft_SQL_Server_2012_Database__Security_Technical_Implementation_Guide_NewBenchmark'
+                    'Technology' = 'SQLServer'
+                    'TechnologyVersion' = '2012'
+                    'TechnologyRole' = 'Database'
+                },
+                @{
+                    'id' = 'Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide'
+                    'Technology' = 'SQLServer'
+                    'TechnologyVersion' = '2012'
+                    'TechnologyRole' = 'Instance'
+                },
+                @{
+                    'id' = 'Microsoft_SQL_Server_2016_Database__Security_Technical_Implementation_Guide_NewBenchmark'
+                    'Technology' = 'SQLServer'
+                    'TechnologyVersion' = '2016'
+                    'TechnologyRole' = 'Database'
+                },
+                @{
+                    'id' = 'Microsoft_SQL_Server_2016_Database_Instance_Security_Technical_Implementation_Guide'
+                    'Technology' = 'SQLServer'
+                    'TechnologyVersion' = '2016'
+                    'TechnologyRole' = 'Instance'
+                }
+            )
+            'Firewall' = @(
+                @{
+                    'id' = 'Windows_Firewall'
+                    'Technology' = 'WindowsFirewall'
+                    'TechnologyVersion' = 'All'
+                    'TechnologyRole' = $null
+                }
+            )
+            'DNS' = @(
+                @{
+                    'id' = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
+                    'Technology' = 'WindowsServer'
+                    'TechnologyVersion' = '2012R2'
+                    'TechnologyRole' = 'DNS'
+                }
+            )
+            'Windows' = @(
+                @{
+                    'id' = 'Windows_2012_DC_STIG'
+                    'Technology' = 'WindowsServer'
+                    'TechnologyVersion' = '2012R2'
+                    'TechnologyRole' = 'DC'
+                },
+                @{
+                    'id' = 'Windows_2012_MS_STIG'
+                    'Technology' = 'WindowsServer'
+                    'TechnologyVersion' = '2012R2'
+                    'TechnologyRole' = 'MS'
+                },
+                @{
+                    'id' = 'Windows_Server_2016_DC_STIG'
+                    'Technology' = 'WindowsServer'
+                    'TechnologyVersion' = '2016'
+                    'TechnologyRole' = 'DC'
+                },
+                @{
+                    'id' = 'Windows_Server_2016_MS_STIG'
+                    'Technology' = 'WindowsServer'
+                    'TechnologyVersion' = '2016'
+                    'TechnologyRole' = 'MS'
+                },
+                @{
+                    'id' = 'Windows_10'
+                    'Technology' = 'WindowsClient'
+                    'TechnologyVersion' = '10'
+                    'TechnologyRole' = $null
+                }
+            )
+            'Active_Directory' = @(
+                @{
+                    'id' = 'Active_Directory_Domain'
+                    'Technology' = 'ActiveDirectory'
+                    'TechnologyVersion' = 'All'
+                    'TechnologyRole' = 'Domain'
+                },
+                @{
+                    'id' = 'Active_Directory_Forest'
+                    'Technology' = 'ActiveDirectory'
+                    'TechnologyVersion' = 'All'
+                    'TechnologyRole' = 'Forest'
+                }
+            )
+            'IE' = @(
+                @{
+                    'id' = 'IE_11_STIG'
+                    'Technology' = 'InternetExplorer'
+                    'TechnologyVersion' = '11'
+                    'TechnologyRole' = $null
+                }
+            )
+            'Outlook2013' = @(
+                @{
+                    'id' = 'Microsoft_Outlook_2013'
+                    'Technology' = 'Office'
+                    'TechnologyVersion' = 'Outlook2013'
+                    'TechnologyRole' = $null
+                }
+            )
+            'PowerPoint2013' = @(
+                @{
+                    'id'                = 'Microsoft_PowerPoint_2013'
+                    'Technology'        = 'Office'
+                    'TechnologyVersion' = 'PowerPoint2013'
+                    'TechnologyRole'    = $null
+                }
+            )
+            'Excel2013' = @(
+                @{
+                    'id'                = 'Microsoft_Excel_2013'
+                    'Technology'        = 'Office'
+                    'TechnologyVersion' = 'Excel2013'
+                    'TechnologyRole'    = $null
+                }
+            )
+            'Word2013' = @(
+                @{
+                    'id'                = 'Microsoft_Word_2013'
+                    'Technology'        = 'Office'
+                    'TechnologyVersion' = 'Word2013'
+                    'TechnologyRole'    = $null
+                }
+            )
+            'DotNet4' = @(
+                @{
+                    'id' = 'MS_Dot_Net_Framework'
+                    'Technology'        = 'DotNetFramework'
+                    'TechnologyVersion' = '4'
+                    'TechnologyRole'    = $null
+                }
+            )
+        }
+        foreach ($sampleString in $sampleStrings.GetEnumerator())
+        {
+            Context "$($sampleString.Key)" {
+
+                foreach ($sample in $sampleString.value)
+                {
+                    Context "$($sample.Id)" {
+                        $benchmarkId = Split-BenchmarkId -Id $sample.Id
+                        It "Should return $($sample.Technology) as the Technology property" {
+                            $benchmarkId.Technology | Should Be $sample.Technology
+                        }
+                        It "Should return $($sample.TechnologyVersion) as the TechnologyVersion property" {
+                            $benchmarkId.TechnologyVersion | Should Be $sample.TechnologyVersion
+                        }
+                        It "Should return $($sample.TechnologyRole) as the TechnologyRole property" {
+                            $benchmarkId.TechnologyRole | Should Be $sample.TechnologyRole
+                        }
+                    }
+                }
+            }
+        }
+    }
+    #endregion
 }
 finally
 {

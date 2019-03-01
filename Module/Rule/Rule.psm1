@@ -2,8 +2,8 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 
-$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
-$supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
+$exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt', '*.md', '*.psm1', 'data.*.ps1')
+$supportFileList = Get-ChildItem -Path $PSScriptRoot -Recurse -File -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
     Write-Verbose "Loading $($supportFile.FullName)"
@@ -46,14 +46,14 @@ Class Rule : ICloneable
     [string] $Title
     [severity] $Severity
     [status] $ConversionStatus
-    [string] $RawString
-    hidden [string[]] $SplitCheckContent
+    [string] $DscResource
+    [string] $DuplicateOf
+    [string] $Description
     [Boolean] $IsNullOrEmpty
     [Boolean] $OrganizationValueRequired
     [string] $OrganizationValueTestString
-    [string] $Description
-    hidden [string] $DscResource
-
+    [string] $RawString
+    hidden [string[]] $SplitCheckContent
 
     <#
         .SYNOPSIS
@@ -65,54 +65,122 @@ Class Rule : ICloneable
     {
     }
 
-    #region Methods
-
     <#
         .SYNOPSIS
-            The class initializer
+            PowerSTIG XML deserialze constructor
         .DESCRIPTION
-            Extracts all of the settings from the xccdf rule that are needed to
-            instantiate the base class
-        .PARAMETER StigRule
-            The STIG rule to convert
+            This is the base class constructor that laods the base properties from
+            the PowerSTIG XML
     #>
-    hidden [void] InvokeClass ( [xml.xmlelement] $StigRule )
+    Rule ([xml.xmlelement] $Rule)
     {
-        $this.Id = $StigRule.id
-        $this.Severity = $StigRule.rule.severity
-        $this.Title = $StigRule.title
-        $this.Description = $StigRule.rule.description
-        # Since the string comes from XML, we have to assume that it is encoded for html.
-        # This will decode it back into the normal string characters we are looking for.
-        if ( Test-HtmlEncoding -CheckString  $StigRule.rule.Check.('check-content') )
-        {
-            $this.RawString = ( ConvertFrom-HtmlEncoding -CheckString $StigRule.rule.Check.('check-content') )
-        }
-        else
-        {
-            $this.RawString = $StigRule.rule.Check.('check-content')
-        }
-
-        <#
-            This hidden property is used by all of the methods and passed to subfunctions instead of
-            splitting the string in every function. The Select-String removes any blank lines, so
-            that the Mandatory parameter validation does not fail and to prevent the need for a
-            work around by allowing empty strings in mandatory parameters.
-        #>
-        $this.SplitCheckContent = [Rule]::SplitCheckContent( $this.rawString )
-
-        # Default Flags
-        $this.IsNullOrEmpty = $false
-        $this.OrganizationValueRequired = $false
+        # Load PowerSTIG xml mode
+        $this.Id = $Rule.Id
+        $this.Title = $Rule.Title
+        $this.Severity = $Rule.Severity
+        $this.Description = $Rule.Description
+        # When a bool is evaluated if anything exists it is true, so we need provide a bool
+        $this.OrganizationValueRequired = ($Rule.OrganizationValueRequired -eq 'true')
+        $this.OrganizationValueTestString = $Rule.OrganizationValueTestString
+        $this.DscResource = $rule.DscResource
     }
 
     <#
         .SYNOPSIS
-            Creates a shallow copy of the current
+            XCCDF XML constructor
         .DESCRIPTION
-            Creates a shallow copy of the current
+            This is the base class constructor
     #>
-    [Object] Clone ()
+    Rule ([xml.xmlelement] $Rule, [switch] $Convert)
+    {
+        # This relaces the current InvokeClass method
+        $this.Id = $Rule.Id
+        $this.Title = $Rule.Title
+        $this.Severity = $Rule.rule.severity
+        $this.Description = $Rule.rule.description
+        if ( Test-HtmlEncoding -CheckString  $Rule.rule.Check.('check-content') )
+        {
+            $this.RawString = ( ConvertFrom-HtmlEncoding -CheckString $Rule.rule.Check.('check-content') )
+        }
+        else
+        {
+            $this.RawString = $Rule.rule.Check.('check-content')
+        }
+
+        $this.SplitCheckContent = [Rule]::SplitCheckContent( $this.rawString )
+
+        $this.IsNullOrEmpty = $false
+        $this.OrganizationValueRequired = $false
+    }
+
+    #region Methods
+
+    <#
+        This method is needed in each convert class for a couple of reasons.
+        1. PSTypeConverter has to be implemented at a .NET type, which might cause issues with customers that use constrained language mode.
+        2. The parent class modules cannot load the child class modules (load loop)
+    #>
+    hidden [psobject] AsRule()
+    {
+        # Create an instance of the convert rule parent class
+        $parentRule = $this.GetType().BaseType::new()
+        # Get the property list from the convert rule
+        $propertyList = $this | Get-Member -MemberType Properties
+        # Copy the convert properties to the parent properties
+        foreach ($property in $propertyList)
+        {
+            if ( $null -ne $this.($property.Name) )
+            {
+                $parentRule.($property.Name) = $this.($property.Name)
+            }
+        }
+        return $parentRule
+    }
+
+    <#
+        .SYNOPSIS
+            Returns the rule property to override based on the override tag
+    #>
+    hidden [string] GetOverrideValue()
+    {
+        # The path that is returned from GetType contains wierd backslashes that I can't figure out how to use.
+        $moduleName = $this.GetType().Name -replace 'Rule', ''
+        $baseclassPath = Resolve-Path -Path "$PSScriptRoot\..\Rule.$moduleName\$($this.GetType().Name).psm1"
+        # Exception property tag is used in the base class to identify the property that is to be overridden
+        # the patteren is as follows
+        # [type] $Name <#(ExceptionValue)#>
+        $exceptionPropertyTag = '\s+(?:\[\w+(?:\[\s*\])?\])\s\$(?<ExceptionValue>\w+)\s+<#\(ExceptionValue\)#>'
+        $exceptionProperty = [regex]::Matches(
+            (Get-Content -path $baseclassPath -raw), $exceptionPropertyTag
+        ).Groups.Where( {$_.Name -eq 'ExceptionValue'}).Value
+
+        return $exceptionProperty
+    }
+
+    <#
+        .SYNOPSIS
+            Applies an org setting to a rule
+    #>
+    [void] AddOrgSetting ([string] $Value)
+    {
+        $this.($this.GetOverrideValue()) = $Value
+    }
+
+    <#
+        .SYNOPSIS
+            Applies an exception to a rule
+    #>
+    [void] AddExceptionToPolicy ([string] $Value)
+    {
+        $this.Title = "[Exception] " + $this.title
+        $this.($this.GetOverrideValue()) = $Value
+    }
+
+    <#
+        .SYNOPSIS
+            Creates a shallow copy of the current object
+    #>
+    hidden [Object] Clone ()
     {
         return $this.MemberwiseClone()
     }
@@ -125,7 +193,7 @@ Class Rule : ICloneable
         .PARAMETER ReferenceObject
             The existing converted rules
     #>
-    [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
+    hidden [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
     {
         return Test-DuplicateRule -ReferenceObject $ReferenceObject -DifferenceObject $this
     }
@@ -136,7 +204,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Is a rule is a duplicate, tag the title for easy filtering and reporting
     #>
-    [void] SetDuplicateTitle ()
+    hidden [void] SetDuplicateTitle ()
     {
         $this.title = $this.title + ' Duplicate'
     }
@@ -149,7 +217,7 @@ Class Rule : ICloneable
         .PARAMETER Value
             The value to be tested
     #>
-    [Boolean] SetStatus ( [String] $Value )
+    hidden [Boolean] SetStatus ( [String] $Value )
     {
         if ( [String]::IsNullOrEmpty( $Value ) )
         {
@@ -172,7 +240,7 @@ Class Rule : ICloneable
         .PARAMETER AllowNullOrEmpty
             A flag to allow blank values
     #>
-    [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
+    hidden [Boolean] SetStatus ( [String] $Value, [Boolean] $AllowNullOrEmpty )
     {
         if ( [String]::IsNullOrEmpty( $Value ) -and -not $AllowNullOrEmpty )
         {
@@ -191,7 +259,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Sets the IsNullOrEmpty value to true
     #>
-    [void] SetIsNullOrEmpty ()
+    hidden [void] SetIsNullOrEmpty ()
     {
         $this.IsNullOrEmpty = $true
     }
@@ -202,7 +270,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Sets the OrganizationValueRequired value to true
     #>
-    [void] SetOrganizationValueRequired ()
+    hidden [void] SetOrganizationValueRequired ()
     {
         $this.OrganizationValueRequired = $true
     }
@@ -215,7 +283,7 @@ Class Rule : ICloneable
         .PARAMETER TestString
             The string to extract the
     #>
-    [String] GetOrganizationValueTestString ( [String] $TestString )
+    hidden [string] GetOrganizationValueTestString ( [String] $TestString )
     {
         return Get-OrganizationValueTestString -String $TestString
     }
@@ -226,7 +294,8 @@ Class Rule : ICloneable
         .DESCRIPTION
             Converts the object into a hashtable
     #>
-    [hashtable] ConvertToHashTable ()
+    <#{TODO}#> # remove and cleanup testhelper.psm1
+    hidden [hashtable] ConvertToHashTable ()
     {
         return ConvertTo-HashTable -InputObject $this
     }
@@ -239,7 +308,7 @@ Class Rule : ICloneable
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
-    static [string[]] SplitCheckContent ( [String] $CheckContent )
+    hidden static [string[]] SplitCheckContent ( [String] $CheckContent )
     {
         return (
             $CheckContent -split '\n' |
@@ -256,7 +325,7 @@ Class Rule : ICloneable
         .PARAMETER StigRule
             The StigRule to extract the fix text from
     #>
-    static [string[]] GetFixText ( [xml.xmlelement] $StigRule )
+    hidden static [string[]] GetFixText ( [xml.xmlelement] $StigRule )
     {
         $fullFix = $StigRule.Rule.fixtext.'#text'
 
@@ -275,7 +344,7 @@ Class Rule : ICloneable
         .PARAMETER RuleCollection
             The global rule collection
     #>
-    [Boolean] IsExistingRule ( [object] $RuleCollection )
+    hidden [bool] IsExistingRule ( [object] $RuleCollection )
     {
         return Test-ExistingRule -RuleCollection $RuleCollection $this
     }
@@ -292,7 +361,7 @@ Class Rule : ICloneable
             much more help in a few of the cases, so the STIG Id's for these
             checks are hardcoded here to force a fixed value to be returned.
     #>
-    [Boolean] IsHardCoded ()
+    hidden [bool] IsHardCoded ()
     {
         return Test-ValueDataIsHardCoded -StigId $this.id
     }
@@ -303,7 +372,7 @@ Class Rule : ICloneable
         .DESCRIPTION
             Returns a hard coded conversion value
     #>
-    [String] GetHardCodedString ()
+    hidden [string] GetHardCodedString ()
     {
         return Get-HardCodedString -StigId $this.id
     }
@@ -317,7 +386,7 @@ Class Rule : ICloneable
             much more help in a few of the cases, so the STIG Id's for these
             checks are hardcoded here to force a fixed value to be returned.
     #>
-    [Boolean] IsHardCodedOrganizationValueTestString ()
+    hidden [bool] IsHardCodedOrganizationValueTestString ()
     {
         return Test-IsHardCodedOrganizationValueTestString -StigId $this.id
     }
@@ -328,14 +397,17 @@ Class Rule : ICloneable
         .DESCRIPTION
             Returns a hard coded org value
     #>
-    [String] GetHardCodedOrganizationValueTestString ()
+    hidden [string] GetHardCodedOrganizationValueTestString ()
     {
         return Get-HardCodedOrganizationValueTestString -StigId $this.id
     }
+
+    <#{TODO}#> <#Remove
 
     hidden [void] SetDscResource ()
     {
         throw 'SetDscResource must be implemented in the child class'
     }
+    #>
     #endregion
 }

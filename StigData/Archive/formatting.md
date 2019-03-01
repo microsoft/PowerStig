@@ -1,32 +1,31 @@
-# XCCDF formatting guide
+# PowerSTIG Archive log file
 
-## Samples
+* I have talked a little bit about starting to modify the xccdf files to fix minor issues in the content the DISA provides.
+* The initial idea was to manually update the xccdf and keep a record of the change in a markdown file. ID::OldText::NewText
+* I realized that this is not a great solution, due to not being 100% sure what the original text was.
+* Let's automate
 
-### Registry values
+## Challenge
 
-The most common format across the STIG library is
+* It feels like there is a conspiracy at DISA to make PowerSTIG parser a PIA to maintain.
+* I keep seeing Issues opened to update the parser for the latest STIG X
+* No easy way to fix Spelling \ Formatting issues
 
-Value:{space}{Hex value(Optional)}{space}({number}){space}(value description(Optional))
+## Purposed solution
 
-Here are a few examples
+* Take the original idea and automate it now before we make a bunch of changes that we have to undo later.
+* The change log is now an active file that is used during the parsing process.
 
-Value: 4
-Value: 0x00000004 (4)
-Value: 537395200
-Value: 0x20080000 (537395200)
-Value: 1 (Enabled with UEFI lock)
-Value: 0x00000001 (1) (Enabled with UEFI lock)
+## How it works
 
-Any xccdf check-content elements that do not align to this format will be updated to reduce the complexity of the rule parser.
-It is much faster to fix and handful of rules in the than it is to update the parser.
-This will also allow us to trim much of the test code and replace it with proper error handling to throw an exception when a rule is not parsed properly.
+1. The code looks for a .log file with the same full path as the xccdf.
+1. Each line is in the following format ID::OldText::NewText
+    1. Multiple entries per rule are supported
+1. The log content is converted into a hashtable
+1. Before a rule is processed, the check-content string is updated using a replace OldText > NewText.
+1. The rule is parsed and returned
+1. The RawString is then updated to undo the log file change NewText > OldText.
 
-Here are a few examples of free text that should be updated to align with the rest of the xccdf formatting.
-
-Value: 0x00000000 (0) - Off
-Should be
-Value: 0x00000000 (0) (Off)
-
-Value: 0 - No peering (HTTP Only)
-Should Be
-Value: 0 (No peering HTTP Only)
+This allows us to inject the rule intent without having to dig into the xml or update the parser.
+We have most of the general patterns ironed out and now we are just dealing with random formatting\ spelling charges.
+We need to take the time to determine when the change needs to be made, because we don't necessarily want to end up with a log file entry for each rule either.
