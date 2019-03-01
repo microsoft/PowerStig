@@ -27,6 +27,7 @@ UPDATES
 * Fixed [314](https://github.com/Microsoft/PowerStig/issues/314): Update PowerSTIG to Utilize LogTargetW3C parameter in xWebAdministration 2.5.0.0.
 * Fixed [334](https://github.com/Microsoft/PowerStig/issues/334): Update PowerStig to utilize AccessControlDsc 1.3.0.0
 * Fixed [331](https://github.com/Microsoft/PowerStig/issues/331): 2012/R2 [V-39325] 2016 [V-73373], [V-73389] PermissionRule.Convert CheckContent Match Parser Update
+* Fixed [320](https://github.com/Microsoft/PowerStig/issues/320): IIS Site STIG doesn't correctly convert STIGS that contain "SSL Settings" in raw string
 
 * Added the following STIGs
   * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)

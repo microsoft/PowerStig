@@ -203,7 +203,6 @@ function Get-LogCustomField
     return $return
 }
 #endregion
-
 #region FireFox
 
 <#

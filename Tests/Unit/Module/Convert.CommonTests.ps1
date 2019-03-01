@@ -20,7 +20,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
     # Only run the base class test once
     If ($count -le 0)
     {
-        It "Shoud have a BaseType of $moduleName" {
+        It "Should have a BaseType of $moduleName" {
             $convertedRule.GetType().BaseType.ToString() | Should Be $moduleName
         }
         $count ++
@@ -38,10 +38,12 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
     $propertyList.Remove('CheckContent')
 
     # Get the properties from the current instance minus the base class properties
-    [System.Collections.ArrayList] $ruleClassPropertyTestList = $convertedRule |
+    [System.Collections.ArrayList] $ruleClassPropertyTestList = @(
+        $convertedRule |
         Get-Member -MemberType Property |
         Select-Object -Property Name -ExpandProperty Name |
         Where-Object {-not $ruleBaseClassPropertyList.Contains($_)}
+    )
 
     # Provide notifications if the test data is missing important properties
     if (-not $testRule.ContainsKey('OrganizationValueRequired'))

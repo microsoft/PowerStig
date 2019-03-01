@@ -41,10 +41,6 @@ function Get-ConfigSection
         {
             $configSection = '/system.web/trust'
         }
-        { $cleanCheckContent -match 'SSL Settings' }
-        {
-            $configSection = '/system.webServer/security/access'
-        }
         { $cleanCheckContent -match '\.NET Compilation' }
         {
             $configSection = '/system.web/compilation'
@@ -132,11 +128,6 @@ function Get-KeyValuePair
         {
             $key = 'enabled'
             $value = 'false'
-        }
-        { $checkContent -match 'SSL Settings' }
-        {
-            $key = 'sslflags'
-            $value = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'
         }
         { $checkContent -match '\.NET Compilation' }
         {

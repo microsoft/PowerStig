@@ -165,7 +165,8 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
                 $CheckContent -NotMatch 'HKLM' -and
                 $CheckContent -NotMatch 'Authorization Rules' -and
                 $CheckContent -NotMatch 'regedit <enter>' -and
-                $CheckContent -NotMatch 'Enable proxy'
+                $CheckContent -NotMatch 'Enable proxy' -and
+                $CheckContent -NotMatch 'SSL Settings'
             )
         )
         {
