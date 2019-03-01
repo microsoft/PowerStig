@@ -4,7 +4,7 @@
 using namespace system.xml
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage('PSUseDeclaredVarsMoreThanAssigments', '')]
-[string] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Resources).Path
+[String] $resourcePath = (Resolve-Path -Path $PSScriptRoot\Resources).Path
 
 <#
     .SYNOPSIS
@@ -44,7 +44,6 @@ function Get-ResourceTitle
     .PARAMETER Type
         The name of the rule type to return.
 #>
-
 function Select-Rule
 {
     [CmdletBinding()]
@@ -93,7 +92,7 @@ function Get-UniqueStringArray
 
     $return = @()
 
-    foreach ($item in $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) })
+    foreach ($item in $InputObject.Where{ -not [String]::IsNullOrWhiteSpace($PSItem) })
     {
         $splitItems = $item -Split ','
 
@@ -135,7 +134,7 @@ function Get-UniqueString
         $InputObject
     )
 
-    $return = $InputObject.Where{ -not [string]::IsNullOrWhiteSpace($PSItem) } |
+    $return = $InputObject.Where{ -not [String]::IsNullOrWhiteSpace($PSItem) } |
         Select-Object -Unique
 
     if ($return.count -le 1)
@@ -225,11 +224,11 @@ function Format-FireFoxPreference
 
     switch ($value)
     {
-        {[bool]::TryParse($value, [ref]$null) }
+        {[Bool]::TryParse($value, [Ref]$null) }
         {
             $result = $value; break
         }
-        { [int]::TryParse($value, [ref]$null) }
+        { [Int]::TryParse($value, [Ref]$null) }
         {
             $result = $value; break
         }

@@ -58,8 +58,10 @@ function Get-ServiceName
             $serviceName = $regexMatch.matches.groups[-1].Value
         }
     }
-    # There is an edge case with the rule concerning the FTP Service. All service rules have the service names inside of parentheses (ex. (servicename)), however
-    # The rule pertaining to the FTP service presents this scenario: (Service name: FTPSVC)
+    <# 
+       There is an edge case with the rule concerning the FTP Service. All service rules have the service names inside of parentheses 
+       (ex. (servicename)), however the rule pertaining to the FTP service presents this scenario: (Service name: FTPSVC)
+    #>
     if ( $serviceName -match 'Service name: FTPSVC' )
     {
         $serviceName = ( $serviceName -split ':' )[-1]

@@ -9,10 +9,10 @@
         tries to identify the correct specialized function to set it to for conversion. The conversion
         functions called by this function do the English to PowerShell conversion.
 
-    .Parameter String
+    .PARAMETER String
         The STIG text contains conditional text to try and convert to a PowerShell expression.
 
-    .Notes
+    .NOTES
         General Notes
 #>
 function Get-OrganizationValueTestString

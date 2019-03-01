@@ -1,4 +1,8 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 @{
+
     # Script module or binary module file associated with this manifest.
     RootModule = 'IisServer.schema.psm1'
 
@@ -31,4 +35,5 @@
 
     # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
     AliasesToExport = @()
+
 }

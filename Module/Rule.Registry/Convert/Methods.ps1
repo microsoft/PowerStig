@@ -7,7 +7,7 @@
         Determines what function to use to extract the registry key from a string. This is used to
         account for all of the different variations on registry setting in different STIGs.
 
-    .Parameter stigString
+    .PARAMETER stigString
         This is an array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryKey
@@ -51,7 +51,7 @@ function Get-RegistryKey
     .SYNOPSIS
         Extract the registry key root from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-RegistryHiveFromWindowsStig
@@ -89,7 +89,7 @@ function Get-RegistryHiveFromWindowsStig
     .SYNOPSIS
         Extract the registry path from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting. the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryPathFromWindowsStig
@@ -143,7 +143,7 @@ function Get-RegistryPathFromWindowsStig
     .SYNOPSIS
         Extract the registry value type from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueType
@@ -224,7 +224,7 @@ function Test-RegistryValueType
     .SYNOPSIS
         Extract the registry value type from a Windows STIG string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueTypeFromWindowsStig
@@ -263,7 +263,7 @@ function Get-RegistryValueTypeFromWindowsStig
     .SYNOPSIS
         Extract the registry value type from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueName
@@ -292,7 +292,7 @@ function Get-RegistryValueName
     .SYNOPSIS
         Extract the registry value name from a string.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueNameFromWindowsStig
@@ -333,7 +333,7 @@ function Get-RegistryValueNameFromWindowsStig
         if additional processing is required. For example if an allowable range detected, additional
         functions need to be called to convert the text into powershell operators.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueData
@@ -367,7 +367,7 @@ function Get-RegistryValueData
         if additional processing is required. For example if an allowable range detected, additional
         functions need to be called to convert the text into powershell operators.
 
-    .Parameter CheckContent
+    .PARAMETER CheckContent
         An array of the raw sting data taken from the STIG setting.
 #>
 function Get-RegistryValueDataFromWindowsStig
@@ -1167,8 +1167,10 @@ function Set-RegistryPatternLog
         $Rule
     )
     
-    # Load table with patterns from Core data file.
-    # Build the in-memory table of patterns
+    <# 
+       Load table with patterns from Core data file.
+       Build the in-memory table of patterns
+    #>
     if(-not $global:patternTable)
     {
         $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 

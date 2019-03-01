@@ -82,8 +82,10 @@ function Get-MitigationPolicyToEnable
             {
                 { $PSItem -match $regularExpression.IfTheStatusOf }
                 {
-                    # Grab the line that has "If the status of" then grab the text inbetween " and :
-                    #Check to see if the line was the word 'Enable' in it
+                    <# 
+                    Grab the line that has "If the status of" then grab the text inbetween " and :
+                    Check to see if the line was the word 'Enable' in it
+                    #>
                     if ($PSItem -match 'Enable')
                     {
                         $result += ( ( $line | Select-String -Pattern $regularExpression.TextBetweenDoubleQuoteAndColon ).Matches.Value -replace '"' -replace ':' ).Trim()
@@ -132,7 +134,7 @@ function Get-MitigationPolicyToEnable
     .PARAMETER CheckContent
         Specifies the check-content element in the xccdf
 
-    .Notes
+    .NOTES
         Currently all rules in the STIG state the policies referenced need to be enabled.
         However that could change in the future or in other STIGs so we need to check for both conditions (Enabled|Disabled)
 #>
