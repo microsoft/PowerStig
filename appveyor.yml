@@ -8,7 +8,7 @@
 #      general configuration      #
 #---------------------------------#
 
-version: 3.0.0.{build}
+version: 3.1.0.{build}
 
 skip_commits:
   files:
