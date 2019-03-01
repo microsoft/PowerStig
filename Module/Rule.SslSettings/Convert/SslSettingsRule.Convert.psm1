@@ -63,33 +63,34 @@ Class SslSettingsRuleConvert : SslSettingsRule
     #>
     [void] SetSslValue ()
     {
-        switch ( $this.splitcheckContent )
+        $thisValue = [string]
+        [string] $CheckContent = $this.splitcheckContent
+        switch ($CheckContent)
         {
             { $PSItem -match 'Verify the "Clients Certificate Required"' }
             {
-                $value = 'SslRequireCert'
-            }
-            { $PSItem -match 'If the "Require SSL"' }
-            {
-                $value = 'Ssl'
+                $thisValue = 'SslRequireCert'
+                break
             }
             { ($PSItem -match 'Client Certificates Required') -and ($PSItem -match 'set to "ssl128"') -and ($PSItem -match 'If the "Require SSL"') }
             {
-                $value = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'
+                $thisValue = 'Ssl,SslNegotiateCert,SslRequireCert,Ssl128'
+                break
             }
+            { $PSItem -match 'If the "Require SSL"' }
+            {
+                $thisValue = 'Ssl'
+            }
+            
         }
     
-        if ($null -ne $value)
+        if ($null -ne $thisValue)
         {
-            Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found value: {0}"  -f $value)
-    
-            $thisSslValue = @{
-                value = $value
-            }
+            Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found value: {0}"  -f $thisValue)
 
-            if (-not $this.SetStatus($thisSslValue))
+            if (-not $this.SetStatus($thisValue))
             {
-                $this.set_Value($thisSslValue.Value)
+                $this.set_Value($thisValue)
             }
         }
         else
