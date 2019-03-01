@@ -14,4 +14,3 @@ foreach ($website in $WebsiteName)
         Bindings      = $value
     }
 }
-
