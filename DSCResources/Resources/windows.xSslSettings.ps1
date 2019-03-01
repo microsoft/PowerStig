@@ -7,14 +7,14 @@ if ($WebsiteName)
 {
     foreach ($website in $WebsiteName)
     {
-            $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
-            [array] $value = $value.Split(',') -replace "'",''
+        $value = Get-UniqueStringArray -InputObject $rules.Value -AsString
+        [array] $value = $value.Split(',') -replace "'",''
 
-            xSslSettings "$(Get-ResourceTitle -Rule $rule -Instance $website)"
-            {
-                Name          = "IIS:\Sites\$website"
-                Bindings      = $value
-            }
+        xSslSettings "$(Get-ResourceTitle -Rule $rule -Instance $website)"
+        {
+            Name          = "IIS:\Sites\$website"
+            Bindings      = $value
+        }
     }
 }
 else
