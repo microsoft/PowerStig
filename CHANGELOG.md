@@ -12,7 +12,7 @@ NEW
 * Major code refactor to simplify maintenance and usage
 * [Breaking Change] The STIG class constructor no longer accepts Orgsettings, Exceptions, or Rule skips
   * That functionality has move to the load rule method
-* DSC compsoite resource parameter valdation for version numbers has been removed
+* DSC composite resource parameter validation for version numbers has been removed
   * The STIG class validates all input and will throw an error if invalid data is provided.
 * The Get-StigList has be updated and renamed to Get-Stig to return the STIG class
 
