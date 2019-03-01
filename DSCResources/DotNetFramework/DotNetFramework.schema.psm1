@@ -37,7 +37,7 @@ Configuration DotNetFramework
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [sersion]
+        [version]
         $StigVersion,
 
         [Parameter()]
