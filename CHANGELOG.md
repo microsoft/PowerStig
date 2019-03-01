@@ -23,9 +23,9 @@ UPDATES
 * Fixed [#243](https://github.com/Microsoft/PowerStig/issues/243): [V-46515] Windows-All-IE11-1.15 Rawstring typo
 * Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
 * Fixed [#284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
-* Removed: Internet Explorer 1.13
 * Fixed [290](https://github.com/Microsoft/PowerStig/issues/290): [V-76731] IIS Server STIG V-76731 fails to properly set STIG guidance because rule is not split.
 * Fixed [314](https://github.com/Microsoft/PowerStig/issues/314): Update PowerSTIG to Utilize LogTargetW3C parameter in xWebAdministration 2.5.0.0.
+* Fixed [334](https://github.com/Microsoft/PowerStig/issues/334): Update PowerStig to utilize AccessControlDsc 1.3.0.0
 * Fixed [331](https://github.com/Microsoft/PowerStig/issues/331): 2012/R2 [V-39325] 2016 [V-73373], [V-73389] PermissionRule.Convert CheckContent Match Parser Update
 * Fixed [320](https://github.com/Microsoft/PowerStig/issues/320): IIS Site STIG doesn't correctly convert STIGS that contain "SSL Settings" in raw string
 
@@ -39,6 +39,7 @@ UPDATES
   * Active Directory Domain 2.9
   * IIS Server 8.5 1.3
   * IIS Site 8.5 1.2
+  * Removed: Internet Explorer 1.13
 
 ## 2.4.0.0
 
