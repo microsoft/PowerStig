@@ -32,12 +32,12 @@ Install-Module -Name PowerStig -Scope CurrentUser
 ```
 
 Once PowerStig is installed, you can view the list of STIGs that are currently available.
-The Get-StigList function queries the StigData and returns a full list.
+The Get-Stig function queries the StigData and returns a full list.
 This will give you an idea of what you can target in your environment.
 
 ```powershell
 Import-Module PowerStig
-Get-StigList
+Get-Stig
 ```
 
 To update a previously installed module use this command:

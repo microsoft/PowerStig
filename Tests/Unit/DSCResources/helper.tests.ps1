@@ -22,10 +22,10 @@ Describe 'Functions' {
         }
     }
 
-    Context 'Get-RuleClassData' {
+    Context 'Select-Rule' {
 
         It 'Should Exist' {
-            Get-Command 'Get-RuleClassData' | Should Not BeNullOrEmpty
+            Get-Command 'Select-Rule' | Should Not BeNullOrEmpty
         }
     }
 
@@ -42,7 +42,7 @@ Describe 'Functions' {
             $result | Should -BeOftype 'String'
             $result | Should -Be '"Meaning of Life"'
         }
-        
+
         It 'Should return and a number as a string without double quotes' {
             $result = Format-FireFoxPreference -Value 42
             $result | Should -BeOftype 'String'

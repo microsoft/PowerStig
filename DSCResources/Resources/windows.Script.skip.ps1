@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = Get-RuleClassData -StigData $stigData -Name SkipRule
+$rules = $stig.RuleList | Select-Rule -Type SkipRule
 
 foreach ( $rule in $rules )
 {

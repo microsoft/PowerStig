@@ -1,22 +1,14 @@
-#region Header
-using module .\..\..\..\Module\STIG.Checklist\STIG.Checklist.psm1
-. $PSScriptRoot\.tests.header.ps1
-#endregion
-try
-{
-    InModuleScope -ModuleName $script:moduleName {
-        #region Test Setup
+. $PSScriptRoot\..\..\..\Module\STIG\Functions.Checklist.ps1
 
-        #endregion
-        #region Tests
+Describe 'New-StigCheckList' {
 
-        Describe 'New-StigCheckList' {
-
-        }
-        #endregion
+    It 'Should throw if an invalid path is provided' {
+        Mock Test-Path {return $false}
+        {New-StigCheckList -ReferenceConfiguration 'test' -XccdfPath 'test' -OutputPath 'c:\test'} | Should Throw
     }
-}
-finally
-{
-    . $PSScriptRoot\.tests.footer.ps1
+
+    It 'Should throw if the full path to a .ckl file is not provided' {
+        Mock Test-Path {return $true}
+        {New-StigCheckList -ReferenceConfiguration 'test' -XccdfPath 'test' -OutputPath 'c:\test\test.ck'} | Should Throw
+    }
 }

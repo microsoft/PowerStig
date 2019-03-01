@@ -1,16 +1,19 @@
 #region Header
-using module .\..\..\..\Module\ProcessMitigationRule\ProcessMitigationRule.psm1
+using module .\..\..\..\Module\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName "$($global:moduleName).Convert" {
         #region Test Setup
-        $rulesToTest = @(
+        $testRuleList = @(
             @{
                 MitigationTarget = 'System'
-                Enable           = 'TerminateOnError'
-                CheckContent     = ' This is NA prior to v1709 of Windows 10.
+                Enable = 'TerminateOnError'
+                Disable = $null
+                OrganizationValueRequired = $false
+                CheckContent = ' This is NA prior to v1709 of Windows 10.
 
                 Run "Windows PowerShell" with elevated privileges (run as administrator).
 
@@ -21,11 +24,13 @@ try
                 Values that would not be a finding include:
                 ON
                 NOTSET'
-            }
+            },
             @{
                 MitigationTarget = 'wordpad.exe'
-                Enable           = 'DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec'
-                CheckContent     = 'This is NA prior to v1709 of Windows 10.
+                Enable = 'DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec'
+                Disable = $null
+                OrganizationValueRequired = $false
+                CheckContent = 'This is NA prior to v1709 of Windows 10.
 
                 Run "Windows PowerShell" with elevated privileges (run as administrator).
 
@@ -46,37 +51,13 @@ try
                 EnableRopSimExec: ON
 
                 The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.'
-            }
-            @{
-                MitigationTarget = 'java.exe,javaw.exe,javaws.exe'
-                Enable           = 'DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec'
-                CheckContent     = 'This is NA prior to v1709 of Windows 10.
-
-                Run "Windows PowerShell" with elevated privileges (run as administrator).
-
-                Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
-                java.exe, javaw.exe, and javaws.exe
-                (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
-
-                If the following mitigations do not have a status of "ON" for each, this is a finding:
-
-                DEP:
-                Enable: ON
-
-                Payload:
-                EnableExportAddressFilter: ON
-                EnableExportAddressFilterPlus: ON
-                EnableImportAddressFilter: ON
-                EnableRopStackPivot: ON
-                EnableRopCallerCheck: ON
-                EnableRopSimExec: ON
-
-                The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.'
-            }
+            },
             @{
                 MitigationTarget = 'System'
-                Enable           = 'DEP'
-                CheckContent     = 'This is NA prior to v1709 of Windows 10.
+                Enable = 'DEP'
+                Disable = $null
+                OrganizationValueRequired = $false
+                CheckContent = 'This is NA prior to v1709 of Windows 10.
 
                 Run "Windows PowerShell" with elevated privileges (run as administrator).
 
@@ -89,93 +70,59 @@ try
                 NOTSET'
             }
         )
-
-        $stigRule = Get-TestStigRule -CheckContent $rulesToTest[0].CheckContent -ReturnGroupOnly
-        $rule = [ProcessMitigationRule]::new( $stigRule )
         #endregion
-        #region Class Tests
-        Describe "$($rule.GetType().Name) Child Class" {
 
-            Context 'Base Class' {
-
-                It 'Shoud have a BaseType of STIG' {
-                    $rule.GetType().BaseType.ToString() | Should Be 'Rule'
-                }
-            }
-
-            Context 'Class Properties' {
-
-                $classProperties = @('MitigationTarget', 'Enable', 'Disable')
-
-                foreach ( $property in $classProperties )
-                {
-                    It "Should have a property named '$property'" {
-                        ( $rule | Get-Member -Name $property ).Name | Should Be $property
-                    }
-                }
-            }
-        }
-        #endregion
-        #region Method Tests
-        Describe 'Get-MitigationTargetName' {
-            foreach ( $rule in $rulesToTest )
-            {
-                It "Should be a MitigationTarget of '$($rule.MitigationTarget)'" {
-                    $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                    $result = Get-MitigationTargetName -CheckContent $checkContent
-                    $result | Should Be $rule.MitigationTarget
-                }
-            }
+        foreach ($testRule in $testRuleList)
+        {
+            . $PSScriptRoot\Convert.CommonTests.ps1
         }
 
-        Describe 'Get-MitigationPolicyToEnable' {
-            Mock -CommandName Test-PoliciesToEnable -MockWith {$true}
+        #region Add Custom Tests Here
+        Describe 'MultipleRules' {
+            # TODO move this to the CommonTests
+            $testRuleList = @(
+                @{
+                    Count = 3
+                    CheckContent = 'This is NA prior to v1709 of Windows 10.
 
-            foreach ( $rule in $rulesToTest )
-            {
-                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-                $result = Get-MitigationPolicyToEnable -CheckContent $checkContent
-                It "Should have Enable equal to: '$($rule.Enable)'" {
+                    Run "Windows PowerShell" with elevated privileges (run as administrator).
 
-                    $result | Should Be $rule.Enable
+                    Enter "Get-ProcessMitigation -Name [application name]" with each of the following substituted for [application name]:
+                    java.exe, javaw.exe, and javaws.exe
+                    (Get-ProcessMitigation can be run without the -Name parameter to get a list of all application mitigations configured.)
+
+                    If the following mitigations do not have a status of "ON" for each, this is a finding:
+
+                    DEP:
+                    Enable: ON
+
+                    Payload:
+                    EnableExportAddressFilter: ON
+                    EnableExportAddressFilterPlus: ON
+                    EnableImportAddressFilter: ON
+                    EnableRopStackPivot: ON
+                    EnableRopCallerCheck: ON
+                    EnableRopSimExec: ON
+
+                    The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.'
                 }
-            }
-        }
-        #endregion
-        #region Function Tests
-        Describe 'Test-MultipleProcessMitigationRule'{
-            
-            foreach ($rule in $rulesToTest)
-            {
-                if ($rule.MitigationTarget -match 'java') 
-                {
-                    It "Should return $true for multiple rule" {
-                        Test-MultipleProcessMitigationRule -MitigationTarget $rule.MitigationTarget | Should Be $true
-                    }
-                }
-                else 
-                {
-                    It "Should return $false for non multiple rule" {
-                        Test-MultipleProcessMitigationRule -MitigationTarget $rule.MitigationTarget | Should Be $false
-                    }
-                }
-            }
-        }
+            )
 
-        Describe 'Test-PoliciesToEnable' {
-            foreach ($rule in $rulesToTest)
+            foreach ($testRule in $testRuleList)
             {
-                $checkContent = Split-TestStrings -CheckContent $rule.CheckContent
-
+                # Get the rule element with the checkContent injected into it
+                $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly
+                # Create an instance of the convert class that is currently being tested
+                $convertedRule = [ProcessMitigationRuleConvert]::new($stigRule)
                 It "Should return $true" {
-                    Test-PoliciesToEnable -CheckContent $checkContent | Should Be $true  
+                    $convertedRule.HasMultipleRules() | Should -Be $true
+                }
+                It "Should return $($testRule.Count) rules" {
+                    $multipleRule = $convertedRule.SplitMultipleRules()
+                    $multipleRule.count | Should -Be $testRule.Count
                 }
             }
         }
-
-        #endregion
-        #region Data Tests
-
         #endregion
     }
 }

@@ -10,33 +10,34 @@
     enumerations.
 #>
 using module .\Module\Common\Common.psm1
-using module .\Module\Convert\Convert.psm1
-using module .\Module\AccountPolicyRule\AccountPolicyRule.psm1
-using module .\Module\AuditPolicyRule\AuditPolicyRule.psm1
-using module .\Module\DnsServerRootHintRule\DnsServerRootHintRule.psm1
-using module .\Module\DnsServerSettingRule\DnsServerSettingRule.psm1
-using module .\Module\DocumentRule\DocumentRule.psm1
-using module .\Module\FileContentRule\FileContentRule.psm1
-using module .\Module\GroupRule\GroupRule.psm1
-using module .\Module\IISLoggingRule\IISLoggingRule.psm1
-using module .\Module\ManualRule\ManualRule.psm1
-using module .\Module\MimeTypeRule\MimeTypeRule.psm1
-using module .\Module\PermissionRule\PermissionRule.psm1
-using module .\Module\ProcessMitigationRule\ProcessMitigationRule.psm1
-using module .\Module\RegistryRule\RegistryRule.psm1
-using module .\Module\SecurityOptionRule\SecurityOptionRule.psm1
-using module .\Module\ServiceRule\ServiceRule.psm1
-using module .\Module\SqlScriptQueryRule\SqlScriptQueryRule.psm1
 using module .\Module\Rule\Rule.psm1
-using module .\Module\UserRightsAssignmentRule\UserRightsAssignmentRule.psm1
-using module .\Module\WebAppPoolRule\WebAppPoolRule.psm1
-using module .\Module\WebConfigurationPropertyRule\WebConfigurationPropertyRule.psm1
-using module .\Module\WindowsFeatureRule\WindowsFeatureRule.psm1
-using module .\Module\WinEventLogRule\WinEventLogRule.psm1
-using module .\Module\WmiRule\WmiRule.psm1
+using module .\Module\Rule\Convert\ConvertFactory.psm1
+using module .\Module\Rule.AccountPolicy\Convert\AccountPolicyRule.Convert.psm1
+using module .\Module\Rule.AuditPolicy\Convert\AuditPolicyRule.Convert.psm1
+using module .\Module\Rule.DnsServerRootHint\Convert\DnsServerRootHintRule.Convert.psm1
+using module .\Module\Rule.DnsServerSetting\Convert\DnsServerSettingRule.Convert.psm1
+using module .\Module\Rule.Document\Convert\DocumentRule.Convert.psm1
+using module .\Module\Rule.FileContent\Convert\FileContentRule.Convert.psm1
+using module .\Module\Rule.Group\Convert\GroupRule.Convert.psm1
+using module .\Module\Rule.IISLogging\Convert\IISLoggingRule.Convert.psm1
+using module .\Module\Rule.Manual\Convert\ManualRule.Convert.psm1
+using module .\Module\Rule.MimeType\Convert\MimeTypeRule.Convert.psm1
+using module .\Module\Rule.Permission\Convert\PermissionRule.Convert.psm1
+using module .\Module\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Convert.psm1
+using module .\Module\Rule.Registry\Convert\RegistryRule.Convert.psm1
+using module .\Module\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
+using module .\Module\Rule.Service\Convert\ServiceRule.Convert.psm1
+using module .\Module\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
+using module .\Module\Rule.UserRight\Convert\UserRightRule.Convert.psm1
+using module .\Module\Rule.WebAppPool\Convert\WebAppPoolRule.Convert.psm1
+using module .\Module\Rule.WebConfigurationProperty\Convert\WebConfigurationPropertyRule.Convert.psm1
+using module .\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
+using module .\Module\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
+using module .\Module\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
+using module .\Module\Rule.Wmi\Convert\WmiRule.Convert.psm1
 
 # load the public functions
-foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Convert.Main" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )
+foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig\Convert" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

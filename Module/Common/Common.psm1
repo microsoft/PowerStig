@@ -43,57 +43,6 @@ enum ensure
     Absent
 }
 
-<#
-    .SYNOPSIS
-        This enum describes a StigRuleType
-
-    .DESCRIPTION
-        The RuleType enum describes a StigRuleType, the value of a specific type of Stig rule.
-
-    .EXAMPLE
-        $stigRuleType = [StigRuleType]::AccountPolicyRule
-
-    .NOTES
-        This enum requires PowerShell v5 or above.
-#>
-Enum RuleType
-{
-    AccountPolicyRule
-    AuditPolicyRule
-    DnsServerRootHintRule
-    DnsServerSettingRule
-    DocumentRule
-    FileContentRule
-    GroupRule
-    IisLoggingRule
-    ManualRule
-    MimeTypeRule
-    PermissionRule
-    ProcessMitigationRule
-    RegistryRule
-    SecurityOptionRule
-    ServiceRule
-    SkipRule
-    SqlScriptQueryRule
-    UserRightRule
-    WebAppPoolRule
-    WebConfigurationPropertyRule
-    WindowsFeatureRule
-    WinEventLogRule
-    WmiRule
-}
-
-<#
-    .SYNOPSIS
-        This enum describes the list of supported technologies
-#>
-enum Technology
-{
-    Windows
-    SqlServer
-    Mozilla
-}
-
 #endregion
 
 #region RegexClass
@@ -132,7 +81,7 @@ class RegularExpression
 }
 #endregion
 #region Footer
-foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Exclude $MyInvocation.MyCommand.Name))
+foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Recurse -File -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName

@@ -1,0 +1,2 @@
+V-76725::If the "Cookie Settings" "Mode" is not set to "Use Cookies" and the "Regenerate expired session ID" check box is not selected, this is a finding.::If the "Cookie Settings" "Mode" is not set to "Use Cookies", this is a finding.
+V-76725::Verify the "Regenerate expired session ID" check box is selected.::Verify

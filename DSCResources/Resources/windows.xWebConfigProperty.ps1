@@ -1,10 +1,8 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-
 #region Header
-$rules = Get-RuleClassData -StigData $stigData -Name WebConfigurationPropertyRule
-#endregion Header
-#region Resource
+$rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule
+
 if ($WebsiteName)
 {
     foreach ($website in $WebsiteName)
@@ -43,4 +41,3 @@ else
         }
     }
 }
-#endregion Resource

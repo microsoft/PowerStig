@@ -17,16 +17,10 @@ $enumListString | Foreach-Object { $enumDiscovered.add( ( $_ -split " " )[1].ToS
 [int] $enumTestCount = $enumDiscovered.Count
 
 $enumTests = @{
-    'Process' = 'auto|manual'
-    'Status' = 'pass|warn|fail'
+    'Process'  = 'auto|manual'
+    'Status'   = 'pass|warn|fail'
     'Severity' = 'low|medium|high'
-    'Ensure' = 'Present|Absent'
-    'RuleType' = 'AccountPolicyRule|AuditPolicyRule|DnsServerRootHintRule|DnsServerSettingRule|' +
-    'DocumentRule|FileContentRule|GroupRule|IisLoggingRule|ManualRule|MimeTypeRule|' +
-    'PermissionRule|ProcessMitigationRule|RegistryRule|SecurityOptionRule|ServiceRule|' +
-    '|SkipRuleSqlScriptQueryRule|UserRightRule|WebConfigurationPropertyRule|' +
-    '|WebAppPoolRuleWindowsFeatureRule|WinEventLogRule|WmiRule'
-    'Technology' = 'Windows|SQL|Mozilla'
+    'Ensure'   = 'Present|Absent'
 }
 
 foreach ( $enum in $enumTests.GetEnumerator() )
@@ -45,19 +39,6 @@ foreach ( $enum in $enumTests.GetEnumerator() )
                 $value | Should Match $enum.Value
             }
         }
-    }
-}
-
-# Final test to validate all enums habve been tested
-Describe 'Enum coverage' {
-
-    It "Should have tested $enumTestCount enum's" {
-
-        <#
-            If this test is failing verify that the $enumList.Remove('enum') line is in the
-            describe statemetn for the enum.
-        #>
-        ( $enumDiscovered.count - $enumTestCount ) * -1 | Should Be $enumTestCount
     }
 }
 #endregion Tests
@@ -707,7 +688,8 @@ Describe 'Test-SecurityPolicyContainsRange' {
         $strings = @(
             'If the value for "Password must meet complexity requirements" is not set to "Enabled", this is a finding.',
             'If the value for "Store password using reversible encryption" is not set to "Disabled", this is a finding.',
-            'If the "Account lockout duration" is not set to "0", requiring an administrator to unlock the account, this is a finding.'
+            'If the "Account lockout duration" is not set to "0", requiring an administrator to unlock the account, this is a finding.',
+            'If "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not "enabled", this is a finding.'
         )
 
         foreach ( $string in $strings )

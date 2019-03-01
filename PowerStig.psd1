@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.4.0.0'
+ModuleVersion = '3.0.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -37,7 +37,7 @@ CLRVersion = '4.0'
 # Modules that must be imported into the global environment prior to importing this module
 RequiredModules  = @(
     @{ModuleName = 'AuditPolicyDsc'; ModuleVersion = '1.2.0.0'},
-    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.2.0.0'},
+    @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.3.0.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
     @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
@@ -45,21 +45,21 @@ RequiredModules  = @(
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xPSDesiredStateConfiguration'; ModuleVersion = '8.3.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.3.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
     @{ModuleName = 'xWinEventLog'; ModuleVersion = '1.2.0.0'}
 )
 
 # DSC resources to export from this module
 DscResourcesToExport = @(
-    'Browser',
     'DotNetFramework',
     'FireFox',
     'IisServer',
     'IisSite',
+    'InternetExplorer',
     'Office',
     'OracleJRE',
     'SqlServer',
-    'WindowsClient'
+    'WindowsClient',
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer'
@@ -67,9 +67,8 @@ DscResourcesToExport = @(
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
-    'Get-OrgSettingsObject',
     'Get-DomainName',
-    'Get-StigList',
+    'Get-Stig',
     'New-StigCheckList'
 )
 
@@ -97,37 +96,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
-* Fixed [#246](https://github.com/Microsoft/PowerStig/issues/246): IIS Server rule V-76737 contains an incorrect value
-* Fixed [#225](https://github.com/Microsoft/PowerStig/issues/225): Update PowerStig integration tests to consolidate duplicate code.
-* Fixed [#160](https://github.com/Microsoft/PowerStig/issues/160): PowerStig.Convert needs to handle new registry rules without affecting existing code
-* Fixed [#201](https://github.com/Microsoft/PowerStig/issues/201): Update PowerStig integration tests to account for skips and exceptions.
-* Fixed [#260](https://github.com/Microsoft/PowerStig/issues/260): FireFox Composite Resource configuration applies correctly, but never passes a Test-DscConfiguration.
-* Fixed [#244](https://github.com/Microsoft/PowerStig/issues/244): IIS Server rule V-76727.b org setting test fails
-* Fixed [#265](https://github.com/Microsoft/PowerStig/issues/265): Fixed UserRightsAssignment split rule bug.
-* Fixed [#267](https://github.com/Microsoft/PowerStig/issues/267): Fixed winlogon registry path parser bug.
-* Fixed [#238](https://github.com/Microsoft/PowerStig/issues/238): Adds regex tracker for RegistryRule regex''s.
-* Fixed [#274](https://github.com/Microsoft/PowerStig/issues/274): UserRightsAssignment composite resource does not leverage the Force Parameter.
-* Fixed [#280](https://github.com/Microsoft/PowerStig/issues/280): HKEY_CURRENT_USER is not needed with the cAdministrativeTemplateSetting composite resource.
-
-* Windows Server 2012R2 Fixes
-  * V-36707 is now an org setting
-  * (DC only) V-2376 - V-2380 are migrated from manual to account policy rules.
-
-* Added the following STIGs
-  * SQL Server 2016 Instance V1R3 [#186](https://github.com/Microsoft/PowerStig/issues/186)
-  * Windows Defender Antivirus V1R4 [#236](https://github.com/microsoft/PowerStig/issues/236)
-  * Mozilla Firefox V4R24 [#261](https://github.com/Microsoft/PowerStig/issues/261)
-  * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
-  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
-  * SQL Server 2012 Database V1R18 [#263](https://github.com/Microsoft/PowerStig/issues/263)
-  * Windows Server 2012R2 DC V2R15 [#267](https://github.com/Microsoft/PowerStig/issues/267)
-  * Windows 10 V1R16 [#269](https://github.com/Microsoft/PowerStig/issues/269)
-  * IIS Server 8.5 V1R6 [#256](https://github.com/Microsoft/PowerStig/issues/266)
-  * Windows Server 2016 V1R6 [#169](https://github.com/Microsoft/PowerStig/issues/169)
-  * Windows Server 2016 V1R7 [#251](https://github.com/Microsoft/PowerStig/issues/251)
-  * Windows Server 2012R2 DNS V1R11 STIG [#265](https://github.com/Microsoft/PowerStig/issues/265)
-  * AD Domain V2R12 [#270](https://github.com/Microsoft/PowerStig/issues/270)'
+        ReleaseNotes = ''
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
