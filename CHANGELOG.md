@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#342](https://github.com/Microsoft/PowerStig/issues/342): xWinEventLog has been deprecated
+
 ## 3.0.0
 
 NEW

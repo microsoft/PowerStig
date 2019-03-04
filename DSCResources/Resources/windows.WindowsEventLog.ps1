@@ -5,7 +5,7 @@ $rules = $stig.RuleList | Select-Rule -Type WinEventLogRule
 
 foreach ( $rule in $rules )
 {
-    xWinEventLog (Get-ResourceTitle -Rule $rule)
+    WindowsEventLog (Get-ResourceTitle -Rule $rule)
     {
         LogName     = $rule.LogName
         IsEnabled   = [boolean]$($rule.IsEnabled)

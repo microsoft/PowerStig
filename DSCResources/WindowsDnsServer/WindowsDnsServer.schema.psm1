@@ -102,6 +102,6 @@ Configuration WindowsDnsServer
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
 
-    Import-DscResource -ModuleName xWinEventLog -ModuleVersion 1.2.0.0
-    . "$resourcePath\windows.xWinEventLog.ps1"
+    Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 6.2.0.0
+    . "$resourcePath\windows.WindowsEventLog.ps1"
 }
