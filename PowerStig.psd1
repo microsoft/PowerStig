@@ -60,6 +60,7 @@ DscResourcesToExport = @(
     'OracleJRE',
     'SqlServer',
     'WindowsClient',
+    'WindowsDefender',
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer'
