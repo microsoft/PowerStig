@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type RegistryRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
@@ -16,19 +16,32 @@ foreach ( $rule in $rules )
             $valueData = $rule.ValueData
         }
 
-        if( $valueData -eq 'ShouldBeAbsent')
+        if ($valueData -eq 'ShouldBeAbsent')
         {
             $rule.Ensure = 'Absent'
         }
 
-        xRegistry (Get-ResourceTitle -Rule $rule)
+        if ($rule.Ensure = 'Absent')
         {
-            Key       = $rule.Key
-            ValueName = $rule.ValueName
-            ValueData = $valueData
-            ValueType = $rule.ValueType
-            Ensure    = $rule.Ensure
-            Force     = $true
+            xRegistry (Get-ResourceTitle -Rule $rule)
+            {
+                Key       = $rule.Key
+                ValueName = $rule.ValueName
+                Ensure    = $rule.Ensure
+                Force     = $true
+            }
+        }
+        else
+        {
+            xRegistry (Get-ResourceTitle -Rule $rule)
+            {
+                Key       = $rule.Key
+                ValueName = $rule.ValueName
+                ValueData = $valueData
+                ValueType = $rule.ValueType
+                Ensure    = $rule.Ensure
+                Force     = $true
+            }
         }
     }
 }
