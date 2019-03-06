@@ -95,7 +95,7 @@ function Get-ResourceMatchStatement
         {
                 $resourceMatchStatement = '$PSItem.ResourceID -match "\[xDnsServerSetting\]"'
         }
-        'SslSettingRule'
+        'SslSettingsRule'
         {
                 $resourceMatchStatement = '$PSItem.ResourceID -match "\[xSslSettings\]"'
         }
