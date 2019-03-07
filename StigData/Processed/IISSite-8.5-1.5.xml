@@ -1,5 +1,25 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Oct 2018" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="2/28/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Oct 2018" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="3/6/2019">
   <DocumentRule dscresourcemodule="None">
+    <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006 Duplicate" dscresource="None">
+      <Description />
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Note: If the server being reviewed is a private IIS 8.5 web server, this is Not Applicable.
+
+Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Click the site name.
+
+Double-click the "SSL Settings" icon.
+
+Verify "Require SSL" check box is selected.
+
+If the "Require SSL" check box is not selected, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
 
@@ -37,6 +57,36 @@ Open the IIS 8.5 Manager.
 Double-click "Request Filtering". 
 
 If any file name extensions from the black list have "Allowed" set to "True", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-76813" severity="medium" conversionstatus="pass" title="SRG-APP-000224-WSR-000136 Duplicate" dscresource="None">
+      <Description />
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Click the site name.
+
+Under the "ASP.NET" section, select "Session State".
+
+Under "Session State" Mode Settings, verify the "In Process" mode is selected.
+
+If the "In Process" mode is selected, this is not a finding.
+
+Alternative method:
+
+Click the site name.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+
+Verify the "mode" reflects "InProc".
+
+If the "mode" is not set to "InProc", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76819" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;By setting limits on web requests, it ensures availability of web services and mitigates the risk of buffer overflow type attacks. The maxAllowedContentLength Request Filter limits the number of bytes the server will accept in a request.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -162,6 +212,36 @@ Click the site name under review.
 In the “Action” Pane, click “Bindings”.
 
 Review the ports and protocols. If unknown ports or protocols are used, then this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-76861" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181 Duplicate" dscresource="None">
+      <Description />
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Double-click the "SSL Settings" icon under the "IIS" section.
+
+Verify "Require SSL" is checked.
+
+Verify "Client Certificates Required" is selected.
+
+Click the site under review.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
+
+The value for "sslFlags" should be ssl128.
+
+If the "Require SSL" is not selected, this is a finding.
+
+If the "Client Certificates Required" is not selected, this is a finding.
+
+If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
     </Rule>
     <Rule id="V-76867" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS application pools can be periodically recycled to avoid unstable states possibly leading to application crashes, hangs, or memory leaks. By default, application pool recycling is overlapped, which means the worker process to be shut down is kept running until after a new worker process is started. After a new worker process starts, new requests are passed to it. The old worker process shuts down after it finishes processing its existing requests, or after a configured time-out, whichever comes first. This way of recycling ensures uninterrupted service to clients.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -857,29 +937,6 @@ Verify "Require SSL" check box is selected.
 If the "Require SSL" check box is not selected, this is a finding.</RawString>
       <Value>Ssl</Value>
     </Rule>
-    <Rule id="V-76781" severity="medium" conversionstatus="pass" title="SRG-APP-000014-WSR-000006" dscresource="xSslSettings">
-      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
-
-FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: If the server being reviewed is a private IIS 8.5 web server, this is Not Applicable.
-
-Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click the site name.
-
-Double-click the "SSL Settings" icon.
-
-Verify "Require SSL" check box is selected.
-
-If the "Require SSL" check box is not selected, this is a finding.</RawString>
-      <Value>Ssl</Value>
-    </Rule>
     <Rule id="V-76809" severity="medium" conversionstatus="pass" title="SRG-APP-000172-WSR-000104" dscresource="xSslSettings">
       <Description>&lt;VulnDiscussion&gt;A DoD private website must utilize PKI as an authentication mechanism for web users. Information systems residing behind web servers requiring authorization based on individual identity must use the identity provided by certificate-based authentication to support access control decisions. Not using client certificates allows an attacker unauthenticated access to private websites.
 
@@ -932,49 +989,6 @@ Select "Configuration Editor" under the "Management" section.
 From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
 
 The value for "sslFlags" set must include "ssl128".
-
-If the "Require SSL" is not selected, this is a finding.
-
-If the "Client Certificates Required" is not selected, this is a finding.
-
-If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
-      <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
-    </Rule>
-    <Rule id="V-76861" severity="medium" conversionstatus="pass" title="SRG-APP-000441-WSR-000181" dscresource="xSslSettings">
-      <Description>&lt;VulnDiscussion&gt;Information can be either unintentionally or maliciously disclosed or modified during preparation for transmission, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information.
-
-An example of this would be an SMTP queue. This queue may be added to a web server through an SMTP module to enhance error reporting or to allow developers to add SMTP functionality to their applications. 
-
-Any modules used by the web server that queue data before transmission must maintain the confidentiality and integrity of the information before the data is transmitted.
-
-Information can be either unintentionally or maliciously disclosed or modified during reception, including, for example, during aggregation, at protocol transformation points, and during packing/unpacking. These unauthorized disclosures or modifications compromise the confidentiality or integrity of the information. 
-
-Protecting the confidentiality and integrity of received information requires that application servers take measures to employ approved cryptography in order to protect the information during transmission over the network. This is usually achieved through the use of Transport Layer Security (TLS), SSL VPN, or IPsec tunnel. 
-
-The web server must utilize approved encryption when receiving transmitted data.
-
-Also satisfies: SRG-APP-000442-WSR-000182&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Double-click the "SSL Settings" icon under the "IIS" section.
-
-Verify "Require SSL" is checked.
-
-Verify "Client Certificates Required" is selected.
-
-Click the site under review.
-
-Select "Configuration Editor" under the "Management" section.
-
-From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
-
-The value for "sslFlags" should be ssl128.
 
 If the "Require SSL" is not selected, this is a finding.
 
@@ -1174,43 +1188,6 @@ If the ".NET Trust Level" is not set to Full or less, this is a finding.
 </RawString>
       <Value>
       </Value>
-    </Rule>
-    <Rule id="V-76813" severity="medium" conversionstatus="pass" title="SRG-APP-000224-WSR-000136" dscresource="xWebConfigKeyValue">
-      <ConfigSection>/system.web/sessionState</ConfigSection>
-      <Description>&lt;VulnDiscussion&gt;Communication between a client and the web server is done using the HTTP protocol, but HTTP is a stateless protocol. In order to maintain a connection or session, a web server will generate a session identifier (ID) for each client session when the session is initiated. The session ID allows the web server to track a user session and, in many cases, the user, if the user previously logged into a hosted application.
-
-By being able to guess session IDs, an attacker can easily perform a man-in-the-middle attack. To truly generate random session identifiers that cannot be reproduced, the web server session ID generator, when used twice with the same input criteria, must generate an unrelated random ID.
-
-The session ID generator also needs to be a FIPS 140-2-approved generator.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>mode</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click the site name.
-
-Under the "ASP.NET" section, select "Session State".
-
-Under "Session State" Mode Settings, verify the "In Process" mode is selected.
-
-If the "In Process" mode is selected, this is not a finding.
-
-Alternative method:
-
-Click the site name.
-
-Select "Configuration Editor" under the "Management" section.
-
-From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-
-Verify the "mode" reflects "InProc".
-
-If the "mode" is not set to "InProc", this is a finding.</RawString>
-      <Value>InProc</Value>
     </Rule>
     <Rule id="V-76817" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.webServer/security/requestFiltering/requestlimits</ConfigSection>
