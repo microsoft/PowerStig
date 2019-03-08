@@ -1,10 +1,11 @@
 # Versions
 
-## 3.0.0
+## Unreleased
 
 UPDATES
 
 * Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
+* Fixed [#348](https://github.com/Microsoft/PowerStig/issues/348): Update to DnsServer Schema to correct typo.
 
 ## 3.0.0
 
