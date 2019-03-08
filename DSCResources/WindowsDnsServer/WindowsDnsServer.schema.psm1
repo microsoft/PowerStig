@@ -58,7 +58,7 @@ Configuration WindowsDnsServer
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [sashtable]
+        [hashtable]
         $Exception,
 
         [Parameter()]

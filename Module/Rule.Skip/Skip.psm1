@@ -45,6 +45,7 @@ Class SkippedRule : Rule
     SkippedRule ([string] $Id)
     {
         $this.Id = $Id
+        $this.Title = 'Skip'
     }
 
     #endregion
