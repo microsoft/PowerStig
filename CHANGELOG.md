@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-NEW
+UPDATES
+
+* Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
+
+## 3.0.0
 
 * Introduces class support for each rule type
 * The STIG class now contains an array of rule objects vs xml elements
