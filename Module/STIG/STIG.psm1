@@ -220,7 +220,7 @@ Class STIG
         {
             foreach ($rule in $type.Rule)
             {
-                if ( @($SkipRules) -contains $rule.Id -or $type.Name -eq $SkipRuleType )
+                if (@($SkipRules) -contains $rule.Id -or @($SkipRuleType) -contains $type.Name)
                 {
                     $importRule = [SkippedRule]::new($rule.Id)
                 }

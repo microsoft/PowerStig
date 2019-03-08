@@ -26,7 +26,7 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
         {& $technologyConfig @testhash} | Should -Not -Throw
     }
 
-    <#{TODO}#> <#Add back modified version after migration
+    <#{TODO}#> #Add back modified version after migration
     $configurationDocumentPath = "$TestDrive\localhost.mof"
     $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
@@ -137,7 +137,7 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
             $dscMof.count | Should -Be $expectedSkipRuleTypeMultipleCount
         }
     }
-    #>
+    
 
     $stigPath = $stig.path.TrimEnd(".xml")
     $orgSettings = $stigPath + ".org.default.xml"
