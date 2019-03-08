@@ -172,8 +172,17 @@ Class Rule : ICloneable
     #>
     [void] AddExceptionToPolicy ([string] $Value)
     {
-        $this.Title = "[Exception] " + $this.title
+        $this.UpdateRuleTitle('Exception')
         $this.($this.GetOverrideValue()) = $Value
+    }
+
+    <#
+    .SYNOPSIS
+        Applies a uniform title update format
+    #>
+    [void] UpdateRuleTitle ([string] $Value)
+    {
+        $this.Title = "[$Value] " + $this.Title
     }
 
     <#

@@ -222,7 +222,7 @@ Class STIG
             {
                 if (@($SkipRules) -contains $rule.Id -or @($SkipRuleType) -contains $type.Name)
                 {
-                    $importRule = [SkippedRule]::new($rule.Id)
+                    $importRule = [SkippedRule]::new($rule)
                 }
                 else
                 {
