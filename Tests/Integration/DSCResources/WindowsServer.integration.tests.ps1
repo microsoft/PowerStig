@@ -17,18 +17,7 @@ try
     {
         [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        if ($stig.TechnologyRole -eq 'DNS')
-        {
-            $exception          = Get-Random -InputObject $powerstigXml.DISASTIG.UserRightRule.Rule.id
-            $exceptionMultiple  = Get-Random -InputObject $powerstigXml.DISASTIG.UserRightRule.Rule.id -Count 2
-            $skipRule           = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerRootHintRule.Rule.id
-            $skipRuleMultiple   = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerRootHintRule.Rule.id -Count 2
-            $skipRuleType               = "UserRightRule"
-            $expectedSkipRuleTypeCount  = $powerstigXml.DISASTIG.UserRightRule.ChildNodes.Count
-            $skipRuleTypeMultiple               = @('PermissionRule', 'UserRightRule')
-            $expectedSkipRuleTypeMultipleCount  = $powerstigXml.DISASTIG.PermissionRule.ChildNodes.Count + $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
-        }
-        elseif ($stig.TechnologyRole -eq 'Domain')
+        if ($stig.TechnologyRole -eq 'Domain')
         {
             continue
         }
