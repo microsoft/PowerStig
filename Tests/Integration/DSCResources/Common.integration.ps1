@@ -51,8 +51,8 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
             {
                 <#
                     $dscMof is a collection of items, so the -not operator is used
-                    in place of a -not match, since the -notmatch simply removes
-                    the match from te collection.
+                    in place of a -notmatch, since the -notmatch removes the
+                    match from the collection.
                 #>
                 if (-not ($dscMof.ResourceID -match $rule.id))
                 {
