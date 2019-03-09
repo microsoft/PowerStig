@@ -1,4 +1,4 @@
-Configuration SqlServerInstance_config
+Configuration SqlServer_config
 {
     param
     (
