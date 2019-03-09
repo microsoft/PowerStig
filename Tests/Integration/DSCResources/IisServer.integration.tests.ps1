@@ -7,13 +7,11 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
-    #region Integration Tests
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
-    #region Integration Tests
     foreach ($stig in $stigList)
     {
         [xml] $dscXml = Get-Content -Path $stig.Path

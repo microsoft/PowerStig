@@ -7,18 +7,14 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
-    #region Integration Tests
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
-    #region Test Setup
     $WebsiteName = @('WarioSite', 'DKSite')
     $WebAppPool = @('MushroomBeach', 'ToadHarbor')
-    #endregionTest Setup
 
-    #region Tests
     foreach ($stig in $stigList)
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
@@ -37,11 +33,8 @@ try
         $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
         . $userSettingsPath
     }
-    #endregion Tests
 }
 finally
 {
-    #region FOOTER
     Restore-TestEnvironment -TestEnvironment $TestEnvironment
-    #endregion
 }
