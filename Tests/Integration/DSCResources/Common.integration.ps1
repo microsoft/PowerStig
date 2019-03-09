@@ -29,7 +29,6 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
         {& $technologyConfig @testhash} | Should -Not -Throw
     }
 
-    <#{TODO}#> #Add back modified version after migration
     $configurationDocumentPath = "$TestDrive\localhost.mof"
     $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
@@ -40,8 +39,8 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
     {
         Context $ruleName {
             $hasAllRules = $true
-            $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule) |
-                Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'}
+            $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule |
+                Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'})
 
             $instanceFilter = Get-ResourceMatchStatement -RuleName $ruleName
             $dscMof = $instances |
