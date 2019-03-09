@@ -88,7 +88,7 @@ Configuration IisServer_Config
         $LogPath
     )
 
-    Import-DscResource -ModuleName PowerStig
+    Import-DscResource -ModuleName PowerStig -ModuleVersion 3.0.0
     Node localhost
     {
         & ([scriptblock]::Create("
@@ -103,7 +103,7 @@ Configuration IisServer_Config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'Value'='1234567'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

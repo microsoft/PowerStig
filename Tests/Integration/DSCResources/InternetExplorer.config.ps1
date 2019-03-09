@@ -103,7 +103,7 @@ Configuration InternetExplorer_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'ValueData'='1234567'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

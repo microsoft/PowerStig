@@ -86,7 +86,7 @@ Configuration SqlServerInstance_config
         [string]
         [AllowNull()]
         $LogPath
-        
+
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -106,7 +106,7 @@ Configuration SqlServerInstance_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$$PSItem'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
