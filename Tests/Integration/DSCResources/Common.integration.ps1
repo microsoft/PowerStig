@@ -3,6 +3,9 @@
     skipped rules, and organizational objects that were provided to the composite
 #>
 Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+
+    $technologyConfig = "$($script:DSCCompositeResourceName)_config"
+
     $testhash = @{
         StigVersion     = $stig.StigVersion
         BrowserVersion  = $stig.TechnologyVersion
@@ -108,7 +111,7 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
 
     Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Type" {
         It "Should compile the MOF without throwing" {
-            {& $technologyConfig @testhash -SkipruleType $skipRuleType} | Should -Not -Throw
+            {& $technologyConfig @testhash -SkipRuleType $skipRuleType} | Should -Not -Throw
         }
         # Gets the mof content
         $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -137,7 +140,7 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
             $dscMof.count | Should -Be $expectedSkipRuleTypeMultipleCount
         }
     }
-    
+
 
     $stigPath = $stig.path.TrimEnd(".xml")
     $orgSettings = $stigPath + ".org.default.xml"

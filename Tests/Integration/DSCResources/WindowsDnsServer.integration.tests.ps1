@@ -19,8 +19,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
         $skipRuleType = "PermissionRule"
         $expectedSkipRuleTypeCount = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count

@@ -18,8 +18,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)$($stig.TechnologyRole)_config"
-
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
         $skipRuleType = "DocumentRule"
         $expectedSkipRuleTypeCount = $dscXml.DISASTIG.DocumentRule.ChildNodes.Count

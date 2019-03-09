@@ -23,8 +23,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
         $skipRuleType = "IisLoggingRule"
         $expectedSkipRuleTypeCount = $dscXml.DISASTIG.IisLoggingRule.ChildNodes.Count

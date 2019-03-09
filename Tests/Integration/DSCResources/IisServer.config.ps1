@@ -88,7 +88,7 @@ Configuration IisServer_Config
         $LogPath
     )
 
-    Import-DscResource -ModuleName PowerStig -ModuleVersion 3.0.0
+    Import-DscResource -ModuleName PowerStig
     Node localhost
     {
         & ([scriptblock]::Create("

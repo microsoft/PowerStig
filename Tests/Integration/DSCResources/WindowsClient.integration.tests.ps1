@@ -18,8 +18,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
         $skipRuleType = "AuditPolicyRule"
         $expectedSkipRuleTypeCount = $dscXml.DISASTIG.AuditPolicyRule.ChildNodes.Count

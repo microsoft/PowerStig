@@ -17,8 +17,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
         if ($stig.TechnologyRole -eq 'DNS')
         {
             $exception          = Get-Random -InputObject $dscXml.DISASTIG.UserRightRule.Rule.id

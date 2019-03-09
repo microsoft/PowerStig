@@ -23,8 +23,6 @@ try
     {
         [xml] $dscXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
         $skipRule = Get-Random -InputObject $dscXml.DISASTIG.FileContentRule.Rule.id
         $skipRuleType = $null
         $expectedSkipRuleTypeCount = 0
