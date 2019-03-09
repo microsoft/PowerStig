@@ -31,7 +31,6 @@ try
         . $userSettingsPath
     }
 }
-#endregion Tests
 finally
 {
     Restore-TestEnvironment -TestEnvironment $TestEnvironment

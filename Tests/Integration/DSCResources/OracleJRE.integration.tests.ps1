@@ -7,18 +7,14 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
-    #region Integration Tests
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
-    #region Test Setup
     $configPath = 'C:\Windows\Sun\Java\Deployment\deployment.config'
     $propertiesPath = 'C:\Windows\Java\Deployment\deployment.properties'
-    #endregionTest Setup
 
-    #region Integration Tests
     foreach ($stig in $stigList)
     {
         [xml] $powerstigXml = Get-Content -Path $stig.Path
@@ -37,7 +33,6 @@ try
         $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
         . $userSettingsPath
     }
-    #endregion Tests
 }
 finally
 {

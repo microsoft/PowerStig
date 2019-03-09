@@ -36,5 +36,5 @@ try
 }
 finally
 {
-    #Restore-TestEnvironment -TestEnvironment $TestEnvironment
+    Restore-TestEnvironment -TestEnvironment $TestEnvironment
 }
