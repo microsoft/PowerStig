@@ -42,9 +42,8 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
             $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule |
                 Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'})
 
-            $instanceFilter = Get-ResourceMatchStatement -RuleName $ruleName
             $dscMof = $instances |
-                Where-Object {$PSItem.ResourceID -match $instanceFilter}
+                Where-Object {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}
 
             foreach ($rule in $ruleList)
             {
