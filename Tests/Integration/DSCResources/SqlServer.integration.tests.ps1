@@ -16,17 +16,17 @@ try
     #region Integration Tests
     foreach ($stig in $stigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
         $skipRuleType = "DocumentRule"
-        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.DocumentRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.DocumentRule.ChildNodes.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.DocumentRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.DocumentRule.Rule.id -Count 2
         $skipRuleTypeMultiple = $null
         $expectedSkipRuleTypeMultipleCount = 0
 
-        $exception = Get-Random -InputObject $dscXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
         $exceptionMultiple = $null
 
         $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"

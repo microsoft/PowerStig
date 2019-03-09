@@ -33,29 +33,36 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
     $configurationDocumentPath = "$TestDrive\localhost.mof"
     $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-    $ruleNames = (Get-Member -InputObject $DscXml.DISASTIG |
+    $ruleNames = (Get-Member -InputObject $powerstigXml.DISASTIG |
         Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
 
     foreach ($ruleName in $ruleNames)
     {
         Context $ruleName {
-            $hasAllSettings = $true
-            $dscXml = @($dscXml.DISASTIG.$ruleName.Rule) |
+            $hasAllRules = $true
+            $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule) |
                 Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'}
-            $dscMof = $instances |
-                Where-Object {Get-ResourceMatchStatement -ruleName $ruleName}
 
-            foreach ($setting in $dscXml)
+            $instanceFilter = Get-ResourceMatchStatement -RuleName $ruleName
+            $dscMof = $instances |
+                Where-Object {$PSItem.ResourceID -match $instanceFilter}
+
+            foreach ($rule in $ruleList)
             {
-                if (-not($dscMof.ResourceID -match $setting.id))
+                <#
+                    $dscMof is a collection of items, so the -not operator is used
+                    in place of a -not match, since the -notmatch simply removes
+                    the match from te collection.
+                #>
+                if (-not ($dscMof.ResourceID -match $rule.id))
                 {
-                    Write-Warning -Message "Missing $ruleName Setting $($setting.id)"
-                    $hasAllSettings = $false
+                    Write-Warning -Message "Missing $ruleName $($rule.id)"
+                    $hasAllRules = $false
                 }
             }
 
-            It "Should have $($dscXml.count) $ruleName settings" {
-                $hasAllSettings | Should -Be $true
+            It "Should have $($ruleList.count) $ruleName settings" {
+                $hasAllRules | Should -Be $true
             }
         }
     }
@@ -82,12 +89,10 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
         $configurationDocumentPath = "$TestDrive\localhost.mof"
         $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-        # Counts how many skips there are and how many there should be.
-        $dscXml = $skipRule.count
         $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
-        It "Should have $dscXml Skipped settings" {
-            $dscMof.count | Should -Be $dscXml
+        It "Should have $($skipRule.count) Skipped settings" {
+            $dscMof.count | Should -Be $skipRule.count
         }
     }
 

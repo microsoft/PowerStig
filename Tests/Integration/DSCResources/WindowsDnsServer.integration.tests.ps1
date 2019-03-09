@@ -17,18 +17,18 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerSettingRule.Rule.id
         $skipRuleType = "PermissionRule"
-        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.PermissionRule.ChildNodes.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
         $skipRuleTypeMultiple = @('PermissionRule','UserRightRule')
-        $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count + $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.PermissionRule.ChildNodes.Count + $powerstigXml.DISASTIG.UserRightRule.ChildNodes.Count
 
-        $exception = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerSettingRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
 
         $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
         . $userSettingsPath

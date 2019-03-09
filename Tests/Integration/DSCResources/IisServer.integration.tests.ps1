@@ -14,18 +14,18 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.MimeTypeRule.Rule.id
         $skipRuleType = "IisLoggingRule"
-        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.IisLoggingRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
         $skipRuleTypeMultiple = @('MimeTypeRule','IisLoggingRule')
-        $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.MimeTypeRule.ChildNodes.Count + $dscXml.DISASTIG.IisLoggingRule.ChildNodes.Count
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.MimeTypeRule.ChildNodes.Count + $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
-        $exception = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
 
         $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
         . $userSettingsPath
