@@ -17,7 +17,7 @@ function Get-ResourceMatchStatement
         }
         'FileContentRule'
         {
-            return '\[ReplaceText\]'
+            return '\[ReplaceText\]|\[KeyValuePairFile\]'
         }
         'IisLoggingRule'
         {
