@@ -1,6 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-#region Header
+
 $rules = $stig.RuleList | Select-Rule -Type WebConfigurationPropertyRule
 
 if ($WebsiteName)
@@ -11,10 +11,10 @@ if ($WebsiteName)
         {
             xWebConfigProperty "$(Get-ResourceTitle -Rule $rule -Instance $website)"
             {
-                WebsitePath     = "IIS:\Sites\$website"
-                Filter          = $rule.ConfigSection
-                PropertyName    = $rule.Key
-                Value           = $rule.Value
+                WebsitePath  = "IIS:\Sites\$website"
+                Filter       = $rule.ConfigSection
+                PropertyName = $rule.Key
+                Value        = $rule.Value
             }
         }
     }
@@ -34,10 +34,10 @@ else
 
         xWebConfigProperty "$(Get-ResourceTitle -Rule $rule)"
         {
-            WebsitePath     = $psPath
-            Filter          = $rule.ConfigSection
-            PropertyName    = $rule.Key
-            Value           = $rule.Value
+            WebsitePath  = $psPath
+            Filter       = $rule.ConfigSection
+            PropertyName = $rule.Key
+            Value        = $rule.Value
         }
     }
 }
