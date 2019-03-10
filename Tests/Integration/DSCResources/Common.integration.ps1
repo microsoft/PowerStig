@@ -144,7 +144,6 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
         }
     }
 
-
     $stigPath = $stig.path.TrimEnd(".xml")
     $orgSettings = $stigPath + ".org.default.xml"
 
