@@ -27,7 +27,8 @@ try
         $skipRuleTypeMultiple = @('WebAppPoolRule','IisLoggingRule')
         $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.WebAppPoolRule.ChildNodes.Count + $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
-        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
+        $exception = Get-Random -InputObject ($powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule |
+            Where-Object {[string]::IsNullOrEmpty($PSItem.DuplicateOf)}).id
         $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebAppPoolRule.Rule.id -Count 2
 
         $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
