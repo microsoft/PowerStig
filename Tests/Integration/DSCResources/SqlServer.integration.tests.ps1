@@ -27,8 +27,8 @@ try
         $exception = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
         $exceptionMultiple = $null
 
-        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
-        . $userSettingsPath
+        $commonIntegrationTests = "$PSScriptRoot\Common.integration.ps1"
+        . $commonIntegrationTests
     }
 }
 finally

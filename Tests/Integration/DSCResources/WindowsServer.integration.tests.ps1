@@ -32,8 +32,8 @@ try
             $expectedSkipRuleTypeMultipleCount  = $powerstigXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $powerstigXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
         }
 
-        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
-        . $userSettingsPath
+        $commonIntegrationTests = "$PSScriptRoot\Common.integration.ps1"
+        . $commonIntegrationTests
     }
 }
 finally
