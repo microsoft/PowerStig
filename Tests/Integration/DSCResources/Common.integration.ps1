@@ -20,7 +20,10 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     }
 
     # Add additional test parameters to current test configuration
-    $testParameterList += $additionalTestParameterList
+    if($additionalTestParameterList)
+    {
+        $testParameterList += $additionalTestParameterList
+    }
 
     It 'Should compile the MOF without throwing' {
         {& $technologyConfig @testParameterList} | Should -Not -Throw
