@@ -27,8 +27,7 @@ try
         $exception = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
         $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-        $commonIntegrationTests = "$PSScriptRoot\Common.integration.ps1"
-        . $commonIntegrationTests
+        . "$PSScriptRoot\Common.integration.ps1"
     }
 }
 finally

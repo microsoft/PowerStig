@@ -37,8 +37,7 @@ try
             $expectedSkipRuleTypeMultipleCount  = $powerstigXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $powerstigXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
         }
 
-        $commonIntegrationTests = "$PSScriptRoot\Common.integration.ps1"
-        . $commonIntegrationTests
+        . "$PSScriptRoot\Common.integration.ps1"
     }
 }
 finally
