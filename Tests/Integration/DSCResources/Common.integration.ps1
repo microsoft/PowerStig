@@ -2,27 +2,34 @@
     This file is dot sourced into every composite. It consolidates testing of exceptions,
     skipped rules, and organizational objects that were provided to the composite
 #>
-Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole) $($stig.StigVersion) mof output" {
+
+$title = "$($stig.Technology) $($stig.TechnologyVersion)"
+if ($stig.TechnologyRole)
+{
+    $title = $title + " $($stig.TechnologyRole)"
+}
+$title = $title + " $($stig.StigVersion) mof output"
+
+Describe $title {
 
     $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
     $testhash = @{
-        StigVersion     = $stig.StigVersion
-        BrowserVersion  = $stig.TechnologyVersion
-        OfficeApp       = $stig.TechnologyVersion
-        OsVersion       = $stig.TechnologyVersion
-        SqlVersion      = $stig.TechnologyVersion
-        OsRole          = $stig.TechnologyRole
-        SqlRole         = $stig.TechnologyRole
-        ForestName      = 'integration.test'
-        DomainName      = 'integration.test'
-        Exception       = $exception
-        ConfigPath      = $configPath
-        OutputPath      = $TestDrive
-        PropertiesPath  = $propertiesPath
-        WebAppPool      = $WebAppPool
-        WebsiteName     = $WebsiteName
-        LogPath         = $TestDrive
+        StigVersion = $stig.StigVersion
+        BrowserVersion = $stig.TechnologyVersion
+        OfficeApp = $stig.TechnologyVersion
+        OsVersion = $stig.TechnologyVersion
+        SqlVersion = $stig.TechnologyVersion
+        OsRole = $stig.TechnologyRole
+        SqlRole = $stig.TechnologyRole
+        ForestName = 'integration.test'
+        DomainName = 'integration.test'
+        ConfigPath = $configPath
+        OutputPath = $TestDrive
+        PropertiesPath = $propertiesPath
+        WebAppPool = $WebAppPool
+        WebsiteName = $WebsiteName
+        LogPath = $TestDrive
     }
 
     It 'Should compile the MOF without throwing' {
@@ -33,14 +40,14 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
     $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
     $ruleNames = (Get-Member -InputObject $powerstigXml.DISASTIG |
-        Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
+            Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
 
     foreach ($ruleName in $ruleNames)
     {
         Context $ruleName {
             $hasAllRules = $true
             $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule |
-                Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'})
+                    Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'})
 
             $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}
@@ -67,14 +74,13 @@ Describe "$($stig.Technology) $($stig.TechnologyVersion) $($stig.TechnologyRole)
 
     Context 'Single Exception' {
         It "Should compile the MOF with STIG exception $exception without throwing" {
-            {& $technologyConfig @testhash} | Should -Not -Throw
+            {& $technologyConfig @testhash -Exception $exception} | Should -Not -Throw
         }
     }
 
     Context 'Multiple Exceptions' {
-        $testhash.exception = $exceptionMultiple
         It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
-            {& $technologyConfig @testhash} | Should -Not -Throw
+            {& $technologyConfig @testhash -Exception $exceptionMultiple} | Should -Not -Throw
         }
     }
 

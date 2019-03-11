@@ -31,8 +31,8 @@ try
             Where-Object {[string]::IsNullOrEmpty($PSItem.DuplicateOf)}).id
         $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebAppPoolRule.Rule.id -Count 2
 
-        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
-        . $userSettingsPath
+        $commonIntegrationTests = "$PSScriptRoot\Common.integration.ps1"
+        . $commonIntegrationTests
     }
 }
 finally
