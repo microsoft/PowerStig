@@ -7,35 +7,33 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
-    #region Integration Tests
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
-    #region Integration Tests
+    $additionalTestParameterList = @{
+        LogPath = $env:temp
+    }
+
     foreach ($stig in $stigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
-        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.MimeTypeRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.MimeTypeRule.Rule.id
         $skipRuleType = "IisLoggingRule"
-        $expectedSkipRuleTypeCount = $dscXml.DISASTIG.IisLoggingRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
         $skipRuleTypeMultiple = @('MimeTypeRule','IisLoggingRule')
-        $expectedSkipRuleTypeMultipleCount = $dscXml.DISASTIG.MimeTypeRule.ChildNodes.Count + $dscXml.DISASTIG.IisLoggingRule.ChildNodes.Count
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.MimeTypeRule.ChildNodes.Count + $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
-        $exception = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id -Count 2
 
-        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
-        . $userSettingsPath
+        . "$PSScriptRoot\Common.integration.ps1"
     }
 }
-#endregion Tests
 finally
 {
     Restore-TestEnvironment -TestEnvironment $TestEnvironment
