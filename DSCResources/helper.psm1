@@ -61,7 +61,10 @@ function Select-Rule
 
     process
     {
-        return $RuleList.Where( {$_.GetType().ToString() -eq $Type})
+        return $RuleList.Where({
+            $_.GetType().ToString() -eq $Type -and
+            [string]::IsNullOrEmpty($_.DuplicateOf)
+        })
     }
 }
 

@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-$rules = $stig.RuleList | Select-Rule -Type SkipRule
+$rules = $stig.RuleList | Select-Rule -Type SkippedRule
 
 foreach ( $rule in $rules )
 {
