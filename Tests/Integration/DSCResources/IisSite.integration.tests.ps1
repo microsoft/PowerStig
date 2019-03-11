@@ -12,8 +12,10 @@ try
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
-    $WebsiteName = @('WarioSite', 'DKSite')
-    $WebAppPool = @('MushroomBeach', 'ToadHarbor')
+    $additionalTestParameterList = @{
+        WebsiteName = @('WarioSite', 'DKSite')
+        WebAppPool = @('MushroomBeach', 'ToadHarbor')
+    }
 
     foreach ($stig in $stigList)
     {

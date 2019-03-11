@@ -12,6 +12,11 @@ try
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
+    $additionalTestParameterList = @{
+        ForestName = 'integration.test'
+        DomainName = 'integration.test'
+    }
+
     foreach ($stig in $stigList)
     {
         [xml] $powerstigXml = Get-Content -Path $stig.Path

@@ -2,38 +2,28 @@
     This file is dot sourced into every composite. It consolidates testing of exceptions,
     skipped rules, and organizational objects that were provided to the composite
 #>
-
 $title = "$($stig.Technology) $($stig.TechnologyVersion)"
 if ($stig.TechnologyRole)
 {
     $title = $title + " $($stig.TechnologyRole)"
 }
-$title = $title + " $($stig.StigVersion) mof output"
 
-Describe $title {
+Describe $title + " $($stig.StigVersion) mof output" {
 
     $technologyConfig = "$($script:DSCCompositeResourceName)_config"
 
-    $testhash = @{
-        StigVersion = $stig.StigVersion
-        BrowserVersion = $stig.TechnologyVersion
-        OfficeApp = $stig.TechnologyVersion
-        OsVersion = $stig.TechnologyVersion
-        SqlVersion = $stig.TechnologyVersion
-        OsRole = $stig.TechnologyRole
-        SqlRole = $stig.TechnologyRole
-        ForestName = 'integration.test'
-        DomainName = 'integration.test'
-        ConfigPath = $configPath
-        OutputPath = $TestDrive
-        PropertiesPath = $propertiesPath
-        WebAppPool = $WebAppPool
-        WebsiteName = $WebsiteName
-        LogPath = $TestDrive
+    $testParameterList = @{
+        TechnologyVersion = $stig.TechnologyVersion
+        TechnologyRole    = $stig.TechnologyRole
+        StigVersion       = $stig.StigVersion
+        OutputPath        = $TestDrive
     }
 
+    # Add additional test parameters to current test configuration
+    $testParameterList += $additionalTestParameterList
+
     It 'Should compile the MOF without throwing' {
-        {& $technologyConfig @testhash} | Should -Not -Throw
+        {& $technologyConfig @testParameterList} | Should -Not -Throw
     }
 
     $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -74,19 +64,19 @@ Describe $title {
 
     Context 'Single Exception' {
         It "Should compile the MOF with STIG exception $exception without throwing" {
-            {& $technologyConfig @testhash -Exception $exception} | Should -Not -Throw
+            {& $technologyConfig @testParameterList -Exception $exception} | Should -Not -Throw
         }
     }
 
     Context 'Multiple Exceptions' {
         It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
-            {& $technologyConfig @testhash -Exception $exceptionMultiple} | Should -Not -Throw
+            {& $technologyConfig @testParameterList -Exception $exceptionMultiple} | Should -Not -Throw
         }
     }
 
     Context 'Single Rule' {
         It 'Should compile the MOF without throwing' {
-            {& $technologyConfig @testhash -SkipRule $skipRule } | Should -Not -Throw
+            {& $technologyConfig @testParameterList -SkipRule $skipRule } | Should -Not -Throw
         }
 
         # Gets the mof content
@@ -102,7 +92,7 @@ Describe $title {
 
     Context 'Multiple Rules' {
         It 'Should compile the MOF without throwing' {
-            {& $technologyConfig @testhash -SkipRule $skipRuleMultiple} | Should -Not -Throw
+            {& $technologyConfig @testParameterList -SkipRule $skipRuleMultiple} | Should -Not -Throw
         }
 
         # Gets the mof content
@@ -120,7 +110,7 @@ Describe $title {
 
     Context "$($stig.TechnologyRole) $($stig.StigVersion) Single Type" {
         It "Should compile the MOF without throwing" {
-            {& $technologyConfig @testhash -SkipRuleType $skipRuleType} | Should -Not -Throw
+            {& $technologyConfig @testParameterList -SkipRuleType $skipRuleType} | Should -Not -Throw
         }
         # Gets the mof content
         $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -136,7 +126,7 @@ Describe $title {
 
     Context 'Multiple Types' {
         It "Should compile the MOF without throwing" {
-            {& $technologyConfig @testhash -SkipruleType $skipRuleTypeMultiple} | Should -Not -Throw
+            {& $technologyConfig @testParameterList -SkipruleType $skipRuleTypeMultiple} | Should -Not -Throw
         }
         # Gets the mof content
         $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -154,6 +144,6 @@ Describe $title {
     $orgSettings = $stigPath + ".org.default.xml"
 
     It "Should compile the MOF with OrgSettings without throwing" {
-        {& $technologyConfig @testhash -Orgsettings $orgSettings} | Should -Not -Throw
+        {& $technologyConfig @testParameterList -Orgsettings $orgSettings} | Should -Not -Throw
     }
 }

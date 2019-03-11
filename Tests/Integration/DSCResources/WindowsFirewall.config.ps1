@@ -2,6 +2,16 @@ Configuration WindowsFirewall_config
 {
     param
     (
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
         [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
@@ -20,72 +30,7 @@ Configuration WindowsFirewall_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $BrowserVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $OfficeApp,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ConfigPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $PropertiesPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ForestName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $DomainName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebAppPool,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebSiteName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $LogPath
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig

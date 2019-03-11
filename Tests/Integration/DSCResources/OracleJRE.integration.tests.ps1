@@ -12,8 +12,10 @@ try
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
-    $configPath = 'C:\Windows\Sun\Java\Deployment\deployment.config'
-    $propertiesPath = 'C:\Windows\Java\Deployment\deployment.properties'
+    $additionalTestParameterList = @{
+        configPath = 'C:\Windows\Sun\Java\Deployment\deployment.config'
+        propertiesPath = 'C:\Windows\Java\Deployment\deployment.properties'
+    }
 
     foreach ($stig in $stigList)
     {
