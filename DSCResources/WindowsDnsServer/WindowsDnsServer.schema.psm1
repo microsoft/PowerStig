@@ -78,7 +78,7 @@ Configuration WindowsDnsServer
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('WindowsServer', $OsVersion, 'Dns' , $StigVersion)
+    $stig = [STIG]::New('WindowsDnsServer', $OsVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header

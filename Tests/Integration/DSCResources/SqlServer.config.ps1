@@ -1,7 +1,17 @@
-Configuration SqlServerInstance_config
+Configuration SqlServer_config
 {
     param
     (
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
         [Parameter()]
         [string]
         $StigVersion,
@@ -20,73 +30,8 @@ Configuration SqlServerInstance_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings,
+        $OrgSettings
 
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $BrowserVersion,
-
-        [Parameter()]
-        [string[]]
-        [AllowNull()]
-        $OfficeApp,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $ConfigPath,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $PropertiesPath,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $SqlVersion,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $SqlRole,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $ForestName,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $DomainName,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $OsVersion,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $OsRole,
-
-        [Parameter()]
-        [string[]]
-        [AllowNull()]
-        $WebAppPool,
-
-        [Parameter()]
-        [string[]]
-        [AllowNull()]
-        $WebSiteName,
-
-        [Parameter()]
-        [string]
-        [AllowNull()]
-        $LogPath
-        
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -96,8 +41,8 @@ Configuration SqlServerInstance_config
         & ([scriptblock]::Create("
         SqlServer Instance
         {
-            SqlVersion = $SqlVersion
-            SqlRole = '$SqlRole'
+            SqlVersion = $TechnologyVersion
+            SqlRole = '$TechnologyRole'
             StigVersion = $StigVersion
             ServerInstance = 'TestServer'
             $(if ($null -ne $OrgSettings)
@@ -106,7 +51,7 @@ Configuration SqlServerInstance_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$$PSItem'= @{'SetScript'='TestScript'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
@@ -126,6 +71,16 @@ Configuration SqlServerDatabase_config
     param
     (
         [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
+        [Parameter()]
         [string]
         $StigVersion,
 
@@ -143,72 +98,7 @@ Configuration SqlServerDatabase_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $BrowserVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $OfficeApp,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ConfigPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $PropertiesPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ForestName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $DomainName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebAppPool,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebSiteName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $LogPath
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -218,11 +108,11 @@ Configuration SqlServerDatabase_config
         & ([scriptblock]::Create("
         SqlServer Database
         {
-            SqlVersion = '$SqlVersion'
-            SqlRole = '$SqlRole'
-            StigVersion = '$StigVersion'
+            SqlVersion     = '$TechnologyVersion'
+            SqlRole        = '$TechnologyRole'
+            StigVersion    = '$StigVersion'
             ServerInstance = 'TestServer'
-            Database = 'TestDataBase'
+            Database       = 'TestDataBase'
             $(if ($null -ne $OrgSettings)
             {
                 "Orgsettings = '$OrgSettings'"
