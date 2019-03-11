@@ -96,10 +96,44 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'UPDATES
+        ReleaseNotes = 'NEW
 
-* Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
-* Fixed [#348](https://github.com/Microsoft/PowerStig/issues/348): Update to DnsServer Schema to correct typo.'
+        * Introduces class support for each rule type
+        * The STIG class now contains an array of rule objects vs xml elements
+        * Orgsettings, Exceptions, and Rule skips are all supported by the Rule base class
+        * Rule help is provided for any loaded rule.
+          * See the [wiki](https://github.com/Microsoft/PowerStig/wiki/GettingRuleHelp) for more information.
+        * Major code refactor to simplify maintenance and usage
+        * [Breaking Change] The STIG class constructor no longer accepts Orgsettings, Exceptions, or Rule skips
+          * That functionality has move to the load rule method
+        * DSC composite resource parameter validation for version numbers has been removed
+          * The STIG class validates all input and will throw an error if invalid data is provided.
+        * The Get-StigList has be updated and renamed to Get-Stig to return the STIG class
+
+        UPDATES
+
+        * Fixed [#241](https://github.com/Microsoft/PowerStig/issues/241): [WindowsFeatureRule] PsDesiredStateConfiguration\WindowsOptionalFeature doesn''t properly handle features that return $null
+        * Fixed [#258](https://github.com/Microsoft/PowerStig/issues/258): New-StigChecklist will not accept a path without an explicit filename
+        * Fixed [#243](https://github.com/Microsoft/PowerStig/issues/243): [V-46515] Windows-All-IE11-1.15 Rawstring typo
+        * Fixed [#289](https://github.com/Microsoft/PowerStig/issues/289): Updated DocumentRule and DocumentRuleConvert Classes to parse correctly.
+        * Fixed [#284](https://github.com/Microsoft/PowerStig/issues/284): [V-74415] [V-74413] Windows 10 STIG rule V-74415 and V-74413 should not contain white space in key
+        * Fixed [290](https://github.com/Microsoft/PowerStig/issues/290): [V-76731] IIS Server STIG V-76731 fails to properly set STIG guidance because rule is not split.
+        * Fixed [314](https://github.com/Microsoft/PowerStig/issues/314): Update PowerSTIG to Utilize LogTargetW3C parameter in xWebAdministration 2.5.0.0.
+        * Fixed [334](https://github.com/Microsoft/PowerStig/issues/334): Update PowerStig to utilize AccessControlDsc 1.3.0.0
+        * Fixed [331](https://github.com/Microsoft/PowerStig/issues/331): 2012/R2 [V-39325] 2016 [V-73373], [V-73389] PermissionRule.Convert CheckContent Match Parser Update
+        * Fixed [320](https://github.com/Microsoft/PowerStig/issues/320): IIS Site STIG doesn''t correctly convert STIGS that contain "SSL Settings" in raw string
+
+        * Added the following STIGs
+          * IIS Site 8.5 V1R6 [#276](https://github.com/Microsoft/PowerStig/issues/276)
+          * Windows Firewall STIG V1R7 [#319](https://github.com/Microsoft/PowerStig/issues/319)
+
+        * Removed the following STIGs
+          * Windows Server 2012 R2 DC 2.12
+          * Windows Server 2012 R2 DSN 1.7
+          * Active Directory Domain 2.9
+          * IIS Server 8.5 1.3
+          * IIS Site 8.5 1.2
+          * Removed: Internet Explorer 1.13'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

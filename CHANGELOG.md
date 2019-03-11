@@ -2,8 +2,6 @@
 
 ## Unreleased
 
-## 3.0.1
-
 UPDATES
 
 * Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
