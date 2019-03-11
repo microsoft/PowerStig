@@ -66,12 +66,14 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     }
 
     <#
-        Only run the the detailed integration tests against one of the STIG
+        Only run the detailed integration tests against one of the STIG
         files to verify that all functionality is working properly. If the
         functionality works for the first STIG is will work the same for
-        remaining becasue the STIG class will have been tested.
+        remaining because the STIG class will have been tested.
+
+        $stigList is recast as an array incase a single item is returned
     #>
-    if ($stigList.IndexOf($stig) -le '0')
+    if (@($stigList).IndexOf($stig) -le '0')
     {
         Context 'Single Exception' {
             It "Should compile the MOF with STIG exception $exception without throwing" {
