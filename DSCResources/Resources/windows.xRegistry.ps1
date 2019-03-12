@@ -21,9 +21,9 @@ foreach ($rule in $rules)
             $rule.Ensure = 'Absent'
         }
 
+        #Changing our key to adhere to the resource requirements. Issue discussed at this link https://github.com/PowerShell/xPSDesiredStateConfiguration/issues/444
         if ($rule.Ensure -eq 'Absent')
         {
-            #Changing our key to adhere to the resource requirements. Issue discussed at this link https://github.com/PowerShell/xPSDesiredStateConfiguration/issues/444
             $rule.Key = $rule.Key -replace 'HKEY_LOCAL_MACHINE', 'HKLM:'
             xRegistry (Get-ResourceTitle -Rule $rule)
             {
