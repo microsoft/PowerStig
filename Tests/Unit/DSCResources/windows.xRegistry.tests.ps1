@@ -66,8 +66,8 @@ $ruleList = @(
         <ValueType>Dword</ValueType>
       </Rule>'
       Ensure = 'Absent'
-      Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
-      ValueData = 'ShouldBeAbsent'
+      Key = 'HKLM:\SOFTWARE\Policies\Microsoft'
+      ValueData = $null
       ValueName = 'OptionalAbsent'
       ValueType = 'Dword'
     }
@@ -102,9 +102,25 @@ Describe 'xRegistry call' {
             It 'Should set the correct Name' {
                 $instance.ValueName | Should Be $rule.ValueName
             }
-            It 'Should set the correct Type' {
-                $instance.ValueType | Should Be $rule.ValueType
+            if ($instance.Ensure -eq 'Present')
+            {
+                It 'Should set the correct Type' {
+                    $instance.ValueType | Should Be $rule.ValueType
+                }
+                It 'Should set the correct Data' {
+                    $instance.ValueData | Should Be $rule.ValueData
+                }
             }
+            else 
+            {
+                It 'Should set the correct Type' {
+                    $instance.ValueType | Should Be $null
+                }
+                It 'Should set the correct Data' {
+                    $instance.ValueData | Should Be $null
+                }
+            }
+
         }
     }
 }
