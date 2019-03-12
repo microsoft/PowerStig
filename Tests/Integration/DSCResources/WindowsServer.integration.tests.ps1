@@ -7,49 +7,38 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 # Using try/finally to always cleanup even if something awful happens.
 try
 {
-    #region Integration Tests
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
     . $configFile
 
     $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
-    #region Integration Tests
+
+    $additionalTestParameterList = @{
+        ForestName = 'integration.test'
+        DomainName = 'integration.test'
+    }
+
     foreach ($stig in $stigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
-        if ($stig.TechnologyRole -eq 'DNS')
-        {
-            $exception          = Get-Random -InputObject $dscXml.DISASTIG.UserRightRule.Rule.id
-            $exceptionMultiple  = Get-Random -InputObject $dscXml.DISASTIG.UserRightRule.Rule.id -Count 2
-            $skipRule           = Get-Random -InputObject $dscXml.DISASTIG.DnsServerRootHintRule.Rule.id
-            $skipRuleMultiple   = Get-Random -InputObject $dscXml.DISASTIG.DnsServerRootHintRule.Rule.id -Count 2
-            $skipRuleType               = "UserRightRule"
-            $expectedSkipRuleTypeCount  = $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
-            $skipRuleTypeMultiple               = @('PermissionRule', 'UserRightRule')
-            $expectedSkipRuleTypeMultipleCount  = $dscXml.DISASTIG.PermissionRule.ChildNodes.Count + $dscXml.DISASTIG.UserRightRule.ChildNodes.Count
-        }
-        elseif ($stig.TechnologyRole -eq 'Domain')
+        if ($stig.TechnologyRole -eq 'Domain')
         {
             continue
         }
         else
         {
-            $exception          = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $exceptionMultiple  = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
-            $skipRule           = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-            $skipRuleMultiple   = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $exception          = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
+            $exceptionMultiple  = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
+            $skipRule           = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
+            $skipRuleMultiple   = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
             $skipRuleType               = "AuditPolicyRule"
-            $expectedSkipRuleTypeCount  = $dscXml.DISASTIG.AuditPolicyRule.ChildNodes.Count
+            $expectedSkipRuleTypeCount  = $powerstigXml.DISASTIG.AuditPolicyRule.ChildNodes.Count
             $skipRuleTypeMultiple               = @('AuditPolicyRule', 'AccountPolicyRule')
-            $expectedSkipRuleTypeMultipleCount  = $dscXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $dscXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
+            $expectedSkipRuleTypeMultipleCount  = $powerstigXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $powerstigXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
         }
 
-        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
-        . $userSettingsPath
+        . "$PSScriptRoot\Common.integration.ps1"
     }
-    #endregion Tests
 }
 finally
 {

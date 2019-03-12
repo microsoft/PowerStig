@@ -13,89 +13,91 @@ function Get-ResourceMatchStatement
     {
         'RegistryRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xRegistry\]" -or $PSItem.ResourceID -match "\[cAdministrativeTemplateSetting\]"'
+            return '\[xRegistry\]|\[cAdministrativeTemplateSetting\]'
         }
         'FileContentRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[ReplaceText\]"'
+            return '\[ReplaceText\]|\[KeyValuePairFile\]'
         }
         'IisLoggingRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xIisLogging\]" -or $PSItem.ResourceID -match "\[xWebSite\]"'
+            return '\[xIisLogging\]|\[xWebSite\]'
         }
         'WebConfigurationPropertyRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xWebConfigProperty\]"'
+            return '\[xWebConfigProperty\]'
         }
         'MimeTypeRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xIisMimeTypeMapping\]"'
+            return '\[xIisMimeTypeMapping\]'
         }
         'PermissionRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[NTFSAccessEntry\]" -or $PSItem.ResourceID -match "\[RegistryAccessEntry\]"'
+            return '\[NTFSAccessEntry\]|\[RegistryAccessEntry\]'
         }
         'WindowsFeatureRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[WindowsFeature\]" -or $PSItem.ResourceID -match "\[WindowsOptionalFeature\]"'
+            return '\[xWindowsFeature\]|\[xWindowsOptionalFeature\]'
         }
         'WebAppPoolRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xWebAppPool\]"'
+            return '\[xWebAppPool\]'
         }
         'KeyValuePairRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[KeyValuePairFile\]"'
+            return '\[KeyValuePairFile\]'
         }
         'SqlScriptQueryRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[SqlScriptQuery\]"'
+            return '\[SqlScriptQuery\]'
         }
         'AccountPolicyRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[AccountPolicy\]"'
+            return '\[AccountPolicy\]'
         }
         'AuditPolicyRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[AuditPolicySubcategory\]"'
+            return '\[AuditPolicySubcategory\]'
         }
         'Group'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[Group\]"'
+            return '\[Group\]'
         }
         'ProcessMitigationRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[ProcessMitigation\]"'
+            return '\[ProcessMitigation\]'
         }
         'SecurityOptionRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[SecurityOption\]"'
+            return '\[SecurityOption\]'
         }
         'ServiceRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xService\]"'
+            return '\[xService\]'
         }
         'UserRightRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[UserRightsAssignment\]"'
+            return '\[UserRightsAssignment\]'
         }
         'WmiRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[Script\]"'
+            return '\[Script\]'
         }
         'WinEventLogRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xWinEventLog\]"'
+            return '\[xWinEventLog\]'
         }
         'DnsServerRootHintRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[script\]"'
+            return '\[script\]'
         }
         'DnsServerSettingRule'
         {
-                $resourceMatchStatement = '$PSItem.ResourceID -match "\[xDnsServerSetting\]"'
+            return '\[xDnsServerSetting\]'
+        }
+        'SslSettingsRule'
+        {
+            return '\[xSSLSettings\]'
         }
     }
-
-    return $resourceMatchStatement
 }

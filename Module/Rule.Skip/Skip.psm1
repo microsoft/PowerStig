@@ -39,12 +39,12 @@ Class SkippedRule : Rule
         .DESCRIPTION
             A constructor for SkippedRule. Returns a ready to use instance
             of SkippedRule.
-        .PARAMETER StigRuleId
-            The Id of an individual Stig Rule
+        .PARAMETER Rule
+            The Stig Rule
     #>
-    SkippedRule ([string] $Id)
+    SkippedRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.Id = $Id
+        $this.UpdateRuleTitle('Skip')
     }
 
     #endregion

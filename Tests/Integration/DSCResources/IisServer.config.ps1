@@ -2,6 +2,16 @@ Configuration IisServer_Config
 {
     param
     (
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
         [Parameter(Mandatory = $true)]
         [string]
         $StigVersion,
@@ -25,66 +35,6 @@ Configuration IisServer_Config
         [Parameter()]
         [AllowNull()]
         [string]
-        $BrowserVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $OfficeApp,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ConfigPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $PropertiesPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ForestName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $DomainName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebAppPool,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebSiteName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
         $LogPath
     )
 
@@ -94,16 +44,16 @@ Configuration IisServer_Config
         & ([scriptblock]::Create("
         IisServer ServerConfiguration
         {
-            IisVersion = '$OsVersion'
+            IisVersion  = '$TechnologyVersion'
             StigVersion = '$StigVersion'
-            LogPath = '$LogPath'
+            LogPath     = '$LogPath'
             $(if ($null -ne $OrgSettings)
             {
                 "Orgsettings = '$OrgSettings'"
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'Value'='1234567'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {
