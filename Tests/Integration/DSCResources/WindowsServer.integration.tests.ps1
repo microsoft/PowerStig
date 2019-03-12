@@ -25,6 +25,10 @@ try
         {
             continue
         }
+        if ($stig.TechnologyRole -eq 'Antivirus')
+        {
+            continue
+        }
         else
         {
             $exception          = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
