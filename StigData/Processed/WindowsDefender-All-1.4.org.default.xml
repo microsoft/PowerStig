@@ -6,18 +6,18 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="1.4">
-  <!-- Ensure 'V-75237' -ge '0x0' -and 'V-75237' -le '0x7'-->
-  <OrganizationalSetting id="V-75237" value="LOCAL_STIG_SETTING_HERE" />
+  <!-- Ensure 'V-75237' -ge '0' -and 'V-75237' -le '7'-->
+  <OrganizationalSetting id="V-75237" value="0" />
   <!-- Ensure 'V-75241' -ge '1' -and 'V-75241' -le '7'-->
-  <OrganizationalSetting id="V-75241" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-75241" value="1" />
   <!-- Ensure 'V-75243' -ge '1' -and 'V-75243' -le '7'-->
-  <OrganizationalSetting id="V-75243" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-75243" value="1" />
   <!-- Ensure ''V-75247'' -match '2|3'-->
-  <OrganizationalSetting id="V-75247" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-75247" value="2" />
   <!-- Ensure ''V-79965'' -match '2|3'-->
-  <OrganizationalSetting id="V-79965" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-79965" value="2" />
   <!-- Ensure ''V-79967'' -match '2|3'-->
-  <OrganizationalSetting id="V-79967" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-79967" value="2" />
   <!-- Ensure ''V-79971'' -match '2|3'-->
-  <OrganizationalSetting id="V-79971" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-79971" value="2" />
 </OrganizationalSettings>
