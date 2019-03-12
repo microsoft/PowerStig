@@ -17,23 +17,20 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $dscXml = Get-Content -Path $stig.Path
+        [xml] $powerstigXml = Get-Content -Path $stig.Path
 
-        $technologyConfig = "$($script:DSCCompositeResourceName)_config"
-
-        $skipRule = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
         $skipRuleType = $null
         $expectedSkipRuleTypeCount = 0
 
-        $skipRuleMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
         $skipRuleTypeMultiple = $null
         $expectedSkipRuleTypeMultipleCount = 0
 
-        $exception = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $dscXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
 
-        $userSettingsPath = "$PSScriptRoot\Common.integration.ps1"
-        . $userSettingsPath
+        . "$PSScriptRoot\Common.integration.ps1"
     }
     #endregion Tests
 }
