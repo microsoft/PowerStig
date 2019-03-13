@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [344](https://github.com/Microsoft/PowerStig/issues/344): Update PowerStig to automate and apply Windows Defender STIGS
+
 ## 3.0.1
 
 UPDATES
