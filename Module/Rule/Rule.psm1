@@ -211,11 +211,11 @@ Class Rule : ICloneable
         .SYNOPSIS
             Tags a rule as being duplicate
         .DESCRIPTION
-            Is a rule is a duplicate, tag the title for easy filtering and reporting
+            Is a rule is a duplicate, update the duplicateOf element with the rule id
     #>
-    hidden [void] SetDuplicateTitle ()
+    hidden [void] SetDuplicateOf ( [string] $ReferenceObject)
     {
-        $this.title = $this.title + ' Duplicate'
+        $this.DuplicateOf = $this.DuplicateOf + "$ReferenceObject"
     }
 
     <#

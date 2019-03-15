@@ -44,17 +44,24 @@ Class FileContentRuleConvert : FileContentRule
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
         $this.DscResource = $(
-            if ($this.Key -match 'deployment.')
+            if($null -eq $this.DuplicateOf)
             {
-                'KeyValuePairFile'
+                if ($this.Key -match 'deployment.')
+                {
+                    'KeyValuePairFile'
+                }
+                else
+                {
+                    'ReplaceText'
+                }
             }
             else
             {
-                'ReplaceText'
+                'None'
             }
         )
     }

@@ -80,13 +80,14 @@ function Test-DuplicateRule
     )
 
     $ruleType = $DifferenceObject.GetType().Name
+    $ruleType = $ruleType.Replace("Convert", "")
     $baseRule = [Rule]::New()
 
     $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
     $differenceProperties = ( $DifferenceObject | Get-Member -MemberType Property ).Name
 
     $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
-    $referenceRules = $ReferenceObject | Where-Object { $( $PsItem.GetType().Name ) -eq $ruletype }
+    $referenceRules = $ReferenceObject | Where-Object {$PsItem.GetType().Name  -eq $ruletype}
 
     foreach ( $rule in $referenceRules )
     {
