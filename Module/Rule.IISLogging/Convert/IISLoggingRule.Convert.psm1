@@ -47,24 +47,15 @@ Class IisLoggingRuleConvert : IisLoggingRule
         $this.SetLogPeriod()
         $this.SetLogTargetW3C()
         $this.SetStatus()
-        $this.DscResource = $(
-            if ($global:stigTitle -match "Server")
-            {
-                "xIISLogging"
-            }
-            else
-            {
-                "XWebsite"
-            }
-        )
 
         if ($this.conversionstatus -eq 'pass')
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
+        $this.SetDscResource()
     }
 
     <#

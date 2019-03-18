@@ -47,7 +47,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
         $this.SetDscResource()

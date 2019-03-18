@@ -46,7 +46,7 @@ Class GroupRuleConvert : GroupRule
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
 
