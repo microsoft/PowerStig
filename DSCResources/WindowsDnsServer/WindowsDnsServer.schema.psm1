@@ -83,15 +83,12 @@ Configuration WindowsDnsServer
 
     # $resourcePath is exported from the helper module in the header
     # Process Skipped rules
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.skip.ps1"
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xScript.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
     . "$resourcePath\windows.AccessControl.ps1"
-
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.RootHint.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
@@ -100,6 +97,7 @@ Configuration WindowsDnsServer
     . "$resourcePath\windows.xDnsServerSetting.ps1"
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xScript.RootHint.ps1"
     . "$resourcePath\windows.xRegistry.ps1"
 
     Import-DscResource -ModuleName xWinEventLog -ModuleVersion 1.2.0.0
