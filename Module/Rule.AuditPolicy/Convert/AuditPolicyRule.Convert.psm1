@@ -31,7 +31,13 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         $this.SetSubcategory($tokens)
         $this.SetAuditFlag($tokens)
         $this.Ensure = [Ensure]::Present
-        $this.DscResource = 'AuditPolicySubcategory'
+
+        if ($this.IsDuplicateRule($global:stigSettings))
+        {
+            $this.SetDuplicateOf($this.id)
+        }
+
+        $this.SetDscResource()
     }
 
     <#
@@ -88,6 +94,18 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         if (-not $this.SetStatus($thisAuditFlag))
         {
             $this.set_AuditFlag($thisAuditFlag)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'AuditPolicySubcategory'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

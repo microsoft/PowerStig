@@ -46,12 +46,12 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
-        $this.SetDscResource()
 
         if ($this.IsDuplicateRule($global:stigSettings))
         {
-            $this.SetDuplicateTitle()
+            $this.SetDuplicateOf($this.id)
         }
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -137,7 +137,14 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'SqlScriptQuery'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'SqlScriptQuery'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)

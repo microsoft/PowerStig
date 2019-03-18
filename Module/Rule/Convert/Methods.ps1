@@ -101,6 +101,7 @@ function Test-DuplicateRule
         if ( $results -notcontains $false )
         {
             Write-Verbose "$($rule.id) is a duplicate"
+            $DifferenceObject.DuplicateOf = $DifferenceObject.DuplicateOf + $rule.id
             return $true
         }
     }

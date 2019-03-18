@@ -40,13 +40,13 @@ Class PermissionRuleConvert : PermissionRule
     PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.SetPath()
-        $this.SetDscResource()
         $this.SetForce()
         $this.SetAccessControlEntry()
         if ($this.IsDuplicateRule($global:stigSettings))
         {
-            $this.SetDuplicateTitle()
+            $this.SetDuplicateOf($this.id)
         }
+        $this.SetDscResource()
     }
 
     # Methods
@@ -115,23 +115,30 @@ Class PermissionRuleConvert : PermissionRule
 
     hidden [void] SetDscResource ()
     {
-        if ($this.Path)
+        if($null -eq $this.DuplicateOf)
         {
-            switch ($this.Path)
+            if ($this.Path)
             {
-                {$PSItem -match '{domain}'}
+                switch ($this.Path)
                 {
-                    $this.DscResource = "ActiveDirectoryAuditRuleEntry"
-                }
-                {$PSItem -match 'HKLM:\\'}
-                {
-                    $this.DscResource = 'RegistryAccessEntry'
-                }
-                {$PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)'}
-                {
-                    $this.DscResource = 'NTFSAccessEntry'
+                    {$PSItem -match '{domain}'}
+                    {
+                        $this.DscResource = "ActiveDirectoryAuditRuleEntry"
+                    }
+                    {$PSItem -match 'HKLM:\\'}
+                    {
+                        $this.DscResource = 'RegistryAccessEntry'
+                    }
+                    {$PSItem -match '(%windir%)|(ProgramFiles)|(%SystemDrive%)|(%ALLUSERSPROFILE%)'}
+                    {
+                        $this.DscResource = 'NTFSAccessEntry'
+                    }
                 }
             }
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

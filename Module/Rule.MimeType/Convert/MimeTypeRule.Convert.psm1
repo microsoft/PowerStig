@@ -47,10 +47,10 @@ Class MimeTypeRuleConvert : MimeTypeRule
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
-        $this.DscResource = 'xIisMimeTypeMapping'
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -138,6 +138,18 @@ Class MimeTypeRuleConvert : MimeTypeRule
     static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
         return (Split-MultipleMimeTypeRule -CheckContent ([MimeTypeRule]::SplitCheckContent($CheckContent)))
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xIisMimeTypeMapping'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)

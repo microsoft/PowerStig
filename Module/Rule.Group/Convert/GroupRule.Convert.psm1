@@ -49,7 +49,8 @@ Class GroupRuleConvert : GroupRule
                 $this.SetDuplicateTitle()
             }
         }
-        $this.DscResource = 'Group'
+
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -93,6 +94,18 @@ Class GroupRuleConvert : GroupRule
         if (-not $this.SetStatus($thisGroupMember))
         {
             $this.set_MembersToExclude($thisGroupMember)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'Group'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

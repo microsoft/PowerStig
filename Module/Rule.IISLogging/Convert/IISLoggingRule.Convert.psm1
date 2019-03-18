@@ -184,6 +184,25 @@ Class IisLoggingRuleConvert : IisLoggingRule
         }
     }
 
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            if ($global:stigTitle -match "Server")
+            {
+                "xIISLogging"
+            }
+            else
+            {
+                "XWebsite"
+            }
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
+    }
+
     static [bool] Match ([string] $CheckContent)
     {
         if

@@ -41,6 +41,11 @@ Class ServiceRuleConvert : ServiceRule
         $this.SetServiceName()
         $this.SetServiceState()
         $this.SetStartupType()
+
+        if ($this.IsDuplicateRule($global:stigSettings))
+        {
+            $this.SetDuplicateOf($this.id)
+        }
         $this.SetDscResource()
     }
 
@@ -152,7 +157,14 @@ Class ServiceRuleConvert : ServiceRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xService'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xService'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
     #endregion
 }

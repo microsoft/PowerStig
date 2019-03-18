@@ -1043,7 +1043,7 @@ function Get-SecurityPolicyOrganizationValueTestString
                 "$indexString -$($reverse[$operators[0]]) '$firstValue' -$($operators[1]) $indexString -$($reverse[$operators[2]]) '$secondValue'"
             }
         }
-        else
+        elseif ($operators -eq '1')
         {
             "$indexString -$($reverse[$operators[0]]) '$firstValue'"
         }

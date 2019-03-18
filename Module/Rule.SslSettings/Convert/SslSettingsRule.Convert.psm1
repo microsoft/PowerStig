@@ -37,10 +37,19 @@ Class SslSettingsRuleConvert : SslSettingsRule
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
-        $this.SetDscResource()
+        $this.DscResource = $(
+            if($null -eq $this.DuplicateOf)
+            {
+                'xSslSettings'
+            }
+            else
+            {
+                'None'
+            }
+        )
     }
 
     #region Methods

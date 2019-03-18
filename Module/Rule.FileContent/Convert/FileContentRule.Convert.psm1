@@ -47,23 +47,8 @@ Class FileContentRuleConvert : FileContentRule
                 $this.SetDuplicateOf($this.id)
             }
         }
-        $this.DscResource = $(
-            if($null -eq $this.DuplicateOf)
-            {
-                if ($this.Key -match 'deployment.')
-                {
-                    'KeyValuePairFile'
-                }
-                else
-                {
-                    'ReplaceText'
-                }
-            }
-            else
-            {
-                'None'
-            }
-        )
+
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -101,6 +86,25 @@ Class FileContentRuleConvert : FileContentRule
         if (-not $this.SetStatus($thisValue))
         {
             $this.set_Value($thisValue)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            if ($this.Key -match 'deployment.')
+            {
+                $this.DscResource = 'KeyValuePairFile'
+            }
+            else
+            {
+                $this.DscResource = 'ReplaceText'
+            }
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

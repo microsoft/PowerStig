@@ -47,7 +47,7 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
         {
             if ($this.IsDuplicateRule($global:stigSettings))
             {
-                $this.SetDuplicateTitle()
+                $this.SetDuplicateOf($this.id)
             }
         }
         $this.SetDscResource()
@@ -123,6 +123,18 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
         return (Split-ProcessMitigationRule -MitigationTarget $this.MitigationTarget)
     }
 
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'ProcessMitigation'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
+    }
+
     static [bool] Match ([string] $CheckContent)
     {
         if ($CheckContent -Match "Get-ProcessMitigation")
@@ -130,11 +142,6 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
             return $true
         }
         return $false
-    }
-
-    hidden [void] SetDscResource ()
-    {
-        $this.DscResource = 'ProcessMitigation'
     }
     #endregion
 }

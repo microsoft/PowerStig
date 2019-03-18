@@ -46,15 +46,14 @@ Class WinEventLogRuleConvert : WinEventLogRule
 
         if ($this.IsDuplicateRule($global:stigSettings))
         {
-            $this.SetDuplicateTitle()
+            $this.SetDuplicateOf($this.id)
         }
-
         if ($this.IsExistingRule($global:stigSettings))
         {
             $newId = Get-AvailableId -Id $XccdfRule.id
             $this.set_id($newId)
         }
-        $this.DscResource = 'xWinEventLog'
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -74,6 +73,18 @@ Class WinEventLogRuleConvert : WinEventLogRule
         if (-not $this.SetStatus($thisDnsWinEventLogName))
         {
             $this.set_LogName($thisDnsWinEventLogName)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xWinEventLog'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

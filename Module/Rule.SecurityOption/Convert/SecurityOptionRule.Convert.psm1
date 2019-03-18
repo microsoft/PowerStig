@@ -35,7 +35,12 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
         [System.Text.RegularExpressions.Match] $tokens = $this.ExtractProperties()
         $this.SetOptionName($tokens)
         $this.SetOptionValue($tokens)
-        $this.DscResource = 'SecurityOption'
+
+        if ($this.IsDuplicateRule($global:stigSettings))
+        {
+            $this.SetDuplicateOf($this.id)
+        }
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -141,6 +146,17 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
         }
     }
 
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'SecurityOption'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
+    }
 
     <#
         .SYNOPSIS
