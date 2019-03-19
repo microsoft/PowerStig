@@ -41,12 +41,6 @@ Class IisLoggingRuleConvert : IisLoggingRule
     #>
     IisLoggingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetLogCustomFields()
-        $this.SetLogFlags()
-        $this.SetLogFormat()
-        $this.SetLogPeriod()
-        $this.SetLogTargetW3C()
-        $this.SetStatus()
 
         if ($this.conversionstatus -eq 'pass')
         {
@@ -55,6 +49,12 @@ Class IisLoggingRuleConvert : IisLoggingRule
                 $this.SetDuplicateOf($this.id)
             }
         }
+        $this.SetLogCustomFields()
+        $this.SetLogFlags()
+        $this.SetLogFormat()
+        $this.SetLogPeriod()
+        $this.SetLogTargetW3C()
+        $this.SetStatus()
         $this.SetDscResource()
     }
 
@@ -181,11 +181,11 @@ Class IisLoggingRuleConvert : IisLoggingRule
         {
             if ($global:stigTitle -match "Server")
             {
-                "xIISLogging"
+                $this.DscResource = 'xIISLogging'
             }
             else
             {
-                "XWebsite"
+                $this.DscResource = 'XWebsite'
             }
         }
         else

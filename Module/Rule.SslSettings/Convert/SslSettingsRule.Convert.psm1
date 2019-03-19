@@ -43,11 +43,11 @@ Class SslSettingsRuleConvert : SslSettingsRule
         $this.DscResource = $(
             if($null -eq $this.DuplicateOf)
             {
-                'xSslSettings'
+                $this.DscResource = 'xSslSettings'
             }
             else
             {
-                'None'
+                $this.DscResource = 'None'
             }
         )
     }
