@@ -25,7 +25,7 @@ Class GroupRuleConvert : GroupRule
 {
     <#
         .SYNOPSIS
-            Empty constructor for SplitFactory
+        Empty constructor for SplitFactory
     #>
     GroupRuleConvert ()
     {
