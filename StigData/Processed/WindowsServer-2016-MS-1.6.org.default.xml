@@ -71,4 +71,3 @@
   <!-- Ensure ''V-73807'' -match '1|2'-->
   <OrganizationalSetting id="V-73807" value="1" />
 </OrganizationalSettings>
-
