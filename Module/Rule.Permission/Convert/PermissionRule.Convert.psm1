@@ -39,14 +39,16 @@ Class PermissionRuleConvert : PermissionRule
     #>
     PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
+        $this.SetPath()
+        $this.SetForce()
+        $this.SetAccessControlEntry()
+
         if ($this.IsDuplicateRule($global:stigSettings))
         {
             $this.SetDuplicateOf($this.id)
         }
-        $this.SetPath()
         $this.SetDscResource()
-        $this.SetForce()
-        $this.SetAccessControlEntry()
+
     }
 
     # Methods

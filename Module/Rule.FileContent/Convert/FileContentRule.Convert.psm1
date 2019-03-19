@@ -38,7 +38,8 @@ Class FileContentRuleConvert : FileContentRule
     #>
     FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-
+        $this.SetKeyName()
+        $this.SetValue()
         if ($this.conversionstatus -eq 'pass')
         {
             if ($this.IsDuplicateRule($global:stigSettings))
@@ -46,8 +47,6 @@ Class FileContentRuleConvert : FileContentRule
                 $this.SetDuplicateOf($this.id)
             }
         }
-        $this.SetKeyName()
-        $this.SetValue()
         $this.SetDscResource()
     }
 

@@ -40,16 +40,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
                 $this.SetDuplicateOf($this.id)
             }
         }
-        $this.DscResource = $(
-            if($null -eq $this.DuplicateOf)
-            {
-                $this.DscResource = 'xSslSettings'
-            }
-            else
-            {
-                $this.DscResource = 'None'
-            }
-        )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -98,7 +89,14 @@ Class SslSettingsRuleConvert : SslSettingsRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xSslSettings'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xSslSettings'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)
