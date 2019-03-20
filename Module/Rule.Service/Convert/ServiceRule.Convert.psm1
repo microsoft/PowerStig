@@ -146,7 +146,7 @@ Class ServiceRuleConvert : ServiceRule
             split rule id is appended with a dot and letter to keep reporting
             per the ID consistent. An example would be is V-1000 contained 2
             checks, then SplitMultipleRules would return 2 objects with rule ids
-            V-1000.a and V-1000.b
+            V-1000.a and V-1000.b.
         .PARAMETER CheckContent
             The rule text from the check-content element in the xccdf
     #>
