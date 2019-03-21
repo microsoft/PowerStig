@@ -69,12 +69,12 @@ function Test-DuplicateRule
     [OutputType([Boolean])]
     param
     (
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [AllowNull()]
         [object]
         $ReferenceObject,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [object]
         $DifferenceObject
     )
@@ -83,13 +83,13 @@ function Test-DuplicateRule
     $ruleType = $ruleType.Replace("Convert", "")
     $baseRule = [Rule]::New()
 
-    $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
-    $differenceProperties = ( $DifferenceObject | Get-Member -MemberType Property ).Name
+    $referenceProperties = ($baseRule | Get-Member -MemberType Property).Name
+    $differenceProperties = ($DifferenceObject | Get-Member -MemberType Property).Name
 
     $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
     $referenceRules = $ReferenceObject | Where-Object {$PsItem.GetType().Name  -eq $ruletype}
 
-    foreach ( $rule in $referenceRules )
+    foreach ($rule in $referenceRules)
     {
         $results = @()
 
@@ -98,7 +98,7 @@ function Test-DuplicateRule
             $results += $rule.$propertyName -eq $DifferenceObject.$propertyName
         }
 
-        if ( $results -notcontains $false )
+        if ($results -notcontains $false)
         {
             Write-Verbose "$($rule.id) is a duplicate"
             $DifferenceObject.DuplicateOf = $DifferenceObject.DuplicateOf + $rule.id
