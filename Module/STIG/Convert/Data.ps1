@@ -21,7 +21,7 @@ data dscResourceModule
         AccountPolicyRule               = SecurityPolicyDsc
         AuditPolicyRule                 = AuditPolicyDsc
         DnsServerSettingRule            = xDnsServer
-        DnsServerRootHintRule           = PSDesiredStateConfiguration
+        DnsServerRootHintRule           = xPSDesiredStateConfiguration
         DocumentRule                    = None
         GroupRule                       = PSDesiredStateConfiguration
         IisLoggingRule                  = xWebAdministration
