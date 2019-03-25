@@ -39,7 +39,7 @@ data dscResourceModule
         WindowsFeatureRule              = PSDesiredStateConfiguration
         WinEventLogRule                 = xWinEventLog
         SslSettingsRule                 = xWebAdministration
-        WmiRule                         = PSDesiredStateConfiguration
+        WmiRule                         = xPSDesiredStateConfiguration
         FileContentRule                 = FileContentDsc
 '@
 }
