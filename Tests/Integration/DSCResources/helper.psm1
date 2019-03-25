@@ -89,7 +89,7 @@ function Get-ResourceMatchStatement
         }
         'DnsServerRootHintRule'
         {
-            return '\[script\]'
+            return '\[xscript\]'
         }
         'DnsServerSettingRule'
         {
