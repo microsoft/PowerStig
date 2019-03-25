@@ -40,7 +40,7 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
                 $rule.IpAddress | Should Be '$null'
             }
             It 'Should set the correct DscResource' {
-                $rule.DscResource | Should Be 'Script'
+                $rule.DscResource | Should Be 'xScript'
             }
             It 'Should set the Conversion status to pass' {
                 $rule.conversionstatus | Should be 'pass'
