@@ -107,7 +107,7 @@ try
                 $rule.Operator | Should Be $testRule.operator
             }
             It "Should set the correct DscResource" {
-                $rule.DscResource | Should Be 'Script'
+                $rule.DscResource | Should Be 'xScript'
             }
             It 'Should Set the status to pass' {
                 $rule.conversionstatus | Should Be 'pass'
