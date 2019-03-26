@@ -65,11 +65,6 @@ Configuration InternetExplorer
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('InternetExplorer', $BrowserVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
@@ -77,4 +72,5 @@ Configuration InternetExplorer
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
+    . "$resourcePath\windows.xScript.skip.ps1"
 }

@@ -78,14 +78,10 @@ Configuration IisSite
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('IISSite', $IisVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xScript.skip.ps1"
     . "$resourcePath\windows.xWindowsFeature.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0

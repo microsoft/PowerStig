@@ -81,11 +81,6 @@ Configuration WindowsClient
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('WindowsClient', $OsVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
@@ -106,6 +101,7 @@ Configuration WindowsClient
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xScript.skip.ps1"
     . "$resourcePath\windows.xScript.wmi.ps1"
     . "$resourcePath\windows.xService.ps1"
     . "$resourcePath\windows.xRegistry.ps1"

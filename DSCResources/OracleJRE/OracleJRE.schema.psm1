@@ -70,13 +70,11 @@ Configuration OracleJRE
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('OracleJRE', '8', $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName FileContentDsc -ModuleVersion 1.1.0.108
     . "$resourcePath\oraclejre.KeyValuePairFile.ps1"
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
+    . "$resourcePath\windows.xScript.skip.ps1"
 }
