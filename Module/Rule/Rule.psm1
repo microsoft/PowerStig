@@ -213,9 +213,9 @@ Class Rule : ICloneable
         .DESCRIPTION
             Is a rule is a duplicate, update the duplicateOf element with the rule id
     #>
-    hidden [Boolean] SetDuplicateOf ( [string] $ReferenceObject)
+    hidden [string] SetDuplicateOf ( [string] $ReferenceObject)
     {
-        return $true
+        return $this.id
     }
 
     <#
