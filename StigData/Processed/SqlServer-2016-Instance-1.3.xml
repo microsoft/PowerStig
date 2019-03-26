@@ -2720,7 +2720,7 @@ Both the holder of a digital certificate and the issuing authority must take car
 All access to the private key(s) of SQL Server must be restricted to authorized and authenticated users. If unauthorized users have access to one or more of SQL Server's private keys, an attacker could gain access to the key(s) and use them to impersonate the database on the network or otherwise perform unauthorized actions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName>Use FIPS-compliant algorithms for encryption, hashing, and signing</OptionName>
+      <OptionName>System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing</OptionName>
       <OptionValue>enabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
