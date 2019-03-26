@@ -66,5 +66,7 @@ Configuration FireFox
 
     Import-DscResource -ModuleName FileContentDsc -ModuleVersion 1.1.0.108
     . "$resourcePath\firefox.ReplaceText.ps1"
+
+    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xScript.skip.ps1"
 }
