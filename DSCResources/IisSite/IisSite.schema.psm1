@@ -80,8 +80,10 @@ Configuration IisSite
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
+
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
     . "$resourcePath\windows.xWindowsFeature.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0

@@ -100,9 +100,11 @@ Configuration WindowsClient
     Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 1.0.0.0
     . "$resourcePath\windows.ProcessMitigation.ps1"
 
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
+    . "$resourcePath\windows.Script.wmi.ps1"
+
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
-    . "$resourcePath\windows.xScript.wmi.ps1"
     . "$resourcePath\windows.xService.ps1"
     . "$resourcePath\windows.xRegistry.ps1"
     . "$resourcePath\windows.xWindowsOptionalFeature.ps1"

@@ -21,7 +21,7 @@ data dscResourceModule
         AccountPolicyRule               = SecurityPolicyDsc
         AuditPolicyRule                 = AuditPolicyDsc
         DnsServerSettingRule            = xDnsServer
-        DnsServerRootHintRule           = xPSDesiredStateConfiguration
+        DnsServerRootHintRule           = PSDscResources
         DocumentRule                    = None
         GroupRule                       = PSDesiredStateConfiguration
         IisLoggingRule                  = xWebAdministration
@@ -39,7 +39,7 @@ data dscResourceModule
         WindowsFeatureRule              = PSDesiredStateConfiguration
         WinEventLogRule                 = xWinEventLog
         SslSettingsRule                 = xWebAdministration
-        WmiRule                         = xPSDesiredStateConfiguration
+        WmiRule                         = PSDscResources
         FileContentRule                 = FileContentDsc
 '@
 }

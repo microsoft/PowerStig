@@ -76,9 +76,11 @@ Configuration IisServer
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
+
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
-    . "$resourcePath\windows.xScript.skip.ps1"
+    . "$resourcePath\windows.xRegistry.ps1"  
     . "$resourcePath\windows.xWindowsFeature.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0

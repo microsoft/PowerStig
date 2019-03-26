@@ -74,7 +74,7 @@ Class WmiRuleConvert : WmiRule
             }
         }
 
-        $this.DscResource = 'xScript'
+        $this.DscResource = 'Script'
     }
 
     static [bool] Match ([string] $CheckContent)

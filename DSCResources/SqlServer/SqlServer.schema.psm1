@@ -96,6 +96,6 @@ Configuration SqlServer
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion '2.4.0.0'
     . "$resourcePath\Windows.SecurityOption.ps1"
 
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xScript.skip.ps1"
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
 }
