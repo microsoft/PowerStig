@@ -1,5 +1,5 @@
 <DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="The Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_Server_DNS_STIG_V1R11_Manual-xccdf.xml" releaseinfo="Release: 11 Benchmark Date: 25 Jan 2019" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.11" created="2/1/2019">
-  <DnsServerRootHintRule dscresourcemodule="PSDesiredStateConfiguration">
+  <DnsServerRootHintRule dscresourcemodule="PSDscResources">
     <Rule id="V-58615" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
       <HostName>$null</HostName>
       <IpAddress>$null</IpAddress>

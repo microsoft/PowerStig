@@ -8638,7 +8638,7 @@ If "Installed State" is "Installed", this is a finding.
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
-  <WmiRule dscresourcemodule="PSDesiredStateConfiguration">
+  <WmiRule dscresourcemodule="PSDscResources">
     <Rule id="V-1073" severity="high" conversionstatus="pass" title="Unsupported Service Packs" dscresource="Script">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-ge</Operator>

@@ -1,5 +1,5 @@
 <DISASTIG id="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" version="1.10" created="8/16/2018">
-  <DnsServerRootHintRule dscresourcemodule="PSDesiredStateConfiguration">
+  <DnsServerRootHintRule dscresourcemodule="PSDscResources">
     <Rule id="V-58615" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
       <HostName>$null</HostName>
       <IpAddress>$null</IpAddress>

@@ -7169,7 +7169,7 @@ Select "Turn Windows features on or off".
 If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
-  <WmiRule dscresourcemodule="PSDesiredStateConfiguration">
+  <WmiRule dscresourcemodule="PSDscResources">
     <Rule id="V-1073" severity="high" conversionstatus="pass" title="Unsupported Service Packs" dscresource="Script">
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-ge</Operator>
