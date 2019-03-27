@@ -40,6 +40,7 @@ RequiredModules  = @(
     @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.3.0.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
     @{ModuleName = 'PolicyFileEditor'; ModuleVersion = '3.0.1'},
+    @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '12.1.0.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
