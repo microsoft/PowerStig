@@ -81,7 +81,7 @@ function Get-ResourceMatchStatement
         }
         'WmiRule'
         {
-            return '\[xScript\]'
+            return '\[Script\]'
         }
         'WinEventLogRule'
         {

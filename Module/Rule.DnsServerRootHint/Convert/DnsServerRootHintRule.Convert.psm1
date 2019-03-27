@@ -46,7 +46,7 @@ Class DnsServerRootHintRuleConvert : DnsServerRootHintRule
     {
         $this.set_HostName('$null')
         $this.set_IpAddress('$null')
-        $this.DscResource = 'xScript'
+        $this.DscResource = 'Script'
     }
 
     static [bool] Match ([string] $CheckContent)
