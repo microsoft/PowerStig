@@ -31,12 +31,7 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         $this.SetSubcategory($tokens)
         $this.SetAuditFlag($tokens)
         $this.Ensure = [Ensure]::Present
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
-
+        $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 

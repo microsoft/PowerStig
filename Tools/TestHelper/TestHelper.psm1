@@ -211,7 +211,7 @@ Function Get-StigBaseMethods
     else
     {
         $objectClassMethodNames = @('Equals', 'GetHashCode', 'GetType', 'ToString')
-        $stigClassMethodNames = @('Clone', 'IsDuplicateRule', 'SetDuplicateOf', 'SetStatus',
+        $stigClassMethodNames = @('Clone', 'IsDuplicateRule', 'SetDuplicateRule', 'SetStatus',
             'SetIsNullOrEmpty', 'SetOrganizationValueRequired', 'GetOrganizationValueTestString',
             'ConvertToHashTable', 'IsHardCoded', 'GetHardCodedString',
             'IsHardCodedOrganizationValueTestString', 'GetHardCodedOrganizationValueTestString',

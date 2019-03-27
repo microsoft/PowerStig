@@ -35,11 +35,7 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
         [System.Text.RegularExpressions.Match] $tokens = $this.ExtractProperties()
         $this.SetOptionName($tokens)
         $this.SetOptionValue($tokens)
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
+        $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 

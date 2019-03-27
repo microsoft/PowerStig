@@ -35,12 +35,7 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
         [RegularExpressions.MatchCollection] $tokens = $this.ExtractProperties()
         $this.SetPolicyName($tokens)
         $this.SetPolicyValue($tokens)
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
-
+        $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 

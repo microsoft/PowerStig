@@ -46,12 +46,7 @@ Class DnsServerRootHintRuleConvert : DnsServerRootHintRule
     {
         $this.set_HostName('$null')
         $this.set_IpAddress('$null')
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
-
+        $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 

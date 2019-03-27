@@ -202,20 +202,13 @@ Class Rule : ICloneable
         .PARAMETER ReferenceObject
             The existing converted rules
     #>
-    hidden [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
+    hidden [void] SetDuplicateRule ()
     {
-        return Test-DuplicateRule -ReferenceObject $ReferenceObject -DifferenceObject $this
-    }
-
-    <#
-        .SYNOPSIS
-            Tags a rule as being duplicate
-        .DESCRIPTION
-            Is a rule is a duplicate, update the duplicateOf element with the rule id
-    #>
-    hidden [string] SetDuplicateOf ( [string] $ReferenceObject)
-    {
-        return $this.id
+        $val = Test-DuplicateRule -ReferenceObject $global:stigSettings -DifferenceObject $this
+        if ($val)
+        {
+           $this.DuplicateOf = $val
+        }
     }
 
     <#

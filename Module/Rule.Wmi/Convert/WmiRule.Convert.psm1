@@ -73,10 +73,7 @@ Class WmiRuleConvert : WmiRule
                 $this.Value = 'NTFS|ReFS'
             }
         }
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
+        $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 

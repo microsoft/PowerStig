@@ -43,11 +43,7 @@ Class WinEventLogRuleConvert : WinEventLogRule
     {
         $this.SetWinEventLogName()
         $this.SetWinEventLogIsEnabled()
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
+        $this.SetDuplicateRule()
         if ($this.IsExistingRule($global:stigSettings))
         {
             $newId = Get-AvailableId -Id $XccdfRule.id

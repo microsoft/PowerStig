@@ -46,11 +46,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
+        $this.SetDuplicateRule()
         $this.SetDscResource()
     }
 

@@ -43,11 +43,7 @@ Class RegistryRuleConvert : RegistryRule
         $this.SetKey()
         $this.SetValueName()
         $this.SetValueType()
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-        }
+        $this.SetDuplicateRule()
         $this.SetDscResource()
 
         if ($this.IsHardCodedOrganizationValueTestString())

@@ -43,12 +43,9 @@ Class PermissionRuleConvert : PermissionRule
         $this.SetDscResource()
         $this.SetForce()
         $this.SetAccessControlEntry()
+        $this.SetDuplicateRule()
+        $this.SetDscResource()
 
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateOf($this.id)
-            $this.SetDscResource()
-        }
 
     }
 

@@ -35,10 +35,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateOf($this.id)
-            }
+            $this.SetDuplicateRule()
         }
         $this.SetDscResource()
     }
