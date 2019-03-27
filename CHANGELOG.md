@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Fixed [344](https://github.com/Microsoft/PowerStig/issues/344): Update PowerStig to automate and apply Windows Defender STIGS
+* Fixed [363](https://github.com/Microsoft/PowerStig/issues/363): Migrate to Get-CimInstance
 
 ## 3.0.1
 
