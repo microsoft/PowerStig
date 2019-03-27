@@ -105,7 +105,7 @@ Configuration WindowsServer
     . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
 
     Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.cim.ps1"
+    . "$resourcePath\windows.Script.CimInstance.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.AccountPolicy.ps1"
