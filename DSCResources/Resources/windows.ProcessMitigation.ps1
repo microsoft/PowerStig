@@ -6,7 +6,7 @@ $mitigationTargets = $rules.MitigationTarget | Select-Object -Unique
 
 foreach ($target in $mitigationTargets)
 {
-    $targetrules = $rules | where {$_.MitigationTarget -eq "$target"}
+    $targetrules = $rules | Where-Object {$_.MitigationTarget -eq "$target"}
     $enableValue = @()
     $disableValue = @()
     $idValue = @()

@@ -598,6 +598,21 @@ function Split-BenchmarkId
             $returnId = 'WindowsFirewall_All'
             continue
         }
+        {$PSItem -match "Windows_Defender_Antivirus"}
+        {
+            $returnId = 'WindowsDefender_All'
+            continue
+        }
+        {$PSItem -match "IIS_8-5_Server"}
+        {
+            $returnId = 'IISServer-8.5'
+            continue
+        }
+        {$PSItem -match "IIS_8-5_Site"}
+        {
+            $returnId = 'IISSite-8.5'
+            continue
+        }
         {$PSItem -match "Domain_Name_System"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2

@@ -18,6 +18,6 @@ $global:SingleLineRegistryValueData += [ordered]@{
     # Added for Windows Defender Stig rule V-75237
     Defender1 = [ordered]@{
         Match  = 'ScheduleDay'
-        Select = '(\d[x]\d)\sthrough\s(\d[x]\d)'
+        Select = '(?<=Values of )\d through \d'
     }
 }

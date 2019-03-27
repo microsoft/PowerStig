@@ -3,10 +3,14 @@
 ## Unreleased
 
 * Fixed [#342](https://github.com/Microsoft/PowerStig/issues/342): xWinEventLog has been deprecated
+* Fixed [#344](https://github.com/Microsoft/PowerStig/issues/344): Update PowerStig to automate and apply Windows Defender STIGS
+
+## 3.0.1
+
+* Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
+* Fixed [#348](https://github.com/Microsoft/PowerStig/issues/348): Update to DnsServer Schema to correct typo.
 
 ## 3.0.0
-
-NEW
 
 * Introduces class support for each rule type
 * The STIG class now contains an array of rule objects vs xml elements

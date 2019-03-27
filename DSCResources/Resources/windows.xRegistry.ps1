@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type RegistryRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
@@ -16,19 +16,34 @@ foreach ( $rule in $rules )
             $valueData = $rule.ValueData
         }
 
-        if( $valueData -eq 'ShouldBeAbsent')
+        if ($valueData -eq 'ShouldBeAbsent')
         {
             $rule.Ensure = 'Absent'
         }
 
-        xRegistry (Get-ResourceTitle -Rule $rule)
+        #Changing our key to adhere to the resource requirements. Issue discussed at this link https://github.com/PowerShell/xPSDesiredStateConfiguration/issues/444
+        if ($rule.Ensure -eq 'Absent')
         {
-            Key       = $rule.Key
-            ValueName = $rule.ValueName
-            ValueData = $valueData
-            ValueType = $rule.ValueType
-            Ensure    = $rule.Ensure
-            Force     = $true
+            $rule.Key = $rule.Key -replace 'HKEY_LOCAL_MACHINE', 'HKLM:'
+            xRegistry (Get-ResourceTitle -Rule $rule)
+            {
+                Key       = $rule.Key
+                ValueName = $rule.ValueName
+                Ensure    = $rule.Ensure
+                Force     = $true
+            }
+        }
+        else
+        {
+            xRegistry (Get-ResourceTitle -Rule $rule)
+            {
+                Key       = $rule.Key
+                ValueName = $rule.ValueName
+                ValueData = $valueData
+                ValueType = $rule.ValueType
+                Ensure    = $rule.Ensure
+                Force     = $true
+            }
         }
     }
 }

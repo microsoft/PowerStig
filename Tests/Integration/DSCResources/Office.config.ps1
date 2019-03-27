@@ -2,6 +2,16 @@ Configuration Office_config
 {
     param
     (
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyVersion,
+
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
         [Parameter(Mandatory = $true)]
         [version]
         $StigVersion,
@@ -20,73 +30,7 @@ Configuration Office_config
 
         [Parameter()]
         [string[]]
-        $OrgSettings,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $BrowserVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $OfficeApp,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ConfigPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $PropertiesPath,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $SqlRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $ForestName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $DomainName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsVersion,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $OsRole,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebAppPool,
-
-        [Parameter()]
-        [AllowNull()]
-        [string[]]
-        $WebSiteName,
-
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $LogPath
-
+        $OrgSettings
     )
 
     Import-DscResource -ModuleName PowerStig
@@ -96,7 +40,7 @@ Configuration Office_config
         & ([scriptblock]::Create("
         Office BaseLineSettings
         {
-            OfficeApp = '$OfficeApp'
+            OfficeApp   = '$TechnologyVersion'
             StigVersion = '$StigVersion'
             $(if ($null -ne $OrgSettings)
             {
@@ -104,7 +48,7 @@ Configuration Office_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem'= @{'ValueData'='1234567'}"}) -join "`n" )}"
+                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
             })
             $(if ($null -ne $SkipRule)
             {

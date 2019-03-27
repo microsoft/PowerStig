@@ -6,17 +6,9 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the Windows Server DNS STIG settings
-    .PARAMETER OsVersion
-        The version of the server operating system STIG to apply and monitor
+        A composite DSC resource to manage the Windows Defender STIG settings
     .PARAMETER StigVersion
-        The version of the Windows Server DNS STIG to apply and/or monitor
-    .PARAMETER ForestName
-        A string that sets the forest name for items such as security group. The input should be the FQDN of the forest.
-        If this is omitted the forest name of the computer that generates the configuration will be used.
-    .PARAMETER DomainName
-        A string that sets the domain name for items such as security group. The input should be the FQDN of the domain.
-        If this is omitted the domain name of the computer that generates the configuration will be used.
+        The version of the Defender STIG to apply and/or monitor
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
         the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
@@ -32,29 +24,15 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration WindowsDnsServer
+Configuration WindowsDefender
 {
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $OsVersion,
-
         [Parameter()]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [string]
-        $ForestName,
-
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [string]
-        $DomainName,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
@@ -78,7 +56,7 @@ Configuration WindowsDnsServer
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('WindowsDnsServer', $OsVersion, $StigVersion)
+    $stig = [STIG]::New('WindowsDefender', 'All', $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
 
     # $resourcePath is exported from the helper module in the header
@@ -87,21 +65,6 @@ Configuration WindowsDnsServer
     . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
-    . "$resourcePath\windows.AccessControl.ps1"
-
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.RootHint.ps1"
-
-    Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
-    . "$resourcePath\windows.UserRightsAssignment.ps1"
-
-    Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
-    . "$resourcePath\windows.xDnsServerSetting.ps1"
-
     Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
     . "$resourcePath\windows.xRegistry.ps1"
-
-    Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 6.2.0.0
-    . "$resourcePath\windows.WindowsEventLog.ps1"
 }

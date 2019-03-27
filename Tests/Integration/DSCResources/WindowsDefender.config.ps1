@@ -1,4 +1,4 @@
-Configuration InternetExplorer_config
+Configuration WindowsDefender_config
 {
     param
     (
@@ -38,23 +38,23 @@ Configuration InternetExplorer_config
     Node localhost
     {
         & ([scriptblock]::Create("
-        InternetExplorer STIG
-        {
-            BrowserVersion = '$TechnologyVersion'
-            StigVersion    = '$StigVersion'
-            $(if ($null -ne $OrgSettings)
+            WindowsDefender BaseLineSettings
             {
-                "Orgsettings = '$OrgSettings'"
-            })
-            $(if ($null -ne $Exception)
-            {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
-            })
-            $(if ($null -ne $SkipRule)
-            {
-                "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
-            })
-        }")
+                StigVersion = '$StigVersion'
+                $(if ($null -ne $OrgSettings)
+                {
+                    "Orgsettings = '$OrgSettings'"
+                })
+                $(if ($null -ne $Exception)
+                {
+                    "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
+                })
+                $(if ($null -ne $SkipRule)
+                {
+                    "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
+                })
+            }")
         )
     }
 }
+
