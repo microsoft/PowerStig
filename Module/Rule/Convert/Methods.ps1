@@ -69,26 +69,27 @@ function Test-DuplicateRule
     [OutputType([Boolean])]
     param
     (
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [AllowNull()]
         [object]
         $ReferenceObject,
 
-        [Parameter( Mandatory = $true )]
+        [Parameter(Mandatory = $true)]
         [object]
         $DifferenceObject
     )
 
     $ruleType = $DifferenceObject.GetType().Name
+    $ruleType = $ruleType.Replace("Convert", "")
     $baseRule = [Rule]::New()
 
-    $referenceProperties = ( $baseRule | Get-Member -MemberType Property ).Name
-    $differenceProperties = ( $DifferenceObject | Get-Member -MemberType Property ).Name
+    $referenceProperties = ($baseRule | Get-Member -MemberType Property).Name
+    $differenceProperties = ($DifferenceObject | Get-Member -MemberType Property).Name
 
     $propertyList = (Compare-Object -ReferenceObject $referenceProperties -DifferenceObject $differenceProperties).InputObject
-    $referenceRules = $ReferenceObject | Where-Object { $( $PsItem.GetType().Name ) -eq $ruletype }
+    $referenceRules = $ReferenceObject | Where-Object {$PsItem.GetType().Name  -eq $ruletype}
 
-    foreach ( $rule in $referenceRules )
+    foreach ($rule in $referenceRules)
     {
         $results = @()
 
@@ -97,14 +98,13 @@ function Test-DuplicateRule
             $results += $rule.$propertyName -eq $DifferenceObject.$propertyName
         }
 
-        if ( $results -notcontains $false )
+        if ($results -notcontains $false)
         {
-            Write-Verbose "$($rule.id) is a duplicate"
-            return $true
+            return $rule.id
         }
     }
-    # If the code made it this far a duplicate does not exist and we return $false
-    return $false
+    # If the code made it this far a duplicate does not exist and we return $null
+    return $null
 }
 
 <#

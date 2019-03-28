@@ -29,8 +29,8 @@ try
         $skipRuleTypeMultiple = @('PermissionRule','UserRightRule')
         $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.PermissionRule.ChildNodes.Count + $powerstigXml.DISASTIG.UserRightRule.ChildNodes.Count
 
-        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerSettingRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.DnsServerSettingRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.UserRightRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.UserRightRule.Rule.id -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }

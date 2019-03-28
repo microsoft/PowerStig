@@ -40,7 +40,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         Context $ruleName {
             $hasAllRules = $true
             $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule |
-                    Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry'})
+                    Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry' -and $PSItem.DuplicateOf -eq ''})
 
             $dscMof = $instances |
                 Where-Object {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}

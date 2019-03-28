@@ -35,7 +35,8 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
         [RegularExpressions.MatchCollection] $tokens = $this.ExtractProperties()
         $this.SetPolicyName($tokens)
         $this.SetPolicyValue($tokens)
-        $this.DscResource = 'AccountPolicy'
+        $this.SetDuplicateRule()
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -100,6 +101,18 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
             {
                 $this.set_PolicyValue($thisPolicyValue)
             }
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'AccountPolicy'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 
