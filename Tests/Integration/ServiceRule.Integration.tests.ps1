@@ -91,7 +91,7 @@ try
                     $rule.StartupType | Should Be $service.StartupType
                 }
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'xService'
+                    $rule.DscResource | Should Be 'Service'
                 }
                 It 'Should set the Conversion statud to pass ensure value' {
                     $rule.conversionstatus | Should be $service.conversionstatus
@@ -138,7 +138,7 @@ try
                 $rule.StartupType | Should Be 'Automatic'
             }
             It 'Should set the correct DscResource' {
-                $rule.DscResource | Should Be 'xService'
+                $rule.DscResource | Should Be 'Service'
             }
             It 'Should set the Conversion statud to pass ensure value' {
                 $rule.conversionstatus | Should be 'pass'
@@ -165,7 +165,7 @@ try
                 $rule.StartupType | Should Be 'Automatic'
             }
             It 'Should set the correct DscResource' {
-                $rule.DscResource | Should Be 'xService'
+                $rule.DscResource | Should Be 'Service'
             }
             It 'Should set the Conversion statud to pass ensure value' {
                 $rule.conversionstatus | Should be 'pass'

@@ -1,4 +1,4 @@
-Configuration xRegistry_config
+Configuration Registry_config
 {
     param
     ( )
@@ -8,6 +8,6 @@ Configuration xRegistry_config
 
     Node localhost
     {
-        . $PSScriptRoot\..\..\..\DscResources\Resources\windows.xRegistry.ps1
+        . $PSScriptRoot\..\..\..\DscResources\Resources\windows.Registry.ps1
     }
 }

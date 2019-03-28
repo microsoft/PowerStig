@@ -73,10 +73,10 @@ $ruleList = @(
     }
 )
 
-$configFile = Join-Path -Path $PSScriptRoot -ChildPath "windows.xRegistry.config.ps1"
+$configFile = Join-Path -Path $PSScriptRoot -ChildPath "windows.Registry.config.ps1"
 . $configFile
 
-Describe 'xRegistry call' {
+Describe 'Registry call' {
 
     foreach ($rule in $ruleList)
     {
@@ -85,7 +85,7 @@ Describe 'xRegistry call' {
             It 'Should not throw' {
                 function Select-Rule {}
                 Mock Select-Rule -MockWith {$rule.testXml.Rule}
-                { & xRegistry_config -OutputPath $TestDrive } | Should Not Throw
+                { & Registry_config -OutputPath $TestDrive } | Should Not Throw
             }
 
             $instance = ([Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances("$TestDrive\localhost.mof", 4))[0]
