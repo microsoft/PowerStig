@@ -37,7 +37,7 @@ function Get-ResourceMatchStatement
         }
         'WindowsFeatureRule'
         {
-            return '\[xWindowsFeature\]|\[xWindowsOptionalFeature\]'
+            return '\[WindowsFeature\]|\[WindowsOptionalFeature\]'
         }
         'WebAppPoolRule'
         {

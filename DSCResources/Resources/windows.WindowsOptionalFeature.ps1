@@ -5,7 +5,7 @@ $rules = $stig.RuleList | Select-Rule -Type WindowsFeatureRule
 
 foreach ( $rule in $rules )
 {
-    xWindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
+    WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
     {
         Name   = $rule.FeatureName
         Ensure = $rule.InstallState

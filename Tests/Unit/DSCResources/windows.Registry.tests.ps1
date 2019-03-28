@@ -111,7 +111,7 @@ Describe 'Registry call' {
                     $instance.ValueData | Should Be $rule.ValueData
                 }
             }
-            else 
+            else
             {
                 It 'Should set the correct Type' {
                     $instance.ValueType | Should Be $null
