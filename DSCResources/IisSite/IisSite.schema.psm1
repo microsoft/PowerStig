@@ -82,9 +82,7 @@ Configuration IisSite
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Script.skip.ps1"
-
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xWindowsFeature.ps1"
+    . "$resourcePath\windows.WindowsFeature.ps1"
 
     Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0
     . "$resourcePath\windows.xWebSite.ps1"

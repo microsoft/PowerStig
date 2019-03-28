@@ -102,10 +102,8 @@ Configuration WindowsClient
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Script.skip.ps1"
-    . "$resourcePath\windows.Script.wmi.ps1"
-
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xService.ps1"
-    . "$resourcePath\windows.xRegistry.ps1"
-    . "$resourcePath\windows.xWindowsOptionalFeature.ps1"
+    . "$resourcePath\windows.Script.CimInstance.ps1"
+    . "$resourcePath\windows.Service.ps1"
+    . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.WindowsOptionalFeature.ps1"
 }
