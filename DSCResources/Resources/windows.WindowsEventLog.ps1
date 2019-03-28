@@ -7,7 +7,7 @@ foreach ( $rule in $rules )
 {
     WindowsEventLog (Get-ResourceTitle -Rule $rule)
     {
-        LogName     = $rule.LogName
-        IsEnabled   = [boolean]$($rule.IsEnabled)
+        LogName   = $rule.LogName
+        IsEnabled = [boolean]$($rule.IsEnabled)
     }
 }
