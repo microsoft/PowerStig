@@ -69,10 +69,9 @@ Class RegistryRule : Rule
     #>
     [PSObject] GetExceptionHelp()
     {
-        $return = @{
+        return @{
             Value = "1"
             Notes = "This registry value type is $($this.ValueType). Ensure the exception data matches the value type."
         }
-        return $return
     }
 }

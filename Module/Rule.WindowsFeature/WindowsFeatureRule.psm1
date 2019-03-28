@@ -40,10 +40,9 @@ Class WindowsFeatureRule : Rule
             $thisInstallState = 'Present'
         }
 
-        $return = @{
+        return @{
             Value = $thisInstallState
             Notes = "'Present' and 'Absent' are the only valid values."
         }
-        return $return
     }
 }

@@ -39,10 +39,9 @@ Class WinEventLogRule : Rule
         {
             $thisIsEnabled = 'True'
         }
-        $return = @{
+        return @{
             Value = $thisIsEnabled
             Notes = "'True' and 'False' are the only valid values"
         }
-        return $return
     }
 }
