@@ -13,7 +13,7 @@ function Get-ResourceMatchStatement
     {
         'RegistryRule'
         {
-            return '\[xRegistry\]|\[cAdministrativeTemplateSetting\]'
+            return '\[Registry\]|\[cAdministrativeTemplateSetting\]'
         }
         'FileContentRule'
         {

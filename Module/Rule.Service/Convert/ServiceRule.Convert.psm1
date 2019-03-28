@@ -152,7 +152,7 @@ Class ServiceRuleConvert : ServiceRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xService'
+        $this.DscResource = 'Service'
     }
     #endregion
 }
