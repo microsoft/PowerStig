@@ -43,12 +43,7 @@ Class UserRightRuleConvert : UserRightRule
         $this.SetConstant()
         $this.SetIdentity()
         $this.SetForce()
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateTitle()
-        }
-
+        $this.SetDuplicateRule()
         if (Test-ExistingRule -RuleCollection $global:stigSettings -NewRule $this)
         {
             $this.set_id((Get-AvailableId -Id $this.Id))
@@ -149,7 +144,14 @@ Class UserRightRuleConvert : UserRightRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'UserRightsAssignment'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'UserRightsAssignment'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)

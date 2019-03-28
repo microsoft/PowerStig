@@ -43,18 +43,14 @@ Class DnsServerSettingRuleConvert : DnsServerSettingRule
     {
         $this.SetDnsServerPropertyName()
         $this.SetDnsServerPropertyValue()
-
-        if ($this.IsDuplicateRule($global:stigSettings))
-        {
-            $this.SetDuplicateTitle()
-        }
+        $this.SetDuplicateRule()
         if ($this.IsExistingRule($global:stigSettings))
         {
             $newId = Get-AvailableId -Id $this.Id
             $this.set_id($newId)
         }
 
-        $this.DscResource = 'xDnsServerSetting'
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -94,6 +90,18 @@ Class DnsServerSettingRuleConvert : DnsServerSettingRule
         if (-not $this.SetStatus($thisDnsServerSettingPropertyValue))
         {
             $this.set_PropertyValue($thisDnsServerSettingPropertyValue)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xDnsServerSetting'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

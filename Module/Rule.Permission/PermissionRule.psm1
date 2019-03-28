@@ -35,10 +35,9 @@ Class PermissionRule : Rule
 
     [PSObject] GetExceptionHelp()
     {
-        $return = @{
+        return @{
             Value = "15"
             Notes = $null
         }
-        return $return
     }
 }

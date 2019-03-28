@@ -35,10 +35,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
+            $this.SetDuplicateRule()
         }
         $this.SetDscResource()
     }
@@ -89,7 +86,14 @@ Class SslSettingsRuleConvert : SslSettingsRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xSslSettings'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xSslSettings'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)

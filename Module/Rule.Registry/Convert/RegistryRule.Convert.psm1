@@ -43,6 +43,7 @@ Class RegistryRuleConvert : RegistryRule
         $this.SetKey()
         $this.SetValueName()
         $this.SetValueType()
+        $this.SetDuplicateRule()
         $this.SetDscResource()
 
         if ($this.IsHardCodedOrganizationValueTestString())
@@ -348,13 +349,20 @@ Class RegistryRuleConvert : RegistryRule
 
     hidden [void] SetDscResource ()
     {
-        if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
+        if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = "Registry"
+            if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
+            {
+                $this.DscResource = "Registry"
+            }
+            else
+            {
+                $this.DscResource = "cAdministrativeTemplate"
+            }
         }
         else
         {
-            $this.DscResource = "cAdministrativeTemplate"
+            $this.DscResource = 'None'
         }
     }
 

@@ -31,7 +31,8 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         $this.SetSubcategory($tokens)
         $this.SetAuditFlag($tokens)
         $this.Ensure = [Ensure]::Present
-        $this.DscResource = 'AuditPolicySubcategory'
+        $this.SetDuplicateRule()
+        $this.SetDscResource()
     }
 
     <#
@@ -88,6 +89,18 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         if (-not $this.SetStatus($thisAuditFlag))
         {
             $this.set_AuditFlag($thisAuditFlag)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'AuditPolicySubcategory'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 
