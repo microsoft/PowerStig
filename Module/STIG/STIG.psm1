@@ -246,7 +246,6 @@ Class STIG
                     {
                         $importRule.AddExceptionToPolicy($Exceptions[$rule.Id])
                     }
-
                 }
 
                 $ruleListIndex = $this.RuleList.Add($importRule)
