@@ -76,9 +76,9 @@ Class Rule : ICloneable
     #>
     Rule ([xml.xmlelement] $Rule)
     {
-        $propertyList1 = ($this | Get-Member -MemberType Properties).Name
+        $propertyList = ($this | Get-Member -MemberType Properties).Name
 
-        foreach ($property in $propertyList1)
+        foreach ($property in $propertyList)
         {
             if ( -not [string]::IsNullOrEmpty($Rule.($property)) )
             {
