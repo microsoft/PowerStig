@@ -7,7 +7,7 @@ foreach ($rule in $rules)
 {
     if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
-        if ($rule.ValueType -eq 'MultiString')
+        if ($rule.ValueType -eq 'MultiString' -and $null -ne $rule.ValueData)
         {
             $valueData = $rule.ValueData.Split("{;}")
         }
