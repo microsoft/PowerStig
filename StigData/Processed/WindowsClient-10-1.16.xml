@@ -1508,6 +1508,56 @@ Issuer by: US DoD CCEB Interoperability Root CA 2
 Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
 Valid: Friday, September 27, 2019</RawString>
     </Rule>
+    <Rule id="V-63685" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Windows Defender SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling Windows Defender SmartScreen will warn or prevent users from running potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
+
+If the following registry values do not exist or are not configured as specified, this is a finding:
+
+v1703 and later of Windows 10:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: EnableSmartScreen
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)
+
+And
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: ShellSmartScreenLevel
+
+Value Type: REG_SZ
+Value: Block
+
+v1607 of Windows 10:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: EnableSmartScreen
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)
+
+v1507 LTSB:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
+
+Value Name: EnableSmartScreen
+
+Value Type: REG_DWORD
+Value: 0x00000002 (2)</RawString>
+    </Rule>
     <Rule id="V-68845" severity="high" conversionstatus="pass" title="WN10-00-000145" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Attackers are constantly looking for vulnerabilities in systems and applications. Data Execution Prevention (DEP) prevents harmful code from running in protected memory locations reserved for Windows and other programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -4656,74 +4706,6 @@ Value: 0x00000000 (0) (Security)
 If an organization is using v1709 or later of Windows 10 this may be configured to "Enhanced" to support Windows Analytics. V-82145 must also be configured to limit the Enhanced diagnostic data to the minimum required by Windows Analytics. This registry value will then be 0x00000002 (2).</RawString>
       <ValueData>0</ValueData>
       <ValueName>AllowTelemetry</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63685.a" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Windows Defender SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling Windows Defender SmartScreen will warn or prevent users from running potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_DWORD
-Value Name: EnableSmartScreen
-Value: 0x00000001 (1)</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>EnableSmartScreen</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63685.b" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Windows Defender SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling Windows Defender SmartScreen will warn or prevent users from running potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_SZ
-Value Name: ShellSmartScreenLevel
-Value: Block</RawString>
-      <ValueData>Block</ValueData>
-      <ValueName>ShellSmartScreenLevel</ValueName>
-      <ValueType>String</ValueType>
-    </Rule>
-    <Rule id="V-63685.c" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Windows Defender SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling Windows Defender SmartScreen will warn or prevent users from running potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_DWORD
-Value Name: EnableSmartScreen
-Value: 0x00000001 (1)</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>EnableSmartScreen</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-63685.d" severity="medium" conversionstatus="pass" title="WN10-CC-000210" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Windows Defender SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling Windows Defender SmartScreen will warn or prevent users from running potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
-Value Type: REG_DWORD
-Value Name: EnableSmartScreen
-Value: 0x00000002 (2)</RawString>
-      <ValueData>2</ValueData>
-      <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-63687" severity="low" conversionstatus="pass" title="WN10-SO-000085" dscresource="Registry">
