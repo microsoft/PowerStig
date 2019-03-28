@@ -43,7 +43,7 @@ Class DnsServerSettingRuleConvert : DnsServerSettingRule
     {
         $this.SetDnsServerPropertyName()
         $this.SetDnsServerPropertyValue()
-
+        $this.SetDuplicateRule()
         if ($this.IsExistingRule($global:stigSettings))
         {
             $newId = Get-AvailableId -Id $this.Id
