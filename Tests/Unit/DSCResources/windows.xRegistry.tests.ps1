@@ -85,7 +85,7 @@ Describe 'xRegistry call' {
             It 'Should not throw' {
                 function Select-Rule {}
                 Mock Select-Rule -MockWith {$rule.testXml.Rule}
-                { & xRegistry_config -OutputPath $TestDrive } | Should Not Throw
+                { & Registry_config -OutputPath $TestDrive } | Should Not Throw
             }
 
             $instance = ([Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances("$TestDrive\localhost.mof", 4))[0]
@@ -111,7 +111,7 @@ Describe 'xRegistry call' {
                     $instance.ValueData | Should Be $rule.ValueData
                 }
             }
-            else 
+            else
             {
                 It 'Should set the correct Type' {
                     $instance.ValueType | Should Be $null
