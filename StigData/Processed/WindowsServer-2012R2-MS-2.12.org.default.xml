@@ -1,11 +1,11 @@
 <!--
-    The organizational settings file is used to define the local organizations  
+    The organizational settings file is used to define the local organizations
     preferred setting within an allowed range of the STIG.
 
-    Each setting in this file is linked by STIG ID and the valid range is in an 
+    Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="2.12">
+<OrganizationalSettings fullversion="2.12">
   <!-- Ensure 'V-1090' -le '4'-->
   <OrganizationalSetting id="V-1090" value="4" />
   <!-- Ensure ''V-1097'' -le '3' -and ''V-1097'' -ne '0'-->
@@ -24,6 +24,8 @@
   <OrganizationalSetting id="V-1114" value="xGuest" />
   <!-- Ensure ''V-1115'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-1115" value="xAdministrator" />
+  <!-- Ensure ''V-1155'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
+  <OrganizationalSetting id="V-1155" value="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
   <!-- Ensure 'V-1157' -match '1|2'-->
   <OrganizationalSetting id="V-1157" value="1" />
   <!-- Ensure 'V-1172' -ge '14'-->
@@ -32,10 +34,6 @@
   <OrganizationalSetting id="V-1174" value="15" />
   <!-- Ensure 'V-3373' -le '30' -and 'V-3373' -gt '0'-->
   <OrganizationalSetting id="V-3373" value="30" />
-  <!-- Ensure ''V-3472.a'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
-  <OrganizationalSetting id="V-3472.a" value="NT5DS" />
-  <!-- Ensure ''V-3472.b'' -notmatch 'time.windows.com'-->
-  <OrganizationalSetting id="V-3472.b" value="time.{0}" />
   <!-- Ensure 'V-4108' -le '90'-->
   <OrganizationalSetting id="V-4108" value="90" />
   <!-- Ensure 'V-4113' -le '300000'-->
@@ -64,6 +62,8 @@
   <OrganizationalSetting id="V-26581" value="32768" />
   <!-- Ensure 'V-26582' -ge '32768'-->
   <OrganizationalSetting id="V-26582" value="32768" />
-  <!-- Ensure 'V-36773' -le '900'-->
+  <!-- Ensure ''V-36707'' -match '1|2'-->
+  <OrganizationalSetting id="V-36707" value="1" />
+  <!-- Ensure ''V-36773'' -le '900' -and ''V-36773'' -gt '0'-->
   <OrganizationalSetting id="V-36773" value="900" />
 </OrganizationalSettings>
