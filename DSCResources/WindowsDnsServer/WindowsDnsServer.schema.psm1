@@ -104,4 +104,5 @@ Configuration WindowsDnsServer
 
     Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 6.2.0.0
     . "$resourcePath\windows.WindowsEventLog.ps1"
+
 }
