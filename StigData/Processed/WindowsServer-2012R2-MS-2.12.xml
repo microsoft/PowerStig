@@ -1356,6 +1356,39 @@ Select the "Security" tab.
 
 If the NTFS permissions have not been reconfigured to restrict permissions to the specific groups or accounts that require access, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-3472" severity="low" conversionstatus="pass" title="Windows Time Service - Configure NTP Client" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The Windows Time Service controls time synchronization settings.  Time synchronization is essential for authentication and auditing purposes.  If the Windows Time Service is used, it must synchronize with a secure, authorized time source.   Domain-joined systems are automatically configured to synchronize with domain controllers.  If an NTP server is configured, it must synchronize with a secure, authorized time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the following registry values:
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \Software\Policies\Microsoft\W32time\Parameters\
+
+Registry Path: \Software\Policies\Microsoft\W32time\Parameters\ Type
+Type: REG_SZ
+Value: Possible values are NoSync, NTP, NT5DS, AllSync
+
+and
+
+Registry Path: \Software\Policies\Microsoft\W32time\Parameters\ NTPServer
+Type: REG_SZ
+Value: "address of the time server"
+
+If the following, this is a finding:
+"Type" has a value of "NTP" or "Allsync" AND the "NTPServer" value is set to "time.windows.com" or other unauthorized server.
+
+If the following, this not a finding:
+The referenced registry values do not exist.
+"Type" has a value of "NoSync" or "NT5DS".
+"Type" has a value of "NTP" or "Allsync" AND the "NTPServer" is blank or configured to an authorized time server.
+
+For DoD organizations, the US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.
+
+Domain-joined systems are automatically configured to synchronize with domain controllers, and it would not be a finding unless this is changed.</RawString>
+    </Rule>
     <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2367,7 +2400,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default Permissions:
-\Program Files
+\Program Files 
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -3644,40 +3677,6 @@ Value: 0</RawString>
       <ValueData>0</ValueData>
       <ValueName>fAllowUnsolicited</ValueName>
       <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-3472.a" severity="low" conversionstatus="pass" title="Windows Time Service - Configure NTP Client" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The Windows Time Service controls time synchronization settings.  Time synchronization is essential for authentication and auditing purposes.  If the Windows Time Service is used, it must synchronize with a secure, authorized time source.   Domain-joined systems are automatically configured to synchronize with domain controllers.  If an NTP server is configured, it must synchronize with a secure, authorized time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\W32time\Parameters</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \Software\Policies\Microsoft\W32time\Parameters\
-Type: REG_SZ
-Value Name: Type
-Value: Possible values are NoSync, NTP, NT5DS, AllSync</RawString>
-      <ValueData />
-      <ValueName>Type</ValueName>
-      <ValueType>String</ValueType>
-    </Rule>
-    <Rule id="V-3472.b" severity="low" conversionstatus="pass" title="Windows Time Service - Configure NTP Client" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The Windows Time Service controls time synchronization settings.  Time synchronization is essential for authentication and auditing purposes.  If the Windows Time Service is used, it must synchronize with a secure, authorized time source.   Domain-joined systems are automatically configured to synchronize with domain controllers.  If an NTP server is configured, it must synchronize with a secure, authorized time source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\W32time\Parameters</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -notmatch 'time.windows.com'</OrganizationValueTestString>
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \Software\Policies\Microsoft\W32time\Parameters\
-Type: REG_SZ
-Value Name: NTPServer
-Value: "address of the time server"</RawString>
-      <ValueData />
-      <ValueName>NTPServer</ValueName>
-      <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-3479" severity="medium" conversionstatus="pass" title="Safe DLL Search Mode" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;The default search behavior, when an application calls a function in a Dynamic Link Library (DLL), is to search the current directory, followed by the directories contained in the system's path environment variable.  An unauthorized DLL, inserted into an application's working directory, could allow malicious code to be run on the system.  Setting this policy value forces the system to search the %Systemroot% for the DLL before searching the current directory or the rest of the path.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
