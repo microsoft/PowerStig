@@ -3686,7 +3686,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default Permissions:
-\Program Files 
+\Program Files
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -5478,7 +5478,7 @@ In AD, the lack of synchronized time could prevent clients from logging on or ac
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueTestString>'{0}' -match '^(NoSync|NTP|NT5DS|AllSync)$'</OrganizationValueTestString>
       <RawString>Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \System\CurrentControlSet\Services\W32Time\TimeProviders\NtpClient\
 Type: REG_SZ
