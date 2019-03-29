@@ -8,3 +8,6 @@ V-73711::0x00000002 (2) (Prompt for consent on the secure desktop)
 V-73253::\Windows::C:\Windows
 V-73321::"Minimum password length,"::"Minimum password length"
 V-73755::Passwords for application accounts with this user right must be protected as highly privileged accounts.::""
+V-73371::- Read & execute-::- Read & execute -
+V-73371::Administrators - Special - This folder only (Special = Basic Permissions: all selected except Full control)::Administrators - all selected except Full control - This folder only
+V-73371::(RX) - Read & execute::(RX) Read & execute
