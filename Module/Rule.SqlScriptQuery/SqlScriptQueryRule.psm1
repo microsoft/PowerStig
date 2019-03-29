@@ -29,16 +29,15 @@ Class SqlScriptQueryRule : Rule
     SqlScriptQueryRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
         $this.GetScript = $Rule.GetScript
-        $this.TestScript = $Rule.TestScriptv
+        $this.TestScript = $Rule.TestScript
         $this.SetScript = $Rule.SetScript
     }
 
     [PSObject] GetExceptionHelp()
     {
-        $return = @{
+        return @{
             Value = "15"
             Notes = $null
         }
-        return $return
     }
 }
