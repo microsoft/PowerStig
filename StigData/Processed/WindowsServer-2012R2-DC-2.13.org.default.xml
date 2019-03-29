@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="2.13">
+<OrganizationalSettings fullversion="2.13">
   <!-- Ensure 'V-1090' -le '4'-->
   <OrganizationalSetting id="V-1090" value="4" />
   <!-- Ensure ''V-1097'' -le '3' -and ''V-1097'' -ne '0'-->
@@ -40,10 +40,6 @@
   <OrganizationalSetting id="V-2380" value="5" />
   <!-- Ensure 'V-3373' -le '30' -and 'V-3373' -gt '0'-->
   <OrganizationalSetting id="V-3373" value="30" />
-  <!-- Ensure ''V-3472.a'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
-  <OrganizationalSetting id="V-3472.a" value="NT5DS" />
-  <!-- Ensure ''V-3472.b'' -notmatch 'time.windows.com'-->
-  <OrganizationalSetting id="V-3472.b" value="time.{0}" />
   <!-- Ensure 'V-4108' -le '90'-->
   <OrganizationalSetting id="V-4108" value="90" />
   <!-- Ensure 'V-4113' -le '300000'-->
