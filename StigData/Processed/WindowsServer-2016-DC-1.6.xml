@@ -3258,17 +3258,8 @@ BUILTIN\Administrators:(I)(F)
 (I) - permission inherited from parent container
 (F) - full access</RawString>
     </Rule>
-    <Rule id="V-73371" severity="high" conversionstatus="fail" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
+    <Rule id="V-73371" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>(RX)</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>ReadAndExecute</Rights>
-        </Entry>
         <Entry>
           <Type>
           </Type>
@@ -3282,19 +3273,16 @@ BUILTIN\Administrators:(I)(F)
           </Type>
           <Principal>Server Operators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>,,</Rights>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>ReadAndExecute</Rights>
         </Entry>
         <Entry>
           <Type>
           </Type>
           <Principal>Administrators</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
+          <Inheritance>This folder only</Inheritance>
+          <Rights>AppendData,ChangePermissions,CreateDirectories,CreateFiles,Delete,DeleteSubdirectoriesAndFiles,ExecuteFile,ListDirectory,Modify,Read,ReadAndExecute,ReadAttributes,ReadData,ReadExtendedAttributes,ReadPermissions,Synchronize,TakeOwnership,Traverse,Write,WriteAttributes,WriteData,WriteExtendedAttributes</Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3381,7 +3369,7 @@ Inherited from - "None" for all
 
 Principal - Access - Applies to
 
-Authenticated Users - Read &amp; execute - This folder, subfolder, and files
+Authenticated Users - Read &amp; execute- This folder, subfolder, and files
 Server Operators - Read &amp; execute- This folder, subfolder, and files
 Administrators - Special - This folder only (Special = Basic Permissions: all selected except Full control)
 CREATOR OWNER - Full control - Subfolders and files only
