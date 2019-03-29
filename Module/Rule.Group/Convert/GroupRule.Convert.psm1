@@ -25,7 +25,7 @@ Class GroupRuleConvert : GroupRule
 {
     <#
         .SYNOPSIS
-            Empty constructor for SplitFactory
+        Empty constructor for SplitFactory
     #>
     GroupRuleConvert ()
     {
@@ -44,12 +44,10 @@ Class GroupRuleConvert : GroupRule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
+            $this.SetDuplicateRule()
         }
-        $this.DscResource = 'Group'
+
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -93,6 +91,18 @@ Class GroupRuleConvert : GroupRule
         if (-not $this.SetStatus($thisGroupMember))
         {
             $this.set_MembersToExclude($thisGroupMember)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'Group'
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

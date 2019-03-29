@@ -50,11 +50,9 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
+            $this.SetDuplicateRule()
         }
+
         $this.SetDscResource()
     }
 
@@ -134,7 +132,14 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xWebConfigKeyValue'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xWebConfigKeyValue'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)
