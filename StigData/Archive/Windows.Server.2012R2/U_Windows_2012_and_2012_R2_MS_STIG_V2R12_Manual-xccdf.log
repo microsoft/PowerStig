@@ -1,4 +1,7 @@
 V-2372::Store password using reversible encryption::Store passwords using reversible encryption
+V-3472::Registry Path: \Software\Policies\Microsoft\W32time\Parameters\::Remove
+V-3472::Value Name:::Remove
+V-3472::Registry Hive: HKEY_LOCAL_MACHINE::Remmove
 V-6836::Minimum password length,::Minimum password length
 V-21954::The values are determined by the selection of encryption suites in the policy Computer Configuration >> Windows Settings >> Security Settings >> Local Policies >> Security Options >> "Network Security: Configure encryption types allowed for Kerberos".::Removed
 V-21954::For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".::Value: 0x7ffffff8 (2147483640)
