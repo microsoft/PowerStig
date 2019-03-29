@@ -18,6 +18,11 @@ $global:SingleLineRegistryPath += [ordered]@{
         Match  = 'value for hkcu.*Message\sPlain\sFormat\sMime'
         Select = '(HKCU).*(?<=me)'
     }
+    # Added for PowerPoint V-26616
+    Office3 = [ordered]@{ 
+        Match  = '\\security\\filevalidation\\'
+        Select = '(HKCU*).*(?<=on)'
+    }
 }
 
 $global:SingleLineRegistryValueName += [ordered]@{
