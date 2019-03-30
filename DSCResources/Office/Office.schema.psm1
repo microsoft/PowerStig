@@ -64,16 +64,12 @@ Configuration Office
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('Office', $OfficeApp, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
     . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
 
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.skip.ps1"
 }

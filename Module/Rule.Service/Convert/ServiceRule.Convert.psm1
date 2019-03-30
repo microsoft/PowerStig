@@ -155,7 +155,7 @@ Class ServiceRuleConvert : ServiceRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'xService'
+            $this.DscResource = 'Service'
         }
         else
         {

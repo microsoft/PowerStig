@@ -520,10 +520,6 @@ function Convert-RightsConstant
                 {
                     $values += $activeDirectoryRightsConstant[$right.trim()]
                 }
-                ''
-                {
-                    $values += $activeDirectoryRightsConstant[$right.trim()]
-                }
             }
         }
     }
