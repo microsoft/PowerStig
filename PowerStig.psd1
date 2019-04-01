@@ -97,10 +97,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'UPDATES
-
-* Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
-* Fixed [#348](https://github.com/Microsoft/PowerStig/issues/348): Update to DnsServer Schema to correct typo.'
+        ReleaseNotes = ''
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
