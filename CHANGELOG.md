@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.1.0
+
 UPDATES
 
 * Removed duplicate code from rule class constructors
