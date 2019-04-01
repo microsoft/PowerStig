@@ -22,17 +22,40 @@ Class SqlScriptQueryRule : Rule
     [string] $TestScript
     [string] $SetScript <#(ExceptionValue)#>
 
-    SqlScriptQueryRule () {}
-
-    SqlScriptQueryRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    SqlScriptQueryRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    SqlScriptQueryRule ()
     {
-        $this.GetScript = $Rule.GetScript
-        $this.TestScript = $Rule.TestScript
-        $this.SetScript = $Rule.SetScript
     }
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    SqlScriptQueryRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    SqlScriptQueryRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
         return @{

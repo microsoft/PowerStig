@@ -85,6 +85,7 @@ function Get-UniqueStringArray
     param
     (
         [Parameter(Mandatory = $true)]
+        [AllowNull()]
         [object[]]
         $InputObject,
 
@@ -133,6 +134,7 @@ function Get-UniqueString
     param
     (
         [Parameter(Mandatory = $true)]
+        [AllowNull()]
         [object[]]
         $InputObject
     )

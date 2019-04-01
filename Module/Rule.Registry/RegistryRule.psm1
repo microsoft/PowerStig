@@ -35,17 +35,9 @@ Class RegistryRule : Rule
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    RegistryRule () {}
-
-    <#
-        .SYNOPSIS
-            THe Convert child class constructor
-        .PARAMETER Rule
-            The STIG rule to convert
-        .PARAMETER Convert
-            A simple bool flag to create a unique constructor signature
-    #>
-    RegistryRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
+    RegistryRule ()
+    {
+    }
 
     <#
         .SYNOPSIS
@@ -55,17 +47,23 @@ Class RegistryRule : Rule
     #>
     RegistryRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.Key       = $Rule.Key
-        $this.ValueName = $Rule.ValueName
-        $this.ValueData = $Rule.ValueData
-        $this.ValueType = $Rule.ValueType
-        $this.Ensure    = $Rule.Ensure
     }
 
     <#
         .SYNOPSIS
-            Creates the class specifc help content and passes it to the base class
-            method to create the help content
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    RegistryRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
     #>
     [PSObject] GetExceptionHelp()
     {

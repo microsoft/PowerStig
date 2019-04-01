@@ -22,17 +22,40 @@ Class WebConfigurationPropertyRule : Rule
     [string] $Key
     [string] $Value <#(ExceptionValue)#>
 
-    WebConfigurationPropertyRule () {}
-
-    WebConfigurationPropertyRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    WebConfigurationPropertyRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    WebConfigurationPropertyRule ()
     {
-        $this.ConfigSection = $Rule.ConfigSection
-        $this.Key           = $Rule.Key
-        $this.Value         = $Rule.Value
     }
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    WebConfigurationPropertyRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    WebConfigurationPropertyRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
         return @{
