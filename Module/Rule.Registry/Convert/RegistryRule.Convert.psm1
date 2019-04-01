@@ -353,7 +353,7 @@ Class RegistryRuleConvert : RegistryRule
         {
             if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
             {
-                $this.DscResource = "xRegistry"
+                $this.DscResource = "Registry"
             }
             else
             {

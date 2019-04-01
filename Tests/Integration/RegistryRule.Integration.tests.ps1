@@ -15,7 +15,7 @@ try
             ValueName                   = 'GroupPrivacyAcceptance'
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
-            DscResource                 = 'xRegistry'
+            DscResource                 = 'Registry'
             TechnologyRole              = 'Technology_Target'
             CheckContent                = 'Windows Media Player is not installed by default.  If it is not installed, this is NA.
 
@@ -39,7 +39,7 @@ try
             ValueName                   = 'EventLogFlags'
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
-            DscResource                 = 'xRegistry'
+            DscResource                 = 'Registry'
             TechnologyRole              = 'Technology_Target'
             CheckContent                = 'Verify logging is configured to capture time source switches.
 
@@ -65,7 +65,7 @@ try
             ValueName                   = 'Optional'
             ValueType                   = 'MultiString'
             Ensure                      = 'Present'
-            DscResource                 = 'xRegistry'
+            DscResource                 = 'Registry'
             TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -87,7 +87,7 @@ try
             ValueName                   = 'ScreenSaverGracePeriod'
             ValueType                   = 'String'
             Ensure                      = 'Present'
-            DscResource                 = 'xRegistry'
+            DscResource                 = 'Registry'
             TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
@@ -109,7 +109,7 @@ try
             ValueName                   = 'NTLMMinServerSec'
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
-            DscResource                 = 'xRegistry'
+            DscResource                 = 'Registry'
             TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the following registry value does not exist or is not configured as specified, this is a finding:
 
