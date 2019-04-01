@@ -1,6 +1,5 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-# Header
 
 #region Enum
 <#
@@ -80,11 +79,11 @@ class RegularExpression
     }
 }
 #endregion
-#region Footer
+
 foreach ($supportFile in (Get-ChildItem -Path $PSScriptRoot -Recurse -File -Exclude $MyInvocation.MyCommand.Name))
 {
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-#endregion
+
 Export-ModuleMember -Function '*' -Variable '*'
