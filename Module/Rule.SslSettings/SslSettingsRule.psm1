@@ -18,31 +18,38 @@ Class SslSettingsRule : Rule
 
     <#
         .SYNOPSIS
-        Default constructor to support the AsRule cast method
+            Default constructor to support the AsRule cast method
     #>
-    SslSettingsRule () {}
+    SslSettingsRule ()
+    {
+    }
 
     <#
         .SYNOPSIS
-        The Convert child class constructor
+            Used to load PowerSTIG data from the processed data directory
         .PARAMETER Rule
-        The STIG rule to convert
-        .PARAMETER Convert
-        A simple bool flag to create a unique constructor signature
-    #>
-    SslSettingsRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    <#
-        .SYNOPSIS
-        Used to load PowerSTIG data from the processed data directory
-        .PARAMETER Rule
-        The STIG rule to load
+            The STIG rule to load
     #>
     SslSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.Value         = $Rule.Value
     }
 
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    SslSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
         return @{

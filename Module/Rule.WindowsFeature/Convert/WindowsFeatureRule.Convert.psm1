@@ -45,10 +45,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
         $this.SetFeatureInstallState()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
+            $this.SetDuplicateRule()
         }
         $this.SetDscResource()
     }
@@ -140,13 +137,20 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
     hidden [void] SetDscResource ()
     {
         # Assigns the appropriate Windows Feature DSC Resource
-        if ($global:stigTitle -match 'Windows 10')
+        if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'WindowsOptionalFeature'
+            if ($global:stigTitle -match 'Windows 10')
+            {
+                $this.DscResource = 'WindowsOptionalFeature'
+            }
+            else
+            {
+                $this.DscResource = 'WindowsFeature'
+            }
         }
         else
         {
-            $this.DscResource = 'WindowsFeature'
+            $this.DscResource = 'None'
         }
     }
     #endregion

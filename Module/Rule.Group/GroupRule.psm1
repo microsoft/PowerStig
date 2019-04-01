@@ -19,22 +19,45 @@ Class GroupRule : Rule
     [string] $GroupName
     [string[]] $MembersToExclude <#(ExceptionValue)#>
 
-    GroupRule () {}
-
-    GroupRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    GroupRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    GroupRule ()
     {
-        $this.GroupName        = $Rule.GroupName
-        $this.MembersToExclude = $Rule.MembersToExclude
     }
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    GroupRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    GroupRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
-        $return = @{
+        return @{
             Value = "15"
             Notes = $null
         }
-        return $return
     }
 }

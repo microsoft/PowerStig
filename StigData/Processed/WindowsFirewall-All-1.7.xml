@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Firewall" description="The Windows Firewall with Advanced Security Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.&#xA;" filename="U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Apr 2018" title="Windows Firewall with Advanced Security Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="2/27/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Firewall" description="The Windows Firewall with Advanced Security Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil.&#xA;" filename="U_Windows_Firewall_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 27 Apr 2018" title="Windows Firewall with Advanced Security Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="3/28/2019">
   <ManualRule dscresourcemodule="None">
     <Rule id="V-36440" severity="medium" conversionstatus="pass" title="Inbound Firewall Exception for Administration" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Allowing inbound access to domain workstations from other systems may allow lateral movement across systems if credentials are compromised.  Limiting inbound connections only from authorized remote management systems will help limit this exposure.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -17,8 +17,8 @@ One method for restricting inbound connections is to only allow exceptions for a
 If allowed inbound exceptions are not limited to authorized management systems and remote management hosts, this is a finding.</RawString>
     </Rule>
   </ManualRule>
-  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
-    <Rule id="V-17415.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="xRegistry">
+  <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-17415.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -35,7 +35,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17415.b" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="xRegistry">
+    <Rule id="V-17415.b" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Enable Firewall" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -52,7 +52,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17416.a" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Enable Firewall" dscresource="xRegistry">
+    <Rule id="V-17416.a" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Enable Firewall" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -69,7 +69,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17416.b" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Enable Firewall" dscresource="xRegistry">
+    <Rule id="V-17416.b" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Enable Firewall" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -86,7 +86,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17417.a" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Enable Firewall" dscresource="xRegistry">
+    <Rule id="V-17417.a" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Enable Firewall" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -103,7 +103,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17417.b" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Enable Firewall" dscresource="xRegistry">
+    <Rule id="V-17417.b" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Enable Firewall" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  This setting enables the firewall when connected to a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -120,7 +120,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>EnableFirewall</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17418.a" severity="high" conversionstatus="pass" title="Windows Firewall Domain - Inbound" dscresource="xRegistry">
+    <Rule id="V-17418.a" severity="high" conversionstatus="pass" title="Windows Firewall Domain - Inbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked in the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -137,7 +137,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17418.b" severity="high" conversionstatus="pass" title="Windows Firewall Domain - Inbound" dscresource="xRegistry">
+    <Rule id="V-17418.b" severity="high" conversionstatus="pass" title="Windows Firewall Domain - Inbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked in the domain.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -154,7 +154,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17419.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Outbound" dscresource="xRegistry">
+    <Rule id="V-17419.a" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Outbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed in the domain, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -171,7 +171,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17419.b" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Outbound" dscresource="xRegistry">
+    <Rule id="V-17419.b" severity="medium" conversionstatus="pass" title="Windows Firewall Domain - Outbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed in the domain, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -188,7 +188,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17425.a" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Size" dscresource="xRegistry">
+    <Rule id="V-17425.a" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Size" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a domain connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -205,7 +205,7 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17425.b" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Size" dscresource="xRegistry">
+    <Rule id="V-17425.b" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Size" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a domain connection will be set to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -222,7 +222,7 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17426.a" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Dropped Packets" dscresource="xRegistry">
+    <Rule id="V-17426.a" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Dropped Packets" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a domain connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -239,7 +239,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17426.b" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Dropped Packets" dscresource="xRegistry">
+    <Rule id="V-17426.b" severity="low" conversionstatus="pass" title="Windows Firewall Domain - Log Dropped Packets" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a domain connection will be enabled to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -256,7 +256,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17427.a" severity="low" conversionstatus="pass" title="Windows FW Domain - Log Successful Connections" dscresource="xRegistry">
+    <Rule id="V-17427.a" severity="low" conversionstatus="pass" title="Windows FW Domain - Log Successful Connections" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a domain connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -273,7 +273,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17427.b" severity="low" conversionstatus="pass" title="Windows FW Domain - Log Successful Connections" dscresource="xRegistry">
+    <Rule id="V-17427.b" severity="low" conversionstatus="pass" title="Windows FW Domain - Log Successful Connections" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a domain connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -290,7 +290,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17428.a" severity="high" conversionstatus="pass" title="Windows Firewall Private – Inbound" dscresource="xRegistry">
+    <Rule id="V-17428.a" severity="high" conversionstatus="pass" title="Windows Firewall Private – Inbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -307,7 +307,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17428.b" severity="high" conversionstatus="pass" title="Windows Firewall Private – Inbound" dscresource="xRegistry">
+    <Rule id="V-17428.b" severity="high" conversionstatus="pass" title="Windows Firewall Private – Inbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a private network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -324,7 +324,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17429.a" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Outbound" dscresource="xRegistry">
+    <Rule id="V-17429.a" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Outbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a private network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -341,7 +341,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17429.b" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Outbound" dscresource="xRegistry">
+    <Rule id="V-17429.b" severity="medium" conversionstatus="pass" title="Windows Firewall Private - Outbound" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a private network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -358,7 +358,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17435.a" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Size" dscresource="xRegistry">
+    <Rule id="V-17435.a" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Size" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a private connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -375,7 +375,7 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17435.b" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Size" dscresource="xRegistry">
+    <Rule id="V-17435.b" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Size" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a private connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -392,7 +392,7 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17436.a" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Dropped Packets" dscresource="xRegistry">
+    <Rule id="V-17436.a" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Dropped Packets" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.   Logging of dropped packets for a private network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -409,7 +409,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17436.b" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Dropped Packets" dscresource="xRegistry">
+    <Rule id="V-17436.b" severity="low" conversionstatus="pass" title="Windows Firewall Private - Log Dropped Packets" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.   Logging of dropped packets for a private network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -426,7 +426,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17437.a" severity="low" conversionstatus="pass" title="Windows FW Private - Log Successful Connections" dscresource="xRegistry">
+    <Rule id="V-17437.a" severity="low" conversionstatus="pass" title="Windows FW Private - Log Successful Connections" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a private network connection will be enabled  to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -443,7 +443,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17437.b" severity="low" conversionstatus="pass" title="Windows FW Private - Log Successful Connections" dscresource="xRegistry">
+    <Rule id="V-17437.b" severity="low" conversionstatus="pass" title="Windows FW Private - Log Successful Connections" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a private network connection will be enabled  to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -460,7 +460,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17438.a" severity="high" conversionstatus="pass" title="Windows Firewall Public – Inbound " dscresource="xRegistry">
+    <Rule id="V-17438.a" severity="high" conversionstatus="pass" title="Windows Firewall Public – Inbound " dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -477,7 +477,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17438.b" severity="high" conversionstatus="pass" title="Windows Firewall Public – Inbound " dscresource="xRegistry">
+    <Rule id="V-17438.b" severity="high" conversionstatus="pass" title="Windows Firewall Public – Inbound " dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Unsolicited inbound connections may be malicious attempts to gain access to a system.  Unsolicited inbound connections, for which there is no rule allowing the connection, will be blocked on a public network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -494,7 +494,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>DefaultInboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17439.a" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Outbound " dscresource="xRegistry">
+    <Rule id="V-17439.a" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Outbound " dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a public network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -511,7 +511,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17439.b" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Outbound " dscresource="xRegistry">
+    <Rule id="V-17439.b" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Outbound " dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Outbound connections are allowed on a public network, unless a rule explicitly blocks the connection.  This allows normal outbound communication, which could be restricted as necessary with additional rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -528,7 +528,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>DefaultOutboundAction</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17442" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Local Firewall Rules" dscresource="xRegistry">
+    <Rule id="V-17442" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Local Firewall Rules" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Local firewall rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -555,7 +555,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>AllowLocalPolicyMerge</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17443" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Local Connection Rules" dscresource="xRegistry">
+    <Rule id="V-17443" severity="medium" conversionstatus="pass" title="Windows Firewall Public - Local Connection Rules" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Local connection rules will not be merged with Group Policy settings on a public network to prevent Group Policy settings from being changed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -582,7 +582,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>AllowLocalIPsecPolicyMerge</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17445.a" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Size" dscresource="xRegistry">
+    <Rule id="V-17445.a" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Size" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a public network connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -599,7 +599,7 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17445.b" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Size" dscresource="xRegistry">
+    <Rule id="V-17445.b" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Size" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  The firewall log file size for a public network connection will be set  to ensure enough capacity is allocated for audit data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -616,7 +616,7 @@ Value:  0x00004000 (16384) (or greater)</RawString>
       <ValueName>LogFileSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17446.a" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Dropped Packets" dscresource="xRegistry">
+    <Rule id="V-17446.a" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Dropped Packets" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a public network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -633,7 +633,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17446.b" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Dropped Packets" dscresource="xRegistry">
+    <Rule id="V-17446.b" severity="low" conversionstatus="pass" title="Windows Firewall Public - Log Dropped Packets" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of dropped packets for a public network connection will be enabled  to maintain an audit trail of potential issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -650,7 +650,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogDroppedPackets</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17447.a" severity="low" conversionstatus="pass" title="Windows FW Public - Log Successful Connections" dscresource="xRegistry">
+    <Rule id="V-17447.a" severity="low" conversionstatus="pass" title="Windows FW Public - Log Successful Connections" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a public network connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -667,7 +667,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>LogSuccessfulConnections</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17447.b" severity="low" conversionstatus="pass" title="Windows FW Public - Log Successful Connections" dscresource="xRegistry">
+    <Rule id="V-17447.b" severity="low" conversionstatus="pass" title="Windows FW Public - Log Successful Connections" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack.  To be effective, it must be enabled and properly configured.  Logging of successful connections for a public network connection will be enabled to maintain an audit trail if issues are discovered.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>

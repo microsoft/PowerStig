@@ -26,17 +26,9 @@ Class AuditPolicyRule : Rule
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    AuditPolicyRule () {}
-
-    <#
-        .SYNOPSIS
-            The Convert child class constructor
-        .PARAMETER Rule
-            The STIG rule to convert
-        .PARAMETER Convert
-            A simple bool flag to create a unique constructor signature
-    #>
-    AuditPolicyRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
+    AuditPolicyRule ()
+    {
+    }
 
     <#
         .SYNOPSIS
@@ -46,15 +38,23 @@ Class AuditPolicyRule : Rule
     #>
     AuditPolicyRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.Subcategory = $Rule.Subcategory
-        $this.AuditFlag   = $Rule.AuditFlag
-        $this.Ensure      = $Rule.Ensure
     }
 
     <#
         .SYNOPSIS
-            Creates the class specifc help content and passes it to the base class
-            method to create the help content
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    AuditPolicyRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
     #>
     [PSObject] GetExceptionHelp()
     {

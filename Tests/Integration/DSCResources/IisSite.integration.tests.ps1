@@ -30,7 +30,7 @@ try
         $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.WebAppPoolRule.ChildNodes.Count + $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
 
         $exception = Get-Random -InputObject ($powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule |
-            Where-Object {[string]::IsNullOrEmpty($PSItem.DuplicateOf)}).id
+            Where-Object {[string]::IsNullOrEmpty($PSItem.DuplicateOf)})
         $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebAppPoolRule.Rule.id -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"

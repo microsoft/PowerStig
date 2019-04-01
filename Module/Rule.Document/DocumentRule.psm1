@@ -36,18 +36,45 @@ Class DocumentRule : Rule
         $this.DscResource = 'None'
     }
 
-    DocumentRule () {}
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    DocumentRule ()
+    {
+    }
 
-    DocumentRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    DocumentRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
 
-    DocumentRule ([xml.xmlelement] $Rule) : Base ($Rule) {}
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    DocumentRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
 
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
-        $return = @{
+        return @{
             Value = "15"
             Notes = $null
         }
-        return $return
     }
 }

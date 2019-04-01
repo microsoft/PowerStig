@@ -21,25 +21,25 @@ data dscResourceModule
         AccountPolicyRule               = SecurityPolicyDsc
         AuditPolicyRule                 = AuditPolicyDsc
         DnsServerSettingRule            = xDnsServer
-        DnsServerRootHintRule           = PSDesiredStateConfiguration
+        DnsServerRootHintRule           = PSDscResources
         DocumentRule                    = None
-        GroupRule                       = PSDesiredStateConfiguration
+        GroupRule                       = PSDscResources
         IisLoggingRule                  = xWebAdministration
         MimeTypeRule                    = xWebAdministration
         ManualRule                      = None
         PermissionRule                  = AccessControlDsc
         ProcessMitigationRule           = WindowsDefenderDsc
-        RegistryRule                    = xPSDesiredStateConfiguration
+        RegistryRule                    = PSDscResources
         SecurityOptionRule              = SecurityPolicyDsc
-        ServiceRule                     = xPSDesiredStateConfiguration
+        ServiceRule                     = PSDscResources
         SqlScriptQueryRule              = SqlServerDsc
         UserRightRule                   = SecurityPolicyDsc
         WebAppPoolRule                  = xWebAdministration
         WebConfigurationPropertyRule    = xWebAdministration
-        WindowsFeatureRule              = PSDesiredStateConfiguration
+        WindowsFeatureRule              = PSDscResources
         WinEventLogRule                 = xWinEventLog
         SslSettingsRule                 = xWebAdministration
-        WmiRule                         = PSDesiredStateConfiguration
+        WmiRule                         = PSDscResources
         FileContentRule                 = FileContentDsc
 '@
 }

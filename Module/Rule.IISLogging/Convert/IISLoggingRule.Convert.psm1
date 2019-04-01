@@ -41,30 +41,18 @@ Class IisLoggingRuleConvert : IisLoggingRule
     #>
     IisLoggingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            $this.SetDuplicateRule()
+        }
         $this.SetLogCustomFields()
         $this.SetLogFlags()
         $this.SetLogFormat()
         $this.SetLogPeriod()
         $this.SetLogTargetW3C()
         $this.SetStatus()
-        $this.DscResource = $(
-            if ($global:stigTitle -match "Server")
-            {
-                "xIISLogging"
-            }
-            else
-            {
-                "XWebsite"
-            }
-        )
-
-        if ($this.conversionstatus -eq 'pass')
-        {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
-        }
+        $this.SetDscResource()
     }
 
     <#
@@ -181,6 +169,25 @@ Class IisLoggingRuleConvert : IisLoggingRule
         if (-not $status)
         {
             $this.conversionstatus = [status]::fail
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            if ($global:stigTitle -match "Server")
+            {
+                $this.DscResource = 'xIISLogging'
+            }
+            else
+            {
+                $this.DscResource = 'XWebsite'
+            }
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 

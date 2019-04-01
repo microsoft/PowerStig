@@ -9,7 +9,7 @@ foreach ($supportFile in $supportFileList)
     Write-Verbose "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-# Header
+#header
 
 <#
     .SYNOPSIS
@@ -69,20 +69,27 @@ Class Rule : ICloneable
         .SYNOPSIS
             PowerSTIG XML deserialze constructor
         .DESCRIPTION
-            This is the base class constructor that laods the base properties from
-            the PowerSTIG XML
+            This constructor laods all properties from from the calling child
+            class the PowerSTIG XML
+        .PARAMETER Rule
+            The STIG rule to load from PowerSTIG processed data
     #>
     Rule ([xml.xmlelement] $Rule)
     {
-        # Load PowerSTIG xml mode
-        $this.Id = $Rule.Id
-        $this.Title = $Rule.Title
-        $this.Severity = $Rule.Severity
-        $this.Description = $Rule.Description
-        # When a bool is evaluated if anything exists it is true, so we need provide a bool
-        $this.OrganizationValueRequired = ($Rule.OrganizationValueRequired -eq 'true')
-        $this.OrganizationValueTestString = $Rule.OrganizationValueTestString
-        $this.DscResource = $rule.DscResource
+        $propertyList = ($this | Get-Member -MemberType Properties).Name
+
+        foreach ($property in $propertyList)
+        {
+            if ( -not [string]::IsNullOrEmpty($Rule.($property)) )
+            {
+                $this.($property) = $Rule.($property)
+            }
+            if ($property -eq 'OrganizationValueRequired')
+            {
+                # When a bool is evaluated if anything exists it is true, so we need provide a bool
+                $this.OrganizationValueRequired = ($Rule.OrganizationValueRequired -eq 'true')
+            }
+        }
     }
 
     <#
@@ -202,20 +209,13 @@ Class Rule : ICloneable
         .PARAMETER ReferenceObject
             The existing converted rules
     #>
-    hidden [Boolean] IsDuplicateRule ( [object] $ReferenceObject )
+    hidden [void] SetDuplicateRule ()
     {
-        return Test-DuplicateRule -ReferenceObject $ReferenceObject -DifferenceObject $this
-    }
-
-    <#
-        .SYNOPSIS
-            Tags a rule as being duplicate
-        .DESCRIPTION
-            Is a rule is a duplicate, tag the title for easy filtering and reporting
-    #>
-    hidden [void] SetDuplicateTitle ()
-    {
-        $this.title = $this.title + ' Duplicate'
+        $val = Test-DuplicateRule -ReferenceObject $global:stigSettings -DifferenceObject $this
+        if ($val)
+        {
+           $this.DuplicateOf = $val
+        }
     }
 
     <#

@@ -88,11 +88,6 @@ Configuration SqlServer
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('SqlServer', $SqlVersion, $SqlRole, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName SqlServerDsc -ModuleVersion '12.1.0.0'
@@ -100,4 +95,7 @@ Configuration SqlServer
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion '2.4.0.0'
     . "$resourcePath\Windows.SecurityOption.ps1"
+
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
 }

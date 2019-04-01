@@ -19,16 +19,40 @@ Class WinEventLogRule : Rule
     [string] $LogName
     [bool] $IsEnabled <#(ExceptionValue)#>
 
-    WinEventLogRule () {}
-
-    WinEventLogRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    WinEventLogRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    WinEventLogRule ()
     {
-        $this.LogName = $Rule.LogName
-        $this.IsEnabled = $Rule.IsEnabled
     }
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    WinEventLogRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    WinEventLogRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
         if ($this.IsEnabled -eq 'True')
@@ -39,10 +63,9 @@ Class WinEventLogRule : Rule
         {
             $thisIsEnabled = 'True'
         }
-        $return = @{
+        return @{
             Value = $thisIsEnabled
             Notes = "'True' and 'False' are the only valid values"
         }
-        return $return
     }
 }

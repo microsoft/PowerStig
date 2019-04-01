@@ -42,21 +42,9 @@ Class FileContentRuleConvert : FileContentRule
         $this.SetValue()
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
+            $this.SetDuplicateRule()
         }
-        $this.DscResource = $(
-            if ($this.Key -match 'deployment.')
-            {
-                'KeyValuePairFile'
-            }
-            else
-            {
-                'ReplaceText'
-            }
-        )
+        $this.SetDscResource()
     }
 
     #region Methods
@@ -94,6 +82,25 @@ Class FileContentRuleConvert : FileContentRule
         if (-not $this.SetStatus($thisValue))
         {
             $this.set_Value($thisValue)
+        }
+    }
+
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            if ($this.Key -match 'deployment.')
+            {
+                $this.DscResource = 'KeyValuePairFile'
+            }
+            else
+            {
+                $this.DscResource = 'ReplaceText'
+            }
+        }
+        else
+        {
+            $this.DscResource = 'None'
         }
     }
 
