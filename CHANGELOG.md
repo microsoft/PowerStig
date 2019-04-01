@@ -2,9 +2,16 @@
 
 ## Unreleased
 
-* Fixed [342](https://github.com/Microsoft/PowerStig/issues/342): xWinEventLog has been deprecated
-* Fixed [344](https://github.com/Microsoft/PowerStig/issues/344): Update PowerStig to automate and apply Windows Defender STIGS
-* Fixed [358](https://github.com/Microsoft/PowerStig/issues/358): Update PowerSTIG  Duplicate Rule handling and capability
+UPDATES
+
+* Removed duplicate code from rule class constructors
+* Migrated from Get-WmiObject to Get-CimInstance to support PowerShell Core
+* Migrated to PSDscResources [#345](https://github.com/Microsoft/PowerStig/issues/345)
+* Migrated to ComputerManagementDsc [#342](https://github.com/Microsoft/PowerStig/issues/342)
+* Fixed [#358](https://github.com/Microsoft/PowerStig/issues/358): Update PowerSTIG Duplicate Rule handling and capability
+
+Added the following STIG:
+  * Windows Defender V1R4 [#344](https://github.com/Microsoft/PowerStig/issues/344)
 
 ## 3.0.1
 
