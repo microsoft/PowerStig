@@ -10,8 +10,9 @@ UPDATES
 * Migrated to ComputerManagementDsc [#342](https://github.com/Microsoft/PowerStig/issues/342)
 * Fixed [#358](https://github.com/Microsoft/PowerStig/issues/358): Update PowerSTIG Duplicate Rule handling and capability
 
-Added the following STIG:
-  * Windows Defender V1R4 [#344](https://github.com/Microsoft/PowerStig/issues/344)
+Added the following STIG
+
+* Windows Defender V1R4 [#344](https://github.com/Microsoft/PowerStig/issues/344)
 
 ## 3.0.1
 
