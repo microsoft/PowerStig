@@ -85,7 +85,7 @@ function Get-ResourceMatchStatement
         }
         'WinEventLogRule'
         {
-            return '\[xWinEventLog\]'
+            return '\[WindowsEventLog\]'
         }
         'DnsServerRootHintRule'
         {
