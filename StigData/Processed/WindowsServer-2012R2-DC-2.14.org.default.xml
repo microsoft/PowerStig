@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="2.14">
+<OrganizationalSettings fullversion="2.14">
   <!-- Ensure 'V-1090' -le '4'-->
   <OrganizationalSetting id="V-1090" value="4" />
   <!-- Ensure ''V-1097'' -le '3' -and ''V-1097'' -ne '0'-->

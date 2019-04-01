@@ -7,7 +7,7 @@ foreach ($rule in $rules)
 {
     if ($rule.Key -match "^HKEY_LOCAL_MACHINE")
     {
-        if ($rule.ValueType -eq 'MultiString')
+        if ($rule.ValueType -eq 'MultiString' -and $null -ne $rule.ValueData)
         {
             $valueData = $rule.ValueData.Split("{;}")
         }
@@ -25,7 +25,7 @@ foreach ($rule in $rules)
         if ($rule.Ensure -eq 'Absent')
         {
             $rule.Key = $rule.Key -replace 'HKEY_LOCAL_MACHINE', 'HKLM:'
-            xRegistry (Get-ResourceTitle -Rule $rule)
+            Registry (Get-ResourceTitle -Rule $rule)
             {
                 Key       = $rule.Key
                 ValueName = $rule.ValueName
@@ -35,7 +35,7 @@ foreach ($rule in $rules)
         }
         else
         {
-            xRegistry (Get-ResourceTitle -Rule $rule)
+            Registry (Get-ResourceTitle -Rule $rule)
             {
                 Key       = $rule.Key
                 ValueName = $rule.ValueName

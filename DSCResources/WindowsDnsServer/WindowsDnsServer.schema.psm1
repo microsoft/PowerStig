@@ -80,18 +80,10 @@ Configuration WindowsDnsServer
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('WindowsDnsServer', $OsVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
     . "$resourcePath\windows.AccessControl.ps1"
-
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.RootHint.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.UserRightsAssignment.ps1"
@@ -99,8 +91,10 @@ Configuration WindowsDnsServer
     Import-DscResource -ModuleName xDnsServer -ModuleVersion 1.11.0.0
     . "$resourcePath\windows.xDnsServerSetting.ps1"
 
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xRegistry.ps1"
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.skip.ps1"
+    . "$resourcePath\windows.Script.RootHint.ps1"
 
     Import-DscResource -ModuleName ComputerManagementDsc -ModuleVersion 6.2.0.0
     . "$resourcePath\windows.WindowsEventLog.ps1"

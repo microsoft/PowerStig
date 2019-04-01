@@ -19,27 +19,40 @@ Class SecurityOptionRule : Rule
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue <#(ExceptionValue)#>
 
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
     SecurityOptionRule ()
-    {
-    }
-
-    SecurityOptionRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert)
     {
     }
 
     <#
         .SYNOPSIS
-            Loads PowerSTIG rule from serialized data
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
     #>
     SecurityOptionRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
-        $this.OptionName = $Rule.OptionName
-        if ($Rule.OptionValue)
-        {
-            $this.OptionValue = $Rule.OptionValue
-        }
     }
 
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    SecurityOptionRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
         return @{

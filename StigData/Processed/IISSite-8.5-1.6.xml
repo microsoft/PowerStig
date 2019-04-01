@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="3/18/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="3/28/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
@@ -1440,7 +1440,7 @@ Verify the "compressionEnabled" is set to "False".</RawString>
       <Value>False</Value>
     </Rule>
   </WebConfigurationPropertyRule>
-  <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
+  <WindowsFeatureRule dscresourcemodule="PSDscResources">
     <Rule id="V-76803" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsFeature">
       <Description>&lt;VulnDiscussion&gt;A web server can be installed with functionality that, just by its nature, is not secure. Web Distributed Authoring (WebDAV) is an extension to the HTTP protocol that, when developed, was meant to allow users to create, change, and move documents on a server, typically a web server or web share. Allowing this functionality, development, and deployment is much easier for web authors.
 

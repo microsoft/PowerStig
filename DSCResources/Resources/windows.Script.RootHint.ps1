@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type DnsServerRootHintRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     Script (Get-ResourceTitle -Rule $rule)
     {
@@ -16,9 +16,9 @@ foreach ( $rule in $rules )
         {
             $result = $false
             $targetResource = Get-DnsServerRootHint | Where-Object {$_.NameServer.RecordData.NameServer -like "*.Root-Servers.net."}
-            if ($targetResource.Count -eq 0)
+            if ($null -eq $targetResource)
             {
-                $result = $True
+                $result = $true
             }
 
             Return $result
@@ -27,12 +27,12 @@ foreach ( $rule in $rules )
         GetScript =
         {
             $returnString = $null
-            foreach ( $rootHint in (Get-DnsServerRootHint) )
+            foreach ($rootHint in (Get-DnsServerRootHint))
             {
                 $returnString += $rootHint.ipaddress.hostName + ";"
             }
 
-            Return  @{ Result = $returnString }
+            Return @{Result = $returnString}
         }
     }
 }

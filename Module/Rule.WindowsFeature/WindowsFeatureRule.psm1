@@ -19,19 +19,43 @@ Class WindowsFeatureRule : Rule
     [string] $FeatureName
     [string] $InstallState <#(ExceptionValue)#>
 
-    WindowsFeatureRule () {}
-
-    WindowsFeatureRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    WindowsFeatureRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    WindowsFeatureRule ()
     {
-        $this.FeatureName = $Rule.FeatureName
-        $this.InstallState = $Rule.InstallState
     }
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    WindowsFeatureRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    WindowsFeatureRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
-        if($this.InstallState -eq 'Present')
+        if ($this.InstallState -eq 'Present')
         {
             $thisInstallState = 'Absent'
         }
