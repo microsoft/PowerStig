@@ -73,8 +73,20 @@ Class WmiRuleConvert : WmiRule
                 $this.Value = 'NTFS|ReFS'
             }
         }
+        $this.SetDuplicateRule()
+        $this.SetDscResource()
+    }
 
-        $this.DscResource = 'Script'
+    hidden [void] SetDscResource ()
+    {
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'Script'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)

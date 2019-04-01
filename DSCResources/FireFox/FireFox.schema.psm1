@@ -62,13 +62,11 @@ Configuration FireFox
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('FireFox', 'All', $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName FileContentDsc -ModuleVersion 1.1.0.108
     . "$resourcePath\firefox.ReplaceText.ps1"
+
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Script.skip.ps1"
 }

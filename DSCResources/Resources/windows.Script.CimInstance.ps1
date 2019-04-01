@@ -10,13 +10,13 @@ foreach ( $rule in $rules )
         # Must return a hashtable with at least one key named 'Result' of type String
         GetScript = {
             Return @{
-                'Result' = [string] $( ( Get-WmiObject -Query $using:rule.Query ).$( $using:rule.Property ) )
+                'Result' = [string] $( ( Get-CimInstance -Query $using:rule.Query ).$( $using:rule.Property ) )
             }
         }
 
         # Must return a boolean: $true or $false
         TestScript = {
-            $valueToTest = ( ( Get-WmiObject -Query $using:rule.Query ).$( $using:rule.Property ) )
+            $valueToTest = ( ( Get-CimInstance -Query $using:rule.Query ).$( $using:rule.Property ) )
 
             foreach ( $value in $valueToTest )
             {

@@ -538,11 +538,7 @@ function Test-StringIsBetweenTwoValues
         $String
     )
 
-    if ($string -match "([3-8][0-9]|9[0-9]|1[0-2][0-9]|13[0-2])")
-    {
-        $true
-    }
-    if ($string -match "(0x[0-7])")
+    if ($string -match "([3-8][0-9]|9[0-9]|1[0-2][0-9]|13[0-2]|[0-7])")
     {
         $true
     }

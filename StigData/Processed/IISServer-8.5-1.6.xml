@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="2/14/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="3/28/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -977,8 +977,8 @@ Users: Read and execute, list folder contents
 Creator/Owner: Special permissions to subkeys</RawString>
     </Rule>
   </PermissionRule>
-  <RegistryRule dscresourcemodule="xPSDesiredStateConfiguration">
-    <Rule id="V-76759.a" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="xRegistry">
+  <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-76759.a" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -993,7 +993,7 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-76759.b" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="xRegistry">
+    <Rule id="V-76759.b" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1008,7 +1008,7 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-76759.c" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="xRegistry">
+    <Rule id="V-76759.c" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1023,7 +1023,7 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-76759.d" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="xRegistry">
+    <Rule id="V-76759.d" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1038,7 +1038,7 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <ValueName>DisabledByDefault</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-76759.e" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="xRegistry">
+    <Rule id="V-76759.e" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
 
 FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1213,7 +1213,7 @@ Verify the "Allow unspecified ISAPI modules" check box is not checked</RawString
       <Value>false</Value>
     </Rule>
   </WebConfigurationPropertyRule>
-  <WindowsFeatureRule dscresourcemodule="PSDesiredStateConfiguration">
+  <WindowsFeatureRule dscresourcemodule="PSDscResources">
     <Rule id="V-76713" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000085" dscresource="WindowsFeature">
       <Description>&lt;VulnDiscussion&gt;A web server can be installed with functionality that, just by its nature, is not secure. Web Distributed Authoring (WebDAV) is an extension to the HTTP protocol that, when developed, was meant to allow users to create, change, and move documents on a server, typically a web server or web share. Allowing this functionality, development, and deployment is much easier for web authors.
 

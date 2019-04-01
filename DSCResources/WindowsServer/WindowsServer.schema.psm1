@@ -88,11 +88,6 @@ Configuration WindowsServer
     ##### BEGIN DO NOT MODIFY #####
     $stig = [STIG]::New('WindowsServer', $OsVersion, $OsRole, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
-
-    # $resourcePath is exported from the helper module in the header
-    # Process Skipped rules
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.skip.ps1"
     ##### END DO NOT MODIFY #####
 
     Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
@@ -104,16 +99,15 @@ Configuration WindowsServer
     Import-DscResource -ModuleName PolicyFileEditor -ModuleVersion 3.0.1
     . "$resourcePath\windows.cAdministrativeTemplateSetting.ps1"
 
-    Import-DscResource -ModuleName PSDesiredStateConfiguration -ModuleVersion 1.1
-    . "$resourcePath\windows.Script.wmi.ps1"
-
+    Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.skip.ps1"
+    . "$resourcePath\windows.Script.CimInstance.ps1"
+    . "$resourcePath\windows.Service.ps1"
+    . "$resourcePath\windows.WindowsFeature.ps1"
+    
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.AccountPolicy.ps1"
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"
-
-    Import-DscResource -ModuleName xPSDesiredStateConfiguration -ModuleVersion 8.3.0.0
-    . "$resourcePath\windows.xService.ps1"
-    . "$resourcePath\windows.xRegistry.ps1"
-    . "$resourcePath\windows.xWindowsFeature.ps1"
 }
