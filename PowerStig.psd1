@@ -12,13 +12,13 @@ ModuleVersion = '3.2.0'
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
 
 # Author of this module
-Author = 'Adam Haynes'
+Author = 'Microsoft Corporation'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Adam Haynes. All rights reserved.'
+Copyright = 'Copyright (c) Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'The PowerStig module provides a set of PowerShell classes to access DISA STIG settings extracted from the xccdf. The module provides a unified way to access the parsed STIG data by enabling the concepts of:
