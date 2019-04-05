@@ -55,6 +55,11 @@ $global:SingleLineRegistryValueName += [ordered]@{
         Match  = 'If the.+(registry key exist)'
         Select = '(?<=ty\\).*(?=\sC)'
     }
+    # Added for Excel Stig V-71015 and V-71027
+    Office7 = [ordered]@{ 
+        Match  = 'ExcelBypassEncryptedMacroScan|DisableUnsafeLocationsInPV|openinprotectedview|DisableInternetFilesInPV|webservicefunctionwarnings|vbawarnings'
+        Select = '(?<=Criteria: If the value\s)([^\s]+)'
+    }
 }
 
 $global:SingleLineRegistryValueType += [ordered]@{

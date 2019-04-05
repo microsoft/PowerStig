@@ -1,0 +1,4 @@
+V-71003::value of excel.exe::value excel.exe
+V-71029::does not exist, this is not a finding. If the value is REG_DWORD = 1, this is not a finding. 
+V-71033::is REG_DWORD = 1::Removed
+V-71035::0 or 2::Removed
