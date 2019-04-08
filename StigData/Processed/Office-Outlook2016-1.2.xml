@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Outlook_2016" description="The Microsoft Outlook 2016 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Outlook_2016_STIG_V1R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 28 Jul 2017" title="Microsoft Outlook 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.2" created="4/5/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Outlook_2016" description="The Microsoft Outlook 2016 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Outlook_2016_STIG_V1R2_Manual-xccdf.xml" releaseinfo="Release: 2 Benchmark Date: 28 Jul 2017" title="Microsoft Outlook 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.2" created="4/8/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-71109" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
@@ -444,7 +444,7 @@ Criteria: If the value ShowLevel1Attach is REG_DWORD = 0, this is not a finding.
     <Rule id="V-71161" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="cAdministrativeTemplate">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls which types of attachments (determined by file extension) Outlook prevents from being delivered. Outlook uses two levels of security to restrict users' access to files attached to e-mail messages or other items. Files with specific extensions can be categorized as Level 1 (users cannot view the file) or Level 2 (users can open the file after saving it to disk). Users can freely open files of types that are not categorized as Level 1 or Level 2. If you enable this policy setting, you can specify the removal of file type extensions as that Outlook classifies as Level 1--that is, to be blocked from delivery--by entering them in the text field provided separated by semicolons. If you disable or do not configure this policy setting, Outlook classifies a number of potentially harmful file types (such as those with .exe, .reg, and .vbs extensions) as Level 1 and blocks files with those extensions from being delivered. Important: This policy setting only applies if the "Outlook Security Mode" policy setting under "Microsoft Outlook 2016\Security\Security Form Settings" is configured to "Use Outlook Security Group Policy."&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <Ensure>Present</Ensure>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -456,14 +456,15 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\outlook\security\FileExtensionsRemoveLevel1
 
 Criteria: If the registry key exists, this is a finding.</RawString>
-      <ValueData>0</ValueData>
+      <ValueData>
+      </ValueData>
       <ValueName>FileExtensionsRemoveLevel1</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType />
     </Rule>
     <Rule id="V-71163" severity="medium" conversionstatus="pass" title="SRG-APP-000207" dscresource="cAdministrativeTemplate">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls which types of attachments (determined by file extension) must be saved to disk before users can open them.  Files with specific extensions can be categorized as Level 1 (users cannot view the file) or Level 2 (users can open the file after saving it to disk). Users can freely open files of types that are not categorized as Level 1 or Level 2. If you enable this policy setting, you can specify a list of attachment file types to classify as Level 2, which forces users to actively decide to download the attachment to view it. If you disable or do not configure this policy setting, Outlook does not classify any file type extensions as Level 2. Important: This policy setting only applies if the "Outlook Security Mode" policy setting under "Microsoft Outlook 2016\Security\Security Form Settings" is configured to "Use Outlook Security Group Policy."&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <Ensure>Present</Ensure>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -475,9 +476,10 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\outlook\security\FileExtensionsRemoveLevel2
 
 Criteria: If the registry key exists, this is a finding.</RawString>
-      <ValueData>0</ValueData>
+      <ValueData>
+      </ValueData>
       <ValueName>FileExtensionsRemoveLevel2</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType />
     </Rule>
     <Rule id="V-71165" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="cAdministrativeTemplate">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls whether scripts can run in Outlook forms in which the script and layout are contained within the message. If you enable this policy setting, scripts can run in one-off Outlook forms. If you disable or do not configure this policy setting, Outlook does not run scripts in forms in which the script and the layout are contained within the message. Important: This policy setting only applies if the "Outlook Security Mode" policy setting under "Microsoft Outlook 2016\Security\Security Form Settings" is configured to "Use Outlook Security Group Policy."
@@ -972,8 +974,8 @@ Criteria: If the value EnableRPCEncryption is REG_DWORD = 1, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -match '16|10'</OrganizationValueTestString>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Account Settings -&gt; Exchange "Authentication with Exchange Server" is set to "Enabled (Kerberos Password Authentication)".
 
 Procedure: Use the Windows Registry Editor to navigate to the following key:
@@ -981,7 +983,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\outlook\security
 
 Criteria: If the value AuthenticationService is REG_DWORD = 16 (decimal) or 10 (hex), this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>16</ValueData>
       <ValueName>AuthenticationService</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1112,7 +1114,7 @@ Criteria: If the value ForceDefaultProfile is REG_DWORD = 0, this is not a findi
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\outlook\security</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Outlook 2016 -&gt; Security -&gt; Cryptography "Minimum encryption settings" is set to "Enabled: 168 bits".
 
@@ -1121,7 +1123,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKCU\Software\Policies\Microsoft\Office\16.0\outlook\security
 
 Criteria: If the value MinEncKey is REG_DWORD = a8 (hex) or 168 (decimal), this is not a finding.</RawString>
-      <ValueData />
+      <ValueData>168</ValueData>
       <ValueName>MinEncKey</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

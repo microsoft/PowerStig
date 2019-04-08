@@ -1,3 +1,2 @@
 V-71065::Criteria: If the value of winword.exe is REG_DWORD = 1, this is not a finding.::Criteria: If the value winword.exe is REG_DWORD = 1, this is not a finding.
-V-71083 split rule
-V-71081 0 or does not exist
+V-71089::or the value is REG_DWORD = 1::Removed

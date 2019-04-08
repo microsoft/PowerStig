@@ -5,9 +5,4 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.2">
-  <!-- Ensure ''V-71255'' -match '16|10'-->
-  <OrganizationalSetting id="V-71255" value="LOCAL_STIG_SETTING_HERE" />
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-71273" value="LOCAL_STIG_SETTING_HERE" />
-</OrganizationalSettings>
+<OrganizationalSettings fullversion="1.2" />
