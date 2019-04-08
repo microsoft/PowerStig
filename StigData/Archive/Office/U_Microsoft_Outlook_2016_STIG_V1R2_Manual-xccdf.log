@@ -1,0 +1,4 @@
+V-71123::Criteria: If the value of outlook.exe is REG_DWORD = 1, this is not a finding.::Criteria: If the value outlook.exe is REG_DWORD = 1, this is not a finding.
+V-71133::4000 (hex) or::""
+V-71161::-> Administrative Templates -> ::Removed
+V-71163::Criteria: If the registry key exists, this is a finding.::Criteria: If the value "FileExtensionsRemoveLevel2" does not exist, this is not a finding.
