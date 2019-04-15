@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#373](https://github.com/Microsoft/PowerStig/issues/373): Registry resource does not handle null values for ValueData contained in Processed STIGs
+
 ## 3.1.0
 
 UPDATES
