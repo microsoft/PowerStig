@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
+
 ## 3.1.0
 
 UPDATES
