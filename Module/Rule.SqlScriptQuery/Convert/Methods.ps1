@@ -28,7 +28,7 @@ function Get-TraceGetScript
 
     $eventId = Get-EventIdData -CheckContent $CheckContent
 
-    $return = Get-TraceIdQuery -EventId $eventID
+    $return = Get-TraceIdQuery -EventId $eventId -GetQuery
 
     return $return
 }
@@ -105,8 +105,10 @@ function Get-TraceSetScript
     $sqlScript += "FETCH NEXT FROM cursorTrace INTO @currentTraceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @currentTraceId, EventId "
     $sqlScript += "FROM sys.fn_trace_geteventinfo(@currentTraceId) FETCH NEXT FROM cursorTrace INTO @currentTraceId END CLOSE cursorTrace DEALLOCATE cursorTrace DECLARE @missingStigEventCount INT "
     $sqlScript += "SET @missingStigEventCount = (SELECT COUNT(*) FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL) IF @missingStigEventCount > 0 "
-    $sqlScript += "BEGIN DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 EXEC @returnCode = sp_trace_create @traceid = @newTraceId "
-    $sqlScript += "OUTPUT, @options = 2, @tracefile = N'C:\Program Files\Microsoft SQL Server\MSSQL11.MSSQLSERVER\MSSQL\Log\PowerStig', @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; "
+    $sqlScript += "BEGIN DECLARE @dir nvarchar(4000) DECLARE @tracefile nvarchar(4000) DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 "
+    $sqlScript += "EXEC master.dbo.xp_instance_regread N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\Setup', N'SQLPath', @dir OUTPUT, 'no_output' "
+    $sqlScript += "SET @tracefile = @dir + N'\Log\PowerStig' EXEC @returnCode = sp_trace_create @traceid = @newTraceId "
+    $sqlScript += "OUTPUT, @options = 2, @tracefile = @tracefile, @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; "
     $sqlScript += "IF @returnCode = 0 BEGIN EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 0 DECLARE cursorMissingStigEvent CURSOR FOR SELECT DISTINCT SE.EventId FROM #StigEvent SE "
     $sqlScript += "LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL OPEN cursorMissingStigEvent DECLARE @currentStigEventId INT FETCH NEXT FROM cursorMissingStigEvent "
     $sqlScript += "INTO @currentStigEventId WHILE @@FETCH_STATUS = 0 BEGIN EXEC sp_trace_setevent @traceid = @newTraceId, @eventid = @currentStigEventId, @columnid = NULL, @on = 1 FETCH NEXT "
@@ -130,7 +132,11 @@ function Get-TraceIdQuery
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $EventId
+        $EventId,
+
+        [Parameter()]
+        [switch]
+        $GetQuery
     )
 
     $sqlScript = "BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END "
@@ -138,7 +144,14 @@ function Get-TraceIdQuery
     $sqlScript += "CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES $($EventId) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId "
     $sqlScript += "FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId "
     $sqlScript += "WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace "
-    $sqlScript += "INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT * FROM #StigEvent SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId "
+    $sqlScript += "INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace "
+
+    if ($GetQuery)
+    {
+        $sqlScript += "SELECT * FROM #StigEvent "
+    }
+
+    $sqlScript += "SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId "
     $sqlScript += "WHERE TE.EventId IS NULL END"
 
     return $sqlScript
@@ -947,7 +960,7 @@ function Get-SqlRuleType
         {
             $ruleType = 'SysAdminAccount'
         }
-        <# 
+        <#
             Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
             These should be able to get, test, set via Get-Query cleanly
         #>
