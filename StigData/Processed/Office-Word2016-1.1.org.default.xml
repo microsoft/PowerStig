@@ -7,5 +7,5 @@
 -->
 <OrganizationalSettings fullversion="1.1">
   <!-- Ensure ''V-71089'' -match '2|3|4|1'-->
-  <OrganizationalSetting id="V-71089" value="LOCAL_STIG_SETTING_HERE" />
+  <OrganizationalSetting id="V-71089" value="1" />
 </OrganizationalSettings>
