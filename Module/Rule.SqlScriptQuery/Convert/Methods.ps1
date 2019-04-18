@@ -713,9 +713,12 @@ function Get-SysAdminAccountSetScript
         $CheckContent
     )
 
-    $return = "USE [master] DECLARE @SysAdminAccountName varchar(50) SET @SysAdminAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
+    $return =  "USE [master] DECLARE @SysAdminAccountName varchar(50), @cmd NVARCHAR(100), @saDisabled int "
+    $return += "SET @SysAdminAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) "
     $return += "IF @SysAdminAccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @SysAdminAccountName = 'old_sa' "
-    $return += "DECLARE @saDisabled int SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 ALTER LOGIN [@SysAdminAccountName] DISABLE;"
+    $return += "SELECT @cmd = N'ALTER LOGIN ['+@SysAdminAccountName+'] DISABLE;'"
+    $return += "SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) "
+    $return += "IF @saDisabled <> 1 exec sp_executeSQL @cmd;"
 
     return $return
 }
