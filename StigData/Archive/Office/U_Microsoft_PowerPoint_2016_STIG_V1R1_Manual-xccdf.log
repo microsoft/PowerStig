@@ -1,4 +1,2 @@
-V-70661::If the value of powerpnt.exe::If the value powerpnt.exe
 V-70667::REG_DWORD = 1b (hex) or 27 (decimal)::REG_DWORD = 27 (decimal)
-V-71647::value of pptview.exe::value pptview.exe
 V-70681::REG_DWORD = 1::Removed

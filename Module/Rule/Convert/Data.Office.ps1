@@ -18,11 +18,6 @@ $global:SingleLineRegistryPath += [ordered]@{
         Match  = 'value for hkcu.*Message\sPlain\sFormat\sMime'
         Select = '(HKCU).*(?<=me)'
     }
-    # Added for PowerPoint V-26616
-    Office3 = [ordered]@{ 
-        Match  = '\\security\\filevalidation\\'
-        Select = '(HKCU*).*(?<=on)'
-    }
 }
 
 $global:SingleLineRegistryValueName += [ordered]@{
@@ -57,7 +52,11 @@ $global:SingleLineRegistryValueName += [ordered]@{
     }
     # Added for Excel Stig V-71015 and V-71027
     Office7 = [ordered]@{ 
-        Match  = 'ExcelBypassEncryptedMacroScan|DisableUnsafeLocationsInPV|openinprotectedview|DisableInternetFilesInPV|webservicefunctionwarnings|vbawarnings|PowerPointBypassEncryptedMacroScan|RunPrograms|WordBypassEncryptedMacroScan|trustedaddins'
+        Match  = 'Criteria: If the value of '
+        Select = '(?<=Criteria: If the value of )([^\s]+)'
+    }
+    Office8 = [ordered]@{ 
+        Match  = 'Criteria: If the value '
         Select = '(?<=Criteria: If the value\s)([^\s]+)'
     }
 }
