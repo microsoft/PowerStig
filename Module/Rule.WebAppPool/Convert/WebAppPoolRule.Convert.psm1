@@ -47,10 +47,7 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
 
         if ($this.conversionstatus -eq 'pass')
         {
-            if ($this.IsDuplicateRule($global:stigSettings))
-            {
-                $this.SetDuplicateTitle()
-            }
+            $this.SetDuplicateRule()
         }
         $this.SetDscResource()
     }
@@ -113,7 +110,14 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
 
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'xWebAppPool'
+        if($null -eq $this.DuplicateOf)
+        {
+            $this.DscResource = 'xWebAppPool'
+        }
+        else
+        {
+            $this.DscResource = 'None'
+        }
     }
 
     static [bool] Match ([string] $CheckContent)

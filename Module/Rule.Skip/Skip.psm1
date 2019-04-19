@@ -18,8 +18,6 @@ using module .\..\Rule\Rule.psm1
 #>
 Class SkippedRule : Rule
 {
-    #region Constructor
-
     <#
         .SYNOPSIS
             DO NOT USE - For testing only
@@ -46,8 +44,4 @@ Class SkippedRule : Rule
     {
         $this.UpdateRuleTitle('Skip')
     }
-
-    #endregion
 }
-
-# Footer

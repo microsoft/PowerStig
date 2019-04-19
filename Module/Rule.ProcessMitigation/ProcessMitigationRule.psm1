@@ -22,23 +22,45 @@ Class ProcessMitigationRule : Rule
     [string] $Enable
     [string] $Disable <#(ExceptionValue)#>
 
-    ProcessMitigationRule () {}
-
-    ProcessMitigationRule ([xml.xmlelement] $Rule, [bool] $Convert) : Base ($Rule, $Convert) {}
-
-    ProcessMitigationRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    <#
+        .SYNOPSIS
+            Default constructor to support the AsRule cast method
+    #>
+    ProcessMitigationRule ()
     {
-        $this.MitigationTarget = $Rule.MitigationTarget
-        $this.Enable           = $Rule.Enable
-        $this.Disable          = $Rule.Disable
     }
 
+    <#
+        .SYNOPSIS
+            Used to load PowerSTIG data from the processed data directory
+        .PARAMETER Rule
+            The STIG rule to load
+    #>
+    ProcessMitigationRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            The Convert child class constructor
+        .PARAMETER Rule
+            The STIG rule to convert
+        .PARAMETER Convert
+            A simple bool flag to create a unique constructor signature
+    #>
+    ProcessMitigationRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    {
+    }
+
+    <#
+        .SYNOPSIS
+            Creates class specifc help content
+    #>
     [PSObject] GetExceptionHelp()
     {
-        $return = @{
+        return @{
             Value = "15"
             Notes = $null
         }
-        return $return
     }
 }

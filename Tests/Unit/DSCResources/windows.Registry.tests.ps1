@@ -66,17 +66,17 @@ $ruleList = @(
         <ValueType>Dword</ValueType>
       </Rule>'
       Ensure = 'Absent'
-      Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
-      ValueData = 'ShouldBeAbsent'
+      Key = 'HKLM:\SOFTWARE\Policies\Microsoft'
+      ValueData = $null
       ValueName = 'OptionalAbsent'
       ValueType = 'Dword'
     }
 )
 
-$configFile = Join-Path -Path $PSScriptRoot -ChildPath "windows.xRegistry.config.ps1"
+$configFile = Join-Path -Path $PSScriptRoot -ChildPath "windows.Registry.config.ps1"
 . $configFile
 
-Describe 'xRegistry call' {
+Describe 'Registry call' {
 
     foreach ($rule in $ruleList)
     {
@@ -85,7 +85,7 @@ Describe 'xRegistry call' {
             It 'Should not throw' {
                 function Select-Rule {}
                 Mock Select-Rule -MockWith {$rule.testXml.Rule}
-                { & xRegistry_config -OutputPath $TestDrive } | Should Not Throw
+                { & Registry_config -OutputPath $TestDrive } | Should Not Throw
             }
 
             $instance = ([Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances("$TestDrive\localhost.mof", 4))[0]
@@ -102,9 +102,25 @@ Describe 'xRegistry call' {
             It 'Should set the correct Name' {
                 $instance.ValueName | Should Be $rule.ValueName
             }
-            It 'Should set the correct Type' {
-                $instance.ValueType | Should Be $rule.ValueType
+            if ($instance.Ensure -eq 'Present')
+            {
+                It 'Should set the correct Type' {
+                    $instance.ValueType | Should Be $rule.ValueType
+                }
+                It 'Should set the correct Data' {
+                    $instance.ValueData | Should Be $rule.ValueData
+                }
             }
+            else
+            {
+                It 'Should set the correct Type' {
+                    $instance.ValueType | Should Be $null
+                }
+                It 'Should set the correct Data' {
+                    $instance.ValueData | Should Be $null
+                }
+            }
+
         }
     }
 }

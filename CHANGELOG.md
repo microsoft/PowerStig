@@ -2,9 +2,21 @@
 
 ## Unreleased
 
-## 3.0.1
+## 3.1.0
 
 UPDATES
+
+* Removed duplicate code from rule class constructors
+* Migrated from Get-WmiObject to Get-CimInstance to support PowerShell Core
+* Migrated to PSDscResources [#345](https://github.com/Microsoft/PowerStig/issues/345)
+* Migrated to ComputerManagementDsc [#342](https://github.com/Microsoft/PowerStig/issues/342)
+* Fixed [#358](https://github.com/Microsoft/PowerStig/issues/358): Update PowerSTIG Duplicate Rule handling and capability
+
+Added the following STIG
+
+* Windows Defender V1R4 [#344](https://github.com/Microsoft/PowerStig/issues/344)
+
+## 3.0.1
 
 * Fixed [#350](https://github.com/Microsoft/PowerStig/issues/350): Updates to fix Skip rules not working correctly
 * Fixed [#348](https://github.com/Microsoft/PowerStig/issues/348): Update to DnsServer Schema to correct typo.

@@ -13,7 +13,7 @@ function Get-ResourceMatchStatement
     {
         'RegistryRule'
         {
-            return '\[xRegistry\]|\[cAdministrativeTemplateSetting\]'
+            return '\[Registry\]|\[cAdministrativeTemplateSetting\]'
         }
         'FileContentRule'
         {
@@ -37,7 +37,7 @@ function Get-ResourceMatchStatement
         }
         'WindowsFeatureRule'
         {
-            return '\[xWindowsFeature\]|\[xWindowsOptionalFeature\]'
+            return '\[WindowsFeature\]|\[WindowsOptionalFeature\]'
         }
         'WebAppPoolRule'
         {
@@ -73,7 +73,7 @@ function Get-ResourceMatchStatement
         }
         'ServiceRule'
         {
-            return '\[xService\]'
+            return '\[Service\]'
         }
         'UserRightRule'
         {
@@ -85,7 +85,7 @@ function Get-ResourceMatchStatement
         }
         'WinEventLogRule'
         {
-            return '\[xWinEventLog\]'
+            return '\[WindowsEventLog\]'
         }
         'DnsServerRootHintRule'
         {
