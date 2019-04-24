@@ -18,6 +18,11 @@ $global:SingleLineRegistryPath += [ordered]@{
         Match  = 'value for hkcu.*Message\sPlain\sFormat\sMime'
         Select = '(HKCU).*(?<=me)'
     }
+    # Added for Excel Stig V-71029
+    Office3 = [ordered]@{ 
+        Match  = '\\security\\filevalidation\\'
+        Select = '(HKCU).*(?<=ion)'
+    }
 }
 
 $global:SingleLineRegistryValueName += [ordered]@{

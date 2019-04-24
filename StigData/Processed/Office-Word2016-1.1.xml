@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Word_2016" description="The Microsoft Word 2016 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Word_2016_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 14 Nov 2016" title="Microsoft Word 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="4/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Word_2016" description="The Microsoft Word 2016 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Word_2016_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 14 Nov 2016" title="Microsoft Word 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="4/24/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-71041" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
@@ -431,7 +431,7 @@ If the value is REG_DWORD = 1, then this is a finding.
       <ValueName>DisableUnsafeLocationsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-71083" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="cAdministrativeTemplate">
+    <Rule id="V-71083.a" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="cAdministrativeTemplate">
       <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. If you enable this policy setting, you can configure the following options for files that fail file validation:- Block files completely. Users cannot open the files.- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior. If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -440,19 +440,23 @@ If the value is REG_DWORD = 1, then this is a finding.
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for User Configuration -&gt; Administrative Templates -&gt; Microsoft Word 2016 -&gt; Word Options -&gt; Security -&gt; Trust Center -&gt; Protected View "Set document behavior if file validation fails" is set to "Disabled". The option 'Enabled: Open in Protected View' and Unchecked for 'Do not allow edit' is also an acceptable value.
-
-Procedure: Use the Windows Registry Editor to navigate to the following key:
-
-HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation
-
- Criteria: If the value openinprotectedview does not exist, this is not a finding. If the value is REG_DWORD = 1, this is not a finding.
-
-If the value DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.  If the value is set to REG_DWORD = 0, this is a finding.
-
-</RawString>
+      <RawString>If both HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation\OpenInProtectedView is set to REG_DWORD = 1</RawString>
       <ValueData>1</ValueData>
-      <ValueName>openinprotectedview</ValueName>
+      <ValueName>OpenInProtectedView</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-71083.b" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="cAdministrativeTemplate">
+      <Description>&lt;VulnDiscussion&gt;This policy setting controls how Office handles documents when they fail file validation. If you enable this policy setting, you can configure the following options for files that fail file validation:- Block files completely. Users cannot open the files.- Open files in Protected View and disallow edit. Users cannot edit the files. This is also how Office handles the files if you disable this policy setting.- Open files in Protected View and allow edit. Users can edit the files. This is also how Office handles the files if you do not configure this policy setting.If you disable this policy setting, Office follows the "Open files in Protected View and disallow edit" behavior. If you do not configure this policy setting, Office follows the "Open files in Protected View and allow edit" behavior.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>HKCU\Software\Policies\Microsoft\Office\16.0\Word\security\filevalidation\DisableEditFromPV is set to REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>DisableEditFromPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-71085" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="cAdministrativeTemplate">
