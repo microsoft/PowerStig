@@ -177,11 +177,6 @@ try
                 It 'Should extract the correct key' {
                     $rule.key | Should Be $($registry.Hive + $registry.Path)
                 }
-                It 'Should contain one Hive' {
-                    $regexPattern = 'HKEY_CURRENT_USER|HKEY_CLASSES_ROOT|HKEY_LOCAL_MACHINE|HKEY_USERS|HKEY_CURRENT_CONFIG'
-                    $regKeyResult = $rule.key | Select-String -Pattern $regexPattern -AllMatches
-                    $regKeyResult.Count | Should Be 1
-                }
                 It 'Should extract the correct value name' {
                     $rule.valueName | Should Be $registry.ValueName
                 }
