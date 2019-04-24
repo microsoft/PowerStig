@@ -66,7 +66,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
                     It "Should not contain the Hive in Key Path for $($mofEntry.ResourceID)" {
                         $regexPattern = 'HKEY_CURRENT_USER|HKEY_CLASSES_ROOT|HKEY_LOCAL_MACHINE|HKEY_USERS|HKEY_CURRENT_CONFIG'
                         $regKeyResult = $mofEntry.KeyValueName | Select-String -Pattern $regexPattern -AllMatches
-                        $regKeyResult.Matches.Count | Should Be 0
+                        $regKeyResult.Matches.Count | Should -Be 0
                     }
                 }
             }
