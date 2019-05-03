@@ -976,7 +976,7 @@ Scroll down to the "Recycling" section and expand the "Generate Recycle Event Lo
 Verify both the "Regular time interval" and "Specific time" options are set to "True".
 
 If both the "Regular time interval" and "Specific time" options are not set to "True", this is a finding.</RawString>
-      <Value>Time,Schedule</Value>
+      <Value>'Time,Schedule'</Value>
     </Rule>
     <Rule id="V-76875" severity="medium" conversionstatus="pass" title="SRG-APP-000516-WSR-000174" dscresource="xWebAppPool">
       <Description>&lt;VulnDiscussion&gt;In order to determine the possible causes of client connection errors and to conserve system resources, it is important to both log errors and manage those settings controlling requests to the application pool.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>

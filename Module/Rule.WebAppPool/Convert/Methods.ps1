@@ -64,7 +64,7 @@ function Get-KeyValuePair
         { $PsItem -match 'Generate Recycle Event Log Entry' }
         {
             $key = 'logEventOnRecycle'
-            $value = 'Time,Schedule'
+            $value = "'Time,Schedule'"
         }
     }
 
