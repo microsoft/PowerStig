@@ -259,7 +259,7 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053&lt;/VulnDiscussi
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
-      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer</LogFlags>
+      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer</LogFlags>
       <LogFormat />
       <LogPeriod />
       <LogTargetW3C />
