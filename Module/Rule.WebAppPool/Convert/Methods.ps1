@@ -46,6 +46,26 @@ function Get-KeyValuePair
             $key = 'rapidFailProtectionInterval'
             $value = $null
         }
+        { $PsItem -match 'Virtual Memory Limit' }
+        {
+            $key = 'restartMemoryLimit'
+            $value = $null
+        }
+        { $PsItem -match 'Private Memory Limit' }
+        {
+            $key = 'restartPrivateMemoryLimit'
+            $value = $null
+        }
+        { $PsItem -match 'Request Limit' }
+        {
+            $key = 'restartRequestsLimit'
+            $value = $null
+        }
+        { $PsItem -match 'Generate Recycle Event Log Entry' }
+        {
+            $key = 'logEventOnRecycle'
+            $value = "'Time,Schedule'"
+        }
     }
 
     if ($null -ne $key)
@@ -97,6 +117,10 @@ function Get-WebAppPoolOrganizationValueTestString
         { $PsItem -match 'rapidFailProtectionInterval' }
         {
             return "[TimeSpan]{0} -le [TimeSpan]'00:05:00'"
+        }
+        { $PsItem -match 'restartMemoryLimit|restartPrivateMemoryLimit|restartRequestsLimit'}
+        {
+            return "{0} -ne 0"
         }
         default
         {
