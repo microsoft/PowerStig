@@ -1896,7 +1896,7 @@ If the value for "140C" is not REG_DWORD = 3, this is a finding.
 Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
 </RawString>
       <ValueData>3</ValueData>
-      <ValueName>140C is not REG_DWORD = 3, this is a finding. Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and</ValueName>
+      <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-75171" severity="medium" conversionstatus="pass" title="DTBI1130-IE11-VBScript" dscresource="Registry">
@@ -1916,7 +1916,7 @@ If the value for "140C" is not REG_DWORD = 3, this is a finding.
 Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and is otherwise not applicable.
 </RawString>
       <ValueData>3</ValueData>
-      <ValueName>140C is not REG_DWORD = 3, this is a finding. Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and</ValueName>
+      <ValueName>140C</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
