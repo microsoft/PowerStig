@@ -4,6 +4,7 @@
 
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
+* Added support for Internet Explorer 11 v1r17 [#391](https://github.com/Microsoft/PowerStig/issues/391)
 
 ## 3.1.0
 
