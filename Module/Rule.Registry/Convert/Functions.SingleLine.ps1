@@ -434,12 +434,19 @@ function Get-RegistryValueDataFromSingleStig
         $CheckContent
     )
 
-    foreach ($item in $global:SingleLineRegistryValueData.Values)
+    if ($this.ValueType -eq 'None')
     {
-        $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
-        if ([String]::IsNullOrEmpty($value) -eq $false)
+        return
+    }
+    else
+    {
+        foreach ($item in $global:SingleLineRegistryValueData.Values)
         {
-            return $value
+            $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
+            if ([String]::IsNullOrEmpty($value) -eq $false)
+            {
+                return $value
+            }
         }
     }
 }
@@ -471,7 +478,7 @@ function Get-RegistryValueDataFromSLStig
         $Hashtable
     )
 
-    $valueType = Get-RegistryValueTypeFromSingleLineStig -CheckContent $CheckContent
+    $valueType = $this.ValueType
 
     if ($valueType -eq "Does Not Exist")
     {
