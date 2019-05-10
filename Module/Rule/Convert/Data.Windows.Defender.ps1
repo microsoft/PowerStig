@@ -20,4 +20,8 @@ $global:SingleLineRegistryValueData += [ordered]@{
         Match  = 'ScheduleDay'
         Select = '(?<=Values of )\d through \d'
     }
+    Defender2 = [ordered]@{
+        Match  = 'Value:\s*\d'
+        Select = '(?<=Value:\s*)\d'
+    }
 }
