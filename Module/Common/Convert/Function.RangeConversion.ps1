@@ -206,6 +206,10 @@ function ConvertTo-TestString
         {
             return "{0} -ge '$($number[0])' -and {0} -le '$($number[1])'"
         }
+        {$PSItem -match 'or' -and $PSItem -notmatch 'greater' -and $PSItem -notmatch 'less'}
+        {
+            return "'{0}' -match '$($number[0])|$($number[1])'"
+        }
     }
 }
 

@@ -33,7 +33,7 @@ $global:SingleLineRegistryPath += [ordered]@{
 
 $global:SingleLineRegistryValueName += [ordered]@{
     One   = @{
-        Select = '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=does not exist?)|(?=is.*R))'
+        Select = '(?<=If the value(\s*)?((for( )?)?)").*(")?((?=does not exist)|(?=is.*REG))'
     }
     Two   = [ordered]@{
         Match  = 'If the.+(registry key does not exist)'

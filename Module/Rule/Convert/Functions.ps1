@@ -215,7 +215,7 @@ function Get-HardCodedString
         }
         {$PSItem -match 'V-75237'}
         {
-            $hardCodedString = "{0} -match '^(0x0|0x1|0x2|0x3|0x4|0x5|0x6|0x7)$'"
+            $hardCodedString = "{0} -ge '0' -and {0} -le '7''"
         }
         {$PSItem -match 'V-75241|V-75243'}
         {

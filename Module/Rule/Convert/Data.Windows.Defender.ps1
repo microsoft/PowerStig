@@ -24,4 +24,8 @@ $global:SingleLineRegistryValueData += [ordered]@{
         Match  = 'Value:\s*\d'
         Select = '(?<=Value:\s*)\d'
     }
+    Defender3 = [ordered]@{
+        Match  = 'REG_.+=\s+\d\s*\(or\s*\d\)'
+        Select = '(?<=REG_.+=\s+)\d\s*\(or\s*\d'
+    }
 }
