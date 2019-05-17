@@ -251,15 +251,15 @@ class ConvertFactory
             }
         }
 
-        $ruleCount = ($ruleTypeList | Measure-Object).count
-        $uniqueRuleCount = ($ruleTypeList |
-            Select-Object -Property Id -Unique |
-                Measure-Object).count
-
          <#
             Rules can be split into multiple rules of multiple types, so the list
             of Id's needs to be validated to be unique.
          #>
+
+        $ruleCount = ($ruleTypeList | Measure-Object).count
+        $uniqueRuleCount = ($ruleTypeList |
+            Select-Object -Property Id -Unique |
+                Measure-Object).count
 
         if ($uniqueRuleCount -ne $ruleCount)
         {
