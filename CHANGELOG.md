@@ -5,6 +5,8 @@
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
 * Added support for updated Windows Defender STIG v1r5 [#393](https://github.com/microsoft/PowerStig/issues/393)
+* Added support for Firefox STIG v4r25 [#389](https://github.com/Microsoft/PowerStig/issues/389)
+
 
 ## 3.1.0
 
