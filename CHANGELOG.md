@@ -4,6 +4,7 @@
 
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
+* Use xFirefoxPreference to manage Firefox STIGs [#383](https://github.com/Microsoft/PowerStig/issues/383)
 
 ## 3.1.0
 
