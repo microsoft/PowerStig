@@ -4,7 +4,8 @@
 
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
-* Added suppoer to for update Windows Server 2012 MS STIG v2r15 [#395](https://github.com/Microsoft/PowerStig/issues/395)
+* Added support for update Windows Server 2012 MS STIG v2r15 [#395](https://github.com/Microsoft/PowerStig/issues/395)
+* Added support for Firefox STIG v4r25 [#389](https://github.com/Microsoft/PowerStig/issues/389)
 
 ## 3.1.0
 
