@@ -176,6 +176,7 @@ Class RegistryRuleConvert : RegistryRule
         else
         {
             $this.SetEnsureFlag([Ensure]::Absent)
+            $this.ValueType = "None"
         }
     }
 
