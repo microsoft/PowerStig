@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Added support for IIS 8.5 Server STIG, Version 1, Release 7 [#399](https://github.com/Microsoft/PowerStig/issues/399)
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
 
