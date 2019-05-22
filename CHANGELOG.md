@@ -5,6 +5,10 @@
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
 * Added support for Windows Server 2012R2 DC V2R16 [#398](https://github.com/Microsoft/PowerStig/issues/398)
+* Added support for update Windows Server 2012 MS STIG v2r15 [#395](https://github.com/Microsoft/PowerStig/issues/395)
+* Added support for Firefox STIG v4r25 [#389](https://github.com/Microsoft/PowerStig/issues/389)
+* Added entry in log file for IISSite 1.7 so rule v-76819 parses as an xWebConfigurationProperty [#407](https://github.com/microsoft/PowerStig/issues/407)
+* Added IISSite v1.7 [#400](https://github.com/microsoft/PowerStig/issues/400)
 
 ## 3.1.0
 
