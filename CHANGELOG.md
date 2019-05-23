@@ -14,6 +14,7 @@
 * Added support for Firefox STIG v4r25 [#389](https://github.com/Microsoft/PowerStig/issues/389)
 * Added entry in log file for IISSite 1.7 so rule v-76819 parses as an xWebConfigurationProperty [#407](https://github.com/microsoft/PowerStig/issues/407)
 * Added IISSite v1.7 [#400](https://github.com/microsoft/PowerStig/issues/400)
+* Fixed [#403](https://github.com/microsoft/PowerStig/issues/403): DotNet STIG V1R7 update
 
 ## 3.1.0
 
