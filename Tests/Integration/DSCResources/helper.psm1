@@ -17,7 +17,7 @@ function Get-ResourceMatchStatement
         }
         'FileContentRule'
         {
-            return '\[ReplaceText\]|\[KeyValuePairFile\]'
+            return '\[ReplaceText\]|\[xFirefoxPreference\]'
         }
         'IisLoggingRule'
         {
