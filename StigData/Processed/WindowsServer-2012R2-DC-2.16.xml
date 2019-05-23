@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_2012_and_2012_R2_DC_STIG_V2R13_Manual-xccdf.xml" releaseinfo="Release: 13 Benchmark Date: 27 Jul 2018" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.13" created="3/28/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="5/16/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -158,7 +158,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the value for "Maximum lifetime for service ticket" is "0" or greater than "600" minutes, this is a finding.</RawString>
+If the value for "Maximum lifetime for service ticket" is 0 or greater than 600 minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2378" severity="medium" conversionstatus="pass" title="Kerberos - User Ticket Lifetime" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;In Kerberos, there are 2 types of tickets: Ticket Granting Tickets (TGTs) and Service Tickets.  Kerberos tickets have a limited lifetime so the time an attacker has to implement an attack is limited.  This policy controls how long TGTs can be renewed.  With Kerberos, the user's initial authentication to the domain controller results in a TGT which is then used to request Service Tickets to resources.  Upon startup, each computer gets a TGT before requesting a service ticket to the domain controller and any other computers it needs to access.  For services that startup under a specified user account, users must always get a TGT first, then get Service Tickets to all computers and services accessed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
@@ -176,7 +176,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the value for "Maximum lifetime for user ticket" is "0" or greater than "10" hours, this is a finding.</RawString>
+If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hours, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2379" severity="medium" conversionstatus="pass" title="Kerberos-User Ticket Renewal" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This setting determines the period of time (in days) during which a user's TGT may be renewed.  This security configuration limits the amount of time an attacker has to crack the TGT and gain access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
@@ -194,7 +194,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the "Maximum lifetime for user ticket renewal" is greater than "7" days, this is a finding.</RawString>
+If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2380" severity="medium" conversionstatus="pass" title="Kerberos - Computer Clock Sync" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This setting determines the maximum time difference (in minutes) that Kerberos will tolerate between the time on a client's clock and the time on a server's clock while still considering the two clocks synchronous.  In order to prevent replay attacks, Kerberos uses timestamps as part of its protocol definition.  For timestamps to work properly, the clocks of the client and the server need to be in sync as much as possible.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -212,7 +212,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the "Maximum tolerance for computer clock synchronization" is greater than "5" minutes, this is a finding.</RawString>
+If the "Maximum tolerance for computer clock synchronization" is greater than 5 minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-6836" severity="medium" conversionstatus="pass" title="Minimum Password Length" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2011,7 +2011,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -2022,13 +2022,8 @@ NotAfter: 9/6/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-NotAfter: 9/23/2018
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-NotAfter: 2/17/2019
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+NotAfter: 1/22/2022
 
 Alternately use the Certificates MMC snap-in:
 
@@ -2065,13 +2060,8 @@ Valid to: Friday, September 6, 2019
 
 Issued To: DoD Root CA 3
 Issued By: DoD Interoperability Root CA 2
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-Valid to: Sunday, September 23, 2018
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-Valid to: Sunday, February 17, 2019</RawString>
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+Valid to: Saturday, January 22, 2022</RawString>
     </Rule>
     <Rule id="V-36451" severity="high" conversionstatus="pass" title="Accounts with administrative privileges Internet access" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using applications that access the Internet or have potential Internet sources using administrative privileges exposes a system to compromise.  If a flaw in an application is exploited while running as a privileged user, the entire system could be compromised.  Web browsers and email are common attack vectors for introducing malicious code and must not be run with an administrative account.
@@ -2353,14 +2343,9 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-NotAfter: 3/9/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
@@ -2394,11 +2379,6 @@ Scroll to the bottom and select "Thumbprint".
 If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
 If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
-
-Issued To: DoD Root CA 2
-Issued By: US DoD CCEB Interoperability Root CA 1
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-Valid to: Saturday, March 9, 2019
 
 Issued To: DoD Root CA 3
 Issuer by: US DoD CCEB Interoperability Root CA 2
@@ -2593,6 +2573,22 @@ Enter "$PSVersionTable".
 If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
 
 Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
+    </Rule>
+    <Rule id="V-91777" severity="medium" conversionstatus="pass" title="WINAD-000015-DC" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The krbtgt account acts as a service account for the Kerberos Key Distribution Center (KDC) service. The account and password are created when a domain is created and the password is typically not changed. If the krbtgt account is compromised, attackers can create valid Kerberos Ticket Granting Tickets (TGT).
+
+The password must be changed twice to effectively remove the password history. Changing once, waiting for replication to complete and changing again reduces the risk of issues. Changing twice in rapid succession forces clients to re-authenticate (including application services) but is desired if a compromise is suspected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This requirement is applicable to domain controllers; it is NA for other systems.
+
+Open "Windows PowerShell".
+
+Enter "Get-ADUser krbtgt -Property PasswordLastSet".
+
+If the "PasswordLastSet" date is more than 180 days old, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -6627,29 +6623,6 @@ Value: 1</RawString>
       <ValueName>LoggingEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15713" severity="medium" conversionstatus="pass" title="Defender – SpyNet Reporting" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this feature will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  This setting disables Microsoft Active Protection Service membership and reporting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -notmatch '1|2'</OrganizationValueTestString>
-      <RawString>If the following registry value exists and is set to "1" (Basic) or "2" (Advanced), this is a finding:
-
-If the registry value does not exist, this is not a finding.
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet\
-
-Value Name:  SpyNetReporting
-
-Type:  REG_DWORD
-Value:  1 or 2 = a Finding</RawString>
-      <ValueData />
-      <ValueName>SpyNetReporting</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-15718" severity="low" conversionstatus="pass" title="Windows Explorer – Heap Termination" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Legacy plug-in applications may continue to function when a File Explorer session has become corrupt.  Disabling this feature will prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6995,38 +6968,26 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21954" severity="medium" conversionstatus="pass" title="Kerberos Encryption Types" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure.  By default, Windows 2012/R2 does not use the DES encryption suites.  If the configuration of allowed Kerberos encryption suites is needed, the DES encryption suites must not be included.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Certain encryption types are no longer considered secure. The DES and RC4 encryption suites must not be used for Kerberos encryption.
+
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify whether the registry key below exists.  If it does not exist or the value is "0", this is not a finding.
-If the registry key exists and contains a value other than "0", continue below.
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-The values are determined by the selection of encryption suites in the policy Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "Network Security: Configure encryption types allowed for Kerberos".
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
 
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters\
-Value Name:  SupportedEncryptionTypes
-Type:  REG_DWORD
+Value Name: SupportedEncryptionTypes
 
-Due to the number of possible combinations that may include the DES encryption types, it is not possible to include all acceptable values as viewed directly in the registry.
+Value Type: REG_DWORD
+Value: 0x7ffffff8 (2147483640)
 
-If the registry key does exist, the value must be converted to binary to determine configuration of specific bits.  This will determine whether this is a finding.
-
-Note the value for the registry key.
-For example, when all suites, including the DES suites are selected, the value will be "0x7fffffff (2147483647)".
-
-Open the Windows calculator (Run/Search for "calc").
-Select "View", then "Programmer".
-Select "Dword" and either "Hex" or "Dec".
-Enter the appropriate form of the value found for the registry key (e.g., Hex - enter 0x7fffffff, Dec - enter 2147483647)
-Select "Bin".
-The returned value may vary in length, up to 32 characters.
-If the either of 2 right most characters are "1", this is a finding.
-If the both of 2 right most characters are "0", this is not a finding.</RawString>
+Note: Removing the previously allowed RC4_HMAC_MD5 encryption suite may have operational impacts and must be thoroughly tested for the environment before changing. This includes but is not limited to parent\child trusts where RC4 is still enabled; selecting "The other domain supports Kerberos AES Encryption" may be required on the domain trusts to allow client communication across the trust relationship.</RawString>
       <ValueData>2147483640</ValueData>
       <ValueName>SupportedEncryptionTypes</ValueName>
       <ValueType>Dword</ValueType>
@@ -7916,7 +7877,8 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 Value Name: EnableSmartScreen
 
 Type: REG_DWORD
-Value:  1 (Give user a warning…) Or 2 (Require approval…)</RawString>
+Value:  0x00000001 (1) (Give user a warning…)
+Or 0x00000002 (2) (Require approval…)</RawString>
       <ValueData />
       <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
@@ -8148,13 +8110,13 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-36773" severity="medium" conversionstatus="pass" title="WINSO-000021" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and should be locked when unattended.  The screen saver should be set at a maximum of 15 minutes and be password protected.  This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;PESL-1&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and should be locked when unattended.  The screen saver should be set at a maximum of 15 minutes and be password protected.  This protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -le '900'</OrganizationValueTestString>
+      <OrganizationValueTestString>'{0}' -le '900' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -8163,7 +8125,7 @@ Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: InactivityTimeoutSecs
 
 Value Type: REG_DWORD
-Value: 0x00000384 (900) (or less)</RawString>
+Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</RawString>
       <ValueData />
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
@@ -8890,10 +8852,7 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
       <Constant>SeTcbPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Act as part of the operating system" user right can assume the identity of any user and gain access to resources that user is authorized to access.  Any accounts with this right can take complete control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to a CAT III if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Act as part of the operating system" user right can assume the identity of any user and gain access to resources that user is authorized to access.  Any accounts with this right can take complete control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Act as part of the operating system</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -8902,11 +8861,20 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.</RawString>
+If any accounts or groups (to include administrators), are granted the "Act as part of the operating system" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-1155" severity="medium" conversionstatus="pass" title="Deny Access from the Network" dscresource="UserRightsAssignment">
       <Constant>SeDenyNetworkLogonRight</Constant>
@@ -8931,31 +8899,11 @@ If the following accounts or groups are not defined for the "Deny access to this
 
 Guests Group</RawString>
     </Rule>
-    <Rule id="V-12780" severity="high" conversionstatus="pass" title="Synchronize Directory Service Data " dscresource="UserRightsAssignment">
-      <Constant>SeSyncAgentPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;A Windows account with the "Synchronize directory service data" right has the ability to read all information in the AD database.  This bypasses the object access permissions that would otherwise restrict access to the data.  The scope of access granted by this right is too broad for secure usage.  Specific object permissions or other group membership assignments could be used to provide access on an appropriate scale.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECAN-1, ECCD-1, ECCD-2, ECLP-1&lt;/IAControls&gt;</Description>
-      <DisplayName>Synchronize directory service data</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Synchronize directory service data" user right, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-18010" severity="high" conversionstatus="pass" title="User Right - Debug Programs" dscresource="UserRightsAssignment">
       <Constant>SeDebugPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Debug programs" user right can attach a debugger to any process or to the kernel, providing complete access to sensitive and critical operating system components.  This right is given to Administrators in the default configuration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to a CAT III if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Debug programs" user right can attach a debugger to any process or to the kernel, providing complete access to sensitive and critical operating system components.  This right is given to Administrators in the default configuration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Debug programs</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -8964,13 +8912,22 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Debug programs" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26469" severity="medium" conversionstatus="pass" title="Access Credential Manager as a trusted caller" dscresource="UserRightsAssignment">
       <Constant>SeTrustedCredManAccessPrivilege</Constant>
@@ -8985,9 +8942,10 @@ Accounts with the "Access Credential Manager as a trusted caller" user right may
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Access Credential Manager as a trusted caller" user right, this is a finding.</RawString>
     </Rule>
@@ -9021,10 +8979,7 @@ Enterprise Domain Controllers</RawString>
       <Constant>SeInteractiveLogonRight</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Allow log on locally" user right can log on interactively to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Allow log on locally" user right can log on interactively to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Allow log on locally</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9033,13 +8988,22 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Allow log on locally" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26473" severity="medium" conversionstatus="pass" title="Allow log on through Remote Desktop Services" dscresource="UserRightsAssignment">
       <Constant>SeRemoteInteractiveLogonRight</Constant>
@@ -9066,10 +9030,7 @@ Administrators</RawString>
       <Constant>SeBackupPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Back up files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Back up files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Back up files and directories</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9078,35 +9039,22 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Back up files and directories" user right, this is a finding:
 
-Administrators</RawString>
-    </Rule>
-    <Rule id="V-26476" severity="medium" conversionstatus="pass" title="Change the system time" dscresource="UserRightsAssignment">
-      <Constant>SeSystemtimePrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-Accounts with the "Change the system time" user right can change the system time, which can impact authentication, as well as affect time stamps on event log entries.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Change the system time</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Administrators,Local Service</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Change the system time" user right, this is a finding:
-
 Administrators
-Local Service</RawString>
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26478" severity="medium" conversionstatus="pass" title="Create a pagefile" dscresource="UserRightsAssignment">
       <Constant>SeCreatePagefilePrivilege</Constant>
@@ -9121,9 +9069,10 @@ Accounts with the "Create a pagefile" user right can change the size of a pagefi
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create a pagefile" user right, this is a finding:
 
@@ -9133,10 +9082,7 @@ Administrators</RawString>
       <Constant>SeCreateTokenPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Create a token object" user right allows a process to create an access token. This could be used to provide elevated rights and compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to a CAT III if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The "Create a token object" user right allows a process to create an access token. This could be used to provide elevated rights and compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Create a token object</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9145,20 +9091,26 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Create a token object" user right, this is a finding.</RawString>
+If any accounts or groups are granted the "Create a token object" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26480" severity="medium" conversionstatus="pass" title="Create global objects" dscresource="UserRightsAssignment">
       <Constant>SeCreateGlobalPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Create global objects" user right can create objects that are available to all sessions, which could affect processes in other users' sessions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Create global objects" user right can create objects that are available to all sessions, which could affect processes in other users' sessions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Create global objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9167,16 +9119,25 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Create global objects" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26481" severity="medium" conversionstatus="pass" title="Create permanent shared objects" dscresource="UserRightsAssignment">
       <Constant>SeCreatePermanentPrivilege</Constant>
@@ -9191,9 +9152,10 @@ Accounts with the "Create permanent shared objects" user right could expose sens
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups are granted the "Create permanent shared objects" user right, this is a finding.</RawString>
     </Rule>
@@ -9210,6 +9172,7 @@ Accounts with the "Create symbolic links" user right can create pointers to othe
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -9344,9 +9307,10 @@ Accounts with the "Force shutdown from a remote system" user right can remotely 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Force shutdown from a remote system" user right, this is a finding:
 
@@ -9356,10 +9320,7 @@ Administrators</RawString>
       <Constant>SeAuditPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Generate security audits" user right specifies users and processes that can generate Security Log audit records, which must only be the system service accounts defined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The "Generate security audits" user right specifies users and processes that can generate Security Log audit records, which must only be the system service accounts defined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Generate security audits</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9368,23 +9329,29 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Generate security audits" user right, this is a finding:
 
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26490" severity="medium" conversionstatus="pass" title="Impersonate a client after authentication" dscresource="UserRightsAssignment">
       <Constant>SeImpersonatePrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Impersonate a client after authentication" user right allows a program to impersonate another user or account to run on their behalf.  An attacker could potentially use this to elevate privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The "Impersonate a client after authentication" user right allows a program to impersonate another user or account to run on their behalf.  An attacker could potentially use this to elevate privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Impersonate a client after authentication</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9393,25 +9360,31 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Impersonate a client after authentication" user right, this is a finding:
 
 Administrators
 Service
 Local Service
-Network Service</RawString>
+Network Service
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26492" severity="medium" conversionstatus="pass" title="Increase scheduling priority" dscresource="UserRightsAssignment">
       <Constant>SeIncreaseBasePriorityPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Increase scheduling priority" user right can change a scheduling priority causing performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Increase scheduling priority" user right can change a scheduling priority causing performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Increase scheduling priority</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9420,13 +9393,22 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Increase scheduling priority" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26493" severity="medium" conversionstatus="pass" title="Load and unload device drivers" dscresource="UserRightsAssignment">
       <Constant>SeLoadDriverPrivilege</Constant>
@@ -9441,9 +9423,10 @@ The "Load and unload device drivers" user right allows device drivers to dynamic
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Load and unload device drivers" user right, this is a finding:
 
@@ -9453,10 +9436,7 @@ Administrators</RawString>
       <Constant>SeLockMemoryPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Lock pages in memory" user right allows physical memory to be assigned to processes, which could cause performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+The "Lock pages in memory" user right allows physical memory to be assigned to processes, which could cause performance issues or a DoS.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Lock pages in memory</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9465,11 +9445,20 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
-If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.</RawString>
+If any accounts or groups are granted the "Lock pages in memory" user right, this is a finding.
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26496" severity="medium" conversionstatus="pass" title="Manage auditing and security log" dscresource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
@@ -9484,6 +9473,7 @@ Accounts with the "Manage auditing and security log" user right can manage the s
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
 Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
@@ -9495,28 +9485,12 @@ Administrators
 If the organization has an Auditors group, the assignment of this group to the user right would not be a finding.
 
 If an application requires this user right, this would not be a finding.
+
 Vendor documentation must support the requirement for having the user right.
+
 The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).</RawString>
-    </Rule>
-    <Rule id="V-26497" severity="medium" conversionstatus="pass" title="Modify an object label" dscresource="UserRightsAssignment">
-      <Constant>SeRelabelPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Modify an object label" user right can change the integrity label of an object.  This could potentially be used to execute code at a higher privilege.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Modify an object label</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>NULL</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups are granted the "Modify an object label" user right, this is a finding.</RawString>
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26498" severity="medium" conversionstatus="pass" title="Modify firmware environment values" dscresource="UserRightsAssignment">
       <Constant>SeSystemEnvironmentPrivilege</Constant>
@@ -9531,9 +9505,10 @@ Accounts with the "Modify firmware environment values" user right can change har
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Modify firmware environment values" user right, this is a finding:
 
@@ -9552,9 +9527,10 @@ Accounts with the "Perform volume maintenance tasks" user right can manage volum
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Perform volume maintenance tasks" user right, this is a finding:
 
@@ -9573,69 +9549,20 @@ Accounts with the "Profile single process" user right can monitor nonsystem proc
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Profile single process" user right, this is a finding:
 
 Administrators</RawString>
     </Rule>
-    <Rule id="V-26501" severity="medium" conversionstatus="pass" title="Profile system performance" dscresource="UserRightsAssignment">
-      <Constant>SeSystemProfilePrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-Accounts with the "Profile system performance" user right can monitor system processes performance.  An attacker could potentially use this to identify processes to attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Profile system performance</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Administrators,NT Service\WdiServiceHost</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Profile system performance" user right, this is a finding:
-
-Administrators
-NT Service\WdiServiceHost</RawString>
-    </Rule>
-    <Rule id="V-26503" severity="medium" conversionstatus="pass" title="Replace a process level token" dscresource="UserRightsAssignment">
-      <Constant>SeAssignPrimaryTokenPrivilege</Constant>
-      <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
-
-The "Replace a process level token" user right allows one process or service to start another process or service with a different security access token.  A user with this right could use this to impersonate another account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DisplayName>Replace a process level token</DisplayName>
-      <DuplicateOf />
-      <Force>True</Force>
-      <Identity>Local Service,Network Service</Identity>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the effective setting in Local Group Policy Editor.
-Run "gpedit.msc".
-
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
-
-If any accounts or groups other than the following are granted the "Replace a process level token" user right, this is a finding:
-
-Local Service
-Network Service</RawString>
-    </Rule>
     <Rule id="V-26504" severity="medium" conversionstatus="pass" title="Restore files and directories" dscresource="UserRightsAssignment">
       <Constant>SeRestorePrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Restore files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.  It could also be used to overwrite more current data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Restore files and directories" user right can circumvent file and directory permissions and could allow access to sensitive data.  It could also be used to overwrite more current data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Restore files and directories</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9644,22 +9571,28 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Restore files and directories" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-26506" severity="medium" conversionstatus="pass" title="Take ownership of files or other objects" dscresource="UserRightsAssignment">
       <Constant>SeTakeOwnershipPrivilege</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-Accounts with the "Take ownership of files or other objects" user right can take ownership of objects and make changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;If an application requires this user right, this can be downgraded to not a finding if the following conditions are met:
-Vendor documentation must support the requirement for having the user right.
-The requirement must be documented with the ISSO.
-The application account must meet requirements for application account passwords, such as length (V-36661) and required changes frequency (V-36662).&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+Accounts with the "Take ownership of files or other objects" user right can take ownership of objects and make changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DisplayName>Take ownership of files or other objects</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
@@ -9668,13 +9601,22 @@ The application account must meet requirements for application account passwords
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
+
 Run "gpedit.msc".
 
-Navigate to Local Computer Policy -&gt; Computer Configuration -&gt; Windows Settings -&gt; Security Settings -&gt; Local Policies -&gt; User Rights Assignment.
+Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; User Rights Assignment.
 
 If any accounts or groups other than the following are granted the "Take ownership of files or other objects" user right, this is a finding:
 
-Administrators</RawString>
+Administrators
+
+If an application requires this user right, this would not be a finding.
+
+Vendor documentation must support the requirement for having the user right.
+
+The requirement must be documented with the ISSO.
+
+The application account must meet requirements for application account passwords, such as length (WN12-00-000010) and required frequency of changes (WN12-00-000011).</RawString>
     </Rule>
     <Rule id="V-30016" severity="medium" conversionstatus="pass" title="Add workstations to domain" dscresource="UserRightsAssignment">
       <Constant>SeMachineAccountPrivilege</Constant>
