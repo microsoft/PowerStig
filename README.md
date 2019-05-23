@@ -37,7 +37,7 @@ This will give you an idea of what you can target in your environment.
 
 ```powershell
 Import-Module PowerStig
-Get-Stig
+Get-Stig -ListAvailable
 ```
 
 To update a previously installed module use this command:
