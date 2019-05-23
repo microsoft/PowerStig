@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="5/21/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="5/21/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
@@ -345,8 +345,11 @@ Click on "View log file" button.
 
 When log file is displaced, review source IP information in log entries and verify entries do not reflect the IP address of the proxy server.
 
+If the website is not behind a load balancer or proxy server, this is Not Applicable.
+
 If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
-If the website is not behind a load balancer or proxy server, this is Not Applicable.</RawString>
+
+If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</RawString>
     </Rule>
     <Rule id="V-76795" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the SA and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
