@@ -336,7 +336,7 @@ function Get-StigRuleList
             {
                 $stigRule.RemoveChild($stigRule.Rule[0])
             }
-            
+
             # Global added so that the stig rule can be referenced later
             $global:stigRuleGlobal = $stigRule
 
