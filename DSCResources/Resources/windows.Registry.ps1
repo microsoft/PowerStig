@@ -11,6 +11,10 @@ foreach ($rule in $rules)
         {
             $valueData = $rule.ValueData.Split("{;}")
         }
+        elseif ($null -eq $rule.ValueData)
+        {
+            $valueData = [string]::Empty
+        }
         else
         {
             $valueData = $rule.ValueData

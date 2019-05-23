@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="5/3/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="5/21/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
@@ -37,25 +37,6 @@ Open the IIS 8.5 Manager.
 Double-click "Request Filtering". 
 
 If any file name extensions from the black list have "Allowed" set to "True", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-76819" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;By setting limits on web requests, it ensures availability of web services and mitigates the risk of buffer overflow type attacks. The maxAllowedContentLength Request Filter limits the number of bytes the server will accept in a request.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click on the site name.
-
-Double-click the "Request Filtering" icon.
-
-Click “Edit Feature Settings” in the "Actions" pane.
-
-If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length documented and approved by the ISSO, this is a finding.
-</RawString>
     </Rule>
     <Rule id="V-76831" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000142" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The goal is to control the web users experience in navigating any portion of the web document root directories. Ensuring all web content directories have at least the equivalent of an index.html file is a significant factor to accomplish this end. Also, enumeration techniques, such as URL parameter manipulation, rely upon being able to obtain information about the web server’s directory structure by locating directories with default pages. This practice helps ensure the anonymous web user will not obtain directory browsing information or an error message revealing the server type and version.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -176,7 +157,7 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053&lt;/VulnDiscussi
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
-      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer</LogFlags>
+      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer</LogFlags>
       <LogFormat />
       <LogPeriod />
       <LogTargetW3C />
@@ -1199,6 +1180,29 @@ Double-click the "Request Filtering" icon.
 Click “Edit Feature Settings” in the "Actions" pane.
 
 If the "maxUrl" value is not set to "4096" or less, this is a finding.</RawString>
+      <Value>
+      </Value>
+    </Rule>
+    <Rule id="V-76819" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="xWebConfigKeyValue">
+      <ConfigSection>/system.webServer/security/requestFiltering/requestlimits</ConfigSection>
+      <Description>&lt;VulnDiscussion&gt;By setting limits on web requests, it ensures availability of web services and mitigates the risk of buffer overflow type attacks. The maxAllowedContentLength Request Filter limits the number of bytes the server will accept in a request.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>maxAllowedContentLength</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -le 30000000</OrganizationValueTestString>
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Click on the site name.
+
+Double-click the "Request Filtering" icon.
+
+Click “Edit Feature Settings” in the "Actions" pane.
+
+If the "maxAllowedContentLength" value is not explicitly set to "30000000" or less or a length documented and approved by the ISSO, this is a finding.
+</RawString>
       <Value>
       </Value>
     </Rule>

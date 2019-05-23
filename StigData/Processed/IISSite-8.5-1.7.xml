@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Oct 2018" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="5/21/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="5/21/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
@@ -157,7 +157,7 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053&lt;/VulnDiscussi
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
-      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer</LogFlags>
+      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer</LogFlags>
       <LogFormat />
       <LogPeriod />
       <LogTargetW3C />
@@ -221,10 +221,6 @@ Without sufficient information establishing the success or failure of the logged
           <SourceType>RequestHeader</SourceType>
           <SourceName>Warning</SourceName>
         </Entry>
-        <Entry>
-          <SourceType>ServerVariable</SourceType>
-          <SourceName>HTTP_CONNECTION</SourceName>
-        </Entry>
       </LogCustomFieldEntry>
       <LogFlags />
       <LogFormat>W3C</LogFormat>
@@ -248,8 +244,6 @@ Request Header &gt;&gt; Connection
 
 Request Header &gt;&gt; Warning
 
-Server Variable &gt;&gt; HTTP_CONNECTION
-
 If any of the above fields are not selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76791" severity="medium" conversionstatus="pass" title="SRG-APP-000100-WSR-000064" dscresource="XWebsite">
@@ -264,10 +258,6 @@ Log record content that may be necessary to satisfy the requirement of this cont
         <Entry>
           <SourceType>ServerVariable</SourceType>
           <SourceName>HTTP_USER_AGENT</SourceName>
-        </Entry>
-        <Entry>
-          <SourceType>RequestHeader</SourceType>
-          <SourceName>User-Agent</SourceName>
         </Entry>
         <Entry>
           <SourceType>RequestHeader</SourceType>
@@ -299,8 +289,6 @@ Under "Standard Fields", verify "User Agent", "User Name" and "Referrer" are sel
 Under "Custom Fields", verify the following fields have been configured: 
 
 Server Variable &gt;&gt; HTTP_USER_AGENT
-
-Request Header &gt;&gt; User-Agent
 
 Request Header &gt;&gt; Authorization
 
@@ -357,8 +345,11 @@ Click on "View log file" button.
 
 When log file is displaced, review source IP information in log entries and verify entries do not reflect the IP address of the proxy server.
 
+If the website is not behind a load balancer or proxy server, this is Not Applicable.
+
 If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
-If the website is not behind a load balancer or proxy server, this is Not Applicable.</RawString>
+
+If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</RawString>
     </Rule>
     <Rule id="V-76795" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the SA and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -367,25 +358,18 @@ If the website is not behind a load balancer or proxy server, this is Not Applic
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
 Open the IIS 8.5 Manager.
-
 Click the site name.
-
 Click the "Logging" icon.
-
 Click "Browse" and navigate to the directory where the log files are stored.
-
 Right-click the log file name to review and click “Properties”.
-
-Click the “Security” tab; verify only authorized groups are listed, if others are listed, this is a finding.
-
+Click the “Security” tab.
+Verify only authorized groups are listed, if others are listed, this is a finding.
 Note: The log file should be restricted as follows:
-
-SYSTEM, Auditors group: Full
-SA, web managers: Read
-
-</RawString>
+Eventlog - Full Control
+SYSTEM - Full Control
+Administrators - Full Control
+Web Managers - Read</RawString>
     </Rule>
     <Rule id="V-76807" severity="medium" conversionstatus="pass" title="SRG-APP-000142-WSR-000089" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The web server must be configured to listen on a specified IP address and port. Without specifying an IP address and port for the web server to utilize, the web server will listen on all IP addresses available to the hosting server. If the web server has multiple IP addresses, i.e., a management IP address, the web server will also accept connections on the management IP address.
@@ -741,17 +725,12 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
-
+Note: If SSL is installed on load balancer through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server ONLY receives traffic from the load balancer, the SSL requirement must be met on the load balancer.
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
 Open the IIS 8.5 Manager.
-
 Click the site name.
-
 Double-click the "SSL Settings" icon.
-
 Verify "Require SSL" check box is selected.
-
 If the "Require SSL" check box is not selected, this is a finding.</RawString>
       <Value>Ssl</Value>
     </Rule>
@@ -813,28 +792,18 @@ Also satisfies: SRG-APP-000439-WSR-000151&lt;/VulnDiscussion&gt;&lt;FalsePositiv
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
+      <RawString>Note: If SSL is installed on load balancer through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server ONLY receives traffic from the load balancer, the SSL requirement must be met on the load balancer.
+Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
-
 Double-click the "SSL Settings" icon under the "IIS" section.
-
 Verify "Require SSL" is checked.
-
 Verify "Client Certificates Required" is selected.
-
 Click the site under review.
-
 Select "Configuration Editor" under the "Management" section.
-
 From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
-
 The value for "sslFlags" set must include "ssl128".
-
 If the "Require SSL" is not selected, this is a finding.
-
 If the "Client Certificates Required" is not selected, this is a finding.
-
 If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
       <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
     </Rule>
@@ -856,28 +825,19 @@ Also satisfies: SRG-APP-000442-WSR-000182&lt;/VulnDiscussion&gt;&lt;FalsePositiv
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
+      <RawString>Check: 
+Note: If SSL is installed on load balancer through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server ONLY receives traffic from the load balancer, the SSL requirement must be met on the load balancer.
+Follow the procedures below for each site hosted on the IIS 8.5 web server:
 Open the IIS 8.5 Manager.
-
 Double-click the "SSL Settings" icon under the "IIS" section.
-
 Verify "Require SSL" is checked.
-
 Verify "Client Certificates Required" is selected.
-
 Click the site under review.
-
 Select "Configuration Editor" under the "Management" section.
-
 From the "Section:" drop-down list at the top of the configuration editor, locate “system.webServer/security/access”.
-
-The value for "sslFlags" should be ssl128.
-
+The value for "sslFlags" should be “ssl128”.
 If the "Require SSL" is not selected, this is a finding.
-
 If the "Client Certificates Required" is not selected, this is a finding.
-
 If the "sslFlags" is not set to "ssl128", this is a finding.</RawString>
       <Value>Ssl,SslNegotiateCert,SslRequireCert,Ssl128</Value>
     </Rule>
