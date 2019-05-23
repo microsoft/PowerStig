@@ -254,6 +254,7 @@ function Test-MultipleWebConfigurationPropertyRule
     $matchEncryptionRule = $checkContent | Select-String -Pattern $regularExpression.HMACSHA256 -AllMatches
     $matchMultipleKeyvaluePair = $checkContent | Select-String -Pattern ([RegularExpression]::KeyValuePair) -AllMatches
     $matchUseCookies = $checkContent | Select-String -Pattern $regularExpression.useCookies -AllMatches
+    $matchSessionTimeout = $checkContent | Select-String -Pattern $regularExpression.sessionTimeout -AllMatches
 
     if ($matchConfigSection.Count -gt 1)
     {
@@ -265,7 +266,7 @@ function Test-MultipleWebConfigurationPropertyRule
         Write-Verbose -message "[$($MyInvocation.MyCommand.Name)] : $true"
         return $true
     }
-    elseif ($matchUseCookies)
+    elseif ($matchUseCookies -and $matchSessionTimeout)
     {
         Write-Verbose -message "[$($MyInvocation.MyCommand.Name)] : $true"
         return $true
