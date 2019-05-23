@@ -1,49 +1,64 @@
 
 $ruleList = @(
     @{
-        testXml = [xml]'<Rule Id="V-1000" severity="low" title="DWORD Test">
+        testXml   = [xml]'<Rule Id="V-1000" severity="low" title="DWORD Test">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>0</ValueData>
         <ValueName>DwordValueName</ValueName>
         <ValueType>Dword</ValueType>
         </Rule>'
-        Ensure = 'Present'
-        Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
+        Ensure    = 'Present'
+        Key       = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
         ValueData = '0'
         ValueName = 'DwordValueName'
         ValueType = 'Dword'
     },
     @{
-        testXml = [xml]'<Rule id="V-1000" severity="low" title="String">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="String">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>O:BAG:BAD:(A;;RC;;;BA)</ValueData>
         <ValueName>StringValueName</ValueName>
         <ValueType>String</ValueType>
         </Rule>'
-        Ensure = 'Present'
-        Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
+        Ensure    = 'Present'
+        Key       = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
         ValueData = 'O:BAG:BAD:(A;;RC;;;BA)'
         ValueName = 'StringValueName'
         ValueType = 'String'
     },
     @{
-        testXml = [xml]'<Rule id="V-1000" severity="low" title="MultiString Test">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="MultiString Test">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>123;ABC</ValueData>
         <ValueName>MultiStringValueName</ValueName>
         <ValueType>MultiString</ValueType>
         </Rule>'
-        Ensure = 'Present'
-        Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
+        Ensure    = 'Present'
+        Key       = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
         ValueData = @('123', 'ABC')
         ValueName = 'MultiStringValueName'
         ValueType = 'MultiString'
     },
     @{
-        testXml = [xml]'<Rule id="V-1000" severity="low" title="Empty MultiString Test">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Empty MultiString Test">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>
+        </ValueData>
+        <ValueName>MultiStringValueName</ValueName>
+        <ValueType>MultiString</ValueType>
+      </Rule>'
+        Ensure    = 'Present'
+        Key       = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
+        ValueData = ''
+        ValueName = 'MultiStringValueName'
+        ValueType = 'MultiString'
+    },
+    @{
+        testXml = [xml]'<Rule id="V-1000" severity="low" title="Null Value MultiString Test">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>
@@ -53,23 +68,23 @@ $ruleList = @(
       </Rule>'
       Ensure = 'Present'
       Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft'
-      ValueData = ''
+      ValueData = $null
       ValueName = 'MultiStringValueName'
       ValueType = 'MultiString'
     },
     @{
-      testXml = [xml]'<Rule id="V-1000" severity="low" title="Absent value Test">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Absent value Test">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>ShouldBeAbsent</ValueData>
         <ValueName>OptionalAbsent</ValueName>
         <ValueType>Dword</ValueType>
       </Rule>'
-      Ensure = 'Absent'
-      Key = 'HKLM:\SOFTWARE\Policies\Microsoft'
-      ValueData = $null
-      ValueName = 'OptionalAbsent'
-      ValueType = 'Dword'
+        Ensure    = 'Absent'
+        Key       = 'HKLM:\SOFTWARE\Policies\Microsoft'
+        ValueData = $null
+        ValueName = 'OptionalAbsent'
+        ValueType = 'Dword'
     }
 )
 
@@ -96,9 +111,7 @@ Describe 'Registry call' {
             It 'Should set the correct Key' {
                 $instance.Key | Should Be $rule.Key
             }
-            It 'Should set the correct Data' {
-                $instance.ValueData | Should Be $rule.ValueData
-            }
+
             It 'Should set the correct Name' {
                 $instance.ValueName | Should Be $rule.ValueName
             }
@@ -108,7 +121,14 @@ Describe 'Registry call' {
                     $instance.ValueType | Should Be $rule.ValueType
                 }
                 It 'Should set the correct Data' {
-                    $instance.ValueData | Should Be $rule.ValueData
+                    if ($null -eq $rule.ValueData)
+                    {
+                        $instance.ValueData | Should Be $([string]::Empty)
+                    }
+                    else
+                    {
+                        $instance.ValueData | Should Be $rule.ValueData
+                    }
                 }
             }
             else

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+* Fixed [#373](https://github.com/Microsoft/PowerStig/issues/373): Registry resource does not handle null values for ValueData contained in Processed STIGs
+* Fixed [#376](https://github.com/Microsoft/PowerStig/issues/376): SQL STIG Rules V-41021 (Instance STIG) and V-41402 (Database STIG) fail to apply when applying to a SQL instance that is NOT name the default (MSSQLSERVER).
+* Fixed [#377](https://github.com/Microsoft/PowerStig/issues/377): SQL Instance Rule V-40936 fails when Set-TargertResource is ran
+* Fixed [#280](https://github.com/Microsoft/PowerStig/issues/280): HKEY_CURRENT_USER is not needed with the cAdministrativeTemplateSetting composite resource. (Regression Issue)
+* Fixed [#385](https://github.com/Microsoft/PowerStig/issues/385): IIS Server STIG V-76681 does not parse correctly
 * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
 * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
 =======
