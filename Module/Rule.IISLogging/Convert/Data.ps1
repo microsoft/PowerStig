@@ -20,7 +20,7 @@ data logflagsConstant
         Client IP Address = ClientIP
         Date              = Date
         Method            = Method
-        Protocol Status   = ProtocolVersion
+        Protocol Status   = HttpStatus
         Referrer          = Referer
         and Referrer      = Referer
         Time              = Time

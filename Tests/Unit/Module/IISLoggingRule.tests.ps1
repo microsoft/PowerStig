@@ -9,7 +9,7 @@ try
         #region Test Setup
         $testRuleList = @(
             @{
-                LogFlags = 'Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer'
+                LogFlags = 'Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer'
                 LogFormat = $null
                 LogPeriod = $null
                 LogTargetW3C = $null
