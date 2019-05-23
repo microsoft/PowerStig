@@ -331,6 +331,12 @@ function Get-StigRuleList
     {
         foreach ($stigRule in $StigGroupList)
         {
+            # This is to address STIG Rule V-18395 that has multiple rules that are exactly the same under that rule ID.
+            if ($stigRule.Rule.Count -gt 1)
+            {
+                $stigRule.RemoveChild($stigRule.Rule[0])
+            }
+            
             # Global added so that the stig rule can be referenced later
             $global:stigRuleGlobal = $stigRule
 
@@ -396,7 +402,7 @@ function Get-RuleChangeLog
 
     try
     {
-        $updateLog = Get-Content -Path $path -Raw -ErrorAction Stop
+        $updateLog = Get-Content -Path $path -Encoding UTF8 -Raw -ErrorAction Stop
     }
     catch
     {
