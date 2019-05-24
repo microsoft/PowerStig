@@ -73,7 +73,7 @@ Configuration IisServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
