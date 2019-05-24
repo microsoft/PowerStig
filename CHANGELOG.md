@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 3.2.0
+
 * Added support for IIS 8.5 Server STIG, Version 1, Release 7 [#399](https://github.com/Microsoft/PowerStig/issues/399)
 * Fixed [#373](https://github.com/Microsoft/PowerStig/issues/373): Registry resource does not handle null values for ValueData contained in Processed STIGs
 * Fixed [#376](https://github.com/Microsoft/PowerStig/issues/376): SQL STIG Rules V-41021 (Instance STIG) and V-41402 (Database STIG) fail to apply when applying to a SQL instance that is NOT name the default (MSSQLSERVER).
