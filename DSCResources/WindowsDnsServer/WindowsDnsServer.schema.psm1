@@ -82,7 +82,7 @@ Configuration WindowsDnsServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.3.0.0
+    Import-DscResource -ModuleName AccessControlDsc -ModuleVersion 1.4.0.0
     . "$resourcePath\windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
