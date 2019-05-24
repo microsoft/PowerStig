@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="5/3/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="5/22/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -339,7 +339,7 @@ Satisfies: SRG-APP-000092-WSR-000055, SRG-APP-000093-WSR-000053, SRG-APP-000095-
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <LogCustomFieldEntry />
-      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,HttpStatus,Referer</LogFlags>
+      <LogFlags>Date,Time,ClientIP,UserName,Method,UriQuery,ProtocolVersion,Referer</LogFlags>
       <LogFormat />
       <LogPeriod />
       <LogTargetW3C />
@@ -436,10 +436,6 @@ Log record content that may be necessary to satisfy the requirement of this cont
       <LogCustomFieldEntry>
         <Entry>
           <SourceType>RequestHeader</SourceType>
-          <SourceName>User-Agent</SourceName>
-        </Entry>
-        <Entry>
-          <SourceType>RequestHeader</SourceType>
           <SourceName>Authorization</SourceName>
         </Entry>
         <Entry>
@@ -453,28 +449,17 @@ Log record content that may be necessary to satisfy the requirement of this cont
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Access the IIS 8.5 web server IIS Manager.
-
+      <RawString>Note: If SSL is installed on load balancer through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server ONLY receives traffic from the load balancer, the SSL requirement must be met on the load balancer.
+Access the IIS 8.5 web server IIS Manager.
 Click the IIS 8.5 web server name.
-
 Under "IIS", double-click the "Logging" icon.
-
 Verify the "Format:" under "Log File" is configured to "W3C".
-
 Select the "Fields" button.
-
 Under "Standard Fields", verify "User Agent", "User Name" and "Referrer" are selected.
-
 Under "Custom Fields", verify the following field have been configured:
-
-Request Header &gt;&gt; User-Agent
-
 Request Header &gt;&gt; Authorization
-
 Response Header &gt;&gt; Content-Type
-
-If any of the above fields are not selected, this is a finding.
-</RawString>
+If any of the above fields are not selected, this is a finding.</RawString>
     </Rule>
   </IisLoggingRule>
   <ManualRule dscresourcemodule="None">
@@ -504,7 +489,11 @@ Click on "View log files" under the "Actions" pane.
 
 When the log file is displayed, review source IP information in log entries and verify the entries do not reflect the IP address of the proxy server.
 
-If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.</RawString>
+If the website is not behind a load balancer or proxy server, this is Not Applicable.
+
+If the log entries in the log file(s) reflect the IP address of the proxy server as the source, this is a finding.
+
+If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</RawString>
     </Rule>
     <Rule id="V-76695" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the SA and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -512,35 +501,19 @@ If the log entries in the log file(s) reflect the IP address of the proxy server
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Query the SA to determine who has update access to the web server log files. 
-
-The role of auditor and the role of SA should be distinctly separate. An individual functioning as an auditor should not also serve as an SA due to a conflict of interest. 
-
-Only management authorized individuals with a privileged ID or group ID associated with an auditor role will have access permission to log files that are greater than read on web servers he or she has been authorized to audit. 
-
-Only management authorized individuals with a privileged ID or group ID associated with either an SA or web administrator role may have read authority to log files for the web servers he or she has been authorized to administer. 
-
-If an account with roles other than auditor has greater than read authority to the log files, this is a finding. 
-
-This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files. 
+      <RawString>This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files.
 Open the IIS 8.5 Manager.
-
 Click the IIS 8.5 web server name.
-
 Click the "Logging" icon.
-
 Click the "Browse" button and navigate to the directory where the log files are stored.
-
-Right-click the log file name to review and click Properties.
-
-Click the "Security" tab.
-
-If an account associated with roles other than auditors, SAs, or web administrators have any access to log files, this is a finding.
-
-If an account with roles other than auditor has greater than read authority to the log files, this is a finding.
-
-This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files.
-</RawString>
+Right-click the log file name to review.
+Click “Properties”.
+Click the “Security” tab.
+Verify log file access is restricted as follows. Otherwise, this is a finding.
+Eventlog - Full Control
+SYSTEM - Full Control
+Administrators - Full Control
+Web Managers - Read</RawString>
     </Rule>
     <Rule id="V-76697" severity="medium" conversionstatus="pass" title="SRG-APP-000125-WSR-000071" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring log data is not accidentally lost or deleted. Backing up log records to an unrelated system or onto separate media than the system the web server is actually running on helps to assure that, in the event of a catastrophic system failure, the log records will be retained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -645,14 +618,10 @@ If any unnecessary Operating System features are installed, this is a finding.</
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 8.5 Manager.
-
 Click the IIS 8.5 web server name.
-
 Double-click the "Server Certificate" icon.
-
 Double-click each certificate and verify the certificate path is to a DoD root CA.
-
-If not, this is a finding.</RawString>
+If the “Issued By” field of the PKI certificate being used by the IIS 8.5 server/site does not indicate the issuing Certificate Authority (CA) is part of the DoD PKI or an approved ECA, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76717" severity="medium" conversionstatus="pass" title="SRG-APP-000206-WSR-000128" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Mobile code in hosted applications allows the developer to add functionality and displays to hosted applications that are fluid, as opposed to a static web page. The data presentation becomes more appealing to the user, is easier to analyze, and navigation through the hosted application and data is much less complicated.
@@ -783,19 +752,6 @@ Double-click the “Authorization Rules” icon.
 
 If any user other than “Administrator” is listed, this is a finding.
 </RawString>
-    </Rule>
-    <Rule id="V-91207" severity="medium" conversionstatus="pass" title="SRG-APP-000243" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;It is important to segregate public web server resources from private resources located behind the DoD DMZ in order to protect private assets. When folders, drives, or other resources are directly shared between the public web server and private servers the intent of data and resource segregation can be compromised.
-
-Resources, such as, printers, files, and folders/directories must not be shared between public web servers and assets located within the internal network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>1. From a command prompt, type "net share" and press “Enter” to provide a list of available shares (including printers).
-2. To display the permissions assigned to the shares type "net share" followed by the share name found in the previous step.
-If any private assets are assigned permissions to the share, this is a finding.
-If any printers are shared, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
@@ -1069,6 +1025,7 @@ Cookies associate session information with client information for the duration o
       <RawString>Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under the "ASP.NET" section, select "Session State".
+Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
 Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.</RawString>
       <Value>UseCookies</Value>
     </Rule>
@@ -1086,6 +1043,7 @@ Cookies associate session information with client information for the duration o
       <RawString>Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under the "ASP.NET" section, select "Session State".
+Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.
 Under Time-out (in minutes), verify “20 minutes or less” is selected.
 If the "Use Cookies” mode is selected and Time-out (in minutes) is configured for “20 minutes or less”, this is not a finding.</RawString>
       <Value>
