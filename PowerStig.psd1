@@ -6,19 +6,19 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '3.1.0'
+ModuleVersion = '3.2.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
 
 # Author of this module
-Author = 'Adam Haynes'
+Author = 'Microsoft Corporation'
 
 # Company or vendor of this module
 CompanyName = 'Microsoft Corporation'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Adam Haynes. All rights reserved.'
+Copyright = 'Copyright (c) Microsoft Corporation. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'The PowerStig module provides a set of PowerShell classes to access DISA STIG settings extracted from the xccdf. The module provides a unified way to access the parsed STIG data by enabling the concepts of:
@@ -97,17 +97,7 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = 'UPDATES
-
-* Removed duplicate code from rule class constructors
-* Migrated from Get-WmiObject to Get-CimInstance to support PowerShell Core
-* Migrated to PSDscResources [#345](https://github.com/Microsoft/PowerStig/issues/345)
-* Migrated to ComputerManagementDsc [#342](https://github.com/Microsoft/PowerStig/issues/342)
-* Fixed [#358](https://github.com/Microsoft/PowerStig/issues/358): Update PowerSTIG Duplicate Rule handling and capability
-
-Added the following STIG
-
-* Windows Defender V1R4 [#344](https://github.com/Microsoft/PowerStig/issues/344)'
+        ReleaseNotes = ''
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

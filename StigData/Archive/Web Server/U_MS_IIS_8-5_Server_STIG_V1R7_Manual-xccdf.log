@@ -1,0 +1,1 @@
+V-76695::This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files::If an account associated with roles other than auditors

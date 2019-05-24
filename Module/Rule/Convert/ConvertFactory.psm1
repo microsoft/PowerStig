@@ -49,10 +49,18 @@ class SplitFactory
         {
             $splitMultipleRules = $instance.GetType().GetMethod('SplitMultipleRules')
             [string[]] $splitRules = $splitMultipleRules.Invoke($splitMultipleRules, $Rule.rule.Check.'check-content')
+            [int] $byte = 97
             foreach ($splitRule in $splitRules)
             {
-                $Rule.rule.Check.'check-content' = $splitRule
-                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
+                <#
+                    Creating the split rule name here since some split rules have hardcoded
+                    values and are detected based on the split rule name
+                #>
+                $newRule = $Rule.Clone()
+                $newRule.rule.Check.'check-content' = $splitRule
+                $newRule.Id = "$($Rule.id).$([CHAR][BYTE]$byte)"
+                $byte ++
+                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
             }
         }
         else
@@ -66,28 +74,28 @@ class SplitFactory
         .SYNOPSIS
             Instance method split
     #>
-    static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
-    {
-        [System.Collections.ArrayList] $ruleList = @()
+                static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
+                {
+                    [System.Collections.ArrayList] $ruleList = @()
 
-        $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
-        if ($instance.HasMultipleRules())
-        {
-            [string[]] $splitRules = $instance.SplitMultipleRules()
-            foreach ($splitRule in $splitRules)
-            {
-                $ruleClone = $instance.Clone()
-                $ruleClone.$Property = $splitRule
-                $ruleList += $ruleClone.AsRule()
+                    $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
+                    if ($instance.HasMultipleRules())
+                    {
+                        [string[]] $splitRules = $instance.SplitMultipleRules()
+                        foreach ($splitRule in $splitRules)
+                        {
+                            $ruleClone = $instance.Clone()
+                            $ruleClone.$Property = $splitRule
+                            $ruleList += $ruleClone.AsRule()
+                        }
+                    }
+                    else
+                    {
+                        $ruleList += $instance.AsRule()
+                    }
+                    return $ruleList
+                }
             }
-        }
-        else
-        {
-            $ruleList += $instance.AsRule()
-        }
-        return $ruleList
-    }
-}
 
 class ConvertFactory
 {
@@ -124,7 +132,7 @@ class ConvertFactory
             {[FileContentRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                        [SplitFactory]::XccdfRule($Rule, 'FileContentRuleConvert')
+                    [SplitFactory]::XccdfRule($Rule, 'FileContentRuleConvert')
                 )
             }
             {[GroupRuleConvert]::Match($PSItem)}
@@ -243,10 +251,11 @@ class ConvertFactory
             }
         }
 
-         <# 
-         Rules can be split into multiple rules of multiple types, so the list
-         of Id's needs to be validated to be unique.
+         <#
+            Rules can be split into multiple rules of multiple types, so the list
+            of Id's needs to be validated to be unique.
          #>
+
         $ruleCount = ($ruleTypeList | Measure-Object).count
         $uniqueRuleCount = ($ruleTypeList |
             Select-Object -Property Id -Unique |

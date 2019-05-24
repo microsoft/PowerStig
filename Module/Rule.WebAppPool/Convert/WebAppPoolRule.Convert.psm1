@@ -126,7 +126,6 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
         (
             $CheckContent -cMatch 'IIS' -and
             $CheckContent -Match 'Application Pools' -and
-            $CheckContent -NotMatch 'recycl' -and
             $CheckContent -NotMatch 'review the "Applications"'
         )
         {
