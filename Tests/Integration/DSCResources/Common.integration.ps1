@@ -29,11 +29,11 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         {& $technologyConfig @testParameterList} | Should -Not -Throw
     }
 
-    $configurationDocumentPath = "$TestDrive\localhost.mof"
-    $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-
     $ruleNames = (Get-Member -InputObject $powerstigXml.DISASTIG |
             Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
+
+    $configurationDocumentPath = "$TestDrive\localhost.mof"
+    $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
     foreach ($ruleName in $ruleNames)
     {
