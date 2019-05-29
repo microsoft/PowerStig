@@ -128,6 +128,16 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $expectedSkipRuleCount = $skipRuleMultiple.count
             $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
 
+            # Will remove this code once test testing is complete
+            if ($dscMof.Count -eq 0 -or $null -eq $dscMof.Count)
+            {
+                $instances.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
+            }
+            else
+            {
+                $dscMof.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
+            }
+
             It "Should have $expectedSkipRuleCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleCount
             }
