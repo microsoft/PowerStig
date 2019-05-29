@@ -9,7 +9,7 @@
   <!-- Ensure ''V-75167'' -match '2|1'-->
   <OrganizationalSetting id="V-75167" value="2" />
   <!-- Ensure 'V-75237' -ge '0' -and 'V-75237' -le '7'-->
-   <OrganizationalSetting id="V-75237" value="0" />
+  <OrganizationalSetting id="V-75237" value="0" />
   <!-- Ensure 'V-75241' -ge '1' -and 'V-75241' -le '7'-->
   <OrganizationalSetting id="V-75241" value="1" />
   <!-- Ensure 'V-75243' -ge '1' -and 'V-75243' -le '7'-->
