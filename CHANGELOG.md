@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added support for Windows Defender, Version 1, Release 5 [#393](https://github.com/microsoft/PowerStig/issues/393)
+
 ## 3.2.0
 
 * Added support for IIS 8.5 Server STIG, Version 1, Release 7 [#399](https://github.com/Microsoft/PowerStig/issues/399)
