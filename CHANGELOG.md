@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
+
 ## 3.2.0
 
 * Added support for IIS 8.5 Server STIG, Version 1, Release 7 [#399](https://github.com/Microsoft/PowerStig/issues/399)
