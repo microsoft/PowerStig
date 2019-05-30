@@ -128,7 +128,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $expectedSkipRuleCount = $skipRuleMultiple.count
             $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
 
-            # Will remove this code once test testing is complete
+            # This if/else is being used to output mof information from AppVeyor (Firefox 4.21 SkipRule test issue)
             if ($dscMof.Count -eq 0 -or $null -eq $dscMof.Count)
             {
                 $instances.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
