@@ -131,11 +131,11 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             # Will remove this code once test testing is complete
             if ($dscMof.Count -eq 0 -or $null -eq $dscMof.Count)
             {
-                $instances.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
+                $instances.ResourceId | ForEach-Object -Process {try { Write-Warning "RId: $_" } catch { }}
             }
             else
             {
-                $dscMof.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
+                $dscMof.ResourceId | ForEach-Object -Process {try { Write-Warning "RId: $_" } catch { }}
             }
 
             It "Should have $expectedSkipRuleCount Skipped settings" {
