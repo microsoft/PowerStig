@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Apr 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="5/29/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Apr 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="5/30/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;This parameter ensures only DoD-approved ciphers and algorithms are enabled for use by the web browser by allowing you to turn on/off support for TLS and SSL. TLS is a protocol for protecting communications between the browser and the target server. When the browser attempts to set up a protected communication with the target server, the browser and server negotiate which protocol and version to use. The browser and server attempt to match each other's list of supported protocols and versions and pick the most preferred match..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -150,7 +150,7 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\InternetSettings\Zones\3</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer -&gt; Internet Control Panel -&gt; Security Page -&gt; Internet Zone -&gt; 'Navigate windows and frames across different domains' must be 'Enabled', and 'Disable' selected from the drop-down box. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\InternetSettings\Zones\3 Criteria: If the value "1607" is REG_DWORD = 3, this is not a finding.</RawString>
@@ -1183,7 +1183,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The policy value for User Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer -&gt; 'Turn on the auto-complete feature for user names and passwords on forms' must be 'Disabled'. Procedure: Use the Windows Registry Editor to navigate to the following key: HKCU\Software\Policies\Microsoft\Internet Explorer\Main Criteria: If the value "FormSuggest Passwords" is REG_SZ = 'no', this is not a finding. </RawString>
-      <ValueData>'no'</ValueData>
+      <ValueData>no</ValueData>
       <ValueName>FormSuggest Passwords</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -1196,7 +1196,7 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString> Use the Windows Registry Editor to navigate to the following key: HKCU\Software\Policies\Microsoft\Internet Explorer\Main Criteria: If the value "FormSuggest PW Ask" is REG_SZ = 'no', this is not a finding.</RawString>
-      <ValueData>'no'</ValueData>
+      <ValueData>no</ValueData>
       <ValueName>FormSuggest PW Ask</ValueName>
       <ValueType>String</ValueType>
     </Rule>
@@ -1542,7 +1542,7 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer-&gt; Internet Control Panel-&gt; Advanced Page 'Turn on Enhanced Protected Mode' must be 'Enabled'. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\Main Criteria: If the value "Isolation" is REG_SZ = 'PMEM', this is not a finding.</RawString>
-      <ValueData>'PMEM'</ValueData>
+      <ValueData>PMEM</ValueData>
       <ValueName>Isolation</ValueName>
       <ValueType>String</ValueType>
     </Rule>
