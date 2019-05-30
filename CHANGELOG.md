@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Fixed [#419](https://github.com/Microsoft/PowerStig/issues/419): PowerStig is creating resource xSSLSettings with the wrong value for Name.
+* Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
 
 ## 3.2.0
 
