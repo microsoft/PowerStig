@@ -108,7 +108,17 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
+            $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
+
+            # This if/else is being used to output mof information from AppVeyor (Firefox 4.21 SkipRule test issue)
+            if ($dscMof.Count -eq 0 -or $null -eq $dscMof.Count)
+            {
+                $instances.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
+            }
+            else
+            {
+                $dscMof.ResourceId | ForEach-Object -Process { try { Write-Warning "RId: $_" } catch { } }
+            }
 
             It "Should have $($skipRule.count) Skipped settings" {
                 $dscMof.count | Should -Be $skipRule.count
