@@ -9,7 +9,7 @@ if ($rules)
     {
         xSslSettings "[$($rules.id -join ' ')]$website"
         {
-            Name     = "IIS:\Sites\$website"
+            Name     = $website
             Bindings = (Get-UniqueStringArray -InputObject $rules.Value)
         }
     }
