@@ -17,15 +17,15 @@
   <!-- Ensure ''V-1104'' -le '60' -and ''V-1104'' -ne '0'-->
   <OrganizationalSetting id="V-1104" value="60" />
   <!-- Ensure ''V-1105'' -ne '0'-->
-  <OrganizationalSetting id="V-1105" value="5" />
+  <OrganizationalSetting id="V-1105" value="1" />
   <!-- Ensure ''V-1107'' -ge '24'-->
   <OrganizationalSetting id="V-1107" value="24" />
   <!-- Ensure ''V-1114'' -ne 'Guest'-->
-  <OrganizationalSetting id="V-1114" value="Guest" />
+  <OrganizationalSetting id="V-1114" value="xGuest" />
   <!-- Ensure ''V-1115'' -ne 'Administrator'-->
-  <OrganizationalSetting id="V-1115" value="powerstigadmin" />
+  <OrganizationalSetting id="V-1115" value="xAdministrator" />
   <!-- Ensure ''V-1155'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
-  <OrganizationalSetting id="V-1155" value="Guests group" />
+  <OrganizationalSetting id="V-1155" value="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
   <!-- Ensure ''V-1157'' -match '1|2'-->
   <OrganizationalSetting id="V-1157" value="1" />
   <!-- Ensure ''V-1172'' -ge '14'-->
@@ -51,7 +51,7 @@
   <!-- Ensure ''V-26359'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
   <OrganizationalSetting id="V-26359" value="DoD Notice and Consent Banner" />
   <!-- Ensure ''V-26482'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
-  <OrganizationalSetting id="V-26482" value="Administrators,NT Virtual Machine" />
+  <OrganizationalSetting id="V-26482" value="Administrators" />
   <!-- Ensure ''V-26579'' -ge '32768'-->
   <OrganizationalSetting id="V-26579" value="32768" />
   <!-- Ensure ''V-26580'' -ge '196608'-->

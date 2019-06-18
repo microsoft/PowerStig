@@ -29,11 +29,11 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         {& $technologyConfig @testParameterList} | Should -Not -Throw
     }
 
-    $configurationDocumentPath = "$TestDrive\localhost.mof"
-    $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-
     $ruleNames = (Get-Member -InputObject $powerstigXml.DISASTIG |
             Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
+
+    $configurationDocumentPath = "$TestDrive\localhost.mof"
+    $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
     foreach ($ruleName in $ruleNames)
     {
@@ -108,7 +108,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
+            $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
 
             It "Should have $($skipRule.count) Skipped settings" {
                 $dscMof.count | Should -Be $skipRule.count
