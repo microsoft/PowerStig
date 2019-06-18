@@ -1,7 +1,8 @@
 # Versions
 
 ## Unreleased
-* Added support for IIS 8.5 Server STIG, Version 1, Release 7 [#399](https://github.com/Microsoft/PowerStig/issues/399)
+
+* Added support for Server 2016 STIG, Version 1, Release 8 [#418](https://github.com/Microsoft/PowerStig/issues/418)
 
 ## 3.2.0
 
