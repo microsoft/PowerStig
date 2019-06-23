@@ -10990,6 +10990,279 @@ Value: 0x00000001 (1)</check-content>
       </check>
     </Rule>
   </Group>
+  <Group id="V-73707">
+    <title>SRG-OS-000373-GPOS-00157</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88371r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000460</version>
+      <title>User Account Control approval mode for the built-in Administrator must be enabled.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures the built-in Administrator account so that it runs in Admin Approval Mode.
+
+Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-002038</ident>
+      <fixtext fixref="F-80157r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Admin Approval Mode for the Built-in Administrator account" to "Enabled".</fixtext>
+      <fix id="F-80157r1_fix" />
+      <check system="C-73789r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: FilterAdministratorToken
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73709">
+    <title>SRG-OS-000134-GPOS-00068</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88373r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000470</version>
+      <title>UIAccess applications must not be allowed to prompt for elevation without using the secure desktop.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting prevents User Interface Accessibility programs from disabling the secure desktop for elevation prompts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
+      <fixtext fixref="F-80159r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Allow UIAccess applications to prompt for elevation without using the secure desktop" to "Disabled".</fixtext>
+      <fix id="F-80159r1_fix" />
+      <check system="C-73791r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: EnableUIADesktopToggle
+
+Value Type: REG_DWORD
+Value: 0x00000000 (0)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73711">
+    <title>SRG-OS-000134-GPOS-00068</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88375r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000480</version>
+      <title>User Account Control must, at a minimum, prompt administrators for consent on the secure desktop.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures the elevation requirements for logged-on administrators to complete a task that requires raised privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
+      <fixtext fixref="F-80161r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode" to "Prompt for consent on the secure desktop".
+
+The more secure option for this setting, "Prompt for credentials on the secure desktop", would also be acceptable.</fixtext>
+      <fix id="F-80161r1_fix" />
+      <check system="C-73793r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: ConsentPromptBehaviorAdmin
+
+Value Type: REG_DWORD
+Value: 0x00000002 (2) (Prompt for consent on the secure desktop)
+0x00000001 (1) (Prompt for credentials on the secure desktop)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73713">
+    <title>SRG-OS-000373-GPOS-00157</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88377r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000490</version>
+      <title>User Account Control must automatically deny standard user requests for elevation.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting controls the behavior of elevation when requested by a standard user account.
+
+Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-002038</ident>
+      <fixtext fixref="F-80163r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Behavior of the elevation prompt for standard users" to "Automatically deny elevation requests".</fixtext>
+      <fix id="F-80163r1_fix" />
+      <check system="C-73795r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: ConsentPromptBehaviorUser
+
+Value Type: REG_DWORD
+Value: 0x00000000 (0)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73715">
+    <title>SRG-OS-000134-GPOS-00068</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88379r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000500</version>
+      <title>User Account Control must be configured to detect application installations and prompt for elevation.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting requires Windows to respond to application installation requests by prompting for credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
+      <fixtext fixref="F-80165r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Detect application installations and prompt for elevation" to "Enabled".</fixtext>
+      <fix id="F-80165r1_fix" />
+      <check system="C-73797r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: EnableInstallerDetection
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73717">
+    <title>SRG-OS-000134-GPOS-00068</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88381r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000510</version>
+      <title>User Account Control must only elevate UIAccess applications that are installed in secure locations.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures Windows to only allow applications installed in a secure location on the file system, such as the Program Files or the Windows\System32 folders, to run with elevated privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
+      <fixtext fixref="F-80167r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Only elevate UIAccess applications that are installed in secure locations" to "Enabled".</fixtext>
+      <fix id="F-80167r1_fix" />
+      <check system="C-73799r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: EnableSecureUIAPaths
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73719">
+    <title>SRG-OS-000373-GPOS-00157</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88383r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000520</version>
+      <title>User Account Control must run all administrators in Admin Approval Mode, enabling UAC.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting enables UAC.
+
+Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-002038</ident>
+      <fixtext fixref="F-80169r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Run all administrators in Admin Approval Mode" to "Enabled".</fixtext>
+      <fix id="F-80169r1_fix" />
+      <check system="C-73801r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: EnableLUA
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)</check-content>
+      </check>
+    </Rule>
+  </Group>
+  <Group id="V-73721">
+    <title>SRG-OS-000134-GPOS-00068</title>
+    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
+    <Rule id="SV-88385r1_rule" severity="medium" weight="10.0">
+      <version>WN16-SO-000530</version>
+      <title>User Account Control must virtualize file and registry write failures to per-user locations.</title>
+      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures non-UAC-compliant applications to run in virtualized file and registry entries in per-user locations, allowing them to run.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
+      <reference>
+        <dc:title>DPMS Target Windows 2016</dc:title>
+        <dc:publisher>DISA</dc:publisher>
+        <dc:type>DPMS Target</dc:type>
+        <dc:subject>Windows 2016</dc:subject>
+        <dc:identifier>3157</dc:identifier>
+      </reference>
+      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
+      <fixtext fixref="F-80171r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Virtualize file and registry write failures to per-user locations" to "Enabled".</fixtext>
+      <fix id="F-80171r1_fix" />
+      <check system="C-73803r1_chk">
+        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
+        <check-content>UAC requirements are NA for Server Core installations (this is the default installation option for Windows Server 2016 versus Server with Desktop Experience) as well as Nano Server.
+
+If the following registry value does not exist or is not configured as specified, this is a finding.
+
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
+
+Value Name: EnableVirtualization
+
+Value Type: REG_DWORD
+Value: 0x00000001 (1)</check-content>
+      </check>
+    </Rule>
+  </Group>
   <Group id="V-73727">
     <title>SRG-OS-000480-GPOS-00227</title>
     <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
@@ -11695,198 +11968,6 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 If the value for "Network access: Allow anonymous SID/Name translation" is not set to "Disabled", this is a finding.
 
 </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73707">
-    <title>SRG-OS-000373-GPOS-00157</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88371r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000460</version>
-      <title>User Account Control approval mode for the built-in Administrator must be enabled.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures the built-in Administrator account so that it runs in Admin Approval Mode.
-
-Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-002038</ident>
-      <fixtext fixref="F-80157r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Admin Approval Mode for the Built-in Administrator account" to "Enabled".</fixtext>
-      <fix id="F-80157r1_fix" />
-      <check system="C-73789r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73709">
-    <title>SRG-OS-000134-GPOS-00068</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88373r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000470</version>
-      <title>UIAccess applications must not be allowed to prompt for elevation without using the secure desktop.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting prevents User Interface Accessibility programs from disabling the secure desktop for elevation prompts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
-      <fixtext fixref="F-80159r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Allow UIAccess applications to prompt for elevation without using the secure desktop" to "Disabled".</fixtext>
-      <fix id="F-80159r1_fix" />
-      <check system="C-73791r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73711">
-    <title>SRG-OS-000134-GPOS-00068</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88375r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000480</version>
-      <title>User Account Control must, at a minimum, prompt administrators for consent on the secure desktop.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures the elevation requirements for logged-on administrators to complete a task that requires raised privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
-      <fixtext fixref="F-80161r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Behavior of the elevation prompt for administrators in Admin Approval Mode" to "Prompt for consent on the secure desktop".
-
-The more secure option for this setting, "Prompt for credentials on the secure desktop", would also be acceptable.</fixtext>
-      <fix id="F-80161r1_fix" />
-      <check system="C-73793r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73713">
-    <title>SRG-OS-000373-GPOS-00157</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88377r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000490</version>
-      <title>User Account Control must automatically deny standard user requests for elevation.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting controls the behavior of elevation when requested by a standard user account.
-
-Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-002038</ident>
-      <fixtext fixref="F-80163r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Behavior of the elevation prompt for standard users" to "Automatically deny elevation requests".</fixtext>
-      <fix id="F-80163r1_fix" />
-      <check system="C-73795r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73715">
-    <title>SRG-OS-000134-GPOS-00068</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88379r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000500</version>
-      <title>User Account Control must be configured to detect application installations and prompt for elevation.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting requires Windows to respond to application installation requests by prompting for credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
-      <fixtext fixref="F-80165r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Detect application installations and prompt for elevation" to "Enabled".</fixtext>
-      <fix id="F-80165r1_fix" />
-      <check system="C-73797r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73717">
-    <title>SRG-OS-000134-GPOS-00068</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88381r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000510</version>
-      <title>User Account Control must only elevate UIAccess applications that are installed in secure locations.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures Windows to only allow applications installed in a secure location on the file system, such as the Program Files or the Windows\System32 folders, to run with elevated privileges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
-      <fixtext fixref="F-80167r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Only elevate UIAccess applications that are installed in secure locations" to "Enabled".</fixtext>
-      <fix id="F-80167r1_fix" />
-      <check system="C-73799r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73719">
-    <title>SRG-OS-000373-GPOS-00157</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88383r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000520</version>
-      <title>User Account Control must run all administrators in Admin Approval Mode, enabling UAC.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting enables UAC.
-
-Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-002038</ident>
-      <fixtext fixref="F-80169r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Run all administrators in Admin Approval Mode" to "Enabled".</fixtext>
-      <fix id="F-80169r1_fix" />
-      <check system="C-73801r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
-      </check>
-    </Rule>
-  </Group>
-  <Group id="V-73721">
-    <title>SRG-OS-000134-GPOS-00068</title>
-    <description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description>
-    <Rule id="SV-88385r1_rule" severity="medium" weight="10.0">
-      <version>WN16-SO-000530</version>
-      <title>User Account Control must virtualize file and registry write failures to per-user locations.</title>
-      <description>&lt;VulnDiscussion&gt;User Account Control (UAC) is a security mechanism for limiting the elevation of privileges, including administrative accounts, unless authorized. This setting configures non-UAC-compliant applications to run in virtualized file and registry entries in per-user locations, allowing them to run.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description>
-      <reference>
-        <dc:title>DPMS Target Windows 2016</dc:title>
-        <dc:publisher>DISA</dc:publisher>
-        <dc:type>DPMS Target</dc:type>
-        <dc:subject>Windows 2016</dc:subject>
-        <dc:identifier>3157</dc:identifier>
-      </reference>
-      <ident system="http://iase.disa.mil/cci">CCI-001084</ident>
-      <fixtext fixref="F-80171r1_fix">Configure the policy value for Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Local Policies &gt;&gt; Security Options &gt;&gt; "User Account Control: Virtualize file and registry write failures to per-user locations" to "Enabled".</fixtext>
-      <fix id="F-80171r1_fix" />
-      <check system="C-73803r1_chk">
-        <check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Windows_Server_2016_STIG.xml" />
-        <check-content>UAC requirements are NA </check-content>
       </check>
     </Rule>
   </Group>

@@ -251,10 +251,10 @@ function Split-StigXccdf
             }
 
             # Remove Core only settings from MS XML
-            if ($group.Rule.check.'check-content' -match "For server core installations")
+            if ($group.Rule.check.'check-content' -match "For server core installations,")
             {
                 [void] $msStig.Benchmark.RemoveChild($group)
-                $group.Rule.check.'check-content' = $group.Rule.check.'check-content' -replace "(?=For server core installations)(?s)(.*$)"
+                $group.Rule.check.'check-content' = $group.Rule.check.'check-content' -replace "(?=For server core installations,)(?s)(.*$)"
                 [void] $msStig.Benchmark.AppendChild($group)
             }
         }
@@ -273,10 +273,10 @@ function Split-StigXccdf
             }
 
             # Remove Core only settings from DC XML
-            if ($group.Rule.check.'check-content' -match "For server core installations")
+            if ($group.Rule.check.'check-content' -match "For server core installations,")
             {
                 [void] $dcStig.Benchmark.RemoveChild($group)
-                $group.Rule.check.'check-content' = $group.Rule.check.'check-content' -replace "(?=For server core installations)(?s)(.*$)"
+                $group.Rule.check.'check-content' = $group.Rule.check.'check-content' -replace "(?=For server core installations,)(?s)(.*$)"
                 [void] $dcStig.Benchmark.AppendChild($group)
             }
         }
@@ -443,8 +443,9 @@ function Get-RuleChangeLog
     {
         $id = $change.Groups.Item('id').value
         $oldText = $change.Groups.Item('oldText').value
-        # The trim removes any potential CRLF enties that will show up in a regex escape sequence.
-        $newText = $change.Groups.Item('newText').value.Trim()
+        # The trim removes any potential CRLF enties that will show up in a regex escape sequence. 
+        #The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
+        $newText = $change.Groups.Item('newText').value.Trim().replace('`r`n',[Environment]::NewLine)
 
         $changeObject = [pscustomobject] @{
             OldText = $oldText;
@@ -452,7 +453,7 @@ function Get-RuleChangeLog
         }
 
         <# 
-           Some rule have multiple changes that need to be made, so if a ruel already
+           Some rule have multiple changes that need to be made, so if a rule already
            has a change, then add the next change to the value (array)
         #>
         if ($updateList.ContainsKey($id))

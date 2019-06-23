@@ -44,6 +44,8 @@
   <OrganizationalSetting id="V-73645" value="900" />
   <!-- Ensure ''V-73649'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
   <OrganizationalSetting id="V-73649" value="DoD Notice and Consent Banner" />
+  <!-- Ensure ''V-73711'' -match '1|2'-->
+  <OrganizationalSetting id="V-73711" value="2" />
   <!-- Ensure ''V-73727'' -match '2|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73727" value="2" />
   <!-- Ensure ''V-73807'' -match '1|2'-->

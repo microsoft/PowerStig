@@ -38,6 +38,8 @@
   <OrganizationalSetting id="V-73649" value="DoD Notice and Consent Banner" />
   <!-- Ensure ''V-73651'' -le '4'-->
   <OrganizationalSetting id="V-73651" value="4" />
+  <!-- Ensure ''V-73711'' -match '1|2'-->
+  <OrganizationalSetting id="V-73711" value="2" />
   <!-- Ensure ''V-73727'' -match '2|ShouldBeAbsent'-->
   <OrganizationalSetting id="V-73727" value="2" />
   <!-- Ensure ''V-73807'' -match '1|2'-->
@@ -60,6 +62,8 @@
   <OrganizationalSetting id="V-73623" value="xAdministrator" />
   <!-- Ensure ''V-73625'' -ne 'Guest'-->
   <OrganizationalSetting id="V-73625" value="xGuest" />
+  <!-- Ensure ''V-73753'' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'-->
+  <OrganizationalSetting id="V-73753" value="Administrators" />
   <!-- Ensure ''V-73759'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
   <OrganizationalSetting id="V-73759" value="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
 </OrganizationalSettings>
