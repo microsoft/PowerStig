@@ -444,11 +444,11 @@ function Get-RuleChangeLog
         $id = $change.Groups.Item('id').value
         $oldText = $change.Groups.Item('oldText').value
         # The trim removes any potential CRLF enties that will show up in a regex escape sequence. 
-        #The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
+        # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
         $newText = $change.Groups.Item('newText').value.Trim().replace('`r`n',[Environment]::NewLine)
 
         $changeObject = [pscustomobject] @{
-            OldText = $oldText;
+            OldText = $oldText
             NewText = $newText
         }
 
