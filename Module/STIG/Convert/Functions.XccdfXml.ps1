@@ -237,25 +237,47 @@ function Split-StigXccdf
         $dcStig.Benchmark.id = $msStig.Benchmark.id -replace '_STIG', '_DC_STIG'
         $msStig.Benchmark.id = $msStig.Benchmark.id -replace '_STIG', '_MS_STIG'
 
-        # Remove DC only settings from the MS xml
-        Write-Information -MessageData "Removing Domain Controller settings from Member Server STIG"
+        # Remove DC and Core settings from the MS xml
+        Write-Information -MessageData "Removing Domain Controller and Core settings from Member Server STIG"
         foreach ($group in $msStig.Benchmark.Group)
         {
+            # Remove DC only settings from the MS xml
             if ($group.Rule.check.'check-content' -match "This applies to domain controllers")
             {
                 [void] $msStig.Benchmark.RemoveChild($group)
                 Write-Information -MessageData "Removing $($group.id)"
+                # Continue is used to bypass server core installation check
+                continue
+            }
+
+            # Remove Core only settings from MS XML
+            if ($group.Rule.check.'check-content' -match "For server core installations,")
+            {
+                [void] $msStig.Benchmark.RemoveChild($group)
+                $group.Rule.check.'check-content' = $group.Rule.check.'check-content' -replace "(?=For server core installations,)(?s)(.*$)"
+                [void] $msStig.Benchmark.AppendChild($group)
             }
         }
 
-        # Remove DC only setting from the MS xml
+        # Remove Core and MS only settings from the DC xml
         Write-Information -MessageData "Removing Member Server settings from Domain Controller STIG"
         foreach ($group in $dcStig.Benchmark.Group)
         {
+            # Remove MS only settings from DC XML
             if ($group.Rule.check.'check-content' -match "This applies to member servers")
             {
                 [void] $dcStig.Benchmark.RemoveChild($group)
                 Write-Information -MessageData "Removing $($group.id)"
+                # Continue is used to bypass server core installation check
+                continue
+            }
+
+            # Remove Core only settings from DC XML
+            if ($group.Rule.check.'check-content' -match "For server core installations,")
+            {
+                [void] $dcStig.Benchmark.RemoveChild($group)
+                $group.Rule.check.'check-content' = $group.Rule.check.'check-content' -replace "(?=For server core installations,)(?s)(.*$)"
+                [void] $dcStig.Benchmark.AppendChild($group)
             }
         }
 
@@ -421,16 +443,17 @@ function Get-RuleChangeLog
     {
         $id = $change.Groups.Item('id').value
         $oldText = $change.Groups.Item('oldText').value
-        # The trim removes any potential CRLF enties that will show up in a regex escape sequence.
-        $newText = $change.Groups.Item('newText').value.Trim()
+        # The trim removes any potential CRLF entries that will show up in a regex escape sequence. 
+        # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
+        $newText = $change.Groups.Item('newText').value.Trim().replace('`r`n',[Environment]::NewLine)
 
         $changeObject = [pscustomobject] @{
-            OldText = $oldText;
+            OldText = $oldText
             NewText = $newText
         }
 
         <# 
-           Some rule have multiple changes that need to be made, so if a ruel already
+           Some rule have multiple changes that need to be made, so if a rule already
            has a change, then add the next change to the value (array)
         #>
         if ($updateList.ContainsKey($id))
