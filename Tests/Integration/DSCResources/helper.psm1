@@ -81,7 +81,7 @@ function Get-ResourceMatchStatement
         }
         'AuditSettingRule'
         {
-            return '\[Script\]'
+            return '\[AuditSettingRule\]'
         }
         'WinEventLogRule'
         {

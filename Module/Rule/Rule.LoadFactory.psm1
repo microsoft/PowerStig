@@ -51,7 +51,7 @@ class LoadFactory
             'WebConfigurationPropertyRule'  {$return = [WebConfigurationPropertyRule]::new($Rule)}
             'WindowsFeatureRule'            {$return = [WindowsFeatureRule]::new($Rule)}
             'WinEventLogRule'               {$return = [WinEventLogRule]::new($Rule)}
-            'AuditSettingRule'                       {$return = [AuditSettingRule]::new($Rule)}
+            'AuditSettingRule'              {$return = [AuditSettingRule]::new($Rule)}
             'SslSettingsRule'               {$return = [SslSettingsRule]::new($Rule)}
         }
 
