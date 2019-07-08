@@ -82,7 +82,7 @@ try
 
     #endregion
     #region Tests
-    Describe 'Wmi Rule Conversion' {
+    Describe 'AuditSetting Rule Conversion' {
 
         foreach ( $testRule in $rulesToTest )
         {
@@ -91,8 +91,8 @@ try
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It 'Should return an WmiRule Object' {
-                $rule.GetType() | Should Be 'WmiRule'
+            It 'Should return an AuditSettingRule Object' {
+                $rule.GetType() | Should Be 'AuditSettingRule'
             }
             It 'Should extract the correct Query' {
                 $rule.Query | Should Be $testRule.query

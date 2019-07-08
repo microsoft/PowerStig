@@ -79,7 +79,7 @@ function Get-ResourceMatchStatement
         {
             return '\[UserRightsAssignment\]'
         }
-        'WmiRule'
+        'AuditSettingRule'
         {
             return '\[Script\]'
         }
