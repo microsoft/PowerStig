@@ -11,7 +11,7 @@ try
             @{
                 Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
                 Property = 'FileSystem'
-                Value = 'NTFS|ReFS'
+                DesiredValue = 'NTFS|ReFS'
                 Operator = '-match'
                 OrganizationValueRequired = $false
                 CheckContent = 'Open the Computer Management Console.

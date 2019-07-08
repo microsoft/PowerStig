@@ -102,7 +102,6 @@ Configuration WindowsServer
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
-    . "$resourcePath\windows.Script.CimInstance.ps1"
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
     
@@ -110,4 +109,7 @@ Configuration WindowsServer
     . "$resourcePath\windows.AccountPolicy.ps1"
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"
+
+    Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.0.0
+    . "$resourcePath\windows.AuditSetting.ps1"
 }
