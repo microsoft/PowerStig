@@ -392,7 +392,7 @@ function Get-StigRuleList
                 # Trim the unique char from split rules if they exist
                 foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
                 {
-                    $rule.RawString = $rule.RawString -replace [regex]::Escape($correction.newText), $correction.oldText
+                    $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
                 }
 
                 if ($rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]))

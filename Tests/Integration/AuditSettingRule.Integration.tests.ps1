@@ -8,7 +8,7 @@ try
             @{
                 query        = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
                 property     = 'FileSystem'
-                value        = 'NTFS|ReFS'
+                desiredvalue = 'NTFS|ReFS'
                 operator     = '-match'
                 checkContent = 'Open the Computer Management Console.
     Expand the "Storage" object in the Tree window.
@@ -22,7 +22,7 @@ try
             @{
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
-                value        = '10.0.14393'
+                desiredvalue = '10.0.14393'
                 operator     = '-ge'
                 checkContent = 'Open "Command Prompt".
 
@@ -35,7 +35,7 @@ try
             @{
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
-                value        = '10.0.14393'
+                desiredvalue = '10.0.14393'
                 operator     = '-ge'
                 checkContent = 'Run "winver.exe".
 
@@ -64,7 +64,7 @@ try
             },@{
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
-                value        = '6.2.9200'
+                desiredvalue = '6.2.9200'
                 operator     = '-ge'
                 checkContent = 'Run "winver.exe".
 
@@ -101,7 +101,7 @@ try
                 $rule.Property | Should Be $testRule.property
             }
             It 'Should set the correct Value' {
-                $rule.Value | Should Be $testRule.value
+                $rule.desiredvalue | Should Be $testRule.desiredvalue
             }
             It 'Should set the correct Operator' {
                 $rule.Operator | Should Be $testRule.operator

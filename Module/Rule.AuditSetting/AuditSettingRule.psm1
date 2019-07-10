@@ -13,8 +13,8 @@ using module .\..\Rule\Rule.psm1
         The AuditSetting class query
     .PARAMETER Property
         The class property
-    .PARAMETER Value
-        The value the property should be set to
+    .PARAMETER DesiredValue
+        The desired value the property should be set to
     .PARAMETER Operator
         The PowerShell equivalent operator
 
