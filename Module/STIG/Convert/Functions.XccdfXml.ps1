@@ -366,7 +366,17 @@ function Get-StigRuleList
 
             foreach ($correction in $StigGroupListChangeLog[$stigRule.Id])
             {
-                $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content') -replace [regex]::Escape($correction.oldText), $correction.newText
+                # If the logfile contains a single * as the OldText, treat it as replacing everything with the newText value
+                if ($correction.OldText -eq '*')
+                {
+                    # Resetting OldText '' to the original check-content so the processed xml includes original check-content
+                    $correction.OldText = $stigRule.rule.Check.('check-content')
+                    $stigRule.rule.Check.('check-content') = $correction.newText
+                }
+                else
+                {
+                    $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content').Replace($correction.oldText, $correction.newText)
+                }
             }
             $rules = [ConvertFactory]::Rule($stigRule)
 
@@ -445,7 +455,7 @@ function Get-RuleChangeLog
         $oldText = $change.Groups.Item('oldText').value
         # The trim removes any potential CRLF entries that will show up in a regex escape sequence. 
         # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
-        $newText = $change.Groups.Item('newText').value.Trim().replace('`r`n',[Environment]::NewLine)
+        $newText = $change.Groups.Item('newText').value.Trim().Replace('`r`n',[Environment]::NewLine)
 
         $changeObject = [pscustomobject] @{
             OldText = $oldText

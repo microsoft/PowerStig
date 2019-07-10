@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="5/16/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="7/10/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1007,6 +1007,50 @@ System &gt;&gt; Other System Events - Failure</RawString>
       <Subcategory>Other System Events</Subcategory>
     </Rule>
   </AuditPolicyRule>
+  <AuditSettingRule dscresourcemodule="AuditSystemDsc">
+    <Rule id="V-1073" severity="high" conversionstatus="pass" title="Unsupported Service Packs" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Systems at unsupported service packs or releases will not receive security updates for new vulnerabilities, which leave them subject to exploitation.  Systems must be maintained at a service pack level supported by the vendor with new security updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>6.2.9200</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM Win32_OperatingSystem</Query>
+      <RawString>Run "winver.exe".
+
+If the "About Windows" dialog box does not display
+"Microsoft Windows Server
+Version 6.2 (Build 9200)"
+or greater, this is a finding.
+
+No preview versions will be used in a production environment.
+
+Unsupported Service Packs/Releases:
+Windows 2012 - any release candidates or versions prior to the initial release.</RawString>
+    </Rule>
+    <Rule id="V-1081" severity="high" conversionstatus="pass" title="NTFS Requirement" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, local volumes must be formatted using a file system that supports NTFS attributes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>NTFS|ReFS</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-match</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>FileSystem</Property>
+      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+      <RawString>Open "Computer Management".
+
+Select "Disk Management" under "Storage".
+
+For each local volume, if the file system does not indicate "NTFS", this is a finding.
+
+"ReFS" (Resilient File System) is also acceptable and would not be a finding.
+
+This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
+    </Rule>
+  </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-1072" severity="medium" conversionstatus="pass" title="Shared User Accounts" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Shared accounts (accounts where two or more people log in with the same user identification) do not provide adequate identification and authentication.  There is no way to provide for nonrepudiation or individual accountability for system access and resource usage.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3682,7 +3726,7 @@ Viewing in File Explorer:
 For each folder, view the Properties.
 Select the "Security" tab, and the "Advanced" button.
 Default Permissions:
-\Program Files
+\Program Files 
 Type - "Allow" for all
 Inherited from - "None" for all
 Principal - Access - Applies to
@@ -9686,48 +9730,4 @@ If "Installed State" is "Installed", this is a finding.
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
-  <WmiRule dscresourcemodule="PSDscResources">
-    <Rule id="V-1073" severity="high" conversionstatus="pass" title="Unsupported Service Packs" dscresource="Script">
-      <Description>&lt;VulnDiscussion&gt;Systems at unsupported service packs or releases will not receive security updates for new vulnerabilities, which leave them subject to exploitation.  Systems must be maintained at a service pack level supported by the vendor with new security updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-ge</Operator>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Property>Version</Property>
-      <Query>SELECT * FROM Win32_OperatingSystem</Query>
-      <RawString>Run "winver.exe".
-
-If the "About Windows" dialog box does not display
-"Microsoft Windows Server
-Version 6.2 (Build 9200)"
-or greater, this is a finding.
-
-No preview versions will be used in a production environment.
-
-Unsupported Service Packs/Releases:
-Windows 2012 - any release candidates or versions prior to the initial release.</RawString>
-      <Value>6.2.9200</Value>
-    </Rule>
-    <Rule id="V-1081" severity="high" conversionstatus="pass" title="NTFS Requirement" dscresource="Script">
-      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, local volumes must be formatted using a file system that supports NTFS attributes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-match</Operator>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
-      <RawString>Open "Computer Management".
-
-Select "Disk Management" under "Storage".
-
-For each local volume, if the file system does not indicate "NTFS", this is a finding.
-
-"ReFS" (Resilient File System) is also acceptable and would not be a finding.
-
-This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
-      <Value>NTFS|ReFS</Value>
-    </Rule>
-  </WmiRule>
 </DISASTIG>

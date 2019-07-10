@@ -21,6 +21,7 @@
 1. The code looks for a .log file with the same full path as the xccdf.
 1. Each line is in the following format ID::OldText::NewText
     1. Multiple entries per rule are supported
+    1. The asterisk "*" can be used to replace everything in the check-content
 1. The log content is converted into a hashtable
 1. Before a rule is processed, the check-content string is updated using a replace OldText > NewText.
 1. The rule is parsed and returned
@@ -29,3 +30,16 @@
 This allows us to inject the rule intent without having to dig into the xml or update the parser.
 We have most of the general patterns ironed out and now we are just dealing with random formatting\ spelling charges.
 We need to take the time to determine when the change needs to be made, because we don't necessarily want to end up with a log file entry for each rule either.
+
+## Authoritative DSC Resource for Differential Configuration Data
+
+The log file is used to define the authoritative DSC resource, based on a specific text pattern.  Optionally key/value pairs may be defined if it is
+determined what the correct DSC resource Name/Value would be, solely based on the wording and/or terminology used in the STIG rule.  There are two
+possible formats that can be used in the log file:
+
+1. The DSC resource is defined for a STIG rule, specifically STIG Rule ID "V-1121" has the "WindowsFeature" DSC resource defined:
+    1. V-1121::*::ManualRule(WindowsFeature)
+1. The DSC resource and resource parameters are defined for STIG Rule ID "V-1121":
+    1. V-1121::*::ManualRule(WindowsFeature)<Name = 'FTP'><Ensure = 'Absent'>
+
+The parenthesis act as a delimiter for the DSC resource, whereas the less than / greater than symbols act as the delimiter for the DSC resource parameters.
