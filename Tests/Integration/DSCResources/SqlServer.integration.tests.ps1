@@ -14,17 +14,17 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $powerstigXml = Get-Content -Path $stig.Path
+        $powerstigXml = (Select-Xml -Path $stig.Path -XPath '//DISASTIG[*/*/@dscresource!="None"]').Node
 
-        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.SqlScriptQueryRule.Rule.id
         $skipRuleType = "DocumentRule"
-        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.DocumentRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.DocumentRule.Rule.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.DocumentRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DocumentRule.Rule.id -Count 2
         $skipRuleTypeMultiple = $null
         $expectedSkipRuleTypeMultipleCount = 0
 
-        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $exception = Get-Random -InputObject $powerstigXml.SqlScriptQueryRule.Rule.id
         $exceptionMultiple = $null
 
         . "$PSScriptRoot\Common.integration.ps1"

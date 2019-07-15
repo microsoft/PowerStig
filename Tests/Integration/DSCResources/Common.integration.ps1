@@ -29,7 +29,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         {& $technologyConfig @testParameterList} | Should -Not -Throw
     }
 
-    $ruleNames = (Get-Member -InputObject $powerstigXml.DISASTIG |
+    $ruleNames = (Get-Member -InputObject $powerstigXml |
             Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
 
     $configurationDocumentPath = "$TestDrive\localhost.mof"
@@ -39,7 +39,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     {
         Context $ruleName {
             $hasAllRules = $true
-            $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule |
+            $ruleList = @($powerstigXml.$ruleName.Rule |
                     Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry' -and $PSItem.DuplicateOf -eq ''})
 
             $dscMof = $instances |

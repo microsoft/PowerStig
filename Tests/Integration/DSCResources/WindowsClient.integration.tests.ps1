@@ -19,18 +19,18 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $powerstigXml = Get-Content -Path $stig.Path
+        $powerstigXml = (Select-Xml -Path $stig.Path -XPath '//DISASTIG[*/*/@dscresource!="None"]').Node
 
-        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
         $skipRuleType = "AuditPolicyRule"
-        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.AuditPolicyRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.AuditPolicyRule.Rule.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
         $skipRuleTypeMultiple = @('AuditPolicyRule','AccountPolicyRule')
-        $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.AuditPolicyRule.ChildNodes.Count + $powerstigXml.DISASTIG.AccountPolicyRule.ChildNodes.Count
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.AuditPolicyRule.Rule.Count + $powerstigXml.AccountPolicyRule.Rule.Count
 
-        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }
