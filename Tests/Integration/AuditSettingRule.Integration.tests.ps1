@@ -8,21 +8,21 @@ try
             @{
                 query        = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
                 property     = 'FileSystem'
-                value        = 'NTFS|ReFS'
+                desiredvalue = 'NTFS|ReFS'
                 operator     = '-match'
                 checkContent = 'Open the Computer Management Console.
-    Expand the "Storage" object in the Tree window.
-    Select the "Disk Management" object.
+                Expand the "Storage" object in the Tree window.
+                Select the "Disk Management" object.
 
-    If the file system column does not indicate "NTFS" as the file system for each local hard drive, this is a finding.
+                If the file system column does not indicate "NTFS" as the file system for each local hard drive, this is a finding.
 
-    Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
-    must be documented with the ISSO.'
+                Some hardware vendors create a small FAT partition to store troubleshooting and recovery data. No other files must be stored here.  This
+                must be documented with the ISSO.'
             },
             @{
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
-                value        = '10.0.14393'
+                desiredvalue = '10.0.14393'
                 operator     = '-ge'
                 checkContent = 'Open "Command Prompt".
 
@@ -35,7 +35,7 @@ try
             @{
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
-                value        = '10.0.14393'
+                desiredvalue = '10.0.14393'
                 operator     = '-ge'
                 checkContent = 'Run "winver.exe".
 
@@ -64,7 +64,7 @@ try
             },@{
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
-                value        = '6.2.9200'
+                desiredvalue = '6.2.9200'
                 operator     = '-ge'
                 checkContent = 'Run "winver.exe".
 
@@ -82,7 +82,7 @@ try
 
     #endregion
     #region Tests
-    Describe 'Wmi Rule Conversion' {
+    Describe 'AuditSetting Rule Conversion' {
 
         foreach ( $testRule in $rulesToTest )
         {
@@ -91,8 +91,8 @@ try
             $stigRule.Save( $TestFile )
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
-            It 'Should return an WmiRule Object' {
-                $rule.GetType() | Should Be 'WmiRule'
+            It 'Should return an AuditSettingRule Object' {
+                $rule.GetType() | Should Be 'AuditSettingRule'
             }
             It 'Should extract the correct Query' {
                 $rule.Query | Should Be $testRule.query
@@ -101,13 +101,13 @@ try
                 $rule.Property | Should Be $testRule.property
             }
             It 'Should set the correct Value' {
-                $rule.Value | Should Be $testRule.value
+                $rule.desiredvalue | Should Be $testRule.desiredvalue
             }
             It 'Should set the correct Operator' {
                 $rule.Operator | Should Be $testRule.operator
             }
             It "Should set the correct DscResource" {
-                $rule.DscResource | Should Be 'Script'
+                $rule.DscResource | Should Be 'AuditSetting'
             }
             It 'Should Set the status to pass' {
                 $rule.conversionstatus | Should Be 'pass'

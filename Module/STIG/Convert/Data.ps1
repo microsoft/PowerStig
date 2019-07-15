@@ -39,7 +39,7 @@ data dscResourceModule
         WindowsFeatureRule              = PSDscResources
         WinEventLogRule                 = xWinEventLog
         SslSettingsRule                 = xWebAdministration
-        WmiRule                         = PSDscResources
+        AuditSettingRule                = AuditSystemDsc
         FileContentRule                 = FileContentDsc
 '@
 }

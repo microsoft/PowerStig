@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
-using module .\..\WmiRule.psm1
+using module .\..\AuditSettingRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -14,31 +14,31 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a WmiRule object
+        Convert the contents of an xccdf check-content element into a AuditSettingRule object
     .DESCRIPTION
-        The WmiRule class is used to extract the settings from rules that don't have
+        The AuditSettingRule class is used to extract the settings from rules that don't have
         and dedicated method of evaluation from the check-content of the xccdf.
-        Once a STIG rule is identified as a WMI rule, it is passed to the WmiRule
+        Once a STIG rule is identified as a AuditSetting rule, it is passed to the AuditSettingRule
         class for parsing and validation.
 
 #>
-Class WmiRuleConvert : WmiRule
+Class AuditSettingRuleConvert : AuditSettingRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    WmiRuleConvert ()
+    AuditSettingRuleConvert ()
     {
     }
 
     <#
         .SYNOPSIS
-            Converts a xccdf STIG rule element into a Wmi Rule
+            Converts a xccdf STIG rule element into a AuditSetting Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    WmiRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    AuditSettingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         Switch ($this.rawString)
         {
@@ -61,7 +61,7 @@ Class WmiRuleConvert : WmiRule
                 $this.rawString -match "(?:Build\s*)(\d+)?" | Out-Null
                 $osBuild = $matches[1]
 
-                $this.Value = "$osMajMin.$osBuild"
+                $this.DesiredValue = "$osMajMin.$osBuild"
                 continue
             }
             {$PSItem -Match "Disk Management"}
@@ -70,7 +70,7 @@ Class WmiRuleConvert : WmiRule
                 $this.Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
                 $this.Property = 'FileSystem'
                 $this.Operator = '-match'
-                $this.Value = 'NTFS|ReFS'
+                $this.DesiredValue = 'NTFS|ReFS'
             }
         }
         $this.SetDuplicateRule()
@@ -81,7 +81,7 @@ Class WmiRuleConvert : WmiRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'Script'
+            $this.DscResource = 'AuditSetting'
         }
         else
         {

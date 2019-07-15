@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="3/29/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="7/10/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1308,6 +1308,46 @@ Object Access &gt;&gt; Other Object Access Events - Failure</RawString>
       <Subcategory>Other Object Access Events</Subcategory>
     </Rule>
   </AuditPolicyRule>
+  <AuditSettingRule dscresourcemodule="AuditSystemDsc">
+    <Rule id="V-73239" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Systems at unsupported servicing levels will not receive security updates for new vulnerabilities, which leave them subject to exploitation. Systems must be maintained at a servicing level supported by the vendor with new security updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>10.0.14393</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM Win32_OperatingSystem</Query>
+      <RawString>Open "Command Prompt".
+
+Enter "winver.exe".
+
+If the "About Windows" dialog box does not display "Microsoft Windows Server Version 1607 (Build 14393.xxx)" or greater, this is a finding.
+
+Preview versions must not be used in a production environment.</RawString>
+    </Rule>
+    <Rule id="V-73247" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, volumes must be formatted using a file system that supports NTFS attributes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>NTFS|ReFS</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-match</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>FileSystem</Property>
+      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+      <RawString>Open "Computer Management".
+
+Select "Disk Management" under "Storage".
+
+For each local volume, if the file system does not indicate "NTFS", this is a finding.
+
+"ReFS" (resilient file system) is also acceptable and would not be a finding.
+
+This does not apply to system partitions such the Recovery and EFI System Partition.</RawString>
+    </Rule>
+  </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-73233" severity="medium" conversionstatus="pass" title="SRG-OS-000104-GPOS-00051" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Shared accounts (accounts where two or more people log on with the same user identification) do not provide adequate identification and authentication. There is no way to provide for nonrepudiation or individual accountability for system access and resource usage.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3521,7 +3561,8 @@ SYSTEM - Full control - This folder, subfolders, and files</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3530,7 +3571,8 @@ SYSTEM - Full control - This folder, subfolders, and files</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3539,7 +3581,8 @@ SYSTEM - Full control - This folder, subfolders, and files</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,,,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3548,7 +3591,8 @@ SYSTEM - Full control - This folder, subfolders, and files</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3577,7 +3621,8 @@ SYSTEM - Full control - This folder, subfolders, and files</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,,,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3596,7 +3641,8 @@ SYSTEM - Full control - This folder, subfolders, and files</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When Active Directory objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
@@ -3691,7 +3737,8 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3700,7 +3747,8 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3709,7 +3757,8 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3718,7 +3767,8 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3747,7 +3797,8 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,,,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>
@@ -3766,7 +3817,8 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>,</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
@@ -3838,7 +3890,8 @@ If an OU with improper permissions does not include identification and authentic
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -3846,7 +3899,8 @@ If an OU with improper permissions does not include identification and authentic
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>blank</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -3854,7 +3908,8 @@ If an OU with improper permissions does not include identification and authentic
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>AllExtendedRights</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -3862,7 +3917,8 @@ If an OU with improper permissions does not include identification and authentic
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>AllExtendedRights</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -3870,7 +3926,8 @@ If an OU with improper permissions does not include identification and authentic
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>WriteallProperties,ModifyPermissions,ModifyOwner</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data.
@@ -3945,7 +4002,8 @@ Applies to - This object only
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -3953,7 +4011,8 @@ Applies to - This object only
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>WriteallProperties,AllExtendedRights,ChangeInfrastructureMaster</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -3961,7 +4020,8 @@ Applies to - This object only
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>blank</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data.
@@ -4020,7 +4080,8 @@ Inherited from - (CN of domain)</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4028,7 +4089,8 @@ Inherited from - (CN of domain)</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>Createallchildobjects,Delete,ModifyPermissions</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4036,7 +4098,8 @@ Inherited from - (CN of domain)</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>WriteallProperties</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4044,7 +4107,8 @@ Inherited from - (CN of domain)</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>blank</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data.
@@ -4113,7 +4177,8 @@ Applies to - Descendant Organizational Unit objects</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4121,7 +4186,8 @@ Applies to - Descendant Organizational Unit objects</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>WriteallProperties,ModifyPermissions,ModifyOwner</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4129,7 +4195,8 @@ Applies to - Descendant Organizational Unit objects</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>blank</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data.
@@ -4192,7 +4259,8 @@ Applies to - Descendant Organizational Unit objects</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>FullControl</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4200,7 +4268,8 @@ Applies to - Descendant Organizational Unit objects</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>WriteallProperties,AllExtendedRights,ChangeRIDMaster</Rights>
+          <Rights>
+          </Rights>
         </Entry>
         <Entry>
           <Type>Success</Type>
@@ -4208,7 +4277,8 @@ Applies to - Descendant Organizational Unit objects</RawString>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
-          <Rights>blank</Rights>
+          <Rights>
+          </Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data.
@@ -7811,44 +7881,4 @@ If "Installed State" is "Installed", this is a finding.
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
-  <WmiRule dscresourcemodule="PSDscResources">
-    <Rule id="V-73239" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Script">
-      <Description>&lt;VulnDiscussion&gt;Systems at unsupported servicing levels will not receive security updates for new vulnerabilities, which leave them subject to exploitation. Systems must be maintained at a servicing level supported by the vendor with new security updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-ge</Operator>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Property>Version</Property>
-      <Query>SELECT * FROM Win32_OperatingSystem</Query>
-      <RawString>Open "Command Prompt".
-
-Enter "winver.exe".
-
-If the "About Windows" dialog box does not display "Microsoft Windows Server Version 1607 (Build 14393.xxx)" or greater, this is a finding.
-
-Preview versions must not be used in a production environment.</RawString>
-      <Value>10.0.14393</Value>
-    </Rule>
-    <Rule id="V-73247" severity="high" conversionstatus="pass" title="SRG-OS-000080-GPOS-00048" dscresource="Script">
-      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, volumes must be formatted using a file system that supports NTFS attributes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-match</Operator>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
-      <RawString>Open "Computer Management".
-
-Select "Disk Management" under "Storage".
-
-For each local volume, if the file system does not indicate "NTFS", this is a finding.
-
-"ReFS" (resilient file system) is also acceptable and would not be a finding.
-
-This does not apply to system partitions such the Recovery and EFI System Partition.</RawString>
-      <Value>NTFS|ReFS</Value>
-    </Rule>
-  </WmiRule>
 </DISASTIG>

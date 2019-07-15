@@ -79,9 +79,9 @@ function Get-ResourceMatchStatement
         {
             return '\[UserRightsAssignment\]'
         }
-        'WmiRule'
+        'AuditSettingRule'
         {
-            return '\[Script\]'
+            return '\[AuditSetting\]'
         }
         'WinEventLogRule'
         {

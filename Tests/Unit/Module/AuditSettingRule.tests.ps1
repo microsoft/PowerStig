@@ -1,5 +1,5 @@
 #region Header
-using module .\..\..\..\Module\Rule.Wmi\Convert\WmiRule.Convert.psm1
+using module .\..\..\..\Module\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 
@@ -11,7 +11,7 @@ try
             @{
                 Query = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
                 Property = 'FileSystem'
-                Value = 'NTFS|ReFS'
+                DesiredValue = 'NTFS|ReFS'
                 Operator = '-match'
                 OrganizationValueRequired = $false
                 CheckContent = 'Open the Computer Management Console.

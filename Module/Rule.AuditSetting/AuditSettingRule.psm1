@@ -6,31 +6,31 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Wmi Rule object
+        An AuditSetting Rule object
     .DESCRIPTION
-        The WmiRule class is used to maange the Wmi settings.
+        The AuditSettingRule class is used to maange the AuditSetting settings.
     .PARAMETER Query
-        The WMI class query
+        The AuditSetting class query
     .PARAMETER Property
         The class property
-    .PARAMETER Value
-        The value the property should be set to
+    .PARAMETER DesiredValue
+        The desired value the property should be set to
     .PARAMETER Operator
         The PowerShell equivalent operator
 
 #>
-Class WmiRule : Rule
+Class AuditSettingRule : Rule
 {
     [string] $Query
     [string] $Property
-    [string] $Value
+    [string] $DesiredValue
     [string] $Operator <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    WmiRule ()
+    AuditSettingRule ()
     {
     }
 
@@ -40,7 +40,7 @@ Class WmiRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    WmiRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    AuditSettingRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
     }
 
@@ -52,7 +52,7 @@ Class WmiRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    WmiRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    AuditSettingRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
     {
     }
 

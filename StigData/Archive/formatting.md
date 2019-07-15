@@ -21,6 +21,7 @@
 1. The code looks for a .log file with the same full path as the xccdf.
 1. Each line is in the following format ID::OldText::NewText
     1. Multiple entries per rule are supported
+    1. The asterisk "*" can be used to replace everything in the check-content
 1. The log content is converted into a hashtable
 1. Before a rule is processed, the check-content string is updated using a replace OldText > NewText.
 1. The rule is parsed and returned
