@@ -19,8 +19,7 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml]$xml = Get-Content -Path $stig.Path
-        $powerstigXml = Remove-DscResourceEqulsNone -Xml $xml
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqulsNone
         
         $skipRule = Get-Random -InputObject $powerstigXml.WebConfigurationPropertyRule.Rule.id
         $skipRuleType = "IisLoggingRule"

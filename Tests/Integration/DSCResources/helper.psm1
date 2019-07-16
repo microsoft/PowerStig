@@ -126,7 +126,8 @@ function Remove-DscResourceEqulsNone
         $Xml
     )
 
-    $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property | Where-Object Name -match 'Rule$'
+    $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property | 
+        Where-Object -FilterScript {$PSItem.Name -match 'Rule$' -and $PSItem.Name -notmatch 'DocumentRule|ManualRule'}
 
     # remove all dscresource -eq None
     foreach ($stigRuleName in $stigRuleNames.Name)
@@ -135,7 +136,7 @@ function Remove-DscResourceEqulsNone
         {
             if ($node.dscresource -eq 'None')
             {    
-                $xml.DISASTIG.$stigRuleName.RemoveChild($node)
+                [void]$xml.DISASTIG.$stigRuleName.RemoveChild($node) 
             }
             
         }

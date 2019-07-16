@@ -19,7 +19,7 @@ try
 
     foreach ($stig in $stigList)
     {
-        $powerstigXml = (Select-Xml -Path $stig.Path -XPath '//DISASTIG[*/*/@dscresource!="None"]').Node
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqulsNone
 
         if ($stig.TechnologyRole -eq 'Domain')
         {
