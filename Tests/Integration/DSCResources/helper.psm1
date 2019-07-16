@@ -123,7 +123,7 @@ function Remove-DscResourceEqulsNone
     (
         [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
         [xml]
-        $XmlS
+        $Xml
     )
 
     $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property | 
