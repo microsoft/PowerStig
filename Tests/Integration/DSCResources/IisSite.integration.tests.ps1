@@ -19,8 +19,9 @@ try
 
     foreach ($stig in $stigList)
     {
-        $powerstigXml = (Select-Xml -Path $stig.Path -XPath '//DISASTIG[*/*/@dscresource!="None"]').Node
-
+        [xml]$xml = Get-Content -Path $stig.Path
+        $powerstigXml = Remove-DscResourceEqulsNone -Xml $xml
+        
         $skipRule = Get-Random -InputObject $powerstigXml.WebConfigurationPropertyRule.Rule.id
         $skipRuleType = "IisLoggingRule"
         $expectedSkipRuleTypeCount = $powerstigXml.IisLoggingRule.Rule.Count
