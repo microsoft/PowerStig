@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
+using module .\..\..\Rule.HardCoded\Convert\HardCodedRule.Convert.psm1
 using module .\..\..\Rule.AccountPolicy\Convert\AccountPolicyRule.Convert.psm1
 using module .\..\..\Rule.AuditPolicy\Convert\AuditPolicyRule.Convert.psm1
 using module .\..\..\Rule.DnsServerRootHint\Convert\DnsServerRootHintRule.Convert.psm1
@@ -60,12 +61,26 @@ class SplitFactory
                 $newRule.rule.Check.'check-content' = $splitRule
                 $newRule.Id = "$($Rule.id).$([CHAR][BYTE]$byte)"
                 $byte ++
-                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
+                if ($TypeName -eq 'HardCodedRuleConvert')
+                {
+                    $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule)
+                }
+                else
+                {
+                    $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
+                }
             }
         }
         else
         {
-            $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
+            if ($TypeName -eq 'HardCodedRuleConvert')
+            {
+                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule)
+            }
+            else
+            {
+                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
+            }
         }
         return $ruleList
     }
@@ -74,28 +89,28 @@ class SplitFactory
         .SYNOPSIS
             Instance method split
     #>
-                static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
-                {
-                    [System.Collections.ArrayList] $ruleList = @()
+    static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
+    {
+        [System.Collections.ArrayList] $ruleList = @()
 
-                    $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
-                    if ($instance.HasMultipleRules())
-                    {
-                        [string[]] $splitRules = $instance.SplitMultipleRules()
-                        foreach ($splitRule in $splitRules)
-                        {
-                            $ruleClone = $instance.Clone()
-                            $ruleClone.$Property = $splitRule
-                            $ruleList += $ruleClone.AsRule()
-                        }
-                    }
-                    else
-                    {
-                        $ruleList += $instance.AsRule()
-                    }
-                    return $ruleList
-                }
+        $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
+        if ($instance.HasMultipleRules())
+        {
+            [string[]] $splitRules = $instance.SplitMultipleRules()
+            foreach ($splitRule in $splitRules)
+            {
+                $ruleClone = $instance.Clone()
+                $ruleClone.$Property = $splitRule
+                $ruleList += $ruleClone.AsRule()
             }
+        }
+        else
+        {
+            $ruleList += $instance.AsRule()
+        }
+        return $ruleList
+    }
+}
 
 class ConvertFactory
 {
@@ -105,6 +120,13 @@ class ConvertFactory
 
         switch ($Rule.rule.check.'check-content')
         {
+            {[HardCodedRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert').Rule
+                )
+                break
+            }
             {[AccountPolicyRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(

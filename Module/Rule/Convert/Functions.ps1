@@ -220,4 +220,36 @@ function Get-HardCodedString
 
     return $hardCodedString
 }
+
+function Get-HardCodedRuleType
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $CheckContent
+    )
+
+    $hardCodedRuleTypeRegExPattern = '(?<RuleType>(?<=\().+?(?=\)))'
+    $ruleType = Select-String -Pattern $hardCodedRuleTypeRegExPattern -InputObject $CheckContent -AllMatches
+    return $ruleType.Matches.Value
+}
+
+function Get-HardCodedRuleProperty
+{
+    [CmdletBinding()]
+    [OutputType([hashtable])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $CheckContent
+    )
+
+    $hardCodedHashtableRegExPattern = '(?<hashtable>(@\{).*(\}))'
+    $hashtable = Select-String -Pattern $hardCodedHashtableRegExPattern -InputObject $CheckContent -AllMatches
+    return [scriptblock]::Create($hashtable.Matches.value).Invoke()
+}
 #endregion
