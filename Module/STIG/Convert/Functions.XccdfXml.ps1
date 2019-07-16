@@ -392,7 +392,17 @@ function Get-StigRuleList
                 # Trim the unique char from split rules if they exist
                 foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
                 {
-                    $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
+                    if ($correction.newText -match "HardCodedRule\(\w*Rule\)")
+                    {
+                        foreach ($stigRule in $rule)
+                        {
+                            $stigRule.RawString = $correction.oldText
+                        }
+                    }
+                    else
+                    {
+                        $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
+                    }
                 }
 
                 if ($rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]))
@@ -401,7 +411,10 @@ function Get-StigRuleList
                 }
                 else
                 {
-                    [void] $global:stigSettings.Add($rule)
+                    foreach ($stigRule in $rule)
+                    {
+                        [void] $global:stigSettings.Add($stigRule)
+                    }
                 }
             }
             $stigProcessedCounter ++
@@ -453,7 +466,7 @@ function Get-RuleChangeLog
     {
         $id = $change.Groups.Item('id').value
         $oldText = $change.Groups.Item('oldText').value
-        # The trim removes any potential CRLF entries that will show up in a regex escape sequence. 
+        # The trim removes any potential CRLF entries that will show up in a regex escape sequence.
         # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
         $newText = $change.Groups.Item('newText').value.Trim().Replace('`r`n',[Environment]::NewLine)
 
@@ -462,7 +475,7 @@ function Get-RuleChangeLog
             NewText = $newText
         }
 
-        <# 
+        <#
            Some rule have multiple changes that need to be made, so if a rule already
            has a change, then add the next change to the value (array)
         #>

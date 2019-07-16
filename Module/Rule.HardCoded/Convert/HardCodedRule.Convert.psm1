@@ -105,8 +105,8 @@ Class HardCodedRuleConvert
     {
         # TOMORROW ---- NEED TO UPDATE THIS TO RETURN THE RULE TYPE AND RESOURCE INFORMATION -> MAY HAVE TO UPDATE THE REPLACE TEXT AS WELL,
         # AND GET RID OF THE REPEAT CODE IN SPLIT FACTORY THE IF/ELSE
-        $ruleTypeMatch = Get-HardCodedRuleType -CheckContent $CheckContent
-        return $ruleTypeMatch
+        $ruleResourceInformation = Get-HardCodedRuleResourceInformation -CheckContent $CheckContent
+        return $ruleResourceInformation
     }
     #endregion
 }

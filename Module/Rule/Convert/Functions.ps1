@@ -252,4 +252,18 @@ function Get-HardCodedRuleProperty
     $hashtable = Select-String -Pattern $hardCodedHashtableRegExPattern -InputObject $CheckContent -AllMatches
     return [scriptblock]::Create($hashtable.Matches.value).Invoke()
 }
+
+function Get-HardCodedRuleResourceInformation
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $CheckContent
+    )
+
+    return $CheckContent -split '\<splitRule\>'
+}
 #endregion
