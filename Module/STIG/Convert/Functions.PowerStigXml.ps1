@@ -425,26 +425,33 @@ function New-OrganizationalSettingsXmlFile
     $xmlDocument = [System.XML.XMLDocument]::New()
 
     ##############################   Root object   ###################################
-    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement( 'OrganizationalSettings' )
+    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement('OrganizationalSettings')
 
-    [void] $xmlDocument.appendChild( $xmlRootElement )
-    [void] $xmlRootElement.SetAttribute( 'fullversion', $StigVersionNumber )
+    [void] $xmlDocument.appendChild($xmlRootElement)
+    [void] $xmlRootElement.SetAttribute('fullversion', $StigVersionNumber)
 
-    $rootComment = $xmlDocument.CreateComment( $organizationalSettingRootComment )
-    [void] $xmlDocument.InsertBefore( $rootComment, $xmlRootElement )
+    $rootComment = $xmlDocument.CreateComment($organizationalSettingRootComment)
+    [void] $xmlDocument.InsertBefore($rootComment, $xmlRootElement)
 
     #########################################   Root object   ##########################################
     #########################################    ID object    ##########################################
 
-    foreach ( $orgSetting in $OrgSettings)
+    foreach ($orgSetting in $OrgSettings)
     {
-        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement( 'OrganizationalSetting' )
+        $orgSettingProperty = Get-OrgSettingPropertyFromStigRule -ConvertedStig $orgSetting
 
-        [void] $xmlRootElement.appendChild( $xmlSettingChildElement )
+        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement('OrganizationalSetting')
 
-        $xmlSettingChildElement.SetAttribute( $xmlAttribute.ruleId , $orgSetting.id )
+        [void] $xmlRootElement.appendChild($xmlSettingChildElement)
 
-        $xmlSettingChildElement.SetAttribute( $xmlAttribute.organizationalSettingValue , "LOCAL_STIG_SETTING_HERE")
+        $xmlSettingChildElement.SetAttribute($xmlAttribute.ruleId , $orgSetting.id)
+
+        foreach ($property in $orgSettingProperty)
+        {
+            $xmlAttribute.Add($property, $property)
+            $xmlSettingChildElement.SetAttribute($xmlAttribute.$property , '')
+            $xmlAttribute.Remove($property)
+        }
 
         $settingComment = " Ensure $(($orgSetting.OrganizationValueTestString) -f "'$($orgSetting.Id)'")"
 
@@ -453,7 +460,7 @@ function New-OrganizationalSettingsXmlFile
     }
     #########################################    ID object    ##########################################
 
-    $xmlDocument.Save( $Destination )
+    $xmlDocument.Save($Destination)
 }
 
 <#
@@ -697,5 +704,37 @@ function Get-StigObjectsWithOrgSettings
 
     $ConvertedStigObjects |
         Where-Object { $PSitem.OrganizationValueRequired -eq $true}
+}
+
+function Get-OrgSettingPropertyFromStigRule
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $ConvertedStig
+    )
+
+    $propertiesToExclude = @(
+        'DuplicateOf'
+        'OrganizationValueTestString'
+    )
+
+    [System.Collections.ArrayList] $rulePropertyNames = $ConvertedStig | Get-Member -MemberType Property | Select-Object -ExpandProperty Name
+    foreach ($property in $propertiesToExclude)
+    {
+        $rulePropertyNames.RemoveAt($rulePropertyNames.IndexOf($property))
+    }
+    foreach ($propertyName in $rulePropertyNames)
+    {
+        if ([string]::IsNullOrEmpty($ConvertedStig.$propertyName))
+        {
+            [array] $orgSettingProperties += $propertyName
+        }
+    }
+
+    return $orgSettingProperties
 }
 #endregion
