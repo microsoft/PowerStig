@@ -122,7 +122,7 @@ class ConvertFactory
         {
             {[HardCodedRuleConvert]::Match($PSItem)}
             {
-                $null = $ruleTypeList.Add(
+                $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert').Rule
                 )
                 break

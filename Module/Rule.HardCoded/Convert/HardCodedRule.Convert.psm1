@@ -85,7 +85,6 @@ Class HardCodedRuleConvert
         {
             return $true
         }
-
         return $false
     }
 
@@ -103,7 +102,6 @@ Class HardCodedRuleConvert
     #>
     static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        # TOMORROW ---- NEED TO UPDATE THIS TO RETURN THE RULE TYPE AND RESOURCE INFORMATION -> MAY HAVE TO UPDATE THE REPLACE TEXT AS WELL,
         # AND GET RID OF THE REPEAT CODE IN SPLIT FACTORY THE IF/ELSE
         $ruleResourceInformation = Get-HardCodedRuleResourceInformation -CheckContent $CheckContent
         return $ruleResourceInformation

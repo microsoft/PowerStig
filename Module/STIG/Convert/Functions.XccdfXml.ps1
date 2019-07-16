@@ -394,10 +394,7 @@ function Get-StigRuleList
                 {
                     if ($correction.newText -match "HardCodedRule\(\w*Rule\)")
                     {
-                        foreach ($stigRule in $rule)
-                        {
-                            $stigRule.RawString = $correction.oldText
-                        }
+                        $rule.RawString = $correction.oldText
                     }
                     else
                     {
@@ -411,10 +408,7 @@ function Get-StigRuleList
                 }
                 else
                 {
-                    foreach ($stigRule in $rule)
-                    {
-                        [void] $global:stigSettings.Add($stigRule)
-                    }
+                    [void] $global:stigSettings.Add($rule)
                 }
             }
             $stigProcessedCounter ++
