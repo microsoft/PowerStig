@@ -19,7 +19,7 @@ try
 
     foreach ($stig in $stigList)
     {
-        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqulsNone
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
 
         $skipRule = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
         $skipRuleType = "AuditPolicyRule"

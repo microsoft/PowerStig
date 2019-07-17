@@ -115,7 +115,7 @@ function Get-ResourceMatchStatement
     .PARAMETER Xml
         The xml that will be examined.
 #>
-function Remove-DscResourceEqulsNone
+function Remove-DscResourceEqualsNone
 {    
     [CmdletBinding()]
     [OutputType([xml])]

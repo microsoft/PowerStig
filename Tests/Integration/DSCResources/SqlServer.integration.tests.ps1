@@ -14,7 +14,7 @@ try
 
     foreach ($stig in $stigList)
     {
-        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqulsNone
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
 
         $skipRule = Get-Random -InputObject $powerstigXml.SqlScriptQueryRule.Rule.id
         $skipRuleType = "DocumentRule"
