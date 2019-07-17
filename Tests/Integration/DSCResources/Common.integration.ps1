@@ -30,7 +30,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     }
 
     $ruleNames = (Get-Member -InputObject $powerstigXml |
-            Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
+        Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
 
     $configurationDocumentPath = "$TestDrive\localhost.mof"
     $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
@@ -40,10 +40,10 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         Context $ruleName {
             $hasAllRules = $true
             $ruleList = @($powerstigXml.$ruleName.Rule |
-                    Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry' -and $PSItem.DuplicateOf -eq ''})
+                Where-Object -FilterScript {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry' -and $PSItem.DuplicateOf -eq ''})
 
             $dscMof = $instances |
-                Where-Object {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}
+                Where-Object -FilterScript {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}
 
             foreach ($rule in $ruleList)
             {
