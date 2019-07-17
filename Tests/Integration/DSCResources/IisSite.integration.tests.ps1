@@ -19,19 +19,19 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $powerstigXml = Get-Content -Path $stig.Path
-
-        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule.id
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
+        
+        $skipRule = Get-Random -InputObject $powerstigXml.WebConfigurationPropertyRule.Rule.id
         $skipRuleType = "IisLoggingRule"
-        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.IisLoggingRule.Rule.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.MimeTypeRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.MimeTypeRule.Rule.id -Count 2
         $skipRuleTypeMultiple = @('WebAppPoolRule','IisLoggingRule')
-        $expectedSkipRuleTypeMultipleCount = $powerstigXml.DISASTIG.WebAppPoolRule.ChildNodes.Count + $powerstigXml.DISASTIG.IisLoggingRule.ChildNodes.Count
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.WebAppPoolRule.Rule.Count + $powerstigXml.IisLoggingRule.Rule.Count
 
-        $exception = Get-Random -InputObject ($powerstigXml.DISASTIG.WebConfigurationPropertyRule.Rule |
+        $exception = Get-Random -InputObject ($powerstigXml.WebConfigurationPropertyRule.Rule |
             Where-Object {[string]::IsNullOrEmpty($PSItem.DuplicateOf)})
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.WebAppPoolRule.Rule.id -Count 2
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.WebAppPoolRule.Rule.id -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }
