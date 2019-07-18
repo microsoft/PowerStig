@@ -168,19 +168,25 @@ Class Rule : ICloneable
         .SYNOPSIS
             Applies an org setting to a rule
     #>
-    [void] AddOrgSetting ([string] $Value)
+    [void] AddOrgSetting ([hashtable] $OrgSettingParamValue)
     {
-        $this.($this.GetOverrideValue()) = $Value
+        foreach ($key in $OrgSettingParamValue.Keys)
+        {
+            $this.$key = $OrgSettingParamValue[$key]
+        }
     }
 
     <#
         .SYNOPSIS
             Applies an exception to a rule
     #>
-    [void] AddExceptionToPolicy ([string] $Value)
+    [void] AddExceptionToPolicy ([hashtable] $ExceptionParamValue)
     {
         $this.UpdateRuleTitle('Exception')
-        $this.($this.GetOverrideValue()) = $Value
+        foreach ($key in $ExceptionParamValue.Keys)
+        {
+            $this.$key = $ExceptionParamValue[$key]
+        }
     }
 
     <#

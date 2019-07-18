@@ -425,6 +425,7 @@ function New-OrganizationalSettingsXmlFile
     $xmlDocument = [System.XML.XMLDocument]::New()
 
     ##############################   Root object   ###################################
+
     [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement('OrganizationalSettings')
 
     [void] $xmlDocument.appendChild($xmlRootElement)
@@ -449,7 +450,7 @@ function New-OrganizationalSettingsXmlFile
         foreach ($property in $orgSettingProperty)
         {
             $xmlAttribute.Add($property, $property)
-            $xmlSettingChildElement.SetAttribute($xmlAttribute.$property , '')
+            $xmlSettingChildElement.SetAttribute($xmlAttribute.$property , [string]::Empty)
             $xmlAttribute.Remove($property)
         }
 
@@ -458,6 +459,7 @@ function New-OrganizationalSettingsXmlFile
         $rangeNameComment = $xmlDocument.CreateComment($settingComment)
         [void] $xmlRootElement.InsertBefore($rangeNameComment, $xmlSettingChildElement)
     }
+
     #########################################    ID object    ##########################################
 
     $xmlDocument.Save($Destination)

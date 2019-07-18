@@ -122,9 +122,15 @@ class ConvertFactory
         {
             {[HardCodedRuleConvert]::Match($PSItem)}
             {
-                $null = $ruleTypeList.AddRange(
-                    [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert').Rule
-                )
+                $hardCodedRule = [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert').Rule
+                if ($hardCodedRule -is [System.Collections.ICollection])
+                {
+                    $null = $ruleTypeList.AddRange($hardCodedRule)
+                }
+                else
+                {
+                    $null = $ruleTypeList.Add($hardCodedRule)
+                }
                 break
             }
             {[AccountPolicyRuleConvert]::Match($PSItem)}

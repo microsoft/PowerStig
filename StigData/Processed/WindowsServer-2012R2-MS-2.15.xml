@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="7/10/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="7/17/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -950,46 +950,6 @@ ftp&gt;
 If the response indicates that an anonymous FTP login was permitted, this is a finding.
 
 If accounts with administrator privileges are used to access FTP, this is a CAT I finding.</RawString>
-    </Rule>
-    <Rule id="V-1121" severity="high" conversionstatus="pass" title="FTP System File Access" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The FTP service allows remote users to access shared files and directories.  Access outside of the specific directories of shared data could provide access to system resources and compromise the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If FTP is not installed on the system, this is NA.
-
-Determine the IP address and port number assigned to FTP sites from documentation or configuration.
-
-If Microsoft FTP is used, open "Internet Information Services (IIS) Manager".
-
-Select "Sites" under the server name.
-
-For any sites that reference FTP, view the Binding information for IP address and port.  The standard port for FTP is 21, however this may be changed.
-
-Open a "Command Prompt".
-
-Access the FTP site and review accessible directories with the following commands: 
-
-Note: Returned results may vary depending on the FTP server software.
-
-C:\&gt; "ftp"
-ftp&gt; "Open IP Address Port"
-(Substituting [IP Address] and [Port] with the information previously identified.  If no IP Address was listed in the Binding, attempt using "localhost".)
-(Connected to IP Address
-220 Microsoft FTP Service)
-
-User (IP Address): "FTP User"
-(Substituting [FTP User] with an account identified that is allowed access.  If it was determined that anonymous access was allowed to the site [see V-1120], also review access using "anonymous".)
- (331 Password required)
-
-Password: "Password"
-(Substituting [Password] with password for the account attempting access.)
-(230 User ftpuser logged in.)
-
-ftp&gt; "Dir"
-
-If the FTP session indicates access to areas of the system other than the specific folder for FTP data, such as the root of the drive, Program Files or Windows directories, this is a finding.</RawString>
     </Rule>
     <Rule id="V-1168" severity="medium" conversionstatus="pass" title="Members of the Backup Operators Group" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Backup Operators are able to read and write to any file in the system, regardless of the rights assigned to it.  Backup and restore rights permit users to circumvent the file access restrictions present on NTFS disk drives for backup and restore purposes.  Visibility of members of the Backup Operators group must be maintained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7448,7 +7408,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests</Identity>
+      <Identity />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'</OrganizationValueTestString>
@@ -7748,7 +7708,7 @@ Accounts with the "Create symbolic links" user right can create pointers to othe
       <DisplayName>Create symbolic links</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,{Hyper-V}</Identity>
+      <Identity />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
@@ -8235,6 +8195,48 @@ The application account must meet requirements for application account passwords
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDscResources">
+    <Rule id="V-1121" severity="high" conversionstatus="pass" title="FTP System File Access" dscresource="WindowsFeature">
+      <Description>&lt;VulnDiscussion&gt;The FTP service allows remote users to access shared files and directories.  Access outside of the specific directories of shared data could provide access to system resources and compromise the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <FeatureName>Web-Ftp-Server</FeatureName>
+      <InstallState>Absent</InstallState>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If FTP is not installed on the system, this is NA.
+
+Determine the IP address and port number assigned to FTP sites from documentation or configuration.
+
+If Microsoft FTP is used, open "Internet Information Services (IIS) Manager".
+
+Select "Sites" under the server name.
+
+For any sites that reference FTP, view the Binding information for IP address and port.  The standard port for FTP is 21, however this may be changed.
+
+Open a "Command Prompt".
+
+Access the FTP site and review accessible directories with the following commands: 
+
+Note: Returned results may vary depending on the FTP server software.
+
+C:\&gt; "ftp"
+ftp&gt; "Open IP Address Port"
+(Substituting [IP Address] and [Port] with the information previously identified.  If no IP Address was listed in the Binding, attempt using "localhost".)
+(Connected to IP Address
+220 Microsoft FTP Service)
+
+User (IP Address): "FTP User"
+(Substituting [FTP User] with an account identified that is allowed access.  If it was determined that anonymous access was allowed to the site [see V-1120], also review access using "anonymous".)
+ (331 Password required)
+
+Password: "Password"
+(Substituting [Password] with password for the account attempting access.)
+(230 User ftpuser logged in.)
+
+ftp&gt; "Dir"
+
+If the FTP session indicates access to areas of the system other than the specific folder for FTP data, such as the root of the drive, Program Files or Windows directories, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-73805" severity="medium" conversionstatus="pass" title="WIN00-000160" dscresource="WindowsFeature">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
 

@@ -120,8 +120,10 @@ Class UserRightRuleConvert : UserRightRule
             }
         }
 
-        # add the results reguardless so they are easier to update
-        $this.Identity = $thisIdentity -Join ","
+        if ($this.OrganizationValueRequired -eq $false)
+        {
+            $this.Identity = $thisIdentity -Join ","
+        }
     }
 
     <#
