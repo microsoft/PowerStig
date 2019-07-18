@@ -3,11 +3,11 @@
 
 $rules = $stig.RuleList | Select-Rule -Type WindowsFeatureRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     WindowsOptionalFeature (Get-ResourceTitle -Rule $rule)
     {
-        Name   = $rule.FeatureName
-        Ensure = $rule.InstallState
+        Name   = $rule.Name
+        Ensure = $rule.Ensure
     }
 }

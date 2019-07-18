@@ -63,7 +63,7 @@ Class HardCodedRuleConvert
         {
             $newRule.$property = $propertyHashtable[$property]
         }
-        if ($propertyHashtable.ContainsValue($null))
+        if ($propertyHashtable.ContainsValue($null) -or $propertyHashtable.Keys.Count -le 1)
         {
             $newRule.set_OrganizationValueRequired($true)
         }

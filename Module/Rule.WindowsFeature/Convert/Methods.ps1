@@ -109,7 +109,7 @@ function Get-FeatureInstallState
             so the default is Absent. When a STIG rule states a WindowsFeature is to be installed (Present)
             we can add the logic here.
         #>
-        { $PSItem -eq $false }
+        {$PSItem -eq $false}
         {
             return [ensure]::Present
         }

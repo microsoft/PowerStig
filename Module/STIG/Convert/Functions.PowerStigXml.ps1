@@ -424,7 +424,7 @@ function New-OrganizationalSettingsXmlFile
 
     $xmlDocument = [System.XML.XMLDocument]::New()
 
-    ##############################   Root object   ###################################
+    #########################################   Root object   ##########################################
 
     [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement('OrganizationalSettings')
 
@@ -719,13 +719,9 @@ function Get-OrgSettingPropertyFromStigRule
         $ConvertedStig
     )
 
-    $propertiesToExclude = @(
-        'DuplicateOf'
-        'OrganizationValueTestString'
-    )
-
-    [System.Collections.ArrayList] $rulePropertyNames = $ConvertedStig | Get-Member -MemberType Property | Select-Object -ExpandProperty Name
-    foreach ($property in $propertiesToExclude)
+    $propertiesToRemove = Get-BaseRulePropertyNames
+    [System.Collections.ArrayList] $rulePropertyNames = (Get-Member -InputObject $ConvertedStig -MemberType Property).Name
+    foreach ($property in $propertiesToRemove)
     {
         $rulePropertyNames.RemoveAt($rulePropertyNames.IndexOf($property))
     }
@@ -744,44 +740,30 @@ function Get-HardCodedRuleLogFileExample
 {
     [CmdletBinding()]
     [OutputType([string])]
-    param()
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $RuleId
+    )
     DynamicParam {
-        $parameterName = 'RuleType'
-        $paramAttribute = [System.Management.Automation.ParameterAttribute]::new()
-        $paramAttribute.Mandatory = $true
-        $paramAttribute.Position = 1
-        $getChildItemParams = @{
-            Path    = '.\Module'
-            File    = $true
-            Exclude = 'ManualRule.psm1', 'DocumentRule.psm1'
-            Filter  = '*?Rule.psm1'
-            Recurse = $true
-        }
-        [string[]]$validRuleTypes = (Get-ChildItem @getChildItemParams).Name -replace '.psm1'
-        $validateSet = [System.Management.Automation.ValidateSetAttribute]::new($validRuleTypes)
-        $attribCollection = [System.Collections.ObjectModel.Collection[System.Attribute]]::new()
-        $attribCollection.Add($paramAttribute)
-        $attribCollection.Add($validateSet)
-        $runtimeDefinedParam = [System.Management.Automation.RuntimeDefinedParameter]::new($parameterName, [string[]], $attribCollection)
-        $runtimeDefinedParamDictionary = [System.Management.Automation.RuntimeDefinedParameterDictionary]::new()
-        $runtimeDefinedParamDictionary.Add($parameterName, $runtimeDefinedParam)
-        return $runtimeDefinedParamDictionary
+        Get-DynamicParameterRuleTypeNames
     }
 
     begin
     {
         # Bind the specified parameter values to RuleType var
-        $RuleType = $PSBoundParameters[$parameterName]
+        $RuleType = $PSBoundParameters['RuleType']
         $counter = 0
 
-        # Create base rule to dynamically query the common properties to remove
-        $baseRule = [Rule]::new()
-        $commonPropertiesToRemove = (Get-Member -InputObject $baseRule -MemberType Property).Name
+        # Dynamically query the base rule common properties to remove
+        $commonPropertiesToRemove = Get-BaseRulePropertyNames
 
         # Log file patterns to build log file string
+        $logFileRuleId = '{0}::*::' -f $RuleId
         $logFileHardCodedRulePattern = "{0}HardCodedRule({1}){4}DscResource = '{2}'{3}{5}"
-        $keyValuePairPattern = "; {0} = ''"
-        $skipRulePattern = '<skipRule>'
+        $keyValuePairPattern = '; {0} = $null'
+        $splitRulePattern = '<splitRule>'
         $open, $close = '@{', '}'
     }
 
@@ -811,16 +793,62 @@ function Get-HardCodedRuleLogFileExample
             # First time through, do not add the skip rule delimiter, second and more will add the delimiter
             if ($counter -eq 0)
             {
-                $logFileHardCodedRulePattern -f $null, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
+                $logFileHardCodedRulePattern -f $logFileRuleId, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
                 $counter++
             }
             else
             {
-                $logFileHardCodedRulePattern -f $skipRulePattern, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
+                $logFileHardCodedRulePattern -f $splitRulePattern, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
             }
         }
         return -join $returnString
     }
 }
 
+<#
+    .SYNOPSIS
+        Helper function to return the base rule property names.
+#>
+function Get-BaseRulePropertyNames
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param()
+
+    $baseRule = [Rule]::new()
+    return (Get-Member -InputObject $baseRule -MemberType Property).Name
+}
+
+<#
+    .SYNOPSIS
+        Helper function to query all RuleTypeNames from the Module folder
+        and return a RuntimeDefinedParameterDictionary for dynamic parameter
+        use.
+#>
+function Get-DynamicParameterRuleTypeNames
+{
+    [CmdletBinding()]
+    param()
+
+    $parameterName = 'RuleType'
+    $paramAttribute = [System.Management.Automation.ParameterAttribute]::new()
+    $paramAttribute.Mandatory = $true
+    $paramAttribute.Position = 1
+    $getChildItemParams = @{
+        Path    = '.\Module'
+        File    = $true
+        Exclude = 'ManualRule.psm1', 'DocumentRule.psm1'
+        Filter  = '*?Rule.psm1'
+        Recurse = $true
+    }
+    [string[]]$validRuleTypes = (Get-ChildItem @getChildItemParams).Name -replace '.psm1'
+    $validateSet = [System.Management.Automation.ValidateSetAttribute]::new($validRuleTypes)
+    $attribCollection = [System.Collections.ObjectModel.Collection[System.Attribute]]::new()
+    $attribCollection.Add($paramAttribute)
+    $attribCollection.Add($validateSet)
+    $runtimeDefinedParam = [System.Management.Automation.RuntimeDefinedParameter]::new($parameterName, [string[]], $attribCollection)
+    $runtimeDefinedParamDictionary = [System.Management.Automation.RuntimeDefinedParameterDictionary]::new()
+    $runtimeDefinedParamDictionary.Add($parameterName, $runtimeDefinedParam)
+    return $runtimeDefinedParamDictionary
+}
 #endregion

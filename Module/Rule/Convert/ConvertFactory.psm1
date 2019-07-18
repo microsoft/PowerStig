@@ -238,7 +238,7 @@ class ConvertFactory
             {[WindowsFeatureRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [SplitFactory]::XccdfRule($Rule, 'WindowsFeatureRuleConvert', 'FeatureName')
+                    [SplitFactory]::XccdfRule($Rule, 'WindowsFeatureRuleConvert', 'Name')
                 )
             }
             {[WinEventLogRuleConvert]::Match($PSItem)}
