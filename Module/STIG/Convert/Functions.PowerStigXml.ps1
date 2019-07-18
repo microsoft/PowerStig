@@ -739,4 +739,88 @@ function Get-OrgSettingPropertyFromStigRule
 
     return $orgSettingProperties
 }
+
+function Get-HardCodedRuleLogFileExample
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param()
+    DynamicParam {
+        $parameterName = 'RuleType'
+        $paramAttribute = [System.Management.Automation.ParameterAttribute]::new()
+        $paramAttribute.Mandatory = $true
+        $paramAttribute.Position = 1
+        $getChildItemParams = @{
+            Path    = '.\Module'
+            File    = $true
+            Exclude = 'ManualRule.psm1', 'DocumentRule.psm1'
+            Filter  = '*?Rule.psm1'
+            Recurse = $true
+        }
+        [string[]]$validRuleTypes = (Get-ChildItem @getChildItemParams).Name -replace '.psm1'
+        $validateSet = [System.Management.Automation.ValidateSetAttribute]::new($validRuleTypes)
+        $attribCollection = [System.Collections.ObjectModel.Collection[System.Attribute]]::new()
+        $attribCollection.Add($paramAttribute)
+        $attribCollection.Add($validateSet)
+        $runtimeDefinedParam = [System.Management.Automation.RuntimeDefinedParameter]::new($parameterName, [string[]], $attribCollection)
+        $runtimeDefinedParamDictionary = [System.Management.Automation.RuntimeDefinedParameterDictionary]::new()
+        $runtimeDefinedParamDictionary.Add($parameterName, $runtimeDefinedParam)
+        return $runtimeDefinedParamDictionary
+    }
+
+    begin
+    {
+        # Bind the specified parameter values to RuleType var
+        $RuleType = $PSBoundParameters[$parameterName]
+        $counter = 0
+
+        # Create base rule to dynamically query the common properties to remove
+        $baseRule = [Rule]::new()
+        $commonPropertiesToRemove = (Get-Member -InputObject $baseRule -MemberType Property).Name
+
+        # Log file patterns to build log file string
+        $logFileHardCodedRulePattern = "{0}HardCodedRule({1}){4}DscResource = '{2}'{3}{5}"
+        $keyValuePairPattern = "; {0} = ''"
+        $skipRulePattern = '<skipRule>'
+        $open, $close = '@{', '}'
+    }
+
+    process
+    {
+        $returnString = foreach ($type in $RuleType)
+        {
+            # Create convert rule of the given type in order to obtain rule specific properties
+            $ruleTypeConvert = New-Object -TypeName ("$type`Convert")
+            $ruleTypeConvert.SetDscResource()
+            $ruleTypeDscResource = $ruleTypeConvert.DscResource
+
+            # Remove all common properties from the specified rule type
+            [System.Collections.ArrayList]$ruleProperties = (Get-Member -InputObject $ruleTypeConvert -MemberType Property).Name
+            foreach ($property in $commonPropertiesToRemove)
+            {
+                $ruleProperties.RemoveAt($ruleProperties.IndexOf($property))
+            }
+
+            # Build a string for DSC Resource specific parameters, without values
+            $keyValuePair = foreach ($dscKey in $ruleProperties)
+            {
+                $keyValuePairPattern -f $dscKey
+            }
+            $keyValuePair = -join $keyValuePair
+
+            # First time through, do not add the skip rule delimiter, second and more will add the delimiter
+            if ($counter -eq 0)
+            {
+                $logFileHardCodedRulePattern -f $null, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
+                $counter++
+            }
+            else
+            {
+                $logFileHardCodedRulePattern -f $skipRulePattern, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
+            }
+        }
+        return -join $returnString
+    }
+}
+
 #endregion

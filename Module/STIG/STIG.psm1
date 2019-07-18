@@ -247,8 +247,7 @@ Class STIG
                             }
                             else
                             {
-                                Write-Warning -Message "RuleId: $($rule.Id) contains an empty Organizational Value;"
-                                Write-Warning -Message "Setting RuleId: $($rule.Id) as a Skipped Rule and will be bypassed in the DSC Configuration."
+                                Write-Warning -Message "RuleId: $($rule.Id) contains an empty Organizational Value, setting rule as Skipped"
                                 $importRule = [SkippedRule]::new($rule)
                             }
                         }
