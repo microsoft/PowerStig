@@ -17,18 +17,18 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $powerstigXml = Get-Content -Path $stig.Path
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
 
-        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
         $skipRuleType = $null
         $expectedSkipRuleTypeCount = 0
 
-        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
         $skipRuleTypeMultiple = $null
         $expectedSkipRuleTypeMultipleCount = 0
 
-        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.RegistryRule.Rule.id -Count 2
+        $exception = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
+        $exceptionMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }
