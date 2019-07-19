@@ -61,26 +61,12 @@ class SplitFactory
                 $newRule.rule.Check.'check-content' = $splitRule
                 $newRule.Id = "$($Rule.id).$([CHAR][BYTE]$byte)"
                 $byte ++
-                if ($TypeName -eq 'HardCodedRuleConvert')
-                {
-                    $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule)
-                }
-                else
-                {
-                    $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
-                }
+                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
             }
         }
         else
         {
-            if ($TypeName -eq 'HardCodedRuleConvert')
-            {
-                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule)
-            }
-            else
-            {
-                $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
-            }
+            $ruleList += (New-Object -TypeName $TypeName -ArgumentList $Rule).AsRule()
         }
         return $ruleList
     }
@@ -122,7 +108,7 @@ class ConvertFactory
         {
             {[HardCodedRuleConvert]::Match($PSItem)}
             {
-                $hardCodedRule = [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert').Rule
+                $hardCodedRule = [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert')
                 if ($hardCodedRule -is [System.Collections.ICollection])
                 {
                     $null = $ruleTypeList.AddRange($hardCodedRule)
