@@ -1020,6 +1020,206 @@ function Get-TraceFileLimitVariable
 
 #endregion trace file limits
 
+#region shutdown on error
+function Get-ShutdownOnErrorGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+
+    return $getScript
+}
+
+function Get-ShutdownOnErrorTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript =  "DECLARE @traceId int "
+    $setScript += "SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+    $setScript += "IF (@traceId IS NULL) "
+    $setScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
+    $setScript += "ELSE "
+    $setScript += "Print NULL"
+
+    return $setScript
+}
+
+function Get-ShutdownOnErrorSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript += "DECLARE @new_trace_id INT; "
+    $setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+    $setScript += "EXECUTE master.dbo.sp_trace_create "
+    $setScript += "    @results = @new_trace_id OUTPUT, "
+    $setScript += "    @options = 6, "
+    $setScript += "    @traceFilePath = N'`$(TraceFilePath)', "
+
+    return $setScript
+}
+
+function Get-ShutdownOnErrorVariable
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    ()
+
+    $variable = @('TraceFilePath={0}')
+
+    return $variable
+}
+#endregion shutdown on error
+
+#region view any database
+<#
+#>
+function Get-ViewAnyDatabaseGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $getScript = "SELECT who.name AS [Principal Name], "
+    $getScript += "who.type_desc AS [Principal Type], "
+    $getScript += "who.is_disabled AS [Principal Is Disabled], "
+    $getScript += "what.state_desc AS [Permission State], "
+    $getScript += "what.permission_name AS [Permission Name] "
+    $getScript += "FROM sys.server_permissions what "
+    $getScript += "INNER JOIN sys.server_principals who "
+    $getScript += "ON who.principal_id = what.grantee_principal_id "
+    $getScript += "WHERE what.permission_name = 'View any database' "
+    $getScript += "AND who.type_desc = 'SERVER_ROLE' ORDER BY who.name"
+
+    return $getScript
+}
+
+<#
+#>
+function Get-ViewAnyDatabaseTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $testScript = "SELECT who.name AS [Principal Name], "
+    $testScript += "who.type_desc AS [Principal Type], "
+    $testScript += "who.is_disabled AS [Principal Is Disabled], "
+    $testScript += "what.state_desc AS [Permission State], "
+    $testScript += "what.permission_name AS [Permission Name] "
+    $testScript += "FROM "
+    $testScript += "sys.server_permissions what "
+    $testScript += "INNER JOIN sys.server_principals who "
+    $testScript += "ON who.principal_id = what.grantee_principal_id "
+    $testScript += "WHERE what.permission_name = 'View any database' "
+    $testScript += "AND who.type_desc = 'SERVER_ROLE' "
+    $testScript += "AND who.name != '`$(ViewAnyDbUser)' "
+    $testScript += "ORDER BY who.name"
+
+    return $testScript
+}
+
+<#
+#>
+function Get-ViewAnyDatabaseSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript = "REVOKE External access assembly TO '`$(ViewAnyDbUser)'"
+
+    return $setScript
+
+}
+
+<#
+#>
+function Get-ViewAnyDatabaseVariable
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    ()
+
+    $variable = @('ViewAnyDbUser={0}')
+
+    return $variable
+}
+#endregion view any database
+
 #region Helper Functions
 <#
     .SYNOPSIS
@@ -1284,6 +1484,20 @@ function Get-SqlRuleType
         {
             $ruleType = 'TraceFileLimit'
         }
+        # shutdown on error
+        {
+            $PSItem -match 'SHUTDOWN_ON_ERROR'
+        }
+        {
+            $ruleType = 'ShutdownOnError'
+        }
+        # view any database
+        {
+            $PSItem -match "Obtain the list of roles that are authorized for the SQL Server 'View any database'"
+        }
+        {
+            $ruleType = 'ViewAnyDatabase'
+        }
         <#
             Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
             These should be able to get, test, set via Get-Query cleanly
@@ -1308,13 +1522,14 @@ function Test-VariableRequired
     param
     (
         [Parameter(Mandatory = $true)]
-        [string[]]
+        [string]
         $Rule
     )
 
     $requiresVariableList = @(
         'V-41037'
         'V-41024'
+        'V-41022'
     )
 
     return ($Rule -in $requiresVariableList)

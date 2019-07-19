@@ -131,6 +131,9 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         {
             $thisVariable = & Get-$($RuleType)Variable
             $this.set_Variable($thisVariable)
+
+            # If a SQlScriptQueryRule has a value in the variable property then it requires an OrgValue
+            $this.Set_OrganizationValueRequired($true)
         }
     }
 
@@ -174,8 +177,8 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
             $CheckContent -Match "(DISTINCT|(D|d)istinct)\s+traceid" -or
             $CheckContent -Match "Verify the SQL Server default 'sa' account name has been changed" -or
             $CheckContent -Match "SQL Server audit setting on the maximum number of files of the trace" -or
+            $CheckContent -Match "Obtain the list of roles that are authorized for the SQL Server 'View any database'" -or
             $CheckContent -Match "direct access.*server-level" -and
-            $CheckContent -NotMatch "SHUTDOWN_ON_ERROR" -and
             $CheckContent -NotMatch "'Alter any availability group' permission"
         )
         {
