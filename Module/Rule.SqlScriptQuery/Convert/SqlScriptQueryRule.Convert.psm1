@@ -46,6 +46,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
+        $this.SetVariable($ruleType)
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
@@ -118,6 +119,23 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 
     <#
         .SYNOPSIS
+            Extracts the variable
+        .DESCRIPTION
+            Gets the variable string to be used in the SqlScriptQuery resource
+        .PARAMETER RuleType
+            The type of rule to get the variable string for.
+    #>
+    [void] SetVariable ([string] $RuleType)
+    {
+        if (Test-VariableRequired -Rule $this.id)
+        {
+            $thisVariable = & Get-$($RuleType)Variable
+            $this.set_Variable($thisVariable)
+        }
+    }
+
+    <#
+        .SYNOPSIS
             Extracts the rule type from the check-content and sets the value
         .DESCRIPTION
             Gets the rule type from the xccdf content and sets the value
@@ -154,6 +172,8 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
             $CheckContent -Match "SELECT" -and
             $CheckContent -Match 'existence.*publicly available.*(").*(")\s*(D|d)atabase' -or
             $CheckContent -Match "(DISTINCT|(D|d)istinct)\s+traceid" -or
+            $CheckContent -Match "Verify the SQL Server default 'sa' account name has been changed" -or
+            $CheckContent -Match "SQL Server audit setting on the maximum number of files of the trace" -or
             $CheckContent -Match "direct access.*server-level" -and
             $CheckContent -NotMatch "SHUTDOWN_ON_ERROR" -and
             $CheckContent -NotMatch "'Alter any availability group' permission"

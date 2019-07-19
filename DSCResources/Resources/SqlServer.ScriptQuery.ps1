@@ -9,7 +9,7 @@ foreach ($instance in $ServerInstance)
     {
         foreach ($db in $Database)
         {
-            foreach ( $rule in $rules )
+            foreach ($rule in $rules)
             {
                 SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
                 {
