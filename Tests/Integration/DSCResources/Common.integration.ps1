@@ -88,13 +88,13 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     if (@($stigList).IndexOf($stig) -le '0')
     {
         Context 'Single Exception' {
-            It "Should compile the MOF with STIG exception $exception without throwing" {
+            It "Should compile the MOF with STIG exception $($exception.Keys) without throwing" {
                 {& $technologyConfig @testParameterList -Exception $exception} | Should -Not -Throw
             }
         }
 
         Context 'Multiple Exceptions' {
-            It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
+            It "Should compile the MOF with STIG exceptions $($exceptionMultiple.Keys) without throwing" {
                 {& $technologyConfig @testParameterList -Exception $exceptionMultiple} | Should -Not -Throw
             }
         }

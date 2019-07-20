@@ -24,7 +24,12 @@ try
         $skipRuleTypeMultiple = $null
         $expectedSkipRuleTypeMultipleCount = 0
 
-        $exception = Get-Random -InputObject $powerstigXml.SqlScriptQueryRule.Rule.id
+        $getRandomExceptionRuleParams = @{
+            RuleType       = 'SqlScriptQueryRule'
+            PowerStigXml   = $powerstigXml
+            ParameterValue = 'TestScript'
+        }
+        $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = $null
 
         . "$PSScriptRoot\Common.integration.ps1"

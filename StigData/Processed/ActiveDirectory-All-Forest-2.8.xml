@@ -1,6 +1,10 @@
-<DISASTIG Id="Active_Directory_Forest" Version="2.8" Created="8/15/2018">
-  <DocumentRule DscResourcemodule="None">
-    <Rule Id="V-8527" Severity="low" ConversionStatus="pass" Title="Schema Change Configuration Management" DscResource="None">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Active_Directory_Forest" description="This STIG provides focused security requirements for the AD or Active Directory Domain Services (AD DS) element for Windows Servers operating systems. These requirements apply to the forest and can typically be reviewed once per AD Forest. The separate Active Directory Domain STIG contains domain level requirements. Systems must also be reviewed using the applicable Windows STIG. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Active_Directory_Forest_V2R8_STIG_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 27 Jul 2018" title="Active Directory Forest Security Technical Implementation Guide (STIG)" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.8" created="7/19/2019">
+  <DocumentRule dscresourcemodule="None">
+    <Rule id="V-8527" severity="low" conversionstatus="pass" title="Schema Change Configuration Management" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Poorly planned or implemented changes to the AD schema could cause the applications that rely on AD (such as web and database servers) to operate incorrectly or not all.
+
+Improper changes to the schema could result in changes to AD objects that are incompatible with correct operation of the Windows domain controller and the domain clients. This could cause outages that prevent users from logging on or accessing Windows server resources across multiple hosts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Manager&lt;/Responsibility&gt;&lt;IAControls&gt;DCPR-1&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -14,8 +18,10 @@
 </RawString>
     </Rule>
   </DocumentRule>
-  <ManualRule DscResourcemodule="None">
-    <Rule Id="V-8555" Severity="medium" ConversionStatus="pass" Title="DS10.0230 dsHeuristics Option" DscResource="None">
+  <ManualRule dscresourcemodule="None">
+    <Rule id="V-8555" severity="medium" conversionstatus="pass" title="DS10.0230 dsHeuristics Option" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;For Windows Server 2003 or above, the dsHeuristics option can be configured to override the default restriction on anonymous access to AD data above the rootDSE level. Anonymous access to AD data could provide valuable account or configuration information to an intruder trying to determine the most effective attack strategies.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;ECAN-1, ECCD-1, ECCD-2&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -43,7 +49,13 @@ Domain controllers have this option disabled by default. However, this check ver
 
 The dsHeuristics option can be configured with the Windows Support Tools Active Directory Service Interfaces Editor (ADSI Edit) console (adsiedit.msc).</RawString>
     </Rule>
-    <Rule Id="V-8557" Severity="medium" ConversionStatus="pass" Title="Time Synchronization-Authoritative Source" DscResource="None">
+    <Rule id="V-8557" severity="medium" conversionstatus="pass" title="Time Synchronization-Authoritative Source" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When the Windows Time service is used to synchronize time on client computers (workstations and servers) throughout an AD forest, the forest root domain PDC Emulator is the normal default to provide the authoritative time source for the entire forest. To obtain an accurate time for itself, the forest root domain PDC Emulator acts as a client to an external time source.
+
+If the Windows Time service on the forest root domain PDC Emulator is not configured to acquire the time from a proper source, it may cause time service clients throughout the forest to operate with the inaccurate time setting.
+
+When a Windows computer operates with an inaccurate time setting, access to resources on computers with the accurate time might be denied. This is notably true when Kerberos authentication is utilized. Operation with an inaccurate time setting can reduce the value of audit data and invalidate it as a source of forensic evidence in an incident investigation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -79,7 +91,9 @@ If an alternate time synchronization tool is used and is not enabled or not conf
 
 The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</RawString>
     </Rule>
-    <Rule Id="V-15372" Severity="high" ConversionStatus="pass" Title="Directory Schema Update Access" DscResource="None">
+    <Rule id="V-15372" severity="high" conversionstatus="pass" title="Directory Schema Update Access" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A failure to control update access to the AD Schema object could result in the creation of invalid directory objects and attributes. Applications that rely on AD could fail as a result of invalid formats and values. The presence of invalid directory objects and attributes could cause failures in Windows AD client functions and improper resource access decisions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
@@ -149,7 +163,9 @@ Select the OK button.
 When done using the console, select Exit from the File (or Console) menu.
 Select the No button to the Save console settings… prompt (unless the SA wishes to retain this console). If the console is retained, the recommended name is schmmgmt.msc and the recommended location is the [systemroot]\system32 directory.</RawString>
     </Rule>
-    <Rule Id="V-72835" Severity="medium" ConversionStatus="pass" Title="AD.0017" DscResource="None">
+    <Rule id="V-72835" severity="medium" conversionstatus="pass" title="AD.0017" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The Schema Admins group is a privileged group in a forest root domain.  Members of the Schema Admins group can make changes to the schema, which is the framework for the Active Directory forest.  Changes to the schema are not frequently required.  This group only contains the Built-in Administrator account by default.  Additional accounts must only be added when changes to the schema are necessary and then must be removed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />

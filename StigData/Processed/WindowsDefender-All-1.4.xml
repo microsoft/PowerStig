@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 27 Apr 2018" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.4" created="3/28/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R4_Manual-xccdf.xml" releaseinfo="Release: 4 Benchmark Date: 27 Apr 2018" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.4" created="7/19/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;After enabling this feature, Potentially Unwanted Application (PUA) protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -57,7 +57,7 @@ Criteria: If the value "DisableAntiSpyware" does not exist, this is not a findin
       <ValueData>
       </ValueData>
       <ValueName>DisableAntiSpyware</ValueName>
-      <ValueType />
+      <ValueType>None</ValueType>
     </Rule>
     <Rule id="V-75155" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows you to disable scheduled and real-time scanning for files under the paths specified or for the fully qualified resources specified. Paths should be added under the Options for this setting. Each entry must be listed as a name value pair where the name should be a string representation of a path or a fully qualified resource name. As an example a path might be defined as: "c:\Windows" to exclude all files in this directory. A fully qualified resource name might be defined as: "C:\Windows\App.exe". The value is not used and it is recommended that this be set to 0.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -76,7 +76,7 @@ Criteria: If the value "Exclusions_Paths" does not exist, this is not a finding.
       <ValueData>
       </ValueData>
       <ValueName>Exclusions_Paths</ValueName>
-      <ValueType />
+      <ValueType>None</ValueType>
     </Rule>
     <Rule id="V-75157" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows you to disable scheduled and real-time scanning for any file opened by any of the specified processes. The process itself will not be excluded. To exclude the process use the Path exclusion. Processes should be added under the Options for this setting. Each entry must be listed as a name value pair where the name should be a string representation of the path to the process image. Note that only executables can be excluded. For example a process might be defined as: "c:\windows\app.exe". The value is not used and it is recommended that this be set to 0.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -95,7 +95,7 @@ Criteria: If the value "Exclusions_Processes" does not exist, this is not a find
       <ValueData>
       </ValueData>
       <ValueName>Exclusions_Processes</ValueName>
-      <ValueType />
+      <ValueType>None</ValueType>
     </Rule>
     <Rule id="V-75159" severity="medium" conversionstatus="pass" title="SRG-APP-000278" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Allows an administrator to specify if Automatic Exclusions feature for Server SKUs should be turned off.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>

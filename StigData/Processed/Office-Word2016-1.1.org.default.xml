@@ -6,6 +6,6 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="1.1">
-  <!-- Ensure ''V-71089'' -match '2|3|4|1'-->
-  <OrganizationalSetting id="V-71089" value="1" />
+  <!-- Ensure ''V-71089'' -match '2|3|4'-->
+  <OrganizationalSetting id="V-71089" ValueData="2" />
 </OrganizationalSettings>

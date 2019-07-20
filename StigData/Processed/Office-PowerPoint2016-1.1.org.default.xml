@@ -7,5 +7,5 @@
 -->
 <OrganizationalSettings fullversion="1.1">
   <!-- Ensure ''V-70681'' -match '2|3|4'-->
-  <OrganizationalSetting id="V-70681" value="2" />
+  <OrganizationalSetting id="V-70681" ValueData="2" />
 </OrganizationalSettings>

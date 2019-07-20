@@ -20,7 +20,7 @@ try
     foreach ($stig in $stigList)
     {
         $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
-        
+
         $skipRule = Get-Random -InputObject $powerstigXml.WebConfigurationPropertyRule.Rule.id
         $skipRuleType = "IisLoggingRule"
         $expectedSkipRuleTypeCount = $powerstigXml.IisLoggingRule.Rule.Count
@@ -29,9 +29,14 @@ try
         $skipRuleTypeMultiple = @('WebAppPoolRule','IisLoggingRule')
         $expectedSkipRuleTypeMultipleCount = $powerstigXml.WebAppPoolRule.Rule.Count + $powerstigXml.IisLoggingRule.Rule.Count
 
-        $exception = Get-Random -InputObject ($powerstigXml.WebConfigurationPropertyRule.Rule |
-            Where-Object {[string]::IsNullOrEmpty($PSItem.DuplicateOf)})
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.WebAppPoolRule.Rule.id -Count 2
+        $getRandomExceptionRuleParams = @{
+            RuleType       = 'WebConfigurationPropertyRule'
+            PowerStigXml   = $powerstigXml
+            ParameterValue = 1234567
+        }
+        $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+        $getRandomExceptionRuleParams.RuleType = 'WebAppPoolRule'
+        $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }

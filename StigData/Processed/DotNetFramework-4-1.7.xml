@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="5/23/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="7/19/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-7055" severity="medium" conversionstatus="pass" title="APPNET0031 No Strong Name Verification" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided)—plus a public key and a digital signature.  Strong names serve to identify the author of the code.  If digital signatures used to sign strong name assemblies are not verified, any self signed code can be impersonated.  This can lead to a loss of system integrity. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1&lt;/IAControls&gt;</Description>
@@ -565,4 +565,15 @@ If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
+  <System.Xml.XmlElement dscresourcemodule="">
+    <Rule id="SV-19930r2_rule" severity="medium" conversionstatus="" title=".Net Framework versions installed on the system must be supported." dscresource="">
+      <check>System.Xml.XmlElement</check>
+      <description>&lt;VulnDiscussion&gt;Unsupported software introduces risks and violates DoD policy.  Applications utilizing unsupported versions of .NET introduce substantial risk to the host, network, and the enclave by virtue of the fact they leverage an architecture that is no longer updated by the vendor.  This introduces potential application integrity, availability, or confidentiality issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;COMS-1&lt;/IAControls&gt;</description>
+      <fix>System.Xml.XmlElement</fix>
+      <fixtext>System.Xml.XmlElement</fixtext>
+      <reference>System.Xml.XmlElement</reference>
+      <version>APPNET0061</version>
+      <weight>10.0</weight>
+    </Rule>
+  </System.Xml.XmlElement>
 </DISASTIG>

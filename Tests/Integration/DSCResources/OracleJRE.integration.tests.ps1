@@ -29,8 +29,13 @@ try
         $skipRuleTypeMultiple = $null
         $expectedSkipRuleTypeMultipleCount = 0
 
-        $exception = Get-Random -InputObject $powerstigXml.FileContentRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.FileContentRule.Rule.id -Count 2
+        $getRandomExceptionRuleParams = @{
+            RuleType       = 'FileContentRule'
+            PowerStigXml   = $powerstigXml
+            ParameterValue = 1234567
+        }
+        $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+        $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }

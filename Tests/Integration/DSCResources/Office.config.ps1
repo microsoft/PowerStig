@@ -48,7 +48,9 @@ Configuration Office_config
             })
             $(if ($null -ne $Exception)
             {
-                "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
+                "Exception = @{`n$($Exception.Keys |
+                    ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
+                        $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
             })
             $(if ($null -ne $SkipRule)
             {

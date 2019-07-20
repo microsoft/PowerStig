@@ -49,5 +49,5 @@ Export-ModuleMember -Function @(
     'Compare-PowerStigXml',
     'Get-ConversionReport',
     'Split-StigXccdf',
-    'Get-HardCodedRuleLogFileExample'
+    'Get-HardCodedRuleLogFileEntry'
 )

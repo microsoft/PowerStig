@@ -736,7 +736,7 @@ function Get-OrgSettingPropertyFromStigRule
     return $orgSettingProperties
 }
 
-function Get-HardCodedRuleLogFileExample
+function Get-HardCodedRuleLogFileEntry
 {
     [CmdletBinding()]
     [OutputType([string])]

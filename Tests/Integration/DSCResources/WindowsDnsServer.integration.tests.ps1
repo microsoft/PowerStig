@@ -34,8 +34,13 @@ try
         $expectedSkipRuleTypeMultipleCount = ($powerstigXml.PermissionRule.Rule + $powerstigXml.UserRightRule.Rule |
             Where-Object { [string]::IsNullOrEmpty($PsItem.DuplicateOf) }).Count
 
-        $exception = Get-Random -InputObject $powerstigXml.UserRightRule.Rule.id
-        $exceptionMultiple = Get-Random -InputObject $powerstigXml.UserRightRule.Rule.id -Count 2
+        $getRandomExceptionRuleParams = @{
+            RuleType       = 'UserRightRule'
+            PowerStigXml   = $powerstigXml
+            ParameterValue = 1234567
+        }
+        $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+        $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
 
         . "$PSScriptRoot\Common.integration.ps1"
     }

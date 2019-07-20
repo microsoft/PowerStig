@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings version="1.7">
-  <!-- Ensure 'V-17521' -match '0x00000033|51'-->
-  <OrganizationalSetting id="V-17521" value="51" />
+<OrganizationalSettings fullversion="1.7">
+  <!-- Ensure ''V-17521'' -match '51'-->
+  <OrganizationalSetting id="V-17521" ValueData="51" />
 </OrganizationalSettings>
