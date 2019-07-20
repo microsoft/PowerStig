@@ -19,20 +19,24 @@ try
 
     foreach ($stig in $stigList)
     {
-        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
+        $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
+        $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) |
+            Remove-DscResourceEqualsNone |
+            Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
         $skipRule = Get-Random -InputObject ($powerstigXml.DnsServerSettingRule.Rule |
-            Where-Object { [string]::IsNullOrEmpty($PsItem.DuplicateOf) }).id
+            Where-Object {[string]::IsNullOrEmpty($PsItem.DuplicateOf)}).id
 
         $skipRuleType = "PermissionRule"
         $expectedSkipRuleTypeCount = ($powerstigXml.PermissionRule.Rule |
-            Where-Object { [string]::IsNullOrEmpty($PsItem.DuplicateOf) }).Count
+            Where-Object {[string]::IsNullOrEmpty($PsItem.DuplicateOf)}).Count + $blankSkipRuleId.Count
 
         $skipRuleMultiple = Get-Random -InputObject ($powerstigXml.DnsServerSettingRule.Rule |
-            Where-Object { [string]::IsNullOrEmpty($PsItem.DuplicateOf) }).id -Count 2
+            Where-Object {[string]::IsNullOrEmpty($PsItem.DuplicateOf)}).id -Count 2
         $skipRuleTypeMultiple = @('PermissionRule','UserRightRule')
         $expectedSkipRuleTypeMultipleCount = ($powerstigXml.PermissionRule.Rule + $powerstigXml.UserRightRule.Rule |
-            Where-Object { [string]::IsNullOrEmpty($PsItem.DuplicateOf) }).Count
+            Where-Object {[string]::IsNullOrEmpty($PsItem.DuplicateOf)}).Count + $blankSkipRuleId.Count
 
         $getRandomExceptionRuleParams = @{
             RuleType       = 'UserRightRule'

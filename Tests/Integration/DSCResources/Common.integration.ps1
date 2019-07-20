@@ -52,7 +52,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
                     in place of a -notmatch, since the -notmatch removes the
                     match from the collection.
                 #>
-                if (-not ($dscMof.ResourceID -match $rule.id))
+                if (-not ($dscMof.ResourceID -match '\[Skip\]' -or $dscMof.ResourceID -match $rule.id))
                 {
                     Write-Warning -Message "Missing $ruleName $($rule.id)"
                     $hasAllRules = $false
@@ -110,8 +110,8 @@ Describe ($title + " $($stig.StigVersion) mof output") {
 
             $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
 
-            It "Should have $($skipRule.count) Skipped settings" {
-                $dscMof.count | Should -Be $skipRule.count
+            It "Should have $($skipRule.count + $blankSkipRuleId.Count) Skipped settings" {
+                $dscMof.count | Should -Be ($skipRule.count + $blankSkipRuleId.Count)
             }
         }
 
@@ -125,7 +125,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $expectedSkipRuleCount = $skipRuleMultiple.count
+            $expectedSkipRuleCount = $skipRuleMultiple.count + $blankSkipRuleId.Count
             $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
 
             It "Should have $expectedSkipRuleCount Skipped settings" {

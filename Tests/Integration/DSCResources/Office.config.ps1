@@ -25,7 +25,7 @@ Configuration Office_config
         $SkipRuleType,
 
         [Parameter()]
-        [string[]]
+        [hashtable]
         $Exception,
 
         [Parameter()]

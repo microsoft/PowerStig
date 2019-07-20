@@ -19,15 +19,21 @@ try
 
     foreach ($stig in $stigList)
     {
-        $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
+        $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
+        $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) |
+            Remove-DscResourceEqualsNone |
+            Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
         $skipRule = Get-Random -InputObject $powerstigXml.WebConfigurationPropertyRule.Rule.id
         $skipRuleType = "IisLoggingRule"
-        $expectedSkipRuleTypeCount = $powerstigXml.IisLoggingRule.Rule.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.IisLoggingRule.Rule.Count + $blankSkipRuleId.Count
 
         $skipRuleMultiple = Get-Random -InputObject $powerstigXml.MimeTypeRule.Rule.id -Count 2
         $skipRuleTypeMultiple = @('WebAppPoolRule','IisLoggingRule')
-        $expectedSkipRuleTypeMultipleCount = $powerstigXml.WebAppPoolRule.Rule.Count + $powerstigXml.IisLoggingRule.Rule.Count
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.WebAppPoolRule.Rule.Count +
+                                             $powerstigXml.IisLoggingRule.Rule.Count +
+                                             $blankSkipRuleId.Count
 
         $getRandomExceptionRuleParams = @{
             RuleType       = 'WebConfigurationPropertyRule'

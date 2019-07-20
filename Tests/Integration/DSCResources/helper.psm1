@@ -150,7 +150,7 @@ function Remove-DscResourceEqualsNone
     [OutputType([xml])]
     param
     (
-        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
         [xml]
         $Xml
     )
@@ -172,6 +172,69 @@ function Remove-DscResourceEqualsNone
     }
 
     return $Xml.DISASTIG
+}
+
+function Remove-SkipRuleBlankOrgSetting
+{
+    [CmdletBinding()]
+    [OutputType([xml])]
+    param
+    (
+        [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
+        [System.Xml.XmlElement]
+        $Xml,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateScript({Test-Path -Path $_})]
+        [string]
+        $OrgSettingPath
+    )
+
+    $blankOrgSettingRuleIds = Get-BlankOrgSettingRuleId -OrgSettingPath $OrgSettingPath
+    $stigRuleNames = $Xml | Get-Member -Type Property |
+        Where-Object -FilterScript {$PSItem.Name -match 'Rule$' -and $PSItem.Name -notmatch 'DocumentRule|ManualRule'}
+
+    foreach ($stigRuleName in $stigRuleNames.Name)
+    {
+        foreach ($node in $Xml.$stigRuleName.Rule)
+        {
+            if ($blankOrgSettingRuleIds -contains $node.id)
+            {
+                [void]$xml.$stigRuleName.RemoveChild($node)
+            }
+        }
+    }
+
+    return $Xml
+}
+
+function Get-BlankOrgSettingRuleId
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateScript({Test-Path -Path $_})]
+        [string]
+        $OrgSettingPath
+    )
+
+    # Import the xml and determine if there are any blank org setting values
+    [xml] $orgSettingsXml = Get-Content -Path $OrgSettingPath
+    $orgSettingAttributes = $orgSettingsXml.OrganizationalSettings.OrganizationalSetting
+    $trackEmptyOrgSetting = @()
+    foreach ($orgSettingAttribute in $orgSettingAttributes)
+    {
+        for ($i = 0; $i -lt ($orgSettingAttribute.Attributes.Name).Count; $i++)
+        {
+            $attributeName = $orgSettingAttribute.Attributes.Name[$i]
+            if ([string]::IsNullOrEmpty($orgSettingAttribute.$attributeName))
+            {
+                $trackEmptyOrgSetting += $orgSettingAttribute.id
+            }
+        }
+    }
+    return $trackEmptyOrgSetting
 }
 
 function Get-RandomExceptionRule
