@@ -178,6 +178,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
             $CheckContent -Match "Verify the SQL Server default 'sa' account name has been changed" -or
             $CheckContent -Match "SQL Server audit setting on the maximum number of files of the trace" -or
             $CheckContent -Match "Obtain the list of roles that are authorized for the SQL Server 'View any database'" -or
+            $CheckContent -Match "SQL query to determine SQL Server ownership of all database objects" -or
             $CheckContent -Match "direct access.*server-level" -and
             $CheckContent -NotMatch "'Alter any availability group' permission"
         )
