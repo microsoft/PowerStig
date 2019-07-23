@@ -192,6 +192,13 @@ function Get-PermissionTargetPath
             $permissionTargetPath = '%windir%\inetpub'
             break
         }
+        # SQL Server install folder
+        { $stigString -match $regualrExpression.sqlInstallDirectory }
+        {
+            # ToDo since this is going to be an OrgSetting need to populate test string here if possible
+            $permissionTargetPath = $null
+            break
+        }
 
         default
         {
@@ -261,7 +268,10 @@ function Get-PermissionAccessControlEntry
 
             return ConvertTo-AccessControlEntry -StigString $inetpubFolderStigString
         }
-
+        { $stigString -match $regularExpression.auditingTab }
+        {
+            return ConvertTo-FileSystemAuditRule -CheckContent $stigString
+        }
         default
         {
             return ConvertTo-AccessControlEntry -StigString $stigString
@@ -472,6 +482,45 @@ function ConvertTo-AccessControlEntry
 
 <#
     .SYNOPSIS
+        Converts the checkconent from the STIG rule to a hashtaale with
+        the following keys: AuditFlags, SystemRights, and Inheritence
+
+#>
+function ConvertTo-FileSystemAuditRule
+{
+    [CmdletBinding()]
+    [OutputType([pscustomobject])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $CheckContent
+    )
+
+    # We are goning to set this to pass and if any values are null change it fail
+    $this.ConversionStatus = 'pass'
+
+    $fileRights = $CheckContent | Where-Object -FilterScript {$PSItem -in $auditFileSystemRights.keys}
+
+    $principal = ($CheckContent | Select-String -Pattern '(?<=select\sthe\s").*(?="\srow)').Matches.Value
+    
+    $inheritance = Get-FileSystemInheritence -CheckContent $CheckContent
+
+    $result = [hashtable]@{
+        Principal   = $principal.trim()
+        Rights      = Convert-RightsConstant -RightsString ($fileRights -join ',')
+        Inheritance = $inheritanceConstant[[string]$inheritance.trim()]
+    }
+
+    if ($null -eq $result.Principal -or $null -eq $result.Rights -or $null -eq $result.Inheritance)
+    {
+        $this.ConversionStatus = 'fail'
+    }
+
+    return $result
+}
+<#
+    .SYNOPSIS
         Converts strings describing the fileRights permissions to constants that are usable.
         Additonally this addresses the edge case when the fileRights are seperated by a forward slash "/"
 #>
@@ -490,7 +539,11 @@ function Convert-RightsConstant
     {
         $values = @()
         $rights = $(
-            if ( $string.Contains('/') )
+            if ($string.Contains(',') -and $string.Contains('/') -and $this.RawString -match 'Auditing tab')
+            {
+                $string.Split(',')
+            }
+            elseIf ( $string.Contains('/') )
             {
                 $string.Split('/')
             }
@@ -515,6 +568,10 @@ function Convert-RightsConstant
                 'NTFSAccessEntry'
                 {
                     $values += $fileRightsConstant[$right.trim()]
+                }
+                'FileSystemAuditRuleEntry'
+                {
+                    $values += $auditFileSystemRights[$right.trim()]
                 }
                 '(blank)'
                 {
@@ -687,5 +744,44 @@ function Join-CheckContent
     }
 
     return $stringBuilder.ToString()
+}
+
+<#
+    .SYNOPSIS
+        Retrieves the file system inheritence setting from the CheckContent
+#>
+function Get-FileSystemInheritence
+{
+    [CmdletBinding()]
+    [OutputType([System.String])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $results = @()
+
+    foreach ($line in $CheckContent)
+    {
+        foreach ($key in $inheritanceConstant.keys)
+        {
+            $result = $line | Select-String -Pattern $key
+
+            if ($result)
+            {
+                $results += $result
+            }
+        }
+    }
+
+    if ($results.count -gt 1)
+    {
+        throw "Multiple results have been found."
+    }
+
+    return $results.Matches.Value
 }
 #endregion

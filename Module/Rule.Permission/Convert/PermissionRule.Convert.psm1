@@ -79,6 +79,11 @@ Class PermissionRuleConvert : PermissionRule
     [void] SetForce ()
     {
         $this.set_Force($true)
+
+        if ($this.RawString -match 'Auditing Tab')
+        {
+            $this.set_Force($false)
+        }
     }
 
     <#
@@ -92,21 +97,21 @@ Class PermissionRuleConvert : PermissionRule
     {
         $thisAccessControlEntry = Get-PermissionAccessControlEntry -StigString $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisAccessControlEntry))
+        if (-not $this.SetStatus($thisAccessControlEntry)) # why can't this be $null -eq $thisAccessControlEntry ??
         {
             foreach ($principal in $thisAccessControlEntry.Principal)
             {
                 $this.SetStatus($principal)
             }
 
-            foreach ($rights in $thisAccessControlEntry.Rights)
+            foreach ($right in $thisAccessControlEntry.Rights)
             {
-                if ($rights -eq 'blank')
+                if ($right -eq 'blank')
                 {
                     $this.SetStatus("", $true)
                     continue
                 }
-                $this.SetStatus($rights)
+                $this.SetStatus($right)
             }
 
             $this.set_AccessControlEntry($thisAccessControlEntry)
@@ -135,6 +140,10 @@ Class PermissionRuleConvert : PermissionRule
                     }
                 }
             }
+            elseIf ($this.RawString -match 'Auditing Tab')
+            {
+                $this.DscResource = 'FileSystemAuditRuleEntry'
+            }
         }
         else
         {
@@ -154,7 +163,7 @@ Class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch '\n*\.NET Trust Level' -and
             $CheckContent -NotMatch 'IIS 8\.5 web' -and
             $CheckContent -cNotmatch 'SELECT' -and
-            $CheckContent -NotMatch 'SQL Server' -and
+          #  $CheckContent -NotMatch 'SQL Server' -and
             $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
             $CheckContent -NotMatch 'Query the SA' -and
             $CheckContent -NotMatch "caspol\.exe" -and
