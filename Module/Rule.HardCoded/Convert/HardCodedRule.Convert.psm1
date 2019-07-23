@@ -84,7 +84,7 @@ Class HardCodedRuleConvert
 
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        $ruleTypeMatch = Get-HardCodedRuleType -CheckContent $CheckContent
+        $ruleTypeMatch = Get-HardCodedRuleResourceInformation -CheckContent $CheckContent
         if ($ruleTypeMatch.Count -gt 1)
         {
             return $true

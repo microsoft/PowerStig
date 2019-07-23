@@ -233,8 +233,8 @@ function Get-HardCodedRuleType
     )
 
     $hardCodedRuleTypeRegExPattern = '(?<RuleType>(?<=\().+?(?=\)))'
-    $ruleType = Select-String -Pattern $hardCodedRuleTypeRegExPattern -InputObject $CheckContent -AllMatches
-    return $ruleType.Matches.Value
+    $ruleTypeMatch = [regex]::Match($CheckContent, $hardCodedRuleTypeRegExPattern)
+    return $ruleTypeMatch.Groups.Item('RuleType').Value
 }
 
 function Get-HardCodedRuleProperty
@@ -249,8 +249,9 @@ function Get-HardCodedRuleProperty
     )
 
     $hardCodedHashtableRegExPattern = '(?<hashtable>(@\{).*(\}))'
-    $hashtable = Select-String -Pattern $hardCodedHashtableRegExPattern -InputObject $CheckContent -AllMatches
-    return [scriptblock]::Create($hashtable.Matches.value).Invoke()
+    $ruleTypeHashtable = [regex]::Match($CheckContent, $hardCodedHashtableRegExPattern)
+    $scriptblockString = $ruleTypeHashtable.Groups.Item('hashtable').Value
+    return [scriptblock]::Create($scriptblockString).Invoke()
 }
 
 function Get-HardCodedRuleResourceInformation
