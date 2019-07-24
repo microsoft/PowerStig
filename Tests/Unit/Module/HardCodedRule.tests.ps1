@@ -175,7 +175,7 @@ try
         )
 
         $testRuleListSplit = @(
-            @{
+            [ordered]@{
                 $($StigRuleGlobal.id + '.a') = @{
                     RuleType    = 'WindowsFeatureRule'
                     DscResource = 'WindowsFeature'
@@ -236,13 +236,38 @@ try
 
             foreach ($splitRule in $testRuleListSplit)
             {
-                Context "Split Rule: $($splitRule.RuleType)" {
+                Context "Hard Coded Split Rules (CheckContent): $($splitRule.CheckContent)" {
+                    <#
+                        Generate synthetic XML with a temp check content block.
+                        The function will error due to the splitRule being an xml tag, hense the temp check content.
+                    #>
                     $stigRule = Get-TestStigRule -CheckContent 'Temp Check Content' -ReturnGroupOnly
                     $stigRule.Rule.check.'check-content' = $splitRule.CheckContent
-                    $convertedStigRule = [SplitFactory]::XccdfRule($stigRule, 'HardCodedRuleConvert')
-                    foreach ($stigRule in $convertedStigRule)
-                    {
 
+                    # The HardCodedRuleConvert leverages the SplitFactory class to split Hard Coded Rules.
+                    $convertedStigRule = [SplitFactory]::XccdfRule($stigRule, 'HardCodedRuleConvert')
+
+                    $splitRuleCount = ($splitRule.CheckContent -split '\<splitRule\>').Count
+                    It "Should have $splitRuleCount split rules" {
+                        $convertedStigRule.Count | Should Be $splitRuleCount
+                    }
+
+                    $testRuleIds = $splitRule.Keys | Where-Object -FilterScript {$PSItem -ne 'CheckContent'}
+
+                    for ($i = 0; $i -lt $testRuleIds.Count; $i++)
+                    {
+                        $testRule = $splitRule[$testRuleIds[$i]].Clone()
+                        It "Should convert to $($testRule.RuleType)" {
+                            $convertedStigRule[$i].GetType().Name | Should Be $testRule.RuleType
+                        }
+
+                        It "Should have correct $($testRule.RuleType) property values defined" {
+                            $testRule.Remove('RuleType')
+                            foreach ($property in $testRule.Keys)
+                            {
+                                $convertedStigRule[$i].$property | Should Be $testRule[$property]
+                            }
+                        }
                     }
                 }
             }
