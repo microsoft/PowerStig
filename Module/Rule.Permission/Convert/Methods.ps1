@@ -268,10 +268,12 @@ function Get-PermissionAccessControlEntry
 
             return ConvertTo-AccessControlEntry -StigString $inetpubFolderStigString
         }
+
         { $stigString -match $regularExpression.auditingTab }
         {
             return ConvertTo-FileSystemAuditRule -CheckContent $stigString
         }
+
         default
         {
             return ConvertTo-AccessControlEntry -StigString $stigString
@@ -500,10 +502,9 @@ function ConvertTo-FileSystemAuditRule
     # We are goning to set this to pass and if any values are null change it fail
     $this.ConversionStatus = 'pass'
 
-    $fileRights = $CheckContent | Where-Object -FilterScript {$PSItem -in $auditFileSystemRights.keys}
-
-    $principal = ($CheckContent | Select-String -Pattern '(?<=select\sthe\s").*(?="\srow)').Matches.Value
-    
+    #$fileRights = $CheckContent | Where-Object -FilterScript {$PSItem -in $auditFileSystemRights.keys}
+    $fileRights = Get-FileSystemAccessValue -CheckContent $CheckContent
+    $principal = ($CheckContent | Select-String -Pattern '(?<=select\sthe\s").*(?="\srow)|(?<=Principal:).*(?=$)').Matches.Value
     $inheritance = Get-FileSystemInheritence -CheckContent $CheckContent
 
     $result = [hashtable]@{
@@ -766,6 +767,7 @@ function Get-FileSystemInheritence
 
     foreach ($line in $CheckContent)
     {
+        # $inheritanceConstant comes from Rule.Permission\Convert\Data.ps1
         foreach ($key in $inheritanceConstant.keys)
         {
             $result = $line | Select-String -Pattern $key
@@ -784,4 +786,39 @@ function Get-FileSystemInheritence
 
     return $results.Matches.Value
 }
+
+<#
+    .SYNOPSIS
+        Retrieves the file system access setting from the CheckContent
+#>
+function Get-FileSystemAccessValue
+{
+    [CmdletBinding()]
+    [OutputType([System.String[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+    $results = @()
+
+    foreach ($line in $CheckContent)
+    {
+        # $auditFileSystemRights comes from Rule.Permission\Convert\Data.ps1
+        foreach ($key in $auditFileSystemRights.keys)
+        {
+            $result = $line | Select-String -Pattern $key
+
+            if ($result)
+            {
+                $results += $result
+            }
+        }
+    }
+
+    return $results.Matches.Value
+}
+
 #endregion

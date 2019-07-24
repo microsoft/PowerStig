@@ -45,6 +45,7 @@ Class PermissionRuleConvert : PermissionRule
         $this.SetAccessControlEntry()
         $this.SetDuplicateRule()
         $this.SetDscResource()
+        $this.SetOrganizationValueRequired()
 
 
     }
@@ -155,7 +156,7 @@ Class PermissionRuleConvert : PermissionRule
     {
         if
         (
-            $CheckContent -Match 'permission(s|)' -and
+            ($CheckContent -Match 'permission(s|)' -or $CheckContent -Match 'On the Security tab, click Advanced. On the Auditing tab') -and
             $CheckContent -NotMatch 'Forward\sLookup\sZones|Devices\sand\sPrinters|Shared\sFolders' -and
             $CheckContent -NotMatch 'Verify(ing)? the ((permissions .* ((G|g)roup (P|p)olicy|OU|ou))|auditing .* ((G|g)roup (P|p)olicy))' -and
             $CheckContent -NotMatch 'Windows Registry Editor' -and
@@ -215,5 +216,21 @@ Class PermissionRuleConvert : PermissionRule
         return (Split-MultiplePermissionRule -CheckContent ([PermissionRule]::SplitCheckContent($CheckContent)))
     }
 
+    <#
+        .SYNOPSIS
+            Checks if a conversionStatus is passing and the for 1 null property.
+            If those conditions are meet an OrganizationValue is required.
+    #>
+    [void] SetOrganizationValueRequired ()
+    {
+        $propertyNames = @('Path','AccessControlEntry','Force')
+
+        $nullPropertyCount = ($propertyNames | Where-Object -FilterScript {$null -eq $this.$PSItem}).Count
+
+        if ($this.ConversionStatus -eq 'pass' -and $nullPropertyCount -eq 1)
+        {
+            $this.set_OrganizationValueRequired($true)
+        }
+    }
     #endregion
 }
