@@ -17,8 +17,7 @@ try
         $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
         $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
         $powerstigXml = [xml](Get-Content -Path $stig.Path) |
-            Remove-DscResourceEqualsNone |
-            Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
+            Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
         $skipRule = Get-Random -InputObject $powerstigXml.FileContentRule.Rule.id
         $skipRuleType = $null

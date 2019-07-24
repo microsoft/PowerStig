@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Outlook_2013" description="The Microsoft Outlook 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 27 Apr 2018" title="Microsoft Outlook 2013 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.12" created="7/22/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Outlook_2013" description="The Microsoft Outlook 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MicrosoftOutlook2013_STIG_V1R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 27 Apr 2018" title="Microsoft Outlook 2013 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.12" created="7/24/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
@@ -1530,7 +1530,7 @@ HKCU\Software\Policies\Microsoft\Office\15.0\outlook\options\mail
 
 Criteria: If the value Message RTF Format is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>Message</ValueName>
+      <ValueName>Message RTF Format</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-26634" severity="medium" conversionstatus="pass" title="DTOO314 - Set message format" dscresource="cAdministrativeTemplate">

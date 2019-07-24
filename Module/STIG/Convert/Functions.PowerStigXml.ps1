@@ -719,7 +719,7 @@ function Get-OrgSettingPropertyFromStigRule
         $ConvertedStig
     )
 
-    $propertiesToRemove = Get-BaseRulePropertyNames
+    $propertiesToRemove = Get-BaseRulePropertyName
     [System.Collections.ArrayList] $rulePropertyNames = (Get-Member -InputObject $ConvertedStig -MemberType Property).Name
     foreach ($property in $propertiesToRemove)
     {
@@ -747,7 +747,7 @@ function Get-HardCodedRuleLogFileEntry
         $RuleId
     )
     DynamicParam {
-        Get-DynamicParameterRuleTypeNames
+        Get-DynamicParameterRuleTypeName
     }
 
     begin
@@ -757,7 +757,7 @@ function Get-HardCodedRuleLogFileEntry
         $counter = 0
 
         # Dynamically query the base rule common properties to remove
-        $commonPropertiesToRemove = Get-BaseRulePropertyNames
+        $commonPropertiesToRemove = Get-BaseRulePropertyName
 
         # Log file patterns to build log file string
         $logFileRuleId = '{0}::*::' -f $RuleId
@@ -776,17 +776,15 @@ function Get-HardCodedRuleLogFileEntry
             $ruleTypeConvert.SetDscResource()
             $ruleTypeDscResource = $ruleTypeConvert.DscResource
 
-            # Remove all common properties from the specified rule type
-            [System.Collections.ArrayList]$ruleProperties = (Get-Member -InputObject $ruleTypeConvert -MemberType Property).Name
-            foreach ($property in $commonPropertiesToRemove)
-            {
-                $ruleProperties.RemoveAt($ruleProperties.IndexOf($property))
-            }
+            # Query all valid non-base rule property names
+            $ruleProperties = (Get-Member -InputObject $ruleTypeConvert -MemberType Property).Name |
+                Where-Object -FilterScript {$PSItem -notin $commonPropertiesToRemove}
 
             # Build a string for DSC Resource specific parameters, without values
-            $keyValuePair = foreach ($dscKey in $ruleProperties)
+            $keyValuePair = @()
+            foreach ($dscKey in $ruleProperties)
             {
-                $keyValuePairPattern -f $dscKey
+                $keyValuePair += $keyValuePairPattern -f $dscKey
             }
             $keyValuePair = -join $keyValuePair
 
@@ -809,7 +807,7 @@ function Get-HardCodedRuleLogFileEntry
     .SYNOPSIS
         Helper function to return the base rule property names.
 #>
-function Get-BaseRulePropertyNames
+function Get-BaseRulePropertyName
 {
     [CmdletBinding()]
     [OutputType([string[]])]
@@ -825,7 +823,7 @@ function Get-BaseRulePropertyNames
         and return a RuntimeDefinedParameterDictionary for dynamic parameter
         use.
 #>
-function Get-DynamicParameterRuleTypeNames
+function Get-DynamicParameterRuleTypeName
 {
     [CmdletBinding()]
     param()
@@ -835,7 +833,7 @@ function Get-DynamicParameterRuleTypeNames
     $paramAttribute.Mandatory = $true
     $paramAttribute.Position = 1
     $getChildItemParams = @{
-        Path    = '.\Module'
+        Path    = "$PSScriptRoot\..\.."
         File    = $true
         Exclude = 'ManualRule.psm1', 'DocumentRule.psm1'
         Filter  = '*?Rule.psm1'

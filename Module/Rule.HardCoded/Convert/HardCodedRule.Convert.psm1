@@ -31,8 +31,8 @@ using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
         Identifies and extracts the Hard Coded details from an xccdf rule, that
         has specific replace text defined in the xml log file.
     .DESCRIPTION
-        The class is used to convert the rule check-content element into an
-        given rule type object. The rule content is parsed to identify it as
+        The class is used to convert the rule check-content element into a
+        given rule type object. The rule check content is parsed to identify
         a predefined rule type. The configuration details are then extracted
         and validated before returning the object.
 #>
@@ -47,6 +47,14 @@ Class HardCodedRuleConvert
     {
     }
 
+    <#
+        .SYNOPSIS
+            Constructor that accepts a XccdfRule [xml.xmlement] which
+            converts to the correct rule type based on the modified check
+            content.
+        .PARAMETER XccdfRule
+            XML representation of the unprocessed STIG Rule.
+    #>
     HardCodedRuleConvert ([xml.xmlelement] $XccdfRule)
     {
         $ruleType = Get-HardCodedRuleType -CheckContent $XccdfRule.Rule.Check.'check-content'
@@ -55,6 +63,16 @@ Class HardCodedRuleConvert
 
     #region Methods
 
+    <#
+        .SYNOPSIS
+            SetRule method creates a new instance of the specified Rule Type
+            and sets the correct properties based on the modified check
+            content.
+        .PARAMETER XccdfRule
+            XML representation of the unprocessed STIG Rule.
+        .PARAMETER TypeName
+            The TypeName for the Rule to be converted
+    #>
     [object] SetRule ([xml.xmlelement] $XccdfRule, [string] $TypeName)
     {
         $newRule = New-Object -TypeName $TypeName -ArgumentList $XccdfRule
@@ -84,7 +102,7 @@ Class HardCodedRuleConvert
 
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        $ruleTypeMatch = Get-HardCodedRuleResourceInformation -CheckContent $CheckContent
+        $ruleTypeMatch = Split-HardCodedRule -CheckContent $CheckContent
         if ($ruleTypeMatch.Count -gt 1)
         {
             return $true
@@ -104,7 +122,7 @@ Class HardCodedRuleConvert
     #>
     static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        $ruleResourceInformation = Get-HardCodedRuleResourceInformation -CheckContent $CheckContent
+        $ruleResourceInformation = Split-HardCodedRule -CheckContent $CheckContent
         return $ruleResourceInformation
     }
 

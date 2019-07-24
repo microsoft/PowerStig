@@ -221,6 +221,13 @@ function Get-HardCodedString
     return $hardCodedString
 }
 
+<#
+    .SYNOPSIS
+        Returns the RuleType from the modified check content.
+    .PARAMETER CheckContent
+        The HardCodedRule modified rule text from the check-content
+        element in the xccdf.
+#>
 function Get-HardCodedRuleType
 {
     [CmdletBinding()]
@@ -236,6 +243,14 @@ function Get-HardCodedRuleType
     $ruleTypeMatch = [regex]::Match($CheckContent, $hardCodedRuleTypeRegExPattern)
     return $ruleTypeMatch.Groups.Item('RuleType').Value
 }
+
+<#
+    .SYNOPSIS
+        Returns the RuleType from the modified check content.
+    .PARAMETER CheckContent
+        The HardCodedRule modified rule text from the check-content
+        element in the xccdf.
+#>
 
 function Get-HardCodedRuleProperty
 {
@@ -254,7 +269,15 @@ function Get-HardCodedRuleProperty
     return [scriptblock]::Create($scriptblockString).Invoke()
 }
 
-function Get-HardCodedRuleResourceInformation
+<#
+    .SYNOPSIS
+        Splits and returns rule(s) from the modified check content.
+    .PARAMETER CheckContent
+        The HardCodedRule modified rule text from the check-content
+        element in the xccdf.
+#>
+
+function Split-HardCodedRule
 {
     [CmdletBinding()]
     [OutputType([string[]])]
