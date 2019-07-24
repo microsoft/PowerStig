@@ -141,16 +141,19 @@ function Get-PermissionTargetPath
         { $stigString -match $regularExpression.hklmSecurity }
         {
             $permissionTargetPath = 'HKLM:\SECURITY'
+            break
         }
 
         { $stigString -match $regularExpression.hklmSoftware }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE'
+            break
         }
 
         { $stigString -match $regularExpression.hklmSystem }
         {
             $permissionTargetPath = 'HKLM:\SYSTEM'
+            break
         }
 
         # Get path for C:, Program file, and Windows
