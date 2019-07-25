@@ -7,5 +7,5 @@
 -->
 <OrganizationalSettings fullversion="1.7">
   <!-- Ensure ''V-76727.b'' -le '00:20:00'-->
-  <OrganizationalSetting id="V-76727.b" value='00:20:00' />
+  <OrganizationalSetting id="V-76727.b" Value="00:20:00" />
 </OrganizationalSettings>

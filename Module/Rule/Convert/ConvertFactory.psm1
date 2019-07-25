@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
+using module .\..\..\Rule.HardCoded\Convert\HardCodedRule.Convert.psm1
 using module .\..\..\Rule.AccountPolicy\Convert\AccountPolicyRule.Convert.psm1
 using module .\..\..\Rule.AuditPolicy\Convert\AuditPolicyRule.Convert.psm1
 using module .\..\..\Rule.DnsServerRootHint\Convert\DnsServerRootHintRule.Convert.psm1
@@ -74,28 +75,28 @@ class SplitFactory
         .SYNOPSIS
             Instance method split
     #>
-                static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
-                {
-                    [System.Collections.ArrayList] $ruleList = @()
+    static [System.Collections.ArrayList] XccdfRule ([psobject] $Rule, [string] $TypeName, [string] $Property)
+    {
+        [System.Collections.ArrayList] $ruleList = @()
 
-                    $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
-                    if ($instance.HasMultipleRules())
-                    {
-                        [string[]] $splitRules = $instance.SplitMultipleRules()
-                        foreach ($splitRule in $splitRules)
-                        {
-                            $ruleClone = $instance.Clone()
-                            $ruleClone.$Property = $splitRule
-                            $ruleList += $ruleClone.AsRule()
-                        }
-                    }
-                    else
-                    {
-                        $ruleList += $instance.AsRule()
-                    }
-                    return $ruleList
-                }
+        $instance = New-Object -TypeName $TypeName -ArgumentList $Rule
+        if ($instance.HasMultipleRules())
+        {
+            [string[]] $splitRules = $instance.SplitMultipleRules()
+            foreach ($splitRule in $splitRules)
+            {
+                $ruleClone = $instance.Clone()
+                $ruleClone.$Property = $splitRule
+                $ruleList += $ruleClone.AsRule()
             }
+        }
+        else
+        {
+            $ruleList += $instance.AsRule()
+        }
+        return $ruleList
+    }
+}
 
 class ConvertFactory
 {
@@ -105,6 +106,19 @@ class ConvertFactory
 
         switch ($Rule.rule.check.'check-content')
         {
+            {[HardCodedRuleConvert]::Match($PSItem)}
+            {
+                $hardCodedRule = [SplitFactory]::XccdfRule($Rule, 'HardCodedRuleConvert')
+                if ($hardCodedRule -is [System.Collections.ICollection])
+                {
+                    $null = $ruleTypeList.AddRange($hardCodedRule)
+                }
+                else
+                {
+                    $null = $ruleTypeList.Add($hardCodedRule)
+                }
+                break
+            }
             {[AccountPolicyRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
@@ -210,7 +224,7 @@ class ConvertFactory
             {[WindowsFeatureRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.AddRange(
-                    [SplitFactory]::XccdfRule($Rule, 'WindowsFeatureRuleConvert', 'FeatureName')
+                    [SplitFactory]::XccdfRule($Rule, 'WindowsFeatureRuleConvert', 'Name')
                 )
             }
             {[WinEventLogRuleConvert]::Match($PSItem)}

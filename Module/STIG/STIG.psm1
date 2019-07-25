@@ -211,8 +211,16 @@ Class STIG
         # If there are no org settings to merge, skip over that
         if($null -ne $settings.OrganizationalSettings.OrganizationalSetting)
         {
-            $settings.OrganizationalSettings.OrganizationalSetting |
-            Foreach-Object {$overRideValues[$_.Id] = $_.Value}
+            foreach ($organizationalSetting in $settings.OrganizationalSettings.OrganizationalSetting)
+            {
+                $ruleOverRideInformation = @{}
+                $ruleOverRideProperties = $organizationalSetting.Attributes.Name
+                foreach ($ruleOverRideProperty in $ruleOverRideProperties)
+                {
+                    $ruleOverRideInformation[$ruleOverRideProperty] = $organizationalSetting.$ruleOverRideProperty
+                }
+                $overRideValues[$organizationalSetting.id] = $ruleOverRideInformation
+            }
         }
         #endregion
 
@@ -233,7 +241,15 @@ Class STIG
                     {
                         if ($overRideValues.ContainsKey($rule.Id))
                         {
-                            $importRule.AddOrgSetting($overRideValues[$rule.Id])
+                            if (-not ($overRideValues[$rule.Id].Values -contains [string]::Empty))
+                            {
+                                $importRule.AddOrgSetting($overRideValues[$rule.Id])
+                            }
+                            else
+                            {
+                                Write-Warning -Message "RuleId: $($rule.Id) contains an empty Organizational Value, setting rule as Skipped"
+                                $importRule = [SkippedRule]::new($rule)
+                            }
                         }
                         else
                         {
@@ -242,7 +258,7 @@ Class STIG
                     }
 
                     # Exceptions Need to apply after org settings
-                    if ( $null -ne $Exceptions -and $Exceptions.ContainsKey($rule.Id))
+                    if ($null -ne $Exceptions -and $Exceptions.ContainsKey($rule.Id))
                     {
                         $importRule.AddExceptionToPolicy($Exceptions[$rule.Id])
                     }

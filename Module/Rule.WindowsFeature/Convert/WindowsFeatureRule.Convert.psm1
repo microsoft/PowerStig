@@ -65,7 +65,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
 
         if (-not $this.SetStatus($thisFeatureName))
         {
-            $this.set_FeatureName($thisFeatureName)
+            $this.set_Name($thisFeatureName)
         }
     }
 
@@ -82,7 +82,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
 
         if (-not $this.SetStatus($thisInstallState))
         {
-            $this.set_InstallState($thisInstallState)
+            $this.set_Ensure($thisInstallState)
         }
     }
 
@@ -106,14 +106,14 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
             Tests if a rule contains multiple checks
         .DESCRIPTION
             Search the rule text to determine if multiple {0} are defined
-        .PARAMETER FeatureName
+        .PARAMETER Name
             The feature name from the rule text from the check-content element
             in the xccdf
     #>
     <#{TODO}#> # HasMultipleRules is implemented inconsistently.
     [bool] HasMultipleRules ()
     {
-        return (Test-MultipleWindowsFeatureRule -FeatureName $this.FeatureName)
+        return (Test-MultipleWindowsFeatureRule -FeatureName $this.Name)
     }
 
     <#
@@ -131,7 +131,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
     #>
     [string[]] SplitMultipleRules ()
     {
-        return (Split-WindowsFeatureRule -FeatureName $this.FeatureName)
+        return (Split-WindowsFeatureRule -FeatureName $this.Name)
     }
 
     hidden [void] SetDscResource ()
