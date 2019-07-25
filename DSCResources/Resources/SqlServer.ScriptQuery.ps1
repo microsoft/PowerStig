@@ -26,6 +26,19 @@ foreach ($instance in $ServerInstance)
     {
         foreach ($rule in $rules)
         {
+            if ($null -ne $rule.Variable -and $null -ne $rule.VariableValue)
+            {
+                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                {
+                    ServerInstance = $instance
+                    GetQuery       = $rule.GetScript
+                    TestQuery      = $rule.TestScript
+                    SetQuery       = $rule.SetScript
+                    Variable       = @(($rule.Variable -f ($rule.VariableValue -split ',')) -split '\s')
+                }
+                continue
+            }
+
             SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
             {
                 ServerInstance = $instance

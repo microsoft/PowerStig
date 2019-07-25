@@ -846,7 +846,7 @@ function Get-SaAccountRenameVariable
     param
     ()
 
-    $return = "'saAccountName={0}'"
+    $return = "saAccountName={0}"
 
     return $return
 }
@@ -977,27 +977,27 @@ function Get-TraceFileLimitSetScript
         $CheckContent
     )
 
-    $setScript = "DECLARE @new_trace_id INT;"
-    $setScript += "DECLARE @maxsize bigint"
-    $setScript += "DECLARE @maxRolloverFiles int"
-    $setScript += "DECLARE @traceId int"
-    $setScript += "DECLARE @traceFilePath nvarchar(500)"
+    $setScript = "DECLARE @new_trace_id INT; "
+    $setScript += "DECLARE @maxsize bigint "
+    $setScript += "DECLARE @maxRolloverFiles int "
+    $setScript += "DECLARE @traceId int "
+    $setScript += "DECLARE @traceFilePath nvarchar(500) "
 
-    $setScript += "SET @traceFilePath = N'`$(TraceFilePath)'"
-    $setScript += "SET @traceId = (Select Id from sys.traces where path LIKE (@traceFilePath + '%'))"
-    $setScript += "SET @maxsize = `$(MaxTraceFileSize)"
-    $setScript += "SET @maxRolloverFiles = `$(MaxRollOverFileCount)"
+    $setScript += "SET @traceFilePath = N'`$(TraceFilePath)' "
+    $setScript += "SET @traceId = (Select Id from sys.traces where path LIKE (@traceFilePath + '%')) "
+    $setScript += "SET @maxsize = `$(MaxTraceFileSize) "
+    $setScript += "SET @maxRolloverFiles = `$(MaxRollOverFileCount) "
 
-    $setScript += "EXEC sp_trace_setstatus @traceid, @status = 2"
+    $setScript += "EXEC sp_trace_setstatus @traceid, @status = 2 "
 
-    $setScript += "EXECUTE master.dbo.sp_trace_create"
-    $setScript += "    @new_trace_id OUTPUT,"
-    $setScript += "    6,"
-    $setScript += "    @traceFilePath,"
-    $setScript += "    @maxsize,"
-    $setScript += "    NULL,"
-    $setScript += "    @maxRolloverFiles"
-    $setScript += "    GO"
+    $setScript += "EXECUTE master.dbo.sp_trace_create "
+    $setScript += "    @new_trace_id OUTPUT, "
+    $setScript += "    6, "
+    $setScript += "    @traceFilePath, "
+    $setScript += "    @maxsize, "
+    $setScript += "    NULL, "
+    $setScript += "    @maxRolloverFiles "
+    #$setScript += "    GO"
 
     return $setScript
 }
@@ -1013,7 +1013,7 @@ function Get-TraceFileLimitVariable
     param
     ()
 
-    $variable = @('TraceFilePath={0}','MaxRollOverFileCount={0}','MaxTraceFileSize={0}')
+    $variable = @('TraceFilePath={0}','MaxRollOverFileCount={1}','MaxTraceFileSize={2}')
 
     return $variable
 }
@@ -1133,11 +1133,12 @@ function Get-ShutdownOnErrorSetScript
     )
 
     $setScript += "DECLARE @new_trace_id INT; "
+    $setScript += "DECLARE @traceid INT; "
     $setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
     $setScript += "EXECUTE master.dbo.sp_trace_create "
     $setScript += "    @results = @new_trace_id OUTPUT, "
     $setScript += "    @options = 6, "
-    $setScript += "    @traceFilePath = N'`$(TraceFilePath)', "
+    $setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
 
     return $setScript
 }
@@ -1149,11 +1150,11 @@ function Get-ShutdownOnErrorSetScript
 function Get-ShutdownOnErrorVariable
 {
     [CmdletBinding()]
-    [OutputType([string[]])]
+    [OutputType([string])]
     param
     ()
 
-    $variable = @('TraceFilePath={0}')
+    $variable = 'TraceFilePath={0}'
 
     return $variable
 }
