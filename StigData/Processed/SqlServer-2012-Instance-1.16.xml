@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide" description="The Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_SQL_Server_2012_Instance_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Jan 2018" title="Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="7/24/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide" description="The Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_SQL_Server_2012_Instance_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Jan 2018" title="Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="7/26/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), VPN, or IPSEC tunnel.
@@ -4927,7 +4927,7 @@ on_failure_desc = SHUTDOWN SERVER INSTANCE
 SELECT name, on_failure, on_failure_desc
 FROM sys.server_audits
 </RawString>
-      <SetScript>DECLARE @new_trace_id INT; SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) EXECUTE master.dbo.sp_trace_create     @results = @new_trace_id OUTPUT,     @options = 6,     @traceFilePath = N'$(TraceFilePath)', </SetScript>
+      <SetScript>DECLARE @new_trace_id INT; DECLARE @traceid INT; SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) EXECUTE master.dbo.sp_trace_create     @results = @new_trace_id OUTPUT,     @options = 6,     @traceFilePath = N'$(TraceFilePath)'</SetScript>
       <TestScript>DECLARE @traceId int SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) IF (@traceId IS NULL) SELECT traceId FROM ::fn_trace_getinfo(NULL) ELSE Print NULL</TestScript>
       <Variable>TraceFilePath={0}</Variable>
       <VariableValue />
@@ -4950,9 +4950,9 @@ Select * from sys.traces. Determine the audit being used to fulfill the overall 
 
 The amount of space determined for logging by SQL Server is calculated by multiplying the maximum number of files by the maximum file size.
 If auditing will outgrow the space reserved for logging before being overwritten, this is a finding.</RawString>
-      <SetScript>DECLARE @new_trace_id INT;DECLARE @maxsize bigintDECLARE @maxRolloverFiles intDECLARE @traceId intDECLARE @traceFilePath nvarchar(500)SET @traceFilePath = N'$(TraceFilePath)'SET @traceId = (Select Id from sys.traces where path LIKE (@traceFilePath + '%'))SET @maxsize = $(MaxTraceFileSize)SET @maxRolloverFiles = $(MaxRollOverFileCount)EXEC sp_trace_setstatus @traceid, @status = 2EXECUTE master.dbo.sp_trace_create    @new_trace_id OUTPUT,    6,    @traceFilePath,    @maxsize,    NULL,    @maxRolloverFiles    GO</SetScript>
+      <SetScript>DECLARE @new_trace_id INT; DECLARE @maxsize bigint DECLARE @maxRolloverFiles int DECLARE @traceId int DECLARE @traceFilePath nvarchar(500) SET @traceFilePath = N'$(TraceFilePath)' SET @traceId = (Select Id from sys.traces where path LIKE (@traceFilePath + '%')) SET @maxsize = $(MaxTraceFileSize) SET @maxRolloverFiles = $(MaxRollOverFileCount) EXEC sp_trace_setstatus @traceid, @status = 2 EXECUTE master.dbo.sp_trace_create     @new_trace_id OUTPUT,     6,     @traceFilePath,     @maxsize,     NULL,     @maxRolloverFiles </SetScript>
       <TestScript>DECLARE @traceFilePath nvarchar(500) DECLARE @desiredFileSize bigint DECLARE @desiredMaxFiles int DECLARE @currentFileSize bigint DECLARE @currentMaxFiles int SET @traceFilePath = N'$(TraceFilePath)' SET @currentFileSize = (SELECT max_size from sys.traces where path LIKE (@traceFilePath + '%')) SET @currentMaxFiles = (SELECT max_files from sys.traces where path LIKE (@traceFilePath + '%')) IF (@currentFileSize != $(MaxTraceFileSize)) BEGIN PRINT 'file size not in desired state' SELECT max_size from sys.traces where path LIKE (@traceFilePath + '%') END IF (@currentMaxFiles != $(MaxRollOverFileCount)) BEGIN PRINT 'max files not in desired state'SELECT max_files from sys.traces where path LIKE (@traceFilePath + '%') END</TestScript>
-      <Variable>TraceFilePath={0} MaxRollOverFileCount={0} MaxTraceFileSize={0}</Variable>
+      <Variable>TraceFilePath={0} MaxRollOverFileCount={1} MaxTraceFileSize={2}</Variable>
       <VariableValue />
     </Rule>
     <Rule id="V-41027" severity="medium" conversionstatus="pass" title="SRG-APP-000101-DB-000044" dscresource="None">
@@ -5325,7 +5325,7 @@ Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'
 If SQL Server default 'sa' account name is in the 'Logins' list, this is a finding.</RawString>
       <SetScript>alter login sa with name = [$(saAccountName)]</SetScript>
       <TestScript>SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name = 'sa'</TestScript>
-      <Variable>'saAccountName={0}'</Variable>
+      <Variable>saAccountName={0}</Variable>
       <VariableValue />
     </Rule>
     <Rule id="V-41042" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="None">
