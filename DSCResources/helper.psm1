@@ -243,10 +243,52 @@ function Format-FireFoxPreference
     }
     return $result
 }
+
+<#
+    .SYNOPSIS
+        Formats a string to the standard needed by the SqlScriptQuery resource
+        to pass a variable to the Sql query.
+    .PARAMETER Variable
+        A string formated to leverage the -f operator.
+    .PARAMETER VariableValue
+        Specifies the value of the variable used in the SQL query.
+#>
+function Format-SqlScriptVariable
+{
+    [Cmdletbinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]
+        $Variable,
+
+        [Parameter(Mandatory=$true)]
+        [string]
+        $VariableValue
+    )
+
+    $counter = 0
+    $results = @()
+    $variableNames = ($Variable | Select-String -Pattern '\w+\=\{\d\}' -AllMatches).Matches.Value
+
+    foreach ($variableName in $variableNames)
+    {
+        $results += $variableName -replace '\{\d\}',"$(($VariableValue -split ',')[$counter])"
+        $counter++
+    }
+
+    return $results
+}
 #end region
 
 Export-ModuleMember -Function @(
-    'Get-ResourceTitle', 'Select-Rule', 'Get-UniqueString',
-    'Get-UniqueStringArray', 'Get-LogCustomField', 'Format-FireFoxPreference'
+    'Get-ResourceTitle'
+    'Select-Rule'
+    'Get-UniqueString'
+    'Get-UniqueStringArray'
+    'Get-LogCustomField'
+    'Format-FireFoxPreference'
+    'Format-SqlScriptVariable'
 )`
     -Variable 'resourcePath'

@@ -34,8 +34,8 @@ foreach ($instance in $ServerInstance)
                     GetQuery       = $rule.GetScript
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
-                    Variable       = @(($rule.Variable -f ($rule.VariableValue -split ',')) -split '\s')
-                }
+                    Variable       = Format-SqlScriptVariable -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
+                }   
                 continue
             }
 
