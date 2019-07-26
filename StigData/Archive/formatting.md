@@ -7,8 +7,8 @@
 
 ## Challenge
 
-* Since the STIGs are not written in a consistent format, and cannot be repeatedly parsed correctly
-* No easy way to fix Spelling \ Formatting issues
+* STIGs are not written in a consistent format and cannot be repeatedly parsed correctly.
+* No easy way to fix Spelling \ Formatting issues.
 
 ## Purposed solution
 

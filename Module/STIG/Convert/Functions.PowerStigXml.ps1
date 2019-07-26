@@ -842,13 +842,14 @@ function Get-BaseRulePropertyName
 
 <#
     .SYNOPSIS
-        Helper function to query all RuleTypeNames from the Module folder
-        and return a RuntimeDefinedParameterDictionary for dynamic parameter
-        use.
+        Returns a list of all PowerSTIG RuleTypes.
+        Used to dynamically provide Values to Get-HardCodedRuleLogFileEntry
+        RuleType parameter.
 #>
 function Get-DynamicParameterRuleTypeName
 {
     [CmdletBinding()]
+    [OutputType([System.Management.Automation.RuntimeDefinedParameterDictionary])]
     param()
 
     $parameterName = 'RuleType'
