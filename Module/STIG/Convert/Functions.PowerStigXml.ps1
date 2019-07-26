@@ -736,6 +736,29 @@ function Get-OrgSettingPropertyFromStigRule
     return $orgSettingProperties
 }
 
+<#
+    .SYNOPSIS
+        Creates HardCodedRule log file entry example
+    .DESCRIPTION
+        Queries a specific RuleType and generates an example log file entry for
+        HardCodedRules in PowerSTIG.
+    .PARAMETER RuleId
+        The STIG RuleId that should be included with the HardCodedRule log file
+        example.
+    .PARAMETER RuleType
+        The RuleType(s) that should be used when creating a HardCodedRule log file
+        entry.
+    .EXAMPLE
+        Get-HardCodedRuleLogFileEntry -RuleId V-1000 -RuleType WindowsFeatureRule
+
+        Outputs the following single HardCodedRule log entry example:
+        V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = $null; Name = $null}
+    .EXAMPLE
+        Get-HardCodedRuleLogFileEntry -RuleId V-1000 -RuleType WindowsFeatureRule, FileContentRule
+
+        Outputs the following split HardCodedRule log entry example:
+        V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = $null; Name = $null}<splitRule>HardCodedRule(FileContentRule)@{DscResource = 'ReplaceText'; Key = $null; Value = $null}
+#>
 function Get-HardCodedRuleLogFileEntry
 {
     [CmdletBinding()]
@@ -788,7 +811,7 @@ function Get-HardCodedRuleLogFileEntry
             }
             $keyValuePair = -join $keyValuePair
 
-            # First time through, do not add the skip rule delimiter, second and more will add the delimiter
+            # First time through, add the rule id, second and more will add the split delimiter
             if ($counter -eq 0)
             {
                 $logFileHardCodedRulePattern -f $logFileRuleId, $type, $ruleTypeDscResource, $keyValuePair, $open, $close

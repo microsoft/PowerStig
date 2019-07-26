@@ -195,7 +195,7 @@ try
             }
         )
 
-        Describe 'HardCoded Rule Match' {
+        Describe 'Hard Coded Rule Match' {
             It 'Should match and return true' {
                 $hardCodedRuleMatch = [HardCodedRuleConvert]::Match($testRuleListSingle[0].CheckContent)
                 $hardCodedRuleMatch | Should Be $true
@@ -203,10 +203,10 @@ try
         }
 
 
-        Describe 'Single HardCoded Rule' {
+        Describe 'Single Hard Coded Rule' {
             foreach ($testRule in $testRuleListSingle)
             {
-                Context "Single Rule: $($testRule.RuleType)" {
+                Context "Hard Coded Single Rule: $($testRule.RuleType)" {
                     # Create XML with injected CheckContent
                     $stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly
                     $convertedStigRule = [HardCodedRuleConvert]::new($stigRule).AsRule()
@@ -228,8 +228,8 @@ try
             }
         }
 
-        Describe 'Split HardCoded Rule' {
-            It 'Should should have more than one rule (split)' {
+        Describe 'Split Hard Coded Rule' {
+            It 'Should have more than one rule (split)' {
                 $hardCodedRuleHasMultipleRules = [HardCodedRuleConvert]::HasMultipleRules($testRuleListSplit[0].CheckContent)
                 $hardCodedRuleHasMultipleRules | Should Be $true
             }
@@ -238,8 +238,9 @@ try
             {
                 Context "Hard Coded Split Rules (CheckContent): $($splitRule.CheckContent)" {
                     <#
-                        Generate synthetic XML with a temp check content block.
-                        The function will error due to the splitRule being an xml tag, hense the temp check content.
+                        Generate XML with a temp check content block.
+                        The function will error due to the splitRule being an xml tag,
+                        hense the temp check content.
                     #>
                     $stigRule = Get-TestStigRule -CheckContent 'Temp Check Content' -ReturnGroupOnly
                     $stigRule.Rule.check.'check-content' = $splitRule.CheckContent
@@ -274,11 +275,7 @@ try
         }
     }
 }
-catch
-{
-
-}
 finally
 {
-
+    . $PSScriptRoot\.tests.footer.ps1
 }
