@@ -239,7 +239,7 @@ function ConvertTo-PowerStigXml
         {
             $xmlDocument.save( $fileList.Settings.FullName )
             # The save method does not add the required blank line to the file
-            Write-Output -InputObject `n | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
+            Write-Output -InputObject "`r`n" | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
             Write-Output "Converted Output: $($fileList.Settings.FullName)"
         }
         catch [System.Exception]
@@ -463,6 +463,7 @@ function New-OrganizationalSettingsXmlFile
     #########################################    ID object    ##########################################
 
     $xmlDocument.Save($Destination)
+    Write-Output -InputObject "`r`n" | Out-File -FilePath $Destination -Append -Encoding utf8 -NoNewline
 }
 
 <#
