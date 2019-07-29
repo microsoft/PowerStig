@@ -14,17 +14,25 @@ try
 
     foreach ($stig in $stigList)
     {
-        [xml] $powerstigXml = Get-Content -Path $stig.Path
+        $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
+        $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) |
+            Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
-        $skipRule = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $skipRule = Get-Random -InputObject $powerstigXml.SqlScriptQueryRule.Rule.id
         $skipRuleType = "DocumentRule"
-        $expectedSkipRuleTypeCount = $powerstigXml.DISASTIG.DocumentRule.ChildNodes.Count
+        $expectedSkipRuleTypeCount = $powerstigXml.DocumentRule.Rule.Count + $blankSkipRuleId.Count
 
-        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DISASTIG.DocumentRule.Rule.id -Count 2
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.DocumentRule.Rule.id -Count 2
         $skipRuleTypeMultiple = $null
-        $expectedSkipRuleTypeMultipleCount = 0
+        $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
-        $exception = Get-Random -InputObject $powerstigXml.DISASTIG.SqlScriptQueryRule.Rule.id
+        $getRandomExceptionRuleParams = @{
+            RuleType       = 'SqlScriptQueryRule'
+            PowerStigXml   = $powerstigXml
+            ParameterValue = 'TestScript'
+        }
+        $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = $null
 
         . "$PSScriptRoot\Common.integration.ps1"

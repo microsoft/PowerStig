@@ -25,7 +25,7 @@ Configuration IisSite_config
         $SkipRuleType,
 
         [Parameter()]
-        [string[]]
+        [hashtable]
         $Exception,
 
         [Parameter()]
@@ -44,6 +44,7 @@ Configuration IisSite_config
     )
 
     Import-DscResource -ModuleName PowerStig
+
     Node localhost
     {
         & ([scriptblock]::Create("
@@ -62,7 +63,9 @@ Configuration IisSite_config
                 })
                 $(if ($null -ne $Exception)
                 {
-                    "Exception = @{$( ($Exception | ForEach-Object {"'$PSItem' = '1234567'"}) -join "`n" )}"
+                    "Exception = @{`n$($Exception.Keys |
+                        ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
+                            $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
                 })
                 $(if ($null -ne $SkipRule)
                 {

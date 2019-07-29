@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="5/21/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="7/19/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, Request Filtering and "Handler Mappings".
@@ -1095,8 +1095,20 @@ Cookies associate session information with client information for the duration o
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-Verify the "cookieless" is set to "UseCookies".</RawString>
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+Open the IIS 8.5 Manager.
+Click the site name.
+Under the "ASP.NET" section, select "Session State".
+Under "Cookie Settings", verify the "Use Cookies" mode is selected from the "Mode:" drop-down list.
+If the "Use Cookies" mode is selected, this is not a finding.
+
+Alternative method:
+Click the site name.
+Select "Configuration Editor" under the "Management" section.
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+Verify the "cookieless" is set to "UseCookies".
+If the "cookieless" is not set to "UseCookies", this is a finding.
+Note: If IIS 8.5 server/site is used only for system-to-system maintenance, does not allow users to connect to interface, and is restricted to specific system IPs, this is Not Applicable.</RawString>
       <Value>UseCookies</Value>
     </Rule>
     <Rule id="V-76805" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000086" dscresource="xWebConfigKeyValue">
@@ -1461,9 +1473,9 @@ Verify the "compressionEnabled" is set to "False".</RawString>
 
 WebDAV is not widely used and has serious security concerns because it may allow clients to modify unauthorized files on the web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>Web-DAV-Publishing</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>Web-DAV-Publishing</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:

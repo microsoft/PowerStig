@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="5/3/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 25 Jan 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="7/19/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -1055,13 +1055,36 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
     </Rule>
   </RegistryRule>
   <WebConfigurationPropertyRule dscresourcemodule="xWebAdministration">
-    <Rule id="V-76727.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="xWebConfigKeyValue">
+    <Rule id="V-76725" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000011" dscresource="xWebConfigKeyValue">
+      <ConfigSection>/system.web/sessionState</ConfigSection>
+      <Description>&lt;VulnDiscussion&gt;Cookies are used to exchange data between the web server and the client. Cookies, such as a session cookie, may contain session information and user credentials used to maintain a persistent connection between the user and the hosted application since HTTP/HTTPS is a stateless protocol.
+
+Cookies associate session information with client information for the duration of a user’s connection to a website. Using cookies is a more efficient way to track session state than any of the methods that do not use cookies because cookies do not require any redirection.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>cookieless</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Open the IIS 8.5 Manager.
+
+Click the IIS 8.5 web server name.
+
+Under "ASP.Net", double-click on the "Session State" icon.
+
+Under "Cookie Settings", verify the "Mode" has "Use Cookies" selected from the drop-down list.
+
+If the "Cookie Settings" "Mode" is not set to "Use Cookies", this is a finding.
+</RawString>
+      <Value>UseCookies</Value>
+    </Rule>
+    <Rule id="V-76727.a" severity="medium" conversionstatus="pass" title="SRG-APP-000223-WSR-000145" dscresource="None">
       <ConfigSection>/system.web/sessionState</ConfigSection>
       <Description>&lt;VulnDiscussion&gt;ASP.NET provides a session state, which is available as the HttpSessionState class, as a method of storing session-specific information that is visible only within the session. ASP.NET session state identifies requests from the same browser during a limited time window as a session, and provides the ability to persist variable values for the duration of that session.
 
 Cookies associate session information with client information for the duration of a user’s connection to a website. Using cookies is a more efficient way to track session state than any of the methods that do not use cookies because cookies do not require any redirection.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
+      <DuplicateOf>V-76725</DuplicateOf>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>cookieless</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1219,9 +1242,9 @@ Verify the "Allow unspecified ISAPI modules" check box is not checked</RawString
 
 WebDAV is not widely used and has serious security concerns because it may allow clients to modify unauthorized files on the web server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>Web-DAV-Publishing</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>Web-DAV-Publishing</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 8.5 Manager.

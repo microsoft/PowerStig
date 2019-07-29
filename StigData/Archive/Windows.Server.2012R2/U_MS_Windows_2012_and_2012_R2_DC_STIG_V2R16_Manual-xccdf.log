@@ -6,3 +6,4 @@ V-2377::0 or greater than 600 minutes::"0" or greater than "600" minutes
 V-2378::0 or greater than 10 hours::"0" or greater than "10" hours
 V-2379::is greater than 7 days::is greater than "7" days
 V-2380::is greater than 5 minutes::is greater than "5" minutes
+V-1121::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Name = 'Web-Ftp-Server'; Ensure = 'Absent'}
