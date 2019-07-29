@@ -90,24 +90,28 @@ try
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2012'
                     'TechnologyRole' = 'Database'
+                    'Path' = 'Database_STIG'
                 },
                 @{
                     'id' = 'Microsoft_SQL_Server_2012_Database_Instance_Security_Technical_Implementation_Guide'
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2012'
                     'TechnologyRole' = 'Instance'
+                    'Path' = 'Instance_STIG'
                 },
                 @{
                     'id' = 'Microsoft_SQL_Server_2016_Database__Security_Technical_Implementation_Guide_NewBenchmark'
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2016'
                     'TechnologyRole' = 'Database'
+                    'Path' = 'Database_STIG'
                 },
                 @{
                     'id' = 'Microsoft_SQL_Server_2016_Database_Instance_Security_Technical_Implementation_Guide'
                     'Technology' = 'SQLServer'
                     'TechnologyVersion' = '2016'
                     'TechnologyRole' = 'Instance'
+                    'Path' = 'Instance_STIG'
                 }
             )
             'Firewall' = @(
@@ -228,6 +232,11 @@ try
                 foreach ($sample in $sampleString.value)
                 {
                     Context "$($sample.Id)" {
+                        # The metadata in the SQL STIG doesn't specifiy database or instance so we get that from the file name of the xccdf.
+                        if ($sampleString.Name -eq 'SQLServer')
+                        {
+                            $script:path = $sample.Path
+                        }
                         $benchmarkId = Split-BenchmarkId -Id $sample.Id
                         It "Should return $($sample.Technology) as the Technology property" {
                             $benchmarkId.Technology | Should Be $sample.Technology
@@ -235,7 +244,9 @@ try
                         It "Should return $($sample.TechnologyVersion) as the TechnologyVersion property" {
                             $benchmarkId.TechnologyVersion | Should Be $sample.TechnologyVersion
                         }
+                        
                         It "Should return $($sample.TechnologyRole) as the TechnologyRole property" {
+
                             $benchmarkId.TechnologyRole | Should Be $sample.TechnologyRole
                         }
                     }
