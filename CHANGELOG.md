@@ -8,6 +8,7 @@
 * Added support for Windows Defender, Version 1, Release 5 [#393](https://github.com/microsoft/PowerStig/issues/393)
 * Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
 * Added support for Server 2016 STIG, Version 1, Release 8 [#418](https://github.com/Microsoft/PowerStig/issues/418)
+* Update PowerSTIG to enforce additional rules in the SQL Server 2012 STIG [#438](https://github.com/microsoft/PowerStig/issues/438)
 
 ## 3.2.0
 

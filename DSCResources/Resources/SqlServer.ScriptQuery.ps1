@@ -17,7 +17,7 @@ foreach ($instance in $ServerInstance)
                     GetQuery       = $rule.GetScript
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
-                    Variable       = "Database=$db"
+                    Variable       = Format-SqlScriptVariable -Database $db -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
                 }
             }
         }

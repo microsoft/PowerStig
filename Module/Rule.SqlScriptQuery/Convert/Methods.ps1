@@ -1382,7 +1382,7 @@ function Get-ChangeDatabaseOwnerTestScript
         $CheckContent
     )
 
-    $testScript = "SELECT suser_sname(owner_sid) AS 'Owner' FROM sys.databases WHERE name = `$(Database) and suser_sname(owner_sid) != `$(DatabaseOwner);"
+    $testScript = "SELECT suser_sname(owner_sid) AS 'Owner' FROM sys.databases WHERE name = N'`$(Database)' and suser_sname(owner_sid) != N'`$(DatabaseOwner)';"
 
     return $testScript
 }
@@ -1435,7 +1435,7 @@ function Get-ChangeDatabaseOwnerVariable
     param
     ()
 
-    $variable = @('Database={0}','DatabaseOWner={0}')
+    $variable = @('DatabaseOwner={0}')
 
     return $variable
 }

@@ -62,7 +62,6 @@ foreach ( $rule in $rules )
                 Path = $rule.Path
                 Force = [bool]$rule.Force
                 AccessControlList = $(
-
                     foreach ($acentry in $rule.AccessControlEntry.Entry)
                     {
                         NTFSAccessControlList
@@ -93,6 +92,59 @@ foreach ( $rule in $rules )
                                         }
                                     )
                                     FileSystemRights = $acentry.Rights.Split(',')
+                                    Ensure = 'Present'
+                                }
+                            )
+                        }
+                    }
+                )
+            }
+            break
+        }
+        'FileSystemAuditRuleEntry'
+        {
+            FileSystemAuditRuleEntry (Get-ResourceTitle -Rule $rule)
+            {
+                Path          = $rule.Path
+                Force         = [bool]$rule.Force
+                AuditRuleList = @(
+                    foreach ($acentry in $rule.AccessControlEntry.Entry)
+                    {
+                        FileSystemAuditRuleList
+                        {
+                            Principal = $acentry.Principal
+                            ForcePrincipal = $false
+                            AuditRuleEntry = @(
+                                FileSystemAuditRule
+                                {
+                                    AuditFlags = 'Success'
+                                    FileSystemRights = $acentry.Rights.Split(',')
+                                    Inheritance = $(
+                                        if (-not ([string]::IsNullOrEmpty($acentry.Inheritance)))
+                                        {
+                                            $acentry.Inheritance
+                                        }
+                                        else
+                                        {
+                                            'This folder only'
+                                        }
+                                    )
+                                    Ensure = 'Present'
+                                }
+                                FileSystemAuditRule
+                                {
+                                    AuditFlags = 'Failure'
+                                    FileSystemRights = $acentry.Rights.Split(',')
+                                    Inheritance = $(
+                                        if (-not ([string]::IsNullOrEmpty($acentry.Inheritance)))
+                                        {
+                                            $acentry.Inheritance
+                                        }
+                                        else
+                                        {
+                                            'This folder only'
+                                        }
+                                    )
                                     Ensure = 'Present'
                                 }
                             )

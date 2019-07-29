@@ -598,8 +598,13 @@ function Split-BenchmarkId
     {
         {$PSItem -match "SQL_Server"}
         {
+            # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
+            $split = $path -split '_'
+            $stigIndex = $split.IndexOf('STIG')
+            $sqlRole = $split[$stigIndex -1]
+
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), 'Instance'
+            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}

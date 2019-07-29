@@ -252,6 +252,8 @@ function Format-FireFoxPreference
         A string formated to leverage the -f operator.
     .PARAMETER VariableValue
         Specifies the value of the variable used in the SQL query.
+    .PARAMETER Database
+        Specifies the name of the database.
 #>
 function Format-SqlScriptVariable
 {
@@ -259,23 +261,37 @@ function Format-SqlScriptVariable
     [OutputType([string[]])]
     param
     (
-        [Parameter(Mandatory=$true)]
+        [Parameter()]
+        [AllowEmptyString()]
         [string]
         $Variable,
 
-        [Parameter(Mandatory=$true)]
+        [Parameter()]
+        [AllowEmptyString()]
         [string]
-        $VariableValue
+        $VariableValue,
+
+        [Parameter()]
+        [string]
+        $Database
     )
 
     $counter = 0
     $results = @()
-    $variableNames = ($Variable | Select-String -Pattern '\w+\=\{\d\}' -AllMatches).Matches.Value
-
-    foreach ($variableName in $variableNames)
+    if ([string]::IsNullOrWhiteSpace($Variable) -eq $false)
     {
-        $results += $variableName -replace '\{\d\}',"$(($VariableValue -split ',')[$counter])"
-        $counter++
+        $variableNames = ($Variable | Select-String -Pattern '\w+\=\{\d\}' -AllMatches).Matches.Value
+
+        foreach ($variableName in $variableNames)
+        {
+            $results += $variableName -replace '\{\d\}',"$(($VariableValue -split ',')[$counter])"
+            $counter++
+        }
+    }
+
+    if ([string]::IsNullOrWhiteSpace($Database) -eq $false)
+    {
+        $results += "Database=$Database"
     }
 
     return $results
