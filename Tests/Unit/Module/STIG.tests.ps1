@@ -233,11 +233,7 @@ try
                 {
                     Context "$($sample.Id)" {
                         # The metadata in the SQL STIG doesn't specifiy database or instance so we get that from the file name of the xccdf.
-                        if ($sampleString.Name -eq 'SQLServer')
-                        {
-                            $script:path = $sample.Path
-                        }
-                        $benchmarkId = Split-BenchmarkId -Id $sample.Id
+                        $benchmarkId = Split-BenchmarkId -Id $sample.Id -FilePath $sample.Path
                         It "Should return $($sample.Technology) as the Technology property" {
                             $benchmarkId.Technology | Should Be $sample.Technology
                         }
