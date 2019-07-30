@@ -485,7 +485,7 @@ function Get-AuditSetScript
 }
 
 <#
-    .SYNOPSIS Get-AuditEvents
+    .SYNOPSIS
         Returns a string of the audit events found in CheckContent
 
     .DESCRIPTION
@@ -1620,7 +1620,8 @@ function Get-SQLQuery
     }
 
     # Was a script parsed but we reached the end of CheckContent before we closed it out?
-    if ($scriptInitiated -and $scriptTerminated -eq $false){
+    if ($scriptInitiated -and $scriptTerminated -eq $false)
+    {
         $query = $collection -join " "
         $queries += $query
     }

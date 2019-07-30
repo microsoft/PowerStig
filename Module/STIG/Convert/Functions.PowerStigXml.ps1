@@ -237,7 +237,7 @@ function ConvertTo-PowerStigXml
 
         try
         {
-            $xmlDocument.save( $fileList.Settings.FullName )
+            $xmlDocument.save($fileList.Settings.FullName)
             # The save method does not add the required blank line to the file
             Write-Output -InputObject "`r`n" | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
             Write-Output "Converted Output: $($fileList.Settings.FullName)"
@@ -515,7 +515,7 @@ function Get-PowerStigFileList
         $Destination
     )
 
-    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id
+    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
 
     $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
 

@@ -161,7 +161,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
 
             It "Should have $expectedSkipRuleTypeMultipleCount Skipped settings" {
-                $dscMof.count | Should -Be $expectedSkipRuleTypeMultipleCount
+                (Measure-Object -InputObject $dscMof).Count  | Should -Be $expectedSkipRuleTypeMultipleCount
             }
         }
 

@@ -487,8 +487,8 @@ function ConvertTo-AccessControlEntry
 
 <#
     .SYNOPSIS
-        Converts the checkconent from the STIG rule to a hashtaale with
-        the following keys: AuditFlags, SystemRights, and Inheritence
+        Converts the checkconent from the STIG rule to a hashtable with
+        the following keys: AuditFlags, SystemRights, and Inheritance
 
 #>
 function ConvertTo-FileSystemAuditRule
@@ -502,13 +502,12 @@ function ConvertTo-FileSystemAuditRule
         $CheckContent
     )
 
-    # We are goning to set this to pass and if any values are null change it fail
+    # We are going to set this to pass and if any values are null change it fail
     $this.ConversionStatus = 'pass'
 
-    #$fileRights = $CheckContent | Where-Object -FilterScript {$PSItem -in $auditFileSystemRights.keys}
     $fileRights = Get-FileSystemAccessValue -CheckContent $CheckContent
     $principal = ($CheckContent | Select-String -Pattern '(?<=select\sthe\s").*(?="\srow)|(?<=Principal:).*(?=$)').Matches.Value
-    $inheritance = Get-FileSystemInheritence -CheckContent $CheckContent
+    $inheritance = Get-FileSystemInheritance -CheckContent $CheckContent
 
     $result = [hashtable]@{
         Principal   = $principal.trim()
@@ -752,9 +751,9 @@ function Join-CheckContent
 
 <#
     .SYNOPSIS
-        Retrieves the file system inheritence setting from the CheckContent
+        Retrieves the file system inheritance setting from the CheckContent
 #>
-function Get-FileSystemInheritence
+function Get-FileSystemInheritance
 {
     [CmdletBinding()]
     [OutputType([System.String])]

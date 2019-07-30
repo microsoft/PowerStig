@@ -1,6 +1,6 @@
-[String] $script:moduleRoot = Split-Path -Parent ( Split-Path -Parent ( Split-Path -Parent $PSScriptRoot ) )
+[String] $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 
-Import-Module -Name ( Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1' )
+Import-Module -Name (Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1')
 
 Describe 'Variables' {
 
