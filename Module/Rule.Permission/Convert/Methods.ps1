@@ -577,20 +577,22 @@ function Split-MultiplePermissionRule
     $result = @()
     [System.Collections.ArrayList]$contentRanges = @()
     # Test for multiple paths at HKLMRoot
-    if ( $checkContent -match $regularExpression.hklmRootKeys )
+    if ($checkContent -match $regularExpression.hklmRootKeys)
     {
-        $hklmSecurityMatch = $checkContent | Select-String -Pattern $regularExpression.hklmSecurity
-        $hklmSoftwareMatch = $checkContent | Select-String -Pattern $regularExpression.hklmSoftware
-        $hklmSystemMatch   = $checkContent | Select-String -Pattern $regularExpression.hklmSystem
+        $hklmSecurityMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSecurity
+        $hklmSoftwareMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSoftware
+        $hklmSystemMatch    = $checkContent | Select-String -Pattern $regularExpression.hklmSystem
+        $lastPermissonMatch = $checkContent | Select-String -Pattern "\s-[\s\S]*?\s-" | Select-Object -Last 1
 
         [void]$contentRanges.Add(($hklmSecurityMatch.LineNumber - 1)..($hklmSoftwareMatch.LineNumber - 2))
         [void]$contentRanges.Add(($hklmSoftwareMatch.LineNumber - 1)..($hklmSystemMatch.LineNumber - 2))
-        [void]$contentRanges.Add(($hklmSystemMatch.LineNumber - 1)..($checkContent.Length - 4))
+        [void]$contentRanges.Add(($hklmSystemMatch.LineNumber - 1)..($lastPermissonMatch.LineNumber - 1))
 
         $headerLineRange = 0..($hklmSecurityMatch.LineNumber - 2)
-        $footerLineRange = ($checkContent.Length - 4)..($checkContent.Length + 1)
+        $footerLineRange = ($lastPermissonMatch.LineNumber)..($checkContent.Length - 1)
     }
-    elseIf ( $checkContent -match $regularExpression.rootOfC -and
+    elseIf (
+        $checkContent -match $regularExpression.rootOfC -and
         $checkContent -match $regularExpression.programFilesWin10 -and
         $checkContent -match $regularExpression.winDir
     )
@@ -671,7 +673,7 @@ function Join-CheckContent
 
     $stringBuilder = [System.Text.StringBuilder]::new()
 
-    foreach ( $line in $Header)
+    foreach ($line in $Header)
     {
         [void]$stringBuilder.AppendLine($line)
     }
