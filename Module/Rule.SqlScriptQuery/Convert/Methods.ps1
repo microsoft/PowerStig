@@ -1,9 +1,8 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-#region Method Functions
 #region Trace Functions
 <#
-    .SYNOPSIS Get-TraceGetScript
+    .SYNOPSIS
         Returns a query that gets Trace ID's
 
     .DESCRIPTION
@@ -65,7 +64,7 @@ function Get-TraceTestScript
 }
 
 <#
-    .SYNOPSIS Get-TraceSetScript
+    .SYNOPSIS
         Returns a SQL Statement that removes a DB
 
     .DESCRIPTION
@@ -230,7 +229,7 @@ function Get-EventIdData
 
 #region Permission Functions
 <#
-    .SYNOPSIS Get-PermissionGetScript
+    .SYNOPSIS
         Returns a query that will get a list of users who have access to a certain SQL Permission
 
     .DESCRIPTION
@@ -266,7 +265,7 @@ function Get-PermissionGetScript
 }
 
 <#
-    .SYNOPSIS Get-PermissionTestScript
+    .SYNOPSIS
         Returns a query that will get a list of users who have access to a certain SQL Permission
 
     .DESCRIPTION
@@ -435,7 +434,7 @@ function Get-AuditTestScript
 }
 
 <#
-    .SYNOPSIS Get-AuditSetScript
+    .SYNOPSIS
         Returns an SQL Statemnt that will create an audit
 
     .DESCRIPTION
@@ -484,8 +483,9 @@ function Get-AuditSetScript
 
     return $sqlScript
 }
+
 <#
-    .SYNOPSIS Get-AuditEvents
+    .SYNOPSIS
         Returns a string of the audit events found in CheckContent
 
     .DESCRIPTION
@@ -526,7 +526,7 @@ function Get-AuditEvents
 
 #region PlainSQL Functions
 <#
-    .SYNOPSIS Get-PlainSQLGetScript
+    .SYNOPSIS
         Returns a plain SQL query from $CheckContent
 
     .DESCRIPTION
@@ -555,8 +555,8 @@ function Get-PlainSQLGetScript
 }
 
 <#
-    .SYNOPSIS Get-PlainSQLTestScript
-        Returns a plain SQL query
+    .SYNOPSIS
+        Returns a T-SQL query
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
@@ -584,8 +584,8 @@ function Get-PlainSQLTestScript
 }
 
 <#
-    .SYNOPSIS Get-PlainSQLSetScript
-        Returns a plain SQL query
+    .SYNOPSIS
+        Returns a T-SQL query
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
@@ -623,8 +623,8 @@ function Get-PlainSQLSetScript
 
 #region SysAdminAccount Functions
 <#
-    .SYNOPSIS Get-SysAdminAccountGetScript
-        Returns a plain SQL query from $CheckContent
+    .SYNOPSIS
+        Returns a T-SQL query from $CheckContent
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
@@ -652,8 +652,8 @@ function Get-SysAdminAccountGetScript
 }
 
 <#
-    .SYNOPSIS Get-SysAdminAccountTestScript
-        Returns a plain SQL query
+    .SYNOPSIS
+        Returns a T-SQL query
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
@@ -675,15 +675,14 @@ function Get-SysAdminAccountTestScript
         $CheckContent
     )
 
-    #$return = Get-SQLQuery -CheckContent $CheckContent
     $return = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
 
     return $return
 }
 
 <#
-    .SYNOPSIS Get-SysAdminAccountSetScript
-        Returns a plain SQL query
+    .SYNOPSIS
+        Returns a T-SQL query
 
     .DESCRIPTION
         The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
@@ -724,9 +723,727 @@ function Get-SysAdminAccountSetScript
 }
 #endregion SysAdminAccount Functions
 
+#region SaAccountRename Functions
+<#
+    .SYNOPSIS
+        Returns a T-SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-SaAccountRenameGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $return = "SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name not like '%##%'"
+
+    return $return
+}
+
+<#
+    .SYNOPSIS
+        Returns a T-SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-SaAccountRenameTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $return = "SELECT name FROM sys.server_principals WHERE TYPE = 'S' and name = 'sa'"
+
+    return $return
+}
+
+<#
+    .SYNOPSIS
+        Returns a T-SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-SaAccountRenameSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $return = 'alter login sa with name = [$(saAccountName)]'
+
+    return $return
+}
+
+<#
+    .SYNOPSIS
+        Return the string used to translate varaibles into the SqlQueryScript
+#>
+function Get-SaAccountRenameVariable
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    ()
+
+    $return = "saAccountName={0}"
+
+    return $return
+}
+
+#endregion SaAccountRename Functions
+
+#region trace file limits
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-TraceFileLimitGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+
+    return $getScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-TraceFileLimitTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $testScript = "DECLARE @traceFilePath nvarchar(500) "
+    $testScript += "DECLARE @desiredFileSize bigint "
+    $testScript += "DECLARE @desiredMaxFiles int "
+    $testScript += "DECLARE @currentFileSize bigint "
+    $testScript += "DECLARE @currentMaxFiles int "
+    $testScript += "SET @traceFilePath = N'`$(TraceFilePath)' "
+    $testScript += "SET @currentFileSize = (SELECT max_size from sys.traces where path LIKE (@traceFilePath + '%')) "
+    $testScript += "SET @currentMaxFiles = (SELECT max_files from sys.traces where path LIKE (@traceFilePath + '%')) "
+    $testScript += "IF (@currentFileSize != `$(MaxTraceFileSize)) "
+    $testScript += "BEGIN "
+    $testScript += "PRINT 'file size not in desired state' "
+    $testScript += "SELECT max_size from sys.traces where path LIKE (@traceFilePath + '%') "
+    $testScript += "END "
+    $testScript += "IF (@currentMaxFiles != `$(MaxRollOverFileCount)) "
+    $testScript += "BEGIN "
+    $testScript += "PRINT 'max files not in desired state'"
+    $testScript += "SELECT max_files from sys.traces where path LIKE (@traceFilePath + '%') "
+    $testScript += "END"
+
+    return $testScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-TraceFileLimitSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript = "DECLARE @new_trace_id INT; "
+    $setScript += "DECLARE @maxsize bigint "
+    $setScript += "DECLARE @maxRolloverFiles int "
+    $setScript += "DECLARE @traceId int "
+    $setScript += "DECLARE @traceFilePath nvarchar(500) "
+
+    $setScript += "SET @traceFilePath = N'`$(TraceFilePath)' "
+    $setScript += "SET @traceId = (Select Id from sys.traces where path LIKE (@traceFilePath + '%')) "
+    $setScript += "SET @maxsize = `$(MaxTraceFileSize) "
+    $setScript += "SET @maxRolloverFiles = `$(MaxRollOverFileCount) "
+
+    $setScript += "EXEC sp_trace_setstatus @traceid, @status = 2 "
+
+    $setScript += "EXECUTE master.dbo.sp_trace_create "
+    $setScript += "    @new_trace_id OUTPUT, "
+    $setScript += "    6, "
+    $setScript += "    @traceFilePath, "
+    $setScript += "    @maxsize, "
+    $setScript += "    NULL, "
+    $setScript += "    @maxRolloverFiles "
+    #$setScript += "    GO"
+
+    return $setScript
+}
+
+<#
+    .SYNOPSIS
+        Return the string used to translate varaibles into the SqlQueryScript
+#>
+function Get-TraceFileLimitVariable
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    ()
+
+    $variable = @('TraceFilePath={0}','MaxRollOverFileCount={1}','MaxTraceFileSize={2}')
+
+    return $variable
+}
+
+#endregion trace file limits
+
+#region shutdown on error
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ShutdownOnErrorGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $getScript = "SELECT * FROM ::fn_trace_getinfo(NULL)"
+
+    return $getScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ShutdownOnErrorTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript =  "DECLARE @traceId int "
+    $setScript += "SET @traceId = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+    $setScript += "IF (@traceId IS NULL) "
+    $setScript += "SELECT traceId FROM ::fn_trace_getinfo(NULL) "
+    $setScript += "ELSE "
+    $setScript += "Print NULL"
+
+    return $setScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ShutdownOnErrorSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript += "DECLARE @new_trace_id INT; "
+    $setScript += "DECLARE @traceid INT; "
+    $setScript += "SET @traceId  = (SELECT traceId FROM ::fn_trace_getinfo(NULL) WHERE Value = 6) "
+    $setScript += "EXECUTE master.dbo.sp_trace_create "
+    $setScript += "    @results = @new_trace_id OUTPUT, "
+    $setScript += "    @options = 6, "
+    $setScript += "    @traceFilePath = N'`$(TraceFilePath)'"
+
+    return $setScript
+}
+
+<#
+    .SYNOPSIS
+        Return the string used to translate varaibles into the SqlQueryScript
+#>
+function Get-ShutdownOnErrorVariable
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    ()
+
+    $variable = 'TraceFilePath={0}'
+
+    return $variable
+}
+#endregion shutdown on error
+
+#region view any database
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ViewAnyDatabaseGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $getScript = "SELECT who.name AS [Principal Name], "
+    $getScript += "who.type_desc AS [Principal Type], "
+    $getScript += "who.is_disabled AS [Principal Is Disabled], "
+    $getScript += "what.state_desc AS [Permission State], "
+    $getScript += "what.permission_name AS [Permission Name] "
+    $getScript += "FROM sys.server_permissions what "
+    $getScript += "INNER JOIN sys.server_principals who "
+    $getScript += "ON who.principal_id = what.grantee_principal_id "
+    $getScript += "WHERE what.permission_name = 'View any database' "
+    $getScript += "AND who.type_desc = 'SERVER_ROLE' ORDER BY who.name"
+
+    return $getScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ViewAnyDatabaseTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $testScript = "SELECT who.name AS [Principal Name], "
+    $testScript += "who.type_desc AS [Principal Type], "
+    $testScript += "who.is_disabled AS [Principal Is Disabled], "
+    $testScript += "what.state_desc AS [Permission State], "
+    $testScript += "what.permission_name AS [Permission Name] "
+    $testScript += "FROM "
+    $testScript += "sys.server_permissions what "
+    $testScript += "INNER JOIN sys.server_principals who "
+    $testScript += "ON who.principal_id = what.grantee_principal_id "
+    $testScript += "WHERE what.permission_name = 'View any database' "
+    $testScript += "AND who.type_desc = 'SERVER_ROLE' "
+    $testScript += "AND who.name != '`$(ViewAnyDbUser)' "
+    $testScript += "ORDER BY who.name"
+
+    return $testScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ViewAnyDatabaseSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript = "REVOKE External access assembly TO '`$(ViewAnyDbUser)'"
+
+    return $setScript
+
+}
+
+
+<#
+    .SYNOPSIS
+        Return the string used to translate varaibles into the SqlQueryScript
+#>
+function Get-ViewAnyDatabaseVariable
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    ()
+
+    $variable = @('ViewAnyDbUser={0}')
+
+    return $variable
+}
+#endregion view any database
+
+#region change database owner
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ChangeDatabaseOwnerGetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $getscript = "select suser_sname(owner_sid) AS 'Owner' from sys.databases where name = `$(Database)"
+
+    return $getScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ChangeDatabaseOwnerTestScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $testScript = "SELECT suser_sname(owner_sid) AS 'Owner' FROM sys.databases WHERE name = N'`$(Database)' and suser_sname(owner_sid) != N'`$(DatabaseOwner)';"
+
+    return $testScript
+}
+
+<#
+    .SYNOPSIS
+        Returns a plain SQL query
+
+    .DESCRIPTION
+        The SqlScriptResource uses a script resource format with GetScript, TestScript and SetScript.
+        The SQL STIG contains queries that will be placed in each of those blocks.
+        This function returns the query that will be used in the SetScript block
+
+    .PARAMETER FixText
+        String that was obtained from the 'Fix' element of the base STIG Rule
+
+    .PARAMETER CheckContent
+        Arbitrary in this function but is needed in Get-TraceSetScript
+#>
+function Get-ChangeDatabaseOwnerSetScript
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $FixText,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $setScript = "ALTER AUTHORIZATION ON DATABASE::`$(Database) to `$(DatabaseOwner)"
+
+    return $setScript
+}
+
+<#
+    .SYNOPSIS
+        Return the string used to translate varaibles into the SqlQueryScript
+#>
+function Get-ChangeDatabaseOwnerVariable
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    ()
+
+    $variable = @('DatabaseOwner={0}')
+
+    return $variable
+}
+#endregion change database owner
+
 #region Helper Functions
 <#
-    .SYNOPSIS Get-Query
+    .SYNOPSIS
         Returns all queries found withing the 'CheckContent'
 
     .DESCRIPTION
@@ -793,7 +1510,7 @@ function Get-Query
 }
 
 <#
-    .SYNOPSIS Get-SQLQuery
+    .SYNOPSIS
         Returns all Queries found withing the 'CheckContent'
         This is an updated version of an older, simpler function called Get-Query, written for SQL Server 2012 STIGs.
 
@@ -903,7 +1620,8 @@ function Get-SQLQuery
     }
 
     # Was a script parsed but we reached the end of CheckContent before we closed it out?
-    if ($scriptInitiated -and $scriptTerminated -eq $false){
+    if ($scriptInitiated -and $scriptTerminated -eq $false)
+    {
         $query = $collection -join " "
         $queries += $query
     }
@@ -911,6 +1629,17 @@ function Get-SQLQuery
     return $queries
 }
 
+<#
+    .SYNOPSIS
+        Labels a rule as a specific type to retrieve the proper T-Sql script used to enforce the STIG rule.
+
+    .DESCRIPTION
+        The SQL STIG is enforced with T-SQL scripts.  This functions labels a rule as a specific type
+        so the proper T-SQL scripts can dynamically be retrieved.
+
+    .PARAMETER CheckContent
+        This is the 'CheckContent' derived from the STIG raw string and holds the query that will be returned
+#>
 function Get-SqlRuleType
 {
     [CmdletBinding()]
@@ -956,12 +1685,47 @@ function Get-SqlRuleType
         {
             $ruleType = 'Audit'
         }
+        # sa account rename
+        {
+            $PSItem -Match "'sa' account name has been changed"
+        }
+        {
+            $ruleType = 'SaAccountRename'
+        }
         # sa account rules
         {
             $PSItem -Match '(\s|\[)principal_id(\s*|\]\s*)\=\s*1'
         }
         {
             $ruleType = 'SysAdminAccount'
+        }
+        # trace file limits
+        {
+            $PSItem -Match 'SQL Server audit setting on the maximum number of files of the trace'
+        }
+        {
+            $ruleType = 'TraceFileLimit'
+        }
+        # shutdown on error
+        {
+            $PSItem -match 'SHUTDOWN_ON_ERROR'
+        }
+        {
+            $ruleType = 'ShutdownOnError'
+        }
+        # view any database
+        {
+            $PSItem -match "Obtain the list of roles that are authorized for the SQL Server 'View any database'"
+        }
+        {
+            $ruleType = 'ViewAnyDatabase'
+        }
+        # db owner
+        {
+            $PSItem -match 'SQL Server accounts authorized to own database'
+        }
+        {
+            $ruleType = 'ChangeDatabaseOwner'
         }
         <#
             Default parser if not caught before now - if we end up here we haven't trapped for the rule sub-type.
@@ -975,5 +1739,30 @@ function Get-SqlRuleType
 
     return $ruleType
 }
+
+<#
+    .SYNOPSIS
+        Determines if a SQL rule requires a variable to 
+#>
+function Test-VariableRequired
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Rule
+    )
+
+    $requiresVariableList = @(
+        'V-41037'
+        'V-41024'
+        'V-41022'
+        'V-41251'
+        'V-41407'
+    )
+
+    return ($Rule -in $requiresVariableList)
+}
 #endregion Helper Functions
-#endregion Method Functions

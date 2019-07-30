@@ -237,9 +237,9 @@ function ConvertTo-PowerStigXml
 
         try
         {
-            $xmlDocument.save( $fileList.Settings.FullName )
+            $xmlDocument.save($fileList.Settings.FullName)
             # The save method does not add the required blank line to the file
-            Write-Output -InputObject `n | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
+            Write-Output -InputObject "`r`n" | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
             Write-Output "Converted Output: $($fileList.Settings.FullName)"
         }
         catch [System.Exception]
@@ -463,6 +463,7 @@ function New-OrganizationalSettingsXmlFile
     #########################################    ID object    ##########################################
 
     $xmlDocument.Save($Destination)
+    Write-Output -InputObject "`r`n" | Out-File -FilePath $Destination -Append -Encoding utf8 -NoNewline
 }
 
 <#
@@ -514,7 +515,7 @@ function Get-PowerStigFileList
         $Destination
     )
 
-    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id
+    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
 
     $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
 
@@ -548,6 +549,8 @@ function Get-PowerStigFileList
         Splits the Xccdf benchmark ID into an object.
     .PARAMETER Id
         The Id field from the Xccdf benchmark.
+    .PARAMETER FilePath
+        Specifies the file path to the xccdf. Used to determine technology role in SQL STIGs
 #>
 function Split-BenchmarkId
 {
@@ -557,7 +560,11 @@ function Split-BenchmarkId
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Id
+        $Id,
+
+        [Parameter()]
+        [string]
+        $FilePath
     )
 
     # Different STIG's present the Id field in a different format.
@@ -598,8 +605,11 @@ function Split-BenchmarkId
     {
         {$PSItem -match "SQL_Server"}
         {
+            # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
+            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
+
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), 'Instance'
+            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}
@@ -838,6 +848,29 @@ function Get-BaseRulePropertyName
 
     $baseRule = [Rule]::new()
     return (Get-Member -InputObject $baseRule -MemberType Property).Name
+}
+
+<#
+    .SYNOPSIS
+        Retrieves the SQL Server technology role from the file name of the xccdf.
+#>
+function Get-SqlTechnologyRole
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [AllowEmptyString()]
+        [string]
+        $Path
+    )
+
+    $split = $Path -split '_'
+    $stigIndex = $split.IndexOf('STIG')
+    $sqlRole = $split[$stigIndex -1]
+
+    return $sqlRole
 }
 
 <#

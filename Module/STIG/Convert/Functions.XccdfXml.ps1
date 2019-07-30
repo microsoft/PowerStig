@@ -58,7 +58,7 @@ function ConvertFrom-StigXccdf
     # Get the xml data from the file path provided.
     $stigBenchmarkXml = Get-StigXccdfBenchmarkContent -Path $path
 
-    # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs XWebsite
+    # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs xWebsite
     $global:stigTitle = $stigBenchmarkXml.title
 
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
@@ -358,9 +358,6 @@ function Get-StigRuleList
             {
                 [void]$stigRule.RemoveChild($stigRule.Rule[0])
             }
-
-            # Global added so that the stig rule can be referenced later
-            $global:stigRuleGlobal = $stigRule
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 

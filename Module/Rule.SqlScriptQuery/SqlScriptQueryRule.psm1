@@ -21,6 +21,8 @@ Class SqlScriptQueryRule : Rule
     [string] $GetScript
     [string] $TestScript
     [string] $SetScript <#(ExceptionValue)#>
+    [string[]] $Variable
+    [String[]] $VariableValue
 
     <#
         .SYNOPSIS
