@@ -108,7 +108,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-            $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $($skipRule.count + $blankSkipRuleId.Count) Skipped settings" {
                 $dscMof.count | Should -Be ($skipRule.count + $blankSkipRuleId.Count)
@@ -126,7 +126,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
 
             # Counts how many Skips there are and how many there should be.
             $expectedSkipRuleCount = $skipRuleMultiple.count + $blankSkipRuleId.Count
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleCount
@@ -142,7 +142,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleTypeCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleTypeCount
@@ -158,10 +158,10 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleTypeMultipleCount Skipped settings" {
-                (Measure-Object -InputObject $dscMof).Count  | Should -Be $expectedSkipRuleTypeMultipleCount
+                $dscMof.Count | Should -Be $expectedSkipRuleTypeMultipleCount
             }
         }
 
