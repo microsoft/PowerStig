@@ -582,7 +582,7 @@ function Split-MultiplePermissionRule
         $hklmSecurityMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSecurity
         $hklmSoftwareMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSoftware
         $hklmSystemMatch    = $checkContent | Select-String -Pattern $regularExpression.hklmSystem
-        $lastPermissonMatch = $checkContent | Select-String -Pattern "\s-[\s\S]*?\s-" | Select-Object -Last 1
+        $lastPermissonMatch = $checkContent | Select-String -Pattern $regularExpression.registryPermission | Select-Object -Last 1
 
         [void]$contentRanges.Add(($hklmSecurityMatch.LineNumber - 1)..($hklmSoftwareMatch.LineNumber - 2))
         [void]$contentRanges.Add(($hklmSoftwareMatch.LineNumber - 1)..($hklmSystemMatch.LineNumber - 2))
