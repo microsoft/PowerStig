@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Apr 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="7/10/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Apr 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="7/30/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2462,11 +2462,11 @@ Open a Command prompt (admin).
 
 Enter "icacls" followed by the directory:
 
-"icacls c:\Windows"
+"icacls c:\windows"
 
 The following results should be displayed for each when entered:
 
-c:\Windows
+c:\windows
 NT SERVICE\TrustedInstaller:(F)
 NT SERVICE\TrustedInstaller:(CI)(IO)(F)
 NT AUTHORITY\SYSTEM:(M)
@@ -2512,8 +2512,6 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
-ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -2560,22 +2558,6 @@ If the defaults have not been changed, these are not a finding.
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>Subkeys Only</Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>ALL APPLICATION PACKAGES</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>ReadKey</Rights>
-        </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;The registry is integral to the function, security, and stability of the Windows system. Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2598,8 +2580,6 @@ Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
@@ -2642,14 +2622,6 @@ If the defaults have not been changed, these are not a finding.
         <Entry>
           <Type>
           </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>Subkeys Only</Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
@@ -2676,7 +2648,6 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - Subkeys only
 CREATOR OWNER - Full Control - Subkeys only
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
