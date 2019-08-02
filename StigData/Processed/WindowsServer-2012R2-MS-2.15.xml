@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="7/19/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="8/2/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -855,6 +855,98 @@ For each local volume, if the file system does not indicate "NTFS", this is a fi
 
 This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
     </Rule>
+    <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>True</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-eq</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>PasswordExpires</Property>
+      <Query>SELECT * FROM Win32_UserAccount WHERE Disabled=False AND LocalAccount=True</Query>
+      <RawString>Review the password never expires status for enabled user accounts.
+
+Open "Windows PowerShell" with elevated privileges (run as administrator).
+
+Domain Controllers:
+
+Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | Where PasswordNeverExpires -eq True | FT Name, PasswordNeverExpires, Enabled".
+
+Exclude application accounts and disabled accounts (e.g., Guest).
+Domain accounts requiring smart card (CAC/PIV) may also be excluded.
+
+If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
+
+Member servers and standalone systems:
+
+Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
+
+Exclude application accounts and disabled accounts (e.g., Guest).
+
+If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-7002" severity="high" conversionstatus="pass" title="Password Requirement" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The lack of password protection enables anyone to gain access to the information system, which opens a backdoor opportunity for intruders to compromise the system as well as other resources.  Accounts on a system must require passwords.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>True</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-eq</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>PasswordRequired</Property>
+      <Query>SELECT * FROM Win32_UserAccount WHERE Disabled=False AND LocalAccount=True</Query>
+      <RawString>Review the password required status for enabled user accounts.
+
+Open "Windows PowerShell".
+
+Domain Controllers:
+
+Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
+
+Exclude disabled accounts (e.g., Guest).
+
+If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
+
+Member servers and standalone systems:
+
+Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
+
+Exclude disabled accounts (e.g., Guest).
+
+If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
+
+PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
+
+Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
+
+WMF 4.0:
+Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
+
+WMF 5.0:
+https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
+
+WMF 5.1:
+https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>6.3.9600.17415</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM CIM_Datafile WHERE FileName='powershell' AND Path LIKE '%\\Windows\\System32\\WindowsPowerShell\\v1.0\\%' AND Extension='exe'</Query>
+      <RawString>Open "Windows PowerShell".
+
+Enter "$PSVersionTable".
+
+If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
+
+Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
+    </Rule>
   </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-1072" severity="medium" conversionstatus="pass" title="Shared User Accounts" dscresource="None">
@@ -950,6 +1042,46 @@ ftp&gt;
 If the response indicates that an anonymous FTP login was permitted, this is a finding.
 
 If accounts with administrator privileges are used to access FTP, this is a CAT I finding.</RawString>
+    </Rule>
+    <Rule id="V-1121" severity="high" conversionstatus="pass" title="FTP System File Access" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The FTP service allows remote users to access shared files and directories.  Access outside of the specific directories of shared data could provide access to system resources and compromise the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If FTP is not installed on the system, this is NA.
+
+Determine the IP address and port number assigned to FTP sites from documentation or configuration.
+
+If Microsoft FTP is used, open "Internet Information Services (IIS) Manager".
+
+Select "Sites" under the server name.
+
+For any sites that reference FTP, view the Binding information for IP address and port.  The standard port for FTP is 21, however this may be changed.
+
+Open a "Command Prompt".
+
+Access the FTP site and review accessible directories with the following commands: 
+
+Note: Returned results may vary depending on the FTP server software.
+
+C:\&gt; "ftp"
+ftp&gt; "Open IP Address Port"
+(Substituting [IP Address] and [Port] with the information previously identified.  If no IP Address was listed in the Binding, attempt using "localhost".)
+(Connected to IP Address
+220 Microsoft FTP Service)
+
+User (IP Address): "FTP User"
+(Substituting [FTP User] with an account identified that is allowed access.  If it was determined that anonymous access was allowed to the site [see V-1120], also review access using "anonymous".)
+ (331 Password required)
+
+Password: "Password"
+(Substituting [Password] with password for the account attempting access.)
+(230 User ftpuser logged in.)
+
+ftp&gt; "Dir"
+
+If the FTP session indicates access to areas of the system other than the specific folder for FTP data, such as the root of the drive, Program Files or Windows directories, this is a finding.</RawString>
     </Rule>
     <Rule id="V-1168" severity="medium" conversionstatus="pass" title="Members of the Backup Operators Group" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Backup Operators are able to read and write to any file in the system, regardless of the rights assigned to it.  Backup and restore rights permit users to circumvent the file access restrictions present on NTFS disk drives for backup and restore purposes.  Visibility of members of the Backup Operators group must be maintained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1232,29 +1364,38 @@ Backups shall be consistent with organizational recovery time and recovery point
       <OrganizationValueTestString />
       <RawString>Determine whether system-related documentation is backed up in accordance with local recovery time and recovery point objectives.  If system-related documentation is not backed up in accordance with local recovery time and recovery point objectives, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-73523.a" severity="medium" conversionstatus="pass" title="WIN00-000180" dscresource="None">
+    <Rule id="V-73523" severity="medium" conversionstatus="pass" title="WIN00-000180" dscresource="None">
       <Description />
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+      <RawString>This requirement specifically applies to Windows 2012 but can also be used for Windows 2012 R2.
+
+Different methods are available to disable SMBv1 on Windows 2012 R2, if V-73805 is configured on Windows 2012 R2, this is NA.
+
+If the following registry value is not configured as specified, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\mrxsmb10\
-Type: REG_DWORD
+
 Value Name: Start
-Value: 0x00000004 (4)</RawString>
-    </Rule>
-    <Rule id="V-73523.b" severity="medium" conversionstatus="pass" title="WIN00-000180" dscresource="None">
-      <Description />
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+
+Type: REG_DWORD
+Value: 0x00000004 (4)
+
+If the following registry value includes MRxSmb10, this is a finding:
+
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SYSTEM\CurrentControlSet\Services\LanmanWorkstation\
-Type: REG_MULTI_SZ
+
 Value Name: DependOnService
-Value: Default values after removing MRxSmb10 include the following, which are not a finding:</RawString>
+
+Type: REG_MULTI_SZ
+Value: Default values after removing MRxSmb10 include the following, which are not a finding:
+Bowser
+MRxSmb20
+NSI</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
@@ -1409,59 +1550,6 @@ If systems are configured with a "Type" of "NTP", including standalone systems a
 If an alternate time synchronization tool is used and is not enabled or not configured to synchronize with a DoD time source, this is a finding.
 
 The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</RawString>
-    </Rule>
-    <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the password never expires status for enabled user accounts.
-
-Open "Windows PowerShell" with elevated privileges (run as administrator).
-
-Domain Controllers:
-
-Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | Where PasswordNeverExpires -eq True | FT Name, PasswordNeverExpires, Enabled".
-
-Exclude application accounts and disabled accounts (e.g., Guest).
-Domain accounts requiring smart card (CAC/PIV) may also be excluded.
-
-If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
-
-Member servers and standalone systems:
-
-Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
-
-Exclude application accounts and disabled accounts (e.g., Guest).
-
-If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-7002" severity="high" conversionstatus="pass" title="Password Requirement" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The lack of password protection enables anyone to gain access to the information system, which opens a backdoor opportunity for intruders to compromise the system as well as other resources.  Accounts on a system must require passwords.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the password required status for enabled user accounts.
-
-Open "Windows PowerShell".
-
-Domain Controllers:
-
-Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
-
-Exclude disabled accounts (e.g., Guest).
-
-If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
-
-Member servers and standalone systems:
-
-Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
-
-Exclude disabled accounts (e.g., Guest).
-
-If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
     </Rule>
     <Rule id="V-14225" severity="medium" conversionstatus="pass" title="Administrator Account Password Changes" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. The password for the built-in Administrator account must be changed at least annually or when any member of the administrative team leaves the organization.
@@ -1928,33 +2016,6 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 Review each User Right listed for any unresolved SIDs to determine whether they are valid, such as due to being temporarily disconnected from the domain. (Unresolved SIDs have the format of "*S-1-…".)
 
 If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
-
-PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
-
-Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
-
-WMF 4.0:
-Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
-
-WMF 5.0:
-https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
-
-WMF 5.1:
-https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "Windows PowerShell".
-
-Enter "$PSVersionTable".
-
-If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
-
-Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -8195,48 +8256,6 @@ The application account must meet requirements for application account passwords
     </Rule>
   </UserRightRule>
   <WindowsFeatureRule dscresourcemodule="PSDscResources">
-    <Rule id="V-1121" severity="high" conversionstatus="pass" title="FTP System File Access" dscresource="WindowsFeature">
-      <Description>&lt;VulnDiscussion&gt;The FTP service allows remote users to access shared files and directories.  Access outside of the specific directories of shared data could provide access to system resources and compromise the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Absent</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Name>Web-Ftp-Server</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If FTP is not installed on the system, this is NA.
-
-Determine the IP address and port number assigned to FTP sites from documentation or configuration.
-
-If Microsoft FTP is used, open "Internet Information Services (IIS) Manager".
-
-Select "Sites" under the server name.
-
-For any sites that reference FTP, view the Binding information for IP address and port.  The standard port for FTP is 21, however this may be changed.
-
-Open a "Command Prompt".
-
-Access the FTP site and review accessible directories with the following commands: 
-
-Note: Returned results may vary depending on the FTP server software.
-
-C:\&gt; "ftp"
-ftp&gt; "Open IP Address Port"
-(Substituting [IP Address] and [Port] with the information previously identified.  If no IP Address was listed in the Binding, attempt using "localhost".)
-(Connected to IP Address
-220 Microsoft FTP Service)
-
-User (IP Address): "FTP User"
-(Substituting [FTP User] with an account identified that is allowed access.  If it was determined that anonymous access was allowed to the site [see V-1120], also review access using "anonymous".)
- (331 Password required)
-
-Password: "Password"
-(Substituting [Password] with password for the account attempting access.)
-(230 User ftpuser logged in.)
-
-ftp&gt; "Dir"
-
-If the FTP session indicates access to areas of the system other than the specific folder for FTP data, such as the root of the drive, Program Files or Windows directories, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-73805" severity="medium" conversionstatus="pass" title="WIN00-000160" dscresource="WindowsFeature">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
 
