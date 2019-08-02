@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Updated logfile in 2012R2 DC STIG leveraging HardCodedRule to automate additional STIG rules. [#446](https://github.com/microsoft/PowerStig/issues/446)
+* Updated logfile in 2012R2 MS STIG leveraging HardCodedRule to automate additional STIG rules. [#448](https://github.com/microsoft/PowerStig/issues/448)
 * Declarative definition of a rule in the StigData log file to provide a standard way to populate unautomated rules [#435](https://github.com/microsoft/PowerStig/issues/435)
 * Updated PowerSTIG to leverage AuditSetting instead of the Script resource. Additionally renamed WmiRule to AuditSettingRule [#431](https://github.com/Microsoft/PowerStig/issues/431)
 * Fixed [#419](https://github.com/Microsoft/PowerStig/issues/419): PowerStig is creating resource xSSLSettings with the wrong value for Name.
