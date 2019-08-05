@@ -24,6 +24,7 @@ data regularExpression
         programFiles = ^\\\\Program\\sFiles\\sand\\s\\\\Program\\sFiles\\s\\(x86\\)
         programFiles86 = ^\\\\Program\\sFiles\\s\\(x86\\)*
         programFileFolder = ^\\\\Program\\sFiles$
+        registryPermission = \\s-[\\s\\S]*?\\s-
         rootOfC = ^C\\:\\\\$
         spaceDashSpace = \\s-\\s
         systemRoot = Windows installation directory
