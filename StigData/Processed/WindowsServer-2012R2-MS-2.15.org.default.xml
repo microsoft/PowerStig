@@ -62,6 +62,10 @@
   <OrganizationalSetting id="V-26582" ValueData="32768" />
   <!-- Ensure ''V-36707'' -match '1|2'-->
   <OrganizationalSetting id="V-36707" ValueData="1" />
+  <!-- Ensure ServiceName/StartupType is populated with correct Certificate Revocation Checking service information-->
+  <OrganizationalSetting id="V-36736" ServiceName="" StartupType="" />
   <!-- Ensure ''V-36773'' -le '900' -and ''V-36773'' -gt '0'-->
   <OrganizationalSetting id="V-36773" ValueData="900" />
+  <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
+  <OrganizationalSetting id="V-42420" ServiceName="" StartupType="" />
 </OrganizationalSettings>
