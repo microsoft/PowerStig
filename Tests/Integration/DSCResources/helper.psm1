@@ -234,7 +234,8 @@ function Get-BlankOrgSettingRuleId
             }
         }
     }
-    return $trackEmptyOrgSetting
+
+    return $trackEmptyOrgSetting | Select-Object -Unique
 }
 
 function Get-RandomExceptionRule
