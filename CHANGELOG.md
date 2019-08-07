@@ -1,7 +1,7 @@
 # Versions
 
 ## Unreleased
-
+* Added support for DotNet Framework 4.0 STIG, Version 1, Release 8 [#447](https://github.com/microsoft/PowerStig/issues/447)
 * Added support for Windows 10, Version 1, Release 17 [#442](https://github.com/microsoft/PowerStig/issues/442)
 * Updated PowerSTIG to leverage AuditSetting instead of the Script resource. Additionally renamed WmiRule to AuditSettingRule [#431](https://github.com/Microsoft/PowerStig/issues/431)
 * Fixed [#419](https://github.com/Microsoft/PowerStig/issues/419): PowerStig is creating resource xSSLSettings with the wrong value for Name.
