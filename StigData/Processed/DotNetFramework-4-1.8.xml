@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R78_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 16 July 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="8/7/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 16 July 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="8/7/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-7055" severity="medium" conversionstatus="pass" title="APPNET0031 No Strong Name Verification" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided)—plus a public key and a digital signature.  Strong names serve to identify the author of the code.  If digital signatures used to sign strong name assemblies are not verified, any self signed code can be impersonated.  This can lead to a loss of system integrity. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1&lt;/IAControls&gt;</Description>
@@ -534,58 +534,29 @@ If the secure flag is not set to "true" for the TCP channel, this is a finding.
 
 </RawString>
     </Rule>
-    <Rule id="V-32025" severity="medium" conversionstatus="pass" title="APPNET0071 Remoting Services auth and encryption TCP channel" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Note: Microsoft recommends using the Windows Communication Framework (WCF) rather than .Net remoting. New development projects should refrain from using .Net remoting capabilities whenever possible.
-
-.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process.  Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.
-
-Normally when application code attempts to access a protected resource, a stack walk is performed to ensure that all stack frames have permission to access the resource. However, with .Net 4.0, when a call is made on a remote object, this stack walk is not performed across the remoting boundary. The .Net remoting infrastructure requires FullTrust permission to execute on either the client or the server. 
-
-Due to the fact that FullTrust permission is required, Remoting endpoints should be authenticated and encrypted in order to protect the system and the data. 
-
-Microsoft provides 3 different "channels" that are used for remoting.  They are HTTP, TCP and IPC.
-
-Any unauthorized use of a remoting application provides unauthorized access with FullTrust permissions to the system. This can potentially result in a loss of system integrity or confidentiality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+  </ManualRule>
+  <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-81495" severity="medium" conversionstatus="pass" title="APPNET0075 Disable TLS RC4 cipher in .Net" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Use of the RC4 cipher in TLS could allow an attacker to perform man-in-the-middle attacks and recover plaintext from encrypted sessions. Applications that target .Net version 4.x running on multiple Windows versions could be vulnerable to these types of attacks. The registry settings in this requirement will prevent .Net applications that target the 4.x framework from selecting and utilizing the Schannel.dll RC4 cipher for TLS connections. Applications that use TLS when connecting to remote systems will perform a handshake and negotiate the TLS version and cipher that is to be used between the client and the server. This is standard protocol for all TLS connections. If the server and client are not configured to use the same TLS version and cipher, the TLS connection may fail. Applications should be tested with these registry settings prior to production implementation of the fix in order to avoid application outages.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
+      <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>
-Check the machine.config and the [application executable name].exe.config configuration files. 
+      <RawString>Use regedit to review the following Windows registry keys:
 
-For 32 bit systems, the "machine.config" file is contained in the following folder. %SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319\Config 
+For 32-bit systems: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
 
-For 64 bit systems, the "machine.config" file is contained in the following folder. %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319\Config.
+For 64 bit systems:
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\
 
-Microsoft specifies locating the application config file in the same folder as the application executable (.exe) file. However, the developer does have the capability to specify a different location when the application is compiled.  Therefore, if the config file is not found in the application home folder, a search of the system is required. If the [application name].exe.config file is not found on the system, then only a check of the machine.config file is required.
-
-Sample machine/application config file:
-
-&lt;application name=“remoteserver”&gt; 
-  &lt;service&gt; 
-    &lt;activated type=“sample.my.object, myobjects”/&gt; 
-  &lt;/service&gt; 
-  &lt;channels&gt; 
-    &lt;channel ref=“tcp server” port=“6134”/&gt; 
-  &lt;/channels&gt; 
-&lt;/application&gt;
-
-&lt;serverProviders&gt;
-  &lt;provider ref="wsdl" /&gt;
-  &lt;formatter ref="soap" typeFilterLevel="Full" /&gt; 
-  &lt;formatter ref="binary" typeFilterLevel="Full" /&gt; 
-&lt;/serverProviders&gt; 
-
-Microsoft provides 3 "channels" that are used for remoting connectivity.  They are the HTTP, TCP, and IPC channels.  The channel that is used is specified via the &lt;channels&gt; element in the config file.  
-
-TCP channel example:
-&lt;channel ref=“tcp” port=“6134” secure="true"/&gt; 
-
-The TCP Channel provides encryption and message integrity when the 'secure' flag is set to true as shown in the above example.
-
-If the secure flag is not set to "true" for the TCP channel, this is a finding.
+If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD type set to “1”, this is a finding.
 
 </RawString>
+      <ValueData>1</ValueData>
+      <ValueName>SchUseStrongCrypto</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
-  </ManualRule>
+  </RegistryRule>
 </DISASTIG>
