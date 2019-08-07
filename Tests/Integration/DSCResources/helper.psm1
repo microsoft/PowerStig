@@ -234,6 +234,7 @@ function Get-BlankOrgSettingRuleId
             }
         }
     }
+
     return $trackEmptyOrgSetting | Select-Object -Unique
 }
 
