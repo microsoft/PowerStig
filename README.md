@@ -129,4 +129,5 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@nehrua](https://github.com/nehrua) (Nehru Ali)
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
 * [@stevehose](https://github.com/stevehose) (Steve Hose)
+* [@theaquamarine](https://github.com/theaquamarine)
 * [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
