@@ -5,7 +5,9 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="2.14">
+<OrganizationalSettings fullversion="2.17">
+  <!-- Ensure ServiceName/StartupType is populated with correct AntiVirus service information-->
+  <OrganizationalSetting id="V-1074" ServiceName="" StartupType="" />
   <!-- Ensure ''V-1090'' -le '4'-->
   <OrganizationalSetting id="V-1090" ValueData="4" />
   <!-- Ensure ''V-1097'' -le '3' -and ''V-1097'' -ne '0'-->
@@ -24,14 +26,20 @@
   <OrganizationalSetting id="V-1114" OptionValue="" />
   <!-- Ensure ''V-1115'' -ne 'Administrator'-->
   <OrganizationalSetting id="V-1115" OptionValue="" />
-  <!-- Ensure ''V-1155'' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'-->
-  <OrganizationalSetting id="V-1155" Identity="Enterprise Admins,Domain Admins,Local account and member of Administrators group,Guests" />
   <!-- Ensure ''V-1157'' -match '1|2'-->
   <OrganizationalSetting id="V-1157" ValueData="1" />
   <!-- Ensure ''V-1172'' -ge '14'-->
   <OrganizationalSetting id="V-1172" ValueData="14" />
   <!-- Ensure ''V-1174'' -le '15'-->
   <OrganizationalSetting id="V-1174" ValueData="15" />
+  <!-- Ensure ''V-2377'' -le '600' -and ''V-2377'' -ne '0'-->
+  <OrganizationalSetting id="V-2377" PolicyValue="600" />
+  <!-- Ensure ''V-2378'' -le '10' -and ''V-2378'' -ne '0'-->
+  <OrganizationalSetting id="V-2378" PolicyValue="10" />
+  <!-- Ensure ''V-2379'' -le '7'-->
+  <OrganizationalSetting id="V-2379" PolicyValue="7" />
+  <!-- Ensure ''V-2380'' -le '5'-->
+  <OrganizationalSetting id="V-2380" PolicyValue="5" />
   <!-- Ensure ''V-3373'' -le '30' -and ''V-3373'' -gt '0'-->
   <OrganizationalSetting id="V-3373" ValueData="30" />
   <!-- Ensure ''V-4108'' -le '90'-->
@@ -44,10 +52,12 @@
   <OrganizationalSetting id="V-4442" ValueData="5" />
   <!-- Ensure ''V-6836'' -ge '14'-->
   <OrganizationalSetting id="V-6836" PolicyValue="14" />
+  <!-- Ensure ''V-8322.b'' -match '^(NoSync|NTP|NT5DS|AllSync)$'-->
+  <OrganizationalSetting id="V-8322.b" ValueData="NT5DS" />
+  <!-- Ensure ''V-8324'' -match '2|3'-->
+  <OrganizationalSetting id="V-8324" ValueData="3" />
   <!-- Ensure ''V-14235'' -le '4'-->
   <OrganizationalSetting id="V-14235" ValueData="4" />
-  <!-- Ensure ''V-15713'' -notmatch '1|2'-->
-  <OrganizationalSetting id="V-15713" ValueData="3" />
   <!-- Ensure ''V-21956'' -le '3'-->
   <OrganizationalSetting id="V-21956" ValueData="3" />
   <!-- Ensure ''V-26359'' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'-->
@@ -63,7 +73,11 @@
   <!-- Ensure ''V-26582'' -ge '32768'-->
   <OrganizationalSetting id="V-26582" ValueData="32768" />
   <!-- Ensure ''V-36707'' -match '1|2'-->
-  <OrganizationalSetting id="V-36707" ValueData="1" />
+  <OrganizationalSetting id="V-36707" ValueData="2" />
+  <!-- Ensure ServiceName/StartupType is populated with correct Certificate Revocation Checking service information-->
+  <OrganizationalSetting id="V-36736" ServiceName="" StartupType="" />
   <!-- Ensure ''V-36773'' -le '900' -and ''V-36773'' -gt '0'-->
   <OrganizationalSetting id="V-36773" ValueData="900" />
+  <!-- Ensure ServiceName/StartupType is populated with correct Firewall service information-->
+  <OrganizationalSetting id="V-42420" ServiceName="" StartupType="" />
 </OrganizationalSettings>
