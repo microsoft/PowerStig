@@ -34,7 +34,7 @@ using module .\Module\Rule.WebConfigurationProperty\Convert\WebConfigurationProp
 using module .\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 using module .\Module\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\Module\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
-using module .\Module\Rule.Wmi\Convert\WmiRule.Convert.psm1
+using module .\Module\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
 
 # load the public functions
 foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig\Convert" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )

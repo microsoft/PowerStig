@@ -20,7 +20,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     }
 
     # Add additional test parameters to current test configuration
-    if($additionalTestParameterList)
+    if ($additionalTestParameterList)
     {
         $testParameterList += $additionalTestParameterList
     }
@@ -29,21 +29,21 @@ Describe ($title + " $($stig.StigVersion) mof output") {
         {& $technologyConfig @testParameterList} | Should -Not -Throw
     }
 
+    $ruleNames = (Get-Member -InputObject $powerstigXml |
+        Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
+
     $configurationDocumentPath = "$TestDrive\localhost.mof"
     $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-
-    $ruleNames = (Get-Member -InputObject $powerstigXml.DISASTIG |
-            Where-Object -FilterScript {$_.Name -match '.*Rule' -and $_.Name -ne 'DocumentRule' -and $_.Name -ne 'ManualRule'}).Name
 
     foreach ($ruleName in $ruleNames)
     {
         Context $ruleName {
             $hasAllRules = $true
-            $ruleList = @($powerstigXml.DISASTIG.$ruleName.Rule |
-                    Where-Object {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry' -and $PSItem.DuplicateOf -eq ''})
+            $ruleList = @($powerstigXml.$ruleName.Rule |
+                Where-Object -FilterScript {$PSItem.conversionstatus -eq 'pass' -and $PSItem.dscResource -ne 'ActiveDirectoryAuditRuleEntry' -and $PSItem.DuplicateOf -eq ''})
 
             $dscMof = $instances |
-                Where-Object {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}
+                Where-Object -FilterScript {$PSItem.ResourceID -match (Get-ResourceMatchStatement -RuleName $ruleName)}
 
             foreach ($rule in $ruleList)
             {
@@ -108,7 +108,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $configurationDocumentPath = "$TestDrive\localhost.mof"
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
-            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
+            $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
 
             It "Should have $($skipRule.count) Skipped settings" {
                 $dscMof.count | Should -Be $skipRule.count

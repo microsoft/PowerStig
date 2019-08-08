@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="7/30/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 24 May 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="7/30/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -277,7 +277,7 @@ Plug and Play activity records events related to the successful connection of ex
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -319,7 +319,7 @@ Account Lockout events can be used to identify potentially malicious logon attem
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -340,7 +340,7 @@ Audit Group Membership records information related to the group membership of a 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -638,7 +638,7 @@ Audit Other System Events records information related to cryptographic key opera
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -659,7 +659,7 @@ Audit Other System Events records information related to cryptographic key opera
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -787,7 +787,7 @@ Authorization Policy Change records events related to changes in user rights, su
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective. 
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (WN10-SO-000030) for the detailed auditing subcategories to be effective.
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -905,7 +905,7 @@ If the system does not audit the above, this is a finding.</RawString>
 New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB) which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DesiredValue>10.0.14393</DesiredValue>
+      <DesiredValue>10.0.15063</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-ge</Operator>
@@ -917,22 +917,21 @@ A separate servicing branch intended for special purpose systems is the Long-Ter
 
 If the "About Windows" dialog box does not display:
 
-"Microsoft Windows Version 1607 (OS Build 14393.0)"
+"Microsoft Windows Version 1703 (OS Build 15063.0)"
 
 or greater, this is a finding.
 
 Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
 
-Currently supported Semi-Annual Channel versions:
-v1607 - Microsoft support is scheduled to end 09 April 2019.
-v1703 - Microsoft support is scheduled to end 08 October 2019.
-v1709 - Microsoft support is scheduled to end 14 April 2020.
-v1803 - Microsoft support is scheduled to end 10 November 2020.
-v1809 - Microsoft support is scheduled to end 13 April 2021.
+Microsoft scheduled end of support dates for current Semi-Annual Channel versions:
+v1703 - 8 October 2019
+v1709 - 14 April 2020
+v1803 - 10 November 2020
+v1809 - 13 April 2021
 
 No preview versions will be used in a production environment.
 
-Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions, which are not a finding:
+Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions which are not a finding:
 
 v1507 (Build 10240)
 v1607 (Build 14393)
@@ -957,6 +956,20 @@ This does not apply to system partitions such the Recovery and EFI System Partit
     </Rule>
   </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">
+    <Rule id="V-63343" severity="medium" conversionstatus="pass" title="WN10-00-000025" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;An approved tool for continuous network scanning must be installed and configured to run.
+
+Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.
+
+To support this requirement, the operating system may have an integrated solution incorporating continuous scanning using HBSS and periodic scanning using other tools, as specified in the requirement.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify DoD approved HBSS software is installed, configured, and properly operating. Ask the operator to document the HBSS software installation and configuration.
+
+If the operator is not able to provide a documented configuration for an installed HBSS or if the HBSS software is not properly configured, maintained, or used, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-63359" severity="low" conversionstatus="pass" title="WN10-00-000065" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Outdated or unused accounts provide penetration points that may go undetected.  Inactive accounts must be deleted if no longer necessary or, if still required, disable until needed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -973,7 +986,7 @@ Copy the lines below to the PowerShell window and enter.
    if ($lastLogin -eq $null) {
       $lastLogin = 'Never'
    }
-   Write-Host $user.Name $lastLogin $enabled 
+   Write-Host $user.Name $lastLogin $enabled
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -990,6 +1003,26 @@ Local administrator account
 If any enabled accounts have not been logged on to within the past 35 days, this is a finding.
 
 Inactive accounts that have been reviewed and deemed to be required must be documented with the ISSO.</RawString>
+    </Rule>
+    <Rule id="V-63365" severity="medium" conversionstatus="pass" title="WN10-00-000080" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Allowing other operating systems to run on a secure system may allow users to circumvent security. For Hyper-V, preventing unauthorized users from being assigned to the Hyper-V Administrators group will prevent them from accessing or creating virtual machines on the system. The Hyper-V Hypervisor is used by Virtualization Based Security features such as Credential Guard on Windows 10; however, it is not the full Hyper-V installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If a hosted hypervisor (Hyper-V, VMware Workstation, etc.) is installed on the system, verify only authorized user accounts are allowed to run virtual machines.
+
+For Hyper-V, Run "Computer Management".
+Navigate to System Tools &gt;&gt; Local Users and Groups &gt;&gt; Groups.
+Double click on "Hyper-V Administrators".
+
+If any unauthorized groups or user accounts are listed in "Members:", this is a finding.
+
+For hosted hypervisors other than Hyper-V, verify only authorized user accounts have access to run the virtual machines. Restrictions may be enforced by access to the physical system, software restriction policies, or access restrictions built in to the application.
+
+If any unauthorized groups or user accounts have access to create or run virtual machines, this is a finding.
+
+All users authorized to create or run virtual machines must be documented with the ISSM/ISSO. Accounts nested within group accounts must be documented as individual accounts and not the group accounts.</RawString>
     </Rule>
     <Rule id="V-63393" severity="medium" conversionstatus="pass" title="WN10-00-000130" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Use of software certificates and their accompanying installation files for end users to access resources is less secure than the use of hardware-based certificates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1019,7 +1052,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1153,20 +1186,6 @@ Open "BitLocker Drive Encryption" from the Control Panel.
 
 If the operating system drive or any fixed data drives have "Turn on BitLocker", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63343" severity="medium" conversionstatus="pass" title="WN10-00-000025" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;An approved tool for continuous network scanning must be installed and configured to run.
-
-Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.
-
-To support this requirement, the operating system may have an integrated solution incorporating continuous scanning using HBSS and periodic scanning using other tools, as specified in the requirement.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if an approved tool capable of continuous scanning is loaded on the system. The recommended system is the McAfee HBSS.
-
-If no such tool is installed on the system, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-63345" severity="medium" conversionstatus="pass" title="WN10-00-000035" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Utilizing a whitelist provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
 
@@ -1289,20 +1308,6 @@ If the group contains any accounts, the accounts must be specifically for backup
 
 If the group contains any standard user accounts used for performing normal user tasks, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-63365" severity="medium" conversionstatus="pass" title="WN10-00-000080" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Allowing other operating systems to run on a secure system may allow users to circumvent security. Preventing users from being assigned to the Hyper-V Administrators group will prevent them from accessing or creating virtual machines on the system. The Hyper-V Hypervisor is used by Virtualization Based Security features such as Credential Guard on Windows 10; however, it is not the full Hyper-V installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Run "Computer Management".
-Navigate to System Tools &gt;&gt; Local Users and Groups &gt;&gt; Groups.
-Double click on "Hyper-V Administrators".
-
-If any groups or user accounts are listed in "Members:", this is a finding.
-
-If the workstation has an approved use of Hyper-V, such as being used as a dedicated admin workstation using Hyper-V to separate administration and standard user functions, the account(s) needed to access the virtual machine is not a finding.</RawString>
-    </Rule>
     <Rule id="V-63367" severity="low" conversionstatus="pass" title="WN10-00-000085" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To minimize potential points of attack, local user accounts, other than built-in accounts and local administrator accounts, must not exist on a workstation in a domain.  Users must log onto workstations in a domain with their domain accounts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1356,7 +1361,7 @@ The configuration requirements will be determined by the applicable firewall STI
 If allowed inbound exceptions are not limited to authorized remote management hosts, this is a finding.
 
 Review inbound firewall exceptions.
-Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Inbound Rules (this link will be in the right pane) 
+Computer Configuration &gt;&gt; Windows Settings &gt;&gt; Security Settings &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Windows Firewall with Advanced Security &gt;&gt; Inbound Rules (this link will be in the right pane)
 
 For any inbound rules that allow connections view the Scope for Remote IP address.  This may be defined as an IP address, subnet, or range.  The rule must apply to all firewall profiles.
 
@@ -1376,7 +1381,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*ECA*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding. 
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1438,7 +1443,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1449,13 +1454,8 @@ NotAfter: 9/6/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-NotAfter: 9/23/2018
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-NotAfter: 2/17/2019
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+NotAfter: 1/22/2022
 
 Alternately use the Certificates MMC snap-in:
 
@@ -1492,13 +1492,8 @@ Valid to: Friday, September 6, 2019
 
 Issued To: DoD Root CA 3
 Issued By: DoD Interoperability Root CA 2
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-Valid to: Sunday, September 23, 2018
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-Valid to: Sunday, February 17, 2019</RawString>
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+Valid to: Saturday, January 22, 2022</RawString>
     </Rule>
     <Rule id="V-63589" severity="medium" conversionstatus="pass" title="WN10-PK-000020" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To ensure users do not experience denial of service when performing certificate-based authentication to DoD websites due to the system chaining to a root other than DoD Root CAs, the US DoD CCEB Interoperability Root CA cross-certificates must be installed in the Untrusted Certificate Store. This requirement only applies to unclassified systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1514,14 +1509,9 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding. 
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-NotAfter: 3/9/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
@@ -1548,18 +1538,13 @@ For each certificate with "US DoD CCEB Interoperability Root CA …" under "Issu
 
 Right-click on the certificate and select "Open".
 
-Select the "Details" Tab.
+Select the "Details" tab.
 
 Scroll to the bottom and select "Thumbprint".
 
 If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
 If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
-
-Issued To: DoD Root CA 2
-Issued By: US DoD CCEB Interoperability Root CA 1
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-Valid to: Saturday, March 9, 2019
 
 Issued To: DoD Root CA 3
 Issuer by: US DoD CCEB Interoperability Root CA 2
@@ -1575,8 +1560,6 @@ Valid: Friday, September 27, 2019</RawString>
       <RawString>This is applicable to unclassified systems, for other systems this is NA.
 
 If the following registry values do not exist or are not configured as specified, this is a finding:
-
-v1703 and later of Windows 10:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
@@ -1596,7 +1579,7 @@ Value Name: ShellSmartScreenLevel
 Value Type: REG_SZ
 Value: Block
 
-v1607 of Windows 10:
+v1607 LTSB:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
@@ -1686,7 +1669,7 @@ Under "System Summary", if "BIOS Mode" does not display "UEFI", this is finding.
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows 10 hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled. 
+      <RawString>Some older systems may not have UEFI firmware. This is currently a CAT III; it will be raised in severity at a future date when broad support of Windows 10 hardware and firmware requirements are expected to be met. Devices that have UEFI firmware must have Secure Boot enabled.
 
 For virtual desktop implementations (VDIs) where the virtual desktop instance is deleted or refreshed upon logoff, this is NA.
 
@@ -1710,7 +1693,7 @@ Technical means such as application whitelisting can be used to enforce the poli
 
 The organization must have a policy that prohibits administrative accounts from using applications that access the Internet, such as web browsers, or with potential Internet sources, such as email, except as necessary for local service administration. The policy should define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.
 
-Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet. 
+Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</RawString>
     </Rule>
@@ -2159,7 +2142,9 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
+Other subkeys under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in later versions of Windows 10 to the following SID, this is currently not a finding.
+S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 If the defaults have not been changed, these are not a finding.
 </RawString>
     </Rule>
@@ -2227,7 +2212,9 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
+Other subkeys under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in later versions of Windows 10 to the following SID, this is currently not a finding.
+S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 If the defaults have not been changed, these are not a finding.
 </RawString>
     </Rule>
@@ -2295,7 +2282,9 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
+Other subkeys under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
+Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in later versions of Windows 10 to the following SID, this is currently not a finding.
+S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
 If the defaults have not been changed, these are not a finding.
 </RawString>
     </Rule>
@@ -3788,7 +3777,7 @@ Value: 0x00000000 (0)</RawString>
 Registry Path:  \SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\
 Value Type:  REG_SZ
 Value Name:  \\*\NETLOGON
-Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
+Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueData>RequireMutualAuthentication=1, RequireIntegrity=1</ValueData>
       <ValueName>\\*\NETLOGON</ValueName>
       <ValueType>String</ValueType>
@@ -3805,7 +3794,7 @@ Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
 Registry Path:  \SOFTWARE\Policies\Microsoft\Windows\NetworkProvider\HardenedPaths\
 Value Type:  REG_SZ
 Value Name:  \\*\SYSVOL
-Value:  RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
+Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueData>RequireMutualAuthentication=1, RequireIntegrity=1</ValueData>
       <ValueName>\\*\SYSVOL</ValueName>
       <ValueType>String</ValueType>
@@ -4373,7 +4362,7 @@ Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows NT\Terminal Services\
 
 Value Name: fAllowToGetHelp
- 
+
 Value Type: REG_DWORD
 Value: 0</RawString>
       <ValueData>0</ValueData>
@@ -4506,7 +4495,7 @@ Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
@@ -4614,7 +4603,7 @@ Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 Value Name: LegalNoticeText
 
 Value Type: REG_SZ
-Value: 
+Value:
 You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
 By using this IS (which includes any device attached to this IS), you consent to the following conditions:
@@ -4749,7 +4738,7 @@ If an organization is using v1709 or later of Windows 10 this may be configured 
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive:  HKEY_LOCAL_MACHINE 
+Registry Hive:  HKEY_LOCAL_MACHINE
 Registry Path:  \SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name:  CachedLogonsCount
@@ -5603,7 +5592,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 1
- 
+
 Warning: Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms.  Both the browser and web server must be configured to use TLS otherwise the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -5871,7 +5860,7 @@ Enabling "Include command line data for process creation events" will record the
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -5894,7 +5883,7 @@ Enabling PowerShell script block logging will record detailed information from t
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -6115,9 +6104,7 @@ Value: NistP384 NistP256</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Privacy</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This setting is applicable starting with v1703 of Windows 10; it is NA for prior versions.
-
-Windows 10 LTSC\B versions do not include Microsoft Edge; this is NA for those systems.
+      <RawString>Windows 10 LTSC\B versions do not include Microsoft Edge, this is NA for those systems.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -6140,7 +6127,7 @@ Value: 0x00000000 (0)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This setting is applicable starting with v1703 of Windows 10, it is NA for prior versions.
+      <RawString>This is NA for Windows 10 LTSC\B versions 1507 and 1607.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -6163,7 +6150,7 @@ Value: 0x00000000 (0)</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\CredentialsDelegation</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This setting is applicable starting with v1703 of Windows 10, it is NA for prior versions.
+      <RawString>This is NA for Windows 10 LTSC\B versions 1507 and 1607.
 
 If the following registry value does not exist or is not configured as specified, this is a finding.
 
@@ -6325,6 +6312,40 @@ If the organization does not have an instance of OneDrive the Value Name and Val
       <ValueData>Organization's Tenant GUID</ValueData>
       <ValueName>Organization's Tenant GUID</ValueName>
       <ValueType>String</ValueType>
+    </Rule>
+    <Rule id="V-94719.a" severity="medium" conversionstatus="pass" title="WN10-CC-000365" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Allowing Windows apps to be activated by voice from the lock screen could allow for unauthorized use. Requiring logon will ensure the apps are only used by authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\AppPrivacy\
+Type: REG_DWORD
+Value Name: LetAppsActivateWithVoiceAboveLock
+Value: 0x00000002 (2)</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>LetAppsActivateWithVoiceAboveLock</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-94719.b" severity="medium" conversionstatus="pass" title="WN10-CC-000365" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Allowing Windows apps to be activated by voice from the lock screen could allow for unauthorized use. Requiring logon will ensure the apps are only used by authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Registry Hive: HKEY_LOCAL_MACHINE
+Registry Path: \SOFTWARE\Policies\Microsoft\Windows\AppPrivacy\
+Type: REG_DWORD
+Value Name: LetAppsActivateWithVoice
+Value: 0x00000002 (2)</RawString>
+      <ValueData>2</ValueData>
+      <ValueName>LetAppsActivateWithVoice</ValueName>
+      <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
@@ -7229,10 +7250,12 @@ If the "TFTP" application exists, this is a finding.</RawString>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
+
 Enter the following:
-Get-WindowsOptionalFeature -Online | Where -FeatureName -like *PowerShellv2*
+Get-WindowsOptionalFeature -Online | Where FeatureName -like *PowerShellv2*
 
 If either of the following have a "State" of "Enabled", this is a finding.
+
 FeatureName : MicrosoftWindowsPowerShellV2
 State : Enabled
 FeatureName : MicrosoftWindowsPowerShellV2Root
@@ -7240,7 +7263,9 @@ State : Enabled
 
 Alternately:
 Search for "Features".
+
 Select "Turn Windows features on or off".
+
 If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-70637.b" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
@@ -7252,10 +7277,12 @@ If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
+
 Enter the following:
-Get-WindowsOptionalFeature -Online | Where -FeatureName -like *PowerShellv2*
+Get-WindowsOptionalFeature -Online | Where FeatureName -like *PowerShellv2*
 
 If either of the following have a "State" of "Enabled", this is a finding.
+
 FeatureName : MicrosoftWindowsPowerShellV2
 State : Enabled
 FeatureName : MicrosoftWindowsPowerShellV2Root
@@ -7263,7 +7290,9 @@ State : Enabled
 
 Alternately:
 Search for "Features".
+
 Select "Turn Windows features on or off".
+
 If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 Engine" is selected or not) is selected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-70639" severity="medium" conversionstatus="pass" title="WN10-00-000160" dscresource="WindowsOptionalFeature">
