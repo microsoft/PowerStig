@@ -1,3 +1,7 @@
+<#
+    .SYNOPSIS
+        Returns a regex  pattern used to find the dsc resource names in a mof.
+#>
 function Get-ResourceMatchStatement
 {
     [CmdletBinding()]
@@ -79,9 +83,9 @@ function Get-ResourceMatchStatement
         {
             return '\[UserRightsAssignment\]'
         }
-        'WmiRule'
+        'AuditSettingRule'
         {
-            return '\[Script\]'
+            return '\[AuditSetting\]'
         }
         'WinEventLogRule'
         {
@@ -100,4 +104,43 @@ function Get-ResourceMatchStatement
             return '\[xSSLSettings\]'
         }
     }
+}
+
+<#
+    .SYNOPSIS
+        Removes the rules that have dscresource equal to 'None'.
+        The integration tests randomly picks rules and if the rule has a dscresource='None' the test will fail
+        causing an intermitent build failure.
+    
+    .PARAMETER Xml
+        The xml that will be examined.
+#>
+function Remove-DscResourceEqualsNone
+{    
+    [CmdletBinding()]
+    [OutputType([xml])]
+    param
+    (
+        [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+        [xml]
+        $Xml
+    )
+
+    $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property | 
+        Where-Object -FilterScript {$PSItem.Name -match 'Rule$' -and $PSItem.Name -notmatch 'DocumentRule|ManualRule'}
+
+    # remove all dscresource -eq None
+    foreach ($stigRuleName in $stigRuleNames.Name)
+    {
+        foreach ($node in $Xml.DISASTIG.$stigRuleName.Rule)
+        {
+            if ($node.dscresource -eq 'None')
+            {    
+                [void]$xml.DISASTIG.$stigRuleName.RemoveChild($node) 
+            }
+            
+        }
+    }
+
+    return $Xml.DISASTIG
 }

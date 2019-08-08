@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="3/28/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="7/30/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -898,6 +898,64 @@ If the system does not audit the above, this is a finding.</RawString>
       <Subcategory>File Share</Subcategory>
     </Rule>
   </AuditPolicyRule>
+  <AuditSettingRule dscresourcemodule="AuditSystemDsc">
+    <Rule id="V-63349" severity="high" conversionstatus="pass" title="WN10-00-000040" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Windows 10 is maintained by Microsoft at servicing levels for specific periods of time to support Windows as a Service. Systems at unsupported servicing levels or releases will not receive security updates for new vulnerabilities which leaves them subject to exploitation.
+
+New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
+
+A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB) which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>10.0.14393</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM Win32_OperatingSystem</Query>
+      <RawString>Run "winver.exe".
+
+If the "About Windows" dialog box does not display:
+
+"Microsoft Windows Version 1607 (OS Build 14393.0)"
+
+or greater, this is a finding.
+
+Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
+
+Currently supported Semi-Annual Channel versions:
+v1607 - Microsoft support is scheduled to end 09 April 2019.
+v1703 - Microsoft support is scheduled to end 08 October 2019.
+v1709 - Microsoft support is scheduled to end 14 April 2020.
+v1803 - Microsoft support is scheduled to end 10 November 2020.
+v1809 - Microsoft support is scheduled to end 13 April 2021.
+
+No preview versions will be used in a production environment.
+
+Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions, which are not a finding:
+
+v1507 (Build 10240)
+v1607 (Build 14393)
+v1809 (Build 17763)</RawString>
+    </Rule>
+    <Rule id="V-63353" severity="high" conversionstatus="pass" title="WN10-00-000050" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system.  To support this, volumes must be formatted using the NTFS file system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>NTFS|ReFS</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-match</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>FileSystem</Property>
+      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+      <RawString>Run "Computer Management".
+Navigate to Storage &gt;&gt; Disk Management.
+
+If the "File System" column does not indicate "NTFS" for each volume assigned a drive letter, this is a finding.
+
+This does not apply to system partitions such the Recovery and EFI System Partition.</RawString>
+    </Rule>
+  </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-63359" severity="low" conversionstatus="pass" title="WN10-00-000065" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Outdated or unused accounts provide penetration points that may go undetected.  Inactive accounts must be deleted if no longer necessary or, if still required, disable until needed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2101,8 +2159,6 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
@@ -2149,22 +2205,6 @@ If the defaults have not been changed, these are not a finding.
           <Inheritance>This Key and Subkeys</Inheritance>
           <Rights>ReadKey</Rights>
         </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>ALL APPLICATION PACKAGES</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>ReadKey</Rights>
-        </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;The registry is integral to the function, security, and stability of the Windows system.  Changing the system's registry permissions allows the possibility of unauthorized and anonymous modification to the operating system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2185,8 +2225,6 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
-ALL APPLICATION PACKAGES - Read - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
@@ -2230,14 +2268,6 @@ If the defaults have not been changed, these are not a finding.
         <Entry>
           <Type>
           </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>This Key and Subkeys</Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
           <Principal>ALL APPLICATION PACKAGES</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>This Key and Subkeys</Inheritance>
@@ -2263,7 +2293,6 @@ Principal - Access - Applies to
 Users - Read - This key and subkeys
 Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
-CREATOR OWNER - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
@@ -7264,62 +7293,4 @@ Select "Turn Windows features on or off".
 If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
-  <WmiRule dscresourcemodule="PSDscResources">
-    <Rule id="V-63349" severity="high" conversionstatus="pass" title="WN10-00-000040" dscresource="Script">
-      <Description>&lt;VulnDiscussion&gt;Windows 10 is maintained by Microsoft at servicing levels for specific periods of time to support Windows as a Service. Systems at unsupported servicing levels or releases will not receive security updates for new vulnerabilities which leaves them subject to exploitation.
-
-New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
-
-A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB) which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-ge</Operator>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Property>Version</Property>
-      <Query>SELECT * FROM Win32_OperatingSystem</Query>
-      <RawString>Run "winver.exe".
-
-If the "About Windows" dialog box does not display:
-
-"Microsoft Windows Version 1607 (OS Build 14393.0)"
-
-or greater, this is a finding.
-
-Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
-
-Currently supported Semi-Annual Channel versions:
-v1607 - Microsoft support is scheduled to end 09 April 2019.
-v1703 - Microsoft support is scheduled to end 08 October 2019.
-v1709 - Microsoft support is scheduled to end 14 April 2020.
-v1803 - Microsoft support is scheduled to end 10 November 2020.
-v1809 - Microsoft support is scheduled to end 13 April 2021.
-
-No preview versions will be used in a production environment.
-
-Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions, which are not a finding:
-
-v1507 (Build 10240)
-v1607 (Build 14393)
-v1809 (Build 17763)</RawString>
-      <Value>10.0.14393</Value>
-    </Rule>
-    <Rule id="V-63353" severity="high" conversionstatus="pass" title="WN10-00-000050" dscresource="Script">
-      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system.  To support this, volumes must be formatted using the NTFS file system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-match</Operator>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Property>FileSystem</Property>
-      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
-      <RawString>Run "Computer Management".
-Navigate to Storage &gt;&gt; Disk Management.
-
-If the "File System" column does not indicate "NTFS" for each volume assigned a drive letter, this is a finding.
-
-This does not apply to system partitions such the Recovery and EFI System Partition.</RawString>
-      <Value>NTFS|ReFS</Value>
-    </Rule>
-  </WmiRule>
 </DISASTIG>

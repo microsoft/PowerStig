@@ -22,7 +22,7 @@ using module .\..\..\Rule.WebAppPool\Convert\WebAppPoolRule.Convert.psm1
 using module .\..\..\Rule.WebConfigurationProperty\Convert\WebConfigurationPropertyRule.Convert.psm1
 using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 using module .\..\..\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
-using module .\..\..\Rule.Wmi\Convert\WmiRule.Convert.psm1
+using module .\..\..\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
 using module .\..\..\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
 
 # Header
@@ -219,10 +219,10 @@ class ConvertFactory
                     [WinEventLogRuleConvert]::new($Rule).AsRule()
                 )
             }
-            {[WmiRuleConvert]::Match($PSItem)}
+            {[AuditSettingRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [WmiRuleConvert]::new($Rule).AsRule()
+                    [AuditSettingRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[SslSettingsRuleConvert]::Match($PSItem)}
