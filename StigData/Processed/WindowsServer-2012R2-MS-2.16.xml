@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_2012_and_2012_R2_MS_STIG_V2R14_Manual-xccdf.xml" releaseinfo="Release: 14 Benchmark Date: 26 Oct 2018" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.14" created="7/19/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="8/8/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -151,7 +151,7 @@ Credential validation records events related to validation tests on credentials 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -172,7 +172,7 @@ Credential validation records events related to validation tests on credentials 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -193,7 +193,7 @@ Other Account Management Events records events such as the access of a password 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -214,7 +214,7 @@ Security Group Management records events such as creating, deleting, or changing
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -235,7 +235,7 @@ User Account Management records events such as creating, changing, deleting, ren
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -256,7 +256,7 @@ User Account Management records events such as creating, changing, deleting, ren
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -277,7 +277,7 @@ Process Creation records events related to the creation of a process and the sou
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -298,7 +298,7 @@ Logoff records user logoffs.  If this is an interactive logoff, it is recorded o
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -319,7 +319,7 @@ Logon records user logons.  If this is an interactive logon, it is recorded on t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -340,7 +340,7 @@ Logon records user logons.  If this is an interactive logon, it is recorded on t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -361,7 +361,7 @@ Special Logon records special logons which have administrative privileges and ca
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -382,7 +382,7 @@ Audit Policy Change records events related to changes in audit policy.&lt;/VulnD
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -403,7 +403,7 @@ Audit Policy Change records events related to changes in audit policy.&lt;/VulnD
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -424,7 +424,7 @@ Authentication Policy Change records events related to changes in authentication
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -445,7 +445,7 @@ Sensitive Privilege Use records events related to use of sensitive privileges, s
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -466,7 +466,7 @@ Sensitive Privilege Use records events related to use of sensitive privileges, s
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -487,7 +487,7 @@ IPsec Driver records events related to the IPSec Driver such as dropped packets.
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -508,7 +508,7 @@ IPsec Driver records events related to the IPsec Driver such as dropped packets.
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -529,7 +529,7 @@ Security State Change records events related to changes in the security state, s
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -550,7 +550,7 @@ Security System Extension records events related to extension code being loaded 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -571,7 +571,7 @@ System Integrity records events related to violations of integrity to the securi
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -592,7 +592,7 @@ System Integrity records events related to violations of integrity to the securi
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -613,7 +613,7 @@ Removable Storage auditing under Object Access records events related to access 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -636,7 +636,7 @@ Removable Storage auditing under Object Access records events related to access 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -659,7 +659,7 @@ Central Access Policy Staging auditing under Object Access is used to enable the
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -680,7 +680,7 @@ Central Access Policy Staging auditing under Object Access is used to enable the
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -701,7 +701,7 @@ Authorization Policy Change records events related to changes in user rights, su
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+      <RawString>Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective. 
 
 Use the AuditPol tool to review the current Audit Policy configuration:
 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -731,7 +731,7 @@ Open an elevated "Command Prompt" (run as administrator).
 
 Enter "AuditPol /get /category:*"
 
-Compare the AuditPol settings with the following.
+Compare the AuditPol settings with the following. 
 
 If the system does not audit the following, this is a finding.
 
@@ -804,7 +804,7 @@ Open an elevated "Command Prompt" (run as administrator).
 
 Enter "AuditPol /get /category:*".
 
-Compare the AuditPol settings with the following.
+Compare the AuditPol settings with the following. 
 
 If the system does not audit the following, this is a finding.
 
@@ -823,14 +823,14 @@ System &gt;&gt; Other System Events - Failure</RawString>
       <OrganizationValueTestString />
       <Property>Version</Property>
       <Query>SELECT * FROM Win32_OperatingSystem</Query>
-      <RawString>Run "winver.exe".
+      <RawString>Run "winver.exe". 
 
-If the "About Windows" dialog box does not display
-"Microsoft Windows Server
+If the "About Windows" dialog box does not display 
+"Microsoft Windows Server 
 Version 6.2 (Build 9200)"
-or greater, this is a finding.
-
-No preview versions will be used in a production environment.
+or greater, this is a finding. 
+      
+No preview versions will be used in a production environment. 
 
 Unsupported Service Packs/Releases:
 Windows 2012 - any release candidates or versions prior to the initial release.</RawString>
@@ -854,6 +854,98 @@ For each local volume, if the file system does not indicate "NTFS", this is a fi
 "ReFS" (Resilient File System) is also acceptable and would not be a finding.
 
 This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
+    </Rule>
+    <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>True</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-eq</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>PasswordExpires</Property>
+      <Query>SELECT * FROM Win32_UserAccount WHERE Disabled=False AND LocalAccount=True</Query>
+      <RawString>Review the password never expires status for enabled user accounts.
+
+Open "Windows PowerShell" with elevated privileges (run as administrator).
+
+Domain Controllers:
+
+Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | Where PasswordNeverExpires -eq True | FT Name, PasswordNeverExpires, Enabled".
+
+Exclude application accounts and disabled accounts (e.g., Guest).
+Domain accounts requiring smart card (CAC/PIV) may also be excluded.
+
+If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
+
+Member servers and standalone systems:
+
+Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
+
+Exclude application accounts and disabled accounts (e.g., Guest).
+
+If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-7002" severity="high" conversionstatus="pass" title="Password Requirement" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The lack of password protection enables anyone to gain access to the information system, which opens a backdoor opportunity for intruders to compromise the system as well as other resources.  Accounts on a system must require passwords.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>True</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-eq</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>PasswordRequired</Property>
+      <Query>SELECT * FROM Win32_UserAccount WHERE Disabled=False AND LocalAccount=True</Query>
+      <RawString>Review the password required status for enabled user accounts.
+
+Open "Windows PowerShell".
+
+Domain Controllers:
+
+Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
+
+Exclude disabled accounts (e.g., Guest) and Trusted Domain Objects (TDOs).
+
+If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
+
+Member servers and standalone systems:
+
+Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
+
+Exclude disabled accounts (e.g., Guest).
+
+If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
+
+PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
+
+Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
+
+WMF 4.0:
+Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
+
+WMF 5.0:
+https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
+
+WMF 5.1:
+https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>6.3.9600.17415</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM CIM_Datafile WHERE FileName='powershell' AND Path LIKE '%\\Windows\\System32\\WindowsPowerShell\\v1.0\\%' AND Extension='exe'</Query>
+      <RawString>Open "Windows PowerShell".
+
+Enter "$PSVersionTable".
+
+If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
+
+Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
     </Rule>
   </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">
@@ -887,7 +979,7 @@ Copy or enter the lines below to the PowerShell window and enter. (Entering twic
  if ($lastLogin -eq $null) {
  $lastLogin = 'Never'
  }
- Write-Host $user.Name $lastLogin $enabled
+ Write-Host $user.Name $lastLogin $enabled 
 }"
 
 This will return a list of local accounts with the account name, last logon, and if the account is enabled (True/False).
@@ -969,7 +1061,7 @@ For any sites that reference FTP, view the Binding information for IP address an
 
 Open a "Command Prompt".
 
-Access the FTP site and review accessible directories with the following commands:
+Access the FTP site and review accessible directories with the following commands: 
 
 Note: Returned results may vary depending on the FTP server software.
 
@@ -1007,9 +1099,9 @@ Any accounts that are members of the Backup Operators group, including applicati
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether there is a host-based Intrusion Detection System on each server.
+      <RawString>Determine whether there is a host-based Intrusion Detection System on each server. 
 
-If the HIPS component of HBSS is installed and active on the host and the Alerts of blocked activity are being logged and monitored, this will meet the requirement of this finding.
+If the HIPS component of HBSS is installed and active on the host and the Alerts of blocked activity are being logged and monitored, this will meet the requirement of this finding. 
 
 A HID device is not required on a system that has the role as the Network Intrusion Device (NID). However, this exception needs to be documented with the site ISSO.
 
@@ -1170,7 +1262,7 @@ Workstation - Automatic</RawString>
 
 If any files with these extensions exist, this is a finding.
 
-This does not apply to server-based applications that have a requirement for certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
+This does not apply to server-based applications that have a requirement for certificate files or Adobe PreFlight certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
     </Rule>
     <Rule id="V-32272" severity="medium" conversionstatus="pass" title="WINPK-000001" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To ensure secure DoD websites and DoD-signed code are properly validated, the system must trust the DoD Root Certificate Authorities (CAs). The DoD root certificates will ensure that the trust chain is established for server certificates issued from the DoD CAs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1188,7 +1280,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\root | Where Subject -Like "*DoD*" | FL Subject, Thumbprint, NotAfter
 
-If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject" and "Thumbprint" information is not displayed, this is finding. 
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1260,10 +1352,20 @@ Valid to: Friday, June 14, 2041</RawString>
       <OrganizationValueTestString />
       <RawString>Review the necessary documentation that identifies the members of the Administrators group.  If a list of all users belonging to the Administrators group is not maintained with the ISSO, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-40173" severity="low" conversionstatus="pass" title="WN00-000017" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Operating system backup is a critical step in maintaining data assurance and availability.
+    <Rule id="V-36734" severity="medium" conversionstatus="pass" title="WINGE-000028" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.  The operating system may have an integrated solution incorporating continuous scanning using HBSS and periodic scanning using other tools..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify DoD approved HBSS software is installed, configured, and properly operating. Ask the operator to document the HBSS software installation and configuration.
 
-Information system and security-related documentation contains information pertaining to system configuration and security settings.
+If the operator is not able to provide a documented configuration for an installed HBSS or if the HBSS software is not properly configured, maintained, or used, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-40173" severity="low" conversionstatus="pass" title="WN00-000017" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Operating system backup is a critical step in maintaining data assurance and availability. 
+
+Information system and security-related documentation contains information pertaining to system configuration and security settings. 
 
 Backups shall be consistent with organizational recovery time and recovery point objectives.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1317,9 +1419,9 @@ Value: Default values after removing MRxSmb10 include the following, which are n
 If there is no anti-virus solution installed on the system, this is a finding.</RawString>
     </Rule>
     <Rule id="V-1076" severity="low" conversionstatus="pass" title="System Recovery Backups" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Operating system backup is a critical step in maintaining data assurance and availability.
+      <Description>&lt;VulnDiscussion&gt;Operating system backup is a critical step in maintaining data assurance and availability. 
 
-System-level information includes system-state information, operating system and application software, and licenses.
+System-level information includes system-state information, operating system and application software, and licenses. 
 
 Backups must be consistent with organizational recovery time and recovery point objectives.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1334,13 +1436,13 @@ Backups must be consistent with organizational recovery time and recovery point 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the local system boots directly into Windows.
+      <RawString>Verify the local system boots directly into Windows.  
 
 Open Control Panel.
 Select "System".
 Select the "Advanced System Settings" link.
 Select the "Advanced" tab.
-Click the "Startup and Recovery" Settings button.
+Click the "Startup and Recovery" Settings button.  
 
 If the drop-down list box "Default operating system:" shows any operating system other than Windows Server 2012, this is a finding.</RawString>
     </Rule>
@@ -1358,7 +1460,7 @@ Standard user accounts must not be members of the built-in Administrators group.
       <OrganizationValueTestString />
       <RawString>Review the local Administrators group. Only the appropriate administrator groups or accounts responsible for administration of the system may be members of the group.
 
-For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group.
+For domain-joined member servers, the Domain Admins group must be replaced by a domain member server administrator group. 
 
 Standard user accounts must not be members of the local Administrator group.
 
@@ -1388,13 +1490,13 @@ If an alternate method is used to configure a system (e.g., manually using the D
 If there are no printers configured, this is NA.
 
 For each configured printer:
-Right click on the printer.
-Select "Printer Properties".
-Select the "Sharing" tab.
-View whether "Share this printer" is checked.
+Right click on the printer. 
+Select "Printer Properties". 
+Select the "Sharing" tab. 
+View whether "Share this printer" is checked. 
 
-For any printers with "Share this printer" selected:
-Select the Security tab.
+For any printers with "Share this printer" selected: 
+Select the Security tab. 
 
 If any standard user accounts or groups have permissions other than "Print", this is a finding.
 Standard users will typically be given "Print" permission through the Everyone group.
@@ -1450,59 +1552,6 @@ If an alternate time synchronization tool is used and is not enabled or not conf
 
 The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</RawString>
     </Rule>
-    <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the password never expires status for enabled user accounts.
-
-Open "Windows PowerShell" with elevated privileges (run as administrator).
-
-Domain Controllers:
-
-Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | Where PasswordNeverExpires -eq True | FT Name, PasswordNeverExpires, Enabled".
-
-Exclude application accounts and disabled accounts (e.g., Guest).
-Domain accounts requiring smart card (CAC/PIV) may also be excluded.
-
-If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
-
-Member servers and standalone systems:
-
-Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
-
-Exclude application accounts and disabled accounts (e.g., Guest).
-
-If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-7002" severity="high" conversionstatus="pass" title="Password Requirement" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The lack of password protection enables anyone to gain access to the information system, which opens a backdoor opportunity for intruders to compromise the system as well as other resources.  Accounts on a system must require passwords.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the password required status for enabled user accounts.
-
-Open "Windows PowerShell".
-
-Domain Controllers:
-
-Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
-
-Exclude disabled accounts (e.g., Guest).
-
-If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
-
-Member servers and standalone systems:
-
-Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
-
-Exclude disabled accounts (e.g., Guest).
-
-If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-14225" severity="medium" conversionstatus="pass" title="Administrator Account Password Changes" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. The password for the built-in Administrator account must be changed at least annually or when any member of the administrative team leaves the organization.
 
@@ -1545,7 +1594,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding. 
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -1556,13 +1605,8 @@ NotAfter: 9/6/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-NotAfter: 9/23/2018
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-NotAfter: 2/17/2019
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+NotAfter: 1/22/2022
 
 Alternately use the Certificates MMC snap-in:
 
@@ -1599,13 +1643,8 @@ Valid to: Friday, September 6, 2019
 
 Issued To: DoD Root CA 3
 Issued By: DoD Interoperability Root CA 2
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-Valid to: Sunday, September 23, 2018
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-Valid to: Sunday, February 17, 2019</RawString>
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+Valid to: Saturday, January 22, 2022</RawString>
     </Rule>
     <Rule id="V-36451" severity="high" conversionstatus="pass" title="Accounts with administrative privileges Internet access" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using applications that access the Internet or have potential Internet sources using administrative privileges exposes a system to compromise.  If a flaw in an application is exploited while running as a privileged user, the entire system could be compromised.  Web browsers and email are common attack vectors for introducing malicious code and must not be run with an administrative account.
@@ -1623,7 +1662,7 @@ Technical means such as application whitelisting can be used to enforce the poli
 
 The organization must have a policy that prohibits administrative accounts from using applications that access the Internet, such as web browsers, or with potential Internet sources, such as email, except as necessary for local service administration.  The policy should define specific exceptions for local service administration. These exceptions may include HTTP(S)-based tools that are used for the administration of the local system, services, or attached devices.
 
-Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.
+Technical measures such as the removal of applications or application whitelisting must be used where feasible to prevent the use of applications that access the Internet.  
 
 If accounts with administrative privileges are not prevented from using applications that access the Internet or with potential Internet sources, this is a finding.</RawString>
     </Rule>
@@ -1633,7 +1672,7 @@ If accounts with administrative privileges are not prevented from using applicat
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account.
+      <RawString>Verify each user with administrative privileges has been assigned a unique administrative account separate from their standard user account. 
 
 If users with administrative privileges do not have separate accounts for administrative functions and standard user functions, this is a finding.</RawString>
     </Rule>
@@ -1708,7 +1747,7 @@ If the "Password Last Set" date is more than one year old, this is a finding.</R
       <RawString>Determine if a process to back up log data to a different system or media than the system being audited has been implemented.  If it has not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-36733" severity="low" conversionstatus="pass" title="WINGE-000027" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Operating system backup is a critical step in maintaining data assurance and availability.
+      <Description>&lt;VulnDiscussion&gt;Operating system backup is a critical step in maintaining data assurance and availability. 
 
 User-level information is data generated by information system and/or application users.
 
@@ -1719,14 +1758,6 @@ Backups shall be consistent with organizational recovery time and recovery point
       <OrganizationValueTestString />
       <RawString>Determine whether user-level information is backed up in accordance with local recovery time and recovery point objectives.  If user-level information is not backed up in accordance with local recovery time and recovery point objectives, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-36734" severity="medium" conversionstatus="pass" title="WINGE-000028" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.  The operating system may have an integrated solution incorporating continuous scanning using HBSS and periodic scanning using other tools..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system employs automated mechanisms to determine the state of system components with regard to flaw remediation using the following frequency: continuously, where HBSS is used; 30 days, for any additional internal network scans not covered by HBSS; and annually, for external scans by Computer Network Defense Service Provider (CNDSP).  If it does not, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-36735" severity="medium" conversionstatus="pass" title="WINGE-000029" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The organization (including any contractor to the organization) must promptly install security-relevant software updates (e.g., patches, service packs, hot fixes).  Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1734,14 +1765,6 @@ Backups shall be consistent with organizational recovery time and recovery point
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the organization has an automated process to install security-related software updates.  If it does not, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-36736" severity="medium" conversionstatus="pass" title="WINGE-000030" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Failure to verify a certificate's revocation status can result in the system accepting a revoked, and therefore unauthorized, certificate.  This could result in the installation of unauthorized software or a connection for rogue networks, depending on the use for which the certificate is intended.   Querying for certificate revocation mitigates the risk that the system will accept an unauthorized certificate.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system has software installed and running that provides certificate validation and revocation checking.  If it does not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-40172" severity="low" conversionstatus="pass" title="WN00-000016" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A system backup will usually include sensitive information such as user accounts that could be used in an attack.  As a valuable system resource, the system backup must be protected and stored in a physically secure location.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;CODB-2&lt;/IAControls&gt;</Description>
@@ -1775,14 +1798,9 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding. 
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-NotAfter: 3/9/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
@@ -1817,25 +1835,10 @@ If the certificate below is not listed or the value for the "Thumbprint" field i
 
 If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
 
-Issued To: DoD Root CA 2
-Issued By: US DoD CCEB Interoperability Root CA 1
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-Valid to: Saturday, March 9, 2019
-
 Issued To: DoD Root CA 3
 Issuer by: US DoD CCEB Interoperability Root CA 2
 Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
 Valid: Friday, September 27, 2019</RawString>
-    </Rule>
-    <Rule id="V-42420" severity="medium" conversionstatus="pass" title="WINFW-000001" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack, allowing or blocking inbound and outbound connections based on a set of rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if a host-based firewall is installed and enabled on the system.  If a host-based firewall is not installed and enabled on the system, this is a finding.
-
-The configuration requirements will be determined by the applicable firewall STIG.</RawString>
     </Rule>
     <Rule id="V-57637" severity="medium" conversionstatus="pass" title="WIN00-000018" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Utilizing a whitelist provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
@@ -1988,33 +1991,6 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 Review each User Right listed for any unresolved SIDs to determine whether they are valid, such as due to being temporarily disconnected from the domain. (Unresolved SIDs have the format of "*S-1-…".)
 
 If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
-
-PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
-
-Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
-
-WMF 4.0:
-Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
-
-WMF 5.0:
-https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
-
-WMF 5.1:
-https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "Windows PowerShell".
-
-Enter "$PSVersionTable".
-
-If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
-
-Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -2881,7 +2857,7 @@ Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES - Read &amp; Execute</Ra
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ShutdownWithoutLogon
@@ -2902,7 +2878,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeText
@@ -2972,7 +2948,7 @@ Value:  4 (or less)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymous
@@ -2993,7 +2969,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: EnableForcedLogoff
@@ -3056,7 +3032,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers\
 
 Value Name: AddPrinterDrivers
@@ -3098,7 +3074,7 @@ Value: 5</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DisableCAD
@@ -3119,9 +3095,9 @@ Value: 0</RawString>
       <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
-
+ 
 Value Name: SCRemoveOption
 
 Value Type: REG_SZ
@@ -3142,7 +3118,7 @@ If configuring this on servers causes issues such as terminating users' remote s
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -3209,7 +3185,7 @@ If the value for "Domain Member: Digitally encrypt or sign secure channel data (
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: DisablePasswordChange
@@ -3230,7 +3206,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: EnableSecuritySignature
@@ -3251,7 +3227,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name: AllocateDASD
@@ -3272,7 +3248,7 @@ Value: 0</RawString>
       <OrganizationValueTestString>'{0}' -ge '14'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name: PasswordExpiryWarning
@@ -3293,7 +3269,7 @@ Value: 14 (or greater)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Session Manager\
 
 Value Name: ProtectionMode
@@ -3356,7 +3332,7 @@ Value: 0x000000ff (255)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: NullSessionPipes
@@ -3380,7 +3356,7 @@ Legitimate applications may add entries to this registry value. If an applicatio
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedExactPaths\
 
 Value Name: Machine
@@ -3388,8 +3364,8 @@ Value Name: Machine
 Value Type: REG_MULTI_SZ
 Value: see below
 
-System\CurrentControlSet\Control\ProductOptions
-System\CurrentControlSet\Control\Server Applications
+System\CurrentControlSet\Control\ProductOptions 
+System\CurrentControlSet\Control\Server Applications 
 Software\Microsoft\Windows NT\CurrentVersion
 
 Legitimate applications may add entries to this registry value.  If an application requires these entries to function properly and is documented with the ISSO, this would not be a finding. Documentation must contain supporting information from the vendor's instructions.</RawString>
@@ -3409,7 +3385,7 @@ Legitimate applications may add entries to this registry value.  If an applicati
 
 If the following registry value does exist and is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: NullSessionShares
@@ -3431,12 +3407,12 @@ Value: (Blank)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\ 
 
 Value Name: fAllowToGetHelp
-
-Type: REG_DWORD
+ 
+Type: REG_DWORD 
 Value: 0</RawString>
       <ValueData>0</ValueData>
       <ValueName>fAllowToGetHelp</ValueName>
@@ -3452,7 +3428,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: LimitBlankPasswordUse
@@ -3473,7 +3449,7 @@ Value: 1</RawString>
       <OrganizationValueTestString>'{0}' -le '30' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: MaximumPasswordAge
@@ -3494,38 +3470,17 @@ Value: 30 (or less, but not 0)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireStrongKey
 
 Value Type: REG_DWORD
 Value: 1
-
+ 
 This setting may prevent a system from being joined to a domain if not configured consistently between systems.</RawString>
       <ValueData>1</ValueData>
       <ValueName>RequireStrongKey</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-3376" severity="medium" conversionstatus="pass" title="Storage of Passwords and Credentials" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;This setting controls the storage of passwords and credentials for network authentication on the local system.  Such credentials must not be stored on the local machine, as that may lead to account compromise.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \System\CurrentControlSet\Control\Lsa\
-
-Value Name: DisableDomainCreds
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableDomainCreds</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-3377" severity="medium" conversionstatus="pass" title="Everyone Anonymous rights" dscresource="Registry">
@@ -3538,7 +3493,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: EveryoneIncludesAnonymous
@@ -3559,7 +3514,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: ForceGuest
@@ -3580,7 +3535,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: NoLMHash
@@ -3601,7 +3556,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LDAP\
 
 Value Name: LDAPClientIntegrity
@@ -3622,7 +3577,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinClientSec
@@ -3650,7 +3605,7 @@ Value Name: Enabled
 
 Value Type: REG_DWORD
 Value: 1
-
+ 
 Warning: Clients with this setting enabled will not be able to communicate via digitally encrypted or signed protocols with servers that do not support these algorithms.  Both the browser and web server must be configured to use TLS, or the browser will not be able to connect to a secure site.</RawString>
       <ValueData>1</ValueData>
       <ValueName>Enabled</ValueName>
@@ -3666,7 +3621,7 @@ Warning: Clients with this setting enabled will not be able to communicate via d
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Session Manager\Kernel\
 
 Value Name: ObCaseInsensitive
@@ -3685,14 +3640,14 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
+Registry Hive: HKEY_LOCAL_MACHINE 
+Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\ 
 
-Value Name: fSingleSessionPerUser
+Value Name: fSingleSessionPerUser 
 
-Type: REG_DWORD
+Type: REG_DWORD 
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>fSingleSessionPerUser</ValueName>
@@ -3836,7 +3791,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Session Manager\
 
 Value Name: SafeDllSearchMode
@@ -3878,7 +3833,7 @@ Value: 1</RawString>
       <Key>HKEY_CURRENT_USER\Software\Policies\Microsoft\WindowsMediaPlayer</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_CURRENT_USER
 Registry Path: \Software\Policies\Microsoft\WindowsMediaPlayer\
@@ -3901,7 +3856,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\MSV1_0\
 
 Value Name: NTLMMinServerSec
@@ -3924,7 +3879,7 @@ Value: 0x20080000 (537395200)</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Eventlog\Security\
 
 Value Name: WarningLevel
@@ -3945,7 +3900,7 @@ Value: 90 (or less)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: DisableIPSourceRouting
@@ -3966,7 +3921,7 @@ Value: 2</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: EnableICMPRedirect
@@ -3987,7 +3942,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: PerformRouterDiscovery
@@ -4008,7 +3963,7 @@ Value: 0</RawString>
       <OrganizationValueTestString>'{0}' -le '300000'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Tcpip\Parameters\
 
 Value Name: KeepAliveTime
@@ -4071,7 +4026,7 @@ Value:  3 (or less)</RawString>
       <OrganizationValueTestString>'{0}' -le '5'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows NT\CurrentVersion\Winlogon\
 
 Value Name: ScreenSaverGracePeriod
@@ -4092,7 +4047,7 @@ Value: 5 (or less)</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\SecurePipeServers\Winreg\AllowedPaths\
 
 Value Name: Machine
@@ -4127,7 +4082,7 @@ Legitimate applications may add entries to this registry value. If an applicatio
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Session Manager\Subsystems\
 
 Value Name: Optional
@@ -4191,7 +4146,7 @@ Value: 0</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\Netlogon\Parameters\
 
 Value Name: RequireSignOrSeal
@@ -4212,7 +4167,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanmanWorkstation\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -4233,7 +4188,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RequireSecuritySignature
@@ -4254,7 +4209,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\LanManServer\Parameters\
 
 Value Name: RestrictNullSessAccess
@@ -4275,7 +4230,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DontDisplayLastUserName
@@ -4297,7 +4252,7 @@ This setting prevents the system from setting up a default system access control
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: AuditBaseObjects
@@ -4309,7 +4264,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14229" severity="medium" conversionstatus="pass" title="Audit Backup and Restore Privileges" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.  
 This setting prevents the system from generating audit events for every file backed up or restored, which could fill the security log in Windows, making it difficult to identify actual issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4319,7 +4274,7 @@ This setting prevents the system from generating audit events for every file bac
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: FullPrivilegeAuditing
@@ -4331,7 +4286,7 @@ Value: 0</RawString>
       <ValueType>Binary</ValueType>
     </Rule>
     <Rule id="V-14230" severity="medium" conversionstatus="pass" title="Audit Policy Subcategory Setting" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
+      <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  Audit logs are necessary to provide a trail of evidence in case the system or network is compromised.  Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.  
 This setting allows administrators to enable more precise auditing capabilities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4341,7 +4296,7 @@ This setting allows administrators to enable more precise auditing capabilities.
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: SCENoApplyLegacyAuditPolicy
@@ -4362,7 +4317,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Services\IPSEC\
 
 Value Name: NoDefaultExempt
@@ -4385,7 +4340,7 @@ Value: 3</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: FilterAdministratorToken
@@ -4408,7 +4363,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ConsentPromptBehaviorAdmin
@@ -4434,7 +4389,7 @@ Value: 4 (Prompt for consent)
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ConsentPromptBehaviorUser
@@ -4457,7 +4412,7 @@ Value: 0</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableInstallerDetection
@@ -4480,7 +4435,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableSecureUIAPaths
@@ -4503,7 +4458,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableLUA
@@ -4526,7 +4481,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: PromptOnSecureDesktop
@@ -4549,7 +4504,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableVirtualization
@@ -4645,7 +4600,7 @@ Value:  1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14259" severity="medium" conversionstatus="pass" title="Printing Over HTTP" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents the client computer from printing over HTTP, which allows the computer to print to printers on the intranet as well as the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4667,7 +4622,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14260" severity="medium" conversionstatus="pass" title="HTTP Printer Drivers" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents the computer from downloading print driver packages over HTTP.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4689,7 +4644,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14261" severity="medium" conversionstatus="pass" title="Windows Update Device Drive Searching" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents Windows from searching Windows Update for device drivers when no local drivers for a device are present.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4837,7 +4792,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15674" severity="medium" conversionstatus="pass" title="Internet File Association Service " dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents unhandled file associations from using the Microsoft Web service to find an application.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4856,29 +4811,6 @@ Type: REG_DWORD
 Value: 1</RawString>
       <ValueData>1</ValueData>
       <ValueName>NoInternetOpenWith</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-15680" severity="low" conversionstatus="pass" title="Classic Logon" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;The classic logon screen requires users to enter a logon name and password to access a system.  The simple logon screen or Welcome screen displays  usernames for selection, providing part of the necessary logon information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the system is a member of a domain, this is NA.
-
-If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
-
-Value Name:  LogonType
-
-Type:  REG_DWORD
-Value:  0</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>LogonType</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15682" severity="medium" conversionstatus="pass" title="RSS Attachment Downloads" dscresource="Registry">
@@ -4987,7 +4919,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15687" severity="low" conversionstatus="pass" title="Media Player – First Use Dialog Boxes " dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents users from being presented with Privacy and Installation options on first use of Windows Media Player, which could enable some communication with the vendor.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5295,7 +5227,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15702" severity="low" conversionstatus="pass" title="Device Install – Generic Driver Error Report" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents an error report from being sent when a generic device driver is installed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5317,7 +5249,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15703" severity="low" conversionstatus="pass" title="Driver Install – Device Driver Search Prompt" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents users from being prompted to search Windows Update for device drivers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5339,7 +5271,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15704" severity="low" conversionstatus="pass" title="Handwriting Recognition Error Reporting" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents errors in handwriting recognition on tablet PCs from being reported to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5423,29 +5355,6 @@ Value: 1</RawString>
       <ValueName>LoggingEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15713" severity="medium" conversionstatus="pass" title="Defender – SpyNet Reporting" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this feature will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  This setting disables Microsoft Active Protection Service membership and reporting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -notmatch '1|2'</OrganizationValueTestString>
-      <RawString>If the following registry value exists and is set to "1" (Basic) or "2" (Advanced), this is a finding:
-
-If the registry value does not exist, this is not a finding.
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet\
-
-Value Name:  SpyNetReporting
-
-Type:  REG_DWORD
-Value:  1 or 2 = a Finding</RawString>
-      <ValueData />
-      <ValueName>SpyNetReporting</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-15718" severity="low" conversionstatus="pass" title="Windows Explorer – Heap Termination" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Legacy plug-in applications may continue to function when a File Explorer session has become corrupt.  Disabling this feature will prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5468,7 +5377,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-15722" severity="medium" conversionstatus="pass" title="Media DRM – Internet Access" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This check verifies that Windows Media DRM will be prevented from accessing the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5522,7 +5431,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: EnableUIADesktopToggle
@@ -5541,7 +5450,7 @@ Value: 0</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -5562,7 +5471,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -5583,7 +5492,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -5604,7 +5513,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -5629,7 +5538,7 @@ Value: 1</RawString>
 
 If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: ValidateAdminCodeSignatures
@@ -5641,7 +5550,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-16020" severity="medium" conversionstatus="pass" title="Windows Customer Experience Improvement Program " dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting ensures the Windows Customer Experience Improvement Program is disabled so information is not passed to the vendor.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5663,7 +5572,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-16021" severity="medium" conversionstatus="pass" title="Help Experience Improvement Program " dscresource="cAdministrativeTemplate">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting ensures the Windows Help Experience Improvement Program is disabled to prevent information from being passed to the vendor.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5685,7 +5594,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-16048" severity="medium" conversionstatus="pass" title="Help Ratings" dscresource="cAdministrativeTemplate">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting ensures users cannot provide ratings feedback to Microsoft for Help content.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5900,7 +5809,7 @@ Value: Enabled</RawString>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-21963" severity="low" conversionstatus="pass" title="Windows Update Point and Print Driver Search" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting will prevent Windows from searching Windows Update for point and print drivers.  Only the local driver store and server driver cache will be searched.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5922,7 +5831,7 @@ Value: 1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21964" severity="low" conversionstatus="pass" title="Prevent device metadata retrieval from Internet" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting will prevent Windows from retrieving device metadata from the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5944,7 +5853,7 @@ Value:  1</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21965" severity="low" conversionstatus="pass" title="Prevent Windows Update for device driver search" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting will prevent the system from searching Windows Update for device drivers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5966,7 +5875,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21967" severity="low" conversionstatus="pass" title="MSDT Interactive Communication" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents the MSDT from communicating with and sending collected data to Microsoft, the default support provider.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5988,7 +5897,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21969" severity="low" conversionstatus="pass" title="Windows Online Troubleshooting Service" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents users from searching troubleshooting content on Microsoft servers.  Only local content will be available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6010,7 +5919,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21970" severity="low" conversionstatus="pass" title="Disable PerfTrack" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting prevents responsiveness events from being aggregated and sent to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6032,7 +5941,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-21971" severity="low" conversionstatus="pass" title="Application Compatibility Program Inventory" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting will prevent the Program Inventory from collecting data about a system and sending the information to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6126,7 +6035,7 @@ Value: 1</RawString>
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \System\CurrentControlSet\Control\Lsa\
 
 Value Name: RestrictAnonymousSAM
@@ -6147,7 +6056,7 @@ Value: 1</RawString>
       <OrganizationValueTestString>'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: LegalNoticeCaption
@@ -6155,7 +6064,7 @@ Value Name: LegalNoticeCaption
 Value Type: REG_SZ
 Value: See message title options below
 
-"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or a site-defined equivalent.
+"DoD Notice and Consent Banner", "US Department of Defense Warning Statement", or a site-defined equivalent. 
 
 If a site-defined title is used, it can in no case contravene or modify the language of the banner text required in V-1089.
 
@@ -6341,7 +6250,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-28504" severity="low" conversionstatus="pass" title="Device Install Software Request Error Report" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
+      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  
 This setting will prevent Windows from sending an error report to Microsoft when a device driver requests additional software during installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6384,7 +6293,7 @@ Value: 0</RawString>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-36439" severity="medium" conversionstatus="pass" title="Local admin accounts filtered token policy enabled on domain systems." dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;A compromised local administrator account can provide means for an attacker to move laterally between domain systems.
+      <Description>&lt;VulnDiscussion&gt;A compromised local administrator account can provide means for an attacker to move laterally between domain systems.  
 
 With User Account Control enabled, filtering the privileged token for local administrator accounts will prevent the elevated privileges of these accounts from being used over the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6393,8 +6302,8 @@ With User Account Control enabled, filtering the privileged token for local admi
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the system is not a member of a domain, this is NA.
-If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the system is not a member of a domain, this is NA. 
+If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
@@ -6428,8 +6337,8 @@ Type: REG_SZ
 Value: 1
 
 Applications requiring continuous, real-time screen display (e.g., network management products) require the following and must be documented with the ISSO:
-
--The logon session does not have administrator rights.
+ 
+-The logon session does not have administrator rights. 
 -The display station (e.g., keyboard, monitor, etc.) is located in a controlled access area.</RawString>
       <ValueData>1</ValueData>
       <ValueName>ScreenSaveActive</ValueName>
@@ -6718,7 +6627,9 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>This is applicable to unclassified systems; for other systems, this is NA.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
@@ -6726,7 +6637,8 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 Value Name: EnableSmartScreen
 
 Type: REG_DWORD
-Value:  1 (Give user a warning…) Or 2 (Require approval…)</RawString>
+Value: 0x00000001 (1) (Give user a warning…)
+Or 0x00000002 (2) (Require approval…)</RawString>
       <ValueData />
       <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
@@ -6967,7 +6879,7 @@ Value: 1</RawString>
       <OrganizationValueTestString>'{0}' -le '900' -and '{0}' -gt '0'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \Software\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: InactivityTimeoutSecs
@@ -7028,7 +6940,7 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows NT\Terminal Services</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding: 
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \Software\Policies\Microsoft\Windows NT\Terminal Services\
@@ -7053,7 +6965,7 @@ Value: 1</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\Personalization\
 
 Value Name: NoLockScreenSlideshow
@@ -7078,7 +6990,7 @@ Enabling "Include command line data for process creation events" will record the
 
 Verify the registry value below. If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Audit\
 
 Value Name: ProcessCreationIncludeCmdLine_Enabled
@@ -7101,7 +7013,7 @@ Value: 0x00000001 (1)</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 
 Value Name: DontDisplayNetworkSelectionUI
@@ -7124,7 +7036,7 @@ Value: 1</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
 
 Value Name: MSAOptional
@@ -7147,7 +7059,7 @@ Value: 1</RawString>
 
 Verify the registry value below.  If it does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\
 
 Value Name: DisableAutomaticRestartSignOn
@@ -7249,7 +7161,7 @@ PowerShell 5.x supports script block logging. PowerShell 4.0 with the addition o
       <OrganizationValueTestString />
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
 
-Registry Hive: HKEY_LOCAL_MACHINE
+Registry Hive: HKEY_LOCAL_MACHINE 
 Registry Path: \SOFTWARE\ Policies\Microsoft\Windows\PowerShell\ScriptBlockLogging\
 
 Value Name: EnableScriptBlockLogging
@@ -7257,7 +7169,7 @@ Value Name: EnableScriptBlockLogging
 Value Type: REG_DWORD
 Value: 0x00000001 (1)
 
-PowerShell 4.0 requires the installation of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012.
+PowerShell 4.0 requires the installation of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012. 
 
 If the patch is not installed on systems with PowerShell 4.0, this is a finding.
 
@@ -7406,7 +7318,7 @@ If the "Microsoft FTP Service" (Service name: FTPSVC) is installed and not disab
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Peer Network Identity Manager (p2pimsvc) service is not installed or is disabled.
+      <RawString>Verify the Peer Network Identity Manager (p2pimsvc) service is not installed or is disabled. 
 
 Run "Services.msc".
 
@@ -7424,7 +7336,7 @@ Peer Networking Identity Manager (p2pimsvc)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Simple TCP/IP (simptcp) service is not installed or is disabled.
+      <RawString>Verify the Simple TCP/IP (simptcp) service is not installed or is disabled. 
 
 Run "Services.msc".
 
@@ -7442,7 +7354,7 @@ Simple TCP/IP Services (simptcp)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Telnet (tlntsvr) service is not installed or is disabled.
+      <RawString>Verify the Telnet (tlntsvr) service is not installed or is disabled. 
 
 Run "Services.msc".
 
@@ -7453,6 +7365,20 @@ Telnet (tlntsvr)</RawString>
       <ServiceState>Stopped</ServiceState>
       <StartupType>Disabled</StartupType>
     </Rule>
+    <Rule id="V-36736" severity="medium" conversionstatus="pass" title="WINGE-000030" dscresource="Service">
+      <Description>&lt;VulnDiscussion&gt;Failure to verify a certificate's revocation status can result in the system accepting a revoked, and therefore unauthorized, certificate.  This could result in the installation of unauthorized software or a connection for rogue networks, depending on the use for which the certificate is intended.   Querying for certificate revocation mitigates the risk that the system will accept an unauthorized certificate.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ServiceName/StartupType is populated with correct Certificate Revocation Checking service information</OrganizationValueTestString>
+      <RawString>Verify the system has software installed and running that provides certificate validation and revocation checking.  If it does not, this is a finding.</RawString>
+      <ServiceName>
+      </ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>
+      </StartupType>
+    </Rule>
     <Rule id="V-40206" severity="medium" conversionstatus="pass" title="WNSV-000106" dscresource="Service">
       <Description>&lt;VulnDiscussion&gt;The automatic start of the Smart Card Removal Policy service is required to support the smart card removal behavior requirement.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7460,7 +7386,7 @@ Telnet (tlntsvr)</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Smart Card Removal Policy service is configured to "Automatic".
+      <RawString>Verify the Smart Card Removal Policy service is configured to "Automatic". 
 
 Run "Services.msc".
 
@@ -7468,6 +7394,22 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
       <ServiceName>SCPolicySvc</ServiceName>
       <ServiceState>Running</ServiceState>
       <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-42420" severity="medium" conversionstatus="pass" title="WINFW-000001" dscresource="Service">
+      <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack, allowing or blocking inbound and outbound connections based on a set of rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ServiceName/StartupType is populated with correct Firewall service information</OrganizationValueTestString>
+      <RawString>Determine if a host-based firewall is installed and enabled on the system.  If a host-based firewall is not installed and enabled on the system, this is a finding.
+
+The configuration requirements will be determined by the applicable firewall STIG.</RawString>
+      <ServiceName>
+      </ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>
+      </StartupType>
     </Rule>
   </ServiceRule>
   <UserRightRule dscresourcemodule="SecurityPolicyDsc">
@@ -7668,7 +7610,7 @@ If any accounts or groups other than the following are granted the "Allow log on
 
 Administrators
 
-If the system serves the Remote Desktop Services role, the Remote Desktop Users group or another more restrictive group may be included.
+If the system serves the Remote Desktop Services role, the Remote Desktop Users group or another more restrictive group may be included.  
 
 Organizations may grant this to other groups, such as more restrictive groups with administrative or management functions, if required.  Remote Desktop Services access must be restricted to the accounts that require it.  This must be documented with the ISSO.</RawString>
     </Rule>
@@ -7833,7 +7775,7 @@ Systems that have the Hyper-V role will also have "Virtual Machines" given this 
       <Constant>SeDenyBatchLogonRight</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Deny log on as a batch job" user right defines accounts that are prevented from logging on to the system as a batch job such, as Task Scheduler.
+The "Deny log on as a batch job" user right defines accounts that are prevented from logging on to the system as a batch job such, as Task Scheduler.  
 
 In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks which could lead to the compromise of an entire domain.
 
@@ -7863,7 +7805,7 @@ Guests Group</RawString>
       <Constant>SeDenyServiceLogonRight</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Deny log on as a service" user right defines accounts that are denied log on as a service.
+The "Deny log on as a service" user right defines accounts that are denied log on as a service.  
 
 In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks which could lead to the compromise of an entire domain.
 
@@ -7891,7 +7833,7 @@ If any accounts or groups are defined for the "Deny log on as a service" user ri
       <Constant>SeDenyInteractiveLogonRight</Constant>
       <Description>&lt;VulnDiscussion&gt;Inappropriate granting of user rights can provide system, administrative, and other high-level capabilities.
 
-The "Deny log on locally" user right defines accounts that are prevented from logging on interactively.
+The "Deny log on locally" user right defines accounts that are prevented from logging on interactively.  
 
 In an Active Directory Domain, denying logons to the Enterprise Admins and Domain Admins groups on lower-trust systems helps mitigate the risk of privilege escalation from credential theft attacks which could lead to the compromise of an entire domain.
 
@@ -7952,7 +7894,7 @@ Local account (see Note below)
 All Systems:
 Guests group
 
-Note: Windows Server 2012 R2 added new built-in security groups, including "Local account", for assigning permissions and rights to all local accounts.
+Note: Windows Server 2012 R2 added new built-in security groups, including "Local account", for assigning permissions and rights to all local accounts. 
 Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.</RawString>
     </Rule>
     <Rule id="V-26487" severity="medium" conversionstatus="pass" title="Enable accounts to be trusted for delegation" dscresource="UserRightsAssignment">
