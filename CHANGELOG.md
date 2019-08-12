@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Added support for Windows 2012 Server DNS STIG, Version 1, Release 12 [#464](https://github.com/microsoft/PowerStig/issues/464)
 * Fixed [#444](https://github.com/microsoft/PowerStig/issues/444): Duplicate principals in Permission Rule (Registry)
 * Updated logfile in 2012R2 DC STIG leveraging HardCodedRule to automate additional STIG rules. [#446](https://github.com/microsoft/PowerStig/issues/446)
 * Updated logfile in 2012R2 MS STIG leveraging HardCodedRule to automate additional STIG rules. [#448](https://github.com/microsoft/PowerStig/issues/448)
