@@ -3,6 +3,8 @@
 ## Unreleased
 
 * Update PowerSTIG to automate applying the IIS 8.5 STIG, Version 1 Release 8. [#469](https://github.com/microsoft/PowerStig/issues/469)
+* Added support for Windows 10 STIG, Version 1, Release 17 & 18: [#466](https://github.com/microsoft/PowerStig/issues/466)
+* Added support for Windows 2012 Server DNS STIG, Version 1, Release 12 [#464](https://github.com/microsoft/PowerStig/issues/464)
 * Update PowerSTIG to automate applying the Windows Server 2012R2 DC & MS STIG, Version 2, Release 17 & 16 respectively. [#456](https://github.com/microsoft/PowerStig/issues/456)
 * Fixed [#444](https://github.com/microsoft/PowerStig/issues/444): Duplicate principals in Permission Rule (Registry)
 * Updated logfile in 2012R2 DC STIG leveraging HardCodedRule to automate additional STIG rules. [#446](https://github.com/microsoft/PowerStig/issues/446)
@@ -14,6 +16,8 @@
 * Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
 * Added support for Server 2016 STIG, Version 1, Release 8 [#418](https://github.com/Microsoft/PowerStig/issues/418)
 * Update PowerSTIG to enforce additional rules in the SQL Server 2012 STIG [#438](https://github.com/microsoft/PowerStig/issues/438)
+* Added support for Windows Defender Antivirus STIG, Version 1, Release 6 [#462](https://github.com/Microsoft/PowerStig/issues/462)
+* Added support for Firefox STIG v4r26 [#458](https://github.com/Microsoft/PowerStig/issues/458)
 
 ## 3.2.0
 

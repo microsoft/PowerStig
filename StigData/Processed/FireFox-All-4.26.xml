@@ -1,4 +1,4 @@
-<DISASTIG version="4" classification="UNCLASSIFIED" customname="" stigid="Mozilla_FireFox_STIG" description="The Mozilla FireFox Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_Mozilla_FireFox_STIG_V4R24_Manual-xccdf.xml" releaseinfo="Release: 24 Benchmark Date: 25 Jan 2019" title="Mozilla FireFox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="4.24" created="7/19/2019">
+<DISASTIG version="4" classification="UNCLASSIFIED" customname="" stigid="Mozilla_FireFox_STIG" description="The Mozilla FireFox Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_Mozilla_FireFox_STIG_V4R26_Manual-xccdf.xml" releaseinfo="Release: 26 Benchmark Date: 26 Jul 2019" title="Mozilla FireFox Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="4.26" created="8/8/2019">
   <FileContentRule dscresourcemodule="FileContentDsc">
     <Rule id="V-15768" severity="medium" conversionstatus="pass" title="FireFox Preferences – Verification" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;When a web site asks for a certificate for user authentication, Firefox must be configured to have the user choose which certificate to present. Websites within DOD require user authentication for access which increases security for DoD information. Access will be denied to the user if certificate management is not configured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -31,11 +31,11 @@ Criteria: If the value of "network.protocol-handler.external.shell" is not "fals
       <Description>&lt;VulnDiscussion&gt;New file types cannot be added directly to the helper applications or plugins listing. Files with these extensions will not be allowed to use Firefox publicly available plugins and extensions to open.  The application will be configured to open these files using external applications only.  After a helper application or save to disk download action has been set, that action will be taken automatically for those types of files.  When the user receives a dialog box asking if you want to save the file or open it with a specified application, this indicates that a plugin does not exist. The user has not previously selected a download action or helper application to automatically use for that type of file. When prompted, if the user checks the option to Do this automatically for files like this from now on, then an entry will appear for that type of file in the plugins listing and this file type is automatically opened in the future. This can be a security issue.  New file types cannot be added directly to the Application plugin listing. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>plugin.default_plugin_disabled</Key>
+      <Key>plugin.disable_full_page_plugin_for_types</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open a browser window, type "about:config" in the address bar.
-Criteria: If the “plugin.default_plugin_disabled” value is not set to include the following external extensions and not locked, this is a finding:
+Criteria: If the “plugin.disable_full_page_plugin_for_types” value is not set to include the following external extensions and not locked, this is a finding:
 PDF, FDF, XFDF, LSL, LSO, LSS, IQY, RQY, XLK, XLS, XLT, POT, PPS, PPT, DOS, DOT, WKS, BAT, PS, EPS, WCH, WCM, WB1, WB3, RTF, DOC, MDB, MDE, WBK, WB1, WCH, WCM, AD, ADP.</RawString>
       <Value>PDF,FDF,XFDF,LSL,LSO,LSS,IQY,RQY,XLK,XLS,XLT,POT,PPS,PPT,DOS,DOT,WKS,BAT,PS,EPS,WCH,WCM,WB1,WB3,RTF,DOC,MDB,MDE,WBK,WB1,WCH,WCM,AD,ADP</Value>
     </Rule>
@@ -108,23 +108,13 @@ Criteria: If the parameter is set incorrectly, then this is a finding.  If the s
       <Description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.1 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.enable_tls</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify Preference Name "security.enable_tls" is set to the value "true" and locked.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15983.b" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.1 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>security.tls.version.min</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify Preference Name "security.tls.version.min" is set to the value "2" and locked.</RawString>
       <Value>2</Value>
     </Rule>
-    <Rule id="V-15983.c" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="ReplaceText">
+    <Rule id="V-15983.b" severity="medium" conversionstatus="pass" title="DTBF030 - Firefox Preferences TLS Protocols" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;Use of versions prior to TLS 1.1 are not permitted. SSL 2.0 and SSL 3.0 contain a number of security flaws. These versions must be disabled in compliance with the Network Infrastructure and Secure Remote Computing STIGs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -162,31 +152,6 @@ Criteria: If the parameter is set incorrectly, then this is a finding.
 
 If the setting is not locked, this is a finding.</RawString>
       <Value>false</Value>
-    </Rule>
-    <Rule id="V-15987" severity="medium" conversionstatus="pass" title="DTBF184 - JavaScript hiding or changing status bar" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;When a user visits some webpages, JavaScript can hide or make changes to the browser’s appearance to hide unauthorized activity. This activity can help disguise an attack taking place in a minimized background window.  Determines whether the text in the browser status bar may be set by JavaScript.  Set and lock to True (default in Firefox) so that JavaScript access to preference settings for is disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>dom.disable_window_status_change</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the address bar of the browser. Verify that the preference “dom.disable_window_status_change" is set and locked to “true”. 
-
-Criteria: If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.</RawString>
-      <Value>true</Value>
-    </Rule>
-    <Rule id="V-15989" severity="medium" conversionstatus="pass" title="DTBF130 - Non-secure Page Warning" dscresource="ReplaceText">
-      <Description>&lt;VulnDiscussion&gt;Users may not be aware that the information being viewed under secure conditions in a previous page are not currently being viewed under the same security settings. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>security.warn_leaving_secure</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window. Verify that the preference name “security.warn_leaving_secure" is set to “true” and locked.
-
-Criteria:  If the parameter is set incorrectly, then this is a finding.  If the setting is not locked, then this is a finding.
-</RawString>
-      <Value>true</Value>
     </Rule>
     <Rule id="V-19742" severity="medium" conversionstatus="pass" title="DTBF090-Firefox Preferences-Addons\ plugin updates" dscresource="ReplaceText">
       <Description>&lt;VulnDiscussion&gt;Set this to false to disable checking for updated versions of the Extensions/Themes.  Automatic updates from untrusted sites puts the enclave at risk of attack and may override security settings.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -330,27 +295,9 @@ Criteria: If the Mozilla ActiveX control and plugin support is present and enabl
       <RawString>Method 1: View the following registry key: 
 HKLM\Software\Mozilla\Mozilla Firefox\CurrentVersion
 
-Method 2: Search for the firefox.exe file using the search feature of the operating system. Examine the files properties for the product version (not the file version. For Windows OS, determine the version of the file by examining navigating to Properties/Version/Product Version. Examine for all instances of firefox.exe that are present on the endpoint.
+Method 2: Search for the firefox.exe file using the search feature of the operating system. Examine the files properties for the product version (not the file version). For Windows OS, determine the version of the file by examining navigating to Properties/Version/Product Version. Examine for all instances of firefox.exe that are present on the endpoint.
 
-Criteria: If the version number of the firefox.exe file is less than 50.1.x (or ESR 45.7.x), this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-19741" severity="medium" conversionstatus="pass" title="DTBF080 - Firefox Preferences  Auto-update of Firefox" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Allowing software updates from non-trusted sites can introduce settings that will override a secured installation of the application. This can place DoD information at risk. If this setting is enabled, then there are many other default settings which point to untrusted sites which must be changed to point to an authorized update site that is not publicly accessible.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Type "about:config" in the browser window.
-
-Verify that:
-
-1. The preference name "app.update.enabled" is set to ”true” and locked.
-
-2. Verify that "app.update.url", "app.update.url.details", and "app.update.url.manual" contain url information that point to a trusted internal server or the default setting of “Mozilla.com” or “Mozilla.org”.
-
-Criteria: If the parameter is set incorrectly, this is a finding.
-
-If this setting is not locked, this is a finding.</RawString>
+Criteria: If the FireFox version is not a supported Extended Service Release (ESR), this is a finding.</RawString>
     </Rule>
     <Rule id="V-19743" severity="medium" conversionstatus="pass" title="DTBF070 - Firefox Preferences - Lock settings" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Locked settings prevent users from accessing about:config and changing the security settings set by the system administrator.  Locked settings should be placed in the mozilla.cfg file. The mozilla.cfg file is an encoded file of JavaScript commands. The encoding is a simple "byte-shifting" with an offset of 13 (Netscape 4 used a similar encoding, but with a 7 instead). This file also needs to be "called" from the configuration file local-settings.js&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>

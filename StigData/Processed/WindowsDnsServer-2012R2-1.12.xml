@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="The Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_Server_DNS_STIG_V1R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 27 July 2018" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.10" created="7/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="The Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_Server_DNS_STIG_V1R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 26 Jul 2019" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.12" created="8/12/2019">
   <DnsServerRootHintRule dscresourcemodule="PSDscResources">
     <Rule id="V-58615" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
       <Description>&lt;VulnDiscussion&gt;All caching name servers must be authoritative for the root zone because, without this starting point, they would have no knowledge of the DNS infrastructure and thus would be unable to respond to any queries. The security risk is that an adversary could change the root hints and direct the caching name server to a bogus root server. At that point, every query response from that name server is suspect, which would give the adversary substantial control over the network communication of the name servers' clients. When authoritative servers are sent queries for zones that they are not authoritative for, and they are configured as a non-caching server (as recommended), they can either be configured to return a referral to the root servers or they can be configured to refuse to answer the query. The recommendation is to configure authoritative servers to refuse to answer queries for any zones for which they are not authoritative. This is more efficient for the server and allows it to spend more of its resources doing what its intended purpose is, answering authoritatively for its zone.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -9,18 +9,12 @@
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
-
 Log on to the authoritative DNS server using the Domain Admin or Enterprise Admin account.
-
 Press Windows Key + R, execute dnsmgmt.msc.
-
 Right-click the DNS server, select “Properties”.
-
 Select the "Root Hints" tab.
-
 Verify the "Root Hints" is either empty or only has entries for internal zones under "Name servers:". All Internet root server entries must be removed.
-
-If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name servers:" are external to the local network, this is a finding.
+If "Root Hints" is not empty or entries on the "Root Hints" tab under "Name servers:" are external to the local network, this is a finding.
 </RawString>
     </Rule>
   </DnsServerRootHintRule>
@@ -483,11 +477,13 @@ To guard against poisoning, name servers specifically fulfilling the role of pro
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Windows 2008 DNS Server will only accept TCP and UDP port 53 traffic from specific IP addresses/ranges.
+      <RawString>Note: If Windows DNS server is not serving in a caching role, this check is Not Applicable.
+Verify the Windows 2008 DNS Server will only accept TCP and UDP port 53 traffic from specific IP addresses/ranges.
 
 This can be configured via a local or network firewall.
 
-If the caching name server is not restricted to answering queries from only specific networks, this is a finding.</RawString>
+If the caching name server is not restricted to answering queries from only specific networks, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58585" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A potential vulnerability of DNS is that an attacker can poison a name server's cache by sending queries that will cause the server to obtain host-to-IP address mappings from bogus name servers that respond with incorrect information. Once a name server has been poisoned, legitimate clients may be directed to non-existent hosts (which constitutes a denial of service), or, worse, hosts that masquerade as legitimate ones to obtain sensitive data or passwords.
@@ -853,9 +849,9 @@ When applications provide a DAC mechanism, the DNS implementation must be able t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>In an Active Directory-integrated DNS implementation, this is not a finding by virtue of being compliant with the Windows 2008 AD STIG since DNS data within an AD-integrated zone is kept within the Active Directory.
+      <RawString>For an Active Directory-integrated DNS implementation, this is Not Applicable by virtue of being compliant with the Windows 2008/2012 AD STIG, since DNS data within an AD-integrated zone is kept within the Active Directory.
 
-For a file-back Windows DNS implementation, log on to the DNS server using the Domain Admin or Enterprise Admin account.
+For a file-based Windows DNS implementation, log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
 Press Windows Key + R, execute dnsmgmt.msc.
 
@@ -869,7 +865,8 @@ Select the “Security” tab.
 
 Review the permissions applied to the zone. No group or user should have greater than READ privileges other than the DNS Admins and the System service account under which the DNS Server Service is running.
 
-If any other account/group has greater than READ privileges, this is a finding.</RawString>
+If any other account/group has greater than READ privileges, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58613" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000101" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;DNS servers with an internal role only process name/address resolution requests from within the organization (i.e., internal clients). DNS servers with an external role only process name/address resolution information requests from clients external to the organization (i.e., on the external networks, including the Internet). The set of clients that can access an authoritative DNS server in a particular role is specified by the organization using address ranges, explicit access control lists, etc. In order to protect internal DNS resource information, it is important to isolate the requests to internal DNS servers. Separating internal and external roles in DNS prevents address space that is private (e.g., 10.0.0.0/24) or is otherwise concealed by some form of Network Address Translation from leaking into the public DNS system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -943,22 +940,6 @@ If any hostnames contain both IPv4 and IPv6 addresses, confirm with the SA that 
 
 If any zone contains hosts with both IPv4 and IPv6 addresses but are determined to be non-IPv6-aware, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-58627" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;To prevent the possibility of a denial of service in relation to an IPv4 DNS server trying to respond to IPv6 requests, the server should be configured not to listen on any of its IPv6 interfaces unless it does contain IPv6 AAAA resource records in one of the zones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Log on to the DNS server using the Domain Admin or Enterprise Admin account.
-
-Locate the “Network Internet Access” icon, right-click on it and select "Open Network &amp; Sharing Center".
-
-Click on "Change adapter settings".
-
-Right-click on the Ethernet and click “Properties”.
-
-If the display shows Microsoft TCP/IP version 6 with a check, but the DNS server is not hosting any AAAA records, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-58629" severity="medium" conversionstatus="pass" title="SRG-APP-000142-DNS-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In order to prevent unauthorized connection of devices, unauthorized transfer of information, or unauthorized tunneling (i.e., embedding of data types within data types), organizations must disable or restrict unused or unnecessary physical and logical ports/protocols on information systems.
 
@@ -973,21 +954,20 @@ In general, all DNS queries are sent from a high-numbered source port (49152 or 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>By default, the Windows 2012 DNS Server listens on TCP and UDP ports 53. Also by default, Windows 2012 DNS Server sends from random, high-numbered source ports 49152 and above.
+      <RawString>By default, the Windows 2012 DNS Server listens on TCP 53 and opens UDP ports 53. Also by default, Windows 2012 DNS Server sends from random, high-numbered source ports 49152 and above.
 
 To confirm the listening ports, log onto Windows 2012 DNS Server as an Administrator.
-
-Open a command window with the Run-as Administrator option.
+Open a command window with the “Run-as Administrator” option.
 
 In the command window, type the following command:
-
 netstat -a -b |more &lt;enter&gt;
 
-The result is a list of all services running on the server, with the respective TCP and UDP ports upon which the services are listening.
+The result is a list of all services running on the server, with the respective “LISTENING TCP” and “OPEN UDP” ports being used.
 
-Find Windows 2012 DNS Server service and verify the State is "LISTENING" and the port(s) are TCP 53 and UDP 53.
+Find Windows 2012 DNS Server service and verify the State is "LISTENING" on TCP port 53 and that UDP 53 is listed (indicating it is OPEN).
 
-If the server is listening on UDP and TCP port 53, this is not a finding.</RawString>
+If the server shows UDP 53 in results list and shows TCP port 53 as “LISTENING”, this is not a finding.
+</RawString>
     </Rule>
     <Rule id="V-58631" severity="medium" conversionstatus="pass" title="SRG-APP-000390-DNS-000048" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without re-authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity.
@@ -2417,7 +2397,8 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups other than the following are granted the "Manage auditing and security log" user right, this is a finding:
 
-Administrators Auditors (if the site has an Auditors group that further limits this privilege.)
+Administrators 
+Auditors (if the site has an Auditors group that further limits this privilege.)
 
 If an application requires this user right, this would not be a finding. 
 Vendor documentation must support the requirement for having the user right. 
@@ -2559,10 +2540,37 @@ Navigate to the following location:
 
 Verify the permissions on the folder, sub-folders and files are limited to “SYSTEM” and Administrators for “FULL CONTROL”.
 
-If any other user or group has greater than Read/Execute and List Folder contents permissions to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.
+If any other user or group has greater than READ permissions to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.
+
 </RawString>
     </Rule>
   </PermissionRule>
+  <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-58627" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;To prevent the possibility of a denial of service in relation to an IPv4 DNS server trying to respond to IPv6 requests, the server should be configured not to listen on any of its IPv6 interfaces unless it does contain IPv6 AAAA resource records in one of the zones.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ValueData is set to 255 which disables IPv6 </OrganizationValueTestString>
+      <RawString>Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+
+From a command prompt, run regedit. 
+In the User Account Control dialog box, click Continue. 
+In Registry Editor, locate and then click the following registry subkey: 
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters \
+Verify the value for “DisabledComponents” is “255 (0xff)”.
+
+If the “DisabledComponents” entry is nonexistent, this is a finding.
+
+If the “DisabledComponents” exists but is not set to “255 (0xff)”, and the DNS server is not hosting any AAAA records, this is a finding.
+</RawString>
+      <ValueData />
+      <ValueName>DisabledComponents</ValueName>
+      <ValueType>DWord</ValueType>
+    </Rule>
+  </RegistryRule>
   <UserRightRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-58553.b" severity="medium" conversionstatus="pass" title="SRG-APP-000090-DNS-000005" dscresource="UserRightsAssignment">
       <Constant>SeSecurityPrivilege</Constant>
@@ -2584,7 +2592,8 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 
 If any accounts or groups other than the following are granted the "Manage auditing and security log" user right, this is a finding:
 
-Administrators Auditors (if the site has an Auditors group that further limits this privilege.)
+Administrators 
+Auditors (if the site has an Auditors group that further limits this privilege.)
 
 If an application requires this user right, this would not be a finding. 
 Vendor documentation must support the requirement for having the user right. 
