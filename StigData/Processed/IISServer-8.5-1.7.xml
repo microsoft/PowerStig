@@ -916,7 +916,7 @@ If any OS shell MIME types are configured, this is a finding.
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path>%windir%\inetpub</Path>
+      <Path>%SystemDrive%\inetpub</Path>
       <RawString>Open Explorer and navigate to the inetpub directory.
 
 Right-click inetpub and select “Properties”.
