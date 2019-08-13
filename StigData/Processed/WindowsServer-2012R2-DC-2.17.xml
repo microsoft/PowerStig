@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_2012_and_2012_R2_DC_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 08 Feb 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="8/2/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.17" created="8/9/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -158,7 +158,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the value for "Maximum lifetime for service ticket" is "0" or greater than "600" minutes, this is a finding.</RawString>
+If the value for "Maximum lifetime for service ticket" is 0 or greater than 600 minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2378" severity="medium" conversionstatus="pass" title="Kerberos - User Ticket Lifetime" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;In Kerberos, there are 2 types of tickets: Ticket Granting Tickets (TGTs) and Service Tickets.  Kerberos tickets have a limited lifetime so the time an attacker has to implement an attack is limited.  This policy controls how long TGTs can be renewed.  With Kerberos, the user's initial authentication to the domain controller results in a TGT which is then used to request Service Tickets to resources.  Upon startup, each computer gets a TGT before requesting a service ticket to the domain controller and any other computers it needs to access.  For services that startup under a specified user account, users must always get a TGT first, then get Service Tickets to all computers and services accessed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
@@ -176,7 +176,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the value for "Maximum lifetime for user ticket" is "0" or greater than "10" hours, this is a finding.</RawString>
+If the value for "Maximum lifetime for user ticket" is 0 or greater than 10 hours, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2379" severity="medium" conversionstatus="pass" title="Kerberos-User Ticket Renewal" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This setting determines the period of time (in days) during which a user's TGT may be renewed.  This security configuration limits the amount of time an attacker has to crack the TGT and gain access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
@@ -194,7 +194,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the "Maximum lifetime for user ticket renewal" is greater than "7" days, this is a finding.</RawString>
+If the "Maximum lifetime for user ticket renewal" is greater than 7 days, this is a finding.</RawString>
     </Rule>
     <Rule id="V-2380" severity="medium" conversionstatus="pass" title="Kerberos - Computer Clock Sync" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This setting determines the maximum time difference (in minutes) that Kerberos will tolerate between the time on a client's clock and the time on a server's clock while still considering the two clocks synchronous.  In order to prevent replay attacks, Kerberos uses timestamps as part of its protocol definition.  For timestamps to work properly, the clocks of the client and the server need to be in sync as much as possible.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -212,7 +212,7 @@ Right click on the "Default Domain Policy".
 Select Edit.
 Navigate to Computer Configuration &gt; Policies &gt; Windows Settings &gt; Security Settings &gt; Account Policies &gt; Kerberos Policy.
 
-If the "Maximum tolerance for computer clock synchronization" is greater than "5" minutes, this is a finding.</RawString>
+If the "Maximum tolerance for computer clock synchronization" is greater than 5 minutes, this is a finding.</RawString>
     </Rule>
     <Rule id="V-6836" severity="medium" conversionstatus="pass" title="Minimum Password Length" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1410,7 +1410,7 @@ If the classification level of the Windows domain controller is higher than the 
 
 If any files with these extensions exist, this is a finding.
 
-This does not apply to server-based applications that have a requirement for certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
+This does not apply to server-based applications that have a requirement for certificate files or Adobe PreFlight certificate files. Some applications create files with extensions of .p12 that are not certificate installation files. Removal of non-certificate installation files from systems is not required. These must be documented with the ISSO.</RawString>
     </Rule>
     <Rule id="V-26683" severity="high" conversionstatus="pass" title="Directory PKI Certificate Source - Users" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A PKI implementation depends on the practices established by the Certificate Authority (CA) to ensure the implementation is secure.  Without proper practices, the certificates issued by a CA have limited value in authentication functions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1573,6 +1573,16 @@ The Anonymous Logon, Guests, or any group that contains those groups (in which u
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Review the necessary documentation that identifies the members of the Administrators group.  If a list of all users belonging to the Administrators group is not maintained with the ISSO, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-36734" severity="medium" conversionstatus="pass" title="WINGE-000028" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.  The operating system may have an integrated solution incorporating continuous scanning using HBSS and periodic scanning using other tools..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify DoD approved HBSS software is installed, configured, and properly operating. Ask the operator to document the HBSS software installation and configuration.
+
+If the operator is not able to provide a documented configuration for an installed HBSS or if the HBSS software is not properly configured, maintained, or used, this is a finding.</RawString>
     </Rule>
     <Rule id="V-39333" severity="high" conversionstatus="pass" title="WINAD-000005-DC" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data.  When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
@@ -1834,7 +1844,7 @@ Domain Controllers:
 
 Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
 
-Exclude disabled accounts (e.g., Guest).
+Exclude disabled accounts (e.g., Guest) and Trusted Domain Objects (TDOs).
 
 If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
 
@@ -2076,7 +2086,7 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where {$_.Issuer -Like "*DoD Interoperability*" -and $_.Subject -Like "*DoD*"} | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
 
@@ -2087,13 +2097,8 @@ NotAfter: 9/6/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-NotAfter: 9/23/2018
-
-Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=DoD Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-NotAfter: 2/17/2019
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+NotAfter: 1/22/2022
 
 Alternately use the Certificates MMC snap-in:
 
@@ -2130,13 +2135,8 @@ Valid to: Friday, September 6, 2019
 
 Issued To: DoD Root CA 3
 Issued By: DoD Interoperability Root CA 2
-Thumbprint: FFAD03329B9E527A43EEC66A56F9CBB5393E6E13
-Valid to: Sunday, September 23, 2018
-
-Issued To: DoD Root CA 3
-Issued By: DoD Interoperability Root CA 2
-Thumbprint: FCE1B1E25374DD94F5935BEB86CA643D8C8D1FF4
-Valid to: Sunday, February 17, 2019</RawString>
+Thumbprint: AC06108CA348CC03B53795C64BF84403C1DBD341
+Valid to: Saturday, January 22, 2022</RawString>
     </Rule>
     <Rule id="V-36451" severity="high" conversionstatus="pass" title="Accounts with administrative privileges Internet access" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Using applications that access the Internet or have potential Internet sources using administrative privileges exposes a system to compromise.  If a flaw in an application is exploited while running as a privileged user, the entire system could be compromised.  Web browsers and email are common attack vectors for introducing malicious code and must not be run with an administrative account.
@@ -2249,14 +2249,6 @@ Backups shall be consistent with organizational recovery time and recovery point
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Determine whether user-level information is backed up in accordance with local recovery time and recovery point objectives.  If user-level information is not backed up in accordance with local recovery time and recovery point objectives, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-36734" severity="medium" conversionstatus="pass" title="WINGE-000028" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without the use of automated mechanisms to scan for security flaws on a continuous and/or periodic basis, the operating system or other system components may remain vulnerable to the exploits presented by undetected software flaws.  The operating system may have an integrated solution incorporating continuous scanning using HBSS and periodic scanning using other tools..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system employs automated mechanisms to determine the state of system components with regard to flaw remediation using the following frequency: continuously, where HBSS is used; 30 days, for any additional internal network scans not covered by HBSS; and annually, for external scans by Computer Network Defense Service Provider (CNDSP).  If it does not, this is a finding.</RawString>
     </Rule>
     <Rule id="V-36735" severity="medium" conversionstatus="pass" title="WINGE-000029" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The organization (including any contractor to the organization) must promptly install security-relevant software updates (e.g., patches, service packs, hot fixes).  Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2410,14 +2402,9 @@ Execute the following command:
 
 Get-ChildItem -Path Cert:Localmachine\disallowed | Where Issuer -Like "*CCEB Interoperability*" | FL Subject, Issuer, Thumbprint, NotAfter
 
-If the following certificate "Subject", "Issuer", and "Thumbprint" information is not displayed, this is finding.
+If the following certificate "Subject", "Issuer", and "Thumbprint", information is not displayed, this is finding.
 
 If an expired certificate ("NotAfter" date) is not listed in the results, this is not a finding.
-
-Subject: CN=DoD Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Issuer: CN=US DoD CCEB Interoperability Root CA 1, OU=PKI, OU=DoD, O=U.S. Government, C=US
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-NotAfter: 3/9/2019
 
 Subject: CN=DoD Root CA 3, OU=PKI, OU=DoD, O=U.S. Government, C=US
 Issuer: CN=US DoD CCEB Interoperability Root CA 2, OU=PKI, OU=DoD, O=U.S. Government, C=US
@@ -2451,11 +2438,6 @@ Scroll to the bottom and select "Thumbprint".
 If the certificate below is not listed or the value for the "Thumbprint" field is not as noted, this is a finding.
 
 If an expired certificate ("Valid to" date) is not listed in the results, this is not a finding.
-
-Issued To: DoD Root CA 2
-Issued By: US DoD CCEB Interoperability Root CA 1
-Thumbprint: DA36FAF56B2F6FBA1604F5BE46D864C9FA013BA3
-Valid to: Saturday, March 9, 2019
 
 Issued To: DoD Root CA 3
 Issuer by: US DoD CCEB Interoperability Root CA 2
@@ -4682,27 +4664,6 @@ This setting may prevent a system from being joined to a domain if not configure
       <ValueName>RequireStrongKey</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3376" severity="medium" conversionstatus="pass" title="Storage of Passwords and Credentials" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;This setting controls the storage of passwords and credentials for network authentication on the local system.  Such credentials must not be stored on the local machine, as that may lead to account compromise.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\Lsa</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
-
-Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \System\CurrentControlSet\Control\Lsa\
-
-Value Name: DisableDomainCreds
-
-Value Type: REG_DWORD
-Value: 1</RawString>
-      <ValueData>1</ValueData>
-      <ValueName>DisableDomainCreds</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-3377" severity="medium" conversionstatus="pass" title="Everyone Anonymous rights" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Access by anonymous users must be restricted.  If this setting is enabled, then anonymous users have the same rights and permissions as the built-in Everyone group.  Anonymous users must not have these permissions or rights.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6663,29 +6624,6 @@ Value: 1</RawString>
       <ValueName>LoggingEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15713" severity="medium" conversionstatus="pass" title="Defender – SpyNet Reporting" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this feature will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.  This setting disables Microsoft Active Protection Service membership and reporting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet</Key>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>'{0}' -notmatch '1|2'</OrganizationValueTestString>
-      <RawString>If the following registry value exists and is set to "1" (Basic) or "2" (Advanced), this is a finding:
-
-If the registry value does not exist, this is not a finding.
-
-Registry Hive:  HKEY_LOCAL_MACHINE
-Registry Path:  \SOFTWARE\Policies\Microsoft\Windows Defender\SpyNet\
-
-Value Name:  SpyNetReporting
-
-Type:  REG_DWORD
-Value:  1 or 2 = a Finding</RawString>
-      <ValueData />
-      <ValueName>SpyNetReporting</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
     <Rule id="V-15718" severity="low" conversionstatus="pass" title="Windows Explorer – Heap Termination" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Legacy plug-in applications may continue to function when a File Explorer session has become corrupt.  Disabling this feature will prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7932,7 +7870,9 @@ Value: 1</RawString>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
-      <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
+      <RawString>This is applicable to unclassified systems; for other systems, this is NA.
+
+If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
 Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
@@ -7940,7 +7880,8 @@ Registry Path: \SOFTWARE\Policies\Microsoft\Windows\System\
 Value Name: EnableSmartScreen
 
 Type: REG_DWORD
-Value:  1 (Give user a warning…) Or 2 (Require approval…)</RawString>
+Value: 0x00000001 (1) (Give user a warning…)
+Or 0x00000002 (2) (Require approval…)</RawString>
       <ValueData />
       <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
