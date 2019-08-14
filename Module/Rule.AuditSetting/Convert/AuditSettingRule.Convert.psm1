@@ -47,7 +47,7 @@ Class AuditSettingRuleConvert : AuditSettingRule
                 Write-Verbose "[$($MyInvocation.MyCommand.Name)] Service Pack"
                 $this.Query = 'SELECT * FROM Win32_OperatingSystem'
                 $this.Property = 'Version'
-                $this.Operator = '-ge'
+                $this.Operator = '-le'
 
                 $this.rawString -match "(?:Version\s*)(\d+(\.\d+)?)" | Out-Null
 

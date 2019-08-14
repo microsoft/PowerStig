@@ -23,7 +23,7 @@ try
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
                 desiredvalue = '10.0.14393'
-                operator     = '-ge'
+                operator     = '-le'
                 checkContent = 'Open "Command Prompt".
 
                 Enter "winver.exe".
@@ -36,7 +36,7 @@ try
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
                 desiredvalue = '10.0.14393'
-                operator     = '-ge'
+                operator     = '-le'
                 checkContent = 'Run "winver.exe".
 
                 If the "About Windows" dialog box does not display:
@@ -65,7 +65,7 @@ try
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
                 desiredvalue = '6.2.9200'
-                operator     = '-ge'
+                operator     = '-le'
                 checkContent = 'Run "winver.exe".
 
                 If the "About Windows" dialog box does not display
