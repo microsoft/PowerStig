@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to automate applying the IIS 8.5 STIG, Version 1 Release 8. [#469](https://github.com/microsoft/PowerStig/issues/469)
 * Fixed [#476](https://github.com/microsoft/PowerStig/issues/476): AuditSetting Rule for Windows STIGs has an incorrect operator when evaluating Service Pack information
 * Added support for Dot Net Framework 4.0 STIG, Version 1, Release 8 [#447](https://github.com/microsoft/PowerStig/issues/447)
 * Added support for Windows 10 STIG, Version 1, Release 17 & 18: [#466](https://github.com/microsoft/PowerStig/issues/466)
