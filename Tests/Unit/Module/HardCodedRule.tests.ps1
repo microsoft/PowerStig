@@ -26,10 +26,10 @@ try
             },
             @{
                 RuleType     = 'AuditSettingRule'
-                CheckContent = "HardCodedRule(AuditSettingRule)@{DscResource = 'AuditSetting'; DesiredValue = '6.2.9200'; Operator = '-ge'; Property = 'Version'; Query = 'SELECT * FROM Win32_OperatingSystem'}"
+                CheckContent = "HardCodedRule(AuditSettingRule)@{DscResource = 'AuditSetting'; DesiredValue = '6.2.9200'; Operator = '-le'; Property = 'Version'; Query = 'SELECT * FROM Win32_OperatingSystem'}"
                 DscResource  = 'AuditSetting'
                 DesiredValue = '6.2.9200'
-                Operator     = '-ge'
+                Operator     = '-le'
                 Property     = 'Version'
                 Query        = 'SELECT * FROM Win32_OperatingSystem'
             },
