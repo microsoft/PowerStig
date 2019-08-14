@@ -1,0 +1,6 @@
+V-81495::Use regedit to review the following Windows registry keys::Value: 1
+V-81495::For 32-bit systems: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\::Registry Hive: HKEY_LOCAL_MACHINE
+V-81495::For 64 bit systems:::Registry Path: \SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
+V-81495::HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\::Type: REG_DWORD
+V-81495::If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD type set to “1”, this is a finding.::Value Name: SchUseStrongCrypto
+V-30935::*::HardCodedRule(RegistryRule)@{DscResource = 'Registry'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework'; ValueData = 0; ValueName = 'AllowStrongNameBypass'; ValueType = 'DWORD'}

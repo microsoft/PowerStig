@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 26 Oct 2018" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="7/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 16 July 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="8/12/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-7055" severity="medium" conversionstatus="pass" title="APPNET0031 No Strong Name Verification" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided)—plus a public key and a digital signature.  Strong names serve to identify the author of the code.  If digital signatures used to sign strong name assemblies are not verified, any self signed code can be impersonated.  This can lead to a loss of system integrity. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1&lt;/IAControls&gt;</Description>
@@ -27,71 +27,6 @@ If any assemblies are listed as omitting strong name verification in a developme
 Ask the System Administrator if the policy and configuration files are backed up prior to migration, deployment, and reconfiguration. If they are not, this is a finding.
 
 Ask the System Administrator for documentation that shows CAS Policy configuration files are backed up as part of a disaster recovery plan. If they have no documentation proving the files are backed up, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-30935" severity="medium" conversionstatus="pass" title="APPNET0063 Validation of Strong Names" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The "bypassTrustedAppStrongNames" setting specifies whether the bypass feature that avoids validating strong names for full-trust assemblies is enabled. By default the bypass feature is enabled in .Net 4, therefore strong names are not validated for correctness when the assembly/program is loaded. Not validating strong names provides a faster application load time but at the expense of performing certificate validation. 
-
-Full trust assemblies are .Net applications launched from the local host. Strong names are digital signatures tied to .Net applications/assemblies.  .Net 4 considers applications installed locally to be fully trusted by default and grants these applications full permissions to access host resources. 
-
-The bypass feature applies to any assembly signed with a strong name and having the following characteristics:
-
-    Fully trusted without the StrongName evidence (for example, has MyComputer zone evidence).
-
-    Loaded into a fully trusted AppDomain.
-
-    Loaded from a location under the ApplicationBase property of that AppDomain.
-
-    Not delay-signed.
-
-Not validating the certificates used to sign strong name assemblies will provide a faster application load time, but falsely assumes that signatures used to sign the application are to be implicitly trusted.  Not validating strong name certificates introduces an integrity risk to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If there is documented ISSO risk acceptance for development systems, this is not a finding.
-For 32 bit production systems: 
-Use regedit to examine the “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework” key.  
-On 64-bit production systems:
-Use regedit to examine both the “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework” and “HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework” keys.
-If the "AllowStrongNameBypass" registry key does not exist, or if the “DWORD” value is set to “1”, this is a finding.
-
-Documentation must include a complete list of installed .Net applications, application versions, and acknowledgement that ISSO trusts each installed application.
-
-If application versions installed on the system do not match approval documentation, this is a finding.
-
-</RawString>
-    </Rule>
-    <Rule id="V-30986" severity="medium" conversionstatus="pass" title="APPNET0070 Software protections and controls" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;With the advent of .Net 4.0, the .Net framework no longer directly configures or enforces security policy for .Net applications.  This task is now relegated to the operating system layer and the security protections built-in to .Net application "runtime hosts" that run on the O.S. 
-
-Examples of these .Net "runtime hosts" include; Internet Explorer, Windows Shell, ASP.NET, Database Engines or any other "runtime hosts" that utilize .Net and load the .Net CLR.
-
-Security protections include utilizing runtime host security controls such as sandboxing to restrict or control application behavior as designed or required.  
-
-To compensate for these design changes, Windows provides native solutions such as Software Security Policies (SSP) and Application Locker (AL) which are technologies that can be implemented via Group Policy (GPO).  SSP, AL and similar third party solutions serve to restrict execution of applications, scripts and libraries based upon cryptographic hash, security zones, path and certificate values that are associated with the application files.  Additionally, application developers will utilize "sandboxing" techniques within their code in order to isolate 3rd party code libraries from critical system resources.
-
-In order to assign protections to .Net 4.0 applications, the applications must first be identified and the appropriate hosting security mechanisms configured to accomplish that task.  
-
-.Net STIG guidance cannot be applied if .Net applications are not identified and documented.  The lack of an application inventory introduces confidentiality, availability and integrity vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1, DCSP-1&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Ask the system administrator to provide documentation that identifies:
-
-- Each .Net 4.0 application they run on the system.
-- The .Net runtime host that invokes the application. 
-- The security measures employed to control application access to system resources or user access to application.
-
-If all .Net applications, runtime hosts and security protections have been documented or if there are no .Net 4.0 applications existing on the system, this is not a finding.
-
-If there is no documentation that identifies the existence of .NET 4.0 applications or the lack thereof, this is a finding.
-
-If the runtime hosts have not been identified, this is a finding.
-
-If the security protections have not been identified, this is a finding.
-
-</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
@@ -248,7 +183,9 @@ Adequate protection methods include, but are not limited to:
 If the private key used to sign the assembly is not adequately protected, this is a finding.</RawString>
     </Rule>
     <Rule id="V-7070" severity="medium" conversionstatus="pass" title="APPNET0060 Remoting Services Auth and Encryption HTTP Channel." dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process.  Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.
+      <Description>&lt;VulnDiscussion&gt;Note: Microsoft recommends using the Windows Communication Framework (WCF) rather than using .Net remoting. New development projects should refrain from using .Net remoting capabilities whenever possible.
+
+.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process.  Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.
 
 Normally when application code attempts to access a protected resource, a stack walk is performed to ensure that all stack frames have permission to access the resource. However, with .Net 4.0, when a call is made on a remote object, this stack walk is not performed across the remoting boundary. The .Net remoting infrastructure requires FullTrust permission to execute on either the client or the server. 
 
@@ -257,18 +194,18 @@ Due to the fact that FullTrust permission is required, Remoting endpoints should
 Microsoft provides 3 different "channels" that are used for remoting.  They are HTTP, TCP and IPC.
 
 Any unauthorized use of a remoting application provides unauthorized access with FullTrust permissions to the system. This can potentially result in a loss of system integrity or confidentiality.
-&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1&lt;/IAControls&gt;</Description>
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Check the machine.config and the [application executable name].exe.config configuration files for the typefilterlevel="Full" configuration parameter. 
+      <RawString>Review the machine.config file and the [application name].exe.config file.
 
-The machine.config file is contained in the folder 
-%SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319 or
-%SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319.
+For 32 bit systems, the "machine.config" file is contained in the following folder. %SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319\Config 
 
-Microsoft specifies locating the application config file in the same folder as the application executable (.exe) file. However, the developer does have the capability to specify a different location when the application is compiled.  Therefore, if the file is not found in the application home folder, a search of the system is required. If the [application name].exe.config file is not found on the system, then only a check of the machine.config file is required.
+For 64 bit systems, the "machine.config" file is contained in the following folder. %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319\Config.
+
+Microsoft specifies locating the [application].config file in the same folder as the application executable (.exe) file. However, the developer does have the capability to specify a different location when the application is compiled.  Therefore, if the file is not found in the application home folder, a search of the system is required. If the [application name].exe.config file is not found on the system, then only a check of the machine.config file is required.
 
 Sample machine/application config file:
 
@@ -283,8 +220,8 @@ Sample machine/application config file:
 
 &lt;serverProviders&gt;
   &lt;provider ref="wsdl" /&gt;
-  &lt;formatter ref="soap" typeFilterLevel="Full" /&gt; 
-  &lt;formatter ref="binary" typeFilterLevel="Full" /&gt; 
+  &lt;formatter ref="soap" typeFilterLevel="Low" /&gt; 
+  &lt;formatter ref="binary" typeFilterLevel="Low" /&gt; 
 &lt;/serverProviders&gt; 
 
 Microsoft provides 3 "channels" that are used for remoting connectivity.  They are the HTTP, TCP and IPC channels.  The channel that is used is specified via the &lt;channels&gt; element in the config file.  
@@ -292,16 +229,16 @@ Microsoft provides 3 "channels" that are used for remoting connectivity.  They a
 HTTP channel example:
 &lt;channel ref=“http server” port=“80”/&gt; 
 
-The HTTP Channel only supports encryption and message integrity when the remote object is hosted in Internet Information Services (IIS) using SSL.
+The HTTP Channel only supports encryption and message integrity when the remote object is hosted in Internet Information Services (IIS) using TLS.
 
-The above example shows the well known SSL port of 443 is not being used. 
+The above example shows the well known TLS port of 443 is not being used. 
 
-If encryption and message integrity are not used for the HTTP remoting channel when the ServerProvider element typefilterlevel=”Full”,  this is a finding.
+If the HTTP remoting channel is not configured to protect the channel by using TLS encryption, this is a finding.
 
 </RawString>
     </Rule>
     <Rule id="V-18395" severity="medium" conversionstatus="pass" title="APPNET0061 Unsupported .Net Framework Versions" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Unsupported software introduces risks and violates DoD policy.  Applications utilizing unsupported versions of .NET introduce substantial risk to the host, network, and the enclave by virtue of the fact they leverage an architecture that is no longer updated by the vendor.  This introduces potential application integrity, availability, or confidentiality issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;COMS-1&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;Unsupported software introduces risks and violates DoD policy.  Applications utilizing unsupported versions of .NET introduce substantial risk to the host, network, and the enclave by virtue of the fact they leverage an architecture that is no longer updated by the vendor.  This introduces potential application integrity, availability, or confidentiality issues.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -393,7 +330,10 @@ Failure to apply applicable versions of STIG guidance can result in the loss of 
       <OrganizationValueTestString />
       <RawString>Open Windows explorer and search for all *.exe.config files.  This requirement does not apply to the caspol.exe assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
 
-Search each file for NetFx40_LegacySecurityPolicy enabled="true".
+To find relevant files, you can run the FINDSTR command from an elevated (admin) command prompt: 
+FINDSTR /i /s "NetFx40_LegacySecurityPolicy" c:\*.exe.config 
+This command will search all ."exe.config" files on the c: drive partition for the "LegacySecurityPolicy" setting. Repeat the command for each drive partition on the system.
+
 
 If the .NET application configuration file utilizes the legacy policy element and .NET STIG guidance that covers these legacy versions has not been applied, this is a finding.
 </RawString>
@@ -453,6 +393,40 @@ If the "defaultProxy" element is empty then the framework is using default brows
 
 </RawString>
     </Rule>
+    <Rule id="V-30986" severity="medium" conversionstatus="pass" title="APPNET0070 Software protections and controls" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;With the advent of .Net 4.0, the .Net framework no longer directly configures or enforces security policy for .Net applications.  This task is now relegated to the operating system layer and the security protections built-in to .Net application "runtime hosts" that run on the O.S. 
+
+Examples of these .Net "runtime hosts" include; Internet Explorer, Windows Shell, ASP.NET, Database Engines or any other "runtime hosts" that utilize .Net and load the .Net CLR.
+
+Security protections include utilizing runtime host security controls such as sandboxing to restrict or control application behavior as designed or required.  
+
+To compensate for these design changes, Windows provides native solutions such as Software Security Policies (SSP) and Application Locker (AL) which are technologies that can be implemented via Group Policy (GPO).  SSP, AL and similar third party solutions serve to restrict execution of applications, scripts and libraries based upon cryptographic hash, security zones, path and certificate values that are associated with the application files.  Additionally, application developers will utilize "sandboxing" techniques within their code in order to isolate 3rd party code libraries from critical system resources.
+
+In order to assign protections to .Net 4.0 applications, the applications must first be identified and the appropriate hosting security mechanisms configured to accomplish that task.  
+
+.Net STIG guidance cannot be applied if .Net applications are not identified and documented.  The lack of an application inventory introduces confidentiality, availability and integrity vulnerabilities to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This requirement does not apply to the "caspol.exe" assembly or other assemblies provided with the Windows OS or the Windows Secure Host Baseline (SHB).
+
+Ask the system administrator to provide documentation that identifies:
+
+- Each .Net 4.0 application they run on the system.
+- The .Net runtime host that invokes the application. 
+- The security measures employed to control application access to system resources or user access to application.
+
+If all .Net applications, runtime hosts and security protections have been documented or if there are no .Net 4.0 applications existing on the system, this is not a finding.
+
+If there is no documentation that identifies the existence of .NET 4.0 applications or the lack thereof, this is a finding.
+
+If the runtime hosts have not been identified, this is a finding.
+
+If the security protections have not been identified, this is a finding.
+
+</RawString>
+    </Rule>
     <Rule id="V-31026" severity="medium" conversionstatus="pass" title="APPNET0067 .NET Event Tracing for Windows." dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Event tracing captures information about applications utilizing the .NET CLR and the .NET CLR itself. This includes security oriented information, such as Strong Name and Authenticode verification.  
 
@@ -475,7 +449,9 @@ If the "etwEnable" element is set to "false" and documented approvals by the IAO
 </RawString>
     </Rule>
     <Rule id="V-32025" severity="medium" conversionstatus="pass" title="APPNET0071 Remoting Services auth and encryption TCP channel" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process.  Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.
+      <Description>&lt;VulnDiscussion&gt;Note: Microsoft recommends using the Windows Communication Framework (WCF) rather than .Net remoting. New development projects should refrain from using .Net remoting capabilities whenever possible.
+
+.NET remoting provides the capability to build widely distributed applications. The application components may reside all on one computer or they may be spread out across the enclave. .NET client applications can make remoting calls to use objects in other processes on the same computer or on any other computer that is reachable over the network. .NET remoting can also be used to communicate with other application domains within the same process.  Remoting is achieved via the exposure of endpoints that can be used to establish remote connectivity.
 
 Normally when application code attempts to access a protected resource, a stack walk is performed to ensure that all stack frames have permission to access the resource. However, with .Net 4.0, when a call is made on a remote object, this stack walk is not performed across the remoting boundary. The .Net remoting infrastructure requires FullTrust permission to execute on either the client or the server. 
 
@@ -489,11 +465,11 @@ Any unauthorized use of a remoting application provides unauthorized access with
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>
-Check the machine.config and the [application executable name].exe.config configuration files for the typefilterlevel="Full" configuration parameter. 
+Check the machine.config and the [application executable name].exe.config configuration files. 
 
-The machine.config file is contained in the folder 
-%SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319 or
-%SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319.
+For 32 bit systems, the "machine.config" file is contained in the following folder. %SYSTEMROOT%\Microsoft.NET\Framework\v4.0.30319\Config 
+
+For 64 bit systems, the "machine.config" file is contained in the following folder. %SYSTEMROOT%\Microsoft.NET\Framework64\v4.0.30319\Config.
 
 Microsoft specifies locating the application config file in the same folder as the application executable (.exe) file. However, the developer does have the capability to specify a different location when the application is compiled.  Therefore, if the config file is not found in the application home folder, a search of the system is required. If the [application name].exe.config file is not found on the system, then only a check of the machine.config file is required.
 
@@ -519,28 +495,73 @@ Microsoft provides 3 "channels" that are used for remoting connectivity.  They a
 TCP channel example:
 &lt;channel ref=“tcp” port=“6134” secure="true"/&gt; 
 
-The TCP Channel supports encryption and message integrity when the 'secure' flag is set to true as shown in the above example.
+The TCP Channel provides encryption and message integrity when the 'secure' flag is set to true as shown in the above example.
 
-If encryption and message integrity are not used for the TCP remoting channel when the ServerProvider element typefilterlevel=”Full”,  this is a finding.
-
-</RawString>
-    </Rule>
-    <Rule id="V-81495" severity="medium" conversionstatus="pass" title="APPNET0075 Disable TLS RC4 cipher in .Net" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of the RC4 cipher in TLS could allow an attacker to perform man-in-the-middle attacks and recover plaintext from encrypted sessions. Applications that target .Net version 4.x running on multiple Windows versions could be vulnerable to these types of attacks. The registry settings in this requirement will prevent .Net applications that target the 4.x framework from selecting and utilizing the Schannel.dll RC4 cipher for TLS connections. Applications that use TLS when connecting to remote systems will perform a handshake and negotiate the TLS version and cipher that is to be used between the client and the server. This is standard protocol for all TLS connections. If the server and client are not configured to use the same TLS version and cipher, the TLS connection may fail. Applications should be tested with these registry settings prior to production implementation of the fix in order to avoid application outages.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Use regedit to review the following Windows registry keys:
-
-For 32-bit applications on 32-bit systems and 64-bit applications on x64-based systems: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\SchUseStrongCrypto
-
-For 32-bit applications on x64-based systems:
-HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\SchUseStrongCrypto
-
-If the “SchUseStrongCrypto” registry key does not exist, or is not a REG_DWORD value set to “1”, this is a finding.
+If the secure flag is not set to "true" for the TCP channel, this is a finding.
 
 </RawString>
     </Rule>
   </ManualRule>
+  <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-30935" severity="medium" conversionstatus="pass" title="APPNET0063 Validation of Strong Names" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;The "bypassTrustedAppStrongNames" setting specifies whether the bypass feature that avoids validating strong names for full-trust assemblies is enabled. By default the bypass feature is enabled in .Net 4, therefore strong names are not validated for correctness when the assembly/program is loaded. Not validating strong names provides a faster application load time but at the expense of performing certificate validation. 
+
+Full trust assemblies are .Net applications launched from the local host. Strong names are digital signatures tied to .Net applications/assemblies.  .Net 4 considers applications installed locally to be fully trusted by default and grants these applications full permissions to access host resources. 
+
+The bypass feature applies to any assembly signed with a strong name and having the following characteristics:
+
+    Fully trusted without the StrongName evidence (for example, has MyComputer zone evidence).
+
+    Loaded into a fully trusted AppDomain.
+
+    Loaded from a location under the ApplicationBase property of that AppDomain.
+
+    Not delay-signed.
+
+Not validating the certificates used to sign strong name assemblies will provide a faster application load time, but falsely assumes that signatures used to sign the application are to be implicitly trusted.  Not validating strong name certificates introduces an integrity risk to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If there is documented ISSO risk acceptance for development systems, this is not a finding.
+For 32 bit production systems: 
+Use regedit to examine the “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework” key.  
+On 64-bit production systems:
+Use regedit to examine both the “HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework” and “HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework” keys.
+If the "AllowStrongNameBypass" value does not exist, or if the “DWORD” value is set to “1”, this is a finding.
+
+Documentation must include a complete list of installed .Net applications, application versions, and acknowledgement that ISSO trusts each installed application.
+
+If application versions installed on the system do not match approval documentation, this is a finding.
+
+</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>AllowStrongNameBypass</ValueName>
+      <ValueType>DWORD</ValueType>
+    </Rule>
+    <Rule id="V-81495" severity="medium" conversionstatus="pass" title="APPNET0075 Disable TLS RC4 cipher in .Net" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Use of the RC4 cipher in TLS could allow an attacker to perform man-in-the-middle attacks and recover plaintext from encrypted sessions. Applications that target .Net version 4.x running on multiple Windows versions could be vulnerable to these types of attacks. The registry settings in this requirement will prevent .Net applications that target the 4.x framework from selecting and utilizing the Schannel.dll RC4 cipher for TLS connections. Applications that use TLS when connecting to remote systems will perform a handshake and negotiate the TLS version and cipher that is to be used between the client and the server. This is standard protocol for all TLS connections. If the server and client are not configured to use the same TLS version and cipher, the TLS connection may fail. Applications should be tested with these registry settings prior to production implementation of the fix in order to avoid application outages.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Use regedit to review the following Windows registry keys:
+
+For 32-bit systems: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\.NETFramework\v4.0.30319\
+
+For 64 bit systems:
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319\
+
+If the “SchUseStrongCrypto” value name does not exist, or is not a REG_DWORD type set to “1”, this is a finding.
+
+</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>SchUseStrongCrypto</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+  </RegistryRule>
 </DISASTIG>

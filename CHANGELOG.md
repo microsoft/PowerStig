@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Added support for IIS 8.5 Server STIG, Version 1, Release 8 [#479](https://github.com/microsoft/PowerStig/issues/479)
+* Added support for Dot Net Framework 4.0 STIG, Version 1, Release 8 [#447](https://github.com/microsoft/PowerStig/issues/447)
 * Added support for Windows 10 STIG, Version 1, Release 17 & 18: [#466](https://github.com/microsoft/PowerStig/issues/466)
 * Added support for Windows 2012 Server DNS STIG, Version 1, Release 12 [#464](https://github.com/microsoft/PowerStig/issues/464)
 * Update PowerSTIG to automate applying the Windows Server 2012R2 DC & MS STIG, Version 2, Release 17 & 16 respectively. [#456](https://github.com/microsoft/PowerStig/issues/456)
