@@ -126,7 +126,7 @@ try
             SysAdminAccount = @{
                 GetScript = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
                 TestScript = "USE [master] SELECT name, is_disabled FROM sys.sql_logins WHERE principal_id = 1 AND is_disabled <> 1;"
-                SetScript = "USE [master] DECLARE @SysAdminAccountName varchar(50), @cmd NVARCHAR(100), @saDisabled int SET @SysAdminAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) IF @SysAdminAccountName = 'sa' ALTER LOGIN [sa] WITH NAME = [old_sa] SET @SysAdminAccountName = 'old_sa' SELECT @cmd = N'ALTER LOGIN ['+@SysAdminAccountName+'] DISABLE;' SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 exec sp_executeSQL @cmd;"
+                SetScript = "USE [master] DECLARE @SysAdminAccountName varchar(50), @cmd NVARCHAR(100), @saDisabled int SET @SysAdminAccountName = (SELECT name FROM sys.sql_logins WHERE principal_id = 1) SELECT @cmd = N'ALTER LOGIN ['+@SysAdminAccountName+'] DISABLE;' SET @saDisabled = (SELECT is_disabled FROM sys.sql_logins WHERE principal_id = 1) IF @saDisabled <> 1 exec sp_executeSQL @cmd;"
                 CheckContent = "Check SQL Server settings to determine if the [sa] (system administrator) account has been disabled by executing the following query:
                 USE master;
                 GO
