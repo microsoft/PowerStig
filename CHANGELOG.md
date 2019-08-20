@@ -21,6 +21,7 @@
 * Update PowerSTIG to enforce additional rules in the SQL Server 2012 STIG [#438](https://github.com/microsoft/PowerStig/issues/438)
 * Added support for Windows Defender Antivirus STIG, Version 1, Release 6 [#462](https://github.com/Microsoft/PowerStig/issues/462)
 * Added support for Firefox STIG v4r26 [#458](https://github.com/Microsoft/PowerStig/issues/458)
+* Updated logfile in DotNet Framework STIG leveraging HardCodedRule to automate additional STIG rules. [#454](https://github.com/microsoft/PowerStig/issues/454)
 
 ## 3.2.0
 
