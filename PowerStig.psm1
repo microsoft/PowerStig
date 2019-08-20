@@ -16,3 +16,4 @@ Export-ModuleMember -Function @(
     'Get-Stig',
     'New-StigCheckList'
 )
+
