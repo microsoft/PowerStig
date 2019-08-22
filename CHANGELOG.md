@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update support for SQL Server 2012 Database STIG, Version 1, Release 19 [#482](https://github.com/microsoft/PowerStig/issues/482) 
 * Fixed [#478](https://github.com/microsoft/PowerStig/issues/478): SQL STIG Instance V-40936 Fails to apply
 * Update PowerSTIG to automate applying the IIS 8.5 STIG, Version 1 Release 8. [#469](https://github.com/microsoft/PowerStig/issues/469)
 * Fixed [#476](https://github.com/microsoft/PowerStig/issues/476): AuditSetting Rule for Windows STIGs has an incorrect operator when evaluating Service Pack information
