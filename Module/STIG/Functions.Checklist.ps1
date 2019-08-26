@@ -206,7 +206,6 @@ function New-StigCheckList {
             }
             else {
                 $status = $statusMap['NotReviewed']
-                #[array]$VulObject += $vulnerability[0].psobject.properties.value | Where {$_ -like "V-*" }
             }
         }
 
