@@ -240,7 +240,7 @@ function New-StigCheckList {
     $writer.WriteEndElement(<#CHECKLIST#>)
     $writer.Flush()
     $writer.Close()
-    #$ManualChecks | Out-File "C:\Users\SVCDE05CM01\Desktop\DSC-Gallery\Firefox-ManualChecks.txt"
+
 }
 
 function Get-ManualCheckSettings {

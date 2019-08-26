@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Added manualchecks parameter to checklist.functions module to allow for .psd1 file reference to automate manual check data.
+
 ## 3.3.0
 
 UPDATES
