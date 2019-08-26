@@ -825,4 +825,4 @@ If monitoring software is in use, and has been configured to alert system and da
 
 If manual procedures exist for frequently checking the space used and alerting system and database administrators, and there is evidence that the procedures are adhered to, this is not a finding.
 
-Otherwise, this is a finding.</check-content></check></Rule></Group></Benchmark>
+Otherwise, this is a finding.</check-content></check></Rule></Group></Benchmark> 
