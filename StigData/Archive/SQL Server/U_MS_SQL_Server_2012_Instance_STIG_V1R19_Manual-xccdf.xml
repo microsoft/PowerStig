@@ -2149,18 +2149,18 @@ The concept of separation of duties extends to processes.  The DBMS must run und
 
 From a Command Prompt, type services.msc, and press [ENTER]. Scroll down to the SQL Server Services. SQL Server Services begin with SQL.  The following services, when present, should be listed as follows:
 
-Service Name:					Log On As:
-SQL Full-text Filter Daemon Launcher:		NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server [stand-alone]:			NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server [cluster]:				&lt;domain&gt;\&lt;CustomServiceAccount&gt;
-SQL Server Agent:				NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Analysis Services:			NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Browser:				Local Service
-SQL Server Distributed Replay Client:		NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Distributed Replay Controller:	NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Integration Services 11.0:		NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server Reporting Services:			NT Service\UNIQUE CUSTOM ACCOUNT
-SQL Server VSS Writer:				Local System
+Service Name:                   Log On As:
+SQL Full-text Filter Daemon Launcher:       NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server [stand-alone]:           NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server [cluster]:               &lt;domain&gt;\&lt;CustomServiceAccount&gt;
+SQL Server Agent:               NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Analysis Services:           NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Browser:             Local Service
+SQL Server Distributed Replay Client:       NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Distributed Replay Controller:   NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Integration Services 11.0:       NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server Reporting Services:          NT Service\UNIQUE CUSTOM ACCOUNT
+SQL Server VSS Writer:              Local System
 
 UNIQUE CUSTOM ACCOUNT refers to an account with which no other service listed in the services.msc window is assigned. If any account requiring a unique custom account uses an account that any other service utilizes (regardless of service status), this is a finding.</check-content></check></Rule></Group><Group id="V-41202"><title>SRG-APP-000062-DB-000009</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53669r4_rule" severity="medium" weight="10.0"><version>SQL2-00-008800</version><title>SQL Server must enforce separation of duties through assigned information access authorizations.</title><description>&lt;VulnDiscussion&gt;Separation of duties is a prevalent Information Technology control that is implemented at different layers of the information system, including the operating system and in applications. It serves to eliminate or reduce the possibility that a single user may carry out a prohibited action. Separation of duties requires that the person accountable for approving an action is not the same person who is tasked with implementing or carrying out that action.
 
@@ -2431,53 +2431,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges to the 'Unsafe assemb
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41207"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53674r4_rule" severity="medium" weight="10.0"><version>SQL2-00-008300</version><title>SQL Server must not grant users direct access to the Alter any endpoint permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -2519,54 +2519,54 @@ If any user accounts have direct access to the 'Alter any endpoint' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41208"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53675r4_rule" severity="medium" weight="10.0"><version>SQL2-00-008200</version><title>SQL Server must not grant users direct access to the Alter any database permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -2608,54 +2608,54 @@ If any user accounts have direct access to the 'Alter any database' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41209"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53677r4_rule" severity="medium" weight="10.0"><version>SQL2-00-008100</version><title>SQL Server must not grant users direct access to the Alter Any Credential permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -2697,54 +2697,54 @@ If any user accounts have direct access to the 'Alter any credential' permission
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41246"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53727r4_rule" severity="medium" weight="10.0"><version>SQL2-00-008000</version><title>SQL Server must not grant users direct access to the Alter any connection permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -2786,54 +2786,54 @@ If any user accounts have direct access to the 'Alter any connection' permission
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41247"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53728r5_rule" severity="medium" weight="10.0"><version>SQL2-00-007900</version><title>SQL Server must not grant users direct access control to the Alter Any Availability Group permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. 
 
@@ -2888,54 +2888,54 @@ If any user accounts have direct access to the 'Alter any availability group' pe
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41248"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53729r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007800</version><title>SQL Server must not grant users direct access to the Alter server state permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -2977,54 +2977,54 @@ If any user accounts have direct access to the 'Alter server state' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41250"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53732r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007600</version><title>SQL Server must not grant users direct access to the Alter any event notification permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3066,54 +3066,54 @@ If any user accounts have direct access to the 'Alter any event notification' pe
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41251"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53733r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007500</version><title>SQL Server must enforce access control policies to restrict the View any database permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3149,53 +3149,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41252"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53734r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007400</version><title>SQL Server must not grant users direct access to the Alter any server audit permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3237,54 +3237,54 @@ If any user accounts have direct access to the 'Alter any server audit' permissi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41253"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53735r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007300</version><title>SQL Server must enforce access control policies to restrict the Shutdown permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3321,53 +3321,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41254"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53736r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007200</version><title>SQL Server must enforce access control policies to restrict the External access assembly permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3404,53 +3404,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41255"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53737r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007100</version><title>SQL Server must enforce access control policies to restrict the Create trace event notification permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3487,53 +3487,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41256"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53738r4_rule" severity="medium" weight="10.0"><version>SQL2-00-007000</version><title>SQL Server must enforce access control policies to restrict the Create server role permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3570,53 +3570,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41257"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53739r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006900</version><title>SQL Server must enforce access control policies to restrict the Create endpoint permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3655,53 +3655,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41258"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53740r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006800</version><title>SQL Server must enforce access control policies to restrict the Create DDL event notification permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3738,53 +3738,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41259"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53741r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006700</version><title>SQL Server must enforce access control policies to restrict the Create availability group permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3821,53 +3821,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41260"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53742r3_rule" severity="medium" weight="10.0"><version>SQL2-00-006600</version><title>SQL Server must enforce access control policies to restrict the Alter any server audit permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -3935,53 +3935,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41262"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53744r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006400</version><title>SQL Server must not grant users direct access to the Authenticate server permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4020,54 +4020,54 @@ If any user accounts have direct access to the 'Authenticate Server' permission,
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41263"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53745r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006300</version><title>SQL Server must not grant users direct access to the Administer bulk operations permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4109,54 +4109,54 @@ If any user accounts have direct access to the 'Administer bulk operations' perm
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41264"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53746r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006200</version><title>SQL Server must not grant users direct access to the Create endpoint permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4198,54 +4198,54 @@ If any user accounts have direct access to the 'Create endpoint' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41265"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53747r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006100</version><title>SQL Server must not grant users direct access to the Create DDL event notification permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4287,54 +4287,54 @@ If any user accounts have direct access to the 'Create DDL Event Notification' p
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41266"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53748r4_rule" severity="medium" weight="10.0"><version>SQL2-00-006000</version><title>SQL Server must not grant users direct access to the Create availability group permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4377,54 +4377,54 @@ If any user accounts have direct access to the 'Create availability group' permi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41267"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53749r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005900</version><title>SQL Server must not grant users direct access to the Create any database permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4466,54 +4466,54 @@ If any user accounts have direct access to the 'Create any database' permission,
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41268"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53750r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005800</version><title>SQL Server must not grant users direct access to the Control server permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4555,54 +4555,54 @@ If any user accounts have direct access to the 'Control server' permission, this
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41269"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53751r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005700</version><title>SQL Server must enforce access control policies to restrict the Administer bulk operations permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4641,53 +4641,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41270"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53752r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005600</version><title>SQL Server must enforce access control policies to restrict the Alter resources permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4724,53 +4724,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41271"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53753r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005500</version><title>SQL Server must not grant users direct access to the Alter any linked server permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4812,54 +4812,54 @@ If any user accounts have direct access to the 'Alter any linked server' permiss
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41273"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53755r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005300</version><title>SQL Server must not grant users direct control to the Alter any event session permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4901,54 +4901,54 @@ If any user accounts have direct access to the 'Alter any event session' permiss
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41274"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53756r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005200</version><title>SQL Server must not grant users direct access to the Alter trace permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -4990,54 +4990,54 @@ If any user accounts have direct access to the 'Alter trace' permission, this is
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41275"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53757r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005100</version><title>SQL Server must not grant users direct access to the Alter Settings permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5079,54 +5079,54 @@ If any user accounts have direct access to the 'Alter Settings' permission, this
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41276"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53758r4_rule" severity="medium" weight="10.0"><version>SQL2-00-005000</version><title>SQL Server must not grant users direct access to the Create trace event notification permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5168,54 +5168,54 @@ If any user accounts have direct access to the 'Create trace event notification'
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41277"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53759r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004900</version><title>SQL Server must not grant users direct access to the Alter resources permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5257,54 +5257,54 @@ If any user accounts have direct access to the 'Alter resources' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41278"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53760r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004800</version><title>SQL Server must not grant users direct access to the External access assembly permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5346,54 +5346,54 @@ If any user accounts have direct access to the 'External access assembly' permis
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41279"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53761r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004700</version><title>SQL Server must not grant users direct access to the Alter any login permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5435,54 +5435,54 @@ If any user accounts have direct access to the 'Alter any login' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41280"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53762r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004600</version><title>SQL Server must enforce access control policies to restrict the Alter any availability group permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5519,53 +5519,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41281"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53763r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004500</version><title>SQL Server must enforce access control policies to restrict the Alter any login permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5602,53 +5602,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41283"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53765r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004300</version><title>SQL Server must enforce access control policies to restrict the Alter any linked server permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5685,53 +5685,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41284"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53766r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004200</version><title>SQL Server must not grant users direct access control to the Shutdown permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5773,54 +5773,54 @@ If any user accounts have direct access to the 'Shutdown' permission, this is a 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41285"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53767r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004100</version><title>SQL Server must enforce access control policies to restrict the View server state permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5857,53 +5857,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41286"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53768r4_rule" severity="medium" weight="10.0"><version>SQL2-00-004000</version><title>SQL Server must enforce access control policies to restrict the Alter trace permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -5940,53 +5940,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41287"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53769r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003900</version><title>SQL Server must not grant users direct access to the Unsafe assembly permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6028,54 +6028,54 @@ If any user accounts have direct access to the 'Unsafe assembly' permission, thi
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41288"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53770r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003800</version><title>SQL Server must enforce access control policies to restrict the Control server permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6112,53 +6112,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41289"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53771r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003700</version><title>SQL Server must not grant users direct access to the Create server role permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6200,54 +6200,54 @@ If any user accounts have direct access to the 'Create server role' permission, 
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41290"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53772r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003600</version><title>SQL Server must enforce access control policies to restrict the Alter any server role permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6284,53 +6284,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41291"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53773r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003500</version><title>SQL Server must enforce access control policies to restrict the Alter Settings permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6367,53 +6367,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41292"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53774r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003400</version><title>SQL Server must enforce access control policies to restrict the Authenticate server permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6450,53 +6450,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41293"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53775r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003300</version><title>SQL Server must enforce access control policies to restrict the Create any database permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6533,53 +6533,53 @@ If any role has 'Grant', 'With Grant' or 'Deny' privileges on this permission an
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
-AND	who.type_desc = 'SERVER_ROLE'
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
+AND who.type_desc = 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41294"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53776r6_rule" severity="medium" weight="10.0"><version>SQL2-00-003200</version><title>SQL Server must not grant users direct access to the View server state permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6620,54 +6620,54 @@ If any user account has direct access to the 'View server state' permission, and
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41295"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53777r4_rule" severity="medium" weight="10.0"><version>SQL2-00-003100</version><title>SQL Server must not grant users direct access to the Alter any server role permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6709,54 +6709,54 @@ If any user accounts have direct access to the 'Alter any server role' permissio
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41296"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53778r5_rule" severity="medium" weight="10.0"><version>SQL2-00-003000</version><title>SQL Server must not grant users direct access to the View any definition permission.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -6798,54 +6798,54 @@ If any user accounts have direct access to the 'View any definition' permission,
 
 Alternatively, to provide a combined list for all requirements of this type:
 SELECT 
-	what.permission_name AS [Permission Name],
-	what.state_desc AS [Permission State],
-	who.name AS [Principal Name],
-	who.type_desc AS [Principal Type],
-	who.is_disabled AS [Principal Is Disabled]
+    what.permission_name AS [Permission Name],
+    what.state_desc AS [Permission State],
+    who.name AS [Principal Name],
+    who.type_desc AS [Principal Type],
+    who.is_disabled AS [Principal Is Disabled]
 FROM 
-	sys.server_permissions what 
-	INNER JOIN sys.server_principals who
-		ON who.principal_id = what.grantee_principal_id
+    sys.server_permissions what 
+    INNER JOIN sys.server_principals who
+        ON who.principal_id = what.grantee_principal_id
 WHERE
-	what.permission_name IN
-	(
-	'Administer bulk operations',
-	'Alter any availability group',
-	'Alter any connection',
-	'Alter any credential',
-	'Alter any database',
-	'Alter any endpoint ',
-	'Alter any event notification ',
-	'Alter any event session ',
-	'Alter any linked server',
-	'Alter any login',
-	'Alter any server audit',
-	'Alter any server role',
-	'Alter resources',
-	'Alter server state ',
-	'Alter Settings ',
-	'Alter trace',
-	'Authenticate server ',
-	'Control server',
-	'Create any database ',
-	'Create availability group',
-	'Create DDL event notification',
-	'Create endpoint',
-	'Create server role',
-	'Create trace event notification',
-	'External access assembly',
-	'Shutdown',
-	'Unsafe Assembly',
-	'View any database',
-	'View any definition',
-	'View server state'
-	)
+    what.permission_name IN
+    (
+    'Administer bulk operations',
+    'Alter any availability group',
+    'Alter any connection',
+    'Alter any credential',
+    'Alter any database',
+    'Alter any endpoint ',
+    'Alter any event notification ',
+    'Alter any event session ',
+    'Alter any linked server',
+    'Alter any login',
+    'Alter any server audit',
+    'Alter any server role',
+    'Alter resources',
+    'Alter server state ',
+    'Alter Settings ',
+    'Alter trace',
+    'Authenticate server ',
+    'Control server',
+    'Create any database ',
+    'Create availability group',
+    'Create DDL event notification',
+    'Create endpoint',
+    'Create server role',
+    'Create trace event notification',
+    'External access assembly',
+    'Shutdown',
+    'Unsafe Assembly',
+    'View any database',
+    'View any definition',
+    'View server state'
+    )
 AND    who.name NOT LIKE '##MS%##'
 AND    who.type_desc &lt;&gt; 'SERVER_ROLE'
 ORDER BY
-	what.permission_name,
-	who.name
+    what.permission_name,
+    who.name
 ;
 GO</check-content></check></Rule></Group><Group id="V-41297"><title>SRG-APP-000035-DB-000007</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53779r3_rule" severity="medium" weight="10.0"><version>SQL2-00-002900</version><title>SQL Server must enforce access control policies to restrict the Alter any connection permission to only authorized roles.</title><description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
 
@@ -7253,10 +7253,10 @@ When determining the appropriate values for this limit, take the characteristics
 
 Architectural note:  In SQL Server, a count of active sessions by user can be obtained from one of the dynamic management views.   For example:
 
-	SELECT original_login_name, count(*) 
-	FROM sys.dm_exec_sessions
-	WHERE is_user_process = 1
-	GROUP BY original_login_name;
+    SELECT original_login_name, count(*) 
+    FROM sys.dm_exec_sessions
+    WHERE is_user_process = 1
+    GROUP BY original_login_name;
 
 However, for this to return an accurate count in a logon trigger, the user would have to have the View Server State privilege.  (Without this privilege, the trigger sees information only about the current session, so would always return a count of one.)  View Server State would give that user access to a wide swath of information about the server, violating SQL2-00-004100.  One way to avoid this exposure is to create a summary table, and a view of that table that restricts each user to seeing his/her own count, and establish a frequently-run background job to refresh the table (using the above query or similar).  The logon trigger then queries the view to obtain a count that is accurate enough for most purposes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Installation 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Installation 2012</dc:subject><dc:identifier>2561</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000054</ident><fixtext fixref="F-46702r5_fix">Establish the limit(s) appropriate to the type(s) of user account accessing the SQL Server instance, and record them in the system documentation.
 

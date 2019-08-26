@@ -16,16 +16,16 @@ ensure the data on secondary devices is encrypted. If full-disk encryption is be
 If DBMS data encryption is required, ensure the data is encrypted before being put on the secondary device by executing:
 
 SELECT 
-	d.name AS [Database Name],
-	CASE e.encryption_state 
-		WHEN 0 THEN 'No database encryption key present, no encryption' 
-		WHEN 1 THEN 'Unencrypted' 
-		WHEN 2 THEN 'Encryption in progress' 
-		WHEN 3 THEN 'Encrypted' 
-		WHEN 4 THEN 'Key change in progress' 
-		WHEN 5 THEN 'Decryption in progress' 
-		WHEN 6 THEN 'Protection change in progress' 
-	END AS [Encryption State]
+    d.name AS [Database Name],
+    CASE e.encryption_state 
+        WHEN 0 THEN 'No database encryption key present, no encryption' 
+        WHEN 1 THEN 'Unencrypted' 
+        WHEN 2 THEN 'Encryption in progress' 
+        WHEN 3 THEN 'Encrypted' 
+        WHEN 4 THEN 'Key change in progress' 
+        WHEN 5 THEN 'Decryption in progress' 
+        WHEN 6 THEN 'Protection change in progress' 
+    END AS [Encryption State]
 FROM sys.dm_database_encryption_keys e 
 RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name 
 WHERE d.name NOT IN ('master','model','msdb')
@@ -565,28 +565,28 @@ If the application owner and authorizing official have determined that the datab
 Ensure the data is encrypted by executing:
 USE &lt;database name&gt;;
 IF NOT EXISTS
-	(
-	SELECT 1 
-	FROM sys.dm_database_encryption_keys
-	WHERE DB_NAME(database_id) = DB_NAME()
-	)
-	SELECT 
-		DB_NAME() AS [Database Name],
-		'No database encryption key present, no encryption' AS [Encryption State]
+    (
+    SELECT 1 
+    FROM sys.dm_database_encryption_keys
+    WHERE DB_NAME(database_id) = DB_NAME()
+    )
+    SELECT 
+        DB_NAME() AS [Database Name],
+        'No database encryption key present, no encryption' AS [Encryption State]
 ELSE
-	SELECT
-		DB_NAME(database_id)  AS [Database Name],
-		CASE encryption_state 
-			WHEN 0 THEN 'No database encryption key present, no encryption' 
-			WHEN 1 THEN 'Unencrypted' 
-			WHEN 2 THEN 'Encryption in progress' 
-			WHEN 3 THEN 'Encrypted' 
-			WHEN 4 THEN 'Key change in progress' 
-			WHEN 5 THEN 'Decryption in progress' 
-			WHEN 6 THEN 'Protection change in progress' 
-		END AS [Encryption State] 
-	FROM sys.dm_database_encryption_keys
-	WHERE DB_NAME(database_id) = DB_NAME()
+    SELECT
+        DB_NAME(database_id)  AS [Database Name],
+        CASE encryption_state 
+            WHEN 0 THEN 'No database encryption key present, no encryption' 
+            WHEN 1 THEN 'Unencrypted' 
+            WHEN 2 THEN 'Encryption in progress' 
+            WHEN 3 THEN 'Encrypted' 
+            WHEN 4 THEN 'Key change in progress' 
+            WHEN 5 THEN 'Decryption in progress' 
+            WHEN 6 THEN 'Protection change in progress' 
+        END AS [Encryption State] 
+    FROM sys.dm_database_encryption_keys
+    WHERE DB_NAME(database_id) = DB_NAME()
 ;
 
 For each user database, ensure that encryption is in effect.  If not, this is a finding.</check-content></check></Rule></Group><Group id="V-41421"><title>SRG-APP-000243-DB-000128</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53950r2_rule" severity="medium" weight="10.0"><version>SQL2-00-021800</version><title>SQL Server must prevent unauthorized and unintended information transfer via shared system resources.</title><description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.
@@ -702,72 +702,72 @@ GO
 WITH C AS
 (
 SELECT 
-	P.name		AS [Parent Server Role],
-	CAST('Fixed' AS varchar(8))
-				AS [Server Role Type],
-	M.name		AS [Member],
-	M.type_desc	AS [Member Type],
-	P.name 		AS [Root],
-	1			AS [Level]
+    P.name      AS [Parent Server Role],
+    CAST('Fixed' AS varchar(8))
+                AS [Server Role Type],
+    M.name      AS [Member],
+    M.type_desc AS [Member Type],
+    P.name      AS [Root],
+    1           AS [Level]
 FROM
-	[sys].[server_role_members] X
-	INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
-	INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
+    [sys].[server_role_members] X
+    INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
+    INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
 WHERE
-	P.is_fixed_role = 1
+    P.is_fixed_role = 1
 UNION ALL
 SELECT 
-	P.name		AS [Parent Server Role],
-	CASE WHEN M.is_fixed_role = 1 THEN CAST('Fixed' AS varchar(8)) ELSE CAST('Custom' AS varchar(8)) END
-				AS [Server Role Type],
-	M.name		AS [Member],
-	M.type_desc	AS [Member Type],
-	C.[Root]	AS [Root],
-	C.[Level] + 1	AS [Level]
+    P.name      AS [Parent Server Role],
+    CASE WHEN M.is_fixed_role = 1 THEN CAST('Fixed' AS varchar(8)) ELSE CAST('Custom' AS varchar(8)) END
+                AS [Server Role Type],
+    M.name      AS [Member],
+    M.type_desc AS [Member Type],
+    C.[Root]    AS [Root],
+    C.[Level] + 1   AS [Level]
 FROM
-	[sys].[server_role_members] X
-	INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
-	INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
-	INNER JOIN C ON P.name = C.Member
+    [sys].[server_role_members] X
+    INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
+    INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
+    INNER JOIN C ON P.name = C.Member
 )
 ,
 B AS
 (
 SELECT 
-	C.[Member] AS [Leaf],
-	C.[Root],
-	C.[Parent Server Role],
-	C.[Server Role Type],
-	C.[Member],
-	C.[Member Type],
-	C.[Level]
+    C.[Member] AS [Leaf],
+    C.[Root],
+    C.[Parent Server Role],
+    C.[Server Role Type],
+    C.[Member],
+    C.[Member Type],
+    C.[Level]
 FROM C 
 WHERE
-	C.[Member Type] NOT LIKE '%ROLE%'
+    C.[Member Type] NOT LIKE '%ROLE%'
 UNION ALL
 SELECT  
-	B.[Leaf],
-	C.[Root],
-	C.[Parent Server Role],
-	C.[Server Role Type],
-	C.[Member],
-	C.[Member Type],
-	C.[Level]
+    B.[Leaf],
+    C.[Root],
+    C.[Parent Server Role],
+    C.[Server Role Type],
+    C.[Member],
+    C.[Member Type],
+    C.[Level]
 FROM C
 INNER JOIN B
-	ON	C.[Member] = B.[Parent Server Role]
-	AND	C.[Level] = B.[Level] - 1
-	AND	C.[Root] = B.[Root]
+    ON  C.[Member] = B.[Parent Server Role]
+    AND C.[Level] = B.[Level] - 1
+    AND C.[Root] = B.[Root]
 )
 SELECT
-	DB_NAME()	AS [Database],  
-	B.[Leaf]	AS [Owner Login],
-	B.[Root]	AS[Top-Level Server Role],
-	B.[Parent Server Role],
-	B.[Server Role Type],
-	B.[Member],
-	B.[Member Type],
-	B.[Level]
+    DB_NAME()   AS [Database],  
+    B.[Leaf]    AS [Owner Login],
+    B.[Root]    AS[Top-Level Server Role],
+    B.[Parent Server Role],
+    B.[Server Role Type],
+    B.[Member],
+    B.[Member Type],
+    B.[Level]
 FROM B 
 WHERE B.[Leaf] = (SELECT SUSER_SNAME(D.owner_sid) FROM sys.databases D WHERE D.Name = DB_NAME())
 ORDER BY B.[Root], B.[Level], B.[Parent Server Role], B.[Member]
@@ -778,7 +778,7 @@ To remove the database owner from a fixed server role or a custom server role:
 USE [master];
 GO
 ALTER SERVER ROLE &lt;fixed/custom server role name&gt;
-	DROP MEMBER &lt;database owner name&gt;;
+    DROP MEMBER &lt;database owner name&gt;;
 GO
 Verify that this produced the intended result by re-running the Check query.
 
@@ -792,28 +792,28 @@ Verify that this produced the intended result by re-running the Check query.</fi
 GO
 WITH FixedServerRoles(RoleName) AS
 (
-	SELECT 'sysadmin'
-	UNION SELECT 'securityadmin'
-	UNION SELECT 'serveradmin'
-	UNION SELECT 'setupadmin'
-	UNION SELECT 'processadmin'
-	UNION SELECT 'diskadmin'
-	UNION SELECT 'dbcreator'
-	UNION SELECT 'bulkadmin'
+    SELECT 'sysadmin'
+    UNION SELECT 'securityadmin'
+    UNION SELECT 'serveradmin'
+    UNION SELECT 'setupadmin'
+    UNION SELECT 'processadmin'
+    UNION SELECT 'diskadmin'
+    UNION SELECT 'dbcreator'
+    UNION SELECT 'bulkadmin'
 )
 SELECT 
-	DB_NAME() AS [Database], 
-	SUSER_SNAME(D.owner_sid) AS [Database Owner], 
-	F.RoleName AS [Fixed Server Role],
-	CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
-		AS [Trustworthy]	
+    DB_NAME() AS [Database], 
+    SUSER_SNAME(D.owner_sid) AS [Database Owner], 
+    F.RoleName AS [Fixed Server Role],
+    CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
+        AS [Trustworthy]    
 FROM
-	FixedServerRoles F
-	INNER JOIN sys.databases D ON D.Name = DB_NAME()
+    FixedServerRoles F
+    INNER JOIN sys.databases D ON D.Name = DB_NAME()
 WHERE 
-	IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
-AND	DB_NAME()  &lt;&gt;  'msdb'
-AND	D.is_trustworthy_on = 1;
+    IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
+AND DB_NAME()  &lt;&gt;  'msdb'
+AND D.is_trustworthy_on = 1;
 GO
 If the query returns any rows, this is a finding.  </check-content></check></Rule></Group><Group id="V-70627"><title> SRG-APP-000144-DB-000101</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-85249r2_rule" severity="low" weight="10.0"><version>SQL2-00-017510</version><title>Appropriate staff must be alerted when the amount of storage space used by the SQL Server transaction log file(s) exceeds an organization-defined value.</title><description>&lt;VulnDiscussion&gt;It is important for the appropriate personnel to be aware if the system is at risk of failing to record transaction log data.  The transaction log is the heart of a SQL Server database.  If it fails, processing will stop.  It must always have enough available storage space to cope with peak load.  Administrators must be warned about abnormally high space consumption soon enough to take corrective action before all space is used up.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000553</ident><fixtext fixref="F-77185r1_fix">Decide on, and document, the threshold value for alerting administrators to a shortage of storage for the transaction log.
 
