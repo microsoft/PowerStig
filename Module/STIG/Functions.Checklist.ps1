@@ -242,29 +242,6 @@ function New-StigCheckList {
 
 }
 
-function Get-ManualCheckSettings {
-    [CmdletBinding()]
-    [OutputType([psobject])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ReferenceConfiguration,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $manualCheckFile,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ID
-    )
-
-    $manualCheckSettings = Import-PowerShellDataFile $manualCheckFile
-
-    return $mofContent.Where( { $manualCheckSettings -match $ID } )
-}
-
 <#
     .SYNOPSIS
         Gets the vulnerability details from the rule description
