@@ -14,8 +14,10 @@ using module ..\..\PowerStig.psm1
         the target node. The title of STIG setting is tagged with the text ‘Exception’ to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
     .PARAMETER OrgSettings
-        The path to the XML file that contains the local organizations preferred settings for STIG
-        items that have allowable ranges.
+        The path to the xml file that contains the local organizations preferred settings for STIG
+        items that have allowable ranges.  The OrgSettings parameter also excepts a hashtable for
+        values that need to be modified.  When a hashtable is used, the specified values take
+        presidence over the values defined in the org.default.xml file.
     .PARAMETER SkipRule
         The SkipRule Node is injected into the STIG data and applied to the target node. The title
         of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
@@ -45,7 +47,7 @@ Configuration FireFox
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string]
+        [object]
         $OrgSettings,
 
         [Parameter()]
