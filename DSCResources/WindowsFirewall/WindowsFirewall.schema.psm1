@@ -43,7 +43,7 @@ Configuration WindowsFirewall
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string]
+        [object]
         $OrgSettings,
 
         [Parameter()]

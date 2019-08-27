@@ -21,7 +21,7 @@ foreach ( $rule in $rules )
                         AccessControlList
                         {
                             Principal = $acentry.Principal
-                            ForcePrincipal = [bool]$rule.ForcePrincipal
+                            ForcePrincipal = $acentry.ForcePrincipal
                             AccessControlEntry = @(
                                 AccessControlEntry
                                 {
