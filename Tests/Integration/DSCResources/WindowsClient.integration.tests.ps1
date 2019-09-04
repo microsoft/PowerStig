@@ -19,6 +19,7 @@ try
 
     foreach ($stig in $stigList)
     {
+<<<<<<< HEAD
         $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
 
         $skipRule = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
@@ -31,6 +32,30 @@ try
 
         $exception = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
         $exceptionMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
+=======
+        $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
+        $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
+        $powerstigXml = [xml](Get-Content -Path $stig.Path) |
+            Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
+
+        $skipRule = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
+        $skipRuleType = "AuditPolicyRule"
+        $expectedSkipRuleTypeCount = $powerstigXml.AuditPolicyRule.Rule.Count + $blankSkipRuleId.Count
+
+        $skipRuleMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
+        $skipRuleTypeMultiple = @('AuditPolicyRule','AccountPolicyRule')
+        $expectedSkipRuleTypeMultipleCount = $powerstigXml.AuditPolicyRule.Rule.Count +
+                                             $powerstigXml.AccountPolicyRule.Rule.Count +
+                                             $blankSkipRuleId.Count
+
+        $getRandomExceptionRuleParams = @{
+            RuleType       = 'RegistryRule'
+            PowerStigXml   = $powerstigXml
+            ParameterValue = 1234567
+        }
+        $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+        $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
+>>>>>>> origin/4.0.0
 
         . "$PSScriptRoot\Common.integration.ps1"
     }

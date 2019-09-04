@@ -9,15 +9,15 @@ using module .\..\Rule\Rule.psm1
         An Account Policy Rule object
     .DESCRIPTION
         The WindowsFeatureRule class is used to maange the Account Policy Settings.
-    .PARAMETER FeatureName
+    .PARAMETER Name
         The windows feature name
-    .PARAMETER InstallState
+    .PARAMETER Ensure
         The state the windows feature should be in
 #>
 Class WindowsFeatureRule : Rule
 {
-    [string] $FeatureName
-    [string] $InstallState <#(ExceptionValue)#>
+    [string] $Name
+    [string] $Ensure
 
     <#
         .SYNOPSIS
@@ -55,7 +55,7 @@ Class WindowsFeatureRule : Rule
     #>
     [PSObject] GetExceptionHelp()
     {
-        if ($this.InstallState -eq 'Present')
+        if ($this.Ensure -eq 'Present')
         {
             $thisInstallState = 'Absent'
         }

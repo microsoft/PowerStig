@@ -141,16 +141,19 @@ function Get-PermissionTargetPath
         { $stigString -match $regularExpression.hklmSecurity }
         {
             $permissionTargetPath = 'HKLM:\SECURITY'
+            break
         }
 
         { $stigString -match $regularExpression.hklmSoftware }
         {
             $permissionTargetPath = 'HKLM:\SOFTWARE'
+            break
         }
 
         { $stigString -match $regularExpression.hklmSystem }
         {
             $permissionTargetPath = 'HKLM:\SYSTEM'
+            break
         }
 
         # Get path for C:, Program file, and Windows
@@ -190,6 +193,13 @@ function Get-PermissionTargetPath
         { $stigString -match $regularExpression.inetpub }
         {
             $permissionTargetPath = '%windir%\inetpub'
+            break
+        }
+        # SQL Server install folder
+        { $stigString -match $regualrExpression.sqlInstallDirectory }
+        {
+            # ToDo since this is going to be an OrgSetting need to populate test string here if possible
+            $permissionTargetPath = $null
             break
         }
 
@@ -260,6 +270,11 @@ function Get-PermissionAccessControlEntry
             }
 
             return ConvertTo-AccessControlEntry -StigString $inetpubFolderStigString
+        }
+
+        { $stigString -match $regularExpression.auditingTab }
+        {
+            return ConvertTo-FileSystemAuditRule -CheckContent $stigString
         }
 
         default
@@ -472,6 +487,43 @@ function ConvertTo-AccessControlEntry
 
 <#
     .SYNOPSIS
+        Converts the checkconent from the STIG rule to a hashtable with
+        the following keys: AuditFlags, SystemRights, and Inheritance
+
+#>
+function ConvertTo-FileSystemAuditRule
+{
+    [CmdletBinding()]
+    [OutputType([pscustomobject])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $CheckContent
+    )
+
+    # We are going to set this to pass and if any values are null change it fail
+    $this.ConversionStatus = 'pass'
+
+    $fileRights = Get-FileSystemAccessValue -CheckContent $CheckContent
+    $principal = ($CheckContent | Select-String -Pattern '(?<=select\sthe\s").*(?="\srow)|(?<=Principal:).*(?=$)').Matches.Value
+    $inheritance = Get-FileSystemInheritance -CheckContent $CheckContent
+
+    $result = [hashtable]@{
+        Principal   = $principal.trim()
+        Rights      = Convert-RightsConstant -RightsString ($fileRights -join ',')
+        Inheritance = $inheritanceConstant[[string]$inheritance.trim()]
+    }
+
+    if ($null -eq $result.Principal -or $null -eq $result.Rights -or $null -eq $result.Inheritance)
+    {
+        $this.ConversionStatus = 'fail'
+    }
+
+    return $result
+}
+<#
+    .SYNOPSIS
         Converts strings describing the fileRights permissions to constants that are usable.
         Additonally this addresses the edge case when the fileRights are seperated by a forward slash "/"
 #>
@@ -490,7 +542,11 @@ function Convert-RightsConstant
     {
         $values = @()
         $rights = $(
-            if ( $string.Contains('/') )
+            if ($string.Contains(',') -and $string.Contains('/') -and $this.RawString -match 'Auditing tab')
+            {
+                $string.Split(',')
+            }
+            elseIf ( $string.Contains('/') )
             {
                 $string.Split('/')
             }
@@ -515,6 +571,10 @@ function Convert-RightsConstant
                 'NTFSAccessEntry'
                 {
                     $values += $fileRightsConstant[$right.trim()]
+                }
+                'FileSystemAuditRuleEntry'
+                {
+                    $values += $auditFileSystemRights[$right.trim()]
                 }
                 '(blank)'
                 {
@@ -582,7 +642,11 @@ function Split-MultiplePermissionRule
         $hklmSecurityMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSecurity
         $hklmSoftwareMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSoftware
         $hklmSystemMatch    = $checkContent | Select-String -Pattern $regularExpression.hklmSystem
+<<<<<<< HEAD
         $lastPermissonMatch = $checkContent | Select-String -Pattern $regularExpression.registryPermission | Select-Object -Last 1
+=======
+        $lastPermissonMatch = $checkContent | Select-String -Pattern $regularExpression.spaceDashAnythingSpaceDash | Select-Object -Last 1
+>>>>>>> origin/4.0.0
 
         [void]$contentRanges.Add(($hklmSecurityMatch.LineNumber - 1)..($hklmSoftwareMatch.LineNumber - 2))
         [void]$contentRanges.Add(($hklmSoftwareMatch.LineNumber - 1)..($hklmSystemMatch.LineNumber - 2))
@@ -620,7 +684,7 @@ function Split-MultiplePermissionRule
         return $result
     }
 
-    foreach ( $range in $contentRanges )
+    foreach ($range in $contentRanges)
     {
         $result += Join-CheckContent -Header $checkContent[$headerLineRange] -Body $checkContent[$range] -Footer $checkContent[$footerLineRange]
     }
@@ -635,10 +699,11 @@ function Split-MultiplePermissionRule
 function Get-ForcePrincipal
 {
     [CmdletBinding()]
-    [OutputType( [boolean] )]
+    [OutputType([boolean])]
     param
     (
-        [psobject] $stigString
+        [psobject]
+        $stigString
     )
 
     # Setting default value for the time being. In the future additional logic could be added here in order to dynamically determine what this should be.
@@ -690,4 +755,79 @@ function Join-CheckContent
 
     return $stringBuilder.ToString()
 }
+
+<#
+    .SYNOPSIS
+        Retrieves the file system inheritance setting from the CheckContent
+#>
+function Get-FileSystemInheritance
+{
+    [CmdletBinding()]
+    [OutputType([System.String])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    $results = @()
+
+    foreach ($line in $CheckContent)
+    {
+        # $inheritanceConstant comes from Rule.Permission\Convert\Data.ps1
+        foreach ($key in $inheritanceConstant.keys)
+        {
+            $result = $line | Select-String -Pattern $key
+
+            if ($result)
+            {
+                $results += $result
+            }
+        }
+    }
+
+    if ($results.count -gt 1)
+    {
+        throw "Multiple results have been found."
+    }
+
+    return $results.Matches.Value
+}
+
+<#
+    .SYNOPSIS
+        Retrieves the file system access setting from the CheckContent
+#>
+function Get-FileSystemAccessValue
+{
+    [CmdletBinding()]
+    [OutputType([System.String[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+    $results = @()
+
+    foreach ($line in $CheckContent)
+    {
+        # $auditFileSystemRights comes from Rule.Permission\Convert\Data.ps1
+        foreach ($key in $auditFileSystemRights.keys)
+        {
+            $result = $line | Select-String -Pattern $key
+
+            if ($result)
+            {
+                $results += $result
+            }
+        }
+    }
+
+    return $results.Matches.Value
+}
+
 #endregion

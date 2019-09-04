@@ -243,10 +243,68 @@ function Format-FireFoxPreference
     }
     return $result
 }
+
+<#
+    .SYNOPSIS
+        Formats a string to the standard needed by the SqlScriptQuery resource
+        to pass a variable to the Sql query.
+    .PARAMETER Variable
+        A string formated to leverage the -f operator.
+    .PARAMETER VariableValue
+        Specifies the value of the variable used in the SQL query.
+    .PARAMETER Database
+        Specifies the name of the database.
+#>
+function Format-SqlScriptVariable
+{
+    [Cmdletbinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter()]
+        [AllowEmptyString()]
+        [string]
+        $Variable,
+
+        [Parameter()]
+        [AllowEmptyString()]
+        [string]
+        $VariableValue,
+
+        [Parameter()]
+        [string]
+        $Database
+    )
+
+    $counter = 0
+    $results = @()
+    if ([string]::IsNullOrWhiteSpace($Variable) -eq $false)
+    {
+        $variableNames = ($Variable | Select-String -Pattern '\w+\=\{\d\}' -AllMatches).Matches.Value
+
+        foreach ($variableName in $variableNames)
+        {
+            $results += $variableName -replace '\{\d\}',"$(($VariableValue -split ',')[$counter])"
+            $counter++
+        }
+    }
+
+    if ([string]::IsNullOrWhiteSpace($Database) -eq $false)
+    {
+        $results += "Database=$Database"
+    }
+
+    return $results
+}
 #end region
 
 Export-ModuleMember -Function @(
-    'Get-ResourceTitle', 'Select-Rule', 'Get-UniqueString',
-    'Get-UniqueStringArray', 'Get-LogCustomField', 'Format-FireFoxPreference'
+    'Get-ResourceTitle'
+    'Select-Rule'
+    'Get-UniqueString'
+    'Get-UniqueStringArray'
+    'Get-LogCustomField'
+    'Format-FireFoxPreference'
+    'Format-SqlScriptVariable'
 )`
     -Variable 'resourcePath'

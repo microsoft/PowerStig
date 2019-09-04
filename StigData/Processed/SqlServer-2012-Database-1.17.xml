@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_SQL_Server_2012_Database__Security_Technical_Implementation_Guide_NewBenchmark" description="The Microsoft SQL Server 2012 Database Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_SQL_Server_2012_Database_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 27 Apr 2018" title="Microsoft SQL Server 2012 Database Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="4/18/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_SQL_Server_2012_Database__Security_Technical_Implementation_Guide_NewBenchmark" description="The Microsoft SQL Server 2012 Database Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_SQL_Server_2012_Database_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 27 Apr 2018" title="Microsoft SQL Server 2012 Database Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="7/29/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-41389" severity="medium" conversionstatus="pass" title="SRG-APP-000006-DB-000183" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
@@ -180,25 +180,6 @@ SELECT *   FROM msdb.dbo.sysjobhistory
 
 
 If any jobs listed are not documented as authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-41407" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000200" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;SQL Server database ownership is a higher level privilege that grants full rights to everything in that database, including the right to grant privileges to others. SQL Server requires that the owner of a database object be a user, and only one user can be the assigned owner of a database object. This tends to minimize the risk that multiple users could gain unauthorized access, except the one individual who is the owner.
-
-Within the database, object ownership implies full privileges to the owned object, including the privilege to assign access to the owned objects to other subjects. Unmanaged or uncontrolled ownership of databases can lead to unauthorized granting of privileges and database alterations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review system documentation to identify SQL Server accounts authorized to own database objects.
-
-If the SQL Server database ownership list does not exist or needs to be updated, this is a finding.
-
-Run the following SQL query to determine SQL Server ownership of all database objects:
-SELECT name AS 'Database name'
-     , SUSER_SNAME(owner_sid) AS 'Database Owner'
-     , state_desc AS 'Database state'
-  FROM sys.databases
-</RawString>
     </Rule>
     <Rule id="V-41409" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000091" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).
@@ -789,6 +770,32 @@ Use the following query to obtain a list of all event IDs, and their meaning:
 6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.</RawString>
       <SetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) CREATE TABLE #Trace (TraceId INT) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0)ORDER BY TraceId DESC CREATE TABLE #TraceEvent (TraceId INT, EventId INT) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @currentTraceId INT FETCH NEXT FROM cursorTrace INTO @currentTraceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @currentTraceId, EventId FROM sys.fn_trace_geteventinfo(@currentTraceId) FETCH NEXT FROM cursorTrace INTO @currentTraceId END CLOSE cursorTrace DEALLOCATE cursorTrace DECLARE @missingStigEventCount INT SET @missingStigEventCount = (SELECT COUNT(*) FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL) IF @missingStigEventCount &gt; 0 BEGIN DECLARE @dir nvarchar(4000) DECLARE @tracefile nvarchar(4000) DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 EXEC master.dbo.xp_instance_regread N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\Setup', N'SQLPath', @dir OUTPUT, 'no_output' SET @tracefile = @dir + N'\Log\PowerStig' EXEC @returnCode = sp_trace_create @traceid = @newTraceId OUTPUT, @options = 2, @tracefile = @tracefile, @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; IF @returnCode = 0 BEGIN EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 0 DECLARE cursorMissingStigEvent CURSOR FOR SELECT DISTINCT SE.EventId FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL OPEN cursorMissingStigEvent DECLARE @currentStigEventId INT FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId WHILE @@FETCH_STATUS = 0 BEGIN EXEC sp_trace_setevent @traceid = @newTraceId, @eventid = @currentStigEventId, @columnid = NULL, @on = 1 FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId END CLOSE cursorMissingStigEvent DEALLOCATE cursorMissingStigEvent EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 1 END END END</SetScript>
       <TestScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) CREATE TABLE #Trace (TraceId INT) CREATE TABLE #TraceEvent (TraceId INT, EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @traceId INT FETCH NEXT FROM cursorTrace INTO @traceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @traceId, EventId FROM sys.fn_trace_geteventinfo(@traceId) FETCH NEXT FROM cursorTrace INTO @TraceId END CLOSE cursorTrace DEALLOCATE cursorTrace SELECT SE.EventId AS NotFound FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL END</TestScript>
+      <Variable />
+      <VariableValue />
+    </Rule>
+    <Rule id="V-41407" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000200" dscresource="SqlScriptQuery">
+      <Description>&lt;VulnDiscussion&gt;SQL Server database ownership is a higher level privilege that grants full rights to everything in that database, including the right to grant privileges to others. SQL Server requires that the owner of a database object be a user, and only one user can be the assigned owner of a database object. This tends to minimize the risk that multiple users could gain unauthorized access, except the one individual who is the owner.
+
+Within the database, object ownership implies full privileges to the owned object, including the privilege to assign access to the owned objects to other subjects. Unmanaged or uncontrolled ownership of databases can lead to unauthorized granting of privileges and database alterations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <GetScript>select suser_sname(owner_sid) AS 'Owner' from sys.databases where name = $(Database)</GetScript>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review system documentation to identify SQL Server accounts authorized to own database objects.
+
+If the SQL Server database ownership list does not exist or needs to be updated, this is a finding.
+
+Run the following SQL query to determine SQL Server ownership of all database objects:
+SELECT name AS 'Database name'
+     , SUSER_SNAME(owner_sid) AS 'Database Owner'
+     , state_desc AS 'Database state'
+  FROM sys.databases
+</RawString>
+      <SetScript>ALTER AUTHORIZATION ON DATABASE::$(Database) to $(DatabaseOwner)</SetScript>
+      <TestScript>SELECT suser_sname(owner_sid) AS 'Owner' FROM sys.databases WHERE name = N'$(Database)' and suser_sname(owner_sid) != N'$(DatabaseOwner)';</TestScript>
+      <Variable>DatabaseOwner={0}</Variable>
+      <VariableValue />
     </Rule>
   </SqlScriptQueryRule>
 </DISASTIG>

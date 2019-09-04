@@ -8,7 +8,11 @@
 #      general configuration      #
 #---------------------------------#
 
+<<<<<<< HEAD
 version: 3.3.0.{build}
+=======
+version: 4.0.0.{build}
+>>>>>>> origin/4.0.0
 
 skip_commits:
   files:

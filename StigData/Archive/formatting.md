@@ -7,9 +7,8 @@
 
 ## Challenge
 
-* It feels like there is a conspiracy at DISA to make PowerSTIG parser a PIA to maintain.
-* I keep seeing Issues opened to update the parser for the latest STIG X
-* No easy way to fix Spelling \ Formatting issues
+* STIGs are not written in a consistent format and cannot be repeatedly parsed correctly.
+* No easy way to fix Spelling \ Formatting issues.
 
 ## Purposed solution
 
@@ -30,3 +29,23 @@
 This allows us to inject the rule intent without having to dig into the xml or update the parser.
 We have most of the general patterns ironed out and now we are just dealing with random formatting\ spelling charges.
 We need to take the time to determine when the change needs to be made, because we don't necessarily want to end up with a log file entry for each rule either.
+
+## HardCodedRule Automation
+
+* Rules can be Hard Coded with Check Content replacement using the log file, leveraging the replace all feature "*".
+* In order to generate a HardCodedRule log file entry, the **Get-HardCodedRuleLogFileEntry** function can be leveraged.
+* Example Entries:
+  * Single Rule:
+    * **V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Name = 'Web-Ftp-Server'; Ensure = 'Absent'}**
+  * Split Rule would include the structure from the Single Rule with the **\<splitRule>** delimiter appended to the end of the string:
+    * **...\<splitRule>HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Name = $null; Ensure = 'Absent'}**
+* Note: If a user needs to supply a value, the hashtable DscResource parameter should be set to $null, like the Split Rule example above.
+
+```PowerShell
+PS C:\> Import-Module .\PowerStig.Convert.psm1
+PS C:\> Get-HardCodedRuleLogFileEntry -RuleId V-1000 -RuleType WindowsFeatureRule
+V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = $null; Name = $null}
+PS C:\> # Creating a split rule with WindowsFeatureRule and FileContentRule
+PS C:\> Get-HardCodedRuleLogFileEntry -RuleId V-1000 -RuleType WindowsFeatureRule, FileContentRule
+V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = $null; Name = $null}<splitRule>HardCodedRule(FileContentRule)@{DscResource = 'ReplaceText'; Key = $null; Value = $null}
+```

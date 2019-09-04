@@ -6,8 +6,8 @@ try
     #region Test Setup
     $testStrings = @(
         @{
-            FeatureName  = 'SMB1Protocol'
-            InstallState = 'Absent'
+            Name  = 'SMB1Protocol'
+            Ensure = 'Absent'
             OrganizationValueRequired = $false
             CheckContent = 'This applies to Windows 2012 R2.
 
@@ -24,8 +24,8 @@ try
             If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.'
         }
         @{
-            FeatureName  = 'Powershell-v2'
-            InstallState = 'Absent'
+            Name  = 'Powershell-v2'
+            Ensure = 'Absent'
             OrganizationValueRequired = $false
             CheckContent = 'Windows PowerShell 2.0 is not installed by default.
 
@@ -38,8 +38,8 @@ try
             An Installed State of "Available" or "Removed" is not a finding.'
         },
         @{
-            FeatureName  = 'Web-Ftp-Service'
-            InstallState = 'Absent'
+            Name  = 'Web-Ftp-Service'
+            Ensure = 'Absent'
             OrganizationValueRequired = $false
             CheckContent = 'If the server has the role of an FTP server, this is NA.
 
@@ -54,8 +54,8 @@ try
             If the system has the role of an FTP server, this must be documented with the ISSO'
         },
         @{
-            FeatureName  = 'PNRP'
-            InstallState = 'Absent'
+            Name  = 'PNRP'
+            Ensure = 'Absent'
             OrganizationValueRequired = $false
             CheckContent = 'Open "PowerShell".
 
@@ -70,21 +70,21 @@ try
     #region Tests
     Describe 'Windows Feature Conversion' {
 
-        foreach ( $testString in $testStrings )
+        foreach ($testString in $testStrings)
         {
             [xml] $stigRule = Get-TestStigRule -CheckContent $testString.CheckContent -XccdfTitle Windows
             $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-            $stigRule.Save( $TestFile )
+            $stigRule.Save($TestFile)
             $rule = ConvertFrom-StigXccdf -Path $TestFile
 
             It 'Should return an WindowsFeatureRule Object' {
                 $rule.GetType() | Should Be 'WindowsFeatureRule'
             }
-            It "Should set Feature Name to '$($testString.FeatureName)'" {
-                $rule.FeatureName | Should Be $testString.FeatureName
+            It "Should set Feature Name to '$($testString.Name)'" {
+                $rule.Name | Should Be $testString.Name
             }
-            It "Should set Install State to '$($testString.InstallState)'" {
-                $rule.InstallState | Should Be $testString.InstallState
+            It "Should set Install State to '$($testString.Ensure)'" {
+                $rule.Ensure | Should Be $testString.Ensure
             }
             It "Should set OrganizationValueRequired to $($testString.OrganizationValueRequired)" {
                 $rule.OrganizationValueRequired | Should Be $testString.OrganizationValueRequired

@@ -237,9 +237,9 @@ function ConvertTo-PowerStigXml
 
         try
         {
-            $xmlDocument.save( $fileList.Settings.FullName )
+            $xmlDocument.save($fileList.Settings.FullName)
             # The save method does not add the required blank line to the file
-            Write-Output -InputObject `n | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
+            Write-Output -InputObject "`r`n" | Out-File -FilePath $fileList.Settings.FullName -Append -Encoding utf8 -NoNewline
             Write-Output "Converted Output: $($fileList.Settings.FullName)"
         }
         catch [System.Exception]
@@ -424,36 +424,46 @@ function New-OrganizationalSettingsXmlFile
 
     $xmlDocument = [System.XML.XMLDocument]::New()
 
-    ##############################   Root object   ###################################
-    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement( 'OrganizationalSettings' )
+    #########################################   Root object   ##########################################
 
-    [void] $xmlDocument.appendChild( $xmlRootElement )
-    [void] $xmlRootElement.SetAttribute( 'fullversion', $StigVersionNumber )
+    [System.XML.XMLElement] $xmlRootElement = $xmlDocument.CreateElement('OrganizationalSettings')
 
-    $rootComment = $xmlDocument.CreateComment( $organizationalSettingRootComment )
-    [void] $xmlDocument.InsertBefore( $rootComment, $xmlRootElement )
+    [void] $xmlDocument.appendChild($xmlRootElement)
+    [void] $xmlRootElement.SetAttribute('fullversion', $StigVersionNumber)
+
+    $rootComment = $xmlDocument.CreateComment($organizationalSettingRootComment)
+    [void] $xmlDocument.InsertBefore($rootComment, $xmlRootElement)
 
     #########################################   Root object   ##########################################
     #########################################    ID object    ##########################################
 
-    foreach ( $orgSetting in $OrgSettings)
+    foreach ($orgSetting in $OrgSettings)
     {
-        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement( 'OrganizationalSetting' )
+        $orgSettingProperty = Get-OrgSettingPropertyFromStigRule -ConvertedStig $orgSetting
 
-        [void] $xmlRootElement.appendChild( $xmlSettingChildElement )
+        [System.XML.XMLElement] $xmlSettingChildElement = $xmlDocument.CreateElement('OrganizationalSetting')
 
-        $xmlSettingChildElement.SetAttribute( $xmlAttribute.ruleId , $orgSetting.id )
+        [void] $xmlRootElement.appendChild($xmlSettingChildElement)
 
-        $xmlSettingChildElement.SetAttribute( $xmlAttribute.organizationalSettingValue , "LOCAL_STIG_SETTING_HERE")
+        $xmlSettingChildElement.SetAttribute($xmlAttribute.ruleId , $orgSetting.id)
+
+        foreach ($property in $orgSettingProperty)
+        {
+            $xmlAttribute.Add($property, $property)
+            $xmlSettingChildElement.SetAttribute($xmlAttribute.$property , [string]::Empty)
+            $xmlAttribute.Remove($property)
+        }
 
         $settingComment = " Ensure $(($orgSetting.OrganizationValueTestString) -f "'$($orgSetting.Id)'")"
 
         $rangeNameComment = $xmlDocument.CreateComment($settingComment)
         [void] $xmlRootElement.InsertBefore($rangeNameComment, $xmlSettingChildElement)
     }
+
     #########################################    ID object    ##########################################
 
-    $xmlDocument.Save( $Destination )
+    $xmlDocument.Save($Destination)
+    Write-Output -InputObject "`r`n" | Out-File -FilePath $Destination -Append -Encoding utf8 -NoNewline
 }
 
 <#
@@ -505,7 +515,7 @@ function Get-PowerStigFileList
         $Destination
     )
 
-    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id
+    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
 
     $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
 
@@ -539,6 +549,8 @@ function Get-PowerStigFileList
         Splits the Xccdf benchmark ID into an object.
     .PARAMETER Id
         The Id field from the Xccdf benchmark.
+    .PARAMETER FilePath
+        Specifies the file path to the xccdf. Used to determine technology role in SQL STIGs
 #>
 function Split-BenchmarkId
 {
@@ -548,7 +560,11 @@ function Split-BenchmarkId
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Id
+        $Id,
+
+        [Parameter()]
+        [string]
+        $FilePath
     )
 
     # Different STIG's present the Id field in a different format.
@@ -589,8 +605,11 @@ function Split-BenchmarkId
     {
         {$PSItem -match "SQL_Server"}
         {
+            # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
+            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
+
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), 'Instance'
+            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}
@@ -697,5 +716,194 @@ function Get-StigObjectsWithOrgSettings
 
     $ConvertedStigObjects |
         Where-Object { $PSitem.OrganizationValueRequired -eq $true}
+}
+
+function Get-OrgSettingPropertyFromStigRule
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $ConvertedStig
+    )
+
+    $propertiesToRemove = Get-BaseRulePropertyName
+    [System.Collections.ArrayList] $rulePropertyNames = (Get-Member -InputObject $ConvertedStig -MemberType Property).Name
+    foreach ($property in $propertiesToRemove)
+    {
+        $rulePropertyNames.RemoveAt($rulePropertyNames.IndexOf($property))
+    }
+    foreach ($propertyName in $rulePropertyNames)
+    {
+        if ([string]::IsNullOrEmpty($ConvertedStig.$propertyName))
+        {
+            [array] $orgSettingProperties += $propertyName
+        }
+    }
+
+    return $orgSettingProperties
+}
+
+<#
+    .SYNOPSIS
+        Creates HardCodedRule log file entry example
+    .DESCRIPTION
+        Queries a specific RuleType and generates an example log file entry for
+        HardCodedRules in PowerSTIG.
+    .PARAMETER RuleId
+        The STIG RuleId that should be included with the HardCodedRule log file
+        example.
+    .PARAMETER RuleType
+        The RuleType(s) that should be used when creating a HardCodedRule log file
+        entry.
+    .EXAMPLE
+        Get-HardCodedRuleLogFileEntry -RuleId V-1000 -RuleType WindowsFeatureRule
+
+        Outputs the following single HardCodedRule log entry example:
+        V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = $null; Name = $null}
+    .EXAMPLE
+        Get-HardCodedRuleLogFileEntry -RuleId V-1000 -RuleType WindowsFeatureRule, FileContentRule
+
+        Outputs the following split HardCodedRule log entry example:
+        V-1000::*::HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Ensure = $null; Name = $null}<splitRule>HardCodedRule(FileContentRule)@{DscResource = 'ReplaceText'; Key = $null; Value = $null}
+#>
+function Get-HardCodedRuleLogFileEntry
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [String]
+        $RuleId
+    )
+    DynamicParam {
+        Get-DynamicParameterRuleTypeName
+    }
+
+    begin
+    {
+        # Bind the specified parameter values to RuleType var
+        $RuleType = $PSBoundParameters['RuleType']
+        $counter = 0
+
+        # Dynamically query the base rule common properties to remove
+        $commonPropertiesToRemove = Get-BaseRulePropertyName
+
+        # Log file patterns to build log file string
+        $logFileRuleId = '{0}::*::' -f $RuleId
+        $logFileHardCodedRulePattern = "{0}HardCodedRule({1}){4}DscResource = '{2}'{3}{5}"
+        $keyValuePairPattern = '; {0} = $null'
+        $splitRulePattern = '<splitRule>'
+        $open, $close = '@{', '}'
+    }
+
+    process
+    {
+        $returnString = foreach ($type in $RuleType)
+        {
+            # Create convert rule of the given type in order to obtain rule specific properties
+            $ruleTypeConvert = New-Object -TypeName ("$type`Convert")
+            $ruleTypeConvert.SetDscResource()
+            $ruleTypeDscResource = $ruleTypeConvert.DscResource
+
+            # Query all valid non-base rule property names
+            $ruleProperties = (Get-Member -InputObject $ruleTypeConvert -MemberType Property).Name |
+                Where-Object -FilterScript {$PSItem -notin $commonPropertiesToRemove}
+
+            # Build a string for DSC Resource specific parameters, without values
+            $keyValuePair = @()
+            foreach ($dscKey in $ruleProperties)
+            {
+                $keyValuePair += $keyValuePairPattern -f $dscKey
+            }
+            $keyValuePair = -join $keyValuePair
+
+            # First time through, add the rule id, second and more will add the split delimiter
+            if ($counter -eq 0)
+            {
+                $logFileHardCodedRulePattern -f $logFileRuleId, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
+                $counter++
+            }
+            else
+            {
+                $logFileHardCodedRulePattern -f $splitRulePattern, $type, $ruleTypeDscResource, $keyValuePair, $open, $close
+            }
+        }
+        return -join $returnString
+    }
+}
+
+<#
+    .SYNOPSIS
+        Helper function to return the base rule property names.
+#>
+function Get-BaseRulePropertyName
+{
+    [CmdletBinding()]
+    [OutputType([string[]])]
+    param()
+
+    $baseRule = [Rule]::new()
+    return (Get-Member -InputObject $baseRule -MemberType Property).Name
+}
+
+<#
+    .SYNOPSIS
+        Retrieves the SQL Server technology role from the file name of the xccdf.
+#>
+function Get-SqlTechnologyRole
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [AllowEmptyString()]
+        [string]
+        $Path
+    )
+
+    $split = $Path -split '_'
+    $stigIndex = $split.IndexOf('STIG')
+    $sqlRole = $split[$stigIndex -1]
+
+    return $sqlRole
+}
+
+<#
+    .SYNOPSIS
+        Returns a list of all PowerSTIG RuleTypes.
+        Used to dynamically provide Values to Get-HardCodedRuleLogFileEntry
+        RuleType parameter.
+#>
+function Get-DynamicParameterRuleTypeName
+{
+    [CmdletBinding()]
+    [OutputType([System.Management.Automation.RuntimeDefinedParameterDictionary])]
+    param()
+
+    $parameterName = 'RuleType'
+    $paramAttribute = [System.Management.Automation.ParameterAttribute]::new()
+    $paramAttribute.Mandatory = $true
+    $paramAttribute.Position = 1
+    $getChildItemParams = @{
+        Path    = "$PSScriptRoot\..\.."
+        File    = $true
+        Exclude = 'ManualRule.psm1', 'DocumentRule.psm1'
+        Filter  = '*?Rule.psm1'
+        Recurse = $true
+    }
+    [string[]]$validRuleTypes = (Get-ChildItem @getChildItemParams).Name -replace '.psm1'
+    $validateSet = [System.Management.Automation.ValidateSetAttribute]::new($validRuleTypes)
+    $attribCollection = [System.Collections.ObjectModel.Collection[System.Attribute]]::new()
+    $attribCollection.Add($paramAttribute)
+    $attribCollection.Add($validateSet)
+    $runtimeDefinedParam = [System.Management.Automation.RuntimeDefinedParameter]::new($parameterName, [string[]], $attribCollection)
+    $runtimeDefinedParamDictionary = [System.Management.Automation.RuntimeDefinedParameterDictionary]::new()
+    $runtimeDefinedParamDictionary.Add($parameterName, $runtimeDefinedParam)
+    return $runtimeDefinedParamDictionary
 }
 #endregion

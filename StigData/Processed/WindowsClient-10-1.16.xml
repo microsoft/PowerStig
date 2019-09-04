@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="7/30/2019">
+=======
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 25 Jan 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="8/5/2019">
+>>>>>>> origin/4.0.0
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -7133,9 +7137,9 @@ Administrators</RawString>
     <Rule id="V-63377.a" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Installation of Internet Information System (IIS) may allow unauthorized internet services to be hosted.  Websites must only be hosted on servers that have been designed for that purpose and can be adequately secured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>IIS-HostableWebCore</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>IIS-HostableWebCore</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
@@ -7150,9 +7154,9 @@ If an application requires IIS or a subset to be installed to function, this nee
     <Rule id="V-63377.b" severity="high" conversionstatus="pass" title="WN10-00-000100" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Installation of Internet Information System (IIS) may allow unauthorized internet services to be hosted.  Websites must only be hosted on servers that have been designed for that purpose and can be adequately secured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>IIS-WebServer</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>IIS-WebServer</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>IIS is not installed by default.  Verify it has not been installed on the system.
@@ -7167,9 +7171,9 @@ If an application requires IIS or a subset to be installed to function, this nee
     <Rule id="V-63381" severity="medium" conversionstatus="pass" title="WN10-00-000105" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Some protocols and services do not support required security features, such as encrypting passwords or traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>SNMP</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>SNMP</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>"SNMP" is not installed by default.  Verify it has not been installed.
@@ -7181,9 +7185,9 @@ If the "SNMP" application exists, this is a finding.</RawString>
     <Rule id="V-63383" severity="medium" conversionstatus="pass" title="WN10-00-000110" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Some protocols and services do not support required security features, such as encrypting passwords or traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>SimpleTCP</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>SimpleTCP</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>"Simple TCP/IP Services" is not installed by default.  Verify it has not been installed.
@@ -7195,9 +7199,9 @@ If "Simple TCP/IP Services" is listed, this is a finding.</RawString>
     <Rule id="V-63385" severity="medium" conversionstatus="pass" title="WN10-00-000115" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Some protocols and services do not support required security features, such as encrypting passwords or traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>TelnetClient</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>TelnetClient</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The "Telnet Client" is not installed by default.  Verify it has not been installed.
@@ -7209,9 +7213,9 @@ If the "telnet" application exists, this is a finding.</RawString>
     <Rule id="V-63389" severity="medium" conversionstatus="pass" title="WN10-00-000120" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Some protocols and services do not support required security features, such as encrypting passwords or traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>TFTP</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>TFTP</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>The "TFTP Client" is not installed by default.  Verify it has not been installed.
@@ -7223,9 +7227,9 @@ If the "TFTP" application exists, this is a finding.</RawString>
     <Rule id="V-70637.a" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>MicrosoftWindowsPowerShellV2</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>MicrosoftWindowsPowerShellV2</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
@@ -7246,9 +7250,9 @@ If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 
     <Rule id="V-70637.b" severity="medium" conversionstatus="pass" title="WN10-00-000155" dscresource="WindowsOptionalFeature">
       <Description>&lt;VulnDiscussion&gt;Windows PowerShell 5.0 added advanced logging features which can provide additional detail when malware has been run on a system.  Disabling the Windows PowerShell 2.0 mitigates against a downgrade attack that evades the Windows PowerShell 5.0 script block logging feature.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>MicrosoftWindowsPowerShellV2Root</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>MicrosoftWindowsPowerShellV2Root</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Run "Windows PowerShell" with elevated privileges (run as administrator).
@@ -7271,9 +7275,9 @@ If "Windows PowerShell 2.0" (whether the subcategory of "Windows PowerShell 2.0 
 
 Disabling SMBv1 support may prevent access to file or print sharing resources with systems or devices that only support SMBv1. File shares and print services hosted on Windows Server 2003 are an example, however Windows Server 2003 is no longer a supported operating system. Some older Network Attached Storage (NAS) devices may only support SMBv1.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>SMB1Protocol</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>SMB1Protocol</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Different methods are available to disable SMBv1 on Windows 10.  This is the preferred method, however if V-74723 and V-74725 are configured, this is NA.

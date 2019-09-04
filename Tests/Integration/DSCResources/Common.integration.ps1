@@ -52,7 +52,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
                     in place of a -notmatch, since the -notmatch removes the
                     match from the collection.
                 #>
-                if (-not ($dscMof.ResourceID -match $rule.id))
+                if (-not ($dscMof.ResourceID -match '\[Skip\]' -or $dscMof.ResourceID -match $rule.id))
                 {
                     Write-Warning -Message "Missing $ruleName $($rule.id)"
                     $hasAllRules = $false
@@ -88,13 +88,13 @@ Describe ($title + " $($stig.StigVersion) mof output") {
     if (@($stigList).IndexOf($stig) -le '0')
     {
         Context 'Single Exception' {
-            It "Should compile the MOF with STIG exception $exception without throwing" {
+            It "Should compile the MOF with STIG exception $($exception.Keys) without throwing" {
                 {& $technologyConfig @testParameterList -Exception $exception} | Should -Not -Throw
             }
         }
 
         Context 'Multiple Exceptions' {
-            It "Should compile the MOF with STIG exceptions $exceptionMultiple without throwing" {
+            It "Should compile the MOF with STIG exceptions $($exceptionMultiple.Keys) without throwing" {
                 {& $technologyConfig @testParameterList -Exception $exceptionMultiple} | Should -Not -Throw
             }
         }
@@ -110,8 +110,8 @@ Describe ($title + " $($stig.StigVersion) mof output") {
 
             $dscMof = @($instances | Where-Object -FilterScript { $PSItem.ResourceID -match "\[Skip\]" })
 
-            It "Should have $($skipRule.count) Skipped settings" {
-                $dscMof.count | Should -Be $skipRule.count
+            It "Should have $($skipRule.count + $blankSkipRuleId.Count) Skipped settings" {
+                $dscMof.count | Should -Be ($skipRule.count + $blankSkipRuleId.Count)
             }
         }
 
@@ -125,8 +125,8 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $expectedSkipRuleCount = $skipRuleMultiple.count
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $expectedSkipRuleCount = $skipRuleMultiple.count + $blankSkipRuleId.Count
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleCount
@@ -142,7 +142,7 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleTypeCount Skipped settings" {
                 $dscMof.count | Should -Be $expectedSkipRuleTypeCount
@@ -158,10 +158,10 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
 
             # Counts how many Skips there are and how many there should be.
-            $dscMof = $instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"}
+            $dscMof = @($instances | Where-Object -FilterScript {$PSItem.ResourceID -match "\[Skip\]"})
 
             It "Should have $expectedSkipRuleTypeMultipleCount Skipped settings" {
-                $dscMof.count | Should -Be $expectedSkipRuleTypeMultipleCount
+                $dscMof.Count | Should -Be $expectedSkipRuleTypeMultipleCount
             }
         }
 

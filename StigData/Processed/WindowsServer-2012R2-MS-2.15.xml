@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="7/10/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
@@ -8,6 +9,18 @@
       <OrganizationValueTestString>'{0}' -le '3' -and '{0}' -ne '0'</OrganizationValueTestString>
       <PolicyName>Account lockout threshold</PolicyName>
       <PolicyValue />
+=======
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.15" created="8/14/2019">
+  <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
+    <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
+      <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -le '3' -and '{0}' -ne '0'</OrganizationValueTestString>
+      <PolicyName>Account lockout threshold</PolicyName>
+      <PolicyValue />
+>>>>>>> origin/4.0.0
       <RawString>Verify the effective setting in Local Group Policy Editor.
 Run "gpedit.msc".
 
@@ -808,6 +821,7 @@ Compare the AuditPol settings with the following.
 
 If the system does not audit the following, this is a finding.
 
+<<<<<<< HEAD
 System &gt;&gt; Other System Events - Failure</RawString>
       <Subcategory>Other System Events</Subcategory>
     </Rule>
@@ -823,6 +837,23 @@ System &gt;&gt; Other System Events - Failure</RawString>
       <OrganizationValueTestString />
       <Property>Version</Property>
       <Query>SELECT * FROM Win32_OperatingSystem</Query>
+=======
+System &gt;&gt; Other System Events - Failure</RawString>
+      <Subcategory>Other System Events</Subcategory>
+    </Rule>
+  </AuditPolicyRule>
+  <AuditSettingRule dscresourcemodule="AuditSystemDsc">
+    <Rule id="V-1073" severity="high" conversionstatus="pass" title="Unsupported Service Packs" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Systems at unsupported service packs or releases will not receive security updates for new vulnerabilities, which leave them subject to exploitation.  Systems must be maintained at a service pack level supported by the vendor with new security updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>6.2.9200</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-le</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM Win32_OperatingSystem</Query>
+>>>>>>> origin/4.0.0
       <RawString>Run "winver.exe". 
 
 If the "About Windows" dialog box does not display 
@@ -833,6 +864,7 @@ or greater, this is a finding.
 No preview versions will be used in a production environment. 
 
 Unsupported Service Packs/Releases:
+<<<<<<< HEAD
 Windows 2012 - any release candidates or versions prior to the initial release.</RawString>
     </Rule>
     <Rule id="V-1081" severity="high" conversionstatus="pass" title="NTFS Requirement" dscresource="AuditSetting">
@@ -845,6 +877,20 @@ Windows 2012 - any release candidates or versions prior to the initial release.<
       <OrganizationValueTestString />
       <Property>FileSystem</Property>
       <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+=======
+Windows 2012 - any release candidates or versions prior to the initial release.</RawString>
+    </Rule>
+    <Rule id="V-1081" severity="high" conversionstatus="pass" title="NTFS Requirement" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The ability to set access permissions and auditing is critical to maintaining the security and proper access controls of a system. To support this, local volumes must be formatted using a file system that supports NTFS attributes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>NTFS|ReFS</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-match</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>FileSystem</Property>
+      <Query>SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'</Query>
+>>>>>>> origin/4.0.0
       <RawString>Open "Computer Management".
 
 Select "Disk Management" under "Storage".
@@ -853,6 +899,7 @@ For each local volume, if the file system does not indicate "NTFS", this is a fi
 
 "ReFS" (Resilient File System) is also acceptable and would not be a finding.
 
+<<<<<<< HEAD
 This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
     </Rule>
   </AuditSettingRule>
@@ -863,6 +910,110 @@ This does not apply to system partitions such as the Recovery and EFI System Par
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+=======
+This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
+    </Rule>
+    <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>True</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-eq</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>PasswordExpires</Property>
+      <Query>SELECT * FROM Win32_UserAccount WHERE Disabled=False AND LocalAccount=True</Query>
+      <RawString>Review the password never expires status for enabled user accounts.
+
+Open "Windows PowerShell" with elevated privileges (run as administrator).
+
+Domain Controllers:
+
+Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | Where PasswordNeverExpires -eq True | FT Name, PasswordNeverExpires, Enabled".
+
+Exclude application accounts and disabled accounts (e.g., Guest).
+Domain accounts requiring smart card (CAC/PIV) may also be excluded.
+
+If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
+
+Member servers and standalone systems:
+
+Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
+
+Exclude application accounts and disabled accounts (e.g., Guest).
+
+If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-7002" severity="high" conversionstatus="pass" title="Password Requirement" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;The lack of password protection enables anyone to gain access to the information system, which opens a backdoor opportunity for intruders to compromise the system as well as other resources.  Accounts on a system must require passwords.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>True</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-eq</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>PasswordRequired</Property>
+      <Query>SELECT * FROM Win32_UserAccount WHERE Disabled=False AND LocalAccount=True</Query>
+      <RawString>Review the password required status for enabled user accounts.
+
+Open "Windows PowerShell".
+
+Domain Controllers:
+
+Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
+
+Exclude disabled accounts (e.g., Guest).
+
+If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
+
+Member servers and standalone systems:
+
+Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
+
+Exclude disabled accounts (e.g., Guest).
+
+If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="AuditSetting">
+      <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
+
+PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
+
+Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
+
+WMF 4.0:
+Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
+
+WMF 5.0:
+https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
+
+WMF 5.1:
+https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DesiredValue>6.3.9600.17415</DesiredValue>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Operator>-ge</Operator>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <Property>Version</Property>
+      <Query>SELECT * FROM CIM_Datafile WHERE FileName='powershell' AND Path LIKE '%\\Windows\\System32\\WindowsPowerShell\\v1.0\\%' AND Extension='exe'</Query>
+      <RawString>Open "Windows PowerShell".
+
+Enter "$PSVersionTable".
+
+If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
+
+Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
+    </Rule>
+  </AuditSettingRule>
+  <DocumentRule dscresourcemodule="None">
+    <Rule id="V-1072" severity="medium" conversionstatus="pass" title="Shared User Accounts" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Shared accounts (accounts where two or more people log in with the same user identification) do not provide adequate identification and authentication.  There is no way to provide for nonrepudiation or individual accountability for system access and resource usage.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+>>>>>>> origin/4.0.0
       <RawString>Determine whether any shared accounts exist. If no shared accounts exist, this is NA.
 
 Shared accounts, such as required by an application, may be approved by the organization.  This must be documented with the ISSO. Documentation must include the reason for the account, who has access to the account, and how the risk of using the shared account is mitigated to include monitoring account activity.
@@ -1450,59 +1601,6 @@ If an alternate time synchronization tool is used and is not enabled or not conf
 
 The US Naval Observatory operates stratum 1 time servers, identified at http://tycho.usno.navy.mil/ntp.html. Time synchronization will occur through a hierarchy of time servers down to the local level. Clients and lower-level servers will synchronize with an authorized time server in the hierarchy.</RawString>
     </Rule>
-    <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the password never expires status for enabled user accounts.
-
-Open "Windows PowerShell" with elevated privileges (run as administrator).
-
-Domain Controllers:
-
-Enter "Search-ADAccount -PasswordNeverExpires -UsersOnly | Where PasswordNeverExpires -eq True | FT Name, PasswordNeverExpires, Enabled".
-
-Exclude application accounts and disabled accounts (e.g., Guest).
-Domain accounts requiring smart card (CAC/PIV) may also be excluded.
-
-If any enabled user accounts are returned with a "PasswordNeverExpires" status of "True", this is a finding.
-
-Member servers and standalone systems:
-
-Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordExpires=False and LocalAccount=True" | FT Name, PasswordExpires, Disabled, LocalAccount'.
-
-Exclude application accounts and disabled accounts (e.g., Guest).
-
-If any enabled user accounts are returned with a "PasswordExpires" status of "False", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-7002" severity="high" conversionstatus="pass" title="Password Requirement" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The lack of password protection enables anyone to gain access to the information system, which opens a backdoor opportunity for intruders to compromise the system as well as other resources.  Accounts on a system must require passwords.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the password required status for enabled user accounts.
-
-Open "Windows PowerShell".
-
-Domain Controllers:
-
-Enter "Get-ADUser -Filter * -Properties PasswordNotRequired | Where PasswordNotRequired -eq True | FT Name, PasswordNotRequired, Enabled".
-
-Exclude disabled accounts (e.g., Guest).
-
-If "PasswordNotRequired" is "True" for any enabled user account, this is a finding.
-
-Member servers and standalone systems:
-
-Enter 'Get-CimInstance -Class Win32_Useraccount -Filter "PasswordRequired=False and LocalAccount=True" | FT Name, PasswordRequired, Disabled, LocalAccount'.
-
-Exclude disabled accounts (e.g., Guest).
-
-If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
-    </Rule>
     <Rule id="V-14225" severity="medium" conversionstatus="pass" title="Administrator Account Password Changes" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the password. The password for the built-in Administrator account must be changed at least annually or when any member of the administrative team leaves the organization.
 
@@ -1725,14 +1823,6 @@ Backups shall be consistent with organizational recovery time and recovery point
       <OrganizationValueTestString />
       <RawString>Verify the organization has an automated process to install security-related software updates.  If it does not, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-36736" severity="medium" conversionstatus="pass" title="WINGE-000030" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Failure to verify a certificate's revocation status can result in the system accepting a revoked, and therefore unauthorized, certificate.  This could result in the installation of unauthorized software or a connection for rogue networks, depending on the use for which the certificate is intended.   Querying for certificate revocation mitigates the risk that the system will accept an unauthorized certificate.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the system has software installed and running that provides certificate validation and revocation checking.  If it does not, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-40172" severity="low" conversionstatus="pass" title="WN00-000016" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A system backup will usually include sensitive information such as user accounts that could be used in an attack.  As a valuable system resource, the system backup must be protected and stored in a physically secure location.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;CODB-2&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1806,16 +1896,6 @@ Issued To: DoD Root CA 3
 Issuer by: US DoD CCEB Interoperability Root CA 2
 Thumbprint: 929BF3196896994C0A201DF4A5B71F603FEFBF2E
 Valid: Friday, September 27, 2019</RawString>
-    </Rule>
-    <Rule id="V-42420" severity="medium" conversionstatus="pass" title="WINFW-000001" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack, allowing or blocking inbound and outbound connections based on a set of rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if a host-based firewall is installed and enabled on the system.  If a host-based firewall is not installed and enabled on the system, this is a finding.
-
-The configuration requirements will be determined by the applicable firewall STIG.</RawString>
     </Rule>
     <Rule id="V-57637" severity="medium" conversionstatus="pass" title="WIN00-000018" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Utilizing a whitelist provides a configuration management method for allowing the execution of only authorized software. Using only authorized software decreases risk by limiting the number of potential vulnerabilities.
@@ -1968,33 +2048,6 @@ Navigate to Local Computer Policy &gt;&gt; Computer Configuration &gt;&gt; Windo
 Review each User Right listed for any unresolved SIDs to determine whether they are valid, such as due to being temporarily disconnected from the domain. (Unresolved SIDs have the format of "*S-1-…".)
 
 If any unresolved SIDs exist and are not for currently valid accounts or groups, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
-
-PowerShell is updated with the installation of the corresponding version of the Windows Management Framework (WMF).
-
-Updating to a later PowerShell version may have compatibility issues with some applications.  The following links should be reviewed and updates tested before applying to a production environment.
-
-WMF 4.0:
-Review the System Requirements under the download link - https://www.microsoft.com/en-us/download/details.aspx?id=40855
-
-WMF 5.0:
-https://docs.microsoft.com/en-us/powershell/wmf/5.0/productincompat
-
-WMF 5.1:
-https://docs.microsoft.com/en-us/powershell/wmf/5.1/productincompat&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Open "Windows PowerShell".
-
-Enter "$PSVersionTable".
-
-If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
-
-Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
     </Rule>
   </ManualRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
@@ -6650,8 +6703,8 @@ Value: 1</RawString>
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\System</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>'{0}' -match '1|2'</OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding:
 
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -6662,7 +6715,7 @@ Value Name: EnableSmartScreen
 Type: REG_DWORD
 Value:  0x00000001 (1) (Give user a warning…)
 Or 0x00000002 (2) (Require approval…)</RawString>
-      <ValueData>1</ValueData>
+      <ValueData />
       <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -7388,6 +7441,20 @@ Telnet (tlntsvr)</RawString>
       <ServiceState>Stopped</ServiceState>
       <StartupType>Disabled</StartupType>
     </Rule>
+    <Rule id="V-36736" severity="medium" conversionstatus="pass" title="WINGE-000030" dscresource="Service">
+      <Description>&lt;VulnDiscussion&gt;Failure to verify a certificate's revocation status can result in the system accepting a revoked, and therefore unauthorized, certificate.  This could result in the installation of unauthorized software or a connection for rogue networks, depending on the use for which the certificate is intended.   Querying for certificate revocation mitigates the risk that the system will accept an unauthorized certificate.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ServiceName/StartupType is populated with correct Certificate Revocation Checking service information</OrganizationValueTestString>
+      <RawString>Verify the system has software installed and running that provides certificate validation and revocation checking.  If it does not, this is a finding.</RawString>
+      <ServiceName>
+      </ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>
+      </StartupType>
+    </Rule>
     <Rule id="V-40206" severity="medium" conversionstatus="pass" title="WNSV-000106" dscresource="Service">
       <Description>&lt;VulnDiscussion&gt;The automatic start of the Smart Card Removal Policy service is required to support the smart card removal behavior requirement.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7403,6 +7470,22 @@ If the Startup Type for Smart Card Removal Policy is not set to Automatic, this 
       <ServiceName>SCPolicySvc</ServiceName>
       <ServiceState>Running</ServiceState>
       <StartupType>Automatic</StartupType>
+    </Rule>
+    <Rule id="V-42420" severity="medium" conversionstatus="pass" title="WINFW-000001" dscresource="Service">
+      <Description>&lt;VulnDiscussion&gt;A firewall provides a line of defense against attack, allowing or blocking inbound and outbound connections based on a set of rules.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>ServiceName/StartupType is populated with correct Firewall service information</OrganizationValueTestString>
+      <RawString>Determine if a host-based firewall is installed and enabled on the system.  If a host-based firewall is not installed and enabled on the system, this is a finding.
+
+The configuration requirements will be determined by the applicable firewall STIG.</RawString>
+      <ServiceName>
+      </ServiceName>
+      <ServiceState>Running</ServiceState>
+      <StartupType>
+      </StartupType>
     </Rule>
   </ServiceRule>
   <UserRightRule dscresourcemodule="SecurityPolicyDsc">
@@ -7448,7 +7531,7 @@ The Guests group must be assigned this right to prevent unauthenticated access.&
       <DisplayName>Deny access to this computer from the network</DisplayName>
       <DuplicateOf />
       <Force>False</Force>
-      <Identity>Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests</Identity>
+      <Identity />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match 'Enterprise Admins,Domain Admins,(Local account and member of Administrators group|Local account),Guests'</OrganizationValueTestString>
@@ -7748,7 +7831,7 @@ Accounts with the "Create symbolic links" user right can create pointers to othe
       <DisplayName>Create symbolic links</DisplayName>
       <DuplicateOf />
       <Force>True</Force>
-      <Identity>Administrators,{Hyper-V}</Identity>
+      <Identity />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -match '^(Administrators,NT Virtual Machine\\Virtual Machines|Administrators)$'</OrganizationValueTestString>
@@ -8240,9 +8323,9 @@ The application account must meet requirements for application account passwords
 
 Disabling SMBv1 support may prevent access to file or print sharing resources with systems or devices that only support SMBv1. File shares and print services hosted on Windows Server 2003 are an example, however Windows Server 2003 is no longer a supported operating system. Some older network attached devices may only support SMBv1.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>SMB1Protocol</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>SMB1Protocol</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>This requirement applies to Windows 2012 R2, it is NA for Windows 2012 (see V-73519 and V-73523 for 2012 requirements).
@@ -8264,9 +8347,9 @@ If "SMB 1.0/CIFS File Sharing Support" is selected, this is a finding.</RawStrin
     <Rule id="V-80477" severity="medium" conversionstatus="pass" title="WIN00-000220" dscresource="WindowsFeature">
       <Description>&lt;VulnDiscussion&gt;Windows PowerShell versions 4.0 (with a patch) and 5.x add advanced logging features that can provide additional detail when malware has been run on a system. Ensuring Windows PowerShell 2.0 is not installed as well mitigates against a downgrade attack that evades the advanced logging features of later Windows PowerShell versions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <FeatureName>PowerShell-v2</FeatureName>
-      <InstallState>Absent</InstallState>
+      <Ensure>Absent</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>PowerShell-v2</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Windows PowerShell 2.0 is not installed by default.
@@ -8277,7 +8360,14 @@ Enter "Get-WindowsFeature -Name PowerShell-v2".
 
 If "Installed State" is "Installed", this is a finding.
 
+<<<<<<< HEAD
 An Installed State of "Available" or "Removed" is not a finding.</RawString>
     </Rule>
   </WindowsFeatureRule>
 </DISASTIG>
+=======
+An Installed State of "Available" or "Removed" is not a finding.</RawString>
+    </Rule>
+  </WindowsFeatureRule>
+</DISASTIG>
+>>>>>>> origin/4.0.0

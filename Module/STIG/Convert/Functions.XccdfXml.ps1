@@ -58,7 +58,7 @@ function ConvertFrom-StigXccdf
     # Get the xml data from the file path provided.
     $stigBenchmarkXml = Get-StigXccdfBenchmarkContent -Path $path
 
-    # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs XWebsite
+    # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs xWebsite
     $global:stigTitle = $stigBenchmarkXml.title
 
     # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
@@ -356,11 +356,8 @@ function Get-StigRuleList
             # This is to address STIG Rule V-18395 that has multiple rules that are exactly the same under that rule ID.
             if ($stigRule.Rule.Count -gt 1)
             {
-                $stigRule.RemoveChild($stigRule.Rule[0])
+                [void]$stigRule.RemoveChild($stigRule.Rule[0])
             }
-
-            # Global added so that the stig rule can be referenced later
-            $global:stigRuleGlobal = $stigRule
 
             Write-Verbose -Message "[$stigProcessedCounter of $stigGroupCount] $($stigRule.id)"
 
@@ -392,7 +389,18 @@ function Get-StigRuleList
                 # Trim the unique char from split rules if they exist
                 foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
                 {
+<<<<<<< HEAD
                     $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
+=======
+                    if ($correction.newText -match "HardCodedRule\(\w*Rule\)")
+                    {
+                        $rule.RawString = $correction.oldText
+                    }
+                    else
+                    {
+                        $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
+                    }
+>>>>>>> origin/4.0.0
                 }
 
                 if ($rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]))
@@ -453,7 +461,11 @@ function Get-RuleChangeLog
     {
         $id = $change.Groups.Item('id').value
         $oldText = $change.Groups.Item('oldText').value
+<<<<<<< HEAD
         # The trim removes any potential CRLF entries that will show up in a regex escape sequence. 
+=======
+        # The trim removes any potential CRLF entries that will show up in a regex escape sequence.
+>>>>>>> origin/4.0.0
         # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
         $newText = $change.Groups.Item('newText').value.Trim().Replace('`r`n',[Environment]::NewLine)
 
@@ -462,7 +474,11 @@ function Get-RuleChangeLog
             NewText = $newText
         }
 
+<<<<<<< HEAD
         <# 
+=======
+        <#
+>>>>>>> origin/4.0.0
            Some rule have multiple changes that need to be made, so if a rule already
            has a change, then add the next change to the value (array)
         #>

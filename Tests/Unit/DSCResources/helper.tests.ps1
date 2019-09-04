@@ -1,6 +1,6 @@
-[String] $script:moduleRoot = Split-Path -Parent ( Split-Path -Parent ( Split-Path -Parent $PSScriptRoot ) )
+[String] $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
 
-Import-Module -Name ( Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1' )
+Import-Module -Name (Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1')
 
 Describe 'Variables' {
 
@@ -47,6 +47,33 @@ Describe 'Functions' {
             $result = Format-FireFoxPreference -Value 42
             $result | Should -BeOftype 'String'
             $result | Should -Be '42'
+        }
+    }
+
+    Context 'Format-SqlScriptVariable' {
+
+        It 'Should properly format a string with 3 variables' {
+            $parameteres = @{
+                Variable      = 'TraceFilePath={0} MaxRollOverFileCount={1} MaxTraceFileSize={2}'
+                VariableValue = 'c:\trace\log,5,500'
+            }
+            $functionResult = Format-SqlScriptVariable @parameteres
+            $compareResult  = Compare-Object -ReferenceObject $functionResult -DifferenceObject @('TraceFilePath=c:\trace\log','MaxRollOverFileCount=5','MaxTraceFileSize=500')
+
+            $functionResult | Should -BeOfType 'string'
+            $compareResult  | Should -Be $null
+        }
+
+        It 'Should properly format a value with spaces' {
+            $parameters = @{
+                Variable      = 'TraceFilePath={0}'
+                VariableValue = 'C:\Program Files\Microsoft SQL Server\MSSQL11.SMA\MSSQL\Log'
+            }
+
+            $functionResult = Format-SqlScriptVariable @parameters
+
+            $functionResult | Should -BeOfType 'string'
+            $functionResult | Should -Be $($parameters.Variable -f $parameters.VariableValue)
         }
     }
 }

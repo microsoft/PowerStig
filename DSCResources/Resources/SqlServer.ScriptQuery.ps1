@@ -9,7 +9,7 @@ foreach ($instance in $ServerInstance)
     {
         foreach ($db in $Database)
         {
-            foreach ( $rule in $rules )
+            foreach ($rule in $rules)
             {
                 SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
                 {
@@ -17,7 +17,7 @@ foreach ($instance in $ServerInstance)
                     GetQuery       = $rule.GetScript
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
-                    Variable       = "Database=$db"
+                    Variable       = Format-SqlScriptVariable -Database $db -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
                 }
             }
         }
@@ -26,6 +26,19 @@ foreach ($instance in $ServerInstance)
     {
         foreach ($rule in $rules)
         {
+            if ($null -ne $rule.Variable -and $null -ne $rule.VariableValue)
+            {
+                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                {
+                    ServerInstance = $instance
+                    GetQuery       = $rule.GetScript
+                    TestQuery      = $rule.TestScript
+                    SetQuery       = $rule.SetScript
+                    Variable       = Format-SqlScriptVariable -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
+                }   
+                continue
+            }
+
             SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
             {
                 ServerInstance = $instance

@@ -23,7 +23,11 @@ try
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
                 desiredvalue = '10.0.14393'
+<<<<<<< HEAD:Tests/Integration/AuditSettingRule.Integration.tests.ps1
                 operator     = '-ge'
+=======
+                operator     = '-le'
+>>>>>>> origin/4.0.0:Tests/Integration/AuditSettingRule.Integration.tests.ps1
                 checkContent = 'Open "Command Prompt".
 
                 Enter "winver.exe".
@@ -36,7 +40,11 @@ try
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
                 desiredvalue = '10.0.14393'
+<<<<<<< HEAD:Tests/Integration/AuditSettingRule.Integration.tests.ps1
                 operator     = '-ge'
+=======
+                operator     = '-le'
+>>>>>>> origin/4.0.0:Tests/Integration/AuditSettingRule.Integration.tests.ps1
                 checkContent = 'Run "winver.exe".
 
                 If the "About Windows" dialog box does not display:
@@ -65,7 +73,11 @@ try
                 query        = "SELECT * FROM Win32_OperatingSystem"
                 property     = 'Version'
                 desiredvalue = '6.2.9200'
+<<<<<<< HEAD:Tests/Integration/AuditSettingRule.Integration.tests.ps1
                 operator     = '-ge'
+=======
+                operator     = '-le'
+>>>>>>> origin/4.0.0:Tests/Integration/AuditSettingRule.Integration.tests.ps1
                 checkContent = 'Run "winver.exe".
 
                 If the "About Windows" dialog box does not display
