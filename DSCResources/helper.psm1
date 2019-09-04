@@ -298,7 +298,7 @@ function Format-SqlScriptVariable
 }
 #end region
 
-Export-ModuleMember -Function @(
+Export-ModuleMember -Variable 'resourcePath' -Function @(
     'Get-ResourceTitle'
     'Select-Rule'
     'Get-UniqueString'
@@ -306,5 +306,4 @@ Export-ModuleMember -Function @(
     'Get-LogCustomField'
     'Format-FireFoxPreference'
     'Format-SqlScriptVariable'
-)`
-    -Variable 'resourcePath'
+)

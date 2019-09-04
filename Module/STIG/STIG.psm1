@@ -193,33 +193,40 @@ Class STIG
     #endregion
 
     #region Load Rules
-    hidden [void] _LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    hidden [void] _LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
     {
         [xml]$rules = [xml](Get-Content -Path $this.RuleFile)
         $overRideValues = @{}
 
         #region Org Settings
-        if ([string]::IsNullOrEmpty($OrgSettings))
+        # Import Org Settings xml
+        if ([string]::IsNullOrEmpty($OrgSettings) -or $OrgSettings -is [hashtable])
         {
-            [xml] $settings = (Get-Content -Path ($this.RuleFile -replace '.xml', '.org.default.xml') )
+            [xml]$xmlOrgSettings = (Get-Content -Path ($this.RuleFile -replace '.xml', '.org.default.xml'))
+            [hashtable]$settings = ConvertTo-OrgSettingHashtable -XmlOrgSetting $xmlOrgSettings
+            if ($OrgSettings -is [hashtable])
+            {
+                [hashtable]$settings = Merge-OrgSettingValue -DefaultOrgSetting $settings -UserSpecifiedOrgSetting $OrgSettings
+            }
         }
         else
         {
-            [xml] $settings = Get-Content -Path $OrgSettings
+            [xml]$xmlOrgSettings = Get-Content -Path $OrgSettings
+            [hashtable]$settings = ConvertTo-OrgSettingHashtable -XmlOrgSetting $xmlOrgSettings
         }
 
         # If there are no org settings to merge, skip over that
-        if($null -ne $settings.OrganizationalSettings.OrganizationalSetting)
+        if($null -ne $settings)
         {
-            foreach ($organizationalSetting in $settings.OrganizationalSettings.OrganizationalSetting)
+            foreach ($ruleId in $settings.Keys)
             {
                 $ruleOverRideInformation = @{}
-                $ruleOverRideProperties = $organizationalSetting.Attributes.Name
+                $ruleOverRideProperties = $settings[$ruleId].Keys
                 foreach ($ruleOverRideProperty in $ruleOverRideProperties)
                 {
-                    $ruleOverRideInformation[$ruleOverRideProperty] = $organizationalSetting.$ruleOverRideProperty
+                    $ruleOverRideInformation[$ruleOverRideProperty] = $settings[$ruleId].$ruleOverRideProperty
                 }
-                $overRideValues[$organizationalSetting.id] = $ruleOverRideInformation
+                $overRideValues[$ruleId] = $ruleOverRideInformation
             }
         }
         #endregion
@@ -273,19 +280,19 @@ Class STIG
     {
         $this._LoadRules($null, $null, $null, $null)
     }
-    [void] LoadRules([string] $OrgSettings)
+    [void] LoadRules([object] $OrgSettings)
     {
         $this._LoadRules($OrgSettings, $null, $null, $null)
     }
-    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions)
+    [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions)
     {
         $this._LoadRules($OrgSettings, $Exceptions, $null, $null)
     }
-    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules)
+    [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules)
     {
         $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $null)
     }
-    [void] LoadRules([string] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
+    [void] LoadRules([object] $OrgSettings, [hashtable] $Exceptions, [string[]] $SkipRules, [string[]] $SkipRuleType)
     {
         $this._LoadRules($OrgSettings, $Exceptions, $SkipRules, $SkipRuleType)
     }
