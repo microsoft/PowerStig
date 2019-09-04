@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/4.0.0
 #region Data
 data exceptionRuleParameterValues
 {
@@ -29,6 +32,9 @@ data exceptionRuleParameterValues
 }
 #endregion
 
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
 <#
     .SYNOPSIS
@@ -144,7 +150,11 @@ function Get-ResourceMatchStatement
         The integration tests randomly picks rules and if the rule has a dscresource='None' the test will fail
         causing an intermitent build failure.
 <<<<<<< HEAD
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> origin/4.0.0
 =======
 
 >>>>>>> origin/4.0.0
@@ -153,7 +163,11 @@ function Get-ResourceMatchStatement
 #>
 function Remove-DscResourceEqualsNone
 <<<<<<< HEAD
+<<<<<<< HEAD
 {    
+=======
+{
+>>>>>>> origin/4.0.0
 =======
 {
 >>>>>>> origin/4.0.0
@@ -162,7 +176,11 @@ function Remove-DscResourceEqualsNone
     param
     (
 <<<<<<< HEAD
+<<<<<<< HEAD
         [Parameter(Mandatory=$true,ValueFromPipeLine=$true)]
+=======
+        [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
+>>>>>>> origin/4.0.0
 =======
         [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]
 >>>>>>> origin/4.0.0
@@ -171,7 +189,11 @@ function Remove-DscResourceEqualsNone
     )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property | 
+=======
+    $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property |
+>>>>>>> origin/4.0.0
 =======
     $stigRuleNames = $Xml.DISASTIG | Get-Member -Type Property |
 >>>>>>> origin/4.0.0
@@ -184,15 +206,21 @@ function Remove-DscResourceEqualsNone
         {
             if ($node.dscresource -eq 'None')
 <<<<<<< HEAD
+<<<<<<< HEAD
             {    
                 [void]$xml.DISASTIG.$stigRuleName.RemoveChild($node) 
             }
             
 =======
+=======
+>>>>>>> origin/4.0.0
             {
                 [void]$xml.DISASTIG.$stigRuleName.RemoveChild($node)
             }
 
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
         }
     }
@@ -200,7 +228,10 @@ function Remove-DscResourceEqualsNone
     return $Xml.DISASTIG
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/4.0.0
 
 function Remove-SkipRuleBlankOrgSetting
 {
@@ -299,4 +330,7 @@ function Get-RandomExceptionRule
     }
     return $stigException
 }
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0

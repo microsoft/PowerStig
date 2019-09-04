@@ -390,8 +390,11 @@ function Get-StigRuleList
                 foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
                 {
 <<<<<<< HEAD
+<<<<<<< HEAD
                     $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
 =======
+=======
+>>>>>>> origin/4.0.0
                     if ($correction.newText -match "HardCodedRule\(\w*Rule\)")
                     {
                         $rule.RawString = $correction.oldText
@@ -400,6 +403,9 @@ function Get-StigRuleList
                     {
                         $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
                     }
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
                 }
 
@@ -462,7 +468,11 @@ function Get-RuleChangeLog
         $id = $change.Groups.Item('id').value
         $oldText = $change.Groups.Item('oldText').value
 <<<<<<< HEAD
+<<<<<<< HEAD
         # The trim removes any potential CRLF entries that will show up in a regex escape sequence. 
+=======
+        # The trim removes any potential CRLF entries that will show up in a regex escape sequence.
+>>>>>>> origin/4.0.0
 =======
         # The trim removes any potential CRLF entries that will show up in a regex escape sequence.
 >>>>>>> origin/4.0.0
@@ -475,7 +485,11 @@ function Get-RuleChangeLog
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <# 
+=======
+        <#
+>>>>>>> origin/4.0.0
 =======
         <#
 >>>>>>> origin/4.0.0

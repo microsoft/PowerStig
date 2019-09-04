@@ -3,6 +3,7 @@
 ## Unreleased
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 * Added manualchecks parameter to checklist.functions module to allow for .psd1 file reference to automate manual check data.
 
 ## 3.3.0
@@ -19,6 +20,8 @@ Added the following STIG
 * Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
 * Added support for Server 2016 STIG, Version 1, Release 8 [#418](https://github.com/Microsoft/PowerStig/issues/418)
 =======
+=======
+>>>>>>> origin/4.0.0
 * Fixed [#478](https://github.com/microsoft/PowerStig/issues/478): SQL STIG Instance V-40936 Fails to apply
 * Update PowerSTIG to automate applying the IIS 8.5 STIG, Version 1 Release 8. [#469](https://github.com/microsoft/PowerStig/issues/469)
 * Fixed [#476](https://github.com/microsoft/PowerStig/issues/476): AuditSetting Rule for Windows STIGs has an incorrect operator when evaluating Service Pack information
@@ -39,6 +42,9 @@ Added the following STIG
 * Added support for Windows Defender Antivirus STIG, Version 1, Release 6 [#462](https://github.com/Microsoft/PowerStig/issues/462)
 * Added support for Firefox STIG v4r26 [#458](https://github.com/Microsoft/PowerStig/issues/458)
 * Updated logfile in DotNet Framework STIG leveraging HardCodedRule to automate additional STIG rules. [#454](https://github.com/microsoft/PowerStig/issues/454)
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
 
 ## 3.2.0

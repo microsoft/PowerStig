@@ -18,12 +18,18 @@ try
     foreach ($stig in $stigList)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         $powerstigXml = [xml](Get-Content -Path $stig.Path) | Remove-DscResourceEqualsNone
 =======
+=======
+>>>>>>> origin/4.0.0
         $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
         $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
         $powerstigXml = [xml](Get-Content -Path $stig.Path) |
             Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
 
         $skipRule = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
@@ -33,11 +39,14 @@ try
         $skipRuleMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
         $skipRuleTypeMultiple = $null
 <<<<<<< HEAD
+<<<<<<< HEAD
         $expectedSkipRuleTypeMultipleCount = 0
 
         $exception = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
         $exceptionMultiple = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
 =======
+=======
+>>>>>>> origin/4.0.0
         $expectedSkipRuleTypeMultipleCount = 0 + $blankSkipRuleId.Count
 
         $getRandomExceptionRuleParams = @{
@@ -47,6 +56,9 @@ try
         }
         $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 2
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
 
         . "$PSScriptRoot\Common.integration.ps1"

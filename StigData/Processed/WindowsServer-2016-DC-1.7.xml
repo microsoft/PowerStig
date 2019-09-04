@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="7/30/2019">
+=======
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="8/14/2019">
+>>>>>>> origin/4.0.0
 =======
 <DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="8/14/2019">
 >>>>>>> origin/4.0.0
@@ -1319,7 +1323,11 @@ Object Access &gt;&gt; Other Object Access Events - Failure</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Operator>-ge</Operator>
+=======
+      <Operator>-le</Operator>
+>>>>>>> origin/4.0.0
 =======
       <Operator>-le</Operator>
 >>>>>>> origin/4.0.0

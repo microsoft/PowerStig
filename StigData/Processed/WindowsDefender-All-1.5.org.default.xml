@@ -8,6 +8,7 @@
 <OrganizationalSettings fullversion="1.5">
   <!-- Ensure ''V-75167'' -match '2|1'-->
 <<<<<<< HEAD
+<<<<<<< HEAD
   <OrganizationalSetting id="V-75167" value="2" />
   <!-- Ensure 'V-75237' -ge '0' -and 'V-75237' -le '7'-->
   <OrganizationalSetting id="V-75237" value="0" />
@@ -24,6 +25,8 @@
   <!-- Ensure ''V-79971'' -match '2|3'-->
   <OrganizationalSetting id="V-79971" value="2" />
 =======
+=======
+>>>>>>> origin/4.0.0
   <OrganizationalSetting id="V-75167" ValueData="2" />
   <!-- Ensure 'V-75237' -ge '0' -and 'V-75237' -le '7'-->
   <OrganizationalSetting id="V-75237" ValueData="0" />
@@ -39,5 +42,8 @@
   <OrganizationalSetting id="V-79967" ValueData="2" />
   <!-- Ensure ''V-79971'' -match '2|3'-->
   <OrganizationalSetting id="V-79971" ValueData="2" />
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
 </OrganizationalSettings>

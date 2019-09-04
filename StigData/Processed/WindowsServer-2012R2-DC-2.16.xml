@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="7/10/2019">
+=======
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="8/14/2019">
+>>>>>>> origin/4.0.0
 =======
 <DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Apr 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="8/14/2019">
 >>>>>>> origin/4.0.0
@@ -1018,7 +1022,11 @@ System &gt;&gt; Other System Events - Failure</RawString>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <Operator>-ge</Operator>
+=======
+      <Operator>-le</Operator>
+>>>>>>> origin/4.0.0
 =======
       <Operator>-le</Operator>
 >>>>>>> origin/4.0.0
@@ -1059,7 +1067,10 @@ For each local volume, if the file system does not indicate "NTFS", this is a fi
 This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
     </Rule>
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> origin/4.0.0
     <Rule id="V-80473" severity="medium" conversionstatus="pass" title="WIN00-000200" dscresource="AuditSetting">
       <Description>&lt;VulnDiscussion&gt;Later versions of Windows PowerShell provide additional security and advanced logging features that can provide greater detail when malware has been run on a system.  PowerShell 5.x includes the advanced logging features. PowerShell 4.0 with the addition of patch KB3000850 on Windows 2012 R2 or KB3119938 on Windows 2012 adds advanced logging features.
 
@@ -1091,6 +1102,9 @@ If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
 
 Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
     </Rule>
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
   </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">

@@ -105,6 +105,9 @@ Configuration WindowsClient
     . "$resourcePath\windows.Script.skip.ps1"    
 =======
     . "$resourcePath\windows.Script.skip.ps1"
+<<<<<<< HEAD
+>>>>>>> origin/4.0.0
+=======
 >>>>>>> origin/4.0.0
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.Registry.ps1"

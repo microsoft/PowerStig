@@ -1,5 +1,9 @@
+<<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
 <<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.14.xml
 <DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_2012_and_2012_R2_MS_STIG_V2R14_Manual-xccdf.xml" releaseinfo="Release: 14 Benchmark Date: 26 Oct 2018" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.14" created="7/10/2019">
+=======
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="8/14/2019">
+>>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
 =======
 <DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_MS_STIG" description="The Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_MS_STIG_V2R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Member Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.16" created="8/14/2019">
 >>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
@@ -822,8 +826,12 @@ System &gt;&gt; Other System Events - Failure</RawString>
       <DesiredValue>6.2.9200</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+<<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
 <<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.14.xml
       <Operator>-ge</Operator>
+=======
+      <Operator>-le</Operator>
+>>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
 =======
       <Operator>-le</Operator>
 >>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
@@ -863,8 +871,11 @@ For each local volume, if the file system does not indicate "NTFS", this is a fi
 
 This does not apply to system partitions such as the Recovery and EFI System Partition.</RawString>
     </Rule>
+<<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
 <<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.14.xml
 =======
+=======
+>>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
     <Rule id="V-6840" severity="medium" conversionstatus="pass" title="Password Expiration" dscresource="AuditSetting">
       <Description>&lt;VulnDiscussion&gt;Passwords that do not expire or are reused increase the exposure of a password with greater probability of being discovered or cracked.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DesiredValue>True</DesiredValue>
@@ -957,6 +968,9 @@ If the value for "PSVersion" is not 4.0 or 5.x, this is a finding.
 
 Windows 2012 R2 includes PowerShell 4.0 by default. Windows 2012 must be updated. If PowerShell 4.0 is used, the required patch for script block logging will be verified with the requirement to have that enabled.</RawString>
     </Rule>
+<<<<<<< HEAD:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
+>>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
+=======
 >>>>>>> origin/4.0.0:StigData/Processed/WindowsServer-2012R2-MS-2.16.xml
   </AuditSettingRule>
   <DocumentRule dscresourcemodule="None">

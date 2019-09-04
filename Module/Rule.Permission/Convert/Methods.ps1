@@ -643,7 +643,11 @@ function Split-MultiplePermissionRule
         $hklmSoftwareMatch  = $checkContent | Select-String -Pattern $regularExpression.hklmSoftware
         $hklmSystemMatch    = $checkContent | Select-String -Pattern $regularExpression.hklmSystem
 <<<<<<< HEAD
+<<<<<<< HEAD
         $lastPermissonMatch = $checkContent | Select-String -Pattern $regularExpression.registryPermission | Select-Object -Last 1
+=======
+        $lastPermissonMatch = $checkContent | Select-String -Pattern $regularExpression.spaceDashAnythingSpaceDash | Select-Object -Last 1
+>>>>>>> origin/4.0.0
 =======
         $lastPermissonMatch = $checkContent | Select-String -Pattern $regularExpression.spaceDashAnythingSpaceDash | Select-Object -Last 1
 >>>>>>> origin/4.0.0

@@ -25,7 +25,11 @@ data regularExpression
         programFiles86 = ^\\\\Program\\sFiles\\s\\(x86\\)*
         programFileFolder = ^\\\\Program\\sFiles$
 <<<<<<< HEAD
+<<<<<<< HEAD
         registryPermission = \\s-[\\s\\S]*?\\s-
+=======
+        spaceDashAnythingSpaceDash = \\s-[\\s\\S]*?\\s-
+>>>>>>> origin/4.0.0
 =======
         spaceDashAnythingSpaceDash = \\s-[\\s\\S]*?\\s-
 >>>>>>> origin/4.0.0

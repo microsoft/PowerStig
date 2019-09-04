@@ -1,8 +1,4 @@
-<<<<<<< HEAD:StigData/Processed/WindowsClient-10-1.17.xml~origin_4.0.0
 <DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_10_STIG_V1R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 24 May 2019" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.17" created="8/14/2019">
-=======
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_10_STIG" description="The Windows 10 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Windows_10_STIG_V1R15_Manual-xccdf.xml" releaseinfo="Release: 15 Benchmark Date: 15 Nov 2018" title="Windows 10 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.15" created="8/5/2019">
->>>>>>> origin/4.0.0:StigData/Processed/WindowsClient-10-1.15.xml
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-63405" severity="medium" conversionstatus="pass" title="WN10-AC-000005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.   This parameter specifies the amount of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -909,17 +905,10 @@ If the system does not audit the above, this is a finding.</RawString>
 New versions with feature updates are planned to be released on a semi-annual basis with an estimated support timeframe of 18 to 30 months depending on the release. Support for previously released versions has been extended for Enterprise editions.
 
 A separate servicing branch intended for special purpose systems is the Long-Term Servicing Channel (LTSC, formerly Branch - LTSB) which will receive security updates for 10 years but excludes feature updates.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-<<<<<<< HEAD:StigData/Processed/WindowsClient-10-1.17.xml~origin_4.0.0
       <DesiredValue>10.0.15063</DesiredValue>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Operator>-le</Operator>
-=======
-      <DesiredValue>10.0.14393</DesiredValue>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Operator>-ge</Operator>
->>>>>>> origin/4.0.0:StigData/Processed/WindowsClient-10-1.15.xml
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <Property>Version</Property>
@@ -928,17 +917,12 @@ A separate servicing branch intended for special purpose systems is the Long-Ter
 
 If the "About Windows" dialog box does not display:
 
-<<<<<<< HEAD:StigData/Processed/WindowsClient-10-1.17.xml~origin_4.0.0
 "Microsoft Windows Version 1703 (OS Build 15063.0)"
-=======
-"Microsoft Windows Version 1607 (OS Build 14393.0)"
->>>>>>> origin/4.0.0:StigData/Processed/WindowsClient-10-1.15.xml
 
 or greater, this is a finding.
 
 Note: Microsoft has extended support for previous versions providing critical and important updates for Windows 10 Enterprise.
 
-<<<<<<< HEAD:StigData/Processed/WindowsClient-10-1.17.xml~origin_4.0.0
 Microsoft scheduled end of support dates for current Semi-Annual Channel versions:
 v1703 - 8 October 2019
 v1709 - 14 April 2020
@@ -948,18 +932,6 @@ v1809 - 13 April 2021
 No preview versions will be used in a production environment.
 
 Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions which are not a finding:
-=======
-Currently supported Semi-Annual Channel versions:
-v1607 - Microsoft support is scheduled to end 09 April 2019.
-v1703 - Microsoft support is scheduled to end 08 October 2019.
-v1709 - Microsoft support is scheduled to end 14 April 2020.
-v1803 - Microsoft support is scheduled to end 10 November 2020.
-v1809 - Microsoft support is scheduled to end 13 April 2021.
-
-No preview versions will be used in a production environment.
-
-Special purpose systems using the Long-Term Servicing Branch\Channel (LTSC\B) may be at the following versions, which are not a finding:
->>>>>>> origin/4.0.0:StigData/Processed/WindowsClient-10-1.15.xml
 
 v1507 (Build 10240)
 v1607 (Build 14393)
@@ -2170,13 +2142,9 @@ Inherited from - "None" for all
 Principal - Access - Applies to
 SYSTEM - Full Control - This key and subkeys
 Administrators - Special - This key and subkeys
-<<<<<<< HEAD:StigData/Processed/WindowsClient-10-1.17.xml~origin_4.0.0
 Other subkeys under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in later versions of Windows 10 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
-=======
-Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
->>>>>>> origin/4.0.0:StigData/Processed/WindowsClient-10-1.15.xml
 If the defaults have not been changed, these are not a finding.
 </RawString>
     </Rule>
@@ -2244,13 +2212,9 @@ Administrators - Full Control - This key and subkeys
 SYSTEM - Full Control - This key and subkeys
 CREATOR OWNER - Full Control - This key and subkeys
 ALL APPLICATION PACKAGES - Read - This key and subkeys
-<<<<<<< HEAD:StigData/Processed/WindowsClient-10-1.17.xml~origin_4.0.0
 Other subkeys under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 Microsoft has given Read permission to the SOFTWARE and SYSTEM registry keys in later versions of Windows 10 to the following SID, this is currently not a finding.
 S-1-15-3-1024-1065365936-1281604716-3511738428-1654721687-432734479-3232135806-4053264122-3456934681
-=======
-Other samples under the noted keys may also be sampled.  There may be some instances where non-privileged groups have greater than Read permission.
->>>>>>> origin/4.0.0:StigData/Processed/WindowsClient-10-1.15.xml
 If the defaults have not been changed, these are not a finding.
 </RawString>
     </Rule>
