@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Fixed [#485](https://github.com/microsoft/PowerStig/issues/485): Enable Stig Checklist automation to incluse Status and Commandts for manual checks.
 * Fixed [#478](https://github.com/microsoft/PowerStig/issues/478): SQL STIG Instance V-40936 Fails to apply
 * Update PowerSTIG to automate applying the IIS 8.5 STIG, Version 1 Release 8. [#469](https://github.com/microsoft/PowerStig/issues/469)
 * Fixed [#476](https://github.com/microsoft/PowerStig/issues/476): AuditSetting Rule for Windows STIGs has an incorrect operator when evaluating Service Pack information
