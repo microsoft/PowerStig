@@ -165,11 +165,39 @@ Describe ($title + " $($stig.StigVersion) mof output") {
             }
         }
 
-        $stigPath = $stig.path.TrimEnd(".xml")
-        $orgSettings = $stigPath + ".org.default.xml"
+        Context 'OrgSettings' {
+            $stigPath = $stig.path.TrimEnd(".xml")
+            $orgSettings = $stigPath + ".org.default.xml"
 
-        It "Should compile the MOF with OrgSettings without throwing" {
-            {& $technologyConfig @testParameterList -Orgsettings $orgSettings} | Should -Not -Throw
+            It 'Should compile the MOF with Xml File OrgSettings without throwing' {
+                {& $technologyConfig @testParameterList -Orgsettings $orgSettings} | Should -Not -Throw
+            }
+
+            [xml]$xmlOrgSetting = Get-Content -Path $orgSettings
+            :orgSettingForeach foreach ($ruleIdOrgSetting in $xmlOrgSetting.OrganizationalSettings.OrganizationalSetting)
+            {
+                $properties = $ruleIdOrgSetting.Attributes.Name | Where-Object -FilterScript {$PSItem -ne 'id'}
+                foreach ($property in $properties)
+                {
+                    $ruleIdPropertyValue = $ruleIdOrgSetting.$Property
+                    if ([string]::IsNullOrEmpty($ruleIdPropertyValue) -eq $false)
+                    {
+                        $orgSettingHashtable = @{
+                            $ruleIdOrgSetting.id = @{
+                                $property = $ruleIdPropertyValue
+                            }
+                        }
+                        break orgSettingForeach
+                    }
+                }
+            }
+
+            if ($orgSettingHashtable -is [hashtable])
+            {
+                It 'Should compile the MOF with hashtable OrgSettings without throwing' {
+                    {& $technologyConfig @testParameterList -OrgSettings $orgSettingHashtable} | Should -Not -Throw
+                }
+            }
         }
     }
 }
