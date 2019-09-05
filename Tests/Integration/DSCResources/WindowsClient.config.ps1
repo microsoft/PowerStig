@@ -29,7 +29,7 @@ Configuration WindowsClient_config
         $SkipRuleType,
 
         [Parameter()]
-        [string[]]
+        [object]
         $OrgSettings,
 
         [Parameter()]
@@ -54,7 +54,13 @@ Configuration WindowsClient_config
                 StigVersion = '$StigVersion'
                 ForestName  = '$ForestName'
                 DomainName  = '$DomainName'
-                $(if ($null -ne $OrgSettings)
+                $(if ($OrgSettings -is [hashtable])
+                {
+                    "Orgsettings = @{`n$($OrgSettings.Keys |
+                        ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
+                            $PSItem, '@{', $($OrgSettings[$PSItem].Keys), $($OrgSettings[$PSItem][$OrgSettings[$PSItem].Keys]), '}'})}"
+                }
+                elseif ($null -ne $OrgSettings)
                 {
                     "Orgsettings = '$OrgSettings'"
                 })

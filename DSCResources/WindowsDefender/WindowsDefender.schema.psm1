@@ -15,7 +15,9 @@ using module ..\..\PowerStig.psm1
         the exceptions to policy across the data center when you centralize DSC log collection.
     .PARAMETER OrgSettings
         The path to the xml file that contains the local organizations preferred settings for STIG
-        items that have allowable ranges.
+        items that have allowable ranges.  The OrgSettings parameter also accepts a hashtable for
+        values that need to be modified.  When a hashtable is used, the specified values take
+        presidence over the values defined in the org.default.xml file.
     .PARAMETER SkipRule
         The SkipRule Node is injected into the STIG data and applied to the taget node. The title
         of STIG settings are tagged with the text 'Skip' to identify the skips to policy across the
@@ -41,7 +43,7 @@ Configuration WindowsDefender
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
-        [string]
+        [object]
         $OrgSettings,
 
         [Parameter()]

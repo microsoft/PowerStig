@@ -10,18 +10,22 @@ foreach ( $rule in $rules )
     {
         'RegistryAccessEntry'
         {
+            $ruleForce = $null
+            [void][bool]::TryParse($rule.Force, [ref]$ruleForce)
             RegistryAccessEntry (Get-ResourceTitle -Rule $rule)
             {
                 Path = $rule.Path
-                Force = [bool]$rule.Force
+                Force = $ruleForce
                 AccessControlList = $(
 
                     foreach ($acentry in $rule.AccessControlEntry.Entry)
                     {
+                        $aceEntryForcePrincipal = $null
+                        [void][bool]::TryParse($acentry.ForcePrincipal, [ref]$aceEntryForcePrincipal)
                         AccessControlList
                         {
                             Principal = $acentry.Principal
-                            ForcePrincipal = [bool]$rule.ForcePrincipal
+                            ForcePrincipal = $aceEntryForcePrincipal
                             AccessControlEntry = @(
                                 AccessControlEntry
                                 {
@@ -57,17 +61,21 @@ foreach ( $rule in $rules )
         }
         'NTFSAccessEntry'
         {
+            $ruleForce = $null
+            [void][bool]::TryParse($rule.Force, [ref]$ruleForce)
             NTFSAccessEntry (Get-ResourceTitle -Rule $rule)
             {
                 Path = $rule.Path
-                Force = [bool]$rule.Force
+                Force = $ruleForce
                 AccessControlList = $(
                     foreach ($acentry in $rule.AccessControlEntry.Entry)
                     {
+                        $aceEntryForcePrincipal = $null
+                        [void][bool]::TryParse($acentry.ForcePrincipal, [ref]$aceEntryForcePrincipal)
                         NTFSAccessControlList
                         {
                             Principal = $acentry.Principal
-                            ForcePrincipal = [bool]$rule.ForcePrincipal
+                            ForcePrincipal = $aceEntryForcePrincipal
                             AccessControlEntry = @(
                                 NTFSAccessControlEntry
                                 {
@@ -103,10 +111,12 @@ foreach ( $rule in $rules )
         }
         'FileSystemAuditRuleEntry'
         {
+            $ruleForce = $null
+            [void][bool]::TryParse($rule.Force, [ref]$ruleForce)
             FileSystemAuditRuleEntry (Get-ResourceTitle -Rule $rule)
             {
                 Path          = $rule.Path
-                Force         = [bool]$rule.Force
+                Force         = $ruleForce
                 AuditRuleList = @(
                     foreach ($acentry in $rule.AccessControlEntry.Entry)
                     {
