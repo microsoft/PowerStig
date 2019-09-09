@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Fixed [#492](https://github.com/microsoft/PowerStig/issues/492): Windows Server 2012r2 STIG rule V-1073 results in a false positive 
+* Fixed [#492](https://github.com/microsoft/PowerStig/issues/492): Windows Server 2012r2 STIG rule V-1073 results in a false positive
 * Update PowerSTIG to pass OrgSettings in via configuration hashtable: [#372](https://github.com/microsoft/PowerStig/issues/372)
 * Update support for SQL Server 2012 Database STIG, Version 1, Release 19 [#482](https://github.com/microsoft/PowerStig/issues/482)
 * Fixed [#478](https://github.com/microsoft/PowerStig/issues/478): SQL STIG Instance V-40936 Fails to apply
