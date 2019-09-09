@@ -355,7 +355,7 @@ Class RegistryRuleConvert : RegistryRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            if ($FixText -match 'Administrative Templates')
+            if ($FixText -match 'Administrative Templates' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)")
             {
                 $this.DscResource = 'RegistryPolicyFile'
             }
