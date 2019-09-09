@@ -112,4 +112,6 @@ Configuration WindowsServer
 
     Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.0.0
     . "$resourcePath\windows.AuditSetting.ps1"
+
+    . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }
