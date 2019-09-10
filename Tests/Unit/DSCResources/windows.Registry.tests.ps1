@@ -1,7 +1,7 @@
 
 $ruleList = @(
     @{
-        testXml   = [xml]'<Rule Id="V-1000" severity="low" title="DWORD Test">
+        testXml   = [xml]'<Rule Id="V-1000" severity="low" title="DWORD Test" dscresource="Registry">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>0</ValueData>
@@ -15,7 +15,7 @@ $ruleList = @(
         ValueType = 'Dword'
     },
     @{
-        testXml   = [xml]'<Rule id="V-1000" severity="low" title="String">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="String" dscresource="Registry">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>O:BAG:BAD:(A;;RC;;;BA)</ValueData>
@@ -29,7 +29,7 @@ $ruleList = @(
         ValueType = 'String'
     },
     @{
-        testXml   = [xml]'<Rule id="V-1000" severity="low" title="MultiString Test">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="MultiString Test" dscresource="Registry">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>123;ABC</ValueData>
@@ -43,7 +43,7 @@ $ruleList = @(
         ValueType = 'MultiString'
     },
     @{
-        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Empty MultiString Test">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Empty MultiString Test" dscresource="Registry">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>
@@ -58,7 +58,7 @@ $ruleList = @(
         ValueType = 'MultiString'
     },
     @{
-        testXml = [xml]'<Rule id="V-1000" severity="low" title="Null Value MultiString Test">
+        testXml = [xml]'<Rule id="V-1000" severity="low" title="Null Value MultiString Test" dscresource="Registry">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>
@@ -73,7 +73,7 @@ $ruleList = @(
       ValueType = 'MultiString'
     },
     @{
-        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Absent value Test">
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Absent value Test" dscresource="Registry">
         <Ensure>Present</Ensure>
         <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
         <ValueData>ShouldBeAbsent</ValueData>

@@ -110,7 +110,7 @@ Configuration WindowsServer
     . "$resourcePath\windows.UserRightsAssignment.ps1"
     . "$resourcePath\windows.SecurityOption.ps1"
 
-    Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.0.0
+    Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.1.0
     . "$resourcePath\windows.AuditSetting.ps1"
 
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"

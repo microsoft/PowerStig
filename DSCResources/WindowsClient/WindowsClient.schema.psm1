@@ -106,7 +106,7 @@ Configuration WindowsClient
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.WindowsOptionalFeature.ps1"
 
-    Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.0.0
+    Import-DscResource -ModuleName AuditSystemDsc -ModuleVersion 1.1.0
     . "$resourcePath\windows.AuditSetting.ps1"
 
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
