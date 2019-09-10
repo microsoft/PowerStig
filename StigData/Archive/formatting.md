@@ -40,6 +40,7 @@ We need to take the time to determine when the change needs to be made, because 
   * Split Rule would include the structure from the Single Rule with the **\<splitRule>** delimiter appended to the end of the string:
     * **...\<splitRule>HardCodedRule(WindowsFeatureRule)@{DscResource = 'WindowsFeature'; Name = $null; Ensure = 'Absent'}**
 * Note: If a user needs to supply a value, the hashtable DscResource parameter should be set to $null, like the Split Rule example above.
+* For more complex Hard Coded Rule examples, refer to the [wiki](https://github.com/Microsoft/PowerStig/wiki/HardCodedRule)
 
 ```PowerShell
 PS C:\> Import-Module .\PowerStig.Convert.psm1

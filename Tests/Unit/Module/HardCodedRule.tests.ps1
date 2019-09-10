@@ -62,12 +62,22 @@ try
                 MembersToExclude = 'TestMember'
             },
             @{
-                RuleType     = 'IISLoggingRule'
-                CheckContent = "HardCodedRule(IISLoggingRule)@{DscResource = 'XWebsite'; LogFlags = 'UserAgent,UserName,Referer'; LogFormat = 'W3C'; LogTargetW3C = 'File,ETW'}"
-                DscResource  = 'XWebsite'
-                LogFlags     = 'UserAgent,UserName,Referer'
-                LogFormat    = 'W3C'
-                LogTargetW3C = 'File,ETW'
+                RuleType            = 'IISLoggingRule'
+                CheckContent        = "HardCodedRule(IISLoggingRule)@{DscResource = 'XWebsite'; LogCustomFieldEntry = @(@{SourceType = 'ServerVariable'; SourceName = 'HTTP_USER_AGENT'},@{SourceType = 'RequestHeader'; SourceName = 'Authorization'}); LogFlags = 'UserAgent,UserName,Referer'; LogFormat = 'W3C'; LogTargetW3C = 'File,ETW'}"
+                DscResource         = 'XWebsite'
+                LogFlags            = 'UserAgent,UserName,Referer'
+                LogFormat           = 'W3C'
+                LogTargetW3C        = 'File,ETW'
+                LogCustomFieldEntry = @(
+                    @{
+                        SourceType = 'ServerVariable'
+                        SourceName = 'HTTP_USER_AGENT'
+                    },
+                    @{
+                        SourceType = 'RequestHeader'
+                        SourceName = 'Authorization'
+                    }
+                )
             },
             @{
                 RuleType     = 'MimeTypeRule'
@@ -78,11 +88,27 @@ try
                 MimeType     = 'application/x-msdownload'
             },
             @{
-                RuleType     = 'PermissionRule'
-                CheckContent = "HardCodedRule(PermissionRule)@{DscResource = 'NTFSAccessEntry'; Force = 'True'; Path = 'C:\Test'}"
-                DscResource  = 'NTFSAccessEntry'
-                Force        = 'True'
-                Path         = 'C:\Test'
+                RuleType           = 'PermissionRule'
+                CheckContent       = "HardCodedRule(PermissionRule)@{DscResource = 'NTFSAccessEntry'; AccessControlEntry = @(@{Type = `$null; Principal = 'Eventlog'; ForcePrincipal = 'False'; Inheritance = `$null; Rights = 'FullControl'}, @{Type = `$null; Principal = 'SYSTEM'; ForcePrincipal = 'False'; Inheritance = `$null; Rights = 'FullControl'}); Force = 'True'; Path = 'C:\Test'}"
+                DscResource        = 'NTFSAccessEntry'
+                Force              = 'True'
+                Path               = 'C:\Test'
+                AccessControlEntry = @(
+                    @{
+                        Type           = $null
+                        Principal      = 'Eventlog'
+                        ForcePrincipal = 'False'
+                        Inheritance    = $null
+                        Rights         = 'FullControl'
+                    },
+                    @{
+                        Type           = $null
+                        Principal      = 'SYSTEM'
+                        ForcePrincipal = 'False'
+                        Inheritance    = $null
+                        Rights         = 'FullControl'
+                    }
+                )
             },
             @{
                 RuleType         = 'ProcessMitigationRule'
@@ -215,13 +241,30 @@ try
                         $convertedStigRule.GetType().Name | Should Be $testRule.RuleType
                     }
 
-                    It "Should have correct $($testRule.RuleType) property values defined" {
-                        $ruleProperties = $testRule.Clone()
-                        $ruleProperties.Remove('RuleType')
-                        $ruleProperties.Remove('CheckContent')
-                        foreach ($property in $ruleProperties.Keys)
+                    $ruleProperties = $testRule.Clone()
+                    $ruleProperties.Remove('RuleType')
+                    $ruleProperties.Remove('CheckContent')
+                    foreach ($property in $ruleProperties.Keys)
+                    {
+                        if ($testRule.$property -is [array])
                         {
-                            $convertedStigRule.$property | Should Be $testRule[$property]
+                            for ($i = 0; $i -lt ($testRule.$property).Count; $i++)
+                            {
+                                $testRuleProperty = ($testRule.$property)[$i]
+                                $convertedRuleProperty = ($convertedStigRule.$property)[$i]
+                                foreach ($key in $convertedRuleProperty.Keys)
+                                {
+                                    It "Should have correct $key property value defined" {
+                                        $convertedRuleProperty[$key] | Should Be $testRuleProperty[$key]
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            It "Should have correct $property property value defined" {
+                                $convertedStigRule.$property | Should Be $testRule[$property]
+                            }
                         }
                     }
                 }
