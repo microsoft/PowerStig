@@ -44,6 +44,7 @@ foreach ($rule in $rules)
                 ValueName  = $rule.ValueName
                 ValueData  = $valueData
                 ValueType  = $rule.ValueType
+                Ensure     = $rule.Ensure
             }
         }
 

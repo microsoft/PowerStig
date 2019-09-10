@@ -85,6 +85,92 @@ $ruleList = @(
         ValueData = $null
         ValueName = 'OptionalAbsent'
         ValueType = 'Dword'
+    },
+    @{
+        testXml   = [xml]'<Rule Id="V-1000" severity="low" title="DWORD Test" dscresource="RegistryPolicyFile">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>0</ValueData>
+        <ValueName>DwordValueName</ValueName>
+        <ValueType>Dword</ValueType>
+        </Rule>'
+        Ensure    = 'Present'
+        Key       = 'SOFTWARE\Policies\Microsoft'
+        ValueData = '0'
+        ValueName = 'DwordValueName'
+        ValueType = 'Dword'
+    },
+    @{
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="String" dscresource="RegistryPolicyFile">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>O:BAG:BAD:(A;;RC;;;BA)</ValueData>
+        <ValueName>StringValueName</ValueName>
+        <ValueType>String</ValueType>
+        </Rule>'
+        Ensure    = 'Present'
+        Key       = 'SOFTWARE\Policies\Microsoft'
+        ValueData = 'O:BAG:BAD:(A;;RC;;;BA)'
+        ValueName = 'StringValueName'
+        ValueType = 'String'
+    },
+    @{
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="MultiString Test" dscresource="RegistryPolicyFile">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>123;ABC</ValueData>
+        <ValueName>MultiStringValueName</ValueName>
+        <ValueType>MultiString</ValueType>
+        </Rule>'
+        Ensure    = 'Present'
+        Key       = 'SOFTWARE\Policies\Microsoft'
+        ValueData = @('123', 'ABC')
+        ValueName = 'MultiStringValueName'
+        ValueType = 'MultiString'
+    },
+    @{
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Empty MultiString Test" dscresource="RegistryPolicyFile">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>
+        </ValueData>
+        <ValueName>MultiStringValueName</ValueName>
+        <ValueType>MultiString</ValueType>
+      </Rule>'
+        Ensure    = 'Present'
+        Key       = 'SOFTWARE\Policies\Microsoft'
+        ValueData = ''
+        ValueName = 'MultiStringValueName'
+        ValueType = 'MultiString'
+    },
+    @{
+        testXml = [xml]'<Rule id="V-1000" severity="low" title="Null Value MultiString Test" dscresource="RegistryPolicyFile">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>
+        </ValueData>
+        <ValueName>MultiStringValueName</ValueName>
+        <ValueType>MultiString</ValueType>
+      </Rule>'
+      Ensure = 'Present'
+      Key = 'SOFTWARE\Policies\Microsoft'
+      ValueData = $null
+      ValueName = 'MultiStringValueName'
+      ValueType = 'MultiString'
+    },
+    @{
+        testXml   = [xml]'<Rule id="V-1000" severity="low" title="Absent value Test" dscresource="RegistryPolicyFile">
+        <Ensure>Present</Ensure>
+        <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft</Key>
+        <ValueData>ShouldBeAbsent</ValueData>
+        <ValueName>OptionalAbsent</ValueName>
+        <ValueType>Dword</ValueType>
+      </Rule>'
+        Ensure    = 'Absent'
+        Key       = 'SOFTWARE\Policies\Microsoft'
+        ValueData = $null
+        ValueName = 'OptionalAbsent'
+        ValueType = 'Dword'
     }
 )
 
