@@ -63,7 +63,7 @@ foreach ($rule in $rules)
             {
                 Registry (Get-ResourceTitle -Rule $rule)
                 {
-                    Key       = $rule.Key -replace 'HKEY_LOCAL_MACHINE', 'HKLM:'
+                    Key       = $rule.Key
                     ValueName = $rule.ValueName
                     ValueData = $valueData
                     ValueType = $rule.ValueType
