@@ -3,9 +3,11 @@
 
 $rules = $stig.RuleList | Select-Rule -Type SkippedRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
-    Script (Get-ResourceTitle -Rule $rule)
+    $resourceTitle = Get-ResourceTitle -Rule $rule
+
+    Script $resourceTitle
     {
         <#
             This is left blank because we are only using the script resource as an audit tool for
@@ -13,7 +15,7 @@ foreach ( $rule in $rules )
         #>
         GetScript = {
             Return @{
-                'Result' = Get-ResourceTitle -Rule $rule
+                'Result' = $using:resourceTitle
             }
         }
 
