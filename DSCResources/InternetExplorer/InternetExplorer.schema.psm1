@@ -73,6 +73,5 @@ Configuration InternetExplorer
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
-
     . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }
