@@ -1,12 +1,12 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 26 Jul 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="9/9/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 26 Jul 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="9/11/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
-    <Rule id="V-73309" severity="medium" conversionstatus="fail" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
+    <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '15' -or '{0}' -eq '0'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Account lockout duration</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -18,13 +18,13 @@ If the "Account lockout duration" is less than "15" minutes (excluding "0"), thi
 
 </RawString>
     </Rule>
-    <Rule id="V-73311" severity="medium" conversionstatus="fail" title="SRG-OS-000021-GPOS-00005" dscresource="None">
+    <Rule id="V-73311" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. The higher this value is, the less effective the account lockout feature will be in protecting the local system. The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack while allowing for honest errors made during normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '3' -and '{0}' -ne '0'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Account lockout threshold</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -36,15 +36,15 @@ If the "Account lockout threshold" is "0" or more than "3" attempts, this is a f
 
 </RawString>
     </Rule>
-    <Rule id="V-73313" severity="medium" conversionstatus="fail" title="SRG-OS-000021-GPOS-00005" dscresource="None">
+    <Rule id="V-73313" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that must pass after failed logon attempts before the counter is reset to "0". The smaller this value is, the less effective the account lockout feature will be in protecting the local system.
 
 Satisfies: SRG-OS-000021-GPOS-00005, SRG-OS-000329-GPOS-00128&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '15'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Reset account lockout counter after</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -56,13 +56,13 @@ If the "Reset account lockout counter after" value is less than "15" minutes, th
 
 </RawString>
     </Rule>
-    <Rule id="V-73315" severity="medium" conversionstatus="fail" title="SRG-OS-000077-GPOS-00045" dscresource="None">
+    <Rule id="V-73315" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;A system is more vulnerable to unauthorized access when system users recycle the same password several times without being required to change to a unique password on a regularly scheduled basis. This enables users to effectively negate the purpose of mandating periodic password changes. The default value is "24" for Windows domain systems. DoD has decided this is the appropriate value for all Windows systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '24'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Enforce password history</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -74,13 +74,13 @@ If the value for "Enforce password history" is less than "24" passwords remember
 
 </RawString>
     </Rule>
-    <Rule id="V-73317" severity="medium" conversionstatus="fail" title="SRG-OS-000076-GPOS-00044" dscresource="None">
+    <Rule id="V-73317" severity="medium" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The longer a password is in use, the greater the opportunity for someone to gain unauthorized knowledge of the passwords. Scheduled changing of passwords hinders the ability of unauthorized system users to crack passwords and gain access to a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -le '60' -and '{0}' -ne '0'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Maximum password age</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -94,13 +94,13 @@ If the value is set to "0" (never expires), this is a finding.
 
 </RawString>
     </Rule>
-    <Rule id="V-73319" severity="medium" conversionstatus="fail" title="SRG-OS-000075-GPOS-00043" dscresource="None">
+    <Rule id="V-73319" severity="medium" conversionstatus="pass" title="SRG-OS-000075-GPOS-00043" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;Permitting passwords to be changed in immediate succession within the same day allows users to cycle passwords through their history database. This enables users to effectively negate the purpose of mandating periodic password changes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ne '0'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Minimum password age</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -112,13 +112,13 @@ If the value for the "Minimum password age" is set to "0" days ("Password can be
 
 </RawString>
     </Rule>
-    <Rule id="V-73321" severity="medium" conversionstatus="fail" title="SRG-OS-000078-GPOS-00046" dscresource="None">
+    <Rule id="V-73321" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;Information systems not protected with strong password schemes (including passwords of minimum length) provide the opportunity for anyone to crack the password, thus gaining access to the system and compromising the device, information, or the local network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ge '14'</OrganizationValueTestString>
-      <PolicyName />
+      <PolicyName>Minimum password length</PolicyName>
       <PolicyValue />
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
@@ -130,16 +130,16 @@ If the value for the "Minimum password length," is less than "14" characters, th
 
 </RawString>
     </Rule>
-    <Rule id="V-73323" severity="medium" conversionstatus="fail" title="SRG-OS-000069-GPOS-00037" dscresource="None">
+    <Rule id="V-73323" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The use of complex passwords increases their strength against attack. The built-in Windows password complexity policy requires passwords to contain at least three of the four types of characters (numbers, upper- and lower-case letters, and special characters) and prevents the inclusion of user names or parts of user names.
 
 Satisfies: SRG-OS-000069-GPOS-00037, SRG-OS-000070-GPOS-00038, SRG-OS-000071-GPOS-00039, SRG-OS-000266-GPOS-00101&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <PolicyName />
-      <PolicyValue />
+      <PolicyName>Password must meet complexity requirements</PolicyName>
+      <PolicyValue>Enabled</PolicyValue>
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
@@ -150,14 +150,14 @@ If the value for "Password must meet complexity requirements" is not set to "Ena
 
 </RawString>
     </Rule>
-    <Rule id="V-73325" severity="high" conversionstatus="fail" title="SRG-OS-000073-GPOS-00041" dscresource="None">
+    <Rule id="V-73325" severity="high" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;Storing passwords using reversible encryption is essentially the same as storing clear-text versions of the passwords, which are easily compromised. For this reason, this policy must never be enabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73309</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <PolicyName />
-      <PolicyValue />
+      <PolicyName>Store passwords using reversible encryption</PolicyName>
+      <PolicyValue>Disabled</PolicyValue>
       <RawString>Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
@@ -170,8 +170,8 @@ If the value for "Store passwords using reversible encryption" is not set to "Di
     </Rule>
   </AccountPolicyRule>
   <AuditPolicyRule dscresourcemodule="AuditPolicyDsc">
-    <Rule id="V-73413" severity="medium" conversionstatus="fail" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
-      <AuditFlag />
+    <Rule id="V-73413" severity="medium" conversionstatus="pass" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Credential Validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -193,14 +193,14 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Account Logon &gt;&gt; Credential Validation - Success</RawString>
-      <Subcategory />
+      <Subcategory>Credential Validation</Subcategory>
     </Rule>
-    <Rule id="V-73415" severity="medium" conversionstatus="fail" title="SRG-OS-000470-GPOS-00214" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73415" severity="medium" conversionstatus="pass" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Credential Validation records events related to validation tests on credentials for a user account logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -218,16 +218,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Account Logon &gt;&gt; Credential Validation - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Credential Validation</Subcategory>
     </Rule>
-    <Rule id="V-73419" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73419" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Other Account Management Events records events such as the access of a password hash or the Password Policy Checking API being called.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206, SRG-OS-000466-GPOS-00210&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -245,16 +245,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Account Management &gt;&gt; Other Account Management Events - Success</RawString>
-      <Subcategory />
+      <Subcategory>Other Account Management Events</Subcategory>
     </Rule>
-    <Rule id="V-73423" severity="medium" conversionstatus="fail" title="SRG-OS-000004-GPOS-00004" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73423" severity="medium" conversionstatus="pass" title="SRG-OS-000004-GPOS-00004" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Security Group Management records events such as creating, deleting, or changing security groups, including changes in group members.
 
 Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPOS-00090, SRG-OS-000241-GPOS-00091, SRG-OS-000303-GPOS-00120, SRG-OS-000476-GPOS-00221&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -272,16 +272,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Account Management &gt;&gt; Security Group Management - Success</RawString>
-      <Subcategory />
+      <Subcategory>Security Group Management</Subcategory>
     </Rule>
-    <Rule id="V-73427" severity="medium" conversionstatus="fail" title="SRG-OS-000004-GPOS-00004" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73427" severity="medium" conversionstatus="pass" title="SRG-OS-000004-GPOS-00004" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 User Account Management records events such as creating, changing, deleting, renaming, disabling, or enabling user accounts.
 
 Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPOS-00090, SRG-OS-000241-GPOS-00091, SRG-OS-000303-GPOS-00120, SRG-OS-000476-GPOS-00221&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -299,16 +299,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Account Management &gt;&gt; User Account Management - Success</RawString>
-      <Subcategory />
+      <Subcategory>User Account Management</Subcategory>
     </Rule>
-    <Rule id="V-73429" severity="medium" conversionstatus="fail" title="SRG-OS-000004-GPOS-00004" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73429" severity="medium" conversionstatus="pass" title="SRG-OS-000004-GPOS-00004" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 User Account Management records events such as creating, changing, deleting, renaming, disabling, or enabling user accounts.
 
 Satisfies: SRG-OS-000004-GPOS-00004, SRG-OS-000239-GPOS-00089, SRG-OS-000240-GPOS-00090, SRG-OS-000241-GPOS-00091, SRG-OS-000303-GPOS-00120, SRG-OS-000476-GPOS-00221&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -326,14 +326,14 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Account Management &gt;&gt; User Account Management - Failure</RawString>
-      <Subcategory />
+      <Subcategory>User Account Management</Subcategory>
     </Rule>
-    <Rule id="V-73431" severity="medium" conversionstatus="fail" title="SRG-OS-000474-GPOS-00219" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73431" severity="medium" conversionstatus="pass" title="SRG-OS-000474-GPOS-00219" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Plug and Play activity records events related to the successful connection of external devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -351,16 +351,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Detailed Tracking &gt;&gt; Plug and Play Events - Success</RawString>
-      <Subcategory />
+      <Subcategory>Plug and Play Events</Subcategory>
     </Rule>
-    <Rule id="V-73433" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73433" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Process Creation records events related to the creation of a process and the source.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -378,16 +378,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Detailed Tracking &gt;&gt; Process Creation - Success</RawString>
-      <Subcategory />
+      <Subcategory>Process Creation</Subcategory>
     </Rule>
-    <Rule id="V-73443" severity="medium" conversionstatus="fail" title="SRG-OS-000240-GPOS-00090" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73443" severity="medium" conversionstatus="pass" title="SRG-OS-000240-GPOS-00090" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Account Lockout events can be used to identify potentially malicious logon attempts.
 
 Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -405,16 +405,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Account Lockout - Success</RawString>
-      <Subcategory />
+      <Subcategory>Account Lockout</Subcategory>
     </Rule>
-    <Rule id="V-73445" severity="medium" conversionstatus="fail" title="SRG-OS-000240-GPOS-00090" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73445" severity="medium" conversionstatus="pass" title="SRG-OS-000240-GPOS-00090" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Account Lockout events can be used to identify potentially malicious logon attempts.
 
 Satisfies: SRG-OS-000240-GPOS-00090, SRG-OS-000470-GPOS-00214&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -430,14 +430,14 @@ Enter "AuditPol /get /category:*"
 Compare the AuditPol settings with the following. If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Account Lockout - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Account Lockout</Subcategory>
     </Rule>
-    <Rule id="V-73447" severity="medium" conversionstatus="fail" title="SRG-OS-000470-GPOS-00214" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73447" severity="medium" conversionstatus="pass" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Audit Group Membership records information related to the group membership of a user's logon token.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -455,16 +455,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Group Membership - Success</RawString>
-      <Subcategory />
+      <Subcategory>Group Membership</Subcategory>
     </Rule>
-    <Rule id="V-73449" severity="medium" conversionstatus="fail" title="SRG-OS-000032-GPOS-00013" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73449" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Logoff records user logoffs. If this is an interactive logoff, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
 
 Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPOS-00217, SRG-OS-000473-GPOS-00218, SRG-OS-000475-GPOS-00220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -482,16 +482,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Logoff - Success</RawString>
-      <Subcategory />
+      <Subcategory>Logoff</Subcategory>
     </Rule>
-    <Rule id="V-73451" severity="medium" conversionstatus="fail" title="SRG-OS-000032-GPOS-00013" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73451" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Logon records user logons. If this is an interactive logon, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
 
 Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPOS-00217, SRG-OS-000473-GPOS-00218, SRG-OS-000475-GPOS-00220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -509,16 +509,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Logon - Success</RawString>
-      <Subcategory />
+      <Subcategory>Logon</Subcategory>
     </Rule>
-    <Rule id="V-73453" severity="medium" conversionstatus="fail" title="SRG-OS-000032-GPOS-00013" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73453" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Logon records user logons. If this is an interactive logon, it is recorded on the local system. If it is to a network share, it is recorded on the system accessed.
 
 Satisfies: SRG-OS-000032-GPOS-00013, SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPOS-00217, SRG-OS-000473-GPOS-00218, SRG-OS-000475-GPOS-00220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -536,16 +536,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Logon - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Logon</Subcategory>
     </Rule>
-    <Rule id="V-73455" severity="medium" conversionstatus="fail" title="SRG-OS-000470-GPOS-00214" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73455" severity="medium" conversionstatus="pass" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Special Logon records special logons that have administrative privileges and can be used to elevate processes.
 
 Satisfies: SRG-OS-000470-GPOS-00214, SRG-OS-000472-GPOS-00217, SRG-OS-000473-GPOS-00218, SRG-OS-000475-GPOS-00220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -563,14 +563,14 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Logon/Logoff &gt;&gt; Special Logon - Success</RawString>
-      <Subcategory />
+      <Subcategory>Special Logon</Subcategory>
     </Rule>
-    <Rule id="V-73457" severity="medium" conversionstatus="fail" title="SRG-OS-000474-GPOS-00219" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73457" severity="medium" conversionstatus="pass" title="SRG-OS-000474-GPOS-00219" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Removable Storage auditing under Object Access records events related to access attempts on file system objects on removable storage devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -590,14 +590,14 @@ If the system does not audit the following, this is a finding.
 Object Access &gt;&gt; Removable Storage - Success
 
 Virtual machines or systems that use network attached storage may generate excessive audit events for secondary virtual drives or the network attached storage when this setting is enabled. This may be set to Not Configured in such cases and would not be a finding.</RawString>
-      <Subcategory />
+      <Subcategory>Removable Storage</Subcategory>
     </Rule>
-    <Rule id="V-73459" severity="medium" conversionstatus="fail" title="SRG-OS-000474-GPOS-00219" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73459" severity="medium" conversionstatus="pass" title="SRG-OS-000474-GPOS-00219" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Removable Storage auditing under Object Access records events related to access attempts on file system objects on removable storage devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -617,16 +617,16 @@ If the system does not audit the following, this is a finding.
 Object Access &gt;&gt; Removable Storage - Failure
 
 Virtual machines or systems that use network attached storage may generate excessive audit events for secondary virtual drives or the network attached storage when this setting is enabled. This may be set to Not Configured in such cases and would not be a finding.</RawString>
-      <Subcategory />
+      <Subcategory>Removable Storage</Subcategory>
     </Rule>
-    <Rule id="V-73461" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73461" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Audit Policy Change records events related to changes in audit policy.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -644,16 +644,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Policy Change &gt;&gt; Audit Policy Change - Success</RawString>
-      <Subcategory />
+      <Subcategory>Audit Policy Change</Subcategory>
     </Rule>
-    <Rule id="V-73463" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73463" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Audit Policy Change records events related to changes in audit policy.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -671,16 +671,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Policy Change &gt;&gt; Audit Policy Change - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Audit Policy Change</Subcategory>
     </Rule>
-    <Rule id="V-73465" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73465" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Authentication Policy Change records events related to changes in authentication policy, including Kerberos policy and Trust changes.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206, SRG-OS-000466-GPOS-00210&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -698,16 +698,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Policy Change &gt;&gt; Authentication Policy Change - Success</RawString>
-      <Subcategory />
+      <Subcategory>Authentication Policy Change</Subcategory>
     </Rule>
-    <Rule id="V-73467" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73467" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Authorization Policy Change records events related to changes in user rights, such as "Create a token object".
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206, SRG-OS-000466-GPOS-00210&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -725,16 +725,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Policy Change &gt;&gt; Authorization Policy Change - Success</RawString>
-      <Subcategory />
+      <Subcategory>Authorization Policy Change</Subcategory>
     </Rule>
-    <Rule id="V-73469" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73469" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Sensitive Privilege Use records events related to use of sensitive privileges, such as "Act as part of the operating system" or "Debug programs".
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206, SRG-OS-000466-GPOS-00210&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -752,16 +752,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Privilege Use &gt;&gt; Sensitive Privilege Use - Success</RawString>
-      <Subcategory />
+      <Subcategory>Sensitive Privilege Use</Subcategory>
     </Rule>
-    <Rule id="V-73471" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73471" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Sensitive Privilege Use records events related to use of sensitive privileges, such as "Act as part of the operating system" or "Debug programs".
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000064-GPOS-00033, SRG-OS-000462-GPOS-00206, SRG-OS-000466-GPOS-00210&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -779,16 +779,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 Privilege Use &gt;&gt; Sensitive Privilege Use - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Sensitive Privilege Use</Subcategory>
     </Rule>
-    <Rule id="V-73473" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73473" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 IPsec Driver records events related to the IPsec Driver, such as dropped packets.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -806,16 +806,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; IPsec Driver - Success</RawString>
-      <Subcategory />
+      <Subcategory>IPsec Driver</Subcategory>
     </Rule>
-    <Rule id="V-73475" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73475" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 IPsec Driver records events related to the IPsec Driver, such as dropped packets.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -833,16 +833,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; IPsec Driver - Failure</RawString>
-      <Subcategory />
+      <Subcategory>IPsec Driver</Subcategory>
     </Rule>
-    <Rule id="V-73477" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73477" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Audit Other System Events records information related to cryptographic key operations and the Windows Firewall service.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -860,16 +860,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; Other System Events - Success</RawString>
-      <Subcategory />
+      <Subcategory>Other System Events</Subcategory>
     </Rule>
-    <Rule id="V-73479" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73479" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Audit Other System Events records information related to cryptographic key operations and the Windows Firewall service.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -887,16 +887,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; Other System Events - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Other System Events</Subcategory>
     </Rule>
-    <Rule id="V-73481" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73481" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Security State Change records events related to changes in the security state, such as startup and shutdown of the system.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -914,16 +914,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; Security State Change - Success</RawString>
-      <Subcategory />
+      <Subcategory>Security State Change</Subcategory>
     </Rule>
-    <Rule id="V-73483" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73483" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Security System Extension records events related to extension code being loaded by the security subsystem.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -941,16 +941,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; Security System Extension - Success</RawString>
-      <Subcategory />
+      <Subcategory>Security System Extension</Subcategory>
     </Rule>
-    <Rule id="V-73489" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73489" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 System Integrity records events related to violations of integrity to the security subsystem.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215, SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -968,16 +968,16 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; System Integrity - Success</RawString>
-      <Subcategory />
+      <Subcategory>System Integrity</Subcategory>
     </Rule>
-    <Rule id="V-73491" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-73491" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 System Integrity records events related to violations of integrity to the security subsystem.
 
 Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000471-GPOS-00215, SRG-OS-000471-GPOS-00216, SRG-OS-000477-GPOS-00222&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -995,14 +995,14 @@ Compare the AuditPol settings with the following.
 If the system does not audit the following, this is a finding.
 
 System &gt;&gt; System Integrity - Failure</RawString>
-      <Subcategory />
+      <Subcategory>System Integrity</Subcategory>
     </Rule>
-    <Rule id="V-90359" severity="medium" conversionstatus="fail" title="SRG-OS-000470-GPOS-00214" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-90359" severity="medium" conversionstatus="pass" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Success</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Auditing for other object access records events related to the management of task scheduler jobs and COM+ objects.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1020,14 +1020,14 @@ Compare the "AuditPol" settings with the following:
 If the system does not audit the following, this is a finding.
 
 Object Access &gt;&gt; Other Object Access Events - Success</RawString>
-      <Subcategory />
+      <Subcategory>Other Object Access Events</Subcategory>
     </Rule>
-    <Rule id="V-90361" severity="medium" conversionstatus="fail" title="SRG-OS-000470-GPOS-00214" dscresource="None">
-      <AuditFlag />
+    <Rule id="V-90361" severity="medium" conversionstatus="pass" title="SRG-OS-000470-GPOS-00214" dscresource="AuditPolicySubcategory">
+      <AuditFlag>Failure</AuditFlag>
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Auditing for other object access records events related to the management of task scheduler jobs and COM+ objects.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73413</DuplicateOf>
+      <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1045,7 +1045,7 @@ Compare the "AuditPol" settings with the following:
 If the system does not audit the following, this is a finding.
 
 Object Access &gt;&gt; Other Object Access Events - Failure</RawString>
-      <Subcategory />
+      <Subcategory>Other Object Access Events</Subcategory>
     </Rule>
   </AuditPolicyRule>
   <AuditSettingRule dscresourcemodule="AuditSystemDsc">
@@ -5200,11 +5200,11 @@ Value: 0x00000004 (4)</RawString>
     </Rule>
   </RegistryRule>
   <SecurityOptionRule dscresourcemodule="SecurityPolicyDsc">
-    <Rule id="V-73623" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
+    <Rule id="V-73623" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;The built-in administrator account is a well-known account subject to attack. Renaming this account to an unidentified name improves the protection of this account and the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName />
+      <OptionName>Accounts: Rename administrator account</OptionName>
       <OptionValue />
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ne 'Administrator'</OrganizationValueTestString>
@@ -5218,11 +5218,11 @@ If the value for "Accounts: Rename administrator account" is not set to a value 
 
 </RawString>
     </Rule>
-    <Rule id="V-73625" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+    <Rule id="V-73625" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;The built-in guest account is a well-known user account on all Windows systems and, as initially installed, does not require a password. This can allow access to system resources by unauthorized users. Renaming this account to an unidentified name improves the protection of this account and the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73623</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName />
+      <OptionName>Accounts: Rename guest account</OptionName>
       <OptionValue />
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>'{0}' -ne 'Guest'</OrganizationValueTestString>
@@ -5236,12 +5236,12 @@ If the value for "Accounts: Rename guest account" is not set to a value other th
 
 </RawString>
     </Rule>
-    <Rule id="V-73665" severity="high" conversionstatus="fail" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+    <Rule id="V-73665" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;Allowing anonymous SID/Name translation can provide sensitive information for accessing a system. Only authorized users must be able to perform such translations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73623</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName />
-      <OptionValue />
+      <OptionName>Network access: Allow anonymous SID/Name translation</OptionName>
+      <OptionValue>Disabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
@@ -5254,12 +5254,12 @@ If the value for "Network access: Allow anonymous SID/Name translation" is not s
 
 </RawString>
     </Rule>
-    <Rule id="V-73809" severity="medium" conversionstatus="fail" title="SRG-OS-000121-GPOS-000062" dscresource="None">
+    <Rule id="V-73809" severity="medium" conversionstatus="pass" title="SRG-OS-000121-GPOS-000062" dscresource="SecurityOption">
       <Description>&lt;VulnDiscussion&gt;A system faces an increased vulnerability threat if the built-in guest account is not disabled. This is a known account that exists on all Windows systems and cannot be deleted. This account is initialized during the installation of the operating system with no password assigned.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73623</DuplicateOf>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OptionName />
-      <OptionValue />
+      <OptionName>Accounts: Guest account status</OptionName>
+      <OptionValue>Disabled</OptionValue>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Verify the effective setting in Local Group Policy Editor.
