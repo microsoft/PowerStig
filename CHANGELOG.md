@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Update PowerSTIG to leverage the GPRegistryPolicy resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
+* Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
 * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
 * Update PowerSTIG to pass OrgSettings in via configuration hashtable: [#372](https://github.com/microsoft/PowerStig/issues/372)
 * Update support for SQL Server 2012 Database STIG, Version 1, Release 19 [#482](https://github.com/microsoft/PowerStig/issues/482)
