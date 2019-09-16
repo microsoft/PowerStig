@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.17" created="9/6/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.17" created="9/16/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1856,6 +1856,36 @@ Exclude disabled accounts (e.g., Guest).
 
 If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-8316" severity="high" conversionstatus="pass" title="Data File Access Permissions" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data related files could allow unauthorized users to read, modify, or delete directory data or audit trails.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the permissions on the content of the NTDS directory.
+
+Open the registry editor (regedit).
+Navigate to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters.
+Note the directory locations in the values for:
+Database log files path
+DSA Database file
+
+By default they will be \Windows\NTDS. If the locations are different, the following will need to be run for each.
+
+Open an elevated command prompt (Win+x, Command Prompt (Admin)).
+Navigate to the NTDS directory (\Windows\NTDS by default).
+Run "icacls *.*".
+
+If the permissions on each file are not at least as restrictive as the following, this is a finding.
+
+NT AUTHORITY\SYSTEM:(I)(F)
+BUILTIN\Administrators:(I)(F)
+
+(I) - permission inherited from parent container
+(F) - full access
+
+Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.</RawString>
+    </Rule>
     <Rule id="V-8317" severity="medium" conversionstatus="pass" title="Directory Server Data File Locations" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When directory service data files, especially for directories used for identification, authentication, or authorization, reside on the same logical partition as user-owned files, the directory service data may be more vulnerable to unauthorized access or other availability compromises.  Directory service and user-owned data files sharing a partition may be configured with less restrictive permissions in order to allow access to the user data.
 
@@ -2667,58 +2697,6 @@ Columns: Principal - Access - Applies to
 Administrators - Full Control - This key and subkeys
 Backup Operators - Read - This key only
 LOCAL SERVICE - Read - This key and subkeys</RawString>
-    </Rule>
-    <Rule id="V-8316" severity="high" conversionstatus="pass" title="Data File Access Permissions" dscresource="NTFSAccessEntry">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>NT AUTHORITY\SYSTEM</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>BUILTIN\Administrators</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data related files could allow unauthorized users to read, modify, or delete directory data or audit trails.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path>%windir%\NTDS\*.*</Path>
-      <RawString>Verify the permissions on the content of the NTDS directory.
-
-Open the registry editor (regedit).
-Navigate to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters.
-Note the directory locations in the values for:
-Database log files path
-DSA Database file
-
-By default they will be \Windows\NTDS. If the locations are different, the following will need to be run for each.
-
-Open an elevated command prompt (Win+x, Command Prompt (Admin)).
-Navigate to the NTDS directory (\Windows\NTDS by default).
-Run "icacls *.*".
-
-If the permissions on each file are not at least as restrictive as the following, this is a finding.
-
-NT AUTHORITY\SYSTEM:(I)(F)
-BUILTIN\Administrators:(I)(F)
-
-(I) - permission inherited from parent container
-(F) - full access
-
-Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.</RawString>
     </Rule>
     <Rule id="V-26070" severity="high" conversionstatus="pass" title="Winlogon Registry Permissions" dscresource="RegistryAccessEntry">
       <AccessControlEntry>

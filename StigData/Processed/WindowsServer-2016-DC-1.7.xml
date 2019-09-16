@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="9/6/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 08 Feb 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="9/16/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2114,6 +2114,41 @@ Open "PowerShell".
 
 Enter "Get-ADDomain | FT PDCEmulator".</RawString>
     </Rule>
+    <Rule id="V-73369" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data-related files could allow unauthorized users to read, modify, or delete directory data or audit trails.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Run "Regedit".
+
+Navigate to "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters".
+
+Note the directory locations in the values for:
+
+Database log files path
+DSA Database file
+
+By default, they will be \Windows\NTDS.
+
+If the locations are different, the following will need to be run for each.
+
+Open "Command Prompt (Admin)".
+
+Navigate to the NTDS directory (\Windows\NTDS by default).
+
+Run "icacls *.*".
+
+If the permissions on each file are not as restrictive as the following, this is a finding.
+
+NT AUTHORITY\SYSTEM:(I)(F)
+BUILTIN\Administrators:(I)(F)
+
+(I) - permission inherited from parent container
+(F) - full access</RawString>
+    </Rule>
     <Rule id="V-73379" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When directory service data files, especially for directories used for identification, authentication, or authorization, reside on the same logical partition as user-owned files, the directory service data may be more vulnerable to unauthorized access or other availability compromises. Directory service and user-owned data files sharing a partition may be configured with less restrictive permissions in order to allow access to the user data.
 
@@ -3327,63 +3362,6 @@ ALL APPLICATION PACKAGES - Read - This key and subkeys
 Other examples under the noted keys may also be sampled. There may be some instances where non-privileged groups have greater than Read permission.
 If the defaults have not been changed, these are not a finding.
 </RawString>
-    </Rule>
-    <Rule id="V-73369" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>NT AUTHORITY\SYSTEM</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>BUILTIN\Administrators</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data-related files could allow unauthorized users to read, modify, or delete directory data or audit trails.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path>%windir%\NTDS\*.*</Path>
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Run "Regedit".
-
-Navigate to "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NTDS\Parameters".
-
-Note the directory locations in the values for:
-
-Database log files path
-DSA Database file
-
-By default, they will be \Windows\NTDS.
-
-If the locations are different, the following will need to be run for each.
-
-Open "Command Prompt (Admin)".
-
-Navigate to the NTDS directory (\Windows\NTDS by default).
-
-Run "icacls *.*".
-
-If the permissions on each file are not as restrictive as the following, this is a finding.
-
-NT AUTHORITY\SYSTEM:(I)(F)
-BUILTIN\Administrators:(I)(F)
-
-(I) - permission inherited from parent container
-(F) - full access</RawString>
     </Rule>
     <Rule id="V-73371" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
