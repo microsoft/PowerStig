@@ -351,6 +351,12 @@ Class RegistryRuleConvert : RegistryRule
         $this.Ensure = $Ensure
     }
 
+    # Empty method used with Get-HardCodedRuleLogFileEntry
+    hidden [void] SetDscResource ()
+    {
+        $this.DscResource = 'RegistryPolicyFile OR Registry'
+    }
+
     hidden [void] SetDscResource ([string] $FixText)
     {
         if($null -eq $this.DuplicateOf)
