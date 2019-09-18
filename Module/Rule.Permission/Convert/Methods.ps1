@@ -192,7 +192,7 @@ function Get-PermissionTargetPath
         }
         { $stigString -match $regularExpression.inetpub }
         {
-            $permissionTargetPath = '%windir%\inetpub'
+            $permissionTargetPath = '%SystemDrive%\inetpub'
             break
         }
         # SQL Server install folder
