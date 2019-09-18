@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-* Fixed [#485](https://github.com/microsoft/PowerStig/issues/485): Enable Stig Checklist automation to incluse Status and Commandts for manual checks.
+* Update Enable Stig Checklist automation to incluse Status and Commandts for manual checks: [#485](https://github.com/microsoft/PowerStig/issues/485)
+* Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
 * Update PowerSTIG to pass OrgSettings in via configuration hashtable: [#372](https://github.com/microsoft/PowerStig/issues/372)
 * Update support for SQL Server 2012 Database STIG, Version 1, Release 19 [#482](https://github.com/microsoft/PowerStig/issues/482)
 * Fixed [#478](https://github.com/microsoft/PowerStig/issues/478): SQL STIG Instance V-40936 Fails to apply
