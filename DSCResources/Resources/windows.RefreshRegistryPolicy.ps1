@@ -3,5 +3,5 @@
 
 RefreshRegistryPolicy PowerSTIGRefreshRegistryPolicy
 {
-    Name = 'PowerSTIGRefreshRegistryPolicy'
+    IsSingleInstance = 'Yes'
 }
