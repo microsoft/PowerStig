@@ -29,7 +29,7 @@
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
 #>
-function New-StigCheckList 
+function New-StigCheckList
 {
     [CmdletBinding()]
     [OutputType([xml])]
@@ -59,12 +59,12 @@ function New-StigCheckList
 
     $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
 
-    if (-not (Test-Path -Path $OutputPath.DirectoryName)) 
+    if (-not (Test-Path -Path $OutputPath.DirectoryName))
     {
         throw "$($OutputPath.DirectoryName) is not a valid directory. Please provide a valid directory."
     }
 
-    if ($OutputPath.Extension -ne '.ckl') 
+    if ($OutputPath.Extension -ne '.ckl')
     {
         throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
     }
@@ -96,7 +96,7 @@ function New-StigCheckList
         'WEB_DB_INSTANCE' = ''
     }
 
-    foreach ($assetElement in $assetElements.GetEnumerator()) 
+    foreach ($assetElement in $assetElements.GetEnumerator())
     {
         $writer.WriteStartElement($assetElement.name)
         $writer.WriteString($assetElement.value)
@@ -130,7 +130,7 @@ function New-StigCheckList
         'source'         = $xccdfBenchmarkContent.reference.source
     }
 
-    foreach ($StigInfoElement in $stigInfoElements.GetEnumerator()) 
+    foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
     {
         $writer.WriteStartElement("SI_DATA")
 
@@ -151,17 +151,17 @@ function New-StigCheckList
 
     #region STIGS/iSTIG/VULN[]
 
-    foreach ( $vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent) ) 
+    foreach ( $vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent) )
     {
         $writer.WriteStartElement("VULN")
 
-        foreach ($attribute in $vulnerability.GetEnumerator()) 
+        foreach ($attribute in $vulnerability.GetEnumerator())
         {
             $status = $null
             $comments = $null
             $manualCheck = $null
 
-            if ($attribute.Name -eq 'Vuln_Num') 
+            if ($attribute.Name -eq 'Vuln_Num')
             {
                 $vid = $attribute.Value
             }
@@ -186,44 +186,44 @@ function New-StigCheckList
             NotApplicable = 'Not_Applicable'
         }
 
-        if ($PSCmdlet.ParameterSetName -eq 'mof') 
+        if ($PSCmdlet.ParameterSetName -eq 'mof')
         {
             $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
             $manualCheck = $manualCheckData | Where { $_.VulID -eq $VID }
 
-            if ($setting) 
+            if ($setting)
             {
                 $status = $statusMap['NotAFinding']
 
             }
-            elseif ( $manualCheck ) 
+            elseif ( $manualCheck )
             {
                 $status = $statusMap["$($manualCheck.Status)"]
                 $comments = $manualCheck.Comments
             }
-            else 
+            else
             {
                 $status = $statusMap['NotReviewed']
             }
         }
-        elseif ($PSCmdlet.ParameterSetName -eq 'result') 
+        elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
             $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
 
-            if ($setting) 
+            if ($setting)
             {
-                if ($setting.InDesiredState) 
+                if ($setting.InDesiredState)
                 {
                     $status = $statusMap['NotAFinding']
                 }
-                else 
+                else
                 {
                     $status = $statusMap['Open']
                 }
 
                 $comments = 'Managed via PowerStigDsc from Live call'
             }
-            else 
+            else
             {
                 $status = $statusMap['NotReviewed']
             }
@@ -266,7 +266,7 @@ function New-StigCheckList
     .SYNOPSIS
         Gets the vulnerability details from the rule description
 #>
-function Get-VulnerabilityList 
+function Get-VulnerabilityList
 {
     [CmdletBinding()]
     [OutputType([xml])]
@@ -279,7 +279,7 @@ function Get-VulnerabilityList
 
     [System.Collections.ArrayList] $vulnerabilityList = @()
 
-    foreach ( $vulnerability in $XccdfBenchmark.Group ) 
+    foreach ( $vulnerability in $XccdfBenchmark.Group )
     {
         [xml]$vulnerabiltyDiscussionElement = "<discussionroot>$($vulnerability.Rule.description)</discussionroot>"
 
@@ -317,7 +317,7 @@ function Get-VulnerabilityList
                     Where-Object { $PSItem.system -eq 'http://iase.disa.mil/cci' } |
                     Select-Object 'InnerText' -ExpandProperty 'InnerText'
 
-                    foreach ($CCIREF in $CCIREFList) 
+                    foreach ($CCIREF in $CCIREFList)
                     {
                         [PSCustomObject]@{ Name = 'CCI_REF'; Value = $CCIREF }
                     }
@@ -333,7 +333,7 @@ function Get-VulnerabilityList
     .SYNOPSIS
         Converts the mof into an array of objects
 #>
-function Get-MofContent 
+function Get-MofContent
 {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -344,7 +344,7 @@ function Get-MofContent
         $ReferenceConfiguration
     )
 
-    if ( -not $script:mofContent ) 
+    if ( -not $script:mofContent )
     {
         $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($referenceConfiguration, 4)
     }
@@ -356,7 +356,7 @@ function Get-MofContent
     .SYNOPSIS
         Gets the stig details from the mof
 #>
-function Get-SettingsFromMof 
+function Get-SettingsFromMof
 {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -380,7 +380,7 @@ function Get-SettingsFromMof
     .SYNOPSIS
         Gets the stig details from the Test\Get-DscConfiguration output
 #>
-function Get-SettingsFromResult 
+function Get-SettingsFromResult
 {
     [CmdletBinding()]
     [OutputType([psobject])]
@@ -395,7 +395,7 @@ function Get-SettingsFromResult
         $Id
     )
 
-    if (-not $script:allResources) 
+    if (-not $script:allResources)
     {
         $script:allResources = $dscResult.ResourcesNotInDesiredState + $dscResult.ResourcesInDesiredState
     }
@@ -419,7 +419,7 @@ function Get-FindingDetails
         $Setting
     )
 
-    switch ($setting.ResourceID) 
+    switch ($setting.ResourceID)
     {
         { $PSItem -match "^\[(x)?Registry\]" } {
             return "Registry Value = $($setting.ValueData)"
