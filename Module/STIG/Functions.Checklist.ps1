@@ -189,14 +189,14 @@ function New-StigCheckList
         if ($PSCmdlet.ParameterSetName -eq 'mof')
         {
             $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
-            $manualCheck = $manualCheckData | Where { $_.VulID -eq $VID }
+            $manualCheck = $manualCheckData | Where {$_.VulID -eq $VID}
 
             if ($setting)
             {
                 $status = $statusMap['NotAFinding']
 
             }
-            elseif ( $manualCheck )
+            elseif ($manualCheck)
             {
                 $status = $statusMap["$($manualCheck.Status)"]
                 $comments = $manualCheck.Comments
@@ -234,7 +234,7 @@ function New-StigCheckList
         $writer.WriteEndElement(<#STATUS#>)
 
         $writer.WriteStartElement("FINDING_DETAILS")
-        $writer.WriteString( ( Get-FindingDetails -Setting $setting ) )
+        $writer.WriteString((Get-FindingDetails -Setting $setting))
         $writer.WriteEndElement(<#FINDING_DETAILS#>)
 
         $writer.WriteStartElement("COMMENTS")
@@ -279,47 +279,47 @@ function Get-VulnerabilityList
 
     [System.Collections.ArrayList] $vulnerabilityList = @()
 
-    foreach ( $vulnerability in $XccdfBenchmark.Group )
+    foreach ($vulnerability in $XccdfBenchmark.Group)
     {
         [xml]$vulnerabiltyDiscussionElement = "<discussionroot>$($vulnerability.Rule.description)</discussionroot>"
 
         [void] $vulnerabilityList.Add(
             @(
-                [PSCustomObject]@{ Name = 'Vuln_Num'; Value = $vulnerability.id },
-                [PSCustomObject]@{ Name = 'Severity'; Value = $vulnerability.Rule.severity },
-                [PSCustomObject]@{ Name = 'Group_Title'; Value = $vulnerability.title },
-                [PSCustomObject]@{ Name = 'Rule_ID'; Value = $vulnerability.Rule.id },
-                [PSCustomObject]@{ Name = 'Rule_Ver'; Value = $vulnerability.Rule.version },
-                [PSCustomObject]@{ Name = 'Rule_Title'; Value = $vulnerability.Rule.title },
-                [PSCustomObject]@{ Name = 'Vuln_Discuss'; Value = $vulnerabiltyDiscussionElement.discussionroot.VulnDiscussion },
-                [PSCustomObject]@{ Name = 'IA_Controls'; Value = $vulnerabiltyDiscussionElement.discussionroot.IAControls },
-                [PSCustomObject]@{ Name = 'Check_Content'; Value = $vulnerability.Rule.check.'check-content' },
-                [PSCustomObject]@{ Name = 'Fix_Text'; Value = $vulnerability.Rule.fixtext.InnerText },
-                [PSCustomObject]@{ Name = 'False_Positives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalsePositives },
-                [PSCustomObject]@{ Name = 'False_Negatives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalseNegatives },
-                [PSCustomObject]@{ Name = 'Documentable'; Value = $vulnerabiltyDiscussionElement.discussionroot.Documentable },
-                [PSCustomObject]@{ Name = 'Mitigations'; Value = $vulnerabiltyDiscussionElement.discussionroot.Mitigations },
-                [PSCustomObject]@{ Name = 'Potential_Impact'; Value = $vulnerabiltyDiscussionElement.discussionroot.PotentialImpacts },
-                [PSCustomObject]@{ Name = 'Third_Party_Tools'; Value = $vulnerabiltyDiscussionElement.discussionroot.ThirdPartyTools },
-                [PSCustomObject]@{ Name = 'Mitigation_Control'; Value = $vulnerabiltyDiscussionElement.discussionroot.MitigationControl },
-                [PSCustomObject]@{ Name = 'Responsibility'; Value = $vulnerabiltyDiscussionElement.discussionroot.Responsibility },
-                [PSCustomObject]@{ Name = 'Security_Override_Guidance'; Value = $vulnerabiltyDiscussionElement.discussionroot.SeverityOverrideGuidance },
-                [PSCustomObject]@{ Name = 'Check_Content_Ref'; Value = $vulnerability.Rule.check.'check-content-ref'.href },
-                [PSCustomObject]@{ Name = 'Weight'; Value = $vulnerability.Rule.Weight },
-                [PSCustomObject]@{ Name = 'Class'; Value = 'Unclass' },
-                [PSCustomObject]@{ Name = 'STIGRef'; Value = "$($XccdfBenchmark.title) :: $($XccdfBenchmark.'plain-text'.InnerText)" },
-                [PSCustomObject]@{ Name = 'TargetKey'; Value = $vulnerability.Rule.reference.identifier }
+                [PSCustomObject]@{Name = 'Vuln_Num'; Value = $vulnerability.id},
+                [PSCustomObject]@{Name = 'Severity'; Value = $vulnerability.Rule.severity},
+                [PSCustomObject]@{Name = 'Group_Title'; Value = $vulnerability.title},
+                [PSCustomObject]@{Name = 'Rule_ID'; Value = $vulnerability.Rule.id},
+                [PSCustomObject]@{Name = 'Rule_Ver'; Value = $vulnerability.Rule.version},
+                [PSCustomObject]@{Name = 'Rule_Title'; Value = $vulnerability.Rule.title},
+                [PSCustomObject]@{Name = 'Vuln_Discuss'; Value = $vulnerabiltyDiscussionElement.discussionroot.VulnDiscussion},
+                [PSCustomObject]@{Name = 'IA_Controls'; Value = $vulnerabiltyDiscussionElement.discussionroot.IAControls},
+                [PSCustomObject]@{Name = 'Check_Content'; Value = $vulnerability.Rule.check.'check-content'},
+                [PSCustomObject]@{Name = 'Fix_Text'; Value = $vulnerability.Rule.fixtext.InnerText},
+                [PSCustomObject]@{Name = 'False_Positives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalsePositives},
+                [PSCustomObject]@{Name = 'False_Negatives'; Value = $vulnerabiltyDiscussionElement.discussionroot.FalseNegatives},
+                [PSCustomObject]@{Name = 'Documentable'; Value = $vulnerabiltyDiscussionElement.discussionroot.Documentable},
+                [PSCustomObject]@{Name = 'Mitigations'; Value = $vulnerabiltyDiscussionElement.discussionroot.Mitigations},
+                [PSCustomObject]@{Name = 'Potential_Impact'; Value = $vulnerabiltyDiscussionElement.discussionroot.PotentialImpacts},
+                [PSCustomObject]@{Name = 'Third_Party_Tools'; Value = $vulnerabiltyDiscussionElement.discussionroot.ThirdPartyTools},
+                [PSCustomObject]@{Name = 'Mitigation_Control'; Value = $vulnerabiltyDiscussionElement.discussionroot.MitigationControl},
+                [PSCustomObject]@{Name = 'Responsibility'; Value = $vulnerabiltyDiscussionElement.discussionroot.Responsibility},
+                [PSCustomObject]@{Name = 'Security_Override_Guidance'; Value = $vulnerabiltyDiscussionElement.discussionroot.SeverityOverrideGuidance},
+                [PSCustomObject]@{Name = 'Check_Content_Ref'; Value = $vulnerability.Rule.check.'check-content-ref'.href},
+                [PSCustomObject]@{Name = 'Weight'; Value = $vulnerability.Rule.Weight},
+                [PSCustomObject]@{Name = 'Class'; Value = 'Unclass'},
+                [PSCustomObject]@{Name = 'STIGRef'; Value = "$($XccdfBenchmark.title) :: $($XccdfBenchmark.'plain-text'.InnerText)"},
+                [PSCustomObject]@{Name = 'TargetKey'; Value = $vulnerability.Rule.reference.identifier}
 
                 # Some Stigs have multiple Control Correlation Identifiers (CCI)
                 $(
                     # Extract only the cci entries
                     $CCIREFList = $vulnerability.Rule.ident |
-                    Where-Object { $PSItem.system -eq 'http://iase.disa.mil/cci' } |
+                    Where-Object {$PSItem.system -eq 'http://iase.disa.mil/cci'} |
                     Select-Object 'InnerText' -ExpandProperty 'InnerText'
 
                     foreach ($CCIREF in $CCIREFList)
                     {
-                        [PSCustomObject]@{ Name = 'CCI_REF'; Value = $CCIREF }
+                        [PSCustomObject]@{Name = 'CCI_REF'; Value = $CCIREF}
                     }
                 )
             )
@@ -344,7 +344,7 @@ function Get-MofContent
         $ReferenceConfiguration
     )
 
-    if ( -not $script:mofContent )
+    if (-not $script:mofContent)
     {
         $script:mofContent = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($referenceConfiguration, 4)
     }
@@ -373,7 +373,7 @@ function Get-SettingsFromMof
 
     $mofContent = Get-MofContent -ReferenceConfiguration $referenceConfiguration
 
-    return $mofContent.Where( { $PSItem.ResourceID -match $id } )
+    return $mofContent.Where({$PSItem.ResourceID -match $id})
 }
 
 <#
@@ -400,7 +400,7 @@ function Get-SettingsFromResult
         $script:allResources = $dscResult.ResourcesNotInDesiredState + $dscResult.ResourcesInDesiredState
     }
 
-    return $script:allResources.Where( { $PSItem.ResourceID -match $id } )
+    return $script:allResources.Where({$PSItem.ResourceID -match $id})
 }
 
 <#
@@ -421,19 +421,19 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
-        { $PSItem -match "^\[(x)?Registry\]" } {
+        {$PSItem -match "^\[(x)?Registry\]"} {
             return "Registry Value = $($setting.ValueData)"
         }
-        { $PSItem -match "^\[AuditPolicySubcategory\]" } {
+        {$PSItem -match "^\[AuditPolicySubcategory\]"} {
             return "AuditPolicySubcategory AuditFlag = $($setting.AuditFlag)"
         }
-        { $PSItem -match "^\[AccountPolicy\]" } {
+        {$PSItem -match "^\[AccountPolicy\]"} {
             return "AccountPolicy = Needs work"
         }
-        { $PSItem -match "^\[UserRightsAssignment\]" } {
+        {$PSItem -match "^\[UserRightsAssignment\]"} {
             return "UserRightsAssignment Identity = $($setting.Identity)"
         }
-        { $PSItem -match "^\[SecurityOption\]" } {
+        {$PSItem -match "^\[SecurityOption\]"} {
             return "SecurityOption = Needs work"
         }
         default
