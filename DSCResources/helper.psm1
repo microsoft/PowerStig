@@ -12,7 +12,7 @@ using namespace system.xml
     .PARAMETER Rule
         The Stig rule that is being created.
     .PARAMETER Instance
-        The target instance name.
+        The target instance name..
 #>
 function Get-ResourceTitle
 {
