@@ -40,11 +40,14 @@ Class RegistryRuleConvert : RegistryRule
     #>
     RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
+
+        $fixText = [RegistryRule]::GetFixText($XccdfRule)
+
         $this.SetKey()
         $this.SetValueName()
         $this.SetValueType()
         $this.SetDuplicateRule()
-        $this.SetDscResource()
+        $this.SetDscResource($fixText)
 
         if ($this.IsHardCodedOrganizationValueTestString())
         {
@@ -348,17 +351,17 @@ Class RegistryRuleConvert : RegistryRule
         $this.Ensure = $Ensure
     }
 
-    hidden [void] SetDscResource ()
+    hidden [void] SetDscResource ([string] $FixText)
     {
         if($null -eq $this.DuplicateOf)
         {
-            if ($this.Key -match "(^hklm|^HKEY_LOCAL_MACHINE)")
+            if ($FixText -match 'Administrative Templates' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)")
             {
-                $this.DscResource = "Registry"
+                $this.DscResource = 'RegistryPolicyFile'
             }
             else
             {
-                $this.DscResource = "cAdministrativeTemplate"
+                $this.DscResource = 'Registry'
             }
         }
         else

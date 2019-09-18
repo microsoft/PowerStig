@@ -93,6 +93,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         decoded strings. To keep the test data consistent with the xccdf xml it
         needs to be decoded before testing.
     #>
+    Add-Type -AssemblyName System.Web
     $checkContent = [System.Web.HttpUtility]::HtmlDecode( $testRule.checkContent )
 
     # The manual rule is the default and does not contain a match method.

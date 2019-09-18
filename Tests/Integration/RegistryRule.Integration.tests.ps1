@@ -131,7 +131,7 @@ try
             ValueName                   = 'State'
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
-            DscResource                 = 'cAdministrativeTemplate'
+            DscResource                 = 'RegistryPolicyFile'
             TechnologyRole              = 'Technology_Target'
             CheckContent                = 'If the system is on the SIPRNet, this requirement is NA.
 
@@ -154,7 +154,7 @@ try
             ValueName                   = 'PlainWrapLen'
             ValueType                   = 'DWORD'
             Ensure                      = 'Present'
-            DscResource                 = 'cAdministrativeTemplate'
+            DscResource                 = 'RegistryPolicyFile'
             TechnologyRole              = 'Outlook'
             CheckContent                = 'Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
         }

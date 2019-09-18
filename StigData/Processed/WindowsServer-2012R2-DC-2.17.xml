@@ -1,4 +1,4 @@
-<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.17" created="8/14/2019">
+<DISASTIG version="2" classification="UNCLASSIFIED" customname="" stigid="Windows_2012_DC_STIG" description="The Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_and_2012_R2_DC_STIG_V2R17_Manual-xccdf.xml" releaseinfo="Release: 17 Benchmark Date: 26 Jul 2019" title="Windows Server 2012/2012 R2 Domain Controller Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="2.17" created="9/16/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-1097" severity="medium" conversionstatus="pass" title="Bad Logon Attempts" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system.  The higher this value is, the less effective the account lockout feature will be in protecting the local system.  The number of bad logon attempts must be reasonably small to minimize the possibility of a successful password attack, while allowing for honest errors made during a normal user logon.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1856,6 +1856,36 @@ Exclude disabled accounts (e.g., Guest).
 
 If any enabled user accounts are returned with a "PasswordRequired" status of "False", this is a finding.</RawString>
     </Rule>
+    <Rule id="V-8316" severity="high" conversionstatus="pass" title="Data File Access Permissions" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data related files could allow unauthorized users to read, modify, or delete directory data or audit trails.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the permissions on the content of the NTDS directory.
+
+Open the registry editor (regedit).
+Navigate to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters.
+Note the directory locations in the values for:
+Database log files path
+DSA Database file
+
+By default they will be \Windows\NTDS. If the locations are different, the following will need to be run for each.
+
+Open an elevated command prompt (Win+x, Command Prompt (Admin)).
+Navigate to the NTDS directory (\Windows\NTDS by default).
+Run "icacls *.*".
+
+If the permissions on each file are not at least as restrictive as the following, this is a finding.
+
+NT AUTHORITY\SYSTEM:(I)(F)
+BUILTIN\Administrators:(I)(F)
+
+(I) - permission inherited from parent container
+(F) - full access
+
+Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.</RawString>
+    </Rule>
     <Rule id="V-8317" severity="medium" conversionstatus="pass" title="Directory Server Data File Locations" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When directory service data files, especially for directories used for identification, authentication, or authorization, reside on the same logical partition as user-owned files, the directory service data may be more vulnerable to unauthorized access or other availability compromises.  Directory service and user-owned data files sharing a partition may be configured with less restrictive permissions in order to allow access to the user data.
 
@@ -2667,58 +2697,6 @@ Columns: Principal - Access - Applies to
 Administrators - Full Control - This key and subkeys
 Backup Operators - Read - This key only
 LOCAL SERVICE - Read - This key and subkeys</RawString>
-    </Rule>
-    <Rule id="V-8316" severity="high" conversionstatus="pass" title="Data File Access Permissions" dscresource="NTFSAccessEntry">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>NT AUTHORITY\SYSTEM</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>BUILTIN\Administrators</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl</Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;Improper access permissions for directory data related files could allow unauthorized users to read, modify, or delete directory data or audit trails.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path>%windir%\NTDS\*.*</Path>
-      <RawString>Verify the permissions on the content of the NTDS directory.
-
-Open the registry editor (regedit).
-Navigate to HKEY_LOCAL_MACHINE\System\CurrentControlSet\Services\NTDS\Parameters.
-Note the directory locations in the values for:
-Database log files path
-DSA Database file
-
-By default they will be \Windows\NTDS. If the locations are different, the following will need to be run for each.
-
-Open an elevated command prompt (Win+x, Command Prompt (Admin)).
-Navigate to the NTDS directory (\Windows\NTDS by default).
-Run "icacls *.*".
-
-If the permissions on each file are not at least as restrictive as the following, this is a finding.
-
-NT AUTHORITY\SYSTEM:(I)(F)
-BUILTIN\Administrators:(I)(F)
-
-(I) - permission inherited from parent container
-(F) - full access
-
-Do not use File Explorer to attempt to view permissions of the NTDS folder. Accessing the folder through File Explorer will change the permissions on the folder.</RawString>
     </Rule>
     <Rule id="V-26070" severity="high" conversionstatus="pass" title="Winlogon Registry Permissions" dscresource="RegistryAccessEntry">
       <AccessControlEntry>
@@ -4481,7 +4459,7 @@ Value:  0x0000000f (15) (or less)</RawString>
       <ValueName>autodisconnect</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-2374" severity="high" conversionstatus="pass" title="Disable Media Autoplay" dscresource="Registry">
+    <Rule id="V-2374" severity="high" conversionstatus="pass" title="Disable Media Autoplay" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing Autoplay to execute may introduce malicious code to a system.  Autoplay begins reading from a drive as soon media is inserted into the drive.  As a result, the setup file of programs or music on audio media may start.  By default, Autoplay is disabled on removable drives, such as the floppy disk drive (but not the CD-ROM drive) and on network drives.  Enabling this policy disables Autoplay on all drives.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4578,7 +4556,7 @@ Value: (Blank)</RawString>
       <ValueName>NullSessionShares</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
-    <Rule id="V-3343" severity="high" conversionstatus="pass" title="Remote Assistance - Solicit Remote Assistance" dscresource="Registry">
+    <Rule id="V-3343" severity="high" conversionstatus="pass" title="Remote Assistance - Solicit Remote Assistance" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote assistance allows another user to view or take control of the local session of a user.  Solicited assistance is help that is specifically requested by the local user.  This may allow unauthorized parties access to the resources on the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4813,7 +4791,7 @@ Value: 1</RawString>
       <ValueName>ObCaseInsensitive</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3449" severity="medium" conversionstatus="pass" title="TS/RDS -  Session Limit" dscresource="Registry">
+    <Rule id="V-3449" severity="medium" conversionstatus="pass" title="TS/RDS -  Session Limit" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing multiple Remote Desktop Services sessions could consume resources.  There is also potential to make a secondary connection to a system with compromised credentials.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECLO-1, ECLO-2&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4834,7 +4812,7 @@ Value: 1</RawString>
       <ValueName>fSingleSessionPerUser</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3453" severity="medium" conversionstatus="pass" title="TS/RDS - Password Prompting" dscresource="Registry">
+    <Rule id="V-3453" severity="medium" conversionstatus="pass" title="TS/RDS - Password Prompting" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This setting controls the ability of users to supply passwords automatically as part of their remote desktop connection.  Disabling this setting would allow anyone to use the stored credentials in a connection item to connect to the terminal server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4855,7 +4833,7 @@ Value: 1</RawString>
       <ValueName>fPromptForPassword</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3454" severity="medium" conversionstatus="pass" title="TS/RDS - Set Encryption Level" dscresource="Registry">
+    <Rule id="V-3454" severity="medium" conversionstatus="pass" title="TS/RDS - Set Encryption Level" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote connections must be encrypted to prevent interception of data or sensitive information. Selecting "High Level" will ensure encryption of Remote Desktop Services sessions in both directions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4876,7 +4854,7 @@ Value: 3</RawString>
       <ValueName>MinEncryptionLevel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3455" severity="medium" conversionstatus="pass" title="TS/RDS - Do Not Use Temp Folders" dscresource="Registry">
+    <Rule id="V-3455" severity="medium" conversionstatus="pass" title="TS/RDS - Do Not Use Temp Folders" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If a communal temporary folder is used for remote desktop sessions, it might be possible for users to access other users' temporary folders.  If this setting is enabled, only one temporary folder is used for all remote desktop sessions.  Per session temporary folders must be established.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4897,7 +4875,7 @@ Value: 1</RawString>
       <ValueName>PerSessionTempDir</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3456" severity="medium" conversionstatus="pass" title="TS/RDS - Delete Temp Folders" dscresource="Registry">
+    <Rule id="V-3456" severity="medium" conversionstatus="pass" title="TS/RDS - Delete Temp Folders" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote desktop session temporary folders must always be deleted after a session is over to prevent hard disk clutter and potential leakage of information.  This setting controls the deletion of the temporary folders when the session is terminated.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4918,7 +4896,7 @@ Value: 1</RawString>
       <ValueName>DeleteTempDirsOnExit</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3469" severity="medium" conversionstatus="pass" title="Group Policy - Do Not Turn off Background Refresh" dscresource="Registry">
+    <Rule id="V-3469" severity="medium" conversionstatus="pass" title="Group Policy - Do Not Turn off Background Refresh" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If this setting is enabled, then Group Policy settings are not refreshed while a user is currently logged on.  This could lead to instances when a user does not have the latest changes to a policy applied and is therefore operating in an insecure context.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4941,7 +4919,7 @@ Value: 0</RawString>
       <ValueName>DisableBkGndGroupPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3470" severity="medium" conversionstatus="pass" title="Remote Assistance - Offer Remote Assistance" dscresource="Registry">
+    <Rule id="V-3470" severity="medium" conversionstatus="pass" title="Remote Assistance - Offer Remote Assistance" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote assistance allows another user to view or take control of the local session of a user.  Unsolicited remote assistance is help that is offered by the remote user.  This may allow unauthorized parties access to the resources on the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4983,7 +4961,7 @@ Value: 1</RawString>
       <ValueName>SafeDllSearchMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3480" severity="medium" conversionstatus="pass" title="Media Player - Disable Automatic Updates" dscresource="Registry">
+    <Rule id="V-3480" severity="medium" conversionstatus="pass" title="Media Player - Disable Automatic Updates" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled system updates can introduce issues to a system.  The automatic check for updates performed by Windows Media Player must be disabled to ensure a constant platform and to prevent the introduction of unknown\untested software on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5006,7 +4984,7 @@ Value: 1</RawString>
       <ValueName>DisableAutoupdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-3481" severity="medium" conversionstatus="pass" title="Media Player - Prevent Codec Download" dscresource="cAdministrativeTemplate">
+    <Rule id="V-3481" severity="medium" conversionstatus="pass" title="Media Player - Prevent Codec Download" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Windows Media Player uses software components, referred to as Codecs, to play back media files.  By default, when an unknown file type is opened with the Media Player, it will search the Internet for the appropriate Codec and automatically download it.  To ensure platform consistency and to protect against new vulnerabilities associated with media types, all Codecs must be installed by the System Administrator.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5317,7 +5295,7 @@ Value: (Blank)</RawString>
       <ValueName>Optional</ValueName>
       <ValueType>MultiString</ValueType>
     </Rule>
-    <Rule id="V-4447" severity="medium" conversionstatus="pass" title="TS/RDS -  Secure RPC Connection." dscresource="Registry">
+    <Rule id="V-4447" severity="medium" conversionstatus="pass" title="TS/RDS -  Secure RPC Connection." dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing unsecure RPC communication exposes the system to man-in-the-middle attacks and data disclosure attacks.  A man-in-the-middle attack occurs when an intruder captures packets between a client and server and modifies them before allowing the packets to be exchanged.  Usually the attacker will modify the information in the packets in an attempt to cause either the client or server to reveal sensitive information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5338,7 +5316,7 @@ Value: 1</RawString>
       <ValueName>fEncryptRPCTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-4448" severity="medium" conversionstatus="pass" title="Group Policy - Registry Policy Processing" dscresource="Registry">
+    <Rule id="V-4448" severity="medium" conversionstatus="pass" title="Group Policy - Registry Policy Processing" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enabling this setting and then selecting the "Process even if the Group Policy objects have not changed" option ensures that the policies will be reprocessed even if none have been changed.  This way, any unauthorized changes are forced to match the domain-based group policy settings again.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5805,7 +5783,7 @@ Value: 1</RawString>
       <ValueName>EnableVirtualization</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14243" severity="medium" conversionstatus="pass" title="Enumerate Administrator Accounts on Elevation" dscresource="Registry">
+    <Rule id="V-14243" severity="medium" conversionstatus="pass" title="Enumerate Administrator Accounts on Elevation" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enumeration of administrator accounts when elevating can provide part of the logon information to an unauthorized user.  This setting configures the system to always require users to enter in a username and password to elevate a running application.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5826,7 +5804,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>EnumerateAdministrators</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14247" severity="medium" conversionstatus="pass" title="TS/RDS - Prevent Password Saving" dscresource="Registry">
+    <Rule id="V-14247" severity="medium" conversionstatus="pass" title="TS/RDS - Prevent Password Saving" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Saving passwords in the Remote Desktop Client could allow an unauthorized user to establish a remote desktop session to another system.  The system must be configured to prevent users from saving passwords in the Remote Desktop Client.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5847,7 +5825,7 @@ Value: 1</RawString>
       <ValueName>DisablePasswordSaving</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14249" severity="medium" conversionstatus="pass" title="TS/RDS - Drive Redirection" dscresource="Registry">
+    <Rule id="V-14249" severity="medium" conversionstatus="pass" title="TS/RDS - Drive Redirection" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preventing users from sharing the local drives on their client computers to Remote Session Hosts that they access helps reduce possible exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5868,7 +5846,7 @@ Value: 1</RawString>
       <ValueName>fDisableCdm</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14259" severity="medium" conversionstatus="pass" title="Printing Over HTTP" dscresource="Registry">
+    <Rule id="V-14259" severity="medium" conversionstatus="pass" title="Printing Over HTTP" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents the client computer from printing over HTTP, which allows the computer to print to printers on the intranet as well as the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5890,7 +5868,7 @@ Value: 1</RawString>
       <ValueName>DisableHTTPPrinting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14260" severity="medium" conversionstatus="pass" title="HTTP Printer Drivers" dscresource="Registry">
+    <Rule id="V-14260" severity="medium" conversionstatus="pass" title="HTTP Printer Drivers" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents the computer from downloading print driver packages over HTTP.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5912,7 +5890,7 @@ Value: 1</RawString>
       <ValueName>DisableWebPnPDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14261" severity="medium" conversionstatus="pass" title="Windows Update Device Drive Searching" dscresource="Registry">
+    <Rule id="V-14261" severity="medium" conversionstatus="pass" title="Windows Update Device Drive Searching" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents Windows from searching Windows Update for device drivers when no local drivers for a device are present.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -5934,7 +5912,7 @@ Value: 1</RawString>
       <ValueName>DontSearchWindowsUpdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14268" severity="medium" conversionstatus="pass" title="Attachment Mgr - Preserve Zone Info" dscresource="cAdministrativeTemplate">
+    <Rule id="V-14268" severity="medium" conversionstatus="pass" title="Attachment Mgr - Preserve Zone Info" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preserving zone of origin (internet, intranet, local, restricted) information on file attachments allows Windows to determine risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5955,7 +5933,7 @@ Value: 2</RawString>
       <ValueName>SaveZoneInformation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14269" severity="medium" conversionstatus="pass" title="Attachment Mgr - Hide Mech to Remove Zone Info" dscresource="cAdministrativeTemplate">
+    <Rule id="V-14269" severity="medium" conversionstatus="pass" title="Attachment Mgr - Hide Mech to Remove Zone Info" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preserving zone of origin (internet, intranet, local, restricted) information on file attachments allows Windows to determine risk.  This setting prevents users from manually removing zone information from saved file attachments.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5976,7 +5954,7 @@ Value: 1</RawString>
       <ValueName>HideZoneInfoOnProperties</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14270" severity="medium" conversionstatus="pass" title="Attachment Mgr - Scan with Antivirus" dscresource="cAdministrativeTemplate">
+    <Rule id="V-14270" severity="medium" conversionstatus="pass" title="Attachment Mgr - Scan with Antivirus" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Attaching malicious files is a known avenue of attack.  This setting configures the system to notify antivirus programs when a user opens a file attachment.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5997,7 +5975,7 @@ Value: 3</RawString>
       <ValueName>ScanWithAntiVirus</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15666" severity="medium" conversionstatus="pass" title="Windows Peer to Peer Networking " dscresource="Registry">
+    <Rule id="V-15666" severity="medium" conversionstatus="pass" title="Windows Peer to Peer Networking " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Peer-to-Peer applications can allow unauthorized access to a system and exposure of sensitive data.  This setting will turn off the Microsoft Peer-to-Peer Networking Service.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6018,7 +5996,7 @@ Value: 1</RawString>
       <ValueName>Disabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15667" severity="medium" conversionstatus="pass" title="Prohibit Network Bridge" dscresource="Registry">
+    <Rule id="V-15667" severity="medium" conversionstatus="pass" title="Prohibit Network Bridge" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;A Network Bridge can connect two or more network segments, allowing unauthorized access or exposure of sensitive data.  This setting prevents a Network Bridge from being installed and configured.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6039,7 +6017,7 @@ Value: 0</RawString>
       <ValueName>NC_AllowNetBridge_NLA</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15672" severity="low" conversionstatus="pass" title="Event Viewer Events.asp Links" dscresource="Registry">
+    <Rule id="V-15672" severity="low" conversionstatus="pass" title="Event Viewer Events.asp Links" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Viewing events is a function of administrators, who must not access the internet with privileged accounts.  This setting will disable  Events.asp hyperlinks in Event Viewer to prevent links to the internet from within events.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6060,7 +6038,7 @@ Value: 1</RawString>
       <ValueName>MicrosoftEventVwrDisableLinks</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15674" severity="medium" conversionstatus="pass" title="Internet File Association Service " dscresource="Registry">
+    <Rule id="V-15674" severity="medium" conversionstatus="pass" title="Internet File Association Service " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents unhandled file associations from using the Microsoft Web service to find an application.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6082,7 +6060,7 @@ Value: 1</RawString>
       <ValueName>NoInternetOpenWith</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15682" severity="medium" conversionstatus="pass" title="RSS Attachment Downloads" dscresource="Registry">
+    <Rule id="V-15682" severity="medium" conversionstatus="pass" title="RSS Attachment Downloads" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Attachments from RSS feeds may not be secure.  This setting will prevent attachments from being downloaded from RSS feeds.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6103,7 +6081,7 @@ Value: 1</RawString>
       <ValueName>DisableEnclosureDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15683" severity="medium" conversionstatus="pass" title="Windows Explorer – Shell Protocol Protected Mode " dscresource="Registry">
+    <Rule id="V-15683" severity="medium" conversionstatus="pass" title="Windows Explorer – Shell Protocol Protected Mode " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The shell protocol will  limit the set of folders applications can open when run in protected mode.  Restricting files an application can open to a limited set of folders increases the security of Windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6124,7 +6102,7 @@ Value: 0</RawString>
       <ValueName>PreXPSP2ShellProtocolBehavior</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15684" severity="medium" conversionstatus="pass" title="Windows Installer – IE Security Prompt" dscresource="Registry">
+    <Rule id="V-15684" severity="medium" conversionstatus="pass" title="Windows Installer – IE Security Prompt" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Users must be aware of attempted program installations.  This setting ensures users are notified if a web-based program attempts to install software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6145,7 +6123,7 @@ Value: 0</RawString>
       <ValueName>SafeForScripting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15685" severity="medium" conversionstatus="pass" title="Windows Installer – User Control " dscresource="Registry">
+    <Rule id="V-15685" severity="medium" conversionstatus="pass" title="Windows Installer – User Control " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Installation options for applications are typically controlled by administrators.  This setting prevents users from changing installation options that may bypass security features.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6166,7 +6144,7 @@ Value: 0</RawString>
       <ValueName>EnableUserControl</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15686" severity="low" conversionstatus="pass" title="Windows Installer – Vendor Signed Updates" dscresource="Registry">
+    <Rule id="V-15686" severity="low" conversionstatus="pass" title="Windows Installer – Vendor Signed Updates" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled system updates can introduce issues to a system.  This setting will prevent users from applying vendor-signed updates (though they may be from a trusted source).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6187,7 +6165,7 @@ Value: 1</RawString>
       <ValueName>DisableLUAPatching</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15687" severity="low" conversionstatus="pass" title="Media Player – First Use Dialog Boxes " dscresource="Registry">
+    <Rule id="V-15687" severity="low" conversionstatus="pass" title="Media Player – First Use Dialog Boxes " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents users from being presented with Privacy and Installation options on first use of Windows Media Player, which could enable some communication with the vendor.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6211,7 +6189,7 @@ Value: 1</RawString>
       <ValueName>GroupPrivacyAcceptance</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15696.a" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="Registry">
+    <Rule id="V-15696.a" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Mapper I/O network protocol (LLTDIO) driver allows the discovery of the connected network and allows various options to be enabled.  Disabling this helps protect the system from potentially discovering and connecting to unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6228,7 +6206,7 @@ Value: 0</RawString>
       <ValueName>AllowLLTDIOOndomain</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15696.b" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="Registry">
+    <Rule id="V-15696.b" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Mapper I/O network protocol (LLTDIO) driver allows the discovery of the connected network and allows various options to be enabled.  Disabling this helps protect the system from potentially discovering and connecting to unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6245,7 +6223,7 @@ Value: 0</RawString>
       <ValueName>AllowLLTDIOOnPublicNet</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15696.c" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="Registry">
+    <Rule id="V-15696.c" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Mapper I/O network protocol (LLTDIO) driver allows the discovery of the connected network and allows various options to be enabled.  Disabling this helps protect the system from potentially discovering and connecting to unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6262,7 +6240,7 @@ Value: 0</RawString>
       <ValueName>EnableLLTDIO</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15696.d" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="Registry">
+    <Rule id="V-15696.d" severity="medium" conversionstatus="pass" title="Network – Mapper I/O Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Mapper I/O network protocol (LLTDIO) driver allows the discovery of the connected network and allows various options to be enabled.  Disabling this helps protect the system from potentially discovering and connecting to unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6279,7 +6257,7 @@ Value: 0</RawString>
       <ValueName>ProhibitLLTDIOOnPrivateNet</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15697.a" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="Registry">
+    <Rule id="V-15697.a" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Responder network protocol driver allows a computer to be discovered and located on a network.  Disabling this helps protect the system from potentially being discovered and connected to by unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6296,7 +6274,7 @@ Value: 0</RawString>
       <ValueName>AllowRspndrOndomain</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15697.b" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="Registry">
+    <Rule id="V-15697.b" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Responder network protocol driver allows a computer to be discovered and located on a network.  Disabling this helps protect the system from potentially being discovered and connected to by unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6313,7 +6291,7 @@ Value: 0</RawString>
       <ValueName>AllowRspndrOnPublicNet</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15697.c" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="Registry">
+    <Rule id="V-15697.c" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Responder network protocol driver allows a computer to be discovered and located on a network.  Disabling this helps protect the system from potentially being discovered and connected to by unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6330,7 +6308,7 @@ Value: 0</RawString>
       <ValueName>EnableRspndr</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15697.d" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="Registry">
+    <Rule id="V-15697.d" severity="medium" conversionstatus="pass" title="Network – Responder Driver " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Responder network protocol driver allows a computer to be discovered and located on a network.  Disabling this helps protect the system from potentially being discovered and connected to by unauthorized devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6347,7 +6325,7 @@ Value: 0</RawString>
       <ValueName>ProhibitRspndrOnPrivateNet</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15698.a" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="Registry">
+    <Rule id="V-15698.a" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Connect Now allows the discovery and configuration of devices over wireless.  Wireless devices must be managed.  If a rogue device is connected to a system, there is potential for sensitive information to be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6364,7 +6342,7 @@ Value: 0</RawString>
       <ValueName>DisableFlashConfigRegistrar</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15698.b" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="Registry">
+    <Rule id="V-15698.b" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Connect Now allows the discovery and configuration of devices over wireless.  Wireless devices must be managed.  If a rogue device is connected to a system, there is potential for sensitive information to be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6381,7 +6359,7 @@ Value: 0</RawString>
       <ValueName>DisableInBand802DOT11Registrar</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15698.c" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="Registry">
+    <Rule id="V-15698.c" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Connect Now allows the discovery and configuration of devices over wireless.  Wireless devices must be managed.  If a rogue device is connected to a system, there is potential for sensitive information to be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6398,7 +6376,7 @@ Value: 0</RawString>
       <ValueName>DisableUPnPRegistrar</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15698.d" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="Registry">
+    <Rule id="V-15698.d" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Connect Now allows the discovery and configuration of devices over wireless.  Wireless devices must be managed.  If a rogue device is connected to a system, there is potential for sensitive information to be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6415,7 +6393,7 @@ Value: 0</RawString>
       <ValueName>DisableWPDRegistrar</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15698.e" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="Registry">
+    <Rule id="V-15698.e" severity="medium" conversionstatus="pass" title="Network – WCN Wireless Configuration " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Connect Now allows the discovery and configuration of devices over wireless.  Wireless devices must be managed.  If a rogue device is connected to a system, there is potential for sensitive information to be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6432,7 +6410,7 @@ Value: 0</RawString>
       <ValueName>EnableRegistrars</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15699" severity="medium" conversionstatus="pass" title="Network – Windows Connect Now Wizards " dscresource="Registry">
+    <Rule id="V-15699" severity="medium" conversionstatus="pass" title="Network – Windows Connect Now Wizards " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows Connect Now provides wizards for tasks such as "Set up a wireless router or access point" and must not be available to users.  Functions such as these may allow unauthorized connections to a system and the potential for sensitive information to be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6453,7 +6431,7 @@ Value: 1</RawString>
       <ValueName>DisableWcnUi</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15700" severity="medium" conversionstatus="pass" title="Device Install – PnP Interface Remote Access " dscresource="Registry">
+    <Rule id="V-15700" severity="medium" conversionstatus="pass" title="Device Install – PnP Interface Remote Access " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote access to the Plug and Play interface could potentially allow connections by unauthorized devices.  This setting configures remote access to the Plug and Play interface and must be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6474,7 +6452,7 @@ Value: 0</RawString>
       <ValueName>AllowRemoteRPC</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15701" severity="low" conversionstatus="pass" title="Device Install – Drivers System Restore Point" dscresource="Registry">
+    <Rule id="V-15701" severity="low" conversionstatus="pass" title="Device Install – Drivers System Restore Point" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;A system restore point allows a rollback if an issue is  encountered when a new device driver is installed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6495,7 +6473,7 @@ Value: 0</RawString>
       <ValueName>DisableSystemRestore</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15702" severity="low" conversionstatus="pass" title="Device Install – Generic Driver Error Report" dscresource="Registry">
+    <Rule id="V-15702" severity="low" conversionstatus="pass" title="Device Install – Generic Driver Error Report" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents an error report from being sent when a generic device driver is installed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6517,7 +6495,7 @@ Value: 1</RawString>
       <ValueName>DisableSendGenericDriverNotFoundToWER</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15703" severity="low" conversionstatus="pass" title="Driver Install – Device Driver Search Prompt" dscresource="Registry">
+    <Rule id="V-15703" severity="low" conversionstatus="pass" title="Driver Install – Device Driver Search Prompt" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents users from being prompted to search Windows Update for device drivers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6539,7 +6517,7 @@ Value: 1</RawString>
       <ValueName>DontPromptForWindowsUpdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15704" severity="low" conversionstatus="pass" title="Handwriting Recognition Error Reporting" dscresource="Registry">
+    <Rule id="V-15704" severity="low" conversionstatus="pass" title="Handwriting Recognition Error Reporting" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents errors in handwriting recognition on tablet PCs from being reported to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6561,7 +6539,7 @@ Value: 1</RawString>
       <ValueName>PreventHandwritingErrorReports</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15705" severity="medium" conversionstatus="pass" title="Power Mgmt – Password Wake on Battery" dscresource="Registry">
+    <Rule id="V-15705" severity="medium" conversionstatus="pass" title="Power Mgmt – Password Wake on Battery" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Authentication must always be required when accessing a system.  This setting ensures the user is prompted for a password on resume from sleep (on battery).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6582,7 +6560,7 @@ Value: 1</RawString>
       <ValueName>DCSettingIndex</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15706" severity="medium" conversionstatus="pass" title="Power Mgmt – Password Wake When Plugged In" dscresource="Registry">
+    <Rule id="V-15706" severity="medium" conversionstatus="pass" title="Power Mgmt – Password Wake When Plugged In" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Authentication must always be required when accessing a system.  This setting ensures the user is prompted for a password on resume from sleep (plugged in).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6603,7 +6581,7 @@ Value: 1</RawString>
       <ValueName>ACSettingIndex</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15707" severity="low" conversionstatus="pass" title="Remote Assistance – Session Logging" dscresource="Registry">
+    <Rule id="V-15707" severity="low" conversionstatus="pass" title="Remote Assistance – Session Logging" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks.  This setting will turn on session logging for Remote Assistance connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6624,7 +6602,7 @@ Value: 1</RawString>
       <ValueName>LoggingEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15718" severity="low" conversionstatus="pass" title="Windows Explorer – Heap Termination" dscresource="Registry">
+    <Rule id="V-15718" severity="low" conversionstatus="pass" title="Windows Explorer – Heap Termination" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Legacy plug-in applications may continue to function when a File Explorer session has become corrupt.  Disabling this feature will prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6645,7 +6623,7 @@ Value: 0</RawString>
       <ValueName>NoHeapTerminationOnCorruption</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15722" severity="medium" conversionstatus="pass" title="Media DRM – Internet Access" dscresource="Registry">
+    <Rule id="V-15722" severity="medium" conversionstatus="pass" title="Media DRM – Internet Access" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This check verifies that Windows Media DRM will be prevented from accessing the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6667,7 +6645,7 @@ Value: 1</RawString>
       <ValueName>DisableOnline</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15727" severity="medium" conversionstatus="pass" title="User Network Sharing" dscresource="cAdministrativeTemplate">
+    <Rule id="V-15727" severity="medium" conversionstatus="pass" title="User Network Sharing" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing users to share files in their profiles may provide unauthorized access or result in the exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6711,7 +6689,7 @@ Value: 0</RawString>
       <ValueName>EnableUIADesktopToggle</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15997" severity="medium" conversionstatus="pass" title="TS/RDS – COM Port Redirection" dscresource="Registry">
+    <Rule id="V-15997" severity="medium" conversionstatus="pass" title="TS/RDS – COM Port Redirection" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preventing the redirection of Remote Desktop session data to a client computer's COM ports helps reduce possible exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6732,7 +6710,7 @@ Value: 1</RawString>
       <ValueName>fDisableCcm</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15998" severity="medium" conversionstatus="pass" title="TS/RDS – LPT Port Redirection" dscresource="Registry">
+    <Rule id="V-15998" severity="medium" conversionstatus="pass" title="TS/RDS – LPT Port Redirection" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preventing the redirection of Remote Desktop session data to a client computer's LPT ports helps reduce possible exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6753,7 +6731,7 @@ Value: 1</RawString>
       <ValueName>fDisableLPT</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-15999" severity="medium" conversionstatus="pass" title="TS/RDS - PNP Device Redirection" dscresource="Registry">
+    <Rule id="V-15999" severity="medium" conversionstatus="pass" title="TS/RDS - PNP Device Redirection" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preventing the redirection of Plug and Play devices in Remote Desktop sessions helps reduce possible exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6774,7 +6752,7 @@ Value: 1</RawString>
       <ValueName>fDisablePNPRedir</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-16000" severity="medium" conversionstatus="pass" title="TS/RDS – Smart Card Device Redirection" dscresource="Registry">
+    <Rule id="V-16000" severity="medium" conversionstatus="pass" title="TS/RDS – Smart Card Device Redirection" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enabling the redirection of smart card devices allows their use within Remote Desktop sessions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -6818,7 +6796,7 @@ Value: 0</RawString>
       <ValueName>ValidateAdminCodeSignatures</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-16020" severity="medium" conversionstatus="pass" title="Windows Customer Experience Improvement Program " dscresource="Registry">
+    <Rule id="V-16020" severity="medium" conversionstatus="pass" title="Windows Customer Experience Improvement Program " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting ensures the Windows Customer Experience Improvement Program is disabled so information is not passed to the vendor.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6840,7 +6818,7 @@ Value: 0</RawString>
       <ValueName>CEIPEnable</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-16021" severity="medium" conversionstatus="pass" title="Help Experience Improvement Program " dscresource="cAdministrativeTemplate">
+    <Rule id="V-16021" severity="medium" conversionstatus="pass" title="Help Experience Improvement Program " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting ensures the Windows Help Experience Improvement Program is disabled to prevent information from being passed to the vendor.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -6862,7 +6840,7 @@ Value: 1</RawString>
       <ValueName>NoImplicitFeedback</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-16048" severity="medium" conversionstatus="pass" title="Help Ratings" dscresource="cAdministrativeTemplate">
+    <Rule id="V-16048" severity="medium" conversionstatus="pass" title="Help Ratings" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting ensures users cannot provide ratings feedback to Microsoft for Help content.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7035,7 +7013,7 @@ Value:  3 (or less)</RawString>
       <ValueName>TcpMaxDataRetransmissions</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21960" severity="low" conversionstatus="pass" title="Elevate when setting a network’s location" dscresource="Registry">
+    <Rule id="V-21960" severity="low" conversionstatus="pass" title="Elevate when setting a network’s location" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Selecting an incorrect network location may allow greater exposure of a system.  Elevation is required by default on nondomain systems to change network location.  This setting configures elevation to also be required on domain-joined systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7056,7 +7034,7 @@ Value: 1</RawString>
       <ValueName>NC_StdDomainUserSetLocation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21961" severity="low" conversionstatus="pass" title="Direct Access – Route Through Internal Network" dscresource="Registry">
+    <Rule id="V-21961" severity="low" conversionstatus="pass" title="Direct Access – Route Through Internal Network" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Routing all Direct Access  traffic through the internal network allows monitoring and prevents split tunneling.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7077,7 +7055,7 @@ Value: Enabled</RawString>
       <ValueName>Force_Tunneling</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-21963" severity="low" conversionstatus="pass" title="Windows Update Point and Print Driver Search" dscresource="Registry">
+    <Rule id="V-21963" severity="low" conversionstatus="pass" title="Windows Update Point and Print Driver Search" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting will prevent Windows from searching Windows Update for point and print drivers.  Only the local driver store and server driver cache will be searched.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7099,7 +7077,7 @@ Value: 1</RawString>
       <ValueName>DoNotInstallCompatibleDriverFromWindowsUpdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21964" severity="low" conversionstatus="pass" title="Prevent device metadata retrieval from Internet" dscresource="Registry">
+    <Rule id="V-21964" severity="low" conversionstatus="pass" title="Prevent device metadata retrieval from Internet" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting will prevent Windows from retrieving device metadata from the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7121,7 +7099,7 @@ Value:  1</RawString>
       <ValueName>PreventDeviceMetadataFromNetwork</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21965" severity="low" conversionstatus="pass" title="Prevent Windows Update for device driver search" dscresource="Registry">
+    <Rule id="V-21965" severity="low" conversionstatus="pass" title="Prevent Windows Update for device driver search" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting will prevent the system from searching Windows Update for device drivers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7143,7 +7121,7 @@ Value: 0</RawString>
       <ValueName>SearchOrderConfig</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21967" severity="low" conversionstatus="pass" title="MSDT Interactive Communication" dscresource="Registry">
+    <Rule id="V-21967" severity="low" conversionstatus="pass" title="MSDT Interactive Communication" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents the MSDT from communicating with and sending collected data to Microsoft, the default support provider.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7165,7 +7143,7 @@ Value: 0</RawString>
       <ValueName>DisableQueryRemoteServer</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21969" severity="low" conversionstatus="pass" title="Windows Online Troubleshooting Service" dscresource="Registry">
+    <Rule id="V-21969" severity="low" conversionstatus="pass" title="Windows Online Troubleshooting Service" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents users from searching troubleshooting content on Microsoft servers.  Only local content will be available.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7187,7 +7165,7 @@ Value: 0</RawString>
       <ValueName>EnableQueryRemoteServer</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21970" severity="low" conversionstatus="pass" title="Disable PerfTrack" dscresource="Registry">
+    <Rule id="V-21970" severity="low" conversionstatus="pass" title="Disable PerfTrack" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting prevents responsiveness events from being aggregated and sent to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7209,7 +7187,7 @@ Value: 0</RawString>
       <ValueName>ScenarioExecutionEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21971" severity="low" conversionstatus="pass" title="Application Compatibility Program Inventory" dscresource="Registry">
+    <Rule id="V-21971" severity="low" conversionstatus="pass" title="Application Compatibility Program Inventory" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting will prevent the Program Inventory from collecting data about a system and sending the information to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7231,7 +7209,7 @@ Value: 1</RawString>
       <ValueName>DisableInventory</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21973" severity="high" conversionstatus="pass" title="Autoplay for non-volume devices" dscresource="Registry">
+    <Rule id="V-21973" severity="high" conversionstatus="pass" title="Autoplay for non-volume devices" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing Autoplay to execute may introduce malicious code to a system.  Autoplay begins reading from a drive as soon as media is inserted into the drive.  As a result, the setup file of programs or music on audio media may start.  This setting will disable Autoplay for non-volume devices (such as Media Transfer Protocol (MTP) devices).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7252,7 +7230,7 @@ Value: 1</RawString>
       <ValueName>NoAutoplayfornonVolume</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-21980" severity="medium" conversionstatus="pass" title="Explorer Data Execution Prevention" dscresource="Registry">
+    <Rule id="V-21980" severity="medium" conversionstatus="pass" title="Explorer Data Execution Prevention" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Data Execution Prevention (DEP) provides additional protection by performing  checks on memory to help prevent malicious code from running.  This setting will prevent Data Execution Prevention from being turned off for File Explorer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7273,7 +7251,7 @@ Value: 0</RawString>
       <ValueName>NoDataExecutionPrevention</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-22692" severity="high" conversionstatus="pass" title="Default Autorun Behavior" dscresource="Registry">
+    <Rule id="V-22692" severity="high" conversionstatus="pass" title="Default Autorun Behavior" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing Autorun commands to execute may introduce malicious code to a system.  Configuring this setting prevents Autorun commands from executing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7342,7 +7320,7 @@ Automated tools may only search for the titles defined above. If a site-defined 
       <ValueName>LegalNoticeCaption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-26575" severity="medium" conversionstatus="pass" title="6to4 State" dscresource="Registry">
+    <Rule id="V-26575" severity="medium" conversionstatus="pass" title="6to4 State" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;IPv6 transition technologies, which tunnel packets through other protocols, do not provide visibility.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7363,7 +7341,7 @@ Value: Disabled</RawString>
       <ValueName>6to4_State</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-26576" severity="medium" conversionstatus="pass" title="IP-HTTPS State" dscresource="Registry">
+    <Rule id="V-26576" severity="medium" conversionstatus="pass" title="IP-HTTPS State" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;IPv6 transition technologies, which tunnel packets through other protocols, do not provide visibility.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7384,7 +7362,7 @@ Value: 3</RawString>
       <ValueName>IPHTTPS_ClientState</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26577" severity="medium" conversionstatus="pass" title="ISATAP State" dscresource="Registry">
+    <Rule id="V-26577" severity="medium" conversionstatus="pass" title="ISATAP State" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;IPv6 transition technologies, which tunnel packets through other protocols, do not provide visibility.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7405,7 +7383,7 @@ Value: Disabled</RawString>
       <ValueName>ISATAP_State</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-26578" severity="medium" conversionstatus="pass" title="Teredo State" dscresource="Registry">
+    <Rule id="V-26578" severity="medium" conversionstatus="pass" title="Teredo State" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;IPv6 transition technologies, which tunnel packets through other protocols, do not provide visibility.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7426,7 +7404,7 @@ Value: Disabled</RawString>
       <ValueName>Teredo_State</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-26579" severity="medium" conversionstatus="pass" title="Maximum Log Size - Application" dscresource="Registry">
+    <Rule id="V-26579" severity="medium" conversionstatus="pass" title="Maximum Log Size - Application" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7449,7 +7427,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26580" severity="medium" conversionstatus="pass" title="Maximum Log Size - Security" dscresource="Registry">
+    <Rule id="V-26580" severity="medium" conversionstatus="pass" title="Maximum Log Size - Security" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7472,7 +7450,7 @@ Value: 0x00030000 (196608) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26581" severity="medium" conversionstatus="pass" title="Maximum Log Size - Setup" dscresource="Registry">
+    <Rule id="V-26581" severity="medium" conversionstatus="pass" title="Maximum Log Size - Setup" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7495,7 +7473,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26582" severity="medium" conversionstatus="pass" title="Maximum Log Size - System" dscresource="Registry">
+    <Rule id="V-26582" severity="medium" conversionstatus="pass" title="Maximum Log Size - System" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7518,7 +7496,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-28504" severity="low" conversionstatus="pass" title="Device Install Software Request Error Report" dscresource="Registry">
+    <Rule id="V-28504" severity="low" conversionstatus="pass" title="Device Install Software Request Error Report" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.
 This setting will prevent Windows from sending an error report to Microsoft when a device driver requests additional software during installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -7540,7 +7518,7 @@ Value: 1</RawString>
       <ValueName>DisableSendRequestAdditionalSoftwareToWER</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-34974" severity="high" conversionstatus="pass" title="Always Install with Elevated Privileges Disabled" dscresource="Registry">
+    <Rule id="V-34974" severity="high" conversionstatus="pass" title="Always Install with Elevated Privileges Disabled" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Standard user accounts must not be granted elevated privileges.  Enabling Windows Installer to elevate privileges when installing applications can allow malicious persons and applications to gain full control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7561,7 +7539,7 @@ Value: 0</RawString>
       <ValueName>AlwaysInstallElevated</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36656" severity="medium" conversionstatus="pass" title="WINUC-000001" dscresource="cAdministrativeTemplate">
+    <Rule id="V-36656" severity="medium" conversionstatus="pass" title="WINUC-000001" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and must be locked when unattended.  Enabling a password-protected screen saver to engage after a specified period of time helps protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7587,7 +7565,7 @@ Applications requiring continuous, real-time screen display (e.g., network manag
       <ValueName>ScreenSaveActive</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-36657" severity="medium" conversionstatus="pass" title="WINUC-000003" dscresource="cAdministrativeTemplate">
+    <Rule id="V-36657" severity="medium" conversionstatus="pass" title="WINUC-000003" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unattended systems are susceptible to unauthorized use and must be locked when unattended.  Enabling a password-protected screen saver to engage after a specified period of time helps protects critical and sensitive data from exposure to unauthorized personnel with physical access to the computer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;PESL-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7608,7 +7586,7 @@ Value: 1</RawString>
       <ValueName>ScreenSaverIsSecure</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-36673" severity="low" conversionstatus="pass" title="WINCC-000011" dscresource="Registry">
+    <Rule id="V-36673" severity="low" conversionstatus="pass" title="WINCC-000011" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;IP stateless autoconfiguration could configure routes that circumvent preferred routes if not limited.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7629,7 +7607,7 @@ Value: 1</RawString>
       <ValueName>EnableIPAutoConfigurationLimits</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36677" severity="low" conversionstatus="pass" title="WINCC-000018" dscresource="Registry">
+    <Rule id="V-36677" severity="low" conversionstatus="pass" title="WINCC-000018" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled system updates can introduce issues to a system.  Obtaining update components from an outside source may also potentially provide sensitive information outside of the enterprise.  Optional component installation or repair must be obtained from an internal source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7650,7 +7628,7 @@ Value: 2</RawString>
       <ValueName>UseWindowsUpdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36678" severity="low" conversionstatus="pass" title="WINCC-000025" dscresource="Registry">
+    <Rule id="V-36678" severity="low" conversionstatus="pass" title="WINCC-000025" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled system updates can introduce issues to a system.  Obtaining update components from an outside source may also potentially provide sensitive information outside of the enterprise.  Device driver updates must be obtained from an internal source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7671,7 +7649,7 @@ Value: 1</RawString>
       <ValueName>DriverServerSelection</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36679" severity="medium" conversionstatus="pass" title="WINCC-000027" dscresource="Registry">
+    <Rule id="V-36679" severity="medium" conversionstatus="pass" title="WINCC-000027" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Compromised boot drivers can introduce malware prior to some protection mechanisms that load after initialization.  The Early Launch Antimalware driver can limit allowed drivers based on classifications determined by the malware protection application.  At a minimum, drivers determined to be bad must not be allowed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECVP-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7692,7 +7670,7 @@ Value: 1</RawString>
       <ValueName>DriverLoadPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36680" severity="medium" conversionstatus="pass" title="WINCC-000030" dscresource="Registry">
+    <Rule id="V-36680" severity="medium" conversionstatus="pass" title="WINCC-000030" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled installation of applications can introduce various issues, including system instability, and allow access to sensitive information.  Installation of applications must be controlled by the enterprise.  Turning off access to the Windows Store will limit access to publicly available applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7715,7 +7693,7 @@ Value: 1</RawString>
       <ValueName>NoUseStoreOpenWith</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36681" severity="medium" conversionstatus="pass" title="WINCC-000048" dscresource="Registry">
+    <Rule id="V-36681" severity="medium" conversionstatus="pass" title="WINCC-000048" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing different input methods for sign-in could open different avenues of attack.  User input methods must be restricted to those enabled for the system account at sign-in.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7736,7 +7714,7 @@ Value: 1</RawString>
       <ValueName>BlockUserInputMethodsForSignIn</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36684" severity="medium" conversionstatus="pass" title="WINCC-000051" dscresource="Registry">
+    <Rule id="V-36684" severity="medium" conversionstatus="pass" title="WINCC-000051" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The username is one part of logon credentials that could be used to gain access to a system.  Preventing the enumeration of users limits this information to authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7757,7 +7735,7 @@ Value: 0</RawString>
       <ValueName>EnumerateLocalUsers</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36687" severity="medium" conversionstatus="pass" title="WINCC-000052" dscresource="Registry">
+    <Rule id="V-36687" severity="medium" conversionstatus="pass" title="WINCC-000052" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;App notifications that are displayed on the lock screen could display sensitive information to unauthorized personnel.  Turning off this feature will limit access to the information to a logged on user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7778,7 +7756,7 @@ Value: 1</RawString>
       <ValueName>DisableLockScreenAppNotifications</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36696" severity="low" conversionstatus="pass" title="WINCC-000065" dscresource="Registry">
+    <Rule id="V-36696" severity="low" conversionstatus="pass" title="WINCC-000065" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature.  Turning off this feature will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7799,7 +7777,7 @@ Value: 0</RawString>
       <ValueName>DisablePcaUI</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36697" severity="low" conversionstatus="pass" title="WINCC-000070" dscresource="Registry">
+    <Rule id="V-36697" severity="low" conversionstatus="pass" title="WINCC-000070" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enabling trusted app installation allows for enterprise line of business Windows 8 type apps.   A trusted app package is one that is signed with a certificate chain that can be successfully validated in the enterprise.  Configuring this ensures enterprise line of business apps are accessible.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7820,7 +7798,7 @@ Value: 1</RawString>
       <ValueName>AllowAllTrustedApps</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36698" severity="medium" conversionstatus="pass" title="WINCC-000075" dscresource="Registry">
+    <Rule id="V-36698" severity="medium" conversionstatus="pass" title="WINCC-000075" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing biometrics may bypass required authentication methods.  Biometrics may only be used as an additional authentication factor where an enhanced strength of identity credential is necessary or desirable.  Additional factors must be met per DoD policy.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;IAIA-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7841,7 +7819,7 @@ Value: 0</RawString>
       <ValueName>Enabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36700" severity="medium" conversionstatus="pass" title="WINCC-000076" dscresource="Registry">
+    <Rule id="V-36700" severity="medium" conversionstatus="pass" title="WINCC-000076" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Visible passwords may be seen by nearby persons, compromising them.  The password reveal button can be used to display an entered password and must not be allowed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;IAIA-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7862,7 +7840,7 @@ Value: 1</RawString>
       <ValueName>DisablePasswordReveal</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36707" severity="medium" conversionstatus="pass" title="WINCC-000088" dscresource="Registry">
+    <Rule id="V-36707" severity="medium" conversionstatus="pass" title="WINCC-000088" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows SmartScreen helps protect systems from programs downloaded from the Internet that may be malicious. Warning a user before running downloaded unknown software, at minimum, will help prevent potentially malicious programs from executing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7886,7 +7864,7 @@ Or 0x00000002 (2) (Require approval…)</RawString>
       <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36708" severity="medium" conversionstatus="pass" title="WINCC-000095" dscresource="Registry">
+    <Rule id="V-36708" severity="medium" conversionstatus="pass" title="WINCC-000095" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The location service on systems may allow sensitive data to be used by applications on the system.  This should be turned off unless explicitly allowed for approved systems/applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7909,7 +7887,7 @@ If location services are approved for the system by the organization, this may b
       <ValueName>DisableLocation</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36709" severity="medium" conversionstatus="pass" title="WINCC-000106" dscresource="Registry">
+    <Rule id="V-36709" severity="medium" conversionstatus="pass" title="WINCC-000106" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Basic authentication uses plain text passwords that could be used to compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7930,7 +7908,7 @@ Value: 0</RawString>
       <ValueName>AllowBasicAuthInClear</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36710.a" severity="low" conversionstatus="pass" title="WINCC-000109" dscresource="Registry">
+    <Rule id="V-36710.a" severity="low" conversionstatus="pass" title="WINCC-000109" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled system updates can introduce issues to a system.  Obtaining update components from an outside source may also potentially allow sensitive information outside of the enterprise.  Application updates must be obtained from an internal source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7947,7 +7925,7 @@ Value:  0x00000002 (2)</RawString>
       <ValueName>AutoDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36710.b" severity="low" conversionstatus="pass" title="WINCC-000109" dscresource="Registry">
+    <Rule id="V-36710.b" severity="low" conversionstatus="pass" title="WINCC-000109" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled system updates can introduce issues to a system.  Obtaining update components from an outside source may also potentially allow sensitive information outside of the enterprise.  Application updates must be obtained from an internal source.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7964,7 +7942,7 @@ Value:  0x00000002 (2)</RawString>
       <ValueName>AutoDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36711" severity="medium" conversionstatus="pass" title="WINCC-000110" dscresource="Registry">
+    <Rule id="V-36711" severity="medium" conversionstatus="pass" title="WINCC-000110" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Uncontrolled installation of applications can introduce various issues, including system instability, and provide access to sensitive information.  Installation of applications must be controlled by the enterprise.  Turning off access to the Windows Store will limit access to publicly available applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -7986,7 +7964,7 @@ Value:  1</RawString>
       <ValueName>RemoveWindowsStore</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36712" severity="high" conversionstatus="pass" title="WINCC-000123" dscresource="Registry">
+    <Rule id="V-36712" severity="high" conversionstatus="pass" title="WINCC-000123" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Basic authentication uses plain text passwords that could be used to compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;IAIA-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8007,7 +7985,7 @@ Value: 0</RawString>
       <ValueName>AllowBasic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36713" severity="medium" conversionstatus="pass" title="WINCC-000124" dscresource="Registry">
+    <Rule id="V-36713" severity="medium" conversionstatus="pass" title="WINCC-000124" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unencrypted remote access to a system can allow sensitive information to be compromised.  Windows remote management connections must be encrypted to prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8028,7 +8006,7 @@ Value: 0</RawString>
       <ValueName>AllowUnencryptedTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36714" severity="medium" conversionstatus="pass" title="WINCC-000125" dscresource="Registry">
+    <Rule id="V-36714" severity="medium" conversionstatus="pass" title="WINCC-000125" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Digest authentication is not as strong as other options and may be subject to man-in-the-middle attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;IAIA-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8049,7 +8027,7 @@ Value: 0</RawString>
       <ValueName>AllowDigest</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36718" severity="high" conversionstatus="pass" title="WINCC-000126" dscresource="Registry">
+    <Rule id="V-36718" severity="high" conversionstatus="pass" title="WINCC-000126" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Basic authentication uses plain text passwords that could be used to compromise a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8070,7 +8048,7 @@ Value: 0</RawString>
       <ValueName>AllowBasic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36719" severity="medium" conversionstatus="pass" title="WINCC-000127" dscresource="Registry">
+    <Rule id="V-36719" severity="medium" conversionstatus="pass" title="WINCC-000127" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unencrypted remote access to a system can allow sensitive information to be compromised.  Windows remote management connections must be encrypted to prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8091,7 +8069,7 @@ Value: 0</RawString>
       <ValueName>AllowUnencryptedTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36720" severity="medium" conversionstatus="pass" title="WINCC-000128" dscresource="Registry">
+    <Rule id="V-36720" severity="medium" conversionstatus="pass" title="WINCC-000128" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Storage of administrative credentials could allow unauthorized access.  Disallowing the storage of RunAs credentials for Windows Remote Management will prevent them from being used with plug-ins.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECLP-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8133,7 +8111,7 @@ Value: 0x00000384 (900) (or less, excluding "0" which is effectively disabled)</
       <ValueName>InactivityTimeoutSecs</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36776" severity="low" conversionstatus="pass" title="WINUC-000005" dscresource="cAdministrativeTemplate">
+    <Rule id="V-36776" severity="low" conversionstatus="pass" title="WINUC-000005" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Windows Push Notification Service (WNS) allows third-party vendors to send updates for toasts, tiles, and badges.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8154,7 +8132,7 @@ Value: 1</RawString>
       <ValueName>NoCloudApplicationNotification</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-36777" severity="low" conversionstatus="pass" title="WINUC-000006" dscresource="cAdministrativeTemplate">
+    <Rule id="V-36777" severity="low" conversionstatus="pass" title="WINUC-000006" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Toast notifications that are displayed on the lock screen could display sensitive information to unauthorized personnel.  Turning off this feature will limit access to the information to a logged on user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8175,7 +8153,7 @@ Value: 1</RawString>
       <ValueName>NoToastApplicationNotificationOnLockScreen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-40204" severity="medium" conversionstatus="pass" title="WNCC-000136" dscresource="Registry">
+    <Rule id="V-40204" severity="medium" conversionstatus="pass" title="WNCC-000136" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing the redirection of only the default client printer to a Remote Desktop session helps reduce possible exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8196,7 +8174,7 @@ Value: 1</RawString>
       <ValueName>RedirectOnlyDefaultClientPrinter</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-43238" severity="medium" conversionstatus="pass" title="WINCC-000138" dscresource="Registry">
+    <Rule id="V-43238" severity="medium" conversionstatus="pass" title="WINCC-000138" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Slide shows that are displayed on the lock screen could display sensitive information to unauthorized personnel.  Turning off this feature will limit access to the information to a logged on user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8219,7 +8197,7 @@ Value: 1</RawString>
       <ValueName>NoLockScreenSlideshow</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-43239" severity="medium" conversionstatus="pass" title="WINCC-000139" dscresource="Registry">
+    <Rule id="V-43239" severity="medium" conversionstatus="pass" title="WINCC-000139" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Enabling "Include command line data for process creation events" will record the command line information with the process creation events in the log. This can provide additional detail when malware has run on a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -8244,7 +8222,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>ProcessCreationIncludeCmdLine_Enabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-43240" severity="medium" conversionstatus="pass" title="WINCC-000140" dscresource="Registry">
+    <Rule id="V-43240" severity="medium" conversionstatus="pass" title="WINCC-000140" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enabling interaction with the network selection UI allows users to change connections to available networks without signing into Windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8267,7 +8245,7 @@ Value: 1</RawString>
       <ValueName>DontDisplayNetworkSelectionUI</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-43241" severity="low" conversionstatus="pass" title="WINCC-000141" dscresource="Registry">
+    <Rule id="V-43241" severity="low" conversionstatus="pass" title="WINCC-000141" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Control of credentials and the system must be maintained within the enterprise.  Enabling this setting allows enterprise credentials to be used with modern style apps that support this, instead of Microsoft accounts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8290,7 +8268,7 @@ Value: 1</RawString>
       <ValueName>MSAOptional</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-43245" severity="medium" conversionstatus="pass" title="WINCC-000145" dscresource="Registry">
+    <Rule id="V-43245" severity="medium" conversionstatus="pass" title="WINCC-000145" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows 2012 R2 can be configured to automatically sign the user back in after a Windows Update restart.  Some protections are in place to help ensure this is done in a secure fashion; however, disabling this will prevent the caching of credentials for this purpose and also ensure the user is aware of the restart.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8340,7 +8318,7 @@ Value:  2</RawString>
       <ValueName>ForceKeyProtection</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72753" severity="medium" conversionstatus="pass" title="WINCC-000150" dscresource="Registry">
+    <Rule id="V-72753" severity="medium" conversionstatus="pass" title="WINCC-000150" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;When the WDigest Authentication protocol is enabled, plain text passwords are stored in the Local Security Authority Subsystem Service (LSASS) exposing them to theft.  This setting will prevent WDigest from storing credentials in memory.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -8363,7 +8341,7 @@ Note: Microsoft Security Advisory update 2871997 is required for this setting to
       <ValueName>UseLogonCredential</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73519" severity="medium" conversionstatus="pass" title="WIN00-000170" dscresource="Registry">
+    <Rule id="V-73519" severity="medium" conversionstatus="pass" title="WIN00-000170" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.
 
 Disabling SMBv1 support may prevent access to file or print sharing resources with systems or devices that only support SMBv1. File shares and print services hosted on Windows Server 2003 are an example, however Windows Server 2003 is no longer a supported operating system. Some older network attached devices may only support SMBv1.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -8390,7 +8368,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>SMB1</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-80475" severity="medium" conversionstatus="pass" title="WIN00-000210" dscresource="Registry">
+    <Rule id="V-80475" severity="medium" conversionstatus="pass" title="WIN00-000210" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Enabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts. This can provide additional detail when malware has run on a system.
