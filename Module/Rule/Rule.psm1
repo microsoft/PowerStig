@@ -180,12 +180,19 @@ Class Rule : ICloneable
         .SYNOPSIS
             Applies an exception to a rule
     #>
-    [void] AddExceptionToPolicy ([hashtable] $ExceptionParamValue)
+    [void] AddExceptionToPolicy ([object] $ExceptionParamValue)
     {
         $this.UpdateRuleTitle('Exception')
-        foreach ($key in $ExceptionParamValue.Keys)
+        if ($ExceptionParamValue -is [hashtable])
         {
-            $this.$key = $ExceptionParamValue[$key]
+            foreach ($key in $ExceptionParamValue.Keys)
+            {
+                $this.$key = $ExceptionParamValue[$key]
+            }
+        }
+        else
+        {
+            $this.($this.GetOverrideValue()) = $ExceptionParamValue
         }
     }
 

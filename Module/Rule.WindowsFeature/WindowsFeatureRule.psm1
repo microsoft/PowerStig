@@ -17,7 +17,7 @@ using module .\..\Rule\Rule.psm1
 Class WindowsFeatureRule : Rule
 {
     [string] $Name
-    [string] $Ensure
+    [string] $Ensure <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS
