@@ -1,6 +1,6 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_PowerPoint_2013" description="The Microsoft PowerPoint 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Apr 2018" title="Microsoft PowerPoint 2013 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="7/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_PowerPoint_2013" description="The Microsoft PowerPoint 2013 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_PowerPoint_2013_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 27 Apr 2018" title="Microsoft PowerPoint 2013 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="9/6/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="Registry">
+    <Rule id="V-17173" severity="medium" conversionstatus="pass" title="DTOO104 - Disable user name and password" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
 
 This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If user names and passwords in URLs are allowed, users could be diverted to dangerous web pages, which could pose a security risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -21,7 +21,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17174" severity="medium" conversionstatus="pass" title="DTOO111 - Enable IE Bind to Object " dscresource="Registry">
+    <Rule id="V-17174" severity="medium" conversionstatus="pass" title="DTOO111 - Enable IE Bind to Object " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer performs a number of safety checks before initializing an ActiveX control. It will not initialize a control if the kill bit for the control is set in the registry, or if the security settings for the zone in which the control is located do not allow it to be initialized.
 This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). A security risk could occur if potentially dangerous controls are allowed to load.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -41,7 +41,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17175" severity="medium" conversionstatus="pass" title="DTOO117 - Saved from URL" dscresource="Registry">
+    <Rule id="V-17175" severity="medium" conversionstatus="pass" title="DTOO117 - Saved from URL" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Typically, when Internet Explorer loads a web page from a Universal Naming Convention (UNC) share that contains a Mark of the Web (MOTW) comment, indicating the page was saved from a site on the Internet; Internet Explorer runs the page in the Internet security zone instead of the less restrictive Local Intranet security zone. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If Internet Explorer does not evaluate the page for a MOTW, potentially dangerous code could be allowed to run.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -60,7 +60,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17183" severity="medium" conversionstatus="pass" title="DTOO123-Block Navigation to URL from Office " dscresource="Registry">
+    <Rule id="V-17183" severity="medium" conversionstatus="pass" title="DTOO123-Block Navigation to URL from Office " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;To protect users from attacks, Internet Explorer usually does not attempt to load malformed URLs. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If Internet Explorer attempts to load a malformed URL, a security risk could occur.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -79,7 +79,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17184" severity="medium" conversionstatus="pass" title="DTOO129 - Block Pop-Ups" dscresource="Registry">
+    <Rule id="V-17184" severity="medium" conversionstatus="pass" title="DTOO129 - Block Pop-Ups" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Pop-up Blocker feature in Internet Explorer can be used to block most unwanted pop-up and pop-under windows from appearing. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If the Pop-up Blocker is disabled, disruptive and potentially dangerous pop-up windows could load and present a security risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -98,7 +98,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17187" severity="medium" conversionstatus="pass" title="DTOO131 - Trust Bar Notifications" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;If an application is configured to require all add-ins to be signed by a trusted publisher, any unsigned add-ins the application loads will be disabled and the application will display the Trust Bar at the top of the active window. The Trust Bar contains a message informing users about the unsigned add-in. If a user is allowed to make the determination to allow an unsigned add-in, it increases the risk of malicious code being introduced onto the user's computer or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -117,7 +117,7 @@ Criteria: If the value notbpromptunsignedaddin is REG_DWORD = 1, this is not a f
       <ValueName>notbpromptunsignedaddin</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17322" severity="medium" conversionstatus="pass" title="DTOO210 - Block opening of pre-release versions " dscresource="cAdministrativeTemplate">
+    <Rule id="V-17322" severity="medium" conversionstatus="pass" title="DTOO210 - Block opening of pre-release versions " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Versions of file formats from pre-release versions of Office applications may introduce bugs found in those pre-release versions of the applications which have been subsequently fixed in the final release version.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -136,7 +136,7 @@ Criteria: If the value powerpoint12betafilesfromconverters is REG_DWORD = 1, thi
       <ValueName>powerpoint12betafilesfromconverters</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="cAdministrativeTemplate">
+    <Rule id="V-17471" severity="medium" conversionstatus="pass" title="DTOO133-Disable all trusted locations " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Trusted locations specified in the Trust Center are used to define file locations assumed to be safe. Content, code, and add-ins are allowed to load from trusted locations with a minimal amount of security, without prompting the users for permission. If a dangerous file is opened from a trusted location, it will not be subject to standard security measures and could harm users' computers or data. By default, files located in trusted locations (those specified in the Trust Center) are assumed to be safe.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -155,7 +155,7 @@ Criteria: If the value AllLocationsDisabled is REG_DWORD = 1, this is not a find
       <ValueName>AllLocationsDisabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17473" severity="medium" conversionstatus="pass" title="DTOO142 - Force Scan Encr. Macros in open XML" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;When an Office Open XML document (Word, Excel, and PowerPoint) is rights-managed, or password-protected, any macros embedded in the document are encrypted along with the rest of the contents.  By default, these encrypted macros will be disabled unless they are scanned by antivirus software immediately before being loaded. If this default configuration is modified, Office products will not require encrypted macros to be scanned before loading. They will be handled as specified by the Office System macro security settings, which can cause macro viruses to load undetected and lead to data loss or reduced application functionality.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -174,7 +174,7 @@ Criteria: If the value PowerPointBypassEncryptedMacroScan is REG_DWORD = 0, this
       <ValueName>PowerPointBypassEncryptedMacroScan</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17520" severity="medium" conversionstatus="pass" title="DTOO134 - Trusted locations on computer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Files located in Trusted Locations and specified in the Trust Center are assumed to be safe. Content, code, and add-ins are allowed to load from Trusted Locations with minimal security and without prompting the user for permission. By default, users can specify Trusted Locations on network shares, or in other remote locations not under their direct control, by selecting the "Allow Trusted Locations on my network" (not recommended) check box in the Trusted Locations section of the Trust Center. If a dangerous file is opened from a trusted location, it will not be subject to typical security measures and could affect users' computers or data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -193,7 +193,7 @@ Criteria: If the value AllowNetworkLocations is REG_DWORD = 0, this is not a fin
       <ValueName>AllowNetworkLocations</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17521" severity="medium" conversionstatus="pass" title="DTOO139 - Save files default format" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;When users create new PowerPoint files, PowerPoint 2013 saves them in the new *.pptx format.  Ensure this setting is enabled to specify that all new files are created in PowerPoint 2013.  If a new file is created in an earlier format, some users may not be able to open or use the file, or they may choose a format this is less secure than the PowerPoint 2013 format.  Users can still select a specific format when they save files, but they cannot change default of this setting from the PowerPoint Options dialog box.  This enforced user behavior ensures any change to the file format requires additional deliberate user interaction.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -212,7 +212,7 @@ Criteria: If the value DefaultFormat is REG_DWORD = 1b (hex) 27 (dec), this is n
       <ValueName>DefaultFormat</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17522" severity="medium" conversionstatus="pass" title="DTOO146-Disable Trust access to VB Project Macros" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;VSTO projects require access to the Visual Basic for Applications project system in Excel, PowerPoint, and Word, even though the projects do not use Visual Basic for Applications. Design-time support of controls in both Visual Basic and C# projects depends on the Visual Basic for Applications project system in Word and Excel. By default, Excel, Word, and PowerPoint do not allow automation clients to have programmatic access to VBA projects. Users can enable this by selecting the Trust access to the VBA project object model in the Macro Settings section of the Trust Center. However, doing so allows macros in any documents the user opens to access the core Visual Basic objects, methods, and properties, which represents a potential security hazard.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -231,7 +231,7 @@ Criteria: If the value AccessVBOM is REG_DWORD=0, this is not a finding.</RawStr
       <ValueName>AccessVBOM</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17545" severity="medium" conversionstatus="pass" title="DTOO304 - VBA Macro Warning settings" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;When users open files containing VBA macros, applications open the files with the macros disabled and displays the Trust Bar with a warning that macros are present and have been disabled. Users may then enable these macros by clicking Options on the Trust Bar and selecting the option to enable them. Disabling or not configuring this setting may allow dangerous macros to become active on user computers or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -250,7 +250,7 @@ Criteria: If the value VBAWarnings is REG_DWORD = 2, this is not a finding.</Raw
       <ValueName>VBAWarnings</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17752" severity="medium" conversionstatus="pass" title="DTOO290 - Make Hidden marks visible in PowerPoint" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17752" severity="medium" conversionstatus="pass" title="DTOO290 - Make Hidden marks visible in PowerPoint" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;PowerPoint presentations that are saved in standard or HTML format can contain a flag indicating whether markup (comments or ink annotations) in the presentation should be visible when the presentation is open. PowerPoint ignores this flag when opening a file, and always displays any markup present in the file. In addition, when saving a file, PowerPoint sets the flag to display markup when the presentation is next opened.
 If this default configuration is changed, PowerPoint sets the flag according to the state of the Show Markup option on the Review tab of the Ribbon when it saves presentations in standard or HTML format. In addition, PowerPoint enables or disables the Show Markup option according to the way the flag is set when it opens files, which means that a presentation saved with hidden markup is opened with the markup still hidden.
 If a file is saved with hidden markup, users might inadvertently distribute sensitive comments or information to others via the presentation file.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -272,7 +272,7 @@ Criteria: If the value MarkupOpenSave is REG_DWORD = 1, this is not a finding.
       <ValueName>MarkupOpenSave</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17788" severity="medium" conversionstatus="pass" title="DTOO289 - Running programs in PowerPoint" dscresource="cAdministrativeTemplate">
+    <Rule id="V-17788" severity="medium" conversionstatus="pass" title="DTOO289 - Running programs in PowerPoint" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Action buttons can be used to launch external programs from PowerPoint presentations. If a malicious person adds an action button to a presentation that launches a dangerous program, it could significantly affect the security of a user's computer and data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -291,7 +291,7 @@ Criteria: If the value RunPrograms is REG_DWORD = 0, this is not a finding.</Raw
       <ValueName>RunPrograms</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-17809" severity="medium" conversionstatus="pass" title="DTOO291 - Linked images " dscresource="cAdministrativeTemplate">
+    <Rule id="V-17809" severity="medium" conversionstatus="pass" title="DTOO291 - Linked images " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;When users insert images into PowerPoint presentations, they can select Link to File instead of Insert. If they do so, the image is represented by a link to a file on disk instead of being embedded in the presentation file itself. By default, when PowerPoint opens a presentation it does not display any linked images saved on a different computer unless the presentation itself is saved in a trusted location (as configured in the Trust Center). If this configuration is changed, PowerPoint will load any images that were saved in remote locations, which presents a security risk.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -311,7 +311,7 @@ Criteria: If the value DownloadImages is REG_DWORD = 0, this is not a finding.</
       <ValueName>DownloadImages</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26584" severity="medium" conversionstatus="pass" title="DTOO126 - Add-on Management" dscresource="Registry">
+    <Rule id="V-26584" severity="medium" conversionstatus="pass" title="DTOO126 - Add-on Management" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes users type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer, and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -330,7 +330,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26585" severity="medium" conversionstatus="pass" title="DTOO209 - Zone Elevation Protection" dscresource="Registry">
+    <Rule id="V-26585" severity="medium" conversionstatus="pass" title="DTOO209 - Zone Elevation Protection" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer places restrictions on each web page users can use the browser to open. Web pages on a user's local computer have the fewest security restrictions and reside in the Local Machine zone, making this security zone a prime target for malicious users and code. Disabling or not configuring this setting could allow pages in the Internet zone to navigate to pages in the Local Machine zone to then run code to elevate privileges. This could allow malicious code or users to become active on the user's computer or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -349,7 +349,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26586" severity="medium" conversionstatus="pass" title="DTOO211 - Restrict ActiveX Install" dscresource="Registry">
+    <Rule id="V-26586" severity="medium" conversionstatus="pass" title="DTOO211 - Restrict ActiveX Install" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Microsoft ActiveX controls allow unmanaged, unprotected code to run on the user computers. ActiveX controls do not run within a protected container in the browser like the other types of HTML or Microsoft Silverlight-based controls. Disabling or not configuring this setting does not block prompts for ActiveX control installations and these prompts display to users. This could allow malicious code to become active on the user's computer or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -368,7 +368,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26587" severity="medium" conversionstatus="pass" title="DTOO132 - Restrict File Download" dscresource="Registry">
+    <Rule id="V-26587" severity="medium" conversionstatus="pass" title="DTOO132 - Restrict File Download" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Disabling this setting allows websites to present file download prompts via code without the user specifically initiating the download.  User preferences may also allow the download to occur without prompting or interaction with the user.  Even if Internet Explorer prompts the user to accept the download, some websites abuse this functionality.  Malicious websites may continually prompt users to download a file or present confusing dialog boxes to trick users into downloading or running a file.  If the download occurs and it contains malicious code, the code could become active on the user's computer or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -387,7 +387,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26588" severity="medium" conversionstatus="pass" title="DTOO124 - Scripted Window Security" dscresource="Registry">
+    <Rule id="V-26588" severity="medium" conversionstatus="pass" title="DTOO124 - Scripted Window Security" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Malicious websites often try to confuse or trick users into giving a site permission to perform an action allowing the site to take control of the users' computers in some manner. Disabling or not configuring this setting allows unknown websites to:
 -Create browser windows appearing to be from the local operating system.
 -Draw active windows displaying outside of the viewable areas of the screen capturing keyboard input.
@@ -409,7 +409,7 @@ Criteria: If the value powerpnt.exe is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>powerpnt.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="cAdministrativeTemplate">
+    <Rule id="V-26589" severity="medium" conversionstatus="pass" title="DTOO127 - Add-ins are signed by Trusted Publisher" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Office 2013 applications do not check the digital signature on application add-ins before opening them.  Disabling or not configuring this setting may allow an application to load a dangerous add-in.  As a result, malicious code could become active on user computers or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -428,7 +428,7 @@ Criteria: If the value RequireAddinSig is REG_DWORD = 1, this is not a finding.<
       <ValueName>RequireAddinSig</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="cAdministrativeTemplate">
+    <Rule id="V-26592" severity="medium" conversionstatus="pass" title="DTOO119 - Turn off file validation" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Office File Validation helps detect and prevent a kind of exploit known as a file format attack or file fuzzing attack. File format attacks exploit the integrity of a file. They occur when someone modifies the structure of a file with the intent of adding malicious code. Usually the malicious code is run remotely and is used to elevate the privilege of restricted accounts on the computer. As a result, an attacker could gain access to a computer that they did not previously have access to. This could enable an attacker to read sensitive information from the computer's hard disk drive or install malware, such as a worm or a key logging program. The Office File Validation feature helps prevent file format attacks by scanning and validating files before they are opened. To validate files, Office File Validation compares a file's structure to a predefined file schema, which is a set of rules that determine what a readable file looks like. If Office File Validation detects that a file's structure does not follow all rules that are described in the schema, the file does not pass validation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -447,7 +447,7 @@ Criteria: If the value EnableOnLoad is REG_DWORD = 1, this is not a finding.</Ra
       <ValueName>EnableOnLoad</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="cAdministrativeTemplate">
+    <Rule id="V-26612" severity="medium" conversionstatus="pass" title="DTOO110 - Set default file block behavior" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Users can open, view, or edit a large number of file types in PowerPoint 2013.  Some file types are safer than others, as some could allow malicious code to become active on user computers or the network.  For this reason, disabling or not configuring this setting could allow malicious code to become active on user computers or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -466,7 +466,7 @@ Criteria: If the value OpenInProtectedView is REG_DWORD = 0, this is not a findi
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="cAdministrativeTemplate">
+    <Rule id="V-26614" severity="medium" conversionstatus="pass" title="DTOO121 - Files from the Internet zone " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows for determining if files downloaded from the Internet zone open in Protected View. If enabling this policy setting, files downloaded from the Internet zone do not open in Protected View. If disabling or not configuring this policy setting, files downloaded from the Internet zone open in Protected View.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -485,7 +485,7 @@ Criteria: If the value DisableInternetFilesInPV is REG_DWORD = 0, this is not a 
       <ValueName>DisableInternetFilesInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="cAdministrativeTemplate">
+    <Rule id="V-26615" severity="medium" conversionstatus="pass" title="DTOO288 - Files in unsafe locations " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines if files located in unsafe locations will open in Protected View. If unsafe locations have not been specified, only the "Downloaded Program Files" and "Temporary Internet Files" folders are considered unsafe locations. If enabling this policy setting, files located in unsafe locations do not open in Protected View. If disabling or not configuring this policy setting, files located in unsafe locations open in Protected View.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -504,7 +504,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableUnsafeLocationsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="cAdministrativeTemplate">
+    <Rule id="V-26616.a" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy key controls the behavior of how Office documents should be handled when failing file validation. By requiring such documents to be opened in Protected View, any potentially malicious code would be disabled, allowing the user to edit the document and resave correctly.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -517,7 +517,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>OpenInProtectedView</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="cAdministrativeTemplate">
+    <Rule id="V-26616.b" severity="medium" conversionstatus="pass" title="DTOO292 - Set document behavior " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy key controls the behavior of how Office documents should be handled when failing file validation. By requiring such documents to be opened in Protected View, any potentially malicious code would be disabled, allowing the user to edit the document and resave correctly.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -530,7 +530,7 @@ Criteria: If the value DisableUnsafeLocationsInPV is REG_DWORD = 0, this is not 
       <ValueName>DisableEditFromPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="cAdministrativeTemplate">
+    <Rule id="V-26617" severity="medium" conversionstatus="pass" title="DTOO293 - Turn off Protected View for attachments" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows for determining if PowerPoint files in Outlook attachments open in Protected View. If enabling this policy setting, Outlook attachments do not open in Protected View. If disabling or not configuring this policy setting, Outlook attachments open in Protected View.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -549,7 +549,7 @@ Criteria: If the value DisableAttachmentsInPV  is REG_DWORD = 0, this is not a f
       <ValueName>DisableAttachmentsInPV</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-26639" severity="medium" conversionstatus="pass" title="DTOO319 - Disable Slide Update" dscresource="cAdministrativeTemplate">
+    <Rule id="V-26639" severity="medium" conversionstatus="pass" title="DTOO319 - Disable Slide Update" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This setting controls whether users can link slides in a presentation with their counterparts in a PowerPoint Slide Library.  If this policy setting is enabled, PowerPoint cannot check the status of a slide in a Slide Library when a presentation with Slide Update data is opened.  If this policy setting is disabled or not configured, each time users open a presentation that contains a shared slide, PowerPoint notifies them if the slide has been updated and provides them with the opportunity to ignore the update, append a new slide to the outdated slide, or replace the outdated slide with the updated one.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -568,7 +568,7 @@ Criteria: If the value DisableSlideUpdate is REG_DWORD = 1, this is not a findin
       <ValueName>DisableSlideUpdate</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42327" severity="medium" conversionstatus="pass" title="DTOO501 - Disable user name and password in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42327" severity="medium" conversionstatus="pass" title="DTOO501 - Disable user name and password in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Uniform Resource Locator (URL) standard allows user authentication to be included in URL strings in the form http://username:password@example.com. A malicious user might use this URL syntax to create a hyperlink that appears to open a legitimate website but actually opens a deceptive (spoofed) website. For example, the URL http://www.wingtiptoys.com@example.com appears to open http://www.wingtiptoys.com but actually opens http://example.com. To protect users from such attacks, Internet Explorer usually blocks any URLs using this syntax.
 
 This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If user names and passwords in URLs are allowed, users could be diverted to dangerous web pages, which could pose a security risk.
@@ -590,7 +590,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42328" severity="medium" conversionstatus="pass" title="DTOO510 - Restrict ActiveX Install in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42328" severity="medium" conversionstatus="pass" title="DTOO510 - Restrict ActiveX Install in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Microsoft ActiveX controls allow unmanaged, unprotected code to run on the user computers. ActiveX controls do not run within a protected container in the browser like the other types of HTML or Microsoft Silverlight-based controls. Disabling or not configuring this setting does not block prompts for ActiveX control installations and these prompts display to users. This could allow malicious code to become active on the user's computer or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -609,7 +609,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42329" severity="medium" conversionstatus="pass" title="DTOO509 - Zone Elevation Protection in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42329" severity="medium" conversionstatus="pass" title="DTOO509 - Zone Elevation Protection in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer places restrictions on each web page users can use the browser to open. Web pages on a user's local computer have the fewest security restrictions and reside in the Local Machine zone, making this security zone a prime target for malicious users and code. Disabling or not configuring this setting could allow pages in the Internet zone to navigate to pages in the Local Machine zone to then run code to elevate privileges. This could allow malicious code or users to become active on the user's computer or the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -628,7 +628,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42330" severity="medium" conversionstatus="pass" title="DTOO507 - Block Pop-Ups in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42330" severity="medium" conversionstatus="pass" title="DTOO507 - Block Pop-Ups in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The Pop-up Blocker feature in Internet Explorer can be used to block most unwanted pop-up and pop-under windows from appearing. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If the Pop-up Blocker is disabled, disruptive and potentially dangerous pop-up windows could load and present a security risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -647,7 +647,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42331" severity="medium" conversionstatus="pass" title="DTOO508 - Restrict File Download in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42331" severity="medium" conversionstatus="pass" title="DTOO508 - Restrict File Download in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Disabling this setting allows websites to present file download prompts via code without the user specifically initiating the download.  User preferences may also allow the download to occur without prompting or interaction with the user.  Even if Internet Explorer prompts the user to accept the download, some websites abuse this functionality.  Malicious websites may continually prompt users to download a file or present confusing dialog boxes to trick users into downloading or running a file.  If the download occurs and it contains malicious code, the code could become active on the user's computer or the network. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -666,7 +666,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42332" severity="medium" conversionstatus="pass" title="DTOO502 - Enable IE Bind to Object in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42332" severity="medium" conversionstatus="pass" title="DTOO502 - Enable IE Bind to Object in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer performs a number of safety checks before initializing an ActiveX control. It will not initialize a control if the kill bit for the control is set in the registry, or if the security settings for the zone in which the control is located do not allow it to be initialized.
 This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). A security risk could occur if potentially dangerous controls are allowed to load.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -686,7 +686,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42333" severity="medium" conversionstatus="pass" title="DTOO503 - Saved from URL in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42333" severity="medium" conversionstatus="pass" title="DTOO503 - Saved from URL in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Typically, when Internet Explorer loads a web page from a Universal Naming Convention (UNC) share that contains a Mark of the Web (MOTW) comment, indicating the page was saved from a site on the Internet; Internet Explorer runs the page in the Internet security zone instead of the less restrictive Local Intranet security zone. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If Internet Explorer does not evaluate the page for a MOTW, potentially dangerous code could be allowed to run.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -705,7 +705,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42334" severity="medium" conversionstatus="pass" title="DTOO504 - Block Navigation to URL from Office in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42334" severity="medium" conversionstatus="pass" title="DTOO504 - Block Navigation to URL from Office in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;To protect users from attacks, Internet Explorer usually does not attempt to load malformed URLs. This functionality can be controlled separately for instances of Internet Explorer spawned by Office applications (for example, if a user clicks a link in an Office document or selects a menu option that loads a web page). If Internet Explorer attempts to load a malformed URL, a security risk could occur.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -724,7 +724,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42335" severity="medium" conversionstatus="pass" title="DTOO505 - Scripted Window Security in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42335" severity="medium" conversionstatus="pass" title="DTOO505 - Scripted Window Security in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Malicious websites often try to confuse or trick users into giving a site permission to perform an action allowing the site to take control of the users' computers in some manner. Disabling or not configuring this setting allows unknown websites to:
 -Create browser windows appearing to be from the local operating system.
 -Draw active windows displaying outside of the viewable areas of the screen capturing keyboard input.
@@ -746,7 +746,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42336" severity="medium" conversionstatus="pass" title="DTOO506 - Add-on Management in PowerPoint Viewer" dscresource="Registry">
+    <Rule id="V-42336" severity="medium" conversionstatus="pass" title="DTOO506 - Add-on Management in PowerPoint Viewer" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Internet Explorer add-ons are pieces of code, run in Internet Explorer, to provide additional functionality. Rogue add-ons may contain viruses or other malicious code. Disabling or not configuring this setting could allow malicious code or users to become active on user computers or the network. For example, a malicious user can monitor and then use keystrokes users type into Internet Explorer. Even legitimate add-ons may demand resources, compromising the performance of Internet Explorer, and the operating systems for user computers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -765,7 +765,7 @@ Criteria: If the value pptview.exe is REG_DWORD = 1, this is not a finding.</Raw
       <ValueName>pptview.exe</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-72839" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="cAdministrativeTemplate">
+    <Rule id="V-72839" severity="medium" conversionstatus="pass" title="DTOO600 - Macros must be blocked from running in Office 2013 files from the Internet. " dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This policy setting allows you to block macros from running in Office files that come from the Internet. If you enable this policy setting, macros are blocked from running, even if "Enable all macros" is selected in the Macro Settings section of the Trust Center. Also, instead of having the choice to "Enable Content", users will receive a notification that macros are blocked from running. If the Office file is saved to a trusted location or was previously trusted by the user, macros will be allowed to run. If you disable or don't configure this policy setting, the settings configured in the Macro Settings section of the Trust Center determine whether macros run in Office files that come from the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>

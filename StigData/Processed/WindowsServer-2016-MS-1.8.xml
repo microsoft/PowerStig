@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Apr 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="8/14/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_MS_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_MS_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Apr 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="9/6/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73309" severity="medium" conversionstatus="pass" title="SRG-OS-000329-GPOS-00128" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;The account lockout feature, when enabled, prevents brute-force password attacks on the system. This parameter specifies the period of time that an account will remain locked after the specified number of failed logon attempts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2882,7 +2882,7 @@ Administrators, SYSTEM, Users, ALL APPLICATION PACKAGES, ALL RESTRICTED APPLICAT
     </Rule>
   </PermissionRule>
   <RegistryRule dscresourcemodule="PSDscResources">
-    <Rule id="V-73487" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="Registry">
+    <Rule id="V-73487" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enumeration of administrator accounts when elevating can provide part of the logon information to an unauthorized user. This setting configures the system to always require users to type in a username and password to elevate a running application.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2903,7 +2903,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>EnumerateAdministrators</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73493" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73493" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Slide shows that are displayed on the lock screen could display sensitive information to unauthorized personnel. Turning off this feature will limit access to the information to a logged-on user.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2926,7 +2926,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>NoLockScreenSlideshow</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73495" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="Registry">
+    <Rule id="V-73495" severity="medium" conversionstatus="pass" title="SRG-OS-000134-GPOS-00068" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;A compromised local administrator account can provide means for an attacker to move laterally between domain systems.
 
 With User Account Control enabled, filtering the privileged token for local administrator accounts will prevent the elevated privileges of these accounts from being used over the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2953,7 +2953,7 @@ This setting may cause issues with some network scanning tools if local administ
       <ValueName>LocalAccountTokenFilterPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73497" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73497" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;When the WDigest Authentication protocol is enabled, plain-text passwords are stored in the Local Security Authority Subsystem Service (LSASS), exposing them to theft. WDigest is disabled by default in Windows 10. This setting ensures this is enforced.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2974,7 +2974,7 @@ Value:  0x00000000 (0)</RawString>
       <ValueName>UseLogonCredential</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73499" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73499" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Configuring the system to disable IPv6 source routing protects against spoofing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2995,7 +2995,7 @@ Value: 0x00000002 (2)</RawString>
       <ValueName>DisableIPSourceRouting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73501" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73501" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Configuring the system to disable IP source routing protects against spoofing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3016,7 +3016,7 @@ Value: 0x00000002 (2)</RawString>
       <ValueName>DisableIPSourceRouting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73503" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73503" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing ICMP redirect of routes can lead to traffic not being routed properly. When disabled, this forces ICMP to be routed via the shortest path first.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3037,7 +3037,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>EnableICMPRedirect</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73505" severity="low" conversionstatus="pass" title="SRG-OS-000420-GPOS-00186" dscresource="Registry">
+    <Rule id="V-73505" severity="low" conversionstatus="pass" title="SRG-OS-000420-GPOS-00186" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Configuring the system to ignore name release requests, except from WINS servers, prevents a denial of service (DoS) attack. The DoS consists of sending a NetBIOS name release request to the server for each entry in the server's cache, causing a response delay in the normal operation of the server's WINS resolution capability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3058,7 +3058,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>NoNameReleaseOnDemand</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73507" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73507" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Insecure guest logons allow unauthenticated access to shared folders. Shared resources on a system must require authentication to establish proper access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3079,7 +3079,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowInsecureGuestAuth</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73509.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73509.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Additional security requirements are applied to Universal Naming Convention (UNC) paths specified in hardened UNC paths before allowing access to them. This aids in preventing tampering with or spoofing of connections to these paths.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3096,7 +3096,7 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueName>\\*\NETLOGON</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-73509.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73509.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Additional security requirements are applied to Universal Naming Convention (UNC) paths specified in hardened UNC paths before allowing access to them. This aids in preventing tampering with or spoofing of connections to these paths.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3113,7 +3113,7 @@ Value: RequireMutualAuthentication=1, RequireIntegrity=1</RawString>
       <ValueName>\\*\SYSVOL</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-73511" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="Registry">
+    <Rule id="V-73511" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Enabling "Include command line data for process creation events" will record the command line information with the process creation events in the log. This can provide additional detail when malware has run on a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3136,7 +3136,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>ProcessCreationIncludeCmdLine_Enabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73513.a" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73513.a" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features Credential Guard and virtualization-based protection of code integrity. Secure Boot is the minimum security level, with DMA protection providing additional memory protection. DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3153,7 +3153,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnableVirtualizationBasedSecurity</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73513.b" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73513.b" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Virtualization Based Security (VBS) provides the platform for the additional security features Credential Guard and virtualization-based protection of code integrity. Secure Boot is the minimum security level, with DMA protection providing additional memory protection. DMA Protection requires a CPU that supports input/output memory management unit (IOMMU).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3170,7 +3170,7 @@ Value: 0x00000001 (1) (Secure Boot only) or 0x00000003 (3) (Secure Boot and DMA 
       <ValueName>RequirePlatformSecurityFeatures</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73515" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73515" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Credential Guard uses virtualization-based security to protect data that could be used in credential theft attacks if compromised. This authentication information, which was stored in the Local Security Authority (LSA) in previous versions of Windows, is isolated from the rest of operating system and can only be accessed by privileged system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3214,7 +3214,7 @@ https://docs.microsoft.com/en-us/windows/security/identity-protection/credential
       <ValueName>LsaCfgFlags</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73517" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73517" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Virtualization-based protection of code integrity enforces kernel mode memory protections as well as protecting Code Integrity validation paths. This isolates the processes from the rest of the operating system and can only be accessed by privileged system software.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3254,7 +3254,7 @@ Value: 0x00000001 (1) (Enabled with UEFI lock), or 0x00000002 (2) (Enabled witho
       <ValueName>HypervisorEnforcedCodeIntegrity</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73521" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73521" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Compromised boot drivers can introduce malware prior to protection mechanisms that load after initialization. The Early Launch Antimalware driver can limit allowed drivers based on classifications determined by the malware protection application. At a minimum, drivers determined to be bad must not be allowed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3285,7 +3285,7 @@ Possible values for this setting are:
       <ValueName>DriverLoadPolicy</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73525" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73525" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Registry entries for group policy settings can potentially be changed from the required configuration. This could occur as part of troubleshooting or by a malicious process on a compromised system. Enabling this setting and then selecting the "Process even if the Group Policy objects have not changed" option ensures the policies will be reprocessed even if none have been changed. This way, any unauthorized changes are forced to match the domain-based group policy settings again.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3306,7 +3306,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>NoGPOListChanges</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73527" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73527" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system. 
 
 This setting prevents the computer from downloading print driver packages over HTTP.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3329,7 +3329,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisableWebPnPDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73529" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73529" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system.
 
 This setting prevents the client computer from printing over HTTP, which allows the computer to print to printers on the intranet as well as the Internet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3352,7 +3352,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisableHTTPPrinting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73531" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73531" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Enabling interaction with the network selection UI allows users to change connections to available networks without signing in to Windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3373,7 +3373,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DontDisplayNetworkSelectionUI</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73533" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73533" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The username is one part of logon credentials that could be used to gain access to a system. Preventing the enumeration of users limits this information to authorized personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3396,7 +3396,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>EnumerateLocalUsers</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73537" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73537" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;A system that does not require authentication when resuming from sleep may provide access to unauthorized users. Authentication must always be required when accessing a system. This setting ensures users are prompted for a password when the system wakes from sleep (on battery).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3417,7 +3417,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DCSettingIndex</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73539" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73539" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;A system that does not require authentication when resuming from sleep may provide access to unauthorized users. Authentication must always be required when accessing a system. This setting ensures users are prompted for a password when the system wakes from sleep (plugged in).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3438,7 +3438,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>ACSettingIndex</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73541" severity="medium" conversionstatus="pass" title="SRG-OS-000379-GPOS-00164" dscresource="Registry">
+    <Rule id="V-73541" severity="medium" conversionstatus="pass" title="SRG-OS-000379-GPOS-00164" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unauthenticated RPC clients may allow anonymous access to sensitive information. Configuring RPC to restrict unauthenticated RPC clients from connecting to the RPC server will prevent anonymous connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3461,7 +3461,7 @@ Value:  0x00000001 (1)</RawString>
       <ValueName>RestrictRemoteClients</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73543" severity="low" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73543" severity="low" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this capability will prevent potentially sensitive information from being sent outside the enterprise and will prevent uncontrolled updates to the system.
 
 This setting will prevent the Program Inventory from collecting data about a system and sending the information to Microsoft.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3484,7 +3484,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisableInventory</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73545" severity="high" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="Registry">
+    <Rule id="V-73545" severity="high" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing AutoPlay to execute may introduce malicious code to a system. AutoPlay begins reading from a drive as soon as media is inserted into the drive. As a result, the setup file of programs or music on audio media may start. This setting will disable AutoPlay for non-volume devices, such as Media Transfer Protocol (MTP) devices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3505,7 +3505,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>NoAutoplayfornonVolume</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73547" severity="high" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="Registry">
+    <Rule id="V-73547" severity="high" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing AutoRun commands to execute may introduce malicious code to a system. Configuring this setting prevents AutoRun commands from executing.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3526,7 +3526,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>NoAutorun</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73549" severity="high" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="Registry">
+    <Rule id="V-73549" severity="high" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing AutoPlay to execute may introduce malicious code to a system. AutoPlay begins reading from a drive as soon media is inserted into the drive. As a result, the setup file of programs or music on audio media may start. By default, AutoPlay is disabled on removable drives, such as the floppy disk drive (but not the CD-ROM drive) and on network drives. Enabling this policy disables AutoPlay on all drives.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3547,7 +3547,7 @@ Value: 0x000000ff (255)</RawString>
       <ValueName>NoDriveTypeAutoRun</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73551" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73551" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Limiting this capability will prevent potentially sensitive information from being sent outside the enterprise. The "Security" option for Telemetry configures the lowest amount of data, effectively none outside of the Malicious Software Removal Tool (MSRT), Defender, and telemetry client settings. "Basic" sends basic diagnostic and usage data and may be required to support some Microsoft services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3568,7 +3568,7 @@ Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)</RawString>
       <ValueName>AllowTelemetry</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73553" severity="medium" conversionstatus="pass" title="SRG-OS-000341-GPOS-00132" dscresource="Registry">
+    <Rule id="V-73553" severity="medium" conversionstatus="pass" title="SRG-OS-000341-GPOS-00132" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3591,7 +3591,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73555" severity="medium" conversionstatus="pass" title="SRG-OS-000341-GPOS-00132" dscresource="Registry">
+    <Rule id="V-73555" severity="medium" conversionstatus="pass" title="SRG-OS-000341-GPOS-00132" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3614,7 +3614,7 @@ Value: 0x00030000 (196608) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73557" severity="medium" conversionstatus="pass" title="SRG-OS-000341-GPOS-00132" dscresource="Registry">
+    <Rule id="V-73557" severity="medium" conversionstatus="pass" title="SRG-OS-000341-GPOS-00132" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Inadequate log size will cause the log to fill up quickly. This may prevent audit events from being recorded properly and require frequent attention by administrative personnel.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3637,7 +3637,7 @@ Value: 0x00008000 (32768) (or greater)</RawString>
       <ValueName>MaxSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73559" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73559" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows SmartScreen helps protect systems from programs downloaded from the internet that may be malicious. Enabling SmartScreen will warn users of potentially malicious programs.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3658,7 +3658,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnableSmartScreen</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73561" severity="medium" conversionstatus="pass" title="SRG-OS-000433-GPOS-00192" dscresource="Registry">
+    <Rule id="V-73561" severity="medium" conversionstatus="pass" title="SRG-OS-000433-GPOS-00192" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Data Execution Prevention provides additional protection by performing checks on memory to help prevent malicious code from running. This setting will prevent Data Execution Prevention from being turned off for File Explorer.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3685,7 +3685,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueName>NoDataExecutionPrevention</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73563" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73563" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Legacy plug-in applications may continue to function when a File Explorer session has become corrupt. Disabling this feature will prevent this.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3712,7 +3712,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueName>NoHeapTerminationOnCorruption</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73565" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73565" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;The shell protocol will limit the set of folders that applications can open when run in protected mode. Restricting files an application can open to a limited set of folders increases the security of Windows.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3739,7 +3739,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueName>PreXPSP2ShellProtocolBehavior</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73567" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="Registry">
+    <Rule id="V-73567" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Saving passwords in the Remote Desktop Client could allow an unauthorized user to establish a remote desktop session to another system. The system must be configured to prevent users from saving passwords in the Remote Desktop Client.
 
 Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3762,7 +3762,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisablePasswordSaving</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73569" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="Registry">
+    <Rule id="V-73569" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Preventing users from sharing the local drives on their client computers with Remote Session Hosts that they access helps reduce possible exposure of sensitive data.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3783,7 +3783,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>fDisableCdm</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73571" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="Registry">
+    <Rule id="V-73571" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This setting controls the ability of users to supply passwords automatically as part of their remote desktop connection. Disabling this setting would allow anyone to use the stored credentials in a connection item to connect to the terminal server.
 
 Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3806,7 +3806,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>fPromptForPassword</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73573" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="Registry">
+    <Rule id="V-73573" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Allowing unsecure RPC communication exposes the system to man-in-the-middle attacks and data disclosure attacks. A man-in-the-middle attack occurs when an intruder captures packets between a client and server and modifies them before allowing the packets to be exchanged. Usually the attacker will modify the information in the packets in an attempt to cause either the client or server to reveal sensitive information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3827,7 +3827,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>fEncryptRPCTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73575" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="Registry">
+    <Rule id="V-73575" severity="medium" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Remote connections must be encrypted to prevent interception of data or sensitive information. Selecting "High Level" will ensure encryption of Remote Desktop Services sessions in both directions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3848,7 +3848,7 @@ Value: 0x00000003 (3)</RawString>
       <ValueName>MinEncryptionLevel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73577" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73577" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Attachments from RSS feeds may not be secure. This setting will prevent attachments from being downloaded from RSS feeds.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3869,7 +3869,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisableEnclosureDownload</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73579" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73579" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Basic authentication uses plain-text passwords that could be used to compromise a system. Disabling Basic authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3896,7 +3896,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueName>AllowBasicAuthInClear</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73581" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-73581" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Indexing of encrypted files may expose sensitive data. This setting prevents encrypted files from being indexed.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3917,7 +3917,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowIndexingEncryptedStoresOrItems</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73583" severity="medium" conversionstatus="pass" title="SRG-OS-000362-GPOS-00149" dscresource="Registry">
+    <Rule id="V-73583" severity="medium" conversionstatus="pass" title="SRG-OS-000362-GPOS-00149" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Installation options for applications are typically controlled by administrators. This setting prevents users from changing installation options that may bypass security features.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3938,7 +3938,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>EnableUserControl</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73585" severity="high" conversionstatus="pass" title="SRG-OS-000362-GPOS-00149" dscresource="Registry">
+    <Rule id="V-73585" severity="high" conversionstatus="pass" title="SRG-OS-000362-GPOS-00149" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Standard user accounts must not be granted elevated privileges. Enabling Windows Installer to elevate privileges when installing applications can allow malicious persons and applications to gain full control of a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3959,7 +3959,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AlwaysInstallElevated</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73587" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="Registry">
+    <Rule id="V-73587" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Web-based programs may attempt to install malicious software on a system. Ensuring users are notified if a web-based program attempts to install software allows them to refuse the installation.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -3986,7 +3986,7 @@ Value: 0x00000000 (0) (or if the Value Name does not exist)</RawString>
       <ValueName>SafeForScripting</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73589" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="Registry">
+    <Rule id="V-73589" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Windows can be configured to automatically sign the user back in after a Windows Update restart. Some protections are in place to help ensure this is done in a secure fashion; however, disabling this will prevent the caching of credentials for this purpose and also ensure the user is aware of the restart.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4007,7 +4007,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>DisableAutomaticRestartSignOn</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73591" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="Registry">
+    <Rule id="V-73591" severity="medium" conversionstatus="pass" title="SRG-OS-000042-GPOS-00020" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Maintaining an audit trail of system activity logs can help identify configuration errors, troubleshoot service disruptions, and analyze compromises that have occurred, as well as detect attacks. Audit logs are necessary to provide a trail of evidence in case the system or network is compromised. Collecting this data is essential for analyzing the security of information assets and detecting signs of suspicious and unexpected behavior.
 
 Enabling PowerShell script block logging will record detailed information from the processing of PowerShell commands and scripts. This can provide additional detail when malware has run on a system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -4030,7 +4030,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnableScriptBlockLogging</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73593" severity="high" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="Registry">
+    <Rule id="V-73593" severity="high" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Basic authentication uses plain-text passwords that could be used to compromise a system. Disabling Basic authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4051,7 +4051,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowBasic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73595" severity="medium" conversionstatus="pass" title="SRG-OS-000393-GPOS-00173" dscresource="Registry">
+    <Rule id="V-73595" severity="medium" conversionstatus="pass" title="SRG-OS-000393-GPOS-00173" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unencrypted remote access to a system can allow sensitive information to be compromised. Windows remote management connections must be encrypted to prevent this.
 
 Satisfies: SRG-OS-000393-GPOS-00173, SRG-OS-000394-GPOS-00174&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -4074,7 +4074,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowUnencryptedTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73597" severity="medium" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="Registry">
+    <Rule id="V-73597" severity="medium" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Digest authentication is not as strong as other options and may be subject to man-in-the-middle attacks. Disallowing Digest authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4095,7 +4095,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowDigest</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73599" severity="high" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="Registry">
+    <Rule id="V-73599" severity="high" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Basic authentication uses plain-text passwords that could be used to compromise a system. Disabling Basic authentication will reduce this potential.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -4116,7 +4116,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowBasic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73601" severity="medium" conversionstatus="pass" title="SRG-OS-000393-GPOS-00173" dscresource="Registry">
+    <Rule id="V-73601" severity="medium" conversionstatus="pass" title="SRG-OS-000393-GPOS-00173" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Unencrypted remote access to a system can allow sensitive information to be compromised. Windows remote management connections must be encrypted to prevent this.
 
 Satisfies: SRG-OS-000393-GPOS-00173, SRG-OS-000394-GPOS-00174&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -4139,7 +4139,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>AllowUnencryptedTraffic</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73603" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="Registry">
+    <Rule id="V-73603" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00157" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Storage of administrative credentials could allow unauthorized access. Disallowing the storage of RunAs credentials for Windows Remote Management will prevent them from being used with plug-ins.
 
 Satisfies: SRG-OS-000373-GPOS-00157, SRG-OS-000373-GPOS-00156&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -5140,7 +5140,7 @@ Value: 0x00000001 (1)</RawString>
       <ValueName>EnableVirtualization</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-73727" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="cAdministrativeTemplate">
+    <Rule id="V-73727" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;Attachments from outside sources may contain malicious code. Preserving zone of origin (Internet, intranet, local, restricted) information on file attachments allows Windows to determine risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5190,7 +5190,7 @@ If configuring this on servers causes issues, such as terminating users' remote 
       <ValueName>scremoveoption</ValueName>
       <ValueType>String</ValueType>
     </Rule>
-    <Rule id="V-78123" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-78123" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -5213,7 +5213,7 @@ Value: 0x00000000 (0)</RawString>
       <ValueName>SMB1</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-78125" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="Registry">
+    <Rule id="V-78125" severity="medium" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;SMBv1 is a legacy protocol that uses the MD5 algorithm as part of SMB. MD5 is known to be vulnerable to a number of attacks such as collision and preimage attacks as well as not being FIPS compliant.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>

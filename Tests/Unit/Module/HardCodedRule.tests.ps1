@@ -120,8 +120,8 @@ try
             },
             @{
                 RuleType     = 'RegistryRule'
-                CheckContent = "HardCodedRule(RegistryRule)@{DscResource = 'cAdministrativeTemplate'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\System'; ValueData = 0; ValueName = 'Test'; ValueType = 'Dword'}"
-                DscResource  = 'cAdministrativeTemplate'
+                CheckContent = "HardCodedRule(RegistryRule)@{DscResource = 'RegistryPolicyFile'; Ensure = 'Present'; Key = 'HKEY_LOCAL_MACHINE\System'; ValueData = 0; ValueName = 'Test'; ValueType = 'Dword'}"
+                DscResource  = 'RegistryPolicyFile'
                 Ensure       = 'Present'
                 Key          = 'HKEY_LOCAL_MACHINE\System'
                 ValueData    = 0

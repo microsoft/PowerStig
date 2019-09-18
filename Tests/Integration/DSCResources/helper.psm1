@@ -46,7 +46,7 @@ function Get-ResourceMatchStatement
     {
         'RegistryRule'
         {
-            return '\[Registry\]|\[cAdministrativeTemplateSetting\]'
+            return '\[Registry\]|\[RegistryPolicyFile\]'
         }
         'FileContentRule'
         {
