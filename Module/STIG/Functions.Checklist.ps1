@@ -151,7 +151,7 @@ function New-StigCheckList
 
     #region STIGS/iSTIG/VULN[]
 
-    foreach ( $vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent) )
+    foreach ($vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent))
     {
         $writer.WriteStartElement("VULN")
 
