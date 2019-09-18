@@ -354,7 +354,7 @@ Class RegistryRuleConvert : RegistryRule
     # Empty method used with Get-HardCodedRuleLogFileEntry
     hidden [void] SetDscResource ()
     {
-        $this.DscResource = 'RegistryPolicyFile OR Registry'
+        $this.DscResource = 'Registry'
     }
 
     hidden [void] SetDscResource ([string] $FixText)
