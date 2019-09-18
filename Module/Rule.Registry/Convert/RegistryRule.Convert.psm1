@@ -351,7 +351,7 @@ Class RegistryRuleConvert : RegistryRule
         $this.Ensure = $Ensure
     }
 
-    # Empty method used with Get-HardCodedRuleLogFileEntry
+    # Empty argument method used with Get-HardCodedRuleLogFileEntry
     hidden [void] SetDscResource ()
     {
         $this.DscResource = 'Registry'
