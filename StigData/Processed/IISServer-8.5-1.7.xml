@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="9/17/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="9/19/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -944,10 +944,32 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server Verify a REG_DWORD value of "0" for "DisabledByDefault"</RawString>
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>DisabledByDefault</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-76759.b" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
@@ -959,10 +981,32 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server Verify a REG_DWORD value of "0" for "DisabledByDefault"</RawString>
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>0</ValueData>
       <ValueName>DisabledByDefault</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-76759.c" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
@@ -974,10 +1018,32 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server Verify a REG_DWORD value of "1" for "DisabledByDefault"</RawString>
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-76759.d" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
@@ -989,10 +1055,32 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server Verify a REG_DWORD value of "1" for "DisabledByDefault"</RawString>
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>DWORD</ValueType>
     </Rule>
     <Rule id="V-76759.e" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
@@ -1004,10 +1092,143 @@ FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 spe
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server Verify a REG_DWORD value of "1" for "DisabledByDefault"</RawString>
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>DisabledByDefault</ValueName>
-      <ValueType>Dword</ValueType>
+      <ValueType>DWORD</ValueType>
+    </Rule>
+    <Rule id="V-76759.f" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>DWORD</ValueType>
+    </Rule>
+    <Rule id="V-76759.g" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>DWORD</ValueType>
+    </Rule>
+    <Rule id="V-76759.h" severity="high" conversionstatus="pass" title="SRG-APP-000439-WSR-000156" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Transport Layer Security (TLS) encryption is a required security setting for a private web server. Encryption of private information is essential to ensuring data confidentiality. If private information is not encrypted, it can be intercepted and easily read by an unauthorized party. A private web server must use a FIPS 140-2-approved TLS version, and all non-FIPS-approved SSL versions must be disabled.
+
+FIPS 140-2-approved TLS versions include TLS V1.1 or greater. NIST SP 800-52 specifies the preferred configurations for government systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the IIS 8.5 Web Server.
+
+Access an administrator command prompt and type "regedit &lt;enter&gt;" to access the server's registry.
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
+
+Verify a REG_DWORD value of "0" for "DisabledByDefault"
+
+Navigate to:
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 2.0\Server
+
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\SSL 3.0\Server
+
+Verify a REG_DWORD value of "1" for "DisabledByDefault"
+Verify a REG_DWORD value of "0" for "Enabled"
+
+
+If any of the respective registry paths do not exist or are configured with the wrong value, this is a finding.</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>Enabled</ValueName>
+      <ValueType>DWORD</ValueType>
     </Rule>
   </RegistryRule>
   <WebConfigurationPropertyRule dscresourcemodule="xWebAdministration">
