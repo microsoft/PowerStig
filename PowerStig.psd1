@@ -98,20 +98,34 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Added support for IIS 8.5 Server STIG, Version 1, Release 7 [#399](https://github.com/Microsoft/PowerStig/issues/399)
-        * Fixed [#373](https://github.com/Microsoft/PowerStig/issues/373): Registry resource does not handle null values for ValueData contained in Processed STIGs
-        * Fixed [#376](https://github.com/Microsoft/PowerStig/issues/376): SQL STIG Rules V-41021 (Instance STIG) and V-41402 (Database STIG) fail to apply when applying to a SQL instance that is NOT name the default (MSSQLSERVER).
-        * Fixed [#377](https://github.com/Microsoft/PowerStig/issues/377): SQL Instance Rule V-40936 fails when Set-TargertResource is ran
-        * Fixed [#280](https://github.com/Microsoft/PowerStig/issues/280): HKEY_CURRENT_USER is not needed with the cAdministrativeTemplateSetting composite resource. (Regression Issue)
-        * Fixed [#385](https://github.com/Microsoft/PowerStig/issues/385): IIS Server STIG V-76681 does not parse correctly
-        * Added support for Office 2016 STIGs [#370](https://github.com/Microsoft/PowerStig/issues/370)
-        * Added support to Automate Application Pool Recycling for IisSite_8.5 [#378](https://github.com/Microsoft/PowerStig/issues/378)
-        * Added support for Windows Server 2012R2 DC V2R16 [#398](https://github.com/Microsoft/PowerStig/issues/398)
-        * Added support for update Windows Server 2012 MS STIG v2r15 [#395](https://github.com/Microsoft/PowerStig/issues/395)
-        * Added support for Firefox STIG v4r25 [#389](https://github.com/Microsoft/PowerStig/issues/389)
-        * Added entry in log file for IISSite 1.7 so rule v-76819 parses as an xWebConfigurationProperty [#407](https://github.com/microsoft/PowerStig/issues/407)
-        * Added IISSite v1.7 [#400](https://github.com/microsoft/PowerStig/issues/400)
-        * Fixed [#403](https://github.com/microsoft/PowerStig/issues/403): DotNet STIG V1R7 update'
+        ReleaseNotes = '* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498] (https://github.com/microsoft/PowerStig/issues/498)
+        * Fixed [#507](https://github.com/microsoft/PowerStig/issues/507): Get-HardCodedRuleLogFileEntry Errors on RegistryRule
+        * Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
+        * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
+        * Update PowerSTIG to pass OrgSettings in via configuration hashtable: [#372](https://github.com/microsoft/PowerStig/issues/372)
+        * Update support for SQL Server 2012 Database STIG, Version 1, Release 19 [#482](https://github.com/microsoft/PowerStig/issues/482)
+        * Fixed [#478](https://github.com/microsoft/PowerStig/issues/478): SQL STIG Instance V-40936 Fails to apply
+        * Update PowerSTIG to automate applying the IIS 8.5 STIG, Version 1 Release 8. [#469](https://github.com/microsoft/PowerStig/issues/469)
+        * Fixed [#476](https://github.com/microsoft/PowerStig/issues/476): AuditSetting Rule for Windows STIGs has an incorrect operator when evaluating Service Pack information
+        * Added support for Dot Net Framework 4.0 STIG, Version 1, Release 8 [#447](https://github.com/microsoft/PowerStig/issues/447)
+        * Added support for Windows 10 STIG, Version 1, Release 17 & 18: [#466](https://github.com/microsoft/PowerStig/issues/466)
+        * Added support for Windows 2012 Server DNS STIG, Version 1, Release 12 [#464](https://github.com/microsoft/PowerStig/issues/464)
+        * Update PowerSTIG to automate applying the Windows Server 2012R2 DC & MS STIG, Version 2, Release 17 & 16 respectively. [#456](https://github.com/microsoft/PowerStig/issues/456)
+        * Fixed [#444](https://github.com/microsoft/PowerStig/issues/444): Duplicate principals in Permission Rule (Registry)
+        * Updated logfile in 2012R2 DC STIG leveraging HardCodedRule to automate additional STIG rules. [#446](https://github.com/microsoft/PowerStig/issues/446)
+        * Updated logfile in 2012R2 MS STIG leveraging HardCodedRule to automate additional STIG rules. [#448](https://github.com/microsoft/PowerStig/issues/448)
+        * Declarative definition of a rule in the StigData log file to provide a standard way to populate unautomated rules [#435](https://github.com/microsoft/PowerStig/issues/435)
+        * Updated PowerSTIG to leverage AuditSetting instead of the Script resource. Additionally renamed WmiRule to AuditSettingRule [#431](https://github.com/Microsoft/PowerStig/issues/431)
+        * Fixed [#419](https://github.com/Microsoft/PowerStig/issues/419): PowerStig is creating resource xSSLSettings with the wrong value for Name.
+        * Added support for Windows Defender, Version 1, Release 5 [#393](https://github.com/microsoft/PowerStig/issues/393)
+        * Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
+        * Added support for Server 2016 STIG, Version 1, Release 8 [#418](https://github.com/Microsoft/PowerStig/issues/418)
+        * Update PowerSTIG to enforce additional rules in the SQL Server 2012 STIG [#438](https://github.com/microsoft/PowerStig/issues/438)
+        * Added support for Windows Defender Antivirus STIG, Version 1, Release 6 [#462](https://github.com/Microsoft/PowerStig/issues/462)
+        * Added support for Firefox STIG v4r26 [#458](https://github.com/Microsoft/PowerStig/issues/458)
+        * Updated logfile in DotNet Framework STIG leveraging HardCodedRule to automate additional STIG rules. [#454](https://github.com/microsoft/PowerStig/issues/454)
+        * Fixed [#493](https://github.com/microsoft/PowerStig/issues/493): IIS 8/5 Server STIG rule V-76745 is referencing the incorrect IIS default path
+        * Fixed [#505](https://github.com/microsoft/PowerStig/issues/505): Missing reg key setting on V-76759 IIS Server 8.5 v1R7'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }
