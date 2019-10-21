@@ -130,4 +130,5 @@ We are especially thankful for those who have contributed pull requests to the c
 * [@regedit32](https://github.com/regedit32) (Reggie Gibson)
 * [@stevehose](https://github.com/stevehose) (Steve Hose)
 * [@winthrop28](https://github.com/winthrop28) (Drew Taylor)
-* [@mikedzikowski](https://github.com/mikedzikowski)(Mike Dzikowski)
+* [@mikedzikowski](https://github.com/mikedzikowski) (Mike Dzikowski)
+* [@togriffith](https://github.com/mikedzikowski) (Tony Griffith)

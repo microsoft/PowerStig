@@ -3,6 +3,11 @@
 ## Unreleased
 
 * Update PowerSTIG to enable Exception Parameter Backward Compatibility Feature Request: [506](https://github.com/microsoft/PowerStig/issues/506)
+
+## 4.0.0
+
+* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498] (https://github.com/microsoft/PowerStig/issues/498)
+* Fixed [#507](https://github.com/microsoft/PowerStig/issues/507): Get-HardCodedRuleLogFileEntry Errors on RegistryRule
 * Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
 * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
 * Update PowerSTIG to pass OrgSettings in via configuration hashtable: [#372](https://github.com/microsoft/PowerStig/issues/372)
@@ -27,6 +32,22 @@
 * Added support for Windows Defender Antivirus STIG, Version 1, Release 6 [#462](https://github.com/Microsoft/PowerStig/issues/462)
 * Added support for Firefox STIG v4r26 [#458](https://github.com/Microsoft/PowerStig/issues/458)
 * Updated logfile in DotNet Framework STIG leveraging HardCodedRule to automate additional STIG rules. [#454](https://github.com/microsoft/PowerStig/issues/454)
+* Fixed [#493](https://github.com/microsoft/PowerStig/issues/493): IIS 8/5 Server STIG rule V-76745 is referencing the incorrect IIS default path
+* Fixed [#505](https://github.com/microsoft/PowerStig/issues/505): Missing reg key setting on V-76759 IIS Server 8.5 v1R7
+
+## 3.3.0
+
+UPDATES
+
+* Fixed [#419](https://github.com/Microsoft/PowerStig/issues/419): PowerStig is creating resource xSSLSettings with the wrong value for Name.
+* Updated PowerSTIG to leverage AuditSetting instead of the Script resource. Additionally renamed WmiRule to AuditSettingRule [#431](https://github.com/Microsoft/PowerStig/issues/431)
+
+Added the following STIG
+
+* Added support for Windows 10, Version 1, Release 17 [#442](https://github.com/microsoft/PowerStig/issues/442)
+* Added support for Windows Defender, Version 1, Release 5 [#393](https://github.com/microsoft/PowerStig/issues/393)
+* Added support for Internet Explorer 11 Version 1, Release 17 [#422](https://github.com/Microsoft/PowerStig/issues/422)
+* Added support for Server 2016 STIG, Version 1, Release 8 [#418](https://github.com/Microsoft/PowerStig/issues/418)
 
 ## 3.2.0
 
