@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to enable Exception Parameter Backward Compatibility Feature Request: [506](https://github.com/microsoft/PowerStig/issues/506)
 * Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
 * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
 * Update PowerSTIG to pass OrgSettings in via configuration hashtable: [#372](https://github.com/microsoft/PowerStig/issues/372)
