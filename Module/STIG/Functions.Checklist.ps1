@@ -189,7 +189,7 @@ function New-StigCheckList
         if ($PSCmdlet.ParameterSetName -eq 'mof')
         {
             $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
-            $manualCheck = $manualCheckData | Where {$_.VulID -eq $VID}
+            $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
 
             if ($setting)
             {
