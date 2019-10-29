@@ -3,7 +3,8 @@
 ## Unreleased
 
 
-* Update Enable Stig Checklist automation to incluse Status and Commandts for manual checks: [#485](https://github.com/microsoft/PowerStig/issues/485)
+* Update Enable Stig Checklist automation to include Status and Comments for manual checks: [#485](https://github.com/microsoft/PowerStig/issues/485)
+* Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498] (https://github.com/microsoft/PowerStig/issues/498)
 * Fixed [#507](https://github.com/microsoft/PowerStig/issues/507): Get-HardCodedRuleLogFileEntry Errors on RegistryRule
 * Update PowerSTIG to leverage the GPRegistryPolicyDsc resource for Local Group Policy automation: [#497](https://github.com/microsoft/PowerStig/issues/497)
 * Update PowerSTIG to enable the logfile framework to consume a hashtable for HardCodedRule: [#494](https://github.com/microsoft/PowerStig/issues/494)
