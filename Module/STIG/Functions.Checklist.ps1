@@ -421,19 +421,24 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
-        {$PSItem -match "^\[(x)?Registry\]"} {
+        {$PSItem -match "^\[(x)?Registry\]"}
+        {
             return "Registry Value = $($setting.ValueData)"
         }
-        {$PSItem -match "^\[AuditPolicySubcategory\]"} {
+        {$PSItem -match "^\[AuditPolicySubcategory\]"}
+        {
             return "AuditPolicySubcategory AuditFlag = $($setting.AuditFlag)"
         }
-        {$PSItem -match "^\[AccountPolicy\]"} {
+        {$PSItem -match "^\[AccountPolicy\]"}
+        {
             return "AccountPolicy = Needs work"
         }
-        {$PSItem -match "^\[UserRightsAssignment\]"} {
+        {$PSItem -match "^\[UserRightsAssignment\]"}
+        {
             return "UserRightsAssignment Identity = $($setting.Identity)"
         }
-        {$PSItem -match "^\[SecurityOption\]"} {
+        {$PSItem -match "^\[SecurityOption\]"}
+        {
             return "SecurityOption = Needs work"
         }
         default
