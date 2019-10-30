@@ -1,4 +1,4 @@
-Configuration IisSite_config
+configuration IisSite_config
 {
     param
     (

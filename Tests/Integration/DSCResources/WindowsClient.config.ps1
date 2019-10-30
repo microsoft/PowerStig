@@ -1,4 +1,4 @@
-Configuration WindowsClient_config
+configuration WindowsClient_config
 {
     param
     (

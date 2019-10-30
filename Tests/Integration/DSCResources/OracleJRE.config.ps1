@@ -1,4 +1,4 @@
-Configuration OracleJRE_config
+configuration OracleJRE_config
 {
     param
     (

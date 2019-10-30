@@ -89,13 +89,13 @@ Describe ($title + " $($stig.StigVersion) mof output") {
 
         Context 'Single Backward Compatibility Exception' {
             It "Should compile the MOF with STIG exception $($backCompatException.Keys) without throwing" {
-                {& $technologyConfig @testParameterList -Exception $backCompatException} | Should -Not -Throw
+                {& $technologyConfig @testParameterList -BackwardCompatibilityException $backCompatException} | Should -Not -Throw
             }
         }
 
         Context 'Multiple Backward Compatibility Exceptions' {
             It "Should compile the MOF with STIG exceptions $($backCompatExceptionMultiple.Keys) without throwing" {
-                {& $technologyConfig @testParameterList -Exception $backCompatExceptionMultiple} | Should -Not -Throw
+                {& $technologyConfig @testParameterList -BackwardCompatibilityException $backCompatExceptionMultiple} | Should -Not -Throw
             }
         }
 

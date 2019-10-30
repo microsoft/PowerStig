@@ -1,4 +1,4 @@
-Configuration WindowsDefender_config
+configuration WindowsDefender_config
 {
     param
     (

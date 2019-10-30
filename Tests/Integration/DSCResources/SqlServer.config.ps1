@@ -1,4 +1,4 @@
-Configuration SqlServer_config
+configuration SqlServer_config
 {
     param
     (
@@ -83,7 +83,7 @@ Configuration SqlServer_config
     }
 }
 
-Configuration SqlServerDatabase_config
+configuration SqlServerDatabase_config
 {
     param
     (

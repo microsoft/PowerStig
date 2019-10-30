@@ -1,4 +1,4 @@
-Configuration InternetExplorer_config
+configuration InternetExplorer_config
 {
     param
     (

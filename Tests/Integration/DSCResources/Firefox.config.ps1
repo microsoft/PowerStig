@@ -1,4 +1,4 @@
-Configuration Firefox_config
+configuration Firefox_config
 {
     param
     (

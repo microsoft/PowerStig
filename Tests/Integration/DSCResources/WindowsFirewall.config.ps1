@@ -1,4 +1,4 @@
-Configuration WindowsFirewall_config
+configuration WindowsFirewall_config
 {
     param
     (

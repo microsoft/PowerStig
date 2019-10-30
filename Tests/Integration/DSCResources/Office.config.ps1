@@ -1,4 +1,4 @@
-Configuration Office_config
+configuration Office_config
 {
     param
     (

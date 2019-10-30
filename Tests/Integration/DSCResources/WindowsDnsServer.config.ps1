@@ -1,4 +1,4 @@
-Configuration WindowsDnsServer_config
+configuration WindowsDnsServer_config
 {
     param
     (

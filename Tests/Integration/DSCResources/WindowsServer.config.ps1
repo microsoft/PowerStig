@@ -1,4 +1,4 @@
-Configuration WindowsServer_config
+configuration WindowsServer_config
 {
     param
     (
