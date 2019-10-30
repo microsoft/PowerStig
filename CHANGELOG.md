@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update Enable Stig Checklist automation to include Status and Comments for manual checks: [#485](https://github.com/microsoft/PowerStig/issues/485)
+
 ## 4.0.0
 
 * Update PowerSTIG parsing for Windows Sever 2016 STIG - Ver 1, Rel 9 [#498] (https://github.com/microsoft/PowerStig/issues/498)
