@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Update PowerSTIG to enable Exception Parameter Backward Compatibility Feature Request: [506](https://github.com/microsoft/PowerStig/issues/506)
+* Update Enable Stig Checklist automation to include Status and Comments for manual checks: [#485](https://github.com/microsoft/PowerStig/issues/485)
 
 ## 4.0.0
 
