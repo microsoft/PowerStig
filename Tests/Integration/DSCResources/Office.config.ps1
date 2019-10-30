@@ -29,6 +29,10 @@ Configuration Office_config
         $Exception,
 
         [Parameter()]
+        [hashtable]
+        $BackwardCompatibilityException,
+
+        [Parameter()]
         [object]
         $OrgSettings
     )
@@ -57,6 +61,11 @@ Configuration Office_config
                 "Exception = @{`n$($Exception.Keys |
                     ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
                         $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
+            })
+            $(if ($null -ne $BackwardCompatibilityException)
+            {
+                "Exception = @{`n$($BackwardCompatibilityException.Keys |
+                    ForEach-Object {"'{0}' = {1}`n" -f $PSItem, $BackwardCompatibilityException[$PSItem]})}"
             })
             $(if ($null -ne $SkipRule)
             {
