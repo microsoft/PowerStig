@@ -1,4 +1,4 @@
-Configuration SqlServer_config
+configuration SqlServer_config
 {
     param
     (
@@ -27,6 +27,10 @@ Configuration SqlServer_config
         [Parameter()]
         [hashtable]
         $Exception,
+
+        [Parameter()]
+        [hashtable]
+        $BackwardCompatibilityException,
 
         [Parameter()]
         [object]
@@ -61,6 +65,11 @@ Configuration SqlServer_config
                     ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
                         $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
             })
+            $(if ($null -ne $BackwardCompatibilityException)
+            {
+                "Exception = @{`n$($BackwardCompatibilityException.Keys |
+                    ForEach-Object {"'{0}' = {1}`n" -f $PSItem, $BackwardCompatibilityException[$PSItem]})}"
+            })
             $(if ($null -ne $SkipRule)
             {
                 "SkipRule = @($( ($SkipRule | ForEach-Object {"'$PSItem'"}) -join ',' ))`n"
@@ -74,7 +83,7 @@ Configuration SqlServer_config
     }
 }
 
-Configuration SqlServerDatabase_config
+configuration SqlServerDatabase_config
 {
     param
     (

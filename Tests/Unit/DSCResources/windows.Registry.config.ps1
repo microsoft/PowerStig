@@ -1,4 +1,4 @@
-Configuration Registry_config
+configuration Registry_config
 {
     param
     ( )

@@ -1,4 +1,4 @@
-Configuration WindowsClient_config
+configuration WindowsClient_config
 {
     param
     (
@@ -19,6 +19,10 @@ Configuration WindowsClient_config
         [Parameter()]
         [hashtable]
         $Exception,
+
+        [Parameter()]
+        [hashtable]
+        $BackwardCompatibilityException,
 
         [Parameter()]
         [string[]]
@@ -69,6 +73,11 @@ Configuration WindowsClient_config
                     "Exception = @{`n$($Exception.Keys |
                         ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
                             $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
+                })
+                $(if ($null -ne $BackwardCompatibilityException)
+                {
+                    "Exception = @{`n$($BackwardCompatibilityException.Keys |
+                        ForEach-Object {"'{0}' = {1}`n" -f $PSItem, $BackwardCompatibilityException[$PSItem]})}"
                 })
                 $(if ($null -ne $SkipRule)
                 {
