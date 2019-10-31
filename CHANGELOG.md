@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 4.1.1
+
+* Fixed [#517](https://github.com/microsoft/PowerStig/issues/517): 4.1.0 GPRegistryPolicyDsc Module Version Issue
+
 ## 4.1.0
 
 * Update PowerSTIG to enable Exception Parameter Backward Compatibility Feature Request: [506](https://github.com/microsoft/PowerStig/issues/506)
