@@ -1,4 +1,4 @@
-Configuration IisServer_Config
+configuration IisServer_Config
 {
     param
     (
@@ -27,6 +27,10 @@ Configuration IisServer_Config
         [Parameter()]
         [hashtable]
         $Exception,
+
+        [Parameter()]
+        [hashtable]
+        $BackwardCompatibilityException,
 
         [Parameter()]
         [object]
@@ -63,6 +67,11 @@ Configuration IisServer_Config
                 "Exception = @{`n$($Exception.Keys |
                     ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
                         $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
+            })
+            $(if ($null -ne $BackwardCompatibilityException)
+            {
+                "Exception = @{`n$($BackwardCompatibilityException.Keys |
+                    ForEach-Object {"'{0}' = {1}`n" -f $PSItem, $BackwardCompatibilityException[$PSItem]})}"
             })
             $(if ($null -ne $SkipRule)
             {

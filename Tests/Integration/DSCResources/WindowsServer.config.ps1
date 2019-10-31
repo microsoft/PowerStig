@@ -1,4 +1,4 @@
-Configuration WindowsServer_config
+configuration WindowsServer_config
 {
     param
     (
@@ -27,6 +27,10 @@ Configuration WindowsServer_config
         [Parameter()]
         [hashtable]
         $Exception,
+
+        [Parameter()]
+        [hashtable]
+        $BackwardCompatibilityException,
 
         [Parameter()]
         [object]
@@ -70,6 +74,11 @@ Configuration WindowsServer_config
                     "Exception = @{`n$($Exception.Keys |
                         ForEach-Object {"'{0}' = {1}{2} = '{3}'{4}`n" -f
                             $PSItem, '@{', $($Exception[$PSItem].Keys), $($Exception[$PSItem][$Exception[$PSItem].Keys]), '}'})}"
+                })
+                $(if ($null -ne $BackwardCompatibilityException)
+                {
+                    "Exception = @{`n$($BackwardCompatibilityException.Keys |
+                        ForEach-Object {"'{0}' = {1}`n" -f $PSItem, $BackwardCompatibilityException[$PSItem]})}"
                 })
                 $(if ($null -ne $SkipRule)
                 {

@@ -29,7 +29,7 @@ data exceptionRuleParameterValues
 
 <#
     .SYNOPSIS
-        Returns a regex  pattern used to find the dsc resource names in a mof.
+        Returns a regex pattern used to find the dsc resource names in a mof.
 #>
 function Get-ResourceMatchStatement
 {
@@ -257,7 +257,11 @@ function Get-RandomExceptionRule
 
         [Parameter(Mandatory = $true)]
         [int]
-        $Count
+        $Count,
+
+        [Parameter(Mandatory = $false)]
+        [switch]
+        $BackwardCompatibility
     )
 
     $randomExceptionRuleId = Get-Random -InputObject $PowerStigXml.($RuleType).Rule.id -Count $Count
@@ -266,6 +270,10 @@ function Get-RandomExceptionRule
     {
         $exceptionRuleHashtable = @{
             $exceptionRuleParameterValues[$RuleType] = $ParameterValue
+        }
+        if ($PSBoundParameters.ContainsKey('BackwardCompatibility'))
+        {
+            $exceptionRuleHashtable = $ParameterValue
         }
         $stigException.Add($id, $exceptionRuleHashtable)
     }

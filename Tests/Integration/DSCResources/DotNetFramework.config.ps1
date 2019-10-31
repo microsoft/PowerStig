@@ -1,4 +1,4 @@
-Configuration DotNetFramework_config
+configuration DotNetFramework_config
 {
     param
     (

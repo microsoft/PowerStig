@@ -30,10 +30,12 @@ try
         $getRandomExceptionRuleParams = @{
             RuleType       = 'SqlScriptQueryRule'
             PowerStigXml   = $powerstigXml
-            ParameterValue = 'TestScript'
+            ParameterValue = $true
         }
         $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = $null
+        $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
+        $backCompatExceptionMultiple = $null
 
         . "$PSScriptRoot\Common.integration.ps1"
     }

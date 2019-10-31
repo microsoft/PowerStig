@@ -26,7 +26,7 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-Configuration WindowsDefender
+configuration WindowsDefender
 {
     [CmdletBinding()]
     param
@@ -62,7 +62,7 @@ Configuration WindowsDefender
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.0.0
+    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.0.1
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
