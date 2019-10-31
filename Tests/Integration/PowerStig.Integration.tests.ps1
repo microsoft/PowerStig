@@ -14,6 +14,25 @@ Describe "$moduleName module" {
         (Get-Module -Name $script:modulePath -ListAvailable).ModuleType | Should Be 'Script'
     }
 
+    $compositeModulePaths = (Get-DscResource -Module PowerStig).Path
+    $manifestRequiredModules = (Import-PowerShellDataFile -Path $script:modulePath).RequiredModules |
+        ForEach-Object -Process {[pscustomobject]$PSItem}
+    
+    foreach ($compositeModule in $compositeModulePaths)
+    {
+        $dscModuleInfo = Get-DscResourceModuleInfo -Path $compositeModule
+        $dscCompositeFile = $compositeModule | Split-Path -Leaf
+
+        foreach ($moduleInfo in $dscModuleInfo)
+        {
+            $moduleData = $manifestRequiredModules | Where-Object -FilterScript {$PSItem.ModuleName -eq $moduleInfo.ModuleName}
+
+            It "Should require the same module listed in the manifest for DscResource $dscCompositeFile Module $($moduleInfo.ModuleName)" {
+                $moduleInfo.ModuleVersion | Should -Be $moduleData.ModuleVersion
+            }
+        }
+    }
+
     Context 'Exported Commands' {
 
         $commands = (Get-Command -Module $moduleName).Name

@@ -475,6 +475,40 @@ function Test-AutomatableRuleType
     }
 }
 
+<#
+    .SYNOPSIS
+        Retrieves the DscResource module name and version.
+
+    .Path
+        Specifies the path to the DscResource composite file.
+#>
+function Get-DscResourceModuleInfo
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory=$true)]
+        [string]
+        $Path
+    )
+
+    $moduleInfo = @()
+    $modulePattern   = "(?<ModuleName>(?<=ModuleName\s)\w+(?=\s))"
+    $versionPatthern = "(?<ModuleVersion>(?<=ModuleVersion\s)[\d\.]+(?=$))"
+
+    $importModuleCommands = Select-String -Path $Path -Pattern 'Import-DscResource' -AllMatches
+
+    foreach ($importModuleCommand in $importModuleCommands)
+    {
+        $moduleInfo += @{
+            ModuleName    = ($importModuleCommand.Line | Select-String -Pattern $modulePattern).Matches[0].Value
+            ModuleVersion = ($importModuleCommand.Line | Select-String -Pattern $versionPatthern).Matches[0].Value
+        }
+    }
+
+    return $moduleInfo
+}
+
 Export-ModuleMember -Function @(
     'Split-TestStrings',
     'Get-StigDataRootPath',
