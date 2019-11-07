@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-* Fixed [#512](https://github.com/microsoft/PowerStig/issues/512): Feature request: additional support for servicerule properties
+* Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
 
 ## 4.1.1
 
