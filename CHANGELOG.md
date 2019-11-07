@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#512](https://github.com/microsoft/PowerStig/issues/512): Feature request: additional support for servicerule properties
+
 ## 4.1.1
 
 * Fixed [#517](https://github.com/microsoft/PowerStig/issues/517): 4.1.0 GPRegistryPolicyDsc Module Version Issue
