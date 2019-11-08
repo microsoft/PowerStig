@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
+
 ## 4.1.1
 
 * Fixed [#517](https://github.com/microsoft/PowerStig/issues/517): 4.1.0 GPRegistryPolicyDsc Module Version Issue
