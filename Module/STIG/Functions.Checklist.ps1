@@ -57,7 +57,10 @@ function New-StigCheckList
 
     )
 
-    $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
+    if ($null -ne $ManualCheckFile)
+    {
+        $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
+    }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
     {
