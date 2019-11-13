@@ -47,7 +47,7 @@ function New-StigCheckList
         [string]
         $XccdfPath,
 
-        [Parameter(Mandatory = $true)]
+        [Parameter(Mandatory = $false)]
         [string]
         $ManualCheckFile,
 
@@ -57,8 +57,12 @@ function New-StigCheckList
 
     )
 
-    if ($null -ne $ManualCheckFile)
+    if ('' -ne $ManualCheckFile)
     {
+        if (-not (Test-Path -Path $ManualCheckFile))
+        {
+            throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
+        }
         $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
     }
 
@@ -70,6 +74,11 @@ function New-StigCheckList
     if ($OutputPath.Extension -ne '.ckl')
     {
         throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
+    }
+
+    if (-not (Test-Path -Path $ReferenceConfiguration))
+    {
+        throw "$($ReferenceConfiguration) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
     }
 
     $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()
