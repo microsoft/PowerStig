@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
 * Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
 * Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 19: [533](https://github.com/microsoft/PowerStig/issues/533)
