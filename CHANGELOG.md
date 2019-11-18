@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9 [#530] (https://github.com/microsoft/PowerStig/issues/530)
 * Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
 
 ## 4.1.1
