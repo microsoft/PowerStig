@@ -10,5 +10,6 @@ foreach ( $rule in $rules )
         Name        = $rule.ServiceName
         State       = $rule.ServiceState
         StartupType = $rule.StartupType
+        Ensure      = $rule.Ensure
     }
 }
