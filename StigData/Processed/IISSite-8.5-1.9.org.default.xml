@@ -17,7 +17,7 @@
   <!-- Ensure [TimeSpan]'V-76839' -le [TimeSpan]'00:20:00' -and [TimeSpan]'V-76839' -ne [TimeSpan]'00:00:00'-->
   <OrganizationalSetting id="V-76839" Value="'00:20:00'" />
   <!-- Ensure ''V-76841'' -le '00:20:00'-->
-  <OrganizationalSetting id="V-76841" Value="'00:20:00'" />
+  <OrganizationalSetting id="V-76841" Value="00:20:00" />
   <!-- Ensure 'V-76867' -ne 0-->
   <OrganizationalSetting id="V-76867" Value="35000" />
   <!-- Ensure 'V-76869' -ne 0-->
