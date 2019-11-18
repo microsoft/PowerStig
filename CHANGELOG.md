@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
 * Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
 
 ## 4.1.1
