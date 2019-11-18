@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
+
 ## 4.1.1
 
 * Fixed [#517](https://github.com/microsoft/PowerStig/issues/517): 4.1.0 GPRegistryPolicyDsc Module Version Issue
