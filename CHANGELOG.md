@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
+* Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
 
 ## 4.1.1
 
