@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 27 Jul 2018" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.16" created="9/6/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Oct 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.18" created="11/19/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This parameter ensures only DoD-approved ciphers and algorithms are enabled for use by the web browser by allowing you to turn on/off support for TLS and SSL. TLS is a protocol for protecting communications between the browser and the target server. When the browser attempts to set up a protected communication with the target server, the browser and server negotiate which protocol and version to use. The browser and server attempt to match each other's list of supported protocols and versions and pick the most preferred match..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -91,19 +91,6 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <RawString>The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer -&gt; Internet Control Panel -&gt; Security Page -&gt; Internet Zone -&gt; 'Initialize and script ActiveX controls not marked as safe' must be 'Enabled', and 'Disable' selected from the drop-down box. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3 Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.</RawString>
       <ValueData>3</ValueData>
       <ValueName>1201</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-46505" severity="medium" conversionstatus="pass" title="DTBI030-IE11-Font download control - Internet" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;Downloads of fonts can sometimes contain malicious code. It is possible that a font could include malformed data that would cause Internet Explorer to crash when it attempts to load and render the font. This policy setting allows you to manage whether pages of the zone may download HTML fonts. If you enable this policy setting, HTML fonts can be downloaded automatically. If you enable this policy setting and "Prompt" is selected in the drop-down box, users are queried whether to allow HTML fonts to download. If you disable this policy setting, HTML fonts are prevented from downloading.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;DCMC-1&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer -&gt; Internet Control Panel -&gt; Security Page -&gt; Internet Zone -&gt; 'Allow font downloads' must be 'Enabled', and 'Disable' selected from the drop-down box. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3 Criteria: If the value "1604" is REG_DWORD = 3, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
-      <ValueName>1604</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-46507" severity="medium" conversionstatus="pass" title="DTBI031-IE11-Java Permission - Internet" dscresource="RegistryPolicyFile">
@@ -377,19 +364,6 @@ If the value "State" is "REG_DWORD = 23C00", this is not a finding.</RawString>
       <RawString>The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer -&gt; Internet Control Panel -&gt; Security Page -&gt; Restricted Sites Zone -&gt; 'Allow file downloads' must be 'Enabled', and 'Disable' selected from the drop-down box. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4 Criteria: If the value "1803" is REG_DWORD = 3, this is not a finding.</RawString>
       <ValueData>3</ValueData>
       <ValueName>1803</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-46585" severity="medium" conversionstatus="pass" title="DTBI120-IE11-Font download control - Restricted Sites" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;It is possible that a font could include malformed data that would cause Internet Explorer to crash when it attempts to load and render the font. Downloads of fonts can sometimes contain malicious code. Files should not be downloaded from restricted sites. This policy setting allows you to manage whether pages of the zone may download HTML fonts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;DCMC-1&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration -&gt; Administrative Templates -&gt; Windows Components -&gt; Internet Explorer -&gt; Internet Control Panel -&gt; Security Page -&gt; Restricted Sites Zone -&gt; 'Allow font downloads' must be 'Enabled', and 'Disable' selected from the drop-down box. Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4 Criteria: If the value "1604" is REG_DWORD = 3, this is not a finding.</RawString>
-      <ValueData>3</ValueData>
-      <ValueName>1604</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-46587" severity="medium" conversionstatus="pass" title="DTBI121-IE11-Java Permission - Restricted Sites" dscresource="RegistryPolicyFile">
@@ -1658,7 +1632,9 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\PhishingFilter</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings” must be ”Enabled”. 
+      <RawString>If the system is on the SIPRNet, this requirement is NA.
+
+The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings” must be ”Enabled”. 
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter. 
 
@@ -1676,7 +1652,9 @@ Criteria: If the value "PreventOverride" is REG_DWORD = 1, this is not a finding
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\PhishingFilter</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings about files that are not commonly downloaded from the internet” must be ”Enabled”. 
+      <RawString>If the system is on the SIPRNet, this requirement is NA.
+
+The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings about files that are not commonly downloaded from the internet” must be ”Enabled”. 
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter.
 
@@ -1939,6 +1917,21 @@ Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and
 </RawString>
       <ValueData>3</ValueData>
       <ValueName>140C is not REG_DWORD = 3, this is a finding. Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-97527" severity="low" conversionstatus="pass" title="DTBI1135-IE11 - Developer Tools" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Information needed by an attacker to begin looking for possible vulnerabilities in a web browser includes any information about the web browser and plug-ins or modules being used. When debugging or trace information is enabled in a production web browser, information about the web browser, such as web browser type, version, patches installed, plug-ins and modules installed, type of code being used by the hosted application, and any back-ends being used for data storage may be displayed. Since this information may be placed in logs and general messages during normal operation of the web browser, an attacker does not need to cause an error condition to gain this information.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_Machine\SOFTWARE\Policies\Microsoft\Internet Explorer\IEDevTools</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Toolbars &gt;&gt; “Turn off Developer Tools” must be “Enabled”. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKEY_LOCAL_Machine\SOFTWARE\Policies\Microsoft\Internet Explorer\IEDevTools
+Criteria: If the value "Disabled" is REG_DWORD = 1, this is not a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>Disabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
   </RegistryRule>
