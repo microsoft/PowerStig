@@ -5,6 +5,7 @@
 * Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
 * Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
 * Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
+* Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 27: [#540](https://github.com/microsoft/PowerStig/issues/540)
 
 ## 4.1.1
 
