@@ -87,7 +87,6 @@ function New-StigCheckList
         'HOST_NAME'       = ''
         'HOST_IP'         = ''
         'HOST_MAC'        = ''
-        'HOST_GUID'       = ''
         'HOST_FQDN'       = ''
         'TECH_AREA'       = ''
         'TARGET_KEY'      = '2350'
@@ -209,12 +208,18 @@ function New-StigCheckList
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
             $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
+            $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
 
             if ($setting)
             {
                 if ($setting.InDesiredState)
                 {
                     $status = $statusMap['NotAFinding']
+                }
+                elseif ($manualCheck)
+                {
+                    $status = $statusMap["$($manualCheck.Status)"]
+                    $comments = $manualCheck.Comments
                 }
                 else
                 {
