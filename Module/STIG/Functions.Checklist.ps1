@@ -28,6 +28,7 @@
 
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile $manualCheckFilePath -XccdfPath $xccdfPath -OutputPath $outputPath
 #>
 function New-StigCheckList
 {
@@ -47,23 +48,22 @@ function New-StigCheckList
         [string]
         $XccdfPath,
 
-        [Parameter(Mandatory = $false)]
-        [string]
-        $ManualCheckFile,
-
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
-        $OutputPath
+        $OutputPath,
 
+        [Parameter()]
+        [String]
+        $ManualCheckFile
     )
 
-    if ('' -ne $ManualCheckFile)
+    if ($ManualCheckFile)
     {
         if (-not (Test-Path -Path $ManualCheckFile))
         {
             throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
         }
-        $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
+        $manualCheckData = Import-PowerShellDataFile -path $ManualCheckFile
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
