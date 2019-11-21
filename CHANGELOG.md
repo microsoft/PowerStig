@@ -1,7 +1,7 @@
 # Versions
 
 ## Unreleased
-
+* Fixed [#428](https://github.com/microsoft/PowerStig/issues/428): Updated JRE rule V-66941.a to be a Organizational setting
 * Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
 * Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
 * Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
