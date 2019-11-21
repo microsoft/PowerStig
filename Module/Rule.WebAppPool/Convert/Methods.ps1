@@ -108,7 +108,7 @@ function Get-WebAppPoolOrganizationValueTestString
     {
         { $PsItem -match 'idleTimeout' }
         {
-            return "[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -ne [TimeSpan]'00:00:00'"
+            return "[TimeSpan]{0} -le [TimeSpan]'00:20:00' -and [TimeSpan]{0} -gt [TimeSpan]'00:00:00'"
         }
         { $PsItem -match 'queueLength' }
         {
