@@ -40,7 +40,7 @@ function New-StigCheckList
         $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'result')]
-        [System.Collections.ArrayList]
+        [psobject]
         $DscResult,
 
         [Parameter(Mandatory = $true)]
@@ -81,6 +81,10 @@ function New-StigCheckList
 
     $writer.WriteStartElement("ASSET")
 
+    # Values for some of these fields can be read from the .mof file or the DSC results file
+
+    Get-TargetNodeFromMof
+    
     $assetElements = [ordered] @{
         'ROLE'            = 'None'
         'ASSET_TYPE'      = 'Computing'
@@ -392,7 +396,7 @@ function Get-SettingsFromResult
     param
     (
         [Parameter(Mandatory = $true)]
-        [System.Collections.ArrayList]
+        [psobject]
         $DscResult,
 
         [Parameter(Mandatory = $true)]
@@ -451,4 +455,20 @@ function Get-FindingDetails
             return "not found"
         }
     }
+}
+function Get-TargetNodeFromMof
+{
+    [OutputType([string])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [string]
+        $MofString
+    )
+
+    $pattern = "((?<=@TargetNode=')(.*)(?='))"
+    $TargetNodeSearch = $mofstring | Select-String -Pattern $pattern
+    $TargetNode = $TargetNodeSearch.matches.value
+    return $TargetNode
 }
