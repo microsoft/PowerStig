@@ -48,16 +48,23 @@ function New-StigCheckList
         $XccdfPath,
 
         [Parameter(Mandatory = $true)]
-        [string]
-        $ManualCheckFile,
-
-        [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
-        $OutputPath
+        $OutputPath,
 
+        [Parameter()]
+        [String]
+        $ManualCheckFile
     )
 
-    $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
+    # Validate parameters before continuing
+    if ($ManualCheckFile)
+    {
+        if (-not (Test-Path -Path $ManualCheckFile))
+        {
+            throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
+        }
+        $manualCheckData = Import-PowerShellDataFile -path $ManualCheckFile
+    }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
     {
@@ -67,6 +74,54 @@ function New-StigCheckList
     if ($OutputPath.Extension -ne '.ckl')
     {
         throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
+    }
+
+    # Values for some of these fields can be read from the .mof file or the DSC results file
+    if ($PSCmdlet.ParameterSetName -eq 'mof')
+    {
+        if (-not (Test-Path -Path $ReferenceConfiguration))
+        {
+            throw "$($ReferenceConfiguration) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
+        }
+
+        $MofString = Get-Content -Path $ReferenceConfiguration -Raw
+        $TargetNode = Get-TargetNodeFromMof($MofString)
+
+    }
+    elseif ($PSCmdlet.ParameterSetName -eq 'result')
+    {
+        # Check the returned object
+        if ($null -eq $DscResult)
+        {
+            throw 'Passed in $DscResult parameter is null. Please provide a valid result using Test-DscConfiguration.'
+        }
+        $TargetNode = $DscResult.PSComputerName
+    }
+    
+    $TargetNodeType = Get-TargetNodeType($TargetNode)
+
+    switch ($TargetNodeType)
+    {
+        "MACAddress"
+        {
+            $HostnameMACAddress = $TargetNode
+        }
+        "IPv4Address"
+        {
+            $HostnameIPAddress = $TargetNode
+        }
+        "IPv6Address"
+        {
+            $HostnameIPAddress = $TargetNode
+        }
+        "FQDN"
+        {
+            $HostnameFQDN = $TargetNode
+        }
+        default
+        {
+            $Hostname = $TargetNode
+        }
     }
 
     $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()
@@ -81,17 +136,13 @@ function New-StigCheckList
 
     $writer.WriteStartElement("ASSET")
 
-    # Values for some of these fields can be read from the .mof file or the DSC results file
-
-    Get-TargetNodeFromMof
-    
     $assetElements = [ordered] @{
         'ROLE'            = 'None'
         'ASSET_TYPE'      = 'Computing'
-        'HOST_NAME'       = ''
-        'HOST_IP'         = ''
-        'HOST_MAC'        = ''
-        'HOST_FQDN'       = ''
+        'HOST_NAME'       = "$Hostname"
+        'HOST_IP'         = "$HostnameIPAddress"
+        'HOST_MAC'        = "$HostnameMACAddress"
+        'HOST_FQDN'       = "$HostnameFQDN"
         'TECH_AREA'       = ''
         'TARGET_KEY'      = '2350'
         'WEB_OR_DATABASE' = 'false'
@@ -197,6 +248,8 @@ function New-StigCheckList
             if ($setting)
             {
                 $status = $statusMap['NotAFinding']
+                $comments = "To be addressed by PowerStig MOF via $setting"
+                $findingDetails = Get-FindingDetails -Setting $setting
 
             }
             elseif ($manualCheck)
@@ -216,9 +269,11 @@ function New-StigCheckList
 
             if ($setting)
             {
-                if ($setting.InDesiredState)
+                if ($setting.ResourcesInDesiredState)
                 {
                     $status = $statusMap['NotAFinding']
+                    $comments = "Addressed by PowerStig MOF via $setting"
+                    $findingDetails = Get-FindingDetails -Setting $setting
                 }
                 elseif ($manualCheck)
                 {
@@ -229,8 +284,6 @@ function New-StigCheckList
                 {
                     $status = $statusMap['Open']
                 }
-
-                $comments = 'Managed via PowerStigDsc from Live call'
             }
             else
             {
@@ -243,7 +296,7 @@ function New-StigCheckList
         $writer.WriteEndElement(<#STATUS#>)
 
         $writer.WriteStartElement("FINDING_DETAILS")
-        $writer.WriteString((Get-FindingDetails -Setting $setting))
+        $writer.WriteString($findingDetails)
         $writer.WriteEndElement(<#FINDING_DETAILS#>)
 
         $writer.WriteStartElement("COMMENTS")
@@ -430,31 +483,145 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
+        {$PSItem -match "^\[AccountPolicy\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[ActiveDirectoryAuditRuleEntry\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[AuditPolicySubcategory\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[AuditSetting\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[FileSystemAuditRuleEntry\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[KeyValuePairFile\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[None\]"}
+        {
+            return "No DSC resource was leveraged for this rule (Resource=None)"
+        }
+        {$PSItem -match "^\[NTFSAccessEntry\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[ProcessMitigation\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
         {$PSItem -match "^\[(x)?Registry\]"}
         {
             return "Registry Value = $($setting.ValueData)"
         }
-        {$PSItem -match "^\[AuditPolicySubcategory\]"}
+        {$PSItem -match "^\[RegistryAccessEntry\]"}
         {
-            return "AuditPolicySubcategory AuditFlag = $($setting.AuditFlag)"
+            return Get-FindingDetailsString -Setting $setting
         }
-        {$PSItem -match "^\[AccountPolicy\]"}
+        {$PSItem -match "^\[RegistryPolicyFile\]"}
         {
-            return "AccountPolicy = Needs work"
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[ReplaceText\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[Script\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[SecurityOption\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[Service\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[SqlScriptQuery\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
         }
         {$PSItem -match "^\[UserRightsAssignment\]"}
         {
             return "UserRightsAssignment Identity = $($setting.Identity)"
         }
-        {$PSItem -match "^\[SecurityOption\]"}
+        {$PSItem -match "^\[WindowsFeature\]"}
         {
-            return "SecurityOption = Needs work"
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[WindowsOptionalFeature\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[xDnsServerSetting\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[xIisMimeTypeMapping\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[xSslSettings\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[xWebAppPool\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[xWebConfigKeyValue\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[XWebsite\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
+        }
+        {$PSItem -match "^\[xWinEventLog\]"}
+        {
+            return Get-FindingDetailsString -Setting $setting
         }
         default
         {
-            return "not found"
+            return "DSC Resource details not found."
         }
     }
+}
+function Get-FindingDetailsString
+{
+    [OutputType([string])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [AllowNull()]
+        [psobject]
+        $Setting
+    )
+
+    foreach ($property in $setting.PSobject.properties) {
+        $lineCount += 1
+        if($linecount -le 2){
+            $returnString += $($property.Name) + ' = '
+            $returnString += $($setting.PSobject.properties[$property.Name].Value) + "`n"
+        }
+    }
+
+    if ($null -eq $returnString)
+    {
+        $returnString = $setting.ResourceID + ' automatically applied/to be applied by PowerStig MOF.'
+    }
+    return $returnString
 }
 function Get-TargetNodeFromMof
 {
@@ -471,4 +638,50 @@ function Get-TargetNodeFromMof
     $TargetNodeSearch = $mofstring | Select-String -Pattern $pattern
     $TargetNode = $TargetNodeSearch.matches.value
     return $TargetNode
+}
+function Get-TargetNodeType
+{
+    [OutputType([string])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [string]
+        $TargetNode
+    )
+
+    switch ($TargetNode)
+    {
+        # Do we have a MAC address?
+        {
+            $_ -match '(([0-9a-f]{2}:){5}[0-9a-f]{2})'
+        }
+        {
+            return 'MACAddress'
+        }
+    
+        # Do we have an IPv6 address?
+        {
+            $_ -match '(([0-9a-f]{0,4}:){7}[0-9a-f]{0,4})'
+        }
+        {
+            return 'IPv4Address'
+        }
+    
+        # Do we have an IPv4 address?
+        {
+            $_ -match '(([0-9]{1,3}\.){3}[0-9]{1,3})'
+        }
+        {
+            return 'IPv6Address'
+        }
+    
+        # Do we have a Fully-qualified Domain Name?
+        {
+            $_ -match '([a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,256}\b)'
+        }
+        {
+            return 'FQDN'
+        }
+    }
 }
