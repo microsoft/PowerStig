@@ -6,7 +6,7 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="1.19">
-  <!-- Ensure -->
+  <!-- Ensure the correct path is specified and does NOT conflict with RuleId V-69169-->
   <OrganizationalSetting id="V-40950" Path="" />
   <!-- Ensure -->
   <OrganizationalSetting id="V-41022" VariableValue="" />
@@ -16,6 +16,6 @@
   <OrganizationalSetting id="V-41037" VariableValue="" />
   <!-- Ensure -->
   <OrganizationalSetting id="V-41251" VariableValue="" />
-  <!-- Ensure -->
+  <!-- Ensure the correct path is specified and does NOT conflict with RuleId V-40950-->
   <OrganizationalSetting id="V-69169" Path="" />
 </OrganizationalSettings>
