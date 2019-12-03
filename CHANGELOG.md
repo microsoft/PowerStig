@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Fixed [#428](https://github.com/microsoft/PowerStig/issues/428): Updated JRE rule V-66941.a to be a Organizational setting
 * Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9 [#530] (https://github.com/microsoft/PowerStig/issues/530)
 * Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
 * Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
