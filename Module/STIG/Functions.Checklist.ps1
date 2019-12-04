@@ -63,7 +63,7 @@ function New-StigCheckList
         {
             throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
         }
-        $manualCheckData = Import-PowerShellDataFile -path $ManualCheckFile
+        $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
@@ -212,6 +212,7 @@ function New-StigCheckList
         foreach ($attribute in $vulnerability.GetEnumerator())
         {
             $status = $null
+            $findingDetails = $null
             $comments = $null
             $manualCheck = $null
 
@@ -255,6 +256,7 @@ function New-StigCheckList
             elseif ($manualCheck)
             {
                 $status = $statusMap["$($manualCheck.Status)"]
+                $findingDetails = $manualCheck.Details
                 $comments = $manualCheck.Comments
             }
             else
@@ -278,6 +280,7 @@ function New-StigCheckList
                 elseif ($manualCheck)
                 {
                     $status = $statusMap["$($manualCheck.Status)"]
+                    $findingDetails = $manualCheck.Details
                     $comments = $manualCheck.Comments
                 }
                 else
@@ -288,6 +291,19 @@ function New-StigCheckList
             else
             {
                 $status = $statusMap['NotReviewed']
+            }
+        }
+
+        # Test to see if this rule is managed as a duplicate
+        $convertedRule =  $global:stigSettings | where-object Id -eq $vid
+        if ($convertedRule.DuplicateOf)
+        {
+            # How is the duplicate rule handled? If it is handled, then the duplicate is also covered
+            $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
+            if ($originalSetting)
+            {
+                $status = $statusMap['NotAFinding']
+                $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
             }
         }
 
@@ -483,117 +499,22 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
-        {$PSItem -match "^\[AccountPolicy\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[ActiveDirectoryAuditRuleEntry\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[AuditPolicySubcategory\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[AuditSetting\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[FileSystemAuditRuleEntry\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[KeyValuePairFile\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
+        # Only add custom entries if specific output is more valuable than dumping all properties
         {$PSItem -match "^\[None\]"}
         {
             return "No DSC resource was leveraged for this rule (Resource=None)"
-        }
-        {$PSItem -match "^\[NTFSAccessEntry\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[ProcessMitigation\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
         }
         {$PSItem -match "^\[(x)?Registry\]"}
         {
             return "Registry Value = $($setting.ValueData)"
         }
-        {$PSItem -match "^\[RegistryAccessEntry\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[RegistryPolicyFile\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[ReplaceText\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[Script\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[SecurityOption\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[Service\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[SqlScriptQuery\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
         {$PSItem -match "^\[UserRightsAssignment\]"}
         {
             return "UserRightsAssignment Identity = $($setting.Identity)"
         }
-        {$PSItem -match "^\[WindowsFeature\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[WindowsOptionalFeature\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[xDnsServerSetting\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[xIisMimeTypeMapping\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[xSslSettings\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[xWebAppPool\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[xWebConfigKeyValue\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[XWebsite\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
-        {$PSItem -match "^\[xWinEventLog\]"}
-        {
-            return Get-FindingDetailsString -Setting $setting
-        }
         default
         {
-            return "DSC Resource details not found."
+            return Get-FindingDetailsString -Setting $setting
         }
     }
 }
@@ -610,16 +531,11 @@ function Get-FindingDetailsString
     )
 
     foreach ($property in $setting.PSobject.properties) {
-        $lineCount += 1
-        if($linecount -le 2){
+        if ($property.TypeNameOfValue -Match 'String')
+        {
             $returnString += $($property.Name) + ' = '
             $returnString += $($setting.PSobject.properties[$property.Name].Value) + "`n"
         }
-    }
-
-    if ($null -eq $returnString)
-    {
-        $returnString = $setting.ResourceID + ' automatically applied/to be applied by PowerStig MOF.'
     }
     return $returnString
 }
