@@ -13,6 +13,7 @@
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 19: [533](https://github.com/microsoft/PowerStig/issues/533)
 * Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V2R17/V2R18 Respectively: [531](https://github.com/microsoft/PowerStig/issues/531)
 * Update PowerSTIG to successfully parse Microsoft SQL Server 2016 Instance STIG - Ver 1, Rel 7: [#542](https://github.com/microsoft/PowerStig/issues/542)
+* Update PowerSTIG to parse and apply OfficeSystem 2013 STIG V1R9 / 2016 V1R1: [#551](https://github.com/microsoft/PowerStig/issues/551)
 
 ## 4.1.1
 
