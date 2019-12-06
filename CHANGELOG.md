@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9 [#530](https://github.com/microsoft/PowerStig/issues/530)
 * Fixed [#428](https://github.com/microsoft/PowerStig/issues/428): Updated JRE rule V-66941.a to be a Organizational setting
 * Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9 [#530] (https://github.com/microsoft/PowerStig/issues/530)
 * Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
@@ -12,6 +13,7 @@
 * Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 27: [#540](https://github.com/microsoft/PowerStig/issues/540)
 * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 19: [533](https://github.com/microsoft/PowerStig/issues/533)
 * Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V2R17/V2R18 Respectively: [531](https://github.com/microsoft/PowerStig/issues/531)
+* Need a test to verify the conversionstatus="fail" does not exist in processed STIGs: [545](https://github.com/microsoft/PowerStig/issues/545)
 * Update PowerSTIG to successfully parse Microsoft SQL Server 2016 Instance STIG - Ver 1, Rel 7: [#542](https://github.com/microsoft/PowerStig/issues/542)
 * Update PowerSTIG to parse and apply OfficeSystem 2013 STIG V1R9 / 2016 V1R1: [#551](https://github.com/microsoft/PowerStig/issues/551)
 
