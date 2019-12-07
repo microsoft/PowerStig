@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Oct 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.18" created="11/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IE_11_STIG" description="The Microsoft Internet Explorer 11 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil" filename="U_MS_IE11_STIG_V1R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Oct 2019" title="Microsoft Internet Explorer 11 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.18" created="12/5/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-46473" severity="medium" conversionstatus="pass" title="DTBI014-IE11-TLS setting" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;This parameter ensures only DoD-approved ciphers and algorithms are enabled for use by the web browser by allowing you to turn on/off support for TLS and SSL. TLS is a protocol for protecting communications between the browser and the target server. When the browser attempts to set up a protected communication with the target server, the browser and server negotiate which protocol and version to use. The browser and server attempt to match each other's list of supported protocols and versions and pick the most preferred match..&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1210,11 +1210,11 @@ The policy value for Computer Configuration -&gt; Administrative Templates -&gt;
       <OrganizationValueTestString />
       <RawString>If the system is on the SIPRNet, this requirement is NA.
 
-The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; "Prevent Managing SmartScreen Filter" must be "Enabled", and "On" selected from the drop-down box. 
+The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; "Prevent Managing SmartScreen Filter" must be "Enabled", and "On" selected from the drop-down box.
 
 Procedure: Use the Windows Registry Editor to navigate to the following key:
 
-HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter 
+HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter
 
 Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</RawString>
       <ValueData>1</ValueData>
@@ -1634,9 +1634,9 @@ Criteria: If the value "EnabledV9" is "REG_DWORD = 1", this is not a finding.</R
       <OrganizationValueTestString />
       <RawString>If the system is on the SIPRNet, this requirement is NA.
 
-The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings” must be ”Enabled”. 
+The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings” must be ”Enabled”.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter.
 
 Criteria: If the value "PreventOverride" is REG_DWORD = 1, this is not a finding.
 </RawString>
@@ -1654,7 +1654,7 @@ Criteria: If the value "PreventOverride" is REG_DWORD = 1, this is not a finding
       <OrganizationValueTestString />
       <RawString>If the system is on the SIPRNet, this requirement is NA.
 
-The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings about files that are not commonly downloaded from the internet” must be ”Enabled”. 
+The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent bypassing SmartScreen Filter warnings about files that are not commonly downloaded from the internet” must be ”Enabled”.
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\PhishingFilter.
 
@@ -1672,9 +1672,9 @@ Criteria: If the value "PreventOverrideAppRepUnknown" is REG_DWORD = 1, this is 
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Internet Explorer\Security\ActiveX</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent per-user installation of ActiveX controls” must be ”Enabled”. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; ”Prevent per-user installation of ActiveX controls” must be ”Enabled”.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\Security\ActiveX. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Internet Explorer\Security\ActiveX.
 
 Criteria: If the value "BlockNonAdminActiveXInstall" is REG_DWORD = 1, this is not a finding.
 </RawString>
@@ -1690,9 +1690,9 @@ Criteria: If the value "BlockNonAdminActiveXInstall" is REG_DWORD = 1, this is n
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; ”Prevent ignoring certificate errors” must be ”Enabled”. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; ”Prevent ignoring certificate errors” must be ”Enabled”.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings.
 
 Criteria: If the value "PreventIgnoreCertErrors" is REG_DWORD = 1, this is not a finding.
 </RawString>
@@ -1708,9 +1708,9 @@ Criteria: If the value "PreventIgnoreCertErrors" is REG_DWORD = 1, this is not a
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone &gt;&gt; ”Turn on SmartScreen Filter scan” must be ”Enabled” and ”Enable” selected from the drop-down box. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone &gt;&gt; ”Turn on SmartScreen Filter scan” must be ”Enabled” and ”Enable” selected from the drop-down box.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3.
 
 Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
 </RawString>
@@ -1726,9 +1726,9 @@ Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Restricted Sites Zone &gt;&gt; ”Turn on SmartScreen Filter scan” must be ”Enabled” and ”Enable” selected from the drop-down box. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Restricted Sites Zone &gt;&gt; ”Turn on SmartScreen Filter scan” must be ”Enabled” and ”Enable” selected from the drop-down box.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4.
 
 Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
 </RawString>
@@ -1744,9 +1744,9 @@ Criteria: If the value "2301" is REG_DWORD = 0, this is not a finding.
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Intranet Zone &gt;&gt; ”Initialize and script ActiveX controls not marked as safe” must be ”Enabled” and ”Disable” selected from the drop-down box. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Intranet Zone &gt;&gt; ”Initialize and script ActiveX controls not marked as safe” must be ”Enabled” and ”Disable” selected from the drop-down box.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\1.
 
 Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
 </RawString>
@@ -1762,9 +1762,9 @@ Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Trusted Sites Zone &gt;&gt; ”Initialize and script ActiveX controls not marked as safe” must be ”Enabled” and ”Disable” selected from the drop-down box. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Trusted Sites Zone &gt;&gt; ”Initialize and script ActiveX controls not marked as safe” must be ”Enabled” and ”Disable” selected from the drop-down box.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2. 
+Procedure: Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\2.
 
 Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
 </RawString>
@@ -1780,11 +1780,11 @@ Criteria: If the value "1201" is REG_DWORD = 3, this is not a finding.
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Security Features &gt;&gt; "Allow fallback to SSL 3.0 (Internet Explorer)" must be "Enabled", and "No Sites" selected from the drop-down box. If "Allow fallback to SSL 3.0 (Internet Explorer)" is not "Enabled" or any other drop-down option is selected, this is a finding. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Security Features &gt;&gt; "Allow fallback to SSL 3.0 (Internet Explorer)" must be "Enabled", and "No Sites" selected from the drop-down box. If "Allow fallback to SSL 3.0 (Internet Explorer)" is not "Enabled" or any other drop-down option is selected, this is a finding.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
+Procedure: Use the Windows Registry Editor to navigate to the following key:
 
-HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings. 
+HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings.
 
 Criteria: If the value "EnableSSL3Fallback" is REG_DWORD=0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1799,11 +1799,11 @@ Criteria: If the value "EnableSSL3Fallback" is REG_DWORD=0, this is not a findin
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Ext</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Security Features &gt;&gt; Add-on Management, verify "Remove the Run this time button for outdated ActiveX controls in IE" is set to “Enabled”. 
+      <RawString>In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Security Features &gt;&gt; Add-on Management, verify "Remove the Run this time button for outdated ActiveX controls in IE" is set to “Enabled”.
 
-Use the Windows Registry Editor to navigate to the following key: 
+Use the Windows Registry Editor to navigate to the following key:
 
-HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Ext 
+HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Ext
 
 If the value "RunThisTimeEnabled" is REG_DWORD = 0, this is not a finding.</RawString>
       <ValueData>0</ValueData>
@@ -1818,11 +1818,11 @@ If the value "RunThisTimeEnabled" is REG_DWORD = 0, this is not a finding.</RawS
       <Key>HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Policies\Ext</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Security Features &gt;&gt; Add-on Management, verify "Turn off blocking of outdated ActiveX controls for Internet Explorer" is set to “Disabled”. 
+      <RawString>In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Security Features &gt;&gt; Add-on Management, verify "Turn off blocking of outdated ActiveX controls for Internet Explorer" is set to “Disabled”.
 
-Use the Windows Registry Editor to navigate to the following key: 
+Use the Windows Registry Editor to navigate to the following key:
 
-HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Ext 
+HKLM\Software\Microsoft\Windows\CurrentVersion\Policies\Ext
 
 If the value "VersionCheckEnabled" is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
@@ -1837,17 +1837,17 @@ If the value "VersionCheckEnabled" is REG_DWORD = 1, this is not a finding.</Raw
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Only applies to Windows 10 version 1607 and higher and Windows Server 2016 systems. For other Windows versions, this check is Not Applicable. 
+      <RawString>Note: Only applies to Windows 10 version 1607 and higher and Windows Server 2016 systems. For other Windows versions, this check is Not Applicable.
 
-In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”. 
+In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”.
 
-In the Options window, verify the “Only allow approved domains to use the TDC ActiveX control" drop-down box is set to “Enable”. 
+In the Options window, verify the “Only allow approved domains to use the TDC ActiveX control" drop-down box is set to “Enable”.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
+Procedure: Use the Windows Registry Editor to navigate to the following key:
 
-HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3 
+HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3
 
-Criteria: 
+Criteria:
 
 If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <ValueData>3</ValueData>
@@ -1862,17 +1862,17 @@ If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: Only applies to Windows 10 version 1607 and higher and Windows Server 2016 systems. For other Windows versions, this check is Not Applicable. 
+      <RawString>Note: Only applies to Windows 10 version 1607 and higher and Windows Server 2016 systems. For other Windows versions, this check is Not Applicable.
 
-In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Restricted Sites Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”. 
+In the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Restricted Sites Zone, verify "Allow only approved domains to use the TDC ActiveX control" is “Enabled”.
 
-In the Options window, verify the “Only allow approved domains to use the TDC ActiveX control" drop-down box is set to “Enable”. 
+In the Options window, verify the “Only allow approved domains to use the TDC ActiveX control" drop-down box is set to “Enable”.
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
+Procedure: Use the Windows Registry Editor to navigate to the following key:
 
-HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4 
+HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\4
 
-Criteria: 
+Criteria:
 
 If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <ValueData>3</ValueData>
@@ -1887,7 +1887,7 @@ If the value "120c" is REG_DWORD = “3”, this is not a finding.</RawString>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone &gt;&gt; "Allow VBScript to run in Internet Explorer" must be "Enabled", and "Disable" must be selected from the drop-down box. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Internet Control Panel &gt;&gt; Security Page &gt;&gt; Internet Zone &gt;&gt; "Allow VBScript to run in Internet Explorer" must be "Enabled", and "Disable" must be selected from the drop-down box.
 
 Use the Windows Registry Editor to navigate to the following key: HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings\Zones\3
 
@@ -1927,7 +1927,7 @@ Note: This policy setting will only exist on Windows 10 Redstone 2 or later, and
       <Key>HKEY_LOCAL_Machine\SOFTWARE\Policies\Microsoft\Internet Explorer\IEDevTools</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Toolbars &gt;&gt; “Turn off Developer Tools” must be “Enabled”. 
+      <RawString>The policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Internet Explorer &gt;&gt; Toolbars &gt;&gt; “Turn off Developer Tools” must be “Enabled”.
 Procedure: Use the Windows Registry Editor to navigate to the following key: HKEY_LOCAL_Machine\SOFTWARE\Policies\Microsoft\Internet Explorer\IEDevTools
 Criteria: If the value "Disabled" is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
