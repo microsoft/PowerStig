@@ -205,7 +205,14 @@ function New-StigCheckList
 
     #region STIGS/iSTIG/VULN[]
 
-    foreach ($vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent))
+    # Pull in the processed XML file to check for duplicate rules for each vulnerability
+    [xml]$xccdfBenchmark = Get-Content -Path $xccdfPath -Encoding UTF8
+    $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
+    $processedFileName = $fileList.Settings.FullName
+    [xml]$processed = get-content -Path $processedFileName
+
+    $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
+    foreach ($vulnerability in $vulnerabilities)
     {
         $writer.WriteStartElement("VULN")
 
@@ -295,15 +302,29 @@ function New-StigCheckList
         }
 
         # Test to see if this rule is managed as a duplicate
-        $convertedRule =  $global:stigSettings | where-object Id -eq $vid
+        $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
         if ($convertedRule.DuplicateOf)
         {
             # How is the duplicate rule handled? If it is handled, then the duplicate is also covered
-            $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
-            if ($originalSetting)
+            if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
-                $status = $statusMap['NotAFinding']
-                $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
+                if ($originalSetting)
+                {
+                    $status = $statusMap['NotAFinding']
+                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                }
+            }
+            elseif ($PSCmdlet.ParameterSetName -eq 'result')
+            {
+                $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
+                if ($originalSetting.ResourcesInDesiredState)
+                {
+                    $status = $statusMap['NotAFinding']
+                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                }
             }
         }
 

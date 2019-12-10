@@ -14,5 +14,9 @@ foreach ($supportFile in (Get-ChildItem -Path $pathList -File -Filter '*.ps1'))
 Export-ModuleMember -Function @(
     'Get-DomainName',
     'Get-Stig',
-    'New-StigCheckList'
+    'New-StigCheckList',
+    'Get-StigRuleList',
+    'Get-StigVersionNumber',
+    'Get-PowerStigFilelist',
+    'Split-BenchmarkId'
 )
