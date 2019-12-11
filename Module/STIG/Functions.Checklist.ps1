@@ -105,18 +105,22 @@ function New-StigCheckList
         "MACAddress"
         {
             $HostnameMACAddress = $TargetNode
+            Break
         }
         "IPv4Address"
         {
             $HostnameIPAddress = $TargetNode
+            Break
         }
         "IPv6Address"
         {
             $HostnameIPAddress = $TargetNode
+            Break
         }
         "FQDN"
         {
             $HostnameFQDN = $TargetNode
+            Break
         }
         default
         {
@@ -273,31 +277,37 @@ function New-StigCheckList
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
-            $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
             $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
-
-            if ($setting)
-            {
-                if ($setting.ResourcesInDesiredState)
+            # If we have manual check data, we don't need to look at the configuration
+            if ($manualCheck){
+                $status = $statusMap["$($manualCheck.Status)"]
+                $findingDetails = $manualCheck.Details
+                $comments = $manualCheck.Comments
+            } else {
+                $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
+                if ($setting)
                 {
-                    $status = $statusMap['NotAFinding']
-                    $comments = "Addressed by PowerStig MOF via $setting"
-                    $findingDetails = Get-FindingDetails -Setting $setting
-                }
-                elseif ($manualCheck)
-                {
-                    $status = $statusMap["$($manualCheck.Status)"]
-                    $findingDetails = $manualCheck.Details
-                    $comments = $manualCheck.Comments
+                    if ($setting.InDesiredState -eq 'True')
+                    {
+                        $status = $statusMap['NotAFinding']
+                        $comments = "Addressed by PowerStig MOF via $setting"
+                        $findingDetails = Get-FindingDetails -Setting $setting
+                    }
+                    elseif ($setting.InDesiredState -eq 'False')
+                    {
+                        $status = $statusMap['Open']
+                        $comments = "Configuration attempted by PowerStig MOF via $setting, but not currently set."
+                        $findingDetails = Get-FindingDetails -Setting $setting
+                    }
+                    else
+                    {
+                        $status = $statusMap['Open']
+                    }
                 }
                 else
                 {
-                    $status = $statusMap['Open']
-                }
-            }
-            else
-            {
-                $status = $statusMap['NotReviewed']
+                    $status = $statusMap['NotReviewed']
+                }    
             }
         }
 
@@ -305,7 +315,7 @@ function New-StigCheckList
         $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
         if ($convertedRule.DuplicateOf)
         {
-            # How is the duplicate rule handled? If it is handled, then the duplicate is also covered
+            # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
@@ -319,9 +329,15 @@ function New-StigCheckList
             elseif ($PSCmdlet.ParameterSetName -eq 'result')
             {
                 $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
-                if ($originalSetting.ResourcesInDesiredState)
+                if ($originalSetting.InDesiredState -eq 'True')
                 {
                     $status = $statusMap['NotAFinding']
+                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                }
+                else
+                {
+                    $status = $statusMap['Open']
                     $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
                     $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
                 }
@@ -621,4 +637,5 @@ function Get-TargetNodeType
             return 'FQDN'
         }
     }
+    return ''
 }
