@@ -287,13 +287,13 @@ function New-StigCheckList
                 $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
                 if ($setting)
                 {
-                    if ($setting.InDesiredState -eq 'True')
+                    if ($setting.InDesiredState -eq $true)
                     {
                         $status = $statusMap['NotAFinding']
                         $comments = "Addressed by PowerStig MOF via $setting"
                         $findingDetails = Get-FindingDetails -Setting $setting
                     }
-                    elseif ($setting.InDesiredState -eq 'False')
+                    elseif ($setting.InDesiredState -eq $false)
                     {
                         $status = $statusMap['Open']
                         $comments = "Configuration attempted by PowerStig MOF via $setting, but not currently set."
