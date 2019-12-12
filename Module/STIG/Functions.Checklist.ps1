@@ -488,7 +488,9 @@ function Get-SettingsFromMof
 
     $mofContent = Get-MofContent -ReferenceConfiguration $referenceConfiguration
 
-    return $mofContent.Where({$PSItem.ResourceID -match $id})
+    $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
+
+    return $mofContentFound
 }
 
 <#
