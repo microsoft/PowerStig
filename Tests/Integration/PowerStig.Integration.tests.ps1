@@ -3,6 +3,7 @@
 $script:moduleRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $script:moduleName = 'PowerStig'
 $script:modulePath = "$($script:moduleRoot)\$($script:moduleName).psd1"
+$script:dscCompositePath = Join-Path -Path $script:moduleRoot -ChildPath 'DSCResources'
 
 Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath 'Tools\TestHelper\TestHelper.psm1') -Force
 Import-Module $modulePath -Force
@@ -14,7 +15,8 @@ Describe "$moduleName module" {
         (Get-Module -Name $script:modulePath -ListAvailable).ModuleType | Should Be 'Script'
     }
 
-    $compositeModulePaths = (Get-DscResource -Module PowerStig).Path
+    $compositeModulePaths = (Get-ChildItem -Path  $script:dscCompositePath -Include '*schema.psm1' -Recurse).FullName
+    #$compositeModulePaths = (Get-DscResource -Module PowerStig).Path
     $manifestRequiredModules = (Import-PowerShellDataFile -Path $script:modulePath).RequiredModules |
         ForEach-Object -Process {[pscustomobject]$PSItem}
     
@@ -27,7 +29,7 @@ Describe "$moduleName module" {
         {
             $moduleData = $manifestRequiredModules | Where-Object -FilterScript {$PSItem.ModuleName -eq $moduleInfo.ModuleName}
 
-            It "Should require the same module listed in the manifest for DscResource $dscCompositeFile Module $($moduleInfo.ModuleName)" {
+            It "Should require the same module listed in the manifest for DscResource $dscCompositeFile Module: $($moduleInfo.ModuleName)" {
                 $moduleInfo.ModuleVersion | Should -Be $moduleData.ModuleVersion
             }
         }

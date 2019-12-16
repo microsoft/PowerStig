@@ -510,16 +510,17 @@ function Get-DscResourceModuleInfo
 }
 
 Export-ModuleMember -Function @(
-    'Split-TestStrings',
-    'Get-StigDataRootPath',
-    'Test-Xml',
-    'Get-TestStigRule',
-    'Get-StigBaseMethods',
-    'Format-RuleText',
-    'Get-PowerStigVersionFromManifest',
-    'Get-StigVersionTable',
-    'Get-ConfigurationName',
-    'Get-StigVersionParameterValidateSet',
-    'Get-ValidStigVersionNumbers',
+    'Split-TestStrings'
+    'Get-StigDataRootPath'
+    'Test-Xml'
+    'Get-TestStigRule'
+    'Get-StigBaseMethods'
+    'Format-RuleText'
+    'Get-PowerStigVersionFromManifest'
+    'Get-StigVersionTable'
+    'Get-ConfigurationName'
+    'Get-StigVersionParameterValidateSet'
+    'Get-ValidStigVersionNumbers'
     'Test-AutomatableRuleType'
+    'Get-DscResourceModuleInfo'
 )

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed [#517](https://github.com/microsoft/PowerStig/issues/520): Need a test to verify the module version in the module manifest matches the DscResources.
+
 ## 4.1.1
 
 * Fixed [#517](https://github.com/microsoft/PowerStig/issues/517): 4.1.0 GPRegistryPolicyDsc Module Version Issue
