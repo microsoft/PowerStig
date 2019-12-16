@@ -18,7 +18,7 @@ Describe "$moduleName module" {
     $compositeModulePaths = (Get-ChildItem -Path  $script:dscCompositePath -Include '*schema.psm1' -Recurse).FullName
     $manifestRequiredModules = (Import-PowerShellDataFile -Path $script:modulePath).RequiredModules |
         ForEach-Object -Process {[pscustomobject]$PSItem}
-    
+
     foreach ($compositeModule in $compositeModulePaths)
     {
         $dscModuleInfo = Get-DscResourceModuleInfo -Path $compositeModule
