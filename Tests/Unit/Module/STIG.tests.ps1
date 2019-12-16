@@ -240,7 +240,7 @@ try
                         It "Should return $($sample.TechnologyVersion) as the TechnologyVersion property" {
                             $benchmarkId.TechnologyVersion | Should Be $sample.TechnologyVersion
                         }
-                        
+
                         It "Should return $($sample.TechnologyRole) as the TechnologyRole property" {
 
                             $benchmarkId.TechnologyRole | Should Be $sample.TechnologyRole
@@ -248,6 +248,12 @@ try
                     }
                 }
             }
+        }
+    }
+    Describe 'Conversion Status' {
+        It 'Should not contain conversionstatus="fail" in any processed STIG' {
+            $selectStringResults = Select-String -Pattern 'conversionstatus="fail"' -Path "$PSScriptRoot\..\..\..\StigData\Processed\*.xml"
+            $selectStringResults | Should Be $null
         }
     }
     #endregion

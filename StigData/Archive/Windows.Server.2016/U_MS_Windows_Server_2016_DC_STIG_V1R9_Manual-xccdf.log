@@ -12,3 +12,9 @@ V-73551::Value: 0x00000000 (0) (Security), 0x00000001 (1) (Basic)::Value: 0x0000
 V-73711::Value: 0x00000002 (2) (Prompt for consent on the secure desktop)::Value: 1 or 2
 V-73755::Passwords for application accounts with this user right must be protected as highly privileged accounts.::""
 V-73375::*::''
+V-73377::*::''
+V-73391::*::''
+V-73393::*::''
+V-73395::*::''
+V-73397::*::''
+V-73399::*::''

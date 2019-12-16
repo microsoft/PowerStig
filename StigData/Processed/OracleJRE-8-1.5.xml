@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="JRE_8_and_Windows_STIG" description="The Java Runtime Environment (JRE) is a bundle developed and offered by Oracle Corporation which includes the Java Virtual Machine (JVM), class libraries, and other components necessary to run Java applications and applets.  Certain default settings within the JRE pose a security risk so it is necessary to deploy system wide properties to ensure a higher degree of security when utilizing the JRE.&#xA;" filename="U_Oracle_JRE_8_Windows_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Jan 2018" title="Java Runtime Environment (JRE) version 8 STIG for Windows" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="7/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="JRE_8_and_Windows_STIG" description="The Java Runtime Environment (JRE) is a bundle developed and offered by Oracle Corporation which includes the Java Virtual Machine (JVM), class libraries, and other components necessary to run Java applications and applets.  Certain default settings within the JRE pose a security risk so it is necessary to deploy system wide properties to ensure a higher degree of security when utilizing the JRE.&#xA;" filename="U_Oracle_JRE_8_Windows_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Jan 2018" title="Java Runtime Environment (JRE) version 8 STIG for Windows" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="11/21/2019">
   <FileContentRule dscresourcemodule="FileContentDsc">
     <Rule id="V-66723.a" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <Description>&lt;VulnDiscussion&gt;Certificates may be revoked due to improper issuance, compromise of the certificate, and failure to adhere to policy. Therefore, any certificate found revoked on a CRL or via Online Certificate Status Protocol (OCSP) should not be trusted. Permitting execution of an applet published with a revoked certificate may result in spoofing, malware, system modification, invasion of privacy, and denial of service.
@@ -35,10 +35,24 @@ If the value of the "deployment.system.config.mandatory" key is TRUE and if the 
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>deployment.system.config</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"</RawString>
-      <Value>file:///C:/Windows/Java/Deployment/deployment.properties</Value>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>Value has the path to config file such as "file:///C:/Windows/Java/Deployment/deployment.properties"</OrganizationValueTestString>
+      <RawString>Navigate to the "deployment.config" file for Java:
+
+&lt;Windows Directory&gt;\Sun\Java\Deployment\deployment.config
+- or -
+&lt;JRE Installation Directory&gt;\Lib\deployment.config
+
+The "deployment.config" file contains two properties: deployment.system.config and deployment.system.config.mandatory.
+
+The "deployment.system.config" key points to the location of the "deployment.properties" file. The location is variable. It can point to a file on the local disk or a UNC path. The following is an example:
+"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"
+
+If the "deployment.system.config" key does not exist or does not point to the location of the "deployment.properties" file, this is a finding.
+
+If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
+      <Value>
+      </Value>
     </Rule>
     <Rule id="V-66941.b" severity="medium" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
       <Description>&lt;VulnDiscussion&gt;The deployment.config  configuration file contains two keys.  
@@ -53,7 +67,20 @@ If the value of the "deployment.system.config.mandatory" key is TRUE and if the 
       <Key>deployment.system.config.mandatory</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
+      <RawString>Navigate to the "deployment.config" file for Java:
+
+&lt;Windows Directory&gt;\Sun\Java\Deployment\deployment.config
+- or -
+&lt;JRE Installation Directory&gt;\Lib\deployment.config
+
+The "deployment.config" file contains two properties: deployment.system.config and deployment.system.config.mandatory.
+
+The "deployment.system.config" key points to the location of the "deployment.properties" file. The location is variable. It can point to a file on the local disk or a UNC path. The following is an example:
+"deployment.system.config=file:///C:/Windows/Java/Deployment/deployment.properties"
+
+If the "deployment.system.config" key does not exist or does not point to the location of the "deployment.properties" file, this is a finding.
+
+If the "deployment.system.config.mandatory" key does not exist or is set to "false", this is a finding.</RawString>
       <Value>true</Value>
     </Rule>
     <Rule id="V-66945.a" severity="low" conversionstatus="pass" title="SRG-APP-000516" dscresource="KeyValuePairFile">
