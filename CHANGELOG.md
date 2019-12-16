@@ -18,6 +18,7 @@
 * Update PowerSTIG to parse and apply OfficeSystem 2013 STIG V1R9 / 2016 V1R1: [#551](https://github.com/microsoft/PowerStig/issues/551)
 * Fixed [#443](https://github.com/microsoft/PowerStig/issues/443): Missing cmdlet Get-StigXccdfBenchmark function
 * Fixed [#528](https://github.com/microsoft/PowerStig/issues/528): New-StigChecklist should not require a ManualCheckFile
+=======
 
 ## 4.1.1
 

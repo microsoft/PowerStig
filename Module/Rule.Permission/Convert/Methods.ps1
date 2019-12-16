@@ -172,7 +172,7 @@ function Get-PermissionTargetPath
             $stigString -notmatch $regularExpression.programFileFolder
         }
         {
-            $permissionTargetPath = '%SystemDrive%'
+            $permissionTargetPath = '%SystemDrive%\'
             break
         }
         { $stigString -match $regularExpression.winDir }
