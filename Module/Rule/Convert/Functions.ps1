@@ -48,20 +48,17 @@ function Test-ValueDataIsHardCoded
 
     $stigIds = @(
         'V-30935', # DotNet4 - Registry Setting
-        'V-1089', # Windows Server 2012R2 - Legal Notice Display
-        'V-73647', # Windows Server 2016  - Legal Notice Display
-        'V-63675', # Windows Client       - Legal Notice Display
+        'V-1089',  # Windows Server 2012R2 - Legal Notice Display
+        'V-73647', # Windows Server 2016 - Legal Notice Display
+        'V-93147', # Windows Server 2019 - Legal Notice Display
+        'V-63675', # Windows Client - Legal Notice Display
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
-        'V-73649', # Windows Server 2016   - Legal Banner Dialog Box Title
-        'V-63681', # Windows Client        - Legal Banner Dialog Box Title
-        # The was updated in Server 2012 R2 V2R14
-        #'V-21954', # Windows Server - Kerberos Supported Encryption Types
-        'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client, but the WindowsFeature
-        # resource does not use the Get-WindowsOptionalFeature cmdlet so this has to stay manual on
-        # the desktop for now or else we have to move everything to a script resource.
-        'V-46477', # Internet Explorer - Publishers Certificate Revocation. The value s written as hex,
-        # but there is not other identifier.
-        'V-17761' # Outlook 2013 - OrgSetting Value
+        'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
+        'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
+        'V-63681', # Windows Client - Legal Banner Dialog Box Title
+        'V-73805', # Windows Server - Disable SMB1 'V-70639' is on the client
+        'V-46477', # Internet Explorer - Publishers Certificate Revocation.
+        'V-17761'  # Outlook 2013 - OrgSetting Value
     )
 
     if ($stigIds -contains $stigId)
@@ -96,12 +93,12 @@ function Get-HardCodedString
 
     Switch ($stigId)
     {
-        {$PSItem -match 'V-(1089|63675|73647)'}
+        {$PSItem -match 'V-(1089|63675|73647|93147)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalNotice : $true"
             return $script:legalNoticeText
         }
-        {$PSItem -match 'V-(26359|63681|73649)'}
+        {$PSItem -match 'V-(26359|63681|73649|93149)'}
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] LegalCaption : $true"
             return $script:legalNoticeCaption
@@ -150,6 +147,7 @@ function Get-HardCodedString
         'V-14235', # UAC - Admin Elevation Prompt
         'V-26359', # Windows Server 2012R2 - Legal Banner Dialog Box Title
         'V-73649', # Windows Server 2016 - Legal Banner Dialog Box Title
+        'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-17761', # Outlook 2013 - OrgSetting Value
         'V-75241', # Windows Defender - ASSignatureDue
         'V-75243' # Windows Defender - AVSignatureDue
@@ -202,7 +200,7 @@ function Get-HardCodedString
             $hardCodedString = "'{0}' -le '4'"
             continue
         }
-        {$PSItem -match 'V-26359|V-73649'}
+        {$PSItem -match 'V-26359|V-73649|V-93149'}
         {
             $hardCodedString = "'{0}' -match '^(DoD Notice and Consent Banner|US Department of Defense Warning Statement)$'"
             continue

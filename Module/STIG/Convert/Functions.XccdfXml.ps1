@@ -242,7 +242,7 @@ function Split-StigXccdf
         foreach ($group in $msStig.Benchmark.Group)
         {
             # Remove DC only settings from the MS xml
-            if ($group.Rule.check.'check-content' -match "This applies to domain controllers")
+            if ($group.Rule.version -match '\w-DC-\d*')
             {
                 [void] $msStig.Benchmark.RemoveChild($group)
                 Write-Information -MessageData "Removing $($group.id)"
@@ -264,7 +264,7 @@ function Split-StigXccdf
         foreach ($group in $dcStig.Benchmark.Group)
         {
             # Remove MS only settings from DC XML
-            if ($group.Rule.check.'check-content' -match "This applies to member servers")
+            if ($group.Rule.version -match '\w-MS-\d*')
             {
                 [void] $dcStig.Benchmark.RemoveChild($group)
                 Write-Information -MessageData "Removing $($group.id)"
@@ -292,8 +292,8 @@ function Split-StigXccdf
 
         $FilePath = "$Destination\$(Split-Path -Path $path -Leaf)"
 
-        $msStig.Save(($FilePath -replace '2016_STIG', '2016_MS_STIG'))
-        $dcStig.Save(($FilePath -replace '2016_STIG', '2016_DC_STIG'))
+        $msStig.Save(($FilePath -replace '_STIG_', '_MS_STIG_'))
+        $dcStig.Save(($FilePath -replace '_STIG_', '_DC_STIG_'))
     }
     End
     {
