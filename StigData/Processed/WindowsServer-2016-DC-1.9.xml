@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 26 Jul 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="11/22/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 26 Jul 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="12/17/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73359" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -1547,6 +1547,66 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
 
 The Domain Admins and Enterprise Admins will not have the "Delete all child objects" permission on the two default Group Policy objects: Default Domain Policy and Default Domain Controllers Policy. They will have this permission on organization created Group Policy objects.</RawString>
     </Rule>
+    <Rule id="V-73377" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
+
+For Active Directory, the OU objects require special attention. In a distributed administration model (i.e., help desk), OU objects are more likely to have access permissions changed from the secure defaults. If inappropriate access permissions are defined for OU objects, it could allow an intruder to add or delete users in the OU. This could result in unauthorized access to data or a denial of service to authorized users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the permissions on domain-defined OUs.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+For each OU that is defined (folder in folder icon) excluding the Domain Controllers OU:
+
+Right-click the OU and select "Properties".
+
+Select the "Security" tab.
+
+If the permissions on the OU are not at least as restrictive as those below, this is a finding.
+
+The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the "Advanced" button, the desired Permission entry, and the "Edit" or "View" button.
+
+Except where noted otherwise, the special permissions may include a wide range of permissions and properties and are acceptable for this requirement.
+
+CREATOR OWNER - Special permissions
+
+Self - Special permissions
+
+Authenticated Users - Read, Special permissions
+
+The Special permissions for Authenticated Users are Read type. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+SYSTEM - Full Control
+
+Domain Admins - Full Control
+
+Enterprise Admins - Full Control
+
+Key Admins - Special permissions
+
+Enterprise Key Admins - Special permissions
+
+Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
+
+Pre-Windows 2000 Compatible Access - Special permissions
+
+The Special permissions for Pre-Windows 2000 Compatible Access are for Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
+
+If an ISSO-approved distributed administration model (help desk or other user support staff) is implemented, permissions above Read may be allowed for groups documented by the ISSO.
+
+If any OU with improper permissions includes identification or authentication data (e.g., accounts, passwords, or password hash data) used by systems to determine access control, the severity is CAT I (e.g., OUs that include user accounts, including service/application accounts).
+
+If an OU with improper permissions does not include identification and authentication data used by systems to determine access control, the severity is CAT II (e.g., Workstation, Printer OUs).</RawString>
+    </Rule>
     <Rule id="V-73383" severity="medium" conversionstatus="pass" title="SRG-OS-000396-GPOS-00176" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Directory data that is not appropriately encrypted is subject to compromise. Commercial-grade encryption does not provide adequate protection when the classification level of directory data in transit is higher than the level of the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2225,66 +2285,6 @@ The Special permissions for Pre-Windows 2000 Compatible Access are Read types.
 If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
 
 ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions</RawString>
-    </Rule>
-    <Rule id="V-73377" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
-
-For Active Directory, the OU objects require special attention. In a distributed administration model (i.e., help desk), OU objects are more likely to have access permissions changed from the secure defaults. If inappropriate access permissions are defined for OU objects, it could allow an intruder to add or delete users in the OU. This could result in unauthorized access to data or a denial of service to authorized users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the permissions on domain-defined OUs.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-For each OU that is defined (folder in folder icon) excluding the Domain Controllers OU:
-
-Right-click the OU and select "Properties".
-
-Select the "Security" tab.
-
-If the permissions on the OU are not at least as restrictive as those below, this is a finding.
-
-The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the "Advanced" button, the desired Permission entry, and the "Edit" or "View" button.
-
-Except where noted otherwise, the special permissions may include a wide range of permissions and properties and are acceptable for this requirement.
-
-CREATOR OWNER - Special permissions
-
-Self - Special permissions
-
-Authenticated Users - Read, Special permissions
-
-The Special permissions for Authenticated Users are Read type. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
-
-SYSTEM - Full Control
-
-Domain Admins - Full Control
-
-Enterprise Admins - Full Control
-
-Key Admins - Special permissions
-
-Enterprise Key Admins - Special permissions
-
-Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
-
-Pre-Windows 2000 Compatible Access - Special permissions
-
-The Special permissions for Pre-Windows 2000 Compatible Access are for Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
-
-ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
-
-If an ISSO-approved distributed administration model (help desk or other user support staff) is implemented, permissions above Read may be allowed for groups documented by the ISSO.
-
-If any OU with improper permissions includes identification or authentication data (e.g., accounts, passwords, or password hash data) used by systems to determine access control, the severity is CAT I (e.g., OUs that include user accounts, including service/application accounts).
-
-If an OU with improper permissions does not include identification and authentication data used by systems to determine access control, the severity is CAT II (e.g., Workstation, Printer OUs).</RawString>
     </Rule>
     <Rule id="V-73379" severity="medium" conversionstatus="pass" title="SRG-OS-000138-GPOS-00069" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When directory service data files, especially for directories used for identification, authentication, or authorization, reside on the same logical partition as user-owned files, the directory service data may be more vulnerable to unauthorized access or other availability compromises. Directory service and user-owned data files sharing a partition may be configured with less restrictive permissions in order to allow access to the user data. 
