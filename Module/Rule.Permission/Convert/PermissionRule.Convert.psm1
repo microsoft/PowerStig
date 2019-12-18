@@ -164,7 +164,7 @@ Class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch '\n*\.NET Trust Level' -and
             $CheckContent -NotMatch 'IIS 8\.5 web' -and
             $CheckContent -cNotmatch 'SELECT' -and
-          #  $CheckContent -NotMatch 'SQL Server' -and
+            $CheckContent -NotMatch 'SQL Server' -and
             $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
             $CheckContent -NotMatch 'Query the SA' -and
             $CheckContent -NotMatch "caspol\.exe" -and

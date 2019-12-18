@@ -28,6 +28,7 @@
 
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile $manualCheckFilePath -XccdfPath $xccdfPath -OutputPath $outputPath
 #>
 function New-StigCheckList
 {

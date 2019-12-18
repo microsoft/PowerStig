@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Apr 2019" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="9/6/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Apr 2019" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="12/5/2019">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;After enabling this feature, Potentially Unwanted Application (PUA) protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -663,7 +663,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550”</ValueName>
+      <ValueName>BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77967" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -687,7 +687,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “D4F940AB-401B-4EFC-AADC-AD5F3C50688A” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“D4F940AB-401B-4EFC-AADC-AD5F3C50688A”</ValueName>
+      <ValueName>D4F940AB-401B-4EFC-AADC-AD5F3C50688A</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77969" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -710,7 +710,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “3B576869-A4EC-4529-8536-B80A7769E899” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“3B576869-A4EC-4529-8536-B80A7769E899”</ValueName>
+      <ValueName>3B576869-A4EC-4529-8536-B80A7769E899</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77971" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -732,7 +732,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84”</ValueName>
+      <ValueName>75668C1F-73B5-4CF0-BB93-3ECF5CB7CC84</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77973" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -755,7 +755,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “D3E037E1-3EB8-44C8-A917-57927947596D” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“D3E037E1-3EB8-44C8-A917-57927947596D”</ValueName>
+      <ValueName>D3E037E1-3EB8-44C8-A917-57927947596D</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77975" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -779,7 +779,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “5BEB7EFE-FD9A-4556-801D-275E5FFC04CC” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“5BEB7EFE-FD9A-4556-801D-275E5FFC04CC”</ValueName>
+      <ValueName>5BEB7EFE-FD9A-4556-801D-275E5FFC04CC</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77977" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
@@ -801,7 +801,7 @@ HKLM\Software\Policies\Microsoft\Windows Defender\Windows Defender Exploit Guard
 
 Criteria: If the value “92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B” is REG_SZ = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>“92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B”</ValueName>
+      <ValueName>92E97FA1-2EDF-4476-BDD6-9DD0B4DDDC7B</ValueName>
       <ValueType>String</ValueType>
     </Rule>
     <Rule id="V-77979" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">

@@ -102,5 +102,6 @@ configuration SqlServer
     . "$resourcePath\Windows.AccessControl.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
 }
