@@ -105,6 +105,9 @@ configuration WindowsServer
     . "$resourcePath\windows.Service.ps1"
     . "$resourcePath\windows.WindowsFeature.ps1"
 
+    Import-DscResource -ModuleName WindowsDefenderDSC -ModuleVersion 1.0.0.0
+    . "$resourcePath\windows.ProcessMitigation.ps1"
+
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0
     . "$resourcePath\windows.AccountPolicy.ps1"
     . "$resourcePath\windows.UserRightsAssignment.ps1"
