@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Fixed [#517](https://github.com/microsoft/PowerStig/issues/520): Need a test to verify the module version in the module manifest matches the DscResources.
 * Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9 [#530](https://github.com/microsoft/PowerStig/issues/530)
 * Fixed [#428](https://github.com/microsoft/PowerStig/issues/428): Updated JRE rule V-66941.a to be a Organizational setting
 * Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9 [#530] (https://github.com/microsoft/PowerStig/issues/530)
