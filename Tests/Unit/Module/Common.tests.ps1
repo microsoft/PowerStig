@@ -1,4 +1,5 @@
 using module .\..\..\..\Module\Common\Common.psm1
+. $PSScriptRoot\..\..\..\Module\Stig\Functions.XccdfXml.ps1
 . $PSScriptRoot\.tests.header.ps1
 # Header
 #region Enum Tests
