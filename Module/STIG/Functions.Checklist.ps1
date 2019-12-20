@@ -28,6 +28,7 @@
 
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile $manualCheckFilePath -XccdfPath $xccdfPath -OutputPath $outputPath
 #>
 function New-StigCheckList
 {
@@ -53,11 +54,21 @@ function New-StigCheckList
 
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
-        $OutputPath
+        $OutputPath,
 
+        [Parameter()]
+        [String]
+        $ManualCheckFile
     )
 
-    $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
+    if ($ManualCheckFile)
+    {
+        if (-not (Test-Path -Path $ManualCheckFile))
+        {
+            throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
+        }
+        $manualCheckData = Import-PowerShellDataFile -path $ManualCheckFile
+    }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
     {
@@ -67,6 +78,11 @@ function New-StigCheckList
     if ($OutputPath.Extension -ne '.ckl')
     {
         throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
+    }
+
+    if (-not (Test-Path -Path $ReferenceConfiguration))
+    {
+        throw "$($ReferenceConfiguration) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
     }
 
     $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()

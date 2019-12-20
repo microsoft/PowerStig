@@ -9,7 +9,7 @@ try
             displayName  = 'Act as part of the operating system'
             constant     = 'SeTcbPrivilege'
             Identity     = 'NULL'
-            organizationValueRequired = $false
+            organizationValueRequired   = $false
             organizationValueTestString = $null
             CheckContent = 'Verify the effective setting in Local Group Policy Editor.
             Run "gpedit.msc".

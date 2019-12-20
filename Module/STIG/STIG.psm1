@@ -254,7 +254,7 @@ Class STIG
                             }
                             else
                             {
-                                Write-Warning -Message "RuleId: $($rule.Id) contains an empty Organizational Value, setting rule as Skipped"
+                                Write-Warning -Message "RuleId: $($rule.Id) in $($rule.ParentNode.ParentNode.stigid) contains an empty Organizational Value, setting rule as Skipped"
                                 $importRule = [SkippedRule]::new($rule)
                             }
                         }

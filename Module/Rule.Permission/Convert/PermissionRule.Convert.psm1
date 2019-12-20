@@ -159,12 +159,13 @@ Class PermissionRuleConvert : PermissionRule
             ($CheckContent -Match 'permission(s|)' -or $CheckContent -Match 'On the Security tab, click Advanced. On the Auditing tab') -and
             $CheckContent -NotMatch 'Forward\sLookup\sZones|Devices\sand\sPrinters|Shared\sFolders' -and
             $CheckContent -NotMatch 'Verify(ing)? the ((permissions .* ((G|g)roup (P|p)olicy|OU|ou))|auditing .* ((G|g)roup (P|p)olicy))' -and
+            $CheckContent -NotMatch 'Open "Active Directory Users and Computers"' -and
             $CheckContent -NotMatch 'Windows Registry Editor' -and
             $CheckContent -NotMatch '(ID|id)s? .* (A|a)uditors?,? (SA|sa)s?,? .* (W|w)eb (A|a)dministrators? .* access to log files?' -and
             $CheckContent -NotMatch '\n*\.NET Trust Level' -and
             $CheckContent -NotMatch 'IIS 8\.5 web' -and
             $CheckContent -cNotmatch 'SELECT' -and
-          #  $CheckContent -NotMatch 'SQL Server' -and
+            $CheckContent -NotMatch 'SQL Server' -and
             $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
             $CheckContent -NotMatch 'Query the SA' -and
             $CheckContent -NotMatch "caspol\.exe" -and
