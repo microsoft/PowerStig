@@ -6,3 +6,6 @@ $script:modulePath = "$($script:moduleRoot)\$($script:moduleName).psm1"
 $helperModulePath = Join-Path -Path $script:moduleRoot -ChildPath 'Tools\TestHelper\TestHelper.psm1'
 Import-Module $helperModulePath -Force
 Import-Module $script:modulePath -Force
+
+$coreModulePath = Join-Path -path $script:moduleRoot -ChildPath 'PowerStig.psm1'
+Import-Module $coreModulePath -Force
