@@ -49,10 +49,6 @@ function New-StigCheckList
         $XccdfPath,
 
         [Parameter(Mandatory = $true)]
-        [string]
-        $ManualCheckFile,
-
-        [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
         $OutputPath,
 
