@@ -1,5 +1,6 @@
 #region Header
 using module .\..\..\..\Module\STIG\Convert\Convert.Main.psm1
+. $PSScriptRoot\..\..\..\Module\STIG\Functions.XccdfXml.ps1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 try
@@ -82,7 +83,6 @@ try
         #>
     }
     Describe 'Split-BenchmarkId' {
-
         $sampleStrings = [ordered]@{
             'SQLServer' = @(
                 @{
