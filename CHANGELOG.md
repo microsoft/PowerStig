@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.2.0
+
 * Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9: [#530](https://github.com/microsoft/PowerStig/issues/530)
 * Update PowerSTIG to successfully parse Microsoft .Net Framework STIG 4.0 STIG - Ver 1, Rel 9: [535](https://github.com/microsoft/PowerStig/issues/535)
 * Update PowerSTIG to successfully parse MS Internet Explorer 11 STIG - Ver 1, Rel 18: [#538](https://github.com/microsoft/PowerStig/issues/538)
