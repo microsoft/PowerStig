@@ -2,6 +2,26 @@
 
 ## Unreleased
 
+## 4.2.0
+
+* Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9: [#530](https://github.com/microsoft/PowerStig/issues/530)
+* Update PowerSTIG to successfully parse Microsoft .Net Framework STIG 4.0 STIG - Ver 1, Rel 9: [535](https://github.com/microsoft/PowerStig/issues/535)
+* Update PowerSTIG to successfully parse MS Internet Explorer 11 STIG - Ver 1, Rel 18: [#538](https://github.com/microsoft/PowerStig/issues/538)
+* Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 27: [#540](https://github.com/microsoft/PowerStig/issues/540)
+* Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 19: [533](https://github.com/microsoft/PowerStig/issues/533)
+* Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V2R17/V2R18 Respectively: [531](https://github.com/microsoft/PowerStig/issues/531)
+* Update PowerSTIG to successfully parse Microsoft SQL Server 2016 Instance STIG - Ver 1, Rel 7: [#542](https://github.com/microsoft/PowerStig/issues/542)
+* Update PowerSTIG to parse and apply OfficeSystem 2013 STIG V1R9 / 2016 V1R1: [#551](https://github.com/microsoft/PowerStig/issues/551)
+* Update PowerSTIG to parse and apply Windows Server 2019 V1R2 STIG: [#554](https://github.com/microsoft/PowerStig/issues/554)
+* Fixed [#428](https://github.com/microsoft/PowerStig/issues/428): Updated JRE rule V-66941.a to be a Organizational setting
+* Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
+* Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
+* Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
+* Fixed [#443](https://github.com/microsoft/PowerStig/issues/443): Missing cmdlet Get-StigXccdfBenchmark function
+* Fixed [#528](https://github.com/microsoft/PowerStig/issues/528): New-StigChecklist should not require a ManualCheckFile
+* Fixed [#545](https://github.com/microsoft/PowerStig/issues/545): Need a test to verify the conversionstatus="fail" does not exist in processed STIGs
+* Fixed [#517](https://github.com/microsoft/PowerStig/issues/520): Need a test to verify the module version in the module manifest matches the DscResources.
+
 ## 4.1.1
 
 * Fixed [#517](https://github.com/microsoft/PowerStig/issues/517): 4.1.0 GPRegistryPolicyDsc Module Version Issue

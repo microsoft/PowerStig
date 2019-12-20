@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_STIG" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Instance_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 26 Jul 2019" title="Microsoft SQL Server 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="8/22/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_STIG" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Instance_STIG_V1R19_Manual-xccdf.xml" releaseinfo="Release: 19 Benchmark Date: 26 Jul 2019" title="Microsoft SQL Server 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.19" created="12/5/2019">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-40907" severity="high" conversionstatus="pass" title="SRG-APP-000264-DB-000136" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Preventing the disclosure of transmitted information requires that applications take measures to employ some form of cryptographic mechanism in order to protect the information during transmission. This is usually achieved through the use of Transport Layer Security (TLS), VPN, or IPSEC tunnel. 
@@ -346,6 +346,22 @@ Evidence should match the backup plan as recorded in the system documentation.
 
 If backup procedures do not exist or are not implemented in accordance with the procedures, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-40937" severity="medium" conversionstatus="pass" title="SRG-APP-000141-DB-000092" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).
+
+It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software demonstrations, or browser plug-ins not related to requirements or providing a wide array of functionality not required for every mission, but which cannot be disabled.
+
+Applications must adhere to the principles of least functionality by providing only essential capabilities.
+
+Unused and unnecessary SQL Server components increase the number of available attack vectors to SQL Server by introducing additional targets for attack. By minimizing the services and applications installed on the system, the number of potential vulnerabilities is reduced. Components of the system that are unused and cannot be uninstalled must be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review the components and features included in SQL Server and capable of being disabled (by configuration settings, permissions and privileges, etc.).  Take note of those which are enabled.
+
+Review the system documentation to verify that the enabled components or features are documented and authorized.  If any enabled components or features are not authorized, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-40941" severity="high" conversionstatus="pass" title="SRG-APP-000141-DB-000091" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information systems are capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).  
 
@@ -468,6 +484,290 @@ The SQL Server installation account requires privileges not required for SQL Ser
       <RawString>Review system documentation to identify the installation account. Verify whether the account is used for anything beyond SQL Server software installation, upgrade, and maintenance actions.
 
 If the account is used for anything beyond SQL Server installation, upgrade, and maintenance actions, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41039" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000021" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;SQL Server DBAs, if assigned excessive OS privileges, could perform actions that could endanger the information system or hide evidence of malicious activity.
+
+This requirement is intended to limit exposure due to operating from within a privileged account or role. The check and fix are based on the assumption that Role-Based Access Control (RBAC) is in effect, as mandated by other STIG requirements.  They further assume that, as mandated elsewhere, the privileged accounts discussed here are distinct from the accounts used by the same people when not performing privileged functions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>From the system security documentation, obtain the list of SQL Server DBA accounts, the OS/domain Group(s) representing those DBAs' job role(s), and the OS permissions required by that/those role(s).
+
+
+To review local accounts and groups:
+
+Log on to the Windows server hosting SQL Server, using an account with administrator privileges.
+
+From a command prompt opened as administrator, type gpedit.msc, and press [ENTER].  In Group Policy Editor, navigate to Local Computer Policy &gt; Computer Configuration &gt; Windows Settings &gt; Security Settings &gt; Local Policies &gt; User Rights Assignment.  Scan the list to determine which privileges are assigned to the Group(s) representing the SQL Server DBA job role(s).  If any privileges are assigned that are not required by these roles, this is a finding.
+
+From the command prompt, type lusrmgr.msc, and press [ENTER].  In the Local Users and Groups console, navigate to Users.  Right-click each DBA user. Click Properties. Click the 'Member of' tab.  If any parent groups are listed that are not specific to DBA roles, this is a finding.
+
+In the Local Users and Groups console, navigate to Groups.  Right-click each DBA Group.  Click Properties.  Review the list of group members.  If any account that does not represent a DBA is listed, this is a finding.
+
+
+To review domain-level accounts and groups:
+
+Log on to a domain controller with the necessary privileges.
+
+Open Active Directory Users and Computers (available from menus or run dsa.msc)
+
+Determine the location of the accounts or groups to be reviewed.  The default is the Users container, but they could have been created or moved to an Organizational Unit (OU) that is domain specific.
+
+Right-click each DBA user. Click Properties. Click the 'Member of' tab.  If any parent groups are listed that are not specific to DBA roles, this is a finding.
+
+Right-click each DBA Group.  Click Properties.  Select the 'Members' tab. Review the list of group members.  If any account that does not represent a DBA is listed, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41041" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000019" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;This requirement is intended to limit exposure due to operating from within a privileged account or role. The inclusion of role is intended to address those situations where an access control policy, such as Role-Based Access Control (RBAC), is being implemented and where a change of role provides the same degree of assurance in the change of access authorizations for both the user and all processes acting on behalf of the user as would be provided by a change between a privileged and non-privileged account.
+
+Audit of privileged activity may require physical separation, employing information systems on which the user does not have privileged access.
+
+To limit exposure and provide forensic history of activity when operating from within a privileged account or role, SQL Server does support organizational requirements that users of information system accounts, or roles, with access to an organization-defined list of security functions or security-relevant information, use non-privileged accounts, or roles, when accessing other (non-security) system functions.
+
+SQL Server provides access logging that ensures users who are granted a privileged role (or roles) have their privileged activity logged. DBAs, if assigned excessive privileges, could perform actions that endanger the information system or hide evidence of malicious activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Obtain the list of all DBAs.
+Obtain documented role assignments for each DBA.
+Obtain from system documentation or use SQL Server to determine privilege assignment of user-defined roles.
+
+Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; right click &lt;'administrator account name'&gt; &gt;&gt; Properties &gt;&gt; User &gt;&gt; Securables.
+
+If any item in the 'Permission' listing, for each highlighted item that exists in the 'Securables' listing, has excessive privileges, this is a finding.
+
+Navigate from 'Securables' to 'Server Roles'.
+
+If any checked 'Server roles' are determined to be excessive privileges, this is a finding.
+
+Navigate from 'Server Roles' to 'Users mapped to the login'.
+
+If any checked 'Database role membership' of each highlighted and checked 'Database' are determined to be excessive privileges, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-41044" severity="medium" conversionstatus="pass" title="SRG-APP-000062-DB-000016" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The principle of Least Privilege must be applied to the ability of users to access system tables, system management information, other configuration information, and metadata.  Unauthorized access to this data could result in unauthorized changes to database objects, access controls, or SQL Server configuration.  Only database administrators and other authorized users must be allowed such access.
+
+To aid in tracking and administering such permissions, individual logins must not be directly granted permissions or built-in server roles.  Instead, user-defined server roles must be created, with the permissions and built-in server roles granted to them; the individual logins must be assigned to the appropriate user-defined server roles.
+
+The built-in server role "sysadmin" is a partial exception.  This cannot be granted to a user-defined role, only to a login account.  Most (not necessarily all) database administrators will need to be members of sysadmin.  Without this, most DBCC commands and the system stored procedures/functions listed below are unavailable.  The users who require such access must be documented and approved.  
+
+In addition, if the site uses backup-restore software that connects to SQL Server via the Virtual Device Interface (VDI), the account used by that software must have the sysadmin role.  (See Microsoft Knowledge Base article 2926557, http://support.microsoft.com/kb/2926557).  If this applies, it must be documented and approved.
+
+Stored procedures/functions available only to the sysadmin role:
+fn_yukonsecuritymodelrequired
+sp_add_agent_parameter
+sp_add_agent_profile
+sp_adddatatype
+sp_adddistributiondb
+sp_adddistributor
+sp_addqreader_agent
+sp_addsubscriber
+sp_addsubscriber_schedule
+sp_addtabletocontents
+sp_attachsubscription
+sp_cdc_cleanup_change_table
+sp_cdc_disable_db
+sp_cdc_disable_table
+sp_cdc_drop_job
+sp_cdc_enable_db
+sp_cdc_enable_table
+sp_cdc_restoredb
+sp_cdc_vupgrade
+sp_certify_removable
+sp_change_agent_parameter
+sp_change_agent_profile
+sp_change_subscription_properties
+sp_change_users_login
+sp_changedistpublisher
+sp_changedistributiondb
+sp_changedistributor_password
+sp_changedistributor_property
+sp_changemergesubscription
+sp_changeqreader_agent
+sp_changereplicationserverpasswords
+sp_changesubscriptiondtsinfo
+sp_checkinvalidivarticle
+sp_copysubscription
+sp_create_removable
+sp_cycle_errorlog
+sp_dbcmptlevel
+sp_dbmmonitoraddmonitoring
+sp_dbmmonitorchangealert
+sp_dbmmonitordropalert
+sp_dbmmonitordropmonitoring
+sp_dbmmonitorhelpalert
+sp_dbmmonitorhelpmonitoring
+sp_dbmmonitorresults
+sp_dbmmonitorupdate
+sp_dbremove
+sp_drop_agent_parameter
+sp_drop_agent_profile
+sp_dropdatatypemapping
+sp_dropdistpublisher
+sp_dropdistributiondb
+sp_dropdistributor
+sp_dropmergepullsubscription
+sp_droppullsubscription
+sp_dropsubscriber
+sp_dsninfo
+sp_enumdsn
+sp_flush_commit_table_on_demand
+sp_generate_agent_parameter
+sp_get_distributor
+sp_get_Oracle_publisher_metadata
+sp_getagentparameterlist
+sp_getdefaultdatatypemapping
+sp_grant_publication_access
+sp_help_agent_default
+sp_help_agent_parameter
+sp_help_agent_profile
+sp_helpdistpublisher
+sp_helpdistributor
+sp_helpmergesubscription
+sp_helpqreader_agent
+sp_helpreplicationdboption
+sp_identitycolumnforreplication
+sp_IHValidateRowFilter
+sp_IHXactSetJob
+sp_link_publication
+sp_monitor
+sp_MSadd_distribution_agent
+sp_MSadd_logreader_agent
+sp_MSadd_merge_agent
+sp_MSadd_snapshot_agent
+sp_MSadd_subscriber_schedule
+sp_MSadd_tracer_history
+sp_MSadd_tracer_token
+sp_MScdc_cleanup_job
+sp_MScdc_db_ddl_event
+sp_MScdc_ddl_event
+sp_MSchange_distribution_agent_properties
+sp_MSchange_logreader_agent_properties
+sp_MSchange_merge_agent_properties
+sp_MSchange_snapshot_agent_properties
+sp_MSchangedynamicsnapshotjobatdistributor
+sp_MSchangedynsnaplocationatdistributor
+sp_MScheck_pull_access
+sp_MScleanupmergepublisher_internal
+sp_MSclear_dynamic_snapshot_location
+sp_MScreate_dist_tables
+sp_MSdbuserpriv
+sp_MSdeletefoldercontents
+sp_MSdrop_6x_replication_agent
+sp_MSdrop_merge_agent
+sp_MSdrop_snapshot_dirs
+sp_MSdropmergedynamicsnapshotjob
+sp_MSdynamicsnapshotjobexistsatdistributor
+sp_MSenumallpublications
+sp_MSfetchAdjustidentityrange
+sp_MSfix_6x_tasks
+sp_MSforce_drop_distribution_jobs
+sp_MSget_agent_names
+sp_MSget_jobstate
+sp_MSget_oledbinfo
+sp_MSget_publication_from_taskname
+sp_MSgetdbversion
+sp_MSgetmaxsnapshottimestamp
+sp_MShelp_repl_agent
+sp_MShelp_replication_status
+sp_MShelp_snapshot_agent
+sp_MShelpconflictpublications
+sp_MShelpdynamicsnapshotjobatdistributor
+sp_MShelplogreader_agent
+sp_MShelpsnapshot_agent
+sp_MShelptranconflictcounts
+sp_MSinit_publication_access
+sp_MSreinit_failed_subscriptions
+sp_MSremoveoffloadparameter
+sp_MSrepl_backup_complete
+sp_MSrepl_backup_start
+sp_MSrepl_createdatatypemappings
+sp_MSrepl_dropdatatypemappings
+sp_MSrepl_enumarticlecolumninfo
+sp_MSrepl_enumpublications
+sp_MSrepl_enumpublishertables
+sp_MSrepl_enumsubscriptions
+sp_MSrepl_enumtablecolumninfo
+sp_MSrepl_getdistributorinfo
+sp_MSrepl_startup_internal
+sp_MSreplagentjobexists
+sp_MSreplcheck_permission
+sp_MSreplcheck_pull
+sp_MSreplcheck_subscribe
+sp_MSreplcheck_subscribe_withddladmin
+sp_MSreplcopyscriptfile
+sp_MSreplremoveuncdir
+sp_MSsetalertinfo
+sp_MSSetServerProperties
+sp_MSsetupnosyncsubwithlsnatdist
+sp_MSsetupnosyncsubwithlsnatdist_cleanup
+sp_MSsetupnosyncsubwithlsnatdist_helper
+sp_MSstartdistribution_agent
+sp_MSstartmerge_agent
+sp_MSstartsnapshot_agent
+sp_MSstopdistribution_agent
+sp_MSstopmerge_agent
+sp_MSstopsnapshot_agent
+sp_MSupdate_agenttype_default
+sp_oledbinfo
+sp_procoption
+sp_removedbreplication
+sp_removesrvreplication
+sp_replication_agent_checkup
+sp_replicationdboption
+sp_resetstatus
+sp_restoredbreplication
+sp_SetAutoSAPasswordAndDisable
+sp_setdefaultdatatypemapping
+sp_updatestats
+sp_validatelogins
+sp_vupgrade_mergeobjects
+sp_vupgrade_replication
+sp_vupgrade_replsecurity_metadata
+xp_repl_convert_encrypt_sysadmin_wrapper
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Use SQL Server and system documentation to determine privilege assignment of user-defined roles.
+
+Determine which user-defined roles grant privileges to system tables and configuration data stored in SQL Server.
+
+For each Login:
+
+In SQL Server Management Studio, Object Explorer, expand &lt;SQL Server instance&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; Right-click &lt;login account name&gt; &gt;&gt; Properties &gt;&gt; User &gt;&gt; Securables.
+
+If any item in the Explicit Permissions listing, for each highlighted item that exists in the Securables listing, indicates direct permission access, and that permission is anything other than Connect SQL, this is a finding.
+
+Navigate from Securables to Server Roles.
+
+If any Server Roles are checked from the following list, indicating direct permission access, this is a finding:
+bulkadmin
+dbcreator
+diskadmin
+processadmin
+securityadmin
+serveradmin
+setupadmin
+
+If the sysadmin server role is checked, review system documentation to determine whether this login's need for the sysadmin role is documented and approved. If it is not, this is a finding.
+
+If any user-defined server roles with system table or configuration data privileges are checked, review system documentation to determine whether this login's need for the role is documented and approved. If it is not, this is a finding.
+
+Navigate from Server Roles to User Mapping. Select in turn each entry where the User column is non-blank. If any Database Roles are checked from the following list, indicating direct permission access, this is a finding:
+db_accessadmin
+db_backupoperator
+db_datareader
+db_datawriter
+db_ddladmin
+db_denydatareader
+db_denydatawriter
+db_owner
+db_securityadmin</RawString>
     </Rule>
     <Rule id="V-41046" severity="medium" conversionstatus="pass" title="SRG-APP-000062-DB-000011" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Applications employ the concept of least privilege for specific duties and information systems (including specific functions, ports, protocols, and services). The concept of least privilege is also applied to information system processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and information system accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of information systems.
@@ -1368,6 +1668,104 @@ From command prompt, using an account with System Administrator Privilege, open 
 If the "SQL Server Reporting Services (MSSQLSERVER)" service does not exist, this is not a finding.
 
 If the "SQL Server Reporting Services (MSSQLSERVER)" status is "Started" or the "Startup Type" is not set to "Disabled", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-40944" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000207" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When dealing with change control issues, it should be noted, any changes to the hardware, software, and/or firmware components of the information system can potentially have significant effects on the overall security of the system.
+
+If any user were allowed to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.  The DBMS software libraries contain the executables used by the DBMS to operate. Unauthorized access to the libraries can result in compromised installations. This may in turn jeopardize data stored in the DBMS and/or operation of the host system.
+
+Accordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.
+
+Of particular note in this context is that any software installed for auditing and/or audit file management must be protected and monitored.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Obtain the SQL Server software directory location: from a command prompt, open the registry editor by typing regedit.exe and pressing [ENTER]. Navigate to the following registry location:
+HKEY_LOCAL_MACHINE
+&gt;&gt; SOFTWARE
+&gt;&gt; Microsoft
+&gt;&gt; Microsoft SQL Server
+&gt;&gt; [INSTANCE NAME]
+&gt;&gt; Setup
+&gt;&gt; SQLBinRoot
+
+In the registry tree, the [INSTANCE NAME] for a SQL Server 2012 database engine instance is normally shown as "MSSQL11" followed by a period and the name that was specified for the SQL Server service at installation time. If multiple SQL Server instances are installed, each will have its own [INSTANCE NAME] node and subtree in the registry.
+
+The value in the Data column for the SQLBinRoot registry entry is the file system path for the SQL Server 2012 binaries. Navigate to that folder location using a command prompt or Windows Explorer. The following instructions assume that Windows Explorer is used.
+
+Verify that files and folders that are part of the SQL Server 2012 instance have only authorized privileges. Right-click the binaries (\binn) folder, click Properties. On the Security tab, verify that at most the following permissions are present:
+Trusted Installer (Full Control)
+CREATOR OWNER (Full Control)
+SYSTEM (Full Control)
+Administrators (Full Control) [See Note 3]
+Users (Read, List Folder Contents, Read &amp; Execute)
+Creator Owner (Special Permissions - Full control - Subfolders and files only)
+All Application Packages (Read &amp; Execute) [Only as needed - see Note 4]
+SQL Server Service SID OR Service Account (Read &amp; Execute) [Notes 1, 2]
+SQL Server SQL Agent Service SID OR Service Account, if SQL Server Agent is in use. (Full Control) [Notes 1, 2]
+SQL Server FD Launcher Service SID OR Service Account, if full-text indexing is in use. (Read &amp; Execute) [Notes 1, 2]
+System Administrators (Full Control) [Note 3]
+
+If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
+
+Right-click each folder under the binaries folder; click Properties. On the Security tab, verify that at most the permissions listed in the preceding paragraph are present.
+If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
+
+Right-click the \Install folder, which is a peer of \binn, under ...\MSSQL. On the Security tab, verify that at most the permissions listed in the preceding paragraphs are present. If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
+
+
+Locate the ...\Microsoft SQL Server\110\Shared folder, either by stepping up the tree in Windows Explorer or by finding the file path in the registry at:
+HKEY_LOCAL_MACHINE
+&gt;&gt; SOFTWARE
+&gt;&gt; Microsoft
+&gt;&gt; Microsoft SQL Server
+&gt;&gt; 110
+&gt;&gt; SharedCode
+
+Right-click on the ...\110\Shared folder; click Properties. On the Security tab, verify that at most the following permissions are present:
+Trusted Installer (Full Control)
+CREATOR OWNER (Full Control)
+System (Full Control)
+SQL Server Service SID OR Service Account (Read &amp; Execute) [Notes 1, 2]
+System Administrators (Full Control) [Note 3]
+Local Administrators (Read)
+SQL Server Analysis Services (SSAS) Service SID or Service Account, if SSAS is in use (Read &amp; Execute) [Notes 1, 2]
+SQL Server SQL Agent Service SID OR Service Account, if SQL Server Agent is in use. (Read, Execute, Write) [Notes 1, 2]
+SQL Server FD Launcher Service SID OR Service Account, if full-text indexing is in use. (Read, Write) [Notes 1, 2]
+Users (Read, List Folder Contents, Read &amp; Execute)
+[MsDtsServer110 (Read &amp; Execute) is also permitted, if SSIS/DTS is in use.]
+[NT AUTHORITY\NETWORK SERVICE (Read &amp; Execute) may also be required for SQL Server Configuration Manager to operate.]
+
+If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
+
+Right-click each folder under the ...\110\Shared folder; click Properties. On the Security tab, verify that at most the permissions listed in the preceding paragraph are present. If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
+
+-----
+
+Note 1: It is highly advisable to use a separate account for each service. When installing SQL Server in single-server mode, you can opt to have these provisioned for you. These automatically generated accounts are referred to as virtual accounts. Each virtual account has an equivalent Service SID, with the same name. The installer also creates an equivalent SQL Server login, also with the same name. Applying folder and file permissions to Service SIDs, rather than to domain accounts or local computer accounts, provides tighter control because these permissions are available only to the specific service when it is running and not in any other context. (However, when using failover clustering, a domain account must be specified at installation, rather than a virtual account.) For more on this topic, see http://msdn.microsoft.com/en-us/library/ms143504(v=sql.110).aspx.
+
+Note 2: Tips for adding a service SID/virtual account to a folder's permission list.
+1) In Windows Explorer, right-click on the folder and select "Properties."
+2) Select the "Security" tab
+3) Click "Edit"
+4) Click "Add"
+5) Click "Locations"
+6) Select the computer name
+7) Search for the name
+7.a) SQL Server Service
+7.a.i) Type "NT SERVICE\MSSQL" and click "Check Names". (What you have just typed in is the first 16 characters of the name. At least one character must follow "NT SERVICE\"; you will be presented with a list of all matches. If you have typed in the full, correct name, step 7.a.ii is bypassed.)
+7.a.ii) Select the "MSSQL$&lt;instance name&gt;" user and click "OK"
+7.b) SQL Agent Service
+7.b.i) Type "NT SERVICE\SQL" and click "Check Names"
+7.b.ii) Select the "SQLAgent$&lt;instance name&gt;" user and click "OK"
+8) Click "OK"
+9) Permission like a normal user from here
+
+Note 3: In the interest of separation of responsibilities with least privilege, consider granting Full Control only to SQL Database Administrators (create a custom group for these) and providing the local Administrators group with Read access only. 
+
+Note 4: Some files also require 'ALL APPLICATION PACKAGES (READ, EXECUTE)' permissions for certain functionality to work appropriately, and this is considered acceptable where those permissions are required. (All SQL Server files that require this access reside by default in the ..\Microsoft SQL Server\110\ directory.)
+</RawString>
     </Rule>
     <Rule id="V-40945" severity="high" conversionstatus="pass" title="SRG-APP-000133-DB-000205" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security faults with software applications and operating systems are discovered daily. Vendors are constantly updating and patching their products to address newly discovered security vulnerabilities. Organizations (including any contractor to the organization) are required to promptly install security-relevant software updates (e.g., patches, service packs, and hot fixes). Flaws discovered during security assessments, continuous monitoring, incident response activities, or information system error handling must also be addressed expeditiously.
@@ -4040,576 +4438,12 @@ If procedures do not indicate access restrictions to the Service Master Key back
 Note: If, because of the application configuration, there are multiple instances of SQL that would share a given exploit, a single account would be allowed to be used for the group and would not be considered a finding.
 </RawString>
     </Rule>
-    <Rule id="V-54879" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000207" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Database files must be protected from unauthorized access.  Although default data locations are created at installation time, sites can, and will, use other directories for site-created database files to comply with best practices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Obtain the SQL Server data directory location(s): in a tool such as SQL Server Management Studio, run the statement:
-SELECT DISTINCT 
-LEFT(physical_name, (LEN(physical_name) - CHARINDEX('\',REVERSE(physical_name)) + 1 )) 
-AS "Database Data File Paths",
-type_desc
-FROM sys.master_files
-WHERE database_id &gt; 4 
-AND type = 0
-
-The query result is a list of file systems locations used for databases other than the system databases.  Navigate to each of those folder locations using a command prompt or Windows Explorer.  The following instructions assume that Windows Explorer is used.
-
-
-Verify that the identified folders and their contents have only authorized privileges. Right-click each folder, click Properties. On the Security tab, verify that at most the following permissions are present:
-CREATOR OWNER (Full Control)
-System (Full control)
-SQL Server Service SID OR Service Account (Full Control)  [Notes 1, 2]  
-System Administrators (Full Control)  [Note 3]
-SQL Server Analysis Services (SSAS) Service SID or Service Account, if SSAS is in use (Read &amp; Execute) [Notes 1, 2]
-SQL Server SQL Agent Service SID OR Service Account, if SQL Server Agent is in use. (Read, Execute, Write)  [Notes 1, 2]  
-SQL Server FD Launcher Service SID OR Service Account, if full-text indexing is in use.  (Read, Write)  [Notes 1, 2]  
-If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-59857" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of privileged accounts for non-administrative purposes puts data at risk of unintended or unauthorized loss, modification, or exposure. In particular, DBA accounts, if used for non-administration application development or application maintenance, can lead to excessive privileges where privileges are inherited by object owners. It may also lead to loss or compromise of application data where the elevated privileges bypass controls designed in and provided by applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review procedures and practices.  If there is not a policy requiring owners of privileged accounts to use non-privileged accounts for non-administrative activities, this is a finding.  If there is evidence that owners of privileged accounts do not adhere to this policy, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-59915" severity="medium" conversionstatus="pass" title="SRG-APP-000035-DB-000007" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
-
-Unauthorized access to sensitive data or SQL Server control may compromise the confidentiality of personnel privacy, threaten national security, compromise a variety of other sensitive operations, or lead to a loss of system control. Access controls are best managed by defining requirements based on distinct job functions and assigning access based on the job function assigned to the individual user.
-
-SQL Server's 'Alter any event notification' permission is a high server-level privilege that must only be granted to individual administration accounts through roles. If the 'Alter any event notification' permission is granted to roles that are unauthorized to have this privilege, then this access must be removed.
-
-Additionally, the permission must not be denied to a role, because that could disable a user's legitimate access via another role.
-
-The fix for this vulnerability specifies the use of REVOKE. Be aware that revoking a permission that is currently denied to a role or user does not necessarily disable the permission. If the user or role can inherent the permission from another role, revoking the denied permission from the user or the first role can effectively enable the inherited permission.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Obtain the list of roles that are authorized for the SQL Server 'Alter any event notification' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
-
-SELECT
-who.name AS [Principal Name],
-who.type_desc AS [Principal Type],
-who.is_disabled AS [Principal Is Disabled],
-what.state_desc AS [Permission State],
-what.permission_name AS [Permission Name]
-FROM
-sys.server_permissions what
-INNER JOIN sys.server_principals who
-ON who.principal_id = what.grantee_principal_id
-WHERE
-what.permission_name = 'Alter any event notification'
-AND who.type_desc = 'SERVER_ROLE'
-ORDER BY
-who.name
-;
-GO </RawString>
-    </Rule>
-  </ManualRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-40937" severity="medium" conversionstatus="fail" title="SRG-APP-000141-DB-000092" dscresource="">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;SQL Server is capable of providing a wide variety of functions and services. Some of the functions and services, provided by default, may not be necessary to support essential organizational operations (e.g., key missions, functions).
-
-It is detrimental for applications to provide, or install by default, functionality exceeding requirements or mission objectives. Examples include, but are not limited to, installing advertising software demonstrations, or browser plug-ins not related to requirements or providing a wide array of functionality not required for every mission, but which cannot be disabled.
-
-Applications must adhere to the principles of least functionality by providing only essential capabilities.
-
-Unused and unnecessary SQL Server components increase the number of available attack vectors to SQL Server by introducing additional targets for attack. By minimizing the services and applications installed on the system, the number of potential vulnerabilities is reduced. Components of the system that are unused and cannot be uninstalled must be disabled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Review the components and features included in SQL Server and capable of being disabled (by configuration settings, permissions and privileges, etc.).  Take note of those which are enabled.
-
-Review the system documentation to verify that the enabled components or features are documented and authorized.  If any enabled components or features are not authorized, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-40944" severity="medium" conversionstatus="fail" title="SRG-APP-000133-DB-000207" dscresource="">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Creator Owner (Special Permissions</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>All Application Packages (Read &amp; Execute) [Only as needed</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When dealing with change control issues, it should be noted, any changes to the hardware, software, and/or firmware components of the information system can potentially have significant effects on the overall security of the system.
-
-If any user were allowed to make changes to software libraries, then those changes might be implemented without undergoing the appropriate testing and approvals that are part of a robust change management process.  The DBMS software libraries contain the executables used by the DBMS to operate. Unauthorized access to the libraries can result in compromised installations. This may in turn jeopardize data stored in the DBMS and/or operation of the host system.
-
-Accordingly, only qualified and authorized individuals shall be allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications.
-
-Of particular note in this context is that any software installed for auditing and/or audit file management must be protected and monitored.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Obtain the SQL Server software directory location: from a command prompt, open the registry editor by typing regedit.exe and pressing [ENTER]. Navigate to the following registry location:
-HKEY_LOCAL_MACHINE
-&gt;&gt; SOFTWARE
-&gt;&gt; Microsoft
-&gt;&gt; Microsoft SQL Server
-&gt;&gt; [INSTANCE NAME]
-&gt;&gt; Setup
-&gt;&gt; SQLBinRoot
-
-In the registry tree, the [INSTANCE NAME] for a SQL Server 2012 database engine instance is normally shown as "MSSQL11" followed by a period and the name that was specified for the SQL Server service at installation time. If multiple SQL Server instances are installed, each will have its own [INSTANCE NAME] node and subtree in the registry.
-
-The value in the Data column for the SQLBinRoot registry entry is the file system path for the SQL Server 2012 binaries. Navigate to that folder location using a command prompt or Windows Explorer. The following instructions assume that Windows Explorer is used.
-
-Verify that files and folders that are part of the SQL Server 2012 instance have only authorized privileges. Right-click the binaries (\binn) folder, click Properties. On the Security tab, verify that at most the following permissions are present:
-Trusted Installer (Full Control)
-CREATOR OWNER (Full Control)
-SYSTEM (Full Control)
-Administrators (Full Control) [See Note 3]
-Users (Read, List Folder Contents, Read &amp; Execute)
-Creator Owner (Special Permissions - Full control - Subfolders and files only)
-All Application Packages (Read &amp; Execute) [Only as needed - see Note 4]
-SQL Server Service SID OR Service Account (Read &amp; Execute) [Notes 1, 2]
-SQL Server SQL Agent Service SID OR Service Account, if SQL Server Agent is in use. (Full Control) [Notes 1, 2]
-SQL Server FD Launcher Service SID OR Service Account, if full-text indexing is in use. (Read &amp; Execute) [Notes 1, 2]
-System Administrators (Full Control) [Note 3]
-
-If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
-
-Right-click each folder under the binaries folder; click Properties. On the Security tab, verify that at most the permissions listed in the preceding paragraph are present.
-If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
-
-Right-click the \Install folder, which is a peer of \binn, under ...\MSSQL. On the Security tab, verify that at most the permissions listed in the preceding paragraphs are present. If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
-
-
-Locate the ...\Microsoft SQL Server\110\Shared folder, either by stepping up the tree in Windows Explorer or by finding the file path in the registry at:
-HKEY_LOCAL_MACHINE
-&gt;&gt; SOFTWARE
-&gt;&gt; Microsoft
-&gt;&gt; Microsoft SQL Server
-&gt;&gt; 110
-&gt;&gt; SharedCode
-
-Right-click on the ...\110\Shared folder; click Properties. On the Security tab, verify that at most the following permissions are present:
-Trusted Installer (Full Control)
-CREATOR OWNER (Full Control)
-System (Full Control)
-SQL Server Service SID OR Service Account (Read &amp; Execute) [Notes 1, 2]
-System Administrators (Full Control) [Note 3]
-Local Administrators (Read)
-SQL Server Analysis Services (SSAS) Service SID or Service Account, if SSAS is in use (Read &amp; Execute) [Notes 1, 2]
-SQL Server SQL Agent Service SID OR Service Account, if SQL Server Agent is in use. (Read, Execute, Write) [Notes 1, 2]
-SQL Server FD Launcher Service SID OR Service Account, if full-text indexing is in use. (Read, Write) [Notes 1, 2]
-Users (Read, List Folder Contents, Read &amp; Execute)
-[MsDtsServer110 (Read &amp; Execute) is also permitted, if SSIS/DTS is in use.]
-[NT AUTHORITY\NETWORK SERVICE (Read &amp; Execute) may also be required for SQL Server Configuration Manager to operate.]
-
-If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
-
-Right-click each folder under the ...\110\Shared folder; click Properties. On the Security tab, verify that at most the permissions listed in the preceding paragraph are present. If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.
-
------
-
-Note 1: It is highly advisable to use a separate account for each service. When installing SQL Server in single-server mode, you can opt to have these provisioned for you. These automatically generated accounts are referred to as virtual accounts. Each virtual account has an equivalent Service SID, with the same name. The installer also creates an equivalent SQL Server login, also with the same name. Applying folder and file permissions to Service SIDs, rather than to domain accounts or local computer accounts, provides tighter control because these permissions are available only to the specific service when it is running and not in any other context. (However, when using failover clustering, a domain account must be specified at installation, rather than a virtual account.) For more on this topic, see http://msdn.microsoft.com/en-us/library/ms143504(v=sql.110).aspx.
-
-Note 2: Tips for adding a service SID/virtual account to a folder's permission list.
-1) In Windows Explorer, right-click on the folder and select "Properties."
-2) Select the "Security" tab
-3) Click "Edit"
-4) Click "Add"
-5) Click "Locations"
-6) Select the computer name
-7) Search for the name
-7.a) SQL Server Service
-7.a.i) Type "NT SERVICE\MSSQL" and click "Check Names". (What you have just typed in is the first 16 characters of the name. At least one character must follow "NT SERVICE\"; you will be presented with a list of all matches. If you have typed in the full, correct name, step 7.a.ii is bypassed.)
-7.a.ii) Select the "MSSQL$&lt;instance name&gt;" user and click "OK"
-7.b) SQL Agent Service
-7.b.i) Type "NT SERVICE\SQL" and click "Check Names"
-7.b.ii) Select the "SQLAgent$&lt;instance name&gt;" user and click "OK"
-8) Click "OK"
-9) Permission like a normal user from here
-
-Note 3: In the interest of separation of responsibilities with least privilege, consider granting Full Control only to SQL Database Administrators (create a custom group for these) and providing the local Administrators group with Read access only. 
-
-Note 4: Some files also require 'ALL APPLICATION PACKAGES (READ, EXECUTE)' permissions for certain functionality to work appropriately, and this is considered acceptable where those permissions are required. (All SQL Server files that require this access reside by default in the ..\Microsoft SQL Server\110\ directory.)
-</RawString>
-    </Rule>
-    <Rule id="V-40950" severity="medium" conversionstatus="pass" title="SRG-APP-000130-DB-000088" dscresource="FileSystemAuditRuleEntry">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>
-          </ForcePrincipal>
-          <Inheritance>This folder subfolders and files</Inheritance>
-          <Rights>Traverse,ExecuteFile,ListDirectory,ReadData,ReadAttributes,ReadExtendedAttributes,CreateFiles,WriteData,CreateDirectories,AppendData,WriteAttributes,WriteExtendedAttributes,Delete,ReadPermissions</Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;Any changes to the hardware, software, and/or firmware components of the information system and/or application can potentially have significant effects on the overall security of the system. 
-
-Accordingly, only qualified and authorized individuals are allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications. 
-
-Access restrictions for change also include software libraries. 
-
-Examples of access restrictions include: physical access controls (such as locks and access cards), logical access controls (such as ACLs), automated auditing (logging) of logical access, workflow automation, media libraries, abstract layers (e.g., changes are implemented into a third-party interface rather than directly into the information system component), and change windows (e.g., changes occur only during specified times, making unauthorized changes outside the window easy to discover).  
-
-This requirement focuses on the auditing aspect of the protections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>False</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Verify that Files and Folders that are part of the SQL Server 2012 Installation have auditing enabled.
-
-Right click the root folder of the SQL Server installation.  Typically, this is at &lt;drive&gt;:\Program Files\Microsoft SQL Server\.  Select Properties. 
-
-Click on the Security tab
-
-Click on the Advanced button
-
-Click on the Auditing tab
-
-If "Everyone" is not listed in the "Name" column, this is a finding.
-
-If "This folder, subfolders and files" is not listed in the "Apply To" column, this is a finding.
-
-When "Everyone" ... " is listed, select the "Everyone" row and click on the Edit button.
-
-If either the Successful or Failed checkbox is not selected for any of the following access types, this is a finding:
-    Traverse folder/execute file 
-    List folder/read data
-    Read attributes
-    Read extended attributes
-    Create files/write data
-    Create folders/append data
-    Write attributes
-    Write extended attributes
-    Delete
-    Read permissions</RawString>
-    </Rule>
-    <Rule id="V-41039" severity="medium" conversionstatus="fail" title="SRG-APP-000063-DB-000021" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;SQL Server DBAs, if assigned excessive OS privileges, could perform actions that could endanger the information system or hide evidence of malicious activity.
-
-This requirement is intended to limit exposure due to operating from within a privileged account or role. The check and fix are based on the assumption that Role-Based Access Control (RBAC) is in effect, as mandated by other STIG requirements.  They further assume that, as mandated elsewhere, the privileged accounts discussed here are distinct from the accounts used by the same people when not performing privileged functions.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-40937</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>From the system security documentation, obtain the list of SQL Server DBA accounts, the OS/domain Group(s) representing those DBAs' job role(s), and the OS permissions required by that/those role(s).
-
-
-To review local accounts and groups:
-
-Log on to the Windows server hosting SQL Server, using an account with administrator privileges.
-
-From a command prompt opened as administrator, type gpedit.msc, and press [ENTER].  In Group Policy Editor, navigate to Local Computer Policy &gt; Computer Configuration &gt; Windows Settings &gt; Security Settings &gt; Local Policies &gt; User Rights Assignment.  Scan the list to determine which privileges are assigned to the Group(s) representing the SQL Server DBA job role(s).  If any privileges are assigned that are not required by these roles, this is a finding.
-
-From the command prompt, type lusrmgr.msc, and press [ENTER].  In the Local Users and Groups console, navigate to Users.  Right-click each DBA user. Click Properties. Click the 'Member of' tab.  If any parent groups are listed that are not specific to DBA roles, this is a finding.
-
-In the Local Users and Groups console, navigate to Groups.  Right-click each DBA Group.  Click Properties.  Review the list of group members.  If any account that does not represent a DBA is listed, this is a finding.
-
-
-To review domain-level accounts and groups:
-
-Log on to a domain controller with the necessary privileges.
-
-Open Active Directory Users and Computers (available from menus or run dsa.msc)
-
-Determine the location of the accounts or groups to be reviewed.  The default is the Users container, but they could have been created or moved to an Organizational Unit (OU) that is domain specific.
-
-Right-click each DBA user. Click Properties. Click the 'Member of' tab.  If any parent groups are listed that are not specific to DBA roles, this is a finding.
-
-Right-click each DBA Group.  Click Properties.  Select the 'Members' tab. Review the list of group members.  If any account that does not represent a DBA is listed, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-41041" severity="medium" conversionstatus="fail" title="SRG-APP-000063-DB-000019" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;This requirement is intended to limit exposure due to operating from within a privileged account or role. The inclusion of role is intended to address those situations where an access control policy, such as Role-Based Access Control (RBAC), is being implemented and where a change of role provides the same degree of assurance in the change of access authorizations for both the user and all processes acting on behalf of the user as would be provided by a change between a privileged and non-privileged account.
-
-Audit of privileged activity may require physical separation, employing information systems on which the user does not have privileged access.
-
-To limit exposure and provide forensic history of activity when operating from within a privileged account or role, SQL Server does support organizational requirements that users of information system accounts, or roles, with access to an organization-defined list of security functions or security-relevant information, use non-privileged accounts, or roles, when accessing other (non-security) system functions.
-
-SQL Server provides access logging that ensures users who are granted a privileged role (or roles) have their privileged activity logged. DBAs, if assigned excessive privileges, could perform actions that endanger the information system or hide evidence of malicious activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-40937</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Obtain the list of all DBAs.
-Obtain documented role assignments for each DBA.
-Obtain from system documentation or use SQL Server to determine privilege assignment of user-defined roles.
-
-Navigate to SQL Server Management Studio &gt;&gt; Object Explorer &gt;&gt; &lt;'SQL Server name'&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; right click &lt;'administrator account name'&gt; &gt;&gt; Properties &gt;&gt; User &gt;&gt; Securables.
-
-If any item in the 'Permission' listing, for each highlighted item that exists in the 'Securables' listing, has excessive privileges, this is a finding.
-
-Navigate from 'Securables' to 'Server Roles'.
-
-If any checked 'Server roles' are determined to be excessive privileges, this is a finding.
-
-Navigate from 'Server Roles' to 'Users mapped to the login'.
-
-If any checked 'Database role membership' of each highlighted and checked 'Database' are determined to be excessive privileges, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-41044" severity="medium" conversionstatus="fail" title="SRG-APP-000062-DB-000016" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;The principle of Least Privilege must be applied to the ability of users to access system tables, system management information, other configuration information, and metadata.  Unauthorized access to this data could result in unauthorized changes to database objects, access controls, or SQL Server configuration.  Only database administrators and other authorized users must be allowed such access.
-
-To aid in tracking and administering such permissions, individual logins must not be directly granted permissions or built-in server roles.  Instead, user-defined server roles must be created, with the permissions and built-in server roles granted to them; the individual logins must be assigned to the appropriate user-defined server roles.
-
-The built-in server role "sysadmin" is a partial exception.  This cannot be granted to a user-defined role, only to a login account.  Most (not necessarily all) database administrators will need to be members of sysadmin.  Without this, most DBCC commands and the system stored procedures/functions listed below are unavailable.  The users who require such access must be documented and approved.  
-
-In addition, if the site uses backup-restore software that connects to SQL Server via the Virtual Device Interface (VDI), the account used by that software must have the sysadmin role.  (See Microsoft Knowledge Base article 2926557, http://support.microsoft.com/kb/2926557).  If this applies, it must be documented and approved.
-
-Stored procedures/functions available only to the sysadmin role:
-fn_yukonsecuritymodelrequired
-sp_add_agent_parameter
-sp_add_agent_profile
-sp_adddatatype
-sp_adddistributiondb
-sp_adddistributor
-sp_addqreader_agent
-sp_addsubscriber
-sp_addsubscriber_schedule
-sp_addtabletocontents
-sp_attachsubscription
-sp_cdc_cleanup_change_table
-sp_cdc_disable_db
-sp_cdc_disable_table
-sp_cdc_drop_job
-sp_cdc_enable_db
-sp_cdc_enable_table
-sp_cdc_restoredb
-sp_cdc_vupgrade
-sp_certify_removable
-sp_change_agent_parameter
-sp_change_agent_profile
-sp_change_subscription_properties
-sp_change_users_login
-sp_changedistpublisher
-sp_changedistributiondb
-sp_changedistributor_password
-sp_changedistributor_property
-sp_changemergesubscription
-sp_changeqreader_agent
-sp_changereplicationserverpasswords
-sp_changesubscriptiondtsinfo
-sp_checkinvalidivarticle
-sp_copysubscription
-sp_create_removable
-sp_cycle_errorlog
-sp_dbcmptlevel
-sp_dbmmonitoraddmonitoring
-sp_dbmmonitorchangealert
-sp_dbmmonitordropalert
-sp_dbmmonitordropmonitoring
-sp_dbmmonitorhelpalert
-sp_dbmmonitorhelpmonitoring
-sp_dbmmonitorresults
-sp_dbmmonitorupdate
-sp_dbremove
-sp_drop_agent_parameter
-sp_drop_agent_profile
-sp_dropdatatypemapping
-sp_dropdistpublisher
-sp_dropdistributiondb
-sp_dropdistributor
-sp_dropmergepullsubscription
-sp_droppullsubscription
-sp_dropsubscriber
-sp_dsninfo
-sp_enumdsn
-sp_flush_commit_table_on_demand
-sp_generate_agent_parameter
-sp_get_distributor
-sp_get_Oracle_publisher_metadata
-sp_getagentparameterlist
-sp_getdefaultdatatypemapping
-sp_grant_publication_access
-sp_help_agent_default
-sp_help_agent_parameter
-sp_help_agent_profile
-sp_helpdistpublisher
-sp_helpdistributor
-sp_helpmergesubscription
-sp_helpqreader_agent
-sp_helpreplicationdboption
-sp_identitycolumnforreplication
-sp_IHValidateRowFilter
-sp_IHXactSetJob
-sp_link_publication
-sp_monitor
-sp_MSadd_distribution_agent
-sp_MSadd_logreader_agent
-sp_MSadd_merge_agent
-sp_MSadd_snapshot_agent
-sp_MSadd_subscriber_schedule
-sp_MSadd_tracer_history
-sp_MSadd_tracer_token
-sp_MScdc_cleanup_job
-sp_MScdc_db_ddl_event
-sp_MScdc_ddl_event
-sp_MSchange_distribution_agent_properties
-sp_MSchange_logreader_agent_properties
-sp_MSchange_merge_agent_properties
-sp_MSchange_snapshot_agent_properties
-sp_MSchangedynamicsnapshotjobatdistributor
-sp_MSchangedynsnaplocationatdistributor
-sp_MScheck_pull_access
-sp_MScleanupmergepublisher_internal
-sp_MSclear_dynamic_snapshot_location
-sp_MScreate_dist_tables
-sp_MSdbuserpriv
-sp_MSdeletefoldercontents
-sp_MSdrop_6x_replication_agent
-sp_MSdrop_merge_agent
-sp_MSdrop_snapshot_dirs
-sp_MSdropmergedynamicsnapshotjob
-sp_MSdynamicsnapshotjobexistsatdistributor
-sp_MSenumallpublications
-sp_MSfetchAdjustidentityrange
-sp_MSfix_6x_tasks
-sp_MSforce_drop_distribution_jobs
-sp_MSget_agent_names
-sp_MSget_jobstate
-sp_MSget_oledbinfo
-sp_MSget_publication_from_taskname
-sp_MSgetdbversion
-sp_MSgetmaxsnapshottimestamp
-sp_MShelp_repl_agent
-sp_MShelp_replication_status
-sp_MShelp_snapshot_agent
-sp_MShelpconflictpublications
-sp_MShelpdynamicsnapshotjobatdistributor
-sp_MShelplogreader_agent
-sp_MShelpsnapshot_agent
-sp_MShelptranconflictcounts
-sp_MSinit_publication_access
-sp_MSreinit_failed_subscriptions
-sp_MSremoveoffloadparameter
-sp_MSrepl_backup_complete
-sp_MSrepl_backup_start
-sp_MSrepl_createdatatypemappings
-sp_MSrepl_dropdatatypemappings
-sp_MSrepl_enumarticlecolumninfo
-sp_MSrepl_enumpublications
-sp_MSrepl_enumpublishertables
-sp_MSrepl_enumsubscriptions
-sp_MSrepl_enumtablecolumninfo
-sp_MSrepl_getdistributorinfo
-sp_MSrepl_startup_internal
-sp_MSreplagentjobexists
-sp_MSreplcheck_permission
-sp_MSreplcheck_pull
-sp_MSreplcheck_subscribe
-sp_MSreplcheck_subscribe_withddladmin
-sp_MSreplcopyscriptfile
-sp_MSreplremoveuncdir
-sp_MSsetalertinfo
-sp_MSSetServerProperties
-sp_MSsetupnosyncsubwithlsnatdist
-sp_MSsetupnosyncsubwithlsnatdist_cleanup
-sp_MSsetupnosyncsubwithlsnatdist_helper
-sp_MSstartdistribution_agent
-sp_MSstartmerge_agent
-sp_MSstartsnapshot_agent
-sp_MSstopdistribution_agent
-sp_MSstopmerge_agent
-sp_MSstopsnapshot_agent
-sp_MSupdate_agenttype_default
-sp_oledbinfo
-sp_procoption
-sp_removedbreplication
-sp_removesrvreplication
-sp_replication_agent_checkup
-sp_replicationdboption
-sp_resetstatus
-sp_restoredbreplication
-sp_SetAutoSAPasswordAndDisable
-sp_setdefaultdatatypemapping
-sp_updatestats
-sp_validatelogins
-sp_vupgrade_mergeobjects
-sp_vupgrade_replication
-sp_vupgrade_replsecurity_metadata
-xp_repl_convert_encrypt_sysadmin_wrapper
-&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-40937</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Use SQL Server and system documentation to determine privilege assignment of user-defined roles.
-
-Determine which user-defined roles grant privileges to system tables and configuration data stored in SQL Server.
-
-For each Login:
-
-In SQL Server Management Studio, Object Explorer, expand &lt;SQL Server instance&gt; &gt;&gt; Security &gt;&gt; Logins &gt;&gt; Right-click &lt;login account name&gt; &gt;&gt; Properties &gt;&gt; User &gt;&gt; Securables.
-
-If any item in the Explicit Permissions listing, for each highlighted item that exists in the Securables listing, indicates direct permission access, and that permission is anything other than Connect SQL, this is a finding.
-
-Navigate from Securables to Server Roles.
-
-If any Server Roles are checked from the following list, indicating direct permission access, this is a finding:
-bulkadmin
-dbcreator
-diskadmin
-processadmin
-securityadmin
-serveradmin
-setupadmin
-
-If the sysadmin server role is checked, review system documentation to determine whether this login's need for the sysadmin role is documented and approved. If it is not, this is a finding.
-
-If any user-defined server roles with system table or configuration data privileges are checked, review system documentation to determine whether this login's need for the role is documented and approved. If it is not, this is a finding.
-
-Navigate from Server Roles to User Mapping. Select in turn each entry where the User column is non-blank. If any Database Roles are checked from the following list, indicating direct permission access, this is a finding:
-db_accessadmin
-db_backupoperator
-db_datareader
-db_datawriter
-db_ddladmin
-db_denydatareader
-db_denydatawriter
-db_owner
-db_securityadmin</RawString>
-    </Rule>
-    <Rule id="V-54859" severity="medium" conversionstatus="fail" title="SRG-APP-000133-DB-000207" dscresource="None">
-      <AccessControlEntry />
+    <Rule id="V-54859" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000207" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Default database file locations should be protected from unauthorized access.  The system databases, essential to SQL Server operation, are typically located here.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-40937</DuplicateOf>
-      <Force>True</Force>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path />
       <RawString>Obtain the SQL Server default data directory location: from a command prompt, open the registry editor by typing regedit.exe, and pressing [ENTER]. Navigate to the following registry location:
 HKEY_LOCAL_MACHINE
 &gt;&gt; SOFTWARE
@@ -4665,15 +4499,40 @@ Note 3: In the interest of separation of responsibilities with least privilege, 
 
 Note 4: It may also be necessary to grant the SQL Server Agent permission to Delete the \Log directory and its contents.  This is not a finding.</RawString>
     </Rule>
-    <Rule id="V-54881" severity="medium" conversionstatus="fail" title="SRG-APP-000133-DB-000207" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Backups must be protected from unauthorized deletion and modification.  They must also be protected from unauthorized use in database restoration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-40937</DuplicateOf>
-      <Force>True</Force>
+    <Rule id="V-54879" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000207" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Database files must be protected from unauthorized access.  Although default data locations are created at installation time, sites can, and will, use other directories for site-created database files to comply with best practices.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <Path />
+      <RawString>Obtain the SQL Server data directory location(s): in a tool such as SQL Server Management Studio, run the statement:
+SELECT DISTINCT 
+LEFT(physical_name, (LEN(physical_name) - CHARINDEX('\',REVERSE(physical_name)) + 1 )) 
+AS "Database Data File Paths",
+type_desc
+FROM sys.master_files
+WHERE database_id &gt; 4 
+AND type = 0
+
+The query result is a list of file systems locations used for databases other than the system databases.  Navigate to each of those folder locations using a command prompt or Windows Explorer.  The following instructions assume that Windows Explorer is used.
+
+
+Verify that the identified folders and their contents have only authorized privileges. Right-click each folder, click Properties. On the Security tab, verify that at most the following permissions are present:
+CREATOR OWNER (Full Control)
+System (Full control)
+SQL Server Service SID OR Service Account (Full Control)  [Notes 1, 2]  
+System Administrators (Full Control)  [Note 3]
+SQL Server Analysis Services (SSAS) Service SID or Service Account, if SSAS is in use (Read &amp; Execute) [Notes 1, 2]
+SQL Server SQL Agent Service SID OR Service Account, if SQL Server Agent is in use. (Read, Execute, Write)  [Notes 1, 2]  
+SQL Server FD Launcher Service SID OR Service Account, if full-text indexing is in use.  (Read, Write)  [Notes 1, 2]  
+If any less restrictive permissions are present (and not specifically justified and approved), this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-54881" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000207" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Backups must be protected from unauthorized deletion and modification.  They must also be protected from unauthorized use in database restoration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
       <RawString>Obtain the SQL Server backup directory location: from a command prompt, open the registry editor by typing regedit.exe, and pressing [ENTER]. Navigate to the following registry location: 
 HKEY_LOCAL_MACHINE 
 &gt;&gt; SOFTWARE 
@@ -4725,7 +4584,107 @@ Note 2: Tips for adding a service SID/virtual account to a folder's permission l
 
 Note 3: In the interest of separation of responsibilities with least privilege, consider granting Full Control only to SQL Database Administrators (create a custom group for these) and providing the local Administrators group with Read access only.</RawString>
     </Rule>
-    <Rule id="V-69169" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000179" dscresource="None">
+    <Rule id="V-59857" severity="medium" conversionstatus="pass" title="SRG-APP-000063-DB-000018" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of privileged accounts for non-administrative purposes puts data at risk of unintended or unauthorized loss, modification, or exposure. In particular, DBA accounts, if used for non-administration application development or application maintenance, can lead to excessive privileges where privileges are inherited by object owners. It may also lead to loss or compromise of application data where the elevated privileges bypass controls designed in and provided by applications.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Review procedures and practices.  If there is not a policy requiring owners of privileged accounts to use non-privileged accounts for non-administrative activities, this is a finding.  If there is evidence that owners of privileged accounts do not adhere to this policy, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-59915" severity="medium" conversionstatus="pass" title="SRG-APP-000035-DB-000007" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The concept of least privilege must be applied to SQL Server processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and SQL Server accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of SQL Server and the OS.
+
+Unauthorized access to sensitive data or SQL Server control may compromise the confidentiality of personnel privacy, threaten national security, compromise a variety of other sensitive operations, or lead to a loss of system control. Access controls are best managed by defining requirements based on distinct job functions and assigning access based on the job function assigned to the individual user.
+
+SQL Server's 'Alter any event notification' permission is a high server-level privilege that must only be granted to individual administration accounts through roles. If the 'Alter any event notification' permission is granted to roles that are unauthorized to have this privilege, then this access must be removed.
+
+Additionally, the permission must not be denied to a role, because that could disable a user's legitimate access via another role.
+
+The fix for this vulnerability specifies the use of REVOKE. Be aware that revoking a permission that is currently denied to a role or user does not necessarily disable the permission. If the user or role can inherent the permission from another role, revoking the denied permission from the user or the first role can effectively enable the inherited permission.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Obtain the list of roles that are authorized for the SQL Server 'Alter any event notification' permission and what 'Grant', 'Grant With', and/or 'Deny' privilege is authorized. Obtain the list of roles with that permission by running the following query:
+
+SELECT
+who.name AS [Principal Name],
+who.type_desc AS [Principal Type],
+who.is_disabled AS [Principal Is Disabled],
+what.state_desc AS [Permission State],
+what.permission_name AS [Permission Name]
+FROM
+sys.server_permissions what
+INNER JOIN sys.server_principals who
+ON who.principal_id = what.grantee_principal_id
+WHERE
+what.permission_name = 'Alter any event notification'
+AND who.type_desc = 'SERVER_ROLE'
+ORDER BY
+who.name
+;
+GO </RawString>
+    </Rule>
+  </ManualRule>
+  <PermissionRule dscresourcemodule="AccessControlDsc">
+    <Rule id="V-40950" severity="medium" conversionstatus="pass" title="SRG-APP-000130-DB-000088" dscresource="FileSystemAuditRuleEntry">
+      <AccessControlEntry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>Everyone</Principal>
+          <ForcePrincipal>
+          </ForcePrincipal>
+          <Inheritance>This folder subfolders and files</Inheritance>
+          <Rights>Traverse,ExecuteFile,ListDirectory,ReadData,ReadAttributes,ReadExtendedAttributes,CreateFiles,WriteData,CreateDirectories,AppendData,WriteAttributes,WriteExtendedAttributes,Delete,ReadPermissions</Rights>
+        </Entry>
+      </AccessControlEntry>
+      <Description>&lt;VulnDiscussion&gt;Any changes to the hardware, software, and/or firmware components of the information system and/or application can potentially have significant effects on the overall security of the system. 
+
+Accordingly, only qualified and authorized individuals are allowed to obtain access to information system components for purposes of initiating changes, including upgrades and modifications. 
+
+Access restrictions for change also include software libraries. 
+
+Examples of access restrictions include: physical access controls (such as locks and access cards), logical access controls (such as ACLs), automated auditing (logging) of logical access, workflow automation, media libraries, abstract layers (e.g., changes are implemented into a third-party interface rather than directly into the information system component), and change windows (e.g., changes occur only during specified times, making unauthorized changes outside the window easy to discover).  
+
+This requirement focuses on the auditing aspect of the protections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Force>False</Force>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the correct path is specified and does NOT conflict with RuleId V-69169</OrganizationValueTestString>
+      <Path>
+      </Path>
+      <RawString>Verify that Files and Folders that are part of the SQL Server 2012 Installation have auditing enabled.
+
+Right click the root folder of the SQL Server installation.  Typically, this is at &lt;drive&gt;:\Program Files\Microsoft SQL Server\.  Select Properties. 
+
+Click on the Security tab
+
+Click on the Advanced button
+
+Click on the Auditing tab
+
+If "Everyone" is not listed in the "Name" column, this is a finding.
+
+If "This folder, subfolders and files" is not listed in the "Apply To" column, this is a finding.
+
+When "Everyone" ... " is listed, select the "Everyone" row and click on the Edit button.
+
+If either the Successful or Failed checkbox is not selected for any of the following access types, this is a finding:
+    Traverse folder/execute file 
+    List folder/read data
+    Read attributes
+    Read extended attributes
+    Create files/write data
+    Create folders/append data
+    Write attributes
+    Write extended attributes
+    Delete
+    Read permissions</RawString>
+    </Rule>
+    <Rule id="V-69169" severity="medium" conversionstatus="pass" title="SRG-APP-000133-DB-000179" dscresource="FileSystemAuditRuleEntry">
       <AccessControlEntry>
         <Entry>
           <Type>
@@ -4742,12 +4701,13 @@ Note 3: In the interest of separation of responsibilities with least privilege, 
 Unmanaged changes that occur to the software libraries or configuration can lead to unauthorized or compromised installations.
 
 Of particular note in this context is that any software installed for auditing and/or audit file management must be protected and audited.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-40950</DuplicateOf>
+      <DuplicateOf />
       <Force>False</Force>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
+      <OrganizationValueTestString>the correct path is specified and does NOT conflict with RuleId V-40950</OrganizationValueTestString>
+      <Path>
+      </Path>
       <RawString>Obtain the SQL Server software directory location: from a command prompt, open the registry editor by typing regedit.exe and pressing [ENTER]. Navigate to the following registry location:
 HKEY_LOCAL_MACHINE
 &gt;&gt; SOFTWARE

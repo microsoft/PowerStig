@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 26 Jul 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="9/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Server_2016_DC_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Server_2016_DC_STIG_V1R9_Manual-xccdf.xml" releaseinfo="Release: 9 Benchmark Date: 26 Jul 2019" title="Windows Server 2016 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.9" created="12/17/2019">
   <AccountPolicyRule dscresourcemodule="SecurityPolicyDsc">
     <Rule id="V-73359" severity="medium" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="AccountPolicy">
       <Description>&lt;VulnDiscussion&gt;This policy setting determines whether the Kerberos Key Distribution Center (KDC) validates every request for a session ticket against the user rights policy of the target computer. The policy is enabled by default, which is the most secure setting for validating that access to target resources is not circumvented.
@@ -1547,6 +1547,66 @@ ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
 
 The Domain Admins and Enterprise Admins will not have the "Delete all child objects" permission on the two default Group Policy objects: Default Domain Policy and Default Domain Controllers Policy. They will have this permission on organization created Group Policy objects.</RawString>
     </Rule>
+    <Rule id="V-73377" severity="high" conversionstatus="pass" title="SRG-OS-000324-GPOS-00125" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
+
+For Active Directory, the OU objects require special attention. In a distributed administration model (i.e., help desk), OU objects are more likely to have access permissions changed from the secure defaults. If inappropriate access permissions are defined for OU objects, it could allow an intruder to add or delete users in the OU. This could result in unauthorized access to data or a denial of service to authorized users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the permissions on domain-defined OUs.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+For each OU that is defined (folder in folder icon) excluding the Domain Controllers OU:
+
+Right-click the OU and select "Properties".
+
+Select the "Security" tab.
+
+If the permissions on the OU are not at least as restrictive as those below, this is a finding.
+
+The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the "Advanced" button, the desired Permission entry, and the "Edit" or "View" button.
+
+Except where noted otherwise, the special permissions may include a wide range of permissions and properties and are acceptable for this requirement.
+
+CREATOR OWNER - Special permissions
+
+Self - Special permissions
+
+Authenticated Users - Read, Special permissions
+
+The Special permissions for Authenticated Users are Read type. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+SYSTEM - Full Control
+
+Domain Admins - Full Control
+
+Enterprise Admins - Full Control
+
+Key Admins - Special permissions
+
+Enterprise Key Admins - Special permissions
+
+Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
+
+Pre-Windows 2000 Compatible Access - Special permissions
+
+The Special permissions for Pre-Windows 2000 Compatible Access are for Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
+
+ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
+
+If an ISSO-approved distributed administration model (help desk or other user support staff) is implemented, permissions above Read may be allowed for groups documented by the ISSO.
+
+If any OU with improper permissions includes identification or authentication data (e.g., accounts, passwords, or password hash data) used by systems to determine access control, the severity is CAT I (e.g., OUs that include user accounts, including service/application accounts).
+
+If an OU with improper permissions does not include identification and authentication data used by systems to determine access control, the severity is CAT II (e.g., Workstation, Printer OUs).</RawString>
+    </Rule>
     <Rule id="V-73383" severity="medium" conversionstatus="pass" title="SRG-OS-000396-GPOS-00176" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Directory data that is not appropriately encrypted is subject to compromise. Commercial-grade encryption does not provide adequate protection when the classification level of directory data in transit is higher than the level of the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2413,6 +2473,272 @@ Principal - Everyone
 Access - blank (Permissions: none selected; Properties: one instance - Write gPLink, one instance - Write gPOptions)
 Inherited from - Parent Object
 Applies to - Descendant Organization Unit Objects</RawString>
+    </Rule>
+    <Rule id="V-73391" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
+
+For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the Domain object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
+
+Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the auditing configuration for the Domain object.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+Select the domain being reviewed in the left pane.
+
+Right-click the domain name and select "Properties".
+
+Select the "Security" tab.
+
+Select the "Advanced" button and then the "Auditing" tab.
+
+If the audit settings on the Domain object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+Applies to - This object only
+
+The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
+
+Two instances with the following summary information will be listed.
+
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - None
+Applies to - Special
+
+Type - Success
+Principal - Domain Users
+Access - All extended rights
+Inherited from - None
+Applies to - This object only
+
+Type - Success
+Principal - Administrators
+Access - All extended rights
+Inherited from - None
+Applies to - This object only
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+Applies to - This object only
+(Access - Special = Permissions: Write all properties, Modify permissions, Modify owner)</RawString>
+    </Rule>
+    <Rule id="V-73393" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
+
+For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the Infrastructure object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
+
+Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the auditing configuration for Infrastructure object.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+Select the domain being reviewed in the left pane.
+
+Right-click the "Infrastructure" object in the right pane and select "Properties".
+
+Select the "Security" tab.
+
+Select the "Advanced" button and then the "Auditing" tab.
+
+If the audit settings on the Infrastructure object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+
+The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+(Access - Special = Permissions: Write all properties, All extended rights, Change infrastructure master)
+
+Two instances with the following summary information will be listed.
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)</RawString>
+    </Rule>
+    <Rule id="V-73395" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
+
+For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the Domain Controller OU object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
+
+Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the auditing configuration for the Domain Controller OU object.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+Select the "Domain Controllers OU" under the domain being reviewed in the left pane.
+
+Right-click the "Domain Controllers OU" object and select "Properties".
+
+Select the "Security" tab.
+
+Select the "Advanced" button and then the "Auditing" tab.
+
+If the audit settings on the Domain Controllers OU object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+Applies to - This object and all descendant objects
+
+The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+Applies to - This object only
+(Access - Special = Permissions: all create, delete and modify permissions)
+
+Type - Success
+Principal - Everyone
+Access - Write all properties
+Inherited from - None
+Applies to - This object and all descendant objects
+
+Two instances with the following summary information will be listed.
+
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)
+Applies to - Descendant Organizational Unit objects</RawString>
+    </Rule>
+    <Rule id="V-73397" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
+
+For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the AdminSDHolder object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
+
+Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the auditing configuration for the "AdminSDHolder" object.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+Select "System" under the domain being reviewed in the left pane.
+
+Right-click the "AdminSDHolder" object in the right pane and select "Properties".
+
+Select the "Security" tab.
+
+Select the "Advanced" button and then the "Auditing" tab.
+
+If the audit settings on the "AdminSDHolder" object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+Applies to - This object only
+
+The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+Applies to - This object only
+(Access - Special = Write all properties, Modify permissions, Modify owner)
+
+Two instances with the following summary information will be listed.
+
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)
+Applies to - Descendant Organizational Unit objects</RawString>
+    </Rule>
+    <Rule id="V-73399" severity="medium" conversionstatus="pass" title="SRG-OS-000327-GPOS-00127" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
+
+For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the RID Manager$ object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
+
+Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>This applies to domain controllers. It is NA for other systems.
+
+Review the auditing configuration for the "RID Manager$" object.
+
+Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
+
+Ensure "Advanced Features" is selected in the "View" menu.
+
+Select "System" under the domain being reviewed in the left pane.
+
+Right-click the "RID Manager$" object in the right pane and select "Properties".
+
+Select the "Security" tab.
+
+Select the "Advanced" button and then the "Auditing" tab.
+
+If the audit settings on the "RID Manager$" object are not at least as inclusive as those below, this is a finding.
+
+Type - Fail
+Principal - Everyone
+Access - Full Control
+Inherited from - None
+
+The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
+
+Type - Success
+Principal - Everyone
+Access - Special
+Inherited from - None
+ (Access - Special = Write all properties, All extended rights, Change RID master)
+
+Two instances with the following summary information will be listed.
+
+Type - Success
+Principal - Everyone
+Access - (blank)
+Inherited from - (CN of domain)</RawString>
     </Rule>
     <Rule id="V-73401" severity="medium" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring the log data is not accidentally lost or deleted. Audit information stored in one location is vulnerable to accidental or incidental deletion or alteration.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3516,628 +3842,6 @@ Administrators - Special - This folder only (Special = Basic Permissions: all se
 CREATOR OWNER - Full control - Subfolders and files only
 Administrators - Full control - Subfolders and files only
 SYSTEM - Full control - This folder, subfolders, and files</RawString>
-    </Rule>
-    <Rule id="V-73377" severity="high" conversionstatus="fail" title="SRG-OS-000324-GPOS-00125" dscresource="">
-      <AccessControlEntry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>CREATOR OWNER</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Self</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Authenticated Users</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>SYSTEM</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Domain Admins</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Enterprise Admins</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Key Admins</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Enterprise Key Admins</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Administrators</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>Pre-Windows 2000 Compatible Access</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>
-          </Type>
-          <Principal>ENTERPRISE DOMAIN CONTROLLERS</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When directory service database objects do not have appropriate access control permissions, it may be possible for malicious users to create, read, update, or delete the objects and degrade or destroy the integrity of the data. When the directory service is used for identification, authentication, or authorization functions, a compromise of the database objects could lead to a compromise of all systems that rely on the directory service.
-
-For Active Directory, the OU objects require special attention. In a distributed administration model (i.e., help desk), OU objects are more likely to have access permissions changed from the secure defaults. If inappropriate access permissions are defined for OU objects, it could allow an intruder to add or delete users in the OU. This could result in unauthorized access to data or a denial of service to authorized users.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the permissions on domain-defined OUs.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-For each OU that is defined (folder in folder icon) excluding the Domain Controllers OU:
-
-Right-click the OU and select "Properties".
-
-Select the "Security" tab.
-
-If the permissions on the OU are not at least as restrictive as those below, this is a finding.
-
-The permissions shown are at the summary level. More detailed permissions can be viewed by selecting the "Advanced" button, the desired Permission entry, and the "Edit" or "View" button.
-
-Except where noted otherwise, the special permissions may include a wide range of permissions and properties and are acceptable for this requirement.
-
-CREATOR OWNER - Special permissions
-
-Self - Special permissions
-
-Authenticated Users - Read, Special permissions
-
-The Special permissions for Authenticated Users are Read type. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
-
-SYSTEM - Full Control
-
-Domain Admins - Full Control
-
-Enterprise Admins - Full Control
-
-Key Admins - Special permissions
-
-Enterprise Key Admins - Special permissions
-
-Administrators - Read, Write, Create all child objects, Generate resultant set of policy (logging), Generate resultant set of policy (planning), Special permissions
-
-Pre-Windows 2000 Compatible Access - Special permissions
-
-The Special permissions for Pre-Windows 2000 Compatible Access are for Read types. If detailed permissions include any Create, Delete, Modify, or Write Permissions or Properties, this is a finding.
-
-ENTERPRISE DOMAIN CONTROLLERS - Read, Special permissions
-
-If an ISSO-approved distributed administration model (help desk or other user support staff) is implemented, permissions above Read may be allowed for groups documented by the ISSO.
-
-If any OU with improper permissions includes identification or authentication data (e.g., accounts, passwords, or password hash data) used by systems to determine access control, the severity is CAT I (e.g., OUs that include user accounts, including service/application accounts).
-
-If an OU with improper permissions does not include identification and authentication data used by systems to determine access control, the severity is CAT II (e.g., Workstation, Printer OUs).</RawString>
-    </Rule>
-    <Rule id="V-73391" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AccessControlEntry>
-        <Entry>
-          <Type>Fail</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Domain Users</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Administrators</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
-
-For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the Domain object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
-
-Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73377</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the auditing configuration for the Domain object.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-Select the domain being reviewed in the left pane.
-
-Right-click the domain name and select "Properties".
-
-Select the "Security" tab.
-
-Select the "Advanced" button and then the "Auditing" tab.
-
-If the audit settings on the Domain object are not at least as inclusive as those below, this is a finding.
-
-Type - Fail
-Principal - Everyone
-Access - Full Control
-Inherited from - None
-Applies to - This object only
-
-The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
-
-Two instances with the following summary information will be listed.
-
-Type - Success
-Principal - Everyone
-Access - (blank)
-Inherited from - None
-Applies to - Special
-
-Type - Success
-Principal - Domain Users
-Access - All extended rights
-Inherited from - None
-Applies to - This object only
-
-Type - Success
-Principal - Administrators
-Access - All extended rights
-Inherited from - None
-Applies to - This object only
-
-Type - Success
-Principal - Everyone
-Access - Special
-Inherited from - None
-Applies to - This object only
-(Access - Special = Permissions: Write all properties, Modify permissions, Modify owner)</RawString>
-    </Rule>
-    <Rule id="V-73393" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AccessControlEntry>
-        <Entry>
-          <Type>Fail</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
-
-For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the Infrastructure object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
-
-Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73377</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the auditing configuration for Infrastructure object.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-Select the domain being reviewed in the left pane.
-
-Right-click the "Infrastructure" object in the right pane and select "Properties".
-
-Select the "Security" tab.
-
-Select the "Advanced" button and then the "Auditing" tab.
-
-If the audit settings on the Infrastructure object are not at least as inclusive as those below, this is a finding.
-
-Type - Fail
-Principal - Everyone
-Access - Full Control
-Inherited from - None
-
-The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
-
-Type - Success
-Principal - Everyone
-Access - Special
-Inherited from - None
-(Access - Special = Permissions: Write all properties, All extended rights, Change infrastructure master)
-
-Two instances with the following summary information will be listed.
-Type - Success
-Principal - Everyone
-Access - (blank)
-Inherited from - (CN of domain)</RawString>
-    </Rule>
-    <Rule id="V-73395" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AccessControlEntry>
-        <Entry>
-          <Type>Fail</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
-
-For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the Domain Controller OU object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
-
-Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73377</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the auditing configuration for the Domain Controller OU object.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-Select the "Domain Controllers OU" under the domain being reviewed in the left pane.
-
-Right-click the "Domain Controllers OU" object and select "Properties".
-
-Select the "Security" tab.
-
-Select the "Advanced" button and then the "Auditing" tab.
-
-If the audit settings on the Domain Controllers OU object are not at least as inclusive as those below, this is a finding.
-
-Type - Fail
-Principal - Everyone
-Access - Full Control
-Inherited from - None
-Applies to - This object and all descendant objects
-
-The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
-
-Type - Success
-Principal - Everyone
-Access - Special
-Inherited from - None
-Applies to - This object only
-(Access - Special = Permissions: all create, delete and modify permissions)
-
-Type - Success
-Principal - Everyone
-Access - Write all properties
-Inherited from - None
-Applies to - This object and all descendant objects
-
-Two instances with the following summary information will be listed.
-
-Type - Success
-Principal - Everyone
-Access - (blank)
-Inherited from - (CN of domain)
-Applies to - Descendant Organizational Unit objects</RawString>
-    </Rule>
-    <Rule id="V-73397" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AccessControlEntry>
-        <Entry>
-          <Type>Fail</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
-
-For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the AdminSDHolder object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
-
-Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73377</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the auditing configuration for the "AdminSDHolder" object.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-Select "System" under the domain being reviewed in the left pane.
-
-Right-click the "AdminSDHolder" object in the right pane and select "Properties".
-
-Select the "Security" tab.
-
-Select the "Advanced" button and then the "Auditing" tab.
-
-If the audit settings on the "AdminSDHolder" object are not at least as inclusive as those below, this is a finding.
-
-Type - Fail
-Principal - Everyone
-Access - Full Control
-Inherited from - None
-Applies to - This object only
-
-The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
-
-Type - Success
-Principal - Everyone
-Access - Special
-Inherited from - None
-Applies to - This object only
-(Access - Special = Write all properties, Modify permissions, Modify owner)
-
-Two instances with the following summary information will be listed.
-
-Type - Success
-Principal - Everyone
-Access - (blank)
-Inherited from - (CN of domain)
-Applies to - Descendant Organizational Unit objects</RawString>
-    </Rule>
-    <Rule id="V-73399" severity="medium" conversionstatus="fail" title="SRG-OS-000327-GPOS-00127" dscresource="None">
-      <AccessControlEntry>
-        <Entry>
-          <Type>Fail</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-        <Entry>
-          <Type>Success</Type>
-          <Principal>Everyone</Principal>
-          <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>
-          </Rights>
-        </Entry>
-      </AccessControlEntry>
-      <Description>&lt;VulnDiscussion&gt;When inappropriate audit settings are configured for directory service database objects, it may be possible for a user or process to update the data without generating any tracking data. The impact of missing audit data is related to the type of object. A failure to capture audit data for objects used by identification, authentication, or authorization functions could degrade or eliminate the ability to track changes to access policy for systems or data. 
-
-For Active Directory (AD), there are a number of critical object types in the domain naming context of the AD database for which auditing is essential. This includes the RID Manager$ object. Because changes to these objects can significantly impact access controls or the availability of systems, the absence of auditing data makes it impossible to identify the source of changes that impact the confidentiality, integrity, and availability of data and systems throughout an AD domain. The lack of proper auditing can result in insufficient forensic evidence needed to investigate an incident and prosecute the intruder.
-
-Satisfies: SRG-OS-000327-GPOS-00127, SRG-OS-000458-GPOS-00203, SRG-OS-000463-GPOS-00207, SRG-OS-000468-GPOS-00212&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-73377</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>This applies to domain controllers. It is NA for other systems.
-
-Review the auditing configuration for the "RID Manager$" object.
-
-Open "Active Directory Users and Computers" (available from various menus or run "dsa.msc").
-
-Ensure "Advanced Features" is selected in the "View" menu.
-
-Select "System" under the domain being reviewed in the left pane.
-
-Right-click the "RID Manager$" object in the right pane and select "Properties".
-
-Select the "Security" tab.
-
-Select the "Advanced" button and then the "Auditing" tab.
-
-If the audit settings on the "RID Manager$" object are not at least as inclusive as those below, this is a finding.
-
-Type - Fail
-Principal - Everyone
-Access - Full Control
-Inherited from - None
-
-The success types listed below are defaults. Where Special is listed in the summary screens for Access, detailed Permissions are provided for reference. Various Properties selections may also exist by default.
-
-Type - Success
-Principal - Everyone
-Access - Special
-Inherited from - None
- (Access - Special = Write all properties, All extended rights, Change RID master)
-
-Two instances with the following summary information will be listed.
-
-Type - Success
-Principal - Everyone
-Access - (blank)
-Inherited from - (CN of domain)</RawString>
     </Rule>
     <Rule id="V-73405" severity="medium" conversionstatus="pass" title="SRG-OS-000057-GPOS-00027" dscresource="NTFSAccessEntry">
       <AccessControlEntry>
