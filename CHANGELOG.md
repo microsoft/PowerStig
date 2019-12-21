@@ -1,6 +1,7 @@
 # Versions
 
 ## Unreleased
+
 * Fixed [#259](https://github.com/microsoft/PowerStig/issues/259): Checklist .ckl file fails XML validation in Stig Viewer 2.8.
 * Fixed [#527](https://github.com/microsoft/PowerStig/issues/527): Checklist is not using manualcheckfile when using DscResult.
 * Fixed [#548](https://github.com/microsoft/PowerStig/issues/548): Target/host data is blank when creating a new checklist.

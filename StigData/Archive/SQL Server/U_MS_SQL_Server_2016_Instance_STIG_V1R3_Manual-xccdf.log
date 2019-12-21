@@ -1,2 +1,3 @@
+V-79141::*::''
 V-79197::If  "System cryptography: Use FIPS-compliant algorithms for encryption, hashing, and signing" is not enabled, this is a finding. ::If the value for "System_cryptography_Use_FIPS_compliant_algorithms_for_encryption_hashing_and_signing" is not "enabled", this is a finding.
 V-79213::Local Security Policy >> Local Policies >> Security Options::""
