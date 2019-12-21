@@ -5,15 +5,4 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.3">
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-79239" VariableValue="" />
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-79287" VariableValue="" />
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-79291" VariableValue="" />
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-79317" VariableValue="" />
-  <!-- Ensure -->
-  <OrganizationalSetting id="V-79319" VariableValue="" />
-</OrganizationalSettings>
+<OrganizationalSettings fullversion="1.3" />
