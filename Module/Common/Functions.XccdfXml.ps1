@@ -35,19 +35,19 @@ function Split-StigXccdf
         $Destination
     )
 
-    Begin
+    begin
     {
-        $CurrentVerbosePreference = $global:VerbosePreference
+        $currentVerbosePreference = $global:VerbosePreference
 
         if ($PSBoundParameters.ContainsKey('Verbose'))
         {
             $global:VerbosePreference = 'Continue'
         }
     }
-    Process
+    process
     {
         # Get the raw xccdf xml to pull additional details from the root node.
-        [xml] $msStig = Get-Content -Path $path
+        [xml] $msStig = Get-Content -Path $Path
         [xml] $dcStig = $msStig.Clone()
 
         # Update the benchmark ID to reflect the STIG content
@@ -56,6 +56,7 @@ function Split-StigXccdf
 
         # Remove DC and Core settings from the MS xml
         Write-Information -MessageData "Removing Domain Controller and Core settings from Member Server STIG"
+
         foreach ($group in $msStig.Benchmark.Group)
         {
             # Remove DC only settings from the MS xml
@@ -78,6 +79,7 @@ function Split-StigXccdf
 
         # Remove Core and MS only settings from the DC xml
         Write-Information -MessageData "Removing Member Server settings from Domain Controller STIG"
+
         foreach ($group in $dcStig.Benchmark.Group)
         {
             # Remove MS only settings from DC XML
@@ -100,21 +102,21 @@ function Split-StigXccdf
 
         if ([string]::IsNullOrEmpty($Destination))
         {
-            $Destination = Split-Path -Path $path -Parent
+            $Destination = Split-Path -Path $Path -Parent
         }
         else
         {
             $Destination = $Destination.TrimEnd("\")
         }
 
-        $FilePath = "$Destination\$(Split-Path -Path $path -Leaf)"
+        $filePath = "$Destination\$(Split-Path -Path $Path -Leaf)"
 
-        $msStig.Save(($FilePath -replace '_STIG_', '_MS_STIG_'))
-        $dcStig.Save(($FilePath -replace '_STIG_', '_DC_STIG_'))
+        $msStig.Save(($filePath -replace '_STIG_', '_MS_STIG_'))
+        $dcStig.Save(($filePath -replace '_STIG_', '_DC_STIG_'))
     }
-    End
+    end
     {
-        $global:VerbosePreference = $CurrentVerbosePreference
+        $global:VerbosePreference = $currentVerbosePreference
     }
 }
 
@@ -125,15 +127,19 @@ function Split-StigXccdf
     .SYNOPSIS
         Get-StigRuleList determines what type of STIG setting is being processed and sends it to a
         specalized function for additional processing.
+
     .DESCRIPTION
         Get-StigRuleList pre-sorts the STIG rules that is recieves and tries to determine what type
         of object it should create. For example if the check content has the string HKEY, it assumes
         that the setting is a registry object and sends the check to the registry sub functions to
         further break down the string into a registry object.
+
     .PARAMETER StigGroupList
         An array of the child STIG Group elements from the parent Benchmark element in the xccdf.
+
     .PARAMETER IncludeRawString
         A flag that returns the unaltered Check-Content with the converted object.
+
     .NOTES
         General notes
 #>
@@ -180,10 +186,10 @@ function Get-StigRuleList
 
             foreach ($correction in $StigGroupListChangeLog[$stigRule.Id])
             {
-                # If the logfile contains a single * as the OldText, treat it as replacing everything with the newText value
+                # If the logfile contains a single * as the OldText, treat it as replacing everything with the newText value.
                 if ($correction.OldText -eq '*')
                 {
-                    # Resetting OldText '' to the original check-content so the processed xml includes original check-content
+                    # Resetting OldText '' to the original check-content so the processed xml includes original check-content.
                     $correction.OldText = $stigRule.rule.Check.('check-content')
                     $stigRule.rule.Check.('check-content') = $correction.newText
                 }
@@ -192,6 +198,7 @@ function Get-StigRuleList
                     $stigRule.rule.Check.('check-content') = $stigRule.rule.Check.('check-content').Replace($correction.oldText, $correction.newText)
                 }
             }
+
             $rules = [ConvertFactory]::Rule($stigRule)
 
             foreach ($rule in $rules)
@@ -224,6 +231,7 @@ function Get-StigRuleList
                 {
                     [void] $global:stigSettings.Add($rule)
                 }
+
             }
             $stigProcessedCounter ++
         }
@@ -232,15 +240,19 @@ function Get-StigRuleList
     {
         $global:stigSettings
     }
+
 }
 
 <#
     .SYNOPSIS
         Creates the file name to create from the xccdf content
+
     .PARAMETER StigDetails
         A reference to the in memory xml document.
+
     .NOTES
         This function should only be called from the public ConvertTo-DscStigXml function.
+
 #>
 function Get-PowerStigFileList
 {
@@ -275,7 +287,6 @@ function Get-PowerStigFileList
     }
     else
     {
-        #$Destination = "$(Split-Path -Path (Split-Path -Path (Split-Path -Path $PSScriptRoot)))\StigData\Processed"
         $Destination = "$(Split-Path -Path (Split-Path -Path $PSScriptRoot))\StigData\Processed"
     }
 
@@ -290,10 +301,13 @@ function Get-PowerStigFileList
 <#
     .SYNOPSIS
         Splits the Xccdf benchmark ID into an object.
+
     .PARAMETER Id
         The Id field from the Xccdf benchmark.
+
     .PARAMETER FilePath
         Specifies the file path to the xccdf. Used to determine technology role in SQL STIGs
+
 #>
 function Split-BenchmarkId
 {
@@ -307,7 +321,7 @@ function Split-BenchmarkId
 
         [Parameter()]
         [string]
-        $FilePath
+        $filePath
     )
 
     # Different STIG's present the Id field in a different format.
@@ -349,7 +363,7 @@ function Split-BenchmarkId
         {$PSItem -match "SQL_Server"}
         {
             # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
-            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
+            $sqlRole = Get-SqlTechnologyRole -Path $filePath
 
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
             $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), $sqlRole
@@ -464,10 +478,13 @@ function Get-SqlTechnologyRole
 <#
     .SYNOPSIS
         Creates a version number from the xccdf benchmark element details.
+
     .PARAMETER stigDetails
         A reference to the in memory xml document.
+
     .NOTES
         This function should only be called from the public ConvertTo-DscStigXml function.
+
 #>
 function Get-StigVersionNumber
 {
@@ -485,6 +502,7 @@ function Get-StigVersionNumber
             -split "(Release:)(.*?)(Benchmark)" )[2].trim()
 
     "$($StigDetails.Benchmark.version).$revision"
+    
 }
 
 #endregion
