@@ -98,7 +98,7 @@ function New-StigCheckList
         }
         $TargetNode = $DscResult.PSComputerName
     }
-    
+
     $TargetNodeType = Get-TargetNodeType($TargetNode)
 
     switch ($TargetNodeType)
@@ -214,9 +214,10 @@ function New-StigCheckList
     [xml]$xccdfBenchmark = Get-Content -Path $xccdfPath -Encoding UTF8
     $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
     $processedFileName = $fileList.Settings.FullName
-    [xml]$processed = get-content -Path $processedFileName
+    [xml]$processed = Get-Content -Path $processedFileName
 
     $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
+
     foreach ($vulnerability in $vulnerabilities)
     {
         $writer.WriteStartElement("VULN")
@@ -278,13 +279,16 @@ function New-StigCheckList
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
-            $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
+            $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.VulID -eq $VID}
             # If we have manual check data, we don't need to look at the configuration
-            if ($manualCheck){
+            if ($manualCheck)
+            {
                 $status = $statusMap["$($manualCheck.Status)"]
                 $findingDetails = $manualCheck.Details
                 $comments = $manualCheck.Comments
-            } else {
+            }
+            else
+            {
                 $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
                 if ($setting)
                 {
@@ -314,12 +318,14 @@ function New-StigCheckList
 
         # Test to see if this rule is managed as a duplicate
         $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
+
         if ($convertedRule.DuplicateOf)
         {
             # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
             if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
                 $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
+
                 if ($originalSetting)
                 {
                     $status = $statusMap['NotAFinding']
@@ -330,6 +336,7 @@ function New-StigCheckList
             elseif ($PSCmdlet.ParameterSetName -eq 'result')
             {
                 $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
+
                 if ($originalSetting.InDesiredState -eq 'True')
                 {
                     $status = $statusMap['NotAFinding']
@@ -558,6 +565,12 @@ function Get-FindingDetails
         }
     }
 }
+
+<#
+    .SYNOPSIS
+        Formats properties and values with standard string format.
+
+#>
 function Get-FindingDetailsString
 {
     [OutputType([string])]
@@ -615,7 +628,7 @@ function Get-TargetNodeType
         {
             return 'MACAddress'
         }
-    
+
         # Do we have an IPv6 address?
         {
             $_ -match '(([0-9a-f]{0,4}:){7}[0-9a-f]{0,4})'
@@ -623,7 +636,7 @@ function Get-TargetNodeType
         {
             return 'IPv4Address'
         }
-    
+
         # Do we have an IPv4 address?
         {
             $_ -match '(([0-9]{1,3}\.){3}[0-9]{1,3})'
@@ -631,7 +644,7 @@ function Get-TargetNodeType
         {
             return 'IPv6Address'
         }
-    
+
         # Do we have a Fully-qualified Domain Name?
         {
             $_ -match '([a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,256}\b)'
@@ -640,5 +653,6 @@ function Get-TargetNodeType
             return 'FQDN'
         }
     }
+
     return ''
 }

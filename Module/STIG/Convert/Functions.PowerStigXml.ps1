@@ -127,7 +127,7 @@ function Get-RegistryRuleExpressions
         $StigBenchmarkXml
     )
 
-    Begin
+    begin
     {
         # Use $stigBenchmarkXml.id to determine the stig file
         $benchmarkId = Split-BenchmarkId $stigBenchmarkXml.id
@@ -164,7 +164,7 @@ function Get-RegistryRuleExpressions
         }
     }
 
-    Process
+    process
     {
         # Load specific and core expression sets
         $childItemParams = @{
@@ -231,7 +231,7 @@ function ConvertTo-PowerStigXml
         $DoNotExportDescription
     )
 
-    Begin
+    begin
     {
         $CurrentVerbosePreference = $global:VerbosePreference
 
@@ -240,7 +240,7 @@ function ConvertTo-PowerStigXml
             $global:VerbosePreference = 'Continue'
         }
     }
-    Process
+    process
     {
         $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -RuleIdFilter $RuleIdFilter
 
@@ -442,7 +442,7 @@ function ConvertTo-PowerStigXml
             Write-Output "Org Settings Output: $($fileList.OrgSettings.FullName)"
         }
     }
-    End
+    end
     {
         $global:VerbosePreference = $CurrentVerbosePreference
     }
@@ -474,7 +474,7 @@ function Compare-PowerStigXml
         [switch]
         $IgnoreRawString
     )
-    Begin
+    begin
     {
         $CurrentVerbosePreference = $global:VerbosePreference
 
@@ -483,7 +483,7 @@ function Compare-PowerStigXml
             $global:VerbosePreference = 'Continue'
         }
     }
-    Process
+    process
     {
 
         [xml] $OldStigContent = Get-Content -Path $OldStigPath -Encoding UTF8
@@ -556,7 +556,7 @@ function Compare-PowerStigXml
         }
         $returnCompareList.GetEnumerator() | Sort-Object Name
     }
-    End
+    end
     {
         $global:VerbosePreference = $CurrentVerbosePreference
     }
