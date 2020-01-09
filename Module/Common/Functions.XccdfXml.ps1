@@ -502,7 +502,7 @@ function Get-StigVersionNumber
             -split "(Release:)(.*?)(Benchmark)" )[2].trim()
 
     "$($StigDetails.Benchmark.version).$revision"
-    
+
 }
 
 #endregion
