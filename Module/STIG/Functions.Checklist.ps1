@@ -64,7 +64,7 @@ function New-StigCheckList
         {
             throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
         }
-        $manualCheckData = Invoke-Expression (Get-Content $manualCheckFile | Out-String)
+        [string]$manualCheckData = Get-Content $manualCheckFile
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
