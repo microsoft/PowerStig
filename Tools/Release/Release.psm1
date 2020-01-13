@@ -859,13 +859,92 @@ Hashes for **PowerSTIG** files are listed in the following table:
     foreach ($file in $fileHash)
     {
         $fileHashWithSize = '| {0} | {1} | {2} |' -f
-        $(Split-Path -Path $file.Path -Leaf),
-        $($file.Hash),
-        $((Get-Item -Path $file.Path).Length)
+            $(Split-Path -Path $file.Path -Leaf),
+            $($file.Hash),
+            $((Get-Item -Path $file.Path).Length)
         $null = $fileHashMarkdownFileContent.AppendLine($fileHashWithSize)
     }
 
     Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
+}
+
+function Update-PowerSTIGCoverageMarkdown
+{
+    param
+    (
+        [Parameter()]
+        [string[]]
+        $ProcessedSTIGPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
+
+        [Parameter()]
+        [string]
+        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\STIGCOVERAGE.md')
+    )
+
+    $moduleManifest = Join-Path -Path $PWD -ChildPath .\PowerStig.psd1
+    $moduleVersion = (Import-PowerShellDataFile -Path $moduleManifest).ModuleVersion
+    $processedStig = Get-ChildItem -Path $ProcessedSTIGPath -Exclude *default* | Select-Object -ExpandProperty FullName
+
+    # Markdown header for STIG Coverage information tables
+    $markdownHeader = @'
+# PowerSTIG Technology Coverage : Module Version {0}
+
+Technology Coverage for **PowerSTIG** is listed in the following tables:
+'@ -f $moduleVersion
+
+    # Markdown table template used for each technology STIG
+    $markdownTechnologyTable = @'
+## {0}, Version {1}
+
+**Title:** {2}
+**Version:** {3}
+**Release:** {4}
+**FileName:** {5}
+**Created:** {6}
+**Description:** {7}
+
+| RuleId | RuleType | DSC Resource | Description |
+| :---- | :---- | :---- | :--- |
+'@
+
+    # String builder to set the markdown file
+    $coverageMarkdownFileContent = New-Object System.Text.StringBuilder
+    $null = $coverageMarkdownFileContent.AppendLine($markdownHeader)
+
+    # Loop through each xml and create coverage information
+    foreach ($stigXml in $processedStig)
+    {
+        [xml]$stig = Get-Content -Path $stigXml -Encoding UTF8
+        $stigMarkdown = $markdownTechnologyTable -f
+            $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
+            $stig.DISASTIG.fullversion.Trim(),
+            $stig.DISASTIG.title.Trim(),
+            $stig.DISASTIG.version.Trim(),
+            $stig.DISASTIG.releaseinfo.Trim(),
+            $stig.DISASTIG.filename.Trim(),
+            $stig.DISASTIG.created.Trim(),
+            $stig.DISASTIG.description.Trim()
+        $null = $coverageMarkdownFileContent.AppendLine()
+        $null = $coverageMarkdownFileContent.AppendLine($stigMarkdown)
+        $automatedRuleType = $stig.DISASTIG | Get-Member -Name *Rule | Where-Object -FilterScript {$_.Name -notmatch 'DocumentRule|ManualRule'}
+        foreach ($ruleType in $automatedRuleType.Name)
+        {
+            foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
+            {
+                $formattedDescription = $rule.description.TrimStart('<VulnDiscussion>')
+                $ruleDescription = $formattedDescription.Substring(0, $formattedDescription.LastIndexOf('</VulnDiscussion>'))
+                $ruleDescription = $ruleDescription -replace '\s{1,}', ' '
+                $ruleMarkdown = '| {0} | {1} | {2} | {3} |' -f
+                    $rule.id,
+                    $ruleType,
+                    $rule.dscresource,
+                    $ruleDescription
+                $null = $coverageMarkdownFileContent.AppendLine($ruleMarkdown)
+            }
+        }
+    }
+
+    Set-Content -Path $MarkdownPath -Value $coverageMarkdownFileContent.ToString().Trim() -Force
 }
 
 #endregion
@@ -1116,7 +1195,6 @@ function Start-PowerStigRelease
         throw "dev is currently $gitHubReleaseBranchStatus and cannot be merged into Master."
     }
 }
-
 
 function Start-PowerStigDevMerge
 {
