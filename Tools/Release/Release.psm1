@@ -924,8 +924,8 @@ Technology Coverage for **PowerSTIG** is listed in the following tables:
 **Description:** {7}{11}
 **StigRuleCoverage:** **{8}** of **{9}** rules are automated; **{10}%**{11}
 
-| StigRuleId | RuleType | DscResource | Description |
-| :---- | :---- | :---- | :--- |
+| StigRuleId | RuleType | DscResource | DuplicateOf
+| :---- | :---- | :---- | :---- |
 '@
 
     # String builder to set the markdown file
@@ -939,8 +939,7 @@ Technology Coverage for **PowerSTIG** is listed in the following tables:
         $allStigRuleType = $stig.DISASTIG | Get-Member -Name *Rule
         $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_.Name -notmatch 'DocumentRule|ManualRule'}
         $allStigRuleCount = ($allStigRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
-        $duplicateRuleCount = ($allStigRuleType.Name | Where-Object {$stig.DISASTIG.$_.Rule.DuplicateOf} | Measure-Object).Count
-        $automatedRuleCount = ($automatedRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count + $duplicateRuleCount
+        $automatedRuleCount = ($automatedRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
         $stigMarkdown = $markdownTechnologyTable -f
             $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
             $stig.DISASTIG.fullversion.Trim(),
@@ -968,7 +967,7 @@ Technology Coverage for **PowerSTIG** is listed in the following tables:
                     $rule.id,
                     $ruleType,
                     $rule.dscresource,
-                    $ruleDescription
+                    $rule.DuplicateOf
                 $null = $coverageMarkdownFileContent.AppendLine($ruleMarkdown)
             }
         }
