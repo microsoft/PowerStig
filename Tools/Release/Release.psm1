@@ -878,12 +878,21 @@ function Update-PowerSTIGCoverageMarkdown
 
         [Parameter()]
         [string]
-        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\STIGCOVERAGE.md')
+        $MarkdownPath = (Join-Path -Path $PWD -ChildPath '\..\PowerSTIG.wiki\StigCoverage.md'),
+
+        [Parameter()]
+        [string[]]
+        $Exclude = @('*.org.default.xml','ActiveDirectory-All-*.xml')
     )
+
+    if (-not (Test-Path -Path (Split-Path -Path $MarkdownPath -Parent)))
+    {
+        throw "$(Split-Path -Path $MarkdownPath -Parent) was not detected, check the path and try again."
+    }
 
     $moduleManifest = Join-Path -Path $PWD -ChildPath .\PowerStig.psd1
     $moduleVersion = (Import-PowerShellDataFile -Path $moduleManifest).ModuleVersion
-    $processedStig = Get-ChildItem -Path $ProcessedSTIGPath -Exclude *default* | Select-Object -ExpandProperty FullName
+    $processedStig = Get-ChildItem -Path $ProcessedSTIGPath -Exclude $Exclude | Select-Object -ExpandProperty FullName
 
     # Markdown header for STIG Coverage information tables
     $markdownHeader = @'
@@ -892,18 +901,30 @@ function Update-PowerSTIGCoverageMarkdown
 Technology Coverage for **PowerSTIG** is listed in the following tables:
 '@ -f $moduleVersion
 
-    # Markdown table template used for each technology STIG
+    <#
+        Markdown table template used for each technology STIG
+        READ THIS! Markdown formatting syntax for line breaks requires two or more trailing whitespaces.
+        In order to ensure that the whitespaces remain, add the following to VSCode settings.json:
+
+        "[markdown]": {
+            "files.trimTrailingWhitespace": false
+        }
+
+        This will ensure that the trailing whitespaces remain in the resulting StigCoverage.md file
+        when pushed to the PowerSTIG.wiki.
+    #>
     $markdownTechnologyTable = @'
 ## {0}, Version {1}
 
-**Title:** {2}
-**Version:** {3}
-**Release:** {4}
-**FileName:** {5}
-**Created:** {6}
-**Description:** {7}
+**Title:** {2}{11}
+**Version:** {3}{11}
+**Release:** {4}{11}
+**FileName:** {5}{11}
+**Created:** {6}{11}
+**Description:** {7}{11}
+**StigRuleCoverage:** **{8}** of **{9}** rules are automated; **{10}%**{11}
 
-| RuleId | RuleType | DSC Resource | Description |
+| StigRuleId | RuleType | DscResource | Description |
 | :---- | :---- | :---- | :--- |
 '@
 
@@ -915,6 +936,11 @@ Technology Coverage for **PowerSTIG** is listed in the following tables:
     foreach ($stigXml in $processedStig)
     {
         [xml]$stig = Get-Content -Path $stigXml -Encoding UTF8
+        $allStigRuleType = $stig.DISASTIG | Get-Member -Name *Rule
+        $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_.Name -notmatch 'DocumentRule|ManualRule'}
+        $allStigRuleCount = ($allStigRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
+        $duplicateRuleCount = ($allStigRuleType.Name | Where-Object {$stig.DISASTIG.$_.Rule.DuplicateOf} | Measure-Object).Count
+        $automatedRuleCount = ($automatedRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count + $duplicateRuleCount
         $stigMarkdown = $markdownTechnologyTable -f
             $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
             $stig.DISASTIG.fullversion.Trim(),
@@ -923,10 +949,14 @@ Technology Coverage for **PowerSTIG** is listed in the following tables:
             $stig.DISASTIG.releaseinfo.Trim(),
             $stig.DISASTIG.filename.Trim(),
             $stig.DISASTIG.created.Trim(),
-            $stig.DISASTIG.description.Trim()
+            $stig.DISASTIG.description.Trim(),
+            $automatedRuleCount,
+            $allStigRuleCount,
+            $([math]::Round($automatedRuleCount/$allStigRuleCount, 2)*100),
+            $([char]32 + [char]32)
         $null = $coverageMarkdownFileContent.AppendLine()
         $null = $coverageMarkdownFileContent.AppendLine($stigMarkdown)
-        $automatedRuleType = $stig.DISASTIG | Get-Member -Name *Rule | Where-Object -FilterScript {$_.Name -notmatch 'DocumentRule|ManualRule'}
+
         foreach ($ruleType in $automatedRuleType.Name)
         {
             foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
