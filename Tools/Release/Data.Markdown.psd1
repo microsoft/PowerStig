@@ -12,7 +12,6 @@
 #>
 
 @{
-
     markdownSummaryHeader = @'
 # PowerSTIG Technology Coverage : Module Version {0}
 
@@ -21,20 +20,33 @@ A Summary of Technology Coverage for **PowerSTIG** is listed below, for more det
     markdownSummaryBody = @'
 ## [{0}, Version {1}]({2})
 
-**Title:** {3}{12}{12}
-**Version:** {4}{12}{12}
-**Release:** {5}{12}{12}
-**FileName:** {6}{12}{12}
-**Created:** {7}{12}{12}
-**Description:** {8}{12}{12}
-**StigRuleCoverage:** **{9}** of **{10}** rules are automated; **{11}%**{12}{12}
+**Title:** {3}{18}{18}
+**Version:** {4}{18}{18}
+**Release:** {5}{18}{18}
+**FileName:** {6}{18}{18}
+**Created:** {7}{18}{18}
+**Description:** {8}{18}{18}
+**Total Stig Rule Coverage:** **{9}** of **{10}** rules are automated; **{11}%**
+
+* **High (CAT I):** **{12}** of **{13}** rules are automated
+* **Medium (CAT II):** **{14}** of **{15}** rules are automated
+* **Low (CAT III):** **{16}** of **{17}** rules are automated
 '@
     markdownRuleTableHeader = @'
-| StigRuleId | RuleType | DscResource | DuplicateOf |
-| :---- | :---- | :---- | :---- |
+## Automated Rules
+
+| StigRuleId | Severity | RuleType | DscResource | DuplicateOf |
+| :---- | :---- | :---- | :---- | :---- |
 '@
-    markdownRuleDetail       = '| {0} | {1} | {2} | {3} |'
-    markdownRuleLink         = 'https://github.com/Microsoft/PowerStig/wiki/{0}'
-    markdownSidebarToc       = '  * [{0}][{1}]'
-    markdownSidebarHyperLink = '[{0}]: {1}'
+    markdownDocumentRuleTableHeader = @'
+## Document / Manual Rules (Not Automated)
+
+| StigRuleId | Severity | RuleType |
+| :---- | :---- | :---- |
+'@
+    markdownRuleDetail         = '| {0} | {1} | {2} | {3} | {4} |'
+    markdownDocumentRuleDetail = '| {0} | {1} | {2} |'
+    markdownRuleLink           = 'https://github.com/Microsoft/PowerStig/wiki/{0}'
+    markdownSidebarToc         = '  * [{0}][{1}]'
+    markdownSidebarHyperLink   = '[{0}]: {1}'
 }

@@ -908,8 +908,11 @@ function Update-PowerSTIGCoverageMarkdown
         [xml]$stig = Get-Content -Path $stigXml -Encoding UTF8
         $allStigRuleType = $stig.DISASTIG | Get-Member -Name *Rule
         $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_.Name -notmatch 'DocumentRule|ManualRule'}
+        $docManualRuleType = $allStigRuleType | Where-Object -FilterScript {$_.Name -match 'DocumentRule|ManualRule'}
         $allStigRuleCount = ($allStigRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
         $automatedRuleCount = ($automatedRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
+        $allStigRuleSevCount = $allStigRuleType.Name | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
+        $automatedSevCount = $automatedRuleType.Name | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
         $stigDetailFileName = (Split-Path -Path $stigXml -Leaf) -replace '.xml', '.md'
         $stigDetailFilePath = Join-Path -Path $PowerStigWikiPath -ChildPath $stigDetailFileName
         $stigDetailFileLink = $markdownStrings.markdownRuleLink -f ($stigDetailFileName -replace '.md')
@@ -926,6 +929,12 @@ function Update-PowerSTIGCoverageMarkdown
             $automatedRuleCount,
             $allStigRuleCount,
             $([math]::Round($automatedRuleCount/$allStigRuleCount, 2)*100),
+            ($automatedSevCount | Where-Object {$_.Name -eq 'high'}).Count,
+            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'high'}).Count,
+            ($automatedSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
+            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'medium'}).Count,
+            ($automatedSevCount | Where-Object {$_.Name -eq 'low'}).Count,
+            ($allStigRuleSevCount | Where-Object {$_.Name -eq 'low'}).Count,
             [char]32
         $null = $summaryMarkdownContent.AppendLine()
         $null = $summaryMarkdownContent.AppendLine($stigMarkdown)
@@ -937,17 +946,38 @@ function Update-PowerSTIGCoverageMarkdown
         $null = $stigDetailContent.AppendLine()
         $null = $stigDetailContent.AppendLine($markdownStrings.markdownRuleTableHeader)
 
-        # Loop through each rule to create StigRuleDetails table
+        # Loop through each rule to create StigRuleDetails table (Automated Rules)
         foreach ($ruleType in $automatedRuleType.Name)
         {
             foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
             {
                 $ruleMarkdown = $markdownStrings.markdownRuleDetail -f
                     $rule.id,
+                    [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
                     $ruleType,
                     $rule.dscresource,
                     $rule.DuplicateOf
                 $null = $stigDetailContent.AppendLine($ruleMarkdown)
+            }
+        }
+
+        if ($null -ne $docManualRuleType)
+        {
+            # Add Document / Manual Rule Table Header
+            $null = $stigDetailContent.AppendLine()
+            $null = $stigDetailContent.AppendLine($markdownStrings.markdownDocumentRuleTableHeader)
+
+            # Loop through each rule to create StigRuleDetails table (Document / Manual Rules)
+            foreach ($ruleType in $docManualRuleType.Name)
+            {
+                foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
+                {
+                    $ruleMarkdown = $markdownStrings.markdownDocumentRuleDetail -f
+                        $rule.id,
+                        [System.Globalization.CultureInfo]::new('en-US').TextInfo.ToTitleCase($rule.severity),
+                        $ruleType
+                    $null = $stigDetailContent.AppendLine($ruleMarkdown)
+                }
             }
         }
 
@@ -979,7 +1009,8 @@ function Update-PowerSTIGCoverageSidebar
     $sidebarInsertionIndex = [regex]::Match($rootSidebar, '^\[', [System.Text.RegularExpressions.RegexOptions]::Multiline).Index - 2
 
     # Query files in the StigDetails directory to create string data for new StigDetails\_sidebar.md
-    $stigDetailsFileNames = Get-ChildItem -Path (Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails') -Exclude 'StigCoverageSummary.md'
+    $stigDetailsDirectoryExclude = @('StigCoverageSummary.md', '_sidebar.md')
+    $stigDetailsFileNames = Get-ChildItem -Path (Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails') -Exclude $stigDetailsDirectoryExclude
 
     # String builder to create StigDetails\_sidebar.md
     $stigCoverageSidebarContent = New-Object -TypeName System.Text.StringBuilder
