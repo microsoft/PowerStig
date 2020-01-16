@@ -869,6 +869,31 @@ Hashes for **PowerSTIG** files are listed in the following table:
     Set-Content -Path $MarkdownPath -Value $fileHashMarkdownFileContent.ToString().Trim() -Force
 }
 
+<#
+    .SYNOPSIS
+        Updates the PowerSTIG Wiki STIG Coverage markdown files located in .\PowerStig.wiki\StigDetails.
+
+    .DESCRIPTION
+        Updates the PowerSTIG Wiki STIG Coverage markdown files located in .\PowerStig.wiki\StigDetails.
+        Updates/Creates a markdown per Processed STIG Xml with statistical data on STIG Coverage.
+
+    .PARAMETER ProcessedStigPath
+        Specifies the path to the ProcessedStig directory within the PowerSTIG project.
+
+    .PARAMETER PowerStigWikiPath
+        Specifies the path to the PowerSTIG Wiki on the local machine. The default parameter value is
+        the root directory the PowerSTIG project resides in.
+
+    .PARAMETER Exclude
+        Specifies an array of strings representing files and/or directories to exclude from the ProcessedStig
+        Get-ChildItem output.
+
+    .EXAMPLE
+        PS C:\> Update-PowerSTIGCoverageMarkdown
+
+        Updates/Creates a markdown per Processed STIG Xml with statistical data on STIG Coverage in the
+        PowerStig.wiki path.
+#>
 function Update-PowerSTIGCoverageMarkdown
 {
     [CmdletBinding()]
@@ -906,13 +931,13 @@ function Update-PowerSTIGCoverageMarkdown
     foreach ($stigXml in $processedStig)
     {
         [xml]$stig = Get-Content -Path $stigXml -Encoding UTF8
-        $allStigRuleType = $stig.DISASTIG | Get-Member -Name *Rule
-        $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_.Name -notmatch 'DocumentRule|ManualRule'}
-        $docManualRuleType = $allStigRuleType | Where-Object -FilterScript {$_.Name -match 'DocumentRule|ManualRule'}
-        $allStigRuleCount = ($allStigRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
-        $automatedRuleCount = ($automatedRuleType.Name | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
-        $allStigRuleSevCount = $allStigRuleType.Name | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
-        $automatedSevCount = $automatedRuleType.Name | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
+        $allStigRuleType = ($stig.DISASTIG | Get-Member -Name *Rule).Name
+        $automatedRuleType = $allStigRuleType | Where-Object -FilterScript {$_ -notmatch 'DocumentRule|ManualRule'}
+        $docManualRuleType = $allStigRuleType | Where-Object -FilterScript {$_ -match 'DocumentRule|ManualRule'}
+        $allStigRuleCount = ($allStigRuleType | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
+        $automatedRuleCount = ($automatedRuleType | ForEach-Object {$stig.DISASTIG.$_.Rule} | Measure-Object).Count
+        $allStigRuleSevCount = $allStigRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
+        $automatedSevCount = $automatedRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
         $stigDetailFileName = (Split-Path -Path $stigXml -Leaf) -replace '.xml', '.md'
         $stigDetailFilePath = Join-Path -Path $PowerStigWikiPath -ChildPath $stigDetailFileName
         $stigDetailFileLink = $markdownStrings.markdownRuleLink -f ($stigDetailFileName -replace '.md')
@@ -947,7 +972,7 @@ function Update-PowerSTIGCoverageMarkdown
         $null = $stigDetailContent.AppendLine($markdownStrings.markdownRuleTableHeader)
 
         # Loop through each rule to create StigRuleDetails table (Automated Rules)
-        foreach ($ruleType in $automatedRuleType.Name)
+        foreach ($ruleType in $automatedRuleType)
         {
             foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
             {
@@ -968,7 +993,7 @@ function Update-PowerSTIGCoverageMarkdown
             $null = $stigDetailContent.AppendLine($markdownStrings.markdownDocumentRuleTableHeader)
 
             # Loop through each rule to create StigRuleDetails table (Document / Manual Rules)
-            foreach ($ruleType in $docManualRuleType.Name)
+            foreach ($ruleType in $docManualRuleType)
             {
                 foreach ($rule in $stig.DISASTIG.$ruleType.Rule)
                 {
@@ -989,6 +1014,28 @@ function Update-PowerSTIGCoverageMarkdown
 
     Update-PowerSTIGCoverageSidebar -MarkdownStrings $markdownStrings
 }
+
+<#
+    .SYNOPSIS
+        Update-PowerSTIGCoverageSidebar creates _sidebar.md for Github wiki sidebar.
+
+    .DESCRIPTION
+        Update-PowerSTIGCoverageSidebar creates _sidebar.md for Github wiki sidebar. The _sidebar.md
+        creates a sidebar table of contents for the wiki page.
+
+    .PARAMETER PowerStigWikiPath
+        Specifies the path to the PowerSTIG Wiki on the local machine. The default parameter value is
+        the root directory the PowerSTIG project resides in.
+
+    .PARAMETER MarkdownStrings
+        Specifies a hashtable representing the Markdown Strings from Data.Markdown.psd1.
+
+    .EXAMPLE
+        PS C:\> Update-PowerSTIGCoverageSidebar -MarkdownStrings $markdownStrings
+
+        Creates _sidebar.md in .\PowerSTIG.wiki\StigDetails which represents all the Stig markdown files
+        in the StigDetails directory.
+#>
 
 function Update-PowerSTIGCoverageSidebar
 {
@@ -1044,7 +1091,6 @@ function Update-PowerSTIGCoverageSidebar
 }
 
 #endregion
-
 #region DevMerge
 
 function Start-PowerStigDevMerge
@@ -1494,4 +1540,9 @@ function Complete-PowerStigRelease
     }
 }
 
-Export-ModuleMember -Function '*-PowerStigRelease', '*-PowerStigDevMerge', 'Update-PowerSTIGCoverageMarkdown'
+Export-ModuleMember -Function @(
+    '*-PowerStigRelease',
+    '*-PowerStigDevMerge',
+    'Update-PowerSTIGCoverageMarkdown',
+    'Update-FileHashMarkdown'
+)
