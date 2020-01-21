@@ -4,7 +4,7 @@ $script:DSCCompositeResourceName = ($MyInvocation.MyCommand.Name -split '\.')[0]
 . $PSScriptRoot\.tests.header.ps1
 # Header
 
-# Using try/finally to always cleanup even if something awful happens.
+# Using try/finally to always cleanup even if something awful happens
 try
 {
     $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeResourceName).config.ps1"
