@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Update PowerSTIG to parse and apply Adobe Acrobat Reader Version 1, Release 6: [562](https://github.com/microsoft/PowerStig/issues/562)
+
 ## 4.2.0
 
 * Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9: [#530](https://github.com/microsoft/PowerStig/issues/530)

@@ -52,6 +52,7 @@ RequiredModules  = @(
 
 # DSC resources to export from this module
 DscResourcesToExport = @(
+    'Adobe',
     'DotNetFramework',
     'FireFox',
     'IisServer',
