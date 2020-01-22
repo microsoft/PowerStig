@@ -42,7 +42,7 @@ Value: 1</fixtext><fix id="F-70861r2_fix" /><check system="C-65579r2_chk"><check
 Utilizing the Registry Editor, navigate to the following: HKEY_LOCAL_MACHINE\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown
 
 Value Name: bEnhancedSecurityInBrowser
-Type: REG_DWORD 
+Type: REG_DWORD
 Value: 1
 
 If the value for bEnhancedSecurityInBrowser is not set to “1” and Type configured to REG_DWORD  or does not exist, then this is a finding.</check-content></check></Rule></Group><Group id="V-64923"><title>SRG-APP-000112</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-79413r1_rule" severity="medium" weight="10.0"><version>ARDC-CN-000015</version><title>Adobe Reader DC must enable Protected Mode.</title><description>&lt;VulnDiscussion&gt;A threat to users of Adobe Reader DC is opening a PDF file that contains malicious executable content.
@@ -60,7 +60,7 @@ Value Name: bProtectedMode
 Type: REG_DWORD
 Value: 1</fixtext><fix id="F-70863r2_fix" /><check system="C-65581r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Adobe_Acrobat_Reader_DC_Continuous_Track_STIG.xml" /><check-content>Verify the following registry configuration:
 
-Utilizing the Registry Editor, navigate to the following: HKEY_LOCAL_MACHINE\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown 
+Utilizing the Registry Editor, navigate to the following: HKEY_LOCAL_MACHINE\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown
 
 Value Name: bProtectedMode
 Type: REG_DWORD
@@ -259,7 +259,7 @@ If the value for bTogglePrefsSync is not set to “1” and Type configured to R
 
 For 32 bit:
 Registry Hive: HKEY_LOCAL_MACHINE
-Registry Path: \Software\Adobe\Acrobat Reader\DC\Installer 
+Registry Path: \Software\Adobe\Acrobat Reader\DC\Installer
 
 For 64 bit:
 Registry Hive: HKEY_LOCAL_MACHINE
@@ -269,7 +269,7 @@ Value Name: DisableMaintenance
 Type: REG_DWORD
 Value: 1</fixtext><fix id="F-70883r2_fix" /><check system="C-65601r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Adobe_Acrobat_Reader_DC_Continuous_Track_STIG.xml" /><check-content>Verify the following registry configuration:
 
-Utilizing the Registry Editor, navigate to the following: 
+Utilizing the Registry Editor, navigate to the following:
 
 For 32 bit:
 HKEY_LOCAL_MACHINE\Software\Adobe\Acrobat Reader\DC\Installer
@@ -444,7 +444,7 @@ Note: The Key Names "cDigSig" and "cEUTLDownload" are not created by default in 
 Registry Hive: HKEY_CURRENT_USER
 Registry Path: \Software\Adobe\Acrobat Reader\DC\Security\cDigSig\cEUTLDownload
 
-Value Name: bLoadSettingsFromURL 
+Value Name: bLoadSettingsFromURL
 Type: REG_DWORD
 Value: 0</fixtext><fix id="F-71633r2_fix" /><check system="C-66247r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Adobe_Acrobat_Reader_DC_Continuous_Track_STIG.xml" /><check-content>Verify the following registry configuration:
 
@@ -452,7 +452,7 @@ Note: The Key Names "cDigSig" and "cEUTLDownload" are not created by default in 
 
 Utilizing the Registry Editor, navigate to the following: HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\Security\cDigSig\cEUTLDownload
 
-Value Name: bLoadSettingsFromURL 
+Value Name: bLoadSettingsFromURL
 Type: REG_DWORD
 Value: 0
 
@@ -465,7 +465,7 @@ Note: The Key Names "cDigSig" and "cAdobeDownload" are not created by default in
 Registry Hive: HKEY_CURRENT_USER
 Registry Path: \Software\Adobe\Acrobat Reader\DC\Security\cDigSig\cAdobeDownload
 
-Value Name: bLoadSettingsFromURL 
+Value Name: bLoadSettingsFromURL
 Type: REG_DWORD
 Value: 0</fixtext><fix id="F-71635r2_fix" /><check system="C-66249r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Adobe_Acrobat_Reader_DC_Continuous_Track_STIG.xml" /><check-content>Verify the following registry configuration:
 
@@ -473,7 +473,7 @@ Note: The Key Names "cDigSig" and "cAdobeDownload" are not created by default in
 
 Utilizing the Registry Editor, navigate to the following: HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\Security\cDigSig\cAdobeDownload
 
-Value Name: bLoadSettingsFromURL 
+Value Name: bLoadSettingsFromURL
 Type: REG_DWORD
 Value: 0
 
@@ -498,7 +498,7 @@ Note: The Key Names "bFIPSMode" is not created by default in the Adobe Reader DC
 Registry Hive: HKEY_CURRENT_USER
 Registry Path: \Software\Adobe\Acrobat Reader\DC\AVGeneral
 
-Value Name: bFIPSMode 
+Value Name: bFIPSMode
 Type: REG_DWORD
 Value: 1</fixtext><fix id="F-71639r2_fix" /><check system="C-66253r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_Adobe_Acrobat_Reader_DC_Continuous_Track_STIG.xml" /><check-content>Verify the following registry configuration:
 
@@ -506,7 +506,7 @@ Note: The Key Names "bFIPSMode" is not created by default in the Adobe Reader DC
 
 Utilizing the Registry Editor, navigate to the following: HKEY_CURRENT_USER\Software\Adobe\Acrobat Reader\DC\AVGeneral
 
-Value Name: bFIPSMode 
+Value Name: bFIPSMode
 Type: REG_DWORD
 Value: 1
 
@@ -526,7 +526,7 @@ HKEY_LOCAL_MACHINE\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown
 
 Value Name: bAcroSuppressUpsell
 Type: REG_DWORD
-Value: 1   
+Value: 1
 
 If the value for bAcroSuppressUpsell is not set to “1” and Type configured to REG_DWORD or does not exist, then this is a finding.
 </check-content></check></Rule></Group></Benchmark>
