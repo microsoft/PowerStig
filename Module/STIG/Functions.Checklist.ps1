@@ -41,7 +41,7 @@ function New-StigCheckList
         $ReferenceConfiguration,
 
         [Parameter(Mandatory = $true, ParameterSetName = 'result')]
-        [System.Collections.ArrayList]
+        [psobject]
         $DscResult,
 
         [Parameter(Mandatory = $true)]
@@ -57,13 +57,14 @@ function New-StigCheckList
         $ManualCheckFile
     )
 
+    # Validate parameters before continuing
     if ($ManualCheckFile)
     {
         if (-not (Test-Path -Path $ManualCheckFile))
         {
             throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
         }
-        $manualCheckData = Import-PowerShellDataFile -path $ManualCheckFile
+        [string]$manualCheckData = Get-Content $manualCheckFile
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
@@ -76,9 +77,56 @@ function New-StigCheckList
         throw "$($OutputPath.FullName) is not a valid checklist extension. Please provide a full valid path ending in .ckl"
     }
 
-    if (-not (Test-Path -Path $ReferenceConfiguration))
+    # Values for some of these fields can be read from the .mof file or the DSC results file
+    if ($PSCmdlet.ParameterSetName -eq 'mof')
     {
-        throw "$($ReferenceConfiguration) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
+        if (-not (Test-Path -Path $ReferenceConfiguration))
+        {
+            throw "$($ReferenceConfiguration) is not a valid path to a configuration (.mof) file. Please provide a valid entry."
+        }
+
+        $MofString = Get-Content -Path $ReferenceConfiguration -Raw
+        $TargetNode = Get-TargetNodeFromMof($MofString)
+
+    }
+    elseif ($PSCmdlet.ParameterSetName -eq 'result')
+    {
+        # Check the returned object
+        if ($null -eq $DscResult)
+        {
+            throw 'Passed in $DscResult parameter is null. Please provide a valid result using Test-DscConfiguration.'
+        }
+        $TargetNode = $DscResult.PSComputerName
+    }
+
+    $TargetNodeType = Get-TargetNodeType($TargetNode)
+
+    switch ($TargetNodeType)
+    {
+        "MACAddress"
+        {
+            $HostnameMACAddress = $TargetNode
+            Break
+        }
+        "IPv4Address"
+        {
+            $HostnameIPAddress = $TargetNode
+            Break
+        }
+        "IPv6Address"
+        {
+            $HostnameIPAddress = $TargetNode
+            Break
+        }
+        "FQDN"
+        {
+            $HostnameFQDN = $TargetNode
+            Break
+        }
+        default
+        {
+            $Hostname = $TargetNode
+        }
     }
 
     $xmlWriterSettings = [System.Xml.XmlWriterSettings]::new()
@@ -96,11 +144,10 @@ function New-StigCheckList
     $assetElements = [ordered] @{
         'ROLE'            = 'None'
         'ASSET_TYPE'      = 'Computing'
-        'HOST_NAME'       = ''
-        'HOST_IP'         = ''
-        'HOST_MAC'        = ''
-        'HOST_GUID'       = ''
-        'HOST_FQDN'       = ''
+        'HOST_NAME'       = "$Hostname"
+        'HOST_IP'         = "$HostnameIPAddress"
+        'HOST_MAC'        = "$HostnameMACAddress"
+        'HOST_FQDN'       = "$HostnameFQDN"
         'TECH_AREA'       = ''
         'TARGET_KEY'      = '2350'
         'WEB_OR_DATABASE' = 'false'
@@ -163,13 +210,22 @@ function New-StigCheckList
 
     #region STIGS/iSTIG/VULN[]
 
-    foreach ($vulnerability in (Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent))
+    # Pull in the processed XML file to check for duplicate rules for each vulnerability
+    [xml]$xccdfBenchmark = Get-Content -Path $xccdfPath -Encoding UTF8
+    $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
+    $processedFileName = $fileList.Settings.FullName
+    [xml]$processed = Get-Content -Path $processedFileName
+
+    $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
+
+    foreach ($vulnerability in $vulnerabilities)
     {
         $writer.WriteStartElement("VULN")
 
         foreach ($attribute in $vulnerability.GetEnumerator())
         {
             $status = $null
+            $findingDetails = $null
             $comments = $null
             $manualCheck = $null
 
@@ -206,11 +262,14 @@ function New-StigCheckList
             if ($setting)
             {
                 $status = $statusMap['NotAFinding']
+                $comments = "To be addressed by PowerStig MOF via $setting"
+                $findingDetails = Get-FindingDetails -Setting $setting
 
             }
             elseif ($manualCheck)
             {
                 $status = $statusMap["$($manualCheck.Status)"]
+                $findingDetails = $manualCheck.Details
                 $comments = $manualCheck.Comments
             }
             else
@@ -220,24 +279,76 @@ function New-StigCheckList
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
-            $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
-
-            if ($setting)
+            $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.VulID -eq $VID}
+            # If we have manual check data, we don't need to look at the configuration
+            if ($manualCheck)
             {
-                if ($setting.InDesiredState)
+                $status = $statusMap["$($manualCheck.Status)"]
+                $findingDetails = $manualCheck.Details
+                $comments = $manualCheck.Comments
+            }
+            else
+            {
+                $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
+                if ($setting)
+                {
+                    if ($setting.InDesiredState -eq $true)
+                    {
+                        $status = $statusMap['NotAFinding']
+                        $comments = "Addressed by PowerStig MOF via $setting"
+                        $findingDetails = Get-FindingDetails -Setting $setting
+                    }
+                    elseif ($setting.InDesiredState -eq $false)
+                    {
+                        $status = $statusMap['Open']
+                        $comments = "Configuration attempted by PowerStig MOF via $setting, but not currently set."
+                        $findingDetails = Get-FindingDetails -Setting $setting
+                    }
+                    else
+                    {
+                        $status = $statusMap['Open']
+                    }
+                }
+                else
+                {
+                    $status = $statusMap['NotReviewed']
+                }    
+            }
+        }
+
+        # Test to see if this rule is managed as a duplicate
+        $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
+
+        if ($convertedRule.DuplicateOf)
+        {
+            # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
+            if ($PSCmdlet.ParameterSetName -eq 'mof')
+            {
+                $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
+
+                if ($originalSetting)
                 {
                     $status = $statusMap['NotAFinding']
+                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                }
+            }
+            elseif ($PSCmdlet.ParameterSetName -eq 'result')
+            {
+                $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
+
+                if ($originalSetting.InDesiredState -eq 'True')
+                {
+                    $status = $statusMap['NotAFinding']
+                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
                 }
                 else
                 {
                     $status = $statusMap['Open']
+                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
                 }
-
-                $comments = 'Managed via PowerStigDsc from Live call'
-            }
-            else
-            {
-                $status = $statusMap['NotReviewed']
             }
         }
 
@@ -246,7 +357,7 @@ function New-StigCheckList
         $writer.WriteEndElement(<#STATUS#>)
 
         $writer.WriteStartElement("FINDING_DETAILS")
-        $writer.WriteString((Get-FindingDetails -Setting $setting))
+        $writer.WriteString($findingDetails)
         $writer.WriteEndElement(<#FINDING_DETAILS#>)
 
         $writer.WriteStartElement("COMMENTS")
@@ -385,7 +496,9 @@ function Get-SettingsFromMof
 
     $mofContent = Get-MofContent -ReferenceConfiguration $referenceConfiguration
 
-    return $mofContent.Where({$PSItem.ResourceID -match $id})
+    $mofContentFound = $mofContent.Where({$PSItem.ResourceID -match $Id})
+
+    return $mofContentFound
 }
 
 <#
@@ -399,7 +512,7 @@ function Get-SettingsFromResult
     param
     (
         [Parameter(Mandatory = $true)]
-        [System.Collections.ArrayList]
+        [psobject]
         $DscResult,
 
         [Parameter(Mandatory = $true)]
@@ -433,29 +546,113 @@ function Get-FindingDetails
 
     switch ($setting.ResourceID)
     {
+        # Only add custom entries if specific output is more valuable than dumping all properties
+        {$PSItem -match "^\[None\]"}
+        {
+            return "No DSC resource was leveraged for this rule (Resource=None)"
+        }
         {$PSItem -match "^\[(x)?Registry\]"}
         {
             return "Registry Value = $($setting.ValueData)"
-        }
-        {$PSItem -match "^\[AuditPolicySubcategory\]"}
-        {
-            return "AuditPolicySubcategory AuditFlag = $($setting.AuditFlag)"
-        }
-        {$PSItem -match "^\[AccountPolicy\]"}
-        {
-            return "AccountPolicy = Needs work"
         }
         {$PSItem -match "^\[UserRightsAssignment\]"}
         {
             return "UserRightsAssignment Identity = $($setting.Identity)"
         }
-        {$PSItem -match "^\[SecurityOption\]"}
-        {
-            return "SecurityOption = Needs work"
-        }
         default
         {
-            return "not found"
+            return Get-FindingDetailsString -Setting $setting
         }
     }
+}
+
+<#
+    .SYNOPSIS
+        Formats properties and values with standard string format.
+
+#>
+function Get-FindingDetailsString
+{
+    [OutputType([string])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [AllowNull()]
+        [psobject]
+        $Setting
+    )
+
+    foreach ($property in $setting.PSobject.properties) {
+        if ($property.TypeNameOfValue -Match 'String')
+        {
+            $returnString += $($property.Name) + ' = '
+            $returnString += $($setting.PSobject.properties[$property.Name].Value) + "`n"
+        }
+    }
+    return $returnString
+}
+function Get-TargetNodeFromMof
+{
+    [OutputType([string])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [string]
+        $MofString
+    )
+
+    $pattern = "((?<=@TargetNode=')(.*)(?='))"
+    $TargetNodeSearch = $mofstring | Select-String -Pattern $pattern
+    $TargetNode = $TargetNodeSearch.matches.value
+    return $TargetNode
+}
+function Get-TargetNodeType
+{
+    [OutputType([string])]
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory)]
+        [string]
+        $TargetNode
+    )
+
+    switch ($TargetNode)
+    {
+        # Do we have a MAC address?
+        {
+            $_ -match '(([0-9a-f]{2}:){5}[0-9a-f]{2})'
+        }
+        {
+            return 'MACAddress'
+        }
+
+        # Do we have an IPv6 address?
+        {
+            $_ -match '(([0-9a-f]{0,4}:){7}[0-9a-f]{0,4})'
+        }
+        {
+            return 'IPv4Address'
+        }
+
+        # Do we have an IPv4 address?
+        {
+            $_ -match '(([0-9]{1,3}\.){3}[0-9]{1,3})'
+        }
+        {
+            return 'IPv6Address'
+        }
+
+        # Do we have a Fully-qualified Domain Name?
+        {
+            $_ -match '([a-zA-Z0-9-.\+]{2,256}\.[a-z]{2,256}\b)'
+        }
+        {
+            return 'FQDN'
+        }
+    }
+
+    return ''
 }
