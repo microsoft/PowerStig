@@ -82,7 +82,6 @@ try
         #>
     }
     Describe 'Split-BenchmarkId' {
-
         $sampleStrings = [ordered]@{
             'SQLServer' = @(
                 @{
