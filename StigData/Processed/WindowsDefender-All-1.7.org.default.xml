@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.5">
+<OrganizationalSettings fullversion="1.7">
   <!-- Ensure ''V-75167'' -match '2|1'-->
   <OrganizationalSetting id="V-75167" ValueData="2" />
   <!-- Ensure 'V-75237' -ge '0' -and 'V-75237' -le '7'-->
