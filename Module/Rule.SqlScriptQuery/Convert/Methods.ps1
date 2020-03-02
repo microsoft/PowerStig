@@ -414,7 +414,7 @@ function Get-AuditTestScript
     )
 
     $collection = Get-AuditEvents -CheckContent $CheckContent
-    $auditEvents = '(' + ($collection -join '),(') + ')'
+    $auditEvents = '(' + ($collection -join '),(') + ')' 
 
     $sqlScript = 'USE [master] DECLARE @MissingAuditCount INTEGER DECLARE @server_specification_id INTEGER DECLARE @FoundCompliant INTEGER SET @FoundCompliant = 0 '
     $sqlScript += '/* Create a table for the events that we are looking for */ '
