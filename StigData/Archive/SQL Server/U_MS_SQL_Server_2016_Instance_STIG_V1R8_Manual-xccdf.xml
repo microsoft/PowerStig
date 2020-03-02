@@ -1520,13 +1520,13 @@ For each of the directories returned by the above script, verify whether the cor
 4) Navigate to the "Security" tab.
 5) Review the listing of principals and permissions.
 
-Account Type			Directory Type		Permission
+Account Type            Directory Type        Permission
 -----------------------------------------------------------------------------------------------
-Database Administrators      	ALL                   		Full Control
-SQL Server Service SID       	Data; Log; Backup;    	Full Control
-SQL Server Agent Service SID 	Backup                	Full Control
-SYSTEM                       		ALL                   		Full Control
-CREATOR OWNER                	ALL                   		Full Control
+Database Administrators          ALL                           Full Control
+SQL Server Service SID           Data; Log; Backup;        Full Control
+SQL Server Agent Service SID     Backup                    Full Control
+SYSTEM                               ALL                           Full Control
+CREATOR OWNER                    ALL                           Full Control
 
 For information on how to determine a "Service SID", go to:
 https://aka.ms/sql-service-sids
