@@ -71,4 +71,5 @@ configuration FireFox
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Script.skip.ps1"
+    
 }
