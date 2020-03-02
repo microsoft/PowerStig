@@ -373,7 +373,7 @@ function Get-AuditGetScript
 
     if ($collection -eq $null){
 
-        $sqlScript = "SELECT name AS 'Audit Name', status_desc AS 'Audit Status', audit_file_path AS 'Current Audit File' FROM sys.dm_server_audit_status WHERE status_desc = 'STARTED'"
+        $sqlScript = "IF Not Exists (SELECT name AS 'Audit Name', status_desc AS 'Audit Status', audit_file_path AS 'Current Audit File' FROM sys.dm_server_audit_status WHERE status_desc = 'STARTED') Select 'Doest exist'"
     }
     else
     {
@@ -424,7 +424,7 @@ function Get-AuditTestScript
     $collection = Get-AuditEvents -CheckContent $CheckContent
     if ($collection -eq $null){
 
-        $sqlScript = "SELECT name AS 'Audit Name', status_desc AS 'Audit Status', audit_file_path AS 'Current Audit File' FROM sys.dm_server_audit_status WHERE status_desc = 'STARTED'"
+        $sqlScript = "IF Not Exists (SELECT name AS 'Audit Name', status_desc AS 'Audit Status', audit_file_path AS 'Current Audit File' FROM sys.dm_server_audit_status WHERE status_desc = 'STARTED') Select 'Doest exist'"
     }
     else
     {
