@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to parse and apply Adobe Acrobat Reader Version 1, Release 6: [562](https://github.com/microsoft/PowerStig/issues/562)
 * Update PowerSTIG release process to include STIG Coverage markdown wiki automation: [#560](https://github.com/microsoft/PowerStig/issues/560)
 * Fixed [#259](https://github.com/microsoft/PowerStig/issues/259): Checklist .ckl file fails XML validation in Stig Viewer 2.8.
 * Fixed [#527](https://github.com/microsoft/PowerStig/issues/527): Checklist is not using manualcheckfile when using DscResult.
