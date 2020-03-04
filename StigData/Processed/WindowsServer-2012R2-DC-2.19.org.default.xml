@@ -31,7 +31,7 @@
   <!-- Ensure ''V-1172'' -ge '14'-->
   <OrganizationalSetting id="V-1172" ValueData="14" />
   <!-- Ensure ''V-1174'' -le '15'-->
-  <OrganizationalSetting id="V-1174" ValueData="14" />
+  <OrganizationalSetting id="V-1174" ValueData="15" />
   <!-- Ensure ''V-2377'' -le '600' -and ''V-2377'' -ne '0'-->
   <OrganizationalSetting id="V-2377" PolicyValue="600" />
   <!-- Ensure ''V-2378'' -le '10' -and ''V-2378'' -ne '0'-->
