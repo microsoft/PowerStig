@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to to parse/convert the Windows Server 2012 R2 DC V2R19: [#578](https://github.com/microsoft/PowerStig/issues/578)
 * Update PowerSTIG to parse/convert the Windows Defender STIG V1R7: [576](https://github.com/microsoft/PowerStig/issues/576)
 * Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 28: [#573](https://github.com/microsoft/PowerStig/issues/573)
 * Update PowerSTIG to parse and apply Adobe Acrobat Reader Version 1, Release 6: [562](https://github.com/microsoft/PowerStig/issues/562)
