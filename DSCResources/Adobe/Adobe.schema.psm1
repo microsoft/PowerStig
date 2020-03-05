@@ -1,21 +1,16 @@
-#region Header
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 using module ..\helper.psm1
 using module ..\..\PowerStig.psm1
-#endregion Header
-
-#region Composite
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage the IIS Site STIG settings
-    .PARAMETER IisVersion
-        The version of the IIS Stig to apply
-    .PARAMETER WebsiteName
-        Array of website names used for MimeTypeRule, WebConfigurationPropertyRule, and IisLoggingRule.
-    .PARAMETER WebAppPool
-        Array of web application pool names used for WebAppPoolRule
+        A composite DSC resource to manage Adobe Application STIG settings
+    .PARAMETER AdobeApp
+        The Adobe Application for which a DISA STIG configuration is generated, i.e. 'AcrobatReader'
     .PARAMETER StigVersion
-        The version of the IIS Site STIG version to apply and monitor
+        The version of the Adobe Application STIG to apply and/or monitor
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
         the target node. The title of STIG settings are tagged with the text 'Exception' to identify
@@ -33,23 +28,14 @@ using module ..\..\PowerStig.psm1
         All STIG rule IDs of the specified type are collected in an array and passed to the Skip-Rule
         function. Each rule follows the same process as the SkipRule parameter.
 #>
-configuration IisSite
+configuration Adobe
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
-        [ValidateNotNullOrEmpty()]
-        [version]
-        $IisVersion,
-
-        [Parameter(Mandatory = $true)]
-        [string[]]
-        $WebsiteName,
-
-        [Parameter()]
-        [string[]]
-        $WebAppPool,
+        [string]
+        $AdobeApp,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
@@ -78,20 +64,13 @@ configuration IisSite
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('IISSite', $IisVersion, $StigVersion)
+    $stig = [STIG]::New('Adobe', $AdobeApp, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
+    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.0.1
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
+    . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
-    . "$resourcePath\windows.WindowsFeature.ps1"
-
-    Import-DscResource -ModuleName xWebAdministration -ModuleVersion 2.5.0.0
-    . "$resourcePath\windows.xWebSite.ps1"
-    . "$resourcePath\windows.xWebAppPool.ps1"
-    . "$resourcePath\windows.xIisMimeTypeMapping.ps1"
-    . "$resourcePath\windows.xWebConfigProperty.ps1"
-    . "$resourcePath\windows.xSslSettings.ps1"
+    . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }
-
-#endregion Composite

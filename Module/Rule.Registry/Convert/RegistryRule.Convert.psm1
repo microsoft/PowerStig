@@ -43,9 +43,18 @@ Class RegistryRuleConvert : RegistryRule
 
         $fixText = [RegistryRule]::GetFixText($XccdfRule)
 
-        $this.SetKey()
-        $this.SetValueName()
-        $this.SetValueType()
+        if ($global:stigTitle -match 'Adobe Acrobat Reader')
+        {
+            $rawString = $fixText
+        }
+        else
+        {
+            $rawString = $this.SplitCheckContent
+        }
+
+        $this.SetKey($rawString)
+        $this.SetValueName($rawString)
+        $this.SetValueType($rawString)
         $this.SetDuplicateRule()
         $this.SetDscResource($fixText)
 
@@ -59,7 +68,7 @@ Class RegistryRuleConvert : RegistryRule
         else
         {
             # Get the trimmed version of the value data line.
-            [string] $registryValueData = $this.GetValueData()
+            [string] $registryValueData = $this.GetValueData($rawString)
 
             # If a range is found on the value line, it needs further processing.
             if ($this.TestValueDataStringForRange($registryValueData))
@@ -127,9 +136,9 @@ Class RegistryRuleConvert : RegistryRule
             the registry key that is returned is not valid, the parser status is
             set to fail.
     #>
-    [void] SetKey ()
+    [void] SetKey ([string[]] $rawString)
     {
-        $thisKey = Get-RegistryKey -CheckContent $this.SplitCheckContent
+        $thisKey = Get-RegistryKey -CheckContent $rawString
 
         if (-not $this.SetStatus($thisKey))
         {
@@ -146,9 +155,9 @@ Class RegistryRuleConvert : RegistryRule
             value. If the registry value name that is returned is not valid,
             the parser status is set to fail.
     #>
-    [void] SetValueName ()
+    [void] SetValueName ([string[]] $rawString)
     {
-        $thisValueName = Get-RegistryValueName -CheckContent $this.SplitCheckContent
+        $thisValueName = Get-RegistryValueName -CheckContent $rawString
 
         if (-not $this.SetStatus($thisValueName))
         {
@@ -165,9 +174,9 @@ Class RegistryRuleConvert : RegistryRule
             value. If the registry value type that is returned is not valid,
             the parser status is set to fail.
     #>
-    [void] SetValueType ()
+    [void] SetValueType ([string[]] $rawString)
     {
-        $thisValueType = Get-RegistryValueType -CheckContent $this.SplitCheckContent
+        $thisValueType = Get-RegistryValueType -CheckContent $rawString
 
         if ($thisValueType -ne "Does Not Exist")
         {
@@ -207,9 +216,9 @@ Class RegistryRuleConvert : RegistryRule
             the parser status is set to fail.
     #>
 
-    [string] GetValueData ()
+    [string] GetValueData ([string[]] $rawString)
     {
-        return Get-RegistryValueData -CheckContent $this.SplitCheckContent
+        return Get-RegistryValueData -CheckContent $rawString
     }
 
     <#
