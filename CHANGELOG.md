@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to parse/convert the Windows Defender STIG V1R7: [576](https://github.com/microsoft/PowerStig/issues/576)
 * Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 28: [#573](https://github.com/microsoft/PowerStig/issues/573)
 * Update PowerSTIG to parse and apply Adobe Acrobat Reader Version 1, Release 6: [562](https://github.com/microsoft/PowerStig/issues/562)
 * Update PowerSTIG release process to include STIG Coverage markdown wiki automation: [#560](https://github.com/microsoft/PowerStig/issues/560)
