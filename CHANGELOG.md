@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to parse/convert the Windows Server 2016 V2R10: [582](https://github.com/microsoft/PowerStig/issues/582)
 * Update PowerSTIG to parse/convert the Windows Server 2012 DNS STIG V1R13: [580](https://github.com/microsoft/PowerStig/issues/580)
 * Update PowerSTIG to to parse/convert the Windows Server 2012 R2 DC V2R19: [#578](https://github.com/microsoft/PowerStig/issues/578)
 * Update PowerSTIG to parse/convert the Windows Defender STIG V1R7: [576](https://github.com/microsoft/PowerStig/issues/576)
