@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R5_Manual-xccdf.xml" releaseinfo="Release: 5 Benchmark Date: 26 Apr 2019" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.5" created="12/5/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 24 Jan 2020" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="2/24/2020">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
       <Description>&lt;VulnDiscussion&gt;After enabling this feature, Potentially Unwanted Application (PUA) protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -56,9 +56,9 @@ HKLM\Software\Policies\Microsoft\Windows Defender
 
 Criteria: If the value "DisableAntiSpyware" does not exist, this is not a finding.
 
-For Windows Server 2016:
+For Windows Server 2016/Windows Server 2019:
 Note: This only applies when a third-party antivirus solution is enforced on the system.
-Due to changes from Microsoft in the Server 2016 architecture, Windows Defender Antivirus will not disable itself when other antivirus products are detected. Microsoft has also removed API's for other Antivirus software to cleanly stop and disable Windows Defender AV. This was a design choice by Microsoft to maximize protection in Server 2016. 
+Due to changes from Microsoft in the Server 2016/Server 2019 architecture, Windows Defender Antivirus will not disable itself when other antivirus products are detected. Microsoft has also removed API's for other Antivirus software to cleanly stop and disable Windows Defender AV. This was a design choice by Microsoft to maximize protection in Server 2016/Server 2019. 
 
 If there is a third-party antivirus product enforced on the system, the Windows Defender Antivirus must be uninstalled. 
 
@@ -189,6 +189,7 @@ Procedure: Use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
 
 Criteria: If the value "SpynetReporting" is REG_DWORD = 2 or REG_DWORD = 1, this is not a finding.
+
 </RawString>
       <ValueData />
       <ValueName>SpynetReporting</ValueName>

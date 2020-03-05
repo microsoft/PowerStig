@@ -11,7 +11,7 @@ using module ..\..\PowerStig.psm1
         The version of the STIG to apply and monitor
     .PARAMETER Exception
         A hash table of key value pairs that are injected into the STIG data and applied to
-        the target node. The title of STIG setting is tagged with the text ‘Exception’ to identify
+        the target node. The title of STIG setting is tagged with the text 'Exception' to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
     .PARAMETER OrgSettings
         The path to the xml file that contains the local organizations preferred settings for STIG
