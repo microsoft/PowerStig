@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+* Update PowerSTIG to successfully parse Microsoft SQL Server 2016 Instance STIG - Ver 1, Rel 8: [#586](https://github.com/microsoft/PowerStig/issues/586)
 * Update PowerSTIG to parse and apply Windows Server 2019 V1R3 STIG: [#584](https://github.com/microsoft/PowerStig/issues/584)
 * Update PowerSTIG to parse/convert the Windows Server 2016 V2R10: [582](https://github.com/microsoft/PowerStig/issues/582)
 * Update PowerSTIG to parse/convert the Windows Server 2012 DNS STIG V1R13: [580](https://github.com/microsoft/PowerStig/issues/580)
