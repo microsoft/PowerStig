@@ -196,6 +196,39 @@ function Get-RegistryValueTypeFromSingleLineStig
         }
     }
 }
+<#
+    .SYNOPSIS
+        Extract the registry path from an McaAfee STIG string.
+    .PARAMETER CheckContent
+        An array of the raw string data taken from the STIG setting.
+#>
+function Get-McAfeeRegistryPath
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $CheckContent
+    )
+
+    if ($checkContent -match "Software\\McAfee")
+    {
+        [string]$path = "HKLM\Software\Wow6432Node\McAfee\"
+        if($CheckContent -match 'DesktopProtection')
+        {
+            [string]$mcafeePath = $checkcontent -match '\\DesktopProtection.*$(.*)'
+        }
+        else
+        {
+            [string]$mcafeePath = $checkcontent -match 'SystemCore.*$(.*)'
+        }
+        $paths = Join-Path -Path $path -ChildPath $mcafeePath
+        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found registry path : $paths"
+        return $paths
+    }
+}
 
 <#
     .SYNOPSIS
@@ -434,12 +467,21 @@ function Get-RegistryValueDataFromSingleStig
         $CheckContent
     )
 
-    foreach ($item in $global:SingleLineRegistryValueData.Values)
+    if ($CheckContent -match 'Wow6432Node\\McAfee')
     {
-        $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
-        if ([String]::IsNullOrEmpty($value) -eq $false)
+        $mcafeeValueData = '(?<=' + $this.ValueName + '\sis\s)(\d)'
+        $value = [regex]::Matches($CheckContent, $mcafeeValueData)
+        return $value.Value
+    }
+    else
+    {
+        foreach ($item in $global:SingleLineRegistryValueData.Values)
         {
-            return $value
+            $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
+            if ([String]::IsNullOrEmpty($value) -eq $false)
+            {
+                return $value
+            }
         }
     }
 }

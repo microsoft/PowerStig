@@ -1,0 +1,72 @@
+V-6585::NOTE: Automatic updates to antivirus signature definitions are to be performed once every 24 hours for hosts connected to the network. Hosts not connected to the network must be updated manually.::""
+V-6585::On the “Task” tab, the selection for "Enable (scheduled task runs at specified time)" must be selected.::""
+V-6585::HKLM\Software\McAfee for 32-bit systems::HKLM\Software\McAfee\ (32-bit)
+V-6585::HKLM\Software\Wow6432Node\McAfee for 64-bit systems::HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+V-6585::If “bSchedEnabled=1” (indicates Scheduling is enabled) and “eScheduleType=0” (indicates Daily), this is not a finding.::Criteria:  If the value bSchedEnabled is 1 and the value eScheduleType is 0, this is not a finding
+V-6592::Criteria:  If the value for uAction is not 5, this is a finding::Criteria:  If the value uAction is 5, this is not a finding
+V-6597::Criteria:   If both the value of bLimitSize is 1 and the value of dwMaxLogSizeMB is at least decimal (10), this is not a finding.::Criteria:   If the value bLimitSize is 1 and the value dwMaxLogSizeMB is 10, this is not a finding.
+V-6599::HKLM\Software\McAfee\ (32-bit)::""
+V-6599::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6600::HKLM\Software\McAfee\ (32-bit)::""
+V-6600::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6601::HKLM\Software\McAfee\ (32-bit)::""
+V-6601::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6602::HKLM\Software\McAfee\ (32-bit)::""
+V-6602::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6604::HKLM\Software\McAfee\ (32-bit)::""
+V-6604::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6611::HKLM\Software\McAfee\ (32-bit)::""
+V-6611::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6612::HKLM\Software\McAfee\ (32-bit)::""
+V-6612::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6614::HKLM\Software\McAfee\ (32-bit)::""
+V-6614::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6615::HKLM\Software\McAfee\ (32-bit)::""
+V-6615::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6616::HKLM\Software\McAfee\ (32-bit)::""
+V-6616::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6617::HKLM\Software\McAfee\ (32-bit)::""
+V-6617::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6618::HKLM\Software\McAfee\ (32-bit)::""
+V-6618::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6620::HKLM\Software\McAfee\ (32-bit)::""
+V-6620::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6625::HKLM\Software\McAfee\ (32-bit)::""
+V-6625::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-6627::HKLM\Software\McAfee\ (32-bit)::""
+V-6627::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-14630::Under the Actions tab, locate the "When a threat is found:" label. Ensure for the "Perform this action first:" pull down menu, "Clean files automatically" is selected.::""
+V-14630::Criteria:  If the uAction does not have a value of 5, this is a finding.::Criteria:  If the value uAction is 5, this is not a finding
+V-14631::Under the Actions tab, locate the "When a threat is found:" label. Ensure from the "If the first action fails, then perform this action:" pull down menu, "Delete files automatically" is selected.::""
+V-14631::Criteria:  If  the "Delete files automatically" is selected for "If the first action fails, then perform this action:", this is not a finding.::""
+V-14631::Criteria:  If the uSecAction does not have a value of 4, this is a finding.::Criteria:  If the value uSecAction is 4, this is not a finding
+V-14652::Criteria:  If the value for uAction_Program is not 5, this is a finding.::Criteria:  If the value uAction_Program is 5, this is not a finding
+V-14657::HKLM\Software\McAfee\ (32-bit)::""
+V-14657::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-14658::HKLM\Software\McAfee\ (32-bit)::""
+V-14658::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-14659::HKLM\Software\McAfee\ (32-bit)::""
+V-14659::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-14660::HKLM\Software\McAfee\ (32-bit)::""
+V-14660::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-14661::HKLM\Software\McAfee\ (32-bit)::""
+V-14661::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-42514::Criteria:  If the value for uSecAction is not 4, this is a finding.::Criteria:  If the value uSecAction is 4, this is not a finding
+V-42515::Criteria:  If the value for uSecAction_Program is not 4, this is a finding.::Criteria:  If the value uSecAction_Program is 4, this is not a finding
+V-42549::Criteria:  If the value of PVSPTEnabled is REG_DWORD = 1, this is not a finding::Criteria:  If the value PVSPTEnabled is 1, this is not a finding
+V-42550::Criteria:  If the value of bLogToFile is REG_DWORD = 1, this is not a finding.::Criteria:  If the value bLogToFile is 1, this is not a finding
+V-42563::HKLM\Software\McAfee\ (32-bit)::""
+V-42563::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-42565::HKLM\Software\McAfee\ (32-bit)::""
+V-42565::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-42566::HKLM\Software\McAfee\ (32-bit)::""
+V-42566::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-42567::HKLM\Software\McAfee\ (32-bit)::""
+V-42567::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-42571::Criteria: If the “dwLogEvent” value is not “0x000001a0 (416)”, this is a finding.::Criteria:  If the value dwLogEvent is 416, this is not a finding
+V-42572::HKLM\Software\McAfee\ (32-bit)::""
+V-42572::HKLM\Software\Wow6432Node\McAfee\ (64-bit)::""
+V-42573::Criteria:  If the value APEnabled is not set to "1", this is a finding.::Criteria:  If the value APEnabled is 1, this is not a finding
+V-42575::Under the Actions tab, locate the "When an unwanted program is found:" label. Ensure for the "Perform this action first:" pull down menu, "Clean files automatically" is selected.::""
+V-42575::Criteria:  If the uAction_Program does not have a value of 5, this is a finding.::Criteria:  If the value uAction_Program is 5, this is not a finding
+V-42576::Criteria:  If the uSecAction_Program does not have a value of 4, this is a finding.::Criteria:  If the value uSecAction_Program is 4, this is not a finding
