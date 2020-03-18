@@ -41,10 +41,10 @@ RequiredModules  = @(
     @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.0.0'},
     @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
-    @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.0.1'},
+    @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
     @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
-    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '12.1.0.0'},
+    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
