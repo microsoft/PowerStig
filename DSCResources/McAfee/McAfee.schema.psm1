@@ -7,7 +7,7 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the McAfee VirusScan STIG settings
-    .PARAMETER Technology
+    .PARAMETER TechnologyRole
         The technology version of McAfee the STIG applies to
     .PARAMETER Version
         The version of McAfee technology the STIG applies to
