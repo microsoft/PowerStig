@@ -7,8 +7,10 @@ using module ..\..\PowerStig.psm1
 <#
     .SYNOPSIS
         A composite DSC resource to manage the McAfee VirusScan STIG settings
-    .PARAMETER McAfeeVersion
-        The version of McAfee VirusScan the STIG applies to
+    .PARAMETER Technology
+        The technology version of McAfee the STIG applies to
+    .PARAMETER Version
+        The version of McAfee technology the STIG applies to
     .PARAMETER StigVersion
         The version of the McAfee VirusSca STIG to apply and/or monitor
     .PARAMETER Exception
@@ -35,7 +37,11 @@ configuration McAfee
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $McAfeeVersion,
+        $Technology,
+
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Version,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
@@ -64,7 +70,7 @@ configuration McAfee
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('McAfee', $McAfeeVersion, $StigVersion)
+    $stig = [STIG]::New('McAfee', $Technology, $Version, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
