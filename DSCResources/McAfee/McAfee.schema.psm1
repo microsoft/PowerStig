@@ -37,7 +37,7 @@ configuration McAfee
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Technology,
+        $TechnologyRole,
 
         [Parameter(Mandatory = $true)]
         [string]
@@ -70,7 +70,7 @@ configuration McAfee
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('McAfee', $Technology, $Version, $StigVersion)
+    $stig = [STIG]::New('McAfee', $TechnologyRole, $Version, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
