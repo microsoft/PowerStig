@@ -6,8 +6,8 @@
     associated comment.
 -->
 <OrganizationalSettings fullversion="5.16">
-  <!-- Ensure 'V-14620' greater than or equal to 1E (HEX)-->
-  <OrganizationalSetting id="V-14620" ValueData="1E" />
+  <!-- Ensure 'V-14620' -ge '30'-->
+  <OrganizationalSetting id="V-14620" ValueData="30" />
   <!-- Ensure 'V-35027.b' -match 2|3|4 -->
   <OrganizationalSetting id="V-35027.b" ValueData="2" />
   <!-- Ensure 'V-42569.b' -match 2|3|4 -->

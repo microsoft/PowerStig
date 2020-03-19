@@ -1521,7 +1521,7 @@ These block connection settings will most often be used on a server housing shar
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>{0} greater than or equal to 1E (HEX)</OrganizationValueTestString>
+      <OrganizationValueTestString>{0} -ge '30'</OrganizationValueTestString>
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
 On the menu bar, click Task-&gt;On-Access Scanner Properties.
 Select the General Settings.
