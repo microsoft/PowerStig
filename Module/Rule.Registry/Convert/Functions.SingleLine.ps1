@@ -215,7 +215,7 @@ function Get-McAfeeRegistryPath
 
     if ($checkContent -match "Software\\McAfee")
     {
-        [string]$path = "HKLM\Software\Wow6432Node\McAfee\"
+        [string]$path = "HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\"
         if($CheckContent -match 'DesktopProtection')
         {
             [string]$mcafeePath = $checkcontent -match '\\DesktopProtection.*$(.*)'

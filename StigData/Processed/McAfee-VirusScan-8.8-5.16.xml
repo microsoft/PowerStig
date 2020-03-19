@@ -886,7 +886,7 @@ Criteria:  If the "Prevent all programs from running files from the Temp folder"
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -912,7 +912,7 @@ Criteria:  If the value of bStartDisabled is 0, this is not a finding. If the va
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -938,7 +938,7 @@ Criteria:  If the value of bDontScanBootSectors is 0, this is not a finding. If 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -968,7 +968,7 @@ Ensuring the antivirus software alerts the users when malware is detected will e
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -994,7 +994,7 @@ Criteria:  If the value of Alert_AutoShowList is 1, this is not a finding. If th
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1020,7 +1020,7 @@ Criteria: If the value of Alert_UsersCanRemove is 0, this is not a finding. If t
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\HKLM\Software\McAfee\ (32-bit)  HKLM\Software\Wow6432Node\McAfee\ (64-bit)SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\HKLM\Software\McAfee\ (32-bit)  HKLM\Software\Wow6432Node\McAfee\ (64-bit)SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1045,7 +1045,7 @@ Criteria:  If the value of bLogtoFile is 1, this is not a finding. If the value 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1074,7 +1074,7 @@ If dwMaxLogSizeMB is less than Decimal (10), this is a finding.</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1102,7 +1102,7 @@ If dwMaxLogSizeMB is less than Decimal (10), this is a finding.</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1128,7 +1128,7 @@ Criteria:  If the value of bLogSummary is 1, this is not a finding. If the value
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1154,7 +1154,7 @@ Criteria:  If the value ReportEncryptedFiles is 1, this is not a finding. If the
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: Automatic updates to antivirus signature definitions are to be performed once every 24 hours for hosts connected to the network. Hosts not connected to the network must be updated manually. 
@@ -1188,7 +1188,7 @@ If the “AutoUpdate” task schedule is not enabled, or is not configured to ru
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: Automatic updates to antivirus signature definitions are to be performed once every 24 hours for hosts connected to the network. Hosts not connected to the network must be updated manually. 
@@ -1222,7 +1222,7 @@ If the “AutoUpdate” task schedule is not enabled, or is not configured to ru
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\GeneralOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\GeneralOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1248,7 +1248,7 @@ Criteria:  If the value bEnabled is 1, this is not a finding. If the value is 0,
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\DetectionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\DetectionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1275,7 +1275,7 @@ Criteria:  If the value dwProgramHeuristicsLevel is 1, this is not a finding. If
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email scanner\Outlook\OnDelivery\DetectionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email scanner\Outlook\OnDelivery\DetectionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1302,7 +1302,7 @@ Criteria:  If the value dwMacroHeuristicsLevel is 1, this is not a finding. If t
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\DetectionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\DetectionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1329,7 +1329,7 @@ Criteria:  If the value ScanMime is 1, this is not a finding. If the value is 0,
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\DetectionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\DetectionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1356,7 +1356,7 @@ Criteria:  If the value ScanMessageBodies is 1, this is not a finding. If the va
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1384,7 +1384,7 @@ Criteria:  If the value for uAction is not 5, this is a finding.
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1411,7 +1411,7 @@ Criteria:  If the value bLogToFile is 1, this is not a finding. If the value is 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&gt; McAfee &gt;&gt; VirusScan Console.
@@ -1436,7 +1436,7 @@ Criteria:   If both the value of bLimitSize is 1 and the value of dwMaxLogSizeMB
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&gt; McAfee &gt;&gt; VirusScan Console.
@@ -1461,7 +1461,7 @@ Criteria:   If both the value of bLimitSize is 1 and the value of dwMaxLogSizeMB
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Script Scanner</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Script Scanner</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1490,7 +1490,7 @@ These block connection settings will most often be used on a server housing shar
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1519,7 +1519,7 @@ These block connection settings will most often be used on a server housing shar
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} greater than or equal to 1E (HEX)</OrganizationValueTestString>
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1548,7 +1548,7 @@ These block connection settings will most often be used on a server housing shar
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1574,7 +1574,7 @@ Criteria:  If the value of VSIDBlockOnNonVirus is 1, this is not a finding. If t
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1603,7 +1603,7 @@ If the value is 0 and  the use of Low-Risk Processes/High-Risk processes has not
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1630,7 +1630,7 @@ Criteria:  If the value bScanIncoming is 1, this is not a finding. If the value 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1656,7 +1656,7 @@ Criteria:  If the value bScanOutgoing is 1, this is not a finding. If the value 
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1682,7 +1682,7 @@ Criteria:  If the value LocalExtensionMode is 1 and the value of NetworkExtensio
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1708,7 +1708,7 @@ Criteria:  If the value LocalExtensionMode is 1 and the value of NetworkExtensio
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1734,7 +1734,7 @@ Criteria:  If the value dwProgramHeuristicsLevel is 1, this is not a finding. If
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console
@@ -1758,7 +1758,7 @@ Criteria:  If the value dwMacroHeuristicsLevel is 1, this is not a finding. If t
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: This requirement can be left not configured and marked as Not Applicable if the regularly scheduled on-demand scan, validated under V-6611, DTAM052, includes the scanning of archive files.
@@ -1786,7 +1786,7 @@ Criteria:  If the value ScanArchives is 1, this is not a finding. If the value i
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1813,7 +1813,7 @@ Criteria:  If the uAction does not have a value of 5, this is a finding.</RawStr
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1839,7 +1839,7 @@ Criteria:  If the uSecAction does not have a value of 4, this is a finding.</Raw
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -1866,7 +1866,7 @@ Criteria:  If the value for uAction_Program is not 5, this is a finding.</RawStr
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\NVP</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\NVP</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking on Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1893,7 +1893,7 @@ Criteria:  If the value DetectSpyware is 1, this is not a finding.
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\NVP</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\NVP</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking on Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -1919,7 +1919,7 @@ Criteria:  If the value DetectAdware is 1, this is not a finding.</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: For systems on the SIPRnet, this check is Not Applicable.
@@ -1949,7 +1949,7 @@ If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWOR
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -match 2|3|4 </OrganizationValueTestString>
       <RawString>NOTE: For systems on the SIPRnet, this check is Not Applicable.
@@ -1979,7 +1979,7 @@ If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWOR
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -2006,7 +2006,7 @@ Criteria:  If the value for uSecAction is not 4, this is a finding.</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -2033,7 +2033,7 @@ Criteria:  If the value for uSecAction_Program is not 4, this is a finding.</Raw
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the HIPS signature 3892 is enabled to provide the "Prevent termination of McAfee processes" protection, this check is not applicable. 
@@ -2060,7 +2060,7 @@ Criteria:  If the value of PVSPTEnabled is REG_DWORD = 1, this is not a finding.
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If DTAM161 "McAfee VirusScan Access Protection Policies must be configured to enable access protection" has been marked as "Not Applicable", this requirement is not applicable.
@@ -2088,7 +2088,7 @@ Criteria:  If the value of bLogToFile is REG_DWORD = 1, this is not a finding.
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If DTAM161 "McAfee VirusScan Access Protection Policies must be configured to enable access protection" has been marked as "Not Applicable", this check is not applicable.
@@ -2117,7 +2117,7 @@ Criteria: If the value of bLimitSize is 1 and dwMaxLogSizeMB is configured to De
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If DTAM161 "McAfee VirusScan Access Protection Policies must be configured to enable access protection" has been marked as "Not Applicable", this check is not applicable.
@@ -2146,7 +2146,7 @@ Criteria: If the value of bLimitSize is 1 and dwMaxLogSizeMB is configured to De
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: For systems on the SIPRnet, this check is Not Applicable.
@@ -2178,7 +2178,7 @@ If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWOR
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -match 2|3|4 </OrganizationValueTestString>
       <RawString>Note: For systems on the SIPRnet, this check is Not Applicable.
@@ -2210,7 +2210,7 @@ If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWOR
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -2240,7 +2240,7 @@ If the value for szSendTo is configured to any recipient other than the ISSO, IS
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>Configured to the ISSO, ISSM,ePO Administrator, or System Administrator </OrganizationValueTestString>
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -2270,7 +2270,7 @@ If the value for szSendTo is configured to any recipient other than the ISSO, IS
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
@@ -2299,7 +2299,7 @@ Criteria: If the “dwLogEvent” value is not “0x000001a0 (416)”, this is a
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: Access Protection must be enabled in order to afford protection identified in DTAM150 and DTAM151. 
@@ -2326,7 +2326,7 @@ Criteria:  If the value APEnabled is not set to "1", this is a finding.</RawStri
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -2353,7 +2353,7 @@ Criteria:  If the value ApplyNVP is 1, this is not a finding. If the value is 0,
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
@@ -2380,7 +2380,7 @@ Criteria:  If the uAction_Program does not have a value of 5, this is a finding.
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
