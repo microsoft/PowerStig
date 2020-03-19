@@ -257,60 +257,66 @@ function Get-RegistryValueTypeFromSLStig
 
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
 
-    foreach ($key in $Hashtable.Keys)
+    if($CheckContent -match 'Wow6432Node\\McAfee')
     {
-        switch ($key)
+        [string] $valueType = 'DWORD'
+    }
+    else
+    {
+        foreach ($key in $Hashtable.Keys)
         {
-            Contains
+            switch ($key)
             {
-                if (@($fullRegistryPath | Where-Object {$_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0)
+                Contains
                 {
-                    continue
+                    if (@($fullRegistryPath | Where-Object {$_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0)
+                    {
+                        continue
+                    }
+                    else
+                    {
+                        return
+                    }
                 }
-                else
-                {
-                    return
-                }
-            }
-            Match
-            {
-                $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
-                $matchedValueType = [regex]::Matches($CheckContent.ToString(), $regEx)
-
-                if (-not $matchedValueType)
-                {
-                    continue
-                }
-                else
-                {
-                    return $null
-                }
-            }
-            Select
-            {
-                if ($valueName)
+                Match
                 {
                     $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
-                    $selectedValueType = Select-String -InputObject $CheckContent -Pattern $regEx
-                }
+                    $matchedValueType = [regex]::Matches($CheckContent.ToString(), $regEx)
 
-                if (-not $selectedValueType.Matches)
-                {
-                    return
-                }
-                else
-                {
-                    $valueType = $selectedValueType.Matches[0].Value
-                    if ($Hashtable.Item('Group'))
+                    if (-not $matchedValueType)
                     {
-                        $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
+                        continue
                     }
-                    Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
+                    else
+                    {
+                        return $null
+                    }
                 }
-            }
-        } # Switch
-    } # Foreach
+                Select
+                {
+                    if ($valueName)
+                    {
+                        $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
+                        $selectedValueType = Select-String -InputObject $CheckContent -Pattern $regEx
+                    }
 
+                    if (-not $selectedValueType.Matches)
+                    {
+                        return
+                    }
+                    else
+                    {
+                        $valueType = $selectedValueType.Matches[0].Value
+                        if ($Hashtable.Item('Group'))
+                        {
+                            $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
+                        }
+                        Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
+                    }
+                }
+            } # Switch
+        } # Foreach
+    }
     if ($valueType)
     {
         $valueType = $valueType.Replace('=', '').Replace('"', '')
@@ -467,21 +473,12 @@ function Get-RegistryValueDataFromSingleStig
         $CheckContent
     )
 
-    if ($CheckContent -match 'Wow6432Node\\McAfee')
+    foreach ($item in $global:SingleLineRegistryValueData.Values)
     {
-        $mcafeeValueData = '(?<=' + $this.ValueName + '\sis\s)(\d)'
-        $value = [regex]::Matches($CheckContent, $mcafeeValueData)
-        return $value.Value
-    }
-    else
-    {
-        foreach ($item in $global:SingleLineRegistryValueData.Values)
+        $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
+        if ([String]::IsNullOrEmpty($value) -eq $false)
         {
-            $value = Get-RegistryValueDataFromSLStig -CheckContent $CheckContent -Hashtable $item
-            if ([String]::IsNullOrEmpty($value) -eq $false)
-            {
-                return $value
-            }
+            return $value
         }
     }
 }

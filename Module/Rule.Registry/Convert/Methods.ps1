@@ -162,29 +162,15 @@ function Get-RegistryValueType
         $CheckContent
     )
 
-    if($CheckContent -match 'Wow6432Node\\McAfee')
+    # The Office format is different to check which way to send the strings.
+    if ( Test-SingleLineStigFormat -CheckContent $checkContent )
     {
-        if($valueName -match '(?=sz)(.*)')
-        {
-            [string] $type = 'REG_SZ'
-        }
-        else
-        {
-            [string] $type= 'DWORD'
-        }
+        [string] $type = Get-RegistryValueTypeFromSingleLineStig -CheckContent $checkContent
     }
     else
     {
-        # The Office format is different to check which way to send the strings.
-        if ( Test-SingleLineStigFormat -CheckContent $checkContent )
-        {
-            [string] $type = Get-RegistryValueTypeFromSingleLineStig -CheckContent $checkContent
-        }
-        else
-        {
-            # Get the second index of the list, which should be the data type and remove spaces.
-            [string] $type = Get-RegistryValueTypeFromWindowsStig -CheckContent $checkContent
-        }
+        # Get the second index of the list, which should be the data type and remove spaces.
+        [string] $type = Get-RegistryValueTypeFromWindowsStig -CheckContent $checkContent
     }
 
     [string] $dscRegistryValueType = $dscRegistryValueType.$type

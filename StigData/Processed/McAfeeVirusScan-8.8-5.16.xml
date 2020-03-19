@@ -1,5 +1,99 @@
-<DISASTIG version="5" classification="UNCLASSIFIED" customname="" stigid="McAfee_VirusScan88_Local_Client" description="The McAfee VirusScan 8.8 Local Client STIG is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the NIST 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_McAfee_VirusScan88_Local_Client_STIG_V5R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 27 Jul 2018" title="McAfee VirusScan 8.8 Local Client STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="5.16" created="3/13/2020">
+<DISASTIG version="5" classification="UNCLASSIFIED" customname="" stigid="McAfee_VirusScan88_Local_Client" description="The McAfee VirusScan 8.8 Local Client STIG is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the NIST 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_McAfee_VirusScan88_Local_Client_STIG_V5R16_Manual-xccdf.xml" releaseinfo="Release: 16 Benchmark Date: 27 Jul 2018" title="McAfee VirusScan 8.8 Local Client STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="5.16" created="3/19/2020">
   <DocumentRule dscresourcemodule="None">
+    <Rule id="V-6599" severity="medium" conversionstatus="pass" title="DTAM045-McAfee VirusScan fixed disk and processes" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Antivirus software is the mostly commonly used technical control for malware threat mitigation. Antivirus software on hosts should be configured to scan all hard drives regularly to identify any file system infections and to scan any removable media, if applicable, before media is inserted into the system. Not scheduling a regular scan of the hard drives of a system and/or not configuring the scan to scan all files and running processes, introduces a higher risk of threats going undetected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Scan Locations tab, in the box under the "Specify where scanning takes place." label, ensure both "All fixed drives" or "All local drives" and "Running processes" options are included.
+
+Criteria:  If "All fixed drives" or "All local drives" and "Running processes" are displayed in the configuration for the daily or weekly On Demand Scan, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with the weekly on-demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, there exists a szScanItem with a REG_SZ value of "FixedDrives" or "LocalDrives" and a szScanItem with a REG_SZ value of "SpecialMemory", this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-6600" severity="medium" conversionstatus="pass" title="DTAM046-McAfee VirusScan include subfolders" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Antivirus software is the mostly commonly used technical control for malware threat mitigation. Antivirus software on hosts should be configured to scan all hard drives and folders regularly to identify any file system infections and to scan any removable media, if applicable, before media is inserted into the system. Not scheduling a regular scan of the hard drives of a system and/or not configuring the scan to scan all files and running processes, introduces a higher risk of threats going undetected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Scan Locations tab, locate the "Scan options:" label. Ensure the "Include subfolders" option is selected.
+
+Criteria:  If "Include subfolders" is selected, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, the bScanSubdirs has value of 0, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-6601" severity="medium" conversionstatus="pass" title="DTAM047-McAfee VirusScan include boot sectors" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Boot sector viruses will install into the boot sector of a system, ensuring that they will execute when the user boots the system. This risk is mitigated by scanning boot sectors at each startup of the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Scan Locations tab, locate the "Scan options:" label. Ensure the "Scan boot sectors" option is selected.
+
+Criteria:  If "Scan boot sectors" is selected, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, the bSkipBootScan has value of 1, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-6602" severity="medium" conversionstatus="pass" title="DTAM048-McAfee VirusScan scan all files parameter " dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific file types will increase the risk of a malware-infected file going undetected. By configuring antivirus software to scan all file types, the scanner has a higher success rate at detecting and eradicating malware.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Scan Items tab, locate the "File types to scan:" label. Ensure the "All files" option is selected.
+
+Criteria:  If "All files" is selected, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
+
+Criteria: If, under the applicable GUID key, the bScanAllFiles has value of 0, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-6604" severity="medium" conversionstatus="pass" title="DTAM050-McAfee VirusScan exclusions parameter " dscresource="None">
       <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific files will increase the risk of a malware-infected file going undetected. By configuring antivirus software without any exclusions, the scanner has a higher success rate at detecting and eradicating malware.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -18,7 +112,7 @@ If excluded items exist, and they are not documented with and approved by the IS
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -46,175 +140,13 @@ Criteria:  If "Scan inside archives (e.g. .ZIP)" is selected, this is not a find
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
 
 Criteria:  If, under the applicable GUID key, the ScanArchives has value of 0, this is a finding.
 </RawString>
-    </Rule>
-    <Rule id="V-42561" severity="medium" conversionstatus="pass" title="DTAM150-Access Protection mass mailing worms" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Many viruses and worms find email addresses on the infected system and send themselves to these addresses. They do this by connecting directly to the email servers whose names they have harvested from the local system. This rule prevents any process from talking to a foreign email server using SMTP. By blocking this communication, a machine may become infected with a new mass-mailing virus, but that virus will be unable to spread further by email. It prevents outbound access to SMTP ports 25 and 587 on all programs except known email clients listed as an exclusion.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>NOTE: If the system being reviewed has the function of sending email via the SMTP protocol, this setting is not applicable.
-
-NOTE: Since there is no HIPS signature to provide this same protection, this check is applicable even if HIPS is enabled.
-
-Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-Under the Task column, select Access Protection, right-click, and select Properties.
-
-Under the Access Protection tab, locate the "Access protection rules:" label. In the "Categories" box, select "Anti-Virus Standard Protection". Ensure "Prevent mass mailing worms from sending email" (Block and Report) options are both selected. Click Edit. Under the "Processes to exclude:" section, verify no processes are listed. If any processes are listed, they must be documented with, and approved by, the IAO/IAM.
-
-Criteria:  
-If "Prevent mass mailing worms from sending email" (Block and Report) options are not both selected. This is a finding.
-If "Prevent mass mailing worms from sending email" (Block and Report) options are both selected, and any listed "Processes to exclude:" are approved by the IAO/IAM, this is not a finding.
-If "Prevent mass mailing worms from sending email" (Block and Report) options are both selected, but listed "Processes to exclude:" have not been approved by the IAO/IAM, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-42563" severity="medium" conversionstatus="pass" title="DTAM152--McAfee VirusScan on-access script exclusions" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Many attackers use toolkits containing several different types of utilities and scripts that can be used to probe and attack hosts. All scripts should be scanned and none should be excluded from scanning.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-On the menu bar, click Task-&gt;On-Access Scanner Properties.
-Select the General Settings.
-
-Under the ScriptScan tab, locate the "ScriptScan process exclusions:" label. Ensure there are no exclusions listed in the Process field.
-
-Criteria:  If there are no exclusions listed in the Process field, this is a not finding. 
-If there are exclusions listed in the Process field, and the exclusions have been documented with, and approved by, the ISSO/ISSM/DAA, this is not a finding. 
-If there are exclusions listed in the Process field, and the exclusions have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-SystemCore\VSCore\Script Scanner
-
-Criteria:  If the ExcludedProcesses REG_MULTI_SZ has any entries, and the excluded processes have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-42572" severity="medium" conversionstatus="pass" title="DTAM160-McAfee VirusScan on-access URL exclusions" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Many attackers use toolkits containing several different types of utilities and scripts that can be used to probe and attack hosts. All scripts should be scanned and none should be excluded from scanning.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-On the menu bar, click Task-&gt;On-Access Scanner Properties.
-Select the General Settings.
-
-Under the ScriptScan tab, locate the "ScriptScan URL exclusions:" label. Ensure there are no URL exclusions listed in the URL field.
-
-Criteria:  If there are no exclusions listed in the URL field, this is a not finding. 
-If there are exclusions listed in the URL field, and the exclusions have been documented with, and approved by, the ISSO/ISSM/DAA, this is not a finding. 
-If there are exclusions listed in the URL field, and the exclusions have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-SystemCore\VSCore\Script Scanner
-
-Criteria:  If the ExcludedURLs REG_MULTI_SZ has any entries, and the excluded URLs have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.</RawString>
-    </Rule>
-  </DocumentRule>
-  <ManualRule dscresourcemodule="None">
-    <Rule id="V-6599" severity="medium" conversionstatus="pass" title="DTAM045-McAfee VirusScan fixed disk and processes" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Antivirus software is the mostly commonly used technical control for malware threat mitigation. Antivirus software on hosts should be configured to scan all hard drives regularly to identify any file system infections and to scan any removable media, if applicable, before media is inserted into the system. Not scheduling a regular scan of the hard drives of a system and/or not configuring the scan to scan all files and running processes, introduces a higher risk of threats going undetected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Scan Locations tab, in the box under the "Specify where scanning takes place." label, ensure both "All fixed drives" or "All local drives" and "Running processes" options are included.
-
-Criteria:  If "All fixed drives" or "All local drives" and "Running processes" are displayed in the configuration for the daily or weekly On Demand Scan, this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with the weekly on-demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, there exists a szScanItem with a REG_SZ value of "FixedDrives" or "LocalDrives" and a szScanItem with a REG_SZ value of "SpecialMemory", this is not a finding.</RawString>
-    </Rule>
-    <Rule id="V-6600" severity="medium" conversionstatus="pass" title="DTAM046-McAfee VirusScan include subfolders" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Antivirus software is the mostly commonly used technical control for malware threat mitigation. Antivirus software on hosts should be configured to scan all hard drives and folders regularly to identify any file system infections and to scan any removable media, if applicable, before media is inserted into the system. Not scheduling a regular scan of the hard drives of a system and/or not configuring the scan to scan all files and running processes, introduces a higher risk of threats going undetected.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Scan Locations tab, locate the "Scan options:" label. Ensure the "Include subfolders" option is selected.
-
-Criteria:  If "Include subfolders" is selected, this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, the bScanSubdirs has value of 0, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-6601" severity="medium" conversionstatus="pass" title="DTAM047-McAfee VirusScan include boot sectors" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Boot sector viruses will install into the boot sector of a system, ensuring that they will execute when the user boots the system. This risk is mitigated by scanning boot sectors at each startup of the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Scan Locations tab, locate the "Scan options:" label. Ensure the "Scan boot sectors" option is selected.
-
-Criteria:  If "Scan boot sectors" is selected, this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, the bSkipBootScan has value of 1, this is a finding.
-</RawString>
-    </Rule>
-    <Rule id="V-6602" severity="medium" conversionstatus="pass" title="DTAM048-McAfee VirusScan scan all files parameter " dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific file types will increase the risk of a malware-infected file going undetected. By configuring antivirus software to scan all file types, the scanner has a higher success rate at detecting and eradicating malware.
-&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Scan Items tab, locate the "File types to scan:" label. Ensure the "All files" option is selected.
-
-Criteria:  If "All files" is selected, this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
-
-Criteria: If, under the applicable GUID key, the bScanAllFiles has value of 0, this is a finding.</RawString>
     </Rule>
     <Rule id="V-6612" severity="medium" conversionstatus="pass" title="DTAM053-McAfee VirusScan decode MIME encoded" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Multipurpose Internet Mail Extensions (MIME) encoded files can be crafted to hide a malicious payload. When the MIME encoded file is presented to software that decodes the MIME encoded files, such as an email client, the malware is released. Scanning these files as part of the regularly scheduled scans tasks will mitigate this risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -232,7 +164,7 @@ Criteria:  If "Decode MIME encoded files" is selected, this is not a finding.
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -256,7 +188,7 @@ Criteria:  If "Find unknown program threats" is selected, this is not a finding.
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -280,7 +212,7 @@ Criteria:  If "Find unknown macro threats" is selected, this is not a finding.
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -303,7 +235,7 @@ Criteria:  If "Clean" is selected for "Perform this action first", this is not a
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -326,7 +258,7 @@ Criteria:  If "Delete" is selected for "If the first action fails, then perform 
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -349,7 +281,7 @@ Criteria:  If "Enable activity logging and accept the default location for the l
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -373,7 +305,7 @@ Criteria:  If the "Limit the size of log file" option is selected and the "Maxim
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -398,7 +330,7 @@ Criteria:  If the "Failure to scan encrypted files" option is selected, this is 
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
@@ -424,7 +356,7 @@ Criteria:  If the "Enable (scheduled task runs at a specified time)" option is s
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
 DesktopProtection\Tasks
 
 Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on demand client scan task. 
@@ -432,6 +364,30 @@ Under the DesktopProtection\Tasks, and with the assistance of the System Adminis
 Criteria:  If the value for bSchedEnabled is not 1, this is a finding.
 If the value for eScheduletype is not either 0 or 1, this is a finding.  
 If the value for bSchedEnabled is 1 and the value for eScheduletype is  0 or 1 this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-14654" severity="medium" conversionstatus="pass" title="DTAM058-McAfee VirusScan check unwanted programs " dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Potentially Unwanted Programs (PUPs) include Spyware, Adware, Remote Administration Tools, Dialers, Password Crackers, Jokes, and Key Loggers. While PUPs do not typically have any infections capability on their own, they rely on malware or other attach mechanisms to be installed onto target hosts, after which they will collect and transfer data from the host to an external host and/or will be used as attach mechanisms. Configuring the antivirus software to attempt to clean the file first will allow for the possibility of a false positive. In most cases, however, the secondary action of delete will be used, mitigating the risk of the PUPs being installed and used maliciously.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Scan Items tab, locate the "Options:" label. Ensure the "Detect unwanted programs" option is selected.
+
+Criteria:  If "Detect unwanted programs" option is selected, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, the ApplyNVP has a value of 0, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-14657" severity="medium" conversionstatus="pass" title="DTAM130-McAfee VirusScan buffer overflow protection" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Buffer overflow is an anomaly where a program, while writing data to a buffer, overruns the buffer's boundary and overwrites adjacent memory. This anomaly has been used maliciously, explicitly to craft exploits. Buffer overflow attacks compose greater than 25% of malware attacks. Without buffer overflow protection enabled, systems are more vulnerable to attacks that attempt to overwrite adjacent memory in the stack frame. Buffer overflow protection is only configurable on non-64-bit systems.
@@ -555,6 +511,168 @@ SystemCore\VSCore\On Access Scanner\BehaviourBlocking
 
 Criteria:  If the value of bLimitSize_Ent is 1 and dwMaxLogSizeMB_Ent is configured to Decimal (10) or higher, this is not a finding. If the bLogToFile_Ent is 0 or if dwMaxLogSizeMB_Ent is less than Decimal (10), this is a finding.</RawString>
     </Rule>
+    <Rule id="V-42561" severity="medium" conversionstatus="pass" title="DTAM150-Access Protection mass mailing worms" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Many viruses and worms find email addresses on the infected system and send themselves to these addresses. They do this by connecting directly to the email servers whose names they have harvested from the local system. This rule prevents any process from talking to a foreign email server using SMTP. By blocking this communication, a machine may become infected with a new mass-mailing virus, but that virus will be unable to spread further by email. It prevents outbound access to SMTP ports 25 and 587 on all programs except known email clients listed as an exclusion.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>NOTE: If the system being reviewed has the function of sending email via the SMTP protocol, this setting is not applicable.
+
+NOTE: Since there is no HIPS signature to provide this same protection, this check is applicable even if HIPS is enabled.
+
+Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+Under the Task column, select Access Protection, right-click, and select Properties.
+
+Under the Access Protection tab, locate the "Access protection rules:" label. In the "Categories" box, select "Anti-Virus Standard Protection". Ensure "Prevent mass mailing worms from sending email" (Block and Report) options are both selected. Click Edit. Under the "Processes to exclude:" section, verify no processes are listed. If any processes are listed, they must be documented with, and approved by, the IAO/IAM.
+
+Criteria:  
+If "Prevent mass mailing worms from sending email" (Block and Report) options are not both selected. This is a finding.
+If "Prevent mass mailing worms from sending email" (Block and Report) options are both selected, and any listed "Processes to exclude:" are approved by the IAO/IAM, this is not a finding.
+If "Prevent mass mailing worms from sending email" (Block and Report) options are both selected, but listed "Processes to exclude:" have not been approved by the IAO/IAM, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-42563" severity="medium" conversionstatus="pass" title="DTAM152--McAfee VirusScan on-access script exclusions" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Many attackers use toolkits containing several different types of utilities and scripts that can be used to probe and attack hosts. All scripts should be scanned and none should be excluded from scanning.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+On the menu bar, click Task-&gt;On-Access Scanner Properties.
+Select the General Settings.
+
+Under the ScriptScan tab, locate the "ScriptScan process exclusions:" label. Ensure there are no exclusions listed in the Process field.
+
+Criteria:  If there are no exclusions listed in the Process field, this is a not finding. 
+If there are exclusions listed in the Process field, and the exclusions have been documented with, and approved by, the ISSO/ISSM/DAA, this is not a finding. 
+If there are exclusions listed in the Process field, and the exclusions have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\Script Scanner
+
+Criteria:  If the ExcludedProcesses REG_MULTI_SZ has any entries, and the excluded processes have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-42564" severity="medium" conversionstatus="pass" title="DTAM153--McAfee VirusScan on-access file exclusions" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific files will increase the risk of a malware-infected file going undetected. By configuring antivirus software without any exclusions, the scanner has a higher success rate at detecting and eradicating malware.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+On the menu bar, click Task-&gt;On-Access Scanner Properties.
+Select All Processes.
+
+Under the Exclusions tab, locate the "What not to scan:" label. Ensure there are no exclusions listed. If exclusions are listed, verify they have been documented and approved by the ISSO/ISSM/AO.
+
+Criteria: If there are no exclusions listed in the "What not to scan:" field, this is a not finding. 
+If there are exclusions listed in the "What not to scan:" field, and the exclusions have been documented with, and approved by, the ISSO/ISSM/AO, this is not a finding. 
+If there are exclusions listed in the "What not to scan:" field, and the exclusions have not been documented with, and approved by, the ISSO/ISSM/AO, this is a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default
+
+Criteria: If the value NumExcludeItems is 0, this is not a finding. 
+If NumExcludeItems is not 1 or greater, and exclusions have been not been documented with and approved by the ISSO/ISSM/AO, this is a finding.
+If NumExcludeItems is 1 or greater, and exclusions have been approved by the ISSO/ISSM/AO, this is not a finding.</RawString>
+    </Rule>
+    <Rule id="V-42565" severity="medium" conversionstatus="pass" title="DTAM154-McAfee VirusScan on-demand memory rootkits" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A rootkit is a stealthy type of software, usually malicious, and is designed to mask the existence of processes or programs from normal methods of detection. Rootkits will often enable continued privileged access to a computer. Scanning and handling detection of rootkits will mitigate the likelihood of rootkits being installed and used maliciously on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Scan Locations tab, in the box under the "Specify where scanning takes place." label, ensure the "Memory for rootkits" option is displayed.
+
+Criteria:  If "Memory for rootkits" is displayed in the in the configuration for the daily or weekly On-Demand Scan, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, there exists a szScanItem with a REG_SZ value of "SpecialScanForRootkits", this is not a finding. </RawString>
+    </Rule>
+    <Rule id="V-42566" severity="medium" conversionstatus="pass" title="DTAM155--McAfee VirusScan on-demand unwanted programs first action" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Malware may have infected a file that is necessary to the user. By configuring the antivirus software to first attempt cleaning the infected file, availability to the file is not sacrificed. If a cleaning attempt is not successful, however, deleting the file is the only safe option to ensure the malware is not introduced onto the system or network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Actions tab, locate the "When an unwanted program is found:" label. Ensure for the "Perform this action first:" pull down menu, "Clean" is selected.
+
+Criteria:  If "Clean" is selected for "Perform this action first", this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, the uAction_Program does not have a value of 5, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-42567" severity="medium" conversionstatus="pass" title="DTAM164-McAfee VirusScan Email on-delivery threat second action" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Malware may have infected a file that is necessary to the user. By configuring the antivirus software to first attempt cleaning the infected file, availability to the file is not sacrificed. If a cleaning attempt is not successful, however, deleting the file is the only safe option to ensure the malware is not introduced onto the system or network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
+Right-click the Task and select Properties.
+
+Under the Actions tab, locate the "When an unwanted program is found:" label. Ensure from the "If the first action fails, then perform this action:" pull down menu, "Delete" is selected.
+
+Criteria:  If "Delete" is selected for "If the first action fails, then perform this action:", this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+DesktopProtection\Tasks
+
+Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
+
+Criteria:  If, under the applicable GUID key, the uSecAction_Program does not have a value of 4, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-42572" severity="medium" conversionstatus="pass" title="DTAM160-McAfee VirusScan on-access URL exclusions" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Many attackers use toolkits containing several different types of utilities and scripts that can be used to probe and attack hosts. All scripts should be scanned and none should be excluded from scanning.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+On the menu bar, click Task-&gt;On-Access Scanner Properties.
+Select the General Settings.
+
+Under the ScriptScan tab, locate the "ScriptScan URL exclusions:" label. Ensure there are no URL exclusions listed in the URL field.
+
+Criteria:  If there are no exclusions listed in the URL field, this is a not finding. 
+If there are exclusions listed in the URL field, and the exclusions have been documented with, and approved by, the ISSO/ISSM/DAA, this is not a finding. 
+If there are exclusions listed in the URL field, and the exclusions have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\Script Scanner
+
+Criteria:  If the ExcludedURLs REG_MULTI_SZ has any entries, and the excluded URLs have not been documented with, and approved by, the ISSO/ISSM/DAA, this is a finding.</RawString>
+    </Rule>
+  </DocumentRule>
+  <ManualRule dscresourcemodule="None">
     <Rule id="V-19910" severity="high" conversionstatus="pass" title="DTAG008 - The antivirus signature file age exceeds 7 days." dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Antivirus signature files are updated almost daily by antivirus software vendors. These files are made available to antivirus clients as they are published. Keeping virus signature files as current as possible is vital to the security of any system.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -741,75 +859,6 @@ Under the Access Protection tab, locate the "Access protection rules:" label. In
 
 Criteria:  If both "Prevent IRC communication" (Block and Report) options are selected, this is not a finding.</RawString>
     </Rule>
-    <Rule id="V-42565" severity="medium" conversionstatus="pass" title="DTAM154-McAfee VirusScan on-demand memory rootkits" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A rootkit is a stealthy type of software, usually malicious, and is designed to mask the existence of processes or programs from normal methods of detection. Rootkits will often enable continued privileged access to a computer. Scanning and handling detection of rootkits will mitigate the likelihood of rootkits being installed and used maliciously on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Scan Locations tab, in the box under the "Specify where scanning takes place." label, ensure the "Memory for rootkits" option is displayed.
-
-Criteria:  If "Memory for rootkits" is displayed in the in the configuration for the daily or weekly On-Demand Scan, this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, there exists a szScanItem with a REG_SZ value of "SpecialScanForRootkits", this is not a finding. </RawString>
-    </Rule>
-    <Rule id="V-42566" severity="medium" conversionstatus="pass" title="DTAM155--McAfee VirusScan on-demand unwanted programs first action" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Malware may have infected a file that is necessary to the user. By configuring the antivirus software to first attempt cleaning the infected file, availability to the file is not sacrificed. If a cleaning attempt is not successful, however, deleting the file is the only safe option to ensure the malware is not introduced onto the system or network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Actions tab, locate the "When an unwanted program is found:" label. Ensure for the "Perform this action first:" pull down menu, "Clean" is selected.
-
-Criteria:  If "Clean" is selected for "Perform this action first", this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, the uAction_Program does not have a value of 5, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-42567" severity="medium" conversionstatus="pass" title="DTAM164-McAfee VirusScan Email on-delivery threat second action" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Malware may have infected a file that is necessary to the user. By configuring the antivirus software to first attempt cleaning the infected file, availability to the file is not sacrificed. If a cleaning attempt is not successful, however, deleting the file is the only safe option to ensure the malware is not introduced onto the system or network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task, with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Actions tab, locate the "When an unwanted program is found:" label. Ensure from the "If the first action fails, then perform this action:" pull down menu, "Delete" is selected.
-
-Criteria:  If "Delete" is selected for "If the first action fails, then perform this action:", this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\McAfee\ (32-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, the uSecAction_Program does not have a value of 4, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-59365" severity="medium" conversionstatus="pass" title="DTAM170--Access Protection block execution of all programs from temp folder" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;This rule will block any executable from running from the Temp directory; however, this rule is much more restrictive in that it stops nearly all processes from launching in the Temp folder. This provides the most protection, but also has a higher chance of blocking a legitimate application from being installed.
 Intention: Most viruses need to be run once by a person before infecting a computer. This can be done in many ways, such as opening an executable attachment in an email, downloading a program from the Internet, etc. For example, &lt;http://vil.nai.com/vil/content/v_101034.htm&gt;.
@@ -990,7 +1039,7 @@ Criteria:  If the value of bLogtoFile is 1, this is not a finding. If the value 
       <ValueName>bLogtoFile</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-6475" severity="medium" conversionstatus="pass" title="DTAM010-McAfee VirusScan limit log size parameter " dscresource="Registry">
+    <Rule id="V-6475.a" severity="medium" conversionstatus="pass" title="DTAM010-McAfee VirusScan limit log size parameter " dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;While logging is imperative to forensic analysis, logs could grow to the point of impacting disk space on the system. In order to avoid the risk of logs growing to the size of impacting the operating system, the log size will be restricted. If the data in the log file exceeds the file size set, the oldest 20 percent of the entries are deleted and new data is appended to the file, so although the file size is restricted, it must also be large enough to retain forensic value.
 &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1017,6 +1066,35 @@ If bLimitSize is 0, this is a finding.
 If dwMaxLogSizeMB is less than Decimal (10), this is a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>bLimitSize</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-6475.b" severity="medium" conversionstatus="pass" title="DTAM010-McAfee VirusScan limit log size parameter " dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;While logging is imperative to forensic analysis, logs could grow to the point of impacting disk space on the system. In order to avoid the risk of logs growing to the size of impacting the operating system, the log size will be restricted. If the data in the log file exceeds the file size set, the oldest 20 percent of the entries are deleted and new data is appended to the file, so although the file size is restricted, it must also be large enough to retain forensic value.
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;ECSC-1&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+On the menu bar, click Task-&gt;On-Access Scanner Properties.
+Select the General Settings.
+
+Under the Reports tab, locate the "Log file size:" label. Ensure the "Limit the size of log file" option is selected. Ensure the "Maximum log file size" is at least 10MB.
+
+Criteria:  If the "Limit the size of log file" option is selected and the "Maximum log file size:" is at least 10MB, this is not a finding. 
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit) 
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\On Access Scanner\McShield\Configuration
+
+Criteria:  If the value of bLimitSize is 1 and dwMaxLogSizeMB is configured to Decimal (10) or higher, this is not a finding. 
+If bLimitSize is 0, this is a finding.
+If dwMaxLogSizeMB is less than Decimal (10), this is a finding.</RawString>
+      <ValueData>10</ValueData>
+      <ValueName>dwMaxLogSizeMB</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-6478" severity="medium" conversionstatus="pass" title="DTAM012-McAfee VirusScan log summary parameter " dscresource="Registry">
@@ -1071,12 +1149,12 @@ Criteria:  If the value ReportEncryptedFiles is 1, this is not a finding. If the
       <ValueName>ReportEncryptedFiles</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-6585" severity="medium" conversionstatus="pass" title="DTAM016-McAfee VirusScan autoupdate parameters" dscresource="Registry">
+    <Rule id="V-6585.a" severity="medium" conversionstatus="pass" title="DTAM016-McAfee VirusScan autoupdate parameters" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Antivirus signature files are updated almost daily by antivirus software vendors. These files are made available to antivirus clients as they are published. Keeping virus signature files as current as possible is vital to the security of any system. The antivirus software product must be configured to receive those updates automatically in order to afford the expected protection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5}</Key>
+      <Key>HKLM\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>NOTE: Automatic updates to antivirus signature definitions are to be performed once every 24 hours for hosts connected to the network. Hosts not connected to the network must be updated manually. 
@@ -1085,7 +1163,7 @@ Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&
 
 Under the “Task” column, right-click on the “AutoUpdate” option, select “Properties”.
 Click the “Schedule” button.
-NOTE: Automatic updates to antivirus signature definitions are to be performed once every 24 hours for hosts connected to the network. Hosts not connected to the network must be updated manually.
+On the “Task” tab, the selection for "Enable (scheduled task runs at specified time)" must be selected.
 On the “Schedule” tab, the "Run task:" option must be configured with “Daily”.
 
 Alternative Registry method:
@@ -1103,6 +1181,40 @@ If the “AutoUpdate” task schedule is not enabled, or is not configured to ru
 </RawString>
       <ValueData>1</ValueData>
       <ValueName>bSchedEnabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-6585.b" severity="medium" conversionstatus="pass" title="DTAM016-McAfee VirusScan autoupdate parameters" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Antivirus signature files are updated almost daily by antivirus software vendors. These files are made available to antivirus clients as they are published. Keeping virus signature files as current as possible is vital to the security of any system. The antivirus software product must be configured to receive those updates automatically in order to afford the expected protection.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>NOTE: Automatic updates to antivirus signature definitions are to be performed once every 24 hours for hosts connected to the network. Hosts not connected to the network must be updated manually. 
+
+Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&gt; McAfee &gt;&gt; VirusScan Console.
+
+Under the “Task” column, right-click on the “AutoUpdate” option, select “Properties”.
+Click the “Schedule” button.
+On the “Task” tab, the selection for "Enable (scheduled task runs at specified time)" must be selected.
+On the “Schedule” tab, the "Run task:" option must be configured with “Daily”.
+
+Alternative Registry method:
+Use the Windows Registry Editor to navigate to the following key: 
+HKLM\Software\McAfee for 32-bit systems
+HKLM\Software\Wow6432Node\McAfee for 64-bit systems
+\DesktopProtection\Tasks\{A14CD6FC-3BA8-4703-87BF-e3247CE382F5}
+
+Criteria: 
+If “bSchedEnabled=1” (indicates Scheduling is enabled) and “eScheduleType=0” (indicates Daily), this is not a finding. 
+
+If “bSchedEnabled=0” (indicates Scheduling is not enabled), this is a finding.
+
+If the “AutoUpdate” task schedule is not enabled, or is not configured to run at a frequency of “Daily”, this is a finding.
+</RawString>
+      <ValueData>0</ValueData>
+      <ValueName>eScheduleType</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-6586" severity="medium" conversionstatus="pass" title="DTAM021-McAfee VirusScan Exchange scanner" dscresource="Registry">
@@ -1294,7 +1406,7 @@ Criteria:  If the value bLogToFile is 1, this is not a finding. If the value is 
       <ValueName>bLogToFile</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-6597" severity="medium" conversionstatus="pass" title="DTAM036-McAfee VirusScan limit log size email" dscresource="Registry">
+    <Rule id="V-6597.a" severity="medium" conversionstatus="pass" title="DTAM036-McAfee VirusScan limit log size email" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;While logging is imperative to forensic analysis, logs could grow to the point of impacting disk space on the system. In order to avoid the risk of logs growing to the size of impacting the operating system, the log size will be restricted. If the data in the log file exceeds the file size set, the oldest 20 percent of the entries are deleted and new data is appended to the file so although the file size is restricted, it must also be large enough to retain forensic value.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -1317,6 +1429,31 @@ SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions
 Criteria:   If both the value of bLimitSize is 1 and the value of dwMaxLogSizeMB is at least decimal (10), this is not a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>bLimitSize</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-6597.b" severity="medium" conversionstatus="pass" title="DTAM036-McAfee VirusScan limit log size email" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;While logging is imperative to forensic analysis, logs could grow to the point of impacting disk space on the system. In order to avoid the risk of logs growing to the size of impacting the operating system, the log size will be restricted. If the data in the log file exceeds the file size set, the oldest 20 percent of the entries are deleted and new data is appended to the file so although the file size is restricted, it must also be large enough to retain forensic value.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&gt; McAfee &gt;&gt; VirusScan Console.
+Under the Task column, select the On-Delivery Email Scanner Option, right-click, and select Properties.
+
+Under the Reports tab, locate the "Log file size" label. 
+
+Criteria:  If the "Limit the size of log file" is checked and the "Maximum log file size:" is at least 10MB, this is not a finding. 
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions
+
+Criteria:   If both the value of bLimitSize is 1 and the value of dwMaxLogSizeMB is at least decimal (10), this is not a finding.</RawString>
+      <ValueData>10</ValueData>
+      <ValueName>dwMaxLogSizeMB</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14618" severity="medium" conversionstatus="pass" title="DTAM090-McAfee VirusScan on-access script scan parameter" dscresource="Registry">
@@ -1383,8 +1520,8 @@ These block connection settings will most often be used on a server housing shar
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} greater than or equal to 1E (HEX)</OrganizationValueTestString>
       <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
 On the menu bar, click Task-&gt;On-Access Scanner Properties.
 Select the General Settings.
@@ -1400,8 +1537,7 @@ SystemCore\VSCore\On Access Scanner\BehaviourBlocking
 
 Criteria:  If the value of VSIDBlockTimeout &gt;= to HEX 1E, this is not a finding.
 </RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData />
       <ValueName>VSIDBlockTimeout</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
@@ -1515,7 +1651,7 @@ Criteria:  If the value bScanOutgoing is 1, this is not a finding. If the value 
       <ValueName>bScanOutgoing</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-14625" severity="medium" conversionstatus="pass" title="DTAM103-McAfee VirusScan scan all files parameter" dscresource="Registry">
+    <Rule id="V-14625.a" severity="medium" conversionstatus="pass" title="DTAM103-McAfee VirusScan scan all files parameter" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific file types will increase the risk of a malware-infected file going undetected. By configuring antivirus software to scan all file types, the scanner has a higher success rate at detecting and eradicating malware.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -1539,6 +1675,32 @@ SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default
 Criteria:  If the value LocalExtensionMode is 1 and the value of NetworkExtensionMode is 1 this is not a finding. If either of these is not 1, this is a finding.</RawString>
       <ValueData>1</ValueData>
       <ValueName>LocalExtensionMode</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-14625.b" severity="medium" conversionstatus="pass" title="DTAM103-McAfee VirusScan scan all files parameter" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific file types will increase the risk of a malware-infected file going undetected. By configuring antivirus software to scan all file types, the scanner has a higher success rate at detecting and eradicating malware.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+On the menu bar, click Task-&gt;On-Access Scanner Properties.
+Select All Processes.
+
+Under the Scan Items tab, locate the "What to scan:" label. Ensure the "All Files" radio button is selected.
+
+Criteria:  If the "All Files" radio button is selected, this is not a finding.
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default
+
+Criteria:  If the value LocalExtensionMode is 1 and the value of NetworkExtensionMode is 1 this is not a finding. If either of these is not 1, this is a finding.</RawString>
+      <ValueData>1</ValueData>
+      <ValueName>NetworkExtensionMode</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14626" severity="medium" conversionstatus="pass" title="DTAM104-McAfee VirusScan heuristics program " dscresource="Registry">
@@ -1660,7 +1822,7 @@ Select All Processes.
 
 Under the Actions tab, locate the "When a threat is found:" label. Ensure from the "If the first action fails, then perform this action:" pull down menu, "Delete files automatically" is selected.
 
-Under the Actions tab, locate the "When a threat is found:" label. Ensure from the "If the first action fails, then perform this action:" pull down menu, "Delete files automatically" is selected.
+Criteria:  If  the "Delete files automatically" is selected for "If the first action fails, then perform this action:", this is not a finding.
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
@@ -1697,36 +1859,6 @@ SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ActionOptions
 Criteria:  If the value for uAction_Program is not 5, this is a finding.</RawString>
       <ValueData>5</ValueData>
       <ValueName>uAction_Program</ValueName>
-      <ValueType>Dword</ValueType>
-    </Rule>
-    <Rule id="V-14654" severity="medium" conversionstatus="fail" title="DTAM058-McAfee VirusScan check unwanted programs " dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;Potentially Unwanted Programs (PUPs) include Spyware, Adware, Remote Administration Tools, Dialers, Password Crackers, Jokes, and Key Loggers. While PUPs do not typically have any infections capability on their own, they rely on malware or other attach mechanisms to be installed onto target hosts, after which they will collect and transfer data from the host to an external host and/or will be used as attach mechanisms. Configuring the antivirus software to attempt to clean the file first will allow for the possibility of a false positive. In most cases, however, the secondary action of delete will be used, mitigating the risk of the PUPs being installed and used maliciously.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;Responsibility&gt;Information Assurance Officer&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-In the console window, under Task,  with the assistance of the System Administrator, identify the weekly on-demand client scan task. 
-Right-click the Task and select Properties.
-
-Under the Scan Items tab, locate the "Options:" label. Ensure the "Detect unwanted programs" option is selected.
-
-Criteria:  If "Detect unwanted programs" option is selected, this is not a finding.
-
-On the client machine, use the Windows Registry Editor to navigate to the following key:
-HKLM\Software\McAfee\ (32-bit)
-HKLM\Software\Wow6432Node\McAfee\ (64-bit)
-DesktopProtection\Tasks
-
-Under the DesktopProtection\Tasks, and with the assistance of the System Administrator, review each GUID key's szTaskName to find the GUID key associated with weekly on-demand client scan task. 
-
-Criteria:  If, under the applicable GUID key, the ApplyNVP has a value of 0, this is a finding.
-</RawString>
-      <ValueData>
-      </ValueData>
-      <ValueName />
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-14662" severity="medium" conversionstatus="pass" title="DTAM135-McAfee VirusScan detection of Spyware" dscresource="Registry">
@@ -1782,7 +1914,7 @@ Criteria:  If the value DetectAdware is 1, this is not a finding.</RawString>
       <ValueName>DetectAdware</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-35027" severity="medium" conversionstatus="pass" title="DTAM137-McAfee VirusScan File Reputation Service" dscresource="Registry">
+    <Rule id="V-35027.a" severity="medium" conversionstatus="pass" title="DTAM137-McAfee VirusScan File Reputation Service" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Antivirus software vendors use collective intelligence from sensors and cross-vector intelligence from web, email, and network threats to compile scores that reflect the likelihood of whether a file in question is malware. The collective intelligence is constantly being updated, more frequently than the typical daily antivirus signature files. With File Reputation lookup, a more real-time response to potential malicious code is realized than with the local-running antivirus software, since by querying the cloud-based database when a file appears to be suspicious, up-to-the-minute intelligence is provided. This type of protection reduces the threat protection time period from days to milliseconds, increases malware detection rates, and reduces downtime and remediation costs associated with malware attacks. Using File Reputation lookup is mandated by US CYBERCOM on DoD systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -1808,9 +1940,38 @@ SystemCore\VSCore\On Access Scanner
 Criteria:  If the value of ArtemisEnabled is REG_DWORD = 0, this is a finding.
 If the value of ArtemisLevel is REG_DWORD = 0 or REG_DWORD = 1, this is a finding.
 If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWORD = 2, 3 or 4, this is not a finding.</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData>1</ValueData>
       <ValueName>ArtemisEnabled</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-35027.b" severity="medium" conversionstatus="pass" title="DTAM137-McAfee VirusScan File Reputation Service" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Antivirus software vendors use collective intelligence from sensors and cross-vector intelligence from web, email, and network threats to compile scores that reflect the likelihood of whether a file in question is malware. The collective intelligence is constantly being updated, more frequently than the typical daily antivirus signature files. With File Reputation lookup, a more real-time response to potential malicious code is realized than with the local-running antivirus software, since by querying the cloud-based database when a file appears to be suspicious, up-to-the-minute intelligence is provided. This type of protection reduces the threat protection time period from days to milliseconds, increases malware detection rates, and reduces downtime and remediation costs associated with malware attacks. Using File Reputation lookup is mandated by US CYBERCOM on DoD systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match 2|3|4 </OrganizationValueTestString>
+      <RawString>NOTE: For systems on the SIPRnet, this check is Not Applicable.
+
+Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+On the menu bar, click Task-&gt;On-Access Scanner Properties.
+Select the General Settings.
+
+Under the General tab, locate the "Artemis (Heuristic network check for suspicious files):" label. Ensure the Sensitivity level is set to "Medium" or higher.
+
+Criteria:  If the Sensitivity level of "Medium", or higher, is selected, this is not a finding. 
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\On Access Scanner
+
+Criteria:  If the value of ArtemisEnabled is REG_DWORD = 0, this is a finding.
+If the value of ArtemisLevel is REG_DWORD = 0 or REG_DWORD = 1, this is a finding.
+If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWORD = 2, 3 or 4, this is not a finding.</RawString>
+      <ValueData />
+      <ValueName>ArtemisLevel</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-42514" severity="medium" conversionstatus="pass" title="DTAM162-McAfee VirusScan Email on-delivery threat second action" dscresource="Registry">
@@ -1922,7 +2083,7 @@ Criteria:  If the value of bLogToFile is REG_DWORD = 1, this is not a finding.
       <ValueName>bLogToFile</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42551" severity="medium" conversionstatus="pass" title="DTAM140 - Access Protection log file restriction" dscresource="Registry">
+    <Rule id="V-42551.a" severity="medium" conversionstatus="pass" title="DTAM140 - Access Protection log file restriction" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;While logging is imperative to forensic analysis, logs could grow to the point of impacting disk space on the system. In order to avoid the risk of logs growing to the size of impacting the operating system, the log size will be restricted, but must also be large enough to retain forensic value.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -1951,37 +2112,36 @@ Criteria: If the value of bLimitSize is 1 and dwMaxLogSizeMB is configured to De
       <ValueName>bLimitSize</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42564" severity="medium" conversionstatus="pass" title="DTAM153--McAfee VirusScan on-access file exclusions" dscresource="Registry">
-      <Description>&lt;VulnDiscussion&gt;When scanning for malware, excluding specific files will increase the risk of a malware-infected file going undetected. By configuring antivirus software without any exclusions, the scanner has a higher success rate at detecting and eradicating malware.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+    <Rule id="V-42551.b" severity="medium" conversionstatus="pass" title="DTAM140 - Access Protection log file restriction" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;While logging is imperative to forensic analysis, logs could grow to the point of impacting disk space on the system. In order to avoid the risk of logs growing to the size of impacting the operating system, the log size will be restricted, but must also be large enough to retain forensic value.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default</Key>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\BehaviourBlocking</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-On the menu bar, click Task-&gt;On-Access Scanner Properties.
-Select All Processes.
+      <RawString>Note: If DTAM161 "McAfee VirusScan Access Protection Policies must be configured to enable access protection" has been marked as "Not Applicable", this check is not applicable.
 
-Under the Exclusions tab, locate the "What not to scan:" label. Ensure there are no exclusions listed. If exclusions are listed, verify they have been documented and approved by the ISSO/ISSM/AO.
+Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+Under the Task column, select Access Protection, right-click, and select Properties.
 
-Criteria: If there are no exclusions listed in the "What not to scan:" field, this is a not finding. 
-If there are exclusions listed in the "What not to scan:" field, and the exclusions have been documented with, and approved by, the ISSO/ISSM/AO, this is not a finding. 
-If there are exclusions listed in the "What not to scan:" field, and the exclusions have not been documented with, and approved by, the ISSO/ISSM/AO, this is a finding.
+Under the Reports tab, locate the "Log File:" label. 
+Ensure the "Limit the size of log file" option is selected. Ensure the "Maximum log file size" is 10MB or more.
+
+Criteria:  If the "Limit the size of log file" option is selected and the "Maximum log file size:" is 10MB or more, this is not a finding. 
 
 On the client machine, use the Windows Registry Editor to navigate to the following key:
 HKLM\Software\McAfee\ (32-bit)
 HKLM\Software\Wow6432Node\McAfee\ (64-bit)
-SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default
+SystemCore\VSCore\On Access Scanner\BehaviourBlocking
 
-Criteria: If the value NumExcludeItems is 0, this is not a finding. 
-If NumExcludeItems is not 1 or greater, and exclusions have been not been documented with and approved by the ISSO/ISSM/AO, this is a finding.
-If NumExcludeItems is 1 or greater, and exclusions have been approved by the ISSO/ISSM/AO, this is not a finding.</RawString>
-      <ValueData>0</ValueData>
-      <ValueName>NumExcludeItems</ValueName>
+Criteria: If the value of bLimitSize is 1 and dwMaxLogSizeMB is configured to Decimal (10) or higher, this is not a finding.
+</RawString>
+      <ValueData>10</ValueData>
+      <ValueName>dwMaxLogSizeMB</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42569" severity="medium" conversionstatus="pass" title="DTAM157-McAfee VirusScan Email on-delivery Artemis sensitivity level" dscresource="Registry">
+    <Rule id="V-42569.a" severity="medium" conversionstatus="pass" title="DTAM157-McAfee VirusScan Email on-delivery Artemis sensitivity level" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Antivirus software vendors use collective intelligence from sensors and cross-vector intelligence from web, email, and network threats to compile scores that reflect the likelihood of whether a file in question is malware. The collective intelligence is constantly being updated, more frequently than the typical daily antivirus signature files. With File Reputation lookup, a more real-time response to potential malicious code is realized than with the local-running antivirus software, since by querying the cloud-based database when a file appears to be suspicious, up-to-the-minute intelligence is provided. This type of protection reduces the threat protection time period from days to milliseconds, increases malware detection rates, and reduces downtime and remediation costs associated with malware attacks. Using File Reputation lookup is mandated by US CYBERCOM on DoD systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2009,12 +2169,43 @@ Criteria:  If the value of ArtemisEnabled is REG_DWORD = 0, this is a finding.
 If the value of ArtemisLevel is REG_DWORD = 0 or REG_DWORD = 1, this is a finding.
 If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWORD = 2, 3 or 4, this is not a finding.
 </RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData>1</ValueData>
       <ValueName>ArtemisEnabled</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
-    <Rule id="V-42570" severity="medium" conversionstatus="pass" title="DTAM158-McAfee VirusScan Email on-delivery notification email" dscresource="Registry">
+    <Rule id="V-42569.b" severity="medium" conversionstatus="pass" title="DTAM157-McAfee VirusScan Email on-delivery Artemis sensitivity level" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Antivirus software vendors use collective intelligence from sensors and cross-vector intelligence from web, email, and network threats to compile scores that reflect the likelihood of whether a file in question is malware. The collective intelligence is constantly being updated, more frequently than the typical daily antivirus signature files. With File Reputation lookup, a more real-time response to potential malicious code is realized than with the local-running antivirus software, since by querying the cloud-based database when a file appears to be suspicious, up-to-the-minute intelligence is provided. This type of protection reduces the threat protection time period from days to milliseconds, increases malware detection rates, and reduces downtime and remediation costs associated with malware attacks. Using File Reputation lookup is mandated by US CYBERCOM on DoD systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>{0} -match 2|3|4 </OrganizationValueTestString>
+      <RawString>Note: For systems on the SIPRnet, this check is Not Applicable.
+
+Note: If an email client is not running on this system, this check can be marked as Not Applicable.
+
+Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&gt; McAfee &gt;&gt; VirusScan Console.
+Under the Task column, select the On-Delivery Email Scanner Option, right-click, and select Properties.
+
+Under the Scan Items tab, locate the "Artemis (Heuristic network check for suspicious files):" label. Ensure the Sensitivity level is set to "Medium" or higher.
+
+Criteria:  If the Sensitivity level is set to "Medium" or higher, this is not a finding. 
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\Email Scanner
+
+Criteria:  If the value of ArtemisEnabled is REG_DWORD = 0, this is a finding.
+If the value of ArtemisLevel is REG_DWORD = 0 or REG_DWORD = 1, this is a finding.
+If the value of ArtemisEnabled is REG_DWORD = 1 and the ArtemisLevel is REG_DWORD = 2, 3 or 4, this is not a finding.
+</RawString>
+      <ValueData />
+      <ValueName>ArtemisLevel</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42570.a" severity="medium" conversionstatus="pass" title="DTAM158-McAfee VirusScan Email on-delivery notification email" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Email has become one of the most frequently used methods of spreading malware, through embedded HTML code and attachments. User awareness and training, warning users to not open suspicious emails or email attachments and not clicking on hyperlinks, etc., from unknown or known senders, will not fully protect from email-borne malware. Mass mailing worms are similar to an email-borne virus but is self-contained rather than infecting an existing file. Protecting from email-borne viruses and mass mailing worms by scanning email upon delivery mitigates the risk of infection via email.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
@@ -2040,10 +2231,39 @@ SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions
 Criteria:  If the value bSendMailToUser is 0, this is a finding.
 If the value for szSendTo is configured to any recipient other than the ISSO, ISSM,ePO Administrator, or System Administrator, this is a finding.
 </RawString>
-      <ValueData>
-      </ValueData>
-      <ValueName>szSendTo</ValueName>
+      <ValueData>1</ValueData>
+      <ValueName>bSendMailToUser</ValueName>
       <ValueType>Dword</ValueType>
+    </Rule>
+    <Rule id="V-42570.b" severity="medium" conversionstatus="pass" title="DTAM158-McAfee VirusScan Email on-delivery notification email" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;Email has become one of the most frequently used methods of spreading malware, through embedded HTML code and attachments. User awareness and training, warning users to not open suspicious emails or email attachments and not clicking on hyperlinks, etc., from unknown or known senders, will not fully protect from email-borne malware. Mass mailing worms are similar to an email-borne virus but is self-contained rather than infecting an existing file. Protecting from email-borne viruses and mass mailing worms by scanning email upon delivery mitigates the risk of infection via email.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKLM\Software\Wow6432Node\McAfee\SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions</Key>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>Configured to the ISSO, ISSM,ePO Administrator, or System Administrator </OrganizationValueTestString>
+      <RawString>Note: If an email client is not running on this system, this check can be marked as Not Applicable.
+
+Access the local VirusScan console by clicking Start &gt;&gt; All Programs &gt;&gt; McAfee &gt;&gt; VirusScan Console.
+Under the Task column, select the On-Delivery Email Scanner Option, right-click, and select Properties.
+
+Under the Alerts tab, locate the "Email alert:" label. Ensure "Send alert to mail user:" is selected. 
+Click on Configure. Verify the email recipient information is configured for a notification email to be sent to the ISSO, ISSM, ePO administrator, or System Administrator.
+
+Criteria:  If the option "Email alert:" is selected and the email recipient information is configured for a notification email to be sent to ISSO, ISSM,ePO administrator, or System Administrator, this is not a finding. 
+
+On the client machine, use the Windows Registry Editor to navigate to the following key:
+HKLM\Software\McAfee\ (32-bit)
+HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\AlertOptions
+
+Criteria:  If the value bSendMailToUser is 0, this is a finding.
+If the value for szSendTo is configured to any recipient other than the ISSO, ISSM,ePO Administrator, or System Administrator, this is a finding.
+</RawString>
+      <ValueData />
+      <ValueName>szSendTo</ValueName>
+      <ValueType>REG_SZ</ValueType>
     </Rule>
     <Rule id="V-42571" severity="medium" conversionstatus="pass" title="DTAM159-McAfee VirusScan Email on-delivery log session summary" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;Log management is essential to ensuring that computer security records are stored in sufficient detail for an appropriate period of time. Routine log analysis is beneficial for identifying security incidents, policy violations, fraudulent activity, and operational problems. Logs are also useful when performing auditing and forensic analysis, supporting internal investigations, establishing baselines, and identifying operational trends and long-term problems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -2070,7 +2290,7 @@ SystemCore\VSCore\Email Scanner\Outlook\OnDelivery\ReportOptions
 
 Criteria: If the “dwLogEvent” value is not “0x000001a0 (416)”, this is a finding.
 </RawString>
-      <ValueData>4</ValueData>
+      <ValueData>416</ValueData>
       <ValueName>dwLogEvent</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

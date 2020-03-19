@@ -21,4 +21,39 @@ $global:SingleLineRegistryValueName += [ordered]@{
         Match  = 'Wow6432Node\\McAfee'
         Select = '(?<=If the value\s)(\w+)'
     }
+    McAfee6 = @{
+        Match  = 'Wow6432Node\\McAfee'
+        Select = '(?<=\s\sIf the\s)(\w+)'
+    }
+    McAfee5 = @{
+        Match  = 'Wow6432Node\\McAfee'
+        Select = '(?<=Criteria:\sIf the\s.)(\w+)'
+    }
+}
+
+$global:SingleLineRegistryValueData += [ordered]@{
+    McAfee1 = @{
+        Select = '(?<=\sis\sREG_DWORD\s=\s)(\d+)'
+    }
+    McAfee2 = @{
+        Select = '(?<=does not have a value of\s)(\d+)'
+    }
+    McAfee3 = @{
+        Select = '(?<=\sis not\s)(\d+)'
+    }
+    McAfee4 = @{
+        Select = '(?<=0x000001a0\s\()(\d+)'
+    }
+    McAfee5 = @{
+        Select = '(?<=is not set to ")(\d+)'
+    }
+    McAfee6 = @{
+        Select = '(?<=does not have a value of\s)(\d+)'
+    }
+    McAfee7 = @{
+        Select = '(?<=If the value of\s)\w+\sis\s(\d+)'
+    }
+    McAfee8 = @{
+        Select = ' (?<=If the value\s)\w+\sis\s(\d+)'
+    }
 }
