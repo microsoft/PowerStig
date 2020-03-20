@@ -152,10 +152,6 @@ function Get-RegistryRuleExpressions
                 {
                     $spInclude += "Data.Office.ps1"
                 }
-                { $null -ne ($McafeeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
-                {
-                    $spInclude += "Data.Mcafee.ps1"
-                }
             }
         }
         else
