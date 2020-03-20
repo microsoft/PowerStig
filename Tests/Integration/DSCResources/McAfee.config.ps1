@@ -2,15 +2,16 @@ configuration McAfee_config
 {
     param
     (
-        [Parameter()]
-        [AllowNull()]
-        [string]
-        $Version,
 
         [Parameter()]
         [AllowNull()]
         [string]
         $TechnologyRole,
+        
+        [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyVersion,
 
         [Parameter(Mandatory = $true)]
         [string]
@@ -44,8 +45,8 @@ configuration McAfee_config
         & ([scriptblock]::Create("
         McAfee McAfeeConfiguration
         {
-            TechnologyRole = '$TechnlogyRole'
-            Version = '$Version'
+            Version = '$TechnologyRole'
+            TechnologyRole = '$TechnologyVersion'
             Stigversion = '$StigVersion'
             $(if ($OrgSettings -is [hashtable])
             {
