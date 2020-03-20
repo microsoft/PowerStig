@@ -1,21 +1,5 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 16 July 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="8/14/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_Dot_Net_Framework" description="Applicable to systems and applications utilizing the Microsoft .Net version 4.0 framework.&#xA;&#xA;" filename="U_MS_DotNet_Framework_4-0_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 16 July 2019" title="Microsoft DotNet Framework 4.0 STIG" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="3/20/2020">
   <DocumentRule dscresourcemodule="None">
-    <Rule id="V-7055" severity="medium" conversionstatus="pass" title="APPNET0031 No Strong Name Verification" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided)—plus a public key and a digital signature.  Strong names serve to identify the author of the code.  If digital signatures used to sign strong name assemblies are not verified, any self signed code can be impersonated.  This can lead to a loss of system integrity. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Use regedit to review the Windows registry key 
-HKLM\Software\Microsoft\StrongName\Verification. 
-There should be no assemblies or hash values listed under this registry key.  
-
-If there are assemblies or hash values listed in this key, each value represents a distinct application assembly that does not have the application strong name verified.  
-
-If any assemblies are listed as omitting strong name verification in a production environment, this is a finding.
-
-If any assemblies are listed as omitting strong name verification in a development or test environment and the IAO has not provided documented approvals, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-7069" severity="medium" conversionstatus="pass" title="APPNET0055 CAS and Policy Config File Backups" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A successful disaster recovery plan requires that CAS policy and CAS policy configuration files are identified and included in systems disaster backup and recovery events.  Documentation regarding the location of system and application specific CAS policy configuration files and the frequency in which backups occur is required.  If these files are not identified and the information is not documented, there is the potential that critical application configuration files may not be included in disaster recovery events which could lead to an availability risk.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;CODB-1, CODB-2&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -30,36 +14,6 @@ Ask the System Administrator for documentation that shows CAS Policy configurati
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
-    <Rule id="V-7061" severity="medium" conversionstatus="pass" title="APPNET0046 Test Root certificates" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Microsoft Windows operating systems provide a feature called Authenticode.  Authenticode technology and its underlying code signing mechanisms serve to provide a structure to identify software publishers and ensure that software applications have not been tampered with.  Authenticode technology relies on digital certificates and is based on Public Key Cryptography Standards (PKCS) #7 (encrypted key specification), PKCS #10 (certificate request formats), X.509 (certificate specification), and Secure Hash Algorithm (SHA) and MD5 hash algorithms.
-
-The manner in which the Authenticode technology validates a certificate and determines what is considered a valid certificate can be modified to meet the mission of the Microsoft Windows system.  Each facade of certificate validation is controlled through the bits that makeup the hexadecimal value for the Authenticode setting.  An improper setting will allow non-valid certificates to be accepted and can put the integrity of the system into jeopardy.
-
-The hexadecimal value of 0x23C00 will implement the following certificate enforcement policy:
-- Trust the Test Root = FALSE
-- Use expiration date on certificates = TRUE
-- Check the revocation list = TRUE
-- Offline revocation server OK (Individual) = TRUE
-- Offline revocation server OK (Commercial) = TRUE
-- Java offline revocation server OK (Individual) = TRUE
-- Java offline revocation server OK (Commercial) = TRUE
-- Invalidate version 1 signed objects = FALSE
-- Check the revocation list on Time Stamp Signer = FALSE
-- Only trust items found in the Trust DB = FALSE
-&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the system or application being reviewed is SIPR based, this finding is NA.
-
-This check must be performed for each user on the system. 
-
-Use regedit to locate "HKEY_USER\[UNIQUE USER SID VALUE]\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing\State".  
-
-If the State value for any user is not set to the hexadecimal value of 0x23C00, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-7063" severity="medium" conversionstatus="pass" title="APPNET0048 Publisher Membership Condition" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A .Net assembly will satisfy the Publisher Membership Condition if it is signed with a software publisher’s Authenticode X.509v3 digital certificate that can be verified by the Windows operating system as having a chain of trust that leads to a trusted root certificate stored in the user’s certificate store. The  Publisher Membership Condition can be used to identify an organization, developer, vendor, or other entity as the ultimate source of the assembly, even if the code itself was obtained from a third party, such as a mirror site.  Access to system resources, such as file systems or printers, may then be granted to the assembly based on the trust relationship with the identified entity.
 
@@ -503,6 +457,62 @@ If the secure flag is not set to "true" for the TCP channel, this is a finding.
     </Rule>
   </ManualRule>
   <RegistryRule dscresourcemodule="PSDscResources">
+    <Rule id="V-7055" severity="medium" conversionstatus="pass" title="APPNET0031 No Strong Name Verification" dscresource="Registry">
+      <Description>&lt;VulnDiscussion&gt;A strong name consists of the assembly's identity, simple text name, version number, and culture information (if provided)—plus a public key and a digital signature.  Strong names serve to identify the author of the code.  If digital signatures used to sign strong name assemblies are not verified, any self signed code can be impersonated.  This can lead to a loss of system integrity. &lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;DCSL-1&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Absent</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\StrongName\Verification</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Use regedit to review the Windows registry key 
+HKLM\Software\Microsoft\StrongName\Verification. 
+There should be no assemblies or hash values listed under this registry key.  
+
+If there are assemblies or hash values listed in this key, each value represents a distinct application assembly that does not have the application strong name verified.  
+
+If any assemblies are listed as omitting strong name verification in a production environment, this is a finding.
+
+If any assemblies are listed as omitting strong name verification in a development or test environment and the IAO has not provided documented approvals, this is a finding.</RawString>
+      <ValueData />
+      <ValueName />
+      <ValueType />
+    </Rule>
+    <Rule id="V-7061" severity="medium" conversionstatus="pass" title="APPNET0046 Test Root certificates" dscresource="RegistryPolicyFile">
+      <Description>&lt;VulnDiscussion&gt;Microsoft Windows operating systems provide a feature called Authenticode.  Authenticode technology and its underlying code signing mechanisms serve to provide a structure to identify software publishers and ensure that software applications have not been tampered with.  Authenticode technology relies on digital certificates and is based on Public Key Cryptography Standards (PKCS) #7 (encrypted key specification), PKCS #10 (certificate request formats), X.509 (certificate specification), and Secure Hash Algorithm (SHA) and MD5 hash algorithms.
+
+The manner in which the Authenticode technology validates a certificate and determines what is considered a valid certificate can be modified to meet the mission of the Microsoft Windows system.  Each facade of certificate validation is controlled through the bits that makeup the hexadecimal value for the Authenticode setting.  An improper setting will allow non-valid certificates to be accepted and can put the integrity of the system into jeopardy.
+
+The hexadecimal value of 0x23C00 will implement the following certificate enforcement policy:
+- Trust the Test Root = FALSE
+- Use expiration date on certificates = TRUE
+- Check the revocation list = TRUE
+- Offline revocation server OK (Individual) = TRUE
+- Offline revocation server OK (Commercial) = TRUE
+- Java offline revocation server OK (Individual) = TRUE
+- Java offline revocation server OK (Commercial) = TRUE
+- Invalidate version 1 signed objects = FALSE
+- Check the revocation list on Time Stamp Signer = FALSE
+- Only trust items found in the Trust DB = FALSE
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;System Administrator&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Ensure>Present</Ensure>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing</Key>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>If the system or application being reviewed is SIPR based, this finding is NA.
+
+This check must be performed for each user on the system. 
+
+Use regedit to locate "HKEY_USER\[UNIQUE USER SID VALUE]\Software\Microsoft\Windows\CurrentVersion\WinTrust\Trust Providers\Software Publishing\State".  
+
+If the State value for any user is not set to the hexadecimal value of 0x23C00, this is a finding.
+</RawString>
+      <ValueData>146432</ValueData>
+      <ValueName>State</ValueName>
+      <ValueType>Dword</ValueType>
+    </Rule>
     <Rule id="V-30935" severity="medium" conversionstatus="pass" title="APPNET0063 Validation of Strong Names" dscresource="Registry">
       <Description>&lt;VulnDiscussion&gt;The "bypassTrustedAppStrongNames" setting specifies whether the bypass feature that avoids validating strong names for full-trust assemblies is enabled. By default the bypass feature is enabled in .Net 4, therefore strong names are not validated for correctness when the assembly/program is loaded. Not validating strong names provides a faster application load time but at the expense of performing certificate validation. 
 
