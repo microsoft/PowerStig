@@ -12,7 +12,7 @@ using module ..\..\PowerStig.psm1
     .PARAMETER Version
         The version of McAfee technology the STIG applies to
     .PARAMETER StigVersion
-        The version of the McAfee VirusSca STIG to apply and/or monitor
+        The version of the McAfee VirusScan STIG to apply and/or monitor
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
         the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify

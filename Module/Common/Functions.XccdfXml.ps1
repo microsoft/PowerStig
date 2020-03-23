@@ -362,9 +362,6 @@ function Split-BenchmarkId
         'PowerPoint',
         'Word'
     )
-    $McAfeeVariations = @(
-        'McAfee_VirusScan88_Local_Client'
-    )
 
     $id = $id -replace ($idVariations -join '|'), ''
 

@@ -198,7 +198,7 @@ function Get-RegistryValueTypeFromSingleLineStig
 }
 <#
     .SYNOPSIS
-        Extract the registry path from an McaAfee STIG string.
+        Extract the registry path from an McAfee STIG string.
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
@@ -213,16 +213,16 @@ function Get-McAfeeRegistryPath
         $CheckContent
     )
 
-    if ($checkContent -match "Software\\McAfee")
+    if ($CheckContent -match "Software\\McAfee")
     {
         [string]$path = "HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\"
         if($CheckContent -match 'DesktopProtection')
         {
-            [string]$mcafeePath = $checkcontent -match '\\DesktopProtection.*$(.*)'
+            [string]$mcafeePath = $CheckContent -match '\\DesktopProtection.*$(.*)'
         }
         else
         {
-            [string]$mcafeePath = $checkcontent -match 'SystemCore.*$(.*)'
+            [string]$mcafeePath = $CheckContent -match 'SystemCore.*$(.*)'
         }
         $paths = Join-Path -Path $path -ChildPath $mcafeePath
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found registry path : $paths"
@@ -257,6 +257,7 @@ function Get-RegistryValueTypeFromSLStig
 
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
 
+    #McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
     if($CheckContent -match 'Wow6432Node\\McAfee')
     {
         [string] $valueType = 'DWORD'
