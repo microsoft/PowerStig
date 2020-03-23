@@ -45,8 +45,8 @@ configuration McAfee_config
         & ([scriptblock]::Create("
         McAfee McAfeeConfiguration
         {
-            Version = '$TechnologyRole'
-            TechnologyRole = '$TechnologyVersion'
+            Version = '$TechnologyVersion'
+            TechnologyRole = '$TechnologyRole'
             Stigversion = '$StigVersion'
             $(if ($OrgSettings -is [hashtable])
             {

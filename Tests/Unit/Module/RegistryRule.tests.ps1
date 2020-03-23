@@ -175,28 +175,6 @@ try
                 HKCU\Software\Policies\Microsoft\Office\16.0\excel\security\fileblock
 
                 Criteria: If the value XL4Workbooks is REG_DWORD = 2, this is not a finding.'
-            },
-            @{
-                Key = 'HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default'
-                ValueName = 'uAction'
-                ValueData = '5'
-                ValueType = 'Dword'
-                Ensure = 'Present'
-                OrganizationValueRequired = $false
-                CheckContent = 'Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
-                On the menu bar, click Task-&gt;On-Access Scanner Properties.
-                Select All Processes.
-
-                Under the Actions tab, locate the "When a threat is found:" label. Ensure for the "Perform this action first:" pull down menu, "Clean files automatically" is selected.
-
-                Criteria:  If "Clean files automatically" is selected from "Perform this action first", this is not a finding.
-
-                On the client machine, use the Windows Registry Editor to navigate to the following key:
-                HKLM\Software\McAfee\ (32-bit)
-                HKLM\Software\Wow6432Node\McAfee\ (64-bit)
-                SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default
-
-                Criteria:  If the uAction does not have a value of 5, this is a finding.'
             }
         )
         #endregion

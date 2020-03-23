@@ -449,7 +449,7 @@ function Split-BenchmarkId
         }
         {$PSItem -match 'McAfee_VirusScan'}
         {
-            $returnId = 'McAfee_VirusScan_8.8'
+            $returnId = 'McAfee_8.8_VirusScan'
             continue
         }
         default

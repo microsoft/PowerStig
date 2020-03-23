@@ -70,7 +70,7 @@ configuration McAfee
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('McAfee', $TechnologyRole, $Version, $StigVersion)
+    $stig = [STIG]::New('McAfee', $Version, $TechnologyRole, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 

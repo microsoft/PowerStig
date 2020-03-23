@@ -7,11 +7,11 @@
 -->
 <OrganizationalSettings fullversion="5.16">
   <!-- Ensure 'V-14620' -ge '30'-->
-  <OrganizationalSetting id="V-14620" ValueData="30" />
+  <OrganizationalSetting id="V-14620" ValueData="" />
   <!-- Ensure 'V-35027.b' -match 2|3|4 -->
-  <OrganizationalSetting id="V-35027.b" ValueData="2" />
+  <OrganizationalSetting id="V-35027.b" ValueData="" />
   <!-- Ensure 'V-42569.b' -match 2|3|4 -->
-  <OrganizationalSetting id="V-42569.b" ValueData="2" />
+  <OrganizationalSetting id="V-42569.b" ValueData="" />
   <!-- Ensure Configured to the ISSO, ISSM,ePO Administrator, or System Administrator -->
   <OrganizationalSetting id="V-42570.b" ValueData="" />
 </OrganizationalSettings>
