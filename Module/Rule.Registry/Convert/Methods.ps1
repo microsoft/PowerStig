@@ -25,7 +25,8 @@ function Get-RegistryKey
     if (Test-SingleLineRegistryRule -CheckContent $checkContent)
     {
         $result = Get-SingleLineRegistryPath -CheckContent $checkContent
-        if($result -match 'HKEY_LOCAL_MACHINE\\Software\\McAfee\\\s\(32-bit\)|HKLM\\Software\\Wow6432Node\\McAfee\\\s\(64-bit\)')
+
+        if ($result -match 'HKEY_LOCAL_MACHINE\\Software\\McAfee\\\s\(32-bit\)|HKLM\\Software\\Wow6432Node\\McAfee\\\s\(64-bit\)')
         {
             $result = Get-McAfeeRegistryPath -CheckContent $CheckContent
         }

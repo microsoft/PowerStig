@@ -215,18 +215,19 @@ function Get-McAfeeRegistryPath
 
     if ($CheckContent -match "Software\\McAfee")
     {
-        [string]$path = "HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\"
+        $path = "HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\"
         if($CheckContent -match 'DesktopProtection')
         {
-            [string]$mcafeePath = $CheckContent -match '\\DesktopProtection.*$(.*)'
+            $mcafeePath = $CheckContent | Select-String -Pattern 'DesktopProtection.*$'
         }
         else
         {
-            [string]$mcafeePath = $CheckContent -match 'SystemCore.*$(.*)'
+            $mcafeePath = $CheckContent | Select-String -Pattern 'SystemCore.*$'
         }
-        $paths = Join-Path -Path $path -ChildPath $mcafeePath
-        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Found registry path : $paths"
-        return $paths
+
+        $fullyQualifiedMcAfeePath = Join-Path -Path $path -ChildPath $mcafeePath.Matches.Value
+        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Found registry path : $paths"
+        return $fullyQualifiedMcAfeePath
     }
 }
 
@@ -257,10 +258,10 @@ function Get-RegistryValueTypeFromSLStig
 
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
 
-    #McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
-    if($CheckContent -match 'Wow6432Node\\McAfee')
+    # McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
+    if ($CheckContent -match 'Wow6432Node\\McAfee')
     {
-        [string] $valueType = 'DWORD'
+        $valueType = 'DWORD'
     }
     else
     {
@@ -308,16 +309,19 @@ function Get-RegistryValueTypeFromSLStig
                     else
                     {
                         $valueType = $selectedValueType.Matches[0].Value
+
                         if ($Hashtable.Item('Group'))
                         {
                             $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
                         }
+
                         Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
                     }
                 }
-            } # Switch
-        } # Foreach
+            }
+        }
     }
+
     if ($valueType)
     {
         $valueType = $valueType.Replace('=', '').Replace('"', '')
