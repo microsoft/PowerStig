@@ -266,7 +266,11 @@ function Get-PowerStigFileList
 
         [Parameter()]
         [string]
-        $Destination
+        $Destination,
+
+        [Parameter()]
+        [string]
+        $Path
     )
 
     $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
@@ -321,7 +325,7 @@ function Split-BenchmarkId
 
         [Parameter()]
         [string]
-        $filePath
+        $FilePath
     )
 
     # Different STIG's present the Id field in a different format.
@@ -353,7 +357,8 @@ function Split-BenchmarkId
         'Excel',
         'Outlook',
         'PowerPoint',
-        'Word'
+        'Word',
+        'System'
     )
 
     $id = $id -replace ($idVariations -join '|'), ''
@@ -366,7 +371,9 @@ function Split-BenchmarkId
             $sqlRole = Get-SqlTechnologyRole -Path $filePath
 
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), $sqlRole
+            #SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
+            $returnId = $returnId -replace "_Database_Instance" + ""
+            $returnId = $returnId +"_"+ $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}
@@ -381,25 +388,30 @@ function Split-BenchmarkId
         }
         {$PSItem -match "IIS_8-5_Server"}
         {
-            $returnId = 'IISServer-8.5'
+            $returnId = 'IISServer_8.5'
             continue
         }
         {$PSItem -match "IIS_8-5_Site"}
         {
-            $returnId = 'IISSite-8.5'
+            $returnId = 'IISSite_8.5'
             continue
         }
         {$PSItem -match "Domain_Name_System"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
-            $returnId = $id -replace ($dnsServerVariations -join '|'), 'DNS'
-            $returnId = $returnId -replace ($windowsVariations -join '|'), 'WindowsServer'
+            $dnsStig = ($id -split '_')
+            $returnId = 'WindowsDnsServer_' + $dnsStig[2]
             continue
         }
         {$PSItem -match "Windows_10"}
         {
             $returnId = $id -Replace "Windows", 'WindowsClient'
+            continue
+        }
+        {$PSItem -match 'JRE_8'}
+        {
+            $returnId = 'OracleJRE_8'
             continue
         }
         {$PSItem -match "Windows"}
@@ -425,16 +437,31 @@ function Split-BenchmarkId
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word'}
+        {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word' -or $PSItem -match 'System'}
         {
             $officeStig = ($id -split '_')
-            $officeStig = $officeStig[1] + $officeStig[2]
-            $returnId = 'Office_' + $officeStig
+
+            if($PSItem -match 'System')
+            {
+                $officeStig = $officeStig[2] + $officeStig[3]
+                $returnId = 'Office_' + $officeStig
+            }
+            else
+            {
+                $officeStig = $officeStig[1] + $officeStig[2]
+                $returnId = 'Office_' + $officeStig
+            }
+
             continue
         }
         {$PSItem -match 'Dot_Net'}
         {
             $returnId = 'DotNetFramework_4'
+            continue
+        }
+        {$PSItem -match 'Adobe_Acrobat_Reader'}
+        {
+            $returnId = 'Adobe_AcrobatReader'
             continue
         }
         default
