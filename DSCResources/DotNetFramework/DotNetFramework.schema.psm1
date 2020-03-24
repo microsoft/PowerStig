@@ -68,7 +68,9 @@ configuration DotNetFramework
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
+    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
-    . "$resourcePath\windows.Script.skip.ps1"
     . "$resourcePath\windows.Registry.ps1"
+    . "$resourcePath\windows.Script.skip.ps1"
+    . "$resourcePath\windows.RefreshRegistryPolicy.ps1"
 }
