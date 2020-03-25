@@ -157,6 +157,33 @@ try
             DscResource                 = 'RegistryPolicyFile'
             TechnologyRole              = 'Outlook'
             CheckContent                = 'Criteria: If the value for HKCU\Software\Policies\Microsoft\Office\15.0\common\mailsettings\PlainWrapLen is REG_DWORD = a value of between 30 and 132 (decimal)'
+        },
+        @{
+            Id                          = 'Rule8'
+            Hive                        = 'HKEY_LOCAL_MACHINE'
+            Path                        = '\Software\Wow6432Node\McAfee\SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default'
+            OrganizationValueRequired   = 'False'
+            OrganizationValueTestString = $null
+            ValueData                   = '5'
+            ValueName                   = 'uAction'
+            ValueType                   = 'DWORD'
+            Ensure                      = 'Present'
+            DscResource                 = 'Registry'
+            TechnologyRole              = 'McAfee_VirusScan88_Client_Local'
+            CheckContent                = 'Access the local VirusScan console by clicking Start-&gt;All Programs-&gt;McAfee-&gt;VirusScan Console.
+            On the menu bar, click Task-&gt;On-Access Scanner Properties.
+            Select All Processes.
+
+            Under the Actions tab, locate the "When a threat is found:" label. Ensure for the "Perform this action first:" pull down menu, "Clean files automatically" is selected.
+
+            Criteria:  If "Clean files automatically" is selected from "Perform this action first", this is not a finding.
+
+            On the client machine, use the Windows Registry Editor to navigate to the following key:
+            HKLM\Software\McAfee\ (32-bit)
+            HKLM\Software\Wow6432Node\McAfee\ (64-bit)
+            SystemCore\VSCore\On Access Scanner\McShield\Configuration\Default
+
+            Criteria:  If the uAction does not have a value of 5, this is a finding.'
         }
     )
     #endregion

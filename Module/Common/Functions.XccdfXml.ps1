@@ -199,40 +199,47 @@ function Get-StigRuleList
                 }
             }
 
-            $rules = [ConvertFactory]::Rule($stigRule)
-
-            foreach ($rule in $rules)
+            if ($exclusionRuleList.Contains(($stigRule.id -split '\.')[0]))
             {
-                <#
-                    At this point the original rule could be split into multiple
-                    rules and we would not be sure what original text went where.
-                    So we simply unwind the changes we made earlier so that any
-                    new text we added is removed by reversing the regex match.
-                #>
+                [void] $global:stigSettings.Add(([DocumentRuleConvert]::new($stigRule).AsRule()))
+            }
+            else
+            {
+                $rules = [ConvertFactory]::Rule($stigRule)
 
-                # Trim the unique char from split rules if they exist
-                foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
+                foreach ($rule in $rules)
                 {
-                    if ($correction.newText -match "HardCodedRule\(\w*Rule\)")
+                    <#
+                        At this point the original rule could be split into multiple
+                        rules and we would not be sure what original text went where.
+                        So we simply unwind the changes we made earlier so that any
+                        new text we added is removed by reversing the regex match.
+                    #>
+    
+                    # Trim the unique char from split rules if they exist
+                    foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
                     {
-                        $rule.RawString = $correction.oldText
+                        if ($correction.newText -match "HardCodedRule\(\w*Rule\)")
+                        {
+                            $rule.RawString = $correction.oldText
+                        }
+                        else
+                        {
+                            $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
+                        }
+                    }
+
+                    if ($rule.title -match 'Duplicate')
+                    {
+                        [void] $global:stigSettings.Add(([DocumentRuleConvert]::ConvertFrom($rule)))
                     }
                     else
                     {
-                        $rule.RawString = $rule.RawString.Replace($correction.newText, $correction.oldText)
+                        [void] $global:stigSettings.Add($rule)
                     }
                 }
-
-                if ($rule.title -match 'Duplicate' -or $exclusionRuleList.Contains(($rule.id -split '\.')[0]))
-                {
-                    [void] $global:stigSettings.Add(([DocumentRuleConvert]::ConvertFrom($rule)))
-                }
-                else
-                {
-                    [void] $global:stigSettings.Add($rule)
-                }
-
             }
+
             $stigProcessedCounter ++
         }
     }
@@ -435,6 +442,11 @@ function Split-BenchmarkId
         {$PSItem -match 'Dot_Net'}
         {
             $returnId = 'DotNetFramework_4'
+            continue
+        }
+        {$PSItem -match 'McAfee_VirusScan'}
+        {
+            $returnId = 'McAfee_8.8_VirusScan'
             continue
         }
         default
