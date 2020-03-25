@@ -368,12 +368,12 @@ function Split-BenchmarkId
         {$PSItem -match "SQL_Server"}
         {
             # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
-            $sqlRole = Get-SqlTechnologyRole -Path $filePath
+            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
 
-            #SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
+            # SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
             $returnId = $returnId -replace "_Database_Instance" + ""
-            $returnId = $returnId +"_"+ $sqlRole
+            $returnId = '{0}_{1}' -f $returnId, $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}
@@ -400,8 +400,8 @@ function Split-BenchmarkId
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
             $id = $id -replace '_2012_', '_2012R2_'
-            $dnsStig = ($id -split '_')
-            $returnId = 'WindowsDnsServer_' + $dnsStig[2]
+            $dnsStig = $id -split '_'
+            $returnId = '{0}_{1}' -f 'WindowsDnsServer', $dnsStig[2]
             continue
         }
         {$PSItem -match "Windows_10"}
@@ -443,13 +443,13 @@ function Split-BenchmarkId
 
             if($PSItem -match 'System')
             {
-                $officeStig = $officeStig[2] + $officeStig[3]
-                $returnId = 'Office_' + $officeStig
+                $officeStig = $officeStig[2], $officeStig[3] -join ""
+                $returnId = '{0}_{1}' -f 'Office', $officeStig
             }
             else
             {
-                $officeStig = $officeStig[1] + $officeStig[2]
-                $returnId = 'Office_' + $officeStig
+                $officeStig = $officeStig[1], $officeStig[2] -join ""
+                $returnId = '{0}_{1}' -f 'Office', $officeStig
             }
 
             continue
