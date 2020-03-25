@@ -369,8 +369,8 @@ function Split-BenchmarkId
         {
             # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
             $sqlRole = Get-SqlTechnologyRole -Path $filePath
-
             $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
+
             #SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
             $returnId = $returnId -replace "_Database_Instance" + ""
             $returnId = $returnId +"_"+ $sqlRole
