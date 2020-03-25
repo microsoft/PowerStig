@@ -35,7 +35,7 @@ try
                     $hasAllSettings = $true
                     $dscXml = @($dscXml.DISASTIG.RegistryRule.Rule)
                     $dscMof = $instances |
-                        Where-Object {$PSItem.ResourceID -match '\[Registry\]|\[RegistryPolicyFile\]'}
+                        Where-Object {$PSItem.ResourceID -match '\[Registry[a-zA-Z]*\]'}
 
                     foreach ($setting in $dscXml)
                     {
