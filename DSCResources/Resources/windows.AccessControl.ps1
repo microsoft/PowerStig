@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type PermissionRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     # Determine PermissionRule type and handle
     Switch ($rule.dscresource)
