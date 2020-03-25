@@ -143,6 +143,7 @@ function Get-RegistryRuleExpressions
         {
             # Query TechnologyRole and map to file
             $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
+            $mcafeeApps = @('VirusScan')
             $spExclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
 
             switch ($benchmarkId.TechnologyRole)
@@ -151,6 +152,11 @@ function Get-RegistryRuleExpressions
                 {
                     $spInclude += "Data.Office.ps1"
                 }
+                { $null -ne ($mcafeeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
+                {
+                    $spInclude += "Data.Mcafee.ps1"
+                }
+
             }
         }
         else

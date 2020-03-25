@@ -196,6 +196,40 @@ function Get-RegistryValueTypeFromSingleLineStig
         }
     }
 }
+<#
+    .SYNOPSIS
+        Extract the registry path from an McAfee STIG string.
+    .PARAMETER CheckContent
+        An array of the raw string data taken from the STIG setting.
+#>
+function Get-McAfeeRegistryPath
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $CheckContent
+    )
+
+    if ($CheckContent -match "Software\\McAfee")
+    {
+        $path = "HKEY_LOCAL_MACHINE\Software\Wow6432Node\McAfee\"
+        if($CheckContent -match 'DesktopProtection')
+        {
+            $mcafeePath = $CheckContent | Select-String -Pattern 'DesktopProtection.*$'
+        }
+        else
+        {
+            $mcafeePath = $CheckContent | Select-String -Pattern 'SystemCore.*$'
+        }
+
+        $fullyQualifiedMcAfeePath = Join-Path -Path $path -ChildPath $mcafeePath.Matches.Value
+        Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Found registry path : $paths"
+        return $fullyQualifiedMcAfeePath
+    }
+}
 
 <#
     .SYNOPSIS
@@ -224,59 +258,69 @@ function Get-RegistryValueTypeFromSLStig
 
     $valueName = Get-RegistryValueNameFromSingleLineStig -CheckContent $CheckContent
 
-    foreach ($key in $Hashtable.Keys)
+    # McAfee STIG isn't written in a way that ValueType can be detected via CheckContent and/or FixText
+    if ($CheckContent -match 'Wow6432Node\\McAfee')
     {
-        switch ($key)
+        $valueType = 'DWORD'
+    }
+    else
+    {
+        foreach ($key in $Hashtable.Keys)
         {
-            Contains
+            switch ($key)
             {
-                if (@($fullRegistryPath | Where-Object {$_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0)
+                Contains
                 {
-                    continue
+                    if (@($fullRegistryPath | Where-Object {$_.ToString().Contains($Hashtable.Item($key))}).Count -gt 0)
+                    {
+                        continue
+                    }
+                    else
+                    {
+                        return
+                    }
                 }
-                else
-                {
-                    return
-                }
-            }
-            Match
-            {
-                $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
-                $matchedValueType = [regex]::Matches($CheckContent.ToString(), $regEx)
-
-                if (-not $matchedValueType)
-                {
-                    continue
-                }
-                else
-                {
-                    return $null
-                }
-            }
-            Select
-            {
-                if ($valueName)
+                Match
                 {
                     $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
-                    $selectedValueType = Select-String -InputObject $CheckContent -Pattern $regEx
-                }
+                    $matchedValueType = [regex]::Matches($CheckContent.ToString(), $regEx)
 
-                if (-not $selectedValueType.Matches)
-                {
-                    return
-                }
-                else
-                {
-                    $valueType = $selectedValueType.Matches[0].Value
-                    if ($Hashtable.Item('Group'))
+                    if (-not $matchedValueType)
                     {
-                        $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
+                        continue
                     }
-                    Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
+                    else
+                    {
+                        return $null
+                    }
+                }
+                Select
+                {
+                    if ($valueName)
+                    {
+                        $regEx = $Hashtable.Item($key) -f [regex]::escape($valueName)
+                        $selectedValueType = Select-String -InputObject $CheckContent -Pattern $regEx
+                    }
+
+                    if (-not $selectedValueType.Matches)
+                    {
+                        return
+                    }
+                    else
+                    {
+                        $valueType = $selectedValueType.Matches[0].Value
+
+                        if ($Hashtable.Item('Group'))
+                        {
+                            $valueType = $selectedValueType.Matches.Groups[$Hashtable.Item('Group')].Value
+                        }
+
+                        Set-RegistryPatternLog -Pattern $Hashtable.Item($key)
+                    }
                 }
             }
-        } # Switch
-    } # Foreach
+        }
+    }
 
     if ($valueType)
     {
