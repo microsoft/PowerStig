@@ -50,6 +50,12 @@ foreach ($rule in $rules)
 
         'Registry'
         {
+            # When adding/removing 'Keys' the resource requires an empty string for ValueName
+            if ($null -eq $rule.ValueName)
+            {
+                $rule.ValueName = [string]::Empty
+            }
+
             if ($rule.Ensure -eq 'Absent')
             {
                 Registry (Get-ResourceTitle -Rule $rule)

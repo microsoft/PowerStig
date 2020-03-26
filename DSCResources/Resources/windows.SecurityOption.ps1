@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type SecurityOptionRule
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     $policy = $rule.OptionName -replace "(\/)|(:)*\s", "_"
 

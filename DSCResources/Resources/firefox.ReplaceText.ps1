@@ -40,7 +40,7 @@ ReplaceText BeginFileWithComment
     Text        = ('// FireFox preference file' + "`r")
 }
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     ReplaceText (Get-ResourceTitle -Rule $rule)
     {
