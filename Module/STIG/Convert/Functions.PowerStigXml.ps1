@@ -130,10 +130,10 @@ function Get-RegistryRuleExpressions
     begin
     {
         # Use $stigBenchmarkXml.id to determine the stig file
-        $benchmarkId = Split-BenchmarkId $stigBenchmarkXml.id
+        $benchmarkId = Split-BenchmarkId -Id $StigBenchmarkXml.id -FilePath $Path
         if ([string]::IsNullOrEmpty($benchmarkId.TechnologyRole))
         {
-            $benchmarkId.TechnologyRole = $stigBenchmarkXml.id
+            $benchmarkId.TechnologyRole = $StigBenchmarkXml.id
         }
 
         # Handles testing and production
@@ -422,7 +422,7 @@ function ConvertTo-PowerStigXml
             }
         }
 
-        $fileList = Get-PowerStigFileList -StigDetails $xccdfXml -Destination $Destination
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfXml -Destination $Destination -Path $Path
 
         try
         {
