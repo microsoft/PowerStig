@@ -444,7 +444,7 @@ function Split-BenchmarkId
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word' -or $PSItem -match 'System'}
+        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System'}
         {
             $officeStig = ($id -split '_')
 
