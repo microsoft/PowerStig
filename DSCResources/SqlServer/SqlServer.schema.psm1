@@ -23,7 +23,7 @@ using module ..\..\PowerStig.psm1
         for the SQL Database STIG.
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
-        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
+        the target node. The title of STIG settings are tagged with the text 'Exception' to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
     .PARAMETER OrgSettings
         The path to the xml file that contains the local organizations preferred settings for STIG
@@ -92,7 +92,7 @@ configuration SqlServer
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 12.1.0.0
+    Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 13.3.0
     . "$resourcePath\SqlServer.ScriptQuery.ps1"
 
     Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.4.0.0

@@ -3,6 +3,195 @@
 #region Main Function
 <#
     .SYNOPSIS
+        Identifies the type of STIG that has been input and selects the proper private function to
+        further convert the STIG strings into usable objects.
+
+    .DESCRIPTION
+        This function enables the core translation of the raw xccdf file by reading the benchmark
+        title property to determine where to send the data for processing.
+
+        When a ruleset match is found, the xccdf data is sent to private functions that are
+        dedicated to processing individual STIG setting types, such as registry settings or
+        security policy.
+
+        If the function is unable to find a rule set match, an error is returned.
+
+    .PARAMETER Path
+        The path to the xccdf file to be processed.
+
+    .PARAMETER IncludeRawString
+        This will add the 'Check-Content' from the xcccdf to the output for any additional validation
+        or spot checking that may be needed.
+
+    .PARAMETER RuleIdFilter
+        Filters the list rules that are converted to simplify debugging the conversion process.
+
+    .EXAMPLE
+        ConvertFrom-StigXccdf -Path C:\Stig\U_Windows_2012_and_2012_R2_MS_STIG_V2R8_Manual-xccdf.xml
+
+    .OUTPUTS
+        Custom objects are created from the STIG base class that are provided in the module
+
+    .NOTES
+        This is an ongoing project that should be retested with each iteration of the STIG. This is
+        due to the non-standard way, the content is published. Each version of the STIG may require
+        a rule to be updated to account for a new string format. All the formatting rules are heavily
+        tested, so making changes is a simple task.
+
+    .LINK
+        http://iase.disa.mil/stigs/Lists/stigs-masterlist/AllItems.aspx
+#>
+function ConvertFrom-StigXccdf
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path,
+
+        [Parameter()]
+        [string[]]
+        $RuleIdFilter
+    )
+
+    # Get the xml data from the file path provided.
+    $stigBenchmarkXml = Get-StigXccdfBenchmarkContent -Path $path
+
+    # Global variable needed to distinguish between the IIS server and site stigs. Server Stig needs xIISLogging resource, Site Stig needs xWebsite
+    $global:stigTitle = $stigBenchmarkXml.title
+
+    # Global variable needed to set and get specific logic needed for filtering and parsing FileContentRules
+    switch ($true)
+    {
+        {$global:stigXccdfName -and -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2)) -eq ''}
+        {
+            break;
+        }
+        {!$global:stigXccdfName -or $global:stigXccdfName -ne -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2))}
+        {
+            $global:stigXccdfName = -join ((Split-Path -Path $path -Leaf).Split('_') | Select-Object -Index (1, 2))
+            break;
+        }
+    }
+    # Read in the root stig data from the xml additional functions will dig in deeper
+    $stigRuleParams = @{
+        StigGroupListChangeLog = Get-RuleChangeLog -Path $Path
+    }
+
+    if ($RuleIdFilter)
+    {
+        $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group | Where-Object {$RuleIdFilter -contains $PSItem.Id}
+    }
+    else
+    {
+        $stigRuleParams.StigGroupList = $stigBenchmarkXml.Group
+    }
+
+    # The benchmark title drives the rest of the function and must exist to continue.
+    if ( $null -eq $stigBenchmarkXml.title )
+    {
+        Write-Error -Message 'The Benchmark title property is null. Unable to determine ruleset target.'
+        return
+    }
+
+    Get-RegistryRuleExpressions -Path $Path -StigBenchmarkXml $stigBenchmarkXml
+
+    return Get-StigRuleList @stigRuleParams
+}
+
+<#
+    .SYNOPSIS
+        Loads the regular expressions files
+
+    .DESCRIPTION
+        This function loads the regular expression sets to process registry rules in the xccdf file.
+
+    .PARAMETER Path
+        The path to the xccdf file to be processed.
+
+    .PARAMETER StigBenchmarkXml
+        The xml for the xccdf file to be processed.
+#>
+function Get-RegistryRuleExpressions
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path,
+
+        [Parameter(Mandatory = $true)]
+        [object]
+        $StigBenchmarkXml
+    )
+
+    begin
+    {
+        # Use $stigBenchmarkXml.id to determine the stig file
+        $benchmarkId = Split-BenchmarkId -Id $StigBenchmarkXml.id -FilePath $Path
+        if ([string]::IsNullOrEmpty($benchmarkId.TechnologyRole))
+        {
+            $benchmarkId.TechnologyRole = $StigBenchmarkXml.id
+        }
+
+        # Handles testing and production
+        $xccdfFileName = Split-Path $Path -Leaf
+        $spInclude = @('Data.Core.ps1')
+        if ($xccdfFileName -eq 'TextData.xml')
+        {
+            # Query TechnologyRole and map to file
+            $officeApps = @('Outlook', 'Excel', 'PowerPoint', 'Word')
+            $mcafeeApps = @('VirusScan')
+            $spExclude = @($MyInvocation.MyCommand.Name, 'Template.*.txt', 'Data.ps1', 'Functions.*.ps1', 'Methods.ps1')
+
+            switch ($benchmarkId.TechnologyRole)
+            {
+                { $null -ne ($officeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
+                {
+                    $spInclude += "Data.Office.ps1"
+                }
+                { $null -ne ($mcafeeApps | Where-Object { $benchmarkId.TechnologyRole -match $_ }) }
+                {
+                    $spInclude += "Data.Mcafee.ps1"
+                }
+
+            }
+        }
+        else
+        {
+            # Query directory of xccdf file
+            $spResult = Split-Path (Split-Path $Path -Parent) -Leaf
+            if ($spResult)
+            {
+                $spInclude += "Data." + $spResult + ".ps1"
+            }
+        }
+    }
+
+    process
+    {
+        # Load specific and core expression sets
+        $childItemParams = @{
+            Path = "$PSScriptRoot\..\..\Rule\Convert"
+            Exclude = $spExclude
+            Include = $spInclude
+            Recurse = $true
+        }
+
+        $spSupportFileList = Get-ChildItem @childItemParams | Sort-Object -Descending
+        Clear-Variable SingleLine* -Scope Global
+        foreach ($supportFile in $spSupportFileList)
+        {
+            Write-Verbose "Loading $($supportFile.FullName)"
+            . $supportFile.FullName
+        }
+    }
+}
+
+<#
+    .SYNOPSIS
         This function generates a new xml file based on the convert objects from ConvertFrom-StigXccdf.
     .PARAMETER Path
         The full path to the xccdf to convert.
@@ -48,7 +237,7 @@ function ConvertTo-PowerStigXml
         $DoNotExportDescription
     )
 
-    Begin
+    begin
     {
         $CurrentVerbosePreference = $global:VerbosePreference
 
@@ -57,7 +246,7 @@ function ConvertTo-PowerStigXml
             $global:VerbosePreference = 'Continue'
         }
     }
-    Process
+    process
     {
         $convertedStigObjects = ConvertFrom-StigXccdf -Path $Path -RuleIdFilter $RuleIdFilter
 
@@ -233,7 +422,7 @@ function ConvertTo-PowerStigXml
             }
         }
 
-        $fileList = Get-PowerStigFileList -StigDetails $xccdfXml -Destination $Destination
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfXml -Destination $Destination -Path $Path
 
         try
         {
@@ -259,7 +448,7 @@ function ConvertTo-PowerStigXml
             Write-Output "Org Settings Output: $($fileList.OrgSettings.FullName)"
         }
     }
-    End
+    end
     {
         $global:VerbosePreference = $CurrentVerbosePreference
     }
@@ -291,7 +480,7 @@ function Compare-PowerStigXml
         [switch]
         $IgnoreRawString
     )
-    Begin
+    begin
     {
         $CurrentVerbosePreference = $global:VerbosePreference
 
@@ -300,7 +489,7 @@ function Compare-PowerStigXml
             $global:VerbosePreference = 'Continue'
         }
     }
-    Process
+    process
     {
 
         [xml] $OldStigContent = Get-Content -Path $OldStigPath -Encoding UTF8
@@ -373,7 +562,7 @@ function Compare-PowerStigXml
         }
         $returnCompareList.GetEnumerator() | Sort-Object Name
     }
-    End
+    end
     {
         $global:VerbosePreference = $CurrentVerbosePreference
     }
@@ -464,235 +653,6 @@ function New-OrganizationalSettingsXmlFile
 
     $xmlDocument.Save($Destination)
     Write-Output -InputObject "`r`n" | Out-File -FilePath $Destination -Append -Encoding utf8 -NoNewline
-}
-
-<#
-    .SYNOPSIS
-        Creates a version number from the xccdf benchmark element details.
-    .PARAMETER stigDetails
-        A reference to the in memory xml document.
-    .NOTES
-        This function should only be called from the public ConvertTo-DscStigXml function.
-#>
-function Get-StigVersionNumber
-{
-    [CmdletBinding()]
-    [OutputType([version])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [xml]
-        $StigDetails
-    )
-
-    # Extract the revision number from the xccdf
-    $revision = ( $StigDetails.Benchmark.'plain-text'.'#text' `
-            -split "(Release:)(.*?)(Benchmark)" )[2].trim()
-
-    "$($StigDetails.Benchmark.version).$revision"
-}
-
-<#
-    .SYNOPSIS
-        Creates the file name to create from the xccdf content
-    .PARAMETER StigDetails
-        A reference to the in memory xml document.
-    .NOTES
-        This function should only be called from the public ConvertTo-DscStigXml function.
-#>
-function Get-PowerStigFileList
-{
-    [CmdletBinding()]
-    [OutputType([Hashtable[]])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [xml]
-        $StigDetails,
-
-        [Parameter()]
-        [string]
-        $Destination
-    )
-
-    $id = Split-BenchmarkId -Id $stigDetails.Benchmark.id -FilePath $Path
-
-    $fileNameBase = "$($id.Technology)-$($id.TechnologyVersion)"
-
-    # If there is a technology role add it to the output name
-    if ($id.TechnologyRole)
-    {
-        $fileNameBase = $fileNameBase + "-$($id.TechnologyRole)"
-    }
-
-    $fileNameBase = $fileNameBase + "-$(Get-StigVersionNumber -StigDetails $StigDetails)"
-
-    if ($Destination)
-    {
-        $Destination = Resolve-Path -Path $Destination
-    }
-    else
-    {
-        $Destination = "$(Split-Path -Path (Split-Path -Path (Split-Path -Path $PSScriptRoot)))\StigData\Processed"
-    }
-
-    Write-Verbose "[$($MyInvocation.MyCommand.Name)] Destination: $Destination"
-
-    return @{
-        Settings    = [System.IO.FileInfo]::new("$Destination\$fileNameBase.xml")
-        OrgSettings = [System.IO.FileInfo]::new("$Destination\$fileNameBase.org.default.xml")
-    }
-}
-
-<#
-    .SYNOPSIS
-        Splits the Xccdf benchmark ID into an object.
-    .PARAMETER Id
-        The Id field from the Xccdf benchmark.
-    .PARAMETER FilePath
-        Specifies the file path to the xccdf. Used to determine technology role in SQL STIGs
-#>
-function Split-BenchmarkId
-{
-    [CmdletBinding()]
-    [OutputType([Hashtable[]])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string]
-        $Id,
-
-        [Parameter()]
-        [string]
-        $FilePath
-    )
-
-    # Different STIG's present the Id field in a different format.
-    $idVariations = @(
-        '(_+)STIG',
-        '(_+)Security_Technical_Implementation_Guide_NewBenchmark',
-        '(_+)Security_Technical_Implementation_Guide'
-    )
-    $sqlServerVariations = @(
-        'Microsoft_SQL_Server',
-        'MS_SQL_Server'
-    )
-    $sqlServerInstanceVariations = @(
-        'Database_Instance'
-    )
-    $windowsVariations = @(
-        'Microsoft_Windows',
-        'Windows_Server',
-        'Windows'
-    )
-    $dnsServerVariations = @(
-        'Server_Domain_Name_System',
-        'Domain_Name_System'
-    )
-    $activeDirectoryVariations = @(
-        'Active_Directory'
-    )
-    $OfficeVariations = @(
-        'Excel',
-        'Outlook',
-        'PowerPoint',
-        'Word'
-    )
-
-    $id = $id -replace ($idVariations -join '|'), ''
-
-    switch ($id)
-    {
-        {$PSItem -match "SQL_Server"}
-        {
-            # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
-            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
-
-            $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-            $returnId = $returnId -replace ($sqlServerInstanceVariations -join '|'), $sqlRole
-            continue
-        }
-        {$PSItem -match "_Firewall"}
-        {
-            $returnId = 'WindowsFirewall_All'
-            continue
-        }
-        {$PSItem -match "Windows_Defender_Antivirus"}
-        {
-            $returnId = 'WindowsDefender_All'
-            continue
-        }
-        {$PSItem -match "IIS_8-5_Server"}
-        {
-            $returnId = 'IISServer-8.5'
-            continue
-        }
-        {$PSItem -match "IIS_8-5_Site"}
-        {
-            $returnId = 'IISSite-8.5'
-            continue
-        }
-        {$PSItem -match "Domain_Name_System"}
-        {
-            # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
-            $id = $id -replace '_2012_', '_2012R2_'
-            $returnId = $id -replace ($dnsServerVariations -join '|'), 'DNS'
-            $returnId = $returnId -replace ($windowsVariations -join '|'), 'WindowsServer'
-            continue
-        }
-        {$PSItem -match "Windows_10"}
-        {
-            $returnId = $id -Replace "Windows", 'WindowsClient'
-            continue
-        }
-        {$PSItem -match "Windows"}
-        {
-            # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
-            $id = $id -replace '_2012_', '_2012R2_'
-            $returnId = $id -replace ($windowsVariations -join '|'), 'WindowsServer'
-            continue
-        }
-        {$PSItem -match "Active_Directory"}
-        {
-            $role = ($id -split '_')[-1]
-            $returnId = "ActiveDirectory_All_$role"
-            continue
-        }
-        {$PSItem -match "IE_"}
-        {
-            $returnId = "InternetExplorer_11"
-            continue
-        }
-        {$PSItem -match 'FireFox'}
-        {
-            $returnId = "FireFox_All"
-            continue
-        }
-        {$PSItem -match 'Excel' -or $PSItem -match 'Outlook' -or $PSItem -match 'PowerPoint' -or $PSItem -match 'Word'}
-        {
-            $officeStig = ($id -split '_')
-            $officeStig = $officeStig[1] + $officeStig[2]
-            $returnId = 'Office_' + $officeStig
-            continue
-        }
-        {$PSItem -match 'Dot_Net'}
-        {
-            $returnId = 'DotNetFramework_4'
-            continue
-        }
-        default
-        {
-            $returnId = $id
-        }
-    }
-
-    $returnId = $returnId -Split '_'
-
-    return @{
-        'Technology'        = $returnId[0]
-        'TechnologyVersion' = $returnId[1]
-        'TechnologyRole'    = $returnId[2]
-    }
 }
 
 <#
@@ -852,29 +812,6 @@ function Get-BaseRulePropertyName
 
 <#
     .SYNOPSIS
-        Retrieves the SQL Server technology role from the file name of the xccdf.
-#>
-function Get-SqlTechnologyRole
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory=$true)]
-        [AllowEmptyString()]
-        [string]
-        $Path
-    )
-
-    $split = $Path -split '_'
-    $stigIndex = $split.IndexOf('STIG')
-    $sqlRole = $split[$stigIndex -1]
-
-    return $sqlRole
-}
-
-<#
-    .SYNOPSIS
         Returns a list of all PowerSTIG RuleTypes.
         Used to dynamically provide Values to Get-HardCodedRuleLogFileEntry
         RuleType parameter.
@@ -906,4 +843,69 @@ function Get-DynamicParameterRuleTypeName
     $runtimeDefinedParamDictionary.Add($parameterName, $runtimeDefinedParam)
     return $runtimeDefinedParamDictionary
 }
+
+<#
+    .SYNOPSIS
+        Looks up the change log for a given xccdf file and loads the changes
+#>
+function Get-RuleChangeLog
+{
+    [CmdletBinding()]
+    [OutputType([hashtable])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Path
+    )
+
+    $path = $Path -replace '\.xml', '.log'
+
+    try
+    {
+        $updateLog = Get-Content -Path $path -Encoding UTF8 -Raw -ErrorAction Stop
+    }
+    catch
+    {
+        Write-Warning "$path not found. Please create it if needed."
+        return @{}
+    }
+
+    # regex matches is used to capture the log content directly to the changes variable
+    $changeList = [regex]::Matches(
+        $updateLog, '(?<id>V-\d+)(?:::)(?<oldText>.+)(?:::)(?<newText>.+)'
+    )
+
+    # The function returns a hastable
+    $updateList = @{}
+    foreach ($change in $changeList)
+    {
+        $id = $change.Groups.Item('id').value
+        $oldText = $change.Groups.Item('oldText').value
+        # The trim removes any potential CRLF entries that will show up in a regex escape sequence.
+        # The replace replaces `r`n with an actual new line. This is useful if you need to add data on a separate line.
+        $newText = $change.Groups.Item('newText').value.Trim().Replace('`r`n',[Environment]::NewLine)
+
+        $changeObject = [pscustomobject] @{
+            OldText = $oldText
+            NewText = $newText
+        }
+
+        <#
+           Some rule have multiple changes that need to be made, so if a rule already
+           has a change, then add the next change to the value (array)
+        #>
+        if ($updateList.ContainsKey($id))
+        {
+            $null = $updateList[$id] += $changeObject
+        }
+        else
+        {
+            $null = $updateList.Add($id, @($changeObject))
+        }
+    }
+
+    $updateList
+}
+
 #endregion

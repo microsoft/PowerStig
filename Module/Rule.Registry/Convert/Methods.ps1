@@ -25,6 +25,12 @@ function Get-RegistryKey
     if (Test-SingleLineRegistryRule -CheckContent $checkContent)
     {
         $result = Get-SingleLineRegistryPath -CheckContent $checkContent
+
+        if ($result -match 'HKEY_LOCAL_MACHINE\\Software\\McAfee\\\s\(32-bit\)|HKLM\\Software\\Wow6432Node\\McAfee\\\s\(64-bit\)')
+        {
+            $result = Get-McAfeeRegistryPath -CheckContent $CheckContent
+        }
+
         if ($result -match "!")
         {
             $result = $result.Substring(0, $result.IndexOf('!'))
@@ -894,7 +900,7 @@ function Test-MultipleRegistryEntries
 
     if (Test-SingleLineStigFormat -CheckContent $checkContent)
     {
-        $matches = $checkContent | Select-String -Pattern "(HKLM|HKCU)\\" -AllMatches
+        $matches = $checkContent | Select-String -Pattern "(HKLM|HKCU)\\(?!Software\\McAfee)" -AllMatches
 
         if ($matches.Matches.Count -gt 1 -and $matches -match 'outlook\\security')
         {

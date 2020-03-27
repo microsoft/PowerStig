@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '4.2.0'
+ModuleVersion = '4.3.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -41,10 +41,10 @@ RequiredModules  = @(
     @{ModuleName = 'AccessControlDsc'; ModuleVersion = '1.4.0.0'},
     @{ModuleName = 'ComputerManagementDsc'; ModuleVersion = '6.2.0.0'},
     @{ModuleName = 'FileContentDsc'; ModuleVersion = '1.1.0.108'},
-    @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.0.1'},
+    @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
     @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
-    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '12.1.0.0'},
+    @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
@@ -52,11 +52,13 @@ RequiredModules  = @(
 
 # DSC resources to export from this module
 DscResourcesToExport = @(
+    'Adobe',
     'DotNetFramework',
     'FireFox',
     'IisServer',
     'IisSite',
     'InternetExplorer',
+    'McAfee',
     'Office',
     'OracleJRE',
     'SqlServer',
@@ -71,7 +73,11 @@ DscResourcesToExport = @(
 FunctionsToExport = @(
     'Get-DomainName',
     'Get-Stig',
-    'New-StigCheckList'
+    'New-StigCheckList',
+    'Get-StigRuleList',
+    'Get-StigVersionNumber',
+    'Get-PowerStigFilelist',
+    'Split-BenchmarkId'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
@@ -98,23 +104,26 @@ PrivateData = @{
         ProjectUri = 'https://github.com/Microsoft/PowerStig'
 
         # ReleaseNotes of this module
-        ReleaseNotes = '* Update PowerSTIG parsing for IIS 8.5 STIG - Ver 1, Rel 9: [#530](https://github.com/microsoft/PowerStig/issues/530)
-        * Update PowerSTIG to successfully parse Microsoft .Net Framework STIG 4.0 STIG - Ver 1, Rel 9: [535](https://github.com/microsoft/PowerStig/issues/535)
-        * Update PowerSTIG to successfully parse MS Internet Explorer 11 STIG - Ver 1, Rel 18: [#538](https://github.com/microsoft/PowerStig/issues/538)
-        * Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 27: [#540](https://github.com/microsoft/PowerStig/issues/540)
-        * Update PowerSTIG to successfully parse Microsoft Windows 10 STIG - Ver 1, Rel 19: [533](https://github.com/microsoft/PowerStig/issues/533)
-        * Update PowerSTIG to parse/convert the Windows Server 2012 R2 MS/DC V2R17/V2R18 Respectively: [531](https://github.com/microsoft/PowerStig/issues/531)
-        * Update PowerSTIG to successfully parse Microsoft SQL Server 2016 Instance STIG - Ver 1, Rel 7: [#542](https://github.com/microsoft/PowerStig/issues/542)
-        * Update PowerSTIG to parse and apply OfficeSystem 2013 STIG V1R9 / 2016 V1R1: [#551](https://github.com/microsoft/PowerStig/issues/551)
-        * Update PowerSTIG to parse and apply Windows Server 2019 V1R2 STIG: [#554](https://github.com/microsoft/PowerStig/issues/554)
-        * Fixed [#428](https://github.com/microsoft/PowerStig/issues/428): Updated JRE rule V-66941.a to be a Organizational setting
-        * Fixed [#427](https://github.com/microsoft/PowerStig/issues/427): Windows 10 Rule V-63373 fails to apply settings to system drive
-        * Fixed [#514](https://github.com/microsoft/PowerStig/issues/514): Feature request: additional support for servicerule properties
-        * Fixed [#521](https://github.com/microsoft/PowerStig/issues/521): Organizational setting warning should include Stig name
-        * Fixed [#443](https://github.com/microsoft/PowerStig/issues/443): Missing cmdlet Get-StigXccdfBenchmark function
-        * Fixed [#528](https://github.com/microsoft/PowerStig/issues/528): New-StigChecklist should not require a ManualCheckFile
-        * Fixed [#545](https://github.com/microsoft/PowerStig/issues/545): Need a test to verify the conversionstatus="fail" does not exist in processed STIGs
-        * Fixed [#517](https://github.com/microsoft/PowerStig/issues/520): Need a test to verify the module version in the module manifest matches the DscResources.'
+        ReleaseNotes = '* Update PowerSTIG to Expand .NET STIG Automation: [#591](https://github.com/microsoft/PowerStig/issues/591)
+        * Update PowerSTIG to parse and apply McAfee VirusScan 8.8 Local Client STIG V5R16: [#588](https://github.com/microsoft/PowerStig/issues/588)
+        * Update PowerSTIG to successfully parse Microsoft SQL Server 2016 Instance STIG - Ver 1, Rel 8: [#586](https://github.com/microsoft/PowerStig/issues/586)
+        * Update PowerSTIG to parse and apply Windows Server 2019 V1R3 STIG: [#584](https://github.com/microsoft/PowerStig/issues/584)
+        * Update PowerSTIG to parse/convert the Windows Server 2016 V2R10: [#582](https://github.com/microsoft/PowerStig/issues/582)
+        * Update PowerSTIG to parse/convert the Windows Server 2012 DNS STIG V1R13: [#580](https://github.com/microsoft/PowerStig/issues/580)
+        * Update PowerSTIG to to parse/convert the Windows Server 2012 R2 DC V2R19: [#578](https://github.com/microsoft/PowerStig/issues/578)
+        * Update PowerSTIG to parse/convert the Windows Defender STIG V1R7: [#576](https://github.com/microsoft/PowerStig/issues/576)
+        * Update PowerSTIG to successfully parse Mozilla Firefox STIG - Ver 4, Rel 28: [#573](https://github.com/microsoft/PowerStig/issues/573)
+        * Update PowerSTIG to parse and apply Adobe Acrobat Reader Version 1, Release 6: [#562](https://github.com/microsoft/PowerStig/issues/562)
+        * Update PowerSTIG release process to include STIG Coverage markdown wiki automation: [#560](https://github.com/microsoft/PowerStig/issues/560)
+        * Update to PowerSTIG to show duplicate rule status matching in a checklist: [#257](https://github.com/microsoft/PowerStig/issues/257)
+        * Fixed [#589](https://github.com/microsoft/PowerStig/issues/589): Update module manifest to leverage GPRegistryPolicyDsc v1.2.0
+        * Fixed [#569](https://github.com/microsoft/PowerStig/issues/569): Update SqlServerDsc module version references
+        * Fixed [#259](https://github.com/microsoft/PowerStig/issues/259): Checklist .ckl file fails XML validation in Stig Viewer 2.8.
+        * Fixed [#527](https://github.com/microsoft/PowerStig/issues/527): Checklist is not using manualcheckfile when using DscResult.
+        * Fixed [#548](https://github.com/microsoft/PowerStig/issues/548): Target/host data is blank when creating a new checklist.
+        * Fixed [#546](https://github.com/microsoft/PowerStig/issues/546): Typecast causing an issue when trying to generate checklist using New-StigChecklist function.
+        * Fixed [#401](https://github.com/microsoft/PowerStig/issues/401): Checklists generated by New-StigChecklist do not provide finding details.
+        * Fixed [#593](https://github.com/microsoft/PowerStig/issues/593): Update PowerSTIG Convert naming conventions of output STIGs'
         } # End of PSData hashtable
     } # End of PrivateData hashtable
 }

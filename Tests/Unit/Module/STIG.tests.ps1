@@ -82,7 +82,6 @@ try
         #>
     }
     Describe 'Split-BenchmarkId' {
-
         $sampleStrings = [ordered]@{
             'SQLServer' = @(
                 @{
@@ -125,9 +124,9 @@ try
             'DNS' = @(
                 @{
                     'id' = 'Microsoft_Windows_2012_Server_Domain_Name_System_STIG'
-                    'Technology' = 'WindowsServer'
+                    'Technology' = 'WindowsDnsServer'
                     'TechnologyVersion' = '2012R2'
-                    'TechnologyRole' = 'DNS'
+                    'TechnologyRole' = $null
                 }
             )
             'Windows' = @(

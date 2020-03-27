@@ -23,7 +23,7 @@ using module ..\..\PowerStig.psm1
         If this is omitted the domain name of the computer that generates the configuration will be used.
     .PARAMETER Exception
         A hashtable of StigId=Value key pairs that are injected into the STIG data and applied to
-        the target node. The title of STIG settings are tagged with the text ‘Exception’ to identify
+        the target node. The title of STIG settings are tagged with the text 'Exception' to identify
         the exceptions to policy across the data center when you centralize DSC log collection.
     .PARAMETER OrgSettings
         The path to the xml file that contains the local organizations preferred settings for STIG
@@ -98,7 +98,7 @@ configuration WindowsServer
     Import-DscResource -ModuleName AuditPolicyDsc -ModuleVersion 1.2.0.0
     . "$resourcePath\windows.AuditPolicySubcategory.ps1"
 
-    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.0.1
+    Import-DscResource -ModuleName GPRegistryPolicyDsc -ModuleVersion 1.2.0
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Registry.ps1"
     . "$resourcePath\windows.Script.skip.ps1"
