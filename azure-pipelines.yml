@@ -1,0 +1,271 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    exclude:
+    - CHANGELOG.md
+  tags:
+    include:
+    - "v*"
+    exclude:
+    - "*-*"
+
+stages:
+  - stage: Build
+    jobs:
+      - job: Package_Module
+        displayName: 'Package Module'
+        pool:
+          vmImage: 'ubuntu 16.04'
+        steps:
+          - task: GitVersion@5
+            name: gitVersion
+            displayName: 'Evaluate Next Version'
+            inputs:
+              runtime: 'core'
+              configFilePath: 'GitVersion.yml'
+
+          - task: PowerShell@2
+            name: package
+            displayName: 'Build & Package Module'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-ResolveDependency -tasks pack'
+              pwsh: true
+            env:
+              ModuleVersion: $(gitVersion.NuGetVersionV2)
+
+          - task: PublishBuildArtifacts@1
+            displayName: 'Publish Build Artifact'
+            inputs:
+              pathToPublish: 'output/'
+              artifactName: 'output'
+              publishLocation: 'Container'
+
+  - stage: Test
+    dependsOn: Build
+    jobs:
+      - job: test_linux
+        displayName: 'Linux'
+        timeoutInMinutes: 0
+        pool:
+          vmImage: 'ubuntu 16.04'
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'output'
+              downloadPath: '$(Build.SourcesDirectory)'
+
+          - powershell: |
+              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
+              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
+              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
+            name: dscBuildVariable
+            displayName: 'Set Environment Variables'
+
+          - task: PowerShell@2
+            name: test
+            displayName: 'Run Tests'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks test'
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test Results'
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: 'NUnit'
+              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testRunTitle: 'Linux'
+
+          - task: PublishCodeCoverageResults@1
+            displayName: 'Publish Code Coverage'
+            condition: succeededOrFailed()
+            inputs:
+              codeCoverageTool: 'JaCoCo'
+              summaryFileLocation: 'output/testResults/CodeCov*.xml'
+              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
+
+      - job: test_windows_core
+        displayName: 'Windows (PowerShell Core)'
+        timeoutInMinutes: 0
+        pool:
+          vmImage: 'win1803'
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'output'
+              downloadPath: '$(Build.SourcesDirectory)'
+
+          - powershell: |
+              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
+              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
+              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
+            name: dscBuildVariable
+            displayName: 'Set Environment Variables'
+
+          - task: PowerShell@2
+            name: test
+            displayName: 'Run Tests'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks test'
+              pwsh: true
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test Results'
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: 'NUnit'
+              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testRunTitle: 'Windows Server Core (PowerShell Core)'
+
+          - task: PublishCodeCoverageResults@1
+            displayName: 'Publish Code Coverage'
+            condition: succeededOrFailed()
+            inputs:
+              codeCoverageTool: 'JaCoCo'
+              summaryFileLocation: 'output/testResults/CodeCov*.xml'
+              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
+
+      - job: test_windows_ps
+        displayName: 'Windows (Windows PowerShell)'
+        timeoutInMinutes: 0
+        pool:
+          vmImage: 'win1803'
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'output'
+              downloadPath: '$(Build.SourcesDirectory)'
+
+          - powershell: |
+              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
+              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
+              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
+            name: dscBuildVariable
+            displayName: 'Set Environment Variables'
+
+          - task: PowerShell@2
+            name: test
+            displayName: 'Run Tests'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks test'
+              pwsh: false
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test Results'
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: 'NUnit'
+              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testRunTitle: 'Windows Server Core (Windows PowerShell)'
+
+          - task: PublishCodeCoverageResults@1
+            displayName: 'Publish Code Coverage'
+            condition: succeededOrFailed()
+            inputs:
+              codeCoverageTool: 'JaCoCo'
+              summaryFileLocation: 'output/testResults/CodeCov*.xml'
+              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
+
+      - job: test_macos
+        displayName: 'macOS'
+        timeoutInMinutes: 0
+        pool:
+          vmImage: 'macos-latest'
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'output'
+              downloadPath: '$(Build.SourcesDirectory)'
+
+          - powershell: |
+              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
+              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
+              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
+            name: dscBuildVariable
+            displayName: 'Set Environment Variables'
+
+          - task: PowerShell@2
+            name: test
+            displayName: 'Run Tests'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks test'
+              pwsh: true
+
+          - task: PublishTestResults@2
+            displayName: 'Publish Test Results'
+            condition: succeededOrFailed()
+            inputs:
+              testResultsFormat: 'NUnit'
+              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testRunTitle: 'MacOS'
+
+          - task: PublishCodeCoverageResults@1
+            displayName: 'Publish Code Coverage'
+            condition: succeededOrFailed()
+            inputs:
+              codeCoverageTool: 'JaCoCo'
+              summaryFileLocation: 'output/testResults/CodeCov*.xml'
+              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
+
+  - stage: Deploy
+    dependsOn: Test
+    # Only execute deploy stage if we're on master and previous stage succeeded
+    condition: |
+      and(
+        succeeded(),
+        or(
+          eq(variables['Build.SourceBranch'], 'refs/heads/master'),
+          startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+        ),
+        contains(variables['System.TeamFoundationCollectionUri'], 'synedgy')
+      )
+    jobs:
+      - job: Deploy_Module
+        displayName: 'Deploy Module'
+        pool:
+          vmImage: 'ubuntu 16.04'
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'output'
+              downloadPath: '$(Build.SourcesDirectory)'
+          - task: PowerShell@2
+            name: publishRelease
+            displayName: 'Publish Release'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks publish'
+              pwsh: true
+            env:
+              GitHubToken: $(GitHubToken)
+              GalleryApiToken: $(GalleryApiToken)
+          - task: PowerShell@2
+            name: sendChangelogPR
+            displayName: 'Send Changelog PR'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks Create_ChangeLog_GitHub_PR'
+              pwsh: true
+            env:
+              GitHubToken: $(GitHubToken)
