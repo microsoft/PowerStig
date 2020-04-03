@@ -1,4 +1,3 @@
-
 $ruleList = @(
     @{
         testXml   = [xml]'<Rule Id="V-1000" severity="low" title="Registry - DWORD Test" dscresource="Registry">

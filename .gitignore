@@ -7,3 +7,6 @@ DSCResource.Tests
 
 # local preference scripts/utilities
 .local/
+
+# Build output folder
+output/
