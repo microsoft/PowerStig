@@ -1,6 +1,12 @@
 #region Header
-using module .\..\..\..\Module\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
+$setDynamicClassFileParams = @{
+    ClassModuleFileName = 'SqlScriptQueryRule.Convert.psm1'
+    PowerStigBuildPath  = $script:moduleRoot
+    DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\SqlScriptQueryRule.Convert.ps1')
+}
+Set-DynamicClassFile @setDynamicClassFileParams
+. $setDynamicClassFileParams.DestinationPath
 #endregion
 
 try

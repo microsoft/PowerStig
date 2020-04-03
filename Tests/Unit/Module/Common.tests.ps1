@@ -1,18 +1,27 @@
-using module .\..\..\..\Module\Common\Common.psm1
+#region Header
 . $PSScriptRoot\.tests.header.ps1
-# Header
-#region Enum Tests
-<#
-        a list of enums in the script that is used in a "burn down" manner. When an enum is processed
-        it is removed from the list, The last test will be to verify that all of the enums have
-        been tested
-    #>
-$enumDiscovered = New-Object System.Collections.ArrayList
-# Select each line that starts with enum to count the number of enum's in the file
+$setDynamicClassFileParams = @{
+    ClassModuleFileName = 'Common.psm1'
+    PowerStigBuildPath  = $script:moduleRoot
+    DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Common.ps1')
+}
+Set-DynamicClassFile @setDynamicClassFileParams
+. $setDynamicClassFileParams.DestinationPath
+#endregion
 
+<#
+    a list of enums in the script that is used in a "burn down" manner. When an enum is processed
+    it is removed from the list, The last test will be to verify that all of the enums have
+    been tested
+#>
+$enumDiscovered = New-Object System.Collections.ArrayList
+
+# Select each line that starts with enum to count the number of enum's in the file
 $enumListString = ( Get-Content $modulePath | Select-String "^Enum " )
+
 # Add each enum that is found to the array
 $enumListString | Foreach-Object { $enumDiscovered.add( ( $_ -split " " )[1].ToString().ToLower() ) | Out-Null }
+
 # Get a count to to use in a final test to validate enum test coverage
 [int] $enumTestCount = $enumDiscovered.Count
 

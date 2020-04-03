@@ -1,6 +1,12 @@
 #region Header
-using module .\..\..\..\Module\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
+$setDynamicClassFileParams = @{
+    ClassModuleFileName = 'ProcessMitigationRule.Convert.psm1'
+    PowerStigBuildPath  = $script:moduleRoot
+    DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\ProcessMitigationRule.Convert.ps1')
+}
+Set-DynamicClassFile @setDynamicClassFileParams
+. $setDynamicClassFileParams.DestinationPath
 #endregion
 
 try

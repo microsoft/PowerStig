@@ -1,4 +1,6 @@
-. $PSScriptRoot\..\..\..\Module\STIG\Functions.Checklist.ps1
+. $PSScriptRoot\.test.header.ps1
+$functionCheckListFile = (Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.Checklist.ps1')
+. $functionCheckListFile
 
 Describe 'New-StigCheckList' {
 

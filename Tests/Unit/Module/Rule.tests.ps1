@@ -1,11 +1,21 @@
 #region Header
-using module .\..\..\..\Module\Rule\Rule.psm1
-using module .\..\..\..\Module\Rule\Convert\ConvertFactory.psm1
 . $PSScriptRoot\.tests.header.ps1
+$setDynamicClassFileParams = @{
+    ClassModuleFileName = 'Rule.psm1'
+    PowerStigBuildPath  = $script:moduleRoot
+    DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Rule.ps1')
+}
+Set-DynamicClassFile @setDynamicClassFileParams
+. $setDynamicClassFileParams.DestinationPath
+
+$setDynamicClassFileParams.ClassModuleFileName = 'ConvertFactory.psm1'
+$setDynamicClassFileParams.DestinationPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\ConvertFactory.ps1')
+Set-DynamicClassFile @setDynamicClassFileParams
+. $setDynamicClassFileParams.DestinationPath
 #endregion
 try
 {
-    InModuleScope -ModuleName $script:moduleName {
+    InModuleScope -ModuleName $global:moduleName {
         #region Test Setup
         $stig = [Rule]::new( (Get-TestStigRule -ReturnGroupOnly), $true )
         $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))

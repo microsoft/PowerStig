@@ -10,3 +10,6 @@ DSCResource.Tests
 
 # Build output folder
 output/
+
+# Dynamic test folder where class inport code is stored
+.DynamicClassImport/
