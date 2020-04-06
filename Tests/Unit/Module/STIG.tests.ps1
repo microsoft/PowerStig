@@ -257,7 +257,8 @@ try
     }
     Describe 'Conversion Status' {
         It 'Should not contain conversionstatus="fail" in any processed STIG' {
-            $selectStringResults = Select-String -Pattern 'conversionstatus="fail"' -Path "$PSScriptRoot\..\..\..\StigData\Processed\*.xml"
+            $processedStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Processed\*.xml'
+            $selectStringResults = Select-String -Pattern 'conversionstatus="fail"' -Path $processedStigDataPath
             $selectStringResults | Should Be $null
         }
     }

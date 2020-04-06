@@ -1,15 +1,10 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 $setDynamicClassFileParams = @{
-    ClassModuleFileName = 'Rule.psm1'
+    ClassModuleFileName = 'Rule.psm1', 'ConvertFactory.psm1'
     PowerStigBuildPath  = $script:moduleRoot
     DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Rule.ps1')
 }
-Set-DynamicClassFile @setDynamicClassFileParams
-. $setDynamicClassFileParams.DestinationPath
-
-$setDynamicClassFileParams.ClassModuleFileName = 'ConvertFactory.psm1'
-$setDynamicClassFileParams.DestinationPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\ConvertFactory.ps1')
 Set-DynamicClassFile @setDynamicClassFileParams
 . $setDynamicClassFileParams.DestinationPath
 #endregion
@@ -123,12 +118,11 @@ try
                 }
             }
         }
-
         #endregion
-        #region Convert Factory
+    }
 
+    InModuleScope -ModuleName ConvertFactory {
         Describe 'Convert Factory' {
-
             Context 'AccountPolicyRule' {
                 $checkContent = 'Run "gpedit.msc".
 
@@ -144,7 +138,7 @@ try
             }
 
             Context 'AuditPolicyRule' {
-        $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
+                $checkContent = 'Security Option "Audit: Force audit policy subcategory settings (Windows Vista or later) to override audit policy category settings" must be set to "Enabled" (V-14230) for the detailed auditing subcategories to be effective.
 
                 Use the AuditPol tool to review the current Audit Policy configuration:
                 -Open a Command Prompt with elevated privileges ("Run as Administrator").
@@ -354,7 +348,6 @@ try
                 }
             }
         }
-        #endregion
     }
 }
 finally

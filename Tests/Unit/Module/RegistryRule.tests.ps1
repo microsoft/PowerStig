@@ -7,6 +7,14 @@ $setDynamicClassFileParams = @{
 }
 Set-DynamicClassFile @setDynamicClassFileParams
 . $setDynamicClassFileParams.DestinationPath
+
+# Data files
+$dataFilePath = Join-Path -Path $script:moduleRoot -ChildPath 'Module\Rule\Convert'
+$supportFiles = (Get-ChildItem -Path $dataFilePath -Filter 'Data.*.ps1').FullName
+foreach ($file in $supportFiles)
+{
+    . $file
+}
 #endregion
 
 try
