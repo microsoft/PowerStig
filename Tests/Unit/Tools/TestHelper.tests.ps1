@@ -1,5 +1,4 @@
-$unitTestRoot = Split-Path -Path $PSScriptRoot -Parent
-. "$unitTestRoot\.tests.header.ps1"
+. $PSScriptRoot\.tests.header.ps1
 
 try
 {
