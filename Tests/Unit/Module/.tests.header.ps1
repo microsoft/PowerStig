@@ -32,4 +32,3 @@ Import-Module -Name (Join-Path -Path $script:projectRoot -ChildPath 'Tools\TestH
 #>
 [System.Collections.ArrayList] $global:stigSettings = @()
 $global:StigRuleGlobal = @{ID = 'V-1000'}
-

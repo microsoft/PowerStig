@@ -8,9 +8,9 @@ $setDynamicClassFileParams = @{
 Set-DynamicClassFile @setDynamicClassFileParams
 . $setDynamicClassFileParams.DestinationPath
 #endregion
+
 try
 {
-    #region Functions
 
     Describe 'Split-StigXccdf' {
 
@@ -43,6 +43,7 @@ try
             }
         }
     }
+
     Describe 'Get-StigVersionNumber' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -54,6 +55,7 @@ try
                 Should Be "$majorVersionNumber.$minorVersionNumber"
         }
     }
+
     Describe 'Get-PowerStigFileList' {
         $majorVersionNumber = '1'
         $minorVersionNumber = '5'
@@ -87,6 +89,7 @@ try
         }
         #>
     }
+
     Describe 'Split-BenchmarkId' {
         $sampleStrings = [ordered]@{
             'SQLServer' = @(
@@ -255,6 +258,7 @@ try
             }
         }
     }
+
     Describe 'Conversion Status' {
         It 'Should not contain conversionstatus="fail" in any processed STIG' {
             $processedStigDataPath = Join-Path -Path $script:moduleRoot -ChildPath 'StigData\Processed\*.xml'
@@ -262,8 +266,8 @@ try
             $selectStringResults | Should Be $null
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1
