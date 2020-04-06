@@ -262,7 +262,10 @@ function Get-StigDataRootPath
     param ( )
 
     $projectRoot = Split-Path -Path (Split-Path -Path $PsScriptRoot)
-    return Join-Path -Path $projectRoot -Child 'StigData'
+    $buildOutput = Join-Path -Path $projectRoot -ChildPath 'output'
+    $manifestPath = (Get-ChildItem -Path $buildOutput -Filter 'PowerStig.psd1' -Recurse).FullName
+    $moduleRoot = Split-Path -Path $manifestPath -Parent
+    return Join-Path -Path $moduleRoot -Child 'StigData'
 }
 
 <#

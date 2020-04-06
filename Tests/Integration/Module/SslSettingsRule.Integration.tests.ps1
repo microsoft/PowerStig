@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $stigRulesToTest = @(
         @{
             Value        = 'Ssl'
@@ -24,8 +24,7 @@ try
             If the "Require SSL" check box is not selected, this is a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'SslSettings Rule Conversion' {
 
         foreach ( $stig in $stigRulesToTest )
@@ -49,8 +48,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

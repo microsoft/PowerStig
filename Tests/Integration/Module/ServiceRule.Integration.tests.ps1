@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $servicesToTest = @(
         @{
             ServiceName  = 'masvc'
@@ -65,8 +65,7 @@ try
             ConversionStatus = 'fail'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'Single Service Rule Conversion' {
 
         foreach ( $service in $servicesToTest)
@@ -172,8 +171,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

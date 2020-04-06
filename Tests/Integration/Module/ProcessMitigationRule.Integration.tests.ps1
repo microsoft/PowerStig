@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
-#endregion
+#
+
 try
 {
-    #region Test Setup
     $mitigationsRulesToTest = @(
         @{
             MitigationTarget = 'System'
@@ -76,8 +76,7 @@ try
             The PowerShell command produces a list of mitigations; only those with a required status of "ON" are listed here.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'ProcessMitigation Integration Tests' {
         foreach ($mitigationsRule in $mitigationsRulesToTest)
         {
@@ -127,8 +126,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

@@ -3,14 +3,12 @@
 #endregion
 try
 {
-    #region Test Setup
     $checkContent = 'Determine whether any shared accounts exist. If no shared accounts exist, this is NA.
 
     Shared accounts, such as required by an application, may be approved by the organization.  This must be documented with the ISSO. Documentation must include the reason for the account, who has access to the account, and how the risk of using the shared account is mitigated to include monitoring account activity.
-    
+
     If unapproved shared accounts exist, this is a finding.'
-    #endregion
-    #region Tests
+
     Describe 'DocumentRule Conversion' {
         [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle 'Windows'
         $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
@@ -33,8 +31,8 @@ try
             $rule.conversionstatus | Should Be 'pass'
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.Footer.ps1

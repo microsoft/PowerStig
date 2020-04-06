@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $EventsToTest = @(
         @{
             LogName      = 'Microsoft-Windows-DnsServer/Analytical'
@@ -44,8 +44,7 @@ try
             If the check box to enable analytic and debug logs is not enabled on a Windows 2012 R2 DNS server, this is a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'DnsWinEventLog Rule Conversion' {
 
         foreach ( $WinEvents in $EventsToTest)
@@ -75,8 +74,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

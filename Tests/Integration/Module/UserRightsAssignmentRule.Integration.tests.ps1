@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $rulesToTest = @(
         @{
             displayName  = 'Act as part of the operating system'
@@ -86,8 +86,7 @@ try
             Microsoft Security Advisory Patch 2871997 adds the new security groups to Windows Server 2012.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'User Rights Assignment Conversion' {
 
         foreach ( $testRule in $rulesToTest )
@@ -123,8 +122,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

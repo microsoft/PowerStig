@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
-#endregion
+#
+
 try
 {
-    #region Test Setup
     $stigRulesToTest = @(
         @{
             LogCustomFieldEntry = @(
@@ -88,8 +88,7 @@ try
                 If any of the above fields are not selected, this is a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'IisLogging Rule Conversion' {
 
         foreach ($stig in $stigRulesToTest)
@@ -133,8 +132,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

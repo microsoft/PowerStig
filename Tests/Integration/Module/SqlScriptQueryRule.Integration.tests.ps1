@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $stigRulesToTest = @(
         @{
             GetScript    = "SELECT name from sysdatabases where name like 'AdventureWorks%'"
@@ -125,8 +125,7 @@ try
             GO"
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'SqlScriptQuery Rule Conversion' {
         foreach ( $stig in $stigRulesToTest )
         {
@@ -176,8 +175,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

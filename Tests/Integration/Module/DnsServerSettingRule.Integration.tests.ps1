@@ -1,10 +1,11 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
-$forwardersCheckContent = @'
+
+    $forwardersCheckContent = @'
 Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 
 Note: In Windows 2008 DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable
@@ -30,7 +31,7 @@ If forwarders are not enabled and configured, and the "Disable recursion (also d
 selected, this is a finding.
 '@
 
-$eventLogLevelCheckContent = @'
+    $eventLogLevelCheckContent = @'
 Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
 Press Windows Key + R, execute dnsmgmt.msc.
@@ -44,7 +45,7 @@ Verify "Errors and warnings" or "All events" is selected.
 If any option other than "Errors and warnings" or "All events" is selected, this is a finding.
 '@
 
-$multiUserRightRule = @'
+        $multiUserRightRule = @'
 Review the DNS server to confirm the server restricts direct and remote console access to users other than Administrators.
 
 Verify the effective setting in Local Group Policy Editor.
@@ -70,7 +71,7 @@ If the following accounts or groups are not defined for the "Deny log on locally
 Guests Group
 '@
 
-$userRightPermissionRuleCombo = @'
+    $userRightPermissionRuleCombo = @'
 Verify the effective setting in Local Group Policy Editor.
 
 Run "gpedit.msc".
@@ -104,8 +105,7 @@ Administrators - Full Control
 If the permissions for these files are not as restrictive as the ACLs listed, this is a
 finding.
 '@
-    #endregion
-    #region Tests
+
     Describe 'DnsServerSettingRule conversion' {
 
         Context 'Forwarders' {
@@ -214,8 +214,8 @@ finding.
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

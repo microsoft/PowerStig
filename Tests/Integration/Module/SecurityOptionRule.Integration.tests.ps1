@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $testStrings = @(
         @{
             OptionName = 'Network security: Force logoff when logon hours expire'
@@ -29,8 +29,7 @@ try
             If the value for "Accounts: Rename administrator account" is not set to a value other than "Administrator", this is a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'Security Option Conversion' {
 
         foreach ( $testString in $testStrings )
@@ -63,8 +62,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

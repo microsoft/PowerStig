@@ -4,7 +4,6 @@
 
 try
 {
-    #region Test Setup
     $rootHintsCheckContent = @'
 Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 
@@ -20,8 +19,7 @@ Verify the "Root Hints" is either empty or only has entries for internal zones u
 
 If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name servers:" are external to the local network, this is a finding.
 '@
-    #endregion
-    #region Tests
+
     Describe 'DnsServerRootHintRule conversion' {
 
         Context 'Root hints' {
@@ -47,8 +45,8 @@ If "Root Hints" is not empty and the entries on the "Root Hints" tab under "Name
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

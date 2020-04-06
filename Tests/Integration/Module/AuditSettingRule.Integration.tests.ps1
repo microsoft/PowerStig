@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $rulesToTest = @(
             @{
                 query        = "SELECT * FROM Win32_LogicalDisk WHERE DriveType = '3'"
@@ -80,8 +80,6 @@ try
             }
     )
 
-    #endregion
-    #region Tests
     Describe 'AuditSetting Rule Conversion' {
 
         foreach ( $testRule in $rulesToTest )
@@ -114,8 +112,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

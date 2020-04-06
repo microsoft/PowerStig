@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $stigRulesToTest = @(
         @{
             ConfigSection = '/system.webServer/security/requestFiltering'
@@ -52,8 +52,7 @@ try
             Verify "HMACSHA256"'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'WebConfigurationProperty Rule Conversion' {
 
         foreach ( $stig in $stigRulesToTest )
@@ -86,8 +85,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

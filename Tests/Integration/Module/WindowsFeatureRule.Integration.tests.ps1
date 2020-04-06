@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $testStrings = @(
         @{
             Name  = 'SMB1Protocol'
@@ -66,8 +66,7 @@ try
             An Installed State of "Available" or "Removed" is not a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'Windows Feature Conversion' {
 
         foreach ($testString in $testStrings)
@@ -108,8 +107,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

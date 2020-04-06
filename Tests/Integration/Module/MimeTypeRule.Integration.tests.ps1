@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $stigRuleToTest = @{
         Ensure       = 'absent'
         Extension    = @('.exe','.dll','.com','.bat','.csh')
@@ -38,8 +38,7 @@ try
     }
 
     $index = 0
-    #endregion
-    #region Tests
+
     Describe 'MimeType Rule Conversion' {
 
         [xml] $stigRule = Get-TestStigRule -CheckContent $stigRuleToTest.CheckContent -XccdfTitle 'IIS'
@@ -75,8 +74,8 @@ try
             $index++
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

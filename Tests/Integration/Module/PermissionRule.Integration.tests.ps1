@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $checkContent = 'Verify the permissions on Event Viewer only allow TrustedInstaller permissions to change or
     modify.  If any groups or accounts other than TrustedInstaller have Full control or Modify, this
     is a finding.
@@ -25,10 +25,9 @@ try
     $principal2 = 'SystemUsers'
     $permission3 = 'Create Folders'
     $inheritance = 'This folder, subfolders and files'
-    #endregion
-    #region Tests
+
     Describe 'Permission Rule Multiple Principals, same permissions, same line' {
-        
+
         $checkContent = $checkContent -f $targetExe, $principal1, $permission1, $principalList,
         $permission2, $principal2, $permission3, $inheritance
         [xml] $stigRule = Get-TestStigRule -CheckContent $checkContent -XccdfTitle Windows
@@ -63,8 +62,8 @@ try
             $rule.dscresource | Should Be 'NTFSAccessEntry'
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

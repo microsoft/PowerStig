@@ -1,9 +1,10 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
+
     $registriesToTest = @(
         @{
             Id                          = 'Rule1'
@@ -186,8 +187,7 @@ try
             Criteria:  If the uAction does not have a value of 5, this is a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'Registry basic settings conversion' {
 
         foreach ($registry in $registriesToTest)
@@ -231,8 +231,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

@@ -1,9 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
     $stigRulesToTest = @(
         @{
             Key          = 'rapidFailProtection'
@@ -36,8 +36,7 @@ try
             If the value for "Ping Enabled" is not set to "True", this is a finding.'
         }
     )
-    #endregion
-    #region Tests
+
     Describe 'WebAppPool Rule Conversion' {
 
         foreach ( $stig in $stigRulesToTest )
@@ -64,8 +63,8 @@ try
             }
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

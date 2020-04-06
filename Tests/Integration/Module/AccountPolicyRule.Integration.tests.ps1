@@ -1,11 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
-    #region Test Setup
-    #endregion
-    #region Tests
     Describe 'ConvertTo-AccountPolicyRule without range' {
         $checkContent = 'Verify the effective setting in Local Group Policy Editor.
         Run "gpedit.msc".
@@ -66,8 +64,8 @@ try
             $rule.conversionstatus | Should Be 'pass'
         }
     }
-    #endregion
 }
+
 finally
 {
     . $PSScriptRoot\.tests.footer.ps1

@@ -1,12 +1,5 @@
 #region Header
-# Convert Class Private functions Header V1
-$script:moduleRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
-$script:moduleName = 'PowerStig'
-$script:modulePath = "$($script:moduleRoot)\$($script:moduleName).psd1"
-$script:dscCompositePath = Join-Path -Path $script:moduleRoot -ChildPath 'DSCResources'
-
-Import-Module -Name (Join-Path -Path $script:moduleRoot -ChildPath 'Tools\TestHelper\TestHelper.psm1') -Force
-Import-Module $modulePath -Force
+. $PSScriptRoot\.tests.header.ps1
 #endregion
 
 Describe "$moduleName module" {

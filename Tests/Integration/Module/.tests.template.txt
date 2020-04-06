@@ -1,6 +1,7 @@
 #region Header
-. $PSScriptRoot\.tests.Header.ps1
+. $PSScriptRoot\.tests.header.ps1
 #endregion
+
 try
 {
     #region Test Setup
@@ -12,6 +13,6 @@ try
 }
 finally
 {
-    . $PSScriptRoot\.tests.Footer.ps1
+    . $PSScriptRoot\.tests.footer.ps1
 }
 
