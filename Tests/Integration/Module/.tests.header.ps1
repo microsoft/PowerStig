@@ -10,7 +10,7 @@ else
     $extension = 'psm1'
 }
 
-$script:projectRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
+$script:projectRoot = Split-Path -Path (Split-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -Parent) -Parent
 $script:buildOutput = Join-Path -Path $projectRoot -ChildPath 'output'
 $script:modulePath = (Get-ChildItem -Path $buildOutput -Filter ('{0}.{1}' -f $script:moduleName, $extension) -Recurse).FullName
 $script:moduleRoot = Split-Path -Path $script:modulePath -Parent

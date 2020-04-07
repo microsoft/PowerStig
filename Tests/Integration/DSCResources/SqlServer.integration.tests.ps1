@@ -30,7 +30,7 @@ try
         $getRandomExceptionRuleParams = @{
             RuleType       = 'SqlScriptQueryRule'
             PowerStigXml   = $powerstigXml
-            ParameterValue = $true
+            ParameterValue = 1234567
         }
         $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
         $exceptionMultiple = $null
