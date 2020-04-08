@@ -53,12 +53,9 @@ Pester:
   Script:
    - tests/Unit
   ExcludeTag:
-    - helpQuality
-    - FunctionalQuality
-    - TestQuality
   Tag:
   CodeCoverageThreshold: 45 # Set to 0 to bypass
-  CodeCoverageOutputFile: JaCoCo_$OsShortName.xml
+  CodeCoverageOutputFile: JaCoCo_coverage.xml
   CodeCoverageOutputFileEncoding: ascii
 
 Resolve-Dependency:
