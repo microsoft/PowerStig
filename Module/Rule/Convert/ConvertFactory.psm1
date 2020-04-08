@@ -25,6 +25,8 @@ using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 using module .\..\..\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\..\..\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
 using module .\..\..\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
+using module .\..\..\Rule.SharePoint\Convert\SharePointRule.Convert.psm1
+using module .\..\..\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
 
 # Header
 
@@ -195,6 +197,18 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'ServiceRuleConvert', 'ServiceName')
+                )
+            }
+            <#{[SharePointRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SharePointRuleConvert]::new($Rule).AsRule()
+                )
+            }#>
+            {[SPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [SPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[SqlScriptQueryRuleConvert]::Match($PSItem)}
