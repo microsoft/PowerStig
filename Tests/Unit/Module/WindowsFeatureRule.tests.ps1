@@ -1,12 +1,5 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
-$setDynamicClassFileParams = @{
-    ClassModuleFileName = 'WindowsFeatureRule.Convert.psm1'
-    PowerStigBuildPath  = $script:moduleRoot
-    DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\WindowsFeatureRule.Convert.ps1')
-}
-Set-DynamicClassFile @setDynamicClassFileParams
-. $setDynamicClassFileParams.DestinationPath
 #endregion
 
 try

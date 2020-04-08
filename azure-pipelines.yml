@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - master
+    - bcwilhite#600
   paths:
     exclude:
     - CHANGELOG.md
@@ -46,12 +46,20 @@ stages:
   - stage: Test
     dependsOn: Build
     jobs:
-      - job: test_linux
-        displayName: 'Linux'
-        timeoutInMinutes: 0
+
+      - job: Test_Unit
+        displayName: 'Unit'
         pool:
-          vmImage: 'ubuntu 16.04'
+          vmImage: 'windows-2019'
+        timeoutInMinutes: 0
         steps:
+          - powershell: |
+              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
+
+              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
+              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
+            name: dscBuildVariable
+            displayName: 'Set Environment Variables'
           - task: DownloadBuildArtifacts@0
             displayName: 'Download Build Artifact'
             inputs:
@@ -59,119 +67,20 @@ stages:
               downloadType: 'single'
               artifactName: 'output'
               downloadPath: '$(Build.SourcesDirectory)'
-
-          - powershell: |
-              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
-              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
-              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
-            name: dscBuildVariable
-            displayName: 'Set Environment Variables'
-
           - task: PowerShell@2
             name: test
-            displayName: 'Run Tests'
+            displayName: 'Run Unit Test'
             inputs:
               filePath: './build.ps1'
-              arguments: '-tasks test'
-
-          - task: PublishTestResults@2
-            displayName: 'Publish Test Results'
-            condition: succeededOrFailed()
-            inputs:
-              testResultsFormat: 'NUnit'
-              testResultsFiles: 'output/testResults/NUnit*.xml'
-              testRunTitle: 'Linux'
-
-          - task: PublishCodeCoverageResults@1
-            displayName: 'Publish Code Coverage'
-            condition: succeededOrFailed()
-            inputs:
-              codeCoverageTool: 'JaCoCo'
-              summaryFileLocation: 'output/testResults/CodeCov*.xml'
-              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
-
-      - job: test_windows_core
-        displayName: 'Windows (PowerShell Core)'
-        timeoutInMinutes: 0
-        pool:
-          vmImage: 'win1803'
-        steps:
-          - task: DownloadBuildArtifacts@0
-            displayName: 'Download Build Artifact'
-            inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: 'output'
-              downloadPath: '$(Build.SourcesDirectory)'
-
-          - powershell: |
-              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
-              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
-              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
-            name: dscBuildVariable
-            displayName: 'Set Environment Variables'
-
-          - task: PowerShell@2
-            name: test
-            displayName: 'Run Tests'
-            inputs:
-              filePath: './build.ps1'
-              arguments: '-tasks test'
-              pwsh: true
-
-          - task: PublishTestResults@2
-            displayName: 'Publish Test Results'
-            condition: succeededOrFailed()
-            inputs:
-              testResultsFormat: 'NUnit'
-              testResultsFiles: 'output/testResults/NUnit*.xml'
-              testRunTitle: 'Windows Server Core (PowerShell Core)'
-
-          - task: PublishCodeCoverageResults@1
-            displayName: 'Publish Code Coverage'
-            condition: succeededOrFailed()
-            inputs:
-              codeCoverageTool: 'JaCoCo'
-              summaryFileLocation: 'output/testResults/CodeCov*.xml'
-              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
-
-      - job: test_windows_ps
-        displayName: 'Windows (Windows PowerShell)'
-        timeoutInMinutes: 0
-        pool:
-          vmImage: 'win1803'
-        steps:
-          - task: DownloadBuildArtifacts@0
-            displayName: 'Download Build Artifact'
-            inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: 'output'
-              downloadPath: '$(Build.SourcesDirectory)'
-
-          - powershell: |
-              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
-              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
-              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
-            name: dscBuildVariable
-            displayName: 'Set Environment Variables'
-
-          - task: PowerShell@2
-            name: test
-            displayName: 'Run Tests'
-            inputs:
-              filePath: './build.ps1'
-              arguments: '-tasks test'
+              arguments: "-Tasks test -PesterScript 'tests/Unit'"
               pwsh: false
-
           - task: PublishTestResults@2
             displayName: 'Publish Test Results'
             condition: succeededOrFailed()
             inputs:
               testResultsFormat: 'NUnit'
               testResultsFiles: 'output/testResults/NUnit*.xml'
-              testRunTitle: 'Windows Server Core (Windows PowerShell)'
-
+              testRunTitle: 'Unit (Windows Server Core)'
           - task: PublishCodeCoverageResults@1
             displayName: 'Publish Code Coverage'
             condition: succeededOrFailed()
@@ -180,11 +89,11 @@ stages:
               summaryFileLocation: 'output/testResults/CodeCov*.xml'
               pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
 
-      - job: test_macos
-        displayName: 'macOS'
-        timeoutInMinutes: 0
+      - job: Test_Integration
+        displayName: 'Integration'
         pool:
-          vmImage: 'macos-latest'
+          vmImage: 'windows-2019'
+        timeoutInMinutes: 0
         steps:
           - task: DownloadBuildArtifacts@0
             displayName: 'Download Build Artifact'
@@ -193,79 +102,24 @@ stages:
               downloadType: 'single'
               artifactName: 'output'
               downloadPath: '$(Build.SourcesDirectory)'
-
-          - powershell: |
-              $repositoryOwner,$repositoryName = $env:BUILD_REPOSITORY_NAME -split '/'
-              echo "##vso[task.setvariable variable=RepositoryOwner;isOutput=true]$repositoryOwner"
-              echo "##vso[task.setvariable variable=RepositoryName;isOutput=true]$repositoryName"
-            name: dscBuildVariable
-            displayName: 'Set Environment Variables'
-
+          - task: PowerShell@2
+            name: configureWinRM
+            displayName: 'Configure WinRM'
+            inputs:
+              targetType: 'inline'
+              script: 'winrm quickconfig -quiet'
+              pwsh: false
           - task: PowerShell@2
             name: test
-            displayName: 'Run Tests'
+            displayName: 'Run Integration Test'
             inputs:
               filePath: './build.ps1'
-              arguments: '-tasks test'
-              pwsh: true
-
+              arguments: "-Tasks test -PesterScript 'tests/Integration' -CodeCoverageThreshold 0"
+              pwsh: false
           - task: PublishTestResults@2
             displayName: 'Publish Test Results'
             condition: succeededOrFailed()
             inputs:
               testResultsFormat: 'NUnit'
               testResultsFiles: 'output/testResults/NUnit*.xml'
-              testRunTitle: 'MacOS'
-
-          - task: PublishCodeCoverageResults@1
-            displayName: 'Publish Code Coverage'
-            condition: succeededOrFailed()
-            inputs:
-              codeCoverageTool: 'JaCoCo'
-              summaryFileLocation: 'output/testResults/CodeCov*.xml'
-              pathToSources: '$(Build.SourcesDirectory)/output/$(dscBuildVariable.RepositoryName)'
-
-  - stage: Deploy
-    dependsOn: Test
-    # Only execute deploy stage if we're on master and previous stage succeeded
-    condition: |
-      and(
-        succeeded(),
-        or(
-          eq(variables['Build.SourceBranch'], 'refs/heads/master'),
-          startsWith(variables['Build.SourceBranch'], 'refs/tags/')
-        ),
-        contains(variables['System.TeamFoundationCollectionUri'], 'synedgy')
-      )
-    jobs:
-      - job: Deploy_Module
-        displayName: 'Deploy Module'
-        pool:
-          vmImage: 'ubuntu 16.04'
-        steps:
-          - task: DownloadBuildArtifacts@0
-            displayName: 'Download Build Artifact'
-            inputs:
-              buildType: 'current'
-              downloadType: 'single'
-              artifactName: 'output'
-              downloadPath: '$(Build.SourcesDirectory)'
-          - task: PowerShell@2
-            name: publishRelease
-            displayName: 'Publish Release'
-            inputs:
-              filePath: './build.ps1'
-              arguments: '-tasks publish'
-              pwsh: true
-            env:
-              GitHubToken: $(GitHubToken)
-              GalleryApiToken: $(GalleryApiToken)
-          - task: PowerShell@2
-            name: sendChangelogPR
-            displayName: 'Send Changelog PR'
-            inputs:
-              filePath: './build.ps1'
-              arguments: '-tasks Create_ChangeLog_GitHub_PR'
-              pwsh: true
-            env:
-              GitHubToken: $(GitHubToken)
+              testRunTitle: 'Integration (Windows Server Core)'

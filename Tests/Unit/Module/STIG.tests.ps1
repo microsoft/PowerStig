@@ -1,17 +1,9 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
-$setDynamicClassFileParams = @{
-    ClassModuleFileName = 'Convert.Main.psm1'
-    PowerStigBuildPath  = $script:moduleRoot
-    DestinationPath     = $(Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\Convert.Main.ps1')
-}
-Set-DynamicClassFile @setDynamicClassFileParams
-. $setDynamicClassFileParams.DestinationPath
 #endregion
 
 try
 {
-
     Describe 'Split-StigXccdf' {
 
         $sampleXccdfFileName = 'U_Windows_Server_2016{0}_STIG_V1R1_Manual-xccdf.xml'

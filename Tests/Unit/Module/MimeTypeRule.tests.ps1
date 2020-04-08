@@ -1,12 +1,5 @@
 #region Header
 . $PSScriptRoot\.tests.header.ps1
-$setDynamicClassFileParams = @{
-    ClassModuleFileName = 'MimeTypeRule.Convert.psm1'
-    PowerStigBuildPath  = $script:moduleRoot
-    DestinationPath     = (Join-Path -Path $PSScriptRoot -ChildPath '..\.DynamicClassImport\MimeTypeRule.Convert.ps1')
-}
-Set-DynamicClassFile @setDynamicClassFileParams
-. $setDynamicClassFileParams.DestinationPath
 #endregion
 
 try

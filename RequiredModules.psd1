@@ -17,8 +17,6 @@
     Sampler                     = 'latest'
     xDSCResourceDesigner        = 'latest'
     PSPKI                       = 'latest'
-    'DscResource.Test'          = 'latest'
-    'DscResource.AnalyzerRules' = 'latest'
     'powershell-yaml'           = 'latest'
     AuditPolicyDsc              = '1.2.0.0'
     AuditSystemDsc              = '1.1.0'

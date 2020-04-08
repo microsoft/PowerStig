@@ -1,6 +1,6 @@
+#region Header
 . $PSScriptRoot\.tests.header.ps1
-$functionCheckListFile = (Join-Path -Path $script:moduleRoot -ChildPath '\Module\STIG\Functions.Checklist.ps1')
-. $functionCheckListFile
+#endregion
 
 Describe 'New-StigCheckList' {
 
