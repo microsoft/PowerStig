@@ -48,6 +48,7 @@ RequiredModules  = @(
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
+    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
 )
 
 # DSC resources to export from this module
@@ -66,7 +67,8 @@ DscResourcesToExport = @(
     'WindowsDefender',
     'WindowsDnsServer',
     'WindowsFirewall',
-    'WindowsServer'
+    'WindowsServer',
+    'Vsphere'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.

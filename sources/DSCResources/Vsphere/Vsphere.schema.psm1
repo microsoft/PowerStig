@@ -139,7 +139,7 @@ configuration Vsphere
     . "$resourcePath\Vsphere.VmHostSNMPAgent.ps1"
     . "$resourcePath\Vsphere.VmHostVMKernelActiveDumpPartition.ps1"
     . "$resourcePath\Vsphere.VmHostVssSecurity.ps1"
-    . "$resourcePath\VsphereVmHostVssPortGroupSecurity.ps1"
+    . "$resourcePath\Vsphere.VmHostVssPortGroupSecurity.ps1"
 
     Import-DscResource -ModuleName PSDscResources -ModuleVersion 2.10.0.0
     . "$resourcePath\windows.Script.skip.ps1"
