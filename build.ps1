@@ -222,6 +222,47 @@ process
 
 Begin
 {
+    # dynamically build the required module data file based on PowerStig.psd1 module manifest
+    $requiredModulesContent = @'
+@{
+    # Set up a mini virtual environment...
+    PSDependOptions             = @{
+        AddToPath  = $true
+        Target     = 'output\RequiredModules'
+        Parameters = @{
+
+        }
+    }
+
+    InvokeBuild                 = 'latest'
+    PSScriptAnalyzer            = 'latest'
+    Pester                      = 'latest'
+    Plaster                     = 'latest'
+    ModuleBuilder               = '1.0.0'
+    ChangelogManagement         = 'latest'
+    Sampler                     = 'latest'
+    xDSCResourceDesigner        = 'latest'
+    PSPKI                       = 'latest'
+    MarkdownLinkCheck           = 'latest'
+    'DscResource.Test'          = 'latest'
+    'DscResource.AnalyzerRules' = 'latest'
+    'powershell-yaml'           = 'latest'
+    # The modules below are dynamically inserted from the Begin block of .\build.ps1
+
+'@
+
+    $stringBuilder = New-Object -TypeName System.Text.StringBuilder -ArgumentList $requiredModulesContent
+    $powerStigModuleManifest = Import-PowerShellDataFile -Path (Join-Path -Path $PSScriptRoot -ChildPath '.\sources\PowerStig.psd1')
+    $powerStigRequiredModule = $powerStigModuleManifest.RequiredModules
+    foreach ($requiredModule in $powerStigRequiredModule)
+    {
+        $moduleInfo = "    {0} = '{1}'" -f $requiredModule.ModuleName, $requiredModule.ModuleVersion
+        [void] $stringBuilder.AppendLine($moduleInfo)
+    }
+
+    [void] $stringBuilder.AppendLine("}`n`r")
+    Set-Content -Path (Join-Path -Path $PSScriptRoot -ChildPath 'RequiredModules.psd1') -Value $stringBuilder.ToString() -Encoding UTF8
+
     # Find build config if not specified
     if (-not $BuildConfig) {
         $config = Get-ChildItem -Path "$PSScriptRoot\*" -Include 'build.y*ml', 'build.psd1', 'build.json*' -ErrorAction:Ignore
