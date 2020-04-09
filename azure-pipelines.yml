@@ -1,7 +1,7 @@
 trigger:
   branches:
     include:
-    - bcwilhite#600
+    - master
   paths:
     exclude:
     - CHANGELOG.md

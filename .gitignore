@@ -10,3 +10,6 @@ output/
 
 # Dynamic test folder where class inport code is stored
 .DynamicClassImport/
+
+# RequiredModules.psd1 is created by the build script and should be git ignored
+RequiredModules.psd1
