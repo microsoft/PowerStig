@@ -34,6 +34,14 @@ using module .\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm
 using module .\Module\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\Module\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
 using module .\Module\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
+using module .\Module\Rule.VsphereAdvancedSettings\Convert\VsphereAdvancedSettingsRule.Convert.psm1
+using module .\Module\Rule.VsphereService\Convert\VsphereServiceRule.Convert.psm1
+using module .\Module\Rule.VspherePortGroupSecurity\Convert\VspherePortGroupSecurityRule.Convert.psm1
+using module .\Module\Rule.VsphereAcceptanceLevel\Convert\VsphereAcceptanceLevelRule.Convert.psm1
+using module .\Module\Rule.VsphereSnmpAgent\Convert\VsphereSnmpAgentRule.Convert.psm1
+using module .\Module\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKernelActiveDumpPartitionRule.Convert.psm1
+using module .\Module\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
+using module .\Module\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
 
 # load the public functions
 foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig\Convert" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )
