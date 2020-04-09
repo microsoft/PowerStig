@@ -50,11 +50,12 @@ Pester:
 
   # Will look at every *.ps1 & *.psm1 under ModulePath, excepts when $_.FullName -match (Join-Path $ProjectPath $ExcludeFromCodeCoverageItem)
   ExcludeFromCodeCoverage:
+   - DSCResources
   Script:
    - tests/Unit
   ExcludeTag:
   Tag:
-  CodeCoverageThreshold: 45 # Set to 0 to bypass
+  CodeCoverageThreshold: 55 # Set to 0 to bypass
   CodeCoverageOutputFile: JaCoCo_coverage.xml
   CodeCoverageOutputFileEncoding: ascii
 
