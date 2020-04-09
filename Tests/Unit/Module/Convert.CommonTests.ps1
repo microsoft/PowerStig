@@ -1,4 +1,7 @@
-using module .\..\..\..\Module\Rule\Rule.psm1
+#region Header
+. $PSScriptRoot\.tests.header.ps1
+#endregion
+
 <#
     The convert common tests loop through the test data that is provided in the
     form of a hashtable.
@@ -13,6 +16,7 @@ using module .\..\..\..\Module\Rule\Rule.psm1
 
 # Get the rule element with the checkContent injected into it
 $stigRule = Get-TestStigRule -CheckContent $testRule.checkContent -ReturnGroupOnly
+
 # Create an instance of the convert class that is currently being tested
 $convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
 

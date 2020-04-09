@@ -1,5 +1,4 @@
 #region Header
-using module .\..\..\..\Module\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Convert.psm1
 . $PSScriptRoot\.tests.header.ps1
 #endregion
 

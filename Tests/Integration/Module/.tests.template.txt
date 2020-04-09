@@ -1,0 +1,18 @@
+#region Header
+. $PSScriptRoot\.tests.header.ps1
+#endregion
+
+try
+{
+    #region Test Setup
+
+    #endregion
+    #region Tests
+
+    #endregion
+}
+finally
+{
+    . $PSScriptRoot\.tests.footer.ps1
+}
+

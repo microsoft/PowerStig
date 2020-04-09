@@ -1,4 +1,5 @@
-[String] $script:moduleRoot = Split-Path -Parent (Split-Path -Parent (Split-Path -Parent $PSScriptRoot))
+# DscResource Unit Test Header
+. $PSScriptRoot\.tests.header.ps1
 
 Import-Module -Name (Join-Path -Path $moduleRoot -ChildPath 'DscResources\helper.psm1')
 
