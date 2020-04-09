@@ -2,7 +2,7 @@
 
 ## [Unreleased]
 
-* Update PowerSTIG to use Azure Pipelines and DSC Community based build logic
+* Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 
 ## [4.3.0] - 2020-03-27
 
