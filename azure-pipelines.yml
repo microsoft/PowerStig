@@ -47,7 +47,7 @@ stages:
     dependsOn: Build
     jobs:
       - job: Test_HQRM
-        displayName: 'HQRM'
+        displayName: 'High Quality Resource Module'
         pool:
           vmImage: 'windows-2019'
         timeoutInMinutes: 0
