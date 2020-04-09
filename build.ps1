@@ -256,7 +256,7 @@ Begin
     $powerStigRequiredModule = $powerStigModuleManifest.RequiredModules
     foreach ($requiredModule in $powerStigRequiredModule)
     {
-        $moduleInfo = "    {0} = '{1}'" -f $requiredModule.ModuleName, $requiredModule.ModuleVersion
+        $moduleInfo = "    '{0}' = '{1}'" -f $requiredModule.ModuleName, $requiredModule.ModuleVersion
         [void] $stringBuilder.AppendLine($moduleInfo)
     }
 
