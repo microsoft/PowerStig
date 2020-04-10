@@ -48,6 +48,13 @@ RequiredModules  = @(
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
+    @{ModuleName = 'VMware.VimAutomation.Sdk'; ModuleVersion = '12.0.0.15939651'}
+    @{ModuleName = 'VMware.VimAutomation.Common'; ModuleVersion = '12.0.0.15939652'}
+    @{ModuleName = 'VMware.Vim'; ModuleVersion ='7.0.0.15939650'}
+    @{ModuleName = 'VMware.VimAutomation.Cis.Core'; ModuleVersion = '12.0.0.15939657'}
+    @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'}
+    @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '12.0.0.15939648'}
+    @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '12.0.0.15940185'}
     @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
 )
 
