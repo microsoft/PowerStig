@@ -19,7 +19,7 @@ using module .\..\Rule\Rule.psm1
         The PowerShell equivalent operator
 
 #>
-Class AuditSettingRule : Rule
+class AuditSettingRule : Rule
 {
     [string] $Query
     [string] $Property
@@ -40,7 +40,7 @@ Class AuditSettingRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    AuditSettingRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    AuditSettingRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -52,7 +52,7 @@ Class AuditSettingRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    AuditSettingRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    AuditSettingRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

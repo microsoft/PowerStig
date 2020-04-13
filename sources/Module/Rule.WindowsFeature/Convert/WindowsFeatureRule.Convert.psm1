@@ -23,7 +23,7 @@ foreach ($supportFile in $supportFileList)
         parsing and validation.
 
 #>
-Class WindowsFeatureRuleConvert : WindowsFeatureRule
+class WindowsFeatureRuleConvert : WindowsFeatureRule
 {
     <#
         .SYNOPSIS
@@ -39,7 +39,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    WindowsFeatureRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    WindowsFeatureRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetFeatureName()
         $this.SetFeatureInstallState()
@@ -137,7 +137,7 @@ Class WindowsFeatureRuleConvert : WindowsFeatureRule
     hidden [void] SetDscResource ()
     {
         # Assigns the appropriate Windows Feature DSC Resource
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             if ($global:stigTitle -match 'Windows 10')
             {

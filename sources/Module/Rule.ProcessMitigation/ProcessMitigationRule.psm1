@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Disable
         A flag to disable the mitigation rule
 #>
-Class ProcessMitigationRule : Rule
+class ProcessMitigationRule : Rule
 {
     [string] $MitigationTarget
     [string] $Enable
@@ -36,7 +36,7 @@ Class ProcessMitigationRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    ProcessMitigationRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    ProcessMitigationRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -48,7 +48,7 @@ Class ProcessMitigationRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    ProcessMitigationRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    ProcessMitigationRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

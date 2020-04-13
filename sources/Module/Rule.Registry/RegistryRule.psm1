@@ -23,7 +23,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class RegistryRule : Rule
+class RegistryRule : Rule
 {
     [string] $Key
     [string] $ValueName
@@ -45,7 +45,7 @@ Class RegistryRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    RegistryRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    RegistryRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -57,7 +57,7 @@ Class RegistryRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    RegistryRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    RegistryRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

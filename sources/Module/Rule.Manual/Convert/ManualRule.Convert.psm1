@@ -20,7 +20,7 @@ foreach ($supportFile in $supportFileList)
         check-content of the xccdf. Once a STIG rule is identifed as a manual
         rule, it is passed to the ManualRule class for parsing and validation.
 #>
-Class ManualRuleConvert : ManualRule
+class ManualRuleConvert : ManualRule
 {
     <#
         .SYNOPSIS
@@ -36,7 +36,7 @@ Class ManualRuleConvert : ManualRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    ManualRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    ManualRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.DscResource = 'None'
     }

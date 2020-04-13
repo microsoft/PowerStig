@@ -33,7 +33,7 @@ using module .\..\Rule.Skip\Skip.psm1
         This class requires PowerShell v5 or above.
 #>
 
-Class STIG
+class STIG
 {
     [string] $Technology # this is aligned to a DSC composite resource.
     [string] $TechnologyVersion # this is 2012R2, 2016, etc.
@@ -216,7 +216,7 @@ Class STIG
         }
 
         # If there are no org settings to merge, skip over that
-        if($null -ne $settings)
+        if ($null -ne $settings)
         {
             foreach ($ruleId in $settings.Keys)
             {
@@ -308,7 +308,7 @@ Class STIG
         ).ModuleVersion
 
         # load the STIG rules if they are not already laoded
-        if($this.RuleList.Count -le 0)
+        if ($this.RuleList.Count -le 0)
         {
             $this.LoadRules()
         }
@@ -332,7 +332,7 @@ Class STIG
         $null = $return.AppendLine("   The $($rule.GetType().ToString()) property '$($rule.GetOverrideValue())' can be overridden ")
         $null = $return.AppendLine('   with an exception using the syntax below.')
         $null = $return.AppendLine('')
-        if($null -ne $exceptionHelp.Notes)
+        if ($null -ne $exceptionHelp.Notes)
         {
             $null = $return.AppendLine('NOTES')
             $null = $return.AppendLine("   $($exceptionHelp.Notes)")

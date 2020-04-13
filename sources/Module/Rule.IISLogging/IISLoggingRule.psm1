@@ -19,7 +19,7 @@ using module .\..\Rule\Rule.psm1
 
     .PARAMETER LogTargetW3C
 #>
-Class IisLoggingRule : Rule
+class IisLoggingRule : Rule
 {
     [object[]] $LogCustomFieldEntry
     [string] $LogFlags
@@ -41,7 +41,7 @@ Class IisLoggingRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    IisLoggingRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    IisLoggingRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -53,7 +53,7 @@ Class IisLoggingRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    IisLoggingRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    IisLoggingRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

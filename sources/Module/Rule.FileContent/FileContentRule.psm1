@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Value
         Specifies the value of the configuration setting
 #>
-Class FileContentRule : Rule
+class FileContentRule : Rule
 {
     [string] $Key
     [string] $Value <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class FileContentRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    FileContentRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    FileContentRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class FileContentRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    FileContentRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    FileContentRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

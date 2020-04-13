@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         document rule, it is passed to the DocumentRuleConvert class for parsing
         and validation.
 #>
-Class DocumentRuleConvert : DocumentRule
+class DocumentRuleConvert : DocumentRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class DocumentRuleConvert : DocumentRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    DocumentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    DocumentRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.DscResource = 'None'
     }

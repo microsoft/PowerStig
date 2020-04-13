@@ -9,7 +9,7 @@ using namespace System.Text
     .SYNOPSIS
         Converts the xccdf check-content element into an audit policy object.
 #>
-Class AuditPolicyRuleConvert : AuditPolicyRule
+class AuditPolicyRuleConvert : AuditPolicyRule
 {
     <#
         .SYNOPSIS
@@ -25,7 +25,7 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    AuditPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    AuditPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $tokens = $this.ExtractProperties()
         $this.SetSubcategory($tokens)
@@ -94,7 +94,7 @@ Class AuditPolicyRuleConvert : AuditPolicyRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'AuditPolicySubcategory'
         }

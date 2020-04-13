@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         permission rule, it is passed to the PermissionRule class for parsing
         and validation.
 #>
-Class PermissionRuleConvert : PermissionRule
+class PermissionRuleConvert : PermissionRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class PermissionRuleConvert : PermissionRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    PermissionRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetPath()
         $this.SetDscResource()
@@ -121,7 +121,7 @@ Class PermissionRuleConvert : PermissionRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             if ($this.Path)
             {

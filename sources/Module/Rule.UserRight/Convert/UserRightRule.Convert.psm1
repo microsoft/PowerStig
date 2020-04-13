@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         user right rule, it is passed to the UserRightRule class for parsing
         and validation.
 #>
-Class UserRightRuleConvert : UserRightRule
+class UserRightRuleConvert : UserRightRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class UserRightRuleConvert : UserRightRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    UserRightRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetDisplayName()
         $this.SetConstant()
@@ -146,7 +146,7 @@ Class UserRightRuleConvert : UserRightRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'UserRightsAssignment'
         }

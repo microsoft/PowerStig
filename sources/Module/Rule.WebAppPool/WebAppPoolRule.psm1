@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Value
         The value the web.config key should be set to
 #>
-Class WebAppPoolRule : Rule
+class WebAppPoolRule : Rule
 {
     [string] $Key
     [string] $Value <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class WebAppPoolRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    WebAppPoolRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    WebAppPoolRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class WebAppPoolRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    WebAppPoolRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    WebAppPoolRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

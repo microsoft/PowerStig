@@ -22,7 +22,7 @@ foreach ($supportFile in $supportFileList)
         and validation.
 
 #>
-Class MimeTypeRuleConvert : MimeTypeRule
+class MimeTypeRuleConvert : MimeTypeRule
 {
     <#
         .SYNOPSIS
@@ -38,7 +38,7 @@ Class MimeTypeRuleConvert : MimeTypeRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    MimeTypeRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    MimeTypeRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetExtension()
         $this.SetMimeType()
@@ -139,7 +139,7 @@ Class MimeTypeRuleConvert : MimeTypeRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'xIisMimeTypeMapping'
         }

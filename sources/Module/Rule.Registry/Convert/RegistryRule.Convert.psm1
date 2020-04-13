@@ -22,7 +22,7 @@ foreach ($supportFile in $supportFileList)
         registry rule, it is passed to the RegistryRule class for parsing
         and validation.
 #>
-Class RegistryRuleConvert : RegistryRule
+class RegistryRuleConvert : RegistryRule
 {
     <#
         .SYNOPSIS
@@ -38,7 +38,7 @@ Class RegistryRuleConvert : RegistryRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
 
         $fixText = [RegistryRule]::GetFixText($XccdfRule)
@@ -368,7 +368,7 @@ Class RegistryRuleConvert : RegistryRule
 
     hidden [void] SetDscResource ([string] $FixText)
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             if ($FixText -match 'Administrative Templates' -or $this.key -match "(^hkcu|^HKEY_CURRENT_USER)")
             {

@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER SetScript
         The set script content
 #>
-Class SqlScriptQueryRule : Rule
+class SqlScriptQueryRule : Rule
 {
     [string] $GetScript
     [string] $TestScript
@@ -38,7 +38,7 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SqlScriptQueryRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SqlScriptQueryRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -50,7 +50,7 @@ Class SqlScriptQueryRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SqlScriptQueryRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    SqlScriptQueryRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

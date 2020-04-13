@@ -22,7 +22,7 @@ foreach ($supportFile in $supportFileList)
         rule is identified as a web configuration property rule, it is passed
         to the WebConfigurationPropertyRule class for parsing and validation.
 #>
-Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
+class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 {
     <#
         .SYNOPSIS
@@ -38,7 +38,7 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    WebConfigurationPropertyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    WebConfigurationPropertyRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetConfigSection()
         $this.SetKeyValuePair()
@@ -132,7 +132,7 @@ Class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'xWebConfigKeyValue'
         }

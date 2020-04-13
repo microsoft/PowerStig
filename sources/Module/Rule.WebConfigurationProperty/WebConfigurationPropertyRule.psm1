@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Value
         The value the web.config key should be set to
 #>
-Class WebConfigurationPropertyRule : Rule
+class WebConfigurationPropertyRule : Rule
 {
     [string] $ConfigSection
     [string] $Key
@@ -36,7 +36,7 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    WebConfigurationPropertyRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    WebConfigurationPropertyRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -48,7 +48,7 @@ Class WebConfigurationPropertyRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    WebConfigurationPropertyRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    WebConfigurationPropertyRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

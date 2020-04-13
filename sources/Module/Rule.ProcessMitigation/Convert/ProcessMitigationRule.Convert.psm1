@@ -23,7 +23,7 @@ foreach ($supportFile in $supportFileList)
         for parsing and validation.
 
 #>
-Class ProcessMitigationRuleConvert : ProcessMitigationRule
+class ProcessMitigationRuleConvert : ProcessMitigationRule
 {
     <#
         .SYNOPSIS
@@ -39,7 +39,7 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    ProcessMitigationRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    ProcessMitigationRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetMitigationTarget()
         $this.SetMitigationToEnable()
@@ -122,7 +122,7 @@ Class ProcessMitigationRuleConvert : ProcessMitigationRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'ProcessMitigation'
         }

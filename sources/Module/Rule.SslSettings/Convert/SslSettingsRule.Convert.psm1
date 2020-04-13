@@ -13,7 +13,7 @@ using module .\..\SslSettingsRule.psm1
         rule is identified as a web configuration property rule, it is passed
         to the WebConfigurationPropertyRule class for parsing and validation.
 #>
-Class SslSettingsRuleConvert : SslSettingsRule
+class SslSettingsRuleConvert : SslSettingsRule
 {
     <#
         .SYNOPSIS
@@ -29,7 +29,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SslSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SslSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetSslValue()
 
@@ -86,7 +86,7 @@ Class SslSettingsRuleConvert : SslSettingsRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'xSslSettings'
         }

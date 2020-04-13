@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER IsEnabled
         The enabled status of the log
 #>
-Class WinEventLogRule : Rule
+class WinEventLogRule : Rule
 {
     [string] $LogName
     [bool] $IsEnabled <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class WinEventLogRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    WinEventLogRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    WinEventLogRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class WinEventLogRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    WinEventLogRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    WinEventLogRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

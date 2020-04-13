@@ -40,7 +40,7 @@ foreach ($supportFile in $supportFileList)
     .PARAMETER DscResource
         Defines the DSC resource used to configure the rule
 #>
-Class Rule : ICloneable
+class Rule : ICloneable
 {
     [string] $Id
     [string] $Title
@@ -100,7 +100,7 @@ Class Rule : ICloneable
     #>
     Rule ([xml.xmlelement] $Rule, [switch] $Convert)
     {
-        # This relaces the current InvokeClass method
+        # This relaces the current Invokeclass method
         $this.Id = $Rule.Id
         $this.Title = $Rule.Title
         $this.Severity = $Rule.rule.severity

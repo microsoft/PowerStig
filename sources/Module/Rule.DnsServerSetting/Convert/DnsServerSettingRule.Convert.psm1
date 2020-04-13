@@ -23,7 +23,7 @@ foreach ($supportFile in $supportFileList)
         parsing and validation.
 
 #>
-Class DnsServerSettingRuleConvert : DnsServerSettingRule
+class DnsServerSettingRuleConvert : DnsServerSettingRule
 {
     <#
         .SYNOPSIS
@@ -39,7 +39,7 @@ Class DnsServerSettingRuleConvert : DnsServerSettingRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    DnsServerSettingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    DnsServerSettingRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetDnsServerPropertyName()
         $this.SetDnsServerPropertyValue()
@@ -95,7 +95,7 @@ Class DnsServerSettingRuleConvert : DnsServerSettingRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'xDnsServerSetting'
         }

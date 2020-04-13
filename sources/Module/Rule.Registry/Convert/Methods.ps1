@@ -1166,56 +1166,56 @@ function Set-RegistryPatternLog
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $Pattern, 
+        $Pattern,
 
         [Parameter()]
         [string]
         $Rule
     )
-    
-    <# 
+
+    <#
        Load table with patterns from Core data file.
        Build the in-memory table of patterns
     #>
-    if(-not $global:patternTable)
+    if (-not $global:patternTable)
     {
-        $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
+        $nonestedItems = $global:SingleLineRegistryPath.GetEnumerator() |
         Where-Object { $_.Value['Select'] -ne $null }
-        
-        $nestedItems = $global:SingleLineRegistryPath.GetEnumerator() | 
+
+        $nestedItems = $global:SingleLineRegistryPath.GetEnumerator() |
         Where-Object { $_.Value['Select'] -eq $null } | Select-Object {$_.Value } -ExpandProperty Value
 
-        $regPathTable = $nonestedItems.GetEnumerator() | 
+        $regPathTable = $nonestedItems.GetEnumerator() |
         ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
-        
-        $regPathTable += $nestedItems.GetEnumerator() | 
-        Where-Object { $_.Value['Select'] -ne $null } | 
+
+        $regPathTable += $nestedItems.GetEnumerator() |
+        Where-Object { $_.Value['Select'] -ne $null } |
         ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='RegistryPath'}}
-        
-        $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() | 
-        Where-Object { $_.Value['Select'] -ne $null } | 
+
+        $regValueTypeTable = $global:SingleLineRegistryValueType.GetEnumerator() |
+        Where-Object { $_.Value['Select'] -ne $null } |
         ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueType'}}
-        
-        $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() | 
-        Where-Object { $_.Value['Select'] -ne $null } | 
+
+        $regValueNameTable = $global:SingleLineRegistryValueName.GetEnumerator() |
+        Where-Object { $_.Value['Select'] -ne $null } |
         ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueName'}}
-        
-        $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() | 
-        Where-Object { $_.Value['Select'] -ne $null } | 
+
+        $regValueDataTable = $global:SingleLineRegistryValueData.GetEnumerator() |
+        Where-Object { $_.Value['Select'] -ne $null } |
         ForEach-Object { New-Object -TypeName PSObject -Property @{Pattern=$_.Value['Select']; Count=0; Type='ValueData'}}
-        
-        $valueTypeTable = $regValueTypeTable | 
-        Group-Object -Property "Pattern" | 
-        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
-        
-        $valueNameTable = $regValueNameTable | 
-        Group-Object -Property "Pattern" | 
+
+        $valueTypeTable = $regValueTypeTable |
+        Group-Object -Property "Pattern" |
         ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
 
-        $valueDataTable = $regValueDataTable | 
-        Group-Object -Property "Pattern" | 
+        $valueNameTable = $regValueNameTable |
+        Group-Object -Property "Pattern" |
         ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
-        
+
+        $valueDataTable = $regValueDataTable |
+        Group-Object -Property "Pattern" |
+        ForEach-Object{ $_.Group | Select-Object 'Pattern','Count', 'Type' -First 1}
+
         $global:patternTable = $regPathTable + $valueTypeTable + $valueNameTable + $valueDataTable
     }
 
@@ -1233,7 +1233,7 @@ function Set-RegistryPatternLog
 
     .PARAMETER Path
         Specifies a path to a directory with (unprocessed) xccdf.xml files or a specific xccdf.xml file.
-        Path should be StigData\Archive\{Directory Name} or StigData\Archive\{DirectoryName}\{*.xccdf.xml} 
+        Path should be StigData\Archive\{Directory Name} or StigData\Archive\{DirectoryName}\{*.xccdf.xml}
 
     .Notes
         Expression patterns are only for Registry Rules, this could change in the future
@@ -1264,7 +1264,7 @@ function Get-RegistryPatternLog
                 }
             }
         }
-        
+
         # If $Path is a file, process it
         $isFile = Test-Path $Path -pathType Leaf
         if ($isFile)
@@ -1312,22 +1312,22 @@ function Test-StigProcessed
     # Setup, check $Path for Processed
     [xml]$XmlDocument = Get-Content -Path $Path
     $id = $XmlDocument.Benchmark | Select-Object id
-    
-    $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' | 
+
+    $version = $Path | Select-String -Pattern '(?<=_)V.*(?=_)' |
     ForEach-Object { $_.Matches[0] -replace "V", "" -replace "R","\." }
 
     $conversionPath = Get-Item "$($PSScriptRoot)..\..\..\StigData\Processed"
     #Write-Host $testPath
-    $hasConversion = Get-ChildItem -Path $conversionPath -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
-    #$hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version } 
-    
+    $hasConversion = Get-ChildItem -Path $conversionPath -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version }
+    #$hasConversion = Get-ChildItem -Path ..\..\..\StigData\Processed -recurse | Where-Object { $_ | Select-String -Pattern $id.id } | Where-Object { $_ | Select-String -Pattern $version }
+
     if ($hasConversion)
     {
         return $true
     }
-    else 
-    {  
-        return $false      
+    else
+    {
+        return $false
     }
 }
 #endregion
