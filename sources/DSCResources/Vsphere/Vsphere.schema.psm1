@@ -36,6 +36,11 @@ configuration Vsphere
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [string]
+        $Version,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [string]
         $VsphereHostIP,
 
         [Parameter(Mandatory = $true)]
@@ -127,7 +132,7 @@ configuration Vsphere
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('Vsphere', $VsphereHostIP, $VcenterServerIP, $VsphereCredential, $AcceptanceLevel, $AdvancedSetting, $NtpServer, $ServiceRunning, $ServiceName, $ServicePolicy, $KernelActiveDumpPartitionEnabled, $AllowPromiscuous, $ForgedTransmits, $MacChanges, $AllowPromiscuousInherited, $ForgedTransmitsInherited, $MacChangesInherited, $StigVersion)
+    $stig = [STIG]::New('Vsphere', $Version, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
