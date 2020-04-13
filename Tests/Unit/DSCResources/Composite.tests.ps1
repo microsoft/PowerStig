@@ -63,10 +63,10 @@ Describe 'Common Tests - Configuration Module Requirements' {
 }
 Describe 'Composite Resources' {
 
-    $manifestDscResourceList = $Manifest.DscResourcesToExport
+    $manifestDscResourceList = $Manifest.DscResourcesToExport | Sort-Object -Descending
 
     $moduleDscResourceList = Get-ChildItem -Path "$($script:moduleRoot)\DscResources" -Directory -Exclude 'Resources' |
-                        Select-Object -Property BaseName -ExpandProperty BaseName
+                        Select-Object -Property BaseName -ExpandProperty BaseName | Sort-Object -Descending
 
     It 'Should have all module resources listed in the manifest' {
         $manifestDscResourceList | Should Be $moduleDscResourceList
