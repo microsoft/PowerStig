@@ -24,4 +24,3 @@ $scriptBlock = [scriptblock]::Create("
 )
 
 & $scriptBlock
-
