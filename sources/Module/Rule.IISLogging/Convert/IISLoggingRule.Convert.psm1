@@ -41,7 +41,6 @@ class IisLoggingRuleConvert : IisLoggingRule
     #>
     IisLoggingRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()

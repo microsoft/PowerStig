@@ -40,7 +40,6 @@ class RegistryRuleConvert : RegistryRule
     #>
     RegistryRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-
         $fixText = [RegistryRule]::GetFixText($XccdfRule)
 
         if ($global:stigTitle -match 'Adobe Acrobat Reader')

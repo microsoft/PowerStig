@@ -141,7 +141,7 @@ class PermissionRuleConvert : PermissionRule
                     }
                 }
             }
-            elseIf ($this.RawString -match 'Auditing Tab')
+            elseif ($this.RawString -match 'Auditing Tab')
             {
                 $this.DscResource = 'FileSystemAuditRuleEntry'
             }

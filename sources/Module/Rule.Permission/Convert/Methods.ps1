@@ -546,7 +546,7 @@ function Convert-RightsConstant
             {
                 $string.Split(',')
             }
-            elseIf ( $string.Contains('/') )
+            elseif ( $string.Contains('/') )
             {
                 $string.Split('/')
             }
@@ -651,7 +651,7 @@ function Split-MultiplePermissionRule
         $headerLineRange = 0..($hklmSecurityMatch.LineNumber - 2)
         $footerLineRange = ($lastPermissonMatch.LineNumber)..($checkContent.Length - 1)
     }
-    elseIf (
+    elseif (
         $checkContent -match $regularExpression.rootOfC -and
         $checkContent -match $regularExpression.programFilesWin10 -and
         $checkContent -match $regularExpression.winDir

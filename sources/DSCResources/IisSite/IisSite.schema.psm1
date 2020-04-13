@@ -36,7 +36,7 @@ using module ..\..\PowerStig.psm1
 configuration IisSite
 {
     [CmdletBinding()]
-    Param
+    param
     (
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]

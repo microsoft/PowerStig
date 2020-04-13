@@ -28,7 +28,7 @@ class LoadFactory
     static [psobject] Rule ([xml.xmlelement] $Rule)
     {
         $return = $null
-        switch($Rule.ParentNode.Name)
+        switch ($Rule.ParentNode.Name)
         {
             'AccountPolicyRule'             {$return = [AccountPolicyRule]::new($Rule)}
             'AuditPolicyRule'               {$return = [AuditPolicyRule]::new($Rule)}

@@ -133,7 +133,7 @@ function Get-UserRightIdentity
                     # .Trim method is case sensitive, so the replace operator is used instead
                     [void] $return.Add( $($line.Trim() -replace ' Group').Trim() )
                 }
-                elseIf ($line.Trim() -match '"Local account and member of Administrators group" or "Local account"')
+                elseif ($line.Trim() -match '"Local account and member of Administrators group" or "Local account"')
                 {
                     [void] $return.Add('(Local account and member of Administrators group|Local account)')
                 }

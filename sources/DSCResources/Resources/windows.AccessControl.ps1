@@ -6,7 +6,7 @@ $rules = $stig.RuleList | Select-Rule -Type PermissionRule
 foreach ($rule in $rules)
 {
     # Determine PermissionRule type and handle
-    Switch ($rule.dscresource)
+    switch ($rule.dscresource)
     {
         'RegistryAccessEntry'
         {

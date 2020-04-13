@@ -40,7 +40,7 @@ class AuditSettingRuleConvert : AuditSettingRule
     #>
     AuditSettingRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        Switch ($this.rawString)
+        switch ($this.rawString)
         {
             {$PSItem -Match "winver\.exe" }
             {
