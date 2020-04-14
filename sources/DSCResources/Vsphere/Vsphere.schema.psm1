@@ -50,60 +50,8 @@ configuration Vsphere
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
-        [PSCredential]
-        $VsphereCredential,
-
-        [Parameter()]
-        [string]
-        $AcceptanceLevel,
-
-        [Parameter()]
-        [hashtable]
-        $AdvancedSetting,
-
-        [Parameter()]
-        [string[]]
-        $NtpServer,
-
-        [Parameter()]
-        [string]
-        $ServiceRunning,
-
-        [Parameter()]
-        [string]
-        $ServiceName,
-
-        [Parameter()]
-        [string]
-        $ServicePolicy,
-
-        [Parameter()]
-        [string]
-        $KernelActiveDumpPartitionEnabled,
-
-        [Parameter()]
-        [string]
-        $AllowPromiscuous,
-
-        [Parameter()]
-        [string]
-        $ForgedTransmits,
-
-        [Parameter()]
-        [string]
-        $MacChanges,
-
-        [Parameter()]
-        [string]
-        $AllowPromiscuousInherited,
-
-        [Parameter()]
-        [string]
-        $ForgedTransmitsInherited,
-
-        [Parameter()]
-        [string]
-        $MacChangesInherited,
+        [System.Management.Automation.PSCredential]
+        $Credential,
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]

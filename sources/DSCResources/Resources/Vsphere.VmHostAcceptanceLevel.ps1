@@ -10,6 +10,6 @@ foreach ( $rule in $rules )
         Name = $VsphereHostIP
         Server = $VcenterServerIP
         Credential = $VsphereCredential
-        Level =  $rule.AcceptanceLevel
+        Level =  $rule.Level
     }
 }
