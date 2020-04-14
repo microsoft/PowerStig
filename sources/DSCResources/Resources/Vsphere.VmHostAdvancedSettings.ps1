@@ -3,24 +3,22 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VsphereAdvancedSettingsRule'
 
-$stringBuilder = [System.Text.StringBuilder]::new()
+$advancedSettings = @{}
 foreach ($rule in $rules)
 {
-    $null = $stringBuilder.AppendLine("$($rule.AdvancedSetting)")
+    $key, $value = $rule.AdvancedSettings -split ' = '
+    if([string]::IsNullOrEmpty($key) -eq $rule.AdvancedSettings)
+    {
+        $advancedSettings.Add($key, $value)
+    }
 }
 
-
 $resourceTitle = "[$($rules.id -join ' ')]"
-$scriptBlock = [scriptblock]::Create("
-    VmHostAdvancedSettings '$resourceTitle'
-    {
-        Name = $VsphereHostIP
-        Server = $VcenterServerIP
-        Credential = $VsphereCredential
-        AdvancedSettings = @{
-        $($stringBuilder.ToString())
-        }
-    }"
-)
 
-& $scriptBlock
+VmHostAdvancedSettings $resourceTitle
+{
+    Name = $HostIP
+    Server = $ServerIP
+    Credential = $Credential
+    AdvancedSettings = $advancedSettings
+}

@@ -9,9 +9,9 @@ foreach ( $vm in $vmGroup )
     {
         VmHostVssPortGroupSecurity (Get-ResourceTitle -Rule $rule)
         {
-            Name = $VsphereHostIP
-            Server = $VcenterServerIP
-            Credential = $VsphereCredential
+            Name = $HostIP
+            Server = $ServerIP
+            Credential = $Credential
             VmHostName = $vm
             AllowPromiscuousInherited =  $rule.AllowPromiscuousInherited
             ForgedTransmitsInherited = $rule.ForgedTransmitsInherited

@@ -7,11 +7,11 @@ foreach ( $rule in $rules )
 {
     VmHostService (Get-ResourceTitle -Rule $rule)
     {
-        Name = $VsphereHostIP
-        Server = $VcenterServerIP
-        Credential = $VsphereCredential
-        Running =  $rule.Running
-        Key =  $rule.Name
-        Policy =  $rule.Policy
+        Name = $HostIP
+        Server = $ServerIP
+        Credential = $Credential
+        Running =  $rule.ServiceRunning
+        Key =  $rule.ServiceName
+        Policy =  $rule.ServicePolicy
     }
 }

@@ -41,12 +41,12 @@ configuration Vsphere
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $VsphereHostIP,
+        $HostIP,
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
         [string]
-        $VcenterServerIP,
+        $ServerIP,
 
         [Parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]

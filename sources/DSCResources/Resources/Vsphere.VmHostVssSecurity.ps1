@@ -9,9 +9,9 @@ foreach ( $VirtualStandardSwitch in $VirtualStandardSwitchGroup )
     {
         VmHostVssSecurity (Get-ResourceTitle -Rule $rule)
         {
-            Name = $VsphereHostIP
-            Server = $VcenterServerIP
-            Credential = $VsphereCredential
+            Name = $HostIP
+            Server = $ServerIP
+            Credential = $Credential
             VssName = $VirtualStandardSwitch
             AllowPromiscuous =  $rule.AllowPromiscuous
             ForgedTransmits = $rule.ForgedTransmits

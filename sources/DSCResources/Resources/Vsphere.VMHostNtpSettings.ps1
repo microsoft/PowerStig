@@ -7,9 +7,9 @@ foreach ( $rule in $rules )
 {
     VmHostNtpSettings (Get-ResourceTitle -Rule $rule)
     {
-        Name = $VsphereHostIP
-        Server = $VcenterServerIP
-        Credential = $VsphereCredential
+        Name = $HostIP
+        Server = $ServerIP
+        Credential = $Credential
         NtpServer =  $rule.NtpServer
     }
 }
