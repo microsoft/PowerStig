@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VsphereKernelActiveDumpPartitionRule'
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     VmHostVMKernelActiveDumpPartition (Get-ResourceTitle -Rule $rule)
     {

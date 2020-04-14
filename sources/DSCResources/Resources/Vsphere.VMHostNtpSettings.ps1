@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VsphereNtpSettingsRule'
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     VmHostNtpSettings (Get-ResourceTitle -Rule $rule)
     {

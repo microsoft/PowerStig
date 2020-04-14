@@ -3,9 +3,9 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VsphereVssSecurityRule'
 
-foreach ( $VirtualStandardSwitch in $VirtualStandardSwitchGroup )
+foreach ($VirtualStandardSwitch in $VirtualStandardSwitchGroup)
 {
-    foreach ( $rule in $rules )
+    foreach ($rule in $rules)
     {
         VmHostVssSecurity (Get-ResourceTitle -Rule $rule)
         {

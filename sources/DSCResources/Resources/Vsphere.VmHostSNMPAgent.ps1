@@ -3,7 +3,7 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VsphereSnmpAgentRule'
 
-foreach ( $rule in $rules )
+foreach ($rule in $rules)
 {
     VmHostSnmpAgent (Get-ResourceTitle -Rule $rule)
     {

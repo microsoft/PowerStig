@@ -3,9 +3,9 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VspherePortGroupSecurityRule'
 
-foreach ( $vm in $vmGroup )
+foreach ($vm in $vmGroup)
 {
-    foreach ( $rule in $rules )
+    foreach ($rule in $rules)
     {
         VmHostVssPortGroupSecurity (Get-ResourceTitle -Rule $rule)
         {
