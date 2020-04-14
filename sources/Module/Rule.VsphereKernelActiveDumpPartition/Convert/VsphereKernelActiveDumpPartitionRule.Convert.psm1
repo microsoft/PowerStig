@@ -65,10 +65,7 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match 'coredump.partition')
-            {
-                $this.DscResource = 'VMHostKernelActiveDumpPartition'
-            }
+            $this.DscResource = 'VMHostKernelActiveDumpPartition'
         }
         else
         {

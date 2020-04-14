@@ -79,10 +79,7 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "Get-VMHostService")
-            {
-                $this.DscResource = 'VMHostService'
-            }
+            $this.DscResource = 'VMHostService'
         }
         else
         {

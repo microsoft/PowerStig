@@ -72,10 +72,7 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "Get-VirtualPortGroup")
-            {
-                $this.DscResource = 'VMHostVssPortGroupSecurity'
-            }
+            $this.DscResource = 'VMHostVssPortGroupSecurity'
         }
         else
         {

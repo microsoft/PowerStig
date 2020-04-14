@@ -102,10 +102,7 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "Get-VMHostNTPServer")
-            {
-                $this.DscResource = 'VMHostNtpSettings'
-            }
+            $this.DscResource = 'VMHostNtpSettings'
         }
         else
         {

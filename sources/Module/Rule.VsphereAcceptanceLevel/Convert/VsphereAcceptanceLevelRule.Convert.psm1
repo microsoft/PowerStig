@@ -66,10 +66,7 @@ Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "software.acceptance")
-            {
-                $this.DscResource = 'VMHostAcceptanceLevel'
-            }
+            $this.DscResource = 'VMHostAcceptanceLevel'
         }
         else
         {

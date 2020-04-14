@@ -102,10 +102,7 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "Get-AdvancedSetting")
-            {
-                $this.DscResource = 'VMHostAdvancedSettings'
-            }
+            $this.DscResource = 'VMHostAdvancedSettings'
         }
         else
         {

@@ -66,10 +66,7 @@ Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "Get-VMHostSnmp")
-            {
-                $this.DscResource = 'VMHostSnmpAgent'
-            }
+            $this.DscResource = 'VMHostSnmpAgent'
         }
         else
         {

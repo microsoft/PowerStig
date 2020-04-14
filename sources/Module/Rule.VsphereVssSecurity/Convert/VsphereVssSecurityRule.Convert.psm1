@@ -72,10 +72,7 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            If($this.RawString -match "Get-VirtualSwitch")
-            {
-                $this.DscResource = 'VMHostVssSecurity'
-            }
+            $this.DscResource = 'VMHostVssSecurity'
         }
         else
         {
