@@ -16,6 +16,7 @@ foreach ($virtualStandardSwitch in $virtualStandardSwitchGroup)
             AllowPromiscuous = $rule.AllowPromiscuous
             ForgedTransmits  = $rule.ForgedTransmits
             MacChanges       = $rule.MacChanges
+            Ensure           = 'Present'
         }
     }
 }

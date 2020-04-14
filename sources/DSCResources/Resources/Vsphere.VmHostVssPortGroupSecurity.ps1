@@ -16,6 +16,7 @@ foreach ($vm in $vmGroup)
             AllowPromiscuousInherited = $rule.AllowPromiscuousInherited
             ForgedTransmitsInherited  = $rule.ForgedTransmitsInherited
             MacChangesInherited       = $rule.MacChangesInherited
+            Ensure                    = 'Present'
         }
     }
 }
