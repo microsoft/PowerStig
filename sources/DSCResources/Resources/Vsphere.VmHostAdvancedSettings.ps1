@@ -17,8 +17,8 @@ $resourceTitle = "[$($rules.id -join ' ')]"
 
 VmHostAdvancedSettings $resourceTitle
 {
-    Name = $HostIP
-    Server = $ServerIP
-    Credential = $Credential
+    Name             = $HostIP
+    Server           = $ServerIP
+    Credential       = $Credential
     AdvancedSettings = $advancedSettings
 }

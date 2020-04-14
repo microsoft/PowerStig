@@ -7,9 +7,9 @@ foreach ($rule in $rules)
 {
     VMHostAcceptanceLevel  (Get-ResourceTitle -Rule $rule)
     {
-        Name = $HostIP
-        Server = $ServerIP
+        Name       = $HostIP
+        Server     = $ServerIP
         Credential = $Credential
-        Level =  $rule.Level
+        Level      =  $rule.Level
     }
 }

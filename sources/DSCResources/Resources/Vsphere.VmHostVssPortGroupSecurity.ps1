@@ -9,13 +9,13 @@ foreach ($vm in $vmGroup)
     {
         VmHostVssPortGroupSecurity (Get-ResourceTitle -Rule $rule)
         {
-            Name = $HostIP
-            Server = $ServerIP
-            Credential = $Credential
-            VmHostName = $vm
-            AllowPromiscuousInherited =  $rule.AllowPromiscuousInherited
-            ForgedTransmitsInherited = $rule.ForgedTransmitsInherited
-            MacChangesInherited = $rule.MacChangesInherited
+            Name                      = $HostIP
+            Server                    = $ServerIP
+            Credential                = $Credential
+            VmHostName                = $vm
+            AllowPromiscuousInherited = $rule.AllowPromiscuousInherited
+            ForgedTransmitsInherited  = $rule.ForgedTransmitsInherited
+            MacChangesInherited       = $rule.MacChangesInherited
         }
     }
 }

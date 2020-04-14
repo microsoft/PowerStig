@@ -3,19 +3,19 @@
 
 $rules = $stig.RuleList | Select-Rule -Type 'VsphereVssSecurityRule'
 
-foreach ($VirtualStandardSwitch in $VirtualStandardSwitchGroup)
+foreach ($virtualStandardSwitch in $virtualStandardSwitchGroup)
 {
     foreach ($rule in $rules)
     {
         VmHostVssSecurity (Get-ResourceTitle -Rule $rule)
         {
-            Name = $HostIP
-            Server = $ServerIP
-            Credential = $Credential
-            VssName = $VirtualStandardSwitch
-            AllowPromiscuous =  $rule.AllowPromiscuous
-            ForgedTransmits = $rule.ForgedTransmits
-            MacChanges = $rule.MacChanges
+            Name             = $HostIP
+            Server           = $ServerIP
+            Credential       = $Credential
+            VssName          = $VirtualStandardSwitch
+            AllowPromiscuous = $rule.AllowPromiscuous
+            ForgedTransmits  = $rule.ForgedTransmits
+            MacChanges       = $rule.MacChanges
         }
     }
 }

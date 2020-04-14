@@ -7,9 +7,9 @@ foreach ($rule in $rules)
 {
     VmHostSnmpAgent (Get-ResourceTitle -Rule $rule)
     {
-        Name = $HostIP
-        Server = $ServerIP
+        Name       = $HostIP
+        Server     = $ServerIP
         Credential = $Credential
-        Enable =  $rule.Enabled
+        Enable     = [boolean] $rule.Enabled
     }
 }
