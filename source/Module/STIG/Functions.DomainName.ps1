@@ -143,7 +143,7 @@ Function Get-NetbiosName
     )
 
     $parts = Get-DomainParts -FQDN $FQDN
-    If ($parts.Count -gt 1)
+    if ($parts.Count -gt 1)
     {
         return $parts[0]
     }
