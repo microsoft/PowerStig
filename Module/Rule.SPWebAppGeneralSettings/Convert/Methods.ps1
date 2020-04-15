@@ -11,12 +11,31 @@ function Get-SPWebAppGeneralSettingsGetScript
     (
         [Parameter(Mandatory = $false)]
         [AllowEmptyString()]
-        $CheckContent
+        $CheckContent,
+
+        [Parameter(Mandatory = $false)]
+        [AllowEmptyString()]
+        $OrgSettings,
+
+        [Parameter(Mandatory = $false)]
+        [SecureString] $PSDscRunAsCredential
     )
+
+    <#
+    write function call here to webappurl?
+    results are returned as a hashtable
+    $returnvalue = @{
+        WebAppUrl = $WebAppUrl
+        PSDscRunAsCredential = $PSDscRunAsCredential
+    }
+    #>
+
+    Write-Host $OrgSettings #currently an empty parameter
 
     return
 }
 
+#write a function here to receive webappurl parameter? (line 25)
 
 function Get-SPWebAppGeneralSettingsTestScript
 {
@@ -29,6 +48,8 @@ function Get-SPWebAppGeneralSettingsTestScript
         [AllowEmptyString()]
         $CheckContent
     )
+
+    #testing dsc configuration
 
         return
     
@@ -50,6 +71,8 @@ function Get-SPWebAppGeneralSettingsSetScript
         [AllowEmptyString()]
         $CheckContent
     )
+
+    #applying settings for compliance
 
         return
 }

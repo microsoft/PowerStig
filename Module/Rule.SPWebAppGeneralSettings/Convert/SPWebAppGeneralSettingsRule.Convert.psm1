@@ -40,6 +40,11 @@ Class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
         $ruleType = $this.GetRuleType($this.splitCheckContent)
         $fixText = [SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
 
+        if ($this.conversionstatus -eq 'pass')
+        {
+            $this.SetDuplicateRule()
+        }
+
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
         $this.SetSetScript($ruleType, $fixText)
@@ -47,6 +52,10 @@ Class SPWebAppGeneralSettingsRuleConvert : SPWebAppGeneralSettingsRule
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
+
+
+    
+
 
 # 
 
