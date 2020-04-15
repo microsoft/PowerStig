@@ -9,7 +9,7 @@
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
-function Get-VsphereServiceName
+function Get-VsphereServiceKey
 {
     [CmdletBinding()]
     [OutputType([object])]
@@ -22,27 +22,36 @@ function Get-VsphereServiceName
 
     if ($CheckContent -match 'Get-VMHostService')
     {
-        $matchName = ($CheckContent | Select-String -Pattern $ServiceNameList.Values.Values).matches.groups[1].value
+        $name = ($CheckContent | Select-String -Pattern $ServiceNameList.Values.Values).matches.groups[1].value | Get-Unique
+    }
 
-        foreach($item in $ServiceNameList.Values.Values)
+    switch ($name)
+    {
+        {$PSItem -match "NTP Daemon"}
         {
-            if ($null -eq $matchValue)
-            {
-                $serviceName = ($Checkcontent | Select-String -Pattern $item).Matches.Value | Get-Unique
-            }
+            $key = 'ntpd'
+        }
+        {$PSItem -match "ESXi Shell"}
+        {
+            $key = 'TSM'
+        }
+        {$PSItem -match "SSH"}
+        {
+            $key = 'TSM-SSH'
         }
     }
 
-    if ($null -ne $serviceName)
+    if ($null -ne $key)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Service name: {0}" -f $serviceName)
-        return $serviceName
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Key name: {0}" -f $key)
+        return $key
     }
     else
     {
         return $null
     }
 }
+
 
 <#
     .SYNOPSIS
@@ -68,19 +77,19 @@ function Get-VsphereServicePolicy
         $ServicePolicy = ($CheckContent | Select-String -Pattern $ServicePolicyList.Values.Values).matches.value
         if($ServicePolicy -eq "stopped")
         {
-            $servicePolicy = "off"
-            $serviceRunning = $false
+            $policy = "off"
+            $running = $false
         }
         else {
-            $ServicePolicy = "on"
-            $serviceRunning = $true
+            $policy = "Automatic"
+            $running = $true
         }
     }
 
-    if ($null -ne $ServicePolicy)
+    if ($null -ne $policy)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Service Policy: {0}" -f $ServicePolicy)
-        return $servicePolicy,$serviceRunning
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Service Policy: {0}" -f $policy)
+        return $policy,$running
     }
     else
     {

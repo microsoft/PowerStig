@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_VMware_vSphere_6-5_ESXi_STIG_V1R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 24 Jan 2020" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.3" created="4/13/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_VMware_vSphere_6-5_ESXi_STIG_V1R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 24 Jan 2020" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.3" created="4/15/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-94079" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In order to communicate with virtual switches in VST mode, external switch ports must be configured as trunk ports. VST mode does not support Dynamic Trunking Protocol (DTP), so the trunk must be static and unconditional. The auto or desirable physical switch settings do not work with the ESXi Server because the physical switch communicates with the ESXi Server using DTP. The non-negotiate and on options unconditionally enable VLAN trunking on the physical switch and create a VLAN trunk link between the ESXi Server and the physical switch. The difference between non-negotiate and on options is that on mode still sends out DTP frames, whereas the non-negotiate option does not.  The non-negotiate option should be used for all VLAN trunks, to minimize unnecessary network traffic for virtual switches in VST mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1391,8 +1391,10 @@ If any port group is configured with a reserved VLAN ID, this is a finding.</Raw
       <Description>&lt;VulnDiscussion&gt;The ESXi Shell is an interactive command line interface (CLI) available at the ESXi server console. The ESXi shell provides temporary access to commands essential for server maintenance. Intended primarily for use in break-fix scenarios, the ESXi shell is well suited for checking and modifying configuration details, not always generally accessible, using the vSphere Client. The ESXi shell is accessible remotely using SSH by users with the Administrator role. Under normal operating conditions, SSH access to the host must be disabled as is the default.  As with the ESXi shell, SSH is also intended only for temporary use during break-fix scenarios. SSH must therefore be disabled under normal operating conditions and must only be enabled for diagnostics or troubleshooting. Remote access to the host must therefore be limited to the vSphere Client at all other times.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>TSM-SSH</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <Policy>off</Policy>
       <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; System &gt;&gt; Security Profile. Under Services select Edit and view the "SSH" service and verify it is stopped.
 
 or
@@ -1402,16 +1404,16 @@ From a PowerCLI command prompt while connected to the ESXi host run the followin
 Get-VMHost | Get-VMHostService | Where {$_.Label -eq "SSH"}
 
 If the ESXi SSH service is running, this is a finding.</RawString>
-      <ServiceName>SSH</ServiceName>
-      <ServicePolicy>off</ServicePolicy>
-      <ServiceRunning>False</ServiceRunning>
+      <Running>False</Running>
     </Rule>
     <Rule id="V-94019" severity="medium" conversionstatus="pass" title="SRG-OS-000095-VMM-000480" dscresource="VMHostService">
       <Description>&lt;VulnDiscussion&gt;The ESXi Shell is an interactive command line environment available locally from the DCUI or remotely via SSH. Activities performed from the ESXi Shell bypass vCenter RBAC and audit controls. The ESXi shell should only be turned on when needed to troubleshoot/resolve problems that cannot be fixed through the vSphere client.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>TSM</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <Policy>off</Policy>
       <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; System &gt;&gt; Security Profile.  Under Services select Edit and view the "ESXi Shell" service and verify it is stopped.
 
 or
@@ -1421,16 +1423,16 @@ From a PowerCLI command prompt while connected to the ESXi host run the followin
 Get-VMHost | Get-VMHostService | Where {$_.Label -eq "ESXi Shell"}
 
 If the ESXi Shell service is running, this is a finding.</RawString>
-      <ServiceName>ESXi Shell</ServiceName>
-      <ServicePolicy>off</ServicePolicy>
-      <ServiceRunning>False</ServiceRunning>
+      <Running>False</Running>
     </Rule>
     <Rule id="V-94039.a" severity="medium" conversionstatus="pass" title="SRG-OS-000355-VMM-001330" dscresource="VMHostService">
       <Description>&lt;VulnDiscussion&gt;To assure the accuracy of the system clock, it must be synchronized with an authoritative time source within DoD. Many system functions, including time-based login and activity restrictions, automated reports, system logs, and audit records depend on an accurate system clock. If there is no confidence in the correctness of the system clock, time-based functions may not operate as intended and records may be of diminished value.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Key>ntpd</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
+      <Policy>Automatic</Policy>
       <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; System &gt;&gt; Time Configuration. Click Edit to verify the configured NTP servers and service startup policy.
 
 or
@@ -1441,9 +1443,7 @@ Get-VMHost | Get-VMHostNTPServer
 Get-VMHost | Get-VMHostService | Where {$_.Label -eq "NTP Daemon"}
 
 If the NTP service is not configured with authoritative DoD time sources and the service is not configured to start and stop with the host and is running, this is a finding.</RawString>
-      <ServiceName>NTP Daemon</ServiceName>
-      <ServicePolicy>on</ServicePolicy>
-      <ServiceRunning>True</ServiceRunning>
+      <Running>True</Running>
     </Rule>
   </VsphereServiceRule>
   <VsphereSnmpAgentRule dscresourcemodule="Vmware.vSphereDSC">

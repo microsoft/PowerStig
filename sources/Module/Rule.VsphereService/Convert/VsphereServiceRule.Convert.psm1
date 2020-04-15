@@ -39,8 +39,8 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
     #>
     VsphereServiceRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetVsphereServiceName()
-        $this.SetVsphereServicePolicy()
+        $this.SetKey()
+        $this.SetPolicy()
         $this.SetDscResource()
     }
 
@@ -53,10 +53,10 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereServiceName ()
+    [void] SetKey ()
     {
-        $thisVsphereServiceName = Get-VsphereServiceName -CheckContent $this.SplitCheckContent
-        $this.set_ServiceName($thisVsphereServiceName)
+        $thisKey = Get-VsphereServiceKey -CheckContent $this.SplitCheckContent
+        $this.set_Key($thisKey)
     }
 
         <#
@@ -67,11 +67,11 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereServicePolicy ()
+    [void] SetPolicy ()
     {
-        $thisVsphereServicePolicy = Get-VsphereServicePolicy -CheckContent $this.SplitCheckContent
-        $this.set_ServicePolicy($thisVsphereServicePolicy[0])
-        $this.set_ServiceRunning($thisVsphereServicePolicy[1])
+        $thisPolicy = Get-VsphereServicePolicy -CheckContent $this.SplitCheckContent
+        $this.set_Policy($thisPolicy[0])
+        $this.set_Running($thisPolicy[1])
     }
 
 

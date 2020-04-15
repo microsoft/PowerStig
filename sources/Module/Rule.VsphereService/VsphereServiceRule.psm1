@@ -16,9 +16,9 @@ using module .\..\Rule\Rule.psm1
 #>
 Class VsphereServiceRule : Rule
 {
-    [string] $ServiceName
-    [string] $ServicePolicy
-    [boolean] $ServiceRunning
+    [string] $Key
+    [string] $Policy
+    [boolean] $Running
 
     <#
         .SYNOPSIS
