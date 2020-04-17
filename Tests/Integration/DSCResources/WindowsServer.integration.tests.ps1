@@ -28,7 +28,7 @@ foreach ($stig in $stigList)
     {
         $skipRule           = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id
         $skipRuleMultiple   = Get-Random -InputObject $powerstigXml.RegistryRule.Rule.id -Count 2
-        $skipRuleType               = $null
+        $skipRuleType               = "AuditPolicyRule"
         $expectedSkipRuleTypeCount  = $powerstigXml.AuditPolicyRule.Rule.Count + $blankSkipRuleId.Count
         $skipRuleTypeMultiple               = @('AuditPolicyRule', 'AccountPolicyRule')
         $expectedSkipRuleTypeMultipleCount  = $powerstigXml.AuditPolicyRule.Rule.Count +
