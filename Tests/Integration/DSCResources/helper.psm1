@@ -132,6 +132,38 @@ function Get-ResourceMatchStatement
         {
             return '\[xSSLSettings\]'
         }
+        'VsphereAcceptanceLevelRule'
+        {
+            return '\[VMHostAcceptanceLevel\]'
+        }
+        'VsphereAdvancedSettingsRule'
+        {
+            return '\[VMHostAdvancedSettings\]'
+        }
+        'VsphereKernelActiveDumpPartitionRule'
+        {
+            return '\[VMHostVMKernelActiveDumpPartition\]'
+        }
+        'VsphereNtpSettingsRule'
+        {
+            return '\[VMHostNtpSettings\]'
+        }
+        'VspherePortGroupSecurityRule'
+        {
+            return '\[VMHostVssPortGroupSecurity\]'
+        }
+        'VsphereServiceRule'
+        {
+            return '\[VMHostService\]'
+        }
+        'VsphereSnmpAgentRule'
+        {
+            return '\[VMHostSnmpAgent\]'
+        }
+        'VsphereVssSecurityRule'
+        {
+            return '\[VMHostVssSecurity\]'
+        }
     }
 }
 

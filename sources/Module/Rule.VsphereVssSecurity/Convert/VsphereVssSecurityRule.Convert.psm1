@@ -53,19 +53,28 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
     [void] SetVsphereForgedTransmits([string[]] $rawString)
     {
         $thisVsphereForgedTransmits = Get-VsphereForgedTransmits -Rawstring $rawstring
-        $this.set_ForgedTransmits($thisVsphereForgedTransmits)
+        if (-not [String]::IsNullOrEmpty($thisVsphereForgedTransmits))
+        {
+            $this.set_ForgedTransmits($thisVsphereForgedTransmits)
+        }
     }
 
     [void] SetVsphereMacChanges([string[]] $rawString)
     {
         $thisVsphereMacChanges = Get-VsphereMacChanges -Rawstring $rawstring
-        $this.set_MacChanges($thisVsphereMacChanges)
+        if (-not [String]::IsNullOrEmpty($thisVsphereMacChanges))
+        {
+            $this.set_MacChanges($thisVsphereMacChanges)
+        }
     }
 
     [void] SetVsphereAllowPromiscuous([string[]] $rawString)
     {
         $thisVsphereAllowPromiscuous = Get-VsphereAllowPromiscuous -Rawstring $rawstring
-        $this.set_AllowPromiscuous($thisVsphereAllowPromiscuous)
+        if (-not [String]::IsNullOrEmpty($thisVsphereAllowPromiscuous))
+        {
+            $this.set_AllowPromiscuous($thisVsphereAllowPromiscuous)
+        }
     }
 
     hidden [void] SetDscResource ()

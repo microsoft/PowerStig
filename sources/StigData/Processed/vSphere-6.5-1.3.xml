@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_VMware_vSphere_6-5_ESXi_STIG_V1R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 24 Jan 2020" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.3" created="4/15/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="VMware_vSphere_6-5_ESXi_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_VMware_vSphere_6-5_ESXi_STIG_V1R3_Manual-xccdf.xml" releaseinfo="Release: 3 Benchmark Date: 24 Jan 2020" title="VMware vSphere 6.5 ESXi Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.3" created="4/16/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-94079" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;In order to communicate with virtual switches in VST mode, external switch ports must be configured as trunk ports. VST mode does not support Dynamic Trunking Protocol (DTP), so the trunk must be static and unconditional. The auto or desirable physical switch settings do not work with the ESXi Server because the physical switch communicates with the ESXi Server using DTP. The non-negotiate and on options unconditionally enable VLAN trunking on the physical switch and create a VLAN trunk link between the ESXi Server and the physical switch. The difference between non-negotiate and on options is that on mode still sends out DTP frames, whereas the non-negotiate option does not.  The non-negotiate option should be used for all VLAN trunks, to minimize unnecessary network traffic for virtual switches in VST mode.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1250,8 +1250,7 @@ If the NTP service is not configured with authoritative DoD time sources and the
   </VsphereNtpSettingsRule>
   <VspherePortGroupSecurityRule dscresourcemodule="Vmware.vSphereDSC">
     <Rule id="V-94065.a" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssPortGroupSecurity">
-      <AllowPromiscuousInherited>
-      </AllowPromiscuousInherited>
+      <AllowPromiscuousInherited />
       <Description>&lt;VulnDiscussion&gt;If the virtual machine operating system changes the MAC address, the operating system can send frames with an impersonated source MAC address at any time. This allows an operating system to stage malicious attacks on the devices in a network by impersonating a network adaptor authorized by the receiving network. 
  
 This means the virtual switch does not compare the source and effective MAC addresses. 
@@ -1260,8 +1259,7 @@ To protect against MAC address impersonation, all virtual switches should have f
       <DuplicateOf />
       <ForgedTransmitsInherited>$true</ForgedTransmitsInherited>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChangesInherited>
-      </MacChangesInherited>
+      <MacChangesInherited />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client go to Configure &gt;&gt; Networking &gt;&gt; Virtual Switches. View the properties on each virtual switch and port group and verify "Forged Transmits" is set to reject.
@@ -1276,12 +1274,10 @@ Get-VirtualPortGroup | Get-SecurityPolicy
 If the "Forged Transmits" policy is set to accept, this is a finding.</RawString>
     </Rule>
     <Rule id="V-94067.a" severity="high" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssPortGroupSecurity">
-      <AllowPromiscuousInherited>
-      </AllowPromiscuousInherited>
+      <AllowPromiscuousInherited />
       <Description>&lt;VulnDiscussion&gt;If the virtual machine operating system changes the MAC address, it can send frames with an impersonated source MAC address at any time. This allows it to stage malicious attacks on the devices in a network by impersonating a network adaptor authorized by the receiving network. This will prevent VMs from changing their effective MAC address. It will affect applications that require this functionality. This will also affect how a layer 2 bridge will operate. This will also affect applications that require a specific MAC address for licensing. Reject MAC Changes can be set at the vSwitch and/or the Portgroup level. You can override switch level settings at the Portgroup level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmitsInherited>
-      </ForgedTransmitsInherited>
+      <ForgedTransmitsInherited />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MacChangesInherited>$true</MacChangesInherited>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1301,11 +1297,9 @@ If the "MAC Address Changes" policy is set to accept, this is a finding.</RawStr
       <AllowPromiscuousInherited>$true</AllowPromiscuousInherited>
       <Description>&lt;VulnDiscussion&gt;When promiscuous mode is enabled for a virtual switch all virtual machines connected to the Portgroup have the potential of reading all packets across that network, meaning only the virtual machines connected to that Portgroup. Promiscuous mode is disabled by default on the ESXi Server, and this is the recommended setting. Promiscous mode can be set at the vSwitch and/or the Portgroup level. You can override switch level settings at the Portgroup level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmitsInherited>
-      </ForgedTransmitsInherited>
+      <ForgedTransmitsInherited />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChangesInherited>
-      </MacChangesInherited>
+      <MacChangesInherited />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client go to Configure &gt;&gt; Networking &gt;&gt; Virtual Switches. View the properties on each virtual switch and port group and verify "Promiscuous Mode" is set to reject.
@@ -1320,15 +1314,12 @@ Get-VirtualPortGroup | Get-SecurityPolicy
 If the "Promiscuous Mode" policy is set to accept, this is a finding.</RawString>
     </Rule>
     <Rule id="V-94073" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssPortGroupSecurity">
-      <AllowPromiscuousInherited>
-      </AllowPromiscuousInherited>
+      <AllowPromiscuousInherited />
       <Description>&lt;VulnDiscussion&gt;ESXi does not use the concept of native VLAN. Frames with VLAN specified in the port group will have a tag, but frames with VLAN not specified in the port group are not tagged and therefore will end up as belonging to native VLAN of the physical switch. For example, frames on VLAN 1 from a Cisco physical switch will be untagged, because this is considered as the native VLAN. However, frames from ESXi specified as VLAN 1 will be tagged with a "1"; therefore, traffic from ESXi that is destined for the native VLAN will not be correctly routed (because it is tagged with a "1" instead of being untagged), and traffic from the physical switch coming from the native VLAN will not be visible (because it is not tagged). If the ESXi virtual switch port group uses the native VLAN ID, traffic from those VMs will not be visible to the native VLAN on the switch, because the switch is expecting untagged traffic.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmitsInherited>
-      </ForgedTransmitsInherited>
+      <ForgedTransmitsInherited />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChangesInherited>
-      </MacChangesInherited>
+      <MacChangesInherited />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; Networking &gt;&gt; Virtual switches. For each virtual switch, review the port group VLAN tags and verify they are not set to the native VLAN ID of the attached physical switch.
@@ -1342,15 +1333,12 @@ Get-VirtualPortGroup | Select Name, VLanId
 If any port group is configured with the native VLAN of the ESXi hosts attached physical switch, this is a finding.</RawString>
     </Rule>
     <Rule id="V-94075" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssPortGroupSecurity">
-      <AllowPromiscuousInherited>
-      </AllowPromiscuousInherited>
+      <AllowPromiscuousInherited />
       <Description>&lt;VulnDiscussion&gt;When a port group is set to VLAN 4095, this activates VGT mode. In this mode, the vSwitch passes all network frames to the guest VM without modifying the VLAN tags, leaving it up to the guest to deal with them. VLAN 4095 should be used only if the guest has been specifically configured to manage VLAN tags itself. If VGT is enabled inappropriately, it might cause denial-of-service or allow a guest VM to interact with traffic on an unauthorized VLAN.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmitsInherited>
-      </ForgedTransmitsInherited>
+      <ForgedTransmitsInherited />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChangesInherited>
-      </MacChangesInherited>
+      <MacChangesInherited />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; Networking &gt;&gt; Virtual switches. For each virtual switch, review the port group VLAN tags and verify they are not set to 4095.
@@ -1364,15 +1352,12 @@ Get-VirtualPortGroup | Select Name, VLanID
 If any port group is configured with VLAN 4095 and is not documented as a needed exception, this is a finding.</RawString>
     </Rule>
     <Rule id="V-94077" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssPortGroupSecurity">
-      <AllowPromiscuousInherited>
-      </AllowPromiscuousInherited>
+      <AllowPromiscuousInherited />
       <Description>&lt;VulnDiscussion&gt;Certain physical switches reserve certain VLAN IDs for internal purposes and often disallow traffic configured to these values. For example, Cisco Catalyst switches typically reserve VLANs 1001–1024 and 4094, while Nexus switches typically reserve 3968–4047 and 4094. Check with the documentation for your specific switch. Using a reserved VLAN might result in a denial of service on the network.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmitsInherited>
-      </ForgedTransmitsInherited>
+      <ForgedTransmitsInherited />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChangesInherited>
-      </MacChangesInherited>
+      <MacChangesInherited />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; Networking &gt;&gt; Virtual switches. For each virtual switch, review the port group VLAN tags and verify they are not set to a reserved VLAN ID.
@@ -1476,8 +1461,7 @@ Note: SNMP v3 targets can only be viewed and configured from the esxcli command.
   </VsphereSnmpAgentRule>
   <VsphereVssSecurityRule dscresourcemodule="Vmware.vSphereDSC">
     <Rule id="V-94065.b" severity="medium" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssSecurity">
-      <AllowPromiscuous>
-      </AllowPromiscuous>
+      <AllowPromiscuous />
       <Description>&lt;VulnDiscussion&gt;If the virtual machine operating system changes the MAC address, the operating system can send frames with an impersonated source MAC address at any time. This allows an operating system to stage malicious attacks on the devices in a network by impersonating a network adaptor authorized by the receiving network. 
  
 This means the virtual switch does not compare the source and effective MAC addresses. 
@@ -1486,8 +1470,7 @@ To protect against MAC address impersonation, all virtual switches should have f
       <DuplicateOf />
       <ForgedTransmits>$false</ForgedTransmits>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChanges>
-      </MacChanges>
+      <MacChanges />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client go to Configure &gt;&gt; Networking &gt;&gt; Virtual Switches. View the properties on each virtual switch and port group and verify "Forged Transmits" is set to reject.
@@ -1502,12 +1485,10 @@ Get-VirtualPortGroup | Get-SecurityPolicy
 If the "Forged Transmits" policy is set to accept, this is a finding.</RawString>
     </Rule>
     <Rule id="V-94067.b" severity="high" conversionstatus="pass" title="SRG-OS-000480-VMM-002000" dscresource="VMHostVssSecurity">
-      <AllowPromiscuous>
-      </AllowPromiscuous>
+      <AllowPromiscuous />
       <Description>&lt;VulnDiscussion&gt;If the virtual machine operating system changes the MAC address, it can send frames with an impersonated source MAC address at any time. This allows it to stage malicious attacks on the devices in a network by impersonating a network adaptor authorized by the receiving network. This will prevent VMs from changing their effective MAC address. It will affect applications that require this functionality. This will also affect how a layer 2 bridge will operate. This will also affect applications that require a specific MAC address for licensing. Reject MAC Changes can be set at the vSwitch and/or the Portgroup level. You can override switch level settings at the Portgroup level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmits>
-      </ForgedTransmits>
+      <ForgedTransmits />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MacChanges>$false</MacChanges>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1527,11 +1508,9 @@ If the "MAC Address Changes" policy is set to accept, this is a finding.</RawStr
       <AllowPromiscuous>$false</AllowPromiscuous>
       <Description>&lt;VulnDiscussion&gt;When promiscuous mode is enabled for a virtual switch all virtual machines connected to the Portgroup have the potential of reading all packets across that network, meaning only the virtual machines connected to that Portgroup. Promiscuous mode is disabled by default on the ESXi Server, and this is the recommended setting. Promiscous mode can be set at the vSwitch and/or the Portgroup level. You can override switch level settings at the Portgroup level.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
-      <ForgedTransmits>
-      </ForgedTransmits>
+      <ForgedTransmits />
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <MacChanges>
-      </MacChanges>
+      <MacChanges />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>From the vSphere Web Client go to Configure &gt;&gt; Networking &gt;&gt; Virtual Switches. View the properties on each virtual switch and port group and verify "Promiscuous Mode" is set to reject.

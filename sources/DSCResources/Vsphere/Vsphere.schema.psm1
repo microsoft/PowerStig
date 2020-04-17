@@ -54,6 +54,14 @@ configuration Vsphere
         $Credential,
 
         [Parameter()]
+        [string[]]
+        $VirtualStandardSwitchGroup,
+
+        [Parameter()]
+        [string[]]
+        $VmGroup,
+
+        [Parameter()]
         [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,

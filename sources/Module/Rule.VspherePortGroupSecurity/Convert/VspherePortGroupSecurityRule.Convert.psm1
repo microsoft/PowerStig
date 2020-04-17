@@ -53,19 +53,28 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     [void] SetVsphereForgedTransmitsInherited([string[]] $rawString)
     {
         $thisVsphereForgedTransmitsInherited = Get-VsphereForgedTransmitsInherited -Rawstring $rawstring
-        $this.set_ForgedTransmitsInherited($thisVsphereForgedTransmitsInherited)
+        if (-not [String]::IsNullOrEmpty($thisVsphereForgedTransmitsInherited))
+        {
+            $this.set_ForgedTransmitsInherited($thisVsphereForgedTransmitsInherited)
+        }
     }
 
     [void] SetVsphereMacChangesInherited([string[]] $rawString)
     {
         $thisVsphereMacChangesInherited = Get-VsphereMacChangesInherited -Rawstring $rawstring
-        $this.set_MacChangesInherited($thisVsphereMacChangesInherited)
+        if (-not [String]::IsNullOrEmpty($thisVsphereMacChangesInherited))
+        {
+            $this.set_MacChangesInherited($thisVsphereMacChangesInherited)
+        }
     }
 
     [void] SetVsphereAllowPromiscuousInherited([string[]] $rawString)
     {
         $thisVsphereAllowPromiscuousInherited = Get-VsphereAllowPromiscuousInherited -Rawstring $rawstring
-        $this.set_AllowPromiscuousInherited($thisVsphereAllowPromiscuousInherited)
+        if (-not [String]::IsNullOrEmpty($thisVsphereAllowPromiscuousInherited))
+        {
+            $this.set_AllowPromiscuousInherited($thisVsphereAllowPromiscuousInherited)
+        }
     }
 
     hidden [void] SetDscResource ()

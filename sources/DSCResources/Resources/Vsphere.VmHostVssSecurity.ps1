@@ -7,16 +7,31 @@ foreach ($virtualStandardSwitch in $virtualStandardSwitchGroup)
 {
     foreach ($rule in $rules)
     {
-        VmHostVssSecurity (Get-ResourceTitle -Rule $rule)
+        If ($rule.AllowPromiscuous)
         {
-            Name             = $HostIP
-            Server           = $ServerIP
-            Credential       = $Credential
-            VssName          = $VirtualStandardSwitch
-            AllowPromiscuous = $rule.AllowPromiscuous
-            ForgedTransmits  = $rule.ForgedTransmits
-            MacChanges       = $rule.MacChanges
-            Ensure           = 'Present'
+            $AllowPromiscuous = $rule.AllowPromiscuous
         }
+        If ($rule.ForgedTransmits)
+        {
+            $ForgedTransmits = $rule.ForgedTransmits
+        }
+        If ($rule.MacChanges)
+        {
+            $MacChanges = $rule.MacChanges
+        }
+
+        $idValue += $rule.id
+    }
+
+    VmHostVssSecurity "$virtualStandardSwitch-$idValue"
+    {
+        Name             = $HostIP
+        Server           = $ServerIP
+        Credential       = $Credential
+        VssName          = $VirtualStandardSwitch
+        AllowPromiscuous = [bool] $AllowPromiscuous
+        ForgedTransmits  = [bool] $ForgedTransmits
+        MacChanges       = [bool] $MacChanges
+        Ensure           = 'Present'
     }
 }

@@ -7,16 +7,31 @@ foreach ($vm in $vmGroup)
 {
     foreach ($rule in $rules)
     {
-        VmHostVssPortGroupSecurity (Get-ResourceTitle -Rule $rule)
+        If ($rule.AllowPromiscuous)
         {
-            Name                      = $HostIP
-            Server                    = $ServerIP
-            Credential                = $Credential
-            VmHostName                = $vm
-            AllowPromiscuousInherited = $rule.AllowPromiscuousInherited
-            ForgedTransmitsInherited  = $rule.ForgedTransmitsInherited
-            MacChangesInherited       = $rule.MacChangesInherited
-            Ensure                    = 'Present'
+            $AllowPromiscuousInherited = $rule.AllowPromiscuousInherited 
         }
+        If ($rule.ForgedTransmits)
+        {
+            $ForgedTransmitsInherited  = $rule.ForgedTransmitsInherited 
+        }
+        If ($rule.MacChanges)
+        {
+            $MacChangesInherited  = $rule.MacChangesInherited 
+        }
+
+        $idValue += $rule.id
+    }
+
+    VmHostVssPortGroupSecurity "$vm-$idValue"
+    {
+        Name                      = $HostIP
+        Server                    = $ServerIP
+        Credential                = $Credential
+        VmHostName                = $vm
+        AllowPromiscuousInherited = [bool] $AllowPromiscuousInherited
+        ForgedTransmitsInherited  = [bool] $ForgedTransmitsInherited
+        MacChangesInherited       = [bool] $MacChangesInherited
+        Ensure                    = 'Present'
     }
 }
