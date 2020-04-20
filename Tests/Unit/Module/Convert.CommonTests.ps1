@@ -15,7 +15,7 @@
 #>
 
 # Get the rule element with the checkContent injected into it
-$stigRule = Get-TestStigRule -CheckContent $testRule.checkContent -ReturnGroupOnly
+$stigRule = Get-TestStigRule -CheckContent $testRule.checkContent -ReturnGroupOnly -fixtext $testRule.fixtext
 
 # Create an instance of the convert class that is currently being tested
 $convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
@@ -66,18 +66,21 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         # Test that each property was properly extracted from the test checkContent
         foreach ($property in $propertyList)
         {
-            It "Should return the $Property" {
-                # Can't test a null property type, only that the property is null
-                if ($null -ne $testRule.$property)
-                {
-                    # Some properties are complex types that need to be serialized for comparison
-                    if ($testRule.$property.GetType().BaseType.Name -eq 'Array')
+            If ($property -ne "FixText")
+            {
+                It "Should return the $Property" {
+                    # Can't test a null property type, only that the property is null
+                    if ($null -ne $testRule.$property)
                     {
-                        $convertedRule.$property = $convertedRule.$property | ConvertTo-Json
-                        $testRule.$property = $testRule.$property | ConvertTo-Json
+                        # Some properties are complex types that need to be serialized for comparison
+                        if ($testRule.$property.GetType().BaseType.Name -eq 'Array')
+                        {
+                            $convertedRule.$property = $convertedRule.$property | ConvertTo-Json
+                            $testRule.$property = $testRule.$property | ConvertTo-Json
+                        }
                     }
+                    $convertedRule.$property | Should Be $testRule.$property
                 }
-                $convertedRule.$property | Should Be $testRule.$property
             }
             # Remove the property from the list of tested properties
             $ruleClassPropertyTestList.Remove($property)
