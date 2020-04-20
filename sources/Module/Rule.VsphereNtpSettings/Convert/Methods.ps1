@@ -20,15 +20,15 @@ function Get-VsphereNtpSettings
         $CheckContent
     )
 
-    if ($Fixtext -match 'Get-VMHostNTPServer')
+    if ($CheckContent -match 'Get-VMHostNTPServer')
     {
         $NTPServer = $null
     }
 
     if ($null -ne $NTPServer)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] NTPServer List Found: {0}" -f $snmpAgent)
-        return $snmpAgent
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] NTPServer List Found: {0}" -f $NtpServer)
+        return $NtpServer
     }
     else
     {

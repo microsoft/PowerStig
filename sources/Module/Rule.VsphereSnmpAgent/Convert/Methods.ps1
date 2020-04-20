@@ -25,7 +25,7 @@ function Get-VsphereSnmpAgent
         $snmpAgent = ($RawString | Select-String -Pattern '(?<=Set-VMHostSnmp -Enabled\s)(.\w+)').matches.value
     }
 
-    if ($null -ne $nnmpAgent)
+    if ($null -ne $snmpAgent)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Host SNMP Enabled: {0}" -f $snmpAgent)
         return $snmpAgent
