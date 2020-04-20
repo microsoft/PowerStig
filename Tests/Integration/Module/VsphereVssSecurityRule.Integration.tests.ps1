@@ -6,7 +6,7 @@ try
 {
     $stigRulesToTest = @(
         @{
-            virtualStandardSwitchGroup = @('Switch1','Switch2')
+            VirtualStandardSwitchGroup = @('Switch1','Switch2')
             ForgedTransmits = '$false'
             CheckContent = 'From the vSphere Web Client go to Configure >> Networking >> Virtual Switches. View the properties on each virtual switch and port group and verify "Forged Transmits" is set to reject.
 
@@ -24,7 +24,6 @@ try
             From a PowerCLI command prompt while connected to the ESXi host run the following commands:
 
             Get-VirtualSwitch | Get-SecurityPolicy | Set-SecurityPolicy -ForgedTransmits $false'
-
         }
     )
 
