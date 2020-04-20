@@ -24,8 +24,8 @@ function Get-VsphereForgedTransmits
     {
         $VsphereForgedTransmits = ($RawString | Select-String -Pattern '(?<=ForgedTransmits\s)(.\w+)').Matches.Value
     }
-    
-    if($null -ne $VsphereForgedTransmits)
+
+    if ($null -ne $VsphereForgedTransmits)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found ForgedTransmits value: {0}" -f $VsphereForgedTransmits)
         return $VsphereForgedTransmits
@@ -52,7 +52,7 @@ function Get-VsphereMacChanges
         $VsphereMacChanges = ($RawString | Select-String -Pattern '(?<=MacChanges\s)(.\w+)').Matches.Value
     }
     
-    if($null -ne $VsphereMacChanges)
+    if ($null -ne $VsphereMacChanges)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChanges value: {0}" -f $VsphereMacChanges)
         return $VsphereMacChanges
@@ -78,8 +78,8 @@ function Get-VsphereAllowPromiscuous
     {
         $VsphereAllowPromiscuous = ($RawString | Select-String -Pattern '(?<=AllowPromiscuous\s)(.\w+)').Matches.Value
     }
-    
-    if($null -ne $VsphereAllowPromiscuous)
+
+    if ($null -ne $VsphereAllowPromiscuous)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found AllowPromiscuous value: {0}" -f $VsphereAllowPromiscuous)
         return $VsphereAllowPromiscuous

@@ -42,7 +42,6 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
         $fixText = [VsphereKernelActiveDumpPartitionRule]::GetFixText($XccdfRule)
         $rawString = $fixText
         $this.SetVsphereKernelActiveDumpPartition($RawString)
-
         $this.SetDscResource()
     }
 
@@ -63,7 +62,7 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostKernelActiveDumpPartition'
         }
@@ -76,7 +75,7 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'coredump.partition')
+        if ($CheckContent-match 'coredump.partition')
         {
             return $true
         }

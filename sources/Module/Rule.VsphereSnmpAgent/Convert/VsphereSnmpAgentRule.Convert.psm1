@@ -39,11 +39,9 @@ Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
     #>
     VsphereSnmpAgentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-
         $fixText = [VsphereSnmpAgentRule]::GetFixText($XccdfRule)
         $rawString = $fixText
         $this.SetVsphereSnmpAgent($rawString)
-
         $this.SetDscResource()
     }
 
@@ -64,7 +62,7 @@ Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostSnmpAgent'
         }
@@ -77,7 +75,7 @@ Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'Get-VMHostSnmp')
+        if ($CheckContent-match 'Get-VMHostSnmp')
         {
             return $true
         }

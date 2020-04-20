@@ -25,7 +25,7 @@ function Get-VsphereForgedTransmitsInherited
         $VsphereForgedTransmitsInherited = ($RawString | Select-String -Pattern '(?<=ForgedTransmitsInherited\s)(.\w+)').Matches.Value
     }
     
-    if($null -ne $VsphereForgedTransmitsInherited)
+    if ($null -ne $VsphereForgedTransmitsInherited)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found ForgedTransmitsInherited value: {0}" -f $VsphereForgedTransmitsInherited)
         return $VsphereForgedTransmitsInherited
@@ -52,7 +52,7 @@ function Get-VsphereMacChangesInherited
         $VsphereMacChangesInherited = ($RawString | Select-String -Pattern '(?<=MacChangesInherited\s)(.\w+)').Matches.Value
     }
     
-    if($null -ne $VsphereMacChangesInherited)
+    if ($null -ne $VsphereMacChangesInherited)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChangesInherited value: {0}" -f $VsphereMacChangesInherited)
         return $VsphereMacChangesInherited
@@ -79,7 +79,7 @@ function Get-VsphereAllowPromiscuousInherited
         $VsphereAllowPromiscuousInherited = ($RawString | Select-String -Pattern '(?<=AllowPromiscuousInherited\s)(.\w+)').Matches.Value
     }
     
-    if($null -ne $VsphereAllowPromiscuousInherited)
+    if ($null -ne $VsphereAllowPromiscuousInherited)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found AllowPromiscuousInherited value: {0}" -f $VsphereAllowPromiscuousInherited)
         return $VsphereAllowPromiscuousInherited

@@ -35,13 +35,13 @@ function Get-VsphereAdvancedSettings
         $advancedSettings = "'{0}' = '{1}'" -f $matchName, $matchValue
     }
 
-    switch($matchName)
+    switch ($matchName)
     {
         {$PSItem -eq "Net.DVFilterBindIpAddress"}
         {
             $advancedSettings = "'{0}' = ''" -f $matchName
         }
-        {$PSItem -eq "Syslog.global.logHost" -or $PSItem -eq "Config.HostAgent.plugins.hostsvc.esxAdminsGroup" -or $PSItem -eq "Syslog.global.logDir"}
+        {$PSItem -match "Syslog.global.logHost|Config.HostAgent.plugins.hostsvc.esxAdminsGroup|Syslog.global.logDir"}
         {
             $advancedSettings = $null
         }
@@ -69,13 +69,13 @@ function Get-OrganizationValueTestString
         $Id
     )
     # TO DO - This should not be a static list
-    switch ( $Id )
+    switch ($Id)
     {
-        { $PsItem -match 'V-93955' }
+        {$PsItem -match 'V-93955'}
         {
             return '{0} is set to "Syslog.global.logHost" = "site specific log host"'
         }
-        { $PsItem -match 'V-94037' }
+        {$PsItem -match 'V-94037'}
         {
             return '"{0}" is set to "Syslog.global.logDir" = "site specific log storage location"'
         }

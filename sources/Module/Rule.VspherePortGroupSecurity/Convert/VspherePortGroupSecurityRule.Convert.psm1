@@ -41,7 +41,6 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     {
         $fixText = [VspherePortGroupSecurityRule]::GetFixText($XccdfRule)
         $rawString = $fixText
-
         $this.SetVsphereForgedTransmitsInherited($rawString)
         $this.SetVsphereMacChangesInherited($rawString)
         $this.SetVsphereAllowPromiscuousInherited($rawString)
@@ -79,7 +78,7 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostVssPortGroupSecurity'
         }
@@ -92,7 +91,7 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'Get-VirtualPortGroup')
+        if ($CheckContent-match 'Get-VirtualPortGroup')
         {
             return $true
         }

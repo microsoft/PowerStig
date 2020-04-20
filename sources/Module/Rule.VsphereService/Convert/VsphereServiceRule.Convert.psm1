@@ -77,7 +77,7 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostService'
         }
@@ -90,7 +90,7 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'Get-VMHostService')
+        if ($CheckContent-match 'Get-VMHostService')
         {
             return $true
         }

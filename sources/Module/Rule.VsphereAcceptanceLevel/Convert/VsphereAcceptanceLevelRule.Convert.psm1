@@ -39,11 +39,9 @@ Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
     #>
     VsphereAcceptanceLevelRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-
         $fixText = [VsphereAcceptanceLevelRule]::GetFixText($XccdfRule)
         $rawString = $fixText
         $this.SetVsphereAcceptanceLevel($rawString)
-
         $this.SetDscResource()
     }
 
@@ -62,9 +60,10 @@ Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
         $this.set_Level($thisVsphereAcceptanceLevel)
     }
 
+
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostAcceptanceLevel'
         }
@@ -77,7 +76,7 @@ Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'software.acceptance')
+        if ($CheckContent-match 'software.acceptance')
         {
             return $true
         }

@@ -75,12 +75,13 @@ function Get-VsphereServicePolicy
     if ($CheckContent -match 'Get-VMHostService')
     {
         $ServicePolicy = ($CheckContent | Select-String -Pattern $ServicePolicyList.Values.Values).matches.value
-        if($ServicePolicy -eq "stopped")
+        if ($ServicePolicy -eq "stopped")
         {
             $policy = "off"
             $running = $false
         }
-        else {
+        else
+        {
             $policy = "Automatic"
             $running = $true
         }

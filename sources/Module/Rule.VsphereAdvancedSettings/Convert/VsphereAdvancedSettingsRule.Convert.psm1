@@ -71,7 +71,7 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     #>
     [Boolean] IsOrganizationalSetting ()
     {
-        if ( $this.id -match 'V-93955' -or $this.id -match 'V-94025' -or $this.id -match 'V-94509' -or $this.id -match 'V-94533' -or $this.id -match 'V-94037')
+        if ($this.id -match 'V-93955' -or $this.id -match 'V-94025' -or $this.id -match 'V-94509' -or $this.id -match 'V-94533' -or $this.id -match 'V-94037')
         {
             return $true
         }
@@ -100,7 +100,7 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostAdvancedSettings'
         }
@@ -113,7 +113,7 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'Get-AdvancedSetting')
+        if ($CheckContent-match 'Get-AdvancedSetting')
         {
             return $true
         }

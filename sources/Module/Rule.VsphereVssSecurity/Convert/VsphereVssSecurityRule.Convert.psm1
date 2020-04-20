@@ -41,7 +41,6 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
     {
         $fixText = [VsphereVssSecurityRule]::GetFixText($XccdfRule)
         $rawString = $fixText
-
         $this.SetVsphereForgedTransmits($rawString)
         $this.SetVsphereMacChanges($rawString)
         $this.SetVsphereAllowPromiscuous($rawString)
@@ -79,7 +78,7 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostVssSecurity'
         }
@@ -92,7 +91,7 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'Get-VirtualSwitch')
+        if ($CheckContent-match 'Get-VirtualSwitch')
         {
             return $true
         }

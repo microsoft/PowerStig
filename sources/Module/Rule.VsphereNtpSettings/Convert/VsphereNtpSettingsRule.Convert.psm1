@@ -100,7 +100,7 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'VMHostNtpSettings'
         }
@@ -113,7 +113,7 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if($CheckContent-match 'Get-VMHostNTPServer')
+        if ($CheckContent-match 'Get-VMHostNTPServer')
         {
             return $true
         }
