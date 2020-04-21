@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Ensure
         The state the windows feature should be in
 #>
-Class WindowsFeatureRule : Rule
+class WindowsFeatureRule : Rule
 {
     [string] $Name
     [string] $Ensure <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class WindowsFeatureRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    WindowsFeatureRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    WindowsFeatureRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class WindowsFeatureRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    WindowsFeatureRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    WindowsFeatureRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

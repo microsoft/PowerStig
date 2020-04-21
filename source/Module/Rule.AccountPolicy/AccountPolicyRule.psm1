@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER PolicyValue
         The value the account policy should be set to.
 #>
-Class AccountPolicyRule : Rule
+class AccountPolicyRule : Rule
 {
     [string] $PolicyName
     [string] $PolicyValue <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class AccountPolicyRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    AccountPolicyRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    AccountPolicyRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class AccountPolicyRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    AccountPolicyRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    AccountPolicyRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER OptionValue
         The security option value
 #>
-Class SecurityOptionRule : Rule
+class SecurityOptionRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $OptionName
     [ValidateNotNullOrEmpty()] [string] $OptionValue <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class SecurityOptionRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SecurityOptionRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SecurityOptionRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class SecurityOptionRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SecurityOptionRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    SecurityOptionRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

@@ -20,7 +20,7 @@ foreach ($supportFile in $supportFileList)
         The FileContentRule class is used to manage STIGs for applications that utilize a
         configuration file to manage security settings
 #>
-Class FileContentRuleConvert : FileContentRule
+class FileContentRuleConvert : FileContentRule
 {
     <#
         .SYNOPSIS
@@ -36,7 +36,7 @@ Class FileContentRuleConvert : FileContentRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    FileContentRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetKeyName()
         $this.SetValue()
@@ -87,7 +87,7 @@ Class FileContentRuleConvert : FileContentRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             if ($this.Key -match 'deployment.')
             {

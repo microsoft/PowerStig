@@ -22,7 +22,7 @@ foreach ($supportFile in $supportFileList)
         class for parsing and validation.
 
 #>
-Class AuditSettingRuleConvert : AuditSettingRule
+class AuditSettingRuleConvert : AuditSettingRule
 {
     <#
         .SYNOPSIS
@@ -38,9 +38,9 @@ Class AuditSettingRuleConvert : AuditSettingRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    AuditSettingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    AuditSettingRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        Switch ($this.rawString)
+        switch ($this.rawString)
         {
             {$PSItem -Match "winver\.exe" }
             {
@@ -79,7 +79,7 @@ Class AuditSettingRuleConvert : AuditSettingRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'AuditSetting'
         }

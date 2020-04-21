@@ -11,7 +11,7 @@ using module .\..\Rule\Rule.psm1
         The DnsServerRootHintRule class is used to maange the Account Policy Settings.
 
 #>
-Class DnsServerRootHintRule : Rule
+class DnsServerRootHintRule : Rule
 {
     [string] $HostName
     [string] $IpAddress <#(ExceptionValue)#>
@@ -30,7 +30,7 @@ Class DnsServerRootHintRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    DnsServerRootHintRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    DnsServerRootHintRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -42,7 +42,7 @@ Class DnsServerRootHintRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    DnsServerRootHintRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    DnsServerRootHintRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

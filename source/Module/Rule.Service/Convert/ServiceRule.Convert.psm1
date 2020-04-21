@@ -20,7 +20,7 @@ foreach ($supportFile in $supportFileList)
         check-content of the xccdf. Once a STIG rule is identified a service rule,
         it is passed to the ServiceRule class for parsing and validation.
 #>
-Class ServiceRuleConvert : ServiceRule
+class ServiceRuleConvert : ServiceRule
 {
     <#
         .SYNOPSIS
@@ -36,7 +36,7 @@ Class ServiceRuleConvert : ServiceRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    ServiceRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    ServiceRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetServiceName()
         $this.SetServiceState()
@@ -153,7 +153,7 @@ Class ServiceRuleConvert : ServiceRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'Service'
         }

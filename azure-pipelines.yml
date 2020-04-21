@@ -189,3 +189,35 @@ stages:
               bash <(curl -s https://codecov.io/bash) -f "./output/testResults/JaCoCo_coverage.xml"
             displayName: 'Upload to Codecov.io'
             condition: succeededOrFailed()
+
+  - stage: Deploy
+    dependsOn: Test
+    condition: |
+      and(
+        succeeded(),
+        or(
+          eq(variables['Build.SourceBranch'], 'refs/heads/master'),
+          startsWith(variables['Build.SourceBranch'], 'refs/tags/')
+        )
+      )
+    jobs:
+      - job: Deploy_Module
+        displayName: 'Deploy Module'
+        pool:
+          vmImage: 'windows-2019'
+        steps:
+          - task: DownloadBuildArtifacts@0
+            displayName: 'Download Build Artifact'
+            inputs:
+              buildType: 'current'
+              downloadType: 'single'
+              artifactName: 'output'
+              downloadPath: '$(Build.SourcesDirectory)'
+          - task: PowerShell@2
+            name: publishRelease
+            displayName: 'Publish Release'
+            inputs:
+              filePath: './build.ps1'
+              arguments: '-tasks publish'
+            env:
+              GalleryApiToken: $(GalleryApiToken)

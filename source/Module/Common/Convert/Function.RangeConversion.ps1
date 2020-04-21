@@ -385,7 +385,7 @@ function ConvertTo-OrTestString
     {
         $tokens = [System.Management.Automation.PSParser]::Tokenize($string, [ref]$null)
         $orgSettings = $tokens.Where( {$PSItem.type -eq 'Number' -and $PSItem.Content -notmatch '\dx\d{8}' }).Content
-        if($string -match 'or if the Value Name does not exist')
+        if ($string -match 'or if the Value Name does not exist')
         {
             $orgSettings += 'ShouldBeAbsent'
         }

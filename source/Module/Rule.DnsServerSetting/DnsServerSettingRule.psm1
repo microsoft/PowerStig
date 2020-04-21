@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER PropertyValue
         The value to set the proerty to
 #>
-Class DnsServerSettingRule : Rule
+class DnsServerSettingRule : Rule
 {
     [string] $PropertyName
     [string] $PropertyValue <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class DnsServerSettingRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    DnsServerSettingRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    DnsServerSettingRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class DnsServerSettingRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    DnsServerSettingRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    DnsServerSettingRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

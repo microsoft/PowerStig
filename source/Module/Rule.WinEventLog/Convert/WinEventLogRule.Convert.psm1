@@ -23,7 +23,7 @@ foreach ($supportFile in $supportFileList)
         parsing and validation.
 
 #>
-Class WinEventLogRuleConvert : WinEventLogRule
+class WinEventLogRuleConvert : WinEventLogRule
 {
     <#
         .SYNOPSIS
@@ -39,7 +39,7 @@ Class WinEventLogRuleConvert : WinEventLogRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    WinEventLogRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    WinEventLogRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetWinEventLogName()
         $this.SetWinEventLogIsEnabled()
@@ -74,7 +74,7 @@ Class WinEventLogRuleConvert : WinEventLogRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'xWinEventLog'
         }

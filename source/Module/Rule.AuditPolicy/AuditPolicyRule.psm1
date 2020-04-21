@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class AuditPolicyRule : Rule
+class AuditPolicyRule : Rule
 {
     [string] $Subcategory
     [string] $AuditFlag
@@ -36,7 +36,7 @@ Class AuditPolicyRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    AuditPolicyRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    AuditPolicyRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -48,7 +48,7 @@ Class AuditPolicyRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    AuditPolicyRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    AuditPolicyRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

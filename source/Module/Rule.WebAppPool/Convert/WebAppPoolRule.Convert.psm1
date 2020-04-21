@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         webapp rule, it is passed to the WebAppPoolRule class for parsing
         and validation.
 #>
-Class WebAppPoolRuleConvert : WebAppPoolRule
+class WebAppPoolRuleConvert : WebAppPoolRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    WebAppPoolRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    WebAppPoolRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetKeyValuePair()
         if ($this.IsOrganizationalSetting())
@@ -110,7 +110,7 @@ Class WebAppPoolRuleConvert : WebAppPoolRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'xWebAppPool'
         }

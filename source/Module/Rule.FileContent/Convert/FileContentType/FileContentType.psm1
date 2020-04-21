@@ -11,7 +11,7 @@
     .PARAMETER Instance
         Maintains a single instance of the class object
 #>
-Class FileContentType
+class FileContentType
 {
     static [FileContentType] $Instance
     #region Constructor

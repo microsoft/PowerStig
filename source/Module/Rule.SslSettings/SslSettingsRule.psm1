@@ -12,7 +12,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Value
         The value the bindings should be set to
 #>
-Class SslSettingsRule : Rule
+class SslSettingsRule : Rule
 {
     [string] $Value <#(ExceptionValue)#>
 
@@ -30,7 +30,7 @@ Class SslSettingsRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SslSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SslSettingsRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -42,7 +42,7 @@ Class SslSettingsRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SslSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    SslSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

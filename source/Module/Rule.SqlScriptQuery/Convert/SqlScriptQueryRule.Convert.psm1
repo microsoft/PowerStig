@@ -22,7 +22,7 @@ foreach ($supportFile in $supportFileList)
         SQL script query rule, it is passed to the SqlScriptQueryRule class for
         parsing and validation.
     #>
-Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
+class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 {
     <#
         .SYNOPSIS
@@ -38,7 +38,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SqlScriptQueryRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SqlScriptQueryRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $ruleType = $this.GetRuleType($this.splitCheckContent)
         $fixText = [SqlScriptQueryRule]::GetFixText($XccdfRule)
@@ -154,7 +154,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'SqlScriptQuery'
         }
@@ -166,7 +166,7 @@ Class SqlScriptQueryRuleConvert : SqlScriptQueryRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        <# 
+        <#
             Provide match criteria to validate that the rule is (or is not) a SQL rule.
             Standard match rules
         #>

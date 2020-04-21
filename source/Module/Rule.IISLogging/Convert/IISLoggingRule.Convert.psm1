@@ -23,7 +23,7 @@ foreach ($supportFile in $supportFileList)
         IIS Log rule, it is passed to the IisLoggingRuleConvert class for parsing
         and validation.
 #>
-Class IisLoggingRuleConvert : IisLoggingRule
+class IisLoggingRuleConvert : IisLoggingRule
 {
     <#
         .SYNOPSIS
@@ -39,9 +39,8 @@ Class IisLoggingRuleConvert : IisLoggingRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    IisLoggingRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    IisLoggingRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
@@ -174,7 +173,7 @@ Class IisLoggingRuleConvert : IisLoggingRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             if ($global:stigTitle -match "Server")
             {

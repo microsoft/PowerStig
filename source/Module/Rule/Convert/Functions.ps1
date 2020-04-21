@@ -91,7 +91,7 @@ function Get-HardCodedString
         $StigId
     )
 
-    Switch ($stigId)
+    switch ($stigId)
     {
         {$PSItem -match 'V-(1089|63675|73647|93147)'}
         {
@@ -183,7 +183,7 @@ function Get-HardCodedString
         $StigId
     )
 
-    Switch ($stigId)
+    switch ($stigId)
     {
         {$PSItem -match 'V-3472.b'}
         {

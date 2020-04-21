@@ -18,7 +18,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Force
         A flag that replaces the identities vs append
 #>
-Class UserRightRule : Rule
+class UserRightRule : Rule
 {
     [ValidateNotNullOrEmpty()] [string] $DisplayName
     [ValidateNotNullOrEmpty()] [string] $Constant
@@ -39,7 +39,7 @@ Class UserRightRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    UserRightRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    UserRightRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -51,7 +51,7 @@ Class UserRightRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    UserRightRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    UserRightRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

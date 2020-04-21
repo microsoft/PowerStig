@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class MimeTypeRule : Rule
+class MimeTypeRule : Rule
 {
     [string] $Extension
     [string] $MimeType
@@ -36,7 +36,7 @@ Class MimeTypeRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    MimeTypeRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    MimeTypeRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -48,7 +48,7 @@ Class MimeTypeRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    MimeTypeRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    MimeTypeRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

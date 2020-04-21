@@ -94,15 +94,15 @@ function Get-UserRightIdentity
     {
         [void] $return.Add('Administrators')
     }
-    elseif ( $checkContent -Match "If (any|the following){1} (accounts or groups|groups or accounts) (other than the following|are not defined){1}.*this is a finding" )
+    elseif ($checkContent -Match "If (any|the following){1} (accounts or groups|groups or accounts) (other than the following|are not defined){1}.*this is a finding")
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Ensure : Present"
         # There is an edge case where multiple finding statements are made, so a zero index is needed.
-        [int] $lineNumber = ( ( $checkContent | Select-String "this is a finding" )[0] ).LineNumber
+        [int] $lineNumber = (($checkContent | Select-String "this is a finding")[0]).LineNumber
         # Set the negative index number of the first group to process.
         $startLine = $lineNumber - $checkContent.Count
 
-        foreach ( $line in $checkContent[$startLine..-1] )
+        foreach ($line in $checkContent[$startLine..-1])
         {
             <#
                 The Windows Server 2016 STIG prepends each identity with a dash space (- )
@@ -124,16 +124,16 @@ function Get-UserRightIdentity
                 {
                     [void] $return.Add("{Hyper-V}")
                 }
-                elseif ( $line.Trim() -match "(^Enterprise|^Domain) (Admins|Admin)|^Guests" )
+                elseif ($line.Trim() -match "(^Enterprise|^Domain) (Admins|Admin)|^Guests")
                 {
-                    if ( $line -match '\sAdmin\s' )
+                    if ($line -match '\sAdmin\s')
                     {
                         $line = $line -replace 'Admin', 'Admins'
                     }
                     # .Trim method is case sensitive, so the replace operator is used instead
-                    [void] $return.Add( $($line.Trim() -replace ' Group').Trim() )
+                    [void] $return.Add($($line.Trim() -replace ' Group').Trim())
                 }
-                elseIf ($line.Trim() -match '"Local account and member of Administrators group" or "Local account"')
+                elseif ($line.Trim() -match '"Local account and member of Administrators group" or "Local account"')
                 {
                     [void] $return.Add('(Local account and member of Administrators group|Local account)')
                 }
@@ -148,7 +148,7 @@ function Get-UserRightIdentity
             }
         }
     }
-    elseif ( $checkContent -Match "If any (accounts or groups|groups or accounts).*are (granted|defined).*this is a finding" )
+    elseif ($checkContent -Match "If any (accounts or groups|groups or accounts).*are (granted|defined).*this is a finding")
     {
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] Ensure : Absent"
 
@@ -173,11 +173,11 @@ function Test-SetForceFlag
         $CheckContent
     )
 
-    if ( $checkContent -match 'If any (accounts or groups|groups or accounts) other than the following' )
+    if ($checkContent -match 'If any (accounts or groups|groups or accounts) other than the following')
     {
         return $true
     }
-    elseif ( $checkContent -match 'If any (accounts or groups|groups or accounts)\s*(\(.*\),)?\s*are (granted|defined)' )
+    elseif ($checkContent -match 'If any (accounts or groups|groups or accounts)\s*(\(.*\),)?\s*are (granted|defined)')
     {
         return $true
     }

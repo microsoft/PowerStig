@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         group rule, it is passed to the GroupRuleConvert class for parsing
         and validation.
 #>
-Class GroupRuleConvert : GroupRule
+class GroupRuleConvert : GroupRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class GroupRuleConvert : GroupRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    GroupRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    GroupRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetGroupName()
         $this.SetMembersToExclude()
@@ -96,7 +96,7 @@ Class GroupRuleConvert : GroupRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'Group'
         }

@@ -215,7 +215,7 @@ function Get-StigRuleList
                         So we simply unwind the changes we made earlier so that any
                         new text we added is removed by reversing the regex match.
                     #>
-    
+
                     # Trim the unique char from split rules if they exist
                     foreach ($correction in $StigGroupListChangeLog[($rule.Id -split '\.')[0]])
                     {
@@ -448,7 +448,7 @@ function Split-BenchmarkId
         {
             $officeStig = ($id -split '_')
 
-            if($PSItem -match 'System')
+            if ($PSItem -match 'System')
             {
                 $officeStig = $officeStig[2], $officeStig[3] -join ""
                 $returnId = '{0}_{1}' -f 'Office', $officeStig

@@ -26,7 +26,7 @@ foreach ($supportFile in $supportFileList)
     .PARAMETER IpAddress
         The ip address of the root hint server
 #>
-Class DnsServerRootHintRuleConvert : DnsServerRootHintRule
+class DnsServerRootHintRuleConvert : DnsServerRootHintRule
 {
     <#
         .SYNOPSIS
@@ -42,7 +42,7 @@ Class DnsServerRootHintRuleConvert : DnsServerRootHintRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    DnsServerRootHintRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    DnsServerRootHintRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.set_HostName('$null')
         $this.set_IpAddress('$null')
@@ -52,7 +52,7 @@ Class DnsServerRootHintRuleConvert : DnsServerRootHintRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'Script'
         }

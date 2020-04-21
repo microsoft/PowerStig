@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Force
         A flag that will overwrite the current ACE in the ACL instead of merge
 #>
-Class PermissionRule : Rule
+class PermissionRule : Rule
 {
     [string] $Path
     [object[]] $AccessControlEntry <#(ExceptionValue)#>
@@ -36,7 +36,7 @@ Class PermissionRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    PermissionRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    PermissionRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -48,7 +48,7 @@ Class PermissionRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    PermissionRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    PermissionRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

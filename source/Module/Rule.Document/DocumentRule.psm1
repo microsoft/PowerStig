@@ -11,7 +11,7 @@ using module .\..\Rule\Rule.psm1
         The DocumentRule class is used to maange the Document Settings.
 
 #>
-Class DocumentRule : Rule
+class DocumentRule : Rule
 {
     <#
         .SYNOPSIS
@@ -50,7 +50,7 @@ Class DocumentRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    DocumentRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    DocumentRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -62,7 +62,7 @@ Class DocumentRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    DocumentRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    DocumentRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

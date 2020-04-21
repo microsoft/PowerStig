@@ -18,7 +18,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER Ensure
         A present or absent flag
 #>
-Class ServiceRule : Rule
+class ServiceRule : Rule
 {
     [string] $ServiceName
     [string] $ServiceState
@@ -39,7 +39,7 @@ Class ServiceRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    ServiceRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    ServiceRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -51,7 +51,7 @@ Class ServiceRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    ServiceRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    ServiceRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

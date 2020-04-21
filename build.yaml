@@ -63,7 +63,6 @@ DscTest:
   ExcludeTag:
     - "Common Tests - New Error-Level Script Analyzer Rules"
     - "Common Tests - Validate Localization"
-    - "Common Tests - PS Script Analyzer on Resource Files"
   Tag:
   ExcludeSourceFile:
     - output

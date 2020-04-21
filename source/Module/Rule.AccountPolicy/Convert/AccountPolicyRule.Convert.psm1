@@ -14,7 +14,7 @@ using namespace System.Text
         Account Policy rule. The configuration details are then extracted and
         validated before returning the object.
 #>
-Class AccountPolicyRuleConvert : AccountPolicyRule
+class AccountPolicyRuleConvert : AccountPolicyRule
 {
     <#
         .SYNOPSIS
@@ -30,7 +30,7 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    AccountPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    AccountPolicyRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         [RegularExpressions.MatchCollection] $tokens = $this.ExtractProperties()
         $this.SetPolicyName($tokens)
@@ -106,7 +106,7 @@ Class AccountPolicyRuleConvert : AccountPolicyRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'AccountPolicy'
         }

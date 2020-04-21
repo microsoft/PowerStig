@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .NOTES
         This class requires PowerShell v5 or above.
 #>
-Class SkippedRule : Rule
+class SkippedRule : Rule
 {
     <#
         .SYNOPSIS
@@ -40,7 +40,7 @@ Class SkippedRule : Rule
         .PARAMETER Rule
             The Stig Rule
     #>
-    SkippedRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SkippedRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
         $this.UpdateRuleTitle('Skip')
     }

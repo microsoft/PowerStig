@@ -36,7 +36,7 @@ using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
         a predefined rule type. The configuration details are then extracted
         and validated before returning the object.
 #>
-Class HardCodedRuleConvert
+class HardCodedRuleConvert
 {
     [System.Object] $Rule
     <#

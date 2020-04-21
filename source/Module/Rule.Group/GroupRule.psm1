@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER MembersToExclude
         The list of memmbers that are not allowed to be in the group
 #>
-Class GroupRule : Rule
+class GroupRule : Rule
 {
     [string] $GroupName
     [string[]] $MembersToExclude <#(ExceptionValue)#>
@@ -33,7 +33,7 @@ Class GroupRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    GroupRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    GroupRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class GroupRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    GroupRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    GroupRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

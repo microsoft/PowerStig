@@ -14,7 +14,7 @@ using namespace System.Text
         Security Option rule. The configuration details are then extracted and
         validated before returning the object.
 #>
-Class SecurityOptionRuleConvert : SecurityOptionRule
+class SecurityOptionRuleConvert : SecurityOptionRule
 {
     <#
         .SYNOPSIS
@@ -30,7 +30,7 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SecurityOptionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SecurityOptionRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         [System.Text.RegularExpressions.Match] $tokens = $this.ExtractProperties()
         $this.SetOptionName($tokens)
@@ -144,7 +144,7 @@ Class SecurityOptionRuleConvert : SecurityOptionRule
 
     hidden [void] SetDscResource ()
     {
-        if($null -eq $this.DuplicateOf)
+        if ($null -eq $this.DuplicateOf)
         {
             $this.DscResource = 'SecurityOption'
         }
