@@ -825,7 +825,7 @@ function Update-FileHashMarkdown
     (
         [Parameter()]
         [string[]]
-        $FileHashPath = (Join-Path -Path $PWD -ChildPath '\StigData\Processed\*.xml'),
+        $FileHashPath = (Join-Path -Path $PWD -ChildPath 'source\StigData\Processed\*.xml'),
 
         [Parameter()]
         [string]
@@ -901,11 +901,11 @@ function Update-PowerSTIGCoverageMarkdown
     (
         [Parameter()]
         [string[]]
-        $ProcessedStigPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\StigData\Processed\*.xml'),
+        $ProcessedStigPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\source\StigData\Processed\*.xml'),
 
         [Parameter()]
         [string]
-        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\PowerSTIG.wiki\StigDetails'),
+        $PowerStigWikiPath = (Join-Path -Path $PSScriptRoot -ChildPath '..\..\..\PowerSTIG.wiki\'),
 
         [Parameter()]
         [string[]]
@@ -917,7 +917,10 @@ function Update-PowerSTIGCoverageMarkdown
         throw "$(Split-Path -Path $PowerStigWikiPath) was not detected, check the path and try again."
     }
 
-    $moduleManifest = Join-Path -Path $PSScriptRoot -ChildPath '..\..\PowerStig.psd1'
+    $stigDetails = Join-Path -Path $PowerStigWikiPath -ChildPath 'StigDetails'
+    Get-ChildItem -Path $stigDetails -Recurse | Remove-Item -Recurse -Confirm:$false -Force
+
+    $moduleManifest = Join-Path -Path $PSScriptRoot -ChildPath '..\..\source\PowerStig.psd1'
     $moduleVersion = (Import-PowerShellDataFile -Path $moduleManifest).ModuleVersion
     $processedStig = Get-ChildItem -Path $ProcessedStigPath -Exclude $Exclude | Select-Object -ExpandProperty FullName
     $markdownStrings = Import-PowerShellDataFile -Path (Join-Path -Path $PSScriptRoot -ChildPath 'Data.Markdown.psd1')
@@ -939,7 +942,7 @@ function Update-PowerSTIGCoverageMarkdown
         $allStigRuleSevCount = $allStigRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
         $automatedSevCount = $automatedRuleType | Foreach-Object {$stig.DISASTIG.$_.Rule} | Group-Object -Property severity -NoElement
         $stigDetailFileName = (Split-Path -Path $stigXml -Leaf) -replace '.xml', '.md'
-        $stigDetailFilePath = Join-Path -Path $PowerStigWikiPath -ChildPath $stigDetailFileName
+        $stigDetailFilePath = Join-Path -Path $stigDetails -ChildPath $stigDetailFileName
         $stigDetailFileLink = $markdownStrings.markdownRuleLink -f ($stigDetailFileName -replace '.md')
         $stigMarkdown = $markdownStrings.markdownSummaryBody -f
             $stig.DISASTIG.stigid.Replace('_', ' ').Trim(),
@@ -1009,10 +1012,10 @@ function Update-PowerSTIGCoverageMarkdown
         Set-Content -Path $stigDetailFilePath -Value $stigDetailContent.ToString().Trim() -Force
     }
 
-    $coverageSummary = Join-Path -Path $PowerStigWikiPath -ChildPath StigCoverageSummary.md
+    $coverageSummary = Join-Path -Path $stigDetails -ChildPath StigCoverageSummary.md
     Set-Content -Path $coverageSummary -Value $summaryMarkdownContent.ToString().Trim() -Force
 
-    Update-PowerSTIGCoverageSidebar -MarkdownStrings $markdownStrings
+    Update-PowerSTIGCoverageSidebar -MarkdownStrings $markdownStrings -PowerStigWikiPath $PowerStigWikiPath
 }
 
 <#

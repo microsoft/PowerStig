@@ -252,7 +252,7 @@ Begin
 '@
 
     $stringBuilder = New-Object -TypeName System.Text.StringBuilder -ArgumentList $requiredModulesContent
-    $powerStigModuleManifest = Import-PowerShellDataFile -Path (Join-Path -Path $PSScriptRoot -ChildPath '.\sources\PowerStig.psd1')
+    $powerStigModuleManifest = Import-PowerShellDataFile -Path (Join-Path -Path $PSScriptRoot -ChildPath '.\source\PowerStig.psd1')
     $powerStigRequiredModule = $powerStigModuleManifest.RequiredModules
     foreach ($requiredModule in $powerStigRequiredModule)
     {
