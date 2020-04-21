@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
 
 
 #>
-Class VsphereSnmpAgentRule : Rule
+class VsphereSnmpAgentRule : Rule
 {
     [string] $Enabled
 
@@ -32,7 +32,7 @@ Class VsphereSnmpAgentRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    VsphereSnmpAgentRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    VsphereSnmpAgentRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -44,7 +44,7 @@ Class VsphereSnmpAgentRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    VsphereSnmpAgentRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    VsphereSnmpAgentRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         Vsphere AdvancedSettings rule, it is passed to the VsphereRule class for parsing
         and validation.
 #>
-Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
+class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
 {
     <#
         .SYNOPSIS
@@ -37,9 +37,8 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereAdvancedSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereAdvancedSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        
         $fixText = [VsphereAdvancedSettingsRule]::GetFixText($XccdfRule)
         $rawString = $fixText
         $this.SetVsphereAdvancedSettings($rawString)

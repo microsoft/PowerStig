@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         Vsphere Ntp Settings rule, it is passed to the Vsphere Ntp Settings Rule class for parsing
         and validation.
 #>
-Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
+class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereNtpSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereNtpSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         if ($this.IsOrganizationalSetting())
         {

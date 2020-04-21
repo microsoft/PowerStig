@@ -18,7 +18,7 @@ using module .\..\Rule\Rule.psm1
 
 
 #>
-Class VsphereServiceRule : Rule
+class VsphereServiceRule : Rule
 {
     [string] $Key
     [string] $Policy
@@ -38,7 +38,7 @@ Class VsphereServiceRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    VsphereServiceRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    VsphereServiceRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -50,7 +50,7 @@ Class VsphereServiceRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    VsphereServiceRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    VsphereServiceRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

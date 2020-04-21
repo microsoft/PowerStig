@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         VspherePortGroupSecurity rule, it is passed to the VspherePortGroupSecurityRule class for parsing
         and validation.
 #>
-Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
+class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VspherePortGroupSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VspherePortGroupSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VspherePortGroupSecurityRule]::GetFixText($XccdfRule)
         $rawString = $fixText

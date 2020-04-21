@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
 
 
 #>
-Class VsphereAcceptanceLevelRule : Rule
+class VsphereAcceptanceLevelRule : Rule
 {
     [string] $Level
 
@@ -32,7 +32,7 @@ Class VsphereAcceptanceLevelRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    VsphereAcceptanceLevelRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    VsphereAcceptanceLevelRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -44,7 +44,7 @@ Class VsphereAcceptanceLevelRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    VsphereAcceptanceLevelRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    VsphereAcceptanceLevelRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

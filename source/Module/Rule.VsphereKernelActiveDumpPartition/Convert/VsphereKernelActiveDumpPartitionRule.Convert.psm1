@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         Vsphere rule, it is passed to the VsphereRule class for parsing
         and validation.
 #>
-Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpPartitionRule
+class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpPartitionRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereKernelActiveDumpPartitionRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereKernelActiveDumpPartitionRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereKernelActiveDumpPartitionRule]::GetFixText($XccdfRule)
         $rawString = $fixText

@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         VsphereVssSecurity rule, it is passed to the VsphereVssSecurityRule class for parsing
         and validation.
 #>
-Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
+class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereVssSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereVssSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereVssSecurityRule]::GetFixText($XccdfRule)
         $rawString = $fixText

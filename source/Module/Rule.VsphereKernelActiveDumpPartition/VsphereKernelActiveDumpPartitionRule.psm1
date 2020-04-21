@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
 
 
 #>
-Class VsphereKernelActiveDumpPartitionRule : Rule
+class VsphereKernelActiveDumpPartitionRule : Rule
 {
     [string] $Enabled
 
@@ -32,7 +32,7 @@ Class VsphereKernelActiveDumpPartitionRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    VsphereKernelActiveDumpPartitionRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    VsphereKernelActiveDumpPartitionRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -44,7 +44,7 @@ Class VsphereKernelActiveDumpPartitionRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    VsphereKernelActiveDumpPartitionRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    VsphereKernelActiveDumpPartitionRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

@@ -17,7 +17,7 @@ using module .\..\Rule\Rule.psm1
                 The boolean answer to allowing Promiscuous mode on port groups inherited from switch configuration
 
 #>
-Class VspherePortGroupSecurityRule : Rule
+class VspherePortGroupSecurityRule : Rule
 {
     [string] $ForgedTransmitsInherited
     [string] $MacChangesInherited
@@ -38,7 +38,7 @@ Class VspherePortGroupSecurityRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    VspherePortGroupSecurityRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    VspherePortGroupSecurityRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -50,7 +50,7 @@ Class VspherePortGroupSecurityRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    VspherePortGroupSecurityRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    VspherePortGroupSecurityRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

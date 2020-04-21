@@ -18,7 +18,7 @@ using module .\..\Rule\Rule.psm1
 
 
 #>
-Class VsphereVssSecurityRule : Rule
+class VsphereVssSecurityRule : Rule
 {
     [string] $ForgedTransmits
     [string] $MacChanges
@@ -38,7 +38,7 @@ Class VsphereVssSecurityRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    VsphereVssSecurityRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    VsphereVssSecurityRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
     }
 
@@ -50,7 +50,7 @@ Class VsphereVssSecurityRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    VsphereVssSecurityRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    VsphereVssSecurityRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
     }
 

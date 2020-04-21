@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         Vsphere Service rule, it is passed to the VsphereServiceRule class for parsing
         and validation.
 #>
-Class VsphereServiceRuleConvert : VsphereServiceRule
+class VsphereServiceRuleConvert : VsphereServiceRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereServiceRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereServiceRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $this.SetKey()
         $this.SetPolicy()

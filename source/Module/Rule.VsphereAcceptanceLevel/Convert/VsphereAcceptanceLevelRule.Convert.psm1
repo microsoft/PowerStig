@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         Vsphere Acceptance Level rule, it is passed to the VsphereRule Acceptance Level class for parsing
         and validation.
 #>
-Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
+class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereAcceptanceLevelRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereAcceptanceLevelRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereAcceptanceLevelRule]::GetFixText($XccdfRule)
         $rawString = $fixText

@@ -21,7 +21,7 @@ foreach ($supportFile in $supportFileList)
         Vsphere rule, it is passed to the VsphereRule class for parsing
         and validation.
 #>
-Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
+class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
 {
     <#
         .SYNOPSIS
@@ -37,7 +37,7 @@ Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    VsphereSnmpAgentRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    VsphereSnmpAgentRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereSnmpAgentRule]::GetFixText($XccdfRule)
         $rawString = $fixText
