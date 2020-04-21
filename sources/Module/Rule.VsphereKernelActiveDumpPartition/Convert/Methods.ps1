@@ -20,7 +20,7 @@ function Get-VsphereKernelActiveDumpPartition
         $RawString
     )
 
-    if ($Fixtext -match 'coredump.partition')
+    if ($RawString -match 'coredump.partition')
     {
         $KernelActiveDumpPartitionEnabled = ($RawString | Select-String -Pattern '(?<=coredump.network.set\()(.\w+)(?=\))').matches.value
     }

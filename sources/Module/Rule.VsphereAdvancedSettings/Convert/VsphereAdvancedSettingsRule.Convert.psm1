@@ -39,7 +39,10 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     #>
     VsphereAdvancedSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $this.SetVsphereAdvancedSettings()
+        
+        $fixText = [VsphereAdvancedSettingsRule]::GetFixText($XccdfRule)
+        $rawString = $fixText
+        $this.SetVsphereAdvancedSettings($rawString)
         if ($this.IsOrganizationalSetting())
         {
             $this.SetOrganizationValueTestString()
@@ -57,9 +60,9 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereAdvancedSettings ()
+    [void] SetVsphereAdvancedSettings ([string[]] $rawString)
     {
-        $thisVsphereAdvancedSettings = Get-VsphereAdvancedSettings -CheckContent $this.SplitCheckContent
+        $thisVsphereAdvancedSettings = Get-VsphereAdvancedSettings -RawString $rawString -CheckContent $this.RawString
         $this.set_AdvancedSettings($thisVsphereAdvancedSettings)
     }
 

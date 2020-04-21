@@ -17,26 +17,33 @@ function Get-VsphereAdvancedSettings
     (
         [Parameter(Mandatory = $true)]
         [psobject]
+        $RawString,
+
+        [Parameter()]
+        [psobject]
         $CheckContent
     )
 
-    if ($CheckContent -match 'Get-AdvancedSetting')
+    if ($RawString -match 'Get-AdvancedSetting')
     {
-        $matchName = ($CheckContent | Select-String -Pattern $AdvancedSettingNameList.Values.Values).matches.groups[1].value
-
-        foreach($item in $AdvancedSettingDataList.Values.Values)
-        {
-            if ($null -eq $matchValue)
-            {
-                $matchValue = ($Checkcontent | Select-String -Pattern $item).Matches.Value | Get-Unique
-            }
-        }
+        $matchName = ($RawString | Select-String -Pattern '(?<=Get-AdvancedSetting -Name )([^\s]+)' -AllMatches).matches.value
+        $matchValue = ($RawString | Select-String -Pattern '(?<=Set-AdvancedSetting -Value |Set-AdvancedSetting -Value ")[^"]+' -AllMatches).matches.value
 
         $advancedSettings = "'{0}' = '{1}'" -f $matchName, $matchValue
     }
 
     switch ($matchName)
     {
+        {$PSItem -eq "Annotations.WelcomeMessage"}
+        {
+            $matchValue = ($CheckContent | Select-String -Pattern 'You are accessing[^"]+(?<=details.)').matches.value
+            $advancedSettings = "'{0}' = '{1}'" -f $matchName,$matchValue
+        }
+        {$PSItem -eq "Config.Etc.issue"}
+        {
+            $matchValue = ($CheckContent | Select-String -Pattern 'You are accessing[^"]+').matches.value
+            $advancedSettings = "'{0}' = '{1}'" -f $matchName,$matchValue
+        }
         {$PSItem -eq "Net.DVFilterBindIpAddress"}
         {
             $advancedSettings = "'{0}' = ''" -f $matchName

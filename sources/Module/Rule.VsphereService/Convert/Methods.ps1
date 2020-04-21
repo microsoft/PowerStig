@@ -22,7 +22,7 @@ function Get-VsphereServiceKey
 
     if ($CheckContent -match 'Get-VMHostService')
     {
-        $name = ($CheckContent | Select-String -Pattern $ServiceNameList.Values.Values).matches.groups[1].value | Get-Unique
+        $name = ($CheckContent | Select-String -Pattern '(?<=Label -eq ")([^"]*)' -AllMatches).matches.value
     }
 
     switch ($name)
@@ -74,7 +74,7 @@ function Get-VsphereServicePolicy
 
     if ($CheckContent -match 'Get-VMHostService')
     {
-        $ServicePolicy = ($CheckContent | Select-String -Pattern $ServicePolicyList.Values.Values).matches.value
+        $ServicePolicy = ($CheckContent| Select-String -Pattern '(?<=verify it is )(\w+)' -AllMatches).matches.value
         if ($ServicePolicy -eq "stopped")
         {
             $policy = "off"

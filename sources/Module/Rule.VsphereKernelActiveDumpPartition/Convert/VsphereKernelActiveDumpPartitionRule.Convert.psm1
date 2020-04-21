@@ -41,7 +41,7 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
     {
         $fixText = [VsphereKernelActiveDumpPartitionRule]::GetFixText($XccdfRule)
         $rawString = $fixText
-        $this.SetVsphereKernelActiveDumpPartition($RawString)
+        $this.SetVsphereKernelActiveDumpPartition($rawString)
         $this.SetDscResource()
     }
 
