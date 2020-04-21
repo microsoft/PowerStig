@@ -14,11 +14,11 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere object
+        Convert the contents of an xccdf check-content element into a Vsphere Port Group Security Rule object
     .DESCRIPTION
-        The VsphereRule class is used to extract the Vsphere settings
+        The VspherePortGroupSecurityRule class is used to extract the Vsphere Port Group Security settings
         from the check-content of the xccdf. Once a STIG rule is identified a
-        Vsphere rule, it is passed to the VsphereRule class for parsing
+        VspherePortGroupSecurity rule, it is passed to the VspherePortGroupSecurityRule class for parsing
         and validation.
 #>
 Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
@@ -48,7 +48,14 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     }
 
     # Methods
-
+    <#
+    .SYNOPSIS
+        Extracts the ForgedTransmitInherited boolean from the fix text and sets the value
+    .DESCRIPTION
+        Gets the boolean from the xccdf content and sets the value.
+        If the value that is returned is not valid, the parser status is
+        set to fail.
+    #>
     [void] SetVsphereForgedTransmitsInherited([string[]] $rawString)
     {
         $thisVsphereForgedTransmitsInherited = Get-VsphereForgedTransmitsInherited -Rawstring $rawstring
@@ -57,7 +64,14 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
             $this.set_ForgedTransmitsInherited($thisVsphereForgedTransmitsInherited)
         }
     }
-
+    <#
+    .SYNOPSIS
+        Extracts the MacChangesInherited boolean from the fix text and sets the value
+    .DESCRIPTION
+        Gets the boolean from the xccdf content and sets the value.
+        If the value that is returned is not valid, the parser status is
+        set to fail.
+    #>
     [void] SetVsphereMacChangesInherited([string[]] $rawString)
     {
         $thisVsphereMacChangesInherited = Get-VsphereMacChangesInherited -Rawstring $rawstring
@@ -66,7 +80,14 @@ Class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
             $this.set_MacChangesInherited($thisVsphereMacChangesInherited)
         }
     }
-
+    <#
+    .SYNOPSIS
+        Extracts the AllowPromiscuousInherited boolean from the fix text and sets the value
+    .DESCRIPTION
+        Gets the boolean from the xccdf content and sets the value.
+        If the value that is returned is not valid, the parser status is
+        set to fail.
+    #>
     [void] SetVsphereAllowPromiscuousInherited([string[]] $rawString)
     {
         $thisVsphereAllowPromiscuousInherited = Get-VsphereAllowPromiscuousInherited -Rawstring $rawstring

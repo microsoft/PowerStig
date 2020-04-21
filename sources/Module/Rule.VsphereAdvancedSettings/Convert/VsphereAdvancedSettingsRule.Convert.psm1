@@ -16,9 +16,9 @@ foreach ($supportFile in $supportFileList)
     .SYNOPSIS
         Convert the contents of an xccdf check-content element into a Vsphere object
     .DESCRIPTION
-        The VsphereRule class is used to extract the Vsphere settings
+        The VsphereAdvancedSettingsRule class is used to extract the Vsphere settings
         from the check-content of the xccdf. Once a STIG rule is identified a
-        Vsphere rule, it is passed to the VsphereRule class for parsing
+        Vsphere AdvancedSettings rule, it is passed to the VsphereRule class for parsing
         and validation.
 #>
 Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
@@ -54,9 +54,9 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     # Methods
     <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the advanced settings key value pair from the check-content and sets the Advanced Setting
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
+        Gets the key value pair from the xccdf content and combines the two as a string.
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
@@ -74,7 +74,7 @@ Class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     #>
     [Boolean] IsOrganizationalSetting ()
     {
-        if ($this.id -match 'V-93955' -or $this.id -match 'V-94025' -or $this.id -match 'V-94509' -or $this.id -match 'V-94533' -or $this.id -match 'V-94037')
+        if ($this.id -match 'V-93955|V-94025|V-94509|V-94533|V-94037')
         {
             return $true
         }

@@ -14,11 +14,11 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere object
+        Convert the contents of an xccdf check-content element into a Vsphere Vss Security Rule object
     .DESCRIPTION
-        The VsphereRule class is used to extract the Vsphere settings
+        The VsphereVssSecurityRule class is used to extract the VsphereVssSecurityRule settings
         from the check-content of the xccdf. Once a STIG rule is identified a
-        Vsphere rule, it is passed to the VsphereRule class for parsing
+        VsphereVssSecurity rule, it is passed to the VsphereVssSecurityRule class for parsing
         and validation.
 #>
 Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
@@ -48,7 +48,14 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
     }
 
     # Methods
-
+    <#
+    .SYNOPSIS
+        Extracts the Vsphere ForgedTransmits settings from the fix text and sets the value
+    .DESCRIPTION
+        Gets the ForgedTransmits from the xccdf content and sets the value.
+        If the value that is returned is not valid, the parser status is
+        set to fail.
+    #>
     [void] SetVsphereForgedTransmits([string[]] $rawString)
     {
         $thisVsphereForgedTransmits = Get-VsphereForgedTransmits -Rawstring $rawstring
@@ -57,7 +64,14 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
             $this.set_ForgedTransmits($thisVsphereForgedTransmits)
         }
     }
-
+    <#
+    .SYNOPSIS
+        Extracts the Vsphere MacChanges settings from the fix text and sets the value
+    .DESCRIPTION
+        Gets the MacChanges from the xccdf content and sets the value.
+        If the value that is returned is not valid, the parser status is
+        set to fail.
+    #>
     [void] SetVsphereMacChanges([string[]] $rawString)
     {
         $thisVsphereMacChanges = Get-VsphereMacChanges -Rawstring $rawstring
@@ -66,7 +80,14 @@ Class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
             $this.set_MacChanges($thisVsphereMacChanges)
         }
     }
-
+    <#
+    .SYNOPSIS
+        Extracts the Vsphere AllowPromiscuous settings from the fix text and sets the value
+    .DESCRIPTION
+        Gets the AllowPromiscuous from the xccdf content and sets the value.
+        If the value that is returned is not valid, the parser status is
+        set to fail.
+    #>
     [void] SetVsphereAllowPromiscuous([string[]] $rawString)
     {
         $thisVsphereAllowPromiscuous = Get-VsphereAllowPromiscuous -Rawstring $rawstring

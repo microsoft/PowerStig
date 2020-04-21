@@ -9,8 +9,8 @@ using module .\..\Rule\Rule.psm1
         An Vsphere Rule object
     .DESCRIPTION
         The Vsphere class is used to maange the Vmware Vsphere Settings.
-    .PARAMETER Name
-        The name of the Vsphere service.
+    .PARAMETER Enabled
+        The boolean $true or $false to enable or disable this feature.
 
 
 #>

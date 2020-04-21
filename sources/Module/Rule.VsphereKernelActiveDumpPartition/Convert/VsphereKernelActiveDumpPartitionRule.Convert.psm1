@@ -33,7 +33,7 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
 
     <#
         .SYNOPSIS
-            Converts an xccdf stig rule element into a Vsphere Rule
+            Converts an xccdf stig rule element into a Vsphere Kernel Active Dump Partition Rule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
@@ -48,9 +48,9 @@ Class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
     # Methods
     <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the Kernel Active Dump Partition boolean from the fix text and sets the value
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
+        Gets the boolean from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>

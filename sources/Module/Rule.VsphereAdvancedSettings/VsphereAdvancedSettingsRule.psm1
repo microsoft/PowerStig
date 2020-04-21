@@ -6,11 +6,11 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Vsphere Rule object
+        An Vsphere Advanced Settings Rule object
     .DESCRIPTION
-        The Vsphere class is used to maange the Vmware Vsphere Settings.
+        The Vsphere Advanced Settings class is used to maange the Vmware Vsphere Settings.
     .PARAMETER AdvancedSettings
-        A hashtable with value name and value data.
+        A string with value name and value data. (i.e. 'ValueName' = 'ValueData')
 
 
 #>

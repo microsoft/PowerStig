@@ -16,9 +16,9 @@ foreach ($supportFile in $supportFileList)
     .SYNOPSIS
         Convert the contents of an xccdf check-content element into a Vsphere object
     .DESCRIPTION
-        The VsphereRule class is used to extract the Vsphere settings
+        The VsphereRule Acceptance Level class is used to extract the Vsphere settings
         from the check-content of the xccdf. Once a STIG rule is identified a
-        Vsphere rule, it is passed to the VsphereRule class for parsing
+        Vsphere Acceptance Level rule, it is passed to the VsphereRule Acceptance Level class for parsing
         and validation.
 #>
 Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
@@ -48,10 +48,10 @@ Class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
     # Methods
     <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the acceptance level from the fix text and sets the level
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
-        If the value that is returned is not valid, the parser status is
+        Gets the accceptance leve from the xccdf content and sets the level.
+        If the level that is returned is not valid, the parser status is
         set to fail.
     #>
     [void] SetVsphereAcceptanceLevel ([string[]] $Fixtext)

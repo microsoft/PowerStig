@@ -4,10 +4,10 @@
 
 <#
     .SYNOPSIS
-        Takes the Name property from a VsphereKernelActiveDumpPartitionRule.
+        Takes the Rawstring from the fix text of a VsphereKernelActiveDumpPartitionRule.
 
-    .PARAMETER CheckContent
-        An array of the raw string data taken from the STIG setting.
+    .PARAMETER RawString
+        An array of the raw string data taken from the Fix text of the STIG.
 #>
 function Get-VsphereKernelActiveDumpPartition
 {
@@ -24,6 +24,7 @@ function Get-VsphereKernelActiveDumpPartition
     {
         $KernelActiveDumpPartitionEnabled = ($RawString | Select-String -Pattern '(?<=coredump.network.set\()(.\w+)(?=\))').matches.value
     }
+
 
     if ($null -ne $KernelActiveDumpPartitionEnabled)
     {

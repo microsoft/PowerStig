@@ -14,11 +14,11 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere object
+        Convert the contents of an xccdf check-content element into a Vsphere Ntp Settings object
     .DESCRIPTION
-        The VsphereRule class is used to extract the Vsphere settings
+        The Vsphere Ntp Settings Rule class is used to extract the Vsphere Ntp settings
         from the check-content of the xccdf. Once a STIG rule is identified a
-        Vsphere rule, it is passed to the VsphereRule class for parsing
+        Vsphere Ntp Settings rule, it is passed to the Vsphere Ntp Settings Rule class for parsing
         and validation.
 #>
 Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
@@ -65,7 +65,6 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
             return $false
         }
     }
-
     <#
     .SYNOPSIS
         Set the organizational value
@@ -82,13 +81,11 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
             $this.set_OrganizationValueRequired($true)
         }
     }
-
-
     <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the Vsphere NTP settings from the check-content and sets the value
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
+        Gets the NTP server list from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
@@ -97,6 +94,7 @@ Class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
         $thisVsphereNtpSettings = Get-VsphereNtpSettings -CheckContent $this.SplitCheckContent
         $this.set_NtpServer($thisVsphereNtpSettings)
     }
+
 
     hidden [void] SetDscResource ()
     {

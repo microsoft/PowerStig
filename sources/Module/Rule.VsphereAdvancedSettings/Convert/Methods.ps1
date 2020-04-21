@@ -4,7 +4,10 @@
 
 <#
     .SYNOPSIS
-        Takes the AdvancedSettings property from a VsphereRule.
+        Takes the AdvancedSettings property from a VsphereAdvancedSettingsRule.
+
+    .PARAMETER RawString
+        An array of the raw string data taken from the Fix Text of the STIG.
 
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
@@ -28,9 +31,9 @@ function Get-VsphereAdvancedSettings
     {
         $matchName = ($RawString | Select-String -Pattern '(?<=Get-AdvancedSetting -Name )([^\s]+)' -AllMatches).matches.value
         $matchValue = ($RawString | Select-String -Pattern '(?<=Set-AdvancedSetting -Value |Set-AdvancedSetting -Value ")[^"]+' -AllMatches).matches.value
-
         $advancedSettings = "'{0}' = '{1}'" -f $matchName, $matchValue
     }
+
 
     switch ($matchName)
     {
@@ -54,6 +57,7 @@ function Get-VsphereAdvancedSettings
         }
     }
 
+
     if ($null -ne $advancedSettings)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Advanced Setting: {0}" -f $advancedSettings)
@@ -65,6 +69,7 @@ function Get-VsphereAdvancedSettings
     }
 }
 
+
 function Get-OrganizationValueTestString
 {
     [CmdletBinding()]
@@ -75,7 +80,7 @@ function Get-OrganizationValueTestString
         [string]
         $Id
     )
-    # TO DO - This should not be a static list
+
     switch ($Id)
     {
         {$PsItem -match 'V-93955'}

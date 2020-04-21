@@ -4,9 +4,9 @@
 
 <#
     .SYNOPSIS
-        Assigns.
+        This function parses the fix text to find the boolean value of ForgedTransmitsInherited, then sets the value.
 
-    .PARAMETER CheckContent
+    .PARAMETER RawString
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-VsphereForgedTransmitsInherited
@@ -35,7 +35,13 @@ function Get-VsphereForgedTransmitsInherited
         return $null
     }
 }
+<#
+    .SYNOPSIS
+        This function parses the fix text to find the boolean value of MacChangesInherited, then sets the value.
 
+    .PARAMETER RawString
+        An array of the raw string data taken from the STIG setting.
+#>
 function Get-VsphereMacChangesInherited
 {
     [CmdletBinding()]
@@ -62,7 +68,13 @@ function Get-VsphereMacChangesInherited
         return $null
     }
 }
+<#
+    .SYNOPSIS
+        This function parses the fix text to find the boolean value of AllowPromiscuousInherited, then sets the value.
 
+    .PARAMETER RawString
+        An array of the raw string data taken from the STIG setting.
+#>
 function Get-VsphereAllowPromiscuousInherited
 {
     [CmdletBinding()]

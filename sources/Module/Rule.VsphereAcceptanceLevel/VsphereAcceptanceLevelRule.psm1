@@ -6,11 +6,11 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Vsphere Rule object
+        An Vsphere AcceptanceLevel Rule object
     .DESCRIPTION
         The Vsphere class is used to maange the Vmware Vsphere Settings.
-    .PARAMETER Name
-        The name of the Vsphere service.
+    .PARAMETER Level
+        The acceptance level of supported VIBs. (i.e. VMwareCertified, VMwareAccepted, PartnerSupported, or CommunitySupported)
 
 
 #>

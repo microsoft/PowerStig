@@ -14,11 +14,11 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere object
+        Convert the contents of an xccdf check-content element into a VsphereServiceRule object
     .DESCRIPTION
-        The VsphereRule class is used to extract the Vsphere settings
+        The VsphereServiceRule class is used to extract the Vsphere Service settings
         from the check-content of the xccdf. Once a STIG rule is identified a
-        Vsphere rule, it is passed to the VsphereRule class for parsing
+        Vsphere Service rule, it is passed to the VsphereServiceRule class for parsing
         and validation.
 #>
 Class VsphereServiceRuleConvert : VsphereServiceRule
@@ -47,9 +47,9 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
     # Methods
     <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the Key (serviceName) from the check-content and sets the values
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
+        Gets the key from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
@@ -61,11 +61,9 @@ Class VsphereServiceRuleConvert : VsphereServiceRule
 
         <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the service policy from the check-content and sets the values of policy and running state
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
-        If the value that is returned is not valid, the parser status is
-        set to fail.
+        Gets the policy from the check-content then sets both the policy and running state based on match.
     #>
     [void] SetPolicy ()
     {

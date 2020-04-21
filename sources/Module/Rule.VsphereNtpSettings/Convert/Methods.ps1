@@ -4,7 +4,8 @@
 
 <#
     .SYNOPSIS
-        Takes the Name property from a VsphereNtpSettingsRule.
+        This returns null for the value of a Vsphere Ntp SettingsRule, because the ony rule
+        is an organizational setting.
 
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
@@ -36,6 +37,13 @@ function Get-VsphereNtpSettings
     }
 }
 
+<#
+    .SYNOPSIS
+        This returns the organizational test string from a Vsphere Ntp SettingsRule.
+
+    .PARAMETER Id
+        This is the id of the rule that matches the organizational test string.
+#>
 function Get-VsphereNtpSettingsOrganizationValueTestString
 {
     [CmdletBinding()]

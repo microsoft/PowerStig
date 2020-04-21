@@ -48,9 +48,9 @@ Class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
     # Methods
     <#
     .SYNOPSIS
-        Extracts the advanced settings key value pair from the check-content and sets the values
+        Extracts the Snmp Agent boolean from the check-content and sets the values
     .DESCRIPTION
-        Gets the key value pair from the xccdf content and sets the value.
+        Gets the bollean from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>

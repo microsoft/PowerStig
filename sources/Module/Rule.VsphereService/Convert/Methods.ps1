@@ -4,7 +4,7 @@
 
 <#
     .SYNOPSIS
-        Takes the Name property from a VsphereServiceRule.
+        Finds the Key property from a VsphereServiceRule.
 
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
@@ -86,6 +86,7 @@ function Get-VsphereServicePolicy
             $running = $true
         }
     }
+
 
     if ($null -ne $policy)
     {

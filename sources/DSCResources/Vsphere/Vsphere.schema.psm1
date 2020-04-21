@@ -6,9 +6,19 @@ using module ..\..\PowerStig.psm1
 
 <#
     .SYNOPSIS
-        A composite DSC resource to manage Adobe Application STIG settings
-    .PARAMETER AdobeApp
-        The Adobe Application for which a DISA STIG configuration is generated, i.e. 'AcrobatReader'
+        A composite DSC resource to manage Vsphere STIG settings
+    .PARAMETER Version
+        The Vsphere Esxi version for which a DISA STIG configuration is generated, i.e. '6.5'
+    .PARAMETER HostIP
+        The IP address of the Esxi Host that is being targeted
+    .PARAMETER ServerIP
+        The Vcenter Server Ip that the host is connected to. This is required to secure the host with Vsphere resource
+    .PARAMETER Credential
+        The credential to administer the Esxi host
+    .PARAMETER VirtualStandardSwitchGroup
+        A group of standard switches
+    .PARAMETER VmGroup
+        A group of VM's to target on host
     .PARAMETER StigVersion
         The version of the Adobe Application STIG to apply and/or monitor
     .PARAMETER Exception

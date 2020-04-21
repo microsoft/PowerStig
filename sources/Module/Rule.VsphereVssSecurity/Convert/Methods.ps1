@@ -4,9 +4,9 @@
 
 <#
     .SYNOPSIS
-        Assigns.
+        This function parses the fix text to find the boolean value of ForgedTransmits, then sets the value.
 
-    .PARAMETER CheckContent
+    .PARAMETER RawString
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-VsphereForgedTransmits
@@ -35,7 +35,13 @@ function Get-VsphereForgedTransmits
         return $null
     }
 }
+<#
+    .SYNOPSIS
+        This function parses the fix text to find the boolean value of MacChanges, then sets the value.
 
+    .PARAMETER RawString
+        An array of the raw string data taken from the STIG setting.
+#>
 function Get-VsphereMacChanges
 {
     [CmdletBinding()]
@@ -62,7 +68,13 @@ function Get-VsphereMacChanges
         return $null
     }
 }
+<#
+    .SYNOPSIS
+        This function parses the fix text to find the boolean value of AllowPromiscuous, then sets the value.
 
+    .PARAMETER RawString
+        An array of the raw string data taken from the STIG setting.
+#>
 function Get-VsphereAllowPromiscuous
 {
     [CmdletBinding()]

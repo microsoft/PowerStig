@@ -9,9 +9,12 @@ using module .\..\Rule\Rule.psm1
         An Vsphere Rule object
     .DESCRIPTION
         The Vsphere class is used to maange the Vmware Vsphere Settings.
-    .PARAMETER Name
-        The name of the Vsphere service.
-
+    .PARAMETER ForgedTransmitsInherited
+        The boolean answer to allowing forged transmits on port groups nherited from switch configuration
+    .PARAMETER MacChangesInherited
+                The boolean answer to allowing Mac Changes on port groups inherited from switch configuration
+    .PARAMETER AllowPromiscuousInherited
+                The boolean answer to allowing Promiscuous mode on port groups inherited from switch configuration
 
 #>
 Class VspherePortGroupSecurityRule : Rule

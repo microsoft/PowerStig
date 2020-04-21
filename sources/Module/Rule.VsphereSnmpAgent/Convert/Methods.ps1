@@ -4,9 +4,9 @@
 
 <#
     .SYNOPSIS
-        Takes the Name property from a VsphereSnmpAgentRule.
+        Gets the boolean SNMPAgent Enabled property from a VsphereSnmpAgentRule.
 
-    .PARAMETER CheckContent
+    .PARAMETER RawString
         An array of the raw string data taken from the STIG setting.
 #>
 function Get-VsphereSnmpAgent
