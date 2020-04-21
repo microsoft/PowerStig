@@ -23,19 +23,33 @@ try
                 Note: This list is only for local user accounts and should only contain the root user.
                 
                 For environments that do not use vCenter server to manage ESXi, this is not applicable.'
+                FixText = 'From the vSphere Web Client select the ESXi Host and go to Configure >> System >> Advanced System Settings. Click Edit and select the DCUI.Access value and configure it to root.
+
+                or
+    
+                From a PowerCLI command prompt while connected to the ESXi host run the following command:
+    
+                Get-VMHost | Get-AdvancedSetting -Name DCUI.Access | Set-AdvancedSetting -Value "root"'
             },
             @{
-                AdvancedSettings = "'Security.AccountUnlockTime' = '900'"
+                AdvancedSettings = "'UserVars.ESXiShellInteractiveTimeOut' = '600'"
                 OrganizationValueRequired = $false
-                CheckContent = 'From the vSphere Web Client select the ESXi Host and go to Configure &gt;&gt; System &gt;&gt; Advanced System Settings.  Select the Security.AccountUnlockTime value and verify it is set to 900.
+                CheckContent = 'From the vSphere Web Client select the ESXi Host and go to Configure >> System >> Advanced System Settings. Select the UserVars.ESXiShellInteractiveTimeOut value and verify it is set to 600 (10 Minutes).
 
                 or
 
                 From a PowerCLI command prompt while connected to the ESXi host run the following command:
 
-                Get-VMHost | Get-AdvancedSetting -Name Security.AccountUnlockTime and verify it is set to 900.
+                Get-VMHost | Get-AdvancedSetting -Name UserVars.ESXiShellInteractiveTimeOut
 
-                If the Security.AccountUnlockTime is set to a value other than 900, this is a finding.'
+                If the UserVars.ESXiShellInteractiveTimeOut setting is not set to 600, this is a finding.'
+                FixText = 'From the vSphere Web Client select the ESXi Host and go to Configure >> System >> Advanced System Settings. Click Edit and select the UserVars.ESXiShellInteractiveTimeOut value and configure it to 600.
+
+                or
+
+                From a PowerCLI command prompt while connected to the ESXi host run the following commands:
+
+                Get-VMHost | Get-AdvancedSetting -Name UserVars.ESXiShellInteractiveTimeOut | Set-AdvancedSetting -Value 600'
             }
         )
         #endregion
