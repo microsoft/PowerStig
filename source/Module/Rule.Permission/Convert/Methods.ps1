@@ -546,7 +546,7 @@ function Convert-RightsConstant
             {
                 $string.Split(',')
             }
-            elseif ( $string.Contains('/') )
+            elseif ($string.Contains('/'))
             {
                 $string.Split('/')
             }

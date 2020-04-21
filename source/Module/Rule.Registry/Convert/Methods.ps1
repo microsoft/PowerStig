@@ -1050,7 +1050,7 @@ function Split-MultipleRegistryEntries
             If a check contains only the registry hive, but have multiple/unique paths,type,names,and values, then reference the single
             hive for each path that is discovered.
         #>
-        elseif ( $paths.count -gt 1 -and $types.count -eq 1 -and $names.count -eq 1 -and $values.count -eq 1 )
+        elseif ($paths.count -gt 1 -and $types.count -eq 1 -and $names.count -eq 1 -and $values.count -eq 1)
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Paths : $($paths.count)"
 
@@ -1071,7 +1071,7 @@ function Split-MultipleRegistryEntries
             If a check contains a single registry hive, path, type, and value, but multiple value names, then reference
             the single hive hive, path, type, and value for each value name that is discovered.
         #>
-        elseif ( $names.count -gt 1 -and $types.count -eq 1 -and $values.count -eq 1 )
+        elseif ($names.count -gt 1 -and $types.count -eq 1 -and $values.count -eq 1)
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Values : $($names.count)"
 
@@ -1092,7 +1092,7 @@ function Split-MultipleRegistryEntries
             If a check contains a single registry hive and path, but multiple values, then reference
             the single hive and path for each value name that is discovered.
         #>
-        elseif ( $names.count -gt 1 -and $types.count -gt 1 )
+        elseif ($names.count -gt 1 -and $types.count -gt 1)
         {
             Write-Verbose -Message "[$($MyInvocation.MyCommand.Name)] Values : $($names.count)"
 
@@ -1109,7 +1109,7 @@ function Split-MultipleRegistryEntries
                 $registryEntryCounter ++
             }
         }
-        elseif ( $hives.count -eq 1 -and $paths.count -gt 1 -and $types.count -eq 1 -and $names.count -eq 1 -and $values.count -eq 1 )
+        elseif ($hives.count -eq 1 -and $paths.count -gt 1 -and $types.count -eq 1 -and $names.count -eq 1 -and $values.count -eq 1)
         {
             foreach ( $registryRule in $names )
             {
@@ -1124,9 +1124,9 @@ function Split-MultipleRegistryEntries
                 $registryEntryCounter ++
             }
         }
-        elseif ( $hives.count -eq 1 -and $paths.count -eq 1 -and $types.count -eq 1 -and $names.count -gt 1 -and $values.count -gt 1 )
+        elseif ($hives.count -eq 1 -and $paths.count -eq 1 -and $types.count -eq 1 -and $names.count -gt 1 -and $values.count -gt 1)
         {
-            foreach ( $registryRule in $values )
+            foreach ($registryRule in $values)
             {
                 $newSplitRegistryEntry = @(
                     $hives[0],
