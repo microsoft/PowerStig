@@ -42,7 +42,7 @@ try
                 FixText = 'From the vSphere Web Client go to Configure >> Networking >> Virtual Switches. For each virtual switch and port group click Edit settings and change "Promiscuous Mode" to reject.
 
                 or
-                
+
                 From a PowerCLI command prompt while connected to the ESXi host run the following commands:
 
                 Get-VirtualPortGroup | Get-SecurityPolicy | Set-SecurityPolicy -AllowPromiscuousInherited $true'

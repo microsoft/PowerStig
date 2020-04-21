@@ -25,7 +25,7 @@ try
 
             $esxcli = Get-EsxCli
             $esxcli.software.acceptance.Set("PartnerSupported")
-            
+
             Note: VMwareCertified or VMwareAccepted may be substituted for PartnerSupported, depending upon local requirements.'
         }
     )
