@@ -7,7 +7,7 @@ $advancedSettings = @{}
 foreach ($rule in $rules)
 {
     $key, $value = $rule.AdvancedSettings -split ' = '
-    if([string]::IsNullOrEmpty($key) -eq $rule.AdvancedSettings)
+    if ([string]::IsNullOrEmpty($key) -eq $rule.AdvancedSettings)
     {
         $advancedSettings.Add($key, $value)
     }

@@ -10,8 +10,8 @@ foreach ($rule in $rules)
         Name       = $HostIP
         Server     = $ServerIP
         Credential = $Credential
-        Running    =  $rule.Running
-        Key        =  $rule.Key
-        Policy     =  $rule.Policy
+        Running    = $rule.Running
+        Key        = $rule.Key
+        Policy     = $rule.Policy
     }
 }

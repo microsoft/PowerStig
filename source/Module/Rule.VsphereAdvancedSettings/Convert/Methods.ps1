@@ -20,31 +20,30 @@ function Get-VsphereAdvancedSettings
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString,
+        $FixText,
 
         [Parameter()]
         [psobject]
         $CheckContent
     )
 
-    if ($RawString -match 'Get-AdvancedSetting')
+    if ($FixText -match 'Get-AdvancedSetting')
     {
-        $matchName = ($RawString | Select-String -Pattern '(?<=Get-AdvancedSetting -Name )([^\s]+)' -AllMatches).matches.value
-        $matchValue = ($RawString | Select-String -Pattern '(?<=Set-AdvancedSetting -Value |Set-AdvancedSetting -Value ")[^"]+' -AllMatches).matches.value
+        $matchName = ($FixText | Select-String -Pattern '(?<=Get-AdvancedSetting -Name )([^\s]+)' -AllMatches).Matches.Value
+        $matchValue = ($FixText | Select-String -Pattern '(?<=Set-AdvancedSetting -Value |Set-AdvancedSetting -Value ")[^"]+' -AllMatches).Matches.Value
         $advancedSettings = "'{0}' = '{1}'" -f $matchName, $matchValue
     }
-
 
     switch ($matchName)
     {
         {$PSItem -eq "Annotations.WelcomeMessage"}
         {
-            $matchValue = ($CheckContent | Select-String -Pattern 'You are accessing[^"]+(?<=details.)').matches.value
+            $matchValue = ($CheckContent | Select-String -Pattern 'You are accessing[^"]+(?<=details.)').Matches.Value
             $advancedSettings = "'{0}' = '{1}'" -f $matchName,$matchValue
         }
         {$PSItem -eq "Config.Etc.issue"}
         {
-            $matchValue = ($CheckContent | Select-String -Pattern 'You are accessing[^"]+').matches.value
+            $matchValue = ($CheckContent | Select-String -Pattern 'You are accessing[^"]+').Matches.Value
             $advancedSettings = "'{0}' = '{1}'" -f $matchName,$matchValue
         }
         {$PSItem -eq "Net.DVFilterBindIpAddress"}
@@ -57,7 +56,6 @@ function Get-VsphereAdvancedSettings
         }
     }
 
-
     if ($null -ne $advancedSettings)
     {
         Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Advanced Setting: {0}" -f $advancedSettings)
@@ -68,7 +66,6 @@ function Get-VsphereAdvancedSettings
         return $null
     }
 }
-
 
 function Get-OrganizationValueTestString
 {

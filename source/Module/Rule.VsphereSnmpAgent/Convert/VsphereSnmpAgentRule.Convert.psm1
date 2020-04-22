@@ -40,8 +40,7 @@ class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
     VsphereSnmpAgentRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereSnmpAgentRule]::GetFixText($XccdfRule)
-        $rawString = $fixText
-        $this.SetVsphereSnmpAgent($rawString)
+        $this.SetVsphereSnmpAgent($fixText)
         $this.SetDscResource()
     }
 
@@ -54,10 +53,10 @@ class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereSnmpAgent ([string[]] $rawString)
+    [void] SetVsphereSnmpAgent ([string[]] $fixText)
     {
-        $thisVsphereSnmpAgent = Get-VsphereSnmpAgent -RawString $rawString
-        $this.set_Enabled($thisVsphereSnmpAgent)
+        $VsphereSnmpAgent = Get-VsphereSnmpAgent -FixText $fixText
+        $this.set_Enabled($VsphereSnmpAgent)
     }
 
     hidden [void] SetDscResource ()
@@ -72,13 +71,13 @@ class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'Get-VMHostSnmp')
+        if ($CheckContent -match 'Get-VMHostSnmp')
         {
             return $true
         }
+
         return $false
     }
 }

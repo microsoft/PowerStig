@@ -17,12 +17,12 @@ function Get-VsphereSnmpAgent
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VMHostSnmp')
+    if ($FixText -match 'Get-VMHostSnmp')
     {
-        $snmpAgent = ($RawString | Select-String -Pattern '(?<=Set-VMHostSnmp -Enabled\s)(.\w+)').matches.value
+        $snmpAgent = ($FixText | Select-String -Pattern '(?<=Set-VMHostSnmp -Enabled\s)(.\w+)').Matches.Value
     }
 
     if ($null -ne $snmpAgent)

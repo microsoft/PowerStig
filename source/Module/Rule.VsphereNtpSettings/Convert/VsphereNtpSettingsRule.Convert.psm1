@@ -43,6 +43,7 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
         {
             $this.SetOrganizationValueTestString()
         }
+
         $this.SetVsphereNtpSettings()
         $this.SetDscResource()
     }
@@ -65,6 +66,7 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
             return $false
         }
     }
+
     <#
     .SYNOPSIS
         Set the organizational value
@@ -73,14 +75,15 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
     #>
     [void] SetOrganizationValueTestString ()
     {
-        $thisOrganizationValueTestString = Get-VsphereNtpSettingsOrganizationValueTestString -Id $this.id
+        $OrganizationValueTestString = Get-VsphereNtpSettingsOrganizationValueTestString -Id $this.id
 
-        if (-not $this.SetStatus($thisOrganizationValueTestString))
+        if (-not $this.SetStatus($OrganizationValueTestString))
         {
-            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
+            $this.set_OrganizationValueTestString($OrganizationValueTestString)
             $this.set_OrganizationValueRequired($true)
         }
     }
+
     <#
     .SYNOPSIS
         Extracts the Vsphere NTP settings from the check-content and sets the value
@@ -91,10 +94,9 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
     #>
     [void] SetVsphereNtpSettings ()
     {
-        $thisVsphereNtpSettings = Get-VsphereNtpSettings -CheckContent $this.SplitCheckContent
-        $this.set_NtpServer($thisVsphereNtpSettings)
+        $VsphereNtpSettings = Get-VsphereNtpSettings -CheckContent $this.SplitCheckContent
+        $this.set_NtpServer($VsphereNtpSettings)
     }
-
 
     hidden [void] SetDscResource ()
     {
@@ -108,10 +110,9 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'Get-VMHostNTPServer')
+        if ($CheckContent -match 'Get-VMHostNTPServer')
         {
             return $true
         }

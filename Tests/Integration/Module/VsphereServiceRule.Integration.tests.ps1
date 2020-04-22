@@ -23,30 +23,35 @@ try
 
     Describe 'VsphereService Rule Conversion' {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             Context "VsphereService '$($stig.Key)'" {
 
-                [xml] $StigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save($TestFile)
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
+                [xml] $stigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
+                $testFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save($testFile)
+                $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereServiceRule Object' {
                     $rule.GetType() | Should Be 'VsphereServiceRule'
                 }
+
                 It "Should return Key '$($stig.Key)'" {
                     $rule.Level | Should Be $stig.Level
                 }
+
                 It "Should return Policy '$($stig.Policy)'" {
                     $rule.Policy | Should Be $stig.Policy
                 }
+
                 It "Should return Running '$($stig.Running)'" {
                     $rule.Running | Should Be $stig.Running
                 }
+
                 It 'Should set the correct DscResource' {
                     $rule.DscResource | Should Be 'VMHostService'
                 }
+
                 It 'Should Set the status to pass' {
                     $rule.ConversionStatus | Should Be 'pass'
                 }

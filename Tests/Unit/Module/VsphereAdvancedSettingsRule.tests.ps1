@@ -58,10 +58,6 @@ try
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
-
-        #region Add Custom Tests Here
-
-        #endregion
     }
 }
 finally

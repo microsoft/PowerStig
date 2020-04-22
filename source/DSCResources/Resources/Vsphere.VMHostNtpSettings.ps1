@@ -10,6 +10,6 @@ foreach ($rule in $rules)
         Name       = $HostIP
         Server     = $ServerIP
         Credential = $Credential
-        NtpServer  =  $rule.NtpServer
+        NtpServer  = $rule.NtpServer
     }
 }

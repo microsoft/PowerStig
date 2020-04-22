@@ -55,7 +55,7 @@ function Get-VsphereNtpSettingsOrganizationValueTestString
         $Id
     )
 
-    If ($this.id -match "V-94039")
+    if ($this.id -match "V-94039")
     {
         return '{0} is set to a string array of authoritative DoD time sources'
     }

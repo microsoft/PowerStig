@@ -11,8 +11,6 @@ using module .\..\Rule\Rule.psm1
         The Vsphere class is used to maange the Vmware Vsphere Settings.
     .PARAMETER Enabled
         The boolean $true or $false to enable or disable this feature.
-
-
 #>
 class VsphereSnmpAgentRule : Rule
 {

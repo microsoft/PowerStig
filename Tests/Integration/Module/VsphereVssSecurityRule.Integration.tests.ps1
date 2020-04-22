@@ -29,24 +29,27 @@ try
 
     Describe 'VsphereVssSecurity Rule Conversion' {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             Context "VsphereVssSecurity '$($stig.ForgedTransmits)'" {
 
-                [xml] $StigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save($TestFile)
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
+                [xml] $stigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
+                $testFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save($testFile)
+                $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereVssSecurityRule Object' {
                     $rule.GetType() | Should Be 'VsphereVssSecurityRule'
                 }
+
                 It "Should return Key '$($stig.ForgedTransmits)'" {
                     $rule.ForgedTransmits | Should Be $stig.ForgedTransmits
                 }
+
                 It 'Should set the correct DscResource' {
                     $rule.DscResource | Should Be 'VMHostVssSecurity'
                 }
+
                 It 'Should Set the status to pass' {
                     $rule.ConversionStatus | Should Be 'pass'
                 }

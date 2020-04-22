@@ -17,24 +17,25 @@ function Get-VsphereForgedTransmitsInherited
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VirtualPortGroup')
+    if ($FixText -match 'Get-VirtualPortGroup')
     {
-        $VsphereForgedTransmitsInherited = ($RawString | Select-String -Pattern '(?<=ForgedTransmitsInherited\s)(.\w+)').Matches.Value
+        $vsphereForgedTransmitsInherited = ($FixText | Select-String -Pattern '(?<=ForgedTransmitsInherited\s)(.\w+)').Matches.Value
     }
-    
-    if ($null -ne $VsphereForgedTransmitsInherited)
+
+    if ($null -ne $vsphereForgedTransmitsInherited)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found ForgedTransmitsInherited value: {0}" -f $VsphereForgedTransmitsInherited)
-        return $VsphereForgedTransmitsInherited
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found ForgedTransmitsInherited value: {0}" -f $vsphereForgedTransmitsInherited)
+        return $vsphereForgedTransmitsInherited
     }
     else
     {
         return $null
     }
 }
+
 <#
     .SYNOPSIS
         This function parses the fix text to find the boolean value of MacChangesInherited, then sets the value.
@@ -50,24 +51,25 @@ function Get-VsphereMacChangesInherited
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VirtualPortGroup')
+    if ($FixText -match 'Get-VirtualPortGroup')
     {
-        $VsphereMacChangesInherited = ($RawString | Select-String -Pattern '(?<=MacChangesInherited\s)(.\w+)').Matches.Value
+        $vsphereMacChangesInherited = ($FixText | Select-String -Pattern '(?<=MacChangesInherited\s)(.\w+)').Matches.Value
     }
-    
-    if ($null -ne $VsphereMacChangesInherited)
+
+    if ($null -ne $vsphereMacChangesInherited)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChangesInherited value: {0}" -f $VsphereMacChangesInherited)
-        return $VsphereMacChangesInherited
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChangesInherited value: {0}" -f $vsphereMacChangesInherited)
+        return $vsphereMacChangesInherited
     }
     else
     {
         return $null
     }
 }
+
 <#
     .SYNOPSIS
         This function parses the fix text to find the boolean value of AllowPromiscuousInherited, then sets the value.
@@ -83,18 +85,18 @@ function Get-VsphereAllowPromiscuousInherited
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VirtualPortGroup')
+    if ($FixText -match 'Get-VirtualPortGroup')
     {
-        $VsphereAllowPromiscuousInherited = ($RawString | Select-String -Pattern '(?<=AllowPromiscuousInherited\s)(.\w+)').Matches.Value
+        $vsphereAllowPromiscuousInherited = ($FixText | Select-String -Pattern '(?<=AllowPromiscuousInherited\s)(.\w+)').Matches.Value
     }
-    
-    if ($null -ne $VsphereAllowPromiscuousInherited)
+
+    if ($null -ne $vsphereAllowPromiscuousInherited)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found AllowPromiscuousInherited value: {0}" -f $VsphereAllowPromiscuousInherited)
-        return $VsphereAllowPromiscuousInherited
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found AllowPromiscuousInherited value: {0}" -f $vsphereAllowPromiscuousInherited)
+        return $vsphereAllowPromiscuousInherited
     }
     else
     {

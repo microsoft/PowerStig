@@ -15,8 +15,6 @@ using module .\..\Rule\Rule.psm1
         The startup policy of the Vsphere service.
     .PARAMETER Running
         The running state of the Vsphere service.
-
-
 #>
 class VsphereServiceRule : Rule
 {

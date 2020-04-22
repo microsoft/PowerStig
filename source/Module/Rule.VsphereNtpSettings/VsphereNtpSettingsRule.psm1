@@ -11,8 +11,6 @@ using module .\..\Rule\Rule.psm1
         The Vsphere class is used to maange the Vmware Vsphere Settings.
     .PARAMETER NtpServer
         The string array of NTP servers used by the host.
-
-
 #>
 class VsphereNtpSettingsRule : Rule
 {

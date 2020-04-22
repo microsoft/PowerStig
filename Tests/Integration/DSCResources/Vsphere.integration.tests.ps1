@@ -36,16 +36,15 @@ foreach ($stig in $stigList)
         }
 
         $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
-        #$blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
         $powerstigXml = [xml](Get-Content -Path $stig.Path) |
             Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
         if (Test-AutomatableRuleType -StigObject $powerstigXml.ParentNode)
         {
             $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $ruleList = ($powerstigXml | get-member |where-object Name -like "Vsphere*Rule").Name
+            $ruleList = ($powerstigXml | Get-Member -Name "Vsphere*Rule").Name
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            foreach($rule in $rulelist)
+            foreach ($rule in $rulelist)
             {
                 Context $rule {
                     $hasAllSettings = $true
@@ -56,7 +55,7 @@ foreach ($stig in $stigList)
 
                     foreach ($setting in $dscXmlRule)
                     {
-                        If (-not ($dscMof.ResourceID -match $setting.Id) )
+                        if (-not ($dscMof.ResourceID -match $setting.Id) )
                         {
                             Write-Warning -Message "Missing $rule Setting $($setting.Id)"
                             $hasAllSettings = $false

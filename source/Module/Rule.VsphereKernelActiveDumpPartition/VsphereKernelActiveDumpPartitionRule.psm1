@@ -11,8 +11,6 @@ using module .\..\Rule\Rule.psm1
         The Vsphere Kernel ActiveDump Partition class is used to maange the Vmware Vsphere Settings.
     .PARAMETER Enabled
         The boolean $true or $false to enable or disable this feature.
-
-
 #>
 class VsphereKernelActiveDumpPartitionRule : Rule
 {

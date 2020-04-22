@@ -7,17 +7,17 @@ foreach ($virtualStandardSwitch in $virtualStandardSwitchGroup)
 {
     foreach ($rule in $rules)
     {
-        If ($rule.AllowPromiscuous)
+        if ($rule.AllowPromiscuous)
         {
-            $AllowPromiscuous = $rule.AllowPromiscuous
+            $allowPromiscuous = $rule.AllowPromiscuous
         }
-        If ($rule.ForgedTransmits)
+        if ($rule.ForgedTransmits)
         {
-            $ForgedTransmits = $rule.ForgedTransmits
+            $forgedTransmits = $rule.ForgedTransmits
         }
-        If ($rule.MacChanges)
+        if ($rule.MacChanges)
         {
-            $MacChanges = $rule.MacChanges
+            $macChanges = $rule.MacChanges
         }
 
         $idValue += $rule.id
@@ -29,9 +29,9 @@ foreach ($virtualStandardSwitch in $virtualStandardSwitchGroup)
         Server           = $ServerIP
         Credential       = $Credential
         VssName          = $VirtualStandardSwitch
-        AllowPromiscuous = [bool] $AllowPromiscuous
-        ForgedTransmits  = [bool] $ForgedTransmits
-        MacChanges       = [bool] $MacChanges
+        AllowPromiscuous = [bool] $allowPromiscuous
+        ForgedTransmits  = [bool] $forgedTransmits
+        MacChanges       = [bool] $macChanges
         Ensure           = 'Present'
     }
 }

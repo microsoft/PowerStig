@@ -15,14 +15,14 @@
 #>
 
 # Get the rule element with the checkContent injected into it
-$stigRule = Get-TestStigRule -CheckContent $testRule.checkContent -ReturnGroupOnly -fixtext $testRule.fixtext
+$stigRule = Get-TestStigRule -CheckContent $testRule.CheckContent -ReturnGroupOnly -FixText $testRule.FixText
 
 # Create an instance of the convert class that is currently being tested
 $convertedRule = New-Object -TypeName ($global:moduleName + 'Convert') -ArgumentList $stigRule
 
 Describe "$($convertedRule.GetType().Name) Class Instance" {
     # Only run the base class test once
-    If ($count -le 0)
+    if ($count -le 0)
     {
         It "Should have a BaseType of $moduleName" {
             $convertedRule.GetType().BaseType.ToString() | Should Be $moduleName
@@ -66,7 +66,7 @@ Describe "$($convertedRule.GetType().Name) Class Instance" {
         # Test that each property was properly extracted from the test checkContent
         foreach ($property in $propertyList)
         {
-            If ($property -ne "FixText")
+            if ($property -ne "FixText")
             {
                 It "Should return the $Property" {
                     # Can't test a null property type, only that the property is null

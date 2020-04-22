@@ -40,10 +40,9 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     VspherePortGroupSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VspherePortGroupSecurityRule]::GetFixText($XccdfRule)
-        $rawString = $fixText
-        $this.SetVsphereForgedTransmitsInherited($rawString)
-        $this.SetVsphereMacChangesInherited($rawString)
-        $this.SetVsphereAllowPromiscuousInherited($rawString)
+        $this.SetVsphereForgedTransmitsInherited($fixText)
+        $this.SetVsphereMacChangesInherited($fixText)
+        $this.SetVsphereAllowPromiscuousInherited($fixText)
         $this.SetDscResource()
     }
 
@@ -56,14 +55,15 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereForgedTransmitsInherited([string[]] $rawString)
+    [void] SetVsphereForgedTransmitsInherited([string[]] $fixText)
     {
-        $thisVsphereForgedTransmitsInherited = Get-VsphereForgedTransmitsInherited -Rawstring $rawstring
-        if (-not [String]::IsNullOrEmpty($thisVsphereForgedTransmitsInherited))
+        $vsphereForgedTransmitsInherited = Get-VsphereForgedTransmitsInherited -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereForgedTransmitsInherited))
         {
-            $this.set_ForgedTransmitsInherited($thisVsphereForgedTransmitsInherited)
+            $this.set_ForgedTransmitsInherited($vsphereForgedTransmitsInherited)
         }
     }
+
     <#
     .SYNOPSIS
         Extracts the MacChangesInherited boolean from the fix text and sets the value
@@ -72,14 +72,15 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereMacChangesInherited([string[]] $rawString)
+    [void] SetVsphereMacChangesInherited([string[]] $fixText)
     {
-        $thisVsphereMacChangesInherited = Get-VsphereMacChangesInherited -Rawstring $rawstring
-        if (-not [String]::IsNullOrEmpty($thisVsphereMacChangesInherited))
+        $vsphereMacChangesInherited = Get-VsphereMacChangesInherited -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereMacChangesInherited))
         {
-            $this.set_MacChangesInherited($thisVsphereMacChangesInherited)
+            $this.set_MacChangesInherited($vsphereMacChangesInherited)
         }
     }
+
     <#
     .SYNOPSIS
         Extracts the AllowPromiscuousInherited boolean from the fix text and sets the value
@@ -88,12 +89,12 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereAllowPromiscuousInherited([string[]] $rawString)
+    [void] SetVsphereAllowPromiscuousInherited([string[]] $fixText)
     {
-        $thisVsphereAllowPromiscuousInherited = Get-VsphereAllowPromiscuousInherited -Rawstring $rawstring
-        if (-not [String]::IsNullOrEmpty($thisVsphereAllowPromiscuousInherited))
+        $vsphereAllowPromiscuousInherited = Get-VsphereAllowPromiscuousInherited -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereAllowPromiscuousInherited))
         {
-            $this.set_AllowPromiscuousInherited($thisVsphereAllowPromiscuousInherited)
+            $this.set_AllowPromiscuousInherited($vsphereAllowPromiscuousInherited)
         }
     }
 
@@ -109,13 +110,13 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'Get-VirtualPortGroup')
+        if ($CheckContent -match 'Get-VirtualPortGroup')
         {
             return $true
         }
+
         return $false
     }
 }

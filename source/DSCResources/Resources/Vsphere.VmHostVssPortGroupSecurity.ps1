@@ -7,17 +7,17 @@ foreach ($vm in $vmGroup)
 {
     foreach ($rule in $rules)
     {
-        If ($rule.AllowPromiscuous)
+        if ($rule.AllowPromiscuous)
         {
-            $AllowPromiscuousInherited = $rule.AllowPromiscuousInherited 
+            $allowPromiscuousInherited = $rule.AllowPromiscuousInherited
         }
-        If ($rule.ForgedTransmits)
+        if ($rule.ForgedTransmits)
         {
-            $ForgedTransmitsInherited  = $rule.ForgedTransmitsInherited 
+            $forgedTransmitsInherited  = $rule.ForgedTransmitsInherited
         }
-        If ($rule.MacChanges)
+        if ($rule.MacChanges)
         {
-            $MacChangesInherited  = $rule.MacChangesInherited 
+            $macChangesInherited  = $rule.MacChangesInherited
         }
 
         $idValue += $rule.id
@@ -29,9 +29,9 @@ foreach ($vm in $vmGroup)
         Server                    = $ServerIP
         Credential                = $Credential
         VmHostName                = $vm
-        AllowPromiscuousInherited = [bool] $AllowPromiscuousInherited
-        ForgedTransmitsInherited  = [bool] $ForgedTransmitsInherited
-        MacChangesInherited       = [bool] $MacChangesInherited
+        AllowPromiscuousInherited = [bool] $allowPromiscuousInherited
+        ForgedTransmitsInherited  = [bool] $forgedTransmitsInherited
+        MacChangesInherited       = [bool] $macChangesInherited
         Ensure                    = 'Present'
     }
 }

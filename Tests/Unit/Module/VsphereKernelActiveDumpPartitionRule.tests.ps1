@@ -20,7 +20,7 @@ try
                 $esxcli.system.coredump.partition.get()
                 $esxcli.system.coredump.network.get()
 
-                The first command prepares for the other two. The second command shows whether there is an active core dump partition configured. The third command shows whether a network core dump collector is configured and enabled, via the "HostVNic", "NetworkServerIP", "NetworkServerPort", and "Enabled" variables. 
+                The first command prepares for the other two. The second command shows whether there is an active core dump partition configured. The third command shows whether a network core dump collector is configured and enabled, via the "HostVNic", "NetworkServerIP", "NetworkServerPort", and "Enabled" variables.
 
                 If there is no active core dump partition or the network core dump collector is not configured and enabled, this is a finding.'
                 FixText = 'From the vSphere Web Client select the ESXi Host and right click. Select the "Add Diagnostic Partition" option configure a core dump diagnostic partition.
@@ -49,10 +49,6 @@ try
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
-
-        #region Add Custom Tests Here
-
-        #endregion
     }
 }
 finally

@@ -32,24 +32,27 @@ try
 
     Describe 'VsphereAcceptanceLevel Rule Conversion' {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             Context "VsphereAcceptanceLevel '$($stig.Level)'" {
 
-                [xml] $StigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save($TestFile)
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
+                [xml] $stigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
+                $testFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save($testFile)
+                $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereAcceptanceLevelRule Object' {
                     $rule.GetType() | Should Be 'VsphereAcceptanceLevelRule'
                 }
+
                 It "Should return Value '$($stig.Level)'" {
                     $rule.Level | Should Be $stig.Level
                 }
+
                 It 'Should set the correct DscResource' {
                     $rule.DscResource | Should Be 'VMHostAcceptanceLevel'
                 }
+
                 It 'Should Set the status to pass' {
                     $rule.ConversionStatus | Should Be 'pass'
                 }

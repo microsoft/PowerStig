@@ -40,10 +40,9 @@ class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
     VsphereVssSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereVssSecurityRule]::GetFixText($XccdfRule)
-        $rawString = $fixText
-        $this.SetVsphereForgedTransmits($rawString)
-        $this.SetVsphereMacChanges($rawString)
-        $this.SetVsphereAllowPromiscuous($rawString)
+        $this.SetVsphereForgedTransmits($fixText)
+        $this.SetVsphereMacChanges($fixText)
+        $this.SetVsphereAllowPromiscuous($fixText)
         $this.SetDscResource()
     }
 
@@ -56,14 +55,15 @@ class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereForgedTransmits([string[]] $rawString)
+    [void] SetVsphereForgedTransmits([string[]] $fixText)
     {
-        $thisVsphereForgedTransmits = Get-VsphereForgedTransmits -Rawstring $rawstring
-        if (-not [String]::IsNullOrEmpty($thisVsphereForgedTransmits))
+        $vsphereForgedTransmits = Get-VsphereForgedTransmits -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereForgedTransmits))
         {
-            $this.set_ForgedTransmits($thisVsphereForgedTransmits)
+            $this.set_ForgedTransmits($vsphereForgedTransmits)
         }
     }
+
     <#
     .SYNOPSIS
         Extracts the Vsphere MacChanges settings from the fix text and sets the value
@@ -72,14 +72,15 @@ class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereMacChanges([string[]] $rawString)
+    [void] SetVsphereMacChanges([string[]] $fixText)
     {
-        $thisVsphereMacChanges = Get-VsphereMacChanges -Rawstring $rawstring
-        if (-not [String]::IsNullOrEmpty($thisVsphereMacChanges))
+        $vsphereMacChanges = Get-VsphereMacChanges -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereMacChanges))
         {
-            $this.set_MacChanges($thisVsphereMacChanges)
+            $this.set_MacChanges($vsphereMacChanges)
         }
     }
+
     <#
     .SYNOPSIS
         Extracts the Vsphere AllowPromiscuous settings from the fix text and sets the value
@@ -88,12 +89,12 @@ class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereAllowPromiscuous([string[]] $rawString)
+    [void] SetVsphereAllowPromiscuous([string[]] $fixText)
     {
-        $thisVsphereAllowPromiscuous = Get-VsphereAllowPromiscuous -Rawstring $rawstring
-        if (-not [String]::IsNullOrEmpty($thisVsphereAllowPromiscuous))
+        $vsphereAllowPromiscuous = Get-VsphereAllowPromiscuous -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereAllowPromiscuous))
         {
-            $this.set_AllowPromiscuous($thisVsphereAllowPromiscuous)
+            $this.set_AllowPromiscuous($vsphereAllowPromiscuous)
         }
     }
 
@@ -109,13 +110,13 @@ class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'Get-VirtualSwitch')
+        if ($CheckContent -match 'Get-VirtualSwitch')
         {
             return $true
         }
+
         return $false
     }
 }

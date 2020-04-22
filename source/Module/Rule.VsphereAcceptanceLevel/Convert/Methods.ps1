@@ -22,7 +22,7 @@ function Get-VsphereAcceptanceLevel
 
     if ($Fixtext -match 'software.acceptance')
     {
-        $acceptanceLevel = ($FixText | Select-String -Pattern '(?<=acceptance.Set\(")([^"]+)').matches.value
+        $acceptanceLevel = ($FixText | Select-String -Pattern '(?<=acceptance.Set\(")([^"]+)').Matches.Value
     }
 
     if ($null -ne $acceptanceLevel)

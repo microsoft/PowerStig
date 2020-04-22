@@ -40,8 +40,7 @@ class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
     VsphereKernelActiveDumpPartitionRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereKernelActiveDumpPartitionRule]::GetFixText($XccdfRule)
-        $rawString = $fixText
-        $this.SetVsphereKernelActiveDumpPartition($rawString)
+        $this.SetVsphereKernelActiveDumpPartition($fixText)
         $this.SetDscResource()
     }
 
@@ -54,10 +53,10 @@ class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereKernelActiveDumpPartition ([string[]] $rawString)
+    [void] SetVsphereKernelActiveDumpPartition ([string[]] $fixText)
     {
-        $thisVsphereKernelActiveDumpPartition = Get-VsphereKernelActiveDumpPartition -RawString $rawString
-        $this.set_Enabled($thisVsphereKernelActiveDumpPartition)
+        $vsphereKernelActiveDumpPartition = Get-VsphereKernelActiveDumpPartition -FixText $fixText
+        $this.set_Enabled($vsphereKernelActiveDumpPartition)
     }
 
     hidden [void] SetDscResource ()
@@ -72,13 +71,13 @@ class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'coredump.partition')
+        if ($CheckContent -match 'coredump.partition')
         {
             return $true
         }
+
         return $false
     }
 }

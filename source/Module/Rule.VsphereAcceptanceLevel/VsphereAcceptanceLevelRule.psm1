@@ -11,8 +11,6 @@ using module .\..\Rule\Rule.psm1
         The Vsphere class is used to maange the Vmware Vsphere Settings.
     .PARAMETER Level
         The acceptance level of supported VIBs. (i.e. VMwareCertified, VMwareAccepted, PartnerSupported, or CommunitySupported)
-
-
 #>
 class VsphereAcceptanceLevelRule : Rule
 {

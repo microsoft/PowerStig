@@ -40,8 +40,7 @@ class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
     VsphereAcceptanceLevelRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereAcceptanceLevelRule]::GetFixText($XccdfRule)
-        $rawString = $fixText
-        $this.SetVsphereAcceptanceLevel($rawString)
+        $this.SetVsphereAcceptanceLevel($fixtext)
         $this.SetDscResource()
     }
 
@@ -56,10 +55,9 @@ class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
     #>
     [void] SetVsphereAcceptanceLevel ([string[]] $Fixtext)
     {
-        $thisVsphereAcceptanceLevel = Get-VsphereAcceptanceLevel -FixText $Fixtext
-        $this.set_Level($thisVsphereAcceptanceLevel)
+        $VsphereAcceptanceLevel = Get-VsphereAcceptanceLevel -FixText $Fixtext
+        $this.set_Level($VsphereAcceptanceLevel)
     }
-
 
     hidden [void] SetDscResource ()
     {
@@ -73,13 +71,13 @@ class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'software.acceptance')
+        if ($CheckContent -match 'software.acceptance')
         {
             return $true
         }
+
         return $false
     }
 }

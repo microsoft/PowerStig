@@ -23,7 +23,7 @@ try
                 If SNMP is not in use and is enabled, this is a finding.
 
                 If SNMP is enabled and read only communities is set to public, this is a finding.
-                
+
                 If SNMP is enabled and is not using v3 targets, this is a finding.
 
                 Note: SNMP v3 targets can only be viewed and configured from the esxcli command.'
@@ -46,10 +46,6 @@ try
         {
             . $PSScriptRoot\Convert.CommonTests.ps1
         }
-
-        #region Add Custom Tests Here
-
-        #endregion
     }
 }
 finally

@@ -40,8 +40,8 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     VsphereAdvancedSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
         $fixText = [VsphereAdvancedSettingsRule]::GetFixText($XccdfRule)
-        $rawString = $fixText
-        $this.SetVsphereAdvancedSettings($rawString)
+        $this.SetVsphereAdvancedSettings($fixText)
+
         if ($this.IsOrganizationalSetting())
         {
             $this.SetOrganizationValueTestString()
@@ -59,10 +59,10 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
         If the value that is returned is not valid, the parser status is
         set to fail.
     #>
-    [void] SetVsphereAdvancedSettings ([string[]] $rawString)
+    [void] SetVsphereAdvancedSettings ([string[]] $fixText)
     {
-        $thisVsphereAdvancedSettings = Get-VsphereAdvancedSettings -RawString $rawString -CheckContent $this.RawString
-        $this.set_AdvancedSettings($thisVsphereAdvancedSettings)
+        $VsphereAdvancedSettings = Get-VsphereAdvancedSettings -FixText $fixText -CheckContent $this.RawString
+        $this.set_AdvancedSettings($VsphereAdvancedSettings)
     }
 
     <#
@@ -82,6 +82,7 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
             return $false
         }
     }
+
     <#
     .SYNOPSIS
         Set the organizational value
@@ -90,15 +91,14 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     #>
     [void] SetOrganizationValueTestString ()
     {
-        $thisOrganizationValueTestString = Get-OrganizationValueTestString -Id $this.Id
+        $OrganizationValueTestString = Get-OrganizationValueTestString -Id $this.Id
 
-        if (-not $this.SetStatus($thisOrganizationValueTestString))
+        if (-not $this.SetStatus($OrganizationValueTestString))
         {
-            $this.set_OrganizationValueTestString($thisOrganizationValueTestString)
+            $this.set_OrganizationValueTestString($OrganizationValueTestString)
             $this.set_OrganizationValueRequired($true)
         }
     }
-
 
     hidden [void] SetDscResource ()
     {
@@ -112,13 +112,13 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'Get-AdvancedSetting')
+        if ($CheckContent -match 'Get-AdvancedSetting')
         {
             return $true
         }
+
         return $false
     }
 }

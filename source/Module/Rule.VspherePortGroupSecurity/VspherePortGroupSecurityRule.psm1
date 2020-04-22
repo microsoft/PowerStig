@@ -23,7 +23,6 @@ class VspherePortGroupSecurityRule : Rule
     [string] $MacChangesInherited
     [string] $AllowPromiscuousInherited
 
-
     <#
         .SYNOPSIS
             Default constructor to support the AsRule cast method

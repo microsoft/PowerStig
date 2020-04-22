@@ -11,13 +11,10 @@ using module .\..\Rule\Rule.psm1
         The Vsphere Advanced Settings class is used to maange the Vmware Vsphere Settings.
     .PARAMETER AdvancedSettings
         A string with value name and value data. (i.e. 'ValueName' = 'ValueData')
-
-
 #>
 class VsphereAdvancedSettingsRule : Rule
 {
     [string] $AdvancedSettings
-
 
     <#
         .SYNOPSIS

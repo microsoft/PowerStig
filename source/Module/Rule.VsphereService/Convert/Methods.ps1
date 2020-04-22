@@ -22,7 +22,7 @@ function Get-VsphereServiceKey
 
     if ($CheckContent -match 'Get-VMHostService')
     {
-        $name = ($CheckContent | Select-String -Pattern '(?<=Label -eq ")([^"]*)' -AllMatches).matches.value
+        $name = ($CheckContent | Select-String -Pattern '(?<=Label -eq ")([^"]*)' -AllMatches).Matches.Value
     }
 
     switch ($name)
@@ -52,7 +52,6 @@ function Get-VsphereServiceKey
     }
 }
 
-
 <#
     .SYNOPSIS
         Gets the startup policy and running status from a vsphere service rule.
@@ -60,7 +59,6 @@ function Get-VsphereServiceKey
     .PARAMETER CheckContent
         An array of the raw string data taken from the STIG setting.
 #>
-
 function Get-VsphereServicePolicy
 {
     [CmdletBinding()]
@@ -74,8 +72,9 @@ function Get-VsphereServicePolicy
 
     if ($CheckContent -match 'Get-VMHostService')
     {
-        $ServicePolicy = ($CheckContent| Select-String -Pattern '(?<=verify it is )(\w+)' -AllMatches).matches.value
-        if ($ServicePolicy -eq "stopped")
+        $servicePolicy = ($CheckContent | Select-String -Pattern '(?<=verify it is )(\w+)' -AllMatches).Matches.Value
+
+        if ($servicePolicy -eq "stopped")
         {
             $policy = "off"
             $running = $false
@@ -86,7 +85,6 @@ function Get-VsphereServicePolicy
             $running = $true
         }
     }
-
 
     if ($null -ne $policy)
     {

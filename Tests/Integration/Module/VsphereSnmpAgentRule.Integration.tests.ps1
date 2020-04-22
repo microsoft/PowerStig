@@ -40,24 +40,27 @@ try
 
     Describe 'VsphereSnmpAgent Rule Conversion' {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             Context "VsphereSnmpAgent '$($stig.Enabled)'" {
 
-                [xml] $StigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save($TestFile)
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
+                [xml] $stigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
+                $testFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save($testFile)
+                $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereSnmpAgentRule Object' {
                     $rule.GetType() | Should Be 'VsphereSnmpAgentRule'
                 }
+
                 It "Should return Key '$($stig.Enabled)'" {
                     $rule.Enabled | Should Be $stig.Enabled
                 }
+
                 It 'Should set the correct DscResource' {
                     $rule.DscResource | Should Be 'VMHostSnmpAgent'
                 }
+
                 It 'Should Set the status to pass' {
                     $rule.ConversionStatus | Should Be 'pass'
                 }

@@ -15,8 +15,6 @@ using module .\..\Rule\Rule.psm1
         The boolean answer to allowing Mac Changes on the switch configuration
     .PARAMETER AllowPromiscuous
         The boolean answer to allowing Promiscuous mode on the switch configuration
-
-
 #>
 class VsphereVssSecurityRule : Rule
 {

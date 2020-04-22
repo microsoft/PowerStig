@@ -17,18 +17,18 @@ function Get-VsphereForgedTransmits
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VirtualSwitch')
+    if ($FixText -match 'Get-VirtualSwitch')
     {
-        $VsphereForgedTransmits = ($RawString | Select-String -Pattern '(?<=ForgedTransmits\s)(.\w+)').Matches.Value
+        $vsphereForgedTransmits = ($FixText | Select-String -Pattern '(?<=ForgedTransmits\s)(.\w+)').Matches.Value
     }
 
-    if ($null -ne $VsphereForgedTransmits)
+    if ($null -ne $vsphereForgedTransmits)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found ForgedTransmits value: {0}" -f $VsphereForgedTransmits)
-        return $VsphereForgedTransmits
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found ForgedTransmits value: {0}" -f $vsphereForgedTransmits)
+        return $vsphereForgedTransmits
     }
     else
     {
@@ -50,18 +50,18 @@ function Get-VsphereMacChanges
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VirtualSwitch')
+    if ($FixText -match 'Get-VirtualSwitch')
     {
-        $VsphereMacChanges = ($RawString | Select-String -Pattern '(?<=MacChanges\s)(.\w+)').Matches.Value
+        $vsphereMacChanges = ($FixText | Select-String -Pattern '(?<=MacChanges\s)(.\w+)').Matches.Value
     }
-    
-    if ($null -ne $VsphereMacChanges)
+
+    if ($null -ne $vsphereMacChanges)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChanges value: {0}" -f $VsphereMacChanges)
-        return $VsphereMacChanges
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChanges value: {0}" -f $vsphereMacChanges)
+        return $vsphereMacChanges
     }
     else
     {
@@ -83,18 +83,18 @@ function Get-VsphereAllowPromiscuous
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'Get-VirtualSwitch')
+    if ($FixText -match 'Get-VirtualSwitch')
     {
-        $VsphereAllowPromiscuous = ($RawString | Select-String -Pattern '(?<=AllowPromiscuous\s)(.\w+)').Matches.Value
+        $vsphereAllowPromiscuous = ($FixText | Select-String -Pattern '(?<=AllowPromiscuous\s)(.\w+)').Matches.Value
     }
 
-    if ($null -ne $VsphereAllowPromiscuous)
+    if ($null -ne $vsphereAllowPromiscuous)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found AllowPromiscuous value: {0}" -f $VsphereAllowPromiscuous)
-        return $VsphereAllowPromiscuous
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found AllowPromiscuous value: {0}" -f $vsphereAllowPromiscuous)
+        return $vsphereAllowPromiscuous
     }
     else
     {

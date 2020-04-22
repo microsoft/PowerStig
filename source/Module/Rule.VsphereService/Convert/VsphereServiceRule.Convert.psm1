@@ -55,11 +55,11 @@ class VsphereServiceRuleConvert : VsphereServiceRule
     #>
     [void] SetKey ()
     {
-        $thisKey = Get-VsphereServiceKey -CheckContent $this.SplitCheckContent
-        $this.set_Key($thisKey)
+        $key = Get-VsphereServiceKey -CheckContent $this.SplitCheckContent
+        $this.set_Key($key)
     }
 
-        <#
+    <#
     .SYNOPSIS
         Extracts the service policy from the check-content and sets the values of policy and running state
     .DESCRIPTION
@@ -67,11 +67,10 @@ class VsphereServiceRuleConvert : VsphereServiceRule
     #>
     [void] SetPolicy ()
     {
-        $thisPolicy = Get-VsphereServicePolicy -CheckContent $this.SplitCheckContent
-        $this.set_Policy($thisPolicy[0])
-        $this.set_Running($thisPolicy[1])
+        $policy = Get-VsphereServicePolicy -CheckContent $this.SplitCheckContent
+        $this.set_Policy($policy[0])
+        $this.set_Running($policy[1])
     }
-
 
     hidden [void] SetDscResource ()
     {
@@ -85,13 +84,13 @@ class VsphereServiceRuleConvert : VsphereServiceRule
         }
     }
 
-
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent-match 'Get-VMHostService')
+        if ($CheckContent -match 'Get-VMHostService')
         {
             return $true
         }
+
         return $false
     }
 }

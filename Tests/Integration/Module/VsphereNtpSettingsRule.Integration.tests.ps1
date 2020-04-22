@@ -21,24 +21,27 @@ try
 
     Describe 'VsphereNtpSettings Rule Conversion' {
 
-        foreach ( $stig in $stigRulesToTest )
+        foreach ($stig in $stigRulesToTest)
         {
             Context "VsphereNtpSettings" {
 
-                [xml] $StigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -XccdfTitle 'Vsphere' -GroupId 'V-94039'
-                $TestFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
-                $StigRule.Save($TestFile)
-                $rule = ConvertFrom-StigXccdf -Path $TestFile
+                [xml] $stigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -XccdfTitle 'Vsphere' -GroupId 'V-94039'
+                $testFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'
+                $stigRule.Save($testFile)
+                $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereNtpSettingsRule Object' {
                     $rule.GetType() | Should Be 'VsphereNtpSettingsRule'
                 }
+
                 It "Should return organizational test string '$($stig.OrganizationValueTestString)'" {
                     $rule.OrganizationValueTestString | Should Be $stig.OrganizationValueTestString
                 }
+
                 It 'Should set the correct DscResource' {
                     $rule.DscResource | Should Be 'VMHostNtpSettings'
                 }
+
                 It 'Should Set the status to pass' {
                     $rule.ConversionStatus | Should Be 'pass'
                 }

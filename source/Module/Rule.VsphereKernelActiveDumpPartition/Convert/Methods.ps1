@@ -17,19 +17,18 @@ function Get-VsphereKernelActiveDumpPartition
     (
         [Parameter(Mandatory = $true)]
         [psobject]
-        $RawString
+        $FixText
     )
 
-    if ($RawString -match 'coredump.partition')
+    if ($FixText -match 'coredump.partition')
     {
-        $KernelActiveDumpPartitionEnabled = ($RawString | Select-String -Pattern '(?<=coredump.network.set\()(.\w+)(?=\))').matches.value
+        $kernelActiveDumpPartitionEnabled = ($FixText | Select-String -Pattern '(?<=coredump.network.set\()(.\w+)(?=\))').Matches.Value
     }
 
-
-    if ($null -ne $KernelActiveDumpPartitionEnabled)
+    if ($null -ne $kernelActiveDumpPartitionEnabled)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Host Kernel Active Dump Partition Enabled: {0}" -f $KernelActiveDumpPartitionEnabled)
-        return $KernelActiveDumpPartitionEnabled
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found Host Kernel Active Dump Partition Enabled: {0}" -f $kernelActiveDumpPartitionEnabled)
+        return $kernelActiveDumpPartitionEnabled
     }
     else
     {
