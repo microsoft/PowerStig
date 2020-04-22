@@ -47,8 +47,7 @@ RequiredModules  = @(
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
-    @{ModuleName = 'SharePoint'; ModuleVersion = '3.7.0.0'}
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
 )
 
 # DSC resources to export from this module
@@ -67,8 +66,7 @@ DscResourcesToExport = @(
     'WindowsDefender',
     'WindowsDnsServer',
     'WindowsFirewall',
-    'WindowsServer',
-    'SharePoint'
+    'WindowsServer'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.

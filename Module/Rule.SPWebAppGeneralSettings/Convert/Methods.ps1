@@ -30,7 +30,13 @@ function Get-SPWebAppGeneralSettingsGetScript
     }
     #>
 
-    Write-Host $OrgSettings #currently an empty parameter
+    <#
+        Get/Test/Set processing for rule type
+    #>
+
+    
+
+    #Write-Host $OrgSettings #worry about orgsettings capture later
 
     return
 }

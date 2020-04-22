@@ -21,8 +21,6 @@ using module .\..\Rule.WindowsFeature\WindowsFeatureRule.psm1
 using module .\..\Rule.WinEventLog\WinEventLogRule.psm1
 using module .\..\Rule.AuditSetting\AuditSettingRule.psm1
 using module .\..\Rule.SslSettings\SslSettingsRule.psm1
-using module .\..\Rule.SharePoint\SharePointRule.psm1
-using module .\..\Rule.SPWebAppGeneralSettings\SPWebAppGeneralSettingsRule.psm1
 #header
 
 class LoadFactory
@@ -47,8 +45,6 @@ class LoadFactory
             'RegistryRule'                  {$return = [RegistryRule]::new($Rule)}
             'SecurityOptionRule'            {$return = [SecurityOptionRule]::new($Rule)}
             'ServiceRule'                   {$return = [ServiceRule]::new($Rule)}
-            'SharePointRule'                {$return = [SharePointRule]::new($Rule)}
-            'SPWebAppGeneralSettingsRule'   {$return = [SPWebAppGeneralSettingsRule]::new($Rule)}
             'SqlScriptQueryRule'            {$return = [SqlScriptQueryRule]::new($Rule)}
             'UserRightRule'                 {$return = [UserRightRule]::new($Rule)}
             'WebAppPoolRule'                {$return = [WebAppPoolRule]::new($Rule)}
