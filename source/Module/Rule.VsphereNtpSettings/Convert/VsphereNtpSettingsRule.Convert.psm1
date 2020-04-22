@@ -94,8 +94,8 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
     #>
     [void] SetVsphereNtpSettings ()
     {
-        $VsphereNtpSettings = Get-VsphereNtpSettings -CheckContent $this.SplitCheckContent
-        $this.set_NtpServer($VsphereNtpSettings)
+        $vsphereNtpSettings = Get-VsphereNtpSettings -CheckContent $this.SplitCheckContent
+        $this.set_NtpServer($vsphereNtpSettings)
     }
 
     hidden [void] SetDscResource ()

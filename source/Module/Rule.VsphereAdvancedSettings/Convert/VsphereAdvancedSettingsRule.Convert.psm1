@@ -61,8 +61,8 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     #>
     [void] SetVsphereAdvancedSettings ([string[]] $fixText)
     {
-        $VsphereAdvancedSettings = Get-VsphereAdvancedSettings -FixText $fixText -CheckContent $this.RawString
-        $this.set_AdvancedSettings($VsphereAdvancedSettings)
+        $vsphereAdvancedSettings = Get-VsphereAdvancedSettings -FixText $fixText -CheckContent $this.RawString
+        $this.set_AdvancedSettings($vsphereAdvancedSettings)
     }
 
     <#

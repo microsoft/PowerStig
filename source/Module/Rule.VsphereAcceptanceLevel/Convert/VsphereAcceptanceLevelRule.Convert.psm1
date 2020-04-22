@@ -55,8 +55,8 @@ class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
     #>
     [void] SetVsphereAcceptanceLevel ([string[]] $Fixtext)
     {
-        $VsphereAcceptanceLevel = Get-VsphereAcceptanceLevel -FixText $Fixtext
-        $this.set_Level($VsphereAcceptanceLevel)
+        $vsphereAcceptanceLevel = Get-VsphereAcceptanceLevel -FixText $Fixtext
+        $this.set_Level($vsphereAcceptanceLevel)
     }
 
     hidden [void] SetDscResource ()

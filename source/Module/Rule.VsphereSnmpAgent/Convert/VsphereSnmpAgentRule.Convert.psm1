@@ -55,8 +55,8 @@ class VsphereSnmpAgentRuleConvert : VsphereSnmpAgentRule
     #>
     [void] SetVsphereSnmpAgent ([string[]] $fixText)
     {
-        $VsphereSnmpAgent = Get-VsphereSnmpAgent -FixText $fixText
-        $this.set_Enabled($VsphereSnmpAgent)
+        $vsphereSnmpAgent = Get-VsphereSnmpAgent -FixText $fixText
+        $this.set_Enabled($vsphereSnmpAgent)
     }
 
     hidden [void] SetDscResource ()
