@@ -74,10 +74,10 @@ class VsphereVssSecurityRuleConvert : VsphereVssSecurityRule
     #>
     [void] SetVsphereMacChanges([string[]] $fixText)
     {
-        $vsphereMacChanges = Get-VsphereMacChanges -FixText $fixText
-        if (-not [String]::IsNullOrEmpty($vsphereMacChanges))
+        $vsphereMacChange = Get-VsphereMacChange -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereMacChange))
         {
-            $this.set_MacChanges($vsphereMacChanges)
+            $this.set_MacChanges($vsphereMacChange)
         }
     }
 

@@ -74,10 +74,10 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     #>
     [void] SetVsphereMacChangesInherited([string[]] $fixText)
     {
-        $vsphereMacChangesInherited = Get-VsphereMacChangesInherited -FixText $fixText
-        if (-not [String]::IsNullOrEmpty($vsphereMacChangesInherited))
+        $vsphereMacChangeInherited = Get-VsphereMacChangeInherited -FixText $fixText
+        if (-not [String]::IsNullOrEmpty($vsphereMacChangeInherited))
         {
-            $this.set_MacChangesInherited($vsphereMacChangesInherited)
+            $this.set_MacChangesInherited($vsphereMacChangeInherited)
         }
     }
 

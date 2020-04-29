@@ -33,27 +33,27 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereServiceRule Object' {
-                    $rule.GetType() | Should Be 'VsphereServiceRule'
+                    $rule.GetType() | Should -Be 'VsphereServiceRule'
                 }
 
                 It "Should return Key '$($stig.Key)'" {
-                    $rule.Level | Should Be $stig.Level
+                    $rule.Level | Should -Be $stig.Level
                 }
 
                 It "Should return Policy '$($stig.Policy)'" {
-                    $rule.Policy | Should Be $stig.Policy
+                    $rule.Policy | Should -Be $stig.Policy
                 }
 
                 It "Should return Running '$($stig.Running)'" {
-                    $rule.Running | Should Be $stig.Running
+                    $rule.Running | Should -Be $stig.Running
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostService'
+                    $rule.DscResource | Should -Be 'VMHostService'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

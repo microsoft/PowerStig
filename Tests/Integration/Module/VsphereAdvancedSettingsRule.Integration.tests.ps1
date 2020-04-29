@@ -61,19 +61,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereAdvancedSettingsRule Object' {
-                    $rule.GetType() | Should Be 'VsphereAdvancedSettingsRule'
+                    $rule.GetType() | Should -Be 'VsphereAdvancedSettingsRule'
                 }
 
                 It "Should return Value '$($stig.AdvancedSettings)'" {
-                    $rule.AdvancedSettings | Should Be $stig.AdvancedSettings
+                    $rule.AdvancedSettings | Should -Be $stig.AdvancedSettings
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostAdvancedSettings'
+                    $rule.DscResource | Should -Be 'VMHostAdvancedSettings'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

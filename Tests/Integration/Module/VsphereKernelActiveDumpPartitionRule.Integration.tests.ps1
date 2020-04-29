@@ -54,19 +54,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereKernelActiveDumpPartitionRule Object' {
-                    $rule.GetType() | Should Be 'VsphereKernelActiveDumpPartitionRule'
+                    $rule.GetType() | Should -Be 'VsphereKernelActiveDumpPartitionRule'
                 }
 
                 It "Should return Value '$($stig.Enabled)'" {
-                    $rule.Level | Should Be $stig.Level
+                    $rule.Level | Should -Be $stig.Level
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostKernelActiveDumpPartition'
+                    $rule.DscResource | Should -Be 'VMHostKernelActiveDumpPartition'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

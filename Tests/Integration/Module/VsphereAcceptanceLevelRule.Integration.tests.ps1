@@ -42,19 +42,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereAcceptanceLevelRule Object' {
-                    $rule.GetType() | Should Be 'VsphereAcceptanceLevelRule'
+                    $rule.GetType() | Should -Be 'VsphereAcceptanceLevelRule'
                 }
 
                 It "Should return Value '$($stig.Level)'" {
-                    $rule.Level | Should Be $stig.Level
+                    $rule.Level | Should -Be $stig.Level
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostAcceptanceLevel'
+                    $rule.DscResource | Should -Be 'VMHostAcceptanceLevel'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

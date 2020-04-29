@@ -40,19 +40,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VspherePortGroupSecurityRule Object' {
-                    $rule.GetType() | Should Be 'VspherePortGroupSecurityRule'
+                    $rule.GetType() | Should -Be 'VspherePortGroupSecurityRule'
                 }
 
                 It "Should return Key '$($stig.MacChangesInherited)'" {
-                    $rule.MacChangesInherited | Should Be $stig.MacChangesInherited
+                    $rule.MacChangesInherited | Should -Be $stig.MacChangesInherited
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostVssPortGroupSecurity'
+                    $rule.DscResource | Should -Be 'VMHostVssPortGroupSecurity'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

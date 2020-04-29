@@ -31,19 +31,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereNtpSettingsRule Object' {
-                    $rule.GetType() | Should Be 'VsphereNtpSettingsRule'
+                    $rule.GetType() | Should -Be 'VsphereNtpSettingsRule'
                 }
 
                 It "Should return organizational test string '$($stig.OrganizationValueTestString)'" {
-                    $rule.OrganizationValueTestString | Should Be $stig.OrganizationValueTestString
+                    $rule.OrganizationValueTestString | Should -Be $stig.OrganizationValueTestString
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostNtpSettings'
+                    $rule.DscResource | Should -Be 'VMHostNtpSettings'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

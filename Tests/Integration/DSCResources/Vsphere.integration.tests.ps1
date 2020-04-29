@@ -14,9 +14,9 @@ foreach ($stig in $stigList)
 
         It 'Should compile the MOF without throwing' {
             {
-                $password = "ThisIsAPlaintextPassword" | ConvertTo-SecureString -asPlainText -Force
+                $password = "ThisIsAPlaintextPassword" | ConvertTo-SecureString -AsPlainText -Force
                 $username = "Administrator"
-                $credential = New-Object System.Management.Automation.PSCredential($username,$password)
+                $credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
                 $cd = @{
                     AllNodes = @(
                         @{
@@ -46,12 +46,12 @@ foreach ($stig in $stigList)
             $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
             foreach ($rule in $rulelist)
             {
-                Context $rule {
+                Context "When $rule" {
                     $hasAllSettings = $true
                     $dscXmlRule = @($powerstigXml.$rule.Rule)
                     $resourceMatch = Get-ResourceMatchStatement -RuleName $rule
                     $dscMof = $instances |
-                        Where-Object {$PSItem.ResourceID -match $resourceMatch}
+                        Where-Object -FilterScript {$PSItem.ResourceID -match $resourceMatch}
 
                     foreach ($setting in $dscXmlRule)
                     {
@@ -63,7 +63,7 @@ foreach ($stig in $stigList)
                     }
 
                     It "Should have $($dscXmlRule.Count) $rule settings" {
-                        $hasAllSettings | Should Be $true
+                        $hasAllSettings | Should -Be $true
                     }
                 }
             }

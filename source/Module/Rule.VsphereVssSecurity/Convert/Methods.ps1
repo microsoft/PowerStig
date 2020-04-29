@@ -42,7 +42,7 @@ function Get-VsphereForgedTransmits
     .PARAMETER RawString
         An array of the raw string data taken from the STIG setting.
 #>
-function Get-VsphereMacChanges
+function Get-VsphereMacChange
 {
     [CmdletBinding()]
     [OutputType([object])]
@@ -55,13 +55,13 @@ function Get-VsphereMacChanges
 
     if ($FixText -match 'Get-VirtualSwitch')
     {
-        $vsphereMacChanges = ($FixText | Select-String -Pattern '(?<=MacChanges\s)(.\w+)').Matches.Value
+        $vsphereMacChange = ($FixText | Select-String -Pattern '(?<=MacChanges\s)(.\w+)').Matches.Value
     }
 
-    if ($null -ne $vsphereMacChanges)
+    if ($null -ne $vsphereMacChange)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChanges value: {0}" -f $vsphereMacChanges)
-        return $vsphereMacChanges
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChanges value: {0}" -f $vsphereMacChange)
+        return $vsphereMacChange
     }
     else
     {

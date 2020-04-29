@@ -39,19 +39,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereVssSecurityRule Object' {
-                    $rule.GetType() | Should Be 'VsphereVssSecurityRule'
+                    $rule.GetType() | Should -Be 'VsphereVssSecurityRule'
                 }
 
                 It "Should return Key '$($stig.ForgedTransmits)'" {
-                    $rule.ForgedTransmits | Should Be $stig.ForgedTransmits
+                    $rule.ForgedTransmits | Should -Be $stig.ForgedTransmits
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostVssSecurity'
+                    $rule.DscResource | Should -Be 'VMHostVssSecurity'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }

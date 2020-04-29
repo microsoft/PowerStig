@@ -50,7 +50,7 @@ class VsphereAcceptanceLevelRule : Rule
         .SYNOPSIS
             Creates class specifc help content
     #>
-    [PSObject] GetExceptionHelp()
+    [hashtable] GetExceptionHelp()
     {
         return @{
             Value = "15"

@@ -43,7 +43,7 @@ function Get-VsphereForgedTransmitsInherited
     .PARAMETER RawString
         An array of the raw string data taken from the STIG setting.
 #>
-function Get-VsphereMacChangesInherited
+function Get-VsphereMacChangeInherited
 {
     [CmdletBinding()]
     [OutputType([object])]
@@ -56,13 +56,13 @@ function Get-VsphereMacChangesInherited
 
     if ($FixText -match 'Get-VirtualPortGroup')
     {
-        $vsphereMacChangesInherited = ($FixText | Select-String -Pattern '(?<=MacChangesInherited\s)(.\w+)').Matches.Value
+        $vsphereMacChangeInherited = ($FixText | Select-String -Pattern '(?<=MacChangesInherited\s)(.\w+)').Matches.Value
     }
 
-    if ($null -ne $vsphereMacChangesInherited)
+    if ($null -ne $vsphereMacChangeInherited)
     {
-        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChangesInherited value: {0}" -f $vsphereMacChangesInherited)
-        return $vsphereMacChangesInherited
+        Write-Verbose -Message $("[$($MyInvocation.MyCommand.Name)] Found MacChangesInherited value: {0}" -f $vsphereMacChangeInherited)
+        return $vsphereMacChangeInherited
     }
     else
     {

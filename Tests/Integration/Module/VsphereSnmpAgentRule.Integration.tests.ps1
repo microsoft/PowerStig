@@ -50,19 +50,19 @@ try
                 $rule = ConvertFrom-StigXccdf -Path $testFile
 
                 It 'Should return an VsphereSnmpAgentRule Object' {
-                    $rule.GetType() | Should Be 'VsphereSnmpAgentRule'
+                    $rule.GetType() | Should -Be 'VsphereSnmpAgentRule'
                 }
 
                 It "Should return Key '$($stig.Enabled)'" {
-                    $rule.Enabled | Should Be $stig.Enabled
+                    $rule.Enabled | Should -Be $stig.Enabled
                 }
 
                 It 'Should set the correct DscResource' {
-                    $rule.DscResource | Should Be 'VMHostSnmpAgent'
+                    $rule.DscResource | Should -Be 'VMHostSnmpAgent'
                 }
 
                 It 'Should Set the status to pass' {
-                    $rule.ConversionStatus | Should Be 'pass'
+                    $rule.ConversionStatus | Should -Be 'pass'
                 }
             }
         }
