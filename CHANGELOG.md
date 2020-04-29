@@ -3,6 +3,7 @@
 ## [Unreleased]
 
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
+* Update PowerSTIG to parse and apply Ubuntu 18.04 LTS V1R1: [#608](https://github.com/microsoft/PowerStig/issues/608)
 
 ## [4.3.0] - 2020-03-27
 
