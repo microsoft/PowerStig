@@ -7,14 +7,13 @@ $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
-    Write-Verbose "Loading $($supportFile.FullName)"
+    Write-Verbose -Message "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-# Header
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere object
+        Convert the contents of an xccdf check-content element into a Vsphere object.
     .DESCRIPTION
         The VsphereRule class is used to extract the Vsphere settings
         from the check-content of the xccdf. Once a STIG rule is identified a
@@ -25,7 +24,7 @@ class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
 {
     <#
         .SYNOPSIS
-            Empty constructor for SplitFactory
+            Empty constructor for SplitFactory.
     #>
     VsphereKernelActiveDumpPartitionRuleConvert ()
     {
@@ -33,9 +32,9 @@ class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
 
     <#
         .SYNOPSIS
-            Converts an xccdf stig rule element into a Vsphere Kernel Active Dump Partition Rule
+            Converts an xccdf stig rule element into a Vsphere Kernel Active Dump Partition Rule.
         .PARAMETER XccdfRule
-            The STIG rule to convert
+            The STIG rule to convert.
     #>
     VsphereKernelActiveDumpPartitionRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
@@ -47,7 +46,7 @@ class VsphereKernelActiveDumpPartitionRuleConvert : VsphereKernelActiveDumpParti
     # Methods
     <#
     .SYNOPSIS
-        Extracts the Kernel Active Dump Partition boolean from the fix text and sets the value
+        Extracts the Kernel Active Dump Partition boolean from the fix text and sets the value.
     .DESCRIPTION
         Gets the boolean from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is

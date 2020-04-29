@@ -71,7 +71,7 @@ class VsphereAdvancedSettingsRuleConvert : VsphereAdvancedSettingsRule
     .DESCRIPTION
         Tests if and organizational value is required
     #>
-    [Boolean] IsOrganizationalSetting ()
+    [bool] IsOrganizationalSetting ()
     {
         if ($this.id -match 'V-93955|V-94025|V-94509|V-94533|V-94037')
         {

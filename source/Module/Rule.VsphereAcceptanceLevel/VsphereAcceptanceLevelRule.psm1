@@ -2,15 +2,14 @@
 # Licensed under the MIT License.
 using module .\..\Common\Common.psm1
 using module .\..\Rule\Rule.psm1
-#header
 
 <#
     .SYNOPSIS
-        An Vsphere AcceptanceLevel Rule object
+        An Vsphere AcceptanceLevel Rule object.
     .DESCRIPTION
         The Vsphere class is used to maange the Vmware Vsphere Settings.
     .PARAMETER Level
-        The acceptance level of supported VIBs. (i.e. VMwareCertified, VMwareAccepted, PartnerSupported, or CommunitySupported)
+        The acceptance level of supported VIBs. (i.e. VMwareCertified, VMwareAccepted, PartnerSupported, or CommunitySupported).
 #>
 class VsphereAcceptanceLevelRule : Rule
 {

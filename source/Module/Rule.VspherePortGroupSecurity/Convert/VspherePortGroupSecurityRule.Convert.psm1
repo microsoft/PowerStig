@@ -7,14 +7,13 @@ $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
-    Write-Verbose "Loading $($supportFile.FullName)"
+    Write-Verbose -Message "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-# Header
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere Port Group Security Rule object
+        Convert the contents of an xccdf check-content element into a Vsphere Port Group Security Rule object.
     .DESCRIPTION
         The VspherePortGroupSecurityRule class is used to extract the Vsphere Port Group Security settings
         from the check-content of the xccdf. Once a STIG rule is identified a
@@ -25,7 +24,7 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 {
     <#
         .SYNOPSIS
-            Empty constructor for SplitFactory
+            Empty constructor for SplitFactory.
     #>
     VspherePortGroupSecurityRuleConvert ()
     {
@@ -33,9 +32,9 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 
     <#
         .SYNOPSIS
-            Converts an xccdf stig rule element into a Vsphere Rule
+            Converts an xccdf stig rule element into a Vsphere Rule.
         .PARAMETER XccdfRule
-            The STIG rule to convert
+            The STIG rule to convert.
     #>
     VspherePortGroupSecurityRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
@@ -49,7 +48,7 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
     # Methods
     <#
     .SYNOPSIS
-        Extracts the ForgedTransmitInherited boolean from the fix text and sets the value
+        Extracts the ForgedTransmitInherited boolean from the fix text and sets the value.
     .DESCRIPTION
         Gets the boolean from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is
@@ -66,7 +65,7 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 
     <#
     .SYNOPSIS
-        Extracts the MacChangesInherited boolean from the fix text and sets the value
+        Extracts the MacChangesInherited boolean from the fix text and sets the value.
     .DESCRIPTION
         Gets the boolean from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is
@@ -83,7 +82,7 @@ class VspherePortGroupSecurityRuleConvert : VspherePortGroupSecurityRule
 
     <#
     .SYNOPSIS
-        Extracts the AllowPromiscuousInherited boolean from the fix text and sets the value
+        Extracts the AllowPromiscuousInherited boolean from the fix text and sets the value.
     .DESCRIPTION
         Gets the boolean from the xccdf content and sets the value.
         If the value that is returned is not valid, the parser status is

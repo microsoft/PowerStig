@@ -34,7 +34,7 @@ try
 
         foreach ($stig in $stigRulesToTest)
         {
-            Context "VsphereAcceptanceLevel '$($stig.Level)'" {
+            Context "When VsphereAcceptanceLevel '$($stig.Level)'" {
 
                 [xml] $stigRule = Get-TestStigRule -Checkcontent $stig.CheckContent -FixText $stig.FixText -XccdfTitle 'Vsphere'
                 $testFile = Join-Path -Path $TestDrive -ChildPath 'TextData.xml'

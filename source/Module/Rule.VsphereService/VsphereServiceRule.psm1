@@ -20,7 +20,7 @@ class VsphereServiceRule : Rule
 {
     [string] $Key
     [string] $Policy
-    [boolean] $Running
+    [bool] $Running
 
     <#
         .SYNOPSIS

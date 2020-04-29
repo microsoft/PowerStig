@@ -10,6 +10,6 @@ foreach ($rule in $rules)
         Name       = $HostIP
         Server     = $ServerIP
         Credential = $Credential
-        Enable     = [boolean] $rule.Enabled
+        Enable     = [bool] $rule.Enabled
     }
 }

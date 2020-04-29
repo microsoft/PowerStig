@@ -6,11 +6,11 @@ using module .\..\Rule\Rule.psm1
 
 <#
     .SYNOPSIS
-        An Vsphere Advanced Settings Rule object
+        An Vsphere Advanced Settings Rule object.
     .DESCRIPTION
         The Vsphere Advanced Settings class is used to maange the Vmware Vsphere Settings.
     .PARAMETER AdvancedSettings
-        A string with value name and value data. (i.e. 'ValueName' = 'ValueData')
+        A string with value name and value data. (i.e. 'ValueName' = 'ValueData').
 #>
 class VsphereAdvancedSettingsRule : Rule
 {
@@ -18,7 +18,7 @@ class VsphereAdvancedSettingsRule : Rule
 
     <#
         .SYNOPSIS
-            Default constructor to support the AsRule cast method
+            Default constructor to support the AsRule cast method.
     #>
     VsphereAdvancedSettingsRule ()
     {
@@ -26,9 +26,9 @@ class VsphereAdvancedSettingsRule : Rule
 
     <#
         .SYNOPSIS
-            Used to load PowerSTIG data from the processed data directory
+            Used to load PowerSTIG data from the processed data directory.
         .PARAMETER Rule
-            The STIG rule to load
+            The STIG rule to load.
     #>
     VsphereAdvancedSettingsRule ([xml.xmlelement] $Rule) : base ($Rule)
     {
@@ -36,11 +36,11 @@ class VsphereAdvancedSettingsRule : Rule
 
     <#
         .SYNOPSIS
-            The Convert child class constructor
+            The Convert child class constructor.
         .PARAMETER Rule
-            The STIG rule to convert
+            The STIG rule to convert.
         .PARAMETER Convert
-            A simple bool flag to create a unique constructor signature
+            A simple bool flag to create a unique constructor signature.
     #>
     VsphereAdvancedSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : base ($Rule, $Convert)
     {
@@ -48,7 +48,7 @@ class VsphereAdvancedSettingsRule : Rule
 
     <#
         .SYNOPSIS
-            Creates class specifc help content
+            Creates class specifc help content.
     #>
     [hashtable] GetExceptionHelp()
     {

@@ -7,14 +7,13 @@ $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
-    Write-Verbose "Loading $($supportFile.FullName)"
+    Write-Verbose -Message "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-# Header
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere Ntp Settings object
+        Convert the contents of an xccdf check-content element into a Vsphere Ntp Settings object.
     .DESCRIPTION
         The Vsphere Ntp Settings Rule class is used to extract the Vsphere Ntp settings
         from the check-content of the xccdf. Once a STIG rule is identified a
@@ -25,7 +24,7 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
 {
     <#
         .SYNOPSIS
-            Empty constructor for SplitFactory
+            Empty constructor for SplitFactory.
     #>
     VsphereNtpSettingsRuleConvert ()
     {
@@ -33,9 +32,9 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
 
     <#
         .SYNOPSIS
-            Converts an xccdf stig rule element into a Vsphere Rule
+            Converts an xccdf stig rule element into a Vsphere Rule.
         .PARAMETER XccdfRule
-            The STIG rule to convert
+            The STIG rule to convert.
     #>
     VsphereNtpSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
@@ -48,14 +47,13 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
         $this.SetDscResource()
     }
 
-    # Methods
     <#
         .SYNOPSIS
-            Tests if and organizational value is required
+            Tests if and organizational value is required.
         .DESCRIPTION
-            Tests if and organizational value is required
+            Tests if and organizational value is required.
     #>
-    [Boolean] IsOrganizationalSetting ()
+    [bool] IsOrganizationalSetting ()
     {
         if ([String]::IsNullOrEmpty($this.NtpServer))
         {
@@ -69,9 +67,9 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
 
     <#
     .SYNOPSIS
-        Set the organizational value
+        Set the organizational value.
     .DESCRIPTION
-        Extracts the organizational value from the key and then sets the value
+        Extracts the organizational value from the key and then sets the value.
     #>
     [void] SetOrganizationValueTestString ()
     {
@@ -85,12 +83,12 @@ class VsphereNtpSettingsRuleConvert : VsphereNtpSettingsRule
     }
 
     <#
-    .SYNOPSIS
-        Extracts the Vsphere NTP settings from the check-content and sets the value
-    .DESCRIPTION
-        Gets the NTP server list from the xccdf content and sets the value.
-        If the value that is returned is not valid, the parser status is
-        set to fail.
+        .SYNOPSIS
+            Extracts the Vsphere NTP settings from the check-content and sets the value.
+        .DESCRIPTION
+            Gets the NTP server list from the xccdf content and sets the value.
+            If the value that is returned is not valid, the parser status is
+            set to fail.
     #>
     [void] SetVsphereNtpSettings ()
     {

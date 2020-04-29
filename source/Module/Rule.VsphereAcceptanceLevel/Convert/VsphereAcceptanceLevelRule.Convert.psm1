@@ -7,14 +7,13 @@ $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
 foreach ($supportFile in $supportFileList)
 {
-    Write-Verbose "Loading $($supportFile.FullName)"
+    Write-Verbose -Message "Loading $($supportFile.FullName)"
     . $supportFile.FullName
 }
-# Header
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a Vsphere object
+        Convert the contents of an xccdf check-content element into a Vsphere object.
     .DESCRIPTION
         The VsphereRule Acceptance Level class is used to extract the Vsphere settings
         from the check-content of the xccdf. Once a STIG rule is identified a
@@ -44,7 +43,6 @@ class VsphereAcceptanceLevelRuleConvert : VsphereAcceptanceLevelRule
         $this.SetDscResource()
     }
 
-    # Methods
     <#
     .SYNOPSIS
         Extracts the acceptance level from the fix text and sets the level
