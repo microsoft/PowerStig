@@ -8,65 +8,53 @@ $configFile = Join-Path -Path $PSScriptRoot -ChildPath "$($script:DSCCompositeRe
 
 $stigList = Get-StigVersionTable -CompositeResourceName $script:DSCCompositeResourceName
 
+$password = ConvertTo-SecureString -AsPlainText -Force -String 'ThisIsAPlaintextPassword'
+$credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList 'Admin', $password
+
+$additionalTestParameterList = @{
+    HostIP                     = '10.10.10.10'
+    ServerIP                   = '10.10.10.12'
+    Credential                 = $credential
+    VmGroup                    = @('Vm1','Vm2')
+    VirtualStandardSwitchGroup = @('Switch1','Switch2')
+    ConfigurationData          = @{
+        AllNodes = @(
+            @{
+                NodeName = 'localhost'
+                PSDscAllowDomainUser = $true
+                PSDscAllowPlainTextPassword = $true
+            }
+        )
+    }
+}
+
 foreach ($stig in $stigList)
 {
-    Describe "Vsphere $($stig.TechnologyVersion) $($stig.StigVersion) mof output" {
+    $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
+    $blankSkipRuleId = Get-BlankOrgSettingRuleId -OrgSettingPath $orgSettingsPath
+    $powerstigXml = [xml](Get-Content -Path $stig.Path) |
+        Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
 
-        It 'Should compile the MOF without throwing' {
-            {
-                $password = "ThisIsAPlaintextPassword" | ConvertTo-SecureString -AsPlainText -Force
-                $username = "Administrator"
-                $credential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $username, $password
-                $cd = @{
-                    AllNodes = @(
-                        @{
-                            NodeName = 'localhost'
-                            PSDscAllowDomainUser = $true
-                            PSDscAllowPlainTextPassword = $true
-                        }
-                    )
-                }
+    $skipRule = Get-Random -InputObject $powerstigXml.VsphereAdvancedSettingsRule.Rule.id
+    $skipRuleType = 'VsphereAdvancedSettingsRule'
+    $expectedSkipRuleTypeCount = $powerstigXml.VsphereAdvancedSettingsRule.Rule.Count + $blankSkipRuleId.Count
 
-                Vsphere_config `
-                -Version $stig.TechnologyVersion `
-                -OutputPath $TestDrive `
-                -ConfigurationData $cd `
-                -Credential $credential
-            } | Should -Not -Throw
-        }
+    $skipRuleMultiple = Get-Random -InputObject $powerstigXml.VsphereAdvancedSettingsRule.Rule.id -Count 2
+    $skipRuleTypeMultiple = @('VsphereAdvancedSettingsRule','VsphereAcceptanceLevelRule')
+    $expectedSkipRuleTypeMultipleCount = ($powerstigXml.VsphereAdvancedSettingsRule.Rule | Measure-Object).Count +
+                                         ($powerstigXml.VsphereAcceptanceLevelRule.Rule | Measure-Object).Count +
+                                         ($blankSkipRuleId | Measure-Object).Count
 
-        $orgSettingsPath = $stig.Path.Replace('.xml', '.org.default.xml')
-        $powerstigXml = [xml](Get-Content -Path $stig.Path) |
-            Remove-DscResourceEqualsNone | Remove-SkipRuleBlankOrgSetting -OrgSettingPath $orgSettingsPath
-
-        if (Test-AutomatableRuleType -StigObject $powerstigXml.ParentNode)
-        {
-            $configurationDocumentPath = "$TestDrive\localhost.mof"
-            $ruleList = ($powerstigXml | Get-Member -Name "Vsphere*Rule").Name
-            $instances = [Microsoft.PowerShell.DesiredStateConfiguration.Internal.DscClassCache]::ImportInstances($configurationDocumentPath, 4)
-            foreach ($rule in $rulelist)
-            {
-                Context "When $rule" {
-                    $hasAllSettings = $true
-                    $dscXmlRule = @($powerstigXml.$rule.Rule)
-                    $resourceMatch = Get-ResourceMatchStatement -RuleName $rule
-                    $dscMof = $instances |
-                        Where-Object -FilterScript {$PSItem.ResourceID -match $resourceMatch}
-
-                    foreach ($setting in $dscXmlRule)
-                    {
-                        if (-not ($dscMof.ResourceID -match $setting.Id) )
-                        {
-                            Write-Warning -Message "Missing $rule Setting $($setting.Id)"
-                            $hasAllSettings = $false
-                        }
-                    }
-
-                    It "Should have $($dscXmlRule.Count) $rule settings" {
-                        $hasAllSettings | Should -Be $true
-                    }
-                }
-            }
-        }
+    $getRandomExceptionRuleParams = @{
+        RuleType       = 'VsphereAdvancedSettingsRule'
+        PowerStigXml   = $powerstigXml
+        ParameterValue = "'ExceptionKey' = 'ExceptionValue'"
     }
+
+    $exception = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+    $exceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1
+    $backCompatException = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
+    $backCompatExceptionMultiple = Get-RandomExceptionRule @getRandomExceptionRuleParams -Count 1 -BackwardCompatibility
+
+    . "$PSScriptRoot\Common.integration.ps1"
 }

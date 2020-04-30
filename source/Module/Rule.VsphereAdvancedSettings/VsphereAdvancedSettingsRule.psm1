@@ -14,7 +14,7 @@ using module .\..\Rule\Rule.psm1
 #>
 class VsphereAdvancedSettingsRule : Rule
 {
-    [string] $AdvancedSettings
+    [string] $AdvancedSettings <#(ExceptionValue)#>
 
     <#
         .SYNOPSIS

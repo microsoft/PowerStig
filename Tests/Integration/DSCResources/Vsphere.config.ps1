@@ -1,21 +1,55 @@
 configuration Vsphere_config
 {
+    [CmdletBinding()]
     param
     (
         [Parameter()]
+        [AllowNull()]
         [string]
-        $Version,
+        $TechnologyVersion,
 
         [Parameter()]
+        [AllowNull()]
+        [string]
+        $TechnologyRole,
+
+        [Parameter(Mandatory = $true)]
+        [version]
+        $StigVersion,
+
+        [Parameter()]
+        [hashtable]
+        $Exception,
+
+        [Parameter()]
+        [hashtable]
+        $BackwardCompatibilityException,
+
+        [Parameter()]
+        [string[]]
+        $SkipRule,
+
+        [Parameter()]
+        [string[]]
+        $SkipRuleType,
+
+        [Parameter()]
+        [object]
+        $OrgSettings,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
         [string]
         $HostIP,
 
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
         [string]
         $ServerIP,
 
-        [Parameter()]
-        [PSCredential]
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [System.Management.Automation.PSCredential]
         $Credential,
 
         [Parameter()]
@@ -31,15 +65,27 @@ configuration Vsphere_config
 
     Node localhost
     {
-        Vsphere BaseLineSettings
-        {
-            Version = '6.5'
-            HostIP = '10.10.10.10'
-            ServerIP = '10.10.10.12'
-            Credential = $credential
-            VirtualStandardSwitchGroup = @('Switch1','Switch2')
-            VmGroup = @('Vm1','Vm2')
+        $psboundParams = $PSBoundParameters
+        $psboundParams.Remove('TechnologyRole')
+        $psboundParams.Remove('ConfigurationData')
+        $psboundParams.Version = $psboundParams['TechnologyVersion']
+        $psboundParams.Remove('TechnologyVersion')
+        $resourceParameters = @(
+            'Version'
+            'StigVersion'
+            'Exception'
+            'SkipRule'
+            'SkipRuleType'
+            'OrgSettings'
+            'HostIP'
+            'ServerIP'
+            'Credential'
+            'VirtualStandardSwitchGroup'
+            'VmGroup'
+        )
 
-        }
+        $resourceParamString = New-ResourceParameterString -ResourceParameters $resourceParameters -PSBoundParams $psboundParams
+        $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName Vsphere
+        & ([scriptblock]::Create($resourceScriptBlockString))
     }
 }
