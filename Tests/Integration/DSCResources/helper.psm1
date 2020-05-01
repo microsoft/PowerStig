@@ -23,6 +23,7 @@ data exceptionRuleParameterValues
         AuditSettingRule             = 'Operator'
         ServiceRule                  = 'StartupType'
         UserRightRule                = 'Identity'
+        VsphereAdvancedSettingsRule  = 'AdvancedSettings'
     }
 }
 #endregion
@@ -131,6 +132,38 @@ function Get-ResourceMatchStatement
         'SslSettingsRule'
         {
             return '\[xSSLSettings\]'
+        }
+        'VsphereAcceptanceLevelRule'
+        {
+            return '\[VMHostAcceptanceLevel\]'
+        }
+        'VsphereAdvancedSettingsRule'
+        {
+            return '\[VMHostAdvancedSettings\]'
+        }
+        'VsphereKernelActiveDumpPartitionRule'
+        {
+            return '\[VMHostVMKernelActiveDumpPartition\]'
+        }
+        'VsphereNtpSettingsRule'
+        {
+            return '\[VMHostNtpSettings\]'
+        }
+        'VspherePortGroupSecurityRule'
+        {
+            return '\[VMHostVssPortGroupSecurity\]'
+        }
+        'VsphereServiceRule'
+        {
+            return '\[VMHostService\]'
+        }
+        'VsphereSnmpAgentRule'
+        {
+            return '\[VMHostSnmpAgent\]'
+        }
+        'VsphereVssSecurityRule'
+        {
+            return '\[VMHostVssSecurity\]'
         }
     }
 }
@@ -278,4 +311,176 @@ function Get-RandomExceptionRule
         $stigException.Add($id, $exceptionRuleHashtable)
     }
     return $stigException
+}
+
+<#
+    .SYNOPSIS
+        Creates a string representation of the DSC Configuration parameters
+
+    .DESCRIPTION
+        This function is used to help create parameter strings, specifically when non-string
+        parameter values are passed to a configuation. If a string parameter value is
+        passed to this function, it's contents is expanded as a string, however, if a
+        non-string parameter value is passed, the function will pass the variable name
+        as a string so that when a scriptblock is created, the contents of that variable
+        is then expanded at run time.
+
+    .PARAMETER ResourceParameters
+        An array of Resource Parameters that will be used in the string output
+
+    .PARAMETER PSBoundParams
+        A hashtable representing the PSBoundParameters that is passed to the DSC Configuration
+
+    .EXAMPLE
+        This example is used to create a string representation of the configuration block for the
+        Vsphere PowerSTIG DSC Resource.
+
+        Node localhost
+        {
+            $psboundParams = $PSBoundParameters
+            $psboundParams.Remove('TechnologyRole')
+            $psboundParams.Remove('ConfigurationData')
+            $psboundParams.Version = $psboundParams['TechnologyVersion']
+            $psboundParams.Remove('TechnologyVersion')
+            $resourceParameters = @(
+                'Version'
+                'StigVersion'
+                'Exception'
+                'SkipRule'
+                'SkipRuleType'
+                'OrgSettings'
+                'HostIP'
+                'ServerIP'
+                'Credential'
+                'VirtualStandardSwitchGroup'
+                'VmGroup'
+            )
+
+            $resourceParamString = New-ResourceParameterString -ResourceParameters $resourceParameters -PSBoundParams $psboundParams
+            $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName Vsphere
+            & ([scriptblock]::Create($resourceScriptBlockString))
+        }
+
+    .NOTES
+        This function is derived from "PSDesiredStateConfiguration\BuildResourceCommonParameters"
+#>
+function New-ResourceParameterString
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [System.Array]
+        $ResourceParameters,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [System.Collections.Hashtable]
+        $PSBoundParams
+    )
+
+    $resourceParameterString = New-Object -TypeName System.Text.StringBuilder
+
+    foreach ($parameterName in $($PSBoundParams.keys))
+    {
+        if ($parameterName -in $ResourceParameters)
+        {
+            $value = $PSBoundParams[$parameterName]
+            if ($null -eq $value)
+            {
+                continue
+            }
+
+            if ($value -is [System.String])
+            {
+                [void] $resourceParameterString.AppendFormat('{0} = "{1}"', $parameterName, $value)
+                [void] $resourceParameterString.AppendLine()
+            }
+            else
+            {
+                [void] $resourceParameterString.Append($parameterName + ' = $' + $parameterName)
+                [void] $resourceParameterString.AppendLine()
+            }
+        }
+    }
+
+    return $resourceParameterString.ToString()
+}
+
+<#
+    .SYNOPSIS
+        This function creates a string that represents a DSC Resource with the given
+        parameters passed to it.
+
+    .DESCRIPTION
+        This function creates a string that represents a DSC Resource with the given
+        parameters passed to it (from New-ResourceParameterString).
+
+    .PARAMETER ResourceParameterString
+        A string from which is generated via New-ResourceParameterString with the parameters
+        that is passed to it.
+
+    .PARAMETER ResourceName
+        The resource name for the configuration being used.
+
+    .EXAMPLE
+        This example is used to create a string representation of the configuration block for the
+        Vsphere PowerSTIG DSC Resource.
+
+        Node localhost
+        {
+            $psboundParams = $PSBoundParameters
+            $psboundParams.Remove('TechnologyRole')
+            $psboundParams.Remove('ConfigurationData')
+            $psboundParams.Version = $psboundParams['TechnologyVersion']
+            $psboundParams.Remove('TechnologyVersion')
+            $resourceParameters = @(
+                'Version'
+                'StigVersion'
+                'Exception'
+                'SkipRule'
+                'SkipRuleType'
+                'OrgSettings'
+                'HostIP'
+                'ServerIP'
+                'Credential'
+                'VirtualStandardSwitchGroup'
+                'VmGroup'
+            )
+
+            $resourceParamString = New-ResourceParameterString -ResourceParameters $resourceParameters -PSBoundParams $psboundParams
+            $resourceScriptBlockString = New-ResourceString -ResourceParameterString $resourceParamString -ResourceName Vsphere
+            & ([scriptblock]::Create($resourceScriptBlockString))
+        }
+
+    .NOTES
+        This function is derived from "PSDesiredStateConfiguration\BuildResourceString"
+#>
+function New-ResourceString
+{
+    [CmdletBinding()]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        $ResourceParameterString,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [string]
+        $ResourceName
+    )
+
+    $resourceString = New-Object -TypeName System.Text.StringBuilder
+
+    [void] $resourceString.AppendFormat('{0} Baseline', $ResourceName)
+    [void] $resourceString.AppendLine()
+    [void] $resourceString.AppendLine('{')
+    [void] $resourceString.AppendLine()
+    [void] $resourceString.AppendLine($ResourceParameterString)
+    [void] $resourceString.AppendLine('}')
+
+    return $resourceString.ToString()
 }

@@ -476,6 +476,11 @@ function Split-BenchmarkId
             $returnId = 'McAfee_8.8_VirusScan'
             continue
         }
+        {$PSItem -match 'Vmware_Vsphere'}
+        {
+            $returnId = 'Vsphere_6.5'
+            continue
+        }
         default
         {
             $returnId = $id
