@@ -240,7 +240,7 @@ Begin
     Plaster                     = 'latest'
     ModuleBuilder               = '1.0.0'
     ChangelogManagement         = 'latest'
-    Sampler                     = 'latest'
+    Sampler                     = '0.104.0'
     xDSCResourceDesigner        = 'latest'
     PSPKI                       = 'latest'
     MarkdownLinkCheck           = 'latest'
@@ -256,7 +256,7 @@ Begin
     $powerStigRequiredModule = $powerStigModuleManifest.RequiredModules
     foreach ($requiredModule in $powerStigRequiredModule)
     {
-        $moduleInfo = "    {0} = '{1}'" -f $requiredModule.ModuleName, $requiredModule.ModuleVersion
+        $moduleInfo = "    '{0}' = '{1}'" -f $requiredModule.ModuleName, $requiredModule.ModuleVersion
         [void] $stringBuilder.AppendLine($moduleInfo)
     }
 

@@ -25,6 +25,14 @@ using module .\..\..\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm1
 using module .\..\..\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\..\..\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
 using module .\..\..\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
+using module .\..\..\Rule.VsphereAdvancedSettings\Convert\VsphereAdvancedSettingsRule.Convert.psm1
+using module .\..\..\Rule.VsphereService\Convert\VsphereServiceRule.Convert.psm1
+using module .\..\..\Rule.VspherePortGroupSecurity\Convert\VspherePortGroupSecurityRule.Convert.psm1
+using module .\..\..\Rule.VsphereAcceptanceLevel\Convert\VsphereAcceptanceLevelRule.Convert.psm1
+using module .\..\..\Rule.VsphereSnmpAgent\Convert\VsphereSnmpAgentRule.Convert.psm1
+using module .\..\..\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKernelActiveDumpPartitionRule.Convert.psm1
+using module .\..\..\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
+using module .\..\..\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
 
 # Header
 
@@ -243,6 +251,54 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [SslSettingsRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereAdvancedSettingsRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereAdvancedSettingsRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereServiceRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereServiceRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VspherePortGroupSecurityRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VspherePortGroupSecurityRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereAcceptanceLevelRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereAcceptanceLevelRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereSnmpAgentRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereSnmpAgentRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereKernelActiveDumpPartitionRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereKernelActiveDumpPartitionRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereNtpSettingsRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereNtpSettingsRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[VsphereVssSecurityRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [VsphereVssSecurityRuleConvert]::new($Rule).AsRule()
                 )
             }
             <#
