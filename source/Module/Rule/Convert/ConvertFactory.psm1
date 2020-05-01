@@ -33,8 +33,7 @@ using module .\..\..\Rule.VsphereSnmpAgent\Convert\VsphereSnmpAgentRule.Convert.
 using module .\..\..\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKernelActiveDumpPartitionRule.Convert.psm1
 using module .\..\..\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
 using module .\..\..\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
-
-# Header
+using module .\..\..\Rule.nxPackage\Convert\nxPackageRule.Convert.psm1
 
 class SplitFactory
 {
@@ -299,6 +298,12 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.Add(
                     [VsphereVssSecurityRuleConvert]::new($Rule).AsRule()
+                )
+            }
+            {[nxPackageRuleConvert]::Match($PSItem)}
+            {
+                $null = $ruleTypeList.Add(
+                    [nxPackageRuleConvert]::new($Rule).AsRule()
                 )
             }
             <#

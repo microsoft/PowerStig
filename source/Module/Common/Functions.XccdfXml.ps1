@@ -481,6 +481,13 @@ function Split-BenchmarkId
             $returnId = 'Vsphere_6.5'
             continue
         }
+        {$PSItem -match 'Ubuntu'}
+        {
+            $ubuntuId = $id -split '_'
+            $ubuntuVersion = $ubuntuId[3] -replace '-', '.'
+            $returnId = '{0}_{1}' -f $ubuntuId[2], $ubuntuVersion
+            continue
+        }
         default
         {
             $returnId = $id

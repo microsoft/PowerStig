@@ -36,5 +36,6 @@ data exclusionRuleList
         V-94509 = 'Vsphere: To Be added in a future release'
         V-94025 = 'Vsphere: To Be added in a future release'
         V-94533 = 'Vsphere: To Be added in a future release'
+        V-100855 = 'Ubuntu: To be added in a future release'
 '@
 }

@@ -56,6 +56,7 @@ RequiredModules  = @(
     @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '12.0.0.15939648'}
     @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '12.0.0.15940185'}
     @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
+    @{ModuleName = 'nx'; ModuleVersion = '1.0'}
 )
 
 # DSC resources to export from this module
@@ -75,7 +76,8 @@ DscResourcesToExport = @(
     'WindowsDnsServer',
     'WindowsFirewall',
     'WindowsServer',
-    'Vsphere'
+    'Vsphere',
+    'Ubuntu'
 )
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.

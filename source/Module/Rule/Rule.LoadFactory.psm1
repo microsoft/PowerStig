@@ -29,7 +29,7 @@ using module .\..\Rule.VsphereSnmpAgent\VsphereSnmpAgentRule.psm1
 using module .\..\Rule.VsphereKernelActiveDumpPartition\VsphereKernelActiveDumpPartitionRule.psm1
 using module .\..\Rule.VsphereNtpSettings\VsphereNtpSettingsRule.psm1
 using module .\..\Rule.VsphereVssSecurity\VsphereVssSecurityRule.psm1
-#header
+using module .\..\Rule.nxPackage\nxPackageRule.psm1
 
 class LoadFactory
 {
@@ -69,6 +69,7 @@ class LoadFactory
             'VsphereKernelActiveDumpPartitionRule' {$return = [VsphereKernelActiveDumpPartitionRule]::new($Rule)}
             'VsphereNtpSettingsRule'               {$return = [VsphereNtpSettingsRule]::new($Rule)}
             'VsphereVssSecurityRule'               {$return = [VsphereVssSecurityRule]::new($Rule)}
+            'nxPackageRule'                        {$return = [nxPackageRule]::new($Rule)}
         }
 
         return $return
