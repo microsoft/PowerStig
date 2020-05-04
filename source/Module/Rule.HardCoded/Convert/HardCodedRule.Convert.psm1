@@ -34,6 +34,7 @@ using module .\..\..\Rule.VsphereService\VsphereServiceRule.psm1
 using module .\..\..\Rule.VsphereSnmpAgent\VsphereSnmpAgentRule.psm1
 using module .\..\..\Rule.VsphereVssSecurity\VsphereVssSecurityRule.psm1
 using module .\..\..\Rule.nxPackage\nxPackageRule.psm1
+using module .\..\..\Rule.nxService\nxServiceRule.psm1
 
 <#
     .SYNOPSIS

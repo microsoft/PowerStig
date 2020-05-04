@@ -43,6 +43,7 @@ using module .\Module\Rule.VsphereKernelActiveDumpPartition\Convert\VsphereKerne
 using module .\Module\Rule.VsphereNtpSettings\Convert\VsphereNtpSettingsRule.Convert.psm1
 using module .\Module\Rule.VsphereVssSecurity\Convert\VsphereVssSecurityRule.Convert.psm1
 using module .\Module\Rule.nxPackage\Convert\nxPackageRule.Convert.psm1
+using module .\Module\Rule.nxService\Convert\nxServiceRule.Convert.psm1
 
 # load the public functions
 foreach ($supportFile in ( Get-ChildItem -Path "$PSScriptRoot\Module\Stig\Convert" -Recurse -Filter '*.ps1' -Exclude 'Data.*.ps1' ) )

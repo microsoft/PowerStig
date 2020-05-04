@@ -71,4 +71,5 @@ configuration Ubuntu
 
     Import-DscResource -ModuleName nx -ModuleVersion 1.0
     . "$resourcePath\linux.nxPackage.ps1"
+    . "$resourcePath\linux.nxService.ps1"
 }

@@ -12,7 +12,7 @@ Satisfies: SRG-OS-000185-GPOS-00079, SRG-OS-000404-GPOS-00183, SRG-OS-000405-GPO
       <OrganizationValueTestString />
       <RawString>If there is a documented and approved reason for not having data-at-rest encryption, this requirement is Not Applicable.
 
-Verify the Ubuntu operating system prevents unauthorized disclosure or modification of all information requiring at rest protection by using disk encryption. 
+Verify the Ubuntu operating system prevents unauthorized disclosure or modification of all information requiring at rest protection by using disk encryption.
 
 Determine the partition layout for the system with the following command:
 
@@ -55,23 +55,6 @@ use_mappers = pwent
 
 If ‘use_mappers’ is not found or is not set to pwent this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100893" severity="medium" conversionstatus="pass" title="SRG-OS-000184-GPOS-00078" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Kernel core dumps may contain the full contents of system memory at the time of the crash. Kernel core dumps may consume a considerable amount of disk space and may result in denial of service by exhausting the available space on the target file system partition.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that kernel core dumps are disabled unless needed.
-
-Check if "kdump" service is active with the following command:
-
-# systemctl is-active kdump.service
-inactive
-
-If the "kdump" service is active, ask the System Administrator if the use of the service is required and documented with the Information System Security Officer (ISSO).
-
-If the service is active and is not documented, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100913" severity="medium" conversionstatus="pass" title="SRG-OS-000481-GPOS-000481" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without protection of communications with wireless peripherals, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read, altered, or used to compromise the operating system.
 
@@ -90,7 +73,7 @@ Note: This requirement is Not Applicable for systems that do not have physical w
 
 # ifconfig -a | more
 
-eth0 Link encap:Ethernet HWaddr ff:ff:ff:ff:ff:ff 
+eth0 Link encap:Ethernet HWaddr ff:ff:ff:ff:ff:ff
  inet addr:192.168.2.100 Bcast:192.168.2.255 Mask:255.255.255.0
  ...
 
@@ -98,7 +81,7 @@ eth1 IEEE 802.11b ESSID:"tacnet"
  Mode:Managed Frequency:2.412 GHz Access Point: 00:40:E7:22:45:CD
  ...
 
-lo Link encap:Local Loopback 
+lo Link encap:Local Loopback
  inet addr:127.0.0.1 Mask:255.0.0.0
  inet6 addr: ::1/128 Scope:Host
  ...
@@ -148,7 +131,7 @@ If the root password entry does not begin with “password_pbkdf2”, this is a 
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system enables auditing at system startup. 
+      <RawString>Verify the Ubuntu operating system enables auditing at system startup.
 
 Check that the auditing is enabled in grub with the following command:
 
@@ -208,7 +191,7 @@ If the "space_left_action" is set to "email" check the value of the "action_mail
 
 action_mail_acct root@localhost
 
-The "action_mail_acct" parameter, if missing, defaults to "root". If the "action_mail_acct parameter" is not set to the e-mail address of the system administrator(s) and/or ISSO, this is a finding. 
+The "action_mail_acct" parameter, if missing, defaults to "root". If the "action_mail_acct parameter" is not set to the e-mail address of the system administrator(s) and/or ISSO, this is a finding.
 
 Note: If the email address of the system administrator is on a remote system a mail package must be available.</RawString>
     </Rule>
@@ -238,7 +221,7 @@ If "active" is not set to "yes", or the line is commented out, this is a finding
 
 Check that audisp-remote plugin is configured to send audit logs to a different system:
 
-# sudo grep -i ^remote_server /etc/audisp/audisp-remote.conf 
+# sudo grep -i ^remote_server /etc/audisp/audisp-remote.conf
 
 remote_server = 192.168.122.126
 
@@ -325,7 +308,7 @@ If "active" is not set to "yes", or the line is commented out, this is a finding
 
 Check that audisp-remote plugin is configured to send audit logs to a different system:
 
-# sudo grep -i ^remote_server audisp-remote.conf 
+# sudo grep -i ^remote_server audisp-remote.conf
 
 remote_server = 192.168.122.126
 
@@ -391,7 +374,7 @@ If "pam_lastlog" is missing from "/etc/pam.d/login" file, is not "required", or 
       <OrganizationValueTestString />
       <RawString>Check that Ubuntu operating system locks an account after three unsuccessful login attempts with following command:
 
-# grep pam_tally2 /etc/pam.d/common-auth 
+# grep pam_tally2 /etc/pam.d/common-auth
 
 auth required pam_tally2.so onerr=fail deny=3
 
@@ -453,14 +436,14 @@ If the output does not contain "L" in the second field to indicate the account i
 
 Security functions are the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Operating systems implement code separation (i.e., separation of security functions from nonsecurity functions) in a number of ways, including through the provision of security kernels via processor rings or processor modes. For non-kernel code, security function isolation is often achieved through file system protections that serve to protect the code on disk and address space protections that protect executing code.
 
-Developers and implementers can increase the assurance in security functions by employing well-defined security policy models; structured, disciplined, and rigorous hardware and software development techniques; and sound system/security engineering principles. Implementation may include isolation of memory space and libraries. 
+Developers and implementers can increase the assurance in security functions by employing well-defined security policy models; structured, disciplined, and rigorous hardware and software development techniques; and sound system/security engineering principles. Implementation may include isolation of memory space and libraries.
 
 The Ubuntu operating system restricts access to security functions through the use of access control mechanisms and by implementing least privilege capabilities.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that the sudo group has only members who should have access to security functions. 
+      <RawString>Verify that the sudo group has only members who should have access to security functions.
 
 # grep sudo /etc/group
 
@@ -532,7 +515,7 @@ If the banner text does not match the Standard Mandatory DoD Notice and Consent 
       <OrganizationValueTestString />
       <RawString>Check that Ubuntu operating system locks an account after three unsuccessful login attempts with the following:
 
-# grep pam_tally2 /etc/pam.d/common-auth 
+# grep pam_tally2 /etc/pam.d/common-auth
 
 auth required pam_tally2.so onerr=fail deny=3
 
@@ -550,7 +533,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Determine if the field "ucredit" is set in the "/etc/security/pwquality.conf" file with the following command:
 
-# grep -i "ucredit" /etc/security/pwquality.conf 
+# grep -i "ucredit" /etc/security/pwquality.conf
 ucredit=-1
 
 If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
@@ -567,7 +550,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Determine if the field "lcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
 
-# grep -i "lcredit" /etc/security/pwquality.conf 
+# grep -i "lcredit" /etc/security/pwquality.conf
 lcredit=-1
 
 If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
@@ -584,7 +567,7 @@ Password complexity is one factor of several that determines how long it takes t
 
 Determine if the field "dcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
 
-# grep -i "dcredit" /etc/security/pwquality.conf 
+# grep -i "dcredit" /etc/security/pwquality.conf
 dcredit=-1
 
 If the "dcredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
@@ -731,7 +714,7 @@ dictcheck=1
 If the "dictcheck" parameter is not set to "1", or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100597" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization. 
+      <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization.
 
 When the Ubuntu operating system provides the capability to escalate a functional capability or change security roles, it is critical the user re-authenticate.
 
@@ -760,7 +743,7 @@ There may be shared resources with configurable protections (e.g., files in stor
       <OrganizationValueTestString />
       <RawString>Verify that all public (world writeable) directories have the public sticky bit set.
 
-Find world-writable directories that lack the sticky bit by running the following command: 
+Find world-writable directories that lack the sticky bit by running the following command:
 
 # sudo find / -type d -perm -002 ! -perm -1000
 
@@ -864,8 +847,8 @@ Audit tools include, but are not limited to, vendor-provided and open source aud
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system configures the audit tools to be owned by root to prevent any unauthorized access, deletion, or modification.
 
-For each audit tool, 
-/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules 
+For each audit tool,
+/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules
 
 Check the ownership by running the following command:
 
@@ -887,8 +870,8 @@ Audit tools include, but are not limited to, vendor-provided and open source aud
       <OrganizationValueTestString />
       <RawString>Verify the Ubuntu operating system configures the audit tools to be group-owned by root to prevent any unauthorized access, deletion, or modification.
 
-For each audit tools, 
-/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules 
+For each audit tools,
+/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules
 
 Check the group-owner of each audit tool by running the following commands:
 
@@ -1145,7 +1128,7 @@ Special characters are those characters that are not alphanumeric. Examples incl
       <OrganizationValueTestString />
       <RawString>Determine if the field "ocredit" is set in the "/etc/security/pwquality.conf" file with the following command:
 
-# grep -i "ocredit" /etc/security/pwquality.conf 
+# grep -i "ocredit" /etc/security/pwquality.conf
 ocredit=-1
 
 If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
@@ -1463,7 +1446,7 @@ If the value of the "action_mail_acct" keyword is not set to "root" and/or other
     <Rule id="V-100681" severity="medium" conversionstatus="pass" title="SRG-OS-000047-GPOS-00023" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;It is critical that when the Ubuntu operating system is at risk of failing to process audit logs as required, it takes action to mitigate the failure. Audit processing failures include: software/hardware errors; failures in the audit capturing mechanisms; and audit storage capacity being reached or exceeded. Responses to audit failure depend upon the nature of the failure mode.
 
-When availability is an overriding concern, other approved actions in response to an audit failure are as follows: 
+When availability is an overriding concern, other approved actions in response to an audit failure are as follows:
 
 1) If the failure was caused by the lack of audit record storage capacity, the Ubuntu operating system must continue generating audit records if possible (automatically restarting the audit service if necessary), overwriting the oldest audit records in a first-in-first-out manner.
 
@@ -1472,7 +1455,7 @@ When availability is an overriding concern, other approved actions in response t
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system takes the appropriate action when the audit storage volume is full. 
+      <RawString>Verify the Ubuntu operating system takes the appropriate action when the audit storage volume is full.
 
 Check that the Ubuntu operating system takes the appropriate action when the audit storage volume is full with the following command:
 
@@ -1797,7 +1780,7 @@ Audit records can be generated from various components within the information sy
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify if the Ubuntu operating system generates audit records when successful/unsuccessful attempts to use of the "chfn" command occur. 
+      <RawString>Verify if the Ubuntu operating system generates audit records when successful/unsuccessful attempts to use of the "chfn" command occur.
 
 Check the configured audit rules with the following commands:
 
@@ -1904,9 +1887,9 @@ Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep setxattr
 
 -a always,exit -F arch=b32 -S setxattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b32 -S setxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b32 -S setxattr -F auid=0 -k perm_mod
 -a always,exit -F arch=b64 -S setxattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b64 -S setxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S setxattr -F auid=0 -k perm_mod
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
@@ -1929,7 +1912,7 @@ Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep lsetxattr
 
 -a always,exit -F arch=b32 -S lsetxattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b32 -S lsetxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b32 -S lsetxattr -F auid=0 -k perm_mod
 -a always,exit -F arch=b64 -S lsetxattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
 -a always,exit -F arch=b64 -S lsetxattr -F auid=0 -k perm_mod
 
@@ -1954,9 +1937,9 @@ Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep fsetxattr
 
 -a always,exit -F arch=b32 -S fsetxattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b32 -S fsetxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b32 -S fsetxattr -F auid=0 -k perm_mod
 -a always,exit -F arch=b64 -S fsetxattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S fsetxattr -F auid=0 -k perm_mod
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
@@ -1979,9 +1962,9 @@ Check the currently configured audit rules with the following command:
 # sudo auditctl -l | lremovexattr
 
 -a always,exit -F arch=b32 -S lremovexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b32 -S lremovexattr -F auid=0 -k perm_mod
 -a always,exit -F arch=b64 -S lremovexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S lremovexattr -F auid=0 -k perm_mod
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
@@ -2006,7 +1989,7 @@ Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep fremovexattr
 
 -a always,exit -F arch=b32 -S fremovexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b32 -S fremovexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b32 -S fremovexattr -F auid=0 -k perm_mod
 -a always,exit -F arch=b64 -S fremovexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
 -a always,exit -F arch=b64 -S fremovexattr -F auid=0 -k perm_mod
 
@@ -2184,7 +2167,7 @@ Check the configured audit rules with the following commands:
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
-Note: 
+Note:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
@@ -2351,7 +2334,7 @@ Audit records can be generated from various components within the information sy
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that an audit event is generated for any successful/unsuccessful use of the "sudo" command. 
+      <RawString>Verify that an audit event is generated for any successful/unsuccessful use of the "sudo" command.
 
 Check the configured audit rules with the following command:
 
@@ -2513,7 +2496,7 @@ Audit records can be generated from various components within the information sy
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that an audit event is generated for any successful/unsuccessful use of the "passwd" command. 
+      <RawString>Verify that an audit event is generated for any successful/unsuccessful use of the "passwd" command.
 
 Check the currently configured audit rules with the following command:
 
@@ -2553,7 +2536,7 @@ Audit records can be generated from various components within the information sy
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify that an audit event is generated for any successful/unsuccessful use of the "gpasswd" command. 
+      <RawString>Verify that an audit event is generated for any successful/unsuccessful use of the "gpasswd" command.
 
 Check the currently configured audit rules with the following command:
 
@@ -2710,9 +2693,9 @@ Check the currently configured audit rules with the following command:
 
 # sudo auditctl -l | grep execve
 
--a always,exit -F arch=b64 -S execve -C uid!=euid -F key=execpriv 
--a always,exit -F arch=b64 -S execve -C gid!=egid -F key=execpriv 
--a always,exit -F arch=b32 -S execve -C uid!=euid -F key=execpriv 
+-a always,exit -F arch=b64 -S execve -C uid!=euid -F key=execpriv
+-a always,exit -F arch=b64 -S execve -C gid!=egid -F key=execpriv
+-a always,exit -F arch=b32 -S execve -C uid!=euid -F key=execpriv
 -a always,exit -F arch=b32 -S execve -C gid!=egid -F key=execpriv
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
@@ -2740,7 +2723,7 @@ Check the configured audit rules with the following commands:
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
-Note: 
+Note:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
@@ -2763,7 +2746,7 @@ Check the configured audit rules with the following commands:
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
-Note: 
+Note:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
@@ -2786,7 +2769,7 @@ Check the configured audit rules with the following commands:
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
-Note: 
+Note:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
@@ -2811,7 +2794,7 @@ Check the configured audit rules with the following commands:
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
-Note: 
+Note:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
@@ -2836,7 +2819,7 @@ Check the configured audit rules with the following commands:
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
-Note: 
+Note:
 For 32-bit architectures, only the 32-bit specific output lines from the commands are required.
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
@@ -2933,7 +2916,7 @@ For 32-bit architectures, only the 32-bit specific output lines from the command
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-100805" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2944,7 +2927,7 @@ Audit records can be generated from various components within the information sy
 
 Check the currently configured audit rules with the following command:
 
-# sudo auditctl -l | grep -E 'init_module|finit_module' 
+# sudo auditctl -l | grep -E 'init_module|finit_module'
 
 always,exit -F arch=b32 -S init_module -S finit_module -k modules
 always,exit -F arch=b64 -S init_module -S finit_module -k modules
@@ -2956,7 +2939,7 @@ For 32-bit architectures, only the 32-bit specific output lines from the command
 The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
     <Rule id="V-100807" severity="medium" conversionstatus="pass" title="SRG-OS-000471-GPOS-00216" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one. 
+      <Description>&lt;VulnDiscussion&gt;Without generating audit records that are specific to the security and mission needs of the organization, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
 
 Audit records can be generated from various components within the information system (e.g., module or policy filter).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2967,7 +2950,7 @@ Audit records can be generated from various components within the information sy
 
 Check the currently configured audit rules with the following command:
 
-# sudo auditctl -l | grep -delete_module 
+# sudo auditctl -l | grep -delete_module
 
 always,exit -F arch=b32 -S delete_module -k modules
 always,exit -F arch=b64 -S delete_module -k modules
@@ -3182,7 +3165,7 @@ The session lock is implemented at the point where session activity can be deter
 
 Note: If the Ubuntu operating system does not have a Graphical User Interface installed, this requirement is Not Applicable.
 
-Get the ""lock-enabled"" setting to verify if the graphical user interface session has the lock enabled with the following command: 
+Get the ""lock-enabled"" setting to verify if the graphical user interface session has the lock enabled with the following command:
 
 # sudo gsettings get org.gnome.desktop.screensaver lock-enabled
 
@@ -3198,7 +3181,7 @@ The session lock is implemented at the point where session activity can be deter
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity. 
+      <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity.
 
 Check that the proper auto logout script exists with the following command:
 
@@ -3334,7 +3317,7 @@ ClientAliveCountMax 1
 If "ClientAliveCountMax" is not set, or not set to "1", or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100845" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element. 
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
 
 Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3409,7 +3392,7 @@ Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000384-GPOS-00167&lt;/VulnDiscussion
 
 Check which pkcs11 module is being used via the use_pkcs11_module in /etc/pam_pkcs11/pam_pkcs11.conf and then ensure "ca" is enabled in "cert_policy" with the following command:
 
-# sudo grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ca 
+# sudo grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ca
 
 cert_policy = ca,signature,ocsp_on;
 
@@ -3420,7 +3403,7 @@ If "cert_policy" is not set to "ca", or the line is commented out, this is a fin
 
 Multifactor authentication requires using two or more factors to achieve authentication.
 
-Factors include: 
+Factors include:
 1) something a user knows (e.g., password/PIN);
 2) something a user has (e.g., cryptographic identification device, token); and
 3) something a user is (e.g., biometric).
@@ -3505,7 +3488,7 @@ If the defined profiles do not match the organization's list of authorized softw
     <Rule id="V-100873" severity="medium" conversionstatus="pass" title="SRG-OS-000104-GPOS-00051" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;To assure accountability and prevent unauthenticated access, organizational users must be identified and authenticated to prevent potential misuse and compromise of the system.
 
-Organizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and processes acting on behalf of users) must be uniquely identified and authenticated to all accesses, except for the following: 
+Organizational users include organizational employees or individuals the organization deems to have equivalent status of employees (e.g., contractors). Organizational users (and processes acting on behalf of users) must be uniquely identified and authenticated to all accesses, except for the following:
 
 1) Accesses explicitly identified and documented by the organization. Organizations document specific user actions that can be performed on the information system without identification or authentication; and
 
@@ -3584,7 +3567,7 @@ Verify each of these accounts has an expiration date set within 72 hours of acco
 If any temporary account does not expire within 72 hours of that account's creation, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100883" severity="medium" conversionstatus="pass" title="SRG-OS-000142-GPOS-00071" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;DoS is a condition when a resource is not available for legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity. 
+      <Description>&lt;VulnDiscussion&gt;DoS is a condition when a resource is not available for legitimate users. When this occurs, the organization either cannot accomplish its mission or must operate at degraded capacity.
 
 Managing excess capacity ensures that sufficient capacity is available to counter flooding attacks. Employing increased capacity and service redundancy may reduce the susceptibility to some DoS attacks. Managing excess capacity may include, for example, establishing selected usage priorities, quotas, or partitioning.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3664,7 +3647,7 @@ Time stamps generated by the operating system include date and time. Time is com
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>The time zone must be configured to use Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT). To verify run the following command. 
+      <RawString>The time zone must be configured to use Coordinated Universal Time (UTC) or Greenwich Mean Time (GMT). To verify run the following command.
 
 # sudo timedatectl status | grep -i "time zone"
 Timezone: UTC (UTC, +0000)
@@ -3698,7 +3681,7 @@ Chain FORWARD (policy ACCEPT 0 packets, 0 bytes)
 Chain OUTPUT (policy ACCEPT 0 packets, 0 bytes)
  pkts bytes target prot opt in out source destination
 
-Ask the system administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM Component Local Services Assessment (CLSA). 
+Ask the system administrator for the site or program PPSM CLSA. Verify the services allowed by the firewall match the PPSM Component Local Services Assessment (CLSA).
 
 If there are any additional ports, protocols, or services that are not included in the PPSM CLSA, this is a finding.
 
@@ -3731,32 +3714,6 @@ Check the selection lines that aide is configured to add/check with the followin
 /sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512
 
 If any of the seven audit tools does not have an appropriate selection line, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100897" severity="medium" conversionstatus="pass" title="SRG-OS-000297-GPOS-00115" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
-
-Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
-
-Ubuntu operating system functionality (e.g., RDP) must be capable of taking enforcement action if the audit reveals unauthorized activity. Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Uncomplicated Firewall is enabled on the system by running the following command:
-
-# systemctl is-enabled ufw
-
-If the above command returns the status as "disabled", this is a finding.
-
-Verify the Uncomplicated Firewall is active on the system by running the following command:
-
-# sudo systemctl is-active ufw
-
-If the above command returns 'inactive' or any kind of error, this is a finding.
-
-If the Uncomplicated Firewall is not installed ask the System Administrator if another application firewall is installed. 
-
-If no application firewall is installed this is a finding.</RawString>
     </Rule>
     <Rule id="V-100899" severity="medium" conversionstatus="pass" title="SRG-OS-000363-GPOS-00150" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Unauthorized changes to the baseline configuration could make the system vulnerable to various attacks or allow unauthorized access to the Ubuntu operating system. Changes to Ubuntu operating system configurations can have unintended side effects, some of which may be relevant to security.
@@ -3817,7 +3774,7 @@ Check that the no-execution bit flag is set with the following commands:
 # dmesg | grep -i "execute disable"
 [ 0.000000] NX (Execute Disable) protection: active
 
-If "dmesg" does not show "NX (Execute Disable) protection: active", check the cpuinfo settings with the following command: 
+If "dmesg" does not show "NX (Execute Disable) protection: active", check the cpuinfo settings with the following command:
 
 # grep flags /proc/cpuinfo | grep -w nx | sort -u
 flags : fpu vme de pse tsc ms nx rdtscp lm constant_tsc
@@ -3907,9 +3864,9 @@ Check the currently configured audit rules with the following command:
 # sudo auditctl -l | grep perm_mod
 
 -a always,exit -F arch=b32 -S removexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b32 -S removexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b32 -S removexattr -F auid=0 -k perm_mod
 -a always,exit -F arch=b64 -S removexattr -F auid&gt;=1000 -F auid!=-1 -k perm_mod
--a always,exit -F arch=b64 -S removexattr -F auid=0 -k perm_mod 
+-a always,exit -F arch=b64 -S removexattr -F auid=0 -k perm_mod
 
 If the command does not return lines that match the example or the lines are commented out, this is a finding.
 
@@ -3947,7 +3904,7 @@ Peripherals include, but are not limited to, such devices as flash drives, exter
       <OrganizationValueTestString />
       <RawString>Verify that Ubuntu operating system disables ability to load the USB storage kernel module.
 
-# grep usb-storage /etc/modprobe.d/* | grep "/bin/true" 
+# grep usb-storage /etc/modprobe.d/* | grep "/bin/true"
 
 install usb-storage /bin/true
 
@@ -4025,8 +3982,8 @@ root 7614 1 2 08:20 ? 00:00:02 /opt/isec/ens/threatprevention/bin/isectpd
 
 If the daemon is not running, then this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100547" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxPackage">
-      <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system. 
+    <Rule id="V-100547.a" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxPackage">
+      <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system.
 
 Preserving operating system state information helps to facilitate operating system restart and return to the operational mode of the organization with least disruption to mission/business processes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -4115,7 +4072,7 @@ ii libpam-pwquality:amd64 1.4.0-2 amd64 PAM module to check password strength
 
 If "libpam-pwquality" is not installed, this is a finding.
 
-Verify the operating system uses "pwquality" to enforce the password complexity rules. 
+Verify the operating system uses "pwquality" to enforce the password complexity rules.
 
 Verify the pwquality module is being enforced by the Ubuntu Operating System, by running the following command:
 
@@ -4134,7 +4091,7 @@ password requisite pam_pwquality.so retry=3
 If no output is returned or the line is commented out, this is a finding.
 If the value of "retry" is set to "0" or greater than "3", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100677" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxPackage">
+    <Rule id="V-100677.a" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Without establishing the when, where, type, source, and outcome of events that occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
 
 Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
@@ -4154,7 +4111,7 @@ Satisfies: SRG-OS-000038-GPOS-00016, SRG-OS-000039-GPOS-00017, SRG-OS-000040-GPO
       <Name>auditd</Name>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the audit service is configured to produce audit records. 
+      <RawString>Verify the audit service is configured to produce audit records.
 
 Check that the audit service is installed properly with the following command:
 
@@ -4194,9 +4151,9 @@ Satisfies: SRG-OS-000030-GPOS-00011, SRG-OS-000031-GPOS-00012&lt;/VulnDiscussion
 If "vlock" is not installed, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100849" severity="high" conversionstatus="pass" title="SRG-OS-000423-GPOS-00187" dscresource="nxPackage">
-      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered. 
+      <Description>&lt;VulnDiscussion&gt;Without protection of the transmitted information, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read or altered.
 
-This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification. 
+This requirement applies to both internal and external networks and all types of information system components from which information can be transmitted (e.g., servers, mobile devices, notebook computers, printers, copiers, scanners, and facsimile machines). Communication paths outside the physical protection of a controlled boundary are exposed to the possibility of interception and modification.
 
 Protecting the confidentiality and integrity of organizational information can be accomplished by physical means (e.g., employing physical distribution systems) or by logical means (e.g., employing cryptographic techniques). If physical means of protection are employed, then logical means (cryptography) do not have to be employed, and vice versa.
 
@@ -4290,7 +4247,7 @@ Check that "Pam_Apparmor" is installed on the system with the following command:
 
 # dpkg -l | grep -i apparmor
 
-ii libpam-apparmor 2.10.95-0Ubuntu2.6 
+ii libpam-apparmor 2.10.95-0Ubuntu2.6
 
 If the "Pam_Apparmor" package is not installed, this is a finding.
 
@@ -4302,7 +4259,7 @@ If something other than "Active: active" is returned, this is a finding.
 
 Note: Pam_Apparmor must have properly configured profiles. All configurations will be based on the actual system setup and organization. See the "Pam_Apparmor" documentation for more information on configuring profiles.</RawString>
     </Rule>
-    <Rule id="V-100869" severity="medium" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="nxPackage">
+    <Rule id="V-100869.a" severity="medium" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Control of program execution is a mechanism used to prevent execution of unauthorized programs. Some operating systems may provide a capability that runs counter to the mission or provides users with functionality that exceeds mission requirements. This includes functions and services installed at the operating system level.
 
 Some of the programs, installed by default, may be harmful or may not be necessary to support essential organizational operations (e.g., key missions, functions). Removal of executable programs is not always possible; therefore, establishing a method of preventing program execution is critical to maintaining a secure system baseline.
@@ -4352,11 +4309,174 @@ Check that the AIDE package is installed with the following command:
 
 aide/xenial,now 0.16~a2.git20130520-3 amd64 [installed]
 
-If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system. 
+If AIDE is not installed, ask the System Administrator how file integrity checks are performed on the system.
 
 If there is no application installed to perform integrity checks, this is a finding.</RawString>
     </Rule>
   </nxPackageRule>
+  <nxServiceRule dscresourcemodule="">
+    <Rule id="V-100547.b" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system.
+
+Preserving operating system state information helps to facilitate operating system restart and return to the operational mode of the organization with least disruption to mission/business processes.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>rsyslog</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the log service is configured to collect system failure events.
+
+Check that the log service is installed properly with the following command:
+
+# dpkg -l | grep rsyslog
+
+ii rsyslog 8.32.0-1ubuntu4 amd64 reliable system and kernel logging daemon
+
+If the "rsyslog" package is not installed, this is a finding.
+
+Check that the log service is enabled with the following command:
+
+# sudo systemctl is-enabled rsyslog
+
+enabled
+
+If the command above returns "disabled", this is a finding.
+
+Check that the log service is properly running and active on the system with the following command:
+
+# systemctl is-active rsyslog
+
+active
+
+If the command above returns "inactive", this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-100677.b" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Without establishing the when, where, type, source, and outcome of events that occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
+
+Without the capability to generate audit records, it would be difficult to establish, correlate, and investigate the events relating to an incident or identify those responsible for one.
+
+Audit record content that may be necessary to satisfy this requirement includes, for example, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, filenames involved, and access control or flow control rules invoked.
+
+Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
+
+Successful incident response and auditing relies on timely, accurate system information and analysis in order to allow the organization to identify and respond to potential incidents in a proficient manner. If the operating system does not provide the ability to centrally review the operating system logs, forensic analysis is negatively impacted.
+
+Associating event types with detected events in the Ubuntu operating system audit logs provides a means of investigating an attack; recognizing resource utilization or capacity thresholds; or identifying an improperly configured operating system.
+
+Satisfies: SRG-OS-000038-GPOS-00016, SRG-OS-000039-GPOS-00017, SRG-OS-000040-GPOS-00018, SRG-OS-000041-GPOS-00019, SRG-OS-000042-GPOS-00020, SRG-OS-000042-GPOS-00021, SRG-OS-000051-GPOS-00024, SRG-OS-000054-GPOS-00025, SRG-OS-000062-GPOS-00031, SRG-OS-000122-GPOS-00063, SRG-OS-000337-GPOS-00129, SRG-OS-000348-GPOS-00136, SRG-OS-000349-GPOS-00137, SRG-OS-000350-GPOS-00138, SRG-OS-000351-GPOS-00139, SRG-OS-000352-GPOS-00140, SRG-OS-000365-GPOS-00152, SRG-OS-000392-GPOS-00172, SRG-OS-000475-GPOS-00220&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>auditd.service</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the audit service is configured to produce audit records.
+
+Check that the audit service is installed properly with the following command:
+
+# dpkg -l | grep auditd
+
+If the "auditd" package is not installed, this is a finding.
+
+Check that the audit service is enabled with the following command:
+
+# systemctl is-enabled auditd.service
+
+If the command above returns "disabled", this is a finding.
+
+Check that the audit service is properly running and active on the system with the following command:
+
+# systemctl is-active auditd.service
+active
+
+If the command above returns "inactive", this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-100869.b" severity="medium" conversionstatus="pass" title="SRG-OS-000368-GPOS-00154" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Control of program execution is a mechanism used to prevent execution of unauthorized programs. Some operating systems may provide a capability that runs counter to the mission or provides users with functionality that exceeds mission requirements. This includes functions and services installed at the operating system level.
+
+Some of the programs, installed by default, may be harmful or may not be necessary to support essential organizational operations (e.g., key missions, functions). Removal of executable programs is not always possible; therefore, establishing a method of preventing program execution is critical to maintaining a secure system baseline.
+
+Methods for complying with this requirement include restricting execution of programs in certain environments, while preventing execution in other environments; or limiting execution of certain program functionality based on organization-defined criteria (e.g., privileges, subnets, sandboxed environments, or roles).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>apparmor.service</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system prevents program execution in accordance with local policies.
+
+Check that apparmor is installed and active by running the following command:
+
+# dpkg -l | grep apparmor
+
+If the "apparmor" package is not installed, this is a finding.
+
+#systemctl is-active apparmor.service
+
+active
+
+If "active" is not returned, this is a finding.
+
+#systemctl is-enabled apparmor.service
+
+enabled
+
+If "enabled" is not returned, then this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+    <Rule id="V-100893" severity="medium" conversionstatus="pass" title="SRG-OS-000184-GPOS-00078" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Kernel core dumps may contain the full contents of system memory at the time of the crash. Kernel core dumps may consume a considerable amount of disk space and may result in denial of service by exhausting the available space on the target file system partition.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>False</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>kdump.service</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that kernel core dumps are disabled unless needed.
+
+Check if "kdump" service is active with the following command:
+
+# systemctl is-active kdump.service
+inactive
+
+If the "kdump" service is active, ask the System Administrator if the use of the service is required and documented with the Information System Security Officer (ISSO).
+
+If the service is active and is not documented, this is a finding.</RawString>
+      <State />
+    </Rule>
+    <Rule id="V-100897" severity="medium" conversionstatus="pass" title="SRG-OS-000297-GPOS-00115" dscresource="nxService">
+      <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated control capabilities, increase risk and make remote user access management difficult at best.
+
+Remote access is access to DoD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless.
+
+Ubuntu operating system functionality (e.g., RDP) must be capable of taking enforcement action if the audit reveals unauthorized activity. Automated control of remote access sessions allows organizations to ensure ongoing compliance with remote access policies by enforcing connection rules of remote access applications on a variety of information system components (e.g., servers, workstations, notebook computers, smartphones, and tablets).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <Enabled>True</Enabled>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <Name>ufw.service</Name>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Uncomplicated Firewall is enabled on the system by running the following command:
+
+# systemctl is-enabled ufw
+
+If the above command returns the status as "disabled", this is a finding.
+
+Verify the Uncomplicated Firewall is active on the system by running the following command:
+
+# sudo systemctl is-active ufw
+
+If the above command returns 'inactive' or any kind of error, this is a finding.
+
+If the Uncomplicated Firewall is not installed ask the System Administrator if another application firewall is installed.
+
+If no application firewall is installed this is a finding.</RawString>
+      <State>Running</State>
+    </Rule>
+  </nxServiceRule>
   <PermissionRule dscresourcemodule="AccessControlDsc">
     <Rule id="V-100603" severity="medium" conversionstatus="fail" title="SRG-OS-000205-GPOS-00083" dscresource="">
       <AccessControlEntry />
@@ -4371,7 +4491,7 @@ Organizations carefully consider the structure/content of error messages. The ex
       <Path />
       <RawString>Verify the Ubuntu operating system has all system log files under the /var/log directory with a permission set to 640, by using the following command:
 
-# sudo find /var/log -perm /137 -type f -exec stat -c "%n %a" {} \; 
+# sudo find /var/log -perm /137 -type f -exec stat -c "%n %a" {} \;
 
 If command displays any output, this is a finding.</RawString>
     </Rule>
@@ -4414,7 +4534,7 @@ Satisfies: SRG-OS-000256-GPOS-00097, SRG-OS-000257-GPOS-00098, SRG-OS-000258-GPO
       <RawString>Verify the audit tools are protected from unauthorized access, deletion, or modification by checking the permissive mode.
 
 For each audit tool,
-/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules 
+/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules
 
 Check the permissions by running the following command:
 
@@ -4435,7 +4555,7 @@ If any of the audit tools have a mode more permissive than 0755, this is a findi
       <Path />
       <RawString>Verify the Ubuntu operating system defines default permissions for all authenticated users in such a way that the user can only read and modify their own files.
 
-Check that the Ubuntu operating system defines default permissions for all authenticated users with the following command: 
+Check that the Ubuntu operating system defines default permissions for all authenticated users with the following command:
 
 # grep -i "umask" /etc/login.defs
 
