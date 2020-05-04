@@ -104,7 +104,7 @@ PrivateData = @{
     PSData = @{
 
         # Tags applied to this module. These help with module discovery in online galleries.
-        Tags = 'DSC','DesiredStateConfiguration','STIG','PowerStig'
+        Tags = 'PSModule','DSC','DesiredStateConfiguration','STIG','PowerStig'
 
         # A URL to the license for this module.
         LicenseUri = 'https://github.com/Microsoft/PowerStig/blob/master/LICENSE'
