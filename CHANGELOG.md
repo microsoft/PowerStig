@@ -1,6 +1,7 @@
 # Versions
 
 ## Unreleased
+* Fixed [#610](https://github.com/microsoft/PowerStig/issues/610): PowerShell package cannot be found in offline repository. Added package missing PSModule tag.
 
 ## 4.3.0
 
