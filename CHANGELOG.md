@@ -4,6 +4,7 @@
 
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
+* Fixed PowerShell package cannot be found in offline repository. Added package missing PSModule tag: [#610](https://github.com/microsoft/PowerStig/issues/610): 
 
 ## [4.3.0] - 2020-03-27
 
