@@ -11,20 +11,40 @@
 function Get-nxFileLineContainsLine
 {
     [CmdletBinding()]
-    [OutputType([string])]
+    [OutputType([string[]])]
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
+        [string[]]
         $FixText
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     try
     {
-        $null = $FixText -match $regularExpression.nxFileLineContainsLine
-        $nxFileLineContainsLine = $Matches['']
-        return $nxFileLineContainsLine
+        $startLineNumber = ($FixText | Select-String -Pattern $regularExpression.nxFileLineContainsLineStart).LineNumber
+        $stopLineNumber = $FixText[$startLineNumber..($FixText.Length - 1)] | Select-String -Pattern $regularExpression.nxFileLineContainsLineStop
+        if ($null -eq $stopLineNumber)
+        {
+            $stopLineNumber = $FixText.Length - 1
+        }
+        else
+        {
+            $stopLineNumber = $stopLineNumber.LineNumber
+        }
+
+        if ($startLineNumber -gt $stopLineNumber)
+        {
+            return $FixText[$FixText.Length - 1]
+        }
+
+        $nxFileLineContains = @()
+        foreach ($line in $FixText[$startLineNumber..$stopLineNumber])
+        {
+            $nxFileLineContains += $line
+        }
+
+        return $nxFileLineContains
     }
     catch
     {
@@ -54,10 +74,7 @@ function Get-nxFileLineFilePath
     try
     {
         $null = $FixText -match $regularExpression.nxFileLineFilePath
-        switch ($Matches[''])
-        {
-            default   {return $null}
-        }
+        return $Matches['filePath']
     }
     catch
     {
@@ -81,7 +98,7 @@ function Get-nxFileLineDoesNotContainPattern
     param
     (
         [Parameter(Mandatory = $true)]
-        [string]
+        [string[]]
         $FixText
     )
 

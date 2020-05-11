@@ -58,7 +58,7 @@ class nxFileLineRuleConvert : nxFileLineRule
             Gets the line to be modified from the xccdf content and sets the value. If
             the name that is returned is not valid, the parser status is set to fail.
     #>
-    [void] SetContainsLine ([string] $FixText)
+    [void] SetContainsLine ([string[]] $FixText)
     {
         $containsLine = Get-nxFileLineContainsLine -FixText $FixText
 
@@ -115,13 +115,32 @@ class nxFileLineRuleConvert : nxFileLineRule
 
     <#
         .SYNOPSIS
-            Tests if a rule contains multiple checks.
+            Tests if a rule contains multiple checks
         .DESCRIPTION
-            Search the rule text to determine if multiple rules are defined.
+            Search the rule text to determine if multiple ContainLines are defined
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
     #>
-    [bool] HasMultipleRules ()
+    static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return $false
+        return Test-MultipleRegistryEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent))
+    }
+
+    <#
+        .SYNOPSIS
+            Splits a rule into multiple checks
+        .DESCRIPTION
+            Once a rule has been found to have multiple checks, the rule needs
+            to be split. Each split rule id is appended with a dot and letter to
+            keep reporting per the ID consistent. An example would be is V-1000
+            contained 2 checks, then SplitMultipleRules would return 2 objects
+            with rule ids V-1000.a and V-1000.b
+        .PARAMETER CheckContent
+            The rule text from the check-content element in the xccdf
+    #>
+    static [string[]] SplitMultipleRules ([string] $CheckContent)
+    {
+        return (Split-MultipleRegistryEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     hidden [void] SetDscResource ()
