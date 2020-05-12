@@ -55,7 +55,6 @@ RequiredModules  = @(
     @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'}
     @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '12.0.0.15939648'}
     @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '12.0.0.15940185'}
-    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
 )
 
 # DSC resources to export from this module
