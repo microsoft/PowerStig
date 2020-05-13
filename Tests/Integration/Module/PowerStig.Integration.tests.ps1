@@ -48,7 +48,7 @@ Describe "$moduleName module" {
     Context 'Import PowerSTIG should not throw' {
 
         It "Should not throw and error" {
-        Import-Module PowerSTIG | Should -Not -Throw
+        {Import-Module PowerSTIG} | Should -Not -Throw
         }
     }
 }
