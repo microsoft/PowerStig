@@ -44,4 +44,11 @@ Describe "$moduleName module" {
             $compare.Count | Should Be 0
         }
     }
+
+    Context 'Import PowerSTIG should not throw' {
+
+        It "Should not throw and error" {
+        Import-Module PowerSTIG | Should -Not -Throw
+        }
+    }
 }

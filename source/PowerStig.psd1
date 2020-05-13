@@ -48,13 +48,6 @@ RequiredModules  = @(
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
     @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
-    @{ModuleName = 'VMware.VimAutomation.Sdk'; ModuleVersion = '12.0.0.15939651'}
-    @{ModuleName = 'VMware.VimAutomation.Common'; ModuleVersion = '12.0.0.15939652'}
-    @{ModuleName = 'VMware.Vim'; ModuleVersion ='7.0.0.15939650'}
-    @{ModuleName = 'VMware.VimAutomation.Cis.Core'; ModuleVersion = '12.0.0.15939657'}
-    @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'}
-    @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '12.0.0.15939648'}
-    @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '12.0.0.15940185'}
 )
 
 # DSC resources to export from this module
@@ -96,6 +89,9 @@ VariablesToExport = @()
 
 # Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
 AliasesToExport = @()
+
+# Script files (.ps1) that are run in the caller's environment prior to importing this module.
+ScriptsToProcess = '.\Module\PowerStig.ModuleHelper.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
