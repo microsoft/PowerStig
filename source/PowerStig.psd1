@@ -91,7 +91,7 @@ VariablesToExport = @()
 AliasesToExport = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = '.\Module\PowerStig.ModuleHelper.ps1'
+ScriptsToProcess = 'PowerStig.ModuleHelper.ps1'
 
 # Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
 PrivateData = @{
