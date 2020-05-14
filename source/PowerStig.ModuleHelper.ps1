@@ -13,15 +13,18 @@ $requiredmodules = @(
     @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
 )
 
-foreach($module in $requiredmodules)
+try
 {
-    if(Get-Module -ListAvailable -Name $($module.ModuleName))
+    foreach ($module in $requiredmodules)
     {
-        import-module -Name $module.ModuleName -version $module.ModuleVersion
-    }
-    else
-    {
-        Write-Error -Message "$($module.ModuleName) Version: $($module.ModuleVersion) is not installed, please install and try again."
-        break
+        if (Get-Module -ListAvailable -Name $module.ModuleName)
+        {
+            Import-Module -Name $module.ModuleName -Version $module.ModuleVersion -ErrorAction Stop
+        }
     }
 }
+catch
+{
+    Write-Error -Message "$($module.ModuleName) Version: $($module.ModuleVersion) is not installed, please install and try again."
+}
+
