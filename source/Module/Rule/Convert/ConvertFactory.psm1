@@ -316,8 +316,8 @@ class ConvertFactory
             }
             {[nxFileLineRuleConvert]::Match($PSItem)}
             {
-                $null = $ruleTypeList.Add(
-                    [nxFileLineRuleConvert]::new($Rule).AsRule()
+                $null = $ruleTypeList.AddRange(
+                    [SplitFactory]::XccdfRule($Rule, 'nxFileLineRuleConvert')
                 )
             }
             <#

@@ -39,10 +39,10 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     nxFileLineRuleConvert ([xml.xmlelement] $XccdfRule) : base ($XccdfRule, $true)
     {
-        $fixText = [nxFileLineRule]::GetFixText($XccdfRule)
-        $this.SetContainsLine($fixText)
-        $this.SetFilePath($fixText)
-        $this.SetDoesNotContainPattern($fixText)
+        $rawString = $this.SplitCheckContent
+        $this.SetFilePath($rawString)
+        $this.SetContainsLine($rawString)
+        $this.SetDoesNotContainPattern($rawString)
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
