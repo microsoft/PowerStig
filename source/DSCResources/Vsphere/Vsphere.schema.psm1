@@ -102,7 +102,7 @@ configuration Vsphere
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName Vmware.vSphereDSC -ModuleVersion 2.1.0.58
+    Import-DscResource -ModuleName Vmware.vSphereDSC -ModuleVersion 2.0.0.0
     . "$resourcePath\Vsphere.VmHostAcceptanceLevel.ps1"
     . "$resourcePath\Vsphere.VmHostAdvancedSettings.ps1"
     . "$resourcePath\Vsphere.VMHostNtpSettings.ps1"
