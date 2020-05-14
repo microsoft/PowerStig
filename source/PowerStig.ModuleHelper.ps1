@@ -17,7 +17,7 @@ foreach($module in $requiredmodules)
 {
     if(Get-Module -ListAvailable -Name $module.ModuleName)
     {
-        import-module -Name $module.ModuleName -version $module.ModuleVersion -ErrorAction Stop
+        import-module -Name $module.ModuleName -version $module.ModuleVersion
     }
     else
     {
