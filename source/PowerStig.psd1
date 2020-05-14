@@ -26,7 +26,7 @@ Description = 'The PowerStig module provides a set of PowerShell classes to acce
 2. Ignoring a single or entire class of rules (auto-documenting)
 3. Organizational settings to address STIG rules that have allowable ranges.
 
-This module is intended to be used by additional automation as a lightweight portable “database” to audit and enforce the parsed STIG data.'
+This module is intended to be used by additional automation as a lightweight portable database to audit and enforce the parsed STIG data.'
 
 # Minimum version of the Windows PowerShell engine required by this module
 PowerShellVersion = '5.1'
@@ -47,12 +47,15 @@ RequiredModules  = @(
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
-    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'},
+    @{ModuleName = 'xWebAdministration'; ModuleVersion = '2.5.0.0'}
     @{ModuleName = 'VMware.VimAutomation.Sdk'; ModuleVersion = '12.0.0.15939651'},
+    @{ModuleName = 'VMware.VimAutomation.Common'; ModuleVersion = '12.0.0.15939652'}
+    @{ModuleName = 'VMware.Vim'; ModuleVersion ='7.0.0.15939650'},
+    @{ModuleName = 'VMware.VimAutomation.Cis.Core'; ModuleVersion = '12.0.0.15939657'},
     @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'},
     @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '12.0.0.15939648'},
     @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '12.0.0.15940185'},
-    @{ModuleName = 'VMware.VsphereDsc'; ModuleVersion = '2.0.0.0'}
+    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.0.0.0'}
 )
 
 # DSC resources to export from this module
