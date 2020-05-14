@@ -8,14 +8,9 @@ Describe "$moduleName module" {
         (Get-Module -Name $script:modulePath -ListAvailable).ModuleType | Should Be 'Script'
     }
 
-    $compositeModulePaths = (Get-ChildItem -Path  $script:dscCompositePath -Include '*schema.psm1' -exclude "*Vsphere*" -Recurse).FullName
+    $compositeModulePaths = (Get-ChildItem -Path  $script:dscCompositePath -Include '*schema.psm1' -Recurse).FullName
     $manifestRequiredModules = (Import-PowerShellDataFile -Path $script:modulePath).RequiredModules |
         ForEach-Object -Process {[pscustomobject]$PSItem}
-
-    #$vsphereRequiredModuleVersion = (Get-Content (Get-Childitem -path $script:moduleroot -Include "*ModuleHelper.ps1" -recurse) |
-    #    Select-String -pattern "(?<=Dsc'; ModuleVersion = ')(.*\w)").Matches.Value
-    #$vsphereRequiredModule = New-Object -TypeName psobject –Property @{ModuleName = "Vmware.VsphereDsc";ModuleVersion = $vsphereRequiredModuleVersion}
-    #$manifestRequiredModules += $vsphereRequiredModule
 
     foreach ($compositeModule in $compositeModulePaths)
     {
