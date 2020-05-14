@@ -247,14 +247,6 @@ Begin
     'DscResource.Test'              = 'latest'
     'DscResource.AnalyzerRules'     = 'latest'
     'powershell-yaml'               = 'latest'
-    'VMware.VimAutomation.Sdk'      = '12.0.0.15939651'
-    'VMware.VimAutomation.Common'   = '12.0.0.15939652'
-    'VMware.Vim'                    = '7.0.0.15939650'
-    'VMware.VimAutomation.Cis.Core' = '12.0.0.15939657'
-    'VMware.VimAutomation.Core'     = '12.0.0.15939655'
-    'VMware.VimAutomation.Storage'  = '12.0.0.15939648'
-    'VMware.VimAutomation.Vds'      = '12.0.0.15940185'
-    'Vmware.vSphereDsc'             = '2.1.0.58'
     # The modules below are dynamically inserted from the Begin block of .\build.ps1
 
 '@
