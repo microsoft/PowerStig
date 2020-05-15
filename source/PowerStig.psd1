@@ -53,9 +53,9 @@ RequiredModules  = @(
     @{ModuleName = 'VMware.Vim'; ModuleVersion ='7.0.0.15939650'},
     @{ModuleName = 'VMware.VimAutomation.Cis.Core'; ModuleVersion = '12.0.0.15939657'},
     @{ModuleName = 'VMware.VimAutomation.Core'; ModuleVersion = '12.0.0.15939655'},
-    @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '12.0.0.15939648'},
-    @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '12.0.0.15940185'},
-    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.0.0.0'}
+    @{ModuleName = 'VMware.VimAutomation.Storage'; ModuleVersion = '11.5.0.14901686'},
+    @{ModuleName = 'VMware.VimAutomation.Vds'; ModuleVersion = '11.2.0.12483615'},
+    @{ModuleName = 'Vmware.vSphereDsc'; ModuleVersion = '2.1.0.58'}
 )
 
 # DSC resources to export from this module
