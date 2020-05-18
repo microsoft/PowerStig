@@ -59,9 +59,9 @@ class nxFileLineRuleConvert : nxFileLineRule
             Gets the line to be modified from the xccdf content and sets the value. If
             the name that is returned is not valid, the parser status is set to fail.
     #>
-    [void] SetContainsLine ([string[]] $FixText)
+    [void] SetContainsLine ([string[]] $CheckContent)
     {
-        $containsLine = Get-nxFileLineContainsLine -FixText $FixText
+        $containsLine = Get-nxFileLineContainsLine -CheckContent $CheckContent
 
         if (-not $this.SetStatus($containsLine))
         {
@@ -76,9 +76,9 @@ class nxFileLineRuleConvert : nxFileLineRule
             Gets the file path from the xccdf content and sets the value. If
             the path that is returned is not valid, the parser status is set to fail.
     #>
-    [void] SetFilePath ([string] $FixText)
+    [void] SetFilePath ([string] $CheckContent)
     {
-        $filePath = Get-nxFileLineFilePath -FixText $FixText
+        $filePath = Get-nxFileLineFilePath -CheckContent $CheckContent
 
         if (-not $this.SetStatus($filePath))
         {
@@ -94,9 +94,9 @@ class nxFileLineRuleConvert : nxFileLineRule
             the DoesNotContainPattern that is returned is not valid, the parser status
             is set to fail.
     #>
-    [void] SetDoesNotContainPattern ([string] $FixText)
+    [void] SetDoesNotContainPattern ([string] $CheckContent)
     {
-        $doesNotContainPattern = Get-nxFileLineDoesNotContainPattern -FixText $FixText
+        $doesNotContainPattern = Get-nxFileLineDoesNotContainPattern -CheckContent $CheckContent
 
         if (-not $this.SetStatus($doesNotContainPattern))
         {

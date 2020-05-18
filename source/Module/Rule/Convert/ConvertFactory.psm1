@@ -340,8 +340,8 @@ class ConvertFactory
          <#
             Rules can be split into multiple rules of multiple types, so the list
             of Id's needs to be validated to be unique. Split factory initially
-            split the "id" as well as the convertfactory, removed this code from
-            splitfactory as it was redundant.
+            split the "id" as well as the ConvertFactory, removed this code from
+            SplitFactory as it was redundant.
          #>
         $ruleCount = $ruleTypeList | Measure-Object
         $uniqueRuleCount = $ruleTypeList | Select-Object -Property Id -Unique | Measure-Object

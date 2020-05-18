@@ -16,35 +16,13 @@ function Get-nxFileLineContainsLine
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $FixText
+        $CheckContent
     )
 
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     try
     {
-        $startLineNumber = ($FixText | Select-String -Pattern $regularExpression.nxFileLineContainsLineStart).LineNumber
-        $stopLineNumber = $FixText[$startLineNumber..($FixText.Length - 1)] | Select-String -Pattern $regularExpression.nxFileLineContainsLineStop
-        if ($null -eq $stopLineNumber)
-        {
-            $stopLineNumber = $FixText.Length - 1
-        }
-        else
-        {
-            $stopLineNumber = $stopLineNumber.LineNumber
-        }
-
-        if ($startLineNumber -gt $stopLineNumber)
-        {
-            return $FixText[$FixText.Length - 1]
-        }
-
-        $nxFileLineContains = @()
-        foreach ($line in $FixText[$startLineNumber..$stopLineNumber])
-        {
-            $nxFileLineContains += $line
-        }
-
-        return $nxFileLineContains
+        $CheckContent
     }
     catch
     {
@@ -68,12 +46,12 @@ function Get-nxFileLineFilePath
     (
         [Parameter(Mandatory = $true)]
         [string]
-        $FixText
+        $CheckContent
     )
 
     try
     {
-        $null = $FixText -match $regularExpression.nxFileLineFilePath
+        $null = $CheckContent -match $regularExpression.nxFileLineFilePath
         return $Matches['filePath']
     }
     catch
@@ -99,12 +77,12 @@ function Get-nxFileLineDoesNotContainPattern
     (
         [Parameter(Mandatory = $true)]
         [string[]]
-        $FixText
+        $CheckContent
     )
 
     try
     {
-        $null = $FixText -match $regularExpression.nxFileLineDoesNotContainPattern
+        $null = $CheckContent -match $regularExpression.nxFileLineDoesNotContainPattern
         switch ($Matches[''])
         {
             default {return $null}
@@ -178,14 +156,14 @@ function Split-nxFileLineMultipleEntries
     $splitLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
     for ($i = 0; $i -lt $splitLineNumber.Count; $i++)
     {
-        $headLineNumber = $splitLineNumber[$i] - 1
+        $headLineNumber = $splitLineNumber[$i] - 2
         if ($i -eq ($splitLineNumber.Count - 1))
         {
             $footLineNumber = $CheckContent.Count - 1
         }
         else
         {
-            $footLineNumber = $splitLineNumber[$i + 1] - 2
+            $footLineNumber = $splitLineNumber[$i + 1] - 3
         }
 
         $ruleRange = $headLineNumber..$footLineNumber
