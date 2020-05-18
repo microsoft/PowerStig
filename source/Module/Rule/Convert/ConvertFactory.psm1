@@ -59,7 +59,6 @@ class SplitFactory
         {
             $splitMultipleRules = $instance.GetType().GetMethod('SplitMultipleRules')
             [string[]] $splitRules = $splitMultipleRules.Invoke($splitMultipleRules, $Rule.rule.Check.'check-content')
-            [int] $byte = 97
             foreach ($splitRule in $splitRules)
             {
                 <#
@@ -68,8 +67,6 @@ class SplitFactory
                 #>
                 $newRule = $Rule.Clone()
                 $newRule.rule.Check.'check-content' = $splitRule
-                $newRule.Id = "$($Rule.id).$([CHAR][BYTE]$byte)"
-                $byte ++
                 $ruleList += (New-Object -TypeName $TypeName -ArgumentList $newRule).AsRule()
             }
         }
@@ -342,17 +339,17 @@ class ConvertFactory
 
          <#
             Rules can be split into multiple rules of multiple types, so the list
-            of Id's needs to be validated to be unique.
+            of Id's needs to be validated to be unique. Split factory initially
+            split the "id" as well as the convertfactory, removed this code from
+            splitfactory as it was redundant.
          #>
+        $ruleCount = $ruleTypeList | Measure-Object
+        $uniqueRuleCount = $ruleTypeList | Select-Object -Property Id -Unique | Measure-Object
 
-        $ruleCount = ($ruleTypeList | Measure-Object).count
-        $uniqueRuleCount = ($ruleTypeList |
-            Select-Object -Property Id -Unique |
-                Measure-Object).count
-
-        if ($uniqueRuleCount -ne $ruleCount)
+        if ($uniqueRuleCount.Count -ne $ruleCount.Count)
         {
-            [int] $byte = 97 # Lowercase A
+            # 97 = lowercase a (alpha)
+            [int] $byte = 97
             foreach ($convertedrule in $ruleTypeList)
             {
                 $convertedrule.id = "$($Rule.id).$([CHAR][BYTE]$byte)"

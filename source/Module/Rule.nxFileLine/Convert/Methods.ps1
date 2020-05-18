@@ -116,3 +116,87 @@ function Get-nxFileLineDoesNotContainPattern
         return $null
     }
 }
+
+<#
+    .SYNOPSIS
+        There are several rules that publish multiple FileLine settings in a single rule.
+        This function will check for multiple entries.
+
+    .PARAMETER CheckContent
+        The standard check content string to look for duplicate entries.
+#>
+function Test-nxFileLineMultipleEntries
+{
+    [CmdletBinding()]
+    [OutputType([bool])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $CheckContent
+    )
+
+    $filePath = $CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath -AllMatches
+    $count = foreach ($path in $filePath.Matches)
+    {
+        $path.Groups['filePath'].Value
+    }
+
+    $uniqueCount = $count | Select-Object -Unique | Measure-Object
+    if ($uniqueCount.Count -gt 1)
+    {
+        return $true
+    }
+    else
+    {
+        return $false
+    }
+}
+
+<#
+    .SYNOPSIS
+        There are several rules that publish multiple FileLine settings in a single rule.
+        This function will split multiple entries.
+
+    .PARAMETER CheckContent
+        The standard check content string to look for duplicate entries.
+#>
+function Split-nxFileLineMultipleEntries
+{
+    [CmdletBinding()]
+    [OutputType([System.Collections.ArrayList])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [psobject]
+        $CheckContent
+    )
+
+    $splitCheckContent = @()
+
+    # The line numbers returned should be subtracted by 1 for zero index
+    $splitLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
+    for ($i = 0; $i -lt $splitLineNumber.Count; $i++)
+    {
+        $headLineNumber = $splitLineNumber[$i] - 1
+        if ($i -eq ($splitLineNumber.Count - 1))
+        {
+            $footLineNumber = $CheckContent.Count - 1
+        }
+        else
+        {
+            $footLineNumber = $splitLineNumber[$i + 1] - 2
+        }
+
+        $ruleRange = $headLineNumber..$footLineNumber
+        $stringBuilder = New-Object -TypeName System.Text.StringBuilder
+        foreach ($line in $ruleRange)
+        {
+            [void] $stringBuilder.AppendLine($CheckContent[$line])
+        }
+
+        $splitCheckContent += $stringBuilder.ToString()
+    }
+
+    return $splitCheckContent
+}

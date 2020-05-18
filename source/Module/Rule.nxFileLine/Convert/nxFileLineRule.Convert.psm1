@@ -1,6 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
+using module .\..\..\Rule\Rule.psm1
 using module .\..\nxFileLineRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
@@ -123,7 +124,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     static [bool] HasMultipleRules ([string] $CheckContent)
     {
-        return Test-MultipleRegistryEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent))
+        return Test-nxFileLineMultipleEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent))
     }
 
     <#
@@ -140,7 +141,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     static [string[]] SplitMultipleRules ([string] $CheckContent)
     {
-        return (Split-MultipleRegistryEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
+        return (Split-nxFileLineMultipleEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
     hidden [void] SetDscResource ()
