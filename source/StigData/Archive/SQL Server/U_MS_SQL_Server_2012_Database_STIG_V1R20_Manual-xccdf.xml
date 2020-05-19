@@ -4,30 +4,30 @@ User-generated data, as well as, application-specific configuration data, needs 
 
 If the confidentiality and integrity of SQL Server data is not protected, the data will be open to compromise and unauthorized modification.
 
-Protective measures include encryption, physical security of the facility where the storage devices reside, operating system file permissions, and organizational controls.  Each of these should be applied as necessary and appropriate.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-46193r3_fix">Apply appropriate controls to protect the confidentiality and integrity of data on a secondary device. 
+Protective measures include encryption, physical security of the facility where the storage devices reside, operating system file permissions, and organizational controls.  Each of these should be applied as necessary and appropriate.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001199</ident><fixtext fixref="F-46193r3_fix">Apply appropriate controls to protect the confidentiality and integrity of data on a secondary device.
 
 Where encryption is required, this can be done by full-disk encryption or by database encryption. To enable database encryption, create a master key, create a database encryption key, and protect it by using mechanisms tied to the master key, and then set encryption on.
 
 Implement physical security measures, operating system access control lists and organizational controls appropriate to the sensitivity level of the data in the database(s).</fixtext><fix id="F-46193r3_fix" /><check system="C-47566r6_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>If the application owner and Authorizing Official have determined that encryption of data at rest is NOT required, this is not a finding.
 
-If the application owner and Authorizing Official have determined that encryption of data at rest is required, 
+If the application owner and Authorizing Official have determined that encryption of data at rest is required,
 ensure the data on secondary devices is encrypted. If full-disk encryption is being used, this is not a finding.
 
 If DBMS data encryption is required, ensure the data is encrypted before being put on the secondary device by executing:
 
-SELECT 
-	d.name AS [Database Name],
-	CASE e.encryption_state 
-		WHEN 0 THEN 'No database encryption key present, no encryption' 
-		WHEN 1 THEN 'Unencrypted' 
-		WHEN 2 THEN 'Encryption in progress' 
-		WHEN 3 THEN 'Encrypted' 
-		WHEN 4 THEN 'Key change in progress' 
-		WHEN 5 THEN 'Decryption in progress' 
-		WHEN 6 THEN 'Protection change in progress' 
-	END AS [Encryption State]
-FROM sys.dm_database_encryption_keys e 
-RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name 
+SELECT
+    d.name AS [Database Name],
+    CASE e.encryption_state
+        WHEN 0 THEN 'No database encryption key present, no encryption'
+        WHEN 1 THEN 'Unencrypted'
+        WHEN 2 THEN 'Encryption in progress'
+        WHEN 3 THEN 'Encrypted'
+        WHEN 4 THEN 'Key change in progress'
+        WHEN 5 THEN 'Decryption in progress'
+        WHEN 6 THEN 'Protection change in progress'
+    END AS [Encryption State]
+FROM sys.dm_database_encryption_keys e
+RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name
 WHERE d.name NOT IN ('master','model','msdb')
 ORDER BY 1
 ;
@@ -45,7 +45,7 @@ The sensitivity marking or labeling of stored data items promotes the correct ha
 (Earlier releases of this STIG suggested using the SQL Server Label Security Toolkit, from codeplex.com.  However, codeplex.com has been shut down, and it is unclear whether the Toolkit is still supported.  If the organization does have access to the Toolkit, it may still be used, provided the organization accepts responsibility for its support.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002262</ident><fixtext fixref="F-46813r5_fix">Develop SQL or application code or acquire a third party tool to perform data labeling.</fixtext><fix id="F-46813r5_fix" /><check system="C-47925r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
 If the labeling of sensitive data is not required, this is NA.
 
-Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool. Spot check data and ensure the appropriate labels have been applied to stored data.   
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool. Spot check data and ensure the appropriate labels have been applied to stored data.
 
 If the labeling of sensitive data is required and is not being performed, this is a finding.</check-content></check></Rule></Group><Group id="V-41391"><title>SRG-APP-000007-DB-000184</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53914r4_rule" severity="medium" weight="10.0"><version>SQL2-00-000400</version><title>SQL Server must maintain and support organization-defined security labels on information in process.</title><description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
 
@@ -61,7 +61,7 @@ The sensitivity marking or labeling of data items promotes the correct handling 
 
 If the labeling of sensitive data is not required, this is NA.
 
-Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.  
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.
 
 If the labeling of sensitive information in process is not being performed, this is a finding.</check-content></check></Rule></Group><Group id="V-41392"><title>SRG-APP-000008-DB-000185</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53916r4_rule" severity="medium" weight="10.0"><version>SQL2-00-000500</version><title>SQL Server must maintain and support organization-defined security labels on data in transmission.</title><description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
 
@@ -76,7 +76,7 @@ The sensitivity marking or labeling of data items promotes the correct handling 
 (Earlier releases of this STIG suggested using the SQL Server Label Security Toolkit, from codeplex.com.  However, codeplex.com has been shut down, and it is unclear whether the Toolkit is still supported.  If the organization does have access to the Toolkit, it may still be used, provided the organization accepts responsibility for its support.)&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002264</ident><fixtext fixref="F-46816r4_fix">Develop SQL or application code or acquire a third party tool to perform data labeling.</fixtext><fix id="F-46816r4_fix" /><check system="C-47928r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
 If the labeling of sensitive data is not required, this is NA.
 
-Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.  
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.
 
 If the labeling of sensitive data in transmission is not being performed, this is a finding.</check-content></check></Rule></Group><Group id="V-41393"><title>SRG-APP-000012-DB-000192</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53917r3_rule" severity="medium" weight="10.0"><version>SQL2-00-000900</version><title>SQL Server must allow authorized users to associate security labels to information in the database.</title><description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
 
@@ -100,7 +100,7 @@ REVOKE UPDATE ON SampleTable FROM SampleUserOrRole CASCADE;
 GRANT UPDATE ON SampleTable TO SampleRole;  -- Note, no WITH GRANT OPTION clause here.</fixtext><fix id="F-46818r4_fix" /><check system="C-47931r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>Check for rights propagation assignment to database permissions by running the following query:
 
 USE &lt;name of database being reviewed&gt;;
-SELECT * 
+SELECT *
 FROM sys.database_permissions
 WHERE state_desc = 'GRANT_WITH_GRANT_OPTION';
 
@@ -115,11 +115,11 @@ SELECT name AS 'Account Name'
      , create_date AS 'Account Create Date'
      , LOGINPROPERTY(name, 'PasswordLastSetTime') AS 'Password Last Set on'
 FROM sys.server_principals
-WHERE NOT TYPE IN ('C', 'R', 'U') 
+WHERE NOT TYPE IN ('C', 'R', 'U')
 AND NOT name IN ('##MS_PolicyEventProcessingLogin##', '##MS_PolicyTsqlExecutionLogin##')
 AND sid &lt;&gt; CONVERT(VARBINARY(85), 0x01) -- no 'sa' account
 AND is_disabled &lt;&gt; 1
-ORDER BY name; 
+ORDER BY name;
 
 For each developer account found on a production machine, verify if the developer account can change or alter database objects or data in the production database. If any developer account can change or alter database objects or data in a production database, this is a finding.</check-content></check></Rule></Group><Group id="V-41396"><title>SRG-APP-000062-DB-000015</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53921r2_rule" severity="medium" weight="10.0"><version>SQL2-00-009300</version><title>SQL Server must be protected from unauthorized access by developers on shared production/development host systems.</title><description>&lt;VulnDiscussion&gt;Applications employ the concept of least privilege for specific duties and information systems (including specific functions, ports, protocols, and services). The concept of least privilege is also applied to information system processes, ensuring that the processes operate at privilege levels no higher than necessary to accomplish required organizational missions and/or functions. Organizations consider the creation of additional processes, roles, and information system accounts as necessary to achieve least privilege. Organizations also apply least privilege concepts to the design, development, implementation, and operations of information systems.
 
@@ -214,7 +214,7 @@ The built-in server role "sysadmin" is a partial exception.  See the Vulnerabili
 
 If SQL Server were to allow any user to make SQL Server job/batch queue submissions, then those submissions might lead to a compromise of system integrity and/or data. This requirement is contingent upon the SQL Server job/batch queue being review regularly for unauthorized submissions.
 
-Accordingly, only qualified and authorized individuals shall be allowed to obtain access to submit SQL Server jobs. Job/batch queue submissions must adhere to an organization-defined job submission process. 
+Accordingly, only qualified and authorized individuals shall be allowed to obtain access to submit SQL Server jobs. Job/batch queue submissions must adhere to an organization-defined job submission process.
 
 Unmanaged changes that occur to SQL Server job/batch queues can lead to a compromised system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000366</ident><fixtext fixref="F-46825r2_fix">Document procedures, within the system documentation, that detect for unauthorized SQL Server job submissions.
 
@@ -229,18 +229,18 @@ SELECT name
   FROM master.sys.procedures
  WHERE is_auto_executed = 1
 
-If any Stored Procedures listed are not documented as authorized, this is a finding.  
+If any Stored Procedures listed are not documented as authorized, this is a finding.
 
 Review the SQL Server job history by running the following query:
 
-SELECT *   FROM msdb.dbo.sysjobhistory 
+SELECT *   FROM msdb.dbo.sysjobhistory
 
 
 If any jobs listed are not documented as authorized, this is a finding.</check-content></check></Rule></Group><Group id="V-41402"><title>SRG-APP-000089-DB-000064</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53928r4_rule" severity="medium" weight="10.0"><version>SQL2-00-011200</version><title>SQL Server must provide audit record generation capability for organization-defined auditable events within the database.</title><description>&lt;VulnDiscussion&gt;Audit records can be generated from various components within the information system (e.g., network interface, hard disk, modem, etc.). From an application perspective, certain specific application functionalities may be audited as well.
 
 The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records.  Examples are auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
-Organizations define which application components shall provide auditable events. 
+Organizations define which application components shall provide auditable events.
 
 The DBMS must provide auditing for the list of events defined by the organization or risk negatively impacting forensic investigations into malicious behavior in the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000169</ident><fixtext fixref="F-46828r6_fix">Create a trace that meets all auditing requirements.
 
@@ -249,17 +249,17 @@ From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
 All currently defined traces for the SQL server instance will be listed. If no traces are returned, this is a finding.
 
-Determine the trace(s) being used for the auditing requirement. 
+Determine the trace(s) being used for the auditing requirement.
 In the following, replace # with a trace ID being used for the auditing requirements.
 From the query prompt:
      SELECT DISTINCT(eventid) FROM sys.fn_trace_geteventinfo(#);
 The following required event IDs should be listed:
-     14, 15, 18, 20, 
-     102, 103, 104, 105, 106, 107, 108, 109, 110, 
-     111, 112, 113, 115, 116, 117, 118, 
-     128, 129, 130, 
-     131, 132, 133, 134, 135, 
-     152, 153, 
+     14, 15, 18, 20,
+     102, 103, 104, 105, 106, 107, 108, 109, 110,
+     111, 112, 113, 115, 116, 117, 118,
+     128, 129, 130,
+     131, 132, 133, 134, 135,
+     152, 153,
      170, 171, 172, 173, 175, 176, 177, 178.
 If any of the audit event IDs required above is not listed, this is a finding.
 
@@ -267,9 +267,9 @@ Notes:
 1. It is acceptable to have the required event IDs spread across multiple traces, provided all of the traces are always active, and the event IDs are grouped in a logical manner.
 2. It is acceptable, from an auditing point of view, to include the same event IDs in multiple traces.  However, the effect of this redundancy on performance, storage, and the consolidation of audit logs into a central repository, should be taken into account.
 3. It is acceptable to trace additional event IDs. This is the minimum list.
-4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include code to do this.)  
+4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include code to do this.)
 Use the following query to obtain a list of all event IDs, and their meaning:
-     SELECT * FROM sys.trace_events; 
+     SELECT * FROM sys.trace_events;
 5. Because this check procedure is designed to address multiple requirements/vulnerabilities, it may appear to exceed the needs of some individual requirements.  However, it does represent the aggregate of all such requirements.
 6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.</check-content></check></Rule></Group><Group id="V-41403"><title>SRG-APP-000133-DB-000179</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53930r4_rule" severity="medium" weight="10.0"><version>SQL2-00-014900</version><title>SQL Server must be monitored to discover unauthorized changes to functions.</title><description>&lt;VulnDiscussion&gt;When dealing with change control issues, it should be noted, any changes to the hardware, software, and/or firmware components of SQL Server and/or application can potentially have significant effects on the overall security of the system.
 
@@ -279,7 +279,7 @@ This requirement is contingent upon the language in which the application is pro
 
 Accordingly, only qualified and authorized individuals shall be allowed to obtain access to SQL Server components for purposes of initiating changes, including upgrades and modifications.
 
-Unmanaged changes that occur to the SQL Server software libraries or configuration, such as Functions, can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-46831r2_fix">Configure a SQL Server timed job that automatically checks all system and user-defined Functions for being modified. 
+Unmanaged changes that occur to the SQL Server software libraries or configuration, such as Functions, can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;true&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-46831r2_fix">Configure a SQL Server timed job that automatically checks all system and user-defined Functions for being modified.
 
 (The supplemental file Track.sql, provided with this STIG, can be used to establish a monitoring job.  This should be supplemented with a process for informing the appropriate personnel.  Other techniques for achieving the same ends, such as the use of DDL triggers, are acceptable.)</fixtext><fix id="F-46831r2_fix" /><check system="C-47941r3_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>Check the SQL Server configuration for a timed job that automatically checks all system and user-defined Functions for being modified by running the following SQL Server query:
 EXEC msdb.dbo.sp_help_job  @job_name = '&lt;enter . . . job name&gt;';
@@ -309,7 +309,7 @@ This requirement is contingent upon the language in which the application is pro
 
 Accordingly, only qualified and authorized individuals shall be allowed to obtain access to SQL Server components for purposes of initiating changes, including upgrades and modifications.
 
-Unmanaged changes that occur to the SQL Server software libraries or configuration, such as Stored Procedures, can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-46833r2_fix">Configure a SQL Server timed job that automatically checks all system and user-defined Stored Procedures for modification.  
+Unmanaged changes that occur to the SQL Server software libraries or configuration, such as Stored Procedures, can lead to unauthorized or compromised installations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001499</ident><fixtext fixref="F-46833r2_fix">Configure a SQL Server timed job that automatically checks all system and user-defined Stored Procedures for modification.
 
 (The supplemental file Track.sql, provided with this STIG, can be used to establish a monitoring job.  This should be supplemented with a process for informing the appropriate personnel.  Other techniques for achieving the same ends, such as the use of DDL triggers, are acceptable.)</fixtext><fix id="F-46833r2_fix" /><check system="C-47943r5_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>Check for the existence of a job to monitor for changes to stored procedures:
 EXEC msdb.dbo.sp_help_job  @job_name = '&lt;enter . . . job name&gt;';
@@ -366,7 +366,7 @@ CREATE CERTIFICATE &lt;'certificate name'&gt;
 Run the following SQL script to create a symmetric key and assign an existing certificate:
 USE &lt;'database name'&gt;
 CREATE SYMMETRIC KEY &lt;'key name'&gt;
-   WITH ALGORITHM = AES_256 
+   WITH ALGORITHM = AES_256
    ENCRYPTION BY &lt;'certificate name'&gt;
 
 Set SQL Server configuration settings to encrypt databases, tables, columns, and/or data elements as required by the organization and the system owner.
@@ -452,8 +452,8 @@ GO
 Run the following SQL to create a database encryption key and encrypt the database:
 USE &lt;database name&gt;;
 GO
-CREATE DATABASE ENCRYPTION KEY 
-   WITH ALGORITHM = AES_256 
+CREATE DATABASE ENCRYPTION KEY
+   WITH ALGORITHM = AES_256
    ENCRYPTION BY SERVER CERTIFICATE &lt;certificate name&gt;;
 GO
 USE master;
@@ -467,7 +467,7 @@ If required, run the following SQL to create a symmetric key and assign an exist
 USE &lt;database name&gt;;
 GO
 CREATE SYMMETRIC KEY &lt;key name&gt;
-   WITH ALGORITHM = AES_256 
+   WITH ALGORITHM = AES_256
    ENCRYPTION BY CERTIFICATE &lt;certificate name&gt;;
 </fixtext><fix id="F-46839r9_fix" /><check system="C-47949r6_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_MS SQL Server Database 2012.xml" /><check-content>If encryption is not required for this database, this is not a finding.
 
@@ -476,11 +476,11 @@ Run the following SQL queries to review SQL Server's cryptographic settings for 
 USE &lt;database name&gt; ;
 IF NOT EXISTS
        (
-       SELECT 1 
+       SELECT 1
        FROM sys.dm_database_encryption_keys
        WHERE DB_NAME(database_id) = DB_NAME()
        )
-       SELECT 
+       SELECT
              DB_NAME() AS [Database Name],
              'No database encryption key present, no encryption' AS [Encryption State],
                      NULL AS [Algorithm],
@@ -488,22 +488,22 @@ IF NOT EXISTS
 ELSE
        SELECT
              DB_NAME(database_id) AS [Database Name],
-             CASE encryption_state 
-                   WHEN 0 THEN 'No database encryption key present, no encryption' 
-                   WHEN 1 THEN 'Unencrypted' 
-                   WHEN 2 THEN 'Encryption in progress' 
-                   WHEN 3 THEN 'Encrypted' 
-                   WHEN 4 THEN 'Key change in progress' 
-                   WHEN 5 THEN 'Decryption in progress' 
-                   WHEN 6 THEN 'Protection change in progress' 
+             CASE encryption_state
+                   WHEN 0 THEN 'No database encryption key present, no encryption'
+                   WHEN 1 THEN 'Unencrypted'
+                   WHEN 2 THEN 'Encryption in progress'
+                   WHEN 3 THEN 'Encrypted'
+                   WHEN 4 THEN 'Key change in progress'
+                   WHEN 5 THEN 'Decryption in progress'
+                   WHEN 6 THEN 'Protection change in progress'
              END AS [Encryption State],
                      key_algorithm AS [Algorithm],
                      key_length AS [Key Length]
        FROM sys.dm_database_encryption_keys
        WHERE DB_NAME(database_id) = DB_NAME()
 
-SELECT DB_NAME() AS [Database], name, algorithm_desc 
-FROM sys.symmetric_keys 
+SELECT DB_NAME() AS [Database], name, algorithm_desc
+FROM sys.symmetric_keys
 ORDER BY name, algorithm_desc;
 
 Note:  The acceptable algorithms are:  "AES 128", "AES 192", "AES 256" and "Triple DES".
@@ -565,28 +565,28 @@ If the application owner and authorizing official have determined that the datab
 Ensure the data is encrypted by executing:
 USE &lt;database name&gt;;
 IF NOT EXISTS
-	(
-	SELECT 1 
-	FROM sys.dm_database_encryption_keys
-	WHERE DB_NAME(database_id) = DB_NAME()
-	)
-	SELECT 
-		DB_NAME() AS [Database Name],
-		'No database encryption key present, no encryption' AS [Encryption State]
+    (
+    SELECT 1
+    FROM sys.dm_database_encryption_keys
+    WHERE DB_NAME(database_id) = DB_NAME()
+    )
+    SELECT
+        DB_NAME() AS [Database Name],
+        'No database encryption key present, no encryption' AS [Encryption State]
 ELSE
-	SELECT
-		DB_NAME(database_id)  AS [Database Name],
-		CASE encryption_state 
-			WHEN 0 THEN 'No database encryption key present, no encryption' 
-			WHEN 1 THEN 'Unencrypted' 
-			WHEN 2 THEN 'Encryption in progress' 
-			WHEN 3 THEN 'Encrypted' 
-			WHEN 4 THEN 'Key change in progress' 
-			WHEN 5 THEN 'Decryption in progress' 
-			WHEN 6 THEN 'Protection change in progress' 
-		END AS [Encryption State] 
-	FROM sys.dm_database_encryption_keys
-	WHERE DB_NAME(database_id) = DB_NAME()
+    SELECT
+        DB_NAME(database_id)  AS [Database Name],
+        CASE encryption_state
+            WHEN 0 THEN 'No database encryption key present, no encryption'
+            WHEN 1 THEN 'Unencrypted'
+            WHEN 2 THEN 'Encryption in progress'
+            WHEN 3 THEN 'Encrypted'
+            WHEN 4 THEN 'Key change in progress'
+            WHEN 5 THEN 'Decryption in progress'
+            WHEN 6 THEN 'Protection change in progress'
+        END AS [Encryption State]
+    FROM sys.dm_database_encryption_keys
+    WHERE DB_NAME(database_id) = DB_NAME()
 ;
 
 For each user database, ensure that encryption is in effect.  If not, this is a finding.</check-content></check></Rule></Group><Group id="V-41421"><title>SRG-APP-000243-DB-000128</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-53950r2_rule" severity="medium" weight="10.0"><version>SQL2-00-021800</version><title>SQL Server must prevent unauthorized and unintended information transfer via shared system resources.</title><description>&lt;VulnDiscussion&gt;The purpose of this control is to prevent information, including encrypted representations of information, produced by the actions of a prior user/role (or the actions of a process acting on behalf of a prior user/role) from being available to any current user/role (or current process) that obtains access to a shared system resource (e.g., registers, main memory, secondary storage) after the resource has been released back to the information system. Control of information in shared resources is also referred to as object reuse.
@@ -658,19 +658,19 @@ GO</fixtext><fix id="F-66461r1_fix" /><check system="C-61703r3_chk"><check-conte
 Run the query:
 USE &lt;database name&gt;;
 GO
-SELECT 
-       DB_NAME()                  AS [Database], 
-       SUSER_SNAME(D.owner_sid)   AS [Database Owner], 
+SELECT
+       DB_NAME()                  AS [Database],
+       SUSER_SNAME(D.owner_sid)   AS [Database Owner],
        CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
                                   AS [Trustworthy]
 FROM
-       sys.databases D 
+       sys.databases D
 WHERE
        D.[name] = DB_NAME()
 AND    DB_NAME() &lt;&gt; 'msdb'
 AND    D.is_trustworthy_on = 1;
 GO
-If the query returns a row indicating that the TRUSTWORTHY setting is OFF, or returns no rows, this is not a finding. 
+If the query returns a row indicating that the TRUSTWORTHY setting is OFF, or returns no rows, this is not a finding.
 
 Review the system security plan to determine whether the need for TRUSTWORTHY is documented and approved.  If not, this is a finding.</check-content></check></Rule></Group><Group id="V-60781"><title>SRG-APP-000133-DB-000200</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-75233r1_rule" severity="medium" weight="10.0"><version>SQL2-00-015610</version><title>In a database owned by [sa], or by any other login having administrative privileges at the instance level, the database property TRUSTWORTHY must be OFF.</title><description>&lt;VulnDiscussion&gt;SQL Server's fixed (built-in) server roles, especially [sysadmin], have powerful capabilities that could cause great harm if misused, so their use must be tightly controlled.
 
@@ -701,74 +701,74 @@ USE &lt;database name&gt;;
 GO
 WITH C AS
 (
-SELECT 
-	P.name		AS [Parent Server Role],
-	CAST('Fixed' AS varchar(8))
-				AS [Server Role Type],
-	M.name		AS [Member],
-	M.type_desc	AS [Member Type],
-	P.name 		AS [Root],
-	1			AS [Level]
+SELECT
+    P.name        AS [Parent Server Role],
+    CAST('Fixed' AS varchar(8))
+                AS [Server Role Type],
+    M.name        AS [Member],
+    M.type_desc    AS [Member Type],
+    P.name         AS [Root],
+    1            AS [Level]
 FROM
-	[sys].[server_role_members] X
-	INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
-	INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
+    [sys].[server_role_members] X
+    INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
+    INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
 WHERE
-	P.is_fixed_role = 1
+    P.is_fixed_role = 1
 UNION ALL
-SELECT 
-	P.name		AS [Parent Server Role],
-	CASE WHEN M.is_fixed_role = 1 THEN CAST('Fixed' AS varchar(8)) ELSE CAST('Custom' AS varchar(8)) END
-				AS [Server Role Type],
-	M.name		AS [Member],
-	M.type_desc	AS [Member Type],
-	C.[Root]	AS [Root],
-	C.[Level] + 1	AS [Level]
+SELECT
+    P.name        AS [Parent Server Role],
+    CASE WHEN M.is_fixed_role = 1 THEN CAST('Fixed' AS varchar(8)) ELSE CAST('Custom' AS varchar(8)) END
+                AS [Server Role Type],
+    M.name        AS [Member],
+    M.type_desc    AS [Member Type],
+    C.[Root]    AS [Root],
+    C.[Level] + 1    AS [Level]
 FROM
-	[sys].[server_role_members] X
-	INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
-	INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
-	INNER JOIN C ON P.name = C.Member
+    [sys].[server_role_members] X
+    INNER JOIN [sys].[server_principals] P ON P.principal_id = X.role_principal_id
+    INNER JOIN [sys].[server_principals] M ON M.principal_id = X.member_principal_id
+    INNER JOIN C ON P.name = C.Member
 )
 ,
 B AS
 (
-SELECT 
-	C.[Member] AS [Leaf],
-	C.[Root],
-	C.[Parent Server Role],
-	C.[Server Role Type],
-	C.[Member],
-	C.[Member Type],
-	C.[Level]
-FROM C 
+SELECT
+    C.[Member] AS [Leaf],
+    C.[Root],
+    C.[Parent Server Role],
+    C.[Server Role Type],
+    C.[Member],
+    C.[Member Type],
+    C.[Level]
+FROM C
 WHERE
-	C.[Member Type] NOT LIKE '%ROLE%'
+    C.[Member Type] NOT LIKE '%ROLE%'
 UNION ALL
-SELECT  
-	B.[Leaf],
-	C.[Root],
-	C.[Parent Server Role],
-	C.[Server Role Type],
-	C.[Member],
-	C.[Member Type],
-	C.[Level]
+SELECT
+    B.[Leaf],
+    C.[Root],
+    C.[Parent Server Role],
+    C.[Server Role Type],
+    C.[Member],
+    C.[Member Type],
+    C.[Level]
 FROM C
 INNER JOIN B
-	ON	C.[Member] = B.[Parent Server Role]
-	AND	C.[Level] = B.[Level] - 1
-	AND	C.[Root] = B.[Root]
+    ON    C.[Member] = B.[Parent Server Role]
+    AND    C.[Level] = B.[Level] - 1
+    AND    C.[Root] = B.[Root]
 )
 SELECT
-	DB_NAME()	AS [Database],  
-	B.[Leaf]	AS [Owner Login],
-	B.[Root]	AS[Top-Level Server Role],
-	B.[Parent Server Role],
-	B.[Server Role Type],
-	B.[Member],
-	B.[Member Type],
-	B.[Level]
-FROM B 
+    DB_NAME()    AS [Database],
+    B.[Leaf]    AS [Owner Login],
+    B.[Root]    AS[Top-Level Server Role],
+    B.[Parent Server Role],
+    B.[Server Role Type],
+    B.[Member],
+    B.[Member Type],
+    B.[Level]
+FROM B
 WHERE B.[Leaf] = (SELECT SUSER_SNAME(D.owner_sid) FROM sys.databases D WHERE D.Name = DB_NAME())
 ORDER BY B.[Root], B.[Level], B.[Parent Server Role], B.[Member]
 ;
@@ -778,7 +778,7 @@ To remove the database owner from a fixed server role or a custom server role:
 USE [master];
 GO
 ALTER SERVER ROLE &lt;fixed/custom server role name&gt;
-	DROP MEMBER &lt;database owner name&gt;;
+    DROP MEMBER &lt;database owner name&gt;;
 GO
 Verify that this produced the intended result by re-running the Check query.
 
@@ -792,28 +792,28 @@ Verify that this produced the intended result by re-running the Check query.</fi
 GO
 WITH FixedServerRoles(RoleName) AS
 (
-	SELECT 'sysadmin'
-	UNION SELECT 'securityadmin'
-	UNION SELECT 'serveradmin'
-	UNION SELECT 'setupadmin'
-	UNION SELECT 'processadmin'
-	UNION SELECT 'diskadmin'
-	UNION SELECT 'dbcreator'
-	UNION SELECT 'bulkadmin'
+    SELECT 'sysadmin'
+    UNION SELECT 'securityadmin'
+    UNION SELECT 'serveradmin'
+    UNION SELECT 'setupadmin'
+    UNION SELECT 'processadmin'
+    UNION SELECT 'diskadmin'
+    UNION SELECT 'dbcreator'
+    UNION SELECT 'bulkadmin'
 )
-SELECT 
-	DB_NAME() AS [Database], 
-	SUSER_SNAME(D.owner_sid) AS [Database Owner], 
-	F.RoleName AS [Fixed Server Role],
-	CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
-		AS [Trustworthy]	
+SELECT
+    DB_NAME() AS [Database],
+    SUSER_SNAME(D.owner_sid) AS [Database Owner],
+    F.RoleName AS [Fixed Server Role],
+    CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
+        AS [Trustworthy]
 FROM
-	FixedServerRoles F
-	INNER JOIN sys.databases D ON D.Name = DB_NAME()
-WHERE 
-	IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
-AND	DB_NAME()  &lt;&gt;  'msdb'
-AND	D.is_trustworthy_on = 1;
+    FixedServerRoles F
+    INNER JOIN sys.databases D ON D.Name = DB_NAME()
+WHERE
+    IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
+AND    DB_NAME()  &lt;&gt;  'msdb'
+AND    D.is_trustworthy_on = 1;
 GO
 If the query returns any rows, this is a finding.  </check-content></check></Rule></Group><Group id="V-70627"><title> SRG-APP-000144-DB-000101</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-85249r2_rule" severity="low" weight="10.0"><version>SQL2-00-017510</version><title>Appropriate staff must be alerted when the amount of storage space used by the SQL Server transaction log file(s) exceeds an organization-defined value.</title><description>&lt;VulnDiscussion&gt;It is important for the appropriate personnel to be aware if the system is at risk of failing to record transaction log data.  The transaction log is the heart of a SQL Server database.  If it fails, processing will stop.  It must always have enough available storage space to cope with peak load.  Administrators must be warned about abnormally high space consumption soon enough to take corrective action before all space is used up.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target SQL Server Database 2012</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>SQL Server Database 2012</dc:subject><dc:identifier>2560</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-000553</ident><fixtext fixref="F-77185r1_fix">Decide on, and document, the threshold value for alerting administrators to a shortage of storage for the transaction log.
 
