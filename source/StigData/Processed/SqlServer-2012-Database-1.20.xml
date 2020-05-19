@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_Database_Instance_STIG" description="The Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Jan 2019" title="Microsoft SQL Server 2012 Database Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.18" created="7/29/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Database_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Database 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="5/19/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-41389" severity="medium" conversionstatus="pass" title="SRG-APP-000006-DB-000183" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
@@ -316,16 +316,16 @@ ensure the data on secondary devices is encrypted. If full-disk encryption is be
 If DBMS data encryption is required, ensure the data is encrypted before being put on the secondary device by executing:
 
 SELECT 
-    d.name AS [Database Name],
-    CASE e.encryption_state 
-        WHEN 0 THEN 'No database encryption key present, no encryption' 
-        WHEN 1 THEN 'Unencrypted' 
-        WHEN 2 THEN 'Encryption in progress' 
-        WHEN 3 THEN 'Encrypted' 
-        WHEN 4 THEN 'Key change in progress' 
-        WHEN 5 THEN 'Decryption in progress' 
-        WHEN 6 THEN 'Protection change in progress' 
-    END AS [Encryption State]
+	d.name AS [Database Name],
+	CASE e.encryption_state 
+		WHEN 0 THEN 'No database encryption key present, no encryption' 
+		WHEN 1 THEN 'Unencrypted' 
+		WHEN 2 THEN 'Encryption in progress' 
+		WHEN 3 THEN 'Encrypted' 
+		WHEN 4 THEN 'Key change in progress' 
+		WHEN 5 THEN 'Decryption in progress' 
+		WHEN 6 THEN 'Protection change in progress' 
+	END AS [Encryption State]
 FROM sys.dm_database_encryption_keys e 
 RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name 
 WHERE d.name NOT IN ('master','model','msdb')
@@ -607,28 +607,28 @@ If the application owner and authorizing official have determined that the datab
 Ensure the data is encrypted by executing:
 USE &lt;database name&gt;;
 IF NOT EXISTS
-    (
-    SELECT 1 
-    FROM sys.dm_database_encryption_keys
-    WHERE DB_NAME(database_id) = DB_NAME()
-    )
-    SELECT 
-        DB_NAME() AS [Database Name],
-        'No database encryption key present, no encryption' AS [Encryption State]
+	(
+	SELECT 1 
+	FROM sys.dm_database_encryption_keys
+	WHERE DB_NAME(database_id) = DB_NAME()
+	)
+	SELECT 
+		DB_NAME() AS [Database Name],
+		'No database encryption key present, no encryption' AS [Encryption State]
 ELSE
-    SELECT
-        DB_NAME(database_id)  AS [Database Name],
-        CASE encryption_state 
-            WHEN 0 THEN 'No database encryption key present, no encryption' 
-            WHEN 1 THEN 'Unencrypted' 
-            WHEN 2 THEN 'Encryption in progress' 
-            WHEN 3 THEN 'Encrypted' 
-            WHEN 4 THEN 'Key change in progress' 
-            WHEN 5 THEN 'Decryption in progress' 
-            WHEN 6 THEN 'Protection change in progress' 
-        END AS [Encryption State] 
-    FROM sys.dm_database_encryption_keys
-    WHERE DB_NAME(database_id) = DB_NAME()
+	SELECT
+		DB_NAME(database_id)  AS [Database Name],
+		CASE encryption_state 
+			WHEN 0 THEN 'No database encryption key present, no encryption' 
+			WHEN 1 THEN 'Unencrypted' 
+			WHEN 2 THEN 'Encryption in progress' 
+			WHEN 3 THEN 'Encrypted' 
+			WHEN 4 THEN 'Key change in progress' 
+			WHEN 5 THEN 'Decryption in progress' 
+			WHEN 6 THEN 'Protection change in progress' 
+		END AS [Encryption State] 
+	FROM sys.dm_database_encryption_keys
+	WHERE DB_NAME(database_id) = DB_NAME()
 ;
 
 For each user database, ensure that encryption is in effect.  If not, this is a finding.</RawString>
@@ -701,28 +701,28 @@ The system database [msdb] is an exception: it is required to be TRUSTWORTHY.&lt
 GO
 WITH FixedServerRoles(RoleName) AS
 (
-    SELECT 'sysadmin'
-    UNION SELECT 'securityadmin'
-    UNION SELECT 'serveradmin'
-    UNION SELECT 'setupadmin'
-    UNION SELECT 'processadmin'
-    UNION SELECT 'diskadmin'
-    UNION SELECT 'dbcreator'
-    UNION SELECT 'bulkadmin'
+	SELECT 'sysadmin'
+	UNION SELECT 'securityadmin'
+	UNION SELECT 'serveradmin'
+	UNION SELECT 'setupadmin'
+	UNION SELECT 'processadmin'
+	UNION SELECT 'diskadmin'
+	UNION SELECT 'dbcreator'
+	UNION SELECT 'bulkadmin'
 )
 SELECT 
-    DB_NAME() AS [Database], 
-    SUSER_SNAME(D.owner_sid) AS [Database Owner], 
-    F.RoleName AS [Fixed Server Role],
-    CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
-        AS [Trustworthy]    
+	DB_NAME() AS [Database], 
+	SUSER_SNAME(D.owner_sid) AS [Database Owner], 
+	F.RoleName AS [Fixed Server Role],
+	CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
+		AS [Trustworthy]	
 FROM
-    FixedServerRoles F
-    INNER JOIN sys.databases D ON D.Name = DB_NAME()
+	FixedServerRoles F
+	INNER JOIN sys.databases D ON D.Name = DB_NAME()
 WHERE 
-    IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
-AND    DB_NAME()  &lt;&gt;  'msdb'
-AND    D.is_trustworthy_on = 1;
+	IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
+AND	DB_NAME()  &lt;&gt;  'msdb'
+AND	D.is_trustworthy_on = 1;
 GO
 If the query returns any rows, this is a finding.  </RawString>
     </Rule>
