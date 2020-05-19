@@ -150,7 +150,8 @@ function Get-HardCodedString
         'V-93149', # Windows Server 2019 - Legal Banner Dialog Box Title
         'V-17761', # Outlook 2013 - OrgSetting Value
         'V-75241', # Windows Defender - ASSignatureDue
-        'V-75243' # Windows Defender - AVSignatureDue
+        'V-75243', # Windows Defender - AVSignatureDue
+        'V-100885' # Ubuntu - Time Server information
     )
 
     if ($stigIds -contains $stigId)
@@ -213,6 +214,12 @@ function Get-HardCodedString
         {$PSItem -match 'V-75241|V-75243'}
         {
             $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
+            continue
+        }
+        {$PSItem -match 'V-100885'}
+        {
+            $hardCodedString = 'Specifiy a string array for Time Servers, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"'
+            continue
         }
     }
 

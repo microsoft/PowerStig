@@ -22,7 +22,24 @@ function Get-nxFileLineContainsLine
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     try
     {
-        $CheckContent
+        $fileContainsLinePattern = '{0}{1}' -f $regularExpression.nxFileLineFilePath, $regularExpression.nxFileLineContainsLine
+        $rawString = $CheckContent -join "`n"
+        $null = $rawString -match $fileContainsLinePattern
+        $matchResults = $Matches['setting'] -split "`n"
+        $results = @()
+        foreach ($line in $matchResults)
+        {
+            if
+            (
+                [string]::IsNullOrEmpty($line) -eq $false -and
+                $line -notmatch $regularExpression.nxFileLineContainsLineExclude
+            )
+            {
+                $results += $line
+            }
+        }
+
+        return $results
     }
     catch
     {

@@ -8,8 +8,8 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxFileLineContainsLineStart     = (Modify|Edit|Add).*
-        nxFileLineContainsLineStop      = (Edit\\/modify|Add the following|Restart the \\w* service|If the.*service|Note:|In order for).*
+        nxFileLineContainsLine          = .*\\n(?<setting>.*\\n|.*\\n.*\\n|.*\\n.*\\n.*\\n)If.*this is a finding
+        nxFileLineContainsLineExclude   = The result must contain the following line:
         nxFileLineFilePath              = #.*\\s(?<filePath>\\/[\\w.\\/-]*\\/[\\w.\\/-]*)
         nxFileLineDoesNotContainPattern = (Edit|Edit\\/modify|Add)(,|)\\s(the|or|)\\s(following|modify|edit|update).*(".*")\\s*(|file.*|parameter|\\(.*\\)|.*situations|script):
 '@

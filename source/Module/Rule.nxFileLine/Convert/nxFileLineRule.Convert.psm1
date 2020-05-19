@@ -42,14 +42,23 @@ class nxFileLineRuleConvert : nxFileLineRule
     {
         $rawString = $this.SplitCheckContent
         $this.SetFilePath($rawString)
-        $this.SetContainsLine($rawString)
-        $this.SetDoesNotContainPattern($rawString)
+        $this.SetDscResource()
+        if ($this.IsHardCodedOrganizationValueTestString())
+        {
+            $OrganizationValueTestString = $this.GetHardCodedOrganizationValueTestString()
+            $this.set_OrganizationValueTestString($OrganizationValueTestString)
+            $this.SetOrganizationValueRequired()
+        }
+        else
+        {
+            $this.SetContainsLine($rawString)
+            $this.SetDoesNotContainPattern($rawString)
+        }
+
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
         }
-
-        $this.SetDscResource()
     }
 
     <#
