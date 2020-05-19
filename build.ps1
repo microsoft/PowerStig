@@ -234,19 +234,19 @@ Begin
         }
     }
 
-    InvokeBuild                 = 'latest'
-    PSScriptAnalyzer            = 'latest'
-    Pester                      = 'latest'
-    Plaster                     = 'latest'
-    ModuleBuilder               = '1.0.0'
-    ChangelogManagement         = 'latest'
-    Sampler                     = '0.104.0'
-    xDSCResourceDesigner        = 'latest'
-    PSPKI                       = 'latest'
-    MarkdownLinkCheck           = 'latest'
-    'DscResource.Test'          = 'latest'
-    'DscResource.AnalyzerRules' = 'latest'
-    'powershell-yaml'           = 'latest'
+    InvokeBuild                     = 'latest'
+    PSScriptAnalyzer                = 'latest'
+    Pester                          = 'latest'
+    Plaster                         = 'latest'
+    ModuleBuilder                   = '1.0.0'
+    ChangelogManagement             = 'latest'
+    Sampler                         = '0.104.0'
+    xDSCResourceDesigner            = 'latest'
+    PSPKI                           = 'latest'
+    MarkdownLinkCheck               = 'latest'
+    'DscResource.Test'              = 'latest'
+    'DscResource.AnalyzerRules'     = 'latest'
+    'powershell-yaml'               = 'latest'
     # The modules below are dynamically inserted from the Begin block of .\build.ps1
 
 '@
