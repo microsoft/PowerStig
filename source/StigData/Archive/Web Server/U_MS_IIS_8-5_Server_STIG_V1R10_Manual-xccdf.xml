@@ -171,7 +171,7 @@ Set the log file permissions for the appropriate group(s).
 
 Click "OK".
 
-Select "Apply" in the "Actions" pane.   
+Select "Apply" in the "Actions" pane.
 </fixtext><fix id="F-83391r2_fix" /><check system="C-76351r6_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_IIS_8-5_Server_STIG.xml" /><check-content>This check does not apply to service account IDs utilized by automated services necessary to process, manage, and store log files.
 Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
@@ -357,7 +357,7 @@ Source code for a Java program is, many times, stored in files with either .java
 
 If files with .java or .jpp extensions are found, this is a finding.</check-content></check></Rule></Group><Group id="V-76719"><title>SRG-APP-000211-WSR-000030</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-91415r1_rule" severity="high" weight="10.0"><version>IISW-SV-000131</version><title>IIS 8.5 Web server accounts accessing the directory tree, the shell, or other operating system functions and utilities must only be administrative accounts.</title><description>&lt;VulnDiscussion&gt;As a rule, accounts on a web server are to be kept to a minimum. Only administrators, web managers, developers, auditors, and web authors require accounts on the machine hosting the web server. This is in addition to the anonymous web user account. The resources to which these accounts have access must also be closely monitored and controlled. Only the SA needs access to all the system’s capabilities, while the web administrator and associated staff require access and control of the web content and web server configuration files. The anonymous web user account must not have access to system resources as that account could then control the server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target IIS Installation 8.5</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>IIS Installation 8.5</dc:subject><dc:identifier>2793</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-001082</ident><fixtext fixref="F-83415r1_fix">Ensure non-administrators are not allowed access to the directory tree, the shell, or other operating system functions and utilities.
 
-All non-administrator access to shell scripts and operating system functions must be mission essential and documented.</fixtext><fix id="F-83415r1_fix" /><check system="C-76375r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_IIS_8-5_Server_STIG.xml" /><check-content>Obtain a list of the user accounts with access to the system, including all local and domain accounts. 
+All non-administrator access to shell scripts and operating system functions must be mission essential and documented.</fixtext><fix id="F-83415r1_fix" /><check system="C-76375r1_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_IIS_8-5_Server_STIG.xml" /><check-content>Obtain a list of the user accounts with access to the system, including all local and domain accounts.
 
 Review the privileges to the web server for each account.
 
@@ -388,7 +388,7 @@ Under "ASP.Net", double-click on the "Session State" icon.
 
 Under "Cookie Settings", select "Use Cookies” from the "Mode" drop-down list.
 
-Click "Apply" in the "Actions" pane. 
+Click "Apply" in the "Actions" pane.
 </fixtext><fix id="F-83421r3_fix" /><check system="C-76381r4_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_IIS_8-5_Server_STIG.xml" /><check-content>Open the IIS 8.5 Manager.
 Click the IIS 8.5 web server name.
 Under "ASP.Net", double-click on the "Session State" icon.
@@ -430,7 +430,7 @@ Double-click the "Machine Key" icon in the web server Home Pane.
 Set the Validation method to "HMACSHA256" or stronger.
 Set the Encryption method to "Auto".
 
-Click "Apply" in the "Actions" pane.   
+Click "Apply" in the "Actions" pane.
 </fixtext><fix id="F-83427r2_fix" /><check system="C-76387r2_chk"><check-content-ref name="M" href="DPMS_XCCDF_Benchmark_IIS_8-5_Server_STIG.xml" /><check-content>Open the IIS 8.5 Manager.
 
 Click the IIS 8.5 web server name.
@@ -466,7 +466,7 @@ Access an administrator command prompt and type "regedit &lt;enter&gt;" to acces
 
 Navigate to HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ContentIndex\Catalogs\.
 
-If this key exists, then indexing is enabled. 
+If this key exists, then indexing is enabled.
 
 If the key does not exist, this check is Not Applicable.
 
@@ -550,7 +550,7 @@ Determine the respective website for the application at risk of an attack.
 
 Access the IIS 8.5 web server IIS Manager.
 
-Select the respective website. 
+Select the respective website.
 
 In the "Actions" pane, under "Manage Website", click on "Stop".
 
@@ -581,7 +581,7 @@ In the "Actions" pane, under "Manage Server", click on "Stop".
 If the web server is not capable of or cannot be configured to disconnect or disable remote access to the hosted applications when necessary, this is a finding.</check-content></check></Rule></Group><Group id="V-76745"><title>SRG-APP-000340-WSR-000029</title><description>&lt;GroupDescription&gt;&lt;/GroupDescription&gt;</description><Rule id="SV-91441r2_rule" severity="medium" weight="10.0"><version>IISW-SV-000144</version><title>IIS 8.5 web server system files must conform to minimum file permission requirements.</title><description>&lt;VulnDiscussion&gt;This check verifies the key web server system configuration files are owned by the SA or the web administrator controlled account. These same files that control the configuration of the web server, and thus its behavior, must also be accessible by the account running the web service. If these files are altered by a malicious user, the web server would no longer be under the control of its managers and owners; properties in the web server configuration could be altered to compromise the entire server platform.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</description><reference><dc:title>DPMS Target IIS Installation 8.5</dc:title><dc:publisher>DISA</dc:publisher><dc:type>DPMS Target</dc:type><dc:subject>IIS Installation 8.5</dc:subject><dc:identifier>2793</dc:identifier></reference><ident system="http://iase.disa.mil/cci">CCI-002235</ident><fixtext fixref="F-83441r2_fix">Open Explorer and navigate to the inetpub directory.
 Right-click "inetpub" and select "Properties".
 Click the "Security" tab.
-Set the following permissions: 
+Set the following permissions:
 
 SYSTEM: Full control
 Administrators: Full control
@@ -712,7 +712,7 @@ Verify, at a minimum, the following tuning settings in the registry.
 
 Access the IIS 8.5 web server registry.
 
-Verify the following keys are present and configured. The required setting depends upon the requirements of the application. 
+Verify the following keys are present and configured. The required setting depends upon the requirements of the application.
 
 Recommended settings are not provided as these settings have to be explicitly configured to show a conscientious tuning has been made.
 
@@ -755,7 +755,7 @@ Navigate to the following registry paths and configure the "DisabledByDefault" R
 
 HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.1\Server
 
-HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server 
+HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server
 
 With a REG_DWORD value of "0" for "DisabledByDefault"
 
@@ -811,7 +811,7 @@ Access Apps menu. Under Administrative Tools, select Computer Management.
 
 In left pane, expand "Local Users and Groups" and click on "Users".
 
-Review the local users listed in the middle pane. 
+Review the local users listed in the middle pane.
 
 If any local accounts are present and are used by IIS 8.5 verify with System Administrator that default passwords have been changed.
 
