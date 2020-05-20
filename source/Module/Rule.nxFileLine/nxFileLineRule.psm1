@@ -22,7 +22,7 @@ using module .\..\Rule\Rule.psm1
 class nxFileLineRule : Rule
 {
     [string] $FilePath
-    [string] $ContainsLine <#(ExceptionValue)#>
+    [string[]] $ContainsLine <#(ExceptionValue)#>
     [string] $DoesNotContainPattern
 
     <#

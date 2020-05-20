@@ -90,19 +90,22 @@ function Get-nxFileLineDoesNotContainPattern
 {
     [CmdletBinding()]
     [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string[]]
-        $CheckContent
-    )
+    param()
 
     try
     {
-        $null = $CheckContent -match $regularExpression.nxFileLineDoesNotContainPattern
-        switch ($Matches[''])
+        $results = @()
+        foreach ($line in $this.ContainsLine)
         {
-            default {return $null}
+            if ($doesNotContainPattern.ContainsKey($line))
+            {
+                $results += $doesNotContainPattern[$line]
+            }
+            else
+            {
+                # This could be expanded upon in the future, dynamically creating the DoesNotContainPattern property.
+                $results += $null
+            }
         }
     }
     catch
@@ -110,6 +113,8 @@ function Get-nxFileLineDoesNotContainPattern
         Write-Verbose "[$($MyInvocation.MyCommand.Name)] nxFileLineDoesNotContainPattern : Not Found"
         return $null
     }
+
+    return $results
 }
 
 <#
@@ -132,20 +137,25 @@ function Test-nxFileLineMultipleEntries
     )
 
     $filePath = $CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath -AllMatches
-    $count = foreach ($path in $filePath.Matches)
+    $filePathCount = @()
+    foreach ($path in $filePath.Matches)
     {
-        $path.Groups['filePath'].Value
+        $filePathCount += $path.Groups['filePath'].Value
     }
 
-    $uniqueCount = $count | Select-Object -Unique | Measure-Object
-    if ($uniqueCount.Count -gt 1)
+    $filePathUniqueCount = $filePathCount | Select-Object -Unique | Measure-Object
+    if ($filePathUniqueCount.Count -gt 1)
     {
         return $true
     }
-    else
+
+    $splitCheckContent = Split-nxFileLineMultipleEntries -CheckContent $CheckContent
+    if ($splitCheckContent.Count -gt 1)
     {
-        return $false
+        return $true
     }
+
+    return $false
 }
 
 <#
@@ -169,7 +179,7 @@ function Split-nxFileLineMultipleEntries
 
     $splitCheckContent = @()
 
-    # The line numbers returned should be subtracted by 1 for zero index
+    # Split CheckContent based on File Path:
     $splitLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
     for ($i = 0; $i -lt $splitLineNumber.Count; $i++)
     {
@@ -193,5 +203,17 @@ function Split-nxFileLineMultipleEntries
         $splitCheckContent += $stringBuilder.ToString()
     }
 
-    return $splitCheckContent
+    # Split modified CheckContent based each File Path Setting:
+    $splitEntries = @()
+    foreach ($content in $splitCheckContent)
+    {
+        $fileContainsLine = Get-nxFileLineContainsLine -CheckContent $content
+        $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
+        foreach ($setting in $fileContainsLine)
+        {
+            $splitEntries += $checkContentData -f $setting
+        }
+    }
+
+    return $splitEntries
 }

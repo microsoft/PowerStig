@@ -52,7 +52,7 @@ class nxFileLineRuleConvert : nxFileLineRule
         else
         {
             $this.SetContainsLine($rawString)
-            $this.SetDoesNotContainPattern($rawString)
+            $this.SetDoesNotContainPattern()
         }
 
         if ($this.conversionstatus -eq 'pass')
@@ -103,9 +103,9 @@ class nxFileLineRuleConvert : nxFileLineRule
             the DoesNotContainPattern that is returned is not valid, the parser status
             is set to fail.
     #>
-    [void] SetDoesNotContainPattern ([string] $CheckContent)
+    [void] SetDoesNotContainPattern ()
     {
-        $doesNotContainPattern = Get-nxFileLineDoesNotContainPattern -CheckContent $CheckContent
+        $doesNotContainPattern = Get-nxFileLineDoesNotContainPattern
 
         if (-not $this.SetStatus($doesNotContainPattern))
         {

@@ -218,7 +218,7 @@ function Get-HardCodedString
         }
         {$PSItem -match 'V-100885'}
         {
-            $hardCodedString = 'Specifiy a string array for Time Servers, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"'
+            $hardCodedString = 'the time server is specified as follows, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"'
             continue
         }
     }
