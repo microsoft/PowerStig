@@ -2,9 +2,10 @@
 
 ## [Unreleased]
 
-* Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
+* Update PowerSTIG to successfully parse/apply Windows Defender Antivirus STIG - V1R8: [#625](https://github.com/microsoft/PowerStig/issues/625)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
+* Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
 
 ## [4.3.0] - 2020-03-27
 
