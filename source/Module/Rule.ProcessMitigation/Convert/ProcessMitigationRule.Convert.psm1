@@ -43,6 +43,7 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
     {
         $this.SetMitigationTarget()
         $this.SetMitigationToEnable()
+        $this.SetMitigationToDisable()
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
@@ -81,13 +82,25 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
     [void] SetMitigationToEnable ()
     {
         $thisMitigation = Get-MitigationPolicyToEnable -CheckContent $this.SplitCheckContent
+        $this.set_Enable($thisMitigation)
+    }
+
+        <#
+        .SYNOPSIS
+            Enables the mitigation target
+        .DESCRIPTION
+            Sets the mitigation target to enabled. If the mitigation target is
+            not set to enabled, it is set to disabled
+    #>
+    [void] SetMitigationToDisable ()
+    {
+        $thisMitigation = Get-MitigationPolicyToDisable -CheckContent $this.SplitCheckContent
 
         if (-not $this.SetStatus($thisMitigation))
         {
-            $this.set_Enable($thisMitigation)
+            $this.set_Disable($thisMitigation)
         }
     }
-
     <#
         .SYNOPSIS
             Tests if a rule contains multiple checks

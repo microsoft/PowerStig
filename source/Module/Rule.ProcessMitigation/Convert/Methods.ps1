@@ -70,7 +70,7 @@ function Get-MitigationPolicyToEnable
     try
     {
         # Determine if the stig rule contains policies to be enabled
-        if ( ( Test-PoliciesToEnable -CheckContent $checkContent ) -eq $false )
+        if ((Test-PoliciesToEnable -CheckContent $checkContent) -eq $false)
         {
             return $null
         }
@@ -80,22 +80,22 @@ function Get-MitigationPolicyToEnable
         {
             switch ($line)
             {
-                { $PSItem -match $regularExpression.IfTheStatusOf }
+                {$PSItem -match $regularExpression.IfTheStatusOf}
                 {
-                    <# 
+                    <#
                     Grab the line that has "If the status of" then grab the text inbetween " and :
                     Check to see if the line was the word 'Enable' in it
                     #>
                     if ($PSItem -match 'Enable')
                     {
-                        $result += ( ( $line | Select-String -Pattern $regularExpression.TextBetweenDoubleQuoteAndColon ).Matches.Value -replace '"' -replace ':' ).Trim()
+                        $result += (($line | Select-String -Pattern $regularExpression.TextBetweenDoubleQuoteAndColon).Matches.Value -replace '"' -replace ':').Trim()
                     }
                     else
                     {
-                        $result += ( ( $line | Select-String -Pattern $regularExpression.TextBetweenColonAndDoubleQuote ).Matches.Value -replace '"' -replace ':' ).Trim()
+                        $result += (($line | Select-String -Pattern $regularExpression.TextBetweenColonAndDoubleQuote).Matches.Value -replace '"' -replace ':').Trim()
                     }
                 }
-                { $PSItem -match $regularExpression.ColonSpaceOn }
+                {$PSItem -match $regularExpression.ColonSpaceOn}
                 {
                     <#
                         This address the edge case where the mitigation is specified to be enabled on a seperate line example (DEP):
@@ -106,14 +106,14 @@ function Get-MitigationPolicyToEnable
                         BottomUp: ON
                         ForceRelocateImages: ON
                     #>
-                    if ( $line -match $regularExpression.EnableColon )
+                    if ($line -match $regularExpression.EnableColon)
                     {
-                        $enableLineMatch = ( $checkContent | Select-String -Pattern $line ).LineNumber
-                        $result += ( ( $checkContent[$enableLineMatch - 2] ) -replace ':' ).Trim()
+                        $enableLineMatch = ($checkContent | Select-String -Pattern $line).LineNumber
+                        $result += (($checkContent[$enableLineMatch - 2]) -replace ':').Trim()
                     }
                     else
                     {
-                        $result += ( $line -replace $regularExpression.ColonSpaceOn ).Trim()
+                        $result += ($line -replace $regularExpression.ColonSpaceOn).Trim()
                     }
                 }
             }
@@ -127,6 +127,47 @@ function Get-MitigationPolicyToEnable
     }
 }
 
+function Get-MitigationPolicyToDisable
+{
+    [CmdletBinding()]
+    [OutputType([string])]
+    param
+    (
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyString()]
+        [string[]]
+        $CheckContent
+    )
+
+    Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
+
+    try
+    {
+        # Determine if the stig rule contains policies to be enabled
+        if ((Test-PoliciesToEnable -CheckContent $checkContent) -eq $false)
+        {
+            return $null
+        }
+
+        $result = @()
+        foreach ($line in $checkContent)
+        {
+            switch ($line)
+            {
+                {$PSItem -match $regularExpression.ColonSpaceFalse}
+                {
+                    $result += ($line -replace $regularExpression.ColonSpaceFalse).Trim()
+                }
+            }
+        }
+        return $result -join ','
+    }
+    catch
+    {
+        Write-Verbose "[$($MyInvocation.MyCommand.Name)] Mitigation Policy : Not Found"
+        return $null
+    }
+}
 <#
     .SYNOPSIS
         Test if the check-content contains mitigations polices to enable.
@@ -152,12 +193,17 @@ function Test-PoliciesToEnable
 
     foreach ( $line in $checkContent )
     {
-        if ( $line -match $regularExpression.IfTheStatusOfIsOff )
+        if ($line -match $regularExpression.IfTheStatusOfIsOff)
         {
             return $true
         }
 
-        if ( $line -match $regularExpression.NotHaveAStatusOfOn )
+        if ($line -match $regularExpression.NotHaveAStatusOfOn)
+        {
+            return $true
+        }
+
+        if ($line -match $regularExpression.NotHaveAStatusOfBelow)
         {
             return $true
         }
