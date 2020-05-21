@@ -70,8 +70,8 @@ stages:
             displayName: 'Publish Test Results'
             condition: succeededOrFailed()
             inputs:
-              testResultsFormat: 'NUnit'
-              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testResultsFormat: 'JUnit'
+              testResultsFiles: 'output/testResults/JUnit*.xml'
               testRunTitle: 'HQRM'
 
       - job: Test_Unit
@@ -100,8 +100,8 @@ stages:
             displayName: 'Publish Test Results'
             condition: succeededOrFailed()
             inputs:
-              testResultsFormat: 'NUnit'
-              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testResultsFormat: 'JUnit'
+              testResultsFiles: 'output/testResults/JUnit*.xml'
               testRunTitle: 'Unit (Windows Server Core)'
 
           - task: PublishBuildArtifacts@1
@@ -145,8 +145,8 @@ stages:
             displayName: 'Publish Test Results'
             condition: succeededOrFailed()
             inputs:
-              testResultsFormat: 'NUnit'
-              testResultsFiles: 'output/testResults/NUnit*.xml'
+              testResultsFormat: 'JUnit'
+              testResultsFiles: 'output/testResults/JUnit*.xml'
               testRunTitle: 'Integration (Windows Server Core)'
 
       - job: Code_Coverage
