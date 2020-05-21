@@ -20,26 +20,22 @@ data regularExpression
 data doesNotContainPattern
 {
     @{
-        'active = yes'                                                                         = 'active\s*=\s*no|active=yes'
-        'remote_server = 192.168.122.126'                                                      = 'TestReturnValue'
-        'Unattended-Upgrade::Remove-Unused-Dependencies "true";'                               = 'Unattended-Upgrade::Remove-Unused-Dependencies\s*("false"|false)\s*;'
-        'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";'                            = 'Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false)\s*;'
-        'session required pam_lastlog.so showfailed'                                           = 'session\s*(?!required)\w*\s*pam_lastlog\.so\s*showfailed'
-        'ucredit=-1'                                                                           = 'ucredit=(?!-1)\d*'
-        'lcredit=-1'                                                                           = 'lcredit=(?!-1)\d*'
-        'dcredit=-1'                                                                           = 'dcredit=(?!-1)\d*'
-        'difok=8'                                                                              = '^difok=(-|)[0-7]$'
-        'PASS_MIN_DAYS 1'                                                                      = 'TestReturnValue'
-        'PASS_MAX_DAYS 60'                                                                     = 'TestReturnValue'
-        'password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000' = 'TestReturnValue'
-        'minlen=15'                                                                            = 'TestReturnValue'
-        'password [success=1 default=ignore] pam_unix.so obscure sha512'                       = 'TestReturnValue'
-        'ENCRYPT_METHOD SHA512'                                                                = 'TestReturnValue'
-        'dictcheck=1'                                                                          = 'TestReturnValue'
-        'enforcing = 1'                                                                        = 'TestReturnValue'
-        'password requisite pam_pwquality.so retry=3'                                          = 'TestReturnValue'
-        'ocredit=-1'                                                                           = 'TestReturnValue'
-        'action_mail_acct = root'                                                              = 'TestReturnValue'
+        'active = yes'                                                                         = '\s*active\s*=\s*no|active=yes|#\s*active\s*=.*'
+        'remote_server = 192.168.122.126'                                                      = 'TestReturnValue' # Org
+        'Unattended-Upgrade::Remove-Unused-Dependencies "true";'                               = '\s*Unattended-Upgrade::Remove-Unused-Dependencies\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Dependencies.*'
+        'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";'                            = '\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages.*'
+        'session required pam_lastlog.so showfailed'                                           = '\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*'
+        'ucredit=-1'                                                                           = '^\s*ucredit\s*=\s*(?!-1)\d*$|#\s*ucredit=.*'
+        'lcredit=-1'                                                                           = '^\s*lcredit\s*=\s*(?!-1)\d*$|#\s*lcredit=.*'
+        'dcredit=-1'                                                                           = '^\s*dcredit\s*=\s*(?!-1)\d*$|#\s*dcredit=.*'
+        'difok=8'                                                                              = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
+        'PASS_MIN_DAYS 1'                                                                      = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
+        'PASS_MAX_DAYS 60'                                                                     = '^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*' # Org
+        'minlen=15'                                                                            = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
+        'dictcheck=1'                                                                          = '^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*'
+        'enforcing = 1'                                                                        = '^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*'
+        'ocredit=-1'                                                                           = '^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*'
+        'action_mail_acct = root'                                                              = 'TestReturnValue' # Org
         'disk_full_action = HALT'                                                              = 'TestReturnValue'
         '* hard maxlogins 10'                                                                  = 'TestReturnValue'
         'TMOUT=900'                                                                            = 'TestReturnValue'
