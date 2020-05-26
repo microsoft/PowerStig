@@ -81,8 +81,11 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
     #>
     [void] SetMitigationToEnable ()
     {
-        $thisMitigation = Get-MitigationPolicyToEnable -CheckContent $this.SplitCheckContent
-        $this.set_Enable($thisMitigation)
+        $enabledMitigation = Get-MitigationPolicyToEnable -CheckContent $this.SplitCheckContent
+        if($enabledMitigation )
+        {
+            $this.set_Enable($enabledMitigation )
+        }
     }
 
         <#
@@ -94,8 +97,11 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
     #>
     [void] SetMitigationToDisable ()
     {
-        $thisMitigation = Get-MitigationPolicyToDisable -CheckContent $this.SplitCheckContent
-        $this.set_Disable($thisMitigation)
+        $disableMitigation = Get-MitigationPolicyToDisable -CheckContent $this.SplitCheckContent
+        if($disableMitigation)
+        {
+            $this.set_Disable($disableMitigation)
+        }
     }
     <#
         .SYNOPSIS

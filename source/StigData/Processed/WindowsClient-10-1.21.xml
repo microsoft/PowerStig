@@ -2399,8 +2399,7 @@ If the defaults have not been changed, these are not a finding.
   <ProcessMitigationRule dscresourcemodule="WindowsDefenderDsc">
     <Rule id="V-77091" severity="medium" conversionstatus="pass" title="WN10-EP-000020" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 enables mitigations against potential threats at the system and application level.  Several mitigations, including "Data Execution Prevention (DEP)", are enabled by default at the system level. DEP prevents code from being run from data-only memory pages. If this is turned off, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable>
-      </Disable>
+      <Disable />
       <DuplicateOf />
       <Enable>DEP</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2425,8 +2424,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77095" severity="medium" conversionstatus="pass" title="WN10-EP-000030" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 enables mitigations against potential threats at the system and application level.  Several mitigations, including "Randomize memory allocations (Bottom-Up ASLR)", are enabled by default at the system level. Bottom-Up ASLR (address space layout randomization) randomizes locations for virtual memory allocations, including those for system structures. If this is turned off, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable>
-      </Disable>
+      <Disable />
       <DuplicateOf />
       <Enable>BottomUp</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2451,8 +2449,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77097" severity="medium" conversionstatus="pass" title="WN10-EP-000040" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 enables mitigations against potential threats at the system and application level.  Several mitigations, including "Control flow guard (CFG)", are enabled by default at the system level. CFG ensures flow integrity for indirect calls. If this is turned off, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable>
-      </Disable>
+      <Disable />
       <DuplicateOf />
       <Enable>CFG</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2477,8 +2474,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77101" severity="medium" conversionstatus="pass" title="WN10-EP-000050" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 enables mitigations against potential threats at the system and application level.  Several mitigations, including "Validate exception chains (SEHOP)", are enabled by default at the system level. SEHOP (structured exception handling overwrite protection) ensures the integrity of an exception chain during exception dispatch. If this is turned off, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable>
-      </Disable>
+      <Disable />
       <DuplicateOf />
       <Enable>SEHOP</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2503,8 +2499,7 @@ NOTSET (Default configuration)</RawString>
     </Rule>
     <Rule id="V-77103" severity="medium" conversionstatus="pass" title="WN10-EP-000060" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 enables mitigations against potential threats at the system and application level.  Several mitigations, including "Validate heap integrity", are enabled by default at the system level. "Validate heap integrity" terminates a process when heap corruption is detected. If this is turned off, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable>
-      </Disable>
+      <Disable />
       <DuplicateOf />
       <Enable>TerminateOnError</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2605,8 +2600,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>chrome.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2668,8 +2662,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>Override DEP</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>firefox.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2696,8 +2689,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>Override DEP,ImageLoad OverrideBlockRemoteImages,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec,OverrideChildProcess</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>FLTLDR.EXE</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2736,8 +2728,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideBlockRemoteImages,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec,OverrideChildProcess</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>GROOVE.EXE</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2853,8 +2844,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>java.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2889,8 +2879,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>javaw.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -2925,8 +2914,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>javaws.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -3072,8 +3060,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>Override DEP,OverrideRelocateImages,OverrideBlockRemoteImages,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>OneDrive.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -3113,8 +3100,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>OIS.EXE</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -3183,8 +3169,7 @@ The PowerShell command produces a list of mitigations; only those with a require
     </Rule>
     <Rule id="V-77245" severity="medium" conversionstatus="pass" title="WN10-EP-000230" dscresource="ProcessMitigation">
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <Disable>
-      </Disable>
+      <Disable />
       <DuplicateOf />
       <Enable>DEP,EnableExportAddressFilter,EnableExportAddressFilterPlus,EnableImportAddressFilter,EnableRopStackPivot,EnableRopCallerCheck,EnableRopSimExec</Enable>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3404,8 +3389,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>wmplayer.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -3439,8 +3423,7 @@ The PowerShell command produces a list of mitigations; only those with a require
       <Description>&lt;VulnDiscussion&gt;Exploit protection in Windows 10 provides a means of enabling additional mitigations against potential threats at the system and application level. Without these additional application protections, Windows 10 may be subject to various exploits.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <Disable>OverrideDEP,OverrideEnableExportAddressFilter,OverrideEnableExportAddressFilterPlus,OverrideEnableImportAddressFilter,OverrideEnableRopStackPivot,OverrideEnableRopCallerCheck,OverrideEnableRopSimExec</Disable>
       <DuplicateOf />
-      <Enable>
-      </Enable>
+      <Enable />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <MitigationTarget>wordpad.exe</MitigationTarget>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -6378,7 +6361,7 @@ Value: 0x00000001 (1)</RawString>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE\</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\FVE</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>ValueData is set to 0x00000006 (6) or greater </OrganizationValueTestString>
       <RawString>If the following registry value does not exist or is not configured as specified, this is a finding.
