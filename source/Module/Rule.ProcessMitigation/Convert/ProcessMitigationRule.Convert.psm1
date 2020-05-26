@@ -100,7 +100,7 @@ class ProcessMitigationRuleConvert : ProcessMitigationRule
         $disableMitigation = Get-MitigationPolicyToDisable -CheckContent $this.SplitCheckContent
         if ($disableMitigation)
         {
-            $this.set_Disable ($disableMitigation)
+            $this.set_Disable($disableMitigation)
         }
     }
     <#
