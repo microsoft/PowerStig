@@ -42,7 +42,6 @@ class nxFileLineRuleConvert : nxFileLineRule
     {
         $rawString = $this.SplitCheckContent
         $this.SetFilePath($rawString)
-        $this.SetDscResource()
         if ($this.IsHardCodedOrganizationValueTestString())
         {
             $OrganizationValueTestString = $this.GetHardCodedOrganizationValueTestString()
@@ -53,11 +52,23 @@ class nxFileLineRuleConvert : nxFileLineRule
         {
             $this.SetContainsLine($rawString)
             $this.SetDoesNotContainPattern()
+            if ($this.TestStringForRange($rawString))
+            {
+                $this.SetOrganizationValueRequired()
+                $this.SetOrganizationValueTestString($rawString)
+                $this.ContainsLine = [string]::Empty
+            }
         }
 
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()
+            $this.SetDscResource()
+        }
+
+        if ($null -ne $this.DuplicateOf)
+        {
+            $this.ClearOrgSettings()
         }
     }
 
@@ -111,6 +122,31 @@ class nxFileLineRuleConvert : nxFileLineRule
         {
             $this.set_DoesNotContainPattern($doesNotContainPattern)
         }
+    }
+
+    [void] SetOrganizationValueTestString ([string[]] $CheckContent)
+    {
+        $result = $CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher).*this is a finding'
+        $formattedResult = 'that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "{0}" ' -f $result
+        if ($null -ne $result)
+        {
+            $this.set_OrganizationValueTestString($formattedResult)
+        }
+    }
+
+    [void] ClearOrgSettings ()
+    {
+        $this.OrganizationValueRequired = $false
+        $this.OrganizationValueTestString = [string]::Empty
+    }
+
+    [bool] TestStringForRange ([string] $CheckContent)
+    {
+        if ($CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher).*this is a finding')
+        {
+            return $true
+        }
+        return $false
     }
 
     static [bool] Match ([string] $CheckContent)

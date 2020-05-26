@@ -151,6 +151,8 @@ function Get-HardCodedString
         'V-17761', # Outlook 2013 - OrgSetting Value
         'V-75241', # Windows Defender - ASSignatureDue
         'V-75243', # Windows Defender - AVSignatureDue
+        'V-100679', # Ubuntu - Admin accounts
+        'V-100681', # Ubuntu - Storage full auction (Audit)
         'V-100885' # Ubuntu - Time Server information
     )
 
@@ -214,6 +216,16 @@ function Get-HardCodedString
         {$PSItem -match 'V-75241|V-75243'}
         {
             $hardCodedString = "{0} -ge '1' -and {0} -le '7'"
+            continue
+        }
+        {$PSItem -match 'V-100679'}
+        {
+            $hardCodedString = 'the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.'
+            continue
+        }
+        {$PSItem -match 'V-100681'}
+        {
+            $hardCodedString = 'the value of the "disk_full_action" option is "SYSLOG", "SINGLE", or "HALT".'
             continue
         }
         {$PSItem -match 'V-100885'}

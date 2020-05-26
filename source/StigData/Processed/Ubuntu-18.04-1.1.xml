@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 29 Mar 2020" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="5/1/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="U_CAN_Ubuntu_18-04_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_CAN_Ubuntu_18-04_LTS_STIG_V1R1_Manual-xccdf.xml" releaseinfo="Release: 1 Benchmark Date: 29 Mar 2020" title="Canonical Ubuntu 18.04 LTS Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.1" created="5/26/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-100525" severity="medium" conversionstatus="pass" title="SRG-OS-000185-GPOS-00079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information at rest refers to the state of information when it is located on a secondary storage device (e.g., disk drive and tape drive, when used for backups) within an operating system.
@@ -37,6 +37,174 @@ Verify that the system partitions are all encrypted with the following command:
 
 Every persistent disk partition present must have an entry in the file. If any partitions other than the boot partition or pseudo file systems (such as /proc or /sys) are not listed, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-100587" severity="low" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed as per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system prevents passwords from being reused for a minimum of five generations by running the following command:
+
+# grep -i remember /etc/pam.d/common-password
+
+password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000
+
+If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100591" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The Ubuntu operating system must use a FIPS-compliant hashing algorithm to securely store the password. The FIPS-compliant hashing algorithm parameters must be selected in order to harden the system against offline attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that encrypted passwords stored in /etc/shadow use a strong cryptographic hash.
+
+Check that pam_unix.so auth is configured to use sha512 with the following command:
+
+# grep password /etc/pam.d/common-password | grep pam_unix
+
+password [success=1 default=ignore] pam_unix.so obscure sha512
+
+If "sha512" is not an option of the output, or is commented out, this is a finding.
+
+Check that ENCRYPT_METHOD is set to sha512 in /etc/login.defs:
+
+# grep -i ENCRYPT_METHOD /etc/login.defs
+
+ENCRYPT_METHOD SHA512
+
+If the output does not contain "sha512", or it is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100599" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system has the libpam-pwquality package installed, by running the following command:
+
+# dpkg -l libpam-pwquality
+
+ii libpam-pwquality:amd64 1.4.0-2 amd64 PAM module to check password strength
+
+If "libpam-pwquality" is not installed, this is a finding.
+
+Verify the operating system uses "pwquality" to enforce the password complexity rules.
+
+Verify the pwquality module is being enforced by the Ubuntu Operating System, by running the following command:
+
+# grep -i enforcing /etc/security/pwquality.conf
+
+enforcing = 1
+
+If the value of "enforcing" is not 1 or the line is commented out, this is a finding.
+
+Check for the use of "pwquality" with the following command:
+
+# sudo cat /etc/pam.d/common-password | grep requisite | grep pam_pwquality
+
+password requisite pam_pwquality.so retry=3
+
+If no output is returned or the line is commented out, this is a finding.
+If the value of "retry" is set to "0" or greater than "3", this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100603" severity="medium" conversionstatus="pass" title="SRG-OS-000205-GPOS-00083" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Any operating system providing too much information in error messages risks compromising the data and security of the structure, and content of error messages needs to be carefully considered by the organization.
+
+Organizations carefully consider the structure/content of error messages. The extent to which information systems are able to identify and handle error conditions is guided by organizational policy and operational requirements. Information that could be exploited by adversaries includes, for example, erroneous logon attempts with passwords entered by mistake as the username, mission/business information that can be derived from (if not stated explicitly by) information recorded, and personal information, such as account numbers, social security numbers, and credit card numbers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system has all system log files under the /var/log directory with a permission set to 640, by using the following command:
+
+# sudo find /var/log -perm /137 -type f -exec stat -c "%n %a" {} \;
+
+If command displays any output, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100615" severity="medium" conversionstatus="pass" title="SRG-OS-000206-GPOS-00084" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the operating system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives.
+
+The structure and content of error messages must be carefully considered by the organization and development team. The extent to which the information system is able to identify and handle error conditions is guided by organizational policy and operational requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system configures the /var/log/syslog file with mode 0640 or less permissive.
+
+Check the /var/log/syslog permissions by running the following command:
+
+# stat -c "%n %a" /var/log/syslog
+
+/var/log/syslog 640
+
+If a value of "640" or less permissive is not returned, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100617" severity="medium" conversionstatus="pass" title="SRG-OS-000256-GPOS-00097" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Protecting audit information also includes identifying and protecting the tools used to view and manipulate log data. Therefore, protecting audit tools is necessary to prevent unauthorized operation on audit information.
+
+The Ubuntu operating system providing tools to interface with audit information will leverage user permissions and roles identifying the user accessing the tools and the corresponding rights the user enjoys in order to make access decisions regarding the access to audit tools.
+
+Audit tools include, but are not limited to, vendor-provided and open source audit tools needed to successfully view and manipulate audit information system activity and records. Audit tools include custom queries and report generators.
+
+Satisfies: SRG-OS-000256-GPOS-00097, SRG-OS-000257-GPOS-00098, SRG-OS-000258-GPOS-00099&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the audit tools are protected from unauthorized access, deletion, or modification by checking the permissive mode.
+
+For each audit tool,
+/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules
+
+Check the permissions by running the following command:
+
+# stat -c "%n %a" /sbin/auditctl
+
+755 /sbin/auditctl
+
+If any of the audit tools have a mode more permissive than 0755, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100649" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system is not configured to reboot the system when Ctrl-Alt-Delete is pressed when using a graphical user interface.
+
+Check that the "logout" target is not bound to an action with the following command:
+
+# grep logout /etc/dconf/db/local.d/*
+
+logout=''
+
+If the "logout" key is bound to an action, is commented out, or is missing, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100853" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Without path validation, an informed trust decision by the relying party cannot be made when presented with any certificate not already explicitly trusted.
+
+A trust anchor is an authoritative entity represented via a public key and associated data. It is used in the context of public key infrastructures, X.509 digital certificates, and DNSSEC.
+
+When there is a chain of trust, usually the top entity to be trusted becomes the trust anchor; it can be, for example, a Certification Authority (CA). A certification path starts with the subject certificate and proceeds through a number of intermediate certificates up to a trusted root certificate, typically issued by a trusted CA.
+
+This requirement verifies that a certification path to an accepted trust anchor is used for certificate validation and that the path includes status information. Path validation is necessary for a relying party to make an informed trust decision when presented with any certificate not already explicitly trusted. Status information for certification paths includes certificate revocation lists or online certificate status protocol responses. Validation of the certificate status information is out of scope for this requirement.
+
+Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000384-GPOS-00167&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system, for PKI-based authentication, had valid certificates by constructing a certification path to an accepted trust anchor.
+
+Check which pkcs11 module is being used via the use_pkcs11_module in /etc/pam_pkcs11/pam_pkcs11.conf and then ensure "ca" is enabled in "cert_policy" with the following command:
+
+# sudo grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ca
+
+cert_policy = ca,signature,ocsp_on;
+
+If "cert_policy" is not set to "ca", or the line is commented out, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-100855" severity="high" conversionstatus="pass" title="SRG-OS-000068-GPOS-00036" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without mapping the certificate used to authenticate to the user account, the ability to determine the identity of the individual user or group will not be available for forensic analysis.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -54,6 +222,60 @@ Check if use_mappers is set to pwent in /etc/pam_pkcs11/pam_pkcs11.conf file
 use_mappers = pwent
 
 If ‘use_mappers’ is not found or is not set to pwent this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100863" severity="medium" conversionstatus="pass" title="SRG-OS-000377-GPOS-00162" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;The use of PIV credentials facilitates standardization and reduces the risk of unauthorized access.
+
+DoD has mandated the use of the CAC to support identity management and personal authentication for systems covered under Homeland Security Presidential Directive (HSPD) 12, as well as making the CAC a primary component of layered protection for national security systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system implements certificate status checking for multifactor authentication.
+
+Check that certificate status checking for multifactor authentication is implemented with the following command:
+
+# sudo grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ocsp_on
+
+cert_policy = ca,signature,ocsp_on;
+
+If "cert_policy" is not set to "ocsp_on", or the line is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100875" severity="medium" conversionstatus="pass" title="SRG-OS-000118-GPOS-00060" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
+
+Ubuntu operating systems need to track periods of inactivity and disable application identifiers after 35 days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the account identifiers (individuals, groups, roles, and devices) are disabled after 35 days of inactivity with the following command:
+
+Check the account inactivity value by performing the following command:
+
+# sudo grep INACTIVE /etc/default/useradd
+
+INACTIVE=35
+
+If "INACTIVE" is not set to a value 0&lt;[VALUE]&lt;=35, or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100879" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00228" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Setting the most restrictive default permissions ensures that when new accounts are created they do not have unnecessary access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the Ubuntu operating system defines default permissions for all authenticated users in such a way that the user can only read and modify their own files.
+
+Check that the Ubuntu operating system defines default permissions for all authenticated users with the following command:
+
+# grep -i "umask" /etc/login.defs
+
+UMASK 077
+
+If the "UMASK" variable is set to "000", this is a finding with the severity raised to a CAT I.
+
+If the value of "UMASK" is not set to "077", "UMASK" is commented out or "UMASK" is missing completely, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100913" severity="medium" conversionstatus="pass" title="SRG-OS-000481-GPOS-000481" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without protection of communications with wireless peripherals, confidentiality and integrity may be compromised because unprotected communications can be intercepted and either read, altered, or used to compromise the operating system.
@@ -195,38 +417,6 @@ The "action_mail_acct" parameter, if missing, defaults to "root". If the "action
 
 Note: If the email address of the system administrator is on a remote system a mail package must be available.</RawString>
     </Rule>
-    <Rule id="V-100531" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
-
-Off-loading is a common process in information systems with limited audit storage capacity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the audit event multiplexor is configured to off-load audit records to a different system or storage media from the system being audited.
-
-Check that audisp-remote plugin is installed:
-
-# sudo dpkg -s audispd-plugins
-
-If status is "not installed", this is a finding.
-
-Check that the records are being off-loaded to a remote server with the following command:
-
-# sudo grep -i active /etc/audisp/plugins.d/au-remote.conf
-
-active = yes
-
-If "active" is not set to "yes", or the line is commented out, this is a finding.
-
-Check that audisp-remote plugin is configured to send audit logs to a different system:
-
-# sudo grep -i ^remote_server /etc/audisp/audisp-remote.conf
-
-remote_server = 192.168.122.126
-
-If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100533" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
 
@@ -266,54 +456,6 @@ Check that the "AllowUnauthenticated" variable is not set at all or set to "fals
 
 If any of the files returned from the command with "AllowUnauthenticated" set to "true", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100537" severity="medium" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Previous versions of software components that are not removed from the information system after updates have been installed may be exploited by adversaries. Some information technology products may remove older versions of software automatically from the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify Advance package Tool (APT) is configured to remove all software components after updated versions have been installed.
-
-Check that APT is configured to remove all software components after updating with the following command:
-
-# grep -i remove-unused /etc/apt/apt.conf.d/50unattended-upgrades
-Unattended-Upgrade::Remove-Unused-Dependencies "true";
-Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
-
-If the "::Remove-Unused-Dependencies" and "::Remove-Unused-Kernel-Packages" parameters are not set to "true", or are missing, or are commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100551" severity="low" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
-
-Off-loading is a common process in information systems with limited audit storage capacity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the audit event multiplexor is configured to off-load audit records to a different system or storage media from the system being audited.
-
-Check that audisp-remote plugin is installed:
-
-# sudo dpkg -s audispd-plugins
-
-If status is "not installed", this is a finding.
-
-Check that the records are being off-loaded to a remote server with the following command:
-
-# sudo grep -i active /etc/audisp/plugins.d/au-remote.conf
-
-active = yes
-
-If "active" is not set to "yes", or the line is commented out, this is a finding.
-
-Check that audisp-remote plugin is configured to send audit logs to a different system:
-
-# sudo grep -i ^remote_server audisp-remote.conf
-
-remote_server = 192.168.122.126
-
-If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100553" severity="low" conversionstatus="pass" title="SRG-OS-000383-GPOS-00166" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If cached authentication information is out-of-date, the validity of the authentication information may be questionable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -347,24 +489,6 @@ Check that the Ubuntu operating system enforces a delay of at least 4 seconds be
 auth required pam_faildelay.so delay=4000000
 
 If the line is not present, or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100557" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Configuring the Ubuntu operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
-
-Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example: registry settings; account, file, directory permission settings; and settings for functions, ports, protocols, services, and remote connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify users are provided with feedback on when account accesses last occurred.
-
-Check that "pam_lastlog" is used and not silent with the following command:
-
-# grep pam_lastlog /etc/pam.d/login
-
-session required pam_lastlog.so showfailed
-
-If "pam_lastlog" is missing from "/etc/pam.d/login" file, is not "required", or the "silent" option is present, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100559" severity="medium" conversionstatus="pass" title="SRG-OS-000021-GPOS-00005" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;By limiting the number of failed logon attempts, the risk of unauthorized system access via user password guessing, otherwise known as brute-force attacks, is reduced. Limits are imposed by locking the account.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -521,76 +645,6 @@ auth required pam_tally2.so onerr=fail deny=3
 
 If the command above does not return a pam_tally2.so line with both onerr=fail and deny=3 parameters, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100571" severity="low" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
-
-Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one upper-case character be used.
-
-Determine if the field "ucredit" is set in the "/etc/security/pwquality.conf" file with the following command:
-
-# grep -i "ucredit" /etc/security/pwquality.conf
-ucredit=-1
-
-If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100573" severity="low" conversionstatus="pass" title="SRG-OS-000070-GPOS-00038" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
-
-Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one lower-case character be used.
-
-Determine if the field "lcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
-
-# grep -i "lcredit" /etc/security/pwquality.conf
-lcredit=-1
-
-If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100575" severity="low" conversionstatus="pass" title="SRG-OS-000071-GPOS-00039" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
-
-Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one numeric character be used.
-
-Determine if the field "dcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
-
-# grep -i "dcredit" /etc/security/pwquality.conf
-dcredit=-1
-
-If the "dcredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100577" severity="low" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the Ubuntu operating system allows the user to consecutively reuse extensive portions of passwords, this increases the chances of password compromise by increasing the window of opportunity for attempts at guessing and brute-force attacks.
-
-The number of changed characters refers to the number of changes required with respect to the total number of positions in the current password. In other words, characters may be the same within the two passwords; however, the positions of the like characters must be different.
-
-If the password length is an odd number then number of changed characters must be rounded up. For example, a password length of 15 characters must require the change of at least 8 characters.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system requires the change of at least 8 characters when passwords are changed.
-
-Determine if the field "difok" is set in the "/etc/security/pwquality.conf" file with the following command:
-
-# grep -i "difok" /etc/security/pwquality.conf
-difok=8
-
-If the "difok" parameter is less than "8", or is commented out, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100579" severity="medium" conversionstatus="pass" title="SRG-OS-000073-GPOS-00041" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Passwords need to be protected at all times, and encryption is the standard method for protecting passwords. If passwords are not encrypted, they can be plainly read (i.e., clear text) and easily compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -607,86 +661,6 @@ ENCRYPT_METHOD SHA512
 
 If "ENCRYPT_METHOD" does not equal SHA512 or greater, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100583" severity="low" conversionstatus="pass" title="SRG-OS-000075-GPOS-00043" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Enforcing a minimum password lifetime helps to prevent repeated password changes to defeat the password reuse or history enforcement requirement. If users are allowed to immediately and continually change their password, then the password could be repeatedly changed in a short period of time to defeat the organization's policy regarding password reuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system enforces a 24 hours/1 day minimum password lifetime for new user accounts by running the following command:
-
-# grep -i pass_min_days /etc/login.defs
-
-PASS_MIN_DAYS 1
-
-If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100585" severity="low" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Any password, no matter how complex, can eventually be cracked. Therefore, passwords need to be changed periodically. If the operating system does not limit the lifetime of passwords and force users to change their passwords, there is the risk that the operating system passwords could be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system enforces a 60-day maximum password lifetime for new user accounts by running the following command:
-
-# grep -i pass_max_days /etc/login.defs
-PASS_MAX_DAYS 60
-
-If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100587" severity="low" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed as per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system prevents passwords from being reused for a minimum of five generations by running the following command:
-
-# grep -i remember /etc/pam.d/common-password
-
-password [success=1 default=ignore] pam_unix.so sha512 shadow remember=5 rounds=5000
-
-If the "remember" parameter value is not greater than or equal to 5, commented out, or not set at all this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100589" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The shorter the password, the lower the number of possible combinations that need to be tested before the password is compromised.
-
-Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password length is one factor of several that helps to determine strength and how long it takes to crack a password. Use of more characters in a password helps to exponentially increase the time and/or resources required to compromise the password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify if the pwquality configuration file enforces a minimum 15-character password length, by running the following command:
-
-# grep -i minlen /etc/security/pwquality.conf
- minlen=15
-
-If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100591" severity="medium" conversionstatus="pass" title="SRG-OS-000120-GPOS-00061" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The Ubuntu operating system must use a FIPS-compliant hashing algorithm to securely store the password. The FIPS-compliant hashing algorithm parameters must be selected in order to harden the system against offline attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that encrypted passwords stored in /etc/shadow use a strong cryptographic hash.
-
-Check that pam_unix.so auth is configured to use sha512 with the following command:
-
-# grep password /etc/pam.d/common-password | grep pam_unix
-
-password [success=1 default=ignore] pam_unix.so obscure sha512
-
-If "sha512" is not an option of the output, or is commented out, this is a finding.
-
-Check that ENCRYPT_METHOD is set to sha512 in /etc/login.defs:
-
-# grep -i ENCRYPT_METHOD /etc/login.defs
-
-ENCRYPT_METHOD SHA512
-
-If the output does not contain "sha512", or it is commented out, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100593" severity="medium" conversionstatus="pass" title="SRG-OS-000380-GPOS-00165" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without providing this capability, an account may be created without a password. Non-repudiation cannot be guaranteed once an account is created if a user is not forced to change the temporary password upon initial logon.
 
@@ -698,20 +672,6 @@ Temporary passwords are typically used to allow access when new accounts are cre
       <RawString>Verify a policy exists that ensures when a user account is created, it is created using a method that forces a user to change their password upon their next login.
 
 If a policy does not exist, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100595" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;If the Ubuntu operating system allows the user to select passwords based on dictionary words, then this increases the chances of password compromise by increasing the opportunity for successful guesses and brute-force attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system uses the cracklib library to prevent the use of dictionary words with the following command:
-
-# grep dictcheck /etc/security/pwquality.conf
-
-dictcheck=1
-
-If the "dictcheck" parameter is not set to "1", or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100597" severity="medium" conversionstatus="pass" title="SRG-OS-000373-GPOS-00156" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without re-authentication, users may access resources or perform tasks for which they do not have authorization.
@@ -1116,39 +1076,6 @@ Run the check with the following command:
 
 If any system commands directories are returned that are not Set Group ID up on execution (SGID) files and owned by a privileged account, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100647" severity="low" conversionstatus="pass" title="SRG-OS-000266-GPOS-00101" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity or strength is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
-
-Password complexity is one factor in determining how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.
-
-Special characters are those characters that are not alphanumeric. Examples include: ~ ! @ # $ % ^ *.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine if the field "ocredit" is set in the "/etc/security/pwquality.conf" file with the following command:
-
-# grep -i "ocredit" /etc/security/pwquality.conf
-ocredit=-1
-
-If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100649" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot. In the graphical environment, risk of unintentional reboot from the Ctrl-Alt-Delete sequence is reduced because the user will be prompted before any action is taken.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system is not configured to reboot the system when Ctrl-Alt-Delete is pressed when using a graphical user interface.
-
-Check that the "logout" target is not bound to an action with the following command:
-
-# grep logout /etc/dconf/db/local.d/*
-
-logout=''
-
-If the "logout" key is bound to an action, is commented out, or is missing, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100651" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A locally logged-on user who presses Ctrl-Alt-Delete, when at the console, can reboot the system. If accidentally pressed, as could happen in the case of a mixed OS environment, this can create the risk of short-term loss of availability of systems due to unintentional reboot.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -1422,48 +1349,6 @@ Check the currently configured audit rules with the following command:
 If the command does not return a line that matches the example or the line is commented out, this is a finding.
 
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
-    </Rule>
-    <Rule id="V-100679" severity="medium" conversionstatus="pass" title="SRG-OS-000046-GPOS-00022" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without this notification, the security personnel may be unaware of an impending failure of the audit capability, and system operation may be adversely affected.
-
-Audit processing failures include software/hardware errors, failures in the audit capturing mechanisms, and audit storage capacity being reached or exceeded.
-
-This requirement applies to each audit data storage repository (i.e., distinct information system component where audit records are stored), the centralized audit storage capacity of organizations (i.e., all audit data storage repositories combined), or both.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) are notified in the event of an audit processing failure.
-
-Check that the Ubuntu operating system notifies the SA and ISSO (at a minimum) win the event of an audit processing failure with the following command:
-
-# sudo grep action_mail_acct = root /etc/audit/auditd.conf
-
-action_mail_acct = root
-
-If the value of the "action_mail_acct" keyword is not set to "root" and/or other accounts for security personnel, the "action_mail_acct" keyword is missing, or the returned line is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100681" severity="medium" conversionstatus="pass" title="SRG-OS-000047-GPOS-00023" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;It is critical that when the Ubuntu operating system is at risk of failing to process audit logs as required, it takes action to mitigate the failure. Audit processing failures include: software/hardware errors; failures in the audit capturing mechanisms; and audit storage capacity being reached or exceeded. Responses to audit failure depend upon the nature of the failure mode.
-
-When availability is an overriding concern, other approved actions in response to an audit failure are as follows:
-
-1) If the failure was caused by the lack of audit record storage capacity, the Ubuntu operating system must continue generating audit records if possible (automatically restarting the audit service if necessary), overwriting the oldest audit records in a first-in-first-out manner.
-
-2) If audit records are sent to a centralized collection server and communication with this server is lost or the server fails, the Ubuntu operating system must queue audit records locally until communication is restored or until the audit records are retrieved manually. Upon restoration of the connection to the centralized collection server, action should be taken to synchronize the local audit data with the collection server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system takes the appropriate action when the audit storage volume is full.
-
-Check that the Ubuntu operating system takes the appropriate action when the audit storage volume is full with the following command:
-
-# sudo grep disk_full_action /etc/audit/auditd.conf
-
-disk_full_action = HALT
-
-If the value of the "disk_full_action" option is not "SYSLOG", "SINGLE", or "HALT", or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100683" severity="medium" conversionstatus="pass" title="SRG-OS-000058-GPOS-00028" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;If audit information were to become compromised, then forensic analysis and discovery of the true source of potentially malicious system activity is impossible to achieve.
@@ -3135,24 +3020,6 @@ If the command does not return a line, or the line is commented out, this is a f
 
 Note: The '-k' allows for specifying an arbitrary identifier and the string after it does not need to match the example output above.</RawString>
     </Rule>
-    <Rule id="V-100825" severity="low" conversionstatus="pass" title="SRG-OS-000027-GPOS-00008" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Ubuntu operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks.
-
-This requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions should be defined based on mission needs and the operational environment for each system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system limits the number of concurrent sessions to ten for all accounts and/or account types by running the following command:
-
-# grep maxlogins /etc/security/limits.conf | grep -v '^* hard maxlogins'
-
-The result must contain the following line:
-
-* hard maxlogins 10
-
-If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100827" severity="medium" conversionstatus="pass" title="SRG-OS-000028-GPOS-00009" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A session lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not want to log out because of the temporary nature of the absence.
 
@@ -3172,47 +3039,6 @@ Get the ""lock-enabled"" setting to verify if the graphical user interface sessi
 true
 
 If "lock-enabled" is not set to "true", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100829" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
-
-The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system initiates a session logout after a 15-minute period of inactivity.
-
-Check that the proper auto logout script exists with the following command:
-
-# cat /etc/profile.d/autologout.sh
-TMOUT=900
-readonly TMOUT
-export TMOUT
-
-If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100833" severity="medium" conversionstatus="pass" title="SRG-OS-000279-GPOS-00109" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Automatic session termination addresses the termination of user-initiated logical sessions in contrast to the termination of network connections that are associated with communications sessions (i.e., network disconnect). A logical session (for local, network, and remote access) is initiated whenever a user (or process acting on behalf of a user) accesses an organizational information system. Such user sessions can be terminated (and thus terminate user access) without terminating network sessions.
-
-Session termination terminates all processes associated with a user's logical session except those processes that are specifically created by the user (i.e., session owner) to continue after the session is terminated.
-
-Conditions or trigger events requiring automatic session termination can include, for example, organization-defined periods of user inactivity, targeted responses to certain types of incidents, and time-of-day restrictions on information system use.
-
-This capability is typically reserved for specific operating system functionality where the system owner, data owner, or organization requires additional assurance.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the operating system automatically terminates a user session after inactivity time-outs have expired.
-
-Check that the "ClientAliveInterval" variable is set to a value of "600" or less by performing the following command:
-
-# sudo grep -i clientalive /etc/ssh/sshd_config
-
-ClientAliveInterval 600
-
-If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100835" severity="medium" conversionstatus="pass" title="SRG-OS-000032-GPOS-00013" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Remote access services, such as those providing remote access to network devices and information systems, which lack automated monitoring capabilities, increase risk and make remote user access management difficult at best.
@@ -3254,30 +3080,6 @@ Ciphers aes128-ctr,aes192-ctr,aes256-ctr
 
 If no lines are returned, or the returned ciphers list contains any cipher not starting with "aes", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-100839" severity="high" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A replay attack may enable an unauthorized user to gain access to the operating system. Authentication sessions between the authenticator and the operating system validating the user credentials must not be vulnerable to a replay attack.
-
-An authentication process resists replay attacks if it is impractical to achieve a successful authentication by recording and replaying a previous authentication message.
-
-A privileged account is any information system account with authorizations of a privileged user.
-
-Techniques used to address this include protocols using nonces (e.g., numbers generated for a specific one-time use) or challenges (e.g., TLS, WS_Security). Additional techniques include time-synchronous or challenge-response one-time authenticators.
-
-Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that the Ubuntu operating system enforces SSH protocol 2 for network access.
-
-Check the protocol versions that SSH allows with the following command:
-
-# grep Protocol /etc/ssh/sshd_config
-
-Protocol 2
-
-If the returned line allows for use of protocol "1", is commented out, or the line is missing, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-100841" severity="medium" conversionstatus="pass" title="SRG-OS-000125-GPOS-00065" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Nonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the Internet) or an internal network. Local maintenance and diagnostic activities are those activities carried out by individuals physically present at the information system or information system component and not communicating across a network connection. Typically, strong authentication requires authenticators that are resistant to replay attacks and employ multifactor authentication. Strong authenticators include, for example, PKI where certificates are stored on a token protected by a password, passphrase, or biometric.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -3293,46 +3095,6 @@ Check that "UsePAM" is set to yes in /etc/ssh/sshd_config:
 UsePAM yes
 
 If "UsePAM" is not set to "yes", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100843" severity="medium" conversionstatus="pass" title="SRG-OS-000126-GPOS-00066" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Automatic session termination addresses the termination of user-initiated logical sessions in contrast to the termination of network connections that are associated with communications sessions (i.e., network disconnect). A logical session (for local, network, and remote access) is initiated whenever a user (or process acting on behalf of a user) accesses an organizational information system. Such user sessions can be terminated (and thus terminate user access) without terminating network sessions.
-
-Session termination terminates all processes associated with a user's logical session except those processes that are specifically created by the user (i.e., session owner) to continue after the session is terminated.
-
-Conditions or trigger events requiring automatic session termination can include, for example, organization-defined periods of user inactivity, targeted responses to certain types of incidents, and time-of-day restrictions on information system use.
-
-This capability is typically reserved for specific Ubuntu operating system functionality where the system owner, data owner, or organization requires additional assurance.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that all network connections associated with SSH traffic automatically terminate after a period of inactivity.
-
-Check that "ClientAliveCountMax" variable is set in "/etc/ssh/sshd_config" file by performing the following command:
-
-# sudo grep -i clientalivecountmax /etc/ssh/sshd_config
-
-ClientAliveCountMax 1
-
-If "ClientAliveCountMax" is not set, or not set to "1", or is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100845" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
-
-Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that all network connections associated with SSH traffic are automatically terminated at the end of the session or after 10 minutes of inactivity.
-
-Check that the "ClientAliveInterval" variable is set to a value of "600" or less by performing the following command:
-
-# sudo grep -i clientalive /etc/ssh/sshd_config
-
-ClientAliveInterval 600
-
-If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100847" severity="high" conversionstatus="pass" title="SRG-OS-000250-GPOS-00093" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without cryptographic integrity protections, information can be altered by unauthorized users without detection.
@@ -3356,47 +3118,6 @@ Check that the SSH daemon is configured to only use MACs that employ FIPS 140-2 
 MACs hmac-sha2-256,hmac-sha2-512
 
 If any ciphers other than "hmac-sha2-256" or "hmac-sha2-512" are listed or the returned line is commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100851" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts Ubuntu operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify that unattended or automatic login via ssh is disabled.
-
-Check that unattended or automatic login via ssh is disabled with the following command:
-
-# egrep '(Permit(.*?)(Passwords|Environment))' /etc/ssh/sshd_config
-
-PermitEmptyPasswords no
-PermitUserEnvironment no
-
-If "PermitEmptyPasswords" or "PermitUserEnvironment" keywords are not set to "no", are missing completely, or they are commented out, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100853" severity="medium" conversionstatus="pass" title="SRG-OS-000066-GPOS-00034" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Without path validation, an informed trust decision by the relying party cannot be made when presented with any certificate not already explicitly trusted.
-
-A trust anchor is an authoritative entity represented via a public key and associated data. It is used in the context of public key infrastructures, X.509 digital certificates, and DNSSEC.
-
-When there is a chain of trust, usually the top entity to be trusted becomes the trust anchor; it can be, for example, a Certification Authority (CA). A certification path starts with the subject certificate and proceeds through a number of intermediate certificates up to a trusted root certificate, typically issued by a trusted CA.
-
-This requirement verifies that a certification path to an accepted trust anchor is used for certificate validation and that the path includes status information. Path validation is necessary for a relying party to make an informed trust decision when presented with any certificate not already explicitly trusted. Status information for certification paths includes certificate revocation lists or online certificate status protocol responses. Validation of the certificate status information is out of scope for this requirement.
-
-Satisfies: SRG-OS-000066-GPOS-00034, SRG-OS-000384-GPOS-00167&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system, for PKI-based authentication, had valid certificates by constructing a certification path to an accepted trust anchor.
-
-Check which pkcs11 module is being used via the use_pkcs11_module in /etc/pam_pkcs11/pam_pkcs11.conf and then ensure "ca" is enabled in "cert_policy" with the following command:
-
-# sudo grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ca
-
-cert_policy = ca,signature,ocsp_on;
-
-If "cert_policy" is not set to "ca", or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100857" severity="medium" conversionstatus="pass" title="SRG-OS-000105-GPOS-00052" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without the use of multifactor authentication, the ease of access to privileged functions is greatly increased.
@@ -3427,24 +3148,6 @@ Check that the "pam_pkcs11.so" option is configured in the "/etc/pam.d/common-au
 auth [success=2 default=ignore] pam_pkcs11.so
 
 If "pam_pkcs11.so" is not set in "/etc/pam.d/common-auth", this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100863" severity="medium" conversionstatus="pass" title="SRG-OS-000377-GPOS-00162" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The use of PIV credentials facilitates standardization and reduces the risk of unauthorized access.
-
-DoD has mandated the use of the CAC to support identity management and personal authentication for systems covered under Homeland Security Presidential Directive (HSPD) 12, as well as making the CAC a primary component of layered protection for national security systems.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system implements certificate status checking for multifactor authentication.
-
-Check that certificate status checking for multifactor authentication is implemented with the following command:
-
-# sudo grep use_pkcs11_module /etc/pam_pkcs11/pam_pkcs11.conf | awk '/pkcs11_module opensc {/,/}/' /etc/pam_pkcs11/pam_pkcs11.conf | grep cert_policy | grep ocsp_on
-
-cert_policy = ca,signature,ocsp_on;
-
-If "cert_policy" is not set to "ocsp_on", or the line is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100865" severity="medium" conversionstatus="pass" title="SRG-OS-000403-GPOS-00182" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Untrusted Certificate Authorities (CA) can issue certificates, but they may be issued by organizations or individuals that seek to compromise DoD systems or by organizations with insufficient security controls. If the CA used for verifying the certificate is not a DoD-approved CA, trust of this CA has not been established.
@@ -3506,24 +3209,6 @@ Check that the Ubuntu operating system contains no duplicate UIDs for interactiv
 # awk -F ":" 'list[$3]++{print $1, $3}' /etc/passwd
 
 If output is produced, and the accounts listed are interactive user accounts, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100875" severity="medium" conversionstatus="pass" title="SRG-OS-000118-GPOS-00060" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Inactive identifiers pose a risk to systems and applications because attackers may exploit an inactive identifier and potentially obtain undetected access to the system. Owners of inactive accounts will not notice if unauthorized access to their user account has been obtained.
-
-Ubuntu operating systems need to track periods of inactivity and disable application identifiers after 35 days of inactivity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the account identifiers (individuals, groups, roles, and devices) are disabled after 35 days of inactivity with the following command:
-
-Check the account inactivity value by performing the following command:
-
-# sudo grep INACTIVE /etc/default/useradd
-
-INACTIVE=35
-
-If "INACTIVE" is not set to a value 0&lt;[VALUE]&lt;=35, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100877" severity="low" conversionstatus="pass" title="SRG-OS-000123-GPOS-00064" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Emergency accounts are different from infrequently used accounts (i.e., local logon accounts used by the organization's system administrators when network or normal logon/access is not available). Infrequently used accounts are not subject to automatic termination dates. Emergency accounts are accounts created in response to crisis situations, usually for use by maintenance personnel. The automatic expiration or disabling time period may be extended as needed until the crisis is resolved; however, it must not be extended indefinitely. A permanent account should be established for privileged users who need long-term maintenance accounts.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -3588,36 +3273,6 @@ Check the saved value of TCP syncookies with the following command:
 # sudo grep -i net.ipv4.tcp_syncookies /etc/sysctl.conf /etc/sysctl.d/* | grep -v '#'
 
 If no output is returned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100885" severity="medium" conversionstatus="pass" title="SRG-OS-000355-GPOS-00143" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
-
-Synchronizing internal information system clocks provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
-
-Organizations should consider endpoints that may not have regular access to the authoritative time server (e.g., mobile, teleworking, and tactical endpoints).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>If the system is not networked this requirement is Not Applicable.
-
-The system clock must be configured to compare the system clock at least every 24 hours to the authoritative time source.
-
-Check the value of "maxpoll" in the "/etc/chrony/chrony.conf" file with the following command:
-
-# sudo grep maxpoll /etc/chrony/chrony.conf
-server tick.usno.navy.mil iburst maxpoll 17
-
-If "maxpoll" is not set to "17" or does not exist, this is a finding.
-
-Verify that the "chrony.conf" file is configured to an authoritative DoD time source by running the following command:
-
-# grep -i server /etc/chrony/chrony.conf
-server tick.usno.navy.mil iburst maxpoll 17
-server tock.usno.navy.mil iburst maxpoll 17
-server ntp2.usno.navy.mil iburst maxpoll 17
-
-If the parameter "server" is not set, is not set to an authoritative DoD time source, or is commented out, this is a finding.</RawString>
     </Rule>
     <Rule id="V-100887" severity="low" conversionstatus="pass" title="SRG-OS-000356-GPOS-00144" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events.
@@ -3919,7 +3574,677 @@ blacklist usb-storage
 If the command does not return any output, or the line is commented out, this is a finding.</RawString>
     </Rule>
   </ManualRule>
-  <nxPackageRule dscresourcemodule="">
+  <nxFileLineRule dscresourcemodule="nx">
+    <Rule id="V-100531.a" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="nxFileLine">
+      <ContainsLine>active = yes</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+
+Off-loading is a common process in information systems with limited audit storage capacity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>\s*active\s*=\s*no|active=yes|#\s*active\s*=.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audisp/plugins.d/au-remote.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the audit event multiplexor is configured to off-load audit records to a different system or storage media from the system being audited.
+
+Check that audisp-remote plugin is installed:
+
+# sudo dpkg -s audispd-plugins
+
+If status is "not installed", this is a finding.
+
+Check that the records are being off-loaded to a remote server with the following command:
+
+# sudo grep -i active /etc/audisp/plugins.d/au-remote.conf
+
+active = yes
+
+If "active" is not set to "yes", or the line is commented out, this is a finding.
+
+Check that audisp-remote plugin is configured to send audit logs to a different system:
+
+# sudo grep -i ^remote_server /etc/audisp/audisp-remote.conf
+
+remote_server = 192.168.122.126
+
+If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100531.b" severity="low" conversionstatus="pass" title="SRG-OS-000479-GPOS-00224" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+
+Off-loading is a common process in information systems with limited audit storage capacity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>
+      </DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/audisp/audisp-remote.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that both properties are defined correctly; i.e.: remote_server = &lt;your org server ip&gt;</OrganizationValueTestString>
+      <RawString>Verify the audit event multiplexor is configured to off-load audit records to a different system or storage media from the system being audited.
+
+Check that audisp-remote plugin is installed:
+
+# sudo dpkg -s audispd-plugins
+
+If status is "not installed", this is a finding.
+
+Check that the records are being off-loaded to a remote server with the following command:
+
+# sudo grep -i active /etc/audisp/plugins.d/au-remote.conf
+
+active = yes
+
+If "active" is not set to "yes", or the line is commented out, this is a finding.
+
+Check that audisp-remote plugin is configured to send audit logs to a different system:
+
+# sudo grep -i ^remote_server /etc/audisp/audisp-remote.conf
+
+remote_server = 192.168.122.126
+
+If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100537.a" severity="medium" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="nxFileLine">
+      <ContainsLine>Unattended-Upgrade::Remove-Unused-Dependencies "true";</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Previous versions of software components that are not removed from the information system after updates have been installed may be exploited by adversaries. Some information technology products may remove older versions of software automatically from the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>\s*Unattended-Upgrade::Remove-Unused-Dependencies\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Dependencies.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/apt/apt.conf.d/50unattended-upgrades</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check that APT is configured to remove all software components after updating with the following command:
+# grep -i remove-unused /etc/apt/apt.conf.d/50unattended-upgrades
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+If the "::Remove-Unused-Dependencies" and "::Remove-Unused-Kernel-Packages" parameters are not set to "true", or are missing, or are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100537.b" severity="medium" conversionstatus="pass" title="SRG-OS-000437-GPOS-00194" dscresource="nxFileLine">
+      <ContainsLine>Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Previous versions of software components that are not removed from the information system after updates have been installed may be exploited by adversaries. Some information technology products may remove older versions of software automatically from the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/apt/apt.conf.d/50unattended-upgrades</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check that APT is configured to remove all software components after updating with the following command:
+# grep -i remove-unused /etc/apt/apt.conf.d/50unattended-upgrades
+Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";
+If the "::Remove-Unused-Dependencies" and "::Remove-Unused-Kernel-Packages" parameters are not set to "true", or are missing, or are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100551" severity="low" conversionstatus="pass" title="SRG-OS-000342-GPOS-00133" dscresource="None">
+      <ContainsLine>active = yes</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Information stored in one location is vulnerable to accidental or incidental deletion or alteration.
+
+Off-loading is a common process in information systems with limited audit storage capacity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>\s*active\s*=\s*no|active=yes|#\s*active\s*=.*</DoesNotContainPattern>
+      <DuplicateOf>V-100531.a</DuplicateOf>
+      <FilePath>/etc/audisp/plugins.d/au-remote.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString>
+      </OrganizationValueTestString>
+      <RawString>Verify the audit event multiplexor is configured to off-load audit records to a different system or storage media from the system being audited.
+
+Check that audisp-remote plugin is installed:
+
+# sudo dpkg -s audispd-plugins
+
+If status is "not installed", this is a finding.
+
+Check that the records are being off-loaded to a remote server with the following command:
+
+# sudo grep -i active /etc/audisp/plugins.d/au-remote.conf
+
+active = yes
+
+If "active" is not set to "yes", or the line is commented out, this is a finding.
+
+Check that audisp-remote plugin is configured to send audit logs to a different system:
+
+# sudo grep -i ^remote_server audisp-remote.conf
+
+remote_server = 192.168.122.126
+
+If the remote_server parameter is not set or is set with a local address, or is set with invalid address, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100557" severity="low" conversionstatus="pass" title="SRG-OS-000480-GPOS-00227" dscresource="nxFileLine">
+      <ContainsLine>session required pam_lastlog.so showfailed</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Configuring the Ubuntu operating system to implement organization-wide security implementation guides and security checklists ensures compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
+
+Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example: registry settings; account, file, directory permission settings; and settings for functions, ports, protocols, services, and remote connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/pam.d/login</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify users are provided with feedback on when account accesses last occurred.
+
+Check that "pam_lastlog" is used and not silent with the following command:
+
+# grep pam_lastlog /etc/pam.d/login
+
+session required pam_lastlog.so showfailed
+
+If "pam_lastlog" is missing from "/etc/pam.d/login" file, is not "required", or the "silent" option is present, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100571" severity="low" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
+
+Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*ucredit\s*=\s*(?!-1)\d*$|#\s*ucredit=.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one upper-case character be used.
+
+Determine if the field "ucredit" is set in the "/etc/security/pwquality.conf" file with the following command:
+
+# grep -i "ucredit" /etc/security/pwquality.conf
+ucredit=-1
+
+If the "ucredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100573" severity="low" conversionstatus="pass" title="SRG-OS-000070-GPOS-00038" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
+
+Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*lcredit\s*=\s*(?!-1)\d*$|#\s*lcredit=.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one lower-case character be used.
+
+Determine if the field "lcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
+
+# grep -i "lcredit" /etc/security/pwquality.conf
+lcredit=-1
+
+If the "lcredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100575" severity="low" conversionstatus="pass" title="SRG-OS-000071-GPOS-00039" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
+
+Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*dcredit\s*=\s*(?!-1)\d*$|#\s*dcredit=.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "dcredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system enforces password complexity by requiring that at least one numeric character be used.
+
+Determine if the field "dcredit" is set in the "/etc/security/pwquality.conf" file with the following command:
+
+# grep -i "dcredit" /etc/security/pwquality.conf
+dcredit=-1
+
+If the "dcredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100577" severity="low" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If the Ubuntu operating system allows the user to consecutively reuse extensive portions of passwords, this increases the chances of password compromise by increasing the window of opportunity for attempts at guessing and brute-force attacks.
+
+The number of changed characters refers to the number of changes required with respect to the total number of positions in the current password. In other words, characters may be the same within the two passwords; however, the positions of the like characters must be different.
+
+If the password length is an odd number then number of changed characters must be rounded up. For example, a password length of 15 characters must require the change of at least 8 characters.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "difok" parameter is less than "8", or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system requires the change of at least 8 characters when passwords are changed.
+
+Determine if the field "difok" is set in the "/etc/security/pwquality.conf" file with the following command:
+
+# grep -i "difok" /etc/security/pwquality.conf
+difok=8
+
+If the "difok" parameter is less than "8", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100583" severity="low" conversionstatus="pass" title="SRG-OS-000075-GPOS-00043" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Enforcing a minimum password lifetime helps to prevent repeated password changes to defeat the password reuse or history enforcement requirement. If users are allowed to immediately and continually change their password, then the password could be repeatedly changed in a short period of time to defeat the organization's policy regarding password reuse.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/login.defs</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify that the Ubuntu operating system enforces a 24 hours/1 day minimum password lifetime for new user accounts by running the following command:
+
+# grep -i pass_min_days /etc/login.defs
+
+PASS_MIN_DAYS 1
+
+If the "PASS_MIN_DAYS" parameter value is less than 1, or commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100585" severity="low" conversionstatus="pass" title="SRG-OS-000076-GPOS-00044" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Any password, no matter how complex, can eventually be cracked. Therefore, passwords need to be changed periodically. If the operating system does not limit the lifetime of passwords and force users to change their passwords, there is the risk that the operating system passwords could be compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/login.defs</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify that the Ubuntu operating system enforces a 60-day maximum password lifetime for new user accounts by running the following command:
+
+# grep -i pass_max_days /etc/login.defs
+PASS_MAX_DAYS 60
+
+If the "PASS_MAX_DAYS" parameter value is less than 60, or commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100589" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;The shorter the password, the lower the number of possible combinations that need to be tested before the password is compromised.
+
+Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password length is one factor of several that helps to determine strength and how long it takes to crack a password. Use of more characters in a password helps to exponentially increase the time and/or resources required to compromise the password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify if the pwquality configuration file enforces a minimum 15-character password length, by running the following command:
+
+# grep -i minlen /etc/security/pwquality.conf
+ minlen=15
+
+If "minlen" parameter value is not 15 or higher, or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100595" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxFileLine">
+      <ContainsLine>dictcheck=1</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;If the Ubuntu operating system allows the user to select passwords based on dictionary words, then this increases the chances of password compromise by increasing the opportunity for successful guesses and brute-force attacks.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system uses the cracklib library to prevent the use of dictionary words with the following command:
+
+# grep dictcheck /etc/security/pwquality.conf
+
+dictcheck=1
+
+If the "dictcheck" parameter is not set to "1", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100647" severity="low" conversionstatus="pass" title="SRG-OS-000266-GPOS-00101" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity or strength is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
+
+Password complexity is one factor in determining how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.
+
+Special characters are those characters that are not alphanumeric. Examples include: ~ ! @ # $ % ^ *.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/pwquality.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Determine if the field "ocredit" is set in the "/etc/security/pwquality.conf" file with the following command:
+
+# grep -i "ocredit" /etc/security/pwquality.conf
+ocredit=-1
+
+If the "ocredit" parameter is greater than "-1", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100679" severity="medium" conversionstatus="pass" title="SRG-OS-000046-GPOS-00022" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;It is critical for the appropriate personnel to be aware if a system is at risk of failing to process audit logs as required. Without this notification, the security personnel may be unaware of an impending failure of the audit capability, and system operation may be adversely affected.
+
+Audit processing failures include software/hardware errors, failures in the audit capturing mechanisms, and audit storage capacity being reached or exceeded.
+
+This requirement applies to each audit data storage repository (i.e., distinct information system component where audit records are stored), the centralized audit storage capacity of organizations (i.e., all audit data storage repositories combined), or both.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern />
+      <DuplicateOf />
+      <FilePath>/etc/audit/auditd.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the value of the "action_mail_acct" keyword is set to "root" and/or other accounts for security personnel.</OrganizationValueTestString>
+      <RawString>Verify that the System Administrator (SA) and Information System Security Officer (ISSO) (at a minimum) are notified in the event of an audit processing failure.
+
+Check that the Ubuntu operating system notifies the SA and ISSO (at a minimum) win the event of an audit processing failure with the following command:
+
+# sudo grep action_mail_acct = root /etc/audit/auditd.conf
+
+action_mail_acct = root
+
+If the value of the "action_mail_acct" keyword is not set to "root" and/or other accounts for security personnel, the "action_mail_acct" keyword is missing, or the returned line is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100681" severity="medium" conversionstatus="pass" title="SRG-OS-000047-GPOS-00023" dscresource="None">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;It is critical that when the Ubuntu operating system is at risk of failing to process audit logs as required, it takes action to mitigate the failure. Audit processing failures include: software/hardware errors; failures in the audit capturing mechanisms; and audit storage capacity being reached or exceeded. Responses to audit failure depend upon the nature of the failure mode.
+
+When availability is an overriding concern, other approved actions in response to an audit failure are as follows:
+
+1) If the failure was caused by the lack of audit record storage capacity, the Ubuntu operating system must continue generating audit records if possible (automatically restarting the audit service if necessary), overwriting the oldest audit records in a first-in-first-out manner.
+
+2) If audit records are sent to a centralized collection server and communication with this server is lost or the server fails, the Ubuntu operating system must queue audit records locally until communication is restored or until the audit records are retrieved manually. Upon restoration of the connection to the centralized collection server, action should be taken to synchronize the local audit data with the collection server.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern />
+      <DuplicateOf>V-100679</DuplicateOf>
+      <FilePath>/etc/audit/auditd.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString>
+      </OrganizationValueTestString>
+      <RawString>Verify the Ubuntu operating system takes the appropriate action when the audit storage volume is full.
+
+Check that the Ubuntu operating system takes the appropriate action when the audit storage volume is full with the following command:
+
+# sudo grep disk_full_action /etc/audit/auditd.conf
+
+disk_full_action = HALT
+
+If the value of the "disk_full_action" option is not "SYSLOG", "SINGLE", or "HALT", or the line is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100825" severity="low" conversionstatus="pass" title="SRG-OS-000027-GPOS-00008" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Ubuntu operating system management includes the ability to control the number of users and user sessions that utilize an operating system. Limiting the number of allowed users and sessions per user is helpful in reducing the risks related to DoS attacks.
+
+This requirement addresses concurrent sessions for information system accounts and does not address concurrent sessions by single users via multiple system accounts. The maximum number of concurrent sessions should be defined based on mission needs and the operational environment for each system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*\*\s*hard\s*maxlogins\s*([1][1-9]|[2-9]\d+|[1-9][0-9]\d+)$|^#\s*\*\s*hard\s*maxlogins.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/security/limits.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify that the Ubuntu operating system limits the number of concurrent sessions to ten for all accounts and/or account types by running the following command:
+
+# grep maxlogins /etc/security/limits.conf | grep -v '^* hard maxlogins'
+
+The result must contain the following line:
+
+* hard maxlogins 10
+
+If the "maxlogins" item is missing or the value is not set to 10 or less, it is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100829.a" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
+
+The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/autologout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Check that the proper auto logout script exists with the following command:
+# cat /etc/profile.d/autologout.sh
+TMOUT=900
+If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100829.b" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
+
+The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*readonly\s+(?!TMOUT\b).*$|^\s*#\s*readonly.*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/autologout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Check that the proper auto logout script exists with the following command:
+# cat /etc/profile.d/autologout.sh
+readonly TMOUT
+If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100829.c" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, the Ubuntu operating system need to be able to identify when a user's session has idled and take action to initiate the session lock.
+
+The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*export\s+(?!TMOUT\b).*$|^\s*#\s*export.*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/profile.d/autologout.sh</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Check that the proper auto logout script exists with the following command:
+# cat /etc/profile.d/autologout.sh
+export TMOUT
+If the file "/etc/profile.d/autologout.sh" does not exist with the contents shown above, the value of "TMOUT" is greater than 900, or the timeout values are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100833" severity="medium" conversionstatus="pass" title="SRG-OS-000279-GPOS-00109" dscresource="nxFileLine">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Automatic session termination addresses the termination of user-initiated logical sessions in contrast to the termination of network connections that are associated with communications sessions (i.e., network disconnect). A logical session (for local, network, and remote access) is initiated whenever a user (or process acting on behalf of a user) accesses an organizational information system. Such user sessions can be terminated (and thus terminate user access) without terminating network sessions.
+
+Session termination terminates all processes associated with a user's logical session except those processes that are specifically created by the user (i.e., session owner) to continue after the session is terminated.
+
+Conditions or trigger events requiring automatic session termination can include, for example, organization-defined periods of user inactivity, targeted responses to certain types of incidents, and time-of-day restrictions on information system use.
+
+This capability is typically reserved for specific operating system functionality where the system owner, data owner, or organization requires additional assurance.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding." </OrganizationValueTestString>
+      <RawString>Verify the operating system automatically terminates a user session after inactivity time-outs have expired.
+
+Check that the "ClientAliveInterval" variable is set to a value of "600" or less by performing the following command:
+
+# sudo grep -i clientalive /etc/ssh/sshd_config
+
+ClientAliveInterval 600
+
+If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100839" severity="high" conversionstatus="pass" title="SRG-OS-000112-GPOS-00057" dscresource="nxFileLine">
+      <ContainsLine>Protocol 2</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;A replay attack may enable an unauthorized user to gain access to the operating system. Authentication sessions between the authenticator and the operating system validating the user credentials must not be vulnerable to a replay attack.
+
+An authentication process resists replay attacks if it is impractical to achieve a successful authentication by recording and replaying a previous authentication message.
+
+A privileged account is any information system account with authorizations of a privileged user.
+
+Techniques used to address this include protocols using nonces (e.g., numbers generated for a specific one-time use) or challenges (e.g., TLS, WS_Security). Additional techniques include time-synchronous or challenge-response one-time authenticators.
+
+Satisfies: SRG-OS-000112-GPOS-00057, SRG-OS-000113-GPOS-00058&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*Protocol\s*([0-1]|[3-9]|\d{2,})\s*$|#\s*Protocol.*|^\s*Protocol\s*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that the Ubuntu operating system enforces SSH protocol 2 for network access.
+
+Check the protocol versions that SSH allows with the following command:
+
+# grep Protocol /etc/ssh/sshd_config
+
+Protocol 2
+
+If the returned line allows for use of protocol "1", is commented out, or the line is missing, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100843" severity="medium" conversionstatus="pass" title="SRG-OS-000126-GPOS-00066" dscresource="nxFileLine">
+      <ContainsLine>ClientAliveCountMax 1</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Automatic session termination addresses the termination of user-initiated logical sessions in contrast to the termination of network connections that are associated with communications sessions (i.e., network disconnect). A logical session (for local, network, and remote access) is initiated whenever a user (or process acting on behalf of a user) accesses an organizational information system. Such user sessions can be terminated (and thus terminate user access) without terminating network sessions.
+
+Session termination terminates all processes associated with a user's logical session except those processes that are specifically created by the user (i.e., session owner) to continue after the session is terminated.
+
+Conditions or trigger events requiring automatic session termination can include, for example, organization-defined periods of user inactivity, targeted responses to certain types of incidents, and time-of-day restrictions on information system use.
+
+This capability is typically reserved for specific Ubuntu operating system functionality where the system owner, data owner, or organization requires additional assurance.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*ClientAliveCountMax\s*([0]|[2-9]|\d{2,})\s*$|#\s*ClientAliveCountMax.*|^\s*ClientAliveCountMax\s*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify that all network connections associated with SSH traffic automatically terminate after a period of inactivity.
+
+Check that "ClientAliveCountMax" variable is set in "/etc/ssh/sshd_config" file by performing the following command:
+
+# sudo grep -i clientalivecountmax /etc/ssh/sshd_config
+
+ClientAliveCountMax 1
+
+If "ClientAliveCountMax" is not set, or not set to "1", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100845" severity="medium" conversionstatus="pass" title="SRG-OS-000163-GPOS-00072" dscresource="None">
+      <ContainsLine>
+      </ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Terminating an idle session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle session will also free up resources committed by the managed network element.
+
+Terminating network connections associated with communications sessions includes, for example, de-allocating associated TCP/IP address/port pairs at the operating system level, and de-allocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean that the operating system terminates all sessions or network access; it only ends the inactive session and releases the resources associated with that session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$</DoesNotContainPattern>
+      <DuplicateOf>V-100833</DuplicateOf>
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString>
+      </OrganizationValueTestString>
+      <RawString>Verify that all network connections associated with SSH traffic are automatically terminated at the end of the session or after 10 minutes of inactivity.
+
+Check that the "ClientAliveInterval" variable is set to a value of "600" or less by performing the following command:
+
+# sudo grep -i clientalive /etc/ssh/sshd_config
+
+ClientAliveInterval 600
+
+If "ClientAliveInterval" does not exist, is not set to a value of "600" or less in "/etc/ssh/sshd_config", or is commented out, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-100851.a" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
+      <ContainsLine>PermitEmptyPasswords no</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts Ubuntu operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*PermitEmptyPasswords\s*((?!no\b).)*$|^#\s*PermitEmptyPasswords.*$|^\s*PermitEmptyPasswords\s*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check that unattended or automatic login via ssh is disabled with the following command:
+# egrep '(Permit(.*?)(Passwords|Environment))' /etc/ssh/sshd_config
+PermitEmptyPasswords no
+If "PermitEmptyPasswords" or "PermitUserEnvironment" keywords are not set to "no", are missing completely, or they are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100851.b" severity="high" conversionstatus="pass" title="SRG-OS-000480-GPOS-00229" dscresource="nxFileLine">
+      <ContainsLine>PermitUserEnvironment no</ContainsLine>
+      <Description>&lt;VulnDiscussion&gt;Failure to restrict system access to authenticated users negatively impacts Ubuntu operating system security.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern>^\s*PermitUserEnvironment\s*((?!no\b).)*$|^#\s*PermitUserEnvironment.*$|^\s*PermitUserEnvironment\s*$</DoesNotContainPattern>
+      <DuplicateOf />
+      <FilePath>/etc/ssh/sshd_config</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Check that unattended or automatic login via ssh is disabled with the following command:
+# egrep '(Permit(.*?)(Passwords|Environment))' /etc/ssh/sshd_config
+PermitUserEnvironment no
+If "PermitEmptyPasswords" or "PermitUserEnvironment" keywords are not set to "no", are missing completely, or they are commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100885.a" severity="medium" conversionstatus="pass" title="SRG-OS-000355-GPOS-00143" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
+
+Synchronizing internal information system clocks provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
+
+Organizations should consider endpoints that may not have regular access to the authoritative time server (e.g., mobile, teleworking, and tactical endpoints).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern />
+      <DuplicateOf />
+      <FilePath>/etc/chrony/chrony.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the time server is specified as follows, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"</OrganizationValueTestString>
+      <RawString>Check the value of "maxpoll" in the "/etc/chrony/chrony.conf" file with the following command:
+# sudo grep maxpoll /etc/chrony/chrony.conf
+server tick.usno.navy.mil iburst maxpoll 17
+If "maxpoll" is not set to "17" or does not exist, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100885.b" severity="medium" conversionstatus="pass" title="SRG-OS-000355-GPOS-00143" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
+
+Synchronizing internal information system clocks provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
+
+Organizations should consider endpoints that may not have regular access to the authoritative time server (e.g., mobile, teleworking, and tactical endpoints).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern />
+      <DuplicateOf />
+      <FilePath>/etc/chrony/chrony.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the time server is specified as follows, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"</OrganizationValueTestString>
+      <RawString>Verify that the "chrony.conf" file is configured to an authoritative DoD time source by running the following command:
+# grep -i server /etc/chrony/chrony.conf
+server tick.usno.navy.mil iburst maxpoll 17
+If the parameter "server" is not set, is not set to an authoritative DoD time source, or is commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100885.c" severity="medium" conversionstatus="pass" title="SRG-OS-000355-GPOS-00143" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
+
+Synchronizing internal information system clocks provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
+
+Organizations should consider endpoints that may not have regular access to the authoritative time server (e.g., mobile, teleworking, and tactical endpoints).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern />
+      <DuplicateOf />
+      <FilePath>/etc/chrony/chrony.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the time server is specified as follows, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"</OrganizationValueTestString>
+      <RawString>Verify that the "chrony.conf" file is configured to an authoritative DoD time source by running the following command:
+# grep -i server /etc/chrony/chrony.conf
+server tock.usno.navy.mil iburst maxpoll 17
+If the parameter "server" is not set, is not set to an authoritative DoD time source, or is commented out, this is a finding.
+</RawString>
+    </Rule>
+    <Rule id="V-100885.d" severity="medium" conversionstatus="pass" title="SRG-OS-000355-GPOS-00143" dscresource="nxFileLine">
+      <ContainsLine />
+      <Description>&lt;VulnDiscussion&gt;Inaccurate time stamps make it more difficult to correlate events and can lead to an inaccurate analysis. Determining the correct time a particular event occurred on a system is critical when conducting forensic analysis and investigating system events. Sources outside the configured acceptable allowance (drift) may be inaccurate.
+
+Synchronizing internal information system clocks provides uniformity of time stamps for information systems with multiple system clocks and systems connected over a network.
+
+Organizations should consider endpoints that may not have regular access to the authoritative time server (e.g., mobile, teleworking, and tactical endpoints).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DoesNotContainPattern />
+      <DuplicateOf />
+      <FilePath>/etc/chrony/chrony.conf</FilePath>
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>True</OrganizationValueRequired>
+      <OrganizationValueTestString>the time server is specified as follows, i.e.: "server tick.usno.navy.mil iburst maxpoll 17"</OrganizationValueTestString>
+      <RawString>Verify that the "chrony.conf" file is configured to an authoritative DoD time source by running the following command:
+# grep -i server /etc/chrony/chrony.conf
+server ntp2.usno.navy.mil iburst maxpoll 17
+If the parameter "server" is not set, is not set to an authoritative DoD time source, or is commented out, this is a finding.
+</RawString>
+    </Rule>
+  </nxFileLineRule>
+  <nxPackageRule dscresourcemodule="nx">
     <Rule id="V-100539" severity="high" conversionstatus="pass" title="SRG-OS-000095-GPOS-00049" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Removing the Network Information Service (NIS) package decreases the risk of the accidental (or intentional) activation of NIS or NIS+ services.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -4055,41 +4380,6 @@ Check that the telnet daemon is not installed on the Ubuntu operating system by 
 # dpkg -l | grep telnetd
 
 If the package is installed, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100599" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00225" dscresource="nxPackage">
-      <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. "pwquality" enforces complex password construction configuration and has the ability to limit brute-force attacks on the system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Ensure>Present</Ensure>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Name>libpam-pwquality</Name>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Verify the Ubuntu operating system has the libpam-pwquality package installed, by running the following command:
-
-# dpkg -l libpam-pwquality
-
-ii libpam-pwquality:amd64 1.4.0-2 amd64 PAM module to check password strength
-
-If "libpam-pwquality" is not installed, this is a finding.
-
-Verify the operating system uses "pwquality" to enforce the password complexity rules.
-
-Verify the pwquality module is being enforced by the Ubuntu Operating System, by running the following command:
-
-# grep -i enforcing /etc/security/pwquality.conf
-
-enforcing = 1
-
-If the value of "enforcing" is not 1 or the line is commented out, this is a finding.
-
-Check for the use of "pwquality" with the following command:
-
-# sudo cat /etc/pam.d/common-password | grep requisite | grep pam_pwquality
-
-password requisite pam_pwquality.so retry=3
-
-If no output is returned or the line is commented out, this is a finding.
-If the value of "retry" is set to "0" or greater than "3", this is a finding.</RawString>
     </Rule>
     <Rule id="V-100677.a" severity="medium" conversionstatus="pass" title="SRG-OS-000038-GPOS-00016" dscresource="nxPackage">
       <Description>&lt;VulnDiscussion&gt;Without establishing the when, where, type, source, and outcome of events that occurred, it would be difficult to establish, correlate, and investigate the events leading up to an outage or attack.
@@ -4314,7 +4604,7 @@ If AIDE is not installed, ask the System Administrator how file integrity checks
 If there is no application installed to perform integrity checks, this is a finding.</RawString>
     </Rule>
   </nxPackageRule>
-  <nxServiceRule dscresourcemodule="">
+  <nxServiceRule dscresourcemodule="nx">
     <Rule id="V-100547.b" severity="medium" conversionstatus="pass" title="SRG-OS-000269-GPOS-00103" dscresource="nxService">
       <Description>&lt;VulnDiscussion&gt;Failure to a known state can address safety or security in accordance with the mission/business needs of the organization. Failure to a known secure state helps prevent a loss of confidentiality, integrity, or availability in the event of a failure of the information system or a component of the system.
 
@@ -4477,93 +4767,4 @@ If no application firewall is installed this is a finding.</RawString>
       <State>Running</State>
     </Rule>
   </nxServiceRule>
-  <PermissionRule dscresourcemodule="AccessControlDsc">
-    <Rule id="V-100603" severity="medium" conversionstatus="fail" title="SRG-OS-000205-GPOS-00083" dscresource="">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Any operating system providing too much information in error messages risks compromising the data and security of the structure, and content of error messages needs to be carefully considered by the organization.
-
-Organizations carefully consider the structure/content of error messages. The extent to which information systems are able to identify and handle error conditions is guided by organizational policy and operational requirements. Information that could be exploited by adversaries includes, for example, erroneous logon attempts with passwords entered by mistake as the username, mission/business information that can be derived from (if not stated explicitly by) information recorded, and personal information, such as account numbers, social security numbers, and credit card numbers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Verify the Ubuntu operating system has all system log files under the /var/log directory with a permission set to 640, by using the following command:
-
-# sudo find /var/log -perm /137 -type f -exec stat -c "%n %a" {} \;
-
-If command displays any output, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100615" severity="medium" conversionstatus="fail" title="SRG-OS-000206-GPOS-00084" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Only authorized personnel should be aware of errors and the details of the errors. Error messages are an indicator of an organization's operational state or can identify the operating system or platform. Additionally, Personally Identifiable Information (PII) and operational information must not be revealed through error messages to unauthorized personnel or their designated representatives.
-
-The structure and content of error messages must be carefully considered by the organization and development team. The extent to which the information system is able to identify and handle error conditions is guided by organizational policy and operational requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-100603</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Verify that the Ubuntu operating system configures the /var/log/syslog file with mode 0640 or less permissive.
-
-Check the /var/log/syslog permissions by running the following command:
-
-# stat -c "%n %a" /var/log/syslog
-
-/var/log/syslog 640
-
-If a value of "640" or less permissive is not returned, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100617" severity="medium" conversionstatus="fail" title="SRG-OS-000256-GPOS-00097" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Protecting audit information also includes identifying and protecting the tools used to view and manipulate log data. Therefore, protecting audit tools is necessary to prevent unauthorized operation on audit information.
-
-The Ubuntu operating system providing tools to interface with audit information will leverage user permissions and roles identifying the user accessing the tools and the corresponding rights the user enjoys in order to make access decisions regarding the access to audit tools.
-
-Audit tools include, but are not limited to, vendor-provided and open source audit tools needed to successfully view and manipulate audit information system activity and records. Audit tools include custom queries and report generators.
-
-Satisfies: SRG-OS-000256-GPOS-00097, SRG-OS-000257-GPOS-00098, SRG-OS-000258-GPOS-00099&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-100603</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Verify the audit tools are protected from unauthorized access, deletion, or modification by checking the permissive mode.
-
-For each audit tool,
-/sbin/auditctl, /sbin/aureport, /sbin/ausearch, /sbin/autrace, /sbin/auditd, /sbin/audispd, /sbin/augenrules
-
-Check the permissions by running the following command:
-
-# stat -c "%n %a" /sbin/auditctl
-
-755 /sbin/auditctl
-
-If any of the audit tools have a mode more permissive than 0755, this is a finding.</RawString>
-    </Rule>
-    <Rule id="V-100879" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00228" dscresource="None">
-      <AccessControlEntry />
-      <Description>&lt;VulnDiscussion&gt;Setting the most restrictive default permissions ensures that when new accounts are created they do not have unnecessary access.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-100603</DuplicateOf>
-      <Force>True</Force>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <Path />
-      <RawString>Verify the Ubuntu operating system defines default permissions for all authenticated users in such a way that the user can only read and modify their own files.
-
-Check that the Ubuntu operating system defines default permissions for all authenticated users with the following command:
-
-# grep -i "umask" /etc/login.defs
-
-UMASK 077
-
-If the "UMASK" variable is set to "000", this is a finding with the severity raised to a CAT I.
-
-If the value of "UMASK" is not set to "077", "UMASK" is commented out or "UMASK" is missing completely, this is a finding.</RawString>
-    </Rule>
-  </PermissionRule>
 </DISASTIG>

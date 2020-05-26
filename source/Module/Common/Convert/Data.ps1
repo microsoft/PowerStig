@@ -46,6 +46,7 @@ data exclusionRuleList
         V-100853 = 'Ubuntu: To be added in a future release'
         V-100855 = 'Ubuntu: To be added in a future release'
         V-100863 = 'Ubuntu: To be added in a future release'
+        V-100875 = 'Ubuntu: Unable to automate rule'
         V-100879 = 'Ubuntu: To be added in a future release'
 '@
 }

@@ -20,34 +20,29 @@ data regularExpression
 data doesNotContainPattern
 {
     @{
-        'active = yes'                                                                         = '\s*active\s*=\s*no|active=yes|#\s*active\s*=.*'
-        'remote_server = 192.168.122.126'                                                      = 'TestReturnValue' # Org
-        'Unattended-Upgrade::Remove-Unused-Dependencies "true";'                               = '\s*Unattended-Upgrade::Remove-Unused-Dependencies\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Dependencies.*'
-        'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";'                            = '\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages.*'
-        'session required pam_lastlog.so showfailed'                                           = '\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*'
-        'ucredit=-1'                                                                           = '^\s*ucredit\s*=\s*(?!-1)\d*$|#\s*ucredit=.*'
-        'lcredit=-1'                                                                           = '^\s*lcredit\s*=\s*(?!-1)\d*$|#\s*lcredit=.*'
-        'dcredit=-1'                                                                           = '^\s*dcredit\s*=\s*(?!-1)\d*$|#\s*dcredit=.*'
-        'difok=8'                                                                              = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
-        'PASS_MIN_DAYS 1'                                                                      = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
-        'PASS_MAX_DAYS 60'                                                                     = '^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*' # Org
-        'minlen=15'                                                                            = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
-        'dictcheck=1'                                                                          = '^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*'
-        'enforcing = 1'                                                                        = '^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*'
-        'ocredit=-1'                                                                           = '^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*'
-        'action_mail_acct = root'                                                              = 'TestReturnValue' # Org
-        'disk_full_action = HALT'                                                              = 'TestReturnValue'
-        '* hard maxlogins 10'                                                                  = 'TestReturnValue'
-        'TMOUT=900'                                                                            = 'TestReturnValue'
-        'readonly TMOUT'                                                                       = 'TestReturnValue'
-        'export TMOUT'                                                                         = 'TestReturnValue'
-        'ClientAliveInterval 600'                                                              = 'TestReturnValue'
-        'Protocol 2'                                                                           = 'TestReturnValue'
-        'ClientAliveCountMax 1'                                                                = 'TestReturnValue'
-        'PermitEmptyPasswords no'                                                              = 'TestReturnValue'
-        'PermitUserEnvironment no'                                                             = 'TestReturnValue'
-        'cert_policy = ca,signature,ocsp_on;'                                                  = 'TestReturnValue'
-        'INACTIVE=35'                                                                          = 'TestReturnValue'
-        'UMASK 077'                                                                            = 'TestReturnValue'
+        'active = yes'                                              = '\s*active\s*=\s*no|active=yes|#\s*active\s*=.*'
+        'Unattended-Upgrade::Remove-Unused-Dependencies "true";'    = '\s*Unattended-Upgrade::Remove-Unused-Dependencies\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Dependencies.*'
+        'Unattended-Upgrade::Remove-Unused-Kernel-Packages "true";' = '\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages\s*("false"|false|true).*|#\s*Unattended-Upgrade::Remove-Unused-Kernel-Packages.*'
+        'session required pam_lastlog.so showfailed'                = '\s*session\s*(?!required)\w*\s*pam_lastlog\.so.*|#\s*session\s*\w*\s*pam_lastlog\.so.*'
+        'ucredit=-1'                                                = '^\s*ucredit\s*=\s*(?!-1)\d*$|#\s*ucredit=.*'
+        'lcredit=-1'                                                = '^\s*lcredit\s*=\s*(?!-1)\d*$|#\s*lcredit=.*'
+        'dcredit=-1'                                                = '^\s*dcredit\s*=\s*(?!-1)\d*$|#\s*dcredit=.*'
+        'difok=8'                                                   = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
+        'PASS_MIN_DAYS 1'                                           = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
+        'PASS_MAX_DAYS 60'                                          = '^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*' # Org
+        'minlen=15'                                                 = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
+        'dictcheck=1'                                               = '^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*'
+        'enforcing = 1'                                             = '^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*'
+        'ocredit=-1'                                                = '^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*'
+        '* hard maxlogins 10'                                       = '^\s*\*\s*hard\s*maxlogins\s*([1][1-9]|[2-9]\d+|[1-9][0-9]\d+)$|^#\s*\*\s*hard\s*maxlogins.*'
+        'TMOUT=900'                                                 = '^\s*TMOUT\s*=\s*[0-8]?[0-9]?[0-9]?$|^#\s*TMOUT.*' # Org
+        'readonly TMOUT'                                            = '^\s*readonly\s+(?!TMOUT\b).*$|^\s*#\s*readonly.*$' # Org
+        'export TMOUT'                                              = '^\s*export\s+(?!TMOUT\b).*$|^\s*#\s*export.*$' # Org
+        'ClientAliveInterval 600'                                   = '^\s*ClientAliveInterval\s*[0-5]?[0-9]?[0-9]?\s*$|^#\s*ClientAliveInterval.*|^\s*ClientAliveInterval\s*$'
+        'Protocol 2'                                                = '^\s*Protocol\s*([0-1]|[3-9]|\d{2,})\s*$|#\s*Protocol.*|^\s*Protocol\s*$'
+        'ClientAliveCountMax 1'                                     = '^\s*ClientAliveCountMax\s*([0]|[2-9]|\d{2,})\s*$|#\s*ClientAliveCountMax.*|^\s*ClientAliveCountMax\s*$'
+        'PermitEmptyPasswords no'                                   = '^\s*PermitEmptyPasswords\s*((?!no\b).)*$|^#\s*PermitEmptyPasswords.*$|^\s*PermitEmptyPasswords\s*$'
+        'PermitUserEnvironment no'                                  = '^\s*PermitUserEnvironment\s*((?!no\b).)*$|^#\s*PermitUserEnvironment.*$|^\s*PermitUserEnvironment\s*$'
+        'UMASK 077'                                                 = '^\s*UMASK\s*(?!077\b)\d*\s*$|^#\s*UMASK.*'
     }
 }
