@@ -25,7 +25,15 @@ foreach ($target in $mitigationTargets)
         $idValue += $rule.id
     }
 
-    $enableValue = $enableValue.split(',')
+    if($enableValue.count -gt 1)
+    {
+        $enableValue = $enableValue.split(',')
+    }
+
+    if($disableValue.count -gt 1)
+    {
+        $disableValue = $disableValue.split(',')
+    }
 
     ProcessMitigation "$Target-$idValue"
     {

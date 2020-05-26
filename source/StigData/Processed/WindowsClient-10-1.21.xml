@@ -6414,8 +6414,7 @@ Registry Path: \Software\Policies\Microsoft\Windows\System
 Value Name: AllowDomainPINLogon
 Value Type: REG_DWORD
 Value data: 0</RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData>0</ValueData>
       <ValueName>AllowDomainPINLogon</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

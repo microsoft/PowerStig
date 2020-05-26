@@ -9,3 +9,4 @@ V-100093::This requirement is not applicable to mobile devices (smartphones and 
 V-100093::This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.::Value: Deny
 V-100093::Value Name: Deny::ValueName: Value
 V-99561::Value data: 1::Value: 0x00000001 (1)
+V-99559::Value data: 0::Value: 0x00000000 (0)
