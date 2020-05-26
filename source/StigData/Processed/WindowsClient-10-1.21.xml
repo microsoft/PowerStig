@@ -6437,8 +6437,7 @@ Value Type: REG_DWORD
 Value data: 1
 
 </RawString>
-      <ValueData>
-      </ValueData>
+      <ValueData>1</ValueData>
       <ValueName>AllowWindowsInkWorkspace</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>

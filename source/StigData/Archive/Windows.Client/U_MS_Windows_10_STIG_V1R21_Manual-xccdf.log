@@ -8,3 +8,4 @@ V-100093::RegistryPath\SOFTWARE\Microsoft\Windows\CurrentVersion\CapabilityAcces
 V-100093::This requirement is not applicable to mobile devices (smartphones and tablets), where the use of the camera is a local AO decision.::ValueType: REG_SZ
 V-100093::This requirement is not applicable to dedicated VTC suites located in approved VTC locations that are centrally managed.::Value: Deny
 V-100093::Value Name: Deny::ValueName: Value
+V-99561::Value data: 1::Value: 0x00000001 (1)
