@@ -7,7 +7,7 @@
     RootModule = 'SPWebAppGeneralSettings.schema.psm1'
 
     # Version number of this module.
-    ModuleVersion = '3.7.0.0'
+    ModuleVersion = '4.0.0.0'
 
     # Supported PSEditions
     # CompatiblePSEditions = @()

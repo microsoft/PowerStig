@@ -21,27 +21,8 @@ function Get-SPWebAppGeneralSettingsGetScript
         [SecureString] $PSDscRunAsCredential
     )
 
-    <#
-    write function call here to webappurl?
-    results are returned as a hashtable
-    $returnvalue = @{
-        WebAppUrl = $WebAppUrl
-        PSDscRunAsCredential = $PSDscRunAsCredential
-    }
-    #>
-
-    <#
-        Get/Test/Set processing for rule type
-    #>
-
-    
-
-    #Write-Host $OrgSettings #worry about orgsettings capture later
-
     return
 }
-
-#write a function here to receive webappurl parameter? (line 25)
 
 function Get-SPWebAppGeneralSettingsTestScript
 {
@@ -54,8 +35,6 @@ function Get-SPWebAppGeneralSettingsTestScript
         [AllowEmptyString()]
         $CheckContent
     )
-
-    #testing dsc configuration
 
         return
     
@@ -77,8 +56,6 @@ function Get-SPWebAppGeneralSettingsSetScript
         [AllowEmptyString()]
         $CheckContent
     )
-
-    #applying settings for compliance
 
         return
 }
