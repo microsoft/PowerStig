@@ -148,7 +148,7 @@ class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
         (
             $CheckContent -Match '\.NET Trust Level' -or
             (
-                $CheckContent -Match 'IIS 8\.5 web' -and
+                $CheckContent -Match 'IIS 8\.5 web|IIS 10\.0 web' -and
                 $CheckContent -NotMatch 'document'
             ) -and
             (
@@ -171,7 +171,8 @@ class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
                 $CheckContent -NotMatch 'Authorization Rules' -and
                 $CheckContent -NotMatch 'regedit <enter>' -and
                 $CheckContent -NotMatch 'Enable proxy' -and
-                $CheckContent -NotMatch 'SSL Settings'
+                $CheckContent -NotMatch 'SSL Settings' -and
+                $CheckContent -NotMatch 'Strict-Transport-Security'
             )
         )
         {
