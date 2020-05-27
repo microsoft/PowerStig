@@ -124,6 +124,12 @@ class nxFileLineRuleConvert : nxFileLineRule
         }
     }
 
+    <#
+        .SYNOPSIS
+            Sets the Org Value String.
+        .DESCRIPTION
+            Sets the Org Value String to ensure the customer is aware of the correct nxFileLine condition.
+    #>
     [void] SetOrganizationValueTestString ([string[]] $CheckContent)
     {
         $result = $CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher).*this is a finding'
@@ -134,12 +140,24 @@ class nxFileLineRuleConvert : nxFileLineRule
         }
     }
 
+    <#
+        .SYNOPSIS
+            Clears the Org Settings from the Rule Object.
+        .DESCRIPTION
+            Clears the Org Settings from the Rule Object, typically used if the rule is a duplicate.
+    #>
     [void] ClearOrgSettings ()
     {
         $this.OrganizationValueRequired = $false
         $this.OrganizationValueTestString = [string]::Empty
     }
 
+    <#
+        .SYNOPSIS
+            Tests for a range in the string.
+        .DESCRIPTION
+            Tests for a range in the string, used to determine if an Org Setting should be defined.
+    #>
     [bool] TestStringForRange ([string] $CheckContent)
     {
         if ($CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher).*this is a finding')
@@ -149,6 +167,10 @@ class nxFileLineRuleConvert : nxFileLineRule
         return $false
     }
 
+    <#
+        .SYNOPSIS
+            Match to detect nxFileLineRule.
+    #>
     static [bool] Match ([string] $CheckContent)
     {
         if ($CheckContent -Match 'If.*"\w*".*commented out.*this is a finding|If.*"\w*".*is missing from.*file.*this is a finding')
@@ -189,6 +211,10 @@ class nxFileLineRuleConvert : nxFileLineRule
         return (Split-nxFileLineMultipleEntries -CheckContent ([Rule]::SplitCheckContent($CheckContent)))
     }
 
+    <#
+        .SYNOPSIS
+            Sets the DSC Resource.
+    #>
     hidden [void] SetDscResource ()
     {
         if ($null -eq $this.DuplicateOf)
