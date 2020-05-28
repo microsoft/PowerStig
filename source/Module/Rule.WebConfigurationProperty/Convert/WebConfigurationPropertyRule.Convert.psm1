@@ -148,7 +148,7 @@ class WebConfigurationPropertyRuleConvert : WebConfigurationPropertyRule
         (
             $CheckContent -Match '\.NET Trust Level' -or
             (
-                $CheckContent -Match 'IIS 8\.5 web' -and
+                $CheckContent -Match 'IIS 8\.5 web|IIS 10\.0' -and
                 $CheckContent -NotMatch 'document'
             ) -and
             (
