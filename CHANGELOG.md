@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply MS SQL Server 2016 Instance Ver. 1 Rel. 9: [#636](https://github.com/microsoft/PowerStig/issues/636)
 * Update PowerSTIG to successfully parse Microsoft SQL Server 2012 Database STIG V1R20: [#618](https://github.com/microsoft/PowerStig/issues/618)
 * Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
