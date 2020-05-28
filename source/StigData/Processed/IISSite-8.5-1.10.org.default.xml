@@ -5,7 +5,7 @@
     Each setting in this file is linked by STIG ID and the valid range is in an
     associated comment.
 -->
-<OrganizationalSettings fullversion="1.8">
+<OrganizationalSettings fullversion="1.10">
   <!-- Ensure ''V-76805'' -cmatch '^(Full|High)$'-->
   <OrganizationalSetting id="V-76805" Value="Full" />
   <!-- Ensure 'V-76817' -le 4096-->

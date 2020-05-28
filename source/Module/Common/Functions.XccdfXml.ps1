@@ -380,6 +380,8 @@ function Split-BenchmarkId
 
             # SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
             $returnId = $returnId -replace "_Database_Instance" + ""
+            # SQL 2012 Database 1.20 has a different format which requires this line.
+            $returnId = $returnId -replace "_Database" + ""
             $returnId = '{0}_{1}' -f $returnId, $sqlRole
             continue
         }

@@ -3,6 +3,8 @@
 ## [Unreleased]
 
 * Update PowerSTIG to successfully parse/apply Windows Defender Antivirus STIG - V1R8: [#625](https://github.com/microsoft/PowerStig/issues/625)
+* Update PowerSTIG to successfully parse Microsoft SQL Server 2012 Database STIG V1R20: [#618](https://github.com/microsoft/PowerStig/issues/618)
+* Update PowerSTIG to successfully parse/apply Microsoft IIS Server/Site STIG - Ver 1, Rel10: [#622](https://github.com/microsoft/PowerStig/issues/622)
 * Update PowerSTIG to use Azure Pipelines and DSC Community based build logic: [#600](https://github.com/microsoft/PowerStig/issues/600)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
