@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_2012_Database_Instance_STIG" description="The Microsoft SQL Server 2012 Database Instance Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R18_Manual-xccdf.xml" releaseinfo="Release: 18 Benchmark Date: 25 Jan 2019" title="Microsoft SQL Server 2012 Database Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.18" created="7/29/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="MS_SQL_Server_Database_2012" description="The Microsoft SQL Server 2012 Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_SQL_Server_2012_Database_STIG_V1R20_Manual-xccdf.xml" releaseinfo="Release: 20 Benchmark Date: 16 Jan 2020" title="Microsoft SQL Server Database 2012 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.20" created="5/19/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-41389" severity="medium" conversionstatus="pass" title="SRG-APP-000006-DB-000183" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security attributes are abstractions representing the basic properties or characteristics of an entity (e.g., subjects and objects) with respect to safeguarding information.
@@ -17,7 +17,7 @@ The sensitivity marking or labeling of stored data items promotes the correct ha
       <RawString>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
 If the labeling of sensitive data is not required, this is NA.
 
-Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool. Spot check data and ensure the appropriate labels have been applied to stored data.   
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool. Spot check data and ensure the appropriate labels have been applied to stored data.
 
 If the labeling of sensitive data is required and is not being performed, this is a finding.</RawString>
     </Rule>
@@ -41,7 +41,7 @@ The sensitivity marking or labeling of data items promotes the correct handling 
 
 If the labeling of sensitive data is not required, this is NA.
 
-Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.  
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.
 
 If the labeling of sensitive information in process is not being performed, this is a finding.</RawString>
     </Rule>
@@ -64,7 +64,7 @@ The sensitivity marking or labeling of data items promotes the correct handling 
       <RawString>Review system documentation to determine if the labeling of sensitive data is required under organization-defined guidelines.
 If the labeling of sensitive data is not required, this is NA.
 
-Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.  
+Obtain system configuration settings to determine how data labeling is being performed. This can be through triggers or some other SQL-developed means or via a third-party tool.
 
 If the labeling of sensitive data in transmission is not being performed, this is a finding.</RawString>
     </Rule>
@@ -100,7 +100,7 @@ The DBMS must ensure the recipient of object permissions possesses only the acce
       <RawString>Check for rights propagation assignment to database permissions by running the following query:
 
 USE &lt;name of database being reviewed&gt;;
-SELECT * 
+SELECT *
 FROM sys.database_permissions
 WHERE state_desc = 'GRANT_WITH_GRANT_OPTION';
 
@@ -154,7 +154,7 @@ If any checked 'Database role membership' of each highlighted and checked 'Datab
 
 If SQL Server were to allow any user to make SQL Server job/batch queue submissions, then those submissions might lead to a compromise of system integrity and/or data. This requirement is contingent upon the SQL Server job/batch queue being review regularly for unauthorized submissions.
 
-Accordingly, only qualified and authorized individuals shall be allowed to obtain access to submit SQL Server jobs. Job/batch queue submissions must adhere to an organization-defined job submission process. 
+Accordingly, only qualified and authorized individuals shall be allowed to obtain access to submit SQL Server jobs. Job/batch queue submissions must adhere to an organization-defined job submission process.
 
 Unmanaged changes that occur to SQL Server job/batch queues can lead to a compromised system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -172,11 +172,11 @@ SELECT name
   FROM master.sys.procedures
  WHERE is_auto_executed = 1
 
-If any Stored Procedures listed are not documented as authorized, this is a finding.  
+If any Stored Procedures listed are not documented as authorized, this is a finding.
 
 Review the SQL Server job history by running the following query:
 
-SELECT *   FROM msdb.dbo.sysjobhistory 
+SELECT *   FROM msdb.dbo.sysjobhistory
 
 
 If any jobs listed are not documented as authorized, this is a finding.</RawString>
@@ -262,19 +262,19 @@ The system database [msdb] is an exception: it is required to be TRUSTWORTHY.&lt
 Run the query:
 USE &lt;database name&gt;;
 GO
-SELECT 
-       DB_NAME()                  AS [Database], 
-       SUSER_SNAME(D.owner_sid)   AS [Database Owner], 
+SELECT
+       DB_NAME()                  AS [Database],
+       SUSER_SNAME(D.owner_sid)   AS [Database Owner],
        CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
                                   AS [Trustworthy]
 FROM
-       sys.databases D 
+       sys.databases D
 WHERE
        D.[name] = DB_NAME()
 AND    DB_NAME() &lt;&gt; 'msdb'
 AND    D.is_trustworthy_on = 1;
 GO
-If the query returns a row indicating that the TRUSTWORTHY setting is OFF, or returns no rows, this is not a finding. 
+If the query returns a row indicating that the TRUSTWORTHY setting is OFF, or returns no rows, this is not a finding.
 
 Review the system security plan to determine whether the need for TRUSTWORTHY is documented and approved.  If not, this is a finding.</RawString>
     </Rule>
@@ -310,24 +310,24 @@ Protective measures include encryption, physical security of the facility where 
       <OrganizationValueTestString />
       <RawString>If the application owner and Authorizing Official have determined that encryption of data at rest is NOT required, this is not a finding.
 
-If the application owner and Authorizing Official have determined that encryption of data at rest is required, 
+If the application owner and Authorizing Official have determined that encryption of data at rest is required,
 ensure the data on secondary devices is encrypted. If full-disk encryption is being used, this is not a finding.
 
 If DBMS data encryption is required, ensure the data is encrypted before being put on the secondary device by executing:
 
-SELECT 
+SELECT
     d.name AS [Database Name],
-    CASE e.encryption_state 
-        WHEN 0 THEN 'No database encryption key present, no encryption' 
-        WHEN 1 THEN 'Unencrypted' 
-        WHEN 2 THEN 'Encryption in progress' 
-        WHEN 3 THEN 'Encrypted' 
-        WHEN 4 THEN 'Key change in progress' 
-        WHEN 5 THEN 'Decryption in progress' 
-        WHEN 6 THEN 'Protection change in progress' 
+    CASE e.encryption_state
+        WHEN 0 THEN 'No database encryption key present, no encryption'
+        WHEN 1 THEN 'Unencrypted'
+        WHEN 2 THEN 'Encryption in progress'
+        WHEN 3 THEN 'Encrypted'
+        WHEN 4 THEN 'Key change in progress'
+        WHEN 5 THEN 'Decryption in progress'
+        WHEN 6 THEN 'Protection change in progress'
     END AS [Encryption State]
-FROM sys.dm_database_encryption_keys e 
-RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name 
+FROM sys.dm_database_encryption_keys e
+RIGHT JOIN sys.databases d ON DB_NAME(e.database_id) = d.name
 WHERE d.name NOT IN ('master','model','msdb')
 ORDER BY 1
 ;
@@ -350,11 +350,11 @@ SELECT name AS 'Account Name'
      , create_date AS 'Account Create Date'
      , LOGINPROPERTY(name, 'PasswordLastSetTime') AS 'Password Last Set on'
 FROM sys.server_principals
-WHERE NOT TYPE IN ('C', 'R', 'U') 
+WHERE NOT TYPE IN ('C', 'R', 'U')
 AND NOT name IN ('##MS_PolicyEventProcessingLogin##', '##MS_PolicyTsqlExecutionLogin##')
 AND sid &lt;&gt; CONVERT(VARBINARY(85), 0x01) -- no 'sa' account
 AND is_disabled &lt;&gt; 1
-ORDER BY name; 
+ORDER BY name;
 
 For each developer account found on a production machine, verify if the developer account can change or alter database objects or data in the production database. If any developer account can change or alter database objects or data in a production database, this is a finding.</RawString>
     </Rule>
@@ -521,11 +521,11 @@ Run the following SQL queries to review SQL Server's cryptographic settings for 
 USE &lt;database name&gt; ;
 IF NOT EXISTS
        (
-       SELECT 1 
+       SELECT 1
        FROM sys.dm_database_encryption_keys
        WHERE DB_NAME(database_id) = DB_NAME()
        )
-       SELECT 
+       SELECT
              DB_NAME() AS [Database Name],
              'No database encryption key present, no encryption' AS [Encryption State],
                      NULL AS [Algorithm],
@@ -533,22 +533,22 @@ IF NOT EXISTS
 ELSE
        SELECT
              DB_NAME(database_id) AS [Database Name],
-             CASE encryption_state 
-                   WHEN 0 THEN 'No database encryption key present, no encryption' 
-                   WHEN 1 THEN 'Unencrypted' 
-                   WHEN 2 THEN 'Encryption in progress' 
-                   WHEN 3 THEN 'Encrypted' 
-                   WHEN 4 THEN 'Key change in progress' 
-                   WHEN 5 THEN 'Decryption in progress' 
-                   WHEN 6 THEN 'Protection change in progress' 
+             CASE encryption_state
+                   WHEN 0 THEN 'No database encryption key present, no encryption'
+                   WHEN 1 THEN 'Unencrypted'
+                   WHEN 2 THEN 'Encryption in progress'
+                   WHEN 3 THEN 'Encrypted'
+                   WHEN 4 THEN 'Key change in progress'
+                   WHEN 5 THEN 'Decryption in progress'
+                   WHEN 6 THEN 'Protection change in progress'
              END AS [Encryption State],
                      key_algorithm AS [Algorithm],
                      key_length AS [Key Length]
        FROM sys.dm_database_encryption_keys
        WHERE DB_NAME(database_id) = DB_NAME()
 
-SELECT DB_NAME() AS [Database], name, algorithm_desc 
-FROM sys.symmetric_keys 
+SELECT DB_NAME() AS [Database], name, algorithm_desc
+FROM sys.symmetric_keys
 ORDER BY name, algorithm_desc;
 
 Note:  The acceptable algorithms are:  "AES 128", "AES 192", "AES 256" and "Triple DES".
@@ -608,25 +608,25 @@ Ensure the data is encrypted by executing:
 USE &lt;database name&gt;;
 IF NOT EXISTS
     (
-    SELECT 1 
+    SELECT 1
     FROM sys.dm_database_encryption_keys
     WHERE DB_NAME(database_id) = DB_NAME()
     )
-    SELECT 
+    SELECT
         DB_NAME() AS [Database Name],
         'No database encryption key present, no encryption' AS [Encryption State]
 ELSE
     SELECT
         DB_NAME(database_id)  AS [Database Name],
-        CASE encryption_state 
-            WHEN 0 THEN 'No database encryption key present, no encryption' 
-            WHEN 1 THEN 'Unencrypted' 
-            WHEN 2 THEN 'Encryption in progress' 
-            WHEN 3 THEN 'Encrypted' 
-            WHEN 4 THEN 'Key change in progress' 
-            WHEN 5 THEN 'Decryption in progress' 
-            WHEN 6 THEN 'Protection change in progress' 
-        END AS [Encryption State] 
+        CASE encryption_state
+            WHEN 0 THEN 'No database encryption key present, no encryption'
+            WHEN 1 THEN 'Unencrypted'
+            WHEN 2 THEN 'Encryption in progress'
+            WHEN 3 THEN 'Encrypted'
+            WHEN 4 THEN 'Key change in progress'
+            WHEN 5 THEN 'Decryption in progress'
+            WHEN 6 THEN 'Protection change in progress'
+        END AS [Encryption State]
     FROM sys.dm_database_encryption_keys
     WHERE DB_NAME(database_id) = DB_NAME()
 ;
@@ -710,16 +710,16 @@ WITH FixedServerRoles(RoleName) AS
     UNION SELECT 'dbcreator'
     UNION SELECT 'bulkadmin'
 )
-SELECT 
-    DB_NAME() AS [Database], 
-    SUSER_SNAME(D.owner_sid) AS [Database Owner], 
+SELECT
+    DB_NAME() AS [Database],
+    SUSER_SNAME(D.owner_sid) AS [Database Owner],
     F.RoleName AS [Fixed Server Role],
     CASE WHEN D.is_trustworthy_on = 1 THEN 'ON' ELSE 'off' END
-        AS [Trustworthy]    
+        AS [Trustworthy]
 FROM
     FixedServerRoles F
     INNER JOIN sys.databases D ON D.Name = DB_NAME()
-WHERE 
+WHERE
     IS_SRVROLEMEMBER(F.RoleName, SUSER_SNAME(D.owner_sid)) = 1
 AND    DB_NAME()  &lt;&gt;  'msdb'
 AND    D.is_trustworthy_on = 1;
@@ -733,7 +733,7 @@ If the query returns any rows, this is a finding.  </RawString>
 
 The list of audited events is the set of events for which audits are to be generated. This set of events is typically a subset of the list of all events for which the system is capable of generating audit records.  Examples are auditable events, time stamps, source and destination addresses, user/process identifiers, event descriptions, success/fail indications, file names involved, and access control or flow control rules invoked.
 
-Organizations define which application components shall provide auditable events. 
+Organizations define which application components shall provide auditable events.
 
 The DBMS must provide auditing for the list of events defined by the organization or risk negatively impacting forensic investigations into malicious behavior in the information system.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -746,17 +746,17 @@ From the query prompt:
      SELECT DISTINCT traceid FROM sys.fn_trace_getinfo(0);
 All currently defined traces for the SQL server instance will be listed. If no traces are returned, this is a finding.
 
-Determine the trace(s) being used for the auditing requirement. 
+Determine the trace(s) being used for the auditing requirement.
 In the following, replace # with a trace ID being used for the auditing requirements.
 From the query prompt:
      SELECT DISTINCT(eventid) FROM sys.fn_trace_geteventinfo(#);
 The following required event IDs should be listed:
-     14, 15, 18, 20, 
-     102, 103, 104, 105, 106, 107, 108, 109, 110, 
-     111, 112, 113, 115, 116, 117, 118, 
-     128, 129, 130, 
-     131, 132, 133, 134, 135, 
-     152, 153, 
+     14, 15, 18, 20,
+     102, 103, 104, 105, 106, 107, 108, 109, 110,
+     111, 112, 113, 115, 116, 117, 118,
+     128, 129, 130,
+     131, 132, 133, 134, 135,
+     152, 153,
      170, 171, 172, 173, 175, 176, 177, 178.
 If any of the audit event IDs required above is not listed, this is a finding.
 
@@ -764,9 +764,9 @@ Notes:
 1. It is acceptable to have the required event IDs spread across multiple traces, provided all of the traces are always active, and the event IDs are grouped in a logical manner.
 2. It is acceptable, from an auditing point of view, to include the same event IDs in multiple traces.  However, the effect of this redundancy on performance, storage, and the consolidation of audit logs into a central repository, should be taken into account.
 3. It is acceptable to trace additional event IDs. This is the minimum list.
-4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include code to do this.)  
+4. Once this check is satisfied, the DBA may find it useful to disable or modify the default trace that is set up by the SQL Server installation process. (Note that the Fix does NOT include code to do this.)
 Use the following query to obtain a list of all event IDs, and their meaning:
-     SELECT * FROM sys.trace_events; 
+     SELECT * FROM sys.trace_events;
 5. Because this check procedure is designed to address multiple requirements/vulnerabilities, it may appear to exceed the needs of some individual requirements.  However, it does represent the aggregate of all such requirements.
 6. Microsoft has flagged the trace techniques and tools used in this Check and Fix as deprecated.  They will be removed at some point after SQL Server 2014.  The replacement feature is Extended Events.  If Extended Events are in use, and cover all the required audit events listed above, this is not a finding.</RawString>
       <SetScript>BEGIN IF OBJECT_ID('TempDB.dbo.#StigEvent') IS NOT NULL BEGIN DROP TABLE #StigEvent END IF OBJECT_ID('TempDB.dbo.#Trace') IS NOT NULL BEGIN DROP TABLE #Trace END IF OBJECT_ID('TempDB.dbo.#TraceEvent') IS NOT NULL BEGIN DROP TABLE #TraceEvent END CREATE TABLE #StigEvent (EventId INT) INSERT INTO #StigEvent (EventId) VALUES (14),(15),(18),(20),(102),(103),(104),(105),(106),(107),(108),(109),(110),(111),(112),(113),(115),(116),(117),(118),(128),(129),(130),(131),(132),(133),(134),(135),(152),(153),(170),(171),(172),(173),(175),(176),(177),(178) CREATE TABLE #Trace (TraceId INT) INSERT INTO #Trace (TraceId) SELECT DISTINCT TraceId FROM sys.fn_trace_getinfo(0)ORDER BY TraceId DESC CREATE TABLE #TraceEvent (TraceId INT, EventId INT) DECLARE cursorTrace CURSOR FOR SELECT TraceId FROM #Trace OPEN cursorTrace DECLARE @currentTraceId INT FETCH NEXT FROM cursorTrace INTO @currentTraceId WHILE @@FETCH_STATUS = 0 BEGIN INSERT INTO #TraceEvent (TraceId, EventId) SELECT DISTINCT @currentTraceId, EventId FROM sys.fn_trace_geteventinfo(@currentTraceId) FETCH NEXT FROM cursorTrace INTO @currentTraceId END CLOSE cursorTrace DEALLOCATE cursorTrace DECLARE @missingStigEventCount INT SET @missingStigEventCount = (SELECT COUNT(*) FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL) IF @missingStigEventCount &gt; 0 BEGIN DECLARE @dir nvarchar(4000) DECLARE @tracefile nvarchar(4000) DECLARE @returnCode INT DECLARE @newTraceId INT DECLARE @maxFileSize BIGINT = 5 EXEC master.dbo.xp_instance_regread N'HKEY_LOCAL_MACHINE', N'Software\Microsoft\MSSQLServer\Setup', N'SQLPath', @dir OUTPUT, 'no_output' SET @tracefile = @dir + N'\Log\PowerStig' EXEC @returnCode = sp_trace_create @traceid = @newTraceId OUTPUT, @options = 2, @tracefile = @tracefile, @maxfilesize = @maxFileSize, @stoptime = NULL, @filecount = 2; IF @returnCode = 0 BEGIN EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 0 DECLARE cursorMissingStigEvent CURSOR FOR SELECT DISTINCT SE.EventId FROM #StigEvent SE LEFT JOIN #TraceEvent TE ON SE.EventId = TE.EventId WHERE TE.EventId IS NULL OPEN cursorMissingStigEvent DECLARE @currentStigEventId INT FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId WHILE @@FETCH_STATUS = 0 BEGIN EXEC sp_trace_setevent @traceid = @newTraceId, @eventid = @currentStigEventId, @columnid = NULL, @on = 1 FETCH NEXT FROM cursorMissingStigEvent INTO @currentStigEventId END CLOSE cursorMissingStigEvent DEALLOCATE cursorMissingStigEvent EXEC sp_trace_setstatus @traceid = @newTraceId, @status = 1 END END END</SetScript>
