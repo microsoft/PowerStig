@@ -21,6 +21,8 @@ function Get-SPWebAppGeneralSettingsGetScript
         [SecureString] $PSDscRunAsCredential
     )
 
+    
+
     return
 }
 
@@ -36,7 +38,7 @@ function Get-SPWebAppGeneralSettingsTestScript
         $CheckContent
     )
 
-        return
+    return
     
 }
 
@@ -58,41 +60,6 @@ function Get-SPWebAppGeneralSettingsSetScript
     )
 
         return
-}
-
-function Get-SPWebAppGeneralSettingsRuleSubType
-{
-    [CmdletBinding()]
-    [OutputType([string])]
-    param
-    (
-        [Parameter(Mandatory = $true)]
-        [string[]]
-        $CheckContent
-    )
-
-    $content = $CheckContent -join " "
-
-    switch ($content)
-    {
-        
-        {
-            $PSItem -Match "prohibited mobile code" -or #V-59957
-            $PSItem -Match "SharePoint server configuration to ensure a session lock" -or #V-59919
-            $PSItem -Match "ensure user sessions are terminated upon user logoff" -or #V-59977
-            $PSItem -Match "ensure access to the online web part gallery is configured" #V-59991
-        }
-        {
-            $ruleType = "SPWebAppGeneralSettings"
-        }
-
-        default
-        {
-            $ruleType = 'Manual'
-        }
-    }
-
-    return $ruleType
 }
 
 function Test-VariableRequired

@@ -35,7 +35,6 @@ using module .\Module\Rule.WindowsFeature\Convert\WindowsFeatureRule.Convert.psm
 using module .\Module\Rule.WinEventLog\Convert\WinEventLogRule.Convert.psm1
 using module .\Module\Rule.SslSettings\Convert\SslSettingsRule.Convert.psm1
 using module .\Module\Rule.AuditSetting\Convert\AuditSettingRule.Convert.psm1
-using module .\Module\Rule.SharePoint\Convert\SharePointRule.Convert.psm1
 using module .\Module\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
 
 # load the public functions

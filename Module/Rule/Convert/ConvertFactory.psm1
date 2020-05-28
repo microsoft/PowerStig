@@ -17,7 +17,6 @@ using module .\..\..\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Conver
 using module .\..\..\Rule.Registry\Convert\RegistryRule.Convert.psm1
 using module .\..\..\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
 using module .\..\..\Rule.Service\Convert\ServiceRule.Convert.psm1
-using module .\..\..\Rule.SharePoint\Convert\SharePointRule.Convert.psm1
 using module .\..\..\Rule.SPWebAppGeneralSettings\Convert\SPWebAppGeneralSettingsRule.Convert.psm1
 using module .\..\..\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
 using module .\..\..\Rule.UserRight\Convert\UserRightRule.Convert.psm1
@@ -197,12 +196,6 @@ class ConvertFactory
             {
                 $null = $ruleTypeList.AddRange(
                     [SplitFactory]::XccdfRule($Rule, 'ServiceRuleConvert', 'ServiceName')
-                )
-            }
-            {[SharePointRuleConvert]::Match($PSItem)}
-            {
-                $null = $ruleTypeList.Add(
-                    [SharePointRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[SPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
