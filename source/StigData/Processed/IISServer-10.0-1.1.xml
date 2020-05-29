@@ -937,9 +937,8 @@ If any OS shell MIME types are configured, this is a finding.
           </Type>
           <Principal>CREATOR OWNER</Principal>
           <ForcePrincipal>False</ForcePrincipal>
-          <Inheritance>
-          </Inheritance>
-          <Rights>FullControl,</Rights>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;This check verifies the key web server system configuration files are owned by the SA or the web administrator controlled account. These same files that control the configuration of the web server, and thus its behavior, must also be accessible by the account running the web service. If these files are altered by a malicious user, the web server would no longer be under the control of its managers and owners; properties in the web server configuration could be altered to compromise the entire server platform.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
