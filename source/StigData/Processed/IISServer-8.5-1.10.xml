@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R7_Manual-xccdf.xml" releaseinfo="Release: 7 Benchmark Date: 26 Apr 2019" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.7" created="9/19/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Server_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Server_STIG_V1R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 24 Apr 2020" title="IIS 8.5 Server Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.10" created="5/20/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76679" severity="medium" conversionstatus="pass" title="SRG-APP-000015-WSR-000014" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Logging onto a web server remotely using an unencrypted protocol or service when performing updates and maintenance is a major risk. Data, such as user account, is transmitted in plaintext and can easily be compromised. When performing remote administrative tasks, a protocol or service that encrypts the communication channel must be used.
@@ -449,8 +449,7 @@ Log record content that may be necessary to satisfy the requirement of this cont
       <LogTargetW3C />
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: If SSL is installed on load balancer through which traffic is routed to the IIS 8.5 server, and the IIS 8.5 server ONLY receives traffic from the load balancer, the SSL requirement must be met on the load balancer.
-Access the IIS 8.5 web server IIS Manager.
+      <RawString>Access the IIS 8.5 web server IIS Manager.
 Click the IIS 8.5 web server name.
 Under "IIS", double-click the "Logging" icon.
 Verify the "Format:" under "Log File" is configured to "W3C".
@@ -510,10 +509,9 @@ Right-click the log file name to review.
 Click “Properties”.
 Click the “Security” tab.
 Verify log file access is restricted as follows. Otherwise, this is a finding.
-Eventlog - Full Control
+
 SYSTEM - Full Control
-Administrators - Full Control
-Web Managers - Read</RawString>
+Administrators - Full Control</RawString>
     </Rule>
     <Rule id="V-76697" severity="medium" conversionstatus="pass" title="SRG-APP-000125-WSR-000071" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Protection of log data includes assuring log data is not accidentally lost or deleted. Backing up log records to an unrelated system or onto separate media than the system the web server is actually running on helps to assure that, in the event of a catastrophic system failure, the log records will be retained.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -701,21 +699,6 @@ Expand the roles node, then right-click “Print Services”, and then select �
 
 If the Internet Printing option is enabled, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-76763" severity="medium" conversionstatus="pass" title="SRG-APP-000456-WSR-000187" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Several vulnerabilities are associated with older versions of web server software. As hot fixes and patches are issued, these solutions are included in the next version of the server software. Maintaining the web server at a current version makes the efforts of a malicious user more difficult.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Determine the most recent patch level of the IIS 8.5 software, as posted on the Microsoft website.
-
-Open the IIS 8.5 Manager.
-
-Click "Help", and select "About Internet Information Services".
-
-If the version is more than one version behind the most recent patch level, this is a finding.
-</RawString>
-    </Rule>
     <Rule id="V-76765" severity="high" conversionstatus="pass" title="SRG-APP-000516-WSR-000079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;During installation of the web server software, accounts are created for the web server to operate properly. The accounts installed can have either no password installed or a default password, which will be known and documented by the vendor and the user community.
 
@@ -745,13 +728,34 @@ If passwords have not been changed from the default, this is a finding.</RawStri
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Open the IIS 8.5 Manager.
-
 Click the IIS 8.5 web server name.
-
 Double-click the “Authorization Rules” icon.
 
 If any user other than “Administrator” is listed, this is a finding.
+
+If .NET is not installed, this is Not Applicable.
 </RawString>
+    </Rule>
+    <Rule id="V-95633" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000001" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Resource exhaustion can occur when an unlimited number of concurrent requests are allowed on a website, facilitating a Denial of Service attack. Mitigating this kind of attack will include limiting the number of concurrent HTTP/HTTPS requests per IP address and may include, where feasible, limiting parameter values associated with keepalive (i.e., a parameter used to limit the amount of time a connection may be inactive).&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Access the IIS 8.5 IIS Manager.
+
+Click the IIS 8.5 server.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.applicationHost/sites".
+
+Expand "siteDefaults".
+Expand "limits".
+
+Review the results and verify the value is greater than zero for the "maxconnections" parameter.
+
+If the maxconnections parameter is set to zero, this is a finding.</RawString>
     </Rule>
   </ManualRule>
   <MimeTypeRule dscresourcemodule="xWebAdministration">
@@ -903,11 +907,28 @@ If any OS shell MIME types are configured, this is a finding.
         <Entry>
           <Type>
           </Type>
+          <Principal>ALL RESTRICTED APPLICATION PACKAGES</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>
+          </Inheritance>
+          <Rights>ReadAndExecute</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
           <Principal>Users</Principal>
           <ForcePrincipal>False</ForcePrincipal>
           <Inheritance>
           </Inheritance>
           <Rights>ReadAndExecute,ListDirectory</Rights>
+        </Entry>
+        <Entry>
+          <Type>
+          </Type>
+          <Principal>CREATOR OWNER</Principal>
+          <ForcePrincipal>False</ForcePrincipal>
+          <Inheritance>Subfolders and files only</Inheritance>
+          <Rights>FullControl</Rights>
         </Entry>
       </AccessControlEntry>
       <Description>&lt;VulnDiscussion&gt;This check verifies the key web server system configuration files are owned by the SA or the web administrator controlled account. These same files that control the configuration of the web server, and thus its behavior, must also be accessible by the account running the web service. If these files are altered by a malicious user, the web server would no longer be under the control of its managers and owners; properties in the web server configuration could be altered to compromise the entire server platform.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -918,19 +939,17 @@ If any OS shell MIME types are configured, this is a finding.
       <OrganizationValueTestString />
       <Path>%SystemDrive%\inetpub</Path>
       <RawString>Open Explorer and navigate to the inetpub directory.
-
-Right-click inetpub and select “Properties”.
-
+Right-click "inetpub" and select "Properties".
 Click the "Security" tab.
-
 Verify the permissions for the following users; if the permissions are less restrictive, this is a finding.
 
 System: Full control
 Administrators: Full control
 TrustedInstaller: Full control
 ALL APPLICATION PACKAGES (built-in security group): Read and execute
+ALL RESTRICTED APPLICATION PACKAGES (built-in security group): Read and execute
 Users: Read and execute, list folder contents
-Creator/Owner: Special permissions to subkeys</RawString>
+CREATOR OWNER: Full Control, Subfolders and files only</RawString>
     </Rule>
   </PermissionRule>
   <RegistryRule dscresourcemodule="PSDscResources">
@@ -1352,9 +1371,9 @@ Click the IIS 8.5 web server name.
 
 Double-click the "Error Pages" icon.
 
-Click each error message and click "Edit Feature Setting" from the "Actions" Pane.
+Click on any error message and click "Edit Feature Setting" from the "Actions" Pane. This will apply to all error messages.
 
-If any error message is not set to “Detailed errors for local requests and custom error pages for remote requests”, this is a finding.</RawString>
+If the feature setting is not set to “Detailed errors for local requests and custom error pages for remote requests”, this is a finding.</RawString>
       <Value>DetailedLocalOnly</Value>
     </Rule>
     <Rule id="V-76757" severity="medium" conversionstatus="pass" title="SRG-APP-000439-WSR-000152" dscresource="xWebConfigKeyValue">
