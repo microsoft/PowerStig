@@ -365,7 +365,8 @@ function Split-BenchmarkId
         'Outlook',
         'PowerPoint',
         'Word',
-        'System'
+        'System',
+        'Visio'
     )
 
     $id = $id -replace ($idVariations -join '|'), ''
@@ -403,6 +404,16 @@ function Split-BenchmarkId
         {$PSItem -match "IIS_8-5_Site"}
         {
             $returnId = 'IISSite_8.5'
+            continue
+        }
+        {$PSItem -match "IIS_10-0_Site"}
+        {
+            $returnId = 'IISSite_10.0'
+            continue
+        }
+        {$PSItem -match "IIS_10-0_Server"}
+        {
+            $returnId = 'IISServer_10.0'
             continue
         }
         {$PSItem -match "Domain_Name_System"}
@@ -446,7 +457,7 @@ function Split-BenchmarkId
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System'}
+        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio'}
         {
             $officeStig = ($id -split '_')
 

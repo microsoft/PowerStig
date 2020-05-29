@@ -1,21 +1,24 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R6_Manual-xccdf.xml" releaseinfo="Release: 6 Benchmark Date: 26 Jul 2019" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.6" created="12/5/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Windows_Defender_Antivirus" description="The Windows Defender Antivirus Security Technical Implementation Guide (STIG) is published as a tool to improve the security of Department of Defense (DoD) information systems.  Comments or proposed revisions to this document should be send via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_Defender_Antivirus_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 24 Apr 2020" title="MS Windows Defender Antivirus Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="5/20/2020">
   <RegistryRule dscresourcemodule="PSDscResources">
     <Rule id="V-75147" severity="high" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;After enabling this feature, Potentially Unwanted Application (PUA) protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;After enabling this feature, PUA protection blocking takes effect on endpoint clients after the next signature update or computer restart. Signature updates take place daily under typical circumstances. PUA will be blocked and automatically quarantined.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\MpEngine</Key>
+      <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the policy value for Computer Configuration -&gt; Administrative Templates -&gt; MS Security Guide -&gt; "Turn on Windows Defender protection against Potentially Unwanted Applications" is set to "Enabled".
+      <RawString>Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Defender Antivirus &gt;&gt; "Configure detection for potentially unwanted applications" is set to "Enabled" and "Block".
 
-Procedure: Use the Windows Registry Editor to navigate to the following key: 
-HKLM\Software\Policies\Microsoft\Windows Defender\MpEngine
+Use the Windows Registry Editor to navigate to the following key: 
 
-Criteria: If the value "MpEnablePus" is REG_DWORD = 1, this is not a finding.</RawString>
+HKLM\Software\Policies\Microsoft\Windows Defender
+
+If the value "PUAProtection" does not exist, this is a finding.
+
+If the value "PUAProtection" is REG_DWORD = 1, this is not a finding.</RawString>
       <ValueData>1</ValueData>
-      <ValueName>MpEnablePus</ValueName>
+      <ValueName>PUAProtection</ValueName>
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-75151" severity="medium" conversionstatus="pass" title="SRG-APP-000279" dscresource="RegistryPolicyFile">
@@ -56,9 +59,9 @@ HKLM\Software\Policies\Microsoft\Windows Defender
 
 Criteria: If the value "DisableAntiSpyware" does not exist, this is not a finding.
 
-For Windows Server 2016:
+For Windows Server 2016/Windows Server 2019:
 Note: This only applies when a third-party antivirus solution is enforced on the system.
-Due to changes from Microsoft in the Server 2016 architecture, Windows Defender Antivirus will not disable itself when other antivirus products are detected. Microsoft has also removed API's for other Antivirus software to cleanly stop and disable Windows Defender AV. This was a design choice by Microsoft to maximize protection in Server 2016. 
+Due to changes from Microsoft in the Server 2016/Server 2019 architecture, Windows Defender Antivirus will not disable itself when other antivirus products are detected. Microsoft has also removed API's for other Antivirus software to cleanly stop and disable Windows Defender AV. This was a design choice by Microsoft to maximize protection in Server 2016/Server 2019. 
 
 If there is a third-party antivirus product enforced on the system, the Windows Defender Antivirus must be uninstalled. 
 
@@ -172,23 +175,23 @@ Criteria: If the value "DisableBlockAtFirstSeen" is REG_DWORD = 0, this is not a
       <ValueType>Dword</ValueType>
     </Rule>
     <Rule id="V-75167" severity="medium" conversionstatus="pass" title="SRG-APP-000210" dscresource="RegistryPolicyFile">
-      <Description>&lt;VulnDiscussion&gt;This policy setting allows you to join Microsoft MAPS. Microsoft MAPS is the online community that helps you choose how to respond to potential threats. The community also helps stop the spread of new malicious software infections. You can choose to send basic or additional information about detected software. Additional information helps Microsoft create new definitions and help it to protect your computer. This information can include things like location of detected items on your computer if harmful software was removed. The information will be automatically collected and sent. In some instances personal information might unintentionally be sent to Microsoft. However Microsoft will not use this information to identify you or contact you. Possible options are: (0x0) Disabled (default)  (0x1) Basic membership (0x2) Advanced membership    Basic membership will send basic information to Microsoft about software that has been detected including where the software came from the actions that you apply or that are applied automatically and whether the actions were successful. Advanced membership in addition to basic information will send more information to Microsoft about malicious software spyware and potentially unwanted software including the location of the software file names how the software operates and how it has impacted your computer. If you enable this setting you will join Microsoft MAPS with the membership specified. If you disable or do not configure this setting you will not join Microsoft MAPS. In Windows 10 Basic membership is no longer available so setting the value to 1 or 2 enrolls the device into Advanced membership.
+      <Description>&lt;VulnDiscussion&gt;This policy setting allows you to join Microsoft MAPS. Microsoft MAPS is the online community that helps you choose how to respond to potential threats. The community also helps stop the spread of new malicious software infections. You can choose to send basic or additional information about detected software. Additional information helps Microsoft create new definitions and help it to protect your computer. This information can include things like location of detected items on your computer if harmful software was removed. The information will be automatically collected and sent. In some instances personal information might unintentionally be sent to Microsoft. However Microsoft will not use this information to identify you or contact you. Possible options are: (0x0) Disabled (default) (0x1) Basic membership (0x2) Advanced membership Basic membership will send basic information to Microsoft about software that has been detected including where the software came from the actions that you apply or that are applied automatically and whether the actions were successful. Advanced membership in addition to basic information will send more information to Microsoft about malicious software spyware and potentially unwanted software including the location of the software file names how the software operates and how it has impacted your computer. If you enable this setting you will join Microsoft MAPS with the membership specified. If you disable or do not configure this setting you will not join Microsoft MAPS. In Windows 10 Basic membership is no longer available so setting the value to 1 or 2 enrolls the device into Advanced membership.
 
-Some features may communicate with the vendor, sending system information or downloading data or components for the feature. Turning off this feature will prevent potentially sensitive information from being sent outside the enterprise and uncontrolled updates to the system. This setting disables Microsoft Active Protection Service membership and reporting.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <Ensure>Present</Ensure>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <Key>HKEY_LOCAL_MACHINE\Software\Policies\Microsoft\Windows Defender\Spynet</Key>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This is applicable to unclassified systems, for other systems this is Not Applicable.
+      <RawString>This is applicable to unclassified systems, for other systems this is NA.
 
-Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Defender Antivirus &gt;&gt; MAPS "Join Microsoft MAPS" is set to "Enabled" and "Advanced MAPS" is selected.
+Verify the policy value for Computer Configuration &gt;&gt; Administrative Templates &gt;&gt; Windows Components &gt;&gt; Windows Defender Antivirus &gt;&gt; MAPS &gt;&gt; "Join Microsoft MAPS" is set to "Enabled" and "Advanced MAPS" selected from the drop down box.
 
 Procedure: Use the Windows Registry Editor to navigate to the following key: 
 HKLM\Software\Policies\Microsoft\Windows Defender\Spynet
 
-Criteria: If the value "SpynetReporting" is “REG_DWORD = 2”, this is not a finding.
+Criteria: If the value "SpynetReporting" is REG_DWORD = 2, this is not a finding.
 </RawString>
       <ValueData>2</ValueData>
       <ValueName>SpynetReporting</ValueName>
