@@ -518,7 +518,7 @@ function Get-SqlTechnologyRole
     $sqlRole = $split[$stigIndex -1]
     if ($sqlRole -match '\w\d{1,}\w\d{1,}')
     {
-        $Id -match "(?<Type>Database|Instance)"
+        $null = $Id -match "(?<Type>Database|Instance)"
         $sqlRole = $Matches['Type']
     }
 
