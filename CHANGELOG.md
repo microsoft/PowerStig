@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
 * Update PowerSTIG to successfully parse Microsoft IIS Server/Site 10.0 STIG STIG V1R1: [#632](https://github.com/microsoft/PowerStig/issues/632)
 * Update PowerSTIG to successfully parse Microsoft Visio 2013 STIG V1R4: [#629](https://github.com/microsoft/PowerStig/issues/629)
 * Update PowerSTIG to successfully parse/apply Windows Defender Antivirus STIG - V1R8: [#625](https://github.com/microsoft/PowerStig/issues/625)
