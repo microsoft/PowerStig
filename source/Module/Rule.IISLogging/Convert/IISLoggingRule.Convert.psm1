@@ -195,7 +195,7 @@ class IisLoggingRuleConvert : IisLoggingRule
         if
         (
             $CheckContent -Match 'Logging' -and
-            $CheckContent -Match 'IIS 8\.5' -and
+            $CheckContent -Match 'IIS 8\.5|IIS 10\.0' -and
             $CheckContent -NotMatch 'review source IP' -and
             $CheckContent -NotMatch 'verify only authorized groups' -and
             $CheckContent -NotMatch 'Confirm|Consult with the System Administrator' -and
