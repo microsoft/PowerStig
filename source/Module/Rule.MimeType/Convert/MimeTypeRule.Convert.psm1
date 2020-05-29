@@ -154,7 +154,7 @@ class MimeTypeRuleConvert : MimeTypeRule
         if
         (
             $CheckContent -Match 'MIME Types' -and
-            $CheckContent -Match 'IIS 8\.5'
+            $CheckContent -Match 'IIS 8\.5|IIS 10\.0'
         )
         {
             return $true
