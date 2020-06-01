@@ -50,12 +50,10 @@ configuration WindowsClient
         $StigVersion,
 
         [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [string]
         $ForestName,
 
         [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [string]
         $DomainName,
 
