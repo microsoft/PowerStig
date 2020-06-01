@@ -1,7 +1,6 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-#region Header
 $rules = $stig.RuleList | Select-Rule -Type UserRightRule
 
 $domainGroupTranslation = @{
@@ -30,13 +29,11 @@ if ($DomainName -and $ForestName)
     $DomainName = PowerStig\Get-DomainName -DomainName $DomainName -Format NetbiosName
     $ForestName = PowerStig\Get-DomainName -ForestName $ForestName -Format NetbiosName
 
-    #endregion Header
-
     foreach ($rule in $rules)
     {
-        Write-Verbose $rule
+        Write-Verbose -Message $rule
         $identitySplit = $rule.Identity -split ","
-        [System.Collections.ArrayList]  $identityList = @()
+        [System.Collections.ArrayList] $identityList = @()
 
         foreach ($identity in $identitySplit)
         {
@@ -59,7 +56,7 @@ if ($DomainName -and $ForestName)
         {
             Policy   = ($rule.DisplayName -replace " ", "_")
             Identity = $identityList
-            Force    = [bool]$rule.Force
+            Force    = [bool] $rule.Force
         }
     }
 }
@@ -67,7 +64,6 @@ else
 {
     foreach ($rule in $rules)
     {
-        #write error output to screen
         Write-Warning -Message "$($rule.id) not compiled to mof because DomainName and ForestName were not specified"
     }
 }
