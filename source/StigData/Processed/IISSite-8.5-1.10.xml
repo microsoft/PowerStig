@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 26 Jul 2019" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="12/5/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="IIS_8-5_Site_STIG" description="This Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via email to the following address: disa.stig_spt@mail.mil." filename="U_MS_IIS_8-5_Site_V1R10_Manual-xccdf.xml" releaseinfo="Release: 10 Benchmark Date: 24 Apr 2020" title="IIS 8.5 Site Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.10" created="5/20/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-76799" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000082" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IIS 8.5 will either allow or deny script execution based on file extension. The ability to control script execution is controlled through two features with IIS 8.5, “Request Filtering” and "Handler Mappings".
@@ -8,15 +8,15 @@ For "Request Filtering", the ISSO must document and approve all allowable file e
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For "Request Filtering", the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Request Filtering" in IIS 8.5. "Request Filtering" at the site level take precedence over "Request Filtering" at the server level.
+      <RawString>For Handler Mappings, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Handler Mappings in IIS 8.5. Handler Mappings at the site level take precedence over Handler Mappings at the server level.
 
 Open the IIS 8.5 Manager.
 
 Click the site name under review.
 
-Double-click Request Filtering-&gt;File Name Extensions Tab.
+Double-click "Handler Mappings".
 
-If any script file extensions from the black list are not denied, this is a finding.</RawString>
+If any script file extensions from the black list are enabled, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76801" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000083" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Resource mapping is the process of tying a particular file type to a process in the web server that can serve that type of file to a requesting client and to identify which file types are not to be delivered to a client.
@@ -28,15 +28,15 @@ The web server must only allow hosted application file types to be served to a u
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>For "Handler Mappings", the ISSO must document and approve all allowable file extensions the website allows (white list) and denies (black list) by the website. The white list and black list will be compared to the "Handler Mappings" in IIS 8.5. "Handler Mappings" at the site level take precedence over "Handler Mappings" at the server level.
+      <RawString>For Request Filtering, the ISSO must document and approve all allowable scripts the website allows (white list) and denies (black list). The white list and black list will be compared to the Request Filtering in IIS 8.5. Request Filtering at the site level take precedence over Request Filtering at the server level.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server: 
 
 Open the IIS 8.5 Manager.
+Click the site name to review.
+Double-click Request Filtering &gt;&gt; File Name Extensions Tab.
 
-Double-click "Request Filtering". 
-
-If any file name extensions from the black list have "Allowed" set to "True", this is a finding.</RawString>
+If any script file extensions from the black list are not denied, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76807" severity="medium" conversionstatus="pass" title="SRG-APP-000142-WSR-000089" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The web server must be configured to listen on a specified IP address and port. Without specifying an IP address and port for the web server to utilize, the web server will listen on all IP addresses available to the hosting server. If the web server has multiple IP addresses, i.e., a management IP address, the web server will also accept connections on the management IP address.
@@ -49,40 +49,16 @@ Accessing the hosted application through an IP address normally used for non-app
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
-
 Right-click on the site name under review.
-
 Select “Edit Bindings”.
 
 Verify there are hostname entries and unique IP addresses assigned to port 80 for HTTP and port 443 for HTTPS. Other approved and documented ports may be used.
 
 If both hostname entries and unique IP addresses are not configure to port 80 for HTTP and port 443 for HTTPS (or other approved and documented port), this is a finding.
 
-Note: If certificate handling is performed at the Proxy/Load Balancer, this is not a finding.</RawString>
-    </Rule>
-    <Rule id="V-76831" severity="medium" conversionstatus="pass" title="SRG-APP-000266-WSR-000142" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The goal is to control the web users experience in navigating any portion of the web document root directories. Ensuring all web content directories have at least the equivalent of an index.html file is a significant factor to accomplish this end. Also, enumeration techniques, such as URL parameter manipulation, rely upon being able to obtain information about the web server’s directory structure by locating directories with default pages. This practice helps ensure the anonymous web user will not obtain directory browsing information or an error message revealing the server type and version.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Note: This requirement is only for each site's root directory.
+Note: If certificate handling is performed at the Proxy/Load Balancer, this is not a finding.
 
-Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Click the site name under review.
-
-Double-click "Default Document".
-
-In the "Actions" pane, verify the "Default Document" feature is enabled. 
-
-If an "Enable" option is listed under the "Actions" pane, the "Default Document" feature is not enabled and this is a finding.
-
-If "Default Document" is "Enabled, review the document types.
-
-Click the "Content View" tab, click on each listed "Default Document" and click on "Explore" under the "Actions" pane. Verify there is a document of that type in the directory.
-
-If "Default Document" is "Enabled" but no listed document types are present in the "Content View", this is a finding.</RawString>
+Note: If HTTP/Port 80 is not being used, and isn’t configured as above, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-76843" severity="medium" conversionstatus="pass" title="SRG-APP-000316-WSR-000170" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;During an attack on the web server or any of the hosted applications, the system administrator may need to disconnect or disable access by users to stop the attack.
@@ -346,28 +322,6 @@ If the log entries in the log file(s) reflect the IP address of the proxy server
 
 If provisions have been made to log the client IP via another field (i.e., utilizing X-Forwarded-For), this is not a finding.</RawString>
     </Rule>
-    <Rule id="V-76795" severity="medium" conversionstatus="pass" title="SRG-APP-000120-WSR-000070" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;A major tool in exploring the website use, attempted use, unusual conditions, and problems are the access and error logs. In the event of a security incident, these logs can provide the SA and the web manager with valuable information. Failure to protect log files could enable an attacker to modify the log file data or falsify events to mask an attacker's activity.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-Click the site name.
-Click the "Logging" icon.
-Click "Browse" and navigate to the directory where the log files are stored.
-Right-click the log file name to review and click “Properties”.
-Click the “Security” tab.
-Verify only authorized groups are listed, if others are listed, this is a finding.
-
-Note: The log file should be restricted as follows:
-Auditors - Full Control
-SYSTEM - Full Control
-Administrators - Full Control
-Web Managers - Read</RawString>
-    </Rule>
     <Rule id="V-76811" severity="high" conversionstatus="pass" title="SRG-APP-000211-WSR-000031" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Many of the security problems that occur are not the result of a user gaining access to files or data for which the user does not have permissions, but rather users are assigned incorrect permissions to unauthorized data. The files, directories, and data that are stored on the web server need to be evaluated and a determination made concerning authorized access to information and programs on the server. Only authorized users and administrative accounts will be allowed on the host server in order to maintain the web server, applications, and review the server operations.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -417,6 +371,42 @@ Users
 Double-click each group and review its members.
 
 If the IUSR account or any account noted above used for anonymous access is a member of any group with privileged access, this is a finding.</RawString>
+    </Rule>
+    <Rule id="V-76813" severity="medium" conversionstatus="pass" title="SRG-APP-000224-WSR-000136" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;Communication between a client and the web server is done using the HTTP protocol, but HTTP is a stateless protocol. In order to maintain a connection or session, a web server will generate a session identifier (ID) for each client session when the session is initiated. The session ID allows the web server to track a user session and, in many cases, the user, if the user previously logged into a hosted application.
+
+By being able to guess session IDs, an attacker can easily perform a man-in-the-middle attack. To truly generate random session identifiers that cannot be reproduced, the web server session ID generator, when used twice with the same input criteria, must generate an unrelated random ID.
+
+The session ID generator also needs to be a FIPS 140-2-approved generator.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
+
+Open the IIS 8.5 Manager.
+
+Click the site name.
+
+Under the "ASP.NET" section, select "Session State".
+
+Under "Session State" Mode Settings, verify the "In Process" mode is selected.
+
+If the "In Process" mode is selected, this is not a finding.
+
+Alternative method:
+
+Click the site name.
+
+Select "Configuration Editor" under the "Management" section.
+
+From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
+
+Verify the "mode" reflects "InProc".
+
+If the "mode" is not set to "InProc", this is a finding.
+
+If the system being reviewed is part of a Web Farm, interview the System Administrator to ensure Session State Tracking is enabled via a SQL server, or other means.  If Session State Tracking is enabled on the Web Farm, this is not a finding.</RawString>
     </Rule>
     <Rule id="V-76815" severity="medium" conversionstatus="pass" title="SRG-APP-000233-WSR-000146" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The web document (home) directory is accessed by multiple anonymous users when the web server is in production. By locating the web document (home) directory on the same partition as the web server system file the risk for unauthorized access to these protected files is increased. Additionally, having the web document (home) directory path on the same drive as the system folders also increases the potential for a drive space exhaustion attack.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -470,6 +460,8 @@ If HTTPS is not an available type under site bindings, and the Web Server ONLY c
       <OrganizationValueTestString />
       <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
 
+If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
+
 Open the IIS 8.5 Manager.
 
 Click "Application Pools".
@@ -484,17 +476,17 @@ If any Application Pools are being used for more than one website, this is a fin
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vb, .class, .c, .php, and .asp. 
+      <RawString>Determine whether scripts are used on the web server for the target website. Common file extensions include, but are not limited to: .cgi, .pl, .vbs, .class, .c, .php, and .asp. 
 
-All interactive programs must be placed in unique designated folders based on CGI or ASP script type.
+All interactive programs must be placed in unique designated folders based on CGI or ASP script type. For modular and/or third-party applications, it is permissible to have script files in multiple folders.
 
 Open the IIS 8.5 Manager.
 
-Right-click the IIS 8.5 web site name and select Explore.
+Right-click the IIS 8.5 web site name and select "Explore".
 
 Search for the listed script extensions. Each script type must be in its unique designated folder.
 
-If scripts are not segregated from web content and in their own unique folders, then this is a finding.</RawString>
+If scripts are not segregated from web content and in their own unique folders, this is a finding.</RawString>
     </Rule>
     <Rule id="V-76887" severity="medium" conversionstatus="pass" title="SRG-APP-000141-WSR-000087" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;CGI is a programming standard for interfacing external applications with information servers, such as HTTP or web servers. CGI, represented by all upper case letters, should not be confused with the .cgi file extension. The .cgi file extension does represent a CGI script, but CGI scripts may be written in a number of programming languages (e.g., PERL, C, PHP, and JavaScript), each having their own unique file extension.
@@ -750,13 +742,12 @@ Satisfies: SRG-APP-000172-WSR-000104, SRG-APP-000224-WSR-000135, SRG-APP-000427-
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If the server being reviewed is a public IIS 8.5 web server, this is Not Applicable.
+Note: If certificate handling is performed at the Proxy/Load Balancer, this is not a finding.
 
 Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
-
 Double-click the "SSL Settings" icon.
-
 Verify the "Clients Certificate Required" check box is selected.
 
 If the "Clients Certificate Required" check box is not selected, this is a finding.</RawString>
@@ -848,14 +839,12 @@ By default, the World Wide Web (WWW) service establishes an overlapped recycle, 
       <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
 
 Open the IIS 8.5 Manager.
-
 Click the Application Pools.
-
 Highlight an Application Pool to review and click "Advanced Settings" in the "Actions" pane.
-
 Scroll down to the "Process Model" section and verify the value for "Idle Time-out" is set to "20".
 
-If the "Idle Time-out" is not set to "20" or less, this is a finding.</RawString>
+If the "Idle Time-out" is not set to "20" or less, this is a finding.
+If the "Idle Time-out" is set to "0", this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -866,17 +855,17 @@ If the "Idle Time-out" is not set to "20" or less, this is a finding.</RawString
       <Key>restartRequestsLimit</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
-      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO, this check can be downgraded to a Cat III.
+      <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
 
-Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
 Open the IIS 8.5 Manager.
 
 Perform for each Application Pool.
 
-Click the “Application Pools”.
+Click "Application Pools".
 
-Highlight an Application Pool and click "Advanced Settings" in the “Action” Pane.
+Highlight an Application Pool and click "Advanced Settings" in the "Action" Pane.
 
 Scroll down to the "Recycling section" and verify the value for "Request Limit" is set to a value other than "0".
 
@@ -891,21 +880,21 @@ If the "Request Limit" is set to a value of "0", this is a finding.</RawString>
       <Key>restartMemoryLimit</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
-      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, mitigation steps can be set, to include setting the “Fixed number or requests”, “Specific time”, and “Private memory usage” in the recycling conditions lieu of the “Virtual memory” setting. If mitigation is used in lieu of this requirement, with supporting documentation from the ISSO, this check can be downgraded to a Cat III.
+      <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
 
-Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
 Open the IIS 8.5 Manager.
 
-Perform for each Application Pool.
+Perform the following for each Application Pool:
 
-Click on “Application Pools”.
+Click "Application Pools".
 
 Highlight an Application Pool and click "Advanced Settings" in the Action Pane.
 
-In the "Advanced Settings" dialog box scroll down to the "Recycling" section and verify the value for "Virtual Memory Limit" is not set to 0.
+In the "Advanced Settings" dialog box scroll down to the "Recycling" section and verify the value for "Virtual Memory Limit" is not set to "0".
 
-If the value for "Virtual Memory Limit" is set to 0, this is a finding.</RawString>
+If the value for "Virtual Memory Limit" is set to "0", this is a finding.</RawString>
       <Value>
       </Value>
     </Rule>
@@ -916,17 +905,17 @@ If the value for "Virtual Memory Limit" is set to 0, this is a finding.</RawStri
       <Key>restartPrivateMemoryLimit</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>{0} -ne 0</OrganizationValueTestString>
-      <RawString>Note: Recycling Application Pools can create an unstable environment in a 64-bit SharePoint environment. If operational issues arise, with supporting documentation from the ISSO this check can be downgraded to a Cat III.
+      <RawString>Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
 
-Note: If the IIS Application Pool is hosting Microsoft SharePoint, this is Not Applicable.
+If this IIS 8.5 installation is supporting Microsoft Exchange, and not otherwise hosting any content, this requirement is Not Applicable.
 
 Open the IIS 8.5 Manager.
 
-Perform for each Application Pool.
+Perform the following for each Application Pool:
 
-Click the “Application Pools”.
+Click "Application Pools".
 
-Highlight an Application Pool and click "Advanced Settings" in the “Action” Pane.
+Highlight an Application Pool and click "Advanced Settings" in the "Action" Pane.
 
 Scroll down to the "Recycling" section and verify the value for "Private Memory Limit" is set to a value other than "0".
 
@@ -1076,7 +1065,9 @@ From the "Section:" drop-down list at the top of the configuration editor, locat
 
 Verify the "mode" reflects "InProc".
 
-If the "mode" is not set to "InProc", this is a finding.</RawString>
+If the "mode" is not set to "InProc", this is a finding.
+
+If the system being reviewed is part of a Web Farm, interview the System Administrator to ensure Session State Tracking is enabled via a SQL server, or other means.  If Session State Tracking is enabled on the Web Farm, this is not a finding.</RawString>
       <Value>InProc</Value>
     </Rule>
     <Rule id="V-76777" severity="medium" conversionstatus="pass" title="SRG-APP-000001-WSR-000002" dscresource="xWebConfigKeyValue">
@@ -1134,43 +1125,6 @@ If the ".NET Trust Level" is not set to Full or less, this is a finding.
 </RawString>
       <Value>
       </Value>
-    </Rule>
-    <Rule id="V-76813" severity="medium" conversionstatus="pass" title="SRG-APP-000224-WSR-000136" dscresource="None">
-      <ConfigSection>/system.web/sessionState</ConfigSection>
-      <Description>&lt;VulnDiscussion&gt;Communication between a client and the web server is done using the HTTP protocol, but HTTP is a stateless protocol. In order to maintain a connection or session, a web server will generate a session identifier (ID) for each client session when the session is initiated. The session ID allows the web server to track a user session and, in many cases, the user, if the user previously logged into a hosted application.
-
-By being able to guess session IDs, an attacker can easily perform a man-in-the-middle attack. To truly generate random session identifiers that cannot be reproduced, the web server session ID generator, when used twice with the same input criteria, must generate an unrelated random ID.
-
-The session ID generator also needs to be a FIPS 140-2-approved generator.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-76775</DuplicateOf>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <Key>mode</Key>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Follow the procedures below for each site hosted on the IIS 8.5 web server:
-
-Open the IIS 8.5 Manager.
-
-Click the site name.
-
-Under the "ASP.NET" section, select "Session State".
-
-Under "Session State" Mode Settings, verify the "In Process" mode is selected.
-
-If the "In Process" mode is selected, this is not a finding.
-
-Alternative method:
-
-Click the site name.
-
-Select "Configuration Editor" under the "Management" section.
-
-From the "Section:" drop-down list at the top of the configuration editor, locate "system.web/sessionState".
-
-Verify the "mode" reflects "InProc".
-
-If the "mode" is not set to "InProc", this is a finding.</RawString>
-      <Value>InProc</Value>
     </Rule>
     <Rule id="V-76817" severity="medium" conversionstatus="pass" title="SRG-APP-000246-WSR-000149" dscresource="xWebConfigKeyValue">
       <ConfigSection>/system.webServer/security/requestFiltering/requestlimits</ConfigSection>

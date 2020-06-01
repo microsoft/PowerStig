@@ -365,7 +365,8 @@ function Split-BenchmarkId
         'Outlook',
         'PowerPoint',
         'Word',
-        'System'
+        'System',
+        'Visio'
     )
 
     $id = $id -replace ($idVariations -join '|'), ''
@@ -374,13 +375,10 @@ function Split-BenchmarkId
     {
         {$PSItem -match "SQL_Server"}
         {
-            # The metadata does not differentiate between the database and instance STIG so we have to get that from the file name.
-            $sqlRole = Get-SqlTechnologyRole -Path $FilePath
-            $returnId = $id -replace ($sqlServerVariations -join '|'), 'SqlServer'
-
-            # SQL 2012 Instance 1.17 has a different format which requires this line, can be removed when this STIG is no longer in archive
-            $returnId = $returnId -replace "_Database_Instance" + ""
-            $returnId = '{0}_{1}' -f $returnId, $sqlRole
+            $sqlRole = Get-SqlTechnologyRole -Path $FilePath -Id $id
+            $id -match "(?<Version>\d{4})"
+            $sqlVersion = $Matches['Version']
+            $returnId = 'SqlServer_{0}_{1}' -f $sqlVersion, $sqlRole
             continue
         }
         {$PSItem -match "_Firewall"}
@@ -401,6 +399,16 @@ function Split-BenchmarkId
         {$PSItem -match "IIS_8-5_Site"}
         {
             $returnId = 'IISSite_8.5'
+            continue
+        }
+        {$PSItem -match "IIS_10-0_Site"}
+        {
+            $returnId = 'IISSite_10.0'
+            continue
+        }
+        {$PSItem -match "IIS_10-0_Server"}
+        {
+            $returnId = 'IISServer_10.0'
             continue
         }
         {$PSItem -match "Domain_Name_System"}
@@ -444,7 +452,7 @@ function Split-BenchmarkId
             $returnId = "FireFox_All"
             continue
         }
-        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System'}
+        {$PSItem -match 'Excel|Outlook|PowerPoint|Word|System|Visio'}
         {
             $officeStig = ($id -split '_')
 
@@ -513,6 +521,10 @@ function Get-SqlTechnologyRole
     [OutputType([string])]
     param
     (
+        [Parameter(Mandatory = $true)]
+        [string]
+        $Id,
+
         [Parameter(Mandatory=$true)]
         [AllowEmptyString()]
         [string]
@@ -522,6 +534,11 @@ function Get-SqlTechnologyRole
     $split = $Path -split '_'
     $stigIndex = $split.IndexOf('STIG')
     $sqlRole = $split[$stigIndex -1]
+    if ($sqlRole -match '\w\d{1,}\w\d{1,}')
+    {
+        $null = $Id -match "(?<Type>Database|Instance)"
+        $sqlRole = $Matches['Type']
+    }
 
     return $sqlRole
 }
@@ -549,12 +566,8 @@ function Get-StigVersionNumber
     )
 
     # Extract the revision number from the xccdf
-    $revision = ( $StigDetails.Benchmark.'plain-text'.'#text' `
-            -split "(Release:)(.*?)(Benchmark)" )[2].trim()
-
+    $revision = ($StigDetails.Benchmark.'plain-text'.'#text' -split "(Release:)(.*?)(Benchmark)")[2].trim()
     "$($StigDetails.Benchmark.version).$revision"
-
 }
 
 #endregion
-
