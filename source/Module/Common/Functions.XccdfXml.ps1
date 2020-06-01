@@ -559,12 +559,8 @@ function Get-StigVersionNumber
     )
 
     # Extract the revision number from the xccdf
-    $revision = ( $StigDetails.Benchmark.'plain-text'.'#text' `
-            -split "(Release:)(.*?)(Benchmark)" )[2].trim()
-
+    $revision = ($StigDetails.Benchmark.'plain-text'.'#text' -split "(Release:)(.*?)(Benchmark)")[2].trim()
     "$($StigDetails.Benchmark.version).$revision"
-
 }
 
 #endregion
-
