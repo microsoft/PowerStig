@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+* Update PowerSTIG to successfully parse/apply MS SQL Server 2012 Instance Ver. 1 Rel. 20: [#639](https://github.com/microsoft/PowerStig/issues/639)
 * Update PowerSTIG to successfully parse/apply MS SQL Server 2016 Instance Ver. 1 Rel. 9: [#636](https://github.com/microsoft/PowerStig/issues/636)
 * Update PowerSTIG to successfully parse/apply Windows Server 2012 DNS STIG - Ver 1, Rel 14:  [#633](https://github.com/microsoft/PowerStig/issues/633)
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R4: [#634](https://github.com/microsoft/PowerStig/issues/634)
