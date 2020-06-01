@@ -68,6 +68,6 @@ else
     foreach ($rule in $rules)
     {
         #write error output to screen
-        Write-Warning -Message "$($rule.id) not compiled to mof because Domain and Forest were not specified"
+        Write-Warning -Message "$($rule.id) not compiled to mof because DomainName and ForestName were not specified"
     }
 }
