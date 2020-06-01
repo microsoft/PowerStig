@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
-using module .\..\SharePointRule.psm1
+using module .\..\SharePoint.SPWebAppGeneralSettingsRule.psm1
 
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
@@ -15,20 +15,17 @@ foreach ($supportFile in $supportFileList)
 
 <#
     .SYNOPSIS
-        Convert the contents of an xccdf check-content element into a SharePointRule object
+        
     .DESCRIPTION
-        The SharePointRule class is used to extract the SharePoint Settings from
-        the check-content of the xccdf. Once a STIG rule is identified as an
-        SharePoint rule, it is passed to the SharePointRuleConvert class for parsing
-        and validation.
+        
 #>
-Class SharePointRuleConvert : SharePointRule
+Class SharePoint.SPWebAppGeneralSettingsRuleConvert : SharePoint.SPWebAppGeneralSettingsRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SharePointRuleConvert ()
+    SharePoint.SPWebAppGeneralSettingsRuleConvert ()
     {
     }
 
@@ -38,10 +35,15 @@ Class SharePointRuleConvert : SharePointRule
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SharePointRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SharePoint.SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $ruleType = $this.GetRuleType($this.splitCheckContent)
-        $fixText = [SharePointRule]::GetFixText($XccdfRule)
+        $fixText = [SharePoint.SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
+
+        if ($this.conversionstatus -eq 'pass')
+        {
+            $this.SetDuplicateRule()
+        }
 
         $this.SetGetScript($ruleType)
         $this.SetTestScript($ruleType)
@@ -50,6 +52,10 @@ Class SharePointRuleConvert : SharePointRule
         $this.SetDuplicateRule()
         $this.SetDscResource()
     }
+
+
+    
+
 
 # 
 
@@ -148,7 +154,7 @@ Class SharePointRuleConvert : SharePointRule
     #>
     [string] GetRuleType ([string[]] $CheckContent)
     {
-        $ruleType = Get-SharePointRuleSubType -CheckContent $CheckContent
+        $ruleType = "SharePoint.SPWebAppGeneralSettings"
 
         return $ruleType
     }
@@ -157,7 +163,7 @@ Class SharePointRuleConvert : SharePointRule
     {
         if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'SharePointDsc'
+            $this.DscResource = 'SharePoint.SPWebAppGeneralSettings'
         }
         else
         {
@@ -167,18 +173,12 @@ Class SharePointRuleConvert : SharePointRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        <# 
-            Provide match criteria to validate that the rule is (or is not) a SharePoint rule.
-            Standard match rules
-        #>
         if
         (
             $CheckContent -Match "prohibited mobile code" -or
             $CheckContent -Match "SharePoint server configuration to ensure a session lock" -or
             $CheckContent -Match "ensure user sessions are terminated upon user logoff" -or
             $CheckContent -Match "ensure access to the online web part gallery is configured"
-
-            <#continue with adding statements that match anything that would be a SP rule#>
         )
         {
             return $true

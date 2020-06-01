@@ -16,7 +16,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER SetScript
         The set script content
 #>
-Class SharePointRule : Rule
+Class SharePoint.SPWebAppGeneralSettingsRule : Rule
 {
     [string] $GetScript
     [string] $TestScript
@@ -28,7 +28,7 @@ Class SharePointRule : Rule
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    SharePointRule ()
+    SharePoint.SPWebAppGeneralSettingsRule ()
     {
     }
 
@@ -38,7 +38,7 @@ Class SharePointRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SharePointRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SharePoint.SPWebAppGeneralSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
     }
 
@@ -50,7 +50,7 @@ Class SharePointRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SharePointRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    SharePoint.SPWebAppGeneralSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
     {
     }
 

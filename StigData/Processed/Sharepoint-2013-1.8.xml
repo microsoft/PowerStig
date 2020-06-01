@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="5/27/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="6/1/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-59945" severity="medium" conversionstatus="pass" title="SRG-APP-000043" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
@@ -810,123 +810,8 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 If the farm service account is a member of any other groups than WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, and WSS_WPG on the local server where SharePoint is installed, this is a finding.</RawString>
     </Rule>
   </PermissionRule>
-  <SharePointRule dscresourcemodule="">
-    <Rule id="V-59919.a" severity="medium" conversionstatus="fail" title="SRG-APP-000003" dscresource="SharePointDsc">
-      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.
-
-The session lock is implemented at the point where session activity can be determined and/or controlled. This is typically at the operating system level and results in a system lock, but it may be at the application level, where the application interface window is secured instead. The organization defines the period of inactivity that shall pass before a session lock is initiated, so this must be configurable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf />
-      <GetScript />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure a session lock occurs after 15 minutes of inactivity.
-
-In SharePoint Central Administration, click Application Management. 
-
-On the Application Management page, in the Web Applications section, click Manage web applications. 
-
-Verify that each web application meets this requirement.
-- Select the web application.
-- Select General Settings &gt;&gt; General Settings.
-- Navigate to the Web Page Security Validation section.
-- Verify that the Security Validation is "On" and set to expire after 15 minutes or less. 
-
-If Security Validation is "Off" or if the default time-out period is not set to 15 minutes or less for any of the web applications, this is a finding.</RawString>
-      <SetScript />
-      <TestScript />
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-59957.a" severity="high" conversionstatus="fail" title="SRG-APP-000112" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Decisions regarding the utilization of mobile code within organizational information systems need to include evaluations that help determine the potential for the code to cause damage to the system if used maliciously.
-
-Mobile code technologies include, for example, Java, JavaScript, ActiveX, PDF, Postscript, Shockwave movies, Flash animations, and VBScript. Usage restrictions and implementation guidance apply to both the selection and use of mobile code installed on organizational servers and mobile code downloaded and executed on individual workstations.
-
-Applications can prevent the execution of prohibited mobile code by leveraging architectures that provide a virtual execution environment sometimes referred to as a "sandbox". The mobile code is executed within this isolated environment apart from the host's indigenous operating environment that allows for mobile code capability restrictions and helps to prevent malicious code from accessing system resources and data.
-
-Policy and procedures related to mobile code address preventing the introduction of unacceptable mobile code within the information system. The DoDI 8552.01 policy pertains to the use of mobile code technologies within DoD information systems.
-
-The application must prevent the execution of prohibited mobile code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59919.a</DuplicateOf>
-      <GetScript />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure the execution of prohibited mobile code is prevented.
-
-Navigate to Central Administration.
-
-Click Manage Web Applications.
-
-For each Web Application in the Farm:
--Click on the Web Application to configure.
--Click on the drop-down box below General Settings.
--Click on General Settings in the drop down box.
--Under Browser File Handling, verify that "Strict" is selected.
-
-If "Strict" is not selected, this is a finding.</RawString>
-      <SetScript />
-      <TestScript />
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-59977.a" severity="high" conversionstatus="fail" title="SRG-APP-000220" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;This requirement focuses on communications protection at the application session, versus network packet level.
-
-Session IDs are tokens generated by web applications to uniquely identify an application user's session.  Applications will make application decisions and execute business logic based on the session ID. Unique session identifiers or IDs are the opposite of sequentially generated session IDs that can be easily guessed by an attacker. Unique session IDs help to reduce predictability of said identifiers. Unique session IDs address man-in-the-middle attacks, including session hijacking or insertion of false information into a session. If the attacker is unable to identify or guess the session information related to pending application traffic, they will have more difficulty in hijacking the session or otherwise manipulating valid sessions. When a user logs off, or when any other session termination event occurs, the application must terminate the user session to minimize the potential for an attacker to hijack that particular user session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59919.a</DuplicateOf>
-      <GetScript />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure user sessions are terminated upon user logoff, and when idle time limit is exceeded.
-
-Navigate to Central Administration website.
-
-Click "Application Management".
-
-Click "Manage Web Applications".
-
-Repeat the following steps for each web application:
--Select the web application.
--Click "General Settings" in the "Web Application" ribbon.
--In the "Web Page Security Validation" section, verify that "Security Validation is:" is set to "On" and that the "Security Validation Expires:" setting is set to 15 minutes.
-
-Otherwise, this is a finding.</RawString>
-      <SetScript />
-      <TestScript />
-      <Variable />
-      <VariableValue />
-    </Rule>
-    <Rule id="V-59991.a" severity="medium" conversionstatus="fail" title="SRG-APP-000208" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;Web Part galleries are groupings of Web Parts. There are four Web Part galleries: Closed Web Parts, Site Name Gallery, Server Gallery, and Online Gallery. The Online Gallery is a collection of Microsoft MSNBC Web Parts located on the Internet. Allowing users to access the Online Web Part Gallery causes a significant performance hit on the server, due to the server attempting to connect to the MSNBC online gallery. This could result in a Denial-of-Service. The Online Gallery could contain Web Parts from unknown third parties, which could increase the risk of a malicious code execution attack. Preventing users from accessing the Online Web Part Gallery decreases the system's attack surface.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59919.a</DuplicateOf>
-      <GetScript />
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>False</OrganizationValueRequired>
-      <OrganizationValueTestString />
-      <RawString>Review the SharePoint server configuration to ensure access to the online web part gallery is configured for limited access.
-
-Log on to Central Administration.
-
-Navigate to the Security page.
-
-Click on "Manage web part security".
-
-For each web application in the web application section, perform the following: 
--Select the correct web application in the web application section.
--Verify "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is selected.
-
-If the "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is not checked, this is a finding.</RawString>
-      <SetScript />
-      <TestScript />
-      <Variable />
-      <VariableValue />
-    </Rule>
-  </SharePointRule>
   <SPWebAppGeneralSettingsRule dscresourcemodule="">
-    <Rule id="V-59919.b" severity="medium" conversionstatus="fail" title="SRG-APP-000003" dscresource="SPWebAppGeneralSettings">
+    <Rule id="V-59919" severity="medium" conversionstatus="fail" title="SRG-APP-000003" dscresource="SPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.
 
 The session lock is implemented at the point where session activity can be determined and/or controlled. This is typically at the operating system level and results in a system lock, but it may be at the application level, where the application interface window is secured instead. The organization defines the period of inactivity that shall pass before a session lock is initiated, so this must be configurable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -953,7 +838,7 @@ If Security Validation is "Off" or if the default time-out period is not set to 
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-59957.b" severity="high" conversionstatus="fail" title="SRG-APP-000112" dscresource="None">
+    <Rule id="V-59957" severity="high" conversionstatus="fail" title="SRG-APP-000112" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Decisions regarding the utilization of mobile code within organizational information systems need to include evaluations that help determine the potential for the code to cause damage to the system if used maliciously.
 
 Mobile code technologies include, for example, Java, JavaScript, ActiveX, PDF, Postscript, Shockwave movies, Flash animations, and VBScript. Usage restrictions and implementation guidance apply to both the selection and use of mobile code installed on organizational servers and mobile code downloaded and executed on individual workstations.
@@ -963,7 +848,7 @@ Applications can prevent the execution of prohibited mobile code by leveraging a
 Policy and procedures related to mobile code address preventing the introduction of unacceptable mobile code within the information system. The DoDI 8552.01 policy pertains to the use of mobile code technologies within DoD information systems.
 
 The application must prevent the execution of prohibited mobile code.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59919.b</DuplicateOf>
+      <DuplicateOf>V-59919</DuplicateOf>
       <GetScript />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -986,11 +871,11 @@ If "Strict" is not selected, this is a finding.</RawString>
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-59977.b" severity="high" conversionstatus="fail" title="SRG-APP-000220" dscresource="None">
+    <Rule id="V-59977" severity="high" conversionstatus="fail" title="SRG-APP-000220" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;This requirement focuses on communications protection at the application session, versus network packet level.
 
 Session IDs are tokens generated by web applications to uniquely identify an application user's session.  Applications will make application decisions and execute business logic based on the session ID. Unique session identifiers or IDs are the opposite of sequentially generated session IDs that can be easily guessed by an attacker. Unique session IDs help to reduce predictability of said identifiers. Unique session IDs address man-in-the-middle attacks, including session hijacking or insertion of false information into a session. If the attacker is unable to identify or guess the session information related to pending application traffic, they will have more difficulty in hijacking the session or otherwise manipulating valid sessions. When a user logs off, or when any other session termination event occurs, the application must terminate the user session to minimize the potential for an attacker to hijack that particular user session.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59919.b</DuplicateOf>
+      <DuplicateOf>V-59919</DuplicateOf>
       <GetScript />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -1014,9 +899,9 @@ Otherwise, this is a finding.</RawString>
       <Variable />
       <VariableValue />
     </Rule>
-    <Rule id="V-59991.b" severity="medium" conversionstatus="fail" title="SRG-APP-000208" dscresource="None">
+    <Rule id="V-59991" severity="medium" conversionstatus="fail" title="SRG-APP-000208" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Web Part galleries are groupings of Web Parts. There are four Web Part galleries: Closed Web Parts, Site Name Gallery, Server Gallery, and Online Gallery. The Online Gallery is a collection of Microsoft MSNBC Web Parts located on the Internet. Allowing users to access the Online Web Part Gallery causes a significant performance hit on the server, due to the server attempting to connect to the MSNBC online gallery. This could result in a Denial-of-Service. The Online Gallery could contain Web Parts from unknown third parties, which could increase the risk of a malicious code execution attack. Preventing users from accessing the Online Web Part Gallery decreases the system's attack surface.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DuplicateOf>V-59919.b</DuplicateOf>
+      <DuplicateOf>V-59919</DuplicateOf>
       <GetScript />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>

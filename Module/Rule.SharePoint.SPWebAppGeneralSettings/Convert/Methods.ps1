@@ -2,7 +2,7 @@
 # Licensed under the MIT License.
 #region Method Functions
 
-function Get-SPWebAppGeneralSettingsGetScript
+function Get-SharePoint.SPWebAppGeneralSettingsGetScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -26,7 +26,7 @@ function Get-SPWebAppGeneralSettingsGetScript
     return
 }
 
-function Get-SPWebAppGeneralSettingsTestScript
+function Get-SharePoint.SPWebAppGeneralSettingsTestScript
 {
     [CmdletBinding()]
     [OutputType([string])]
@@ -38,11 +38,11 @@ function Get-SPWebAppGeneralSettingsTestScript
         $CheckContent
     )
 
-    return
+        return
     
 }
 
-function Get-SPWebAppGeneralSettingsSetScript
+function Get-SharePoint.SPWebAppGeneralSettingsSetScript
 {
     [CmdletBinding()]
     [OutputType([string])]

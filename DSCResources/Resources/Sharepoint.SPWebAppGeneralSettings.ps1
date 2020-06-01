@@ -5,7 +5,7 @@ $rules = $stig.RuleList | Select-Rule -Type SharePoint.SPWebAppGeneralSettingsRu
 
 foreach ($rule in $rules)
 {
-    SPWebAppGeneralSettings (Get-ResourceTitle -Rule $rule)
+    SharePoint.SPWebAppGeneralSettings (Get-ResourceTitle -Rule $rule)
     {
         Name = $rule.Name
         Ensure = $rule.Ensure
