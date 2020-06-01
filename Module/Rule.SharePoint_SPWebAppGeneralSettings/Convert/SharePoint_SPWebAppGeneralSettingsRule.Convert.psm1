@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
-using module .\..\SharePoint.SPWebAppGeneralSettingsRule.psm1
+using module .\..\SharePoint_SPWebAppGeneralSettingsRule.psm1
 
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
@@ -19,13 +19,13 @@ foreach ($supportFile in $supportFileList)
     .DESCRIPTION
         
 #>
-Class SharePoint.SPWebAppGeneralSettingsRuleConvert : SharePoint.SPWebAppGeneralSettingsRule
+Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneralSettingsRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SharePoint.SPWebAppGeneralSettingsRuleConvert ()
+    SharePoint_SPWebAppGeneralSettingsRuleConvert ()
     {
     }
 
@@ -35,10 +35,10 @@ Class SharePoint.SPWebAppGeneralSettingsRuleConvert : SharePoint.SPWebAppGeneral
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SharePoint.SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SharePoint_SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $ruleType = $this.GetRuleType($this.splitCheckContent)
-        $fixText = [SharePoint.SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
+        $fixText = [SharePoint_SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
 
         if ($this.conversionstatus -eq 'pass')
         {
@@ -154,7 +154,7 @@ Class SharePoint.SPWebAppGeneralSettingsRuleConvert : SharePoint.SPWebAppGeneral
     #>
     [string] GetRuleType ([string[]] $CheckContent)
     {
-        $ruleType = "SharePoint.SPWebAppGeneralSettings"
+        $ruleType = "SharePoint_SPWebAppGeneralSettings"
 
         return $ruleType
     }
@@ -163,7 +163,7 @@ Class SharePoint.SPWebAppGeneralSettingsRuleConvert : SharePoint.SPWebAppGeneral
     {
         if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'SharePoint.SPWebAppGeneralSettings'
+            $this.DscResource = 'SharePoint_SPWebAppGeneralSettings'
         }
         else
         {

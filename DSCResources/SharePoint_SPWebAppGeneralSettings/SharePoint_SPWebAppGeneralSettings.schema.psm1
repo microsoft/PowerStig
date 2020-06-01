@@ -10,7 +10,7 @@ using module ..\..\PowerStig.psm1
     .PARAMETER SharePointVersion
         The version of SharePoint being used E.g. 'Server2012'
     .PARAMETER SharePointRole
-        There are two STIGs that cover the scope of SharePoint. SharePoint Instance covers each instance of SharePoint on a server
+        There are two STIGs that cover the scope of SharePoint_ SharePoint Instance covers each instance of SharePoint on a server
         SharePoint Database covers each Database within an Instance.
     .PARAMETER StigVersion
         The version of the SharePoint STIG to apply and/or monitor
@@ -32,7 +32,7 @@ using module ..\..\PowerStig.psm1
         function. Each rule follows the same process as the SkipRule parameter.
 #>
 
-configuration SharePoint.SPWebAppGeneralSettings
+configuration SharePoint_SPWebAppGeneralSettings
 {
     [CmdletBinding()]
     param
@@ -68,7 +68,7 @@ configuration SharePoint.SPWebAppGeneralSettings
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('SharePoint.SPWebAppGeneralSettings', $SharePointVersion, $SharePointRole, $StigVersion)
+    $stig = [STIG]::New('SharePoint_SPWebAppGeneralSettings', $SharePointVersion, $SharePointRole, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 

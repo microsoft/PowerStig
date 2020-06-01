@@ -810,8 +810,8 @@ This policy limits the Farm Account privileges in AD.  However, default permissi
 If the farm service account is a member of any other groups than WSS_RESTRICTED_WPG, WSS_ADMIN_WPG, and WSS_WPG on the local server where SharePoint is installed, this is a finding.</RawString>
     </Rule>
   </PermissionRule>
-  <SPWebAppGeneralSettingsRule dscresourcemodule="">
-    <Rule id="V-59919" severity="medium" conversionstatus="fail" title="SRG-APP-000003" dscresource="SPWebAppGeneralSettings">
+  <SharePoint_SPWebAppGeneralSettingsRule dscresourcemodule="">
+    <Rule id="V-59919" severity="medium" conversionstatus="fail" title="SRG-APP-000003" dscresource="SharePoint_SPWebAppGeneralSettings">
       <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their application session prior to vacating the vicinity, applications need to be able to identify when a user's application session has idled and take action to initiate the session lock.
 
 The session lock is implemented at the point where session activity can be determined and/or controlled. This is typically at the operating system level and results in a system lock, but it may be at the application level, where the application interface window is secured instead. The organization defines the period of inactivity that shall pass before a session lock is initiated, so this must be configurable.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -924,5 +924,5 @@ If the "Prevents users from accessing the Online Web Part Gallery, and helps to 
       <Variable />
       <VariableValue />
     </Rule>
-  </SPWebAppGeneralSettingsRule>
+  </SharePoint_SPWebAppGeneralSettingsRule>
 </DISASTIG>
