@@ -401,6 +401,16 @@ function Split-BenchmarkId
             $returnId = 'IISSite_8.5'
             continue
         }
+        {$PSItem -match "IIS_10-0_Site"}
+        {
+            $returnId = 'IISSite_10.0'
+            continue
+        }
+        {$PSItem -match "IIS_10-0_Server"}
+        {
+            $returnId = 'IISServer_10.0'
+            continue
+        }
         {$PSItem -match "Domain_Name_System"}
         {
             # The Windows Server 2012 and 2012 R2 STIGs are combined, so return the 2012R2
