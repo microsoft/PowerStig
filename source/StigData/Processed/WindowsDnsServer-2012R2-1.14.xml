@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="The Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Windows_2012_Server_DNS_STIG_V1R12_Manual-xccdf.xml" releaseinfo="Release: 12 Benchmark Date: 26 Jul 2019" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.12" created="12/5/2019">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Microsoft_Windows_2012_Server_Domain_Name_System_STIG" description="The Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide is published as a tool to improve the security of Department of Defense (DoD) information systems. The requirements are derived from the National Institute of Standards and Technology (NIST) 800-53 and related documents. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_Microsoft_Windows_2012_Server_DNS_STIG_V1R14_Manual-xccdf.xml" releaseinfo="Release: 14 Benchmark Date: 24 Apr 2020" title="Microsoft Windows 2012 Server Domain Name System Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.14" created="5/28/2020">
   <DnsServerRootHintRule dscresourcemodule="PSDscResources">
     <Rule id="V-58615" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000102" dscresource="Script">
       <Description>&lt;VulnDiscussion&gt;All caching name servers must be authoritative for the root zone because, without this starting point, they would have no knowledge of the DNS infrastructure and thus would be unable to respond to any queries. The security risk is that an adversary could change the root hints and direct the caching name server to a bogus root server. At that point, every query response from that name server is suspect, which would give the adversary substantial control over the network communication of the name servers' clients. When authoritative servers are sent queries for zones that they are not authoritative for, and they are configured as a non-caching server (as recommended), they can either be configured to return a referral to the root servers or they can be configured to refuse to answer the query. The recommendation is to configure authoritative servers to refuse to answer queries for any zones for which they are not authoritative. This is more efficient for the server and allows it to spend more of its resources doing what its intended purpose is, answering authoritatively for its zone.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -73,7 +73,7 @@ To guard against poisoning, name servers authoritative for .mil domains should b
       <PropertyValue>$True</PropertyValue>
       <RawString>Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 
-Note: In Windows 2008 DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable forwarders.
+Note: In Windows DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable forwarders.
 
 If forwarders are not used, recursion must be disabled.
 
@@ -106,7 +106,7 @@ To guard against poisoning, name servers authoritative for .mil domains should b
       <PropertyValue>$True</PropertyValue>
       <RawString>Note: If the Windows DNS server is in the classified network, this check is Not Applicable.
 
-Note: In Windows 2008 DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable forwarders.
+Note: In Windows DNS Server, if forwarders are configured, the recursion setting must also be enabled since disabling recursion will disable forwarders.
 
 If forwarders are not used, recursion must be disabled. In both cases, the use of root hints must be disabled.
 
@@ -173,7 +173,7 @@ The exceptions are glue records supporting zone delegations, CNAME records suppo
 If resource records are maintained that resolve to a fully qualified domain name in another zone, and the usage is not for resource records resolving to hosts that are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms with a documented and approved mission need, this is a finding.</RawString>
     </Rule>
     <Rule id="V-58621" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000114" dscresource="None">
-      <Description>&lt;VulnDiscussion&gt;The use of CNAME records for exercises, tests, or zone-spanning aliases should be temporary (e.g., to facilitate a migration). When a host name is an alias for a record in another zone, an adversary has two points of attack: the zone in which the alias is defined and the zone authoritative for the alias's canonical name. This configuration also reduces the speed of client resolution because it requires a second lookup after obtaining the canonical name. Furthermore, in the case of an authoritative name server, this information is promulgated throughout the enterprise to caching servers and thus compounds the vulnerability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <Description>&lt;VulnDiscussion&gt;The use of CNAME records for exercises, tests, or zone-spanning (pointing to zones with lesser security) aliases should be temporary (e.g., to facilitate a migration) and not be in place for more than six months. When a host name is an alias for a record in another zone, an adversary has two points of attack: the zone in which the alias is defined and the zone authoritative for the alias's canonical name. This configuration also reduces the speed of client resolution because it requires a second lookup after obtaining the canonical name. Furthermore, in the case of an authoritative name server, this information is promulgated throughout the enterprise to caching servers and thus compounds the vulnerability.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
@@ -190,7 +190,8 @@ Review the RRs to confirm that there are no CNAME records older than 6 months.
 
 The exceptions are glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms. In the case of third-party CDNs or cloud offerings, an approved mission need must be demonstrated (AO approval of use of a commercial cloud offering would satisfy this requirement). Additional exceptions are CNAME records in a multi-domain Active Directory environment pointing to hosts in other internal domains in the same multi-domain environment.
 
-If there are zone-spanning CNAME records older than 6 months and the CNAME records resolve to anything other than fully qualified domain names for glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms with an AO-approved and documented mission need, this is a finding.</RawString>
+If there are zone-spanning (i.e., zones of lesser security)CNAME records older than 6 months and the CNAME records resolve to anything other than fully qualified domain names for glue records supporting zone delegations, CNAME records supporting a system migration, or CNAME records that point to third-party Content Delivery Networks (CDN) or cloud computing platforms with an AO-approved and documented mission need, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58649" severity="medium" conversionstatus="pass" title="SRG-APP-000401-DNS-000051" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without configuring a local cache of revocation data, there is the potential to allow access to users who are no longer authorized (users with revoked certificates).
@@ -212,9 +213,9 @@ If there is no local cache of revocation data, this is a finding.</RawString>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>This requirement is not applicable for a Windows 2008 DNS Server which is only hosting AD-integrated zones.
+      <RawString>This requirement is not applicable for a Windows DNS Server which is only hosting AD-integrated zones.
 
-For a Windows 2008 DNS Server which hosts a mix of AD-integrated zones and manually maintained zones, ask the DNS database administrator if they maintain a separate database with record documentation for the non-AD-integrated zone information. The reviewer should check that the record's last verified date is less than one year prior to the date of the review.
+For a Windows DNS Server which hosts a mix of AD-integrated zones and manually maintained zones, ask the DNS database administrator if they maintain a separate database with record documentation for the non-AD-integrated zone information. The reviewer should check that the record's last verified date is less than one year prior to the date of the review.
 
 If a separate database with record documentation is not maintained for the non-AD-integrated zone information, this is a finding.
 
@@ -230,7 +231,8 @@ Review the zone records of the non-AD-integrated zones and compare to the separa
 
 Determine if any records have not been validated in over a year.
 
-If zone records exist which have not been validated in over a year, this is a finding.</RawString>
+If zone records exist which have not been validated in over a year, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58709" severity="medium" conversionstatus="pass" title="SRG-APP-000451-DNS-000069" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Failing to an unsecure condition negatively impacts application security and can lead to system compromise. Failure conditions include, for example, loss of communications among critical system components or between system components and operational facilities. Fail-safe procedures include, for example, alerting operator personnel and providing specific instructions on subsequent steps to take (e.g., do nothing, reestablish system settings, shutdown processes, restart the system, or contact designated organizational personnel).
@@ -258,9 +260,10 @@ If a component such as the DNSSEC or TSIG/SIG(0) signing capabilities were to fa
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Notification to system administrator is not configurable in Windows 2008. In order for system administrators to be notified when a component fails, the system administrator would need to implement a third-party monitoring system. At a minimum, the system administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
+      <RawString>Notification to system administrator is not configurable in Windows DNS Server. In order for system administrators to be notified when a component fails, the system administrator would need to implement a third-party monitoring system. At a minimum, the system administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
 
-If a third-party monitoring system is not in place to detect and notify the system administrator upon component failures and the system administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.</RawString>
+If a third-party monitoring system is not in place to detect and notify the system administrator upon component failures and the system administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58715" severity="medium" conversionstatus="pass" title="SRG-APP-000474-DNS-000073" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Security function is defined as the hardware, software, and/or firmware of the information system responsible for enforcing the system security policy and supporting the isolation of code and data on which the protection is based. Security functionality includes, but is not limited to, establishing system accounts, configuring access authorizations (i.e., permissions, privileges), setting events to be audited, and setting intrusion detection parameters. Notifications provided by information systems include messages to local computer consoles, and/or hardware indications, such as lights.
@@ -272,7 +275,9 @@ The DNS server does not have the capability of shutting down or restarting the i
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Notification to system administrator is not configurable in Windows 2012. In order for administrator to be notified if functionality of DNSSEC/TSIG has been removed or broken, the ISSO/ISSM/DNS administrator would need to implement a third-party monitoring system. At a minimum, the ISSO/ISSM/DNS administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
+      <RawString>Note: If only zones hosted are AD-integrated zones, this check is not applicable.
+
+Notification to system administrator is not configurable in Windows 2012. In order for administrator to be notified if functionality of DNSSEC/TSIG has been removed or broken, the ISSO/ISSM/DNS administrator would need to implement a third-party monitoring system. At a minimum, the ISSO/ISSM/DNS administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
 
 If a third-party monitoring system is not in place to detect and notify the ISSO/ISSM/DNS administrator if functionality of DNSSEC/TSIG has been removed or broken and the ISSO/ISSM/DNS administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.</RawString>
     </Rule>
@@ -286,9 +291,10 @@ The DNS server should be configured to generate audit records whenever a self-te
       <OrganizationValueTestString />
       <RawString>Note: This check is Not applicable for Windows 2012 DNS Servers that only host Active Directory integrated zones or for Windows 2012 DNS servers on a Classified network.
 
-Notification to system administrator is not configurable in Windows 2008. In order for ISSO/ISSM/DNS administrator to be notified if functionality of Secure Updates has been removed or broken, the ISSO/ISSM/DNS administrator would need to implement a third party monitoring system. At a minimum, the ISSO/ISSM/DNS administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
+Notification to system administrator is not configurable in Windows DNS Server. In order for ISSO/ISSM/DNS administrator to be notified if functionality of Secure Updates has been removed or broken, the ISSO/ISSM/DNS administrator would need to implement a third party monitoring system. At a minimum, the ISSO/ISSM/DNS administrator should have a documented procedure in place to review the diagnostic logs on a routine basis every day.
 
-If a third party monitoring system is not in place to detect and notify the ISSO/ISSM/DNS administrator if functionality of Secure Updates has been removed or broken and the ISSO/ISSM/DNS administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.</RawString>
+If a third party monitoring system is not in place to detect and notify the ISSO/ISSM/DNS administrator if functionality of Secure Updates has been removed or broken and the ISSO/ISSM/DNS administrator does not have a documented procedure in place to review the diagnostic logs on a routine basis every day, this is a finding.
+</RawString>
     </Rule>
   </DocumentRule>
   <ManualRule dscresourcemodule="None">
@@ -425,11 +431,12 @@ This requirement only applies to applications that have a native backup capabili
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to determine the backup policy in place for Windows 2008 DNS Server.
+      <RawString>Consult with the System Administrator to determine the backup policy in place for Windows DNS Server.
 
 Review the backup methods used and determine if the backup's methods have been successful at backing up the audit records at least every seven days.
 
-If the organization does not have a backup policy in place for backing up the Windows 2008 DNS Server's audit records and/or the backup methods have not been successful at backing up the audit records at least every seven days, this is a finding.</RawString>
+If the organization does not have a backup policy in place for backing up the Windows DNS Server's audit records and/or the backup methods have not been successful at backing up the audit records at least every seven days, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58575" severity="medium" conversionstatus="pass" title="SRG-APP-000214-DNS-000079" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The best way for a zone administrator to minimize the impact of a key compromise is by limiting the validity period of RRSIGs in the zone and in the parent zone. This strategy limits the time during which an attacker can take advantage of a compromised key to forge responses. An attacker that has compromised a ZSK can use that key only during the KSK's signature validity interval. An attacker that has compromised a KSK can use that key for only as long as the signature interval of the RRSIG covering the DS RR in the delegating parent. These validity periods should be short, which will require frequent re-signing.
@@ -461,13 +468,14 @@ A network administrator may choose to use a "hidden" master authoritative server
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Windows 2008 DNS Servers that are Active Directory integrated must be located where required to meet the Active Directory services.
+      <RawString>Windows DNS Servers that are Active Directory integrated must be located where required to meet the Active Directory services.
 
-If all of the Windows 2008 DNS Servers are AD integrated, this check is Not Applicable.
+If all of the Windows DNS Servers are AD integrated, this check is Not Applicable.
 
-If any or all of the Windows 2008 DNS Servers are standalone and non-AD-integrated, verify with the System Administrator their geographic location.
+If any or all of the Windows DNS Servers are standalone and non-AD-integrated, verify with the System Administrator their geographic location.
 
-If any or all of the authoritative name servers are located in the same building as the master authoritative name server, and the master authoritative name server is not "hidden", this is a finding.</RawString>
+If any or all of the authoritative name servers are located in the same building as the master authoritative name server, and the master authoritative name server is not "hidden", this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58583" severity="medium" conversionstatus="pass" title="SRG-APP-000383-DNS-000047" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;A potential vulnerability of DNS is that an attacker can poison a name server's cache by sending queries that will cause the server to obtain host-to-IP address mappings from bogus name servers that respond with incorrect information. Once a name server has been poisoned, legitimate clients may be directed to non-existent hosts (which constitutes a denial of service), or, worse, hosts that masquerade as legitimate ones to obtain sensitive data or passwords.
@@ -478,7 +486,7 @@ To guard against poisoning, name servers specifically fulfilling the role of pro
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
       <RawString>Note: If Windows DNS server is not serving in a caching role, this check is Not Applicable.
-Verify the Windows 2008 DNS Server will only accept TCP and UDP port 53 traffic from specific IP addresses/ranges.
+Verify the Windows DNS Server will only accept TCP and UDP port 53 traffic from specific IP addresses/ranges.
 
 This can be configured via a local or network firewall.
 
@@ -633,7 +641,7 @@ nslookup &lt;enter&gt;;
 
 At the nslookup prompt, type:
 
-server=###.###.###.### &lt;enter&gt;;
+server ###.###.###.### &lt;enter&gt;;
 (where the ###.###.###.### is replaced by the IP of each NS record)
 
 Enter a FQDN for a known host record in the zone.
@@ -649,13 +657,15 @@ A network administrator may choose to use a "hidden" master authoritative server
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Windows 2008 DNS Servers that are Active Directory-integrated must be located where required to meet the Active Directory services.
+      <RawString>Windows DNS Servers that are Active Directory-integrated must be located where required to meet the Active Directory services.
 
-If all of the Windows 2008 DNS Servers are AD-integrated, this check is not applicable.
+If all of the Windows DNS Servers are AD-integrated, this check is not applicable.
 
-If any or all of the Windows 2008 DNS Servers are stand-alone and non-AD-integrated, verify with the System Administrator their geographic dispersal.
+If any or all of the Windows DNS Servers are stand-alone and non-AD-integrated, verify with the System Administrator their geographic dispersal.
 
-If all of the authoritative name servers are located on the same network segment, and the master authoritative name server is not "hidden", this is a finding.</RawString>
+If all of the authoritative name servers are located on the same network segment, and the master authoritative name server is not "hidden", this is a finding.
+
+</RawString>
     </Rule>
     <Rule id="V-58597" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000088" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;The only protection approach for content control of a DNS zone file is the use of a zone file integrity checker. The effectiveness of integrity checking using a zone file integrity checker depends upon the database of constraints built into the checker. The deployment process consists of developing these constraints with the right logic, and the only determinant of the truth value of these logical predicates is the parameter values for certain key fields in the format of various RRTypes.
@@ -779,13 +789,15 @@ The other set, called internal name servers, is to be located within the firewal
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to review the external Windows 2008 DNS Server's HBSS firewall policy.
+      <RawString>Consult with the System Administrator to review the external Windows DNS Server's HBSS firewall policy.
 
 The inbound TCP and UDP ports 53 rule should be configured to only restrict IP addresses from the internal network.
 
 If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
-If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.</RawString>
+If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block internal hosts from querying the external DNS server, this is a finding.
+
+</RawString>
     </Rule>
     <Rule id="V-58607" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000093" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Instead of having the same set of authoritative name servers serve different types of clients, an enterprise could have two different sets of authoritative name servers.
@@ -797,13 +809,14 @@ The other set, called internal name servers, is to be located within the firewal
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the System Administrator to review the internal Windows 2008 DNS Server's HBSS firewall policy.
+      <RawString>Consult with the System Administrator to review the internal Windows DNS Server's HBSS firewall policy.
 
 The inbound TCP and UDP ports 53 rule should be configured to only allow hosts from the internal network to query the internal DNS server.
 
 If the HBSS firewall policy is not configured with the restriction, consult with the network firewall administrator to confirm the restriction on the network firewall.
 
-If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.</RawString>
+If neither the DNS server's HBSS firewall policy nor the network firewall is configured to block external hosts from querying the internal DNS server, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58609" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000095" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Authoritative name servers (especially primary name servers) should be configured with an allow-transfer access control sub statement designating the list of hosts from which zone transfer requests can be accepted. These restrictions address the denial-of-service threat and potential exploits from unrestricted dissemination of information about internal resources. Based on the need-to-know, the only name servers that need to refresh their zone files periodically are the secondary name servers. Zone transfer from primary name servers should be restricted to secondary name servers. The zone transfer should be completely disabled in the secondary name servers. The address match list argument for the allow-transfer sub statement should consist of IP addresses of secondary name servers and stealth secondary name servers.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -894,9 +907,10 @@ If internal and external DNS servers have not been implemented for zones which r
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Consult with the network IAVM scanner to confirm all Microsoft Operating System IAVMs applicable to Windows 2008/2008 R2 have been applied to the DNS server.
+      <RawString>Consult with the network IAVM scanner to confirm all Microsoft Operating System IAVMs have been applied to the Windows DNS server.
 
-If the Windows Operating System has not been patched to handle all IAVMs, this is a finding.</RawString>
+If all Microsoft Operating System IAVMs have not been applied to the DNS server, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58623" severity="medium" conversionstatus="pass" title="SRG-APP-000516-DNS-000500" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;IPv6 link-local scope addresses are not globally routable and must not be configured in any DNS zone.  Similar to RFC1918 addresses, if a link-local scope address is inserted into a zone provided to clients, most routers will not forward this traffic beyond the local subnet.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
@@ -1014,9 +1028,9 @@ To meet the requirement for authentication between Windows DNS servers, IPsec wi
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Note: This requirement applies to any Windows 2008 DNS Server which host non-AD-integrated zones even if the DNS servers host AD-integrated zones, too.
+      <RawString>Note: This requirement applies to any Windows DNS Server which host non-AD-integrated zones even if the DNS servers host AD-integrated zones, too.
 
-If the Windows 2008 DNS Servers only host AD-integrated zones, this requirement is not applicable.
+If the Windows DNS Servers only host AD-integrated zones, this requirement is not applicable.
 
 Log on to the DNS server which hosts non-AD-integrated zones using the Domain Admin or Enterprise Admin account.
 
@@ -1042,7 +1056,8 @@ On the “Remote Computers” tab, Endpoint1 and Endpoint2 are configured with t
 
 On the “Protocols and Ports” tab, "Protocol type:" is set to either TCP (depending upon which rule is being reviewed) and the "Endpoint 1 port:" is set to "Specific ports" and "53".
 
-If there are not rules(s) configured with the specified requirements, this is a finding.</RawString>
+If there are not rules(s) configured with the specified requirements, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58635" severity="medium" conversionstatus="pass" title="SRG-APP-000394-DNS-000049" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Without authenticating devices, unidentified or unknown devices may be introduced, thereby facilitating malicious activity. Device authentication is a solution enabling an organization to manage devices. It is an additional layer of authentication ensuring only specific pre-authorized devices can access the system.
@@ -2293,9 +2308,10 @@ The DNS server should perform self-tests, such as at server start-up, to confirm
       <OrganizationValueTestString />
       <RawString>This functionality should be performed by the Host Based Security System (HBSS), mandatory on all DoD systems.
 
-Check to ensure McAfee HBSS is installed and fully operational on the Windows 2008 DNS Server.
+Check to ensure McAfee HBSS is installed and fully operational on the Windows DNS Server.
 
-If all required HBSS products are not installed and/or the installed products are not enabled, this is a finding.</RawString>
+If all required HBSS products are not installed and/or the installed products are not enabled, this is a finding.
+</RawString>
     </Rule>
     <Rule id="V-58737" severity="medium" conversionstatus="pass" title="SRG-APP-000333-DNS-000104" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Each newer version of the name server software, especially the BIND software, generally is devoid of vulnerabilities found in earlier versions because it has design changes incorporated to take care of those vulnerabilities. Of course, these vulnerabilities have been exploited (i.e., some form of attack was launched), and sufficient information has been generated with respect to the nature of those exploits. Thus, it makes good business sense to run the latest version of name server software because theoretically it is the safest version.
@@ -2459,10 +2475,13 @@ SIG(0) is used for server-to-server authentication for DNS transactions, and it 
 Navigate to the following location:
 
 %ALLUSERSPROFILE%\Microsoft\Crypto
+Note: If the %ALLUSERSPROFILE%\Microsoft\Crypto folder doesn't exist, this is not applicable.
 
 Verify the permissions on the keys folder, sub-folders, and files are limited to SYSTEM and Administrators FULL CONTROL.
 
-If any other user or group has greater than READ privileges to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.</RawString>
+If any other user or group has greater than READ privileges to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.
+
+</RawString>
     </Rule>
     <Rule id="V-58643" severity="medium" conversionstatus="pass" title="SRG-APP-000176-DNS-000018" dscresource="None">
       <AccessControlEntry>
@@ -2499,6 +2518,7 @@ Access Windows Explorer.
 Navigate to the following location:
 
 %ALLUSERSPROFILE%\Microsoft\Crypto
+Note: If the %ALLUSERSPROFILE%\Microsoft\Crypto folder doesn't exist, this is not applicable.
 
 Right-click on each sub-folder, choose “Properties”, click on the “Security” tab, and click on the “Advanced” button.
 
@@ -2537,11 +2557,11 @@ If any other user or group is listed as OWNER of the %ALLUSERSPROFILE%\Microsoft
 
 Navigate to the following location:
 %ALLUSERSPROFILE%\Microsoft\Crypto
+Note: If the %ALLUSERSPROFILE%\Microsoft\Crypto folder doesn't exist, this is not applicable.
 
 Verify the permissions on the folder, sub-folders and files are limited to “SYSTEM” and Administrators for “FULL CONTROL”.
 
 If any other user or group has greater than READ permissions to the %ALLUSERSPROFILE%\Microsoft\Crypto folder, sub-folders and files, this is a finding.
-
 </RawString>
     </Rule>
   </PermissionRule>
@@ -2554,7 +2574,9 @@ If any other user or group has greater than READ permissions to the %ALLUSERSPRO
       <Key>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters</Key>
       <OrganizationValueRequired>True</OrganizationValueRequired>
       <OrganizationValueTestString>ValueData is set to 255 which disables IPv6 </OrganizationValueTestString>
-      <RawString>Log on to the DNS server using the Domain Admin or Enterprise Admin account.
+      <RawString>Note: If the Windows 2012 DNS server is hosting IPv6 records, this requirement is not applicable.
+
+Log on to the DNS server using the Domain Admin or Enterprise Admin account.
 
 From a command prompt, run regedit.
 In the User Account Control dialog box, click Continue.

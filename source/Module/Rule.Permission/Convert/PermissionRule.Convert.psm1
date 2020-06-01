@@ -163,7 +163,7 @@ class PermissionRuleConvert : PermissionRule
             $CheckContent -NotMatch 'Windows Registry Editor' -and
             $CheckContent -NotMatch '(ID|id)s? .* (A|a)uditors?,? (SA|sa)s?,? .* (W|w)eb (A|a)dministrators? .* access to log files?' -and
             $CheckContent -NotMatch '\n*\.NET Trust Level' -and
-            $CheckContent -NotMatch 'IIS 8\.5 web' -and
+            $CheckContent -NotMatch 'IIS 8\.5 web|IIS 10\.0 web' -and
             $CheckContent -cNotmatch 'SELECT' -and
             $CheckContent -NotMatch 'SQL Server' -and
             $CheckContent -NotMatch 'user\srights\sand\spermissions' -and
