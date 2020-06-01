@@ -244,7 +244,7 @@ Begin
     xDSCResourceDesigner            = 'latest'
     PSPKI                           = 'latest'
     MarkdownLinkCheck               = 'latest'
-    'DscResource.Test'              = 'latest'
+    'DscResource.Test'              = '0.13.1'
     'DscResource.AnalyzerRules'     = 'latest'
     'powershell-yaml'               = 'latest'
     # The modules below are dynamically inserted from the Begin block of .\build.ps1
