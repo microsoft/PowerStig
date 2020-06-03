@@ -197,36 +197,38 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     #endregion
 
 
-Static[string] GetPropertyName([string]$CheckContent)
-{
-
-    if ($CheckContent -Match "prohibited mobile code")
+    [string] GetPropertyName([string]$CheckContent)
     {
-        $PropertyName = 'AllowOnlineWebPartCatalog'
-    }
-    if ($CheckContent -Match "SharePoint server configuration to ensure a session lock")
-    {
-        $PropertyName = 'SecurityValidationTimeOutMinutes'
-    }
-    if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
-    {
-        $PropertyName = 'SecurityValidation'
-    }
-    if ($CheckContent -Match "ensure access to the online web part gallery is configured")
-    {
-        $PropertyName = 'AllowOnlineWebPartCatalog'
+
+        $PropertyName = ''
+        if ($CheckContent -Match "prohibited mobile code")
+        {
+            $PropertyName = 'AllowOnlineWebPartCatalog'
+        }
+        if ($CheckContent -Match "SharePoint server configuration to ensure a session lock")
+        {
+            $PropertyName = 'SecurityValidationTimeOutMinutes'
+        }
+        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
+        {
+            $PropertyName = 'SecurityValidation'
+        }
+        if ($CheckContent -Match "ensure access to the online web part gallery is configured")
+        {
+            $PropertyName = 'AllowOnlineWebPartCatalog'
+        }
+
+        return $PropertyName
     }
 
-    return $PropertyName
-}
+    #[string] GetPropertyValue ([string]$CheckContent, [string]$OrgSettings)
+    [string] GetPropertyValue ([string] $CheckContent)
+    {
+        $PropertyValue = 'Blah'
 
-Static[string] GetPropertyValue([string]$CheckContent,[string]$OrgSettings)
-{
-    $PropertyValue = 'Blah'
-
-    return $PropertyValue
-    
-}
+        return $PropertyValue
+        
+    }
 
 
 <# Static[string] Test-VariableRequired([string]$Rule)

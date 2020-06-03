@@ -18,10 +18,8 @@ using module .\..\Rule\Rule.psm1
 #>
 Class SharePoint_SPWebAppGeneralSettingsRule : Rule
 {
-    [string] $GetProperty
-    [string] $TestProperty
-    [string] $SetProperty <#(ExceptionValue)#>
-    [string] $SecurityValidation
+    [string] $PropertyName
+    [string] $PropertyValue
     [string[]] $Variable
     [String[]] $VariableValue
 
