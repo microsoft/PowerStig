@@ -72,7 +72,7 @@ configuration SharePoint_SPWebAppGeneralSettings
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SharePointDsc -ModuleVersion 4.0.0.0
-    . "$resourcePath\SharePointDsc.ps1"
+    Import-DscResource -ModuleName SharePoint_SPWebAppGeneralSettings -ModuleVersion 4.0.0.0
+    . "$resourcePath\SharePoint_SPWebAppGeneralSettings.ps1"
     
 }

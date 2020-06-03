@@ -39,7 +39,7 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     {
         $ruleType = $this.GetRuleType($this.splitCheckContent)
         $fixText = [SharePoint_SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
-
+        
         if ($this.conversionstatus -eq 'pass')
         {
             $this.SetDuplicateRule()

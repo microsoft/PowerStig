@@ -21,6 +21,7 @@ Class SharePoint_SPWebAppGeneralSettingsRule : Rule
     [string] $GetScript
     [string] $TestScript
     [string] $SetScript <#(ExceptionValue)#>
+    [string] $SecurityValidation
     [string[]] $Variable
     [String[]] $VariableValue
 

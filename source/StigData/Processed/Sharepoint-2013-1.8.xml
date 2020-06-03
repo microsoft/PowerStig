@@ -1,4 +1,4 @@
-<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="6/1/2020">
+<DISASTIG version="1" classification="UNCLASSIFIED" customname="" stigid="Sharepoint_2013_STIG" description="Developed by Microsoft in coordination with DISA for use in the DoD. Comments or proposed revisions to this document should be sent via e-mail to the following address: disa.stig_spt@mail.mil." filename="U_MS_Sharepoint_2013_STIG_V1R8_Manual-xccdf.xml" releaseinfo="Release: 8 Benchmark Date: 25 Oct 2019" title="MS SharePoint 2013 Security Technical Implementation Guide" notice="terms-of-use" source="STIG.DOD.MIL" fullversion="1.8" created="6/3/2020">
   <DocumentRule dscresourcemodule="None">
     <Rule id="V-59945" severity="medium" conversionstatus="pass" title="SRG-APP-000043" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Information flow control regulates where information is allowed to travel within an information system and between information systems (as opposed to who is allowed to access the information) and without explicit regard to subsequent accesses to that information.
@@ -833,6 +833,7 @@ Verify that each web application meets this requirement.
 - Verify that the Security Validation is "On" and set to expire after 15 minutes or less. 
 
 If Security Validation is "Off" or if the default time-out period is not set to 15 minutes or less for any of the web applications, this is a finding.</RawString>
+      <SecurityValidationTimeOutMinutes />
       <SetScript />
       <TestScript />
       <Variable />
@@ -866,6 +867,7 @@ For each Web Application in the Farm:
 -Under Browser File Handling, verify that "Strict" is selected.
 
 If "Strict" is not selected, this is a finding.</RawString>
+      <SecurityValidationTimeOutMinutes />
       <SetScript />
       <TestScript />
       <Variable />
@@ -894,6 +896,7 @@ Repeat the following steps for each web application:
 -In the "Web Page Security Validation" section, verify that "Security Validation is:" is set to "On" and that the "Security Validation Expires:" setting is set to 15 minutes.
 
 Otherwise, this is a finding.</RawString>
+      <SecurityValidationTimeOutMinutes />
       <SetScript />
       <TestScript />
       <Variable />
@@ -919,6 +922,7 @@ For each web application in the web application section, perform the following:
 -Verify "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is selected.
 
 If the "Prevents users from accessing the Online Web Part Gallery, and helps to improve security and performance" option in the Online Web Part Gallery section is not checked, this is a finding.</RawString>
+      <SecurityValidationTimeOutMinutes />
       <SetScript />
       <TestScript />
       <Variable />
