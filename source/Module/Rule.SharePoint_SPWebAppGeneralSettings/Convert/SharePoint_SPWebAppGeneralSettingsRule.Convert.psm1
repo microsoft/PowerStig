@@ -37,7 +37,12 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     #>
     SharePoint_SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
-        $ruleType = $this.GetRuleType($this.splitCheckContent)
+        $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
+        $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
+
+
+
+        <# $ruleType = $this.GetRuleType($this.splitCheckContent)
         $fixText = [SharePoint_SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
         
         if ($this.conversionstatus -eq 'pass')
@@ -45,12 +50,15 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
             $this.SetDuplicateRule()
         }
 
-        $this.SetGetScript($ruleType)
-        $this.SetTestScript($ruleType)
-        $this.SetSetScript($ruleType, $fixText)
-        $this.SetVariable($ruleType)
+        $this.GetProperty($ruleType)
+        
+        $this.TestProperty($ruleType)
+        $this.SetProperty($ruleType, $fixText) #>
+        
+        
+        <# $this.SetVariable($ruleType)
         $this.SetDuplicateRule()
-        $this.SetDscResource()
+        $this.SetDscResource() #>
     }
 
 
@@ -61,65 +69,65 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
 
  <#
         .SYNOPSIS
-            Extracts the get script from the check-content and sets the value
+            Extracts the get Property from the check-content and sets the value
         .DESCRIPTION
-            Gets the get script from the xccdf content and sets the value. If
-            the script that is returned is not valid, the parser status is set
+            Gets the get Property from the xccdf content and sets the value. If
+            the Property that is returned is not valid, the parser status is set
             to fail.
         .PARAMETER RuleType
-            The type of rule to get the get script for
+            The type of rule to get the get Property for
     #>
-    [void] SetGetScript ([string] $RuleType)
+    [void] GetProperty ([string] $RuleType)
     {
-        $thisGetScript = & Get-$($RuleType)GetScript -CheckContent $this.SplitCheckContent
+        $thisGetProperty = & Get-$($RuleType)GetProperty -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisGetScript))
+        if (-not $this.SetStatus($thisGetProperty))
         {
-            $this.set_GetScript($thisGetScript)
+            $this.set_GetProperty($thisGetProperty)
         }
     }
 
     <#
         .SYNOPSIS
-            Extracts the test script from the check-content and sets the value
-        .DESCRIPTION
-            Gets the test script from the xccdf content and sets the value. If
-            the script that is returned is not valid, the parser status is set
+            Extracts the test Property from the check-content and sets the value
+        .DEPropertyION
+            Gets the test Property from the xccdf content and sets the value. If
+            the Property that is returned is not valid, the parser status is set
             to fail.
         .PARAMETER RuleType
-            The type of rule to get the test script for
+            The type of rule to get the test Property for
     #>
-    [void] SetTestScript ($RuleType)
+    [void] TestProperty ($RuleType)
     {
-        $thisTestScript = & Get-$($RuleType)TestScript -CheckContent $this.SplitCheckContent
+        $thisTestProperty = & Get-$($RuleType)TestProperty -CheckContent $this.SplitCheckContent
 
-        if (-not $this.SetStatus($thisTestScript))
+        if (-not $this.SetStatus($thisTestProperty))
         {
-            $this.set_TestScript($thisTestScript)
+            $this.set_TestProperty($thisTestProperty)
         }
     }
 
     <#
         .SYNOPSIS
-            Extracts the set script from the check-content and sets the value
+            Extracts the set Property from the check-content and sets the value
         .DESCRIPTION
-            Gets the set script from the xccdf content and sets the value. If
-            the script that is returned is not valid, the parser status is set
+            Gets the set Property from the xccdf content and sets the value. If
+            the Property that is returned is not valid, the parser status is set
             to fail.
         .PARAMETER RuleType
-            The type of rule to get the set script for
+            The type of rule to get the set Property for
         .PARAMETER FixText
-            The set script to run
+            The set Property to run
     #>
-    [void] SetSetScript ([string] $RuleType, [string[]] $FixText)
+    [void] SetProperty ([string] $RuleType, [string[]] $FixText)
     {
         $checkContent = $this.SplitCheckContent
 
-        $thisSetScript = & Get-$($RuleType)SetScript -FixText $FixText -CheckContent $checkContent
+        $thisSetProperty = & Get-$($RuleType)SetProperty -FixText $FixText -CheckContent $checkContent
 
-        if (-not $this.SetStatus($thisSetScript))
+        if (-not $this.SetStatus($thisSetProperty))
         {
-            $this.set_SetScript($thisSetScript)
+            $this.set_SetProperty($thisSetProperty)
         }
     }
 
@@ -187,4 +195,47 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     }
 
     #endregion
+
+
+Static[string] GetPropertyName([string]$CheckContent)
+{
+
+    if ($CheckContent -Match "prohibited mobile code")
+    {
+        $PropertyName = 'AllowOnlineWebPartCatalog'
+    }
+    if ($CheckContent -Match "SharePoint server configuration to ensure a session lock")
+    {
+        $PropertyName = 'SecurityValidationTimeOutMinutes'
+    }
+    if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
+    {
+        $PropertyName = 'SecurityValidation'
+    }
+    if ($CheckContent -Match "ensure access to the online web part gallery is configured")
+    {
+        $PropertyName = 'AllowOnlineWebPartCatalog'
+    }
+
+    return $PropertyName
+}
+
+Static[string] GetPropertyValue([string]$CheckContent,[string]$OrgSettings)
+{
+    $PropertyValue = 'Blah'
+
+    return $PropertyValue
+    
+}
+
+
+<# Static[string] Test-VariableRequired([string]$Rule)
+{
+    $requiresVariableList = @(
+        ''
+    )
+
+    return ($Rule -in $requiresVariableList)
+} #>
+
 }

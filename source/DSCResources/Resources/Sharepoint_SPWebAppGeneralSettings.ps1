@@ -5,26 +5,26 @@ $rules = $stig.RuleList | Select-Rule -Type SharePoint_SPWebAppGeneralSettingsRu
 
 foreach ($rule in $rules)
 {
-    SharePoint_SPWebAppGeneralSettings (Get-ResourceTitle -Rule $rule)
-    {
-
-        <#
-        add a switch statement
-        the switch needs to pick between different combinations of properties + values
-        the combos are based on 
-        the result should be "okay, you want this combination of properties to be sent out"
-        #>
-
-        switch ($x) {
-            condition {  }
-            Default {}
+    switch ($rule.PropertyName)
+    {   
+        'SecurityValidation'
+        {
+            SecurityValidation = $rule.PropertyValue
+        }
+        
+        'SecurityValidationTimeOutMinutes'
+        {
+            SecurityValidationTimeOutMinutes = $rule.PropertyValue
         }
 
-        Name = $rule.Name
-        Ensure = $rule.Ensure
-        WebAppUrl = $rule.WebAppUrl
-        BrowserFileHandling = $rule.BrowserFileHandling
-        SecurityValidationTimeOutMinutes = $rule.SecurityValidationTimeOutMinutes
-        AllowOnlineWebPartCatalog = $rule.AllowOnlineWebPartCatalog
+        'BrowserFileHandling'
+        {
+            BrowserFileHandling = $rule.PropertyValue
+        }
+
+        'AllowOnlineWebPartCatalog'
+        {
+            AllowOnlineWebPartCatalog = $rule.PropertyValue
+        }
     }
 }

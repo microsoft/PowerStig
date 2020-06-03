@@ -9,18 +9,18 @@ using module .\..\Rule\Rule.psm1
         A SharePoint WebAppGeneralSettings Rule object
     .DESCRIPTION
         The SharePointRule class is used to manage SharePoint STIG rule settings.
-    .PARAMETER GetScript
-        The Get script content
-    .PARAMETER TestScript
-        The test script content
-    .PARAMETER SetScript
-        The set script content
+    .PARAMETER GetProperty
+        The Get Property content
+    .PARAMETER TestProperty
+        The test Property content
+    .PARAMETER SetProperty
+        The set Property content
 #>
 Class SharePoint_SPWebAppGeneralSettingsRule : Rule
 {
-    [string] $GetScript
-    [string] $TestScript
-    [string] $SetScript <#(ExceptionValue)#>
+    [string] $GetProperty
+    [string] $TestProperty
+    [string] $SetProperty <#(ExceptionValue)#>
     [string] $SecurityValidation
     [string[]] $Variable
     [String[]] $VariableValue
