@@ -20,15 +20,25 @@
     .PARAMETER OutputPath
         The location you want the checklist saved to
 
-    .PARAMETER ManualCheckFile
+    .PARAMETER ManualChecklistEntries
         Location of a psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
+
+        This file can be created manually or by exporting an Excel worksheet as XML. The file format should look like the following:
+
+        <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+        <ManualChecklistEntries xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	        <VulID id="V-79119" Status="NotAFinding">
+		        <Details>See System Security Document.</Details>
+		        <Comments>This is a test of a manual check file entry.</Comments>
+	        </VulID>
+        </ManualChecklistEntries>
 
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -XccdfPath $xccdfPath -OutputPath $outputPath
 
     .EXAMPLE
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
-        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualCheckFile $manualCheckFilePath -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries "C:\Stig\ManualChecks\2012R2-MS-1.7.psd1" -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries $ManualChecklistEntriesPath -XccdfPath $xccdfPath -OutputPath $outputPath
 #>
 function New-StigCheckList
 {
@@ -54,17 +64,17 @@ function New-StigCheckList
 
         [Parameter()]
         [String]
-        $ManualCheckFile
+        $ManualChecklistEntries
     )
 
     # Validate parameters before continuing
-    if ($ManualCheckFile)
+    if ($ManualChecklistEntries)
     {
-        if (-not (Test-Path -Path $ManualCheckFile))
+        if (-not (Test-Path -Path $ManualChecklistEntries))
         {
-            throw "$($ManualCheckFile) is not a valid path to a ManualCheckFile. Provide a full valid path"
+            throw "$($ManualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
         }
-        [string]$manualCheckData = Get-Content $manualCheckFile
+        [xml]$manualCheckData = get-content -path $ManualChecklistEntries
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
@@ -257,7 +267,7 @@ function New-StigCheckList
         if ($PSCmdlet.ParameterSetName -eq 'mof')
         {
             $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
-            $manualCheck = $manualCheckData | Where-Object {$_.VulID -eq $VID}
+            $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $VID}
 
             if ($setting)
             {
@@ -279,7 +289,7 @@ function New-StigCheckList
         }
         elseif ($PSCmdlet.ParameterSetName -eq 'result')
         {
-            $manualCheck = $manualCheckData | Where-Object -FilterScript {$_.VulID -eq $VID}
+            $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $VID}
             # If we have manual check data, we don't need to look at the configuration
             if ($manualCheck)
             {
