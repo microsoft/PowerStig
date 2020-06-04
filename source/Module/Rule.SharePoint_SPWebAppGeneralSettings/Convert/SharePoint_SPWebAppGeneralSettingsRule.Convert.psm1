@@ -39,30 +39,11 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     {
         $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
         $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
-
-
-
-        <# $ruleType = $this.GetRuleType($this.splitCheckContent)
-        $fixText = [SharePoint_SPWebAppGeneralSettingsRule]::GetFixText($XccdfRule)
         
-        if ($this.conversionstatus -eq 'pass')
-        {
-            $this.SetDuplicateRule()
-        }
-
-        $this.GetProperty($ruleType)
-        
-        $this.TestProperty($ruleType)
-        $this.SetProperty($ruleType, $fixText) #>
-        
-        
-        <# $this.SetVariable($ruleType)
+        <# $this.SetVariable($ruleType) #>
         $this.SetDuplicateRule()
-        $this.SetDscResource() #>
+        $this.SetDscResource()
     }
-
-
-    
 
 
 # 
@@ -203,13 +184,13 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
         $PropertyName = ''
         if ($CheckContent -Match "prohibited mobile code")
         {
-            $PropertyName = 'AllowOnlineWebPartCatalog'
+            $PropertyName = 'BrowserFileHandling'
         }
-        if ($CheckContent -Match "SharePoint server configuration to ensure a session lock")
+        if ($CheckContent -Match "SharePoint server configuration to ensure a session lock") #STIG includes securityvalidation and timeoutminutes; separated here
         {
             $PropertyName = 'SecurityValidationTimeOutMinutes'
         }
-        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
+        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff") #59919 and 59977
         {
             $PropertyName = 'SecurityValidation'
         }
@@ -224,10 +205,27 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     #[string] GetPropertyValue ([string]$CheckContent, [string]$OrgSettings)
     [string] GetPropertyValue ([string] $CheckContent)
     {
-        $PropertyValue = 'Blah'
-
-        return $PropertyValue
+        $PropertyValue = ''
+        if ($CheckContent -Match "set to expire after 15 minutes or less") #59919
+        {
+            $CheckContentPattern = [regex]::new('((\d\d)(?=\sminutes of inactivity))')
+            $matches = $CheckContentPattern.Matches($CheckContent)
+            $PropertyValue = $matches.Value
+        }
+        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff") #59977
+        {
+            $PropertyValue = $true
+        }
+        if ($CheckContent -Match "ensure access to the online web part gallery is configured") #59991
+        {
+            $PropertyValue = $false
+        }
+        if ($CheckContent -Match "prohibited mobile code") #59957
+        {
+            $PropertyValue = 'Strict'
+        }
         
+        return $PropertyValue
     }
 
 
