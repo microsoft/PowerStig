@@ -24,18 +24,20 @@ function Get-nxFileLineContainsLine
     {
         $fileContainsLinePattern = '{0}{1}' -f $regularExpression.nxFileLineFilePath, $regularExpression.nxFileLineContainsLine
         $rawString = $CheckContent -join "`n"
-        $null = $rawString -match $fileContainsLinePattern
-        $matchResults = $Matches['setting'] -split "`n"
-        $results = @()
-        foreach ($line in $matchResults)
+        if ($rawString -match $fileContainsLinePattern)
         {
-            if
-            (
-                [string]::IsNullOrEmpty($line) -eq $false -and
-                $line -notmatch $regularExpression.nxFileLineContainsLineExclude
-            )
+            $matchResults = $Matches['setting'] -split "`n"
+            $results = @()
+            foreach ($line in $matchResults)
             {
-                $results += $line
+                if
+                (
+                    [string]::IsNullOrEmpty($line) -eq $false -and
+                    $line -notmatch $regularExpression.nxFileLineContainsLineExclude
+                )
+                {
+                    $results += $line -replace '\s{2,}', ' '
+                }
             }
         }
 
@@ -208,10 +210,13 @@ function Split-nxFileLineMultipleEntries
     foreach ($content in $splitCheckContent)
     {
         $fileContainsLine = Get-nxFileLineContainsLine -CheckContent $content
-        $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
-        foreach ($setting in $fileContainsLine)
+        if ($null -ne $fileContainsLine)
         {
-            $splitEntries += $checkContentData -f $setting
+            $checkContentData = $content.Replace(($fileContainsLine -join "`n"), '{0}')
+            foreach ($setting in $fileContainsLine)
+            {
+                $splitEntries += $checkContentData -f $setting
+            }
         }
     }
 

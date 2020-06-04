@@ -8,7 +8,6 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxPackageName  = (sudo)? apt(-get)? (install|remove)\\s*(?'packageName'(\\w*(-?))+)
-        nxPackageState = (sudo)? apt(-get)? (?'packageState'(install|remove))
+        nxPackage = #\\s*((sudo)? apt(-get)?|yum)\\s+(?<packageState>install|remove)\\s*(?<packageName>(\\w*(-?))+)
 '@
 }

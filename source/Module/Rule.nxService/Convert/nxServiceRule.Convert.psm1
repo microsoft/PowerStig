@@ -114,7 +114,11 @@ class nxServiceRuleConvert : nxServiceRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent -Match 'systemctl (is-enabled|is-active)')
+        if
+        (
+            $CheckContent -Match 'systemctl\s*(is-enabled|is-active|status)' -and
+            $CheckContent -Match 'If\s+(?:|the\s+)"\w*".*status.*,\s*this\s*is\s*a\s*finding'
+        )
         {
             return $true
         }

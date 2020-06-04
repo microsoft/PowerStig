@@ -86,7 +86,13 @@ class nxPackageRuleConvert : nxPackageRule
 
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent -Match 'dpkg -l \w*|dpkg -l \|')
+        if
+        (
+            $CheckContent -Match 'dpkg -l \w*|dpkg -l \||#\s*yum\s+list\s+installed\s+' -and
+            $CheckContent -NotMatch '(?:Verify the|A) file integrity tool' -and
+            $CheckContent -NotMatch 'not installed, this is Not Applicable' -and
+            $CheckContent -NotMatch 'If "\w*" is installed, check to see if the "\w*" service is active with the following command'
+        )
         {
             return $true
         }

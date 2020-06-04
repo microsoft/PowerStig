@@ -160,7 +160,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     [bool] TestStringForRange ([string] $CheckContent)
     {
-        if ($CheckContent -match '\s*If.*(?:greater|less|and\/or\s*other|higher).*this is a finding')
+        if ($CheckContent -match '\s*If\s+.*(?:greater|less|and\/or\s*other|higher).*this is a finding')
         {
             return $true
         }
@@ -173,7 +173,7 @@ class nxFileLineRuleConvert : nxFileLineRule
     #>
     static [bool] Match ([string] $CheckContent)
     {
-        if ($CheckContent -Match 'If.*"\w*".*commented out.*this is a finding|If.*"\w*".*is missing from.*file.*this is a finding')
+        if ($CheckContent -Match 'If\s+.*"\w*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding')
         {
             return $true
         }

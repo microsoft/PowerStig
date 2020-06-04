@@ -22,7 +22,7 @@ function Get-nxPackageName
     Write-Verbose "[$($MyInvocation.MyCommand.Name)]"
     try
     {
-        $null = $FixText -match $regularExpression.nxPackageName
+        $null = $FixText -match $regularExpression.nxPackage
         $nxPackageName = $Matches['packageName']
         return $nxPackageName
     }
@@ -53,7 +53,7 @@ function Get-nxPackageState
 
     try
     {
-        $null = $FixText -match $regularExpression.nxPackageState
+        $null = $FixText -match $regularExpression.nxPackage
         switch ($Matches['packageState'])
         {
             'install' {return [ensure]::Present}
