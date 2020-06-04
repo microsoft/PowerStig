@@ -101,7 +101,7 @@ function Get-nxServiceEnabled
         $null = $FixText -match $regularExpression.nxServiceEnabled
         switch ($Matches['serviceEnabled'])
         {
-            {$PSItem -match 'enable'}
+            {$PSItem -match 'enable|start'}
             {
                 return $true
             }

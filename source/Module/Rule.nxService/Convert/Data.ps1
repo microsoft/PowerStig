@@ -8,8 +8,8 @@
 data regularExpression
 {
     ConvertFrom-StringData -StringData @'
-        nxServiceName    = (sudo)? systemctl \\w*\\s*(?'serviceName'(\\w*(\\.?))+)
-        nxServiceState   = (sudo)? systemctl (?'serviceState'(restart|start|stop))
-        nxServiceEnabled = (sudo)? systemctl (?'serviceEnabled'(enable|disable))
+        nxServiceName    = (sudo)?\\s*systemctl\\s+\\w*\\s*(?<serviceName>(\\w*(\\.?))+)
+        nxServiceState   = (sudo)?\\s*systemctl\\s+(?<serviceState>(restart|start|stop))
+        nxServiceEnabled = (sudo)?\\s*systemctl\\s+(?<serviceEnabled>(enable|disable|start))
 '@
 }
