@@ -129,7 +129,7 @@ configuration SqlServerDatabase_config
             SqlRole        = '$TechnologyRole'
             StigVersion    = '$StigVersion'
             ServerInstance = 'TestServer'
-            Database       = 'TestDataBase'
+            Database       = @('TestDataBase','TestDataBase2')
             $(if ($null -ne $OrgSettings)
             {
                 "Orgsettings = '$OrgSettings'"

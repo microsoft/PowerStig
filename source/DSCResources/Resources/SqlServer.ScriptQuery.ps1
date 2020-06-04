@@ -11,7 +11,7 @@ foreach ($instance in $ServerInstance)
         {
             foreach ($rule in $rules)
             {
-                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance"
+                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance_$db"
                 {
                     ServerInstance = $Instance
                     GetQuery       = $rule.GetScript
@@ -35,7 +35,7 @@ foreach ($instance in $ServerInstance)
                     TestQuery      = $rule.TestScript
                     SetQuery       = $rule.SetScript
                     Variable       = Format-SqlScriptVariable -Variable $($rule.Variable) -VariableValue $($rule.VariableValue)
-                }   
+                }
                 continue
             }
 
