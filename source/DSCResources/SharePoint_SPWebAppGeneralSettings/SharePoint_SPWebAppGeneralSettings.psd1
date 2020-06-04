@@ -13,7 +13,7 @@
     # CompatiblePSEditions = @()
 
     # ID used to uniquely identify this module
-    GUID  = '6c1176a0-4fac-4134-8ca2-3fa8a21a7b90'
+    GUID  = 'd023f993-d211-439b-947a-9f815c759092'
 
     # Author of this module
     Author = 'Microsoft Corporation'

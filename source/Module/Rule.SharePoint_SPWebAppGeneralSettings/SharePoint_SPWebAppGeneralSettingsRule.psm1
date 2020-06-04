@@ -9,12 +9,8 @@ using module .\..\Rule\Rule.psm1
         A SharePoint WebAppGeneralSettings Rule object
     .DESCRIPTION
         The SharePointRule class is used to manage SharePoint STIG rule settings.
-    .PARAMETER GetProperty
-        The Get Property content
-    .PARAMETER TestProperty
-        The test Property content
-    .PARAMETER SetProperty
-        The set Property content
+    .PARAMETER PropertyName
+        The PropertyName content
 #>
 Class SharePoint_SPWebAppGeneralSettingsRule : Rule
 {
