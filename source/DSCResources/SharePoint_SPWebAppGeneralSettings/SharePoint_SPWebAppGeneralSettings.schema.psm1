@@ -37,49 +37,40 @@ configuration SharePoint_SPWebAppGeneralSettings
     [CmdletBinding()]
     param
     (
-        [Parameter()]
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
         [string]
-        $SharePointVersion,
+        $WebAppUrl,
+
+        [Parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
+        [pscredential]
+        $SetupAccount,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [hashtable]
         $Exception,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [object]
         $OrgSettings,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [string]
         $SkipRule,
 
         [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [string]
-        $SkipRuleType,
-
-        [Parameter()]
-        [string]
-        $SecurityValidation,
-
-        [Parameter()]
-        [string]
-        $SecurityValidationTimeOutMinutes,
-
-        [Parameter()]
-        [string]
-        $BrowserFileHandling,
-
-        [Parameter()]
-        [string]
-        $AllowOnlineWebPartCatalog,
-
-        [Parameter()]
-        [string]
-        $WebAppUrl
+        $SkipRuleType
     )
 
     ##### BEGIN DO NOT MODIFY #####
@@ -87,7 +78,7 @@ configuration SharePoint_SPWebAppGeneralSettings
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.0.0
+    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.0.0.0
     . "$resourcePath\SharePoint_SPWebAppGeneralSettings.ps1"
     
 }

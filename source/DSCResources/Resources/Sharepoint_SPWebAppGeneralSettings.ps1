@@ -7,6 +7,7 @@ foreach ($rule in $rules)
 {
     #$rule.WebAppUrl
     WebAppUrl = 'http://example.contoso.local'
+    PsDscRunAsCredential = $SetupAccount
     switch ($rule.PropertyName)
     {   
         'SecurityValidation'
