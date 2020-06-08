@@ -178,9 +178,9 @@ class nxFileLineRuleConvert : nxFileLineRule
             $CheckContent -Match 'If\s+.*"\w*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
             (
                 $CheckContent -Match '#\s+grep.*/.*/.*' -and
-                $CheckContent -Match '\w*\s*=\s*\w*|\w*\s+\w*' -and
-                $CheckContent -Match 'If\s+.*(?:"\w*"|required\s+value\s+is\s+not\s+set).*,\s+this\s+is\s+a\s+finding'
-            )
+                $CheckContent -Match 'If\s+.*(?:"\w*"|required\s+value\s+is\s+not\s+set|configuration\s+file\s+does\s+not\s+exist\s+or\s+allows\s+for|command\s+does\s+not\s+return\s+any\s+output).*,\s+this\s+is\s+a\s+finding'
+            ) -and
+            $CheckContent -NotMatch 'ESXi'
         )
         {
             return $true
