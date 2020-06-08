@@ -37,42 +37,57 @@ configuration SharePoint_SPWebAppGeneralSettings
     [CmdletBinding()]
     param
     (
-        [Parameter(Mandatory = $true)]
+        <# [Parameter()]
         [string]
-        $SharePointVersion,
+        $SharePointVersion, #>
 
-        [Parameter()]
-        [ValidateNotNullOrEmpty()]
+        <# [Parameter()]
         [version]
-        $StigVersion,
+        $StigVersion, #>
 
         [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [hashtable]
         $Exception,
 
         [Parameter()]
-        [ValidateNotNullOrEmpty()]
         [object]
         $OrgSettings,
 
         [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [string[]]
+        [string]
         $SkipRule,
 
         [Parameter()]
-        [ValidateNotNullOrEmpty()]
-        [string[]]
-        $SkipRuleType
+        [string]
+        $SkipRuleType,
+
+        [Parameter()]
+        [string]
+        $SecurityValidation,
+
+        [Parameter()]
+        [string]
+        $SecurityValidationTimeOutMinutes,
+
+        [Parameter()]
+        [string]
+        $BrowserFileHandling,
+
+        [Parameter()]
+        [string]
+        $AllowOnlineWebPartCatalog,
+
+        [Parameter()]
+        [string]
+        $WebAppUrl
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('SharePoint_SPWebAppGeneralSettings', $SharePointVersion, $SharePointRole, $StigVersion)
+    $stig = [STIG]::New('SharePoint_SPWebAppGeneralSettings', <# $SharePointVersion, $SharePointRole, $StigVersion, #> $SecurityValidation, $SecurityValidationTimeOutMinutes, $BrowserFileHandling, $AllowOnlineWebPartCatalog, $WebAppUrl)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SharePoint_SPWebAppGeneralSettings -ModuleVersion 4.0.0.0
+    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.0.0
     . "$resourcePath\SharePoint_SPWebAppGeneralSettings.ps1"
     
 }

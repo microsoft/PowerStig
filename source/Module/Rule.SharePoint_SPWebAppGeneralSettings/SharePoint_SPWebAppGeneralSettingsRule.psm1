@@ -16,8 +16,8 @@ Class SharePoint_SPWebAppGeneralSettingsRule : Rule
 {
     [string] $PropertyName
     [string] $PropertyValue
-    [string[]] $Variable
-    [String[]] $VariableValue
+    [string] $Variable
+    [String] $VariableValue
 
     <#
         .SYNOPSIS

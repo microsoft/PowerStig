@@ -210,19 +210,22 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
         {
             $CheckContentPattern = [regex]::new('((\d\d)(?=\sminutes of inactivity))')
             $matches = $CheckContentPattern.Matches($CheckContent)
-            $PropertyValue = $matches.Value
+            #$PropertyValue = $matches.Value
+            $PropertyValue = '15'
         }
         if ($CheckContent -Match "ensure user sessions are terminated upon user logoff") #59977
         {
-            $PropertyValue = $true
+            #$PropertyValue = $true
+            $PropertyValue = 'True'
         }
         if ($CheckContent -Match "ensure access to the online web part gallery is configured") #59991
         {
-            $PropertyValue = $false
+            #$PropertyValue = $false
+            $PropertyValue = 'False'
         }
         if ($CheckContent -Match "prohibited mobile code") #59957
         {
-            $PropertyValue = 'Strict'
+            $PropertyValue = "Strict"
         }
         
         return $PropertyValue

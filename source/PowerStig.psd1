@@ -6,7 +6,7 @@
 RootModule = 'PowerStig.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.0.1'
+ModuleVersion = '4.4.0'
 
 # ID used to uniquely identify this module
 GUID = 'a132f6a5-8f96-4942-be25-b213ee7e4af3'
@@ -44,6 +44,7 @@ RequiredModules  = @(
     @{ModuleName = 'GPRegistryPolicyDsc'; ModuleVersion = '1.2.0'},
     @{ModuleName = 'PSDscResources'; ModuleVersion = '2.10.0.0'},
     @{ModuleName = 'SecurityPolicyDsc'; ModuleVersion = '2.4.0.0'},
+    @{ModuleName = 'SharePointDSC'; ModuleVersion = '4.0.0'},
     @{ModuleName = 'SqlServerDsc'; ModuleVersion = '13.3.0'},
     @{ModuleName = 'WindowsDefenderDsc'; ModuleVersion = '1.0.0.0'},
     @{ModuleName = 'xDnsServer'; ModuleVersion = '1.11.0.0'},
@@ -69,6 +70,7 @@ DscResourcesToExport = @(
     'McAfee',
     'Office',
     'OracleJRE',
+    'SharePoint',
     'SqlServer',
     'WindowsClient',
     'WindowsDefender',

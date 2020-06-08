@@ -5,7 +5,9 @@ $rules = $stig.RuleList | Select-Rule -Type SharePoint_SPWebAppGeneralSettingsRu
 
 foreach ($rule in $rules)
 {
-    switch ($rule.PropertyName)
+    #$rule.WebAppUrl
+    WebAppUrl = 'http://example.contoso.local'
+    <# switch ($rule.PropertyName)
     {   
         'SecurityValidation'
         {
@@ -26,5 +28,5 @@ foreach ($rule in $rules)
         {
             AllowOnlineWebPartCatalog = $rule.PropertyValue
         }
-    }
+    } #>
 }
