@@ -7,7 +7,7 @@ foreach ($rule in $rules)
 {
     #$rule.WebAppUrl
     WebAppUrl = 'http://example.contoso.local'
-    <# switch ($rule.PropertyName)
+    switch ($rule.PropertyName)
     {   
         'SecurityValidation'
         {
@@ -28,5 +28,5 @@ foreach ($rule in $rules)
         {
             AllowOnlineWebPartCatalog = $rule.PropertyValue
         }
-    } #>
+    }
 }

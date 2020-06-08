@@ -37,13 +37,13 @@ configuration SharePoint_SPWebAppGeneralSettings
     [CmdletBinding()]
     param
     (
-        <# [Parameter()]
+        [Parameter()]
         [string]
-        $SharePointVersion, #>
+        $SharePointVersion,
 
-        <# [Parameter()]
+        [Parameter()]
         [version]
-        $StigVersion, #>
+        $StigVersion,
 
         [Parameter()]
         [hashtable]
@@ -83,7 +83,7 @@ configuration SharePoint_SPWebAppGeneralSettings
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('SharePoint_SPWebAppGeneralSettings', <# $SharePointVersion, $SharePointRole, $StigVersion, #> $SecurityValidation, $SecurityValidationTimeOutMinutes, $BrowserFileHandling, $AllowOnlineWebPartCatalog, $WebAppUrl)
+    $stig = [STIG]::New('SharePoint_SPWebAppGeneralSettings', $SharePointVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
