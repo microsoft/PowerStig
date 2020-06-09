@@ -5,9 +5,9 @@ $rules = $stig.RuleList | Select-Rule -Type SharePoint_SPWebAppGeneralSettingsRu
 
 foreach ($rule in $rules)
 {
-    #$rule.WebAppUrl
-    WebAppUrl = 'http://example.contoso.local'
-    PsDscRunAsCredential = $SetupAccount
+    #WebAppUrl = 'http://example.contoso.local'
+    #PsDscRunAsCredential = $SetupAccount
+    #SharePointVersion = '2013'
     switch ($rule.PropertyName)
     {   
         'SecurityValidation'

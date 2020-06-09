@@ -49,6 +49,11 @@ configuration SharePoint_SPWebAppGeneralSettings
 
         [Parameter()]
         [ValidateNotNullOrEmpty()]
+        [string]
+        $SharePointVersion,
+
+        [Parameter()]
+        [ValidateNotNullOrEmpty()]
         [version]
         $StigVersion,
 
@@ -74,11 +79,11 @@ configuration SharePoint_SPWebAppGeneralSettings
     )
 
     ##### BEGIN DO NOT MODIFY #####
-    $stig = [STIG]::New('SharePoint_SPWebAppGeneralSettings', $SharePointVersion, $StigVersion)
+    $stig = [STIG]::New('Sharepoint', $SharePointVersion, $StigVersion)
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.0.0.0
+    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.0.0
     . "$resourcePath\SharePoint_SPWebAppGeneralSettings.ps1"
     
 }
