@@ -175,12 +175,22 @@ class nxFileLineRuleConvert : nxFileLineRule
     {
         if
         (
-            $CheckContent -Match 'If\s+.*"\w*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
+            # CheckContent match for Ubuntu STIG
+            $CheckContent -Match 'If\s+.*".*".*commented out.*this is a finding|If\s+.*"\w*".*is missing from.*file.*this is a finding' -or
             (
-                $CheckContent -Match '#\s+grep.*/.*/.*' -and
-                $CheckContent -Match 'If\s+.*(?:"\w*"|required\s+value\s+is\s+not\s+set|configuration\s+file\s+does\s+not\s+exist\s+or\s+allows\s+for|command\s+does\s+not\s+return\s+any\s+output).*,\s+this\s+is\s+a\s+finding'
+                # CheckContent match for RHEL STIG
+                $CheckContent -Match '#\s+(?:cat|grep).*/.*/.*(?:grep|).*' -and
+                (
+                    $CheckContent -Match 'If\s+.*(?:"\w*"|"\w*\s*\w"|the\s+line\s+is\s+commented\s+out).*,\s+this\s+is\s+a\s+finding' -or
+                    $CheckContent -Match 'If\s+.*required\s+value\s+is\s+not\s+set.*,\s+this\s+is\s+a\s+finding' -or
+                    $CheckContent -Match 'If\s+.*configuration\s+file\s+does\s+not\s+exist\s+or\s+allows\s+for.*,\s+this\s+is\s+a\s+finding' -or
+                    $CheckContent -Match 'If\s+.*command(?:s|)\s+(?:does|do)\s+not\s+return\s+(?:any\s+|a\s+line\s+|)output.*,\s+this\s+is\s+a\s+finding' -or
+                    $CheckContent -Match 'If\s+.*there\s+is\s+no\s+process\s+to\s+validate.*,\s+this\s+is\s+a\s+finding' -or
+                    $CheckContent -Match 'If\s+there\s+is\s+no\s+evidence\s+that\s+the\s+(?:transfer\s+of\s+the\s+|)audit logs.*,\s+this\s+is\s+a\s+finding'
+                )
             ) -and
-            $CheckContent -NotMatch 'ESXi'
+            $CheckContent -NotMatch 'ESXi' -and
+            $CheckContent -NotMatch '#\s*cat\s+\/etc\/fstab.*'
         )
         {
             return $true
