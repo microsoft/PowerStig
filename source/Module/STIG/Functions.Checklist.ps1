@@ -4,21 +4,13 @@
 
 <#
     .SYNOPSIS
-        Automatically creates a Stig Viewer checklist from the DSC results or
-        compiled MOF
+        Automatically creates a STIG Viewer checklist from the DSC results or compiled MOF
 
     .PARAMETER ReferenceConfiguration
         The MOF that was compiled with a PowerStig composite
 
     .PARAMETER DscResult
         The results of Test-DscConfiguration
-
-    .PARAMETER XccdfPath
-        The path to the matching xccdf file. This is currently needed since we
-        do not pull add xccdf data into PowerStig
-
-    .PARAMETER OutputPath
-        The location you want the checklist saved to
 
     .PARAMETER ManualChecklistEntries
         Location of a psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
@@ -32,6 +24,14 @@
 		        <Comments>This is a test of a manual check file entry.</Comments>
 	        </VulID>
         </ManualChecklistEntries>
+
+    .PARAMETER RequiredSTIGVersions
+        A file that contains a list of required STIG versions to use for the checklist output. Only specify
+        any STIGs that should be processed using a version other than the latest.
+        See a sample at /PowerShell/StigData/Samples/RequiredSTIGVersions.xml
+        
+    .PARAMETER OutputPath
+        The location you want the checklist saved to
 
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -XccdfPath $xccdfPath -OutputPath $outputPath
@@ -54,17 +54,17 @@ function New-StigCheckList
         [psobject]
         $DscResult,
 
+        [Parameter()]
+        [String]
+        $ManualChecklistEntries,
+
         [Parameter(Mandatory = $true)]
         [string]
-        $XccdfPath,
+        $ChecklistSTIGFiles,
 
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
-        $OutputPath,
-
-        [Parameter()]
-        [String]
-        $ManualChecklistEntries
+        $OutputPath
     )
 
     # Validate parameters before continuing
@@ -75,6 +75,15 @@ function New-StigCheckList
             throw "$($ManualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
         }
         [xml]$manualCheckData = get-content -path $ManualChecklistEntries
+    }
+
+    if ($ChecklistSTIGFiles)
+    {
+        if (-not (Test-Path -Path $ChecklistSTIGFiles))
+        {
+            throw "$($ChecklistSTIGFiles) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
+        }
+        $ChecklistSTIGs = Get-Content -path $ChecklistSTIGFiles
     }
 
     if (-not (Test-Path -Path $OutputPath.DirectoryName))
@@ -176,218 +185,228 @@ function New-StigCheckList
 
     #endregion ASSET
 
+    #region STIGS
     $writer.WriteStartElement("STIGS")
-    $writer.WriteStartElement("iSTIG")
 
-    #region STIGS/iSTIG/STIG_INFO
+    # What STIGs we are outputting to the checklist?
 
-    $writer.WriteStartElement("STIG_INFO")
+    #endregion STIGS
 
-    $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $xccdfPath
-
-    $stigInfoElements = [ordered] @{
-        'version'        = $xccdfBenchmarkContent.version
-        'classification' = 'UNCLASSIFIED'
-        'customname'     = ''
-        'stigid'         = $xccdfBenchmarkContent.id
-        'description'    = $xccdfBenchmarkContent.description
-        'filename'       = Split-Path -Path $xccdfPath -Leaf
-        'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
-        'title'          = $xccdfBenchmarkContent.title
-        'uuid'           = (New-Guid).Guid
-        'notice'         = $xccdfBenchmarkContent.notice.InnerText
-        'source'         = $xccdfBenchmarkContent.reference.source
-    }
-
-    foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
+    foreach($xccdfPath in $ChecklistSTIGs)
     {
-        $writer.WriteStartElement("SI_DATA")
 
-        $writer.WriteStartElement('SID_NAME')
-        $writer.WriteString($StigInfoElement.name)
-        $writer.WriteEndElement(<#SID_NAME#>)
+        $writer.WriteStartElement("iSTIG")
 
-        $writer.WriteStartElement('SID_DATA')
-        $writer.WriteString($StigInfoElement.value)
-        $writer.WriteEndElement(<#SID_DATA#>)
+        #region iSTIG/STIG_INFO
 
-        $writer.WriteEndElement(<#SI_DATA#>)
-    }
+        $writer.WriteStartElement("STIG_INFO")
 
-    $writer.WriteEndElement(<#STIG_INFO#>)
+        $xccdfBenchmarkContent = Get-StigXccdfBenchmarkContent -Path $xccdfPath
 
-    #endregion STIGS/iSTIG/STIG_INFO
-
-    #region STIGS/iSTIG/VULN[]
-
-    # Pull in the processed XML file to check for duplicate rules for each vulnerability
-    [xml]$xccdfBenchmark = Get-Content -Path $xccdfPath -Encoding UTF8
-    $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
-    $processedFileName = $fileList.Settings.FullName
-    [xml]$processed = Get-Content -Path $processedFileName
-
-    $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
-
-    foreach ($vulnerability in $vulnerabilities)
-    {
-        $writer.WriteStartElement("VULN")
-
-        foreach ($attribute in $vulnerability.GetEnumerator())
-        {
-            $status = $null
-            $findingDetails = $null
-            $comments = $null
-            $manualCheck = $null
-
-            if ($attribute.Name -eq 'Vuln_Num')
-            {
-                $vid = $attribute.Value
-            }
-
-            $writer.WriteStartElement("STIG_DATA")
-
-            $writer.WriteStartElement("VULN_ATTRIBUTE")
-            $writer.WriteString($attribute.Name)
-            $writer.WriteEndElement(<#VULN_ATTRIBUTE#>)
-
-            $writer.WriteStartElement("ATTRIBUTE_DATA")
-            $writer.WriteString($attribute.Value)
-            $writer.WriteEndElement(<#ATTRIBUTE_DATA#>)
-
-            $writer.WriteEndElement(<#STIG_DATA#>)
+        $stigInfoElements = [ordered] @{
+            'version'        = $xccdfBenchmarkContent.version
+            'classification' = 'UNCLASSIFIED'
+            'customname'     = ''
+            'stigid'         = $xccdfBenchmarkContent.id
+            'description'    = $xccdfBenchmarkContent.description
+            'filename'       = Split-Path -Path $xccdfPath -Leaf
+            'releaseinfo'    = $xccdfBenchmarkContent.'plain-text'.InnerText
+            'title'          = $xccdfBenchmarkContent.title
+            'uuid'           = (New-Guid).Guid
+            'notice'         = $xccdfBenchmarkContent.notice.InnerText
+            'source'         = $xccdfBenchmarkContent.reference.source
         }
 
-        $statusMap = @{
-            NotReviewed   = 'Not_Reviewed'
-            Open          = 'Open'
-            NotAFinding   = 'NotAFinding'
-            NotApplicable = 'Not_Applicable'
+        foreach ($StigInfoElement in $stigInfoElements.GetEnumerator())
+        {
+            $writer.WriteStartElement("SI_DATA")
+
+            $writer.WriteStartElement('SID_NAME')
+            $writer.WriteString($StigInfoElement.name)
+            $writer.WriteEndElement(<#SID_NAME#>)
+
+            $writer.WriteStartElement('SID_DATA')
+            $writer.WriteString($StigInfoElement.value)
+            $writer.WriteEndElement(<#SID_DATA#>)
+
+            $writer.WriteEndElement(<#SI_DATA#>)
         }
 
-        if ($PSCmdlet.ParameterSetName -eq 'mof')
-        {
-            $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
-            $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $VID}
+        $writer.WriteEndElement(<#STIG_INFO#>)
 
-            if ($setting)
-            {
-                $status = $statusMap['NotAFinding']
-                $comments = "To be addressed by PowerStig MOF via $setting"
-                $findingDetails = Get-FindingDetails -Setting $setting
+        #endregion STIGS/iSTIG/STIG_INFO
 
-            }
-            elseif ($manualCheck)
-            {
-                $status = $statusMap["$($manualCheck.Status)"]
-                $findingDetails = $manualCheck.Details
-                $comments = $manualCheck.Comments
-            }
-            else
-            {
-                $status = $statusMap['NotReviewed']
-            }
-        }
-        elseif ($PSCmdlet.ParameterSetName -eq 'result')
+        #region STIGS/iSTIG/VULN[]
+
+        # Pull in the processed XML file to check for duplicate rules for each vulnerability
+        [xml]$xccdfBenchmark = Get-Content -Path $xccdfPath -Encoding UTF8
+        $fileList = Get-PowerStigFileList -StigDetails $xccdfBenchmark
+        $processedFileName = $fileList.Settings.FullName
+        [xml]$processed = Get-Content -Path $processedFileName
+
+        $vulnerabilities = Get-VulnerabilityList -XccdfBenchmark $xccdfBenchmarkContent
+
+        foreach ($vulnerability in $vulnerabilities)
         {
-            $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $VID}
-            # If we have manual check data, we don't need to look at the configuration
-            if ($manualCheck)
+            $writer.WriteStartElement("VULN")
+
+            foreach ($attribute in $vulnerability.GetEnumerator())
             {
-                $status = $statusMap["$($manualCheck.Status)"]
-                $findingDetails = $manualCheck.Details
-                $comments = $manualCheck.Comments
+                $status = $null
+                $findingDetails = $null
+                $comments = $null
+                $manualCheck = $null
+
+                if ($attribute.Name -eq 'Vuln_Num')
+                {
+                    $vid = $attribute.Value
+                }
+
+                $writer.WriteStartElement("STIG_DATA")
+
+                $writer.WriteStartElement("VULN_ATTRIBUTE")
+                $writer.WriteString($attribute.Name)
+                $writer.WriteEndElement(<#VULN_ATTRIBUTE#>)
+
+                $writer.WriteStartElement("ATTRIBUTE_DATA")
+                $writer.WriteString($attribute.Value)
+                $writer.WriteEndElement(<#ATTRIBUTE_DATA#>)
+
+                $writer.WriteEndElement(<#STIG_DATA#>)
             }
-            else
+
+            $statusMap = @{
+                NotReviewed   = 'Not_Reviewed'
+                Open          = 'Open'
+                NotAFinding   = 'NotAFinding'
+                NotApplicable = 'Not_Applicable'
+            }
+
+            if ($PSCmdlet.ParameterSetName -eq 'mof')
             {
-                $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
+                $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
+                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $VID}
+
                 if ($setting)
                 {
-                    if ($setting.InDesiredState -eq $true)
-                    {
-                        $status = $statusMap['NotAFinding']
-                        $comments = "Addressed by PowerStig MOF via $setting"
-                        $findingDetails = Get-FindingDetails -Setting $setting
-                    }
-                    elseif ($setting.InDesiredState -eq $false)
-                    {
-                        $status = $statusMap['Open']
-                        $comments = "Configuration attempted by PowerStig MOF via $setting, but not currently set."
-                        $findingDetails = Get-FindingDetails -Setting $setting
-                    }
-                    else
-                    {
-                        $status = $statusMap['Open']
-                    }
+                    $status = $statusMap['NotAFinding']
+                    $comments = "To be addressed by PowerStig MOF via $setting"
+                    $findingDetails = Get-FindingDetails -Setting $setting
+
+                }
+                elseif ($manualCheck)
+                {
+                    $status = $statusMap["$($manualCheck.Status)"]
+                    $findingDetails = $manualCheck.Details
+                    $comments = $manualCheck.Comments
                 }
                 else
                 {
                     $status = $statusMap['NotReviewed']
-                }    
-            }
-        }
-
-        # Test to see if this rule is managed as a duplicate
-        $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
-
-        if ($convertedRule.DuplicateOf)
-        {
-            # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
-            if ($PSCmdlet.ParameterSetName -eq 'mof')
-            {
-                $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
-
-                if ($originalSetting)
-                {
-                    $status = $statusMap['NotAFinding']
-                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
-                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
                 }
             }
             elseif ($PSCmdlet.ParameterSetName -eq 'result')
             {
-                $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
-
-                if ($originalSetting.InDesiredState -eq 'True')
+                $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $VID}
+                # If we have manual check data, we don't need to look at the configuration
+                if ($manualCheck)
                 {
-                    $status = $statusMap['NotAFinding']
-                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
-                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                    $status = $statusMap["$($manualCheck.Status)"]
+                    $findingDetails = $manualCheck.Details
+                    $comments = $manualCheck.Comments
                 }
                 else
                 {
-                    $status = $statusMap['Open']
-                    $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
-                    $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                    $setting = Get-SettingsFromResult -DscResult $dscResult -Id $vid
+                    if ($setting)
+                    {
+                        if ($setting.InDesiredState -eq $true)
+                        {
+                            $status = $statusMap['NotAFinding']
+                            $comments = "Addressed by PowerStig MOF via $setting"
+                            $findingDetails = Get-FindingDetails -Setting $setting
+                        }
+                        elseif ($setting.InDesiredState -eq $false)
+                        {
+                            $status = $statusMap['Open']
+                            $comments = "Configuration attempted by PowerStig MOF via $setting, but not currently set."
+                            $findingDetails = Get-FindingDetails -Setting $setting
+                        }
+                        else
+                        {
+                            $status = $statusMap['Open']
+                        }
+                    }
+                    else
+                    {
+                        $status = $statusMap['NotReviewed']
+                    }    
                 }
             }
+
+            # Test to see if this rule is managed as a duplicate
+            $convertedRule = $processed.SelectSingleNode("//Rule[@id='$vid']")
+
+            if ($convertedRule.DuplicateOf)
+            {
+                # How is the duplicate rule handled? If it is handled, then this duplicate is also covered
+                if ($PSCmdlet.ParameterSetName -eq 'mof')
+                {
+                    $originalSetting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $convertedRule.DuplicateOf
+
+                    if ($originalSetting)
+                    {
+                        $status = $statusMap['NotAFinding']
+                        $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                    }
+                }
+                elseif ($PSCmdlet.ParameterSetName -eq 'result')
+                {
+                    $originalSetting = Get-SettingsFromResult -DscResult $dscResult -id $convertedRule.DuplicateOf
+
+                    if ($originalSetting.InDesiredState -eq 'True')
+                    {
+                        $status = $statusMap['NotAFinding']
+                        $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                    }
+                    else
+                    {
+                        $status = $statusMap['Open']
+                        $findingDetails = 'See ' + $convertedRule.DuplicateOf + ' for Finding Details.'
+                        $comments = 'Managed via PowerStigDsc - this rule is a duplicate of ' + $convertedRule.DuplicateOf
+                    }
+                }
+            }
+
+            $writer.WriteStartElement("STATUS")
+            $writer.WriteString($status)
+            $writer.WriteEndElement(<#STATUS#>)
+
+            $writer.WriteStartElement("FINDING_DETAILS")
+            $writer.WriteString($findingDetails)
+            $writer.WriteEndElement(<#FINDING_DETAILS#>)
+
+            $writer.WriteStartElement("COMMENTS")
+            $writer.WriteString($comments)
+            $writer.WriteEndElement(<#COMMENTS#>)
+
+            $writer.WriteStartElement("SEVERITY_OVERRIDE")
+            $writer.WriteString('')
+            $writer.WriteEndElement(<#SEVERITY_OVERRIDE#>)
+
+            $writer.WriteStartElement("SEVERITY_JUSTIFICATION")
+            $writer.WriteString('')
+            $writer.WriteEndElement(<#SEVERITY_JUSTIFICATION#>)
+
+            $writer.WriteEndElement(<#VULN#>)
         }
 
-        $writer.WriteStartElement("STATUS")
-        $writer.WriteString($status)
-        $writer.WriteEndElement(<#STATUS#>)
+        #endregion STIGS/iSTIG/VULN[]
 
-        $writer.WriteStartElement("FINDING_DETAILS")
-        $writer.WriteString($findingDetails)
-        $writer.WriteEndElement(<#FINDING_DETAILS#>)
-
-        $writer.WriteStartElement("COMMENTS")
-        $writer.WriteString($comments)
-        $writer.WriteEndElement(<#COMMENTS#>)
-
-        $writer.WriteStartElement("SEVERITY_OVERRIDE")
-        $writer.WriteString('')
-        $writer.WriteEndElement(<#SEVERITY_OVERRIDE#>)
-
-        $writer.WriteStartElement("SEVERITY_JUSTIFICATION")
-        $writer.WriteString('')
-        $writer.WriteEndElement(<#SEVERITY_JUSTIFICATION#>)
-
-        $writer.WriteEndElement(<#VULN#>)
+        $writer.WriteEndElement(<#iSTIG#>)
     }
-
-    #endregion STIGS/iSTIG/VULN[]
-
-    $writer.WriteEndElement(<#iSTIG#>)
     $writer.WriteEndElement(<#STIGS#>)
     $writer.WriteEndElement(<#CHECKLIST#>)
     $writer.Flush()
