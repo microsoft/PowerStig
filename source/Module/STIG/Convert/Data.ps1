@@ -49,5 +49,6 @@ data dscResourceModule
         VsphereSnmpAgentRule                 = Vmware.vSphereDSC
         VsphereNtpSettingsRule               = Vmware.vSphereDSC
         VsphereVssSecurityRule               = Vmware.vSphereDSC
+        SharePoint_SPWebAppGeneralSettingsRule = SharePointDSC
 '@
 }
