@@ -46,21 +46,29 @@ function New-StigCheckList
     [OutputType([xml])]
     param
     (
-        [Parameter(Mandatory = $true, ParameterSetName = 'mof')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'multi-mof')]
         [string]
         $ReferenceConfiguration,
 
-        [Parameter(Mandatory = $true, ParameterSetName = 'result')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'multi-dsc')]
         [psobject]
         $DscResult,
+
+        [Parameter(Mandatory = $true, ParameterSetName = 'single-mof')]
+        [Parameter(Mandatory = $true, ParameterSetName = 'single-dsc')]
+        [string]
+        $XccdfPath,
+
+        [Parameter(ParameterSetName = 'multi-mof')]
+        [Parameter(ParameterSetName = 'multi-dsc')]
+        [string]
+        $ChecklistSTIGFiles,
 
         [Parameter()]
         [String]
         $ManualChecklistEntries,
-
-        [Parameter(Mandatory = $true)]
-        [string]
-        $ChecklistSTIGFiles,
 
         [Parameter(Mandatory = $true)]
         [System.IO.FileInfo]
@@ -75,6 +83,15 @@ function New-StigCheckList
             throw "$($ManualChecklistEntries) is not a valid path to a ManualChecklistEntries.xml file. Provide a full valid path."
         }
         [xml]$manualCheckData = get-content -path $ManualChecklistEntries
+    }
+
+    if ($XccdfPath)
+    {
+        if (-not (Test-Path -Path $XccdfPath))
+        {
+            throw "$($XccdfPath) is not a valid path to a ChecklistSTIGFiles.txt file. Provide a full valid path."
+        }
+        $ChecklistSTIGs = $XccdfPath
     }
 
     if ($ChecklistSTIGFiles)
@@ -97,7 +114,7 @@ function New-StigCheckList
     }
 
     # Values for some of these fields can be read from the .mof file or the DSC results file
-    if ($PSCmdlet.ParameterSetName -eq 'mof')
+    if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
     {
         if (-not (Test-Path -Path $ReferenceConfiguration))
         {
@@ -108,7 +125,7 @@ function New-StigCheckList
         $TargetNode = Get-TargetNodeFromMof($MofString)
 
     }
-    elseif ($PSCmdlet.ParameterSetName -eq 'result')
+    elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
     {
         # Check the returned object
         if ($null -eq $DscResult)
@@ -282,7 +299,7 @@ function New-StigCheckList
                 NotApplicable = 'Not_Applicable'
             }
 
-            if ($PSCmdlet.ParameterSetName -eq 'mof')
+            if ($PSCmdlet.ParameterSetName -eq 'single-mof' -or $PSCmdlet.ParameterSetName -eq 'multi-mof')
             {
                 $setting = Get-SettingsFromMof -ReferenceConfiguration $referenceConfiguration -Id $vid
                 $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object {$_.id -eq $VID}
@@ -305,7 +322,7 @@ function New-StigCheckList
                     $status = $statusMap['NotReviewed']
                 }
             }
-            elseif ($PSCmdlet.ParameterSetName -eq 'result')
+            elseif ($PSCmdlet.ParameterSetName -eq 'single-dsc' -or $PSCmdlet.ParameterSetName -eq 'multi-dsc')
             {
                 $manualCheck = $manualCheckData.ManualChecklistEntries.VulID | Where-Object -FilterScript {$_.id -eq $VID}
                 # If we have manual check data, we don't need to look at the configuration
