@@ -4,13 +4,13 @@
 
 <#
     .SYNOPSIS
-        Automatically creates a STIG Viewer checklist from the DSC results or compiled MOF
+        Automatically creates a STIG Viewer checklist from DSC results or a compiled MOF
 
     .PARAMETER ReferenceConfiguration
         The MOF that was compiled with a PowerStig composite
 
     .PARAMETER DscResult
-        The results of Test-DscConfiguration
+        The results of Test-DscConfiguration or DSC report server output for a node
 
     .PARAMETER ManualChecklistEntries
         Location of a psd1 file containing the input for Vulnerabilities unmanaged via DSC/PowerSTIG.
@@ -32,6 +32,12 @@
         
     .PARAMETER OutputPath
         The location you want the checklist saved to
+
+    .EXAMPLE
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries $ManualChecklistEntriesFile -XccdfPath $xccdfPath -OutputPath $outputPath
+        New-StigCheckList -DscResult $auditRehydrated -XccdfPath $xccdfPath -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
+        New-StigCheckList -ReferenceConfiguration $referenceConfiguration -ManualChecklistEntries $ManualChecklistEntriesFile -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath
+        New-StigCheckList -DscResult $auditRehydrated -ChecklistSTIGFiles $ChecklistSTIGFiles -OutputPath $outputPath -ManualChecklistEntries $ManualChecklistEntriesFile
 
     .EXAMPLE
         New-StigCheckList -ReferenceConfiguration $referenceConfiguration -XccdfPath $xccdfPath -OutputPath $outputPath
@@ -205,10 +211,9 @@ function New-StigCheckList
     #region STIGS
     $writer.WriteStartElement("STIGS")
 
-    # What STIGs we are outputting to the checklist?
-
     #endregion STIGS
 
+    #region STIG_iteration
     foreach($xccdfPath in $ChecklistSTIGs)
     {
 
@@ -424,6 +429,9 @@ function New-StigCheckList
 
         $writer.WriteEndElement(<#iSTIG#>)
     }
+
+    #endregion STIG_iteration
+    
     $writer.WriteEndElement(<#STIGS#>)
     $writer.WriteEndElement(<#CHECKLIST#>)
     $writer.Flush()
@@ -638,6 +646,11 @@ function Get-FindingDetailsString
     }
     return $returnString
 }
+<#
+    .SYNOPSIS
+        Extracts the node targeted by the MOF file
+
+#>
 function Get-TargetNodeFromMof
 {
     [OutputType([string])]
@@ -654,6 +667,11 @@ function Get-TargetNodeFromMof
     $TargetNode = $TargetNodeSearch.matches.value
     return $TargetNode
 }
+<#
+    .SYNOPSIS
+        Determines the type of node address
+
+#>
 function Get-TargetNodeType
 {
     [OutputType([string])]
