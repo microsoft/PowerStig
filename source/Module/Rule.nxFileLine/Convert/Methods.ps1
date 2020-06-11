@@ -182,27 +182,49 @@ function Split-nxFileLineMultipleEntries
     $splitCheckContent = @()
 
     # Split CheckContent based on File Path:
-    $splitLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
-    for ($i = 0; $i -lt $splitLineNumber.Count; $i++)
+    $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
+
+    # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
+    $headerLineRange = 0..($splitFilePathLineNumber[0] - 2)
+    $headerFileLine = $CheckContent[$headerLineRange]
+
+    # Footer should start from the last detected "If" to the end of CheckContent
+    [array] $footerDetection = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFooterDetection).LineNumber
+    $footerLineRange = ($footerDetection[-1] - 1)..($CheckContent.Count - 1)
+    $footerFileLine = $CheckContent[$footerLineRange]
+
+    # Putting it all together and returning separate entries to the next loop
+    for ($i = 0; $i -lt $splitFilePathLineNumber.Count; $i++)
     {
-        $headLineNumber = $splitLineNumber[$i] - 2
-        if ($i -eq ($splitLineNumber.Count - 1))
+        $splitFilePathStringBuilder = New-Object -TypeName System.Text.StringBuilder
+        foreach ($headerLine in $headerFileLine)
         {
-            $footLineNumber = $CheckContent.Count - 1
+            [void] $splitFilePathStringBuilder.AppendLine($headerLine)
+        }
+
+        # If the index is equal to the 0 based array count then we are at the list item and the range is calculated from the footer
+        if ($i -eq ($splitFilePathLineNumber.Count - 1))
+        {
+            $splitFileLineContentRange = ($splitFilePathLineNumber[$i] - 1)..($footerLineRange[0] - 1)
         }
         else
         {
-            $footLineNumber = $splitLineNumber[$i + 1] - 3
+            # Determine start of next rule and subtract by 2 since Select-String LineNumber is not 0 based
+            $splitFileLineContentRange = ($splitFilePathLineNumber[$i] - 1)..($splitFilePathLineNumber[$i + 1] - 2)
         }
 
-        $ruleRange = $headLineNumber..$footLineNumber
-        $stringBuilder = New-Object -TypeName System.Text.StringBuilder
-        foreach ($line in $ruleRange)
+        # Insert the split rule contents and add the footer\, then store the string in the collection
+        foreach ($line in $CheckContent[$splitFileLineContentRange])
         {
-            [void] $stringBuilder.AppendLine($CheckContent[$line])
+            [void] $splitFilePathStringBuilder.AppendLine($line)
         }
 
-        $splitCheckContent += $stringBuilder.ToString()
+        foreach ($footerLine in $footerFileLine)
+        {
+            [void] $splitFilePathStringBuilder.AppendLine($footerLine)
+        }
+
+        $splitCheckContent += $splitFilePathStringBuilder.ToString()
     }
 
     # Split modified CheckContent based each File Path Setting:
