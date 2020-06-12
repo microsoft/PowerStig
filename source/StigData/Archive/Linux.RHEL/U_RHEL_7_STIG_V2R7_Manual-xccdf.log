@@ -1,1 +1,3 @@
+V-81003::# cat /etc/pam.d/passwd | grep -i substack | grep -i system-auth::# grep /etc/pam.d/passwd
+V-81017::# cat /etc/audisp/plugins.d/au-remote.conf | grep -v "^#"::# grep /etc/audisp/plugins.d/au-remote.conf
 V-81017::format = string::If commented out

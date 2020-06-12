@@ -182,7 +182,7 @@ function Split-nxFileLineMultipleEntries
     $splitCheckContent = @()
 
     # Split CheckContent based on File Path:
-    $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
+    [array] $splitFilePathLineNumber = ($CheckContent | Select-String -Pattern $regularExpression.nxFileLineFilePath).LineNumber
 
     # Header for the rule should start at 0 through the first detected file path subtract 2 since Select-String LineNumber is not 0 based
     $headerLineRange = 0..($splitFilePathLineNumber[0] - 2)
