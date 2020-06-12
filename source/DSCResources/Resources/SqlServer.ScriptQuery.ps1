@@ -13,7 +13,8 @@ foreach ($instance in $ServerInstance)
 
             foreach ($rule in $rules)
             {
-                SqlScriptQuery "$(Get-ResourceTitle -Rule $rule)$instance_$db"
+                $resourceTitle = '{0}{1}_{2}' -f (Get-ResourceTitle -Rule $rule), $instance, $db
+                SqlScriptQuery "$resourceTitle"
                 {
                     ServerInstance = $Instance
                     GetQuery       = $getScript
