@@ -28,10 +28,12 @@ data doesNotContainPattern
         'ucredit=-1'                                                = '^\s*ucredit\s*=\s*(?!-1)\d*$|#\s*ucredit=.*'
         'lcredit=-1'                                                = '^\s*lcredit\s*=\s*(?!-1)\d*$|#\s*lcredit=.*'
         'dcredit=-1'                                                = '^\s*dcredit\s*=\s*(?!-1)\d*$|#\s*dcredit=.*'
+        'difok = 8'                                                 = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
         'difok=8'                                                   = '^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*' # Org
         'PASS_MIN_DAYS 1'                                           = '^\s*PASS_MIN_DAYS\s*[0]*$|#\s*PASS_MIN_DAYS.*' # Org
         'PASS_MAX_DAYS 60'                                          = '^\s*PASS_MAX_DAYS\s*([0-9]|[1-5][0-9])$|#\s*PASS_MAX_DAYS.*' # Org
         'minlen=15'                                                 = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
+        'minlen = 15'                                               = '^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*' # Org
         'dictcheck=1'                                               = '^\s*dictcheck\s*=\s*((?!1)|[1]\d+)\d*$|#\s*dictcheck.*'
         'enforcing = 1'                                             = '^\s*enforcing\s*=\s*((?!1)|[1]\d+)\d*$|#\s*enforcing.*'
         'ocredit=-1'                                                = '^\s*ocredit\s*=\s*(?!-1)\d*$|#\s*ocredit=.*'
@@ -46,6 +48,8 @@ data doesNotContainPattern
         'PermitUserEnvironment no'                                  = '^\s*PermitUserEnvironment\s*((?!no\b).)*$|^#\s*PermitUserEnvironment.*$|^\s*PermitUserEnvironment\s*$'
         'UMASK 077'                                                 = '^\s*UMASK\s*(?!077\b)\d*\s*$|^#\s*UMASK.*'
         '#Protocol 1,2'                                             = 'DynamicallyGeneratedDoesNotContainPattern'
+        'minclass = 4'                                              = 'DynamicallyGeneratedDoesNotContainPattern'
+        'FAIL_DELAY 4'                                              = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F arch=b32 -S chmod -F auid>=1000 -F auid!=4294967295 -k perm_mod' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F arch=b32 -S chown -F auid>=1000 -F auid!=4294967295 -k perm_mod' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-a always,exit -F arch=b32 -S creat -F exit=-EACCES -F auid>=1000 -F auid!=4294967295 -k access' = 'DynamicallyGeneratedDoesNotContainPattern'
@@ -197,7 +201,8 @@ data doesNotContainPattern
         '-w /etc/passwd -p wa -k identity' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /etc/security/opasswd -p wa -k identity' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /etc/shadow -p wa -k identity' = 'DynamicallyGeneratedDoesNotContainPattern'
-        '-w /etc/sudoers -p wa -k privileged-actions # grep -i "/etc/sudoers.d/" /etc/audit/audit.rules -w /etc/sudoers.d/ -p wa -k privileged-actions' = 'DynamicallyGeneratedDoesNotContainPattern'
+        '-w /etc/sudoers -p wa -k privileged-actions' = 'DynamicallyGeneratedDoesNotContainPattern'
+        '-w /etc/sudoers.d/ -p wa -k privileged-actions' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /usr/bin/kmod -p x -F auid!=4294967295 -k module-change' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /var/log/lastlog -p wa -k logins' = 'DynamicallyGeneratedDoesNotContainPattern'
         '-w /var/run/faillock -p wa -k logins' = 'DynamicallyGeneratedDoesNotContainPattern'

@@ -48,6 +48,25 @@ idle-delay=uint32 900
 
 If the "idle-delay" setting is missing or is not set to "900" or less, this is a finding.</RawString>
     </Rule>
+    <Rule id="V-71901" severity="medium" conversionstatus="pass" title="SRG-OS-000029-GPOS-00010" dscresource="None">
+      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
+
+The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
+      <DuplicateOf />
+      <IsNullOrEmpty>False</IsNullOrEmpty>
+      <OrganizationValueRequired>False</OrganizationValueRequired>
+      <OrganizationValueTestString />
+      <RawString>Verify the operating system initiates a session lock a for graphical user interfaces when the screensaver is activated. 
+
+Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
+
+If GNOME is installed, check to see a session lock occurs when the screensaver is activated with the following command:
+
+# grep -i lock-delay /etc/dconf/db/local.d/*
+lock-delay=uint32 5
+
+If the "lock-delay" setting is missing, or is not set to "5" or less, this is a finding.</RawString>
+    </Rule>
     <Rule id="V-71933" severity="medium" conversionstatus="pass" title="SRG-OS-000077-GPOS-00045" dscresource="None">
       <Description>&lt;VulnDiscussion&gt;Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. If the information system or application allows the user to consecutively reuse their password when that password has exceeded its defined lifetime, the end result is a password that is not changed per policy requirements.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
       <DuplicateOf />
@@ -2792,29 +2811,6 @@ idle-activation-enabled=true
 
 If "idle-activation-enabled" is not set to "true", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71901" severity="medium" conversionstatus="fail" title="SRG-OS-000029-GPOS-00010" dscresource="">
-      <ContainsLine>
-      </ContainsLine>
-      <Description>&lt;VulnDiscussion&gt;A session time-out lock is a temporary action taken when a user stops work and moves away from the immediate physical vicinity of the information system but does not log out because of the temporary nature of the absence. Rather than relying on the user to manually lock their operating system session prior to vacating the vicinity, operating systems need to be able to identify when a user's session has idled and take action to initiate the session lock.
-
-The session lock is implemented at the point where session activity can be determined and/or controlled.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
-      <DuplicateOf />
-      <FilePath>/etc/dconf/db/local.d/</FilePath>
-      <IsNullOrEmpty>False</IsNullOrEmpty>
-      <OrganizationValueRequired>True</OrganizationValueRequired>
-      <OrganizationValueTestString>that the following statement is true when leveraging the correct nxFileLine ContainsLine format: "If the "lock-delay" setting is missing, or is not set to "5" or less, this is a finding." </OrganizationValueTestString>
-      <RawString>Verify the operating system initiates a session lock a for graphical user interfaces when the screensaver is activated. 
-
-Note: If the system does not have GNOME installed, this requirement is Not Applicable. The screen program must be installed to lock sessions on the console.
-
-If GNOME is installed, check to see a session lock occurs when the screensaver is activated with the following command:
-
-# grep -i lock-delay /etc/dconf/db/local.d/*
-lock-delay=uint32 5
-
-If the "lock-delay" setting is missing, or is not set to "5" or less, this is a finding.</RawString>
-    </Rule>
     <Rule id="V-71903" severity="medium" conversionstatus="pass" title="SRG-OS-000069-GPOS-00037" dscresource="nxFileLine">
       <ContainsLine>ucredit = -1</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
@@ -2897,13 +2893,13 @@ ocredit=-1
 
 If the value of "ocredit" is not set to a negative value, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71911" severity="medium" conversionstatus="fail" title="SRG-OS-000072-GPOS-00040" dscresource="">
+    <Rule id="V-71911" severity="medium" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
 
 Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
+      <DoesNotContainPattern>^\s*difok\s*=\s*(-|)[0-7]$|#\s*difok\s*=.*|difok\s+=\s+.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -2918,13 +2914,13 @@ difok = 8
 
 If the value of "difok" is set to less than "8", this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71913" severity="medium" conversionstatus="fail" title="SRG-OS-000072-GPOS-00040" dscresource="">
+    <Rule id="V-71913" severity="medium" conversionstatus="pass" title="SRG-OS-000072-GPOS-00040" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Use of a complex password helps to increase the time and resources required to compromise the password. Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks.
 
 Password complexity is one factor of several that determines how long it takes to crack a password. The more complex the password, the greater the number of possible combinations that need to be tested before the password is compromised.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
+      <DoesNotContainPattern>DynamicallyGeneratedDoesNotContainPattern</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3056,13 +3052,13 @@ PASS_MAX_DAYS 60
 
 If the "PASS_MAX_DAYS" parameter value is not 60 or less, or is commented out, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71935" severity="medium" conversionstatus="fail" title="SRG-OS-000078-GPOS-00046" dscresource="">
+    <Rule id="V-71935" severity="medium" conversionstatus="pass" title="SRG-OS-000078-GPOS-00046" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;The shorter the password, the lower the number of possible combinations that need to be tested before the password is compromised.
 
 Password complexity, or strength, is a measure of the effectiveness of a password in resisting attempts at guessing and brute-force attacks. Password length is one factor of several that helps to determine strength and how long it takes to crack a password. Use of more characters in a password helps to exponentially increase the time and/or resources required to compromise the password.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
+      <DoesNotContainPattern>^\s*minlen\s*=\s*([0-9]|[1][1-4])$|#\s*minlen.*</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/security/pwquality.conf</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -3115,13 +3111,13 @@ INACTIVE=0
 
 If the value is not set to "0", is commented out, or is not defined, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-71951" severity="medium" conversionstatus="fail" title="SRG-OS-000480-GPOS-00226" dscresource="">
+    <Rule id="V-71951" severity="medium" conversionstatus="pass" title="SRG-OS-000480-GPOS-00226" dscresource="nxFileLine">
       <ContainsLine>
       </ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Configuring the operating system to implement organization-wide security implementation guides and security checklists verifies compliance with federal standards and establishes a common security baseline across DoD that reflects the most restrictive security posture consistent with operational requirements.
 
 Configuration settings are the set of parameters that can be changed in hardware, software, or firmware components of the system that affect the security posture and/or functionality of the system. Security-related parameters are those parameters impacting the security state of the system, including the parameters required to satisfy other security control requirements. Security-related parameters include, for example, registry settings; account, file, and directory permission settings; and settings for functions, ports, protocols, services, and remote connections.&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
+      <DoesNotContainPattern>DynamicallyGeneratedDoesNotContainPattern</DoesNotContainPattern>
       <DuplicateOf />
       <FilePath>/etc/login.defs</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
@@ -4909,45 +4905,59 @@ Check that the following system call is being audited by performing the followin
 
 If the command does not return any output, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-72163.a" severity="medium" conversionstatus="fail" title="SRG-OS-000037-GPOS-00015" dscresource="">
+    <Rule id="V-72163.a" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
       <ContainsLine>-w /etc/sudoers -p wa -k privileged-actions</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
 
 At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
 
 Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
+      <DoesNotContainPattern>#\s*-w /etc/sudoers -p wa -k privileged-actions</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sudoers</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory.
-Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules":
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory. 
+
+Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules": 
+
 # grep -i "/etc/sudoers" /etc/audit/audit.rules
+
 -w /etc/sudoers -p wa -k privileged-actions
-If the commands do not return output that match the examples, this is a finding.
-</RawString>
+
+# grep -i "/etc/sudoers.d/" /etc/audit/audit.rules
+
+-w /etc/sudoers.d/ -p wa -k privileged-actions
+
+If the commands do not return output that match the examples, this is a finding.</RawString>
     </Rule>
-    <Rule id="V-72163.b" severity="medium" conversionstatus="fail" title="SRG-OS-000037-GPOS-00015" dscresource="">
+    <Rule id="V-72163.b" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
       <ContainsLine>-w /etc/sudoers.d/ -p wa -k privileged-actions</ContainsLine>
       <Description>&lt;VulnDiscussion&gt;Reconstruction of harmful events or forensic analysis is not possible if audit records do not contain enough information.
 
 At a minimum, the organization must audit the full-text recording of privileged access commands. The organization must maintain audit trails in sufficient detail to reconstruct events to determine the cause and impact of compromise.
 
 Satisfies: SRG-OS-000037-GPOS-00015, SRG-OS-000042-GPOS-00020, SRG-OS-000392-GPOS-00172, SRG-OS-000462-GPOS-00206, SRG-OS-000471-GPOS-00215&lt;/VulnDiscussion&gt;&lt;FalsePositives&gt;&lt;/FalsePositives&gt;&lt;FalseNegatives&gt;&lt;/FalseNegatives&gt;&lt;Documentable&gt;false&lt;/Documentable&gt;&lt;Mitigations&gt;&lt;/Mitigations&gt;&lt;SeverityOverrideGuidance&gt;&lt;/SeverityOverrideGuidance&gt;&lt;PotentialImpacts&gt;&lt;/PotentialImpacts&gt;&lt;ThirdPartyTools&gt;&lt;/ThirdPartyTools&gt;&lt;MitigationControl&gt;&lt;/MitigationControl&gt;&lt;Responsibility&gt;&lt;/Responsibility&gt;&lt;IAControls&gt;&lt;/IAControls&gt;</Description>
-      <DoesNotContainPattern />
+      <DoesNotContainPattern>#\s*-w /etc/sudoers.d/ -p wa -k privileged-actions</DoesNotContainPattern>
       <DuplicateOf />
-      <FilePath>/etc/sudoers.d/</FilePath>
+      <FilePath>/etc/audit/rules.d/audit.rules</FilePath>
       <IsNullOrEmpty>False</IsNullOrEmpty>
       <OrganizationValueRequired>False</OrganizationValueRequired>
       <OrganizationValueTestString />
-      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory.
-Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules":
+      <RawString>Verify the operating system generates audit records when successful/unsuccessful attempts to access the "/etc/sudoers" file and files in the "/etc/sudoers.d/" directory. 
+
+Check for modification of the following files being audited by performing the following commands to check the file system rules in "/etc/audit/audit.rules": 
+
+# grep -i "/etc/sudoers" /etc/audit/audit.rules
+
+-w /etc/sudoers -p wa -k privileged-actions
+
 # grep -i "/etc/sudoers.d/" /etc/audit/audit.rules
+
 -w /etc/sudoers.d/ -p wa -k privileged-actions
-If the commands do not return output that match the examples, this is a finding.
-</RawString>
+
+If the commands do not return output that match the examples, this is a finding.</RawString>
     </Rule>
     <Rule id="V-72165" severity="medium" conversionstatus="pass" title="SRG-OS-000037-GPOS-00015" dscresource="nxFileLine">
       <ContainsLine>-a always,exit -F path=/usr/bin/newgrp -F auid&gt;=1000 -F auid!=4294967295 -k privileged-priv_change</ContainsLine>

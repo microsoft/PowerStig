@@ -34,6 +34,7 @@ data exclusionRuleList
         V-42572  = 'McAfee:If the ExcludedURLs REG_MULTI_SZ has any entries, and the excluded URLs have not been documented with, and approved by, the ISSO/ISSM/DAA'
         V-14654  = 'McAfee:The GUID of the weekly on-demand client scan task varies by system'
         V-71893  = 'RHEL: At present, unable to automate rule'
+        V-71901  = 'RHEL: At present, unable to automate rule'
         V-71933  = 'RHEL: At present, unable to automate rule'
         V-71943  = 'RHEL: At present, unable to automate rule'
         V-71945  = 'RHEL: At present, unable to automate rule'
