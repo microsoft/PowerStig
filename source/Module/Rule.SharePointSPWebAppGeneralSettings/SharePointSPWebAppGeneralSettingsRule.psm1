@@ -12,7 +12,7 @@ using module .\..\Rule\Rule.psm1
     .PARAMETER PropertyName
         The PropertyName content
 #>
-Class SharePoint_SPWebAppGeneralSettingsRule : Rule
+Class SharePointSPWebAppGeneralSettingsRule : Rule
 {
     [string] $PropertyName
     [string] $PropertyValue
@@ -23,7 +23,7 @@ Class SharePoint_SPWebAppGeneralSettingsRule : Rule
         .SYNOPSIS
             Default constructor to support the AsRule cast method
     #>
-    SharePoint_SPWebAppGeneralSettingsRule ()
+    SharePointSPWebAppGeneralSettingsRule ()
     {
     }
 
@@ -33,7 +33,7 @@ Class SharePoint_SPWebAppGeneralSettingsRule : Rule
         .PARAMETER Rule
             The STIG rule to load
     #>
-    SharePoint_SPWebAppGeneralSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
+    SharePointSPWebAppGeneralSettingsRule ([xml.xmlelement] $Rule) : Base ($Rule)
     {
     }
 
@@ -45,7 +45,7 @@ Class SharePoint_SPWebAppGeneralSettingsRule : Rule
         .PARAMETER Convert
             A simple bool flag to create a unique constructor signature
     #>
-    SharePoint_SPWebAppGeneralSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
+    SharePointSPWebAppGeneralSettingsRule ([xml.xmlelement] $Rule, [switch] $Convert) : Base ($Rule, $Convert)
     {
     }
 

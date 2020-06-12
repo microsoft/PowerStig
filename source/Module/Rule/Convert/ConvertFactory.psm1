@@ -17,7 +17,7 @@ using module .\..\..\Rule.ProcessMitigation\Convert\ProcessMitigationRule.Conver
 using module .\..\..\Rule.Registry\Convert\RegistryRule.Convert.psm1
 using module .\..\..\Rule.SecurityOption\Convert\SecurityOptionRule.Convert.psm1
 using module .\..\..\Rule.Service\Convert\ServiceRule.Convert.psm1
-using module .\..\..\Rule.SharePoint_SPWebAppGeneralSettings\Convert\SharePoint_SPWebAppGeneralSettingsRule.Convert.psm1
+using module .\..\..\Rule.SharePointSPWebAppGeneralSettings\Convert\SharePointSPWebAppGeneralSettingsRule.Convert.psm1
 using module .\..\..\Rule.SqlScriptQuery\Convert\SqlScriptQueryRule.Convert.psm1
 using module .\..\..\Rule.UserRight\Convert\UserRightRule.Convert.psm1
 using module .\..\..\Rule.WebAppPool\Convert\WebAppPoolRule.Convert.psm1
@@ -206,10 +206,10 @@ class ConvertFactory
                     [SplitFactory]::XccdfRule($Rule, 'ServiceRuleConvert', 'ServiceName')
                 )
             }
-            {[SharePoint_SPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
+            {[SharePointSPWebAppGeneralSettingsRuleConvert]::Match($PSItem)}
             {
                 $null = $ruleTypeList.Add(
-                    [SharePoint_SPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
+                    [SharePointSPWebAppGeneralSettingsRuleConvert]::new($Rule).AsRule()
                 )
             }
             {[SqlScriptQueryRuleConvert]::Match($PSItem)}

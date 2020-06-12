@@ -32,7 +32,7 @@ using module ..\..\PowerStig.psm1
         function. Each rule follows the same process as the SkipRule parameter.
 #>
 
-configuration SharePoint_SPWebAppGeneralSettings
+configuration SharePoint
 {
     [CmdletBinding()]
     param
@@ -83,7 +83,7 @@ configuration SharePoint_SPWebAppGeneralSettings
     $stig.LoadRules($OrgSettings, $Exception, $SkipRule, $SkipRuleType)
     ##### END DO NOT MODIFY #####
 
-    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.0.0
-    . "$resourcePath\SharePoint_SPWebAppGeneralSettings.ps1"
+    Import-DscResource -ModuleName SharePointDSC -ModuleVersion 4.1.0
+    . "$resourcePath\SharePoint.SPWebAppGeneralSettings.ps1"
     
 }

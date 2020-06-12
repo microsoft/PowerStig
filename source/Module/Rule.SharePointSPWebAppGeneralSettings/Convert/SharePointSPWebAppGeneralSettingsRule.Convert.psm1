@@ -1,8 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 using module .\..\..\Common\Common.psm1
-using module .\..\SharePoint_SPWebAppGeneralSettingsRule.psm1
-
+using module .\..\SharePointSPWebAppGeneralSettingsRule.psm1
 
 $exclude = @($MyInvocation.MyCommand.Name,'Template.*.txt')
 $supportFileList = Get-ChildItem -Path $PSScriptRoot -Exclude $exclude
@@ -19,13 +18,13 @@ foreach ($supportFile in $supportFileList)
     .DESCRIPTION
         
 #>
-Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneralSettingsRule
+Class SharePointSPWebAppGeneralSettingsRuleConvert : SharePointSPWebAppGeneralSettingsRule
 {
     <#
         .SYNOPSIS
             Empty constructor for SplitFactory
     #>
-    SharePoint_SPWebAppGeneralSettingsRuleConvert ()
+    SharePointSPWebAppGeneralSettingsRuleConvert ()
     {
     }
 
@@ -35,7 +34,7 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
         .PARAMETER XccdfRule
             The STIG rule to convert
     #>
-    SharePoint_SPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
+    SharePointSPWebAppGeneralSettingsRuleConvert ([xml.xmlelement] $XccdfRule) : Base ($XccdfRule, $true)
     {
         $this.PropertyName = $this.GetPropertyName($this.SplitCheckContent)
         $this.PropertyValue = $this.GetPropertyValue($this.SplitCheckContent)
@@ -143,7 +142,7 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     #>
     [string] GetRuleType ([string[]] $CheckContent)
     {
-        $ruleType = "SharePoint_SPWebAppGeneralSettings"
+        $ruleType = "SharePointSPWebAppGeneralSettings"
 
         return $ruleType
     }
@@ -152,7 +151,7 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
     {
         if($null -eq $this.DuplicateOf)
         {
-            $this.DscResource = 'SharePoint_SPWebAppGeneralSettings'
+            $this.DscResource = 'SharePointSPWebAppGeneralSettings'
         }
         else
         {
@@ -186,11 +185,11 @@ Class SharePoint_SPWebAppGeneralSettingsRuleConvert : SharePoint_SPWebAppGeneral
         {
             $PropertyName = 'BrowserFileHandling'
         }
-        if ($CheckContent -Match "SharePoint server configuration to ensure a session lock") #STIG includes securityvalidation and timeoutminutes; separated here
+        if ($CheckContent -Match "SharePoint server configuration to ensure a session lock")
         {
             $PropertyName = 'SecurityValidationTimeOutMinutes'
         }
-        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff") #59919 and 59977
+        if ($CheckContent -Match "ensure user sessions are terminated upon user logoff")
         {
             $PropertyName = 'SecurityValidation'
         }
