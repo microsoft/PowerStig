@@ -15,6 +15,7 @@
 * Update PowerSTIG to parse/convert the Vmware Vsphere 6.5 STIG V1R3: [#604](https://github.com/microsoft/PowerStig/issues/604)
 * Fixed [#616](https://github.com/microsoft/PowerStig/issues/616): Unable to Import PowerSTIG 4.4.0 Due to cyclic dependency Error
 * Fixed [#632](https://github.com/microsoft/PowerStig/issues/632): Update PowerSTIG to allow for workgroup level scansr
+* Fixed [#652](https://github.com/microsoft/PowerStig/issues/652): Invalid ValueName for InternetExplorer11 rules V-75169 and V-75171
 
 ## [4.3.0] - 2020-03-27
 
